@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>brancher</title>
+        <link href="website.css" rel="stylesheet" type="text/css"/>
+        <script src="brancher.js"></script>
+    </head>
+    <body style="background-color: indianred" onload="startBranching()">
+        <a class="backlink" href="index.html"><img style="width: 28px; height: 28px;" src="http://www.clipartbest.com/cliparts/94i/bk5/94ibk5ycg.png"/></a>
+        <h1 style="margin-left: 50px; font-family: Cursive; font-size: 30px; display: inline-block;">Scroll around to see the images you generate...        Each generation stems near the bottom of the middle.</h1>
+        <p></p>
+        <p style=" position: fixed; font-family: Cursive; font-size: 20px; top: 100px; left: 20px; display: inline; clear: left; float: left;"><strong>Be patient, some generations are hefty...</strong></p>
+        <button style=" position: fixed; top: 170px; left: 135px; display: inline-block; clear: left; float: left;" onclick=" randomTree() ">Generate</button>
+        <div style="text-align: center;">
+            <canvas id="branchBoard" style=" display: inline-block; top: 0; left: 0; right: 0; margin-left: auto; margin-right: auto; border: 10px solid indigo;" height="4000" width="4000"></canvas>
+        </div>
+    </body>
+</html>

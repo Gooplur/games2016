@@ -1,0 +1,235 @@
+
+.intralink
+{
+    border-radius: 52px;
+    text-decoration: none;
+    font-size: 26px;
+    color: #FF4F00;
+    text-align: center;
+    border: 2px solid black;
+    padding: 1px;
+    margin: 3px;
+    width: 158px;
+    display: inline-block;
+    background-color: #310038;
+}
+
+.intralink:hover
+{
+    border-radius: 52px;
+    text-decoration: none;
+    font-size: 26px;
+    color: crimson;
+    text-align: center;
+    border: 2px solid yellow;
+    padding: 1px;
+    margin: 3px;
+    width: 158px;
+    display: inline-block;
+    background-color: #d47c38;
+}
+
+.backlink
+{
+    display: inline-block;
+    height:  30px;
+    width: 30px;
+    padding: 1px;
+    margin: 4px;
+}
+
+.backlink:hover
+{
+    display: inline-block;
+    height:  30px;
+    width: 30px;
+    padding: 1px;
+    margin: 1px;
+}
+
+.tictactoe-board
+{
+    margin: auto;
+}
+#information
+{
+    margin: auto;
+    display: block;
+}
+
+#scoreboard
+{
+    font-size: 30px;
+    margin: 4px;
+    font-family: Courier, Sans-serif;
+    color: orangered;
+
+
+}
+
+#scoreboard:hover
+{
+    font-size: 33px;
+    margin: 1px;
+    color: crimson;
+}
+
+.pongModeSelector
+{
+    display: inline-block;
+    font-size: 22px;
+    width: 144px;
+    border: 1px solid black;
+    text-align: center;
+    clear: left;
+    float: left;
+    font-family: Courier, Sans-serif;
+    color: orangered;
+    background-color: darkgoldenrod;
+    text-decoration: none;
+}
+
+.pongModeSelector:hover
+{
+    color: crimson;
+    background-color: gold;
+    border: 1px dotted red;
+}
+
+#fallingScore
+{
+    text-align: center;
+    display: inline-block;
+    border: 2px solid black;
+    height: 50px;
+    width: 80px;
+    font-size: 40px;
+    font-family: Serif;
+    color: black;
+    clear: left;
+    float: left;
+    background-color: gold;
+}
+
+#circleScreen
+{
+    border: 8px solid crimson;
+}
+
+.circleGameModes
+{
+    display: inline-block;
+    width: 80px;
+    font-size: 14px;
+    font-family: fantasy, serif;
+    color: navy;
+    background-color: cornsilk;
+    padding: 1px;
+    margin: 1px;
+    text-align: center;
+}
+
+.circleGameModes:hover
+{
+    display: inline-block;
+    width: 80px;
+    font-size: 14px;
+    font-family: fantasy, serif;
+    color: black;
+    background-color: moccasin;
+    padding: 1px;
+    margin: 1px;
+    text-align: center;
+}
+
+.castleInv
+{
+    border: 4px double darkgrey;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    margin: 4px;
+    font-size: 14px;
+    font-family: fantasy, serif;
+    color: black;
+    text-align: center;
+    background-color: dimgray;
+    vertical-align: middle;
+    padding: 2px;
+}
+
+.castleInv:hover
+{
+    vertical-align: top;
+    padding: 2px;
+    text-align: center;
+    border: 4px double darkgrey;
+    display: inline-block;
+    margin: 4px;
+    font-size: 14px;
+    font-family: fantasy, serif;
+    color: darkolivegreen;
+    background-color: lightgrey;
+}
+
+.castleSel
+{
+    border: 4px double darkgrey;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    margin: 4px;
+    font-size: 14px;
+    font-family: fantasy, serif;
+    color: black;
+    text-align: center;
+    background-color: darkolivegreen;
+    vertical-align: middle;
+    padding: 2px;
+}
+.castleSel:hover
+{
+    border: 4px double darkgrey;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    margin: 4px;
+    font-size: 14px;
+    font-family: fantasy, serif;
+    color: black;
+    text-align: center;
+    background-color: olive;
+    vertical-align: middle;
+    padding: 2px;
+}
+
+.castleRe
+{
+    border: 4px double darkgrey;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    margin: 4px;
+    font-size: 16px;
+    font-family: fantasy, serif;
+    color: black;
+    text-align: center;
+    background-color: forestgreen;
+    vertical-align: middle;
+    padding: 2px;
+}
+.castleRe:hover
+{
+    border: 4px double darkgrey;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    margin: 4px;
+    font-size: 16px;
+    font-family: fantasy, serif;
+    color: black;
+    text-align: center;
+    background-color: lightgreen;
+    vertical-align: middle;
+    padding: 2px;
+}

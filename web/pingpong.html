@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Air Hockey</title>
+        <link rel="stylesheet" href="website.css" type="text/css"/>
+        <script src="PingPong.js"></script>
+    </head>
+    <body onload="startGameLoop()" style="background-color: wheat">
+        <a class="backlink" href="index.html"><img style="width: 28px; height: 28px;" src="http://www.clipartbest.com/cliparts/94i/bk5/94ibk5ycg.png"/></a>
+        <p></p>
+        <p></p>
+        <p class="pongModeSelector"></p>
+        <div class="pongModeSelector"> <button class="pongModeSelector" onclick=" pongEasy() ">Elderly</button> </div>
+        <p class="pongModeSelector"></p>
+        <div class="pongModeSelector"> <button class="pongModeSelector" onclick=" pongMedium() ">Medium</button> </div>
+        <p class="pongModeSelector"></p>
+        <div class="pongModeSelector"> <button class="pongModeSelector" onclick=" pongHard() ">Hard</button> </div>
+        <p class="pongModeSelector"></p>
+        <div class="pongModeSelector"> <button class="pongModeSelector" onclick=" pongImpossible() ">Impossible</button> </div>
+        <p class="pongModeSelector"></p>
+        <div style="text-align: center;">
+            <canvas id="court" height="600" width="1200" style="border: 4px solid black;"> </canvas>
+        </div>
+        <div style="text-align: center">
+            <p id="scoreboard"></p>
+        </div>
+    </body>
+</html>

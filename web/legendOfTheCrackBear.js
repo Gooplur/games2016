@@ -9221,7 +9221,7 @@ function theLegend()
                     var dtm = this.DTM();
                     if (dtm < this.sizeRadius)
                     {
-                        if (this.type == "Person" || "Soldier")
+                        if (this.type == "Person" || this.type == "Soldier")
                         {
                             if (this.hostile == true)
                             {

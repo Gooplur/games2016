@@ -122,6 +122,8 @@ function theLegend()
     var gameState = "mainMenu"; //set to "active" for ingame play, and set to "mainMenu" for the main menu.
 
     //Saving
+    var update = 1; //change this by one whenever a new update has changed any of the key game aspects that might interfere with the normal save structure.
+    var lastUpdate = 0;
     var saveType = 1;
     var loadType = 1;
     var saveBrain = {};
@@ -8831,7 +8833,7 @@ function theLegend()
         };
     }
 
-    function Projectile(type, startX, startY, startAngle, speed, range, negation, list)
+    function Projectile(type, startX, startY, startAngle, speed, range, negation, list, damage, magicDamage, ability)
     {
         this.X = startX;
         this.Y = startY;
@@ -8849,20 +8851,43 @@ function theLegend()
             //SHOOT (project self)
         this.shoot = function()
         {
-            this.distanceFromStart = Math.sqrt((this.X - startX)*(this.X - startX)+(this.Y - startY)*(this.Y - startY));
-            if (this.distanceFromStart < range)
+            if (list == playerProjectiles)
             {
-                this.X += (Math.cos(this.rotation + (1/2 * Math.PI)) * speed) * (TTD / 16.75);
-                this.Y += (Math.sin(this.rotation + (1/2 * Math.PI)) * speed) * (TTD / 16.75);
-            }
-            else
-            {
-                for (var i = list.length - 1; i > -1; i--)
+                this.distanceFromStart = Math.sqrt((this.X - startX)*(this.X - startX)+(this.Y - startY)*(this.Y - startY));
+                if (this.distanceFromStart < range)
                 {
-                    if (list[i] == this)
+                    this.X += (Math.cos(this.rotation + (1/2 * Math.PI)) * speed) * (TTD / 16.75);
+                    this.Y += (Math.sin(this.rotation + (1/2 * Math.PI)) * speed) * (TTD / 16.75);
+                }
+                else
+                {
+                    for (var i = list.length - 1; i > -1; i--)
                     {
-                        list.splice(i, 1);
-                        break;
+                        if (list[i] == this)
+                        {
+                            list.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+            }
+            else if (list == unitProjectiles)
+            {
+                this.distanceFromStart = Math.sqrt((this.X - startX)*(this.X - startX)+(this.Y - startY)*(this.Y - startY));
+                if (this.distanceFromStart < range)
+                {
+                    this.X += (Math.cos(this.rotation - (1/2 * Math.PI)) * speed) * (TTD / 16.75);
+                    this.Y += (Math.sin(this.rotation - (1/2 * Math.PI)) * speed) * (TTD / 16.75);
+                }
+                else
+                {
+                    for (var i = list.length - 1; i > -1; i--)
+                    {
+                        if (list[i] == this)
+                        {
+                            list.splice(i, 1);
+                            break;
+                        }
                     }
                 }
             }
@@ -8871,18 +8896,31 @@ function theLegend()
         //This sets the projectiles damages and ability to that of the item its type referrs to.
         this.setStats = function()
         {
-            if (this.statsSet == false)
+            if (list == playerProjectiles)
             {
-                for (var i = 0; i < allWeapons.length; i++)
+                if (this.statsSet == false)
                 {
-                    if (type == allWeapons[i].type)
+                    for (var i = 0; i < allWeapons.length; i++)
                     {
-                        this.damage = allWeapons[i].damage;
-                        this.magicalDamage = allWeapons[i].magicalDamage;
-                        this.ability = allWeapons[i].ability;
-                        this.statsSet = true;
-                        break;
+                        if (type == allWeapons[i].type)
+                        {
+                            this.damage = allWeapons[i].damage;
+                            this.magicalDamage = allWeapons[i].magicalDamage;
+                            this.ability = allWeapons[i].ability;
+                            this.statsSet = true;
+                            break;
+                        }
                     }
+                }
+            }
+            else if (list == unitProjectiles)
+            {
+                if (this.statsSet == false)
+                {
+                    this.damage = damage;
+                    this.magicalDamage = magicDamage;
+                    this.ability = ability;
+                    this.statsSet = true;
                 }
             }
             //TODO make sure once abilities are added that this can also take those into account.
@@ -8916,7 +8954,21 @@ function theLegend()
             }
             else if (list == unitProjectiles)
             {
-                //TODO add an impact function for projectiles that are intended to hurt the player here!
+                //Unit arrows can harm the player!
+                var distanceFromPlayer = Math.sqrt((this.X - X)*(this.X - X)+(this.Y - Y)*(this.Y - Y));
+                if (distanceFromPlayer <= player.mySize + 1)
+                {
+                    player.health -= Math.max(0, this.damage - Math.max(0, player.armour - this.negateArmour)) + Math.max(0, this.magicalDamage - player.magicalResistance);
+
+                    for (var j = list.length - 1; j > -1; j--)
+                    {
+                        if (list[j] == this)
+                        {
+                            list.splice(j, 1);
+                            break;
+                        }
+                    }
+                }
             }
         };
 
@@ -8925,35 +8977,73 @@ function theLegend()
         {
             if (type == "arrow")
             {
-                //WHAT IT WILL DO...
-                player.projYAd = 0;
-                player.projXAd = 0;
-                this.setStats();
-                this.shoot();
-                this.impact();
+                if (list == playerProjectiles)
+                {
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    this.shoot();
+                    this.impact();
 
-                //HOW IT WILL DRAW...
-                XXX.save();
-                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
-                XXX.rotate(this.rotation - (1/2 * Math.PI));
-                XXX.drawImage(polyPNG, 432, 554, 20, 8,0, 0, 30, 12);
-                XXX.restore();
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    XXX.drawImage(polyPNG, 432, 554, 20, 8, 0, 0, 30, 12);
+                    XXX.restore();
+                }
+                else if (list == unitProjectiles)
+                {
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    this.shoot();
+                    this.impact();
+
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation + (1 / 2 * Math.PI));
+                    XXX.drawImage(polyPNG, 432, 554, 20, 8, 0, 0, 30, 12);
+                    XXX.restore();
+                }
             }
             else if (type == "aldrekiiArrow")
             {
-                //WHAT IT WILL DO...
-                player.projYAd = 0;
-                player.projXAd = 0;
-                this.setStats();
-                this.shoot();
-                this.impact();
+                if (list == playerProjectiles)
+                {
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    this.shoot();
+                    this.impact();
 
-                //HOW IT WILL DRAW...
-                XXX.save();
-                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
-                XXX.rotate(this.rotation - (1/2 * Math.PI));
-                XXX.drawImage(verse, 2832, 3, 41, 12, 0, 0, 32, 12);
-                XXX.restore();
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    XXX.drawImage(verse, 2832, 3, 41, 12, 0, 0, 32, 12);
+                    XXX.restore();
+                }
+                else if (list == unitProjectiles)
+                {
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    this.shoot();
+                    this.impact();
+
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation + (1 / 2 * Math.PI));
+                    XXX.drawImage(verse, 2832, 3, 41, 12, 0, 0, 32, 12);
+                    XXX.restore();
+                }
             }
         };
 
@@ -9131,7 +9221,7 @@ function theLegend()
                     var dtm = this.DTM();
                     if (dtm < this.sizeRadius)
                     {
-                        if (this.type == "Person")
+                        if (this.type == "Person" || "Soldier")
                         {
                             if (this.hostile == true)
                             {
@@ -9176,6 +9266,19 @@ function theLegend()
                 this.playerSeen = true;
                 this.newRotation = Math.atan2(Y - this.Y, X - this.X) + Math.PI;
                 //console.log(this.rotation + " | " + this.newRotation);
+            }
+            else
+            {
+                this.playerSeen = false;
+            }
+        };
+
+        this.noticePlayer = function()
+        {
+            var dtp = this.DTP();
+            if (dtp < this.rangeOfSight) //if the player is close enough to the unit the unit will rotate toward him/her.
+            {
+                this.playerSeen = true;
             }
             else
             {
@@ -9718,8 +9821,6 @@ function theLegend()
 
             if (this.playerSeen == true) // If this unit sees the player call friends over to help in the attack.
             {
-
-                var dtp = this.DTP();
                 for (var i = 0; i < nearbyUnitsList.length; i++)
                 {
                     //distanceFromOtherToPlayer
@@ -9730,6 +9831,13 @@ function theLegend()
                         var rangeNeeded = Math.max(0, dfotp - nearbyUnitsList[i].rangeOfSight);
                         nearbyUnitsList[i].extraRange = rangeNeeded + 20; // the extra range they will need to spy the player will be added.
                         nearbyUnitsList[i].extraRangeTime = new Date().getTime();
+                    }
+                    else
+                    {
+                        if (type == "Soldier")
+                        {
+                            nearbyUnitsList[i].disturbed = true;
+                        }
                     }
                 }
             }
@@ -9765,6 +9873,147 @@ function theLegend()
             }
         };
 
+        this.drawHumanArms = function()
+        {
+            if (this.ranged == true)
+            {
+                var dtp = this.DTP();
+                if (this.disturbed == true && dtp <= this.rangeOfSight && this.playerSeen == true) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    this.attacking = true;
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.ultra.ranged[8] * 1000))
+                    {
+                        if (this.weapon == "longbow")
+                        {
+                            this.costumeEngine(8, 0.2, false);
+                        }
+                    }
+                    //this is the actual launch
+                    if (this.finalAttackCostume == true)
+                    {
+                        this.finalAttackCostume = false;
+                        this.timeBetweenAttacks = new Date().getTime();
+                        unitProjectiles.push(new Projectile(this.ultra.ranged[1], this.X, this.Y, this.rotation -  1 / 2 * Math.PI, this.ultra.ranged[2], this.ultra.ranged[3], this.ultra.ranged[4], unitProjectiles, this.ultra.ranged[5], this.ultra.ranged[6], this.ultra.ranged[7]));
+                    }
+                }
+            }
+
+            var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+            //manual damaging
+            if (this.weapon == "none")
+            {
+                if (theCostume <= 0)
+                {
+                    this.drawUnit(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 1)
+                {
+                    this.drawUnit(polyPNG, 638, 118, 80, 37, -24, -17, 46, 22, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 2)
+                {
+                    this.drawUnit(polyPNG, 639, 195, 80, 37, -26, -20, 46, 22, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 3)
+                {
+                    this.drawUnit(polyPNG, 643, 276, 80, 37, -28.5, -20, 48, 23, 1 / 2 * Math.PI);
+                }
+                else if (theCostume >= 4)
+                {
+                    this.drawUnit(polyPNG, 653, 352, 80, 37, -26.5, -21, 48, 23, 1 / 2 * Math.PI);
+                }
+            }
+            else if (this.weapon == "longbow")
+            {
+                if (theCostume <= 0)
+                {
+                    this.drawUnit(polyPNG, 421, 589, 40, 43, -17, -41, 50, 53.75, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 1)
+                {
+                    this.drawUnit(polyPNG, 487, 589, 40, 43, -11, -42, 50, 53.75, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 2)
+                {
+                    this.drawUnit(polyPNG, 536, 589, 40, 43, -16, -39, 50, 53.75, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 3)
+                {
+                    this.drawUnit(polyPNG, 576, 588, 40, 43, -19, -41, 50, 53.75, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 4)
+                {
+                    this.drawUnit(polyPNG, 608, 588, 40, 43, -21, -41, 50, 53.75, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 5)
+                {
+                    this.drawUnit(polyPNG, 645, 589, 40, 43, -16, -40, 50, 53.75, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 6)
+                {
+                    this.drawUnit(polyPNG, 681, 582, 40, 43, -22, -38.5, 50, 53.75, 1 / 2 * Math.PI);
+                }
+                else if (theCostume >= 7)
+                {
+                    this.drawUnit(polyPNG, 717, 583, 40, 43, -17, -38.5, 50, 53.75, 1 / 2 * Math.PI);
+                }
+            }
+            else if (this.weapon == "freydicSword")
+            {
+                if (theCostume <= 0)
+                {
+                    this.drawUnit(verse, 2210, 1, 73, 63, -13, -60, 91.875, 78.75, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 1)
+                {
+                    this.drawUnit(verse, 2290, 1, 73, 63, -17.5, -60, 91.875, 78.75, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 2)
+                {
+                    this.drawUnit(verse, 2367, 1, 73, 63, -25, -61, 91.875, 78.75, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 3)
+                {
+                    this.drawUnit(verse, 2438, 1, 73, 63, -31, -61.5, 91.875, 78.75, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 4)
+                {
+                    this.drawUnit(verse, 2513, 1, 73, 63, -36, -64, 91.875, 78.75, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 5)
+                {
+                    this.drawUnit(verse, 2577, 1, 73, 63, -44, -69, 91.875, 78.75, 1 / 2 * Math.PI);
+                }
+                else if (theCostume >= 6)
+                {
+                    this.drawUnit(verse, 2635, 1, 73, 63, -49.25, -69, 91.875, 78.75, 1 / 2 * Math.PI);
+                }
+            }
+        };
+
+        this.switchToRanged = function(weapon)
+        {
+            if (this.disturbed == true)
+            {
+                var dtp = this.DTP();
+                if (this.engagementRadius < dtp)
+                {
+                    this.weapon = weapon;
+                    this.ranged = true;
+                    this.attacking = true;
+                }
+                else
+                {
+                    this.weapon = this.ultra.weapon[0];
+                    this.ranged = false;
+                }
+            }
+            else
+            {
+                this.attacking = false;
+            }
+        };
+
         //Basic Functionality
 
         this.disturbedTimer = function()
@@ -9775,7 +10024,10 @@ function theLegend()
             }
             else
             {
-                this.disturbed = false;
+                if (this.type != "Soldier")
+                {
+                    this.disturbed = false;
+                }
             }
         };
         //death checker -- checks to see if they should be dead.
@@ -9893,6 +10145,7 @@ function theLegend()
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
                 var distanceToOther = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y)); // this is the distance formula and in this line it is being used to find the distance each Unit is away from this one...
+
                 if (ArtificialIntelligenceAccess[i] !== this && ArtificialIntelligenceAccess[i].type == type && distanceToOther <= range)
                 {
                     list.push(ArtificialIntelligenceAccess[i]);
@@ -9988,7 +10241,18 @@ function theLegend()
             //Unit Worn Outfits
             if (dead != true)
             {
-                //todo add the drawing for unit worn outfits.
+                if (outfit == "chainArmour")
+                {
+                    XXX.restore();
+                    XXX.save();
+                    XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    XXX.rotate(this.rotation + 1/2 * Math.PI);
+                    XXX.drawImage(verse, 1915, 1, 31, 27, -(1 / 2 * 26) - 1.3, -(1 / 2 * 27) + 1.5, 27, 27);
+                }
+                else if (outfit == "walrusLeatherArmour")
+                {
+                    XXX.drawImage(polyPNG, 804, 262, 35, 24, -(1 / 2 * 45.5) + 8, -(1 / 2 * 31.2) + 1.25, 42, 28.8);
+                }
             }
 
             XXX.restore();
@@ -10448,20 +10712,24 @@ function theLegend()
                 {
                     this.grudge = 10;
                 }
+
                 //STATS (non-variable)
+                this.ranged = this.ultra.ranged[0];
+                this.outfit = this.ultra.outfit[0];
+                this.weapon = this.ultra.weapon[0];
                 this.magicalResistance = 0;
                 this.attackStyle = "chunked";
                 this.attackRate = 0;  //this is for rapid style combat only.
                 this.healthMAX = (Math.floor(Math.random() * 4) * 4) + 0.1;
                 this.health = this.healthMAX;
-                this.armour = 0;
+                this.armour = this.ultra.outfit[1];
                 this.speed = 0.65 + (Math.floor(Math.random() * 12) / 10);
                 this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
                 this.rotationSpeed = Math.PI / 10; // 0.01 is a standard turn speed.
-                this.engagementRadius = 30;
+                this.engagementRadius = 30 + this.ultra.weapon[3];
                 this.sizeRadius = 10;
-                this.negateArmour = 0;
-                this.attackWait = 0.40 + (Math.floor(Math.random() * 6) / 10);
+                this.negateArmour = this.ultra.weapon[2];
+                this.attackWait = this.ultra.weapon[4];
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1;
@@ -10469,6 +10737,29 @@ function theLegend()
                 this.yAdjustment = 0;
                 this.xAdjustment = 0;
 
+            }
+            else if (this.type == "Soldier")
+            {
+                this.damageFrame = "automatic";
+
+                //STATS (non-variable)
+                this.ranged = this.ultra.ranged[0];
+                this.con = this.ultra.con;
+                this.outfit = this.ultra.outfit[0];
+                this.weapon = this.ultra.weapon[0];
+                this.magicalResistance = 0;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = this.con * 4 + 0.1;
+                this.health = this.healthMAX;
+                this.armour = this.ultra.outfit[1];
+                this.speed = this.ultra.speed;
+                this.rangeOfSight = 650; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = Math.PI / 10; // 0.01 is a standard turn speed.
+                this.engagementRadius = 30 + this.ultra.weapon[3];
+                this.sizeRadius = 10;
+                this.negateArmour = this.ultra.weapon[2];
+                this.attackWait = this.ultra.weapon[4];
             }
         };
         this.designUnits();
@@ -11787,44 +12078,19 @@ function theLegend()
             if (this.type == "Person")
             {
                 //Set Drops and experience
-                if (this.alpha == true)
+                if (Math.max(0, 0.5 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
-                    if (Math.max(0, 0.5 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
-                    {
-                        this.experience = 5 * ((player.getIntelligence() / 50) + 1);
-                    }
-                    else
-                    {
-                        this.experience = (5 * ((player.getIntelligence() / 50) + 1)) / 10;
-                    }
-
-                    this.drops = [];
-
+                    this.experience = 5 * ((player.getIntelligence() / 50) + 1);
                 }
                 else
                 {
-                    if (Math.max(0, 0.5 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
-                    {
-                        this.experience = 5 * ((player.getIntelligence() / 50) + 1);
-                    }
-                    else
-                    {
-                        this.experience = (5 * ((player.getIntelligence() / 50) + 1)) / 10;
-                    }
-
-                    this.drops = [];
-
+                    this.experience = (5 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
+                this.drops = [];
                 //RANGE OF SIGHT (anything related to range of sight)
-                if (this.alpha == true)
-                {
-                    this.rangeOfSightCalculator(500, "true");
-                }
-                else
-                {
-                    this.rangeOfSightCalculator(500, "true");
-                }
+
+                this.rangeOfSightCalculator(500, "true");
 
                 //AI
                 if (this.alive == true)
@@ -11838,32 +12104,41 @@ function theLegend()
                         {
                             this.pointTowardsPlayer();
                             this.moveInRelationToPlayer();
-                            this.Attack(0.4, 0.1);
-                            this.callForNearbyHelpFromType(500, JSON.stringify(this.faction) + "Guard");
+                            if (this.ranged == false)
+                            {
+                                this.Attack(this.ultra.weapon[1][1], this.ultra.weapon[1][0]);
+                            }
+                            this.callForNearbyHelpFromType(900, "Soldier");
                         }
                         else if (this.ultra.personality == "calculated")
                         {
                             if (player.weaponEquipped == "none" && player.armourTotal < 0.5)
                             {
                                 this.fleeing = false;
+                                this.ranged = this.ultra.ranged[0];
                                 this.pointTowardsPlayer();
                                 this.moveInRelationToPlayer();
-                                this.Attack(0.4, 0.1);
-                                this.callForNearbyHelpFromType(500, JSON.stringify(this.faction) + "Guard");
+                                if (this.ranged == false)
+                                {
+                                    this.Attack(this.ultra.weapon[1][1], this.ultra.weapon[1][0]);
+                                }
+                                this.callForNearbyHelpFromType(900, "Soldier");
                             }
                             else
                             {
+                                this.ranged = false;
                                 this.attacking = false;
                                 this.moveInRelationToPlayer();
                                 this.pointAwayFromPlayer();
-                                this.callForNearbyHelpFromType(500, JSON.stringify(this.faction) + "Guard");
+                                this.callForNearbyHelpFromType(900, "Soldier");
                             }
                         }
                         else if (this.ultra.personality == "scared")
                         {
+                            this.ranged = false;
                             this.moveInRelationToPlayer();
                             this.pointAwayFromPlayer();
-                            this.callForNearbyHelpFromType(500, JSON.stringify(this.faction) + "Guard");
+                            this.callForNearbyHelpFromType(900, "Soldier");
                         }
                     }
                     else
@@ -11871,8 +12146,8 @@ function theLegend()
                         this.hostile = false;
                         this.attacking = false;
                         this.fleeing = false;
-                        dtp = this.DTP();
-                        if (dtp > 35)
+                        this.dtp = this.DTP();
+                        if (this.dtp > 35)
                         {
                             this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
                         }
@@ -11895,6 +12170,7 @@ function theLegend()
                         if (this.ultra.faction == "freynor")
                         {
                             player.freynorFaction -= 20;
+                            this.callForNearbyHelpFromType(900, "Soldier");
                         }
                         //Unique Characters Permanent Death
                         if (ID == "Laandeg the Alchemist")
@@ -11923,7 +12199,7 @@ function theLegend()
                             player.freynorFaction -= 14;
                         }
 
-                        doOnDeathOnce = false;
+                        this.doOnDeathOnce = false;
                     }
                 }
 
@@ -11992,40 +12268,211 @@ function theLegend()
                     {
                         if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
                         {
-                            this.costumeEngine(6, 0.2, true);
+                            if (this.weapon == "none")
+                            {
+                                this.costumeEngine(6, 0.2, true);
+                            }
+                            else if (this.weapon == "freydicSword")
+                            {
+                                this.costumeEngine(7, 0.2, true);
+                            }
                         }
                     }
-                    //Draw the Person's body
-                    this.drawHuman();
+                    //draw some weapons underneath the body
+                    if (this.weapon == "freydicSword" || this.weapon == "longbow")
+                    {
+                        this.drawHumanArms();
+                    }
 
-                    // the frames/stages/costumes of the animation.
-                    var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
-                    //manual damaging
-                    if (theCostume <= 0)
+                    //Draw the Person's body
+                    this.drawHuman(this.ultra.outfit[0], false);
+
+                    //draw the others over it.
+                    if (this.weapon != "freydicSword" && this.weapon != "longbow")
                     {
-                        this.drawUnit(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22, 1/2 * Math.PI);
-                    }
-                    else if (theCostume <= 1)
-                    {
-                        this.drawUnit(polyPNG, 638, 118, 80, 37, -24, -17, 46, 22, 1/2 * Math.PI);
-                    }
-                    else if (theCostume <= 2)
-                    {
-                        this.drawUnit(polyPNG, 639, 195, 80, 37, -26, -20, 46, 22, 1/2 * Math.PI);
-                    }
-                    else if (theCostume <= 3)
-                    {
-                        this.drawUnit(polyPNG, 643, 276, 80, 37, -28.5, -20, 48, 23, 1/2 * Math.PI);
-                    }
-                    else if (theCostume >= 4)
-                    {
-                        this.drawUnit(polyPNG, 653, 352, 80, 37, -26.5, -21, 48, 23, 1/2 * Math.PI);
+                        this.drawHumanArms();
                     }
                 }
                 else
                 {
                     this.drawHuman("none", true);
                     this.drawUnit(verse, 0, 302, 35, 80, -20.5, -20, 57, 100, 1/2 * Math.PI);
+                }
+            };
+            //SOLDIER
+            if (this.type == "Soldier")
+            {
+                //Set Drops and experience
+
+                if (Math.max(0, (this.ultra.weapon[1][0] + this.ultra.weapon[1][1]) - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 20 * this.con * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (20 * this.con * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [];
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                this.rangeOfSightCalculator(650, "true");
+
+                //AI
+                if (this.alive == true)
+                {
+                    if (this.ultra.faction == "freynor")
+                    {
+                        if (player.freynorFaction <= -50)
+                        {
+                            this.disturbed = true;
+                        }
+
+                        this.switchToRanged("longbow");
+                    }
+
+                    if (this.disturbed == true)
+                    {
+                        this.hostile = true; //let the games animation know to display the person's name in red.
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                        if (this.ranged == false)
+                        {
+                            this.Attack(this.ultra.weapon[1][1], this.ultra.weapon[1][0]);
+                        }
+                        this.callForNearbyHelpFromType(900, "Soldier");
+                    }
+                    else
+                    {
+                        this.weapon = this.ultra.weapon[0];
+                        this.ranged = false;
+                        this.hostile = false;
+                        this.attacking = false;
+                        this.dtp = this.DTP();
+                        if (this.dtp > 35)
+                        {
+                            this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                        }
+                        else
+                        {
+                            this.pointTowardsPlayer();
+                            this.moving = false;
+                        }
+                    }
+
+                    this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+                }
+                else
+                {
+                    if (this.doOnDeathOnce == true)
+                    {
+                        //Faction relation decreases
+                        if (this.ultra.faction == "freynor")
+                        {
+                            player.freynorFaction -= 50;
+                        }
+                        //Unique Characters Permanent Death
+
+                        this.doOnDeathOnce = false;
+                    }
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (this.moving == false && this.attacking == false)
+                    {
+                        this.costume = 0;
+                    }
+                    else if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costume = 0;
+                        // the right leg goes back 25 pixles and the left goes forward 25.
+                        if (this.lLegY < 23 && this.legSwitch == 0)
+                        {
+                            // this makes the legs extend
+                            this.lLegY += 11 / (16.75 - (0.17 / 2 * 80));
+                            this.rLegY -= 11 / (16.75 - (0.17 / 2 * 80));
+                            //console.log("left" + " " + self.lLegY + " " + self.rLegY);
+                        }
+                        else
+                        {
+                            //switch to the right leg forward routine.
+                            this.legSwitch = 1;
+                        }
+
+                        // the left leg goes back 25 pixles and the right goes forward 25.
+                        if (this.lLegY > -23 && this.legSwitch == 1)
+                        {
+                            // this makes the legs extend
+                            this.lLegY -= 11 / (16.75 - (0.17 / 2 * 80));
+                            this.rLegY += 11 / (16.75 - (0.17 / 2 * 80));
+                            //console.log("right" + " " + self.lLegY + " " + self.rLegY);
+                        }
+                        else
+                        {
+                            // switch to the left leg forward routine.
+                            this.legSwitch = 0;
+                        }
+
+                        //to put it simply, this function draws two lines that represent the main character's legs.
+                        this.drawLegs = function ()
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                            XXX.rotate(this.rotation - 1 / 2 * Math.PI);
+                            XXX.beginPath();
+                            XXX.strokeStyle = "black";
+                            XXX.lineWidth = 2;
+                            XXX.moveTo(-4, 0);
+                            XXX.lineTo(-4, 0 + this.lLegY);
+                            XXX.stroke();
+                            XXX.beginPath();
+                            XXX.strokeStyle = "black";
+                            XXX.lineWidth = 2;
+                            XXX.moveTo(4, 0);
+                            XXX.lineTo(4, 0 + this.rLegY);
+                            XXX.stroke();
+                            XXX.restore();
+                        };
+                        this.drawLegs();
+                    }
+                    else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            if (this.weapon == "none")
+                            {
+                                this.costumeEngine(6, 0.2, true);
+                            }
+                            else if (this.weapon == "freydicSword")
+                            {
+                                this.costumeEngine(7, 0.2, true);
+                            }
+                        }
+                    }
+                    //draw some weapons underneath the body
+                    if (this.weapon == "freydicSword" || this.weapon == "longbow")
+                    {
+                        this.drawHumanArms();
+                    }
+
+                    //Draw the Person's body
+                    this.drawHuman(this.ultra.outfit[0], false);
+
+                    //draw the others over it.
+                    if (this.weapon != "freydicSword" && this.weapon != "longbow")
+                    {
+                        this.drawHumanArms();
+                    }
+                }
+                else
+                {
+                    this.drawHuman("none", true);
+                    this.drawUnit(verse, 0, 302, 35, 80, -20.5, -20, 57, 100, 1 / 2 * Math.PI);
                 }
             }
         };
@@ -12063,7 +12510,7 @@ function theLegend()
                 this.testForSize();
             }
         };
-    }
+    };
 
     function Item(type, x, y)
     {
@@ -15174,9 +15621,11 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-2132, 5878, "Frich", true, "Rathair"));
 
                     //Citizens of Teshir
-                    ArtificialIntelligenceAccess.push(new Unit(2584, 1385, "Person", false, "Freynor Villager", {faction: "freynor", personality: "calculated", patrolStops: 5, patrolLoop: true, route:[[2523, 2061], [2041, 2046], [2036, 2118], [2594, 2169], [2584, 1385]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(2338, 1205, "Person", false, "Freynor Villager", {faction: "freynor", personality: "calculated", patrolStops: 4, patrolLoop: true, route:[[1622, 1196], [1655, 1300], [2518, 1366], [2338, 1205]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(2335, 924, "Person", false, "Freynor Villager", {faction: "freynor", personality: "calculated", patrolStops: 5, patrolLoop: true, route:[[1355, 935], [1402, 1962], [1402, 1962], [1461, 902], [2335, 924]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(2741, 1421, "Soldier", false, "Freynor Soldier", {faction: "freynor", con: 4, speed: 1.25, outfit: ["chainArmour", 9], weapon: ["freydicSword", [8, 6], 0, 16, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[1833, 1424], [1848, 2413], [3046, 2407], [2741, 1421]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(1247, 1210, "Soldier", false, "Freynor Soldier", {faction: "freynor", con: 6, speed: 1.4, outfit: ["chainArmour", 8], weapon: ["freydicSword", [8, 9], 0, 16, 1], ranged: [false, "arrow", 6, 1950, 1, 4, 0, "none", 1.35], patrolStops: 6, patrolLoop: true, route:[[901, 1195], [969, 527], [1932, 549], [1941, 814], [1932, 549], [969, 527]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(2584, 1385, "Person", false, "Freynor Villager", {faction: "freynor", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 5, patrolLoop: true, route:[[2523, 2061], [2041, 2046], [2036, 2118], [2594, 2169], [2584, 1385]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(2338, 1205, "Person", false, "Freynor Villager", {faction: "freynor", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[1622, 1196], [1655, 1300], [2518, 1366], [2338, 1205]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(2335, 924, "Person", false, "Freynor Villager", {faction: "freynor", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 5, patrolLoop: true, route:[[1355, 935], [1402, 1962], [1402, 1962], [1461, 902], [2335, 924]]}));
                     if (uniqueChars.drohforLDS == true)
                     {
                         var hits = 0;
@@ -15189,7 +15638,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(2583, 818, "Person", false, "Drohfor", {faction: "freynor", personality: "violent", patrolStops: 6, patrolLoop: true, route:[[2001, 658], [2252, -509], [2423, -588], [2032, 440], [2030, 770], [2583, 818]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(2583, 818, "Person", false, "Drohfor", {faction: "freynor", personality: "violent", outfit: ["walrusLeatherArmour", 5], weapon: ["longbow", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [true, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 6, patrolLoop: true, route:[[2001, 658], [2252, -509], [2423, -588], [2032, 440], [2030, 770], [2583, 818]]}));
                         }
                     }
                     if (uniqueChars.laandegLDS == true)
@@ -15204,7 +15653,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(744, 1545, "Person", false, "Laandeg the Alchemist", {faction: "freynor", personality: "scared", patrolStops: 4, patrolLoop: true, route:[[744, 1133], [801, 1156], [840, 373], [744, 1545]], merchant: true, merchandise: [[new Item("coins", false, false), 29], [new Item("trollsBlood", false, false), 1], [new Item("cleansingPotion", false, false), 1], [new Item("energyPotionI", false, false), 3], [new Item("speedPotionI", false, false), 2], [new Item("rawWolfLiver", false, false), 4]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(744, 1545, "Person", false, "Laandeg the Alchemist", {faction: "freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[744, 1133], [801, 1156], [840, 373], [744, 1545]], merchant: true, merchandise: [[new Item("coins", false, false), 29], [new Item("trollsBlood", false, false), 1], [new Item("cleansingPotion", false, false), 1], [new Item("energyPotionI", false, false), 3], [new Item("speedPotionI", false, false), 2], [new Item("rawWolfLiver", false, false), 4]]}));
                         }
                     }
                     if (uniqueChars.bobithLDS == true)
@@ -15219,7 +15668,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(1690, 1021, "Person", false, "Bobith the Smith", {faction: "freynor", personality: "violent", patrolStops: 3, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 103], [new Item("mace", false, false), 3], [new Item("freydicSpear", false, false), 5], [new Item("freydicSword", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("longbow", false, false), 2], [new Item("arrow", false, false), 92]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(1690, 1021, "Person", false, "Bobith the Smith", {faction: "freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.65], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 103], [new Item("mace", false, false), 3], [new Item("freydicSpear", false, false), 5], [new Item("freydicSword", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("longbow", false, false), 2], [new Item("arrow", false, false), 92]]}));
                         }
                     }
                     if (uniqueChars.medliaLDS == true)
@@ -15234,7 +15683,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(1930, 1793, "Person", false, "Medlia the Merchant", {faction: "freynor", personality: "calculated", patrolStops: 3, patrolLoop: true, route:[[1710, 1717], [1812, 1835], [1713, 1882], [1930, 1793]], merchant: true, merchandise: [[new Item("coins", false, false), 79], [new Item("rawWalrusFlesh", false, false), 8], [new Item("walrusMeat", false, false), 6], [new Item("walrusHide", false, false), 1], [new Item("walrusTusks", false, false), 1], [new Item("frichPelt", false, false), 3], [new Item("rawFrichFlesh", false, false), 12], [new Item("frichMeat", false, false), 9], [new Item("winterWolfPelt", false, false), 3], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 1], [new Item("rawWolfLiver", false, false), 1], [new Item("wolfLiver", false, false), 1]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(1930, 1793, "Person", false, "Medlia the Merchant", {faction: "freynor", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[1710, 1717], [1812, 1835], [1713, 1882], [1930, 1793]], merchant: true, merchandise: [[new Item("coins", false, false), 79], [new Item("rawWalrusFlesh", false, false), 8], [new Item("walrusMeat", false, false), 6], [new Item("walrusHide", false, false), 1], [new Item("walrusTusks", false, false), 1], [new Item("frichPelt", false, false), 3], [new Item("rawFrichFlesh", false, false), 12], [new Item("frichMeat", false, false), 9], [new Item("winterWolfPelt", false, false), 3], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 1], [new Item("rawWolfLiver", false, false), 1], [new Item("wolfLiver", false, false), 1]]}));
                         }
                     }
                     if (uniqueChars.maggyLDS == true)
@@ -15249,7 +15698,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(2858, 1524, "Person", false, "Maggy the Tailor", {faction: "freynor", personality: "scared", patrolStops: 2, patrolLoop: true, route:[[2836, 2058], [2858, 1524]], merchant: true, merchandise: [[new Item("coins", false, false), 85], [new Item("walrusLeatherArmour", false, false), 3]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(2858, 1524, "Person", false, "Maggy the Tailor", {faction: "freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1.2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 2, patrolLoop: true, route:[[2836, 2058], [2858, 1524]], merchant: true, merchandise: [[new Item("coins", false, false), 85], [new Item("walrusLeatherArmour", false, false), 3]]}));
                         }
                     }
 
@@ -15455,6 +15904,7 @@ function theLegend()
         saveBrain["spawnY"] = spawnY;
         saveBrain["map"] = map;
         saveBrain["region"] = region;
+        saveBrain["update"] = update;
         saveBrain["change"] = change;
 
         var saveFile = JSON.stringify(saveBrain);
@@ -15483,8 +15933,11 @@ function theLegend()
     {
         retrieveSave();
         mainCharacterAccess = loadList("mainCharacterAccess");
-        ArtificialIntelligenceAccess = loadList("ArtificialIntelligenceAccess");
-        deadAIList = loadList("deadAIList");
+        if (update == lastUpdate && typeof(lastUpdate) != "undefined")
+        {
+            ArtificialIntelligenceAccess = loadList("ArtificialIntelligenceAccess");
+            deadAIList = loadList("deadAIList");
+        }
         playerProjectiles = loadList("playerProjectiles");
         unitProjectiles = loadList("unitProjectiles");
         worldItems = loadList("worldItems", true);
@@ -15611,9 +16064,13 @@ function theLegend()
         }
         else
         {
+            if (update == parsed.update && typeof(parsed.update) != "undefined")
+            {
+                change = parsed.change;
+            }
+            lastUpdate = parsed.update;
             map = parsed.map;
             region = parsed.region;
-            change = parsed.change;
             X = parsed.X;
             Y = parsed.Y;
             spawnX = parsed.spawnX;

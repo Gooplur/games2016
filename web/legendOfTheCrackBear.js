@@ -17136,7 +17136,7 @@ function theLegend()
         }
         else if (listName == "bankAccount")
         {
-            return parsed.bankAccount;
+            //return parsed.bankAccount;
         }
         else
         {

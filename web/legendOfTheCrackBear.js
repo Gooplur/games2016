@@ -17014,7 +17014,7 @@ function theLegend()
         worldItems = loadList("worldItems", true);
         Inventory = loadList("Inventory", true);
         shopInventory = loadList("shopInventory", true);
-        //bankAccount = loadList("bankAccount", true);
+        bankAccount = loadList("bankAccount", true);
         for (var n = 0; n < ArtificialIntelligenceAccess.length; n++)
         {
             //ArtificialIntelligenceAccess[n].ultra.merchandise = loadList("merchandise" + n, true);
@@ -17136,7 +17136,7 @@ function theLegend()
         }
         else if (listName == "bankAccount")
         {
-            //return parsed.bankAccount;
+            return parsed.bankAccount;
         }
         else
         {
@@ -17160,7 +17160,7 @@ function theLegend()
             {
                 quests[key] = parsed.quests[key];
             }
-            //bankSlots = parsed.bankSlots;
+            bankSlots = parsed.bankSlots;
         }
 
     }

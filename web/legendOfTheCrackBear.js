@@ -3,7 +3,7 @@
  */
 
 //TODO LIST
-//todo After loading a game weapons damages are stuck at the preload amount, and I fear that this may be true for other things as well... getStrength is behaving, and the allweapons loop is supposedly updating itself with the game loop. Also when I altered strength by 5 every loop the allweapons' constant updates did not change the damage :O !!!
+//todo finish adding the bank, that includes deposits and withdrawals, purchasing bank slots, and saving and loading of the bankAccount list.
 //todo Add harsh hot weather conditions: deserts cause dehydration (droplet with an increasingly red background) [cured by liquids]: drinkable items like drinks alcohols and water etc.
 //todo Add spellbook and magic (and build the magic leveling function)
 //todo build the intelligence based inspect system in which a character with high enough intelligence can find out certain details about a target Unit by clicking on them.
@@ -122,7 +122,7 @@ function theLegend()
     var gameState = "mainMenu"; //set to "active" for ingame play, and set to "mainMenu" for the main menu.
 
     //Saving
-    var update = 1; //change this by one whenever a new update has changed any of the key game aspects that might interfere with the normal save structure.
+    var update = 0; //change this by one whenever a new update has changed any of the key game aspects that might interfere with the normal save structure.
     var lastUpdate = 0;
     var saveType = 1;
     var loadType = 1;
@@ -146,6 +146,11 @@ function theLegend()
         //shop
     var merchScroll = 0;
     var itemAmount = 1;
+        //bank
+    var bankAccount = [];
+    var bankSlots = 1;
+    var bankSlotCost = 25;
+    var bankScroll = 0;
 
     //time Tracker Variables
     var beegin = "start"; // this is a variable that lets TTP set to time natural when the game starts
@@ -199,7 +204,8 @@ function theLegend()
         medliaLDS: true,
         drohforLDS: true,
         laandegLDS: true,
-        maggyLDS: true
+        maggyLDS: true,
+        odeeLDS: true
     };
     //QUESTS
     var quests = {};
@@ -229,8 +235,8 @@ function theLegend()
     //Player Inventory
     var Inventory = [];
     //todo TEST INVENTORY
-    //Inventory = [[new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 1], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
-    Inventory = [[new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
+    Inventory = [[new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 1], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
+    //Inventory = [[new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
 
     //This list holds one of each type of weapon so that the player can access the weapons stats.
     var allWeapons = [];
@@ -271,6 +277,7 @@ function theLegend()
     var shopID = "none";
     var shopInventory = [];
     var initialShopItemSet = false;
+    var initialBankItemSet = false;
 
     //This sets the items that are in shops.
     function shopItemIDSetter()
@@ -281,6 +288,15 @@ function theLegend()
             for (var i = 0; i < shopInventory.length; i++)
             {
                 shopInventory[i][0].setItemID();
+            }
+        }
+
+        if (lowBar == "bank" || initialBankItemSet == false)
+        {
+            initialBankItemSet = true;
+            for (var i = 0; i < bankAccount.length; i++)
+            {
+                bankAccount[i][0].setItemID();
             }
         }
     }
@@ -2781,7 +2797,7 @@ function theLegend()
         this.nirwadenFaction = 0; //orange (nirinese) Queen Lelaine
         //Skills
         this.constitution = 50; //this determines the amount of health that the player has. (4 health per point) (50 Maximum Constitution)
-        this.strength = 0; //this skill adds or subtracts from your physical damage blows based on whether or not it is positive or negative. [+ 5 points of carry weight per level] (50 Maximum Strength)
+        this.strength = 5000; //this skill adds or subtracts from your physical damage blows based on whether or not it is positive or negative. [+ 5 points of carry weight per level] (50 Maximum Strength)
         this.stamina = 50; //stamina determines the amount of energy you have for running and attacking. (5 energy per point) (50 Maximum Stamina)
         this.dexterity = 20; //this determines how fast you can move and how fast you can run. (50 Maximum Dexterity) [don't let it be boosted past 86]
         this.ranged = 0; //this skill increases the effectiveness of ranged weaponry.
@@ -2803,6 +2819,7 @@ function theLegend()
         this.AdCharisma = 0; //this is the amount of stat adjustment to charisma.
             //more skill adjusters
         this.dexBoost = 0; //this is stat adjustment by magic and potions.
+        this.emiBoost = 0; //this is stat adjustment by magic and potions.
         //Magical Skills
         this.willpower = 0; //this is the amount of energy the caster has to cast magic with, like MP. (100 Maximum Willpower)
         this.knowledge = 0; //this determines what caliber of spells the caster can cast.
@@ -2910,6 +2927,8 @@ function theLegend()
         this.rangedWeaponType = "none";
         //Shop Variables
         this.merchPosition = 0;
+        //Bank Variables
+        this.bankPosition = 0;
         //effects variables
         this.fedClock = 0; // this is the amount of time a player can avoid losing hunger after eating. This value is set elsewhere.
         this.fed = true; //When this is initiated the player will become satiated for a short duration of time.
@@ -2955,6 +2974,8 @@ function theLegend()
         this.speedV = false;
         this.dexTime = 0; //this is the amount of time that helps determine how long dexterity is magically increased.
         this.speedBoost = false; //this is the flag that indicates whether the effect is active for the mini notice system.
+        this.timeSinceRawTrollBlood = 0; //this is the timer for troll poisoning
+        this.trollPoisonActive = false; //this is the reset for troll poisonings magic resistance effect (resets the eminence boost to 0 when true)
         //utility or extra variables
         this.decreaseInHealth = 0;
         this.stage = 0;
@@ -3008,7 +3029,7 @@ function theLegend()
             this.willMAX = 0.1 + this.willpower;
             this.energyMAX = 6 + (5 * this.getStamina());
             this.healthMAX = 0.1 + (4 * this.getConstitution());
-            this.naturalMagicalResistance = 0;
+            this.naturalMagicalResistance = this.getEminence() / 5;
             this.magicalResistanceTotal = this.naturalMagicalResistance + this.magicalResistance;
             this.thirstMAX = 50 + (1 * this.getEndurance()) + (4 * this.getToughness());
             this.warmthMAX = 50 + (1 * this.getEndurance()) + (4 * this.getToughness());
@@ -3335,7 +3356,11 @@ function theLegend()
                 }
                 else
                 {
-                    this.speedBoost = false;
+                    if (this.speedBoost == true)
+                    {
+                        this.dexBoost = 0;
+                        this.speedBoost = false;
+                    }
                 }
 
                 //This applies the boost.
@@ -3450,6 +3475,22 @@ function theLegend()
                     this.energy -= 3;
                     this.timeSinceBadFoodEaten = 0;
                 }
+
+                //Troll poisoning
+                if (new Date().getTime() - this.timeSinceRawTrollBlood < 25000)
+                {
+                    this.emiBoost = 5;
+                    this.trollPoisonActive = true; //this triggers the mini notice.
+                }
+                else
+                {
+                    if (this.trollPoisonActive == true)
+                    {
+                        this.emiBoost = 0;
+                        this.trollPoisonActive = false;
+                    }
+                }
+
                 //TODO different types of poisons will get their own seperate categories!
             };
 
@@ -3573,8 +3614,28 @@ function theLegend()
             return (Math.max(0, this.charisma + this.AdCharisma));
         };
 
+        this.getWillpower = function ()
+        {
+            return (Math.max(0, this.willpower + this.AdWillpower));
+        };
+
+        this.getConcentration = function ()
+        {
+            return (Math.max(0, this.concentration + this.AdConcentration));
+        };
+
+        this.getMemory = function ()
+        {
+            return (Math.max(0, this.memory + this.AdMemory));
+        };
+
+        this.getEminence = function ()
+        {
+            return (Math.max(0, this.eminence + this.AdEminence + this.emiBoost));
+        };
+
         //MINI NOTICES
-        //THIS IS DAD's examp[le of how to make a miniNotice bar
+        //THIS IS DAD's example of how to make a miniNotice bar
 
         //this.notices = [];
         //
@@ -3685,6 +3746,105 @@ function theLegend()
             {
                 //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
                 this.removeNotice("gutWorms");
+            }
+        };
+        //RECOVERY Notice Function
+        this.recoveredChecker = function ()
+        {
+            if (this.recovered == true)
+            {
+                // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+                this.addNotice("recovery");
+                //the background
+                XXX.beginPath();
+                XXX.lineWidth = 1;
+                XXX.strokeStyle = "black";
+                XXX.fillStyle = "lightGreen";
+                XXX.rect(this.arrangeNotices("recovery"), 436, 20, 20);
+                XXX.fill();
+                XXX.stroke();
+                //the image
+                XXX.drawImage(polyPNG, 36, 26, 13, 11, this.arrangeNotices("recovery") - 0.75, 436, 21, 20);
+            }
+            else
+            {
+                //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+                this.removeNotice("recovery");
+            }
+        };
+
+        //ENERGIZED Notice Function
+        this.energizedChecker = function ()
+        {
+            if (this.energized == true)
+            {
+                // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+                this.addNotice("energized");
+                //the background
+                XXX.beginPath();
+                XXX.lineWidth = 1;
+                XXX.strokeStyle = "black";
+                XXX.fillStyle = "#ffff99";
+                XXX.rect(this.arrangeNotices("energized"), 436, 20, 20);
+                XXX.fill();
+                XXX.stroke();
+                //the image
+                XXX.drawImage(polyPNG, 63, 25, 13, 14, this.arrangeNotices("energized") - 1.525, 436, 24, 20);
+            }
+            else
+            {
+                //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+                this.removeNotice("energized");
+            }
+        };
+
+        //SPEED BOOST Notice Function
+        this.speedBoostChecker = function ()
+        {
+            if (this.speedBoost == true)
+            {
+                // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+                this.addNotice("quickness");
+                //the background
+                XXX.beginPath();
+                XXX.lineWidth = 1;
+                XXX.strokeStyle = "black";
+                XXX.fillStyle = "#cca400";
+                XXX.rect(this.arrangeNotices("quickness"), 436, 20, 20);
+                XXX.fill();
+                XXX.stroke();
+                //the image
+                XXX.drawImage(polyPNG, 77, 27, 13, 13, this.arrangeNotices("quickness") - 0.5, 436, 20, 20);
+            }
+            else
+            {
+                //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+                this.removeNotice("quickness");
+            }
+        };
+
+        //TROLL POISON Notice Function
+        this.trollPoisonChecker = function ()
+        {
+            if (this.trollPoisonActive == true)
+            {
+                // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+                this.addNotice("trollPoison");
+                //the background
+                XXX.beginPath();
+                XXX.lineWidth = 1;
+                XXX.strokeStyle = "black";
+                XXX.fillStyle = "#d9ff66";
+                XXX.rect(this.arrangeNotices("trollPoison"), 436, 20, 20);
+                XXX.fill();
+                XXX.stroke();
+                //the image
+                XXX.drawImage(polyPNG, 16, 24, 18, 16, this.arrangeNotices("trollPoison") - 0.70, 437.3, 19.8, 17.6);
+            }
+            else
+            {
+                //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+                this.removeNotice("trollPoison");
             }
         };
         //HINDERANCE Notice Function
@@ -3807,6 +3967,10 @@ function theLegend()
             this.hinderanceChecker();
             this.gutWormsChecker();
             this.poisonedChecker();
+            this.recoveredChecker();
+            this.trollPoisonChecker();
+            this.energizedChecker();
+            this.speedBoostChecker();
         };
 
         //MOVEMENT ANIMATION
@@ -5520,7 +5684,7 @@ function theLegend()
         this.buildUIBar = function ()
         {
             XXX.beginPath();
-            if (mouseY < 526 && lowBar != "skills" && lowBar != "shop")
+            if (mouseY < 526 && lowBar != "skills" && lowBar != "shop" && lowBar != "bank")
             {
                 XXX.fillStyle = "rgba(211, 211, 211, 0.1)";
                 XXX.strokeStyle = "rgba(211, 211, 211, 0.1)"
@@ -5537,7 +5701,7 @@ function theLegend()
         //UI Buttons
         this.uiButton = function ()
         {
-            if (mouseY > 526 || lowBar == "skills" || lowBar == "shop")
+            if (mouseY > 526 || lowBar == "skills" || lowBar == "shop" || lowBar == "bank")
             {
                 //inventory button
                 XXX.beginPath();
@@ -5559,7 +5723,30 @@ function theLegend()
                 XXX.stroke();
                 XXX.drawImage(polyPNG, 639, 1, 23, 20, 172.25, 530.75, 20, 18);
 
+                //magic menu (spellbook) button
+                //TODO change this into the new magic menu button!
+                //XXX.beginPath();
+                //XXX.strokeStyle = "black";
+                //XXX.lineWidth = 1;
+                //XXX.fillStyle = "white";
+                //XXX.rect(194, 527, 20, 22);
+                //XXX.fill();
+                //XXX.stroke();
+                //XXX.drawImage(polyPNG, 663, 1, 31, 24, 193, 530, 21, 15.6);
+
+                //dialogue menu button
+                //TODO change this into the new diologue menu button!
+                //XXX.beginPath();
+                //XXX.strokeStyle = "black";
+                //XXX.lineWidth = 1;
+                //XXX.fillStyle = "white";
+                //XXX.rect(194, 527, 20, 22);
+                //XXX.fill();
+                //XXX.stroke();
+                //XXX.drawImage(polyPNG, 663, 1, 31, 24, 193, 530, 21, 15.6);
+
                 //saving menu button
+                //TODO change all of the save stuff so that its coords are two spaces to the right.
                 XXX.beginPath();
                 XXX.strokeStyle = "black";
                 XXX.lineWidth = 1;
@@ -5636,6 +5823,728 @@ function theLegend()
                 XXX.beginPath();
                 XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
                 XXX.fillRect(194, 527, 20, 23);
+            }
+        };
+
+        //BANKING
+        this.displayBank = function()
+        {
+            if (lowBar == "bank")
+            {
+                //MAIN BACKGROUND
+                XXX.beginPath();
+                XXX.fillStyle = "lightGrey";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 1;
+                XXX.rect(1, 1, 1398, 526);
+                XXX.fill();
+                XXX.stroke();
+
+                //Exit bank Button
+                //the button part
+                if (mouseX > 2 && mouseX < 2 + 148 && mouseY > 529 && mouseY < 529 + 20)
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "gold";
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 3;
+                    XXX.rect(2, 529, 148, 20);
+                    XXX.fill();
+                    XXX.stroke();
+
+                    if (clicked == true)
+                    {
+                        clicked = false;
+                        lowBar = "information";
+                        gameState = "active";
+                    }
+                }
+                else
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "E8E8E8";
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 3;
+                    XXX.rect(2, 529, 148, 20);
+                    XXX.fill();
+                    XXX.stroke();
+                }
+                //the text part
+                XXX.font = "bold 14px Book Antiqua";
+                XXX.fillStyle = "black";
+                XXX.textAlign = "center";
+                XXX.fillText("Exit Bank", 75, 543);
+
+                //line between bank account and description
+                XXX.beginPath();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 2;
+                XXX.moveTo(0, 80);
+                XXX.lineTo(1400, 80);
+                XXX.stroke();
+
+                //DISPLAY PLAYER'S INVENTORY
+                this.displayCustomerInventory = function()
+                {
+                    // each inventory slot is a list with three things in it... [Item, quantity]
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].equipped == true)
+                        {
+                            LXX.beginPath();
+                            LXX.lineWidth = 2;
+                            LXX.fillStyle ="rgba(102, 255, 102, 0.35)";
+                            LXX.strokeStyle ="black";
+                            LXX.rect(invScroll + 20.5 + (79 * i), 0.5, 79, 79);
+                            LXX.fill();
+                            LXX.stroke();
+                            Inventory[i][0].drawInventoryItem(Inventory[i][0].type, invScroll + 20.5 + (79 * i) + (1/2 * 79), 1/2 * 79);
+                            //quantity
+                            LXX.font="16px Book Antiqua";
+                            LXX.textAlign="left";
+                            LXX.fillStyle ="black";
+                            if (Inventory[i][1] < 1000)
+                            {
+                                LXX.fillText(Inventory[i][1], invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                            }
+                            else if (Inventory[i][1] >= 1000 && Inventory[i][1] < 1000000)
+                            {
+                                LXX.fillText(Math.floor(Inventory[i][1] / 1000) + "K", invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                            }
+                            else if (Inventory[i][1] >= 1000000)
+                            {
+                                LXX.fillText((Math.floor(Inventory[i][1] / 100000) / 10) + "M", invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                            }
+                            //weight
+                            LXX.font="10px Book Antiqua";
+                            LXX.fillStyle ="black";
+                            LXX.textAlign="right";
+                            LXX.fillText("W:" + Inventory[i][0].weight, invScroll + 20.5 + (79 * i) + (1/2 * 79) + 37, (39/40 * 79));
+                            LXX.textAlign="left"; // this is to reset it back to standard for those oldies out there...
+                        }
+                        else
+                        {
+                            LXX.beginPath();
+                            LXX.lineWidth = 2;
+                            LXX.fillStyle ="rgba(222, 184, 135, 0.15)";
+                            LXX.strokeStyle ="black";
+                            LXX.rect(invScroll + 20.5 + (79 * i), 0.5, 79, 79);
+                            LXX.fill();
+                            LXX.stroke();
+                            Inventory[i][0].drawInventoryItem(Inventory[i][0].type, invScroll + 20.5 + (79 * i) + (1/2 * 79), 1/2 * 79);
+                            //quantity
+                            LXX.font="16px Book Antiqua";
+                            LXX.textAlign="left";
+                            LXX.fillStyle ="black";
+                            if (Inventory[i][1] < 1000)
+                            {
+                                LXX.fillText(Inventory[i][1], invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                            }
+                            else if (Inventory[i][1] >= 1000 && Inventory[i][1] < 1000000)
+                            {
+                                LXX.fillText(Math.floor(Inventory[i][1] / 1000) + "K", invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                            }
+                            else if (Inventory[i][1] >= 1000000)
+                            {
+                                LXX.fillText((Math.floor(Inventory[i][1] / 100000) / 10) + "M", invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                            }
+                            //weight
+                            LXX.font="10px Book Antiqua";
+                            LXX.fillStyle ="black";
+                            LXX.textAlign="right";
+                            LXX.fillText("W:" + Inventory[i][0].weight, invScroll + 20.5 + (79 * i) + (1/2 * 79) + 37, (39/40 * 79));
+                            LXX.textAlign="left"; // this is to reset it back to standard for those oldies out there...
+                        }
+                    }
+
+                    //left scroll arrow
+                    LXX.beginPath();
+                    LXX.lineWidth = 1;
+                    LXX.fillStyle ="darkGrey";
+                    LXX.strokeStyle ="black";
+                    LXX.rect(0.5, 0.5, 20, 79);
+                    LXX.fill();
+                    LXX.stroke();
+                    LXX.drawImage(polyPNG, 1, 735, 11, 30, 4, 8, 12, 64);
+
+                    //weight display
+                    LXX.beginPath();
+                    LXX.fillStyle ="lightGray";
+                    LXX.strokeStyle ="black";
+                    LXX.rect(1329.5, 0.1, 50, 79.8);
+                    LXX.fill();
+                    LXX.stroke();
+                    //Draw a cover on the weight display to represent the amount of carry weight filled.
+                    LXX.beginPath();
+                    //LXX.fillStyle ="rgba(255, 255, 255, 0.65)"; //white fill in colour
+                    //LXX.fillStyle ="rgba(139, 134, 78, 0.8)"; //beige fill in colour
+                    //LXX.fillStyle = "rgba(138, 54, 15, 0.65)"; //burnt sienna colour
+                    LXX.fillStyle ="grey";
+                    LXX.rect(1329.6, 79.5, 50, -79 * this.carryWeight / this.carryWeightMAX);
+                    LXX.fill();
+                    //Draw the weight number on the top and bottom and the deviding bar.
+                    LXX.font="16px Book Antiqua";
+                    LXX.fillStyle = "black";
+                    LXX.textAlign="center";
+                    LXX.fillText(JSON.stringify(Math.floor(this.carryWeight)), 1352, 25);
+                    //dividing line
+                    LXX.beginPath();
+                    LXX.strokeStyle="black";
+                    LXX.lineWidth=3;
+                    LXX.moveTo(1334, 39.5);
+                    LXX.lineTo(1374, 39.5);
+                    LXX.stroke();
+                    //divisor
+                    LXX.font="16px Book Antiqua";
+                    LXX.fillStyle = "black";
+                    LXX.textAlign="center";
+                    LXX.fillText(JSON.stringify(Math.floor(this.carryWeightMAX)), 1352, 64.5);
+                    LXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+
+                    //right scroll arrow
+                    LXX.beginPath();
+                    LXX.lineWidth=1;
+                    LXX.fillStyle ="darkGrey";
+                    LXX.strokeStyle ="black";
+                    LXX.rect(1379.5, 0.5, 20, 79);
+                    LXX.fill();
+                    LXX.stroke();
+                    LXX.drawImage(polyPNG, 11, 735, 11, 30, 1384, 8, 12, 64);
+                };
+
+                //
+                //THE INVENTORY's SCROLLING IS LEAKING INTO BOTH SHOP AND BANK SYSTEMS So an extra inventory scroll is not needed here.
+                //
+
+                //DISPLAY BANK ACCOUNT
+                this.displayBankAccount = function()
+                {
+                    // each inventory slot is a list with three things in it... [Item, quantity]
+                    for (var i = 0; i < bankSlots; i++)
+                    {
+                        XXX.beginPath();
+                        XXX.lineWidth = 2;
+                        XXX.fillStyle ="rgba(222, 184, 135, 0.15)";
+                        XXX.strokeStyle ="black";
+                        XXX.rect(bankScroll + 20.5 + (79 * i), 0.5, 79, 79);
+                        XXX.fill();
+                        XXX.stroke();
+                        if (i < bankAccount.length)
+                        {
+                            //image
+                            bankAccount[i][0].drawShopCraftItem(bankAccount[i][0].type, bankScroll + 20.5 + (79 * i) + (1/2 * 79), 1/2 * 79);
+                            //quantity
+                            XXX.font="16px Book Antiqua";
+                            XXX.textAlign="left";
+                            XXX.fillStyle ="black";
+                            if (bankAccount[i][1] < 1000)
+                            {
+                                XXX.fillText(bankAccount[i][1], bankScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                            }
+                            else if (bankAccount[i][1] >= 1000 && bankAccount[i][1] < 1000000)
+                            {
+                                XXX.fillText(Math.floor(bankAccount[i][1] / 1000) + "K", bankScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                            }
+                            else if (bankAccount[i][1] >= 1000000)
+                            {
+                                XXX.fillText((Math.floor(bankAccount[i][1] / 100000) / 10) + "M", bankScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                            }
+                            //weight
+                            XXX.font="10px Book Antiqua";
+                            XXX.fillStyle ="black";
+                            XXX.textAlign="right";
+                            XXX.fillText("W:" + bankAccount[i][0].weight, bankScroll + 20.5 + (79 * i) + (1/2 * 79) + 37, (39/40 * 79));
+                            XXX.textAlign="left"; // this is to reset it back to standard for those oldies out there...
+                        }
+                    }
+
+                    //left scroll arrow
+                    XXX.beginPath();
+                    XXX.lineWidth = 1;
+                    XXX.fillStyle ="darkGrey";
+                    XXX.strokeStyle ="black";
+                    XXX.rect(0.5, 0.5, 20, 79);
+                    XXX.fill();
+                    XXX.stroke();
+                    XXX.drawImage(polyPNG, 1, 735, 11, 30, 4, 8, 12, 64);
+
+                    //right scroll arrow
+                    XXX.beginPath();
+                    XXX.lineWidth=1;
+                    XXX.fillStyle ="darkGrey";
+                    XXX.strokeStyle ="black";
+                    XXX.rect(1379.5, 0.5, 20, 79);
+                    XXX.fill();
+                    XXX.stroke();
+                    XXX.drawImage(polyPNG, 11, 735, 11, 30, 1384, 8, 12, 64);
+                };
+
+                this.bankAccountScrolling = function()
+                {
+                    //When the left inventory scroll is clicked scroll one to the left if there is one to the left otherwise don't.
+                    if (this.bankPosition < bankSlots && mouseX > 1379.5 && mouseX < 1399.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true) //this (20.5, 0.5, 79, 79) is the position the first in the list will be in if the left scroll will not work.
+                    {
+                        this.timeSinceLastScrolled = new Date().getTime();
+                        bankScroll -= 79;
+                        this.bankPosition += 1;
+                    }
+
+                    //When the right inventory scroll is clicked scroll one to the right if there is one to the right otherwise don't.
+                    if (this.bankPosition > 0 && mouseX > 0.5 && mouseX < 20.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true)
+                    {
+                        this.timeSinceLastScrolled = new Date().getTime();
+                        bankScroll += 79;
+                        this.bankPosition -= 1;
+                    }
+                };
+
+                this.customerInventoryInteract = function()
+                {
+                    var listOfInvX1Coords = []; //this is the list of the X coordinates for the Inventory Slots.
+
+                    for (var i = -this.inventoryPosition; i < Inventory.length - this.inventoryPosition; i++)
+                    {
+                        listOfInvX1Coords.push(20.5 + (79 * i));
+                    }
+
+
+                    var listOfInvX2Coords = []; //This is the same as the X1 coords except for with an added 79 to each.
+
+                    for (var i = -this.inventoryPosition; i < Inventory.length - this.inventoryPosition; i++)
+                    {
+                        listOfInvX2Coords.push(20.5 + (79 * i) + 79);
+                    }
+
+
+                    var invY1Coord = 0.5; //This doesn't change.
+
+
+                    var invY2Coord = 79.5; //this is just Y + 79
+
+                    for (var i = Inventory.length - 1; i > -1; i--)
+                    {
+                        if (lMouseX >= 21 && lMouseX <= 1329) //This checks if the mouse is between the scroll buttons rather than on them.
+                        {
+                            if (clickReleased == true && lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord && this.projectileReleased == true) //When you click on an item you either access its utility or you equip it.
+                            {
+                                if (Inventory[i][0].equipped == false)
+                                {
+                                    var gotIn = false;
+                                    for (var j = bankAccount.length - 1; j > -1; j--)
+                                    {
+                                        if (bankAccount[j][0].type == Inventory[i][0].type)
+                                        {
+                                            gotIn = true;
+                                            if (altKey)
+                                            {
+                                                altKey = false;
+                                                var amount = prompt("Enter the amount you would like to deposit.");
+                                                var amountt = JSON.parse(amount);
+                                                if (Inventory[i][1] - amountt <= 0)
+                                                {
+                                                    if (Inventory[i][1] - amountt == 0)
+                                                    {
+                                                        bankAccount[j][1] += amountt;
+                                                        Inventory.splice(i, 1);
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    bankAccount[j][1] += amountt;
+                                                    Inventory[i][1] -= amountt;
+                                                }
+                                            }
+                                            else if (shiftKey)
+                                            {
+                                                bankAccount[j][1] += Inventory[i][1];
+                                                Inventory.splice(i, 1);
+                                            }
+                                            else
+                                            {
+                                                bankAccount[j][1] += 1;
+                                                if (Inventory[i][1] - 1 < 1)
+                                                {
+                                                    Inventory.splice(i, 1);
+                                                }
+                                                else
+                                                {
+                                                    Inventory[i][1] -= 1;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (gotIn == false)
+                                    {
+                                        if (bankAccount.length < bankSlots)
+                                        {
+                                            var invenType = Inventory[i][0].type;
+                                            if (altKey)
+                                            {
+                                                altKey = false;
+                                                var amount = prompt("Enter the amount you would like to deposit.");
+                                                var amountt = JSON.parse(amount);
+                                                if (Inventory[i][1] - amountt <= 0)
+                                                {
+                                                    if (Inventory[i][1] - amountt == 0)
+                                                    {
+                                                        bankAccount.push([new Item(invenType, false, false), amount]);
+                                                        Inventory.splice(i, 1);
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    bankAccount.push([new Item(invenType, false, false), amount]);
+                                                    Inventory[i][1] -= amountt;
+                                                }
+                                            }
+                                            else if (shiftKey)
+                                            {
+                                                bankAccount.push([new Item(invenType, false, false), Inventory[i][1]]);
+                                                Inventory.splice(i, 1);
+                                            }
+                                            else
+                                            {
+                                                bankAccount.push([new Item(invenType, false, false), 1]);
+                                                if (Inventory[i][1] - 1 < 1)
+                                                {
+                                                    Inventory.splice(i, 1);
+                                                }
+                                                else
+                                                {
+                                                    Inventory[i][1] -= 1;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else if (lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord) //give the name of the Item and its stats when hovered over.
+                            {
+                                var sizer = 0;
+
+                                for (var k = 0; k < Inventory[i][0].identity.length; k++)
+                                {
+                                    if (Inventory[i][0].identity[k] == "'")
+                                    {
+                                        sizer += 1;
+                                    }
+                                    else if (Inventory[i][0].identity[k].indexOf(' ') != -1)
+                                    {
+                                        sizer += 0;
+                                        console.log("space");
+                                    }
+                                    else if (Inventory[i][0].identity[k] == Inventory[i][0].identity[k].toUpperCase() )
+                                    {
+                                        sizer += 17; //9.21;
+                                    }
+                                    else if (Inventory[i][0].identity[k] == Inventory[i][0].identity[k].toLowerCase())
+                                    {
+                                        sizer += 12;
+                                    }
+                                }
+
+                                XXX.beginPath();
+                                XXX.fillStyle="white";
+                                XXX.fillRect(3, 503, sizer, 22);
+                                //The Name of the Item
+                                XXX.font = "bold 22px Book Antiqua";
+                                XXX.fillStyle = "black";
+                                XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                                XXX.fillText(Inventory[i][0].identity, 4, 522);
+                            }
+                        }
+                    }
+                };
+
+                this.bankAccountInteract = function()
+                {
+                    var listOfInvX1Coords = []; //this is the list of the X coordinates for the Inventory Slots.
+
+                    for (var i = -this.bankPosition; i < bankAccount.length - this.bankPosition; i++)
+                    {
+                        listOfInvX1Coords.push(20.5 + (79 * i));
+                    }
+
+
+                    var listOfInvX2Coords = []; //This is the same as the X1 coords except for with an added 79 to each.
+
+                    for (var i = -this.bankPosition; i < bankAccount.length - this.bankPosition; i++)
+                    {
+                        listOfInvX2Coords.push(20.5 + (79 * i) + 79);
+                    }
+
+
+                    var invY1Coord = 0.5; //This doesn't change.
+
+
+                    var invY2Coord = 79.5; //this is just Y + 79
+
+                    for (var i = bankAccount.length - 1; i > -1; i--)
+                    {
+                        if (mouseX >= 21 && mouseX <= 1329  && mouseY < 80) //This checks if the mouse is between the scroll buttons rather than on them.
+                        {
+                            if (clickReleased == true && mouseX > listOfInvX1Coords[i] && mouseX < listOfInvX2Coords[i] && mouseY > invY1Coord && mouseY < invY2Coord && this.projectileReleased == true)
+                            {
+                                var gotIn = false;
+                                for (var j = Inventory.length - 1; j > -1; j--)
+                                {
+                                    console.log("i: " + i + " j: " + j + "bankAccount.length: " + bankAccount.length);
+                                    console.log("bank: " + bankAccount[i]);
+                                    console.log("Inv: " + Inventory[j][0]);
+                                    if (bankAccount[i][0].type == Inventory[j][0].type)
+                                    {
+                                        gotIn = true;
+                                        if (altKey)
+                                        {
+                                            altKey = false;
+                                            var amount = prompt("Enter the amount you would like to withdraw.");
+                                            var amountt = JSON.parse(amount);
+                                            if (bankAccount[i][1] - amountt <= 0)
+                                            {
+                                                if (bankAccount[i][1] - amountt == 0)
+                                                {
+                                                    Inventory[j][1] += amountt;
+                                                    bankAccount.splice(i, 1);
+                                                    break;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Inventory[j][1] += amountt;
+                                                bankAccount[i][1] -= amountt;
+                                            }
+                                        }
+                                        else if (shiftKey)
+                                        {
+                                            Inventory[j][1] += bankAccount[i][1];
+                                            bankAccount.splice(i, 1);
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            Inventory[j][1] += 1;
+                                            if (bankAccount[i][1] - 1 < 1)
+                                            {
+                                                bankAccount.splice(i, 1);
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                bankAccount[i][1] -= 1;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                if (gotIn == false)
+                                {
+                                    var invenType = bankAccount[i][0].type;
+                                    if (altKey)
+                                    {
+                                        altKey = false;
+                                        var amount = prompt("Enter the amount you would like to withdraw.");
+                                        var amountt = JSON.parse(amount);
+                                        if (bankAccount[i][1] - amountt <= 0)
+                                        {
+                                            if (bankAccount[i][1] - amountt == 0)
+                                            {
+                                                Inventory.push([new Item(invenType, false, false), amount]);
+                                                bankAccount.splice(i, 1);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Inventory.push([new Item(invenType, false, false), amount]);
+                                            bankAccount[i][1] -= amountt;
+                                        }
+                                    }
+                                    else if (shiftKey)
+                                    {
+                                        Inventory.push([new Item(invenType, false, false), bankAccount[i][1]]);
+                                        bankAccount.splice(i, 1);
+                                    }
+                                    else
+                                    {
+                                        Inventory.push([new Item(invenType, false, false), 1]);
+                                        if (bankAccount[i][1] - 1 < 1)
+                                        {
+                                            bankAccount.splice(i, 1);
+                                        }
+                                        else
+                                        {
+                                            bankAccount[i][1] -= 1;
+                                        }
+                                    }
+                                }
+                            }
+                            else if (mouseX > listOfInvX1Coords[i] && mouseX < listOfInvX2Coords[i] && mouseY > invY1Coord && mouseY < invY2Coord) //give the name of the Item and its stats when hovered over.
+                            {
+                                var sizer = 0;
+
+                                for (var k = 0; k < bankAccount[i][0].identity.length; k++)
+                                {
+                                    if (bankAccount[i][0].identity[k] == "'")
+                                    {
+                                        sizer += 1;
+                                    }
+                                    else if (bankAccount[i][0].identity[k].indexOf(' ') != -1)
+                                    {
+                                        sizer += 0;
+                                        console.log("space");
+                                    }
+                                    else if (bankAccount[i][0].identity[k] == bankAccount[i][0].identity[k].toUpperCase() )
+                                    {
+                                        sizer += 17; //9.21;
+                                    }
+                                    else if (bankAccount[i][0].identity[k] == bankAccount[i][0].identity[k].toLowerCase())
+                                    {
+                                        sizer += 12;
+                                    }
+                                }
+
+                                XXX.beginPath();
+                                XXX.fillStyle="white";
+                                XXX.fillRect(3, 82, sizer, 22);
+                                //The Name of the Item
+                                XXX.font = "bold 22px Book Antiqua";
+                                XXX.fillStyle = "black";
+                                XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                                console.log(bankAccount);
+                                XXX.fillText(bankAccount[i][0].identity, 4, 100);
+                            }
+                        }
+                    }
+                };
+                //TITLE
+                XXX.font = "bold 60px Book Antiqua";
+                XXX.fillStyle = "black";
+                XXX.textAlign = "center"; //this is to reset it to the standard for the rest to come.
+                XXX.fillText("The Golden Glove Banking Company", 1/2 * CCC.width, 152.5);
+                XXX.font = "bold 60px Book Antiqua";
+                XXX.fillStyle = "gold";
+                XXX.textAlign = "center"; //this is to reset it to the standard for the rest to come.
+                console.log(bankAccount);
+                XXX.fillText("The Golden Glove Banking Company", 1/2 * CCC.width, 155);
+
+                //BUY BANK SLOTS (option 1)
+                if (mouseX > 1/2 * CCC.width - 200 && mouseX < 1/2 * CCC.width - 200 + 400 && mouseY > 200 && mouseY < 235)
+                {
+                    XXX.beginPath();
+                    XXX.lineWidth=4;
+                    XXX.fillStyle = "gold";
+                    XXX.strokeStyle = "black";
+                    XXX.rect(1/2 * CCC.width - 200, 200, 400, 35);
+                    XXX.fill();
+                    XXX.stroke();
+                    //Text part
+                    XXX.font = "bold 30px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center"; //this is to reset it to the standard for the rest to come.
+                    XXX.fillText(bankSlotCost + " Coins", 1/2 * CCC.width, 228);
+                    if (clickReleased)
+                    {
+                        var paid = false;
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            if (Inventory[i][0].type == "coins" && Inventory[i][1] - bankSlotCost > 0)
+                            {
+                                Inventory[i][1] -= bankSlotCost;
+                                bankSlots += 1;
+                                paid = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].type == "coins" && Inventory[i][1] - bankSlotCost == 0)
+                            {
+                                Inventory.splice(i, 1);
+                                bankSlots += 1;
+                                paid = true;
+                                break;
+                            }
+                        }
+                        if (paid == false)
+                        {
+                            for (var i = 0; i < bankAccount.length; i++)
+                            {
+                                if (bankAccount[i][0].type == "coins" && bankAccount[i][1] - bankSlotCost > 0)
+                                {
+                                    bankAccount[i][1] -= bankSlotCost;
+                                    bankSlots += 1;
+                                    paid = true;
+                                    break;
+                                }
+                                else if (bankAccount[i][0].type == "coins" && bankAccount[i][1] - bankSlotCost == 0)
+                                {
+                                    bankAccount.splice(i, 1);
+                                    bankSlots += 1;
+                                    paid = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    XXX.beginPath();
+                    XXX.lineWidth=4;
+                    XXX.fillStyle = "#ffbf00";
+                    XXX.strokeStyle = "black";
+                    XXX.rect(1/2 * CCC.width - 200, 200, 400, 35);
+                    XXX.fill();
+                    XXX.stroke();
+                    //Text part
+                    XXX.font = "bold 30px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center"; //this is to reset it to the standard for the rest to come.
+                    XXX.fillText("Purchase a Banking Slot", 1/2 * CCC.width, 226);
+                }
+
+                this.bankSlotPricer = function()
+                {
+                    if (bankSlots == 1)
+                    {
+                        bankSlotCost = 25;
+                    }
+                    else if (bankSlots == 2)
+                    {
+                        bankSlotCost = 50;
+                    }
+                    else if (bankSlots == 3)
+                    {
+                        bankSlotCost = 75;
+                    }
+                    else if (bankSlots == 4)
+                    {
+                        bankSlotCost = 100;
+                    }
+                    else if (bankSlots == 5)
+                    {
+                        bankSlotCost = 150;
+                    }
+                    else if (bankSlots == 6)
+                    {
+                        bankSlotCost = 200;
+                    }
+                    else if (bankSlots == 7)
+                    {
+                        bankSlotCost = 250;
+                    }
+                    else if (bankSlots == 8)
+                    {
+                        bankSlotCost = 300;
+                    }
+                    else if (bankSlots >= 9)
+                    {
+                        bankSlotCost = 350;
+                    }
+                };
+
+                this.bankAccountInteract();
+                this.customerInventoryInteract();
+                this.displayBankAccount();
+                this.bankAccountScrolling();
+                this.displayCustomerInventory();
+                this.bankSlotPricer();
             }
         };
 
@@ -8051,6 +8960,11 @@ function theLegend()
                                         this.timeSinceBadFoodEaten -= 4000
                                     }
                                 }
+                                else if (Inventory[i][0].ability == "trollPoison") //trollPoison
+                                {
+                                    this.poisonI = true;
+                                    this.timeSinceRawTrollBlood = new Date().getTime();
+                                }
                                 else if (Inventory[i][0].ability == "poisonI") //poisonI
                                 {
                                     this.poisonI = true;
@@ -8550,8 +9464,14 @@ function theLegend()
             //Shop
             this.displayShop(); //#Shop
 
+            //Bank
+            this.displayBank(); //#Bank
+
             //Skills
             this.displayCharacterInfo(); //#Skills
+
+            //Dialogue
+            //this.displayDialogueOptions(); //#Diaglogue
 
             //Saves
             this.displaySaves(); //#Saves
@@ -8714,6 +9634,7 @@ function theLegend()
                 this.freezing = false;
                 this.recoveryTime = 0;
                 this.energizeTime = 0;
+                this.timeSinceRawTrollBlood = 0;
 
                 //refresh all stats to max
                 this.health = this.healthMAX;
@@ -9250,6 +10171,11 @@ function theLegend()
                                 shopInventory = this.ultra.merchandise;
                                 shopID = this.ID;
                                 lowBar = "shop";
+                                gameState = "paused";
+                            }
+                            else if (dClick == true && this.ultra.banker == true && dtp < 100 && this.disturbed == false && parsedFactionRelation >= -49)
+                            {
+                                lowBar = "bank";
                                 gameState = "paused";
                             }
                         }
@@ -10226,6 +11152,10 @@ function theLegend()
             if (this.ultra.faction == "freynor")
             {
                 XXX.fillStyle = "navy";
+            }
+            else if (this.ultra.faction == "orgell")
+            {
+                XXX.fillStyle = "gold";
             }
             else
             {
@@ -12172,6 +13102,12 @@ function theLegend()
                             player.freynorFaction -= 20;
                             this.callForNearbyHelpFromType(900, "Soldier");
                         }
+                        else if (this.ultra.faction == "orgell")
+                        {
+                            player.orgellFaction -= 20;
+                            this.callForNearbyHelpFromType(900, "Soldier");
+                        }
+
                         //Unique Characters Permanent Death
                         if (ID == "Laandeg the Alchemist")
                         {
@@ -12197,6 +13133,11 @@ function theLegend()
                         {
                             uniqueChars.maggyLDS = false;
                             player.freynorFaction -= 14;
+                        }
+                        else if (ID == "Odee the banker")
+                        {
+                            uniqueChars.odeeLDS = false;
+                            player.freynorFaction -= 11;
                         }
 
                         this.doOnDeathOnce = false;
@@ -13113,9 +14054,9 @@ function theLegend()
             {
                 //For All Items
                 this.identity = "Jar of Tempered Troll's Blood";
-                this.weight = 1;
+                this.weight = 3;
                 this.size = 6;
-                this.description = "The blood of a troll stored in a jar.";
+                this.description = "Troll's blood that has been tempered at a perfect temperature over the course of several days.";
                 this.intForDes = 24;
                 this.intDescription = "Trolls' blood is responsible for their uncanny ability to regenerate from injuries.";
 
@@ -13137,6 +14078,55 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 1000 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 800.
                 this.sellValue = 300 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 500.
+            }
+            else if (this.type == "rawTrollsBlood")
+            {
+                //For All Items
+                this.identity = "Jar of Troll's Blood";
+                this.weight = 4;
+                this.size = 6;
+                this.description = "The blood of a troll stored in a jar.";
+                this.intForDes = 20;
+                this.intDescription = "Troll's have a slight natural magic resistance; their raw blood exhibits this feature!";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 1; //satisfies hunger.
+                this.thirst = 3; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = -4; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = -20; //restores will.
+
+                //ability
+                this.ability = "trollPoison";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 690 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 590.
+                this.sellValue = 185 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 285.
+            }
+            else if (this.type == "glassJar")
+            {
+                //For All Items
+                this.identity = "Glass Jar";
+                this.weight = 4;
+                this.size = 6;
+                this.description = "A Jar made of class sealed tighly with a metal lid.";
+                this.intForDes = 4;
+                this.intDescription = "This can be used to contain magical substances and other such commodities that should be stored in a vaccum sealed container.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
+                this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
             }
             else if (this.type == "cleansingPotion")
             {
@@ -14508,8 +15498,52 @@ function theLegend()
         {
             if (this.type == "coins")
             {
+                for (var i = 0; i < worldItems.length; i++)
+                {
+                    if (worldItems[i][0] === this)
+                    {
+                        if (worldItems[i][1] <= 10)
+                        {
+                            XXX.beginPath();
+                            XXX.drawImage(polyPNG, 405, 7, 6, 4, X - this.X + (1/2 * CCC.width) - (1/2 * 6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 4), 6, 4);
+                            worldItems[i][0].size = 7;
+                        }
+                        else if (worldItems[i][1] > 10 && worldItems[i][1] <= 199)
+                        {
+                            XXX.beginPath();
+                            XXX.drawImage(polyPNG, 405, 4, 16, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 16), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 16, 17);
+                            worldItems[i][0].size = 14;
+                        }
+                        else if (worldItems[i][1] > 199 && worldItems[i][1] <= 549)
+                        {
+                            XXX.beginPath();
+                            XXX.drawImage(polyPNG, 482, 32, 22, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 22), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22), 22, 22);
+                            worldItems[i][0].size = 21;
+                        }
+                        else if (worldItems[i][1] > 549 && worldItems[i][1] <= 2999)
+                        {
+                            XXX.beginPath();
+                            XXX.drawImage(polyPNG, 418, 21, 27, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 27), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29), 27, 29);
+                            worldItems[i][0].size = 28;
+                        }
+                        else if (worldItems[i][1] > 2999)
+                        {
+                            XXX.beginPath();
+                            XXX.drawImage(polyPNG, 948, 5, 56, 50, X - this.X + (1/2 * CCC.width) - (1/2 * 56), Y - this.Y + (1/2 * CCC.height) - (1/2 * 50), 56, 50);
+                            worldItems[i][0].size = 32;
+                        }
+                    }
+                }
+            }
+            else if (this.type == "rawTrollsBlood")
+            {
                 XXX.beginPath();
-                XXX.drawImage(polyPNG, 405, 7, 6, 4, X - this.X + (1/2 * CCC.width) - (1/2 * 6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 4), 6, 4);
+                XXX.drawImage(polyPNG, 452, 33, 8, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 12), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 12, 21);
+            }
+            else if (this.type == "glassJar")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polyPNG, 465, 33, 8, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 12), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 12, 21);
             }
             else if (this.type == "chainArmour")
             {
@@ -14859,6 +15893,16 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "rawTrollsBlood")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polyPNG, 452, 33, 8, 14, this.invX - (1/2 * 12), this.invY - (1/2 * 21), 12, 21);
+            }
+            else if (this.type == "glassJar")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polyPNG, 465, 33, 8, 14, this.invX - (1/2 * 12), this.invY - (1/2 * 21), 12, 21);
+            }
             else if (this.type == "chainArmour")
             {
                 LXX.beginPath();
@@ -15201,6 +16245,16 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "rawTrollsBlood")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polyPNG, 452, 33, 8, 14, this.invX - (1/2 * 12), this.invY - (1/2 * 21), 12, 21);
+            }
+            else if (this.type == "glassJar")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polyPNG, 465, 33, 8, 14, this.invX - (1/2 * 12), this.invY - (1/2 * 21), 12, 21);
             }
             else if (this.type == "chainArmour")
             {
@@ -15641,6 +16695,21 @@ function theLegend()
                             ArtificialIntelligenceAccess.push(new Unit(2583, 818, "Person", false, "Drohfor", {faction: "freynor", personality: "violent", outfit: ["walrusLeatherArmour", 5], weapon: ["longbow", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [true, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 6, patrolLoop: true, route:[[2001, 658], [2252, -509], [2423, -588], [2032, 440], [2030, 770], [2583, 818]]}));
                         }
                     }
+                    if (uniqueChars.odeeLDS == true)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Odee the Banker")
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(2232, 1142, "Person", false, "Odee the Banker", {faction: "orgell", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.85], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 0, patrolLoop: false, route:[[2200, 1460]], banker: true}));
+                        }
+                    }
                     if (uniqueChars.laandegLDS == true)
                     {
                         var hits = 0;
@@ -15653,7 +16722,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(744, 1545, "Person", false, "Laandeg the Alchemist", {faction: "freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[744, 1133], [801, 1156], [840, 373], [744, 1545]], merchant: true, merchandise: [[new Item("coins", false, false), 29], [new Item("trollsBlood", false, false), 1], [new Item("cleansingPotion", false, false), 1], [new Item("energyPotionI", false, false), 3], [new Item("speedPotionI", false, false), 2], [new Item("rawWolfLiver", false, false), 4]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(744, 1545, "Person", false, "Laandeg the Alchemist", {faction: "freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[744, 1133], [801, 1156], [840, 373], [744, 1545]], merchant: true, merchandise: [[new Item("coins", false, false), 29], [new Item("trollsBlood", false, false), 1], [new Item("rawTrollsBlood", false, false), 1], [new Item("cleansingPotion", false, false), 1], [new Item("energyPotionI", false, false), 3], [new Item("speedPotionI", false, false), 2], [new Item("glassJar", false, false), 14], [new Item("rawWolfLiver", false, false), 4]]}));
                         }
                     }
                     if (uniqueChars.bobithLDS == true)
@@ -15885,6 +16954,7 @@ function theLegend()
         saveList(playerProjectiles, "playerProjectiles");
         saveList(unitProjectiles, "unitProjectiles");
         saveList(shopInventory, "shopInventory", true);
+        saveList(bankAccount, "bankAccount", true);
         for (var n = 0; n < ArtificialIntelligenceAccess.length; n++)
         {
             var merchN = "merchandise" + JSON.stringify(n);
@@ -15906,6 +16976,7 @@ function theLegend()
         saveBrain["region"] = region;
         saveBrain["update"] = update;
         saveBrain["change"] = change;
+        saveBrain["bankSlots"] = bankSlots;
 
         var saveFile = JSON.stringify(saveBrain);
         //based on what save type the player chooses the save will be stored in one of the four game slots.
@@ -15943,6 +17014,7 @@ function theLegend()
         worldItems = loadList("worldItems", true);
         Inventory = loadList("Inventory", true);
         shopInventory = loadList("shopInventory", true);
+        //bankAccount = loadList("bankAccount", true);
         for (var n = 0; n < ArtificialIntelligenceAccess.length; n++)
         {
             //ArtificialIntelligenceAccess[n].ultra.merchandise = loadList("merchandise" + n, true);
@@ -16062,6 +17134,10 @@ function theLegend()
         {
             return parsed.shopInventory;
         }
+        else if (listName == "bankAccount")
+        {
+            return parsed.bankAccount;
+        }
         else
         {
             if (update == parsed.update && typeof(parsed.update) != "undefined")
@@ -16075,8 +17151,16 @@ function theLegend()
             Y = parsed.Y;
             spawnX = parsed.spawnX;
             spawnY = parsed.spawnY;
-            uniqueChars = parsed.uniqueChars;
-            quests = parsed.quests;
+
+            for (var key in parsed.uniqueChars)
+            {
+                uniqueChars[key] = parsed.uniqueChars[key];
+            }
+            for (var key in parsed.quests)
+            {
+                quests[key] = parsed.quests[key];
+            }
+            //bankSlots = parsed.bankSlots;
         }
 
     }

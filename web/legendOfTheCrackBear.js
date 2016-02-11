@@ -3,9 +3,13 @@
  */
 
 //TODO LIST
+//todo continue adding scenery.
+//todo add new creature "Varn"
+//todo add options menu with button: it will allow you to toggle certain settings like mouse combat mode, game coordinates, and other such features.
+//todo Make it so that you have to be holding a hammer to craft at an anvil, either that or make it so that you initiate smithing by hitting the anvil with a hammer.
 //todo add frichFurClothing to the game.
 //todo add the trate "reusable" to some items, it would let them give the player an item upon consumption, example: you drink a jar of trolls blood and get back a glass jar.
-//todo add the new weapons that Dmitri made, katana... etc.
+//todo add the new weapons that Dmitri made, Orgish Knife... etc.
 //todo Add harsh hot weather conditions: deserts cause dehydration (droplet with an increasingly red background) [cured by liquids]: drinkable items like drinks alcohols and water etc.
 //todo Add spellbook and magic (and build the magic leveling function)
 //todo build the intelligence based inspect system in which a character with high enough intelligence can find out certain details about a target Unit by clicking on them.
@@ -124,7 +128,7 @@ function theLegend()
     var gameState = "mainMenu"; //set to "active" for ingame play, and set to "mainMenu" for the main menu.
 
     //Saving
-    var update = 1; //change this by one whenever a new update has changed any of the key game aspects that might interfere with the normal save structure.
+    var update = 2; //change this by one whenever a new update has changed any of the key game aspects that might interfere with the normal save structure.
     var lastUpdate = 0;
     var saveType = 1;
     var loadType = 1;
@@ -153,6 +157,10 @@ function theLegend()
     var bankSlots = 1;
     var bankSlotCost = 25;
     var bankScroll = 0;
+        //crafting
+    var crafting = "none";
+    var craftScroll = 0;
+    var initialcraftingItemSet = false;
 
     //time Tracker Variables
     var beegin = "start"; // this is a variable that lets TTP set to time natural when the game starts
@@ -169,7 +177,7 @@ function theLegend()
 
     //DEVELOPMENTAL VARIABLES (variables for the developer to use)
         //Locational
-    var tellCoords = true; //This displays the players exact world coordinates on the screen.
+    var tellCoords = false; //This displays the players exact world coordinates on the screen.
         //AI Unit Focused
     var showSight = false; //This makes every AI UNIT draw their rangeOfSight to the world.
     var showPlayerAttackBubble = false; //This shows the bubble/radius in which the players attack will deal damage.
@@ -208,7 +216,8 @@ function theLegend()
         drohforLDS: true,
         laandegLDS: true,
         maggyLDS: true,
-        odeeLDS: true
+        odeeLDS: true,
+        togginLDS: true
     };
     //QUESTS
     var quests = {};
@@ -238,8 +247,8 @@ function theLegend()
     //Player Inventory
     var Inventory = [];
     //todo TEST INVENTORY
-    //Inventory = [[new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 1], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
-    Inventory = [[new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
+    Inventory = [[new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
+    //Inventory = [[new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
 
     //This list holds one of each type of weapon so that the player can access the weapons stats.
     var allWeapons = [];
@@ -278,6 +287,8 @@ function theLegend()
     allWorn.push(new Item("winterWolfOutfit", false)); //9
     allWorn.push(new Item("winterWolfClothing", false)); //10
 
+    var scenicList = [];
+
     //this is the list of projectiles fired by the player.
     var playerProjectiles = [];
 
@@ -289,6 +300,67 @@ function theLegend()
     var shopInventory = [];
     var initialShopItemSet = false;
     var initialBankItemSet = false;
+
+    //CRAFTING ITEM-LISTS
+        //Smithing (Items crafted using an anvil)
+    var smithing = [];
+    smithing.push(new Item("mace", false));
+    smithing.push(new Item("longsword", false));
+    smithing.push(new Item("freydicWarAxe", false));
+    smithing.push(new Item("aldrekiiBardiche", false));
+    smithing.push(new Item("longbow", false));
+    smithing.push(new Item("arrow", false));
+    smithing.push(new Item("blueBlade", false));
+    smithing.push(new Item("nirineseSabre", false));
+    smithing.push(new Item("freydicSpear", false));
+    smithing.push(new Item("vardanianAxeDual", false));
+    smithing.push(new Item("vardanianAxe", false));
+    smithing.push(new Item("flail", false));
+    smithing.push(new Item("aldrekiiBlade", false));
+    smithing.push(new Item("pickaxe", false));
+    smithing.push(new Item("freydicSword", false));
+    smithing.push(new Item("aldrekiiArrow", false));
+    smithing.push(new Item("freydicGreatSword", false));
+    smithing.push(new Item("thenganSwordAndShield", false));
+    smithing.push(new Item("katana", false));
+    smithing.push(new Item("gulfreyShellArmour", false));
+    smithing.push(new Item("blackChainArmour", false));
+    smithing.push(new Item("chainArmour", false));
+    smithing.push(new Item("freydicRoyalOutfit", false));
+        //Foods (Items cooked at either a stove, an oven, or a campfire)
+    var foods = [];
+    foods.push(new Item("etyrMeat", false));
+    foods.push(new Item("trollMeat", false));
+    foods.push(new Item("walrusMeat", false));
+    foods.push(new Item("frichMeat", false));
+    foods.push(new Item("youngNaapridMeat", false));
+    foods.push(new Item("naapridMeat", false));
+    foods.push(new Item("berulnMeat", false));
+    foods.push(new Item("winterWolfMeat", false));
+    foods.push(new Item("wolfLiver", false));
+    foods.push(new Item("gulfreyMeat", false));
+    foods.push(new Item("torperMeat", false));
+        //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
+    var tailoring = [];
+    tailoring.push(new Item("walrusLeatherArmour", false));
+    tailoring.push(new Item("freydicRoyalDress", false));
+    tailoring.push(new Item("winterWolfDress", false));
+    tailoring.push(new Item("naapridLeatherArmour", false));
+    tailoring.push(new Item("winterWolfOutfit", false));
+    tailoring.push(new Item("winterWolfClothing", false));
+        //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
+    var jewelry = [];
+    jewelry.push(new Item("glassJar", false));
+    jewelry.push(new Item("fireStarter", false));
+        //Alchemy (Potions and mixtures crafted at an alchemy lab station)
+    var alchemy = [];
+    alchemy.push(new Item("cleansingPotion", false));
+    alchemy.push(new Item("rawTrollsBlood", false));
+    alchemy.push(new Item("trollsBlood", false));
+    alchemy.push(new Item("energyPotionI", false));
+    alchemy.push(new Item("speedPotionI", false));
+        //Forge
+
 
     //This sets the items that are in shops.
     function shopItemIDSetter()
@@ -309,6 +381,46 @@ function theLegend()
             {
                 bankAccount[i][0].setItemID();
             }
+        }
+
+        if (lowBar == "crafting" || initialcraftingItemSet == false)
+        {
+            if (crafting == "smithing" || initialcraftingItemSet == false)
+            {
+                for (var i = 0; i < smithing.length; i++)
+                {
+                    smithing[i].setItemID();
+                }
+            }
+            if (crafting == "foods" || initialcraftingItemSet == false)
+            {
+                for (var i = 0; i < foods.length; i++)
+                {
+                    foods[i].setItemID();
+                }
+            }
+            if (crafting == "tailoring" || initialcraftingItemSet == false)
+            {
+                for (var i = 0; i < tailoring.length; i++)
+                {
+                    tailoring[i].setItemID();
+                }
+            }
+            if (crafting == "jewelry" || initialcraftingItemSet == false)
+            {
+                for (var i = 0; i < jewelry.length; i++)
+                {
+                    jewelry[i].setItemID();
+                }
+            }
+            if (crafting == "alchemy" || initialcraftingItemSet == false)
+            {
+                for (var i = 0; i < alchemy.length; i++)
+                {
+                    alchemy[i].setItemID();
+                }
+            }
+            initialcraftingItemSet = true;
         }
     }
 
@@ -363,6 +475,18 @@ function theLegend()
             deadAIList[i].operation();
         }
     }
+    //This function runs through the list of scenery and activates their operation functions.
+    function sceneryOperationsManager()
+    {
+        if (gameState == "active" || gameState == "stopTime")
+        {
+            for (var i = 0; i < scenicList.length; i++)
+            {
+                scenicList[i].operations();
+            }
+        }
+    }
+    //This function runs through the lists of Items and activates their operation functions.
     function ItemOperationsManager()
     {
 
@@ -2522,7 +2646,8 @@ function theLegend()
         buildMaster();
 
         //STRUCTURES AND SCENERY
-        //TODO build structures and scenery
+        sceneryOperationsManager();
+        //TODO build structures
 
         //DEAD BODIES
         deadAIOperationsManagement();
@@ -2888,7 +3013,7 @@ function theLegend()
         this.dexterity = 20; //this determines how fast you can move and how fast you can run. (50 Maximum Dexterity) [don't let it be boosted past 86]
         this.ranged = 0; //this skill increases the effectiveness of ranged weaponry.
         this.stealth = 0; //this skill determines how well your character can sneak, meaning [alt key movement]. Better stealth allows you to sneak by your enemies without being detected, and it gives you a bonus to successful theft and any other thing that may require stealth... perhaps lockpicking. (50 Maximum Stealth)
-        this.intelligence = 0; //intelligence helps you earn experience faster in both magical and physical leveling systems.
+        this.intelligence = 50; //intelligence helps you earn experience faster in both magical and physical leveling systems.
         this.endurance = 50; //this skill determines the rate of regeneration for both energy and health it also increases your total hunger points. (50 Maximum Endurance) [for developer use: 58.333 repeating is the maximum amount for energy regeneration before it breaks... at this speed it is basically instant. Health will regenerate in a negative direction though at this number, so be careful...]
         this.toughness = 0; //this skill determine the player's natural armour (up to 5!), or how much damage a player can take without it affecting the player's health. Toughness also increases the players resistance to the environment and it reduces the likeliness of taking on negative effects. (50 Maximum Toughness)
         this.charisma = 0; //this skill allows you to access certain options gained through socializing, and it also determines how fast you gain and lose fame. [high charisma means that you will gain positive as well as negative fame quicker because your actions are more noticed by people]
@@ -3020,6 +3145,8 @@ function theLegend()
         this.merchPosition = 0;
         //Bank Variables
         this.bankPosition = 0;
+        //Crafting Variables
+        this.craftPosition = 0;
         //effects variables
         this.fedClock = 0; // this is the amount of time a player can avoid losing hunger after eating. This value is set elsewhere.
         this.fed = true; //When this is initiated the player will become satiated for a short duration of time.
@@ -3580,7 +3707,7 @@ function theLegend()
                 //Food poisoning
                 if (new Date().getTime() - this.timeSinceBadFoodEaten >= 33000 && new Date().getTime() - this.timeSinceBadFoodEaten < 34000)
                 {
-                    worldItems.push(new Item("vomit", X, Y));
+                    worldItems.push([new Item("vomit", X, Y), 1]);
                     this.hunger = Math.max(0, this.hunger - 24);
                     this.energy -= 3;
                     this.timeSinceBadFoodEaten = 0;
@@ -6048,6 +6175,20 @@ function theLegend()
                     }
                 }
             }
+            for (var i = 0; i < scenicList.length; i++)
+            {
+                if (scenicList[i].solid == true)
+                {
+                    var focusObject = scenicList[i]; //This is the current unit focused on other than this unit.
+                    var x1 = focusObject.X; //the focus unit's X position.
+                    var y1 = focusObject.Y; //the focus unit's Y position.
+                    var d = Math.sqrt((x - x1) * (x - x1) + (y - y1) * (y - y1)); //This is the distance between this unit and the focus unit.
+                    if (d < this.mySize + focusObject.radius) // if the total distance between this unit and the focus unit is less than the size of the two radiuses then it returns true to the movement function which calls it.
+                    {
+                        return true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                    }
+                }
+            }
             //TODO add a similar routine for the structure list when it is added...
         };
 
@@ -6157,7 +6298,7 @@ function theLegend()
         this.buildUIBar = function ()
         {
             XXX.beginPath();
-            if (mouseY < 526 && lowBar != "skills" && lowBar != "shop" && lowBar != "bank")
+            if (mouseY < 526 && lowBar != "skills" && lowBar != "shop" && lowBar != "bank" && lowBar != "crafting")
             {
                 XXX.fillStyle = "rgba(211, 211, 211, 0.1)";
                 XXX.strokeStyle = "rgba(211, 211, 211, 0.1)"
@@ -6174,7 +6315,7 @@ function theLegend()
         //UI Buttons
         this.uiButton = function ()
         {
-            if (mouseY > 526 || lowBar == "skills" || lowBar == "shop" || lowBar == "bank")
+            if (mouseY > 526 || lowBar == "skills" || lowBar == "shop" || lowBar == "bank" || lowBar == "crafting")
             {
                 //inventory button
                 XXX.beginPath();
@@ -6296,6 +6437,456 @@ function theLegend()
                 XXX.beginPath();
                 XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
                 XXX.fillRect(194, 527, 20, 23);
+            }
+        };
+
+        //CRAFTING
+        this.displayCrafting = function()
+        {
+            if (lowBar == "crafting" && crafting != "none")
+            {
+                //MAIN BACKGROUND
+                XXX.beginPath();
+                XXX.fillStyle = "lightGrey";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 1;
+                XXX.rect(1, 1, 1398, 526);
+                XXX.fill();
+                XXX.stroke();
+
+                //Exit bank Button
+                //the button part
+                if (mouseX > 2 && mouseX < 2 + 148 && mouseY > 529 && mouseY < 529 + 20)
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "gold";
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 3;
+                    XXX.rect(2, 529, 148, 20);
+                    XXX.fill();
+                    XXX.stroke();
+
+                    if (clicked == true)
+                    {
+                        clicked = false;
+                        lowBar = "information";
+                        gameState = "active";
+                    }
+                }
+                else
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "E8E8E8";
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 3;
+                    XXX.rect(2, 529, 148, 20);
+                    XXX.fill();
+                    XXX.stroke();
+                }
+                //the text part
+                XXX.font = "bold 14px Book Antiqua";
+                XXX.fillStyle = "black";
+                XXX.textAlign = "center";
+                XXX.fillText("Exit Crafting Menu", 75, 543);
+
+                //line between bank account and description
+                XXX.beginPath();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 2;
+                XXX.moveTo(0, 80);
+                XXX.lineTo(1400, 80);
+                XXX.stroke();
+
+                //Determine which type of crafting menu to show...
+                var preCraftMenu = 0;
+                var craftMenu = [];
+
+                if (crafting == "smithing")
+                {
+                    preCraftMenu = smithing;
+                }
+                else if (crafting == "foods")
+                {
+                    preCraftMenu = foods;
+                }
+                else if (crafting == "tailoring")
+                {
+                    preCraftMenu = tailoring;
+                }
+                else if (crafting == "jewelry")
+                {
+                    preCraftMenu = jewelry;
+                }
+                else if (crafting == "alchemy")
+                {
+                    preCraftMenu = alchemy;
+                }
+
+                for (var i = 0; i < preCraftMenu.length; i++)
+                {
+                    if (this.getIntelligence() > preCraftMenu[i].intForCraft)
+                    {
+                        craftMenu.push(preCraftMenu[i]);
+                    }
+                }
+
+                //CRAFTING MENU
+                this.showCrafting = function()
+                {
+                    // each inventory slot is a list with three things in it... [Item, quantity]
+                    for (var i = 0; i < craftMenu.length; i++)
+                    {
+                        XXX.beginPath();
+                        XXX.lineWidth = 2;
+                        //XXX.fillStyle ="rgba(222, 184, 135, 0.15)";
+                        var hits = 0;
+                        var requirementsMet = false;
+                        for (var j = 0; j < craftMenu[i].ingredients.length; j++)
+                        {
+                            for (var k = 0; k < Inventory.length; k++)
+                            {
+                                if (craftMenu[i].ingredients[j][0] == Inventory[k][0].identity && craftMenu[i].ingredients[j][1] <= Inventory[k][1])
+                                {
+                                    hits += 1;
+                                }
+                            }
+                        }
+                        if (hits == craftMenu[i].ingredients.length)
+                        {
+                            requirementsMet = true
+                        }
+
+                        if (requirementsMet)
+                        {
+                            XXX.fillStyle ="rgba(0, 238, 0, 0.45)";
+                            //XXX.strokeStyle ="darkGreen";
+                            XXX.strokeStyle ="black";
+                        }
+                        else
+                        {
+                            XXX.fillStyle ="rgba(238, 0, 0, 0.45)";
+                            //XXX.strokeStyle ="red";
+                            XXX.strokeStyle ="black";
+                        }
+
+                        XXX.rect(craftScroll + 20.5 + (79 * i), 0.5, 79, 79);
+                        XXX.fill();
+                        XXX.stroke();
+
+                        //image
+                        craftMenu[i].drawShopCraftItem(craftMenu[i].type, craftScroll + 20.5 + (79 * i) + (1/2 * 79), 1/2 * 79);
+                    }
+
+                    //left scroll arrow
+                    XXX.beginPath();
+                    XXX.lineWidth = 1;
+                    XXX.fillStyle ="darkGrey";
+                    XXX.strokeStyle ="black";
+                    XXX.rect(0.5, 0.5, 20, 79);
+                    XXX.fill();
+                    XXX.stroke();
+                    XXX.drawImage(polyPNG, 1, 735, 11, 30, 4, 8, 12, 64);
+
+                    //right scroll arrow
+                    XXX.beginPath();
+                    XXX.lineWidth=1;
+                    XXX.fillStyle ="darkGrey";
+                    XXX.strokeStyle ="black";
+                    XXX.rect(1379.5, 0.5, 20, 79);
+                    XXX.fill();
+                    XXX.stroke();
+                    XXX.drawImage(polyPNG, 11, 735, 11, 30, 1384, 8, 12, 64);
+                };
+
+                this.craftScrolling = function()
+                {
+                    //When the left inventory scroll is clicked scroll one to the left if there is one to the left otherwise don't.
+                    if (this.craftPosition < craftMenu.length && mouseX > 1379.5 && mouseX < 1399.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true) //this (20.5, 0.5, 79, 79) is the position the first in the list will be in if the left scroll will not work.
+                    {
+                        craftScroll -= 79;
+                        this.craftPosition += 1;
+                    }
+
+                    //When the right inventory scroll is clicked scroll one to the right if there is one to the right otherwise don't.
+                    if (this.craftPosition > 0 && mouseX > 0.5 && mouseX < 20.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true)
+                    {
+                        craftScroll += 79;
+                        this.craftPosition -= 1;
+                    }
+                };
+
+                this.craftingInteract = function()
+                {
+                    var listOfInvX1Coords = []; //this is the list of the X coordinates for the Inventory Slots.
+
+                    for (var i = -this.craftPosition; i < craftMenu.length - this.craftPosition; i++)
+                    {
+                        listOfInvX1Coords.push(20.5 + (79 * i));
+                    }
+
+
+                    var listOfInvX2Coords = []; //This is the same as the X1 coords except for with an added 79 to each.
+
+                    for (var i = -this.craftPosition; i < craftMenu.length - this.craftPosition; i++)
+                    {
+                        listOfInvX2Coords.push(20.5 + (79 * i) + 79);
+                    }
+
+
+                    var invY1Coord = 0.5; //This doesn't change.
+
+
+                    var invY2Coord = 79.5; //this is just Y + 79
+
+                    for (var i = craftMenu.length - 1; i > -1; i--)
+                    {
+                        if (mouseX >= 21 && mouseX <= 1329  && mouseY < 80) //This checks if the mouse is between the scroll buttons rather than on them.
+                        {
+                            if (clickReleased == true && mouseX > listOfInvX1Coords[i] && mouseX < listOfInvX2Coords[i] && mouseY > invY1Coord && mouseY < invY2Coord && this.projectileReleased == true)
+                            {
+                                var hits = 0;
+                                for (var l = 0; l < craftMenu[i].ingredients.length; l++)
+                                {
+                                    for (var p = 0; p < Inventory.length; p++)
+                                    {
+                                        if (craftMenu[i].ingredients[l][0] == Inventory[p][0].identity && craftMenu[i].ingredients[l][1] <= Inventory[p][1])
+                                        {
+                                            hits += 1;
+                                        }
+                                    }
+                                }
+
+                                var deleteIngredients = [];
+                                if (hits == craftMenu[i].ingredients.length)
+                                {
+                                    for (var l = 0; l < craftMenu[i].ingredients.length; l++)
+                                    {
+                                        for (var p = 0; p < Inventory.length; p++)
+                                        {
+                                            if (craftMenu[i].ingredients[l][0] == Inventory[p][0].identity)
+                                            {
+                                                deleteIngredients.push([p, craftMenu[i].ingredients[l][1]]);
+                                            }
+                                        }
+                                    }
+                                    for (var l = 0; l < deleteIngredients.length; l++)
+                                    {
+                                        if (Inventory[deleteIngredients[l][0]][1] - deleteIngredients[l][1] == 0)
+                                        {
+                                            Inventory.splice(deleteIngredients[l][0], 1);
+                                        }
+                                        else
+                                        {
+                                            Inventory[deleteIngredients[l][0]][1] -= deleteIngredients[l][1];
+                                        }
+                                    }
+                                    var craftIt = -1;
+                                    for (var l = 0; l < Inventory.length; l++)
+                                    {
+                                        if (Inventory[l][0].type == craftMenu[i].type)
+                                        {
+                                            craftIt = l;
+                                            break;
+                                        }
+                                    }
+                                    if (craftIt != -1)
+                                    {
+                                        Inventory[l][1] += craftMenu[i].yield;
+                                    }
+                                    else
+                                    {
+                                        Inventory.push([craftMenu[i], craftMenu[i].yield]);
+                                    }
+                                }
+                            }
+                            else if (mouseX > listOfInvX1Coords[i] && mouseX < listOfInvX2Coords[i] && mouseY > invY1Coord && mouseY < invY2Coord) //give the name of the Item and its stats when hovered over.
+                            {
+
+                                //The Name of the Item
+                                XXX.font = "bold 40px Book Antiqua";
+                                XXX.fillStyle = "black";
+                                XXX.textAlign = "center"; //this is to reset it to the standard for the rest to come.
+                                XXX.fillText(craftMenu[i].identity, 1/2 * CCC.width, 150);
+
+                                var recipe = [];
+                                var anti = [];
+                                var punch = 0;
+                                for (var l = 0; l < craftMenu[i].ingredients.length; l++)
+                                {
+                                    for (var p = 0; p < Inventory.length; p++)
+                                    {
+                                        if (craftMenu[i].ingredients[l][0] == Inventory[p][0].identity && craftMenu[i].ingredients[l][1] <= Inventory[p][1])
+                                        {
+                                            var preRecipe = craftMenu[i].ingredients[l][0] + " x " + craftMenu[i].ingredients[l][1];
+                                            recipe.push(preRecipe);
+                                        }
+                                        else if (craftMenu[i].ingredients[l][0] == Inventory[p][0].identity && craftMenu[i].ingredients[l][1] >= Inventory[p][1])
+                                        {
+                                            var preRecipe = craftMenu[i].ingredients[l][0] + " x " + craftMenu[i].ingredients[l][1];
+                                            anti.push(preRecipe);
+                                        }
+                                        else
+                                        {
+                                            punch += 1;
+                                        }
+                                    }
+                                    if (punch == Inventory.length)
+                                    {
+                                        punch = 0;
+                                        var preRecipe = craftMenu[i].ingredients[l][0] + " x " + craftMenu[i].ingredients[l][1];
+                                        anti.push(preRecipe);
+                                    }
+                                }
+                                console.log(anti);
+                                //Ingredient Info (normal: ingredients that you do have)
+                                XXX.font = "bold 32px Book Antiqua";
+                                XXX.fillStyle = "darkGreen";
+                                XXX.textAlign = "center"; //this is to reset it to the standard for the rest to come.
+                                XXX.fillText(recipe.join("    "), 1/2 * CCC.width, 300);
+
+                                //Ingredient Info (anti: missing ingredients)
+                                XXX.font = "bold 32px Book Antiqua";
+                                XXX.fillStyle = "crimson";
+                                XXX.textAlign = "center"; //this is to reset it to the standard for the rest to come.
+                                XXX.fillText(anti.join("    "), 1/2 * CCC.width, 500);
+                            }
+                        }
+                    }
+                };
+
+                this.displayCrafterInventory = function()
+                {
+                    // each inventory slot is a list with three things in it... [Item, quantity]
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].equipped == true)
+                        {
+                            LXX.beginPath();
+                            LXX.lineWidth = 2;
+                            LXX.fillStyle ="rgba(102, 255, 102, 0.35)";
+                            LXX.strokeStyle ="black";
+                            LXX.rect(invScroll + 20.5 + (79 * i), 0.5, 79, 79);
+                            LXX.fill();
+                            LXX.stroke();
+                            Inventory[i][0].drawInventoryItem(Inventory[i][0].type, invScroll + 20.5 + (79 * i) + (1/2 * 79), 1/2 * 79);
+                            //quantity
+                            LXX.font="16px Book Antiqua";
+                            LXX.textAlign="left";
+                            LXX.fillStyle ="black";
+                            if (Inventory[i][1] < 1000)
+                            {
+                                LXX.fillText(Inventory[i][1], invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                            }
+                            else if (Inventory[i][1] >= 1000 && Inventory[i][1] < 1000000)
+                            {
+                                LXX.fillText(Math.floor(Inventory[i][1] / 1000) + "K", invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                            }
+                            else if (Inventory[i][1] >= 1000000)
+                            {
+                                LXX.fillText((Math.floor(Inventory[i][1] / 100000) / 10) + "M", invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                            }
+                            //weight
+                            LXX.font="10px Book Antiqua";
+                            LXX.fillStyle ="black";
+                            LXX.textAlign="right";
+                            LXX.fillText("W:" + Inventory[i][0].weight, invScroll + 20.5 + (79 * i) + (1/2 * 79) + 37, (39/40 * 79));
+                            LXX.textAlign="left"; // this is to reset it back to standard for those oldies out there...
+                        }
+                        else
+                        {
+                            LXX.beginPath();
+                            LXX.lineWidth = 2;
+                            LXX.fillStyle ="rgba(222, 184, 135, 0.15)";
+                            LXX.strokeStyle ="black";
+                            LXX.rect(invScroll + 20.5 + (79 * i), 0.5, 79, 79);
+                            LXX.fill();
+                            LXX.stroke();
+                            Inventory[i][0].drawInventoryItem(Inventory[i][0].type, invScroll + 20.5 + (79 * i) + (1/2 * 79), 1/2 * 79);
+                            //quantity
+                            LXX.font="16px Book Antiqua";
+                            LXX.textAlign="left";
+                            LXX.fillStyle ="black";
+                            if (Inventory[i][1] < 1000)
+                            {
+                                LXX.fillText(Inventory[i][1], invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                            }
+                            else if (Inventory[i][1] >= 1000 && Inventory[i][1] < 1000000)
+                            {
+                                LXX.fillText(Math.floor(Inventory[i][1] / 1000) + "K", invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                            }
+                            else if (Inventory[i][1] >= 1000000)
+                            {
+                                LXX.fillText((Math.floor(Inventory[i][1] / 100000) / 10) + "M", invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                            }
+                            //weight
+                            LXX.font="10px Book Antiqua";
+                            LXX.fillStyle ="black";
+                            LXX.textAlign="right";
+                            LXX.fillText("W:" + Inventory[i][0].weight, invScroll + 20.5 + (79 * i) + (1/2 * 79) + 37, (39/40 * 79));
+                            LXX.textAlign="left"; // this is to reset it back to standard for those oldies out there...
+                        }
+                    }
+
+                    //left scroll arrow
+                    LXX.beginPath();
+                    LXX.lineWidth = 1;
+                    LXX.fillStyle ="darkGrey";
+                    LXX.strokeStyle ="black";
+                    LXX.rect(0.5, 0.5, 20, 79);
+                    LXX.fill();
+                    LXX.stroke();
+                    LXX.drawImage(polyPNG, 1, 735, 11, 30, 4, 8, 12, 64);
+
+                    //weight display
+                    LXX.beginPath();
+                    LXX.fillStyle ="lightGray";
+                    LXX.strokeStyle ="black";
+                    LXX.rect(1329.5, 0.1, 50, 79.8);
+                    LXX.fill();
+                    LXX.stroke();
+                    //Draw a cover on the weight display to represent the amount of carry weight filled.
+                    LXX.beginPath();
+                    //LXX.fillStyle ="rgba(255, 255, 255, 0.65)"; //white fill in colour
+                    //LXX.fillStyle ="rgba(139, 134, 78, 0.8)"; //beige fill in colour
+                    //LXX.fillStyle = "rgba(138, 54, 15, 0.65)"; //burnt sienna colour
+                    LXX.fillStyle ="grey";
+                    LXX.rect(1329.6, 79.5, 50, -79 * this.carryWeight / this.carryWeightMAX);
+                    LXX.fill();
+                    //Draw the weight number on the top and bottom and the deviding bar.
+                    LXX.font="16px Book Antiqua";
+                    LXX.fillStyle = "black";
+                    LXX.textAlign="center";
+                    LXX.fillText(JSON.stringify(Math.floor(this.carryWeight)), 1352, 25);
+                    //dividing line
+                    LXX.beginPath();
+                    LXX.strokeStyle="black";
+                    LXX.lineWidth=3;
+                    LXX.moveTo(1334, 39.5);
+                    LXX.lineTo(1374, 39.5);
+                    LXX.stroke();
+                    //divisor
+                    LXX.font="16px Book Antiqua";
+                    LXX.fillStyle = "black";
+                    LXX.textAlign="center";
+                    LXX.fillText(JSON.stringify(Math.floor(this.carryWeightMAX)), 1352, 64.5);
+                    LXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+
+                    //right scroll arrow
+                    LXX.beginPath();
+                    LXX.lineWidth=1;
+                    LXX.fillStyle ="darkGrey";
+                    LXX.strokeStyle ="black";
+                    LXX.rect(1379.5, 0.5, 20, 79);
+                    LXX.fill();
+                    LXX.stroke();
+                    LXX.drawImage(polyPNG, 11, 735, 11, 30, 1384, 8, 12, 64);
+                };
+
+                //OPERATIONS
+                this.displayCrafterInventory();
+                this.showCrafting();
+                this.craftScrolling();
+                this.craftingInteract();
             }
         };
 
@@ -6557,7 +7148,6 @@ function theLegend()
                     //When the left inventory scroll is clicked scroll one to the left if there is one to the left otherwise don't.
                     if (this.bankPosition < bankSlots && mouseX > 1379.5 && mouseX < 1399.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true) //this (20.5, 0.5, 79, 79) is the position the first in the list will be in if the left scroll will not work.
                     {
-                        this.timeSinceLastScrolled = new Date().getTime();
                         bankScroll -= 79;
                         this.bankPosition += 1;
                     }
@@ -6565,7 +7155,6 @@ function theLegend()
                     //When the right inventory scroll is clicked scroll one to the right if there is one to the right otherwise don't.
                     if (this.bankPosition > 0 && mouseX > 0.5 && mouseX < 20.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true)
                     {
-                        this.timeSinceLastScrolled = new Date().getTime();
                         bankScroll += 79;
                         this.bankPosition -= 1;
                     }
@@ -6603,8 +7192,13 @@ function theLegend()
                                 if (Inventory[i][0].equipped == false)
                                 {
                                     var gotIn = false;
+                                    var deletion = false;
+                                    var deleteNum = -1;
                                     for (var j = bankAccount.length - 1; j > -1; j--)
                                     {
+                                        //console.log("i: " + i + " j: " + j + " bankAccount.length: " + bankAccount.length + " Inventory.length: " + Inventory.length);
+                                        //console.log("bank: " + bankAccount[j]);
+                                        //console.log("Inv: " + Inventory[i][0]);
                                         if (bankAccount[j][0].type == Inventory[i][0].type)
                                         {
                                             gotIn = true;
@@ -6618,7 +7212,9 @@ function theLegend()
                                                     if (Inventory[i][1] - amountt == 0)
                                                     {
                                                         bankAccount[j][1] += amountt;
-                                                        Inventory.splice(i, 1);
+                                                        deletion = true;
+                                                        deleteNum = i;
+                                                        //Inventory.splice(i, 1);
                                                     }
                                                 }
                                                 else
@@ -6630,14 +7226,18 @@ function theLegend()
                                             else if (shiftKey)
                                             {
                                                 bankAccount[j][1] += Inventory[i][1];
-                                                Inventory.splice(i, 1);
+                                                deletion = true;
+                                                deleteNum = i;
+                                                //Inventory.splice(i, 1);
                                             }
                                             else
                                             {
                                                 bankAccount[j][1] += 1;
                                                 if (Inventory[i][1] - 1 < 1)
                                                 {
-                                                    Inventory.splice(i, 1);
+                                                    deletion = true;
+                                                    deleteNum = i;
+                                                    //Inventory.splice(i, 1);
                                                 }
                                                 else
                                                 {
@@ -6661,7 +7261,9 @@ function theLegend()
                                                     if (Inventory[i][1] - amountt == 0)
                                                     {
                                                         bankAccount.push([new Item(invenType, false, false), amount]);
-                                                        Inventory.splice(i, 1);
+                                                        deletion = true;
+                                                        deleteNum = i;
+                                                        //Inventory.splice(i, 1);
                                                     }
                                                 }
                                                 else
@@ -6673,14 +7275,18 @@ function theLegend()
                                             else if (shiftKey)
                                             {
                                                 bankAccount.push([new Item(invenType, false, false), Inventory[i][1]]);
-                                                Inventory.splice(i, 1);
+                                                deletion = true;
+                                                deleteNum = i;
+                                                //Inventory.splice(i, 1);
                                             }
                                             else
                                             {
                                                 bankAccount.push([new Item(invenType, false, false), 1]);
                                                 if (Inventory[i][1] - 1 < 1)
                                                 {
-                                                    Inventory.splice(i, 1);
+                                                    deletion = true;
+                                                    deleteNum = i;
+                                                    //Inventory.splice(i, 1);
                                                 }
                                                 else
                                                 {
@@ -6688,6 +7294,12 @@ function theLegend()
                                                 }
                                             }
                                         }
+                                    }
+
+                                    if (deletion == true)
+                                    {
+                                        deletion = false;
+                                        Inventory.splice(deleteNum, 1);
                                     }
                                 }
                             }
@@ -6704,7 +7316,6 @@ function theLegend()
                                     else if (Inventory[i][0].identity[k].indexOf(' ') != -1)
                                     {
                                         sizer += 0;
-                                        console.log("space");
                                     }
                                     else if (Inventory[i][0].identity[k] == Inventory[i][0].identity[k].toUpperCase() )
                                     {
@@ -6761,9 +7372,9 @@ function theLegend()
                                 var gotIn = false;
                                 for (var j = Inventory.length - 1; j > -1; j--)
                                 {
-                                    console.log("i: " + i + " j: " + j + "bankAccount.length: " + bankAccount.length);
-                                    console.log("bank: " + bankAccount[i]);
-                                    console.log("Inv: " + Inventory[j][0]);
+                                    //console.log("i: " + i + " j: " + j + "bankAccount.length: " + bankAccount.length);
+                                    //console.log("bank: " + bankAccount[i]);
+                                    //console.log("Inv: " + Inventory[j][0]);
                                     if (bankAccount[i][0].type == Inventory[j][0].type)
                                     {
                                         gotIn = true;
@@ -6896,7 +7507,6 @@ function theLegend()
                 XXX.font = "bold 60px Book Antiqua";
                 XXX.fillStyle = "gold";
                 XXX.textAlign = "center"; //this is to reset it to the standard for the rest to come.
-                console.log(bankAccount);
                 XXX.fillText("The Golden Glove Banking Company", 1/2 * CCC.width, 155);
 
                 //BUY BANK SLOTS (option 1)
@@ -9560,6 +10170,49 @@ function theLegend()
                             }
                             //TODO add equipping for other accessories such as pendants, rings, and shoes/boots.
                         }
+                        else
+                        {
+                            if (Inventory[i][0].subUtility == "campFire")
+                            {
+                                var canPlace = true;
+                                var hits = 0;
+                                for (var j = 0; j < scenicList.length; j++)
+                                {
+                                    //19 is the radius of campFire Scenery Object.
+                                    if (scenicList[j].X - 19 <= X + scenicList[j].radius && scenicList[j].X + 19 >= X - scenicList[j].radius && scenicList[j].Y - 19 <= Y + scenicList[j].radius && scenicList[j].Y + 19 >= Y - scenicList[j].radius)
+                                    {
+                                        canPlace = false;
+                                    }
+                                }
+                                for (var j = 0; j < Inventory.length; j++)
+                                {
+                                    if (Inventory[j][0].identity != "Fire-Starter")
+                                    {
+                                        hits += 1;
+                                    }
+                                }
+
+                                if (hits == Inventory.length)
+                                {
+                                    canPlace = false;
+                                }
+
+                                if (canPlace == true)
+                                {
+                                    scenicList.push(new Scenery("campFire", X, Y, (Math.random() * (2 * Math.PI)), false));
+
+                                    if (Inventory[i][1] - 1 <= 0)
+                                    {
+                                        Inventory.splice(i, 1);
+                                    }
+                                    else
+                                    {
+                                        Inventory[i][1] -= 1;
+                                    }
+                                    break;
+                                }
+                            }
+                        }
                     }
                     else if (lowBar == "inventory" && lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord) //give the name of the Item and its stats when hovered over.
                     {
@@ -9701,7 +10354,7 @@ function theLegend()
                 {
                     console.log( "worldItems:" );
                     console.log( worldItems );
-                     //console.log("dClicked");
+
                      for (var i = worldItems.length - 1; i > -1; i -= 1)
                      {
                          this.distanceFromMouse = Math.sqrt((X - (X - mouseX + (1/2 * CCC.width)))  *   (X - (X - mouseX + (1/2 * CCC.width)))   +  (Y - (Y - mouseY + (1/2 * CCC.height)))  *   (Y - (Y - mouseY + (1/2 * CCC.height)))); //distanceToPlayerFromMouse
@@ -9933,6 +10586,9 @@ function theLegend()
                 this.drawHealthBar(); //#Stat Bar
             }
             this.drawAntiVenomBar(); //#Stat Bar //this is a developer stat bar only and it also is used to take the fall for an animation glitch that only affects the last stat bar drawn.
+
+            //Crafting
+            this.displayCrafting(); //#Crafting
 
             //Shop
             this.displayShop(); //#Shop
@@ -11359,6 +12015,20 @@ function theLegend()
                     }
                 }
             }
+            for (var i = 0; i < scenicList.length; i++)
+            {
+                if (scenicList[i].solid == true || scenicList[i].type == "campFire" && scenicList[i].lit == true && this.X > scenicList[i].X - scenicList[i].radius && this.X < scenicList[i].X + scenicList[i].radius && this.Y > scenicList[i].Y - scenicList[i].radius && this.Y < scenicList[i].Y + scenicList[i].radius)
+                {
+                    var focusObject = scenicList[i]; //This is the current unit focused on other than this unit.
+                    var x1 = focusObject.X; //the focus unit's X position.
+                    var y1 = focusObject.Y; //the focus unit's Y position.
+                    var d = Math.sqrt( (x-x1)*(x-x1) + (y-y1)*(y-y1) ); //This is the distance between this unit and the focus unit.
+                    if (d < this.sizeRadius + focusObject.radius) // if the total distance between this unit and the focus unit is less than the size of the two radiuses then it returns true to the movement function which calls it.
+                    {
+                        return true;
+                    }
+                }
+            }
         };
 
         this.drawHumanArms = function()
@@ -11542,7 +12212,7 @@ function theLegend()
                     player.experience += this.experience;
                     for (var i = 0; i < this.drops.length; i++)
                     {
-                        worldItems.push([this.drops[i], 1]);
+                        worldItems.push([this.drops[i][0], this.drops[i][1]]);
                     }
 
                     //transference into the list of the dead...
@@ -11744,6 +12414,14 @@ function theLegend()
                 else if (outfit == "walrusLeatherArmour")
                 {
                     XXX.drawImage(polyPNG, 804, 262, 35, 24, -(1 / 2 * 45.5) + 8, -(1 / 2 * 31.2) + 1.25, 42, 28.8);
+                }
+                else if (outfit == "winterWolfClothing")
+                {
+                    XXX.restore();
+                    XXX.save();
+                    XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    XXX.rotate(this.rotation + 1/2 * Math.PI);
+                    XXX.drawImage(verse, 3185, 165, 33, 28, -(1 / 2 * 26.4) + 0, -(1 / 2 * 22.4) - 0.75, 29.7, 25.2);
                 }
             }
 
@@ -12399,7 +13077,7 @@ function theLegend()
                         this.experience = (40 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    this.drops = [new Item("etyrHide", this.X, this.Y), new Item("etyrHide", this.X, this.Y), new Item("rawEtyrFlesh", this.X, this.Y), new Item("rawEtyrFlesh", this.X, this.Y)];
+                    this.drops = [[new Item("etyrHide", this.X, this.Y), 2], [new Item("rawEtyrFlesh", this.X, this.Y), 2]];
                 }
                 else
                 {
@@ -12412,7 +13090,7 @@ function theLegend()
                         this.experience = (22 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    this.drops = [new Item("etyrHide", this.X, this.Y), new Item("rawEtyrFlesh", this.X, this.Y)];
+                    this.drops = [[new Item("etyrHide", this.X, this.Y), 1], [new Item("rawEtyrFlesh", this.X, this.Y), 1]];
                 }
 
                 //RANGE OF SIGHT (anything related to range of sight)
@@ -12509,7 +13187,7 @@ function theLegend()
                         (this.experience = 104 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    this.drops = [new Item("elderWalrusHide", this.X, this.Y), new Item("rawWalrusFlesh", this.X, this.Y), new Item("rawWalrusFlesh", this.X, this.Y), new Item("rawWalrusFlesh", this.X, this.Y), new Item("rawWalrusFlesh", this.X, this.Y), new Item("blubber", this.X, this.Y), new Item("blubber", this.X, this.Y), new Item("elderWalrusTusks", this.X, this.Y)];
+                    this.drops = [[new Item("elderWalrusHide", this.X, this.Y), 1], [new Item("rawWalrusFlesh", this.X, this.Y), 4], [new Item("blubber", this.X, this.Y), 2], [new Item("elderWalrusTusks", this.X, this.Y), 1]];
                 }
                 else
                 {
@@ -12522,7 +13200,7 @@ function theLegend()
                         (this.experience = 28 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    this.drops = [new Item("walrusHide", this.X, this.Y), new Item("rawWalrusFlesh", this.X, this.Y), new Item("rawWalrusFlesh", this.X, this.Y), new Item("blubber", this.X, this.Y), new Item("walrusTusks", this.X, this.Y)];
+                    this.drops = [[new Item("walrusHide", this.X, this.Y), 1], [new Item("rawWalrusFlesh", this.X, this.Y), 2], [new Item("blubber", this.X, this.Y), 1], [new Item("walrusTusks", this.X, this.Y), 1]];
                 }
 
                 //RANGE OF SIGHT (anything related to range of sight)
@@ -12619,7 +13297,7 @@ function theLegend()
                         this.experience = (15 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    this.drops = [new Item("frichPelt", this.X, this.Y), new Item("rawFrichFlesh", this.X, this.Y)];
+                    this.drops = [[new Item("frichPelt", this.X, this.Y), 1], [new Item("rawFrichFlesh", this.X, this.Y), 1]];
                 }
                 else
                 {
@@ -12632,7 +13310,7 @@ function theLegend()
                         this.experience = 11 * ((player.getIntelligence() / 50) + 1) / 10;
                     }
 
-                    this.drops = [new Item("frichPelt", this.X, this.Y), new Item("rawFrichFlesh", this.X, this.Y)];
+                    this.drops = [[new Item("frichPelt", this.X, this.Y), 1], [new Item("rawFrichFlesh", this.X, this.Y), 1]];
                 }
 
                 //RANGE OF SIGHT (anything related to range of sight)
@@ -12730,7 +13408,7 @@ function theLegend()
                         this.experience = (93 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    this.drops = [new Item("bigBerulnPelt", this.X, this.Y), new Item("berulnSkull", this.X, this.Y), new Item("rawBerulnFlesh", this.X, this.Y), new Item("rawBerulnFlesh", this.X, this.Y), new Item("rawBerulnFlesh", this.X, this.Y), new Item("rawBerulnFlesh", this.X, this.Y)];
+                    this.drops = [[new Item("bigBerulnPelt", this.X, this.Y), 1], [new Item("berulnSkull", this.X, this.Y), 1], [new Item("rawBerulnFlesh", this.X, this.Y), 4]];
                 }
                 else
                 {
@@ -12743,7 +13421,7 @@ function theLegend()
                         this.experience = (81 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    this.drops = [new Item("berulnPelt", this.X, this.Y), new Item("berulnSkull", this.X, this.Y), new Item("rawBerulnFlesh", this.X, this.Y), new Item("rawBerulnFlesh", this.X, this.Y), new Item("rawBerulnFlesh", this.X, this.Y)];
+                    this.drops = [[new Item("berulnPelt", this.X, this.Y), 1], [new Item("berulnSkull", this.X, this.Y), 1], [new Item("rawBerulnFlesh", this.X, this.Y), 3]];
                 }
 
                 //RANGE OF SIGHT (anything related to range of sight)
@@ -12855,7 +13533,7 @@ function theLegend()
                         this.experience = (20 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    this.drops = [new Item("naapridPelt", this.X, this.Y), new Item("rawNaapridFlesh", this.X, this.Y), new Item("naapridHorn", this.X, this.Y)];
+                    this.drops = [[new Item("naapridPelt", this.X, this.Y), 1], [new Item("rawNaapridFlesh", this.X, this.Y), 1], [new Item("naapridHorn", this.X, this.Y), 1]];
                 }
                 else if (this.alpha == "baby")
                 {
@@ -12868,7 +13546,7 @@ function theLegend()
                         this.experience = (6 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    this.drops = [new Item("rawYoungNaapridFlesh", this.X, this.Y)];
+                    this.drops = [[new Item("rawYoungNaapridFlesh", this.X, this.Y), 1]];
                 }
                 else
                 {
@@ -12880,7 +13558,7 @@ function theLegend()
                     {
                         this.experience = (14 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
-                    this.drops = [new Item("naapridPelt", this.X, this.Y), new Item("rawNaapridFlesh", this.X, this.Y), new Item("naapridHorn", this.X, this.Y)];
+                    this.drops = [[new Item("naapridPelt", this.X, this.Y), 1], [new Item("rawNaapridFlesh", this.X, this.Y), 1], [new Item("naapridHorn", this.X, this.Y), 1]];
                 }
 
                 //RANGE OF SIGHT (anything related to range of sight)
@@ -13045,7 +13723,7 @@ function theLegend()
                         this.experience = (1580 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    this.drops = [new Item("hugeBogTrollSkull", this.X, this.Y), new Item("trollFlesh", this.X, this.Y), new Item("trollFlesh", this.X, this.Y), new Item("trollFlesh", this.X, this.Y), new Item("trollFlesh", this.X, this.Y), new Item("trollFlesh", this.X, this.Y), new Item("trollFlesh", this.X, this.Y), new Item("trollFlesh", this.X, this.Y), new Item("trollFlesh", this.X, this.Y), new Item("trollFlesh", this.X, this.Y), new Item("trollFlesh", this.X, this.Y), new Item("trollFlesh", this.X, this.Y), new Item("trollFlesh", this.X, this.Y)];
+                    this.drops = [[new Item("hugeBogTrollSkull", this.X, this.Y), 1], [new Item("trollFlesh", this.X, this.Y), 12]];
                 }
                 else if (this.alpha == "baby")
                 {
@@ -13058,7 +13736,7 @@ function theLegend()
                         this.experience = (116 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    this.drops = [new Item("babyBogTrollSkull", this.X, this.Y), new Item("trollFlesh", this.X, this.Y)];
+                    this.drops = [[new Item("babyBogTrollSkull", this.X, this.Y), 1], [new Item("trollFlesh", this.X, this.Y), 1]];
                 }
                 else
                 {
@@ -13071,7 +13749,7 @@ function theLegend()
                         this.experience = (940 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    this.drops = [new Item("bogTrollSkull", this.X, this.Y), new Item("trollFlesh", this.X, this.Y), new Item("trollFlesh", this.X, this.Y), new Item("trollFlesh", this.X, this.Y), new Item("trollFlesh", this.X, this.Y), new Item("trollFlesh", this.X, this.Y), new Item("trollFlesh", this.X, this.Y), new Item("trollFlesh", this.X, this.Y)];
+                    this.drops = [[new Item("bogTrollSkull", this.X, this.Y), 1], [new Item("trollFlesh", this.X, this.Y), 7]];
                 }
 
                 //RANGE OF SIGHT (anything related to range of sight)
@@ -13388,11 +14066,11 @@ function theLegend()
 
                     if (rndm)
                     {
-                        this.drops = [new Item("massiveWinterWolfPelt", this.X, this.Y), new Item("rawWinterWolfFlesh", this.X, this.Y), new Item("rawWinterWolfFlesh", this.X, this.Y), new Item("rawWinterWolfFlesh", this.X, this.Y), new Item("rawWolfLiver", this.X, this.Y)];
+                        this.drops = [[new Item("massiveWinterWolfPelt", this.X, this.Y), 1], [new Item("rawWinterWolfFlesh", this.X, this.Y), 3], [new Item("rawWolfLiver", this.X, this.Y), 1]];
                     }
                     else
                     {
-                        this.drops = [new Item("massiveWinterWolfPelt", this.X, this.Y), new Item("rawWinterWolfFlesh", this.X, this.Y), new Item("rawWinterWolfFlesh", this.X, this.Y), new Item("rawWinterWolfFlesh", this.X, this.Y)];
+                        this.drops = [[new Item("massiveWinterWolfPelt", this.X, this.Y), 1], [new Item("rawWinterWolfFlesh", this.X, this.Y), 3]];
                     }
                 }
                 else
@@ -13408,11 +14086,11 @@ function theLegend()
 
                     if (rndm)
                     {
-                        this.drops = [new Item("winterWolfPelt", this.X, this.Y), new Item("rawWinterWolfFlesh", this.X, this.Y), new Item("rawWolfLiver", this.X, this.Y)];
+                        this.drops = [[new Item("winterWolfPelt", this.X, this.Y), 1], [new Item("rawWinterWolfFlesh", this.X, this.Y), 1], [new Item("rawWolfLiver", this.X, this.Y), 1]];
                     }
                     else
                     {
-                        this.drops = [new Item("winterWolfPelt", this.X, this.Y), new Item("rawWinterWolfFlesh", this.X, this.Y)];
+                        this.drops = [[new Item("winterWolfPelt", this.X, this.Y), 1], [new Item("rawWinterWolfFlesh", this.X, this.Y), 1]];
                     }
                 }
 
@@ -13544,7 +14222,7 @@ function theLegend()
                         this.experience = (21 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    this.drops = [new Item("gulfreyShell", this.X, this.Y), new Item("gulfreyShell", this.X, this.Y), new Item("gulfreyShell", this.X, this.Y), new Item("rawGulfreyFlesh", this.X, this.Y), new Item("rawGulfreyFlesh", this.X, this.Y), new Item("rawGulfreyFlesh", this.X, this.Y), new Item("gulfreyMandibles", this.X, this.Y)];
+                    this.drops = [[new Item("gulfreyShell", this.X, this.Y), 3], [new Item("rawGulfreyFlesh", this.X, this.Y), 3], [new Item("gulfreyMandibles", this.X, this.Y), 1]];
                 }
                 else
                 {
@@ -13557,7 +14235,7 @@ function theLegend()
                         this.experience = (8 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    this.drops = [new Item("rawGulfreyFlesh", this.X, this.Y)];
+                    this.drops = [[new Item("rawGulfreyFlesh", this.X, this.Y), 1]];
                 }
 
                 //RANGE OF SIGHT (anything related to range of sight)
@@ -13680,17 +14358,17 @@ function theLegend()
 
                     if (player.getIntelligence >= 42)
                     {
-                        this.drops = [new Item("torperFuzz", this.X, this.Y), new Item("rawTorperFlesh", this.X, this.Y), new Item("rawTorperFlesh", this.X, this.Y)];
+                        this.drops = [[new Item("torperFuzz", this.X, this.Y), 1], [new Item("torperVenomSac", this.X, this.Y), 1], [new Item("rawTorperFlesh", this.X, this.Y), 2]];
                     }
                     else
                     {
                         if (rndmzr == 2)
                         {
-                            this.drops = [new Item("torperVenomSac", this.X, this.Y), new Item("rawTorperFlesh", this.X, this.Y), new Item("rawTorperFlesh", this.X, this.Y)];
+                            this.drops = [[new Item("torperVenomSac", this.X, this.Y), 1], [new Item("rawTorperFlesh", this.X, this.Y), 2]];
                         }
                         else
                         {
-                            this.drops = [new Item("rawTorperFlesh", this.X, this.Y), new Item("rawTorperFlesh", this.X, this.Y)];
+                            this.drops = [[new Item("rawTorperFlesh", this.X, this.Y), 2]];
                         }
                     }
 
@@ -13708,17 +14386,17 @@ function theLegend()
 
                     if (player.getIntelligence >= 48)
                     {
-                        this.drops = [new Item("torperFuzz", this.X, this.Y), new Item("torperVenomSac", this.X, this.Y), new Item("rawTorperFlesh", this.X, this.Y)];
+                        this.drops = [[new Item("torperFuzz", this.X, this.Y), 1], [new Item("torperVenomSac", this.X, this.Y), 1], [new Item("rawTorperFlesh", this.X, this.Y), 1]];
                     }
                     else
                     {
                         if (rndmzr == 2)
                         {
-                            this.drops = [new Item("torperVenomSac", this.X, this.Y), new Item("rawTorperFlesh", this.X, this.Y)];
+                            this.drops = [[new Item("torperVenomSac", this.X, this.Y), 1], [new Item("rawTorperFlesh", this.X, this.Y), 1]];
                         }
                         else
                         {
-                            this.drops = [new Item("rawTorperFlesh", this.X, this.Y)];
+                            this.drops = [[new Item("rawTorperFlesh", this.X, this.Y), 1]];
                         }
                     }
                 }
@@ -13965,8 +14643,8 @@ function theLegend()
                         {
                             uniqueChars.drohforLDS = false;
                             player.freynorFaction -= 2;
-                            this.drops = [new Item("longbow", false, false)];
-                            this.customEXP == true;
+                            this.drops = [[new Item("longbow", false, false), 1]];
+                            this.customEXP = true;
                             this.experience = 65 * ((player.getIntelligence() / 50) + 1);
                         }
                         else if (ID == "Maggy the Tailor")
@@ -13975,10 +14653,16 @@ function theLegend()
                             player.freynorFaction -= 14;
                             this.drops = [];
                         }
-                        else if (ID == "Odee the banker")
+                        else if (ID == "Odee the Banker")
                         {
                             uniqueChars.odeeLDS = false;
                             player.freynorFaction -= 11;
+                            this.drops = [];
+                        }
+                        else if (ID == "Toggin")
+                        {
+                            uniqueChars.togginLDS = false;
+                            player.freynorFaction -= 6;
                             this.drops = [];
                         }
                         else
@@ -14318,6 +15002,257 @@ function theLegend()
         };
     };
 
+    function Scenery(type, x, y, rotation, longevity)
+    {
+        this.type = type;
+        this.X = x;
+        this.Y = y;
+        this.radius = 1;
+        this.rotation = rotation;
+        this.temporary = longevity; //This is whether or not it will stay permanently or is subject to despawning after time.
+        this.solid = false;
+        this.mouser = 10000; //this is the measurement of the mouse's distance from the Scenery object.
+        this.playerer = 10000; //this is the measurement of the player's distance from the Scenery object.
+        this.counter = 0; //this is a call regulating variable that works to make sure heavy code isn't called too often.
+        this.activate = false; //this is a flag that turns true when the Scenery object is clicked.
+        this.interactionRange = 0;
+        //Campfire variables
+        this.lit = false;
+        this.fireCostume = 0;
+        this.campFireTime = 0;
+        this.burnt = false;
+        this.burntTime = 0;
+        this.gotFireStarter = false;
+
+        this.countAdder = function()
+        {
+            this.counter += 1;
+        };
+
+        this.count = function()
+        {
+            if (this.counter >= 80)
+            {
+                this.counter = 0;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        };
+
+        this.mouseSensing = function()
+        {
+            if (this.count())
+            {
+                this.mouser = Math.sqrt(((X - mouseX + 1/2 * CCC.width) - this.X)*((X - mouseX + 1/2 * CCC.width) - this.X) + ((Y - mouseY + 1/2 * CCC.height) - this.Y)*((Y - mouseY + 1/2 * CCC.height) - this.Y));
+                this.playerer = Math.sqrt((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y));
+                console.log("mouser " + this.mouser + " playerer " + this.playerer);
+            }
+
+            if (this.mouser <= this.radius && this.playerer <= this.interactionRange)
+            {
+                //Make sure the player and the mouse are both still there...
+                this.mouser = Math.sqrt(((X - mouseX + 1/2 * CCC.width) - this.X)*((X - mouseX + 1/2 * CCC.width) - this.X) + ((Y - mouseY + 1/2 * CCC.height) - this.Y)*((Y - mouseY + 1/2 * CCC.height) - this.Y));
+                this.playerer = Math.sqrt((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y));
+
+                if (dClick)
+                {
+                    dClick = false;
+                    this.activate = true;
+                }
+            }
+
+        };
+
+        this.typeBuilder = function()
+        {
+            if (this.type == "anvil")
+            {
+                //TRAITS
+                this.solid = true;
+                this.interactionRange = 100;
+
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 2877, 149, 27, 15, -(1/2 * 54), -(1/2 * 30), 54, 30);
+                XXX.restore();
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 17;
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                    player.craftPosition = 0;
+                    craftScroll = 0;
+                    crafting = "smithing";
+                    lowBar = "crafting";
+                    gameState = "paused";
+                }
+            }
+            else if (this.type == "campFire")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 35;
+
+                //animate
+                if (this.lit == true)
+                {
+                    this.fireCostume += 1;
+                    this.campFireTime += 1;
+
+                    //die out over time
+                    if (this.campFireTime >= 10000)
+                    {
+                        this.campFireTime = 0;
+                        this.lit = false;
+                        this.burnt = true;
+                    }
+                }
+
+                if (this.burnt == true)
+                {
+                    this.burntTime += 1;
+
+                    if (this.burntTime >= 2000)
+                    {
+                        this.burntTime = 0;
+                        if (longevity == false)
+                        {
+                            for (var i = 0; i < scenicList.length; i++)
+                            {
+                                if (scenicList[i] === this)
+                                {
+                                    scenicList.splice(i, 1);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                //DRAWSELF
+                if (this.lit == false)
+                {
+                    if (this.burnt == false)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(verse, 2917, 174, 23, 23, -(1/2 * 34.5), -(1/2 * 34.5), 34.5, 34.5);
+                        XXX.drawImage(verse, 2917, 174, 23, 23, -(1/2 * 34.5), -(1/2 * 34.5), 34.5, 34.5);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(verse, 2890, 173, 23, 23, -(1/2 * 34.5), -(1/2 * 34.5), 34.5, 34.5);
+                        XXX.drawImage(verse, 2890, 173, 23, 23, -(1/2 * 34.5), -(1/2 * 34.5), 34.5, 34.5);
+                        XXX.restore();
+                    }
+                }
+                else if (this.fireCostume <= 14)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 2865, 168, 23, 23, -(1/2 * 34.5) - 0.225, -(1/2 * 34.5) + 0.4, 34.5, 34.5);
+                    XXX.drawImage(verse, 2865, 168, 23, 23, -(1/2 * 34.5) - 0.225, -(1/2 * 34.5) + 0.4, 34.5, 34.5);
+                    XXX.restore();
+                }
+                else if (this.fireCostume > 14 && this.fireCostume <= 28)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 2939, 220, 23, 23, -(1/2 * 34.5) + 1, -(1/2 * 34.5) + 0.6, 34.5, 34.5);
+                    XXX.drawImage(verse, 2939, 220, 23, 23, -(1/2 * 34.5) + 1, -(1/2 * 34.5) + 0.6, 34.5, 34.5);
+                    XXX.restore();
+                }
+                else if (this.fireCostume > 28 && this.fireCostume <= 42)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 2966, 220, 23, 23, -(1/2 * 34.5) + 1, -(1/2 * 34.5) + 0.6, 34.5, 34.5);
+                    XXX.drawImage(verse, 2966, 220, 23, 23, -(1/2 * 34.5) + 1, -(1/2 * 34.5) + 0.6, 34.5, 34.5);
+                    XXX.restore();
+                }
+                else if (this.fireCostume > 42)
+                {
+                    this.fireCostume = 0;
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 2865, 168, 23, 23, -(1/2 * 34.5) - 0.225, -(1/2 * 34.5) + 0.4, 34.5, 34.5);
+                    XXX.drawImage(verse, 2865, 168, 23, 23, -(1/2 * 34.5) - 0.225, -(1/2 * 34.5) + 0.4, 34.5, 34.5);
+                    XXX.restore();
+                }
+
+                if (this.playerer <= this.radius && this.lit == true) //fire burns the player but heat resistance can reduce the damage it does.
+                {
+                    player.health -= Math.max(0, (0.125 - (player.heatResistance / 200)));
+                    player.warmth += Math.max(0, (0.2 - (player.heatResistance / 200)));
+                    //todo add burning effect for player.
+                }
+                else if (this.playerer <= 50 && this.lit == true)
+                {
+                    player.warmth += Math.max(0, (0.04 - (player.heatResistance / 200)));
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 19;
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+
+                    if (this.lit == false && this.burnt == false || this.lit == false && longevity == true)
+                    {
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            if (Inventory[i][0].identity == "Fire-Starter")
+                            {
+                                this.gotFireStarter = true;
+                            }
+                        }
+
+                        if (this.gotFireStarter)
+                        {
+                            this.burntTime = 0;
+                            this.lit = true;
+                        }
+                    }
+                    else if (this.lit == true && this.burnt == false)
+                    {
+                        player.craftPosition = 0;
+                        craftScroll = 0;
+                        crafting = "foods";
+                        lowBar = "crafting";
+                        gameState = "paused";
+                    }
+                }
+            }
+        };
+
+        this.operations = function()
+        {
+            this.countAdder();
+            this.mouseSensing();
+            this.typeBuilder();
+        }
+    }
+
     function Item(type, x, y)
     {
         this.type = type;
@@ -14496,6 +15431,11 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 2;
+                this.ingredients = [["Raw Etyr Flesh", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
                 this.sellValue = 1; // at max, sell for 1.
@@ -14621,6 +15561,11 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 1;
+                this.ingredients = [["Troll Flesh", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 15 - Math.floor(player.getCharisma() / 25); // at max, buy for 13.
                 this.sellValue = 8 + Math.floor(player.getCharisma() / 25); // at max, sell for 10.
@@ -14680,6 +15625,11 @@ function theLegend()
 
                 //ability
                 this.ability = "satiate";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 9;
+                this.ingredients = [["Raw Walrus Flesh", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 18 - Math.floor(player.getCharisma() / 6.25); // at max, buy for 10.
@@ -14769,6 +15719,11 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 2;
+                this.ingredients = [["Raw Frich Flesh", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
                 this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
@@ -14856,6 +15811,11 @@ function theLegend()
                 //ability
                 this.ability = "satiate";
 
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 16;
+                this.ingredients = [["Raw Young-Naaprid Flesh", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 29 - Math.floor(player.getCharisma() / 10); // at max, buy for 24.
                 this.sellValue = 14 + Math.floor(player.getCharisma() / 8); // at max sell for 20.
@@ -14913,6 +15873,11 @@ function theLegend()
 
                 //ability
                 this.ability = "satiate";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 14;
+                this.ingredients = [["Raw Naaprid Flesh", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 34 - Math.floor(player.getCharisma() / 8); // at max, buy for 28.
@@ -15011,6 +15976,11 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                //Crafting
+                this.yield = 1
+                this.intForCraft = 3;
+                this.ingredients = [["Raw Beruln Flesh", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
                 this.sellValue = 3; // at max, sell for 3.
@@ -15098,6 +16068,11 @@ function theLegend()
                 //ability
                 this.ability = "healthVI";
 
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 49;
+                this.ingredients = [["Jar of Troll's Blood", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 1000 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 800.
                 this.sellValue = 300 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 500.
@@ -15127,6 +16102,11 @@ function theLegend()
                 //ability
                 this.ability = "trollPoison";
 
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 27;
+                this.ingredients = [["Troll Flesh", 3]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 690 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 590.
                 this.sellValue = 185 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 285.
@@ -15146,6 +16126,11 @@ function theLegend()
 
                 //ability
                 this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 4;
+                this.ingredients = [["Glass", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
@@ -15176,6 +16161,11 @@ function theLegend()
                 //ability
                 this.ability = "cleansing";
 
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 35;
+                this.ingredients = [["Potion Glass", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 425 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 325.
                 this.sellValue = 95 + Math.floor(player.getCharisma() / 0.325); // at max, sell for 248.
@@ -15205,6 +16195,11 @@ function theLegend()
                 //ability
                 this.ability = "energyI";
 
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 32;
+                this.ingredients = [["Potion Glass", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 140 - Math.floor(player.getCharisma() / 1); // at max, buy for 90.
                 this.sellValue = 65 + Math.floor(player.getCharisma() / 2); // at max, sell for 90.
@@ -15233,6 +16228,11 @@ function theLegend()
 
                 //ability
                 this.ability = "speedI";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 33;
+                this.ingredients = [["Potion Glass", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 225 - Math.floor(player.getCharisma() / 1); // at max, buy for 175.
@@ -15317,6 +16317,53 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 17 - Math.floor(player.getCharisma() / 6); // at max, buy for 9.
                 this.sellValue = 3 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 7.
+            }
+            else if (this.type == "fireStarter")
+            {
+                //For All Items
+                this.identity = "Fire-Starter";
+                this.weight = 1;
+                this.size = 12;
+                this.description = "A box of flints with an iron side to strike them against.";
+                this.intForDes = 1;
+                this.intDescription = "If this tool is in your inventory you can click on wood to place it as a campfire and then double click the campfire to light it!";
+
+                //Define Utility
+                this.utility = "tool";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 5;
+                this.ingredients = [["Iron", 1], ["Flint", 3]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 13 - Math.floor(player.getCharisma() / 15); // at max, buy for 10.
+                this.sellValue = 5 + Math.floor(player.getCharisma() / 15); // at max, sell for 8.
+            }
+            else if (this.type == "wood")
+            {
+                //For All Items
+                this.identity = "Wood";
+                this.weight = 2;
+                this.size = 12;
+                this.description = "Timber from trees.";
+                this.intForDes = 3;
+                this.intDescription = "This is an important raw material used in the crafting of many different things.";
+
+                //Define Utility
+                this.utility = "material";
+                    //subUtility
+                this.subUtility = "campFire";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
             }
             else if (this.type == "elderWalrusTusks")
             {
@@ -15549,6 +16596,11 @@ function theLegend()
                     this.ability = "none";
                 }
 
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 5;
+                this.ingredients = [["Raw Winter Wolf Flesh", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 12 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 8.
                 this.sellValue = 5 + Math.floor(player.getCharisma() / 8); // at max, sell for 8.
@@ -15606,6 +16658,11 @@ function theLegend()
 
                 //ability
                 this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 2;
+                this.ingredients = [["Raw Wolf Liver", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 8 - Math.floor(player.getCharisma() / 15); // at max, buy for 5.
@@ -15725,6 +16782,11 @@ function theLegend()
                 //ability
                 this.ability = "foodPoisoning";
 
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 0;
+                this.ingredients = [["Raw Gulfrey Flesh", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 0; // at max, buy for 0.
                 this.sellValue = 0; // at max, sell for 0.
@@ -15782,6 +16844,11 @@ function theLegend()
 
                 //ability
                 this.ability = "satiate";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 8;
+                this.ingredients = [["Raw Torper Flesh", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 17 - Math.floor(player.getCharisma() / 25); // at max, buy for 15.
@@ -15861,6 +16928,11 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 8;
+                this.ingredients = [["Iron", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 18 - Math.floor(player.getCharisma() / 6); // at max, buy for 12.
                 this.sellValue = 7 + Math.floor(player.getCharisma() / 10); // at max, sell for 12.
@@ -15889,6 +16961,11 @@ function theLegend()
 
                 //ability
                 this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 22;
+                this.ingredients = [["Steel", 2], ["Jvostran", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 38 - Math.floor(player.getCharisma() / 3); // at max, buy for 22.
@@ -15919,6 +16996,11 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 9;
+                this.ingredients = [["Iron", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 26 - Math.floor(player.getCharisma() / 5); // at max, buy for 16.
                 this.sellValue = 9 + Math.floor(player.getCharisma() / 10); // at max, sell for 14.
@@ -15947,6 +17029,11 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 25;
+                this.ingredients = [["Wood", 1], ["Fibers", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 44 - Math.floor(player.getCharisma() / 8); // at max, buy for 38.
                 this.sellValue = 23 + Math.floor(player.getCharisma() / 3); // at max, sell for 38.
@@ -15974,6 +17061,11 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                //Crafting
+                this.yield = 15;
+                this.intForCraft = 5;
+                this.ingredients = [["Wood", 1], ["Iron", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
                 this.sellValue = 1; // at max, sell for 1.
@@ -16000,6 +17092,11 @@ function theLegend()
 
                 //ability
                 this.ability = "none";
+
+                //Crafting
+                this.yield = 10;
+                this.intForCraft = 30;
+                this.ingredients = [["Wood", 1], ["Ikrinium", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 20 - Math.floor(player.getCharisma() / 10); // at max, buy for 15.
@@ -16052,6 +17149,11 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 24;
+                this.ingredients = [["Walrus Hide", 1], ["Walrus Tusks", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 71 - Math.floor(player.getCharisma() / 3); // at max, buy for 56.
                 this.sellValue = 29 + Math.floor(player.getCharisma() / 2); // at max, sell for 54.
@@ -16102,6 +17204,11 @@ function theLegend()
 
                 //ability
                 this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 29;
+                this.ingredients = [["Gulfrey Mandibles", 1], ["Gulfrey Shell Section", 7]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 194 - Math.floor(player.getCharisma() / 1); // at max, buy for 144.
@@ -16154,6 +17261,11 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 27;
+                this.ingredients = [["Steel", 4]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 95 - Math.floor(player.getCharisma() / 3); // at max, buy for 80.
                 this.sellValue = 65 + Math.floor(player.getCharisma() / 3); // at max, sell for 80.
@@ -16204,6 +17316,11 @@ function theLegend()
 
                 //ability
                 this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 28;
+                this.ingredients = [["Nechrovite", 4]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 139 - Math.floor(player.getCharisma() / 3); // at max, buy for 124.
@@ -16256,6 +17373,11 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 15;
+                this.ingredients = [["Naaprid Pelt", 1], ["Naaprid Horn", 2]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 46 - Math.floor(player.getCharisma() / 3); // at max, buy for 31.
                 this.sellValue = 14 + Math.floor(player.getCharisma() / 3); // at max, sell for 29.
@@ -16306,6 +17428,11 @@ function theLegend()
 
                 //ability
                 this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 43;
+                this.ingredients = [["Sapphire", 1], ["Turquoise", 8], ["Massive Winter Wolf Pelt", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 5500 - Math.floor(player.getCharisma() / 0.125); // at max, buy for 5100.
@@ -16358,6 +17485,10 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                this.yield = 1;
+                this.intForCraft = 45;
+                this.ingredients = [["Sapphire", 8], ["Steel", 5], ["Massive Winter Wolf Pelt", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 8950 - Math.floor(player.getCharisma() / 0.0625); // at max, buy for 8150.
                 this.sellValue = 6925 + Math.floor(player.getCharisma() / 0.0625); // at max, sell for 7725.
@@ -16408,6 +17539,10 @@ function theLegend()
 
                 //ability
                 this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 32;
+                this.ingredients = [["Winter Wolf Pelt", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 389 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 289.
@@ -16460,6 +17595,10 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                this.yield = 1;
+                this.intForCraft = 24;
+                this.ingredients = [["Winter Wolf Pelt", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 170 - Math.floor(player.getCharisma() / 1); // at max, buy for 120.
                 this.sellValue = 76 + Math.floor(player.getCharisma() / 1.25); // at max, sell for 116.
@@ -16511,6 +17650,10 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                this.yield = 1;
+                this.intForCraft = 34;
+                this.ingredients = [["Winter Wolf Pelt", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 550 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 350.
                 this.sellValue = 150 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 350.
@@ -16539,6 +17682,10 @@ function theLegend()
 
                 //ability
                 this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 30;
+                this.ingredients = [["Steel", 3]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 28 - Math.floor(player.getCharisma() / 4); // at max, buy for 15.
@@ -16572,6 +17719,10 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                this.yield = 1;
+                this.intForCraft = 36;
+                this.ingredients = [["Steel", 8]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 113 - Math.floor(player.getCharisma() / 5); // at max, buy for 103.
                 this.sellValue = 65  + Math.floor(player.getCharisma() / 2); // at max, sell for 90.
@@ -16600,6 +17751,10 @@ function theLegend()
 
                 //ability
                 this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 32;
+                this.ingredients = [["Steel", 3], ["Jvostran", 1], ["Walrus Tusks", 1], ["Walrus Hide", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 175 - Math.floor(player.getCharisma() / 1); // at max, buy for 125.
@@ -16630,6 +17785,10 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                this.yield = 2;
+                this.intForCraft = 12;
+                this.ingredients = [["Wood", 2], ["Walrus Tusks", 1]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 19 - Math.floor(player.getCharisma() / 5); // at max, buy for 9.
                 this.sellValue = 7 + Math.floor(player.getCharisma() / 25); // at max, sell for 9.
@@ -16658,6 +17817,10 @@ function theLegend()
 
                 //ability
                 this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 3;
+                this.ingredients = [["Iron", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 11 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 7.
@@ -16688,6 +17851,10 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                this.yield = 1;
+                this.intForCraft = 5;
+                this.ingredients = [["Iron", 2]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 27 - Math.floor(player.getCharisma() / 5); // at max, buy for 17.
                 this.sellValue = 8 + Math.floor(player.getCharisma() / 8); // at max, sell for 14.
@@ -16716,6 +17883,10 @@ function theLegend()
 
                 //ability
                 this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 35;
+                this.ingredients = [["Steel", 4]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 57 - Math.floor(player.getCharisma() / 5); // at max, buy for 47.
@@ -16746,6 +17917,10 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                this.yield = 1;
+                this.intForCraft = 46;
+                this.ingredients = [["Jvostran", 6]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 640 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 540.
                 this.sellValue = 219 + Math.floor(player.getCharisma() / 0.4); // at max, sell for 344.
@@ -16774,6 +17949,10 @@ function theLegend()
 
                 //ability
                 this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 44;
+                this.ingredients = [["Steel", 5]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 435 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 235.
@@ -16804,6 +17983,10 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                this.yield = 1;
+                this.intForCraft = 40;
+                this.ingredients = [["Ikrinium", 1], ["Steel", 3]];
+
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 274 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 174.
                 this.sellValue = 118 + Math.floor(player.getCharisma() / 1); // at max, sell for 168.
@@ -16832,6 +18015,10 @@ function theLegend()
 
                 //ability
                 this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 28;
+                this.ingredients = [["Ikrinium", 1], ["Steel", 2]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 35 - Math.floor(player.getCharisma() / 10); // at max, buy for 30.
@@ -16868,6 +18055,10 @@ function theLegend()
 
                 //ability
                 this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 39;
+                this.ingredients = [["Jvostran", 1], ["Steel", 4]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 268 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 168.
@@ -16911,6 +18102,10 @@ function theLegend()
 
                 //ability
                 this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 43;
+                this.ingredients = [["Steel", 3]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 90 - Math.floor(player.getCharisma() / 5); // at max, buy for 65.
@@ -16959,6 +18154,17 @@ function theLegend()
                         }
                     }
                 }
+            }
+            else if (this.type == "fireStarter")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 2925, 133, 16, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 24), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18), 24, 18);
+            }
+            else if (this.type == "wood")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 2917, 174, 23, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 34.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34.5), 34.5, 34.5);
+                XXX.drawImage(verse, 2917, 174, 23, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 34.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34.5), 34.5, 34.5);
             }
             else if (this.type == "katana")
             {
@@ -17388,6 +18594,17 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "fireStarter")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 2925, 133, 16, 12, this.invX - (1/2 * 24), this.invY - (1/2 * 18), 24, 18);
+            }
+            else if (this.type == "wood")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 2917, 174, 23, 23, this.invX - (1/2 * 34.5), this.invY - (1/2 * 34.5), 34.5, 34.5);
+                LXX.drawImage(verse, 2917, 174, 23, 23, this.invX - (1/2 * 34.5), this.invY - (1/2 * 34.5), 34.5, 34.5);
+            }
             else if (this.type == "katana")
             {
                 LXX.beginPath();
@@ -17810,6 +19027,17 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "fireStarter")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 2925, 133, 16, 12, this.invX - (1/2 * 24), this.invY - (1/2 * 18), 24, 18);
+            }
+            else if (this.type == "wood")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 2917, 174, 23, 23, this.invX - (1/2 * 34.5), this.invY - (1/2 * 34.5), 34.5, 34.5);
+                XXX.drawImage(verse, 2917, 174, 23, 23, this.invX - (1/2 * 34.5), this.invY - (1/2 * 34.5), 34.5, 34.5);
             }
             else if (this.type == "katana")
             {
@@ -18320,7 +19548,7 @@ function theLegend()
                         var hits = 0;
                         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                         {
-                            if (ArtificialIntelligenceAccess[i].ID == "drohfor")
+                            if (ArtificialIntelligenceAccess[i].ID == "Drohfor")
                             {
                                 hits += 1;
                             }
@@ -18328,6 +19556,21 @@ function theLegend()
                         if (hits == 0)
                         {
                             ArtificialIntelligenceAccess.push(new Unit(2583, 818, "Person", false, "Drohfor", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["walrusLeatherArmour", 5], weapon: ["longbow", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [true, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 6, patrolLoop: true, route:[[2001, 658], [2252, -509], [2423, -588], [2032, 440], [2030, 770], [2583, 818]]}));
+                        }
+                    }
+                    if (uniqueChars.togginLDS == true)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Toggin")
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(739, 1830, "Person", false, "Toggin", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["winterWolfClothing", 0], weapon: ["freydicSword", [8, 7], 0, 16, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[739, 1830], [756, 1635], [840, 1603]]}));
                         }
                     }
                     if (uniqueChars.odeeLDS == true)
@@ -18387,7 +19630,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(1930, 1793, "Person", false, "Medlia the Merchant", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[1710, 1717], [1812, 1835], [1713, 1882], [1930, 1793]], merchant: true, merchandise: [[new Item("coins", false, false), 79], [new Item("rawWalrusFlesh", false, false), 8], [new Item("walrusMeat", false, false), 6], [new Item("walrusHide", false, false), 1], [new Item("walrusTusks", false, false), 1], [new Item("frichPelt", false, false), 3], [new Item("rawFrichFlesh", false, false), 12], [new Item("frichMeat", false, false), 9], [new Item("winterWolfPelt", false, false), 3], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 1], [new Item("rawWolfLiver", false, false), 1], [new Item("wolfLiver", false, false), 1]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(1930, 1793, "Person", false, "Medlia the Merchant", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[1710, 1717], [1812, 1835], [1713, 1882], [1930, 1793]], merchant: true, merchandise: [[new Item("coins", false, false), 179], [new Item("wood", false, false), 48], [new Item("fireStarter", false, false), 3], [new Item("rawWalrusFlesh", false, false), 8], [new Item("walrusMeat", false, false), 6], [new Item("walrusHide", false, false), 1], [new Item("walrusTusks", false, false), 1], [new Item("frichPelt", false, false), 3], [new Item("rawFrichFlesh", false, false), 12], [new Item("frichMeat", false, false), 9], [new Item("winterWolfPelt", false, false), 3], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 1], [new Item("rawWolfLiver", false, false), 1], [new Item("wolfLiver", false, false), 1]]}));
                         }
                     }
                     if (uniqueChars.maggyLDS == true)
@@ -18809,7 +20052,6 @@ function theLegend()
             }
             bankSlots = parsed.bankSlots;
         }
-
     }
 
     requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.

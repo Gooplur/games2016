@@ -4,7 +4,7 @@
 
 //TODO LIST
 //todo continue adding scenery.
-//todo add new creature "Varn"
+//todo fix up freydic spear, twin war axes, and any other weapon that appears to be ill positioned to the player.
 //todo add options menu with button: it will allow you to toggle certain settings like mouse combat mode, game coordinates, and other such features.
 //todo Make it so that you have to be holding a hammer to craft at an anvil, either that or make it so that you initiate smithing by hitting the anvil with a hammer.
 //todo add frichFurClothing to the game.
@@ -128,7 +128,7 @@ function theLegend()
     var gameState = "mainMenu"; //set to "active" for ingame play, and set to "mainMenu" for the main menu.
 
     //Saving
-    var update = 2; //change this by one whenever a new update has changed any of the key game aspects that might interfere with the normal save structure.
+    var update = 3; //change this by one whenever a new update has changed any of the key game aspects that might interfere with the normal save structure.
     var lastUpdate = 0;
     var saveType = 1;
     var loadType = 1;
@@ -177,10 +177,10 @@ function theLegend()
 
     //DEVELOPMENTAL VARIABLES (variables for the developer to use)
         //Locational
-    var tellCoords = false; //This displays the players exact world coordinates on the screen.
+    var tellCoords = true; //This displays the players exact world coordinates on the screen.
         //AI Unit Focused
     var showSight = false; //This makes every AI UNIT draw their rangeOfSight to the world.
-    var showPlayerAttackBubble = false; //This shows the bubble/radius in which the players attack will deal damage.
+    var showPlayerAttackBubble = true; //This shows the bubble/radius in which the players attack will deal damage.
     var testingUnitCenters = false; //This displays the center point of all AI UNITS.
     var testingUnitSizes = false; //This displays the AI Units' sizes as a faded white circle.
         //manipulation
@@ -247,8 +247,8 @@ function theLegend()
     //Player Inventory
     var Inventory = [];
     //todo TEST INVENTORY
-    Inventory = [[new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
-    //Inventory = [[new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
+    Inventory = [[new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
+    //Inventory = [[new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
 
     //This list holds one of each type of weapon so that the player can access the weapons stats.
     var allWeapons = [];
@@ -272,6 +272,7 @@ function theLegend()
     allWeapons.push(new Item("freydicGreatSword", false)); //17
     allWeapons.push(new Item("thenganSwordAndShield", false)); //18
     allWeapons.push(new Item("katana", false)); //19
+    allWeapons.push(new Item("vardanianCleaver", false)); //20
 
     //This list holds one of each type of worn item so that the player can access the worn item stats.
     var allWorn = [];
@@ -327,6 +328,7 @@ function theLegend()
     smithing.push(new Item("blackChainArmour", false));
     smithing.push(new Item("chainArmour", false));
     smithing.push(new Item("freydicRoyalOutfit", false));
+    smithing.push(new Item("vardanianCleaver", false));
         //Foods (Items cooked at either a stove, an oven, or a campfire)
     var foods = [];
     foods.push(new Item("etyrMeat", false));
@@ -340,6 +342,7 @@ function theLegend()
     foods.push(new Item("wolfLiver", false));
     foods.push(new Item("gulfreyMeat", false));
     foods.push(new Item("torperMeat", false));
+    foods.push(new Item("varnMeat", false));
         //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     var tailoring = [];
     tailoring.push(new Item("walrusLeatherArmour", false));
@@ -931,9 +934,13 @@ function theLegend()
                 {
                     Inventory.push([new Item("vardanianAxe", false, false), 1]);
                 }
-                else
+                else if (player.title == "Tradefolk")
                 {
                     Inventory.push([new Item("vardanianAxeDual", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("vardanianCleaver", false, false), 1]);
                 }
             }
             else if (player.class == "Fighter" && player.raceName == "Nirwaden")
@@ -5631,6 +5638,61 @@ function theLegend()
                     XXX.restore();
                 }
             }
+            //VARDANIAN WAR CLEAVER
+            if (this.weaponEquipped == "vardanianCleaver")
+            {
+                this.stageEngine(6, 0.21, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+                //ATTACK
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 667, 222, 73, 64, -51, -64, 91.25, 80);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 732, 222, 73, 64, -49, -64, 91.25, 80);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 801, 222, 73, 64, -51, -65, 91.25, 80);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 876, 222, 73, 64, -50, -64, 91.25, 80);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 955, 220, 73, 64, -46.5, -65, 91.25, 80);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 1034, 222, 73, 64, -44.6, -63, 91.25, 80);
+                    XXX.restore();
+                }
+            }
             //FLAIL
             if (this.weaponEquipped == "flail")
             {
@@ -6057,6 +6119,14 @@ function theLegend()
                 //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
                 this.bubbleOfDamageX = X - Math.cos(this.rotation - 3.5/5 * Math.PI) * (this.mySize + 26);
                 this.bubbleOfDamageY = Y - Math.sin(this.rotation - 3.5/5 * Math.PI) * (this.mySize + 26);
+            }
+            else if (this.weaponEquipped == "vardanianCleaver")
+            {
+                this.weapon = allWeapons[20];
+
+                //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+                this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.4/5 * Math.PI) * (this.mySize + 26);
+                this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.4/5 * Math.PI) * (this.mySize + 26);
             }
         };
 
@@ -12813,6 +12883,57 @@ function theLegend()
 
                 }
             }
+            else if (this.type == "Varn")
+            {
+                this.damageFrame = "automatic";
+
+                if (this.alpha == true)
+                {
+                    this.magicalResistance = 0;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 5) + 10;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 3.2 + (Math.floor(Math.random() * 5) / 10);
+                    this.rangeOfSight = 525; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1;
+                    this.engagementRadius = 41.5;
+                    this.sizeRadius = 19;
+                    this.negateArmour = 0;
+                    this.attackWait = 0.5;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 1.45; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 1; //was - 3.5
+                    this.xAdjustment = 6; //was 6
+                }
+                else
+                {
+                    //STATS (non-variable)
+                    this.magicalResistance = 0;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 4) + 7;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 2.9 + (Math.floor(Math.random() * 6) / 10);
+                    this.rangeOfSight = 450; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1;
+                    this.engagementRadius = 38.5;
+                    this.sizeRadius = 18;
+                    this.negateArmour = 0;
+                    this.attackWait = 0.5;
+
+                    //this multiplies the draw image skew numbers by 1 so that it stays the same
+                    this.alphaSize = 1.3;
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0; //was -34
+                    this.xAdjustment = 0; //was - 26
+
+                }
+            }
             else if (this.type == "Naaprid")
             {
                 this.damageFrame = "manual";
@@ -12969,7 +13090,7 @@ function theLegend()
                 this.armour = this.ultra.outfit[1];
                 this.speed = 0.65 + (Math.floor(Math.random() * 12) / 10);
                 this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = Math.PI / 10; // 0.01 is a standard turn speed.
+                this.rotationSpeed = 0.15; // 0.01 is a standard turn speed.
                 this.engagementRadius = 30 + this.ultra.weapon[3];
                 this.sizeRadius = 10;
                 this.negateArmour = this.ultra.weapon[2];
@@ -12999,7 +13120,7 @@ function theLegend()
                 this.armour = this.ultra.outfit[1];
                 this.speed = this.ultra.speed;
                 this.rangeOfSight = 650; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = Math.PI / 10; // 0.01 is a standard turn speed.
+                this.rotationSpeed = 0.15; // 0.01 is a standard turn speed.
                 this.engagementRadius = 30 + this.ultra.weapon[3];
                 this.sizeRadius = 10;
                 this.negateArmour = this.ultra.weapon[2];
@@ -13390,6 +13511,128 @@ function theLegend()
                 else
                 {
                     this.drawUnit(verse, 1742, 5, 83, 33, -55 - this.xAdjustment, -16 - this.yAdjustment, 83 * this.alphaSize, 33 * this.alphaSize);
+                }
+
+            }
+            //VARN
+            if (this.type == "Varn")
+            {
+                //Set Drops and experience
+                if (this.alpha == true)
+                {
+                    if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 24 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (24 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    this.drops = [[new Item("varnPelt", this.X, this.Y), 1], [new Item("rawVarnFlesh", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 17 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = 17 * ((player.getIntelligence() / 50) + 1) / 10;
+                    }
+
+                    this.drops = [[new Item("varnPelt", this.X, this.Y), 1], [new Item("rawVarnFlesh", this.X, this.Y), 1]];
+                }
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                if (this.alpha == true)
+                {
+                    this.rangeOfSightCalculator(525, "mildly");
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(450, "mildy");
+                }
+
+                //AI
+                if (this.alive == true)
+                {
+                    if (this.alpha == true)
+                    {
+                        this.Attack(5, 2);
+                        this.callForNearbyHelpFromType(350, "Varn");
+                    }
+                    else
+                    {
+                        this.Attack(2, 2);
+                        this.callForNearbyHelpFromType(275, "Varn");
+                    }
+
+                    this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+                    this.pointTowardsPlayer();
+                    this.moveInRelationToPlayer();
+
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(3, 0.085, false);
+                    }
+                    else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(3, 0.110, true);
+                        }
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(verse, 3095, 254, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(verse, 2933, 254, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(verse, 3154, 254, 54, 32, -35 - this.xAdjustment, -21 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(verse, 2985, 254, 54, 32, -35 - this.xAdjustment, -21 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume >= 2)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(verse, 3214, 254, 54, 32, -35 - this.xAdjustment, -21 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(verse, 3037, 254, 54, 32, -35 - this.xAdjustment, -21 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+                        }
+                    }
+                }
+                else
+                {
+                    this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
                 }
 
             }
@@ -16854,6 +17097,69 @@ function theLegend()
                 this.buyValue = 17 - Math.floor(player.getCharisma() / 25); // at max, buy for 15.
                 this.sellValue = 10 + Math.floor(player.getCharisma() / 15); // at max, sell for 13.
             }
+            else if (this.type == "varnMeat")
+            {
+                //For All Items
+                this.identity = "Varn Meat";
+                this.weight = 1;
+                this.size = 14;
+                this.description = "The cooked flesh of a varn.";
+                this.intForDes = 0;
+                this.intDescription = "This meat is actually pretty good tasting!";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 7; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "satiate";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 7;
+                this.ingredients = [["Raw Varn Flesh", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 14 - Math.floor(player.getCharisma() / 25); // at max, buy for 12.
+                this.sellValue = 6 + Math.floor(player.getCharisma() / 15); // at max, sell for 9.
+            }
+            else if (this.type == "rawVarnFlesh")
+            {
+                //For All Items
+                this.identity = "Raw Varn Flesh";
+                this.weight = 1;
+                this.size = 14;
+                this.description = "The raw flesh of a varn.";
+                this.intForDes = 7;
+                this.intDescription = "There is not much demand for varn flesh raw, but cooked, that is another story.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 1; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+            }
             else if (this.type == "torperVenomSac")
             {
                 //For All Items
@@ -16902,6 +17208,26 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 90 - Math.floor(player.getCharisma() / 1.63); // at max, buy for 60.
                 this.sellValue = 30 + Math.floor(player.getCharisma() / 1.63); // at max, sell for 60.
+            }
+            else if (this.type == "varnPelt")
+            {
+                //For All Items
+                this.identity = "Varn Pelt";
+                this.weight = 1;
+                this.size = 15;
+                this.description = "The fur of a wild varn.";
+                this.intForDes = 2;
+                this.intDescription = "This can be used to make leather armour and fur clothing.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 7 - Math.floor(player.getCharisma() / 15); // at max, buy for 4.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
             }
             else if (this.type == "mace")
             {
@@ -18064,6 +18390,39 @@ function theLegend()
                 this.buyValue = 268 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 168.
                 this.sellValue = 110 + Math.floor(player.getCharisma() / 1); // at max, sell for 160.
             }
+            else if (this.type == "vardanianCleaver")
+            {
+                //For All Items
+                this.identity = "Vardanian War Cleaver";
+                this.weight = 12;
+                this.size = 35;
+                this.description = "An expertly crafted steel war cleaver of Vardanian origin.";
+                this.intForDes = 2;
+                this.intDescription = "This weapon is used by the well equipped soldiers in Vardania.";
+
+                //Define Utility
+                this.utility = "weapon";
+
+                //Utility Focused
+                this.energyCost = 4.5;
+                this.distance = 26 + this.range;
+                this.range = 4;
+                this.rate = 100;
+                this.damage = (5.5 - (this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+                this.magicalDamage = 0;
+                this.negateArmour = 0;
+
+                //ability
+                this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 33;
+                this.ingredients = [["Steel", 3]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 50 - Math.floor(player.getCharisma() / 2.5); // at max, buy for 30.
+                this.sellValue = 18 + Math.floor(player.getCharisma() / 5); // at max, sell for 28.
+            }
             else if (this.type == "katana")
             {
                 //For All Items
@@ -18155,10 +18514,25 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "rawVarnFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3099, 1, 18, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 27), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22.5), 27, 22.5);
+            }
+            else if (this.type == "varnMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3115, 1, 18, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 27), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22.5), 27, 22.5);
+            }
+            else if (this.type == "varnPelt")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 2994, 291, 27, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 40.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22.5), 40.5, 22.5);
+            }
             else if (this.type == "fireStarter")
             {
                 XXX.beginPath();
-                XXX.drawImage(verse, 2925, 133, 16, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 24), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18), 24, 18);
+                XXX.drawImage(verse, 2922, 136, 14, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 21), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16.5), 21, 16.5);
             }
             else if (this.type == "wood")
             {
@@ -18594,10 +18968,25 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "rawVarnFlesh")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 3099, 1, 18, 15, this.invX - (1/2 * 27), this.invY - (1/2 * 22.5), 27, 22.5);
+            }
+            else if (this.type == "varnMeat")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 3115, 1, 18, 15, this.invX - (1/2 * 27), this.invY - (1/2 * 22.5), 27, 22.5);
+            }
+            else if (this.type == "varnPelt")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 2994, 291, 27, 15, this.invX - (1/2 * 40.5), this.invY - (1/2 * 22.5), 40.5, 22.5);
+            }
             else if (this.type == "fireStarter")
             {
                 LXX.beginPath();
-                LXX.drawImage(verse, 2925, 133, 16, 12, this.invX - (1/2 * 24), this.invY - (1/2 * 18), 24, 18);
+                LXX.drawImage(verse, 2922, 136, 14, 11, this.invX - (1/2 * 21), this.invY - (1/2 * 16.5), 21, 16.5);
             }
             else if (this.type == "wood")
             {
@@ -19028,10 +19417,25 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "rawVarnFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3099, 1, 18, 15, this.invX - (1/2 * 27), this.invY - (1/2 * 22.5), 27, 22.5);
+            }
+            else if (this.type == "varnMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3115, 1, 18, 15, this.invX - (1/2 * 27), this.invY - (1/2 * 22.5), 27, 22.5);
+            }
+            else if (this.type == "varnPelt")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 2994, 291, 27, 15, this.invX - (1/2 * 40.5), this.invY - (1/2 * 22.5), 40.5, 22.5);
+            }
             else if (this.type == "fireStarter")
             {
                 XXX.beginPath();
-                XXX.drawImage(verse, 2925, 133, 16, 12, this.invX - (1/2 * 24), this.invY - (1/2 * 18), 24, 18);
+                XXX.drawImage(verse, 2922, 136, 14, 11, this.invX - (1/2 * 21), this.invY - (1/2 * 16.5), 21, 16.5);
             }
             else if (this.type == "wood")
             {
@@ -19536,6 +19940,11 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-622, 4606, "Frich", false, "MamaDeer"));
                     ArtificialIntelligenceAccess.push(new Unit(-692, 4814, "Frich", false, "PapaBuck"));
                     ArtificialIntelligenceAccess.push(new Unit(-2132, 5878, "Frich", true, "Rathair"));
+                    ArtificialIntelligenceAccess.push(new Unit(-730, 3592, "Frich", false, "Richard"));
+                    ArtificialIntelligenceAccess.push(new Unit(-923, 3404, "Frich", false, "John"));
+                    ArtificialIntelligenceAccess.push(new Unit(-955, 3520, "Frich", true, "Izzy"));
+                    ArtificialIntelligenceAccess.push(new Unit(-910, 3645, "Frich", false, "Charles"));
+                    ArtificialIntelligenceAccess.push(new Unit(-596, 3860, "Frich", false, "Edward"));
 
                     //Citizens of Teshir
                     ArtificialIntelligenceAccess.push(new Unit(2741, 1421, "Soldier", false, "Freynor Soldier", {race: "Freynor", faction: "Freynor", con: 4, speed: 1.25, outfit: ["chainArmour", 9], weapon: ["freydicSword", [8, 6], 0, 16, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[1833, 1424], [1848, 2413], [3046, 2407], [2741, 1421]]}));
@@ -19649,7 +20058,7 @@ function theLegend()
                         }
                     }
 
-                    //Naaprids in the grassland
+                    //A stray herd of Naaprids in the northern grassland
                     ArtificialIntelligenceAccess.push(new Unit(4942, -1180, "Naaprid", true, "Naanav"));
                     ArtificialIntelligenceAccess.push(new Unit(4860, -1377, "Naaprid", true, "Naarimov"));
                     ArtificialIntelligenceAccess.push(new Unit(5265, -1535, "Naaprid", true, "Naastelav"));
@@ -19660,6 +20069,16 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(5896, -1482, "Naaprid", false, "Laastelava"));
                     ArtificialIntelligenceAccess.push(new Unit(5986, -1355, "Naaprid", "baby", "Aaptelava"));
                     ArtificialIntelligenceAccess.push(new Unit(6111, -943, "Naaprid", true, "Paaktolav"));
+
+                    //Wild Varns ventured into grassland to find new food source (because of clearcut)
+                    ArtificialIntelligenceAccess.push(new Unit(-42, -1983, "Varn", true, "Scrag"));
+                    ArtificialIntelligenceAccess.push(new Unit(-420, -1871, "Varn", false, "Kretta"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2190, -1403, "Varn", false, "Arlea"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2033, -1369, "Varn", true, "Valentina"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1257, -6310, "Varn", false, "Racho"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1910, 4940, "Varn", false, "Ferra"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1549, -5102, "Varn", false, "Juanito"));
+                    ArtificialIntelligenceAccess.push(new Unit(-937, 708, "Varn", false, "Domingo"));
 
                     //TEST Bog Troll
                     //ArtificialIntelligenceAccess.push(new Unit(2550, 1450, "BogTroll", "baby", "Kekleblad"));

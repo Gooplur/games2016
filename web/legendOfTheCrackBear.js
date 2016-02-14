@@ -177,10 +177,10 @@ function theLegend()
 
     //DEVELOPMENTAL VARIABLES (variables for the developer to use)
         //Locational
-    var tellCoords = true; //This displays the players exact world coordinates on the screen.
+    var tellCoords = false; //This displays the players exact world coordinates on the screen.
         //AI Unit Focused
     var showSight = false; //This makes every AI UNIT draw their rangeOfSight to the world.
-    var showPlayerAttackBubble = true; //This shows the bubble/radius in which the players attack will deal damage.
+    var showPlayerAttackBubble = false; //This shows the bubble/radius in which the players attack will deal damage.
     var testingUnitCenters = false; //This displays the center point of all AI UNITS.
     var testingUnitSizes = false; //This displays the AI Units' sizes as a faded white circle.
         //manipulation
@@ -8652,7 +8652,7 @@ function theLegend()
                         LXX.fillStyle = "black";
                         LXX.font = "45px Book Antiqua";
                         LXX.textAlign = "center";
-                        LXX.fillText("Experience: " + this.experience + " / " + this.experienceRequiredToLevel, 700, 55);
+                        LXX.fillText("Experience: " + Math.floor(this.experience) + " / " + this.experienceRequiredToLevel, 700, 55);
                     }
                 }
                 else if (this.experienceToggle == "magical")
@@ -8666,7 +8666,7 @@ function theLegend()
                         LXX.fillStyle = "black";
                         LXX.font = "45px Book Antiqua";
                         LXX.textAlign = "center";
-                        LXX.fillText("Magic Experience: " + this.magicalExperience + " / " + this.magicalExperienceRequiredToLevel, 700, 55);
+                        LXX.fillText("Magic Experience: " + Math.floor(this.magicalExperience) + " / " + this.magicalExperienceRequiredToLevel, 700, 55);
                     }
                 }
 
@@ -12533,12 +12533,12 @@ function theLegend()
                     this.magicalResistance = 0;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 3) + 2;
+                    this.healthMAX = Math.floor(Math.random() * 3) + 3;
                     this.health = this.healthMAX;
                     this.armour = 1;
                     this.speed = 2;
                     this.rangeOfSight = 450; //This is just to set the variable initially. The rest is variable.
-                    this.rotationSpeed = 0.025; // 0.01 is a standard turn speed.
+                    this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
                     this.engagementRadius = 29;
                     this.sizeRadius = 20;
                     this.negateArmour = 3;
@@ -12566,7 +12566,7 @@ function theLegend()
                     this.armour = 2;
                     this.speed = 1.1;
                     this.rangeOfSight = 330; //This is just to set the variable initially. The rest is variable.
-                    this.rotationSpeed = 0.01; // 0.01 is a standard turn speed.
+                    this.rotationSpeed = 0.085;
                     this.engagementRadius = 65; //was 55
                     this.sizeRadius = 45;
                     this.negateArmour = 7;
@@ -12841,7 +12841,7 @@ function theLegend()
                     this.magicalResistance = 0;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 4) + 3;
+                    this.healthMAX = Math.floor(Math.random() * 4) + 4;
                     this.health = this.healthMAX;
                     this.armour = 0;
                     this.speed = 2.8 + (Math.floor(Math.random() * 4) / 10);
@@ -12864,7 +12864,7 @@ function theLegend()
                     this.magicalResistance = 0;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 3) + 2;
+                    this.healthMAX = Math.floor(Math.random() * 3) + 3;
                     this.health = this.healthMAX;
                     this.armour = 0;
                     this.speed = 2.6 + (Math.floor(Math.random() * 5) / 10);
@@ -13529,7 +13529,7 @@ function theLegend()
                         this.experience = (24 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    this.drops = [[new Item("varnPelt", this.X, this.Y), 1], [new Item("rawVarnFlesh", this.X, this.Y), 1]];
+                    this.drops = [[new Item("varnPelt", this.X, this.Y), 2], [new Item("rawVarnFlesh", this.X, this.Y), 1]];
                 }
                 else
                 {
@@ -17157,8 +17157,8 @@ function theLegend()
                 this.ability = "none";
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-                this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
-                this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+                this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
+                this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
             }
             else if (this.type == "torperVenomSac")
             {
@@ -17226,8 +17226,8 @@ function theLegend()
                 this.ability = "none";
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-                this.buyValue = 7 - Math.floor(player.getCharisma() / 15); // at max, buy for 4.
-                this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+                this.buyValue = 8 - Math.floor(player.getCharisma() / 15); // at max, buy for 5.
+                this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
             }
             else if (this.type == "mace")
             {
@@ -17270,7 +17270,7 @@ function theLegend()
                 this.weight = 4;
                 this.size = 16;
                 this.description = "A longsword made of mostly steel but forged with just a hint of jvostran ore.";
-                this.intForDes = 3;
+                this.intForDes = 1;
                 this.intDescription = "This sword looks to be Freynor in origin.";
 
                 //Define Utility
@@ -17281,7 +17281,7 @@ function theLegend()
                 this.distance = 29 + this.range;
                 this.range = 5;
                 this.rate = 145;
-                this.damage = 5 * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+                this.damage = (6 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
                 this.magicalDamage = 0;
                 this.negateArmour = 0;
 
@@ -17291,7 +17291,7 @@ function theLegend()
                 //Crafting
                 this.yield = 1;
                 this.intForCraft = 22;
-                this.ingredients = [["Steel", 2], ["Jvostran", 1]];
+                this.ingredients = [["Steel", 2], ["Jvostran Melt", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 38 - Math.floor(player.getCharisma() / 3); // at max, buy for 22.
@@ -18203,7 +18203,14 @@ function theLegend()
                 this.distance = 28 + this.range;
                 this.range = 5.4;
                 this.rate = 85;
-                this.damage = (8 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+                if (player.getDexterity < 4)
+                {
+                    this.damage = 7 * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+                }
+                else
+                {
+                    this.damage = 8 * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+                }
                 this.magicalDamage = 0;
                 this.negateArmour = 0;
 
@@ -18513,6 +18520,11 @@ function theLegend()
                         }
                     }
                 }
+            }
+            else if (this.type == "vardanianCleaver")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 250, 359, 14, 54, X - this.X + (1/2 * CCC.width) - (1/2 * 17.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 67.5), 17.5, 67.5);
             }
             else if (this.type == "rawVarnFlesh")
             {
@@ -18968,6 +18980,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "vardanianCleaver")
+            {
+                LXX.beginPath();
+                LXX.drawImage(theCrack, 250, 359, 14, 54, this.invX - (1/2 * 17.5), this.invY - (1/2 * 67.5), 17.5, 67.5);
+            }
             else if (this.type == "rawVarnFlesh")
             {
                 LXX.beginPath();
@@ -19416,6 +19433,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "vardanianCleaver")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 250, 359, 14, 54, this.invX - (1/2 * 17.5), this.invY - (1/2 * 67.5), 17.5, 67.5);
             }
             else if (this.type == "rawVarnFlesh")
             {
@@ -20473,7 +20495,7 @@ function theLegend()
         }
     }
 
-    requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
-    //gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
-    //requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
+    //requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
+    gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
+    requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
 }

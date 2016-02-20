@@ -3,8 +3,9 @@
  */
 
 //TODO LIST
-//todo continue adding scenery.
-//todo fix up freydic spear, twin war axes, and any other weapon that appears to be ill positioned to the player.
+//todo show names of players items in crafting menu.
+//todo make alpha Olkrin's death animation line up slightly more.
+//todo fix up twin war axes, and any other weapon that appears to be ill positioned to the player.
 //todo add options menu with button: it will allow you to toggle certain settings like mouse combat mode, game coordinates, and other such features.
 //todo Make it so that you have to be holding a hammer to craft at an anvil, either that or make it so that you initiate smithing by hitting the anvil with a hammer.
 //todo add frichFurClothing to the game.
@@ -27,6 +28,20 @@
 function legendaryPrerequisites()
 {
     //sounds
+    var togginGreet = new Audio("sounds/polySounds/togginGreeting.mp3");
+    window.togginGreet = togginGreet;
+
+    var togginLiving = new Audio("sounds/polySounds/togginLivin.mp3");
+    window.togginLiving = togginLiving;
+
+    var togginFDecline = new Audio("sounds/polySounds/togginNoMiLady.mp3");
+    window.togginFDecline = togginFDecline;
+
+    var togginMDecline = new Audio("sounds/polySounds/togginWasteYerTime.mp3");
+    window.togginMDecline = togginMDecline;
+
+    var togginScat = new Audio("sounds/polySounds/togginScat.mp3");
+    window.togginScat = togginScat;
     //images
     var volcanicEnv = new Image();
     volcanicEnv.src = ("images/molten.jpg");
@@ -161,6 +176,12 @@ function theLegend()
     var crafting = "none";
     var craftScroll = 0;
     var initialcraftingItemSet = false;
+        //conversations and dialogue
+    var conversationID = ["none", 0]; //[Person conversing with, stage in conversation]
+    var conversations =
+    {
+        toggin: ["Toggin", 0]
+    };
 
     //time Tracker Variables
     var beegin = "start"; // this is a variable that lets TTP set to time natural when the game starts
@@ -220,7 +241,10 @@ function theLegend()
         togginLDS: true
     };
     //QUESTS
-    var quests = {};
+    var quests =
+    {
+        teshirNorthRoadBandits: true
+    };
 
     //IMPORTANT LISTS
     //This list stores the identity of the players character
@@ -246,8 +270,9 @@ function theLegend()
 
     //Player Inventory
     var Inventory = [];
-    //todo TEST INVENTORY
-    Inventory = [[new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
+    //todo TEST INVENTORIES
+    Inventory = [[new Item("coins", false, false), 1000000], [new Item("gulfreyShellArmour", false, false), 1], [new Item("katana", false, false), 1], [new Item("flail", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1]];
+    //Inventory = [[new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
     //Inventory = [[new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
 
     //This list holds one of each type of weapon so that the player can access the weapons stats.
@@ -332,6 +357,7 @@ function theLegend()
         //Foods (Items cooked at either a stove, an oven, or a campfire)
     var foods = [];
     foods.push(new Item("etyrMeat", false));
+    foods.push(new Item("olkrinMeat", false));
     foods.push(new Item("trollMeat", false));
     foods.push(new Item("walrusMeat", false));
     foods.push(new Item("frichMeat", false));
@@ -2569,6 +2595,7 @@ function theLegend()
 
 
         XXX.clearRect(0, 0, 1400, 550);
+
         // Instead of clearing the interface bar is light grey.
         LXX.beginPath();
         LXX.fillStyle = "lightGrey";
@@ -3015,14 +3042,14 @@ function theLegend()
         this.nirwadenFaction = 0; //orange (nirinese) Queen Lelaine
         //Skills
         this.constitution = 50; //this determines the amount of health that the player has. (4 health per point) (50 Maximum Constitution)
-        this.strength = 5000; //this skill adds or subtracts from your physical damage blows based on whether or not it is positive or negative. [+ 5 points of carry weight per level] (50 Maximum Strength)
+        this.strength = 50; //this skill adds or subtracts from your physical damage blows based on whether or not it is positive or negative. [+ 5 points of carry weight per level] (50 Maximum Strength)
         this.stamina = 50; //stamina determines the amount of energy you have for running and attacking. (5 energy per point) (50 Maximum Stamina)
-        this.dexterity = 20; //this determines how fast you can move and how fast you can run. (50 Maximum Dexterity) [don't let it be boosted past 86]
-        this.ranged = 0; //this skill increases the effectiveness of ranged weaponry.
-        this.stealth = 0; //this skill determines how well your character can sneak, meaning [alt key movement]. Better stealth allows you to sneak by your enemies without being detected, and it gives you a bonus to successful theft and any other thing that may require stealth... perhaps lockpicking. (50 Maximum Stealth)
+        this.dexterity = 50; //this determines how fast you can move and how fast you can run. (50 Maximum Dexterity) [don't let it be boosted past 86]
+        this.ranged = 50; //this skill increases the effectiveness of ranged weaponry.
+        this.stealth = 50; //this skill determines how well your character can sneak, meaning [alt key movement]. Better stealth allows you to sneak by your enemies without being detected, and it gives you a bonus to successful theft and any other thing that may require stealth... perhaps lockpicking. (50 Maximum Stealth)
         this.intelligence = 50; //intelligence helps you earn experience faster in both magical and physical leveling systems.
         this.endurance = 50; //this skill determines the rate of regeneration for both energy and health it also increases your total hunger points. (50 Maximum Endurance) [for developer use: 58.333 repeating is the maximum amount for energy regeneration before it breaks... at this speed it is basically instant. Health will regenerate in a negative direction though at this number, so be careful...]
-        this.toughness = 0; //this skill determine the player's natural armour (up to 5!), or how much damage a player can take without it affecting the player's health. Toughness also increases the players resistance to the environment and it reduces the likeliness of taking on negative effects. (50 Maximum Toughness)
+        this.toughness = 50; //this skill determine the player's natural armour (up to 5!), or how much damage a player can take without it affecting the player's health. Toughness also increases the players resistance to the environment and it reduces the likeliness of taking on negative effects. (50 Maximum Toughness)
         this.charisma = 0; //this skill allows you to access certain options gained through socializing, and it also determines how fast you gain and lose fame. [high charisma means that you will gain positive as well as negative fame quicker because your actions are more noticed by people]
         //Skill Adjusters
         this.AdConstitution = 0; //this is the amount of stat adjustment to constitution.
@@ -3126,6 +3153,7 @@ function theLegend()
         this.ammoLoaded = false; //When the animation of loading the arrow/bolt etc. is done this flag turns on, allowing the player to shoot the projectile.
         this.reloadTime = new Date().getTime(); //this is the time that the player must wait before reloads.
         this.attackCooldown = new Date().getTime();
+        this.attackManual = false; //this flag regulates manual attacking so that only one attack happens per attack.
         //blocking variables
         this.block = false;
         this.blocking = false;
@@ -3154,6 +3182,10 @@ function theLegend()
         this.bankPosition = 0;
         //Crafting Variables
         this.craftPosition = 0;
+        //Dialogue Variables
+        this.dialoguePosition = 0; //This is the particular dialogue option you are on.
+        this.dialogueOptions = []; //These are the options the player is allowed to choose from, they vary depending on which AI you speak with.
+        this.dialogueChoiceMade = false; //this is a variable that helps determine when the player has chosen what to say during dialogue, it will be reset after the recipient registers the players input.
         //effects variables
         this.fedClock = 0; // this is the amount of time a player can avoid losing hunger after eating. This value is set elsewhere.
         this.fed = true; //When this is initiated the player will become satiated for a short duration of time.
@@ -3208,6 +3240,7 @@ function theLegend()
         this.decreaseInHealth = 0;
         this.stage = 0;
         this.experienceToggle = "normal"; //This flag is for toggling between the magical experience bar and the regular one.
+        this.playerDeath = false; //this is the thing that lets the player only die once when they die.
 
         //experience and leveling function
         this.doLeveling = function ()
@@ -5272,7 +5305,7 @@ function theLegend()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(verse, 382, 104, 53, 76, -41, -66, 53, 76);
+                    XXX.drawImage(verse, 382, 104, 53, 76, -39, -65, 53, 76);
                     XXX.restore();
                 }
                 else if (Math.floor(this.stage) <= 1)
@@ -5280,7 +5313,7 @@ function theLegend()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(verse, 434, 104, 53, 76, -39.5, -68, 53, 76);
+                    XXX.drawImage(verse, 434, 104, 53, 76, -37.5, -67, 53, 76);
                     XXX.restore();
                 }
                 else if (Math.floor(this.stage) <= 2)
@@ -5288,7 +5321,7 @@ function theLegend()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(verse, 484, 104, 53, 76, -37.25, -69, 53, 76);
+                    XXX.drawImage(verse, 484, 104, 53, 76, -35.25, -68, 53, 76);
                     XXX.restore();
                 }
                 else if (Math.floor(this.stage) <= 3)
@@ -5296,7 +5329,7 @@ function theLegend()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(verse, 535, 104, 53, 76, -30.5, -72, 53, 76);
+                    XXX.drawImage(verse, 535, 104, 53, 76, -28.5, -71, 53, 76);
                     XXX.restore();
                 }
                 else if (Math.floor(this.stage) >= 4)
@@ -5304,7 +5337,7 @@ function theLegend()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(verse, 591, 104, 53, 76, -22.5, -74.75, 53, 76);
+                    XXX.drawImage(verse, 591, 104, 53, 76, -21.5, -73.75, 53, 76);
                     XXX.restore();
                 }
             }
@@ -5733,8 +5766,12 @@ function theLegend()
                 }
                 else if (Math.floor(this.stage) <= 4)
                 {
-                    this.finalAttackStage = true;
-                    this.attackCooldown = new Date().getTime();
+                    if (this.attackManual == false)
+                    {
+                        this.attackManual = true;
+                        this.finalAttackStage = true;
+                        this.attackCooldown = new Date().getTime();
+                    }
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
@@ -5743,6 +5780,7 @@ function theLegend()
                 }
                 else if (Math.floor(this.stage) <= 5)
                 {
+                    this.attackManual = false;
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
@@ -6418,19 +6456,8 @@ function theLegend()
                 //XXX.stroke();
                 //XXX.drawImage(polyPNG, 663, 1, 31, 24, 193, 530, 21, 15.6);
 
-                //dialogue menu button
-                //TODO change this into the new diologue menu button!
-                //XXX.beginPath();
-                //XXX.strokeStyle = "black";
-                //XXX.lineWidth = 1;
-                //XXX.fillStyle = "white";
-                //XXX.rect(194, 527, 20, 22);
-                //XXX.fill();
-                //XXX.stroke();
-                //XXX.drawImage(polyPNG, 663, 1, 31, 24, 193, 530, 21, 15.6);
-
                 //saving menu button
-                //TODO change all of the save stuff so that its coords are two spaces to the right.
+                //TODO change all of the save stuff so that its coords are one space to the right.
                 XXX.beginPath();
                 XXX.strokeStyle = "black";
                 XXX.lineWidth = 1;
@@ -6507,6 +6534,81 @@ function theLegend()
                 XXX.beginPath();
                 XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
                 XXX.fillRect(194, 527, 20, 23);
+            }
+        };
+
+        //DIALOGUE
+        this.displayDialogue = function()
+        {
+            if (lowBar == "dialogue")
+            {
+                //setUp Dialogue
+                LXX.fillStyle = "black";
+                LXX.font = "bold 20px Book Antiqua";
+                LXX.textAlign = "center";
+
+                if (this.dialogueOptions.length > 0)
+                {
+                    LXX.fillText(this.dialogueOptions[this.dialoguePosition][0], 700, 45);
+                }
+
+                //Scrolling through dialogue options
+                    //left scroll arrow
+                LXX.beginPath();
+                LXX.lineWidth = 1;
+                LXX.fillStyle ="darkGrey";
+                LXX.strokeStyle ="black";
+                LXX.rect(0.5, 0.5, 20, 79);
+                LXX.fill();
+                LXX.stroke();
+                LXX.drawImage(polyPNG, 1, 735, 11, 30, 4, 8, 12, 64);
+
+                    //right scroll arrow
+                LXX.beginPath();
+                LXX.lineWidth = 1;
+                LXX.fillStyle ="darkGrey";
+                LXX.strokeStyle ="black";
+                LXX.rect(1379.5, 0.5, 20, 79);
+                LXX.fill();
+                LXX.stroke();
+                LXX.drawImage(polyPNG, 11, 735, 11, 30, 1384, 8, 12, 64);
+
+                this.dialogueScrolling = function()
+                {
+                    if (this.dialogueChoiceMade == false)
+                    {
+                        if (lMouseX > 20.5 && lMouseX <= 1379.5 && lMouseY < 79.5 && lMouseY >= 0.5 && clicked == true)
+                        {
+                            clicked = false;
+
+                            LXX.beginPath();
+                            LXX.fillStyle = "rgba(255,215,0, 0.55)";
+                            LXX.fillRect(20.5, 0.5, 1359, 79);
+
+                            this.dialogueOptions[this.dialoguePosition][1] = true;
+                            this.dialogueChoiceMade = true;
+                        }
+                        else if (lMouseX > 20.5 && lMouseX <= 1379.5 && lMouseY < 79.5 && lMouseY >= 0.5)
+                        {
+                            LXX.beginPath();
+                            LXX.fillStyle = "rgba(255,215,0, 0.25)";
+                            LXX.fillRect(20.5, 0.5, 1359, 79);
+                        }
+
+                        else if (this.dialoguePosition > 0 && lMouseX >= 0.5 && lMouseX <= 20.5 && lMouseY <= 79.5 && lMouseY >= 0.5 && clicked == true)
+                        {
+                            clicked = false;
+                            this.dialoguePosition -= 1;
+                        }
+                        if (this.dialoguePosition < (this.dialogueOptions.length - 1) && lMouseX >= 1379.5 && lMouseX <= 1399.5 && lMouseY <= 79.5 && lMouseY >= 0.5 && clicked == true)
+                        {
+                            clicked = false;
+                            this.dialoguePosition += 1;
+                        }
+                    }
+                };
+                //operations
+                this.dialogueScrolling();
             }
         };
 
@@ -9013,8 +9115,12 @@ function theLegend()
                     if (clicked == true && this.skillPoints >= 1)
                     {
                         clicked = false;
-                        this.skillPoints -= 1;
-                        this.constitution += 1;
+                        if (this.constitution < 50)
+                        {
+                            this.skillPoints -= 1;
+                            this.constitution += 1;
+                            this.health += 2;
+                        }
                     }
 
                     //box: Upgrade box (hovered over)
@@ -9094,8 +9200,11 @@ function theLegend()
                     if (clicked == true && this.skillPoints >= 1)
                     {
                         clicked = false;
-                        this.skillPoints -= 1;
-                        this.endurance += 1;
+                        if (this.endurance < 50)
+                        {
+                            this.skillPoints -= 1;
+                            this.endurance += 1;
+                        }
                     }
 
                         //box: Upgrade box (hovered over)
@@ -9175,8 +9284,11 @@ function theLegend()
                     if (clicked == true && this.skillPoints >= 1)
                     {
                         clicked = false;
-                        this.skillPoints -= 1;
-                        this.strength += 1;
+                        if (this.strength < 50)
+                        {
+                            this.skillPoints -= 1;
+                            this.strength += 1;
+                        }
                     }
 
                         //box: Upgrade box (hovered over)
@@ -9256,8 +9368,11 @@ function theLegend()
                     if (clicked == true && this.skillPoints >= 1)
                     {
                         clicked = false;
-                        this.skillPoints -= 1;
-                        this.toughness += 1;
+                        if (this.toughness < 50)
+                        {
+                            this.skillPoints -= 1;
+                            this.toughness += 1;
+                        }
                     }
 
                         //box: Upgrade box (hovered over)
@@ -9337,8 +9452,12 @@ function theLegend()
                     if (clicked == true && this.skillPoints >= 1)
                     {
                         clicked = false;
-                        this.skillPoints -= 1;
-                        this.stamina += 1;
+                        if (this.stamina < 50)
+                        {
+                            this.skillPoints -= 1;
+                            this.stamina += 1;
+                            this.energy += 1;
+                        }
                     }
 
                         //box: Upgrade box (hovered over)
@@ -9418,8 +9537,11 @@ function theLegend()
                     if (clicked == true && this.skillPoints >= 1)
                     {
                         clicked = false;
-                        this.skillPoints -= 1;
-                        this.dexterity += 1;
+                        if (this.dexterity < 50)
+                        {
+                            this.skillPoints -= 1;
+                            this.dexterity += 1;
+                        }
                     }
 
                         //box: Upgrade box (hovered over)
@@ -9499,8 +9621,11 @@ function theLegend()
                     if (clicked == true && this.skillPoints >= 1)
                     {
                         clicked = false;
-                        this.skillPoints -= 1;
-                        this.ranged += 1;
+                        if (this.ranged < 50)
+                        {
+                            this.skillPoints -= 1;
+                            this.ranged += 1;
+                        }
                     }
 
                         //box: Upgrade box (hovered over)
@@ -9580,8 +9705,11 @@ function theLegend()
                     if (clicked == true && this.skillPoints >= 1)
                     {
                         clicked = false;
-                        this.skillPoints -= 1;
-                        this.stealth += 1;
+                        if (this.stealth < 50)
+                        {
+                            this.skillPoints -= 1;
+                            this.stealth += 1;
+                        }
                     }
 
                         //box: Upgrade box (hovered over)
@@ -9661,8 +9789,11 @@ function theLegend()
                     if (clicked == true && this.skillPoints >= 1)
                     {
                         clicked = false;
-                        this.skillPoints -= 1;
-                        this.intelligence += 1;
+                        if (this.intelligence < 50)
+                        {
+                            this.skillPoints -= 1;
+                            this.intelligence += 1;
+                        }
                     }
 
                         //box: Upgrade box (hovered over)
@@ -9742,8 +9873,11 @@ function theLegend()
                     if (clicked == true && this.skillPoints >= 1)
                     {
                         clicked = false;
-                        this.skillPoints -= 1;
-                        this.charisma += 1;
+                        if (this.charisma < 50)
+                        {
+                            this.skillPoints -= 1;
+                            this.charisma += 1;
+                        }
                     }
 
                         //box: Upgrade box (hovered over)
@@ -10109,6 +10243,27 @@ function theLegend()
                                         this.timeSinceBadFoodEaten -= 11000
                                     }
                                     else if (new Date().getTime() - this.timeSinceBadFoodEaten < 33000 - 4500)
+                                    {
+                                        this.timeSinceBadFoodEaten -= 4000
+                                    }
+                                }
+                                else if (Inventory[i][0].ability == "potentialFoodPoisoning") //this effect makes the player vomit and lose 22 hunger.
+                                {
+                                    var chanse = Math.floor(Math.random() * 3); //By the way I know that chance is not spelled with an S this is so that I won't be repetitive with variable names.
+
+                                    if (chanse == 0)
+                                    {
+                                        if (this.timeSinceBadFoodEaten == 0)
+                                        {
+                                            this.timeSinceBadFoodEaten = new Date().getTime();
+                                        }
+                                    }
+
+                                    if (this.timeSinceBadFoodEaten != 0 && new Date().getTime() - this.timeSinceBadFoodEaten < 33000 - 11500)
+                                    {
+                                        this.timeSinceBadFoodEaten -= 11000
+                                    }
+                                    else if (this.timeSinceBadFoodEaten != 0 && new Date().getTime() - this.timeSinceBadFoodEaten < 33000 - 4500)
                                     {
                                         this.timeSinceBadFoodEaten -= 4000
                                     }
@@ -10657,6 +10812,8 @@ function theLegend()
             }
             this.drawAntiVenomBar(); //#Stat Bar //this is a developer stat bar only and it also is used to take the fall for an animation glitch that only affects the last stat bar drawn.
 
+            //Dialogue
+            this.displayDialogue(); //#Dialogue
             //Crafting
             this.displayCrafting(); //#Crafting
 
@@ -10814,8 +10971,15 @@ function theLegend()
         //DEATH SENSING
         this.deathSensor = function()
         {
-            if (this.health <= 0)
+            if (this.health <= 0 && this.playerDeath != true)
             {
+                //Do death stuff
+                this.playerDeath = true;
+                gameState = "paused";
+                //Go to main menu upon death.
+                location.reload();
+
+                /*
                 //respawn
                 X = spawnX;
                 Y = spawnY;
@@ -10874,6 +11038,7 @@ function theLegend()
                         ArtificialIntelligenceAccess[i].health = ArtificialIntelligenceAccess[i].healthMAX;
                     }
                 }
+                */
             }
         };
 
@@ -11428,9 +11593,146 @@ function theLegend()
                 if (dtp < 200 )
                 {
                     var dtm = this.DTM();
-                    if (dtm < this.sizeRadius)
+
+                    if (this.type == "Person" || this.type == "Soldier")
                     {
-                        if (this.type == "Person" || this.type == "Soldier")
+                        //CONVERSATION AND SOCIAL INTERACTIONS WITH AI CHARACTERS
+                        if (clickReleased == true && dtm < this.sizeRadius && dtp < 100 && this.disturbed == false || conversationID[0] != "none" && dtp < 100 && this.disturbed == false)
+                        {
+                            this.engagedInDialogue = true;
+
+                            if (this.ID == "Toggin" || conversationID[0] == "Toggin")
+                            {
+                                lowBar = "dialogue";
+                                conversationID[0] = "Toggin";
+
+                                if (clickReleased)
+                                {
+                                    for (var key in conversations)
+                                    {
+                                        if (conversations[key][0] == conversationID[0])
+                                        {
+                                            conversationID[1] = conversations[key][1];
+                                        }
+                                    }
+                                }
+
+                                // possible responses (0) a, b, c, d
+                                //greetings
+                                //
+
+                                if (conversationID[1] == 0)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        if (player.getCharisma() >= 2)
+                                        {
+                                            player.dialogueOptions = [["Good Day to you ser.", false, "a"], ["What is your trade?", false, "b"], ["Is something bothering you? You seem worried.", false, "d"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["Good Day to you ser.", false, "a"], ["What is your trade?", false, "b"], ["Is something bothering you? You look worried.", false, "c"]];
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    conversationID[1] = "0a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    conversationID[1] = "0b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    conversationID[1] = "0c";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "d")
+                                                {
+                                                    conversationID[1] = "0d";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0a")
+                                {
+
+                                    togginGreet.play();
+                                    togginGreet.onended = function()
+                                    {
+                                        conversationID[1] = 0;
+                                    }
+                                }
+                                else if (conversationID[1] == "0b")
+                                {
+
+                                    togginLiving.play();
+                                    togginLiving.onended = function()
+                                    {
+                                        conversationID[1] = 0;
+                                    }
+                                }
+                                else if (conversationID[1] == "0c" || conversationID[1] == "0d")
+                                {
+                                    //This is the polite declination of sharing the quest
+                                    if (player.title == "Royalty" && player.raceName == "Freynor" || player.title == "Royalty" && player.freynorFaction > -50 || player.title == "Nobility" && player.freynorFaction > -50)
+                                    {
+                                        if (player.gender == "Female")
+                                        {
+                                            togginFDecline.play();
+                                            togginFDecline.onended = function()
+                                            {
+                                                conversationID[1] = 0;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            togginMDecline.play();
+                                            togginMDecline.onended = function()
+                                            {
+                                                conversationID[1] = 0;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        togginScat.play();
+                                        togginScat.onended = function()
+                                        {
+                                            conversationID[1] = 0;
+                                        }
+                                    }
+                                }
+
+                                //TODO Add more of the AI's responses to all of the possible results and have at least one of them initiate a quest.
+                            }
+                        }
+                        else
+                        {
+                            if (conversationID[0] != "none" && this.engagedInDialogue == true)
+                            {
+                                for (var key in conversations)
+                                {
+                                    if (conversations[key][0] == conversationID[0])
+                                    {
+                                        conversations[key][1] = conversationID[1];
+                                    }
+                                }
+                                this.engagedInDialogue = false;
+                                conversationID[0] = "none";
+                                conversationID[1] = 0;
+                                lowBar = "information";
+                            }
+                        }
+                        //ACCESS SHOPS BANKS AND OTHER AI SERVICES
+                        if (dtm < this.sizeRadius)
                         {
                             if (this.hostile == true)
                             {
@@ -11441,11 +11743,11 @@ function theLegend()
                                 XXX.fillStyle = "gold";
                             }
                             XXX.textAlign = "center";
-                            XXX.font="bold 15px Book Antiqua";
-                            XXX.fillText(this.ID, X - this.X + 1/2 * CCC.width, Y - this.Y - 16 + 1/2 * CCC.height);
+                            XXX.font = "bold 15px Book Antiqua";
+                            XXX.fillText(this.ID, X - this.X + 1 / 2 * CCC.width, Y - this.Y - 16 + 1 / 2 * CCC.height);
 
                             //click-based interaction
-                            if (this.ultra.faction != "outlander")
+                            if (this.ultra.faction != "outlander" && this.ultra.faction != "hostile")
                             {
                                 var parsedFactionRelation = eval("player." + this.ultra.faction.toLowerCase() + "Faction");
                             }
@@ -12566,7 +12868,7 @@ function theLegend()
                     this.armour = 2;
                     this.speed = 1.1;
                     this.rangeOfSight = 330; //This is just to set the variable initially. The rest is variable.
-                    this.rotationSpeed = 0.085;
+                    this.rotationSpeed = 0.035;
                     this.engagementRadius = 65; //was 55
                     this.sizeRadius = 45;
                     this.negateArmour = 7;
@@ -12587,9 +12889,9 @@ function theLegend()
                     this.healthMAX = Math.floor(Math.random() * 10) + 18;
                     this.health = this.healthMAX;
                     this.armour = 0.5;
-                    this.speed = 0.65;
+                    this.speed = 0.85;
                     this.rangeOfSight = 250; //This is just to set the variable initially. The rest is variable.
-                    this.rotationSpeed = 0.01; // 0.01 is a standard turn speed.
+                    this.rotationSpeed = 0.025; // 0.01 is a standard turn speed.
                     this.engagementRadius = 59; //was 49
                     this.sizeRadius = 40;
                     this.negateArmour = 2;
@@ -12654,6 +12956,79 @@ function theLegend()
 
                 }
             }
+            else if (this.type == "Olkrin")
+            {
+                this.damageFrame = "manual";
+
+                if (this.alpha == true)
+                {
+                    this.magicalResistance = 0;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 26) + 300;
+                    this.health = this.healthMAX;
+                    this.armour = 9;
+                    this.speed = 7.1 + (Math.floor(Math.random() * 5) / 10);
+                    this.rangeOfSight = 1100; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1; // was 0.05
+                    this.engagementRadius = 69;
+                    this.sizeRadius = 47;
+                    this.negateArmour = 15;
+                    this.attackWait = 3;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 2.40; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 55;
+                    this.xAdjustment = 35;
+                }
+                else if (this.alpha == "baby")
+                {
+                    //STATS (non-variable)
+                    this.magicalResistance = 0;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 11) + 40;
+                    this.health = this.healthMAX;
+                    this.armour = 2.5;
+                    this.speed = 5.1 + (Math.floor(Math.random() * 3) / 10);
+                    this.rangeOfSight = 750; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1;
+                    this.engagementRadius = 35;
+                    this.sizeRadius = 24;
+                    this.negateArmour = 10;
+                    this.attackWait = 2;
+
+                    //this multiplies the draw image skew numbers by 1 so that it stays the same
+                    this.alphaSize = 1.1;
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = -50;
+                    this.xAdjustment = -32;
+                }
+                else
+                {
+                    //STATS (non-variable)
+                    this.magicalResistance = 0;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 16) + 115;
+                    this.health = this.healthMAX;
+                    this.armour = 5;
+                    this.speed = 6.8 + (Math.floor(Math.random() * 3) / 10);
+                    this.rangeOfSight = 900; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1; // was 0.05
+                    this.engagementRadius = 61;
+                    this.sizeRadius = 42;
+                    this.negateArmour = 10;
+                    this.attackWait = 3;
+
+                    //this multiplies the draw image skew numbers by 1 so that it stays the same
+                    this.alphaSize = 1.75;
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+            }
             else if (this.type == "BogTroll")
             {
                 this.justAttacked = true;
@@ -12663,7 +13038,7 @@ function theLegend()
                     this.magicalResistance = 5;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 31) + 100;
+                    this.healthMAX = Math.floor(Math.random() * 41) + 160;
                     this.health = this.healthMAX;
                     this.armour = 1;
                     this.speed = 5.2 + (Math.floor(Math.random() * 6) / 10);
@@ -12711,7 +13086,7 @@ function theLegend()
                     this.magicalResistance = 3;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 36) + 65;
+                    this.healthMAX = Math.floor(Math.random() * 36) + 80;
                     this.health = this.healthMAX;
                     this.armour = 1;
                     this.speed = 4.4 + (Math.floor(Math.random() * 7) / 10);
@@ -13761,6 +14136,280 @@ function theLegend()
                 }
 
             }
+            //OLKRIN
+            if (this.type == "Olkrin")
+            {
+                //Set Drops and experience
+                if (this.alpha == true)
+                {
+                    var randoom = Math.round(Math.random());
+                    if (Math.max(0, 57 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 1200 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (1200 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    if (randoom == 0)
+                    {
+                        this.drops = [[new Item("goliathOlkrinSkull", this.X, this.Y), 1], [new Item("rawOlkrinFlesh", this.X, this.Y), 10]];
+                    }
+                    else
+                    {
+                        this.drops = [[new Item("olkrinHorn", this.X, this.Y), 2], [new Item("rawOlkrinFlesh", this.X, this.Y), 12]];
+                    }
+                }
+                else if (this.alpha == "baby")
+                {
+                    if (Math.max(0, 18 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 100 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (100 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    this.drops = [[new Item("rawOlkrinFlesh", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    var randoom = Math.round(Math.random());
+                    if (Math.max(0, 36 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 950 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (950 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    if (randoom)
+                    {
+                        this.drops = [[new Item("olkrinSkull", this.X, this.Y), 1], [new Item("rawOlkrinFlesh", this.X, this.Y), 4]];
+                    }
+                    else
+                    {
+                        this.drops = [[new Item("olkrinArm", this.X, this.Y), 1], [new Item("olkrinHorn", this.X, this.Y), 2], [new Item("rawOlkrinFlesh", this.X, this.Y), 3]];
+                    }
+                }
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                if (this.alpha == true)
+                {
+                    this.rangeOfSightCalculator(1100, "very");
+                }
+                else if (this.alpha == "baby")
+                {
+                    this.rangeOfSightCalculator(750, "very");
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(900, "very");
+                }
+
+                //AI
+                if (this.alive == true)
+                {
+                    if (this.alpha == true)
+                    {
+                        this.Attack(28, 36);
+                        this.callForNearbyHelpFromType(1000, "Olkrin");
+                    }
+                    else if (this.alpha == "baby")
+                    {
+                        this.Attack(8, 12);
+                        this.callForNearbyHelpFromType(650, "Olkrin");
+                    }
+                    else
+                    {
+                        this.Attack(16, 24);
+                        this.callForNearbyHelpFromType(800, "Olkrin");
+                    }
+
+                    this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+                    this.pointTowardsPlayer();
+                    this.moveInRelationToPlayer();
+
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(4, 0.070, false);
+                    }
+                    else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(15, 0.225, false);
+                        }
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                    //manual damaging
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(verse, 156, 706, 117, 157, -91 - this.xAdjustment, -145 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(verse, 156, 706, 117, 157, -91 - this.xAdjustment, -145 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume == 1)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(verse, 156, 904, 117, 157, -99 - this.xAdjustment, -131 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(verse, 143, 395, 117, 157, -106 - this.xAdjustment, -136 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume == 2)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(verse, 165, 1082, 117, 157, -87 - this.xAdjustment, -110 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(verse, 156, 706, 117, 157, -91 - this.xAdjustment, -145 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume == 3)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(verse, 163, 1228, 117, 157, -92 - this.xAdjustment, -108 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(verse, 147, 551, 117, 157, -102 - this.xAdjustment, -108 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume == 4)
+                    {
+                        if (this.attacking)
+                        {
+                            if (this.damageDealt == false) // if the Unit has not yet dealt damage to its target then...
+                            {
+                                this.finalAttackCostume = true; //deal the damage!
+                                this.damageDealt = true; //tell the loop that the Unit has already dealt the damage for this attack.
+                            }
+                            this.drawUnit(verse, 163, 1228, 117, 157, -90 - this.xAdjustment, -109 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume == 5)
+                    {
+                        this.damageDealt = false; //this resets the potential for the Unit to damage its target, because by this point the unit has already passed the damaging phase.
+
+                        if (this.attacking)
+                        {
+                            this.drawUnit(verse, 163, 1228, 117, 157, -92 - this.xAdjustment, -108 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume == 6)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(verse, 165, 1082, 117, 157, -87 - this.xAdjustment, -110 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume == 7)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(verse, 156, 904, 117, 157, -99 - this.xAdjustment, -131 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume == 8)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(verse, 156, 706, 117, 157, -91 - this.xAdjustment, -145 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                    } // back to frame 0 here.
+                    else if (theCostume == 9)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(verse, 30, 902, 117, 157, -100 - this.xAdjustment, -155 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume == 10)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(verse, 38, 1071, 117, 157, -88 - this.xAdjustment, -163 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume == 11)
+                    {
+                        if (this.attacking)
+                        {
+                            if (this.damageDealt == false) // if the Unit has not yet dealt damage to its target then...
+                            {
+                                this.finalAttackCostume = true; //deal the damage!
+                                this.damageDealt = true; //tell the loop that the Unit has already dealt the damage for this attack.
+                            }
+
+                            this.drawUnit(verse, 43, 1228, 117, 157, -90 - this.xAdjustment, -171 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume == 12)
+                    {
+                        if (this.attacking)
+                        {
+                            this.damageDealt = false; //this resets the potential for the Unit to damage its target, because by this point the unit has already passed the damaging phase.
+                            this.drawUnit(verse, 38, 1071, 117, 157, -88 - this.xAdjustment, -163 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume == 13)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(verse, 30, 902, 117, 157, -100 - this.xAdjustment, -155 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume == 14)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(verse, 156, 706, 117, 157, -91 - this.xAdjustment, -145 - this.yAdjustment, 117 * this.alphaSize, 157 * this.alphaSize);
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.alpha == false)
+                    {
+                        this.drawUnit(verse, 10, 1413, 133, 92, -186 - this.xAdjustment, -80 - this.yAdjustment, 133 * this.alphaSize, 92 * this.alphaSize);
+                    }
+                    else if (this.alpha == true)
+                    {
+                        this.drawUnit(verse, 10, 1413, 133, 92, -186 - this.xAdjustment, -80 - this.yAdjustment, 133 * this.alphaSize, 92 * this.alphaSize);
+                    }
+                    else if (this.alpha == "baby")
+                    {
+                        this.drawUnit(verse, 10, 1413, 133, 92, -156 - this.xAdjustment, -100 - this.yAdjustment, 133 * this.alphaSize, 92 * this.alphaSize);
+                    }
+                }
+
+            }
             //NAAPRID
             if (this.type == "Naaprid")
             {
@@ -14025,7 +14674,7 @@ function theLegend()
                         //troll health regeneration
                         if (this.health < this.healthMAX)
                         {
-                            this.health += 0.05;
+                            this.health += 0.14;
                         }
                         else
                         {
@@ -14062,7 +14711,7 @@ function theLegend()
                         //troll health regeneration
                         if (this.health < this.healthMAX)
                         {
-                            this.health += 0.0185;
+                            this.health += 0.025; //was 0.0185
                         }
                         else
                         {
@@ -14098,7 +14747,7 @@ function theLegend()
                         //troll health regeneration
                         if (this.health < this.healthMAX)
                         {
-                            this.health += 0.04;
+                            this.health += 0.09;
                         }
                         else
                         {
@@ -15039,22 +15688,41 @@ function theLegend()
                     this.experience = (20 * this.con * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
-                this.drops = [];
-
-                //RANGE OF SIGHT (anything related to range of sight)
-                this.rangeOfSightCalculator(750, "true");
-
                 //AI
                 if (this.alive == true)
                 {
                     if (this.ultra.faction == "Freynor")
                     {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(750, "true");
+
+                        this.drops = [];
+
                         if (player.freynorFaction <= -50)
                         {
                             this.disturbed = true;
                         }
 
                         this.switchToRanged("longbow");
+                    }
+                    else if (this.ultra.faction == "hostile")
+                    {
+                        if (this.ID == "Northern Bandit")
+                        {
+                            //RANGE OF SIGHT (anything related to range of sight)
+                            this.rangeOfSightCalculator(450, "mildly");
+
+                            this.drops = [[new Item("coins", this.X, this.Y), Math.floor(Math.random() * 5) + 1]];
+
+                            this.disturbed = true;
+                        }
+                    }
+                    else
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(750, "true");
+
+                        this.drops = [];
                     }
 
                     if (this.disturbed == true)
@@ -15812,6 +16480,165 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 15 - Math.floor(player.getCharisma() / 25); // at max, buy for 13.
                 this.sellValue = 8 + Math.floor(player.getCharisma() / 25); // at max, sell for 10.
+            }
+            else if (this.type == "rawOlkrinFlesh")
+            {
+                //For All Items
+                this.identity = "Raw Olkrin Flesh";
+                this.weight = 35;
+                this.size = 20;
+                this.description = "The raw flesh of an Olkrin: it smells sour and stale, and with purple threads of tough fibers running though it it looks absolutely indigestible.";
+                this.intForDes = 14;
+                this.intDescription = "Olkrin flesh is toxic.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                if (player.getIntelligence() >= 14)
+                {
+                    this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+                }
+                else
+                {
+                    this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                }
+                this.hunger = 6; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = -6; //heals health.
+                this.generation = -6; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 197 - Math.floor(player.getCharisma() / 1); // at max, buy for 147.
+                this.sellValue = 93 + Math.floor(player.getCharisma() / 1.5); // at max, sell for 123.
+            }
+            else if (this.type == "olkrinMeat")
+            {
+                //For All Items
+                this.identity = "Olkrin Meat";
+                this.weight = 33;
+                this.size = 20;
+                this.description = "The cooked meat of an Olkrin has a strange almost plastic-like smell and it has a meaty yet grossly bitter taste.";
+                this.intForDes = 1;
+                this.intDescription = "It's safe to eat, but just because you can doesn't mean that you should...";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                if (player.getIntelligence() >= 14)
+                {
+                    this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+                }
+                else
+                {
+                    this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                }
+                this.hunger = 33; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -4; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+
+                //ability
+                this.ability = "potentialFoodPoisoning";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 19;
+                this.ingredients = [["Raw Olkrin Flesh", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 39 - Math.floor(player.getCharisma() / 3); // at max, buy for 24.
+                this.sellValue = 7 + Math.floor(player.getCharisma() / 3); // at max, sell for 22.
+            }
+            else if (this.type == "olkrinHorn")
+            {
+                //For All Items
+                this.identity = "Olkrin Horn";
+                this.weight = 19;
+                this.size = 19;
+                this.description = "The horn of an Olkrin.";
+                this.intForDes = 38;
+                this.intDescription = "When in its powdered form it can be used in alchemy to produce or enhance certain effects in potions.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 480 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 380.
+                this.sellValue = 250 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 350.
+            }
+            else if (this.type == "olkrinArm")
+            {
+                //For All Items
+                this.identity = "Olkrin Arm";
+                this.weight = 160;
+                this.size = 40;
+                this.description = "The Arm of an Olkrin.";
+                this.intForDes = 1;
+                this.intDescription = "This is a trophy that represents the spectacular achievement of having slain an Olkrin.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1360 - Math.floor(player.getCharisma() / 0.125); // at max, buy for 960.
+                this.sellValue = 550 + Math.floor(player.getCharisma() / 0.125); // at max, sell for 950.
+            }
+            else if (this.type == "olkrinSkull")
+            {
+                //For All Items
+                this.identity = "Olkrin Skull";
+                this.weight = 100;
+                this.size = 24;
+                this.description = "The skull of an Olkrin.";
+                this.intForDes = 1;
+                this.intDescription = "This is a trophy that represents the spectacular achievement of having slain an Olkrin.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1860 - Math.floor(player.getCharisma() / 0.125); // at max, buy for 1460.
+                this.sellValue = 900 + Math.floor(player.getCharisma() / 0.125); // at max, sell for 1300.
+            }
+            else if (this.type == "goliathOlkrinSkull")
+            {
+                //For All Items
+                this.identity = "Goliath Olkrin Skull";
+                this.weight = 140;
+                this.size = 35;
+                this.description = "The skull of a goliath sized Olkrin.";
+                this.intForDes = 1;
+                this.intDescription = "This was once part of an unimaginably powerful creature, and now it is yours!";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 9200 - Math.floor(player.getCharisma() / 0.125); // at max, buy for 8800.
+                this.sellValue = 6592 + Math.floor(player.getCharisma() / 0.025); // at max, sell for 8592.
             }
             else if (this.type == "rawWalrusFlesh")
             {
@@ -18239,11 +19066,11 @@ function theLegend()
                 this.utility = "weapon";
 
                 //Utility Focused
-                this.energyCost = 23;
+                this.energyCost = 35;
                 this.distance = 45 + this.range;
                 this.range = 7;
                 this.rate = 325;
-                this.damage = (19 - this.damageHandicap - this.damageHandicapII) * (this.leveledDamageMultiple / 25) + ((1/25) * player.getStrength());
+                this.damage = (29 - this.damageHandicap - this.damageHandicapII) * (this.leveledDamageMultiple / 25) + ((1/25) * player.getStrength());
                 this.magicalDamage = 0;
                 this.negateArmour = 0;
 
@@ -18276,7 +19103,7 @@ function theLegend()
                 this.distance = 40 + this.range;
                 this.range = 6;
                 this.rate = 250;
-                this.damage = (17 - this.damageHandicap - this.damageHandicapII) * (this.leveledDamageMultiple / 25) + ((1/12.5) * player.getStrength());
+                this.damage = (18 - this.damageHandicap - this.damageHandicapII) * (this.leveledDamageMultiple / 25) + ((1/12.5) * player.getStrength());
                 this.magicalDamage = 0;
                 this.negateArmour = 11;
 
@@ -18401,7 +19228,7 @@ function theLegend()
             {
                 //For All Items
                 this.identity = "Vardanian War Cleaver";
-                this.weight = 12;
+                this.weight = 3.5;
                 this.size = 35;
                 this.description = "An expertly crafted steel war cleaver of Vardanian origin.";
                 this.intForDes = 2;
@@ -18454,15 +19281,15 @@ function theLegend()
                 }
                 this.distance = 26 + this.range;
                 this.range = (7 + 1/7);
-                if (player.getDexterity() < 20)
+                if (player.getDexterity() < 25)
                 {
                     this.rate = 90;
                 }
                 else
                 {
-                    this.rate = 40;
+                    this.rate = 55;
                 }
-                this.damage = (5 - (this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((12/50) * player.getDexterity());
+                this.damage = (5 - (this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((10/50) * player.getDexterity());
                 this.magicalDamage = 0;
                 this.negateArmour = 0;
 
@@ -18520,6 +19347,41 @@ function theLegend()
                         }
                     }
                 }
+            }
+            else if (this.type == "rawOlkrinFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3143, 290, 31, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 46.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 43.5), 46.5, 43.5);
+            }
+            else if (this.type == "olkrinMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3114, 290, 31, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 46.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 43.5), 46.5, 43.5);
+            }
+            else if (this.type == "olkrinSkull")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3033, 290, 49, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 73.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 54), 73.5, 54);
+            }
+            else if (this.type == "olkrinHorn")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3087, 287, 26, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 52), Y - this.Y + (1/2 * CCC.height) - (1/2 * 68), 52, 68);
+            }
+            else if (this.type == "goliathOlkrinSkull")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3033, 290, 49, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 98), Y - this.Y + (1/2 * CCC.height) - (1/2 * 72), 98, 72);
+            }
+            else if (this.type == "olkrinArm")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3175, 287, 67, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 107.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 71.4), 107.2, 71.4);
+            }
+            else if (this.type == "olkrinMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3114, 290, 31, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 46.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 43.5), 46.5, 43.5);
             }
             else if (this.type == "vardanianCleaver")
             {
@@ -18980,6 +19842,41 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "rawOlkrinFlesh")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 3143, 290, 31, 29, this.invX - (1/2 * 46.5), this.invY - (1/2 * 43.5), 46.5, 43.5);
+            }
+            else if (this.type == "olkrinMeat")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 3114, 290, 31, 29, this.invX - (1/2 * 46.5), this.invY - (1/2 * 43.5), 46.5, 43.5);
+            }
+            else if (this.type == "olkrinSkull")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 3033, 290, 49, 36, this.invX - (1/2 * 73.5), this.invY - (1/2 * 54), 73.5, 54);
+            }
+            else if (this.type == "olkrinHorn")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 3087, 287, 26, 34, this.invX - (1/2 * 52), this.invY - (1/2 * 68), 52, 68);
+            }
+            else if (this.type == "goliathOlkrinSkull")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 3033, 290, 49, 36, this.invX - (1/2 * 73.5), this.invY - (1/2 * 54), 73.5, 54);
+            }
+            else if (this.type == "olkrinArm")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 3175, 287, 67, 36, this.invX - (1/2 * 73.7), this.invY - (1/2 * 53.4), 73.7, 53.4);
+            }
+            else if (this.type == "olkrinMeat")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 3114, 290, 31, 29, this.invX - (1/2 * 46.5), this.invY - (1/2 * 43.5), 46.5, 43.5);
+            }
             else if (this.type == "vardanianCleaver")
             {
                 LXX.beginPath();
@@ -19433,6 +20330,41 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "rawOlkrinFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3143, 290, 31, 29, this.invX - (1/2 * 46.5), this.invY - (1/2 * 43.5), 46.5, 43.5);
+            }
+            else if (this.type == "olkrinMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3114, 290, 31, 29, this.invX - (1/2 * 46.5), this.invY - (1/2 * 43.5), 46.5, 43.5);
+            }
+            else if (this.type == "olkrinSkull")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3033, 290, 49, 36, this.invX - (1/2 * 73.5), this.invY - (1/2 * 54), 73.5, 54);
+            }
+            else if (this.type == "olkrinHorn")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3087, 287, 26, 34, this.invX - (1/2 * 52), this.invY - (1/2 * 68), 52, 68);
+            }
+            else if (this.type == "goliathOlkrinSkull")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3033, 290, 49, 36, this.invX - (1/2 * 73.5), this.invY - (1/2 * 54), 73.5, 54);
+            }
+            else if (this.type == "olkrinArm")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3175, 287, 67, 36, this.invX - (1/2 * 73.7), this.invY - (1/2 * 53.4), 73.7, 53.4);
+            }
+            else if (this.type == "olkrinMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3114, 290, 31, 29, this.invX - (1/2 * 46.5), this.invY - (1/2 * 43.5), 46.5, 43.5);
             }
             else if (this.type == "vardanianCleaver")
             {
@@ -19967,6 +20899,10 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-955, 3520, "Frich", true, "Izzy"));
                     ArtificialIntelligenceAccess.push(new Unit(-910, 3645, "Frich", false, "Charles"));
                     ArtificialIntelligenceAccess.push(new Unit(-596, 3860, "Frich", false, "Edward"));
+                    ArtificialIntelligenceAccess.push(new Unit(-30, -833, "Frich", true, "Chak"));
+                    ArtificialIntelligenceAccess.push(new Unit(-221, -891, "Frich", false, "Eduk"));
+                    ArtificialIntelligenceAccess.push(new Unit(-121, -1062, "Frich", false, "Toog"));
+                    ArtificialIntelligenceAccess.push(new Unit(-389, 2569, "Frich", false, "Gud"));
 
                     //Citizens of Teshir
                     ArtificialIntelligenceAccess.push(new Unit(2741, 1421, "Soldier", false, "Freynor Soldier", {race: "Freynor", faction: "Freynor", con: 4, speed: 1.25, outfit: ["chainArmour", 9], weapon: ["freydicSword", [8, 6], 0, 16, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[1833, 1424], [1848, 2413], [3046, 2407], [2741, 1421]]}));
@@ -19974,6 +20910,11 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(2584, 1385, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 5, patrolLoop: true, route:[[2523, 2061], [2041, 2046], [2036, 2118], [2594, 2169], [2584, 1385]]}));
                     ArtificialIntelligenceAccess.push(new Unit(2338, 1205, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[1622, 1196], [1655, 1300], [2518, 1366], [2338, 1205]]}));
                     ArtificialIntelligenceAccess.push(new Unit(2335, 924, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 5, patrolLoop: true, route:[[1355, 935], [1402, 1962], [1402, 1962], [1461, 902], [2335, 924]]}));
+                    if (quests.teshirNorthRoadBandits == true)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(1563, 5864, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 2, speed: 1.05, outfit: ["walrusLeatherArmour", 4], weapon: ["freydicSword", [4, 4], 0, 16, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 4, patrolLoop: true, route:[[506, 6152], [1042, 6325], [1551, 6202], [1563, 5864]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(1941, 5902, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 4, speed: 1.15, outfit: ["none", 0], weapon: ["longbow", [0.1, 0.4], 0, 0, 0.85], ranged: [true, "arrow", 4, 1650, 1, 9, 0, "none", 2.4], patrolStops: 3, patrolLoop: true, route:[[1941, 5902], [2384, 5809], [1926, 6003]]}));
+                    }
                     if (uniqueChars.drohforLDS == true)
                     {
                         var hits = 0;
@@ -20101,9 +21042,21 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-1910, 4940, "Varn", false, "Ferra"));
                     ArtificialIntelligenceAccess.push(new Unit(-1549, -5102, "Varn", false, "Juanito"));
                     ArtificialIntelligenceAccess.push(new Unit(-937, 708, "Varn", false, "Domingo"));
+                    ArtificialIntelligenceAccess.push(new Unit(3918, -2387, "Varn", false, "Wyhay"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2340, -2853, "Varn", true, "Wandigo"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2357, -3126, "Varn", false, "Wandago"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2012, -3280, "Varn", true, "wandoo"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2406, 757, "Varn", false, "Wiggin"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2206, 2201, "Varn", true, "Ender"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1712, 2328, "Varn", false, "Starter"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2187, 3320, "Varn", false, "Easer"));
+
+                    //TEST Olkrin
+                    //ArtificialIntelligenceAccess.push(new Unit(2900, 1400, "Olkrin", false, "Clajw"));
+                    //ArtificialIntelligenceAccess.push(new Unit(3300, 1600, "Olkrin", true, "Mawhtg"));
 
                     //TEST Bog Troll
-                    //ArtificialIntelligenceAccess.push(new Unit(2550, 1450, "BogTroll", "baby", "Kekleblad"));
+                    //ArtificialIntelligenceAccess.push(new Unit(2550, 1450, "BogTroll", true, "Kekleblad"));
 
                     //Torpers in the jungle?
                     //ArtificialIntelligenceAccess.push(new Unit(2550, 1450, "Torper", true, "Neebs"));
@@ -20299,6 +21252,7 @@ function theLegend()
         }
         saveBrain["uniqueChars"] = uniqueChars;
         saveBrain["quests"] = quests;
+        saveBrain["conversations"] = conversations;
         saveBrain["X"] = X;
         saveBrain["Y"] = Y;
         saveBrain["spawnX"] = spawnX;
@@ -20490,6 +21444,10 @@ function theLegend()
             for (var key in parsed.quests)
             {
                 quests[key] = parsed.quests[key];
+            }
+            for (var key in parsed.conversations)
+            {
+                conversations[key] = parsed.conversations[key];
             }
             bankSlots = parsed.bankSlots;
         }

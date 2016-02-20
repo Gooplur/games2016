@@ -29,30 +29,39 @@ function legendaryPrerequisites()
 {
     //sounds
     var togginGreet = new Audio("sounds/polySounds/togginGreeting.mp3");
+    togginGreet.load();
     window.togginGreet = togginGreet;
 
     var togginLiving = new Audio("sounds/polySounds/togginLivin.mp3");
+    togginLiving.load();
     window.togginLiving = togginLiving;
 
     var togginFDecline = new Audio("sounds/polySounds/togginNoMiLady.mp3");
+    togginFDecline.load();
     window.togginFDecline = togginFDecline;
 
     var togginMDecline = new Audio("sounds/polySounds/togginWasteYerTime.mp3");
+    togginMDecline.load();
     window.togginMDecline = togginMDecline;
 
     var togginScat = new Audio("sounds/polySounds/togginScat.mp3");
+    togginScat.load();
     window.togginScat = togginScat;
 
     var togginAdmit = new Audio("sounds/polySounds/togginAdmit.mp3");
+    togginAdmit.load();
     window.togginAdmit = togginAdmit;
 
     var togginBanditPayment = new Audio("sounds/polySounds/togginBanditPayment.mp3");
+    togginBanditPayment.load();
     window.togginBanditPayment = togginBanditPayment;
 
     var togginTooLong = new Audio("sounds/polySounds/togginTooLong.mp3");
+    togginTooLong.load();
     window.togginTooLong = togginTooLong;
 
     var togginChangeMind = new Audio("sounds/polySounds/togginChangeMind.mp3");
+    togginChangeMind.load();
     window.togginChangeMind = togginChangeMind;
 
     //images

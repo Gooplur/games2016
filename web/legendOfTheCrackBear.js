@@ -42,6 +42,19 @@ function legendaryPrerequisites()
 
     var togginScat = new Audio("sounds/polySounds/togginScat.mp3");
     window.togginScat = togginScat;
+
+    var togginAdmit = new Audio("sounds/polySounds/togginAdmit.mp3");
+    window.togginAdmit = togginAdmit;
+
+    var togginBanditPayment = new Audio("sounds/polySounds/togginBanditPayment.mp3");
+    window.togginBanditPayment = togginBanditPayment;
+
+    var togginTooLong = new Audio("sounds/polySounds/togginTooLong.mp3");
+    window.togginTooLong = togginTooLong;
+
+    var togginChangeMind = new Audio("sounds/polySounds/togginChangeMind.mp3");
+    window.togginChangeMind = togginChangeMind;
+
     //images
     var volcanicEnv = new Image();
     volcanicEnv.src = ("images/molten.jpg");
@@ -228,6 +241,10 @@ function theLegend()
     var save2 = null;
     var save3 = null;
     var save4 = null;
+    var save5 = null;
+    var save6 = null;
+    var save7 = null;
+    var save8 = null;
     //UNIQUE CHARACTERS
     var uniqueChars =
     {
@@ -238,12 +255,16 @@ function theLegend()
         laandegLDS: true,
         maggyLDS: true,
         odeeLDS: true,
-        togginLDS: true
+        togginLDS: true,
+        hetmerLDS: true
     };
     //QUESTS
     var quests =
     {
-        teshirNorthRoadBandits: true
+        //QUEST: Teshir North Road ---- given by Toggin
+        teshirNorthRoadBandits: true,
+        teshirNorthRoadKillCount: 0,
+        teshirNorthRoadQuest: false
     };
 
     //IMPORTANT LISTS
@@ -2502,7 +2523,7 @@ function theLegend()
             //load the game functions
             this.loadClickability = function(x, y, w, h, loadNumber)
             {
-                if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + w)
+                if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h)
                 {
                     XXX.beginPath();
                     XXX.fillStyle = "rgba(255,215,0, 0.35)";
@@ -2521,63 +2542,119 @@ function theLegend()
                     }
                 }
             };
-            //load buttons 1-3
+            //load buttons 1-8
                 //load save 1;
                     //box
             XXX.beginPath();
             XXX.fillStyle = "lightGrey";
             XXX.lineWidth = "1";
-            XXX.rect(707.5, 180, 300, 300);
+            XXX.rect(27.5, 180, 150, 300);
             XXX.fill();
             XXX.stroke();
-            this.loadClickability(707.5, 180, 300, 300, 3);
-                    //Data
+            this.loadClickability(27.5, 180, 150, 300, 1);
+            //Data
             XXX.textAlign = "center";
             XXX.fillStyle = "black";
-            XXX.font = "bold 50px Book Antiqua";
-            XXX.fillText("Save 3", 857.5, 230);
+            XXX.font = "bold 40px Book Antiqua";
+            XXX.fillText("Save 1", 27.5 + 75, 230);
                 //load save 2;
                     //box
             XXX.beginPath();
             XXX.fillStyle = "lightGrey";
             XXX.lineWidth = "1";
-            XXX.rect(1027.5, 180, 300, 300);
+            XXX.rect(197.5, 180, 150, 300);
             XXX.fill();
             XXX.stroke();
-            this.loadClickability(1027.5, 180, 300, 300, 4);
-                    //Data
+            this.loadClickability(197.5, 180, 150, 300, 2);
+            //Data
             XXX.textAlign = "center";
             XXX.fillStyle = "black";
-            XXX.font = "bold 50px Book Antiqua";
-            XXX.fillText("Save 4", 1177.5, 230);
+            XXX.font = "bold 40px Book Antiqua";
+            XXX.fillText("Save 2", 197.5 + 75, 230);
                 //load save 3;
                     //box
             XXX.beginPath();
             XXX.fillStyle = "lightGrey";
             XXX.lineWidth = "1";
-            XXX.rect(367.5, 180, -300, 300);
+            XXX.rect(367.5, 180, 150, 300);
             XXX.fill();
             XXX.stroke();
-            this.loadClickability(67.5, 180, 300, 300, 1);
-                    //Data
+            this.loadClickability(367.5, 180, 150, 300, 3);
+            //Data
             XXX.textAlign = "center";
             XXX.fillStyle = "black";
-            XXX.font = "bold 50px Book Antiqua";
-            XXX.fillText("Save 1", 217.5, 230);
+            XXX.font = "bold 40px Book Antiqua";
+            XXX.fillText("Save 3", 367.5 + 75, 230);
                 //load save 4;
                     //box
             XXX.beginPath();
             XXX.fillStyle = "lightGrey";
             XXX.lineWidth = "1";
-            XXX.rect(687.5, 180, -300, 300);
+            XXX.rect(537.5, 180, 150, 300);
             XXX.fill();
             XXX.stroke();
-            this.loadClickability(387.5, 180, 300, 300, 2);
+            this.loadClickability(537.5, 180, 150, 300, 4);
+            //Data
+            XXX.textAlign = "center";
+            XXX.fillStyle = "black";
+            XXX.font = "bold 40px Book Antiqua";
+            XXX.fillText("Save 4", 537.5 + 75, 230);
+                //load save 5;
+                    //box
+            XXX.beginPath();
+            XXX.fillStyle = "lightGrey";
+            XXX.lineWidth = "1";
+            XXX.rect(707.5, 180, 150, 300);
+            XXX.fill();
+            XXX.stroke();
+            this.loadClickability(707.5, 180, 150, 300, 5);
                     //Data
             XXX.textAlign = "center";
             XXX.fillStyle = "black";
-            XXX.font = "bold 50px Book Antiqua";
-            XXX.fillText("Save 2", 537.5, 230);
+            XXX.font = "bold 40px Book Antiqua";
+            XXX.fillText("Save 5", 707.5 + 75, 230);
+                //load save 6;
+                    //box
+            XXX.beginPath();
+            XXX.fillStyle = "lightGrey";
+            XXX.lineWidth = "1";
+            XXX.rect(877.5, 180, 150, 300);
+            XXX.fill();
+            XXX.stroke();
+            this.loadClickability(877.5, 180, 150, 300, 6);
+                    //Data
+            XXX.textAlign = "center";
+            XXX.fillStyle = "black";
+            XXX.font = "bold 40px Book Antiqua";
+            XXX.fillText("Save 6", 877.5 + 75, 230);
+                //load save 7;
+                    //box
+            XXX.beginPath();
+            XXX.fillStyle = "lightGrey";
+            XXX.lineWidth = "1";
+            XXX.rect(1047.5, 180, 150, 300);
+            XXX.fill();
+            XXX.stroke();
+            this.loadClickability(1047.5, 180, 150, 300, 7);
+                    //Data
+            XXX.textAlign = "center";
+            XXX.fillStyle = "black";
+            XXX.font = "bold 40px Book Antiqua";
+            XXX.fillText("Save 7", 1047.5 + 75, 230);
+                //load save 8;
+                    //box
+            XXX.beginPath();
+            XXX.fillStyle = "lightGrey";
+            XXX.lineWidth = "1";
+            XXX.rect(1217.5, 180, 150, 300);
+            XXX.fill();
+            XXX.stroke();
+            this.loadClickability(1217.5, 180, 150, 300, 8);
+                    //Data
+            XXX.textAlign = "center";
+            XXX.fillStyle = "black";
+            XXX.font = "bold 40px Book Antiqua";
+            XXX.fillText("Save 8", 1217.5 + 75, 230);
 
             //requestAnimationFrame(gameloopOfDestiny, CCC);
         }
@@ -2758,6 +2835,50 @@ function theLegend()
             {
                 //console.log(save2);
                 if (save4)
+                {
+                    save();
+                }
+            }
+        }
+        else if (popType == "save5" && confirmed == false)
+        {
+            save5 = inGamePopUp("confirm", "Are you sure you want to overwrite 'Save 5'?");
+            if (save5 != null)
+            {
+                if (save5)
+                {
+                    save();
+                }
+            }
+        }
+        else if (popType == "save6" && confirmed == false)
+        {
+            save6 = inGamePopUp("confirm", "Are you sure you want to overwrite 'Save 6'?");
+            if (save6 != null)
+            {
+                if (save6)
+                {
+                    save();
+                }
+            }
+        }
+        else if (popType == "save7" && confirmed == false)
+        {
+            save7 = inGamePopUp("confirm", "Are you sure you want to overwrite 'Save 7'?");
+            if (save7 != null)
+            {
+                if (save7)
+                {
+                    save();
+                }
+            }
+        }
+        else if (popType == "save8" && confirmed == false)
+        {
+            save8 = inGamePopUp("confirm", "Are you sure you want to overwrite 'Save 8'?");
+            if (save8 != null)
+            {
+                if (save8)
                 {
                     save();
                 }
@@ -6298,6 +6419,12 @@ function theLegend()
                 }
             }
             //TODO add a similar routine for the structure list when it is added...
+
+            //When an AI Unit is speaking you are forced to be polite and not move while you listen to them.
+            if (this.speechMovementInhibitor == true)
+            {
+                return true;
+            }
         };
 
         // CHARACTER MOVEMENT
@@ -6575,36 +6702,58 @@ function theLegend()
 
                 this.dialogueScrolling = function()
                 {
-                    if (this.dialogueChoiceMade == false)
+                    var playersTurnToSpeak = true;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
-                        if (lMouseX > 20.5 && lMouseX <= 1379.5 && lMouseY < 79.5 && lMouseY >= 0.5 && clicked == true)
+                        if (conversationID[0] != "none")
                         {
-                            clicked = false;
+                            if (conversationID[0] == ArtificialIntelligenceAccess[i].ID)
+                            {
+                                if (ArtificialIntelligenceAccess[i].talking == true)
+                                {
+                                    playersTurnToSpeak = false;
+                                }
+                            }
+                        }
+                    }
+                    if (playersTurnToSpeak)
+                    {
+                        if (this.dialogueChoiceMade == false && this.dialogueOptions.length >= 1)
+                        {
+                            this.speechMovementInhibitor = false;
+                            if (lMouseX > 20.5 && lMouseX <= 1379.5 && lMouseY < 79.5 && lMouseY >= 0.5 && clicked == true)
+                            {
+                                clicked = false;
 
-                            LXX.beginPath();
-                            LXX.fillStyle = "rgba(255,215,0, 0.55)";
-                            LXX.fillRect(20.5, 0.5, 1359, 79);
+                                LXX.beginPath();
+                                LXX.fillStyle = "rgba(255,215,0, 0.55)";
+                                LXX.fillRect(20.5, 0.5, 1359, 79);
 
-                            this.dialogueOptions[this.dialoguePosition][1] = true;
-                            this.dialogueChoiceMade = true;
-                        }
-                        else if (lMouseX > 20.5 && lMouseX <= 1379.5 && lMouseY < 79.5 && lMouseY >= 0.5)
-                        {
-                            LXX.beginPath();
-                            LXX.fillStyle = "rgba(255,215,0, 0.25)";
-                            LXX.fillRect(20.5, 0.5, 1359, 79);
-                        }
+                                this.dialogueOptions[this.dialoguePosition][1] = true;
+                                this.dialogueChoiceMade = true;
+                            }
+                            else if (lMouseX > 20.5 && lMouseX <= 1379.5 && lMouseY < 79.5 && lMouseY >= 0.5)
+                            {
+                                LXX.beginPath();
+                                LXX.fillStyle = "rgba(255,215,0, 0.25)";
+                                LXX.fillRect(20.5, 0.5, 1359, 79);
+                            }
 
-                        else if (this.dialoguePosition > 0 && lMouseX >= 0.5 && lMouseX <= 20.5 && lMouseY <= 79.5 && lMouseY >= 0.5 && clicked == true)
-                        {
-                            clicked = false;
-                            this.dialoguePosition -= 1;
+                            else if (this.dialoguePosition > 0 && lMouseX >= 0.5 && lMouseX <= 20.5 && lMouseY <= 79.5 && lMouseY >= 0.5 && clicked == true)
+                            {
+                                clicked = false;
+                                this.dialoguePosition -= 1;
+                            }
+                            if (this.dialoguePosition < (this.dialogueOptions.length - 1) && lMouseX >= 1379.5 && lMouseX <= 1399.5 && lMouseY <= 79.5 && lMouseY >= 0.5 && clicked == true)
+                            {
+                                clicked = false;
+                                this.dialoguePosition += 1;
+                            }
                         }
-                        if (this.dialoguePosition < (this.dialogueOptions.length - 1) && lMouseX >= 1379.5 && lMouseX <= 1399.5 && lMouseY <= 79.5 && lMouseY >= 0.5 && clicked == true)
-                        {
-                            clicked = false;
-                            this.dialoguePosition += 1;
-                        }
+                    }
+                    else
+                    {
+                        this.speechMovementInhibitor = true;
                     }
                 };
                 //operations
@@ -7813,23 +7962,23 @@ function theLegend()
                 LXX.fillStyle = "lightGrey";
                 LXX.lineWidth=2;
                 LXX.strokeStyle = "black";
-                LXX.rect(1, 1, 350 - 2, 78);
+                LXX.rect(1, 1, 175 - 2, 78);
                 LXX.fill();
                 LXX.stroke();
                 //text
                 LXX.fillStyle = "black";
                 LXX.textAlign ="center";
-                LXX.font="bold 40px Book Antiqua";
-                LXX.fillText("Save 1", 175, 52);
+                LXX.font="bold 30px Book Antiqua";
+                LXX.fillText("Save 1", 87.5, 52);
                 //sensing/action
-                if (lMouseX > 1 && lMouseX < 350 && lMouseY > 1 && lMouseY < 78)
+                if (lMouseX > 1 && lMouseX < 175 && lMouseY > 1 && lMouseY < 78)
                 {
                     //highlight
                     LXX.beginPath();
                     LXX.fillStyle = "rgba(255,215,0, 0.35)";
                     LXX.lineWidth=2;
                     LXX.strokeStyle = "black";
-                    LXX.rect(1, 1, 350 - 2, 78);
+                    LXX.rect(1, 1, 175 - 2, 78);
                     LXX.fill();
                     LXX.stroke();
                     //save
@@ -7850,23 +7999,23 @@ function theLegend()
                 LXX.fillStyle = "lightGrey";
                 LXX.lineWidth=2;
                 LXX.strokeStyle = "black";
-                LXX.rect(351, 1, 350 - 2, 78);
+                LXX.rect(176, 1, 175 - 2, 78);
                 LXX.fill();
                 LXX.stroke();
                 //text
                 LXX.fillStyle = "black";
                 LXX.textAlign ="center";
-                LXX.font="bold 40px Book Antiqua";
-                LXX.fillText("Save 2", 525, 52);
+                LXX.font="bold 30px Book Antiqua";
+                LXX.fillText("Save 2", 176 + 87.5, 52);
                 //sensing/action
-                if (lMouseX > 351 && lMouseX < 701 && lMouseY > 1 && lMouseY < 78)
+                if (lMouseX > 176 && lMouseX < 176 + 173 && lMouseY > 1 && lMouseY < 78)
                 {
                     //highlight
                     LXX.beginPath();
                     LXX.fillStyle = "rgba(255,215,0, 0.35)";
                     LXX.lineWidth=2;
                     LXX.strokeStyle = "black";
-                    LXX.rect(351, 1, 350 - 2, 78);
+                    LXX.rect(176, 1, 175 - 2, 78);
                     LXX.fill();
                     LXX.stroke();
                     //save
@@ -7887,23 +8036,23 @@ function theLegend()
                 LXX.fillStyle = "lightGrey";
                 LXX.lineWidth=2;
                 LXX.strokeStyle = "black";
-                LXX.rect(701, 1, 350 - 2, 78);
+                LXX.rect(351, 1, 175 - 2, 78);
                 LXX.fill();
                 LXX.stroke();
                 //text
                 LXX.fillStyle = "black";
                 LXX.textAlign ="center";
-                LXX.font="bold 40px Book Antiqua";
-                LXX.fillText("Save 3", 875, 52);
+                LXX.font="bold 30px Book Antiqua";
+                LXX.fillText("Save 3", 351 + 87.5, 52);
                 //sensing/action
-                if (lMouseX > 701 && lMouseX < 1049 && lMouseY > 1 && lMouseY < 78)
+                if (lMouseX > 351 && lMouseX < 351 + 173 && lMouseY > 1 && lMouseY < 78)
                 {
                     //highlight
                     LXX.beginPath();
                     LXX.fillStyle = "rgba(255,215,0, 0.35)";
                     LXX.lineWidth=2;
                     LXX.strokeStyle = "black";
-                    LXX.rect(701, 1, 350 - 2, 78);
+                    LXX.rect(351, 1, 175 - 2, 78);
                     LXX.fill();
                     LXX.stroke();
                     //save
@@ -7924,23 +8073,23 @@ function theLegend()
                 LXX.fillStyle = "lightGrey";
                 LXX.lineWidth=2;
                 LXX.strokeStyle = "black";
-                LXX.rect(1051, 1, 350 - 2, 78);
+                LXX.rect(526, 1, 175 - 2, 78);
                 LXX.fill();
                 LXX.stroke();
                 //text
                 LXX.fillStyle = "black";
                 LXX.textAlign ="center";
-                LXX.font="bold 40px Book Antiqua";
-                LXX.fillText("Save 4", 1225, 52);
+                LXX.font="bold 30px Book Antiqua";
+                LXX.fillText("Save 4", 526 + 87.5, 52);
                 //sensing/action
-                if (lMouseX > 1051 && lMouseX < 1399 && lMouseY > 1 && lMouseY < 78)
+                if (lMouseX > 526 && lMouseX < 526 + 173 && lMouseY > 1 && lMouseY < 78)
                 {
                     //highlight
                     LXX.beginPath();
                     LXX.fillStyle = "rgba(255,215,0, 0.35)";
                     LXX.lineWidth=2;
                     LXX.strokeStyle = "black";
-                    LXX.rect(1051, 1, 350 - 2, 78);
+                    LXX.rect(526, 1, 175 - 2, 78);
                     LXX.fill();
                     LXX.stroke();
                     //save
@@ -7953,6 +8102,150 @@ function theLegend()
                         popType = "save4";
                         confirmed = false;
                         save4 = null;
+                    }
+                }
+                //box 5
+                LXX.beginPath();
+                LXX.fillStyle = "lightGrey";
+                LXX.lineWidth=2;
+                LXX.strokeStyle = "black";
+                LXX.rect(701, 1, 175 - 2, 78);
+                LXX.fill();
+                LXX.stroke();
+                //text
+                LXX.fillStyle = "black";
+                LXX.textAlign ="center";
+                LXX.font="bold 30px Book Antiqua";
+                LXX.fillText("Save 5", 701 + 87.5, 52);
+                //sensing/action
+                if (lMouseX > 701 && lMouseX < 701 + 173 && lMouseY > 1 && lMouseY < 78)
+                {
+                    //highlight
+                    LXX.beginPath();
+                    LXX.fillStyle = "rgba(255,215,0, 0.35)";
+                    LXX.lineWidth=2;
+                    LXX.strokeStyle = "black";
+                    LXX.rect(701, 1, 175 - 2, 78);
+                    LXX.fill();
+                    LXX.stroke();
+                    //save
+                    if (clicked == true)
+                    {
+                        clicked = false;
+
+                        saveType = 5;
+
+                        popType = "save5";
+                        confirmed = false;
+                        save5 = null;
+                    }
+                }
+                //box 6
+                LXX.beginPath();
+                LXX.fillStyle = "lightGrey";
+                LXX.lineWidth=2;
+                LXX.strokeStyle = "black";
+                LXX.rect(876, 1, 175 - 2, 78);
+                LXX.fill();
+                LXX.stroke();
+                //text
+                LXX.fillStyle = "black";
+                LXX.textAlign ="center";
+                LXX.font="bold 30px Book Antiqua";
+                LXX.fillText("Save 6", 876 + 87.5, 52);
+                //sensing/action
+                if (lMouseX > 876 && lMouseX < 876 + 173 && lMouseY > 1 && lMouseY < 78)
+                {
+                    //highlight
+                    LXX.beginPath();
+                    LXX.fillStyle = "rgba(255,215,0, 0.35)";
+                    LXX.lineWidth=2;
+                    LXX.strokeStyle = "black";
+                    LXX.rect(876, 1, 175 - 2, 78);
+                    LXX.fill();
+                    LXX.stroke();
+                    //save
+                    if (clicked == true)
+                    {
+                        clicked = false;
+
+                        saveType = 6;
+
+                        popType = "save6";
+                        confirmed = false;
+                        save6 = null;
+                    }
+                }
+                //box 7
+                LXX.beginPath();
+                LXX.fillStyle = "lightGrey";
+                LXX.lineWidth=2;
+                LXX.strokeStyle = "black";
+                LXX.rect(1051, 1, 175 - 2, 78);
+                LXX.fill();
+                LXX.stroke();
+                //text
+                LXX.fillStyle = "black";
+                LXX.textAlign ="center";
+                LXX.font="bold 30px Book Antiqua";
+                LXX.fillText("Save 7", 1051 + 87.5, 52);
+                //sensing/action
+                if (lMouseX > 1051 && lMouseX < 1051 + 173 && lMouseY > 1 && lMouseY < 78)
+                {
+                    //highlight
+                    LXX.beginPath();
+                    LXX.fillStyle = "rgba(255,215,0, 0.35)";
+                    LXX.lineWidth=2;
+                    LXX.strokeStyle = "black";
+                    LXX.rect(1051, 1, 175 - 2, 78);
+                    LXX.fill();
+                    LXX.stroke();
+                    //save
+                    if (clicked == true)
+                    {
+                        clicked = false;
+
+                        saveType = 7;
+
+                        popType = "save7";
+                        confirmed = false;
+                        save7 = null;
+                    }
+                }
+                //box 8
+                LXX.beginPath();
+                LXX.fillStyle = "lightGrey";
+                LXX.lineWidth=2;
+                LXX.strokeStyle = "black";
+                LXX.rect(1226, 1, 175 - 2, 78);
+                LXX.fill();
+                LXX.stroke();
+                //text
+                LXX.fillStyle = "black";
+                LXX.textAlign ="center";
+                LXX.font="bold 30px Book Antiqua";
+                LXX.fillText("Save 8", 1226 + 87.5, 52);
+                //sensing/action
+                if (lMouseX > 1226 && lMouseX < 1226 + 173 && lMouseY > 1 && lMouseY < 78)
+                {
+                    //highlight
+                    LXX.beginPath();
+                    LXX.fillStyle = "rgba(255,215,0, 0.35)";
+                    LXX.lineWidth=2;
+                    LXX.strokeStyle = "black";
+                    LXX.rect(1226, 1, 175 - 2, 78);
+                    LXX.fill();
+                    LXX.stroke();
+                    //save
+                    if (clicked == true)
+                    {
+                        clicked = false;
+
+                        saveType = 8;
+
+                        popType = "save8";
+                        confirmed = false;
+                        save8 = null;
                     }
                 }
             }
@@ -11568,6 +11861,7 @@ function theLegend()
         this.rLegY = 0;
         this.legSwitch = 0;
         this.doOnDeathOnce = true; //this is for unique characters, upon their death they trigger a flag letting the game know never to respawn them.
+        this.talking = false; //this notes whether or not the unit is in the middle of saying something in a conversation.
 
         //Artificial Intelligence
                 //this creates a variable to easily access information about the main character.
@@ -11586,6 +11880,30 @@ function theLegend()
 
         this.interaction = function()
         {
+            var self = this;
+            //SC == store conversation
+            self.SC = function()
+            {
+                for (var key in conversations)
+                {
+                    if (conversations[key][0] == conversationID[0])
+                    {
+                        conversations[key][1] = conversationID[1];
+                    }
+                }
+            };
+            //RC == restore conversation
+            self.RC = function()
+            {
+                for (var key in conversations)
+                {
+                    if (conversations[key][0] == conversationID[0])
+                    {
+                        conversationID[1] = conversations[key][1];
+                    }
+                }
+            };
+
             if (this.alive == true)
             {
                 //Interaction with...
@@ -11597,7 +11915,7 @@ function theLegend()
                     if (this.type == "Person" || this.type == "Soldier")
                     {
                         //CONVERSATION AND SOCIAL INTERACTIONS WITH AI CHARACTERS
-                        if (clickReleased == true && dtm < this.sizeRadius && dtp < 100 && this.disturbed == false || conversationID[0] != "none" && dtp < 100 && this.disturbed == false)
+                        if (clickReleased == true && dtm < this.sizeRadius && dtp < 100 && this.disturbed == false || conversationID[0] != "none" && dtp < 100 && this.disturbed == false || this.talking == true)
                         {
                             this.engagedInDialogue = true;
 
@@ -11608,24 +11926,19 @@ function theLegend()
 
                                 if (clickReleased)
                                 {
-                                    for (var key in conversations)
-                                    {
-                                        if (conversations[key][0] == conversationID[0])
-                                        {
-                                            conversationID[1] = conversations[key][1];
-                                        }
-                                    }
+                                    self.RC();
                                 }
 
-                                // possible responses (0) a, b, c, d
-                                //greetings
-                                //
-
+                                //CONVERSATION
                                 if (conversationID[1] == 0)
                                 {
                                     if (player.dialogueChoiceMade == false)
                                     {
-                                        if (player.getCharisma() >= 2)
+                                        if (quests.teshirNorthRoadQuest == "complete")
+                                        {
+                                            player.dialogueOptions = [["Good Day to you ser.", false, "a"], ["What is your trade?", false, "b"]];
+                                        }
+                                        else if (player.getCharisma() >= 2)
                                         {
                                             player.dialogueOptions = [["Good Day to you ser.", false, "a"], ["What is your trade?", false, "b"], ["Is something bothering you? You seem worried.", false, "d"]];
                                         }
@@ -11644,18 +11957,22 @@ function theLegend()
                                                 if (player.dialogueOptions[i][2] == "a")
                                                 {
                                                     conversationID[1] = "0a";
+                                                    this.talking = true;
                                                 }
                                                 else if (player.dialogueOptions[i][2] == "b")
                                                 {
                                                     conversationID[1] = "0b";
+                                                    this.talking = true;
                                                 }
                                                 else if (player.dialogueOptions[i][2] == "c")
                                                 {
                                                     conversationID[1] = "0c";
+                                                    this.talking = true;
                                                 }
                                                 else if (player.dialogueOptions[i][2] == "d")
                                                 {
                                                     conversationID[1] = "0d";
+                                                    this.talking = true;
                                                 }
                                             }
                                         }
@@ -11663,23 +11980,27 @@ function theLegend()
                                 }
                                 else if (conversationID[1] == "0a")
                                 {
-
                                     togginGreet.play();
                                     togginGreet.onended = function()
                                     {
+                                        self.talking = false;
+                                        player.dialoguePosition = 0;
                                         conversationID[1] = 0;
+                                        self.SC();
                                     }
                                 }
                                 else if (conversationID[1] == "0b")
                                 {
-
                                     togginLiving.play();
                                     togginLiving.onended = function()
                                     {
+                                        self.talking = false;
+                                        player.dialoguePosition = 0;
                                         conversationID[1] = 0;
+                                        self.SC();
                                     }
                                 }
-                                else if (conversationID[1] == "0c" || conversationID[1] == "0d")
+                                else if (conversationID[1] == "0c")
                                 {
                                     //This is the polite declination of sharing the quest
                                     if (player.title == "Royalty" && player.raceName == "Freynor" || player.title == "Royalty" && player.freynorFaction > -50 || player.title == "Nobility" && player.freynorFaction > -50)
@@ -11689,7 +12010,10 @@ function theLegend()
                                             togginFDecline.play();
                                             togginFDecline.onended = function()
                                             {
+                                                self.talking = false;
+                                                player.dialoguePosition = 0;
                                                 conversationID[1] = 0;
+                                                self.SC();
                                             }
                                         }
                                         else
@@ -11697,7 +12021,10 @@ function theLegend()
                                             togginMDecline.play();
                                             togginMDecline.onended = function()
                                             {
+                                                self.talking = false;
+                                                player.dialoguePosition = 0;
                                                 conversationID[1] = 0;
+                                                self.SC();
                                             }
                                         }
                                     }
@@ -11706,8 +12033,106 @@ function theLegend()
                                         togginScat.play();
                                         togginScat.onended = function()
                                         {
+                                            self.talking = false;
+                                            player.dialoguePosition = 0;
                                             conversationID[1] = 0;
+                                            self.SC();
                                         }
+                                    }
+                                }
+                                else if (conversationID[1] == "0d")
+                                {
+                                    //this introduces the quest
+                                    togginAdmit.play();
+                                    console.log(conversationID[0] != "none" && dtp < 100 && this.disturbed == false);
+                                    togginAdmit.onended = function()
+                                    {
+                                        self.talking = false;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 1;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 1)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["I accept.", false, "a"], ["Maybe another time.", false, "b"], ["That sounds dangerous, I don't think I'm up for it.", false, "c"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    conversationID[1] = "1a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    conversationID[1] = "1b";
+                                                    self.talking = true;
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    conversationID[1] = "1c";
+                                                    self.talking = true;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "1a")
+                                {
+                                    if (quests.teshirNorthRoadQuest != "complete")
+                                    {
+                                        player.dialoguePosition = 0;
+                                        quests.teshirNorthRoadQuest = true;
+                                        conversationID[1] = 2;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "1b")
+                                {
+                                    togginTooLong.play();
+                                    togginTooLong.onended = function()
+                                    {
+                                        self.talking = false;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 1;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "1c")
+                                {
+                                    togginChangeMind.play();
+                                    togginChangeMind.onended = function()
+                                    {
+                                        self.talking = false;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 1;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 2)
+                                {
+                                    player.dialogueOptions = [];
+                                    if (quests.teshirNorthRoadKillCount >= 4 && quests.teshirNorthRoadQuest != "complete" && uniqueChars.hetmerLDS == false)
+                                    {
+                                        togginBanditPayment.play();
+                                        quests.teshirNorthRoadQuest = "complete";
+                                        quests.teshirNorthRoadBandits = false;
+                                        player.experience += 200;
+                                        player.freynorFaction += 10;
+                                        worldItems.push([new Item("coins", X, Y), 20]);
+                                    }
+                                    togginBanditPayment.onended = function()
+                                    {
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
                                     }
                                 }
 
@@ -11718,14 +12143,10 @@ function theLegend()
                         {
                             if (conversationID[0] != "none" && this.engagedInDialogue == true)
                             {
-                                for (var key in conversations)
-                                {
-                                    if (conversations[key][0] == conversationID[0])
-                                    {
-                                        conversations[key][1] = conversationID[1];
-                                    }
-                                }
                                 this.engagedInDialogue = false;
+                                player.dialoguePosition = 0;
+                                player.inventoryPosition = 0;
+                                invScroll = 0;
                                 conversationID[0] = "none";
                                 conversationID[1] = 0;
                                 lowBar = "information";
@@ -15710,11 +16131,22 @@ function theLegend()
                         if (this.ID == "Northern Bandit")
                         {
                             //RANGE OF SIGHT (anything related to range of sight)
-                            this.rangeOfSightCalculator(450, "mildly");
+                            this.rangeOfSightCalculator(500, false);
 
                             this.drops = [[new Item("coins", this.X, this.Y), Math.floor(Math.random() * 5) + 1]];
 
                             this.disturbed = true;
+                        }
+                        if (this.ID == "Hetmer The Bandit Chief")
+                        {
+                            //RANGE OF SIGHT (anything related to range of sight)
+                            this.rangeOfSightCalculator(525, false);
+
+                            this.drops = [[new Item("coins", this.X, this.Y), Math.floor(Math.random() * 13) + 6], [new Item("walrusLeatherArmour", this.X, this.Y), 1]];
+
+                            this.disturbed = true;
+
+                            this.switchToRanged("longbow");
                         }
                     }
                     else
@@ -15775,6 +16207,21 @@ function theLegend()
                             player.freynorFaction -= 50;
                         }
                         //Unique Characters Permanent Death
+                        if (this.ID == "Hetmer The Bandit Chief")
+                        {
+                            uniqueChars.hetmerLDS = false;
+                        }
+
+                        //track Deaths Of Certain Non-Unique Units During Certain Quests
+
+                            //during the TeshirNorthRoadQuest the number of bandits you kill is tracked.
+                        if (quests.teshirNorthRoadQuest == true)
+                        {
+                            if (this.ID == "Northern Bandit")
+                            {
+                                quests.teshirNorthRoadKillCount += 1;
+                            }
+                        }
 
                         this.doOnDeathOnce = false;
                     }
@@ -16004,6 +16451,29 @@ function theLegend()
                     crafting = "smithing";
                     lowBar = "crafting";
                     gameState = "paused";
+                }
+            }
+            else if (this.type == "tent")
+            {
+                //TRAITS
+                this.solid = true;
+                this.interactionRange = 60;
+
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 162, 1436, 40, 45, -(1/2 * 80), -(1/2 * 90), 80, 90);
+                XXX.restore();
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 42;
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                    //TODO add sleeping in tents!
                 }
             }
             else if (this.type == "campFire")
@@ -19030,7 +19500,7 @@ function theLegend()
                 this.distance = 28 + this.range;
                 this.range = 5.4;
                 this.rate = 85;
-                if (player.getDexterity < 4)
+                if (player.getDexterity() < 4)
                 {
                     this.damage = 7 * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
                 }
@@ -20850,7 +21320,7 @@ function theLegend()
                     //todo when structures are created add their list's refresh sequence here.
 
                     //Delete All Non-native Scenery
-                    //todo when scenery is created add their list's refresh sequence here.
+                    scenicList = [];
 
                     //REGION CREATION
                         //Build AI Units
@@ -20905,16 +21375,15 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-389, 2569, "Frich", false, "Gud"));
 
                     //Citizens of Teshir
+
+                        //Projectile(TYPE ultra.ranged[1],startX, startY, startAngle, SPEED ultra.ranged[2], RANGE ultra.ranged[3], NEGATION ultra.ranged[4], list, DAMAGE ultra.ranged[5], MAGIC DAMAGE ultra.ranged[6], ABILITY ultra.ranged[7])
+
                     ArtificialIntelligenceAccess.push(new Unit(2741, 1421, "Soldier", false, "Freynor Soldier", {race: "Freynor", faction: "Freynor", con: 4, speed: 1.25, outfit: ["chainArmour", 9], weapon: ["freydicSword", [8, 6], 0, 16, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[1833, 1424], [1848, 2413], [3046, 2407], [2741, 1421]]}));
                     ArtificialIntelligenceAccess.push(new Unit(1247, 1210, "Soldier", false, "Freynor Soldier", {race: "Freynor", faction: "Freynor", con: 6, speed: 1.4, outfit: ["chainArmour", 8], weapon: ["freydicSword", [8, 9], 0, 16, 1], ranged: [false, "arrow", 6, 1950, 1, 4, 0, "none", 1.35], patrolStops: 6, patrolLoop: true, route:[[901, 1195], [969, 527], [1932, 549], [1941, 814], [1932, 549], [969, 527]]}));
                     ArtificialIntelligenceAccess.push(new Unit(2584, 1385, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 5, patrolLoop: true, route:[[2523, 2061], [2041, 2046], [2036, 2118], [2594, 2169], [2584, 1385]]}));
                     ArtificialIntelligenceAccess.push(new Unit(2338, 1205, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[1622, 1196], [1655, 1300], [2518, 1366], [2338, 1205]]}));
                     ArtificialIntelligenceAccess.push(new Unit(2335, 924, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 5, patrolLoop: true, route:[[1355, 935], [1402, 1962], [1402, 1962], [1461, 902], [2335, 924]]}));
-                    if (quests.teshirNorthRoadBandits == true)
-                    {
-                        ArtificialIntelligenceAccess.push(new Unit(1563, 5864, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 2, speed: 1.05, outfit: ["walrusLeatherArmour", 4], weapon: ["freydicSword", [4, 4], 0, 16, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 4, patrolLoop: true, route:[[506, 6152], [1042, 6325], [1551, 6202], [1563, 5864]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(1941, 5902, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 4, speed: 1.15, outfit: ["none", 0], weapon: ["longbow", [0.1, 0.4], 0, 0, 0.85], ranged: [true, "arrow", 4, 1650, 1, 9, 0, "none", 2.4], patrolStops: 3, patrolLoop: true, route:[[1941, 5902], [2384, 5809], [1926, 6003]]}));
-                    }
+
                     if (uniqueChars.drohforLDS == true)
                     {
                         var hits = 0;
@@ -20930,19 +21399,22 @@ function theLegend()
                             ArtificialIntelligenceAccess.push(new Unit(2583, 818, "Person", false, "Drohfor", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["walrusLeatherArmour", 5], weapon: ["longbow", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [true, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 6, patrolLoop: true, route:[[2001, 658], [2252, -509], [2423, -588], [2032, 440], [2030, 770], [2583, 818]]}));
                         }
                     }
-                    if (uniqueChars.togginLDS == true)
+                    if (quests.teshirNorthRoadQuest != "complete")
                     {
-                        var hits = 0;
-                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        if (uniqueChars.togginLDS == true)
                         {
-                            if (ArtificialIntelligenceAccess[i].ID == "Toggin")
+                            var hits = 0;
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                             {
-                                hits += 1;
+                                if (ArtificialIntelligenceAccess[i].ID == "Toggin")
+                                {
+                                    hits += 1;
+                                }
                             }
-                        }
-                        if (hits == 0)
-                        {
-                            ArtificialIntelligenceAccess.push(new Unit(739, 1830, "Person", false, "Toggin", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["winterWolfClothing", 0], weapon: ["freydicSword", [8, 7], 0, 16, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[739, 1830], [756, 1635], [840, 1603]]}));
+                            if (hits == 0)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(739, 1830, "Person", false, "Toggin", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["winterWolfClothing", 0], weapon: ["freydicSword", [8, 7], 0, 16, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[739, 1830], [756, 1635], [840, 1603]]}));
+                            }
                         }
                     }
                     if (uniqueChars.odeeLDS == true)
@@ -21051,35 +21523,40 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-1712, 2328, "Varn", false, "Starter"));
                     ArtificialIntelligenceAccess.push(new Unit(-2187, 3320, "Varn", false, "Easer"));
 
-                    //TEST Olkrin
-                    //ArtificialIntelligenceAccess.push(new Unit(2900, 1400, "Olkrin", false, "Clajw"));
-                    //ArtificialIntelligenceAccess.push(new Unit(3300, 1600, "Olkrin", true, "Mawhtg"));
+                    if (quests.teshirNorthRoadBandits == true)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(1563, 5864, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 2, speed: 1.05, outfit: ["walrusLeatherArmour", 4], weapon: ["freydicSword", [4, 4], 0, 16, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 4, patrolLoop: true, route:[[506, 6152], [1042, 6325], [1551, 6202], [1563, 5864]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(1941, 5902, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 4, speed: 1.15, outfit: ["none", 0], weapon: ["longbow", [0.1, 0.4], 0, 0, 0.85], ranged: [true, "arrow", 6, 1750, 1, 4, 0, "none", 1.4], patrolStops: 3, patrolLoop: true, route:[[1941, 5902], [2384, 5809], [1926, 6003]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(435, 5563, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 3, speed: 1.05, outfit: ["walrusLeatherArmour", 4], weapon: ["longbow", [0.1, 0.4], 0, 16, 1], ranged: [true, "arrow", 7, 1900, 1, 4, 0, "none", 1.5], patrolStops: 4, patrolLoop: true, route:[[435, 5563], [400, 5668], [636, 5860], [827, 5357]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(348, 5428, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 5, speed: 0.90, outfit: ["none", 4], weapon: ["freydicSword", [6, 4], 0, 16, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 3, patrolLoop: true, route:[[348, 5428], [391, 5303], [260, 5339]]}));
+                    }
 
-                    //TEST Bog Troll
-                    //ArtificialIntelligenceAccess.push(new Unit(2550, 1450, "BogTroll", true, "Kekleblad"));
+                    if (uniqueChars.hetmerLDS == true)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Hetmer The Bandit Chief")
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(35, 5540, "Soldier", false, "Hetmer The Bandit Chief", {race: "Freynor", faction: "hostile", con: 6, speed: 1.2, outfit: ["walrusLeatherArmour", 4.5], weapon: ["freydicSword", [6, 5], 0, 16, 1], ranged: [false, "arrow", 9, 2100, 1, 7, 0, "none", 1.2], patrolStops: 1, patrolLoop: false, route:[[221, 5517]]}));
+                        }
+                    }
 
-                    //Torpers in the jungle?
-                    //ArtificialIntelligenceAccess.push(new Unit(2550, 1450, "Torper", true, "Neebs"));
-                    //ArtificialIntelligenceAccess.push(new Unit(2350, 1350, "Torper", true, "Sokka"));
-                    //for (var i = 0; i < 30; i++)
-                    //{
-                    //    ArtificialIntelligenceAccess.push(new Unit(500, i * 40, "Torper", false, null));
-                    //}
-
-                    //Lizards in the East
-                    //ArtificialIntelligenceAccess.push(new Unit(0, 0, "Etyr", true, "Toby"));
-                    //ArtificialIntelligenceAccess.push(new Unit(-300, -300, "Etyr", true, "Tammy"));
-                    //ArtificialIntelligenceAccess.push(new Unit(-100, 150, "Etyr", true, "Tibz"));
-                    //ArtificialIntelligenceAccess.push(new Unit(-200, -200, "Etyr", true, "TamTam"));
-                    //for (var i = 0; i < 30; i++)
-                    //{
-                    //    ArtificialIntelligenceAccess.push(new Unit(100, i * 40, "Etyr", false, null));
-                    //}
-                    //ArtificialIntelligenceAccess.push(new Unit(600, -400, "Etyr", true, "Franky"));
-                    //ArtificialIntelligenceAccess.push(new Unit(700, -500, "Etyr", true, "Rosa"));
-                    //ArtificialIntelligenceAccess.push(new Unit(790, -570, "Etyr", true, "Kelly"));
-                    //ArtificialIntelligenceAccess.push(new Unit(350, -600, "Etyr", true, "Natily"));
-                    //ArtificialIntelligenceAccess.push(new Unit(-50, -50, "Etyr", false, "Butter-Snap"));
+                    //Scenery
+                        //bandit Camp in the north east
+                            //tents
+                    scenicList.push(new Scenery("tent", 74, 5672, (0.5/5 * 2 * Math.PI), true));
+                    scenicList.push(new Scenery("tent", 544, 5618, (4.5/5 * 2 * Math.PI), true));
+                    scenicList.push(new Scenery("tent", 280, 5700, 0, true));
+                    scenicList.push(new Scenery("tent", 255, 5249, Math.PI, true));
+                    scenicList.push(new Scenery("tent", -12, 5426, 1/2 * Math.PI, true));
+                            //campfire
+                    scenicList.push(new Scenery("campFire", 248, 5494, 3/4 * Math.PI, true));
 
                     change = "central";
                 }
@@ -21109,7 +21586,7 @@ function theLegend()
                     //todo when structures are created add their list's refresh sequence here.
 
                     //Delete All Non-native Scenery
-                    //todo when scenery is created add their list's refresh sequence here.
+                    scenicList = [];
 
                     //REGION CREATION
                     //Build AI Units
@@ -21281,6 +21758,22 @@ function theLegend()
         {
             localStorage.setItem("save4", saveFile);
         }
+        else if (saveType == 5)
+        {
+            localStorage.setItem("save5", saveFile);
+        }
+        else if (saveType == 6)
+        {
+            localStorage.setItem("save6", saveFile);
+        }
+        else if (saveType == 7)
+        {
+            localStorage.setItem("save7", saveFile);
+        }
+        else if (saveType == 8)
+        {
+            localStorage.setItem("save8", saveFile);
+        }
 
 
     }
@@ -21373,6 +21866,22 @@ function theLegend()
         else if (loadType == 4)
         {
             var restore = localStorage.getItem("save4");
+        }
+        else if (loadType == 5)
+        {
+            var restore = localStorage.getItem("save5");
+        }
+        else if (loadType == 6)
+        {
+            var restore = localStorage.getItem("save6");
+        }
+        else if (loadType == 7)
+        {
+            var restore = localStorage.getItem("save7");
+        }
+        else if (loadType == 8)
+        {
+            var restore = localStorage.getItem("save8");
         }
 
         var parsed = JSON.parse(restore);

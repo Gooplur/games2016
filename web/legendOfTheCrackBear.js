@@ -211,7 +211,7 @@ function theLegend()
 
     //DEVELOPMENTAL VARIABLES (variables for the developer to use)
         //Locational
-    var tellCoords = false; //This displays the players exact world coordinates on the screen.
+    var tellCoords = true; //This displays the players exact world coordinates on the screen.
         //AI Unit Focused
     var showSight = false; //This makes every AI UNIT draw their rangeOfSight to the world.
     var showPlayerAttackBubble = false; //This shows the bubble/radius in which the players attack will deal damage.
@@ -256,7 +256,8 @@ function theLegend()
         maggyLDS: true,
         odeeLDS: true,
         togginLDS: true,
-        hetmerLDS: true
+        hetmerLDS: true,
+        neculaiLDS: true
     };
     //QUESTS
     var quests =
@@ -13182,6 +13183,35 @@ function theLegend()
             {
                 XXX.fillStyle = "gold";
             }
+            else if (this.ultra.race == "Vardan")
+            {
+                XXX.fillStyle = "#1c1c1c";
+            }
+            else if (this.ultra.race == "Thengan")
+            {
+                XXX.fillStyle = "#663300";
+            }
+            else if (this.ultra.race == "Nirwaden")
+            {
+                XXX.fillStyle = "#e68900";
+            }
+            else if (this.ultra.race == "Kel")
+            {
+                XXX.fillStyle = "green";
+            }
+            else if (this.ultra.race == "Aldrek")
+            {
+                XXX.fillStyle = "darkRed";
+            }
+            else if (this.ultra.race == "Cephrite")
+            {
+                XXX.fillStyle = "purple";
+            }
+            else if (this.ultra.race == "Outlander")
+            {
+                XXX.fillStyle = "white";
+            }
+
             else
             {
                 //Faelan fairy Princess is the default.
@@ -15827,6 +15857,60 @@ function theLegend()
 
                 this.rangeOfSightCalculator(600, "true");
 
+                //Unique Characters and special type -- drops and experience
+                if (this.ID == "Laandeg the Alchemist")
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 12]];
+                }
+                if (this.ID == "Svehn the Smith")
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 61]];
+                }
+                else if (this.ID == "Medlia the Merchant")
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 74]];
+                }
+                else if (this.ID == "Drohfor")
+                {
+                    this.drops = [[new Item("longbow", this.X, this.Y), 1], [new Item("arrow", this.X, this.Y), 19]];
+                    this.customEXP = true;
+                    this.experience = 65 * ((player.getIntelligence() / 50) + 1);
+                }
+                else if (this.ID == "Maggy the Tailor")
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 58]];
+                }
+                else if (this.ID == "Odee the Banker")
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 135]];
+                }
+                else if (this.ID == "Toggin")
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 20]];
+                    this.customEXP = true;
+                    this.experience = 25 * ((player.getIntelligence() / 50) + 1);
+                }
+                else if (this.ID == "Neculai the Merchant")
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 17]];
+                }
+                else
+                {
+                    this.drops = [];
+                }
+
+                if (this.customEXP == false)
+                {
+                    if (Math.max(0, (this.ultra.weapon[1][1] + this.ultra.weapon[1][0]) - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 5 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (5 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+                }
+
                 //AI
                 if (this.alive == true)
                 {
@@ -15918,7 +16002,7 @@ function theLegend()
                         //Faction relation decreases
                         if (this.ultra.faction == "Freynor")
                         {
-                            player.freynorFaction -= 20;
+                            player.freynorFaction -= 25;
                             if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
                             {
                                 this.callForNearbyHelpFromType(1850, "Soldier");
@@ -15926,7 +16010,15 @@ function theLegend()
                         }
                         else if (this.ultra.faction == "Orgell")
                         {
-                            player.orgellFaction -= 20;
+                            player.orgellFaction -= 25;
+                            if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
+                            {
+                                this.callForNearbyHelpFromType(1850, "Soldier");
+                            }
+                        }
+                        else if (this.ultra.faction == "Vardan")
+                        {
+                            player.vardanFaction -= 25;
                             if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
                             {
                                 this.callForNearbyHelpFromType(1850, "Soldier");
@@ -15934,65 +16026,48 @@ function theLegend()
                         }
 
                         //Unique Characters Permanent Death
-                        if (ID == "Laandeg the Alchemist")
+                        if (this.ID == "Laandeg the Alchemist")
                         {
                             uniqueChars.laandegLDS = false;
                             player.freynorFaction -= 6;
-                            this.drops = [];
                         }
-                        if (ID == "Bobith the Smith")
+                        if (this.ID == "Svehn the Smith")
                         {
                             uniqueChars.bobithLDS = false;
                             player.freynorFaction -= 9;
-                            this.drops = [];
                         }
-                        else if (ID == "Medlia the Merchant")
+                        else if (this.ID == "Medlia the Merchant")
                         {
                             uniqueChars.medliaLDS = false;
                             player.freynorFaction -= 12;
-                            this.drops = [];
                         }
-                        else if (ID == "Drohfor")
+                        else if (this.ID == "Drohfor")
                         {
                             uniqueChars.drohforLDS = false;
                             player.freynorFaction -= 2;
-                            this.drops = [[new Item("longbow", false, false), 1]];
-                            this.customEXP = true;
-                            this.experience = 65 * ((player.getIntelligence() / 50) + 1);
                         }
-                        else if (ID == "Maggy the Tailor")
+                        else if (this.ID == "Maggy the Tailor")
                         {
                             uniqueChars.maggyLDS = false;
                             player.freynorFaction -= 14;
-                            this.drops = [];
                         }
-                        else if (ID == "Odee the Banker")
+                        else if (this.ID == "Odee the Banker")
                         {
                             uniqueChars.odeeLDS = false;
                             player.freynorFaction -= 11;
-                            this.drops = [];
                         }
-                        else if (ID == "Toggin")
+                        else if (this.ID == "Toggin")
                         {
                             uniqueChars.togginLDS = false;
                             player.freynorFaction -= 6;
-                            this.drops = [];
+                        }
+                        else if (this.ID == "Neculai the Merchant")
+                        {
+                            uniqueChars.neculaiLDS = false;
                         }
                         else
                         {
                             this.drops = [];
-                        }
-
-                        if (this.customEXP == false)
-                        {
-                            if (Math.max(0, (this.ultra.weapon[1][1] + this.ultra.weapon[1][0]) - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
-                            {
-                                this.experience = 5 * ((player.getIntelligence() / 50) + 1);
-                            }
-                            else
-                            {
-                                this.experience = (5 * ((player.getIntelligence() / 50) + 1)) / 10;
-                            }
                         }
 
                         this.doOnDeathOnce = false;
@@ -21452,14 +21527,14 @@ function theLegend()
                         var hits = 0;
                         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                         {
-                            if (ArtificialIntelligenceAccess[i].ID == "Bobith the Smith")
+                            if (ArtificialIntelligenceAccess[i].ID == "Svehn the Smith")
                             {
                                 hits += 1;
                             }
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(1690, 1021, "Person", false, "Bobith the Smith", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.65], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 103], [new Item("mace", false, false), 3], [new Item("freydicSpear", false, false), 5], [new Item("freydicSword", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("longbow", false, false), 2], [new Item("arrow", false, false), 92]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(1690, 1021, "Person", false, "Svehn the Smith", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.65], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 103], [new Item("mace", false, false), 3], [new Item("freydicSpear", false, false), 5], [new Item("freydicSword", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("longbow", false, false), 2], [new Item("arrow", false, false), 92]]}));
                         }
                     }
                     if (uniqueChars.medliaLDS == true)
@@ -21493,6 +21568,26 @@ function theLegend()
                         }
                     }
 
+                    //a vardanian merchant who will not be in town long... (take him out of the town/game soon)
+                    if (uniqueChars.neculaiLDS == true)
+                    {
+                        if (player.raceName != "Freynor" || player.title != "Royalty" || player.raceName == "Freynor" && player.title == "Royalty" && player.vardanFaction >= 0) // if you are royalty of freynor your actions determine the nations friends and enemies.
+                        {
+                            var hits = 0;
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].ID == "Neculai the Merchant")
+                                {
+                                    hits += 1;
+                                }
+                            }
+                            if (hits == 0)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(2365, 1059, "Person", false, "Neculai the Merchant", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("mace", false, false), 1], [new Item("vardanianAxe", false, false), 3], [new Item("vardanianAxeDual", false, false), 2], [new Item("vardanianCleaver", false, false), 1], [new Item("rawWolfLiver", false, false), 4], [new Item("blackChainArmour", false, false), 2], [new Item("trollFlesh", false, false), 2], [new Item("wood", false, false), 14], [new Item("freydicSword", false, false), 1], [new Item("frichPelt", false, false), 6], [new Item("rawWalrusFlesh", false, false), 5], [new Item("walrusMeat", false, false), 1]]}));
+                            }
+                        }
+                    }
+
                     //A stray herd of Naaprids in the northern grassland
                     ArtificialIntelligenceAccess.push(new Unit(4942, -1180, "Naaprid", true, "Naanav"));
                     ArtificialIntelligenceAccess.push(new Unit(4860, -1377, "Naaprid", true, "Naarimov"));
@@ -21523,6 +21618,7 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-1712, 2328, "Varn", false, "Starter"));
                     ArtificialIntelligenceAccess.push(new Unit(-2187, 3320, "Varn", false, "Easer"));
 
+                    //Bandits and bandit chief (Bandejos Nortenos)
                     if (quests.teshirNorthRoadBandits == true)
                     {
                         ArtificialIntelligenceAccess.push(new Unit(1563, 5864, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 2, speed: 1.05, outfit: ["walrusLeatherArmour", 4], weapon: ["freydicSword", [4, 4], 0, 16, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 4, patrolLoop: true, route:[[506, 6152], [1042, 6325], [1551, 6202], [1563, 5864]]}));

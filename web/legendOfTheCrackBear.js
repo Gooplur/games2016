@@ -16131,7 +16131,7 @@ function theLegend()
                         if (this.ID == "Northern Bandit")
                         {
                             //RANGE OF SIGHT (anything related to range of sight)
-                            this.rangeOfSightCalculator(500, false);
+                            this.rangeOfSightCalculator(400, false);
 
                             this.drops = [[new Item("coins", this.X, this.Y), Math.floor(Math.random() * 5) + 1]];
 
@@ -16140,7 +16140,7 @@ function theLegend()
                         if (this.ID == "Hetmer The Bandit Chief")
                         {
                             //RANGE OF SIGHT (anything related to range of sight)
-                            this.rangeOfSightCalculator(525, false);
+                            this.rangeOfSightCalculator(425, false);
 
                             this.drops = [[new Item("coins", this.X, this.Y), Math.floor(Math.random() * 13) + 6], [new Item("walrusLeatherArmour", this.X, this.Y), 1]];
 

@@ -11262,6 +11262,27 @@ function theLegend()
             }
         };
 
+        //OUT OF COMBAT SENSING
+        this.engagedSenser = function()
+        {
+            if (this.inCombat == true)
+            {
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i ++)
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false || ArtificialIntelligenceAccess[i].playerSeen == true && ArtificialIntelligenceAccess[i].disturbed == false && ArtificialIntelligenceAccess[i].type == "Soldier" || ArtificialIntelligenceAccess[i].playerSeen == true && ArtificialIntelligenceAccess[i].disturbed == false && ArtificialIntelligenceAccess[i].type == "Person")
+                    {
+                        hits += 1;
+                    }
+                }
+
+                if (hits == ArtificialIntelligenceAccess.length) // || this.noticed == false
+                {
+                    this.inCombat = false;
+                    this.decreaseInHealth = 0; // this is how much health is displayed as blood red for the player;
+                }
+            }
+        };
         //DEATH SENSING
         this.deathSensor = function()
         {
@@ -11353,6 +11374,7 @@ function theLegend()
         {
             //this sets the players stats and is in charge of leveling for normal skills and magical ones.
             this.skillOperations();
+            this.engagedSenser(); //This should be a more accurate way for not in combat to be registered.
 
             if (gameState == "active" || gameState == "stopTime") //This makes it so that the players operations do not play while the game is paused.
             {
@@ -13052,25 +13074,6 @@ function theLegend()
             }
         };
 
-        // Are any units currently attacking? If not then set the players inCombat status to false.
-        this.AreAnyUnitsAttacking = function()
-        {
-            var hits = 0;
-            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
-            {
-                if (ArtificialIntelligenceAccess[i].attacking == true)
-                {
-                    hits += 1;
-                }
-            }
-            if (hits == 0)
-            {
-                player.inCombat = false;
-                player.decreaseInHealth = 0; // this is how much health is displayed as blood red for the player;
-            }
-            //console.log(player.inCombat + " is player.inCombat");
-        };
-
         //finds the unit nearest this unit and its distance and sets them to class accessible variables.
         this.findNearestUnit = function()
         {
@@ -14062,7 +14065,7 @@ function theLegend()
                         this.Attack(3, 1);
                     }
 
-                    this.deathChecker();
+                    //this.deathChecker();
                     this.disturbedTimer();
                     this.callForNearbyHelpFromType(350, "Etyr");
                     this.visibleSight();
@@ -14174,7 +14177,7 @@ function theLegend()
                         this.callForNearbyHelpFromType(100, "Walrus");
                     }
 
-                    this.deathChecker();
+                    //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
                     this.pointTowardsPlayer();
@@ -14284,7 +14287,7 @@ function theLegend()
                         this.callForNearbyHelpFromType(350, "Frich");
                     }
 
-                    this.deathChecker();
+                    //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
                     this.pointTowardsPlayer();
@@ -14395,7 +14398,7 @@ function theLegend()
                         this.callForNearbyHelpFromType(275, "Varn");
                     }
 
-                    this.deathChecker();
+                    //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
                     this.pointTowardsPlayer();
@@ -14517,7 +14520,7 @@ function theLegend()
                         this.callForNearbyHelpFromType(300, "Beruln");
                     }
 
-                    this.deathChecker();
+                    //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
                     this.pointTowardsPlayer();
@@ -14680,7 +14683,7 @@ function theLegend()
                         this.callForNearbyHelpFromType(800, "Olkrin");
                     }
 
-                    this.deathChecker();
+                    //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
                     this.pointTowardsPlayer();
@@ -14937,7 +14940,7 @@ function theLegend()
                         this.callForNearbyHelpFromType(350, "Naaprid");
                     }
 
-                    this.deathChecker();
+                    //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
                     if (this.alpha == true)
@@ -15229,7 +15232,7 @@ function theLegend()
                         }
                     }
 
-                    this.deathChecker();
+                    //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
                     this.pointTowardsPlayer();
@@ -15461,7 +15464,7 @@ function theLegend()
                         this.callForNearbyHelpFromType(640, "WinterWolf");
                     }
 
-                    this.deathChecker();
+                    //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
                     this.pointTowardsPlayer();
@@ -15605,7 +15608,7 @@ function theLegend()
                         this.callForNearbyHelpFromType(440, "Gulfrey");
                     }
 
-                    this.deathChecker();
+                    //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
                     this.pointTowardsPlayer();
@@ -15768,7 +15771,7 @@ function theLegend()
                         this.callForNearbyHelpFromType(575, "Torper");
                     }
 
-                    this.deathChecker();
+                    //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
                     this.pointTowardsPlayer();
@@ -15991,7 +15994,7 @@ function theLegend()
                         }
                     }
 
-                    this.deathChecker();
+                    //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
                 }
@@ -16264,7 +16267,7 @@ function theLegend()
                         }
                     }
 
-                    this.deathChecker();
+                    //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
                 }
@@ -16407,10 +16410,8 @@ function theLegend()
             if (this.alive == true)
             {
                 this.turnToDestination();
+                this.deathChecker();
             }
-
-            this.deathChecker();
-            this.AreAnyUnitsAttacking();
 
             if (this.alive == true || new Date().getTime() - this.timeSinceDead < 1000)
             {

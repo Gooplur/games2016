@@ -211,7 +211,7 @@ function theLegend()
 
     //DEVELOPMENTAL VARIABLES (variables for the developer to use)
         //Locational
-    var tellCoords = true; //This displays the players exact world coordinates on the screen.
+    var tellCoords = false; //This displays the players exact world coordinates on the screen.
         //AI Unit Focused
     var showSight = false; //This makes every AI UNIT draw their rangeOfSight to the world.
     var showPlayerAttackBubble = false; //This shows the bubble/radius in which the players attack will deal damage.
@@ -293,9 +293,9 @@ function theLegend()
     //Player Inventory
     var Inventory = [];
     //todo TEST INVENTORIES
-    Inventory = [[new Item("coins", false, false), 1000000], [new Item("gulfreyShellArmour", false, false), 1], [new Item("katana", false, false), 1], [new Item("flail", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1]];
-    //Inventory = [[new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
-    //Inventory = [[new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
+    Inventory = [[new Item("coins", false, false), 1000000], [new Item("vardanianBattleAxe", false, false), 1]];
+    //Inventory = [[new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
+    //Inventory = [[new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
 
     //This list holds one of each type of weapon so that the player can access the weapons stats.
     var allWeapons = [];
@@ -320,6 +320,7 @@ function theLegend()
     allWeapons.push(new Item("thenganSwordAndShield", false)); //18
     allWeapons.push(new Item("katana", false)); //19
     allWeapons.push(new Item("vardanianCleaver", false)); //20
+    allWeapons.push(new Item("vardanianBattleAxe", false)); //21
 
     //This list holds one of each type of worn item so that the player can access the worn item stats.
     var allWorn = [];
@@ -6045,6 +6046,77 @@ function theLegend()
                     XXX.restore();
                 }
             }
+            //VARDANIAN BATTLE AXE
+            if (this.weaponEquipped == "vardanianBattleAxe")
+            {
+                this.stageEngine(7, 0.235, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+                //ATTACK
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3342, 537, 61, 55, -13, -31.5, 79.3, 71.5);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3425, 533, 61, 55, -13, -46, 79.3, 71.5);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3506, 532, 61, 55, -15, -54, 79.3, 71.5);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3580, 526, 61, 55, -28, -62, 79.3, 71.5);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3647, 529, 61, 55, -39, -68, 79.3, 71.5);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3720, 532, 61, 55, -53, -59, 79.3, 71.5);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 6)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3784, 531, 61, 55, -69, -44, 79.3, 71.5);
+                    XXX.restore();
+                }
+                /*else if (Math.floor(this.stage) >= 7)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3865, 528, 61, 55, -70, -30, 79.3, 71.5);
+                    XXX.restore();
+                }*/
+            }
             //LONG BOW
             if (this.weaponEquipped == "longbow")
             {
@@ -6287,6 +6359,14 @@ function theLegend()
                 //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
                 this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.4/5 * Math.PI) * (this.mySize + 26);
                 this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.4/5 * Math.PI) * (this.mySize + 26);
+            }
+            else if (this.weaponEquipped == "vardanianBattleAxe")
+            {
+                this.weapon = allWeapons[21];
+
+                //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+                this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 16);
+                this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 16);
             }
         };
 
@@ -19628,8 +19708,41 @@ function theLegend()
                 this.ingredients = [["Jvostran", 6]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-                this.buyValue = 640 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 540.
-                this.sellValue = 219 + Math.floor(player.getCharisma() / 0.4); // at max, sell for 344.
+                this.buyValue = 840 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 740.
+                this.sellValue = 319 + Math.floor(player.getCharisma() / 0.4); // at max, sell for 444.
+            }
+            else if (this.type == "vardanianBattleAxe")
+            {
+                //For All Items
+                this.identity = "Vardanian Battle Axe";
+                this.weight = 17;
+                this.size = 32;
+                this.description = "A finely forged nechrovite and steel battle axe of Vardanian origin.";
+                this.intForDes = 5;
+                this.intDescription = "It is common for the most wealthy Vardanians to use a weapon such as this.";
+
+                //Define Utility
+                this.utility = "weapon";
+
+                //Utility Focused
+                this.energyCost = 22;
+                this.distance = 16 + this.range;
+                this.range = 6;
+                this.rate = 175 - (1/2 * player.getDexterity());
+                this.damage = (20 - this.damageHandicap - this.damageHandicapII) * (this.leveledDamageMultiple / 25) + ((1/25) * player.getStrength());
+                this.magicalDamage = 0;
+                this.negateArmour = 4;
+
+                //ability
+                this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 50;
+                this.ingredients = [["Steel", 1], ["Nechrovite", 4]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 720 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 620.
+                this.sellValue = 290 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 390.
             }
             else if (this.type == "flail")
             {
@@ -19893,6 +20006,11 @@ function theLegend()
                         }
                     }
                 }
+            }
+            else if (this.type == "vardanianBattleAxe")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 374, 354, 29, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 37.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 74.1), 37.7, 74.1);
             }
             else if (this.type == "rawOlkrinFlesh")
             {
@@ -20388,6 +20506,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "vardanianBattleAxe")
+            {
+                LXX.beginPath();
+                LXX.drawImage(theCrack, 374, 354, 29, 57, this.invX - (1/2 * 37.7), this.invY - (1/2 * 74.1), 37.7, 74.1);
+            }
             else if (this.type == "rawOlkrinFlesh")
             {
                 LXX.beginPath();
@@ -20876,6 +20999,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "vardanianBattleAxe")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 374, 354, 29, 57, this.invX - (1/2 * 37.7), this.invY - (1/2 * 74.1), 37.7, 74.1);
             }
             else if (this.type == "rawOlkrinFlesh")
             {

@@ -3,6 +3,7 @@
  */
 
 //TODO LIST
+//todo finish adding the dualCurvedDaggers weapon.
 //todo show names of players items in crafting menu.
 //todo make alpha Olkrin's death animation line up slightly more.
 //todo fix up twin war axes, and any other weapon that appears to be ill positioned to the player.
@@ -52,7 +53,7 @@ function legendaryPrerequisites()
     var togginBanditPayment = new Audio("sounds/polySounds/togginBanditPayment.mp3");
     window.togginBanditPayment = togginBanditPayment;
 
-    var togginTooLong = new Audio("sounds/polySounds/togginTooLong.mp3")
+    var togginTooLong = new Audio("sounds/polySounds/togginTooLong.mp3");
     window.togginTooLong = togginTooLong;
 
     var togginChangeMind = new Audio("sounds/polySounds/togginChangeMind.mp3");
@@ -297,9 +298,9 @@ function theLegend()
     //Player Inventory
     var Inventory = [];
     //todo TEST INVENTORIES
-    Inventory = [[new Item("coins", false, false), 1000000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100]];
+    //Inventory = [[new Item("coins", false, false), 1000000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100]];
     //Inventory = [[new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
-    //Inventory = [[new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
+    Inventory = [[new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
 
     //This list holds one of each type of weapon so that the player can access the weapons stats.
     var allWeapons = [];
@@ -327,6 +328,9 @@ function theLegend()
     allWeapons.push(new Item("vardanianBattleAxe", false)); //21
     allWeapons.push(new Item("crossbow", false)); //22
     allWeapons.push(new Item("steelBolt", false)); //23
+    allWeapons.push(new Item("nirineseSpear", false)); //24
+    allWeapons.push(new Item("curvedDagger", false)); //25
+    allWeapons.push(new Item("dualCurvedDaggers", false)); //26
 
     //This list holds one of each type of worn item so that the player can access the worn item stats.
     var allWorn = [];
@@ -1017,7 +1021,14 @@ function theLegend()
             }
             else if (player.class == "Fighter" && player.raceName == "Nirwaden")
             {
-                Inventory.push([new Item("nirineseSabre", false, false), 1]);
+                if (player.title == "Vagabond" || player.title == "Peasant" || player.title == "Commoner")
+                {
+                    Inventory.push([new Item("nirineseSpear", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("nirineseSabre", false, false), 1]);
+                }
             }
             else if (player.class == "Fighter" && player.raceName == "Freynor")
             {
@@ -1036,9 +1047,13 @@ function theLegend()
             }
             else if (player.class == "Fighter" && player.raceName == "Orgell")
             {
-                if (player.title == "Vagabond" || player.title == "Peasant" || player.title == "Commoner" || player.title == "Tradefolk")
+                if (player.title == "Vagabond" || player.title == "Peasant" || player.title == "Commoner")
                 {
-                    Inventory.push([new Item("mace", false, false), 1]);
+                    Inventory.push([new Item("curvedDagger", false, false), 1]);
+                }
+                else if (player.title == "Tradefolk")
+                {
+                    Inventory.push([new Item("dualCurvedDaggers", false, false), 1]);
                 }
                 else
                 {
@@ -6192,6 +6207,132 @@ function theLegend()
                     XXX.restore();
                 }
             }
+            //CURVED DAGGER
+            if (this.weaponEquipped == "curvedDagger")
+            {
+                this.stageEngine(7, 0.35, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+                //ATTACK
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3552, 657, 50, 34, -30.25, -20, 50, 34);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3618, 652, 50, 34, -31, -24, 50, 34);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3683, 650, 50, 34, -30.25, -26, 50, 34);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3745, 650, 50, 34, -27.5, -25, 50, 34);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3811, 650, 50, 34, -22.5, -27, 50, 34);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3875, 650, 50, 34, -16, -28.5, 50, 34);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 6)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3937, 645, 50, 34, -17, -33.5, 50, 34);
+                    XXX.restore();
+                }
+            }
+            //DUAL CURVED DAGGER
+            if (this.weaponEquipped == "dualCurvedDaggers")
+            {
+                this.stageEngine(7, 0.30, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+                //ATTACK
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3585, 595, 73, 51, -41.25, -40, 73, 51);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3660, 595, 73, 51, -37.25, -40, 73, 51);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3729, 595, 73, 51, -35.25, -41, 73, 51);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3797, 592, 58, 51, -24.25, -47, 58, 51);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3847, 595, 58, 51, -23.5, -46, 58, 51);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3893, 595, 58, 51, -23, -49, 58, 51);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 6)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 3942, 595, 58, 51, -21.5, -48.5, 58, 51);
+                    XXX.restore();
+                }
+            }
             //VARDANIAN BATTLE AXE
             if (this.weaponEquipped == "vardanianBattleAxe")
             {
@@ -6260,6 +6401,77 @@ function theLegend()
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
                     XXX.drawImage(verse, 3865, 528, 61, 55, -70, -30, 79.3, 71.5);
+                    XXX.restore();
+                }*/
+            }
+            //NIRINESE SPEAR
+            if (this.weaponEquipped == "nirineseSpear")
+            {
+                this.stageEngine(7, 0.235, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+                //ATTACK
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 41, 1505, 42, 87, -9, -66.5, 50.4, 98.1);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 82, 1507, 42, 87, -7, -68.5, 50.4, 98.1);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 120, 1506, 42, 87, -6, -72, 50.4, 98.1);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 159, 1501, 42, 87, -6, -76, 50.4, 98.1);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 193, 1501, 42, 87, -14.5, -77, 50.4, 98.1);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 224, 1501, 42, 87, -17.5, -79, 50.4, 98.1);
+                    XXX.restore();
+                }
+                /*else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 193, 1501, 42, 87, -12, -75, 50.4, 98.1);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 224, 1501, 42, 87, -15, -77, 50.4, 98.1);
                     XXX.restore();
                 }*/
             }
@@ -6774,6 +6986,30 @@ function theLegend()
                 //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
                 this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 16);
                 this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 16);
+            }
+            else if (this.weaponEquipped == "nirineseSpear")
+            {
+                this.weapon = allWeapons[24];
+
+                //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+                this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.1/5 * Math.PI) * (this.mySize + 56.5);
+                this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.1/5 * Math.PI) * (this.mySize + 56.5);
+            }
+            else if (this.weaponEquipped == "curvedDagger")
+            {
+                this.weapon = allWeapons[25];
+
+                //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+                this.bubbleOfDamageX = X - Math.cos(this.rotation - 3.3/5 * Math.PI) * (this.mySize + 2);
+                this.bubbleOfDamageY = Y - Math.sin(this.rotation - 3.3/5 * Math.PI) * (this.mySize + 2);
+            }
+            else if (this.weaponEquipped == "dualCurvedDaggers")
+            {
+                this.weapon = allWeapons[26];
+
+                //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+                this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.4/5 * Math.PI) * (this.mySize + 7);
+                this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.4/5 * Math.PI) * (this.mySize + 7);
             }
         };
 
@@ -11924,7 +12160,7 @@ function theLegend()
                 }
 
                 //this is rare, but some weapons draw below the body layer.
-                if (this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow") //add more cases for more overhead weapons.
+                if (this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }
@@ -12051,7 +12287,7 @@ function theLegend()
                 this.drawBody();
 
                 //most weapons draw beneath the armour layer.
-                if (this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow") //add more cases for more overhead weapons.
+                if (this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }
@@ -12846,7 +13082,7 @@ function theLegend()
                             {
                                 var parsedFactionRelation = 0;
                             }
-
+                            
                             if (dClick == true && this.ultra.merchant == true && dtp < 100 && this.disturbed == false && parsedFactionRelation >= -25)
                             {
                                 shopInventory = this.ultra.merchandise;
@@ -16861,11 +17097,22 @@ function theLegend()
                         //RANGE OF SIGHT (anything related to range of sight)
                         this.rangeOfSightCalculator(750, "true");
 
+                        //All of this factions guards drop this:
                         this.drops = [];
 
+                        // If the target has too low a level of relations with the faction they are an enemy.
                         if (player.freynorFaction <= -50)
                         {
                             this.disturbed = true;
+                        }
+
+                        //Call for help from other guards unless the culprit is the royal leader.
+                        if (this.disturbed == true)
+                        {
+                            if (player.title != "Royalty" || player.raceName != this.ultra.faction)
+                            {
+                                this.callForNearbyHelpFromType(2000, "Soldier");
+                            }
                         }
 
                         this.switchToRanged("longbow");
@@ -16875,20 +17122,30 @@ function theLegend()
                         if (this.ID == "Northern Bandit")
                         {
                             //RANGE OF SIGHT (anything related to range of sight)
-                            this.rangeOfSightCalculator(400, false);
+                            this.rangeOfSightCalculator(325, false);
 
                             this.drops = [[new Item("coins", this.X, this.Y), Math.floor(Math.random() * 5) + 1]];
 
                             this.disturbed = true;
+
+                            if (this.disturbed == true)
+                            {
+                                this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
+                            }
                         }
                         if (this.ID == "Hetmer The Bandit Chief")
                         {
                             //RANGE OF SIGHT (anything related to range of sight)
-                            this.rangeOfSightCalculator(425, false);
+                            this.rangeOfSightCalculator(350, false);
 
                             this.drops = [[new Item("hetmerArmour", this.X, this.Y), 1], [new Item("coins", this.X, this.Y), Math.floor(Math.random() * 33) + 6]];
 
                             this.disturbed = true;
+
+                            if (this.disturbed == true)
+                            {
+                                this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
+                            }
 
                             this.switchToRanged("longbow");
                         }
@@ -16897,6 +17154,15 @@ function theLegend()
                     {
                         //RANGE OF SIGHT (anything related to range of sight)
                         this.rangeOfSightCalculator(750, "true");
+
+                        //Call for help from other guards unless the culprit is the royal leader.
+                        if (this.disturbed == true)
+                        {
+                            if (player.title != "Royalty" || player.raceName != this.ultra.faction)
+                            {
+                                this.callForNearbyHelpFromType(2000, "Soldier");
+                            }
+                        }
 
                         this.drops = [];
                     }
@@ -16909,10 +17175,6 @@ function theLegend()
                         if (this.ranged == false)
                         {
                             this.Attack(this.ultra.weapon[1][1], this.ultra.weapon[1][0]);
-                        }
-                        if (player.title != "Royalty" || player.raceName != this.ultra.faction)
-                        {
-                            this.callForNearbyHelpFromType(2000, "Soldier");
                         }
                     }
                     else
@@ -16941,7 +17203,14 @@ function theLegend()
                 {
                     if (this.doOnDeathOnce == true)
                     {
-                        if (player.title != "Royalty" || player.raceName != this.ultra.faction)
+                        if (this.ultra.faction == "hostile")
+                        {
+                            if (this.ID == "Northern Bandit" || this.ID == "Hetmer The Bandit Chief")
+                            {
+                                this.callForNearbyHelpFromType(350, "Soldier");
+                            }
+                        }
+                        else if (player.title != "Royalty" || player.raceName != this.ultra.faction)
                         {
                             this.callForNearbyHelpFromType(2000, "Soldier");
                         }
@@ -19288,7 +19557,7 @@ function theLegend()
 
                 //Utility Focused
                 this.energyCost = 2;
-                this.distance = 24 + this.range;
+                this.distance = 24 + (this.range * 7);
                 this.range = 1;
                 this.rate = 155;
                 this.damage = (3 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
@@ -19322,7 +19591,7 @@ function theLegend()
 
                 //Utility Focused
                 this.energyCost = 5;
-                this.distance = 29 + this.range;
+                this.distance = 29 + (this.range * 7);
                 this.range = 5;
                 this.rate = 145;
                 this.damage = (6 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
@@ -19356,7 +19625,7 @@ function theLegend()
 
                 //Utility Focused
                 this.energyCost = 2.5;
-                this.distance = 18 + this.range;
+                this.distance = 18 + (this.range * 7);
                 this.range = 3;
                 this.rate = 135;
                 this.damage = 2 * (this.leveledDamageMultiple / 25);
@@ -19374,6 +19643,40 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 26 - Math.floor(player.getCharisma() / 5); // at max, buy for 16.
                 this.sellValue = 9 + Math.floor(player.getCharisma() / 10); // at max, sell for 14.
+            }
+            else if (this.type == "nirineseSpear")
+            {
+                //For All Items
+                this.identity = "Nirinese Spear";
+                this.weight = 4;
+                this.size = 15;
+                this.description = "A steel spear forged by the Nirinese.";
+                this.intForDes = 2;
+                this.intDescription = "A long metal polearm with a fancy steel guard and a sharp point made for piercing armour.";
+
+                //Define Utility
+                this.utility = "weapon";
+
+                //Utility Focused
+                this.energyCost = 5;
+                this.distance = 56.5 + (this.range * 7);
+                this.range = 1.5;
+                this.rate = (150 - player.getDexterity());
+                this.damage = (4 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+                this.magicalDamage = 0;
+                this.negateArmour = 6 + ((1/6.25) * player.getStrength());
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 20;
+                this.ingredients = [["Steel", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 30 - Math.floor(player.getCharisma() / 5); // at max, buy for 20.
+                this.sellValue = 10 + Math.floor(player.getCharisma() / 5); // at max, sell for 20.
             }
             else if (this.type == "crossbow")
             {
@@ -20382,7 +20685,7 @@ function theLegend()
 
                 //Utility Focused
                 this.energyCost = 6;
-                this.distance = 25 + this.range;
+                this.distance = 25 + (this.range * 7);
                 this.range = 4.5;
                 this.rate = 100;
                 this.damage = (7 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
@@ -20416,7 +20719,7 @@ function theLegend()
 
                 //Utility Focused
                 this.energyCost = 5;
-                this.distance = 34 + this.range;
+                this.distance = 34 + (this.range * 7);
                 this.range = 3.5;
                 this.rate = 100;
                 this.damage = (6 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/25) * player.getStrength());
@@ -20451,7 +20754,7 @@ function theLegend()
 
                 //Utility Focused
                 this.energyCost = 15;
-                this.distance = 23 + this.range;
+                this.distance = 23 + (this.range * 7);
                 this.range = 5.4;
                 this.rate = 140;
                 this.damage = (11 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
@@ -20484,7 +20787,7 @@ function theLegend()
 
                 //Utility Focused
                 this.energyCost = 2;
-                this.distance = 38 + this.range;
+                this.distance = 38 + (this.range * 7);
                 this.range = 2.8;
                 this.rate = 140;
                 this.damage = (4 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/25) * player.getStrength());
@@ -20517,9 +20820,9 @@ function theLegend()
 
                 //Utility Focused
                 this.energyCost = 1;
-                this.distance = 16 + this.range;
+                this.distance = 16 + (this.range * 7);
                 this.range = 2.5;
-                this.rate = 50;
+                this.rate = 115 - player.getDexterity();
                 this.damage = (3 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/50) * player.getStrength());
                 this.magicalDamage = 0;
                 this.negateArmour = 0;
@@ -20550,9 +20853,9 @@ function theLegend()
 
                 //Utility Focused
                 this.energyCost = 3;
-                this.distance = 17 + this.range;
+                this.distance = 17 + (this.range * 7);
                 this.range = 3.25;
-                this.rate = 95;
+                this.rate = 135 - player.getDexterity();
                 this.damage = (6 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/25) * player.getStrength());
                 this.magicalDamage = 0;
                 this.negateArmour = 0;
@@ -20583,7 +20886,7 @@ function theLegend()
 
                 //Utility Focused
                 this.energyCost = 7;
-                this.distance = 28 + this.range;
+                this.distance = 28 + (this.range * 7);
                 this.range = 5.4;
                 this.rate = 85;
                 if (player.getDexterity() < 4)
@@ -20623,7 +20926,7 @@ function theLegend()
 
                 //Utility Focused
                 this.energyCost = 35;
-                this.distance = 45 + this.range;
+                this.distance = 45 + (this.range * 7);
                 this.range = 7;
                 this.rate = 325;
                 this.damage = (29 - this.damageHandicap - this.damageHandicapII) * (this.leveledDamageMultiple / 25) + ((1/25) * player.getStrength());
@@ -20656,7 +20959,7 @@ function theLegend()
 
                 //Utility Focused
                 this.energyCost = 22;
-                this.distance = 16 + this.range;
+                this.distance = 16 + (this.range * 7);
                 this.range = 6;
                 this.rate = 175 - (1/2 * player.getDexterity());
                 this.damage = (20 - this.damageHandicap - this.damageHandicapII) * (this.leveledDamageMultiple / 25) + ((1/25) * player.getStrength());
@@ -20689,7 +20992,7 @@ function theLegend()
 
                 //Utility Focused
                 this.energyCost = 25;
-                this.distance = 40 + this.range;
+                this.distance = 40 + (this.range * 7);
                 this.range = 6;
                 this.rate = 250;
                 this.damage = (18 - this.damageHandicap - this.damageHandicapII) * (this.leveledDamageMultiple / 25) + ((1/12.5) * player.getStrength());
@@ -20722,7 +21025,7 @@ function theLegend()
 
                 //Utility Focused
                 this.energyCost = 20;
-                this.distance = 55 + this.range;
+                this.distance = 55 + (this.range * 7);
                 this.range = 3.6;
                 this.rate = 165;
                 this.damage = (17 - this.damageHandicap - this.damageHandicapII) * (this.leveledDamageMultiple / 25) + Math.floor(((1/6.6) * player.getStrength()));
@@ -20755,10 +21058,21 @@ function theLegend()
 
                 //Utility Focused
                 this.energyCost = 1.5;
-                this.distance = 18 + this.range;
+                this.distance = 18 + (this.range * 7);
                 this.range = 5;
-                this.rate = 60;
-                this.damage = (5 - this.damageHandicap) * (this.leveledDamageMultiple / 25);
+                this.rate = 70 - Math.floor(player.getEndurance() / 5);
+                if (player.getDexterity() >= 3 && player.getDexterity() < 10)
+                {
+                    this.damage = (4 - this.damageHandicap) * (this.leveledDamageMultiple / 25);
+                }
+                else if (player.getDexterity() >= 10)
+                {
+                    this.damage = (5 - this.damageHandicap) * (this.leveledDamageMultiple / 25);
+                }
+                else
+                {
+                    this.damage = (3 - this.damageHandicap) * (this.leveledDamageMultiple / 25);
+                }
                 this.magicalDamage = 0;
                 this.negateArmour = 0;
 
@@ -20788,7 +21102,7 @@ function theLegend()
 
                 //Utility Focused
                 this.energyCost = 18;
-                this.distance = 38 + this.range;
+                this.distance = 38 + (this.range * 7);
                 this.range = 8; //was 8.3
                 this.rate = 235;
                 if (player.getStrength() < 8)
@@ -20828,7 +21142,7 @@ function theLegend()
 
                 //Utility Focused
                 this.energyCost = 4.5;
-                this.distance = 26 + this.range;
+                this.distance = 26 + (this.range * 7);
                 this.range = 4;
                 this.rate = 100;
                 this.damage = (5.5 - (this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
@@ -20868,7 +21182,7 @@ function theLegend()
                 {
                     this.energyCost = 2;
                 }
-                this.distance = 26 + this.range;
+                this.distance = 26 + (this.range * 7);
                 this.range = (7 + 1/7);
                 if (player.getDexterity() < 25)
                 {
@@ -20893,6 +21207,108 @@ function theLegend()
                 this.buyValue = 90 - Math.floor(player.getCharisma() / 5); // at max, buy for 65.
                 this.sellValue = 32 + Math.floor(player.getCharisma() / 2); // at max, sell for 57.
             }
+            else if (this.type == "dualCurvedDaggers")
+            {
+                //For All Items
+                this.identity = "Dual Curved Daggers";
+                this.weight = 1;
+                this.size = 17;
+                this.description = "Two curved steel daggers used in synchrony to produce a deadly fighting style.";
+                this.intForDes = 6;
+                this.intDescription = "The more one trains their endurance and speed the more effective they become with the use of these daggers.";
+
+                //Define Utility
+                this.utility = "weapon";
+
+                //Utility Focused
+                if (player.getEndurance() < 8)
+                {
+                    this.energyCost = 2.5;
+                }
+                else
+                {
+                    this.energyCost = 1.5;
+                }
+                this.distance = 26 + (this.range * 7);
+                this.range = 3;
+                if (player.getDexterity() < 7)
+                {
+                    this.rate = 70;
+                }
+                else if (player.getDexterity() < 14)
+                {
+                    this.rate = 60;
+                }
+                else
+                {
+                    this.rate = 45;
+                }
+                this.damage = (4.5 - (1.5 * this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getDexterity());
+                this.magicalDamage = 0;
+                this.negateArmour = 0;
+
+                //ability
+                this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 14;
+                this.ingredients = [["Steel", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 24 - Math.floor(player.getCharisma() / 8); // at max, buy for 18.
+                this.sellValue = 13 + Math.floor(player.getCharisma() / 10); // at max, sell for 18.
+            }
+            else if (this.type == "curvedDagger")
+                {
+                    //For All Items
+                    this.identity = "Curved Dagger";
+                    this.weight = 0.5;
+                    this.size = 17;
+                    this.description = "A thin, light weight, and extremely sharp curved steel dagger.";
+                    this.intForDes = 6;
+                    this.intDescription = "The more one trains their endurance and speed the more effective they become with the use of this dagger.";
+
+                    //Define Utility
+                    this.utility = "weapon";
+
+                    //Utility Focused
+                    if (player.getEndurance() < 8)
+                    {
+                        this.energyCost = 2;
+                    }
+                    else
+                    {
+                        this.energyCost = 1;
+                    }
+                    this.distance = 26 + (this.range * 7);
+                    this.range = (2 + 4/7);
+                    if (player.getDexterity() < 7)
+                    {
+                        this.rate = 65;
+                    }
+                    else if (player.getDexterity() < 14)
+                    {
+                        this.rate = 55;
+                    }
+                    else
+                    {
+                        this.rate = 45;
+                    }
+                    this.damage = (2 - (1/2 * this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((1/16) * player.getDexterity());
+                    this.magicalDamage = 0;
+                    this.negateArmour = 0;
+
+                    //ability
+                    this.ability = "none";
+
+                    this.yield = 2;
+                    this.intForCraft = 13;
+                    this.ingredients = [["Steel", 1]];
+
+                    //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                    this.buyValue = 12 - Math.floor(player.getCharisma() / 15); // at max, buy for 9.
+                    this.sellValue = 6 + Math.floor(player.getCharisma() / 15); // at max, sell for 9.
+                }
         };
 
         //This draws items onto the map.
@@ -20936,6 +21352,21 @@ function theLegend()
                         }
                     }
                 }
+            }
+            else if (this.type == "curvedDagger")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3538, 605, 10, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30), 10, 30);
+            }
+            else if (this.type == "dualCurvedDaggers")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3552, 605, 16, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 16), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30), 16, 30);
+            }
+            else if (this.type == "nirineseSpear")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 8, 1511, 13, 79, X - this.X + (1/2 * CCC.width) - (1/2 * 15.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 94.8), 15.6, 94.8);
             }
             else if (this.type == "crossbow")
             {
@@ -21471,6 +21902,25 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "curvedDagger")
+            {
+                LXX.beginPath();
+                LXX.save();
+                LXX.translate(this.invX, this.invY);
+                LXX.rotate(Math.PI);
+                LXX.drawImage(verse, 3538, 605, 10, 30, 0 - (1/2 * 10), 0 - (1/2 * 30), 10, 30);
+                LXX.restore();
+            }
+            else if (this.type == "dualCurvedDaggers")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 3552, 605, 16, 30, this.invX - (1/2 * 16), this.invY - (1/2 * 30), 16, 30);
+            }
+            else if (this.type == "nirineseSpear")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 8, 1511, 13, 79, this.invX - (1/2 * 13), this.invY - (1/2 * 79), 13, 79);
+            }
             else if (this.type == "crossbow")
             {
                 LXX.beginPath();
@@ -21999,6 +22449,21 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "curvedDagger")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3538, 605, 10, 30, this.invX - (1/2 * 10), this.invY - (1/2 * 30), 10, 30);
+            }
+            else if (this.type == "dualCurvedDaggers")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 3552, 605, 16, 30, this.invX - (1/2 * 16), this.invY - (1/2 * 30), 16, 30);
+            }
+            else if (this.type == "nirineseSpear")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 8, 1511, 13, 79, this.invX - (1/2 * 13), this.invY - (1/2 * 79), 13, 79);
             }
             else if (this.type == "crossbow")
             {
@@ -22787,8 +23252,8 @@ function theLegend()
                     {
                         ArtificialIntelligenceAccess.push(new Unit(1563, 5864, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 2, speed: 1.05, outfit: ["walrusLeatherArmour", 4], weapon: ["freydicSword", [4, 4], 0, 16, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 4, patrolLoop: true, route:[[506, 6152], [1042, 6325], [1551, 6202], [1563, 5864]]}));
                         ArtificialIntelligenceAccess.push(new Unit(1941, 5902, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 4, speed: 1.15, outfit: ["none", 0], weapon: ["longbow", [0.1, 0.4], 0, 0, 0.85], ranged: [true, "arrow", 6, 1750, 1, 4, 0, "none", 1.4], patrolStops: 3, patrolLoop: true, route:[[1941, 5902], [2384, 5809], [1926, 6003]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(435, 5563, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 3, speed: 1.05, outfit: ["walrusLeatherArmour", 4], weapon: ["longbow", [0.1, 0.4], 0, 16, 1], ranged: [true, "arrow", 7, 1900, 1, 4, 0, "none", 1.5], patrolStops: 4, patrolLoop: true, route:[[435, 5563], [400, 5668], [636, 5860], [827, 5357]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(348, 5428, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 5, speed: 0.90, outfit: ["none", 4], weapon: ["freydicSword", [6, 4], 0, 16, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 3, patrolLoop: true, route:[[348, 5428], [391, 5303], [260, 5339]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(435 - 750, 5563, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 3, speed: 1.05, outfit: ["walrusLeatherArmour", 4], weapon: ["longbow", [0.1, 0.4], 0, 16, 1], ranged: [true, "arrow", 7, 1900, 1, 4, 0, "none", 1.5], patrolStops: 4, patrolLoop: true, route:[[435 - 750, 5563], [400 - 750, 5668], [636 - 750, 5860], [827 - 750, 5357]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(348 - 750, 5428, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 5, speed: 0.90, outfit: ["none", 4], weapon: ["freydicSword", [6, 4], 0, 16, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 3, patrolLoop: true, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                     }
 
                     if (uniqueChars.hetmerLDS == true)
@@ -22803,20 +23268,20 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(35, 5540, "Soldier", false, "Hetmer The Bandit Chief", {race: "Freynor", faction: "hostile", con: 6, speed: 1.2, outfit: ["hetmerArmour", 5.5], weapon: ["freydicSword", [6, 5], 0, 16, 1], ranged: [false, "arrow", 9, 2100, 1, 7, 0, "none", 1.2], patrolStops: 1, patrolLoop: false, route:[[221, 5517]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(35 - 750, 5540, "Soldier", false, "Hetmer The Bandit Chief", {race: "Freynor", faction: "hostile", con: 6, speed: 1.2, outfit: ["hetmerArmour", 5.5], weapon: ["freydicSword", [6, 5], 0, 16, 1], ranged: [false, "arrow", 9, 2100, 1, 7, 0, "none", 1.2], patrolStops: 1, patrolLoop: false, route:[[221 -750, 5517]]}));
                         }
                     }
 
                     //Scenery
                         //bandit Camp in the north east
                             //tents
-                    scenicList.push(new Scenery("tent", 74, 5672, (0.5/5 * 2 * Math.PI), true));
-                    scenicList.push(new Scenery("tent", 544, 5618, (4.5/5 * 2 * Math.PI), true));
-                    scenicList.push(new Scenery("tent", 280, 5700, 0, true));
-                    scenicList.push(new Scenery("tent", 255, 5249, Math.PI, true));
-                    scenicList.push(new Scenery("tent", -12, 5426, 1/2 * Math.PI, true));
+                    scenicList.push(new Scenery("tent", 74 - 750, 5672, (0.5/5 * 2 * Math.PI), true));
+                    scenicList.push(new Scenery("tent", 544 - 750, 5618, (4.5/5 * 2 * Math.PI), true));
+                    scenicList.push(new Scenery("tent", 280 - 750, 5700, 0, true));
+                    scenicList.push(new Scenery("tent", 255 - 750, 5249, Math.PI, true));
+                    scenicList.push(new Scenery("tent", -12 - 750, 5426, 1/2 * Math.PI, true));
                             //campfire
-                    scenicList.push(new Scenery("campFire", 248, 5494, 3/4 * Math.PI, true));
+                    scenicList.push(new Scenery("campFire", 248 - 750, 5494, 3/4 * Math.PI, true));
 
                     change = "central";
                 }

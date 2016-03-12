@@ -3,7 +3,8 @@
  */
 
 //TODO LIST
-//todo finish adding the dualCurvedDaggers weapon.
+//todo make anthracite (coal) a requirement to make good steel.
+//todo add a current and completed quest menu with quest descriptions etc.
 //todo show names of players items in crafting menu.
 //todo make alpha Olkrin's death animation line up slightly more.
 //todo fix up twin war axes, and any other weapon that appears to be ill positioned to the player.
@@ -68,9 +69,17 @@ function legendaryPrerequisites()
     snowyEnv.src = ("images/permaFrost.jpg");
     window.snowyEnv = snowyEnv;
 
+    var lushGrassEnv = new Image();
+    lushGrassEnv.src = ("images/reducedLush.jpg");
+    window.lushGrassEnv = lushGrassEnv;
+
     var frozenEnv = new Image();
     frozenEnv.src = ("images/tundra.jpg");
     window.frozenEnv = frozenEnv;
+
+    var nordWoods = new Image();
+    nordWoods.src = ("images/nordForest.png");
+    window.nordWoods = nordWoods;
 
     var snowEnv = new Image();
     snowEnv.src = ("images/fluffySnow.jpg");
@@ -160,7 +169,7 @@ function theLegend()
     var gameState = "mainMenu"; //set to "active" for ingame play, and set to "mainMenu" for the main menu.
 
     //Saving
-    var update = 3; //change this by one whenever a new update has changed any of the key game aspects that might interfere with the normal save structure.
+    var update = 4; //change this by one whenever a new update has changed any of the key game aspects that might interfere with the normal save structure.
     var lastUpdate = 0;
     var saveType = 1;
     var loadType = 1;
@@ -300,7 +309,7 @@ function theLegend()
     //todo TEST INVENTORIES
     //Inventory = [[new Item("coins", false, false), 1000000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100]];
     //Inventory = [[new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
-    Inventory = [[new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
+    Inventory = [[new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
 
     //This list holds one of each type of weapon so that the player can access the weapons stats.
     var allWeapons = [];
@@ -331,6 +340,7 @@ function theLegend()
     allWeapons.push(new Item("nirineseSpear", false)); //24
     allWeapons.push(new Item("curvedDagger", false)); //25
     allWeapons.push(new Item("dualCurvedDaggers", false)); //26
+    allWeapons.push(new Item("timberAxe", false)); //27
 
     //This list holds one of each type of worn item so that the player can access the worn item stats.
     var allWorn = [];
@@ -395,6 +405,7 @@ function theLegend()
     smithing.push(new Item("vardanianBattleAxe", false));
     smithing.push(new Item("crossbow", false));
     smithing.push(new Item("steelBolt", false));
+    smithing.push(new Item("timberAxe", false));
 
         //Foods (Items cooked at either a stove, an oven, or a campfire)
     var foods = [];
@@ -435,7 +446,7 @@ function theLegend()
     alchemy.push(new Item("energyPotionI", false));
     alchemy.push(new Item("speedPotionI", false));
         //Forge
-
+    var forge = [];
 
     //This sets the items that are in shops.
     function shopItemIDSetter()
@@ -495,40 +506,56 @@ function theLegend()
                     alchemy[i].setItemID();
                 }
             }
+            if (crafting == "forging" || initialcraftingItemSet == false)
+            {
+                for (var i = 0; i < forge.length; i++)
+                {
+                    forge[i].setItemID();
+                }
+            }
             initialcraftingItemSet = true;
         }
     }
 
     //This function runs through the list of Units and activates their Operation functions.
-    function projectileOperationsManagement()
+    function projectileOperationsManagement(z)
     {
         if (gameState == "active" || gameState == "stopTime")
         {
             for (var i = 0; i < playerProjectiles.length; i++)
             {
-                playerProjectiles[i].operations();
+                if (playerProjectiles[i].zIndex == z)
+                {
+                    playerProjectiles[i].operations();
+                }
             }
         }
         if (gameState == "active")
         {
             for (var i = 0; i < unitProjectiles.length; i++)
             {
-                unitProjectiles[i].operations();
+                if (unitProjectiles[i].zIndex == z)
+                {
+                    unitProjectiles[i].operations();
+                }
             }
         }
     }
     //This function runs through the list of Units and activates their Operation functions.
-    function artificialIntelligenceOperationsManagement()
+    function artificialIntelligenceOperationsManagement(z)
     {
         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
         {
-            if (gameState == "active")
+            if (ArtificialIntelligenceAccess[i].zIndex == z)
             {
-                ArtificialIntelligenceAccess[i].operation();
-            }
-            else if (gameState == "stopTime" && ArtificialIntelligenceAccess[i].timeResistance == true) //when the player uses magic to stop time time resistant creatures will still exist but all others will disapear until time starts again. //TODO this needs to be rearranged if it is ever going to be a real spell for the game. Units would need to be able to take damage and draw during paused time.
-            {
-                ArtificialIntelligenceAccess[i].operation();
+                if (gameState == "active")
+                {
+                    ArtificialIntelligenceAccess[i].operation();
+                }
+                else if (gameState == "stopTime" && ArtificialIntelligenceAccess[i].timeResistance == true) //when the player uses magic to stop time time resistant creatures will still exist but all others will disapear until time starts again. //TODO this needs to be rearranged if it is ever going to be a real spell for the game. Units would need to be able to take damage and draw during paused time.
+                {
+                    ArtificialIntelligenceAccess[i].operation();
+                }
             }
         }
     }
@@ -551,25 +578,31 @@ function theLegend()
         }
     }
     //This function runs through the list of scenery and activates their operation functions.
-    function sceneryOperationsManager()
+    function sceneryOperationsManager(z)
     {
         if (gameState == "active" || gameState == "stopTime")
         {
             for (var i = 0; i < scenicList.length; i++)
             {
-                scenicList[i].operations();
+                if (scenicList[i].zIndex == z)
+                {
+                    scenicList[i].operations();
+                }
             }
         }
     }
     //This function runs through the lists of Items and activates their operation functions.
-    function ItemOperationsManager()
+    function ItemOperationsManager(z)
     {
 
         if (gameState == "active" || gameState == "stopTime")
         {
             for (var i = 0; i < worldItems.length; i++)
             {
-                worldItems[i][0].operations();
+                if (worldItems[i][0].zIndex == z)
+                {
+                    worldItems[i][0].operations();
+                }
             }
 
         }
@@ -2733,7 +2766,7 @@ function theLegend()
         LXX.fillStyle = "lightGrey";
         LXX.fillRect(0, 0, 1400, 80);
 
-        // THIS IS THE BACKGROUND BUILDER (height, width, type x, y)
+        // THIS IS THE BACKGROUND BUILDER (height, width, type, x, y)
             //Different parts of the world load at different Y values.
         if (map == "world")
         {
@@ -2755,6 +2788,24 @@ function theLegend()
                 outlineBuilder( 1, 6, "stonePath", -6, -7);
                 outlineBuilder( 1, 13, "stonePath", -20, -7);
             }
+            if (Y < 6870 && X < - 2490) //This is the central region
+            {
+                region = "e1";
+                outlineBuilder( 34, 22, "forest", 26, -20);
+                outlineBuilder( 7, 2, "greenGrass", 26, -18);
+                outlineBuilder( 4, 3, "greenGrass", 28, -17);
+                outlineBuilder( 1, 2, "greenGrass", 28, -13);
+                outlineBuilder( 2, 1, "greenGrass", 26, -20);
+                outlineBuilder( 34, 12, "greenGrass", 14, -20);
+                outlineBuilder( 7, 1, "greenGrass", 26, -7);
+                outlineBuilder( 6, 2, "greenGrass", 26, 3);
+                outlineBuilder( 3, 1, "greenGrass", 28, 5);
+                outlineBuilder( 4, 1, "greenGrass", 26, 9);
+                outlineBuilder( 1, 2, "greenGrass", 26, -4);
+                outlineBuilder( 1, 34, "stonePath", 14, -3);
+                //border
+                outlineBuilder( 34, 1, "forest", 14, -20);
+            }
             if (Y < 6870 && X < 17891 && X > 6299) //This is the central region
             {
                 region = "w1";
@@ -2764,6 +2815,7 @@ function theLegend()
                 outlineBuilder( 34, 14, "crag", -34, -20);
                 outlineBuilder( 6, 6, "crag", -40, -6);
             }
+
             //Elevation 1 (frosty region) anti warmth effects start here
             if (Y > 6290 && Y < 32370) //this is the cold snowy environment
             {
@@ -2811,22 +2863,31 @@ function theLegend()
         //MASTER BUILDER
         buildMaster();
 
-        //STRUCTURES AND SCENERY
-        sceneryOperationsManager();
-        //TODO build structures
-
         //DEAD BODIES
         deadAIOperationsManagement();
 
-        //ITEMS
-        ItemOperationsManager(); //This draws items to the world;
+        //Layering, Drawing and World Life
+        for (var z = 1; z <= 5; z++)
+        {
+            //STRUCTURES AND SCENERY
+            sceneryOperationsManager(z);
+            //TODO build structures
 
-        //ENTITIES
-        artificialIntelligenceOperationsManagement();
-        mainCharacterAccess[0].operations(); //this activates all of the main character's methods and therefore makes the main character a part of the game.
+            //ITEMS
+            ItemOperationsManager(z); //This draws items to the world;
 
-        //PROJECTILES
-        projectileOperationsManagement();
+            //ENTITIES
+            artificialIntelligenceOperationsManagement(z);
+
+            if (player.zIndex == z)
+            {
+                mainCharacterAccess[0].operations(z); //this activates all of the main character's methods and therefore makes the main character a part of the game.
+            }
+
+            //PROJECTILES
+            projectileOperationsManagement(z);
+        }
+        player.cutcut = false; //just in case their was no scenery object available to turn it off it will be turned off after all have had the opportunity to register its on-ness.
 
         //SHOPS/CRAFTING
         shopItemIDSetter();
@@ -3290,6 +3351,7 @@ function theLegend()
 
         //CODE FOCUSED VARIABLES (the stuff that is not so pretty to look at, but that makes the world go 'round)
         //position and build
+        this.zIndex = 3;
         this.mySize = 10; // This determines the size of the player's body... Do not change this value!!!
         this.myScreenX = 700; //This is the midpoint X of the canvas.
         this.myScreenY = 275; //This is the midpoint Y of the canvas.
@@ -3418,6 +3480,7 @@ function theLegend()
         this.experienceToggle = "normal"; //This flag is for toggling between the magical experience bar and the regular one.
         this.playerDeath = false; //this is the thing that lets the player only die once when they die.
         this.REQB = false; //Ranged Equip Blocker //stops the player from unequipping or equipping while ammunition is loaded into a ranged weapon. Prevents while true allows while false.
+        this.cutcut = false; //for an sort of attacking of scenery this allows you to signal that an attack has happened.
 
         //a function for all of the small functions to fix tiny obscure yet sometimes important details...
         this.quickFixes = function()
@@ -4914,6 +4977,7 @@ function theLegend()
                     {
                         this.energy -= this.weapon.energyCost;
                         this.strike = true;
+                        this.cutcut = true; //for an sort of attacking of scenery this allows you to signal that an attack has happened.
                     }
                 }
                 else if (this.weaponIsRanged == true)
@@ -5039,11 +5103,11 @@ function theLegend()
                         {
                             if (rapidamente == false)
                             {
-                                self.stage -= framerate * TTD / (16.75 - (0.1 / 2 * ((this.getDexterity() / 2) + 0.5))); //This is the part that actually changes the frame in the negative direction.
+                                self.stage -= framerate * TTD / (16.75 - (0.1 / 2 * ((this.getDexterity() / 4) + 0.5))); //This is the part that actually changes the frame in the negative direction.
                             }
                             else
                             {
-                                self.stage -= framerate * TTD / (16.75 - (0.1 / 2 * 25));
+                                self.stage -= framerate * TTD / (16.75 - (0.1 / 2 * 12.5));
                             }
                         }
                     }
@@ -6207,6 +6271,69 @@ function theLegend()
                     XXX.restore();
                 }
             }
+            //TIMBER AXE
+            if (this.weaponEquipped == "timberAxe")
+            {
+                this.stageEngine(7, 0.25, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+                //ATTACK
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 334, 332, 54, 49, -60.25, -42, 54 * 1.4, 49 * 1.4);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 390, 328, 54, 49, -56.25, -47, 54 * 1.4, 49 * 1.4);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 453, 330, 54, 49, -44.25, -60, 54 * 1.4, 49 * 1.4);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 516, 330, 54, 49, -35, -60, 54 * 1.4, 49 * 1.4);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 576, 332, 54, 49, -30, -56, 54 * 1.4, 49 * 1.4);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 634, 332, 54, 49, -25, -49, 54 * 1.4, 49 * 1.4);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 6)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 680, 332, 54, 49, -16, -43, 54 * 1.4, 49 * 1.4);
+                    XXX.restore();
+                }
+            }
             //CURVED DAGGER
             if (this.weaponEquipped == "curvedDagger")
             {
@@ -7011,6 +7138,14 @@ function theLegend()
                 this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.4/5 * Math.PI) * (this.mySize + 7);
                 this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.4/5 * Math.PI) * (this.mySize + 7);
             }
+            else if (this.weaponEquipped == "timberAxe")
+            {
+                this.weapon = allWeapons[27];
+
+                //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+                this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.4/5 * Math.PI) * (this.mySize + 12);
+                this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.4/5 * Math.PI) * (this.mySize + 12);
+            }
         };
 
         //BLOCKING FUNCTION
@@ -7049,7 +7184,8 @@ function theLegend()
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
                         var dfu = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.bubbleOfDamageX) * (ArtificialIntelligenceAccess[i].X - this.bubbleOfDamageX) + (ArtificialIntelligenceAccess[i].Y - this.bubbleOfDamageY) * (ArtificialIntelligenceAccess[i].Y - this.bubbleOfDamageY)) - ArtificialIntelligenceAccess[i].sizeRadius; //This is the distance from the center of the players attack/damaging bubble to the AI Unit.
-                        if (dfu < this.weapon.range * 7 && this.finalAttackStage == true)
+
+                        if (dfu <= this.weapon.range * 7 && this.finalAttackStage == true)
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour));
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
@@ -12361,6 +12497,7 @@ function theLegend()
         this.negateArmour = negation;
         this.ability = "none";
         this.statsSet = false;
+        this.zIndex = 4;
 
         //PROJECTILE AI
         //TODO this is where unique projectile AI like target following would be added.
@@ -12644,9 +12781,13 @@ function theLegend()
                 }
                 if (terrain == "greenGrass")
                 {
+                    XXX.drawImage(lushGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                if (terrain == "hotGrass")
+                {
                     XXX.drawImage(greenGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
-                if (terrain == "forest")
+                if (terrain == "jungle")
                 {
                     XXX.drawImage(forestEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
@@ -12686,6 +12827,10 @@ function theLegend()
                 {
                     XXX.drawImage(frozenEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
+                if (terrain == "forest")
+                {
+                    XXX.drawImage(nordWoods, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
             }
 
         }
@@ -12700,6 +12845,7 @@ function theLegend()
         this.X = unitX; // this is the units X position in the world
         this.Y = unitY; // this is the units Y position in the world
         this.type = type; //This determines what kind of unit it is.
+        this.zIndex = 2;
 
         //variables concerning code functionality
         this.ultra = ultra;
@@ -13844,6 +13990,37 @@ function theLegend()
                 else if (theCostume >= 6)
                 {
                     this.drawUnit(verse, 2635, 1, 73, 63, -49.25, -69, 91.875, 78.75, 1 / 2 * Math.PI);
+                }
+            }
+            else if (this.weapon == "timberAxe")
+            {
+                if (theCostume <= 0)
+                {
+                    this.drawUnit(verse, 334, 332, 54, 49, -60.25, -42, 54 * 1.4, 49 * 1.4, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 1)
+                {
+                    this.drawUnit(verse, 390, 328, 54, 49, -56.25, -47, 54 * 1.4, 49 * 1.4, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 2)
+                {
+                    this.drawUnit(verse, 453, 330, 54, 49, -44.25, -60, 54 * 1.4, 49 * 1.4, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 3)
+                {
+                    this.drawUnit(verse, 516, 330, 54, 49, -35, -60, 54 * 1.4, 49 * 1.4, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 4)
+                {
+                    this.drawUnit(verse, 576, 332, 54, 49, -30, -56, 54 * 1.4, 49 * 1.4, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 5)
+                {
+                    this.drawUnit(verse, 634, 332, 54, 49, -25, -49, 54 * 1.4, 49 * 1.4, 1 / 2 * Math.PI);
+                }
+                else if (theCostume >= 6)
+                {
+                    this.drawUnit(verse, 680, 332, 54, 49, -16, -43, 54 * 1.4, 49 * 1.4, 1 / 2 * Math.PI);
                 }
             }
         };
@@ -16787,7 +16964,7 @@ function theLegend()
                 }
                 else if (this.ID == "Toggin")
                 {
-                    this.drops = [[new Item("coins", this.X, this.Y), 20]];
+                    this.drops = [[new Item("coins", this.X, this.Y), 20], [new Item("timberAxe", this.X, this.Y), 1]];
                     this.customEXP = true;
                     this.experience = 25 * ((player.getIntelligence() / 50) + 1);
                 }
@@ -17047,6 +17224,10 @@ function theLegend()
                             else if (this.weapon == "freydicSword")
                             {
                                 this.costumeEngine(7, 0.2, true);
+                            }
+                            else if (this.weapon == "timberAxe")
+                            {
+                                this.costumeEngine(7, 0.25, true);
                             }
                         }
                     }
@@ -17313,6 +17494,10 @@ function theLegend()
                             {
                                 this.costumeEngine(7, 0.2, true);
                             }
+                            else if (this.weapon == "timberAxe")
+                            {
+                                this.costumeEngine(7, 0.25, true);
+                            }
                         }
                     }
                     //draw some weapons underneath the body
@@ -17390,6 +17575,7 @@ function theLegend()
         this.counter = 0; //this is a call regulating variable that works to make sure heavy code isn't called too often.
         this.activate = false; //this is a flag that turns true when the Scenery object is clicked.
         this.interactionRange = 0;
+        this.zIndex = 1;
         //Campfire variables
         this.lit = false;
         this.fireCostume = 0;
@@ -17397,6 +17583,9 @@ function theLegend()
         this.burnt = false;
         this.burntTime = 0;
         this.gotFireStarter = false;
+        //Tree Variables
+        this.treePhase = 0;
+        this.treeHealth = 120;
 
         this.countAdder = function()
         {
@@ -17490,6 +17679,142 @@ function theLegend()
                 {
                     this.activate = false;
                     //TODO add sleeping in tents!
+                }
+            }
+            else if (this.type == "pineTree")
+            {
+                //TRAITS
+                this.solid = true;
+                this.interactionRange = 120;
+
+                //DRAWSELF
+                if (this.treePhase == 0)
+                {
+                    if (this.playerer < 130)
+                    {
+                        this.zIndex = 5;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(verse, 172, 1593, 28, 28, -(1/2 * 28 * 4.5), -(1/2 * 28 * 4.5), 28 * 4.5, 28 * 4.5);
+                        XXX.restore();
+
+                        XXX.globalAlpha = 0.96;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(verse, 3783, 317, 79, 71, -(1/2 * 79 * 4.5), -(1/2 * 71 * 4.5), 79 * 4.5, 71 * 4.5);
+                        XXX.restore();
+                        XXX.globalAlpha = 1;
+                    }
+                    else
+                    {
+                        this.zIndex = 5;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(verse, 3783, 317, 79, 71, -(1/2 * 79 * 4.5), -(1/2 * 71 * 4.5), 79 * 4.5, 71 * 4.5);
+                        XXX.restore();
+                    }
+                }
+                else if (this.treePhase == 1)
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 1, 1597, 165, 82, -(1/2 * 25 * 4.5), -(1/2 * 80 * 4.5), 165 * 4.5, 82 * 4.5);
+                    XXX.restore();
+                }
+                else if (this.treePhase == 2)
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 172, 1593, 28, 28, -(1/2 * 28 * 4.5), -(1/2 * 26 * 4.5), 28 * 4.5, 28 * 4.5);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 30;
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    if (this.treePhase == 1)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < Inventory.length; i ++)
+                        {
+                            if (Inventory[i][0].type == "wood")
+                            {
+                                Inventory[i][1] += 60;
+                                this.treePhase = 2;
+                                break;
+                            }
+                            else
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == Inventory.length)
+                        {
+                            Inventory.push([new Item("wood", false, false), 60]);
+                            this.treePhase = 2;
+                        }
+                    }
+                    this.activate = false;
+                }
+
+                if (this.treePhase == 0) //if this tree is in its cut down phase.
+                {
+                    console.log(player.finalAttackStage);
+                    if (player.weaponEquipped == "vardanianAxe" && player.cutcut == true && this.playerer < 130 || player.weaponEquipped == "vardanianAxeDual" && player.cutcut == true && this.playerer < 130)
+                    {
+                        var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                        console.log(distFromCutCut);
+                        if (distFromCutCut <= player.weapon.range * 7 + 35)
+                        {
+                            this.treeHealth -= 0.2;
+                            player.cutcut = false;
+                        }
+
+                        if (this.treeHealth <= 0)
+                        {
+                            this.treePhase = 1
+                        }
+                    }
+                    else if (player.weaponEquipped == "timberAxe" && player.cutcut == true && this.playerer < 130)
+                    {
+                        var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                        console.log(distFromCutCut);
+                        if (distFromCutCut <= player.weapon.range * 7 + 35)
+                        {
+                            this.treeHealth -= 1;
+                            player.cutcut = false;
+                        }
+
+                        if (this.treeHealth <= 0)
+                        {
+                            this.treePhase = 1
+                        }
+                    }
+                    else if (player.weaponEquipped == "vardanianBattleAxe" && player.cutcut == true && this.playerer < 130 || player.weaponEquipped == "freydicWarAxe" && player.cutcut == true  && this.playerer < 130)
+                    {
+                        var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                        console.log(distFromCutCut);
+                        if (distFromCutCut <= player.weapon.range * 7 + 35)
+                        {
+                            this.treeHealth -= 0.4;
+                            player.cutcut = false;
+                        }
+
+                        if (this.treeHealth <= 0)
+                        {
+                            this.treePhase = 1
+                        }
+                    }
                 }
             }
             else if (this.type == "campFire")
@@ -17656,6 +17981,7 @@ function theLegend()
         this.X = x;
         this.Y = y;
         this.equipped = false; //this is for the inventory and equipping to the player.
+        this.zIndex = 1;
 
         this.setItemID = function()
         {
@@ -19644,6 +19970,40 @@ function theLegend()
                 this.buyValue = 26 - Math.floor(player.getCharisma() / 5); // at max, buy for 16.
                 this.sellValue = 9 + Math.floor(player.getCharisma() / 10); // at max, sell for 14.
             }
+            else if (this.type == "timberAxe")
+            {
+                //For All Items
+                this.identity = "Timber Axe";
+                this.weight = 3;
+                this.size = 15;
+                this.description = "An iron axe used for cutting down trees.";
+                this.intForDes = 2;
+                this.intDescription = "This is one of the few weapons that you can use to collect timber.";
+
+                //Define Utility
+                this.utility = "weapon";
+
+                //Utility Focused
+                this.energyCost = 3.5;
+                this.distance = 12 + (this.range * 7);
+                this.range = 5;
+                this.rate = 155;
+                this.damage = (7 - (this.damageHandicap * 2.5)) * (this.leveledDamageMultiple / 25);
+                this.magicalDamage = 0;
+                this.negateArmour = 1.5;
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 13;
+                this.ingredients = [["Iron", 2], ["Wood", 2]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 45 - Math.floor(player.getCharisma() / 3); // at max, buy for 30.
+                this.sellValue = 12 + Math.floor(player.getCharisma() / 3); // at max, sell for 27.
+            }
             else if (this.type == "nirineseSpear")
             {
                 //For All Items
@@ -21353,6 +21713,11 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "timberAxe")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 294, 330, 29, 45, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 45 * 1.4), 29 * 1.4, 45 * 1.4);
+            }
             else if (this.type == "curvedDagger")
             {
                 XXX.beginPath();
@@ -21902,6 +22267,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "timberAxe")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 294, 330, 29, 45, this.invX - (1/2 * 29 * 1.4), this.invY - (1/2 * 45 * 1.4), 29 * 1.4, 45 * 1.4);
+            }
             else if (this.type == "curvedDagger")
             {
                 LXX.beginPath();
@@ -22449,6 +22819,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "timberAxe")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 294, 330, 29, 45, this.invX - (1/2 * 29 * 1.4), this.invY - (1/2 * 45 * 1.4), 29 * 1.4, 45 * 1.4);
             }
             else if (this.type == "curvedDagger")
             {
@@ -23117,7 +23492,7 @@ function theLegend()
                             }
                             if (hits == 0)
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(739, 1830, "Person", false, "Toggin", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["winterWolfClothing", 0], weapon: ["freydicSword", [8, 7], 0, 16, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[739, 1830], [756, 1635], [840, 1603]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(739, 1830, "Person", false, "Toggin", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["winterWolfClothing", 0], weapon: ["timberAxe", [10, 4], 1.5, 12, 1.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[739, 1830], [756, 1635], [840, 1603]]}));
                             }
                         }
                     }
@@ -23163,7 +23538,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(1690, 1021, "Person", false, "Svehn the Smith", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.65], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 103], [new Item("mace", false, false), 3], [new Item("freydicSpear", false, false), 5], [new Item("freydicSword", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("longbow", false, false), 2], [new Item("arrow", false, false), 92]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(1690, 1021, "Person", false, "Svehn the Smith", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.65], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 103], [new Item("mace", false, false), 3], [new Item("freydicSpear", false, false), 5], [new Item("freydicSword", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("longbow", false, false), 2], [new Item("arrow", false, false), 92], [new Item("timberAxe", false, false), 3]]}));
                         }
                     }
                     if (uniqueChars.medliaLDS == true)
@@ -23367,7 +23742,7 @@ function theLegend()
                     //todo when structures are created add their list's refresh sequence here.
 
                     //Delete All Non-native Scenery
-                    //todo when scenery is created add their list's refresh sequence here.
+                    scenicList = [];
 
                     //REGION CREATION
                     //Build AI Units
@@ -23380,6 +23755,65 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(13800, 3500, "Beruln", false, "Kagim"));
 
                     change = "w1";
+                }
+            }
+            else if (region == "e1") //Y > 6290 && Y < 32370
+            {
+                if (change != "e1")
+                {
+                    //Delete All Non-native AI Units
+                    for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                    {
+                        if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                        {
+                            ArtificialIntelligenceAccess.splice(i, 1);
+                            console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                        }
+                        else
+                        {
+                            console.log(i + " in list 'AI access' has been saved.");
+                        }
+                    }
+
+                    //Delete All Non-native Items
+                    worldItems = [];
+
+                    //Delete All Non-native Structures
+                    //todo when structures are created add their list's refresh sequence here.
+
+                    //Delete All Non-native Scenery
+                    scenicList = [];
+
+                    //REGION CREATION
+                    //Build AI Units
+
+                    //Trees of the forest
+                    scenicList.push(new Scenery("pineTree", -7703 , 1761, Math.PI, true));
+                    scenicList.push(new Scenery("pineTree", -7319 , 2158, Math.PI * 0.63, true));
+                    scenicList.push(new Scenery("pineTree", -7918 , 2493, 0, true));
+                    scenicList.push(new Scenery("pineTree", -7110 , 2531, Math.PI * 1.45, true));
+                    scenicList.push(new Scenery("pineTree", -7087 , 2950, - Math.PI * 0.19, true));
+                    scenicList.push(new Scenery("pineTree", -7632 , 2872, 0.19, true));
+                    scenicList.push(new Scenery("pineTree", -7427 , 3301, 1.87 * Math.PI, true));
+                    scenicList.push(new Scenery("pineTree", -7061 , 3661, - Math.PI * 1.33, true));
+                    scenicList.push(new Scenery("pineTree", -7800 , 3550, - 0.25, true));
+                    scenicList.push(new Scenery("pineTree", -8284 , 3238, Math.PI * 1.61, true));
+                    scenicList.push(new Scenery("pineTree", -8340 , 2685, - Math.PI * 0.91, true));
+                    scenicList.push(new Scenery("pineTree", -8155 , 2015, 0.32, true));
+                    scenicList.push(new Scenery("pineTree", -7714 , 3982, Math.PI, true));
+                    scenicList.push(new Scenery("pineTree", -8399 , 3798, Math.PI * 0.63, true));
+                    scenicList.push(new Scenery("pineTree", -8743 , 3450, 0, true));
+                    scenicList.push(new Scenery("pineTree", -8926 , 2996, Math.PI * 1.45, true));
+                    scenicList.push(new Scenery("pineTree", -8743 , 2291, Math.PI * 0.72, true));
+                    scenicList.push(new Scenery("pineTree", -8525 , 1670, - 0.39, true));
+                    scenicList.push(new Scenery("pineTree", -9151 , 1782, 1.98 * Math.PI, true));
+                    scenicList.push(new Scenery("pineTree", -9362 , 2188, Math.PI * 1.53, true));
+                    scenicList.push(new Scenery("pineTree", -9395 , 2720, - 0.50, true));
+                    scenicList.push(new Scenery("pineTree", -9642 , 3192, - Math.PI * 1.20, true));
+                    scenicList.push(new Scenery("pineTree", -9325 , 3380, Math.PI * 0.33, true));
+                    scenicList.push(new Scenery("pineTree", -9090 , 3989, - 0.77, true));
+
+                    change = "e1";
                 }
             }
         }
@@ -23435,6 +23869,7 @@ function theLegend()
         saveList(mainCharacterAccess, "mainCharacterAccess");
         saveList(ArtificialIntelligenceAccess, "ArtificialIntelligenceAccess");
         saveList(deadAIList, "deadAIList");
+        saveList(scenicList, "scenicList");
         saveList(worldItems, "worldItems", true);
         saveList(Inventory, "Inventory", true);
         saveList(playerProjectiles, "playerProjectiles");
@@ -23513,6 +23948,7 @@ function theLegend()
             deadAIList = loadList("deadAIList");
         }
         playerProjectiles = loadList("playerProjectiles");
+        //scenicList = loadList("scenicList");
         unitProjectiles = loadList("unitProjectiles");
         worldItems = loadList("worldItems", true);
         Inventory = loadList("Inventory", true);
@@ -23632,6 +24068,10 @@ function theLegend()
         else if (listName == "deadAIList")
         {
             return parsed.deadAIList;
+        }
+        else if (listName == "scenicList")
+        {
+            //return parsed.scenicList;
         }
         else if (listName == "worldItems")
         {

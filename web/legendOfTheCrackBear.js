@@ -182,6 +182,9 @@ function theLegend()
     //Game Pausing, Moderation, and Control
     var gameState = "mainMenu"; //set to "active" for ingame play, and set to "mainMenu" for the main menu.
 
+    //Functioning
+    var gameLoopNumber = 0
+
     //Saving
     var update = 4; //change this by one whenever a new update has changed any of the key game aspects that might interfere with the normal save structure.
     var lastUpdate = 0;
@@ -260,6 +263,7 @@ function theLegend()
     var showPlayerAttackBubble = false; //This shows the bubble/radius in which the players attack will deal damage.
     var testingUnitCenters = false; //This displays the center point of all AI UNITS.
     var testingUnitSizes = false; //This displays the AI Units' sizes as a faded white circle.
+    var unitSurround = true;
         //manipulation
     var wallPhase = false;
         //Player Stat Focused
@@ -340,7 +344,7 @@ function theLegend()
     //Inventory = [[new Item("coins", false, false), 1000000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100]];
     //Inventory = [[new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
     //Inventory = [[new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
-    Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1]];
+    Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1]];
 
     //Test Spells
     primarySpells = [];
@@ -696,6 +700,17 @@ function theLegend()
                 player.concentration = 0;
                 player.willpower = 1;
                 player.eminence = 0;
+            }
+            else if (cheatcode.toLowerCase() == "lineuptodie")
+            {
+                if (unitSurround == true)
+                {
+                    unitSurround = false;
+                }
+                else
+                {
+                    unitSurround = true;
+                }
             }
         }
     }
@@ -2875,8 +2890,7 @@ function theLegend()
     //THIS IS THE MAIN GAME LOOP
     function gameloopOfDestiny(time)
     {
-
-
+        gameLoopNumber += 1;
         XXX.clearRect(0, 0, 1400, 550);
 
         // Instead of clearing the interface bar is light grey.
@@ -5677,11 +5691,22 @@ function theLegend()
                                 this.secondaryCastingCooldown = new Date().getTime();
                                 this.will -= secondarySpells[i].cost;
                                 this.magicalExperience += secondarySpells[i].EXP;
-                                if (this.getEminence < 10)
+                                if (this.getEminence() < 10)
                                 {
                                     this.warmth -= 5;
                                 }
                                 this.weaponEquipped = "iceBlade";
+                            }
+                        }
+                            //Repel
+                        if (secondarySpells[i].ID == "repel")
+                        {
+                            if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                            {
+                                this.will -= secondarySpells[i].cost;
+                                this.magicalExperience += secondarySpells[i].EXP;
+                                magicList.push(new Magic({ID: "repel"}, true));
+                                this.secondaryCastingCooldown = new Date().getTime();
                             }
                         }
                     }
@@ -5801,7 +5826,7 @@ function theLegend()
                     if (this.doMagic)
                     {
                         this.doMagic = false;
-                        if (this.getEminence < 10)
+                        if (this.getEminence() < 10)
                         {
                             this.warmth -= 5;
                         }
@@ -6082,13 +6107,19 @@ function theLegend()
                     if (this.doMagic)
                     {
                         this.doMagic = false;
-                        if (this.getEminence < 10)
+                        if (this.getEminence() < 10)
                         {
                             this.warmth -= 5;
                         }
                         this.magicalExperience += this.spell.EXP;
-                        //magicList.push(new Magic(player.spell, true));
-                        this.castingCooldown = new Date().getTime();
+                        magicList.push(new Magic(player.spell, true, 1));
+                        magicList.push(new Magic(player.spell, true, 2));
+                        magicList.push(new Magic(player.spell, true, 3));
+                        magicList.push(new Magic(player.spell, true, 4));
+                        magicList.push(new Magic(player.spell, true, 5));
+                        magicList.push(new Magic(player.spell, true, 6));
+                        magicList.push(new Magic(player.spell, true, 7));
+                        magicList.push(new Magic(player.spell, true, 8));
                     }
                 }
                 else if (Math.floor(this.stage) <= 17)
@@ -14996,7 +15027,7 @@ function theLegend()
             {
                 if (this.distanceCovered < range)
                 {
-                    this.distanceCovered += speed;
+                    this.distanceCovered += speed * (TTD / 16.75);
                     this.X += (Math.cos(rotation) * speed) * (TTD / 16.75);
                     this.Y += (Math.sin(rotation) * speed) * (TTD / 16.75);
                 }
@@ -15074,6 +15105,19 @@ function theLegend()
                                     ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
                                     ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
                                 }
+                                else if (kind == "frostwind")
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].X -= ((6 * player.getConcentration()) / 50) * Math.cos(this.playerRotation - 1/2* Math.PI);
+                                    ArtificialIntelligenceAccess[i].Y -= ((6 * player.getConcentration()) / 50) * Math.sin(this.playerRotation - 1/2* Math.PI);
+                                }
+                                else if (kind == "force")
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].X -= (2+ 4 * ArtificialIntelligenceAccess[i].speed) * Math.cos(Math.atan(X - ArtificialIntelligenceAccess[i].X, Y - ArtificialIntelligenceAccess[i].Y) - 1/2 * Math.PI);
+                                    ArtificialIntelligenceAccess[i].Y -= (2+ 4 * ArtificialIntelligenceAccess[i].speed) * Math.sin(Math.atan(X - ArtificialIntelligenceAccess[i].X, Y - ArtificialIntelligenceAccess[i].Y) - 1/2 * Math.PI);
+                                }
                                 else if (kind == "magic")
                                 {
                                     ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
@@ -15096,7 +15140,7 @@ function theLegend()
                         {
                             var distanceToPlayer = Math.sqrt((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y));
 
-                            if (distanceToPlayer <= radius)
+                            if (distanceToPlayer <= radius + ArtificialIntelligenceAccess[i].sizeRadius)
                             {
                                 if (new Date().getTime() - this.contactDamageTime >= frequency)
                                 {
@@ -15105,6 +15149,12 @@ function theLegend()
                                         player.health -= Math.max(0, damage - player.heatResistance);
                                         player.thirst -= Math.max(0, damage - player.heatResistance);
                                         player.burningTime = new Date().getTime();
+                                    }
+                                    else if (kind == "frostwind")
+                                    {
+                                        player.health -= Math.max(0, damage - player.warmthProtection);
+                                        player.warmth -= Math.max(0, 5 - player.warmthProtection);
+                                        //todo figure out how to add wind pushback based on ai rotation for the player and put it here.
                                     }
                                     else if (kind == "magic")
                                     {
@@ -15130,7 +15180,7 @@ function theLegend()
                         {
                             var distanceToEnemy = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y));
 
-                            if (distanceToEnemy <= radius)
+                            if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius)
                             {
                                 if (new Date().getTime() - this.contactDamageTime >= frequency)
                                 {
@@ -15140,6 +15190,19 @@ function theLegend()
                                     {
                                         ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
                                         ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                                    }
+                                    else if (kind == "frostwind")
+                                    {
+                                        ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                        ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].X -= ((6 * player.getConcentration()) / 50) * Math.cos(this.playerRotation - 1/2* Math.PI);
+                                        ArtificialIntelligenceAccess[i].Y -= ((6 * player.getConcentration()) / 50) * Math.sin(this.playerRotation - 1/2* Math.PI);
+                                    }
+                                    else if (kind == "force")
+                                    {
+                                        ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                        ArtificialIntelligenceAccess[i].X -= (2+ 4 * ArtificialIntelligenceAccess[i].speed) * Math.cos(Math.atan(X - ArtificialIntelligenceAccess[i].X, Y - ArtificialIntelligenceAccess[i].Y) - 1/2 * Math.PI);
+                                        ArtificialIntelligenceAccess[i].Y -= (2+ 4 * ArtificialIntelligenceAccess[i].speed) * Math.sin(Math.atan(X - ArtificialIntelligenceAccess[i].X, Y - ArtificialIntelligenceAccess[i].Y) - 1/2 * Math.PI);
                                     }
                                     else if (kind == "magic")
                                     {
@@ -15164,7 +15227,7 @@ function theLegend()
                     {
                         var distanceToPlayer = Math.sqrt((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y));
 
-                        if (distanceToPlayer <= radius)
+                        if (distanceToPlayer <= radius + ArtificialIntelligenceAccess[i].sizeRadius)
                         {
                             if (new Date().getTime() - this.contactDamageTime >= frequency)
                             {
@@ -15175,6 +15238,12 @@ function theLegend()
                                     player.health -= Math.max(0, damage - player.heatResistance);
                                     player.thirst -= Math.max(0, damage - player.heatResistance);
                                     player.burningTime = new Date().getTime();
+                                }
+                                else if (kind == "frostwind")
+                                {
+                                    player.health -= Math.max(0, damage - player.warmthProtection);
+                                    player.warmth -= Math.max(0, 5 - player.warmthProtection);
+                                    //todo figure out how to add wind pushback based on ai rotation for the player and put it here.
                                 }
                                 else if (kind == "magic")
                                 {
@@ -15203,6 +15272,49 @@ function theLegend()
             {
                 this.orientToCaster(23, 1 / 2 * Math.PI);
                 this.drawWithRotation(polypol, 1691, 184, 24, 23, 29, 26, player.rotation, -1 / 2 * 24, -1 / 2 * 23);
+            }
+                //REPEL
+            if (this.spellType == "repel")
+            {
+                this.orientToCaster(0, 1 / 2 * Math.PI);
+            }
+                //FROST WIND
+            if (this.spellType == "frostWind")
+            {
+                var rdxn = Math.floor(Math.random() * 8);
+
+                if (instructions == 1)
+                {
+                    this.orientToCaster(18, 1.2/3 * Math.PI);
+                }
+                else if (instructions == 2)
+                {
+                    this.orientToCaster(18 + rdxn, 2.2/3 * Math.PI);
+                }
+                else if (instructions == 3)
+                {
+                    this.orientToCaster(18 + rdxn, 2.8/4 * Math.PI);
+                }
+                else if (instructions == 4)
+                {
+                    this.orientToCaster(18 + rdxn, 1.2/4 * Math.PI);
+                }
+                else if (instructions == 5)
+                {
+                    this.orientToCaster(18 + rdxn, 1.9/4 * Math.PI);
+                }
+                else if (instructions == 6)
+                {
+                    this.orientToCaster(18 + rdxn, 2.1/4 * Math.PI);
+                }
+                else if (instructions == 7)
+                {
+                    this.orientToCaster(18 + rdxn, 1.95/4 * Math.PI);
+                }
+                else if (instructions == 8)
+                {
+                    this.orientToCaster(18 + rdxn, 2.05/4 * Math.PI);
+                }
             }
                 //ICE SPIKES
             if (this.spellType == "iceSpikes")
@@ -15281,6 +15393,81 @@ function theLegend()
                         this.spellTimer(0.45);
                     }
                 }
+                //FROST WIND
+                if (this.spellType == "frostWind")
+                {
+                    if (caster)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.playerRotation);
+                        XXX.globalAlpha = 0.45;
+                        XXX.drawImage(polypol, 1815, 207, 28, 28, - (1/2 * 28), - (1/2 * 28), 28, 28);
+                        XXX.restore();
+
+                        this.contactDamage(false, 28, ((Math.random()) + 0.025 * player.getConcentration()) / 2, 250, "frostwind", "frostI");
+
+                        if (instructions == 1)
+                        {
+                            this.project(this.playerRotation + 0.7 / 2 * Math.PI, 90 * ((50 + 0.7 * player.getConcentration()) / 50), 2.2, true);
+                        }
+                        else if (instructions == 2)
+                        {
+                            this.project(this.playerRotation + 1.3 / 2 * Math.PI, 90 * ((50 + 0.7 * player.getConcentration()) / 50), 2.2, true);
+                        }
+                        else if (instructions == 3)
+                        {
+                            this.project(this.playerRotation + 1.4 / 2 * Math.PI, 90 * ((50 + 0.7 * player.getConcentration()) / 50), 2.2, true);
+                        }
+                        else if (instructions == 4)
+                        {
+                            this.project(this.playerRotation + 0.6 / 2 * Math.PI, 90 * ((50 + 0.7 * player.getConcentration()) / 50), 2.2, true);
+                        }
+                        else if (instructions == 5)
+                        {
+                            this.project(this.playerRotation + 1.2 / 2 * Math.PI, 90 * ((50 + 0.7 * player.getConcentration()) / 50), 2.2, true);
+                        }
+                        else if (instructions == 6)
+                        {
+                            this.project(this.playerRotation + 0.8 / 2 * Math.PI, 90 * ((50 + 0.7 * player.getConcentration()) / 50), 2.2, true);
+                        }
+                        else if (instructions == 7)
+                        {
+                            this.project(this.playerRotation + 1.05 / 2 * Math.PI, 90 * ((50 + 0.7 * player.getConcentration()) / 50), 2.2, true);
+                        }
+                        else if (instructions == 8)
+                        {
+                            this.project(this.playerRotation + 0.95 / 2 * Math.PI, 90 * ((50 + 0.7 * player.getConcentration()) / 50), 2.2, true);
+                        }
+                    }
+                    else
+                    {
+                        //todo add frostWind spell for AI
+                    }
+                }
+                //REPEL
+                if (this.spellType == "repel")
+                {
+                    if (caster)
+                    {
+                        if (this.ticCounter(250 + 11 * player.getConcentration()) + 40 <= 85 + player.getConcentration())
+                        {
+                            this.contactDamage(false, 10 + this.ticCounter(250 + 11 * player.getConcentration()), ((Math.random()) + 0.02 * player.getConcentration()) / 100, 5,  "force", "force");
+
+                            XXX.save();
+                            XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                            XXX.globalAlpha = 0.55;
+                            XXX.beginPath();
+                            XXX.strokeStyle = "white";
+                            XXX.lineWidth = 10 + 1/50 * this.ticCounter(250 + 11 * player.getConcentration());
+                            XXX.arc(0, 0, 10 + this.ticCounter(250 + 11 * player.getConcentration()), 0, 2*Math.PI);
+                            XXX.stroke();
+                            XXX.restore();
+                        }
+                    }
+
+                    this.spellTimer(0.65);
+                }
                     //EMBERS
                 if (this.spellType == "embers")
                 {
@@ -15288,12 +15475,12 @@ function theLegend()
                     {
                         if (player.getConcentration() >= 25)
                         {
-                            this.contactDamage(false, 19 * 2, ((Math.random() + 3) + 0.2 * player.getConcentration()) / 2, 250, "fire", "fireI");
+                            this.contactDamage(false, 24, ((Math.random() + 3) + 0.2 * player.getConcentration()) / 2, 250, "fire", "fireI");
                             this.flashAnimate(90, false, 1, [{image: polypol, imgX: 1688, imgY: 212, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * 2, adjY: -1 / 2 * 26 * 2, width: 29 * 2, height: 26 * 2}, {image: polypol, imgX: 1720, imgY: 210, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * 2, adjY: -1 / 2 * 26 * 2, width: 29 * 2, height: 26 * 2}, {image: polypol, imgX: 1754, imgY: 211, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * 2, adjY: -1 / 2 * 26 * 2, width: 29 * 2, height: 26 * 2}]);
                         }
                         else
                         {
-                            this.contactDamage(false, 20, ((Math.random() + 3) + 0.2 * player.getConcentration()) / 2, 250,  "fire", "fireI");
+                            this.contactDamage(false, 14, ((Math.random() + 3) + 0.2 * player.getConcentration()) / 2, 250,  "fire", "fireI");
                             this.flashAnimate(100, false, 1, [{image: polypol, imgX: 1688, imgY: 212, portionW: 29, portionH: 26, adjX: -1 / 2 * 29, adjY: -1 / 2 * 26, width: 29, height: 26}, {image: polypol, imgX: 1720, imgY: 210, portionW: 29, portionH: 26, adjX: -1 / 2 * 29, adjY: -1 / 2 * 26, width: 29, height: 26}, {image: polypol, imgX: 1754, imgY: 211, portionW: 29, portionH: 26, adjX: -1 / 2 * 29, adjY: -1 / 2 * 26, width: 29, height: 26}]);
                         }
                     }
@@ -15744,6 +15931,7 @@ function theLegend()
     {
         //TODO add a respawn function, and a respawn rate stat, and possibly respawn coords based roughly on their set coords.
         //Priority Variables
+        this.stackDominance = Math.random();
         this.ID = ID; //This is gives this unit an identity so that they can be identified if a problem comes up.
         this.X = unitX; // this is the units X position in the world
         this.Y = unitY; // this is the units Y position in the world
@@ -15830,8 +16018,86 @@ function theLegend()
         this.burningTime2 = new Date().getTime();
         this.frozenTime = 0;
         //Artificial Intelligence
-                //this creates a variable to easily access information about the main character.
 
+        //This makes sure that each existing Unit has a different dominance ranking and so when they get stuck on eachother the one with lower dominance will move out of the way.
+        this.stackSorter = function()
+        {
+            this.stackDominance = Math.random();
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                if (this.stackDominance == ArtificialIntelligenceAccess[i].stackDominance)
+                {
+                    this.stackSorter();
+                    break;
+                }
+            }
+        };
+        var initOrientation = Math.round(Math.random());
+        if (initOrientation)
+        {
+            this.intendedDirection == "left";
+        }
+        else
+        {
+            this.intendedDirection == "right";
+        }
+
+        this.stackSorter();
+
+        this.selfPosition = function(target, nextX, nextY)
+        {
+            var obstructorDist = Math.sqrt((target.X - nextX) * (target.X - nextX) + (target.Y - nextY) * (target.Y - nextY));
+            if (obstructorDist <= this.sizeRadius + target.sizeRadius && this.attacking == false)
+            {
+                return true;
+            }
+        };
+
+        this.unStack = function()
+        {
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                if (gameLoopNumber % 5 == 0 && ArtificialIntelligenceAccess[i] !== this)
+                {
+                    if (this.stackDominance < ArtificialIntelligenceAccess[i].stackDominance)
+                    {
+                        //move if overlapping
+                        var dFUTU = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
+                        if (dFUTU <= this.sizeRadius + ArtificialIntelligenceAccess[i].sizeRadius)
+                        {
+                            this.X += (this.speed) * Math.cos(Math.atan(X - ArtificialIntelligenceAccess[i].X, Y - ArtificialIntelligenceAccess[i].Y));
+                            this.Y += (this.speed) * Math.sin(Math.atan(X - ArtificialIntelligenceAccess[i].X, Y - ArtificialIntelligenceAccess[i].Y));
+                        }
+                    }
+
+                    if (unitSurround)
+                    {
+                        //If another thing is in the way move until it is not in the way.
+                        /*if (this.selfPosition(ArtificialIntelligenceAccess[i], this.X - Math.cos(this.rotation) * (TTD / 16.75) * this.speed, this.Y - Math.sin(this.rotation) * (TTD / 16.75) * this.speed))
+                        {
+                           if (this.selfPosition(ArtificialIntelligenceAccess[i], this.X + (this.speed) * Math.cos(Math.atan(X - this.X, Y - this.Y)), this.Y + (this.speed) * Math.sin(Math.atan(X - this.X, Y - this.Y))))
+                           {
+                               this.X += (this.speed) * Math.cos(Math.atan(X - this.X, Y - this.Y));
+                               this.Y += (this.speed) * Math.sin(Math.atan(X - this.X, Y - this.Y));
+                           }
+                        }*/
+                        var upcomingX = this.X - Math.cos(this.rotation) * (TTD / 16.75) * this.speed;
+                        var upcomingY = this.Y - Math.sin(this.rotation) * (TTD / 16.75) * this.speed;
+
+                        var obstructorDist = Math.sqrt((ArtificialIntelligenceAccess[i].X - upcomingX) * (ArtificialIntelligenceAccess[i].X - upcomingX) + (ArtificialIntelligenceAccess[i].Y - upcomingY) * (ArtificialIntelligenceAccess[i].Y - upcomingY));
+                        if (obstructorDist <= this.sizeRadius + ArtificialIntelligenceAccess[i].sizeRadius && this.attacking == false)
+                        {
+                            if (ArtificialIntelligenceAccess[i].stackDominance > this.stackDominance || ArtificialIntelligenceAccess[i].attacking == true)
+                            {
+                                this.X += (this.speed) * Math.cos(Math.atan(X - this.X, Y - this.Y));
+                                this.Y += (this.speed) * Math.sin(Math.atan(X - this.X, Y - this.Y));
+                                //todo all the creatures get stuck at a certain degree point, I need to figure out how to work around that here.
+                            }
+                        }
+                    }
+                }
+            }
+        };
 
             //this function determines the distance to the player [Distance To Player]
         this.DTP = function()
@@ -17305,7 +17571,10 @@ function theLegend()
                     this.timeSinceDead = new Date().getTime();
 
                     //loot and experience
-                    player.experience += this.experience;
+                    if (player.spell == "none")
+                    {
+                        player.experience += this.experience;
+                    }
                     for (var i = 0; i < this.drops.length; i++)
                     {
                         worldItems.push([this.drops[i][0], this.drops[i][1]]);
@@ -21709,6 +21978,7 @@ function theLegend()
             {
                 this.turnToDestination();
                 this.deathChecker();
+                this.unStack();
                 this.effected(this.resistances);
             }
 
@@ -22395,6 +22665,50 @@ function theLegend()
                 this.spellKnowledgeRequirement = 2;
                 this.spellRange = "Medium";
             }
+            else if (this.type == "repel")
+            {
+                //For All Items
+                if (player.getKnowledge() >= 4)
+                {
+                    this.identity = "Scroll of the Repelling Word";
+                    this.description = "Studying this scroll will teach you how to blast a wave of magical force that repels all within a close proximity of you.";
+                    this.intForDes = 0;
+                    this.intDescription = "This spell can be used in combination with forms or melee styles.";
+                    this.buyValue = 1277 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1077.
+                    this.sellValue = 762 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 962.
+                }
+                else
+                {
+                    this.identity = "Scroll";
+                    this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                    this.intForDes = 4;
+                    this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                    this.buyValue = 1277 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1077.
+                    this.sellValue = 1; // at max, sell for 1.
+                }
+                this.weight = 0.02;
+                this.size = 12;
+
+                //Define Utility
+                this.utility = "spell";
+
+                //ability
+                this.ability = "none";
+
+                //Utility Focused
+                this.damages = true;
+                this.spellDamage = 0.5 + 0.02 * player.getConcentration();
+                this.spellCost = Math.max(1, 1 + 2 * player.getConcentration() - 2 * player.getEminence());
+                this.spellGroup = "Incantation";
+                this.spellGenre = "Cosmic";
+                this.spellName = "Repel";
+                this.spellID = "repel";
+                this.spellEXP = 4 * ((50 + player.getMemory()) / 50);
+                this.spellCooldown = Math.max(0.65, 1 + (2/50) * player.getConcentration() - (2/50) * player.getEminence());
+                this.spellDescription = "A blast of cosmic force that repels all beings within range.";
+                this.spellKnowledgeRequirement = 4;
+                this.spellRange = "Short";
+            }
             else if (this.type == "frostWind")
             {
                 //For All Items
@@ -22428,7 +22742,7 @@ function theLegend()
                 //Utility Focused
                 this.damages = true;
                 this.spellDamage = 0.5 + (4.5/50 * player.getConcentration());
-                this.spellCost = 0.01;//Math.max(1, 3 + 22 / 50 * player.getConcentration() - (15 / 50) * player.getEminence());
+                this.spellCost = Math.max(1, 3 + 22 / 50 * player.getConcentration() - (15 / 50) * player.getEminence());
                 this.spellGroup = "Form";
                 this.spellGenre = "Ice";
                 this.spellName = "Frost Wind";
@@ -26656,6 +26970,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polypol, 1967, 67, 33, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 33), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26), 33, 26);
             }
+            else if (this.type == "repel")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polypol, 1922, 4, 23, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 23), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32), 23, 32);
+            }
             else if (this.type == "frostWind")
             {
                 XXX.beginPath();
@@ -27285,7 +27604,7 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
             }
-            else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind")
+            else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel")
             {
                 LXX.beginPath();
                 LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -27928,7 +28247,7 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
             }
-            else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind")
+            else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel")
             {
                 XXX.beginPath();
                 XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -29440,9 +29759,9 @@ function theLegend()
             Y = parsed.Y;
             spawnX = parsed.spawnX;
             spawnY = parsed.spawnY;
-            primarySpells = parsed.primarySpells;
-            secondarySpells = parsed.secondarySpells;
-            tertiarySpells = parsed.tertiarySpells;
+            //primarySpells = parsed.primarySpells;
+            //secondarySpells = parsed.secondarySpells;
+            //tertiarySpells = parsed.tertiarySpells;
 
             for (var key in parsed.uniqueChars)
             {
@@ -29460,7 +29779,7 @@ function theLegend()
         }
     }
 
-    //requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
-    gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
-    requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
+    requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
+    //gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
+    //requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
 }

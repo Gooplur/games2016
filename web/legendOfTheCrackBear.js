@@ -32031,9 +32031,9 @@ function theLegend()
             Y = parsed.Y;
             spawnX = parsed.spawnX;
             spawnY = parsed.spawnY;
-            //primarySpells = parsed.primarySpells;
-            //secondarySpells = parsed.secondarySpells;
-            //tertiarySpells = parsed.tertiarySpells;
+            primarySpells = parsed.primarySpells;
+            secondarySpells = parsed.secondarySpells;
+            tertiarySpells = parsed.tertiarySpells;
 
             for (var key in parsed.uniqueChars)
             {

@@ -312,7 +312,7 @@ function theLegend()
 
     //DEVELOPMENTAL VARIABLES (variables for the developer to use)
         //Locational
-    var tellCoords = true; //This displays the players exact world coordinates on the screen.
+    var tellCoords = false; //This displays the players exact world coordinates on the screen.
         //AI Unit Focused
     var showSight = false; //This makes every AI UNIT draw their rangeOfSight to the world.
     var showPlayerAttackBubble = false; //This shows the bubble/radius in which the players attack will deal damage.
@@ -401,10 +401,10 @@ function theLegend()
     //Player Inventory
     var Inventory = [];
     //todo TEST INVENTORIES
-    Inventory = [[new Item("coins", false, false), 1000000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100]];
+    //Inventory = [[new Item("coins", false, false), 1000000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100]];
     //Inventory = [[new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
     //Inventory = [[new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
-    //Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1]];
+    Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1]];
 
     //Test Spells
     primarySpells = [];
@@ -785,6 +785,13 @@ function theLegend()
                     player.willpower = 1;
                 }
             }
+            else if (cheatcode == "111248392741664s")
+            {
+                if (player.eminence == 50)
+                {
+                    player.eminence = 1000;
+                }
+            }
             else if (cheatcode.toLowerCase() == "lineuptodie")
             {
                 if (unitSurround == true)
@@ -795,6 +802,21 @@ function theLegend()
                 {
                     unitSurround = true;
                 }
+            }
+            else if (cheatcode.toLowerCase() == "coords")
+            {
+                if (tellCoords == true)
+                {
+                    tellCoords = false;
+                }
+                else
+                {
+                    tellCoords = true;
+                }
+            }
+            else if (cheatcode.toLowerCase() == "fix")
+            {
+                player.miniNoticeList = [];
             }
             else if (cheatcode.toLowerCase() == "clearitems")
             {
@@ -1344,6 +1366,10 @@ function theLegend()
                     if (player.raceName == "Freynor")
                     {
                         Inventory.push([new Item("iceSpikes", false, false), 1]);
+                    }
+                    else if (player.raceName == "Vardan")
+                    {
+                        Inventory.push([new Item("drainingI", false, false), 1]);
                     }
                     else
                     {
@@ -5872,6 +5898,71 @@ function theLegend()
                     this.castingCooldown = new Date().getTime();
                 }
             }
+
+            //Draining Form
+            if (this.spell.ID == "drainingI" || this.spell.ID == "drainingII" || this.spell.ID == "drainingIII")
+            {
+                this.stageEngine(6, 0.20, true);
+
+                //ATTACK
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polypol, 1867, 296, 36, 31, -22, -30, 36 * 1.2, 31 * 1.2);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polypol, 1867, 334, 36, 31, -26, -28, 36 * 1.2, 31 * 1.2);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polypol, 1870, 373, 36, 31, -25, -29, 36 * 1.2, 31 * 1.2);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polypol, 1872, 409, 36, 31, -25, -27, 36 * 1.2, 31 * 1.2);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polypol, 1875, 443, 36, 31, -24, -27, 36 * 1.2, 31 * 1.2);
+                    XXX.restore();
+                    this.doMagic = true;
+                }
+                else if (Math.floor(this.stage) >= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polypol, 1875, 477, 36, 31, -28, -28, 36 * 1.2, 31 * 1.2);
+                    XXX.restore();
+                    if (this.doMagic)
+                    {
+                        this.doMagic = false;
+                        this.magicalExperience += this.spell.EXP;
+                        magicList.push(new Magic(player.spell, true));
+                    }
+                    this.castingCooldown = new Date().getTime();
+                }
+            }
+
                 //Ice Spikes Form
             if (this.spell.ID == "iceSpikes")
             {
@@ -5988,6 +6079,7 @@ function theLegend()
                     this.castingCooldown = new Date().getTime();
                 }
             }
+
                 //Fireball Form
             if (this.spell.ID == "fireballI" || this.spell.ID == "fireballII" || this.spell.ID == "fireballIII")
             {
@@ -15451,25 +15543,17 @@ function theLegend()
                 return this.ticCount;
             };
 
-            this.damageThenGoAway = function(radius, whatDoIDo, damage, negate)
+            this.damageThenGoAway = function(radius, whatDoIDo, damage, negate, affectPlayer)
             {
-                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                if (affectPlayer == true)
                 {
-                    var distanceToEnemy = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y));
+                    var distanceToPlayer = Math.sqrt((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y));
 
-                    if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius)
+                    if (distanceToPlayer <= radius + player.mySize)
                     {
-                        if (whatDoIDo == "physicalDamage")
+                        if (whatDoIDo == "drainOrb")
                         {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                        }
-                        else if (whatDoIDo == "iceSpike")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, 3 + (1/50 * player.getConcentration()) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            player.health += damage;
                         }
 
                         for (var j=0; j < magicList.length; j++)
@@ -15478,6 +15562,55 @@ function theLegend()
                             {
                                 magicList.splice(j, 1);
                                 break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        var distanceToEnemy = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y));
+
+                        if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius)
+                        {
+                            if (whatDoIDo == "physicalDamage")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
+                            else if (whatDoIDo == "iceSpike")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, 3 + (1/50 * player.getConcentration()) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
+                            else if (whatDoIDo == "draining")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                //todo add that it turns lifeforce successfully stolen into magical life orbs that shoot off to the player and heal him/her.
+                                var counterOrbCount = 0
+                                if (ArtificialIntelligenceAccess[i].health < 0)
+                                {
+                                    counterOrbCount = Math.round(- ArtificialIntelligenceAccess[i].health);
+                                }
+                                var orbsAllowed = Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance - counterOrbCount)
+                                for (var j = 0; j < orbsAllowed; j++)
+                                {
+                                    magicList.push(new Magic({ID: "drainOrb"}, false, 0, ArtificialIntelligenceAccess[i]));
+                                }
+                            }
+
+                            for (var j=0; j < magicList.length; j++)
+                            {
+                                if (magicList[j] === this)
+                                {
+                                    magicList.splice(j, 1);
+                                    break;
+                                }
                             }
                         }
                     }
@@ -15668,11 +15801,22 @@ function theLegend()
                 this.orientToCaster(17, 1 / 2 * Math.PI);
                 this.drawWithRotation(polypol, 1688, 212, 29, 26, 29, 26, player.rotation, -1 / 2 * 29, -1 / 2 * 26);
             }
-                //FIREBALL
+                //FIREBALL I
             if (this.spellType == "fireballI")
             {
                 this.orientToCaster(23, 1 / 2 * Math.PI);
                 this.drawWithRotation(polypol, 1691, 184, 24, 23, 29, 26, player.rotation, -1 / 2 * 24, -1 / 2 * 23);
+            }
+                //Draining I
+            if (this.spellType == "drainingI")
+            {
+                this.orientToCaster(20, 0.64 / 2 * Math.PI);
+                this.drawWithRotation(polypol, 1767, 266, 16, 25, 29, 26, player.rotation, -1 / 2 * 16, -1 / 2 * 25);
+            }
+                //DrainOrb
+            if (this.spellType == "drainOrb")
+            {
+                this.orientToCaster(Math.random() * 24, (Math.random() * 2) / 2 * Math.PI);
             }
                 //REPEL
             if (this.spellType == "repel")
@@ -15904,7 +16048,8 @@ function theLegend()
                         this.spellTimer(0.45);
                     }
                 }
-                else if (this.spellType == "fireballI")
+
+                if (this.spellType == "fireballI")
                 {
                     if (caster)
                     {
@@ -15927,7 +16072,36 @@ function theLegend()
                         //Todo add the Ai part of this spell...
                     }
                 }
-                else if (this.spellType == "flyingColours")
+
+                if (this.spellType == "drainingI")
+                {
+                    if (caster)
+                    {
+                        this.damageThenGoAway(10, "draining", 1 + (Math.floor(4/50 * player.getConcentration())));
+                        this.flashAnimate(90, this.playerRotation, 1, [{image: polypol, imgX: 1767, imgY: 267, portionW: 16, portionH: 25, adjX: -1 / 2 * 16, adjY: -1 / 2 * 25, width: 16, height: 25}, {image: polypol, imgX: 1784, imgY: 267, portionW: 16, portionH: 25, adjX: -1 / 2 * 16, adjY: -1 / 2 * 25, width: 16, height: 25}, {image: polypol, imgX: 1809, imgY: 267, portionW: 16, portionH: 25, adjX: -1 / 2 * 16, adjY: -1 / 2 * 25, width: 16, height: 25}, {image: polypol, imgX: 1827, imgY: 267, portionW: 16, portionH: 25, adjX: -1 / 2 * 16, adjY: -1 / 2 * 25, width: 16, height: 25}]);
+                        this.project(this.playerRotation + 1/2 * Math.PI, 110 * ((50 + 3 * player.getConcentration()) / 50), 4 * ((50 + player.getConcentration()) / 50), true);
+                    }
+                    else
+                    {
+                        //Todo add the Ai part of this spell...
+                    }
+                }
+
+                if (this.spellType == "drainOrb")
+                {
+                    if (caster)
+                    {
+                        //Todo add the Ai part of this spell...
+                    }
+                    else
+                    {
+                        this.damageThenGoAway(6, "drainOrb", 1, 0, true);
+                        this.flashAnimate(90, this.ticCounter(100), 0.75, [{image: polypol, imgX: 1668, imgY: 270, portionW: 20, portionH: 18, adjX: -1 / 2 * 20 * 0.4, adjY: -1 / 2 * 18 * 0.4, width: 20 * 0.4, height: 18 * 0.4}, {image: polypol, imgX: 1695, imgY: 270, portionW: 20, portionH: 18, adjX: -1 / 2 * 20 * 0.4, adjY: -1 / 2 * 18 * 0.4, width: 20 * 0.4, height: 18 * 0.4}, {image: polypol, imgX: 1723, imgY: 270, portionW: 20, portionH: 18, adjX: -1 / 2 * 20 * 0.4, adjY: -1 / 2 * 18 * 0.4, width: 20 * 0.4, height: 18 * 0.4}]);
+                        this.project(Math.atan2(Y - this.Y, X - this.X), 100000, 3 + Math.random() * 2, true);
+                    }
+                }
+
+                if (this.spellType == "flyingColours")
                 {
                     if (caster)
                     {
@@ -24294,6 +24468,50 @@ function theLegend()
                 this.spellKnowledgeRequirement = 6;
                 this.spellRange = "Self";
             }
+            else if (this.type == "drainingI")
+            {
+                //For All Items
+                if (player.getKnowledge() >= 1)
+                {
+                    this.identity = "Scroll of Draining I";
+                    this.description = "Studying this scroll will teach you how to cast a shadowy blast that will steel the life force of its target and give it to the caster.";
+                    this.intForDes = 0;
+                    this.intDescription = "Reading the ancient markings sends an anxious chill through your bones.";
+                    this.buyValue = 450 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 350.
+                    this.sellValue = 250 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 350.
+                }
+                else
+                {
+                    this.identity = "Scroll";
+                    this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                    this.intForDes = 2;
+                    this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                    this.buyValue = 450 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 350.
+                    this.sellValue = 1; // at max, sell for 1.
+                }
+                this.weight = 0.02;
+                this.size = 12;
+
+                //Define Utility
+                this.utility = "spell";
+
+                //ability
+                this.ability = "none";
+
+                //Utility Focused
+                this.damages = true;
+                this.spellCost = Math.max(1, 1 + (26 / 50) * player.getConcentration() - (20 / 50) * player.getEminence());
+                this.spellGroup = "Form";
+                this.spellGenre = "Necromancy";
+                this.spellName = "Draining I";
+                this.spellID = "drainingI";
+                this.spellDamage = 1 + (Math.floor(4/50 * player.getConcentration()));
+                this.spellEXP = 5 * ((50 + player.getMemory()) / 50);
+                this.spellCooldown = Math.max(1, 8 + (7/50) * player.getConcentration() - (12/50) * player.getEminence());
+                this.spellDescription = "A shadowy blast that steels the lifeforce of its target and gives it to the caster.";
+                this.spellKnowledgeRequirement = 1;
+                this.spellRange = "Medium-Long";
+            }
             else if (this.type == "embers")
             {
                 //For All Items
@@ -28882,7 +29100,7 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polypol, 1844, 64, 37, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 37), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32), 37, 32);
             }
-            else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes")
+            else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "drainingI")
             {
                 XXX.beginPath();
                 XXX.drawImage(polypol, 1967, 67, 33, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 33), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26), 33, 26);
@@ -29581,7 +29799,7 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
             }
-            else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap")
+            else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI")
             {
                 LXX.beginPath();
                 LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -30284,7 +30502,7 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
             }
-            else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap")
+            else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI")
             {
                 XXX.beginPath();
                 XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);

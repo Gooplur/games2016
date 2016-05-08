@@ -413,8 +413,8 @@ function theLegend()
     //Player Inventory
     var Inventory = [];
     //todo TEST INVENTORIES
-    Inventory = [[new Item("coins", false, false), 1000000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2]];
-    //Inventory = [[new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
+    //Inventory = [[new Item("coins", false, false), 1000000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2]];
+    Inventory = [[new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
     //Inventory = [[new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
     //Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1]];
 
@@ -478,6 +478,7 @@ function theLegend()
     allWorn.push(new Item("varnFurClothing", false)); //13
     allWorn.push(new Item("varnFurCloak", false)); //14
     allWorn.push(new Item("varnFurDress", false)); //15
+    allWorn.push(new Item("frichFurMittens", false)); //16
 
     var scenicList = [];
 
@@ -563,9 +564,11 @@ function theLegend()
     tailoring.push(new Item("winterWolfOutfit", false));
     tailoring.push(new Item("winterWolfClothing", false));
     tailoring.push(new Item("frichFurClothing", false));
+    tailoring.push(new Item("frichFurMittens", false));
     tailoring.push(new Item("varnFurClothing", false));
     tailoring.push(new Item("varnFurCloak", false));
     tailoring.push(new Item("varnFurDress", false));
+    tailoring.push(new Item("walrusLeatherWaterskin", false));
         //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     var jewelry = [];
     jewelry.push(new Item("glassJar", false));
@@ -3750,6 +3753,10 @@ function theLegend()
         this.unskilledUse = false;
         this.weaponEquipped = "none";
         this.outfitEquipped = "none";
+        this.glovesEquipped = "none";
+        this.ringEquipped = "none";
+        this.necklaceEquipped = "none";
+        this.bootsEquipped = "none";
 
         //CODE FOCUSED VARIABLES (the stuff that is not so pretty to look at, but that makes the world go 'round)
         //position and build
@@ -3832,6 +3839,7 @@ function theLegend()
         this.isAmmoEquipped = false;
         this.projectileReleased = true;
         this.rangedWeaponType = "none";
+        this.areGlovesEquipped = false;
         //Shop Variables
         this.merchPosition = 0;
         //Bank Variables
@@ -5489,35 +5497,45 @@ function theLegend()
                 outfit = allWorn[0];
             }
 
+            var gloves;
+
+            if (this.glovesEquipped == "frichFurMittens")
+            {
+                gloves = allWorn[16];
+            }
+            else
+            {
+                gloves = allWorn[0];
+            }
             //TODO add ring.
             //TODO add pendant.
             //TODO add boots.
 
-            this.armour = outfit.protection; //TODO add ring, pendant, and boot's stats to all of the stats as well.
-            this.magicalResistance = outfit.magicalProtection;
-            this.warmthProtection = outfit.warmthRetention;
-            this.heatResistance = outfit.thirstRetention;
+            this.armour = outfit.protection + gloves.protection; //TODO add ring, pendant, and boot's stats to all of the stats as well.
+            this.magicalResistance = outfit.magicalProtection + gloves.magicalProtection;
+            this.warmthProtection = outfit.warmthRetention + gloves.warmthRetention;
+            this.heatResistance = outfit.thirstRetention + gloves.thirstRetention;
             //Main Stat Bonuses
-            this.AdStrength = outfit.strengthBonus;
-            this.AdEndurance = outfit.enduranceBonus;
-            this.AdToughness = outfit.toughnessBonus;
-            this.AdIntelligence = outfit.intelligenceBonus;
-            this.AdCharisma = outfit.charismaBonus;
-            this.AdRanged = outfit.rangedBonus;
-            this.AdConstitution = outfit.constitutionBonus;
-            this.AdStamina = outfit.staminaBonus;
-            this.AdDexterity = outfit.dexterityBonus;
-            this.AdStealth = outfit.stealthBonus;
+            this.AdStrength = outfit.strengthBonus + gloves.strengthBonus;
+            this.AdEndurance = outfit.enduranceBonus + gloves.enduranceBonus;
+            this.AdToughness = outfit.toughnessBonus + gloves.toughnessBonus;
+            this.AdIntelligence = outfit.intelligenceBonus + gloves.intelligenceBonus;
+            this.AdCharisma = outfit.charismaBonus + gloves.charismaBonus;
+            this.AdRanged = outfit.rangedBonus + gloves.rangedBonus;
+            this.AdConstitution = outfit.constitutionBonus + gloves.constitutionBonus;
+            this.AdStamina = outfit.staminaBonus + gloves.staminaBonus;
+            this.AdDexterity = outfit.dexterityBonus + gloves.dexterityBonus;
+            this.AdStealth = outfit.stealthBonus + gloves.stealthBonus;
             //Extra Stat Bonuses
-            this.hungerMAX = this.hungerMAX + outfit.hungerBonus;
-            this.thirstMAX = this.thirstMAX + outfit.thirstBonus;
-            this.warmthMAX = this.warmthMAX + outfit.warmthBonus;
+            this.hungerMAX = this.hungerMAX + outfit.hungerBonus + gloves.hungerBonus;
+            this.thirstMAX = this.thirstMAX + outfit.thirstBonus + gloves.thirstBonus;
+            this.warmthMAX = this.warmthMAX + outfit.warmthBonus + gloves.warmthBonus;
             //Magical Stat Bonuses
-            this.AdEminence = outfit.eminenceBonus;
-            this.AdWillpower = outfit.willpowerBonus;
-            this.AdKnowledge = outfit.knowledgeBonus;
-            this.AdConcentration = outfit.concentrationBonus;
-            this.AdMemory = outfit.memoryBonus;
+            this.AdEminence = outfit.eminenceBonus + gloves.eminenceBonus;
+            this.AdWillpower = outfit.willpowerBonus + gloves.willpowerBonus;
+            this.AdKnowledge = outfit.knowledgeBonus + gloves.knowledgeBonus;
+            this.AdConcentration = outfit.concentrationBonus + gloves.concentrationBonus;
+            this.AdMemory = outfit.memoryBonus + gloves.memoryBonus;
 
             if (this.getToughness() < outfit.toughnessRequirement)
             {
@@ -14640,6 +14658,26 @@ function theLegend()
                                     }
                                 }
                             }
+                            else if (Inventory[i][0].subUtility == "gloves")
+                            {
+                                //equpping gloves
+                                if (this.areGlovesEquipped == false)
+                                {
+                                    Inventory[i][0].equipped = true;
+                                    this.areGlovesEquipped = true;
+                                    this.glovesEquipped = Inventory[i][0].type;
+                                }
+                                else
+                                {
+                                    //unequipping gloves
+                                    if (Inventory[i][0].equipped == true)
+                                    {
+                                        Inventory[i][0].equipped = false;
+                                        this.areGlovesEquipped = false;
+                                        this.glovesEquipped = "none";
+                                    }
+                                }
+                            }
                             //TODO add equipping for other accessories such as pendants, rings, and shoes/boots.
                         }
                         else
@@ -15297,6 +15335,11 @@ function theLegend()
                     this.thirst = 0;
                     this.health -= 2 * (TTD / (1000 + 100 * this.getEndurance() * 2));
                 }
+            }
+
+            if (this.thirst >= this.thirstMAX)
+            {
+                this.thirst = this.thirstMAX;
             }
         };
             //WILL
@@ -23771,6 +23814,64 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "halcifPlant")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 45;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(freeverse, 7, 58, 26, 22, -(1/2 * 26), -(1/2 * 22), 26, 22);
+                    XXX.restore();
+                }
+                else
+                {
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 14;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    if (player.glovesEquipped == "none")
+                    {
+                        player.poisonIII = true;
+                    }
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "halcifMushroom")
+                        {
+                            Inventory[i][1] += Math.floor(1 + Math.random() * 6);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("halcifMushroom", false, false), Math.floor(1 + Math.random() * 6)]);
+                    }
+                }
+            }
             else if (this.type == "culprisPlant")
             {
                 //TRAITS
@@ -26891,6 +26992,43 @@ function theLegend()
                 this.buyValue = 9 - Math.floor(player.getCharisma() / 15); // at max, buy for 6.
                 this.sellValue = 2 + Math.floor(player.getCharisma() / 12); // at max, sell for 6.
             }
+            else if (this.type == "halcifMushroom")
+            {
+                //For All Items
+                this.identity = "Halcif Mushroom";
+                this.weight = 0.01;
+                this.size = 5;
+                this.description = "A ghostly white mushroom.";
+                if (player.getIntelligence() >= 0 && player.getIntelligence() < 25)
+                {
+                    this.intForDes = 10;
+                    this.intDescription = "Halcif mushrooms are so poisonous that if you touch them with your bare skin you may die.";
+                }
+                else
+                {
+                    this.intForDes = 25;
+                    this.intDescription = "Although even touching a halcif mushroom can kill someone, when combined with other reactants the poison can be easily neutralized.";
+                }
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 4; //restores will.
+
+                //ability
+                this.ability = "poisonIV";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 45 - Math.floor(player.getCharisma() / 3); // at max, buy for 30.
+                this.sellValue = 18 + Math.floor(player.getCharisma() / 4); // at max, sell for 30.
+            }
             else if (this.type == "boiledGlinMushrooms")
             {
                 //For All Items
@@ -27933,6 +28071,61 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 20 - Math.floor(player.getCharisma() / 10); // at max, buy for 15.
                 this.sellValue = 5 + Math.floor(player.getCharisma() / 10); // at max, sell for 10.
+            }
+            else if (this.type == "frichFurMittens")
+            {
+                //For All Items
+                this.identity = "Frich Fur Mittens";
+                this.weight = 0.2;
+                this.size = 11;
+                this.description = "Mittens sewn from frich fur.";
+                this.intForDes = 1;
+                this.intDescription = "Frich clothing is associated with the low class.";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "gloves";
+                //Utility Focused
+                //protections
+                this.protection = 0 * ((player.toughness / 100) + 1);
+                this.toughnessRequirement = 0;
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 0.1;
+                this.thirstRetention = -0.05;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 0;
+                this.toughnessBonus = 0;
+                this.intelligenceBonus = 0;
+                this.charismaBonus = 0;
+                this.rangedBonus = 0;
+                this.constitutionBonus = 0;
+                this.staminaBonus = 0;
+                this.dexterityBonus = 0;
+                this.stealthBonus = 0;
+                //Extra Stat Bonuses
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 1;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "none";
+
+                this.yield = 3;
+                this.intForCraft = 12;
+                this.ingredients = [["Frich Pelt", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+                this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
             }
             else if (this.type == "walrusLeatherArmour")
             {
@@ -29631,6 +29824,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(freeverse, 118, 27, 14, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 2), 14 * 2, 15 * 2);
             }
+            else if (this.type == "halcifMushroom")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 33, 62, 13, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 13), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15), 13, 15);
+            }
             else if (this.type == "glinMushrooms")
             {
                 XXX.beginPath();
@@ -29845,6 +30043,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(verse, 91, 380, 50, 61, X - this.X + (1/2 * CCC.width) - (1/2 * 80), Y - this.Y + (1/2 * CCC.height) - (1/2 * 95.6), 80, 95.6);
+            }
+            else if (this.type == "frichFurMittens")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 386, 21, 19, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 1.2), 19 * 1.2, 11 * 1.2);
             }
             else if (this.type == "frichFurClothing")
             {
@@ -30375,6 +30578,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(freeverse, 118, 1, 14, 21, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 21 * 2), 14 * 2, 21 * 2);
             }
+            else if (this.type == "halcifMushroom")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 33, 62, 13, 15, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 15 * 2), 13 * 2, 15 * 2);
+            }
             else if (this.type == "glinMushrooms")
             {
                 LXX.beginPath();
@@ -30583,6 +30791,11 @@ function theLegend()
             {
                 LXX.beginPath();
                 LXX.drawImage(verse, 91, 380, 50, 61, this.invX - (1/2 * 80  * 0.8), this.invY - (1/2 * 95.6 * 0.7), 80 * 0.8, 95.6 * 0.7);
+            }
+            else if (this.type == "frichFurMittens")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 386, 21, 19, 11, this.invX - (1/2 * 19 * 1.4), this.invY - (1/2 * 11 * 1.4), 19 * 1.4, 11 * 1.4);
             }
             else if (this.type == "frichFurClothing")
             {
@@ -31108,6 +31321,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(freeverse, 118, 1, 14, 21, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 21 * 2), 14 * 2, 21 * 2);
             }
+            else if (this.type == "halcifMushroom")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 33, 62, 13, 15, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 15 * 2), 13 * 2, 15 * 2);
+            }
             else if (this.type == "glinMushrooms")
             {
                 XXX.beginPath();
@@ -31312,6 +31530,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(verse, 91, 380, 50, 61, this.invX - (1/2 * 80  * 0.8), this.invY - (1/2 * 95.6 * 0.7), 80 * 0.8, 95.6 * 0.7);
+            }
+            else if (this.type == "frichFurMittens")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 386, 21, 19, 11, this.invX - (1/2 * 19 * 1.4), this.invY - (1/2 * 11 * 1.4), 19 * 1.4, 11 * 1.4);
             }
             else if (this.type == "frichFurClothing")
             {
@@ -32696,6 +32919,7 @@ function theLegend()
                     scenicList.push(new Scenery("stomwikPlant", -11965 , -1414, 0, true));
                     scenicList.push(new Scenery("glinPlant", -12768 , -1507, -1.55, true));
                     scenicList.push(new Scenery("glinPlant", -9157 , 4196, -1.55, true));
+                    scenicList.push(new Scenery("halcifPlant", -11413 , 3822, -0.55, true));
 
                     change = "e1";
                 }
@@ -33017,7 +33241,7 @@ function theLegend()
         }
     }
 
-    requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
-    //gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
-    //requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
+    //requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
+    gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
+    requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
 }

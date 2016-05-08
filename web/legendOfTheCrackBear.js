@@ -33241,7 +33241,7 @@ function theLegend()
         }
     }
 
-    //requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
-    gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
-    requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
+    requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
+    //gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
+    //requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
 }

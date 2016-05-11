@@ -250,7 +250,7 @@ function theLegend()
     var gameLoopNumber = 0;
 
     //Saving
-    var update = 5; //change this by one whenever a new update has changed any of the key game aspects that might interfere with the normal save structure.
+    var update = 6; //change this by one whenever a new update has changed any of the key game aspects that might interfere with the normal save structure.
     var lastUpdate = 0;
     var saveType = 1;
     var loadType = 1;
@@ -266,6 +266,10 @@ function theLegend()
     var clicked = false; //senses upon click and during hold click.
     var clickReleased = true; //senses once for the briefest moment upon release.
     var dClick = false;
+
+    //Other Variables (extra)
+    var drunkScreenShift = 0;
+    var drunkDirectionSwitch = false;
 
     //Lower Canvas
     var lowBar = "information"; //This variable determines what type of menu the lower bar is.
@@ -414,7 +418,7 @@ function theLegend()
     var Inventory = [];
     //todo TEST INVENTORIES
     //Inventory = [[new Item("coins", false, false), 1000000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2]];
-    Inventory = [[new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
+    Inventory = [[new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
     //Inventory = [[new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
     //Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1]];
 
@@ -572,6 +576,8 @@ function theLegend()
         //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     var jewelry = [];
     jewelry.push(new Item("glassJar", false));
+    jewelry.push(new Item("pintGlass", false));
+    jewelry.push(new Item("potionGlass", false));
     jewelry.push(new Item("fireStarter", false));
         //Alchemy (Potions and mixtures crafted at an alchemy lab station)
     var alchemy = [];
@@ -580,6 +586,9 @@ function theLegend()
     alchemy.push(new Item("energyPotionI", false));
     alchemy.push(new Item("speedPotionI", false));
     alchemy.push(new Item("fermentedNarthwarpMouth", false));
+        //Brewing (alcohols, liquid fermentation, etc.)
+    var brewing = [];
+    brewing.push(new Item("harstAle", false));
 
         //Forge
     var forge = [];
@@ -1429,6 +1438,19 @@ function theLegend()
                 }
             }
 
+            //Special bonuses for some races
+            if (player.raceName == "Aldrek")
+            {
+                player.baseThirst = 35;
+            }
+            else if (player.raceName == "Freynor")
+            {
+                player.baseWarmth = 80;
+            }
+            else if (player.raceName == "Kel")
+            {
+                player.baseHunger = 60;
+            }
             //reset stats.
             player.setBaseStats();
             player.energy = player.energyMAX;
@@ -3158,7 +3180,7 @@ function theLegend()
         deadAIOperationsManagement();
 
         //Layering, Drawing and World Life
-        for (var z = 1; z <= 5; z++)
+        for (var z = 1; z <= 6; z++)
         {
             //STRUCTURES AND SCENERY
             sceneryOperationsManager(z);
@@ -3169,11 +3191,8 @@ function theLegend()
 
             //ENTITIES
             artificialIntelligenceOperationsManagement(z);
+            mainCharacterAccess[0].operations(z); //this activates all of the main character's methods and therefore makes the main character a part of the game.
 
-            if (player.zIndex == z)
-            {
-                mainCharacterAccess[0].operations(z); //this activates all of the main character's methods and therefore makes the main character a part of the game.
-            }
 
             //PROJECTILES
             projectileOperationsManagement(z);
@@ -3304,10 +3323,105 @@ function theLegend()
             }
         }
 
+        //Screen Covers
+        screenCover();
+
         if (gameState != "mainMenu" && gameState != "characterBuilder")
         {
             requestAnimationFrame(gameloopOfDestiny, CCC);
         }
+    }
+
+    //Screen Covers (includes night and day cycle)
+    function screenCover()
+    {
+        //Night and Day
+        //todo add night and day cycles (add lighting system as well)
+
+        //Inebriated Blur
+        if (player.inebriated == true) //Doodledoop
+        {
+            if (drunkScreenShift < 40 && drunkDirectionSwitch == false)
+            {
+                drunkScreenShift += 0.1;
+            }
+            else
+            {
+                drunkDirectionSwitch = true;
+                drunkScreenShift -= 0.1;
+            }
+
+            if (drunkScreenShift < -40)
+            {
+                drunkDirectionSwitch = false;
+            }
+            //draw double vision.
+            XXX.beginPath();
+            XXX.save();
+            XXX.translate(drunkScreenShift, 0);
+            XXX.scale(1.05, 1);
+            XXX.globalAlpha = 0.45;
+            XXX.drawImage(CCC, -40, 0);
+            XXX.restore();
+
+            if (player.inebriation > 3 * (100 + (3 * player.getToughness())))
+            {
+                XXX.beginPath();
+                XXX.save();
+                XXX.translate(drunkScreenShift, 0);
+                XXX.scale(1.1, 1);
+                XXX.globalAlpha = 0.45;
+                XXX.drawImage(CCC, -60, 0);
+                XXX.restore();
+
+                if (player.inebriation >= 5 * (100 + (3 * player.getToughness())))
+                {
+                    XXX.beginPath();
+                    XXX.save();
+                    XXX.translate(drunkScreenShift, 0);
+                    XXX.scale(1.1, 1);
+                    XXX.globalAlpha = 0.45;
+                    XXX.drawImage(CCC, 0, 35);
+                    XXX.restore();
+
+                    XXX.beginPath();
+                    XXX.save();
+                    XXX.translate(drunkScreenShift, 0);
+                    XXX.scale(1.1, 1);
+                    XXX.globalAlpha = 0.45;
+                    XXX.drawImage(CCC, 0, -35);
+                    XXX.restore();
+
+                    if (player.inebriation >= 8 * (100 + (3 * player.getToughness())))
+                    {
+                        XXX.beginPath();
+                        XXX.save();
+                        XXX.translate(0, 0);
+                        XXX.scale(3, 3);
+                        XXX.globalAlpha = 0.45;
+                        XXX.drawImage(CCC, 0, 0);
+                        XXX.restore();
+
+                        XXX.beginPath();
+                        XXX.save();
+                        XXX.translate(0, 0);
+                        XXX.scale(2, 2);
+                        XXX.globalAlpha = 0.45;
+                        XXX.drawImage(CCC, 0, 0);
+                        XXX.restore();
+                    }
+                }
+            }
+        }
+        //Cyrinthilim Mushroom Drug Trip
+        if (player.CyrinthilimTrip)
+        {
+            //todo add this drug trip!
+        }
+
+        //Blindness
+        //todo add blindness effect.
+
     }
 
     //SENSING FUNCTIONS
@@ -3742,6 +3856,7 @@ function theLegend()
         this.will = this.willMAX; //magical casting power.
         this.armourTotal = this.naturalArmour + this.armour; //amount of damage that is deducted from incoming attacks before it applies to the player's health.
         this.naturalArmour = 0; //amount of armour a player has without including armor that the player could wear.
+        this.baseHunger = 50;
         this.hungerMAX = 50;
         this.hunger = this.hungerMAX;
         this.thirstMAX = 20;
@@ -3775,6 +3890,8 @@ function theLegend()
         this.movingType = 1; //There are three four moving types 0: standing, 1: walking, 2: running, 3: sneaking
         this.legSwitch = 0;
         //Climate Affected Stats
+        this.baseWarmth = 50;
+        this.baseThirst = 20;
         this.warmthMAX = 50 + (1 * this.endurance) + (4 * this.toughness); //This is how warm you are... if it goes to 0 or below then the player will start losing health at an average rate but also their speed will be massively decreased. [It only goes down in cold climates](freezing to death)
         this.warmth = this.warmthMAX; //This is the players current warmth.
         this.timeSinceLastWarmthChange = new Date().getTime(); //This is the time since the last change in the player's warmth.
@@ -3908,6 +4025,12 @@ function theLegend()
         this.wateredClock = 0; //this is like fedClock for thirst.
         this.watered = true; //this is like fed for thirst.
         this.quenched = false; //this is like satiated for thirst.
+        this.inebriation = 0;
+        this.inebriated = false;
+        this.timeSinceLastAlcoholCleanse = new Date().getTime();
+        this.CyrinthilimTrip = true;
+        this.cyrinthilimTime = 0;
+
         //utility or extra variables
         this.outfitZ = true; //this is the layer determiner for the players outfit, so that the outfit can draw underneath or above the players body layer.
         this.capeFlappiness = 0; //this is a variable that determines what costume the cape will be.
@@ -4068,8 +4191,9 @@ function theLegend()
             this.healthMAX = 0.1 + (4 * this.getConstitution());
             this.naturalMagicalResistance = this.getEminence() / 5;
             this.magicalResistanceTotal = this.naturalMagicalResistance + this.magicalResistance;
-            this.thirstMAX = 20;
-            this.warmthMAX = 50 + (1 * this.getEndurance()) + (4 * this.getToughness());
+            this.hungerMAX = this.baseHunger;
+            this.thirstMAX = this.baseThirst;
+            this.warmthMAX = this.baseWarmth + (1 * this.getEndurance()) + (4 * this.getToughness());
             this.spellSlots = 1 + Math.floor(this.memory * 8 / 50);
 
             //this sets carry weight based on the total added weights in the player's inventory.
@@ -4323,6 +4447,26 @@ function theLegend()
                     this.timeSinceLastFleshFeast = new Date().getTime();
                     //Take away health from the player because the fleshMites are eating the player from the inside.
                     this.health -= 0.0025625 * (TTD / 16.75);
+                }
+            };
+
+            this.alcoholManagement = function()
+            {
+                if (new Date().getTime() - this.timeSinceLastAlcoholCleanse >= 1000)
+                {
+                    //reset the timer for the gutworms feasting.
+                    this.timeSinceLastAlcoholCleanse = new Date().getTime();
+                    //Take away hunger from the player because the gut-worms are eating the player's nutrition and calorie intake.
+                    this.inebriation = Math.max(0, this.inebriation - 1);
+
+                    if (this.inebriation >= 100 + (this.getToughness() * 3))
+                    {
+                        this.inebriated = true;
+                    }
+                    else
+                    {
+                        this.inebriated = false;
+                    }
                 }
             };
 
@@ -4627,6 +4771,7 @@ function theLegend()
             //minor game effects
             this.gutWorm();
             this.fleshMite();
+            this.alcoholManagement();
             this.stunnedTimer();
             this.poison();
             this.recovery();
@@ -14271,6 +14416,7 @@ function theLegend()
                             this.will = Math.min(this.willMAX, this.will + Inventory[i][0].replenish);
                             this.warmth = Math.min(this.warmthMAX, this.warmth + Inventory[i][0].warmth);
                             this.thirst = Math.min(this.thirstMAX, this.thirst + Inventory[i][0].thirst);
+                            this.inebriation += Inventory[i][0].alcohol;
 
                             //some items when used will give you an item when they are used.
                             if (Inventory[i][0].subUtility == "reusable")
@@ -15327,7 +15473,7 @@ function theLegend()
         {
             if (this.quenched == false)
             {
-                this.thirst -= 1 * (TTD / (22000 + 400 * this.getEndurance() * 2));
+                this.thirst -= 1 * (TTD / (50000 + 200 * this.getEndurance() * 2));
 
                 if (this.thirst <= 0)
                 {
@@ -15488,224 +15634,243 @@ function theLegend()
         };
 
         //OPERATIONS [this is where everysingle function relating to the main character is activated from]
-        this.operations = function()
+        this.operations = function(zindex)
         {
-            //this sets the players stats and is in charge of leveling for normal skills and magical ones.
-            this.skillOperations();
-            this.engagedSenser(); //This should be a more accurate way for not in combat to be registered.
-
-            if (gameState == "active" || gameState == "stopTime") //This makes it so that the players operations do not play while the game is paused.
+            if (zindex == this.zIndex)
             {
-                this.deathSensor();
-                //stat based or altering effects
-                this.effects();
-                this.motion();
-                this.pointAtMouse();
-                this.movement();
+                //this sets the players stats and is in charge of leveling for normal skills and magical ones.
+                this.skillOperations();
+                this.engagedSenser(); //This should be a more accurate way for not in combat to be registered.
+
+
+                if (gameState == "active" || gameState == "stopTime") //This makes it so that the players operations do not play while the game is paused.
+                {
+                    this.deathSensor();
+                    //stat based or altering effects
+                    this.effects();
+                    this.motion();
+                    this.pointAtMouse();
+                    this.movement();
+                }
             }
 
-            //USER INTERFACE
-            this.UI(); //The user interface has to go here because otherwise it will break some of the player drawing animations...
-
-            if (gameState == "active" || gameState == "stopTime" || gameState == "popUp") //This makes it so that the players operations do not play while the game is paused.
+            if (zindex == 6)
             {
-                //Draw the player
+                //USER INTERFACE
+                this.UI(); //The user interface has to go here because otherwise it will break some of the player drawing animations...
+            }
 
-                //the player's legs
-                this.drawLegs();
-
-                if (this.outfitZ == false)
+            if (zindex == this.zIndex)
+            {
+                if (gameState == "active" || gameState == "stopTime" || gameState == "popUp") //This makes it so that the players operations do not play while the game is paused.
                 {
-                    this.drawOutfit();
-                }
+                    //Draw the player
 
-                //this is rare, but some weapons draw below the body layer.
-                if (this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore") //add more cases for more overhead weapons.
-                {
-                    this.drawArms();
-                }
+                    //the player's legs
+                    this.drawLegs();
 
-                //For specific outfits there will be parts under and above so extra stuf will draw here for outfits. CAPES AND STUFF LIKE THAT...
-                if (this.outfitEquipped == "freydicRoyalOutfit")
-                {
-                    if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
+                    if (this.outfitZ == false)
                     {
-                        this.wasCapeFlapping = true; //this lets the cape know it was showing so when the player slows down or stops moving the cape will ease back.
-                        this.capeFlappiness += 1; //this is a variable that determines what costume the cape will be.
-                        if (this.capeFlappiness > 100)
-                        {
-                            this.capeFlappiness = 0;
-                        }
+                        this.drawOutfit();
+                    }
 
-                        if (this.capeFlappiness <= 12.5 || this.capeFlappiness > 25 && this.capeFlappiness <= 37.5 || this.capeFlappiness > 50 && this.capeFlappiness <= 62.5 || this.capeFlappiness > 75 && this.capeFlappiness <= 87.5)
+                    //this is rare, but some weapons draw below the body layer.
+                    if (this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore") //add more cases for more overhead weapons.
+                    {
+                        this.drawArms();
+                    }
+
+                    //For specific outfits there will be parts under and above so extra stuf will draw here for outfits. CAPES AND STUFF LIKE THAT...
+                    if (this.outfitEquipped == "freydicRoyalOutfit")
+                    {
+                        if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
                         {
-                            XXX.save();
-                            XXX.translate(this.myScreenX, this.myScreenY);
-                            XXX.rotate(this.rotation);
-                            XXX.drawImage(verse, 3959, 347, 23, 33, -(1 / 2 * 27.6) + 2.7, -(1 / 2 * 39.6) + 20.5, 27.6, 39.6);
-                            XXX.restore();
+                            this.wasCapeFlapping = true; //this lets the cape know it was showing so when the player slows down or stops moving the cape will ease back.
+                            this.capeFlappiness += 1; //this is a variable that determines what costume the cape will be.
+                            if (this.capeFlappiness > 100)
+                            {
+                                this.capeFlappiness = 0;
+                            }
+
+                            if (this.capeFlappiness <= 12.5 || this.capeFlappiness > 25 && this.capeFlappiness <= 37.5 || this.capeFlappiness > 50 && this.capeFlappiness <= 62.5 || this.capeFlappiness > 75 && this.capeFlappiness <= 87.5)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation);
+                                XXX.drawImage(verse, 3959, 347, 23, 33, -(1 / 2 * 27.6) + 2.7, -(1 / 2 * 39.6) + 20.5, 27.6, 39.6);
+                                XXX.restore();
+                            }
+                            else if (this.capeFlappiness > 12.5 && this.capeFlappiness <= 25 || this.capeFlappiness > 37.5 && this.capeFlappiness <= 50 || this.capeFlappiness > 62.5 && this.capeFlappiness <= 75 || this.capeFlappiness > 87.5)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation);
+                                XXX.drawImage(verse, 3959, 286, 23, 33, -(1 / 2 * 27.6) + 2.7, -(1 / 2 * 39.6) + 20.5, 27.6, 39.6);
+                                XXX.restore();
+                            }
                         }
-                        else if (this.capeFlappiness > 12.5 && this.capeFlappiness <= 25 || this.capeFlappiness > 37.5 && this.capeFlappiness <= 50 || this.capeFlappiness > 62.5 && this.capeFlappiness <= 75 || this.capeFlappiness > 87.5)
+                        else if (this.wasCapeFlapping == true)
                         {
+                            this.capeFlappiness = 40;
+                            this.wasCapeFlapping = "gooblebunches";
+                            //display the cape while codey stuff happens...
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
                             XXX.drawImage(verse, 3959, 286, 23, 33, -(1 / 2 * 27.6) + 2.7, -(1 / 2 * 39.6) + 20.5, 27.6, 39.6);
                             XXX.restore();
                         }
-                    }
-                    else if (this.wasCapeFlapping == true)
-                    {
-                        this.capeFlappiness = 40;
-                        this.wasCapeFlapping = "gooblebunches";
-                        //display the cape while codey stuff happens...
-                        XXX.save();
-                        XXX.translate(this.myScreenX, this.myScreenY);
-                        XXX.rotate(this.rotation);
-                        XXX.drawImage(verse, 3959, 286, 23, 33, -(1 / 2 * 27.6) + 2.7, -(1 / 2 * 39.6) + 20.5, 27.6, 39.6);
-                        XXX.restore();
-                    }
-                    else if (this.wasCapeFlapping == "gooblebunches")
-                    {
-                        this.capeFlappiness -= 1; //this time cape flappiness referrs to the cape flapping down on its way out of being displayed.
-                        if (this.capeFlappiness < 1)
+                        else if (this.wasCapeFlapping == "gooblebunches")
                         {
-                            this.capeFlappiness = 0;
-                            this.wasCapeFlapping = false;
-                        }
+                            this.capeFlappiness -= 1; //this time cape flappiness referrs to the cape flapping down on its way out of being displayed.
+                            if (this.capeFlappiness < 1)
+                            {
+                                this.capeFlappiness = 0;
+                                this.wasCapeFlapping = false;
+                            }
 
-                        if (this.capeFlappiness > 0)
-                        {
-                            XXX.save();
-                            XXX.translate(this.myScreenX, this.myScreenY);
-                            XXX.rotate(this.rotation);
-                            XXX.drawImage(verse, 3959, 286, 23, 33, -(1 / 2 * 27.6) + 2.7, -(1 / 2 * 39.6) + 20.5, 27.6, this.capeFlappiness);
-                            XXX.restore();
+                            if (this.capeFlappiness > 0)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation);
+                                XXX.drawImage(verse, 3959, 286, 23, 33, -(1 / 2 * 27.6) + 2.7, -(1 / 2 * 39.6) + 20.5, 27.6, this.capeFlappiness);
+                                XXX.restore();
+                            }
                         }
                     }
-                }
-                else if (this.outfitEquipped == "varnFurCloak")
-                {
-                    if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
+                    else if (this.outfitEquipped == "varnFurCloak")
                     {
-                        this.wasCapeFlapping = true; //this lets the cape know it was showing so when the player slows down or stops moving the cape will ease back.
-                        this.capeFlappiness += 1; //this is a variable that determines what costume the cape will be.
-                        if (this.capeFlappiness > 100)
+                        if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
                         {
-                            this.capeFlappiness = 0;
-                        }
+                            this.wasCapeFlapping = true; //this lets the cape know it was showing so when the player slows down or stops moving the cape will ease back.
+                            this.capeFlappiness += 1; //this is a variable that determines what costume the cape will be.
+                            if (this.capeFlappiness > 100)
+                            {
+                                this.capeFlappiness = 0;
+                            }
 
-                        if (this.capeFlappiness <= 12.5 || this.capeFlappiness > 25 && this.capeFlappiness <= 37.5 || this.capeFlappiness > 50 && this.capeFlappiness <= 62.5 || this.capeFlappiness > 75 && this.capeFlappiness <= 87.5)
+                            if (this.capeFlappiness <= 12.5 || this.capeFlappiness > 25 && this.capeFlappiness <= 37.5 || this.capeFlappiness > 50 && this.capeFlappiness <= 62.5 || this.capeFlappiness > 75 && this.capeFlappiness <= 87.5)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation);
+                                XXX.drawImage(verse, 3962, 384, 20, 30, -(1 / 2 * 26) - 1, -(1 / 2 * 39) + 20.5, 29.5, 39);
+                                XXX.restore();
+                            }
+                            else if (this.capeFlappiness > 12.5 && this.capeFlappiness <= 25 || this.capeFlappiness > 37.5 && this.capeFlappiness <= 50 || this.capeFlappiness > 62.5 && this.capeFlappiness <= 75 || this.capeFlappiness > 87.5)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation);
+                                XXX.drawImage(verse, 3962, 414, 20, 30, -(1 / 2 * 26) - 1, -(1 / 2 * 39) + 20.5, 29.5, 39);
+                                XXX.restore();
+                            }
+                        }
+                        else if (this.wasCapeFlapping == true)
                         {
+                            this.capeFlappiness = 39;
+                            this.wasCapeFlapping = "gooblebunches";
+                            //display the cape while codey stuff happens...
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
                             XXX.drawImage(verse, 3962, 384, 20, 30, -(1 / 2 * 26) - 1, -(1 / 2 * 39) + 20.5, 29.5, 39);
                             XXX.restore();
                         }
-                        else if (this.capeFlappiness > 12.5 && this.capeFlappiness <= 25 || this.capeFlappiness > 37.5 && this.capeFlappiness <= 50 || this.capeFlappiness > 62.5 && this.capeFlappiness <= 75 || this.capeFlappiness > 87.5)
+                        else if (this.wasCapeFlapping == "gooblebunches")
                         {
-                            XXX.save();
-                            XXX.translate(this.myScreenX, this.myScreenY);
-                            XXX.rotate(this.rotation);
-                            XXX.drawImage(verse, 3962, 414, 20, 30, -(1 / 2 * 26) - 1, -(1 / 2 * 39) + 20.5, 29.5, 39);
-                            XXX.restore();
+                            this.capeFlappiness -= 1; //this time cape flappiness referrs to the cape flapping down on its way out of being displayed.
+                            if (this.capeFlappiness < 1)
+                            {
+                                this.capeFlappiness = 0;
+                                this.wasCapeFlapping = false;
+                            }
+
+                            if (this.capeFlappiness > 0)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation);
+                                XXX.drawImage(verse, 3962, 384, 20, 30, -(1 / 2 * 26) - 1, -(1 / 2 * 39) + 20.5, 29.5, this.capeFlappiness);
+                                XXX.restore();
+                            }
                         }
                     }
-                    else if (this.wasCapeFlapping == true)
+
+                    //the player's body
+                    this.drawBody();
+
+                    //most weapons draw beneath the armour layer.
+                    if (this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore") //add more cases for more overhead weapons.
                     {
-                        this.capeFlappiness = 39;
-                        this.wasCapeFlapping = "gooblebunches";
-                        //display the cape while codey stuff happens...
+                        this.drawArms();
+                    }
+
+                    //draw the armour/clothing here.
+                    if (this.outfitZ == true)
+                    {
+                        this.drawOutfit();
+                    }
+                    //For specific outfits there will be parts under and above so extra stuf will draw here for outfits.
+                    if (this.outfitEquipped == "freydicRoyalDress")
+                    {
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation);
-                        XXX.drawImage(verse, 3962, 384, 20, 30, -(1 / 2 * 26) - 1, -(1 / 2 * 39) + 20.5, 29.5, 39);
+                        XXX.drawImage(verse, 3228, 215, 33, 15, -(1 / 2 * 38) + 2.7, -(1 / 2 * 42) + 12.5, 33, 15);
                         XXX.restore();
                     }
-                    else if (this.wasCapeFlapping == "gooblebunches")
+                    else if (this.outfitEquipped == "winterWolfDress")
                     {
-                        this.capeFlappiness -= 1; //this time cape flappiness referrs to the cape flapping down on its way out of being displayed.
-                        if (this.capeFlappiness < 1)
-                        {
-                            this.capeFlappiness = 0;
-                            this.wasCapeFlapping = false;
-                        }
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(verse, 3226, 234, 33, 15, -(1 / 2 * 38) + 2.2, -(1 / 2 * 42) + 14.5, 33, 15);
+                        XXX.restore();
+                    }
+                    else if (this.outfitEquipped == "varnFurDress")
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(verse, 8, 469, 33, 15, -(1 / 2 * 38) + 1.9, -(1 / 2 * 42) + 14.5, 33, 15);
+                        XXX.restore();
+                    }
 
-                        if (this.capeFlappiness > 0)
-                        {
-                            XXX.save();
-                            XXX.translate(this.myScreenX, this.myScreenY);
-                            XXX.rotate(this.rotation);
-                            XXX.drawImage(verse, 3962, 384, 20, 30, -(1 / 2 * 26) - 1, -(1 / 2 * 39) + 20.5, 29.5, this.capeFlappiness);
-                            XXX.restore();
-                        }
+                    //certain weapons draw over the armour layer
+                    if (this.weaponEquipped == "nirineseSabre") //add more cases for more overhead weapons.
+                    {
+                        this.drawArms();
                     }
                 }
-
-                //the player's body
-                this.drawBody();
-
-                //most weapons draw beneath the armour layer.
-                if (this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore") //add more cases for more overhead weapons.
-                {
-                    this.drawArms();
-                }
-
-                //draw the armour/clothing here.
-                if (this.outfitZ == true)
-                {
-                    this.drawOutfit();
-                }
-                //For specific outfits there will be parts under and above so extra stuf will draw here for outfits.
-                if (this.outfitEquipped == "freydicRoyalDress")
-                {
-                    XXX.save();
-                    XXX.translate(this.myScreenX, this.myScreenY);
-                    XXX.rotate(this.rotation);
-                    XXX.drawImage(verse, 3228, 215, 33, 15, -(1 / 2 * 38) + 2.7, -(1 / 2 * 42) + 12.5, 33, 15);
-                    XXX.restore();
-                }
-                else if (this.outfitEquipped == "winterWolfDress")
-                {
-                    XXX.save();
-                    XXX.translate(this.myScreenX, this.myScreenY);
-                    XXX.rotate(this.rotation);
-                    XXX.drawImage(verse, 3226, 234, 33, 15, -(1 / 2 * 38) + 2.2, -(1 / 2 * 42) + 14.5, 33, 15);
-                    XXX.restore();
-                }
-                else if (this.outfitEquipped == "varnFurDress")
-                {
-                    XXX.save();
-                    XXX.translate(this.myScreenX, this.myScreenY);
-                    XXX.rotate(this.rotation);
-                    XXX.drawImage(verse, 8, 469, 33, 15, -(1 / 2 * 38) + 1.9, -(1 / 2 * 42) + 14.5, 33, 15);
-                    XXX.restore();
-                }
-
-                //certain weapons draw over the armour layer
-                if (this.weaponEquipped == "nirineseSabre") //add more cases for more overhead weapons.
-                {
-                    this.drawArms();
-                }
-
-                //effect notices, and deveoper functions, etc.
-                this.tellCoordinates();
-                this.miniNotices();
             }
 
             if (gameState == "active" || gameState == "stopTime")
             {
-                //Stat recharging
-                this.statRecharge();
+                if (zindex == 6)
+                {
+                    //effect notices, and deveoper functions, etc.
+                    this.tellCoordinates();
+                    this.miniNotices();
 
-                //This enables the players weapons and attacking
-                this.weaponSetup();
-                this.attack();
-                this.defend();
+                    //Stat recharging
+                    this.statRecharge();
+                }
+
+                if (zindex == this.zIndex)
+                {
+                    //This enables the players weapons and attacking
+                    this.weaponSetup();
+                    this.attack();
+                    this.defend();
+                }
 
                 //Quick fixes are my lazy way of solving challenging or bothersom problems!
-                this.quickFixes();
+                if (zindex == 6)
+                {
+                    this.quickFixes();
+                }
             }
         };
     }
@@ -24452,6 +24617,7 @@ function theLegend()
         this.equipped = false; //this is for the inventory and equipping to the player.
         this.zIndex = 1;
         this.biproducts = []; //these are the accompanying items that come along with the main item being crafted.
+        this.alcohol = 0;
 
         this.setItemID = function()
         {
@@ -26396,7 +26562,7 @@ function theLegend()
                 //Utility Focused
                 this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
                 this.hunger = 10; //satisfies hunger.
-                this.thirst = 20; //quenches thirst.
+                this.thirst = 35; //quenches thirst.
                 this.warmth = 0; //warms player.
                 this.heal = 0; //heals health.
                 this.generation = 2; //recoops lost energy.
@@ -26427,7 +26593,7 @@ function theLegend()
                 //Utility Focused
                 this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
                 this.hunger = 0; //satisfies hunger.
-                this.thirst = 20; //quenches thirst.
+                this.thirst = 35; //quenches thirst.
                 this.warmth = 0; //warms player.
                 this.heal = 0; //heals health.
                 this.generation = 1; //recoops lost energy.
@@ -26533,6 +26699,106 @@ function theLegend()
                 this.buyValue = 3; // at max, buy for 3.
                 this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
             }
+            else if (this.type == "harstAle")
+            {
+                //For All Items
+                this.identity = "Harst Ale";
+                this.weight = 1;
+                this.size = 6;
+                this.description = "A glass pint of Harst Ale.";
+                this.intForDes = 1;
+                this.intDescription = "This ale is made from harst grain.";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["pintGlass", 1]];
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0.5; //satisfies hunger.
+                this.thirst = 4; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.5; //recoops lost energy.
+                this.replenish = -2; //restores will.
+                this.alcohol = 35; //intoxicates the mind.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 50;
+                this.intForCraft = 0;
+                this.ingredients = [["Pint Glass", 50], ["Barrel of Harst Ale", 1]];
+                this.biproducts = [[["Barrel", 1]]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+                this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            }
+            else if (this.type == "waterPintGlass")
+            {
+                //For All Items
+                this.identity = "Pint Glass of Water";
+                this.weight = 1;
+                this.size = 6;
+                this.description = "A pint glass filled with water.";
+                this.intForDes = 0;
+                this.intDescription = "A less intoxicating alternative to alcohol!";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["pintGlass", 1]];
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0; //satisfies hunger.
+                this.thirst = 4; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0.1; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 50;
+                this.intForCraft = 0;
+                this.ingredients = [["Pint Glass", 50], ["Barrel of Harst Ale", 1]];
+                this.biproducts = [[["Barrel", 1]]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 2; // at max, buy for 2.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "pintGlass")
+            {
+                //For All Items
+                this.identity = "Pint Glass";
+                this.weight = 0.1;
+                this.size = 6;
+                this.description = "A glass that can hold up to a pint of liquid.";
+                this.intForDes = 0;
+                this.intDescription = "This type of container is most oftenly used for alcohol such as beer.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 2;
+                this.intForCraft = 5;
+                this.ingredients = [["Glass", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
             else if (this.type == "walrusLeatherWaterskin")
             {
                 //For All Items
@@ -26607,6 +26873,62 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
                 this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            }
+            else if (this.type == "potionGlass")
+            {
+                //For All Items
+                this.identity = "Potion Glass";
+                this.weight = 0.2;
+                this.size = 6;
+                this.description = "A glass container specifically designed for holding liquid alchemic mixtures.";
+                this.intForDes = 1;
+                this.intDescription = "This type of container is necessary in order to make most potions.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 2;
+                this.intForCraft = 6;
+                this.ingredients = [["Glass", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "vialOfWater")
+            {
+                //For All Items
+                this.identity = "Vial of Water";
+                this.weight = 0.5;
+                this.size = 5;
+                this.description = "A potion glass full of water.";
+                this.intForDes = 4;
+                this.intDescription = "Most potions require water as their base.";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["potionGlass", 1]];
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0; //satisfies hunger.
+                this.thirst = 1; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
             }
             else if (this.type == "cleansingPotion")
             {
@@ -27081,8 +27403,8 @@ function theLegend()
                 this.ability = "none";
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-                this.buyValue = 14 - Math.floor(player.getCharisma() / 8); // at max, buy for 10.
-                this.sellValue = 5 + Math.floor(player.getCharisma() / 10); // at max, sell for 10.
+                this.buyValue = 24 - Math.floor(player.getCharisma() / 8); // at max, buy for 20.
+                this.sellValue = 5 + Math.floor(player.getCharisma() / 3); // at max, sell for 20.
             }
             else if (this.type == "massiveWinterWolfPelt")
             {
@@ -27101,8 +27423,8 @@ function theLegend()
                 this.ability = "none";
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-                this.buyValue = 85 - Math.floor(player.getCharisma() / 2); // at max, buy for 60.
-                this.sellValue = 30 + Math.floor(player.getCharisma() / 2); // at max, sell for 55.
+                this.buyValue = 115 - Math.floor(player.getCharisma() / 2); // at max, buy for 90.
+                this.sellValue = 60 + Math.floor(player.getCharisma() / 2); // at max, sell for 85.
             }
             else if (this.type == "rawWinterWolfFlesh")
             {
@@ -28620,12 +28942,12 @@ function theLegend()
                 this.ability = "none";
 
                 this.yield = 1;
-                this.intForCraft = 10;
+                this.intForCraft = 29;
                 this.ingredients = [["Winter Wolf Pelt", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-                this.buyValue = 58 - Math.floor(player.getCharisma() / 3); // at max, buy for 43.
-                this.sellValue = 22 + Math.floor(player.getCharisma() / 5); // at max, sell for 32.
+                this.buyValue = 78 - Math.floor(player.getCharisma() / 2); // at max, buy for 53.
+                this.sellValue = 30 + Math.floor(player.getCharisma() / 5); // at max, sell for 40.
             }
             else if (this.type == "winterWolfClothing")
             {
@@ -28679,8 +29001,8 @@ function theLegend()
                 this.ingredients = [["Winter Wolf Pelt", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-                this.buyValue = 170 - Math.floor(player.getCharisma() / 1); // at max, buy for 120.
-                this.sellValue = 76 + Math.floor(player.getCharisma() / 1.25); // at max, sell for 116.
+                this.buyValue = 51 - Math.floor(player.getCharisma() / 3); // at max, buy for 36.
+                this.sellValue = 24 + Math.floor(player.getCharisma() / 5); // at max, sell for 34.
             }
             else if (this.type == "winterWolfDress")
             {
@@ -28734,8 +29056,8 @@ function theLegend()
                 this.ingredients = [["Winter Wolf Pelt", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-                this.buyValue = 550 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 350.
-                this.sellValue = 150 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 350.
+                this.buyValue = 90 - Math.floor(player.getCharisma() / 2); // at max, buy for 65.
+                this.sellValue = 30 + Math.floor(player.getCharisma() / 2); // at max, sell for 55.
             }
             else if (this.type == "frichFurClothing")
             {
@@ -29804,6 +30126,31 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "waterPintGlass")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 204, 17, 11, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.5), 11 * 1.5, 10 * 1.5);
+            }
+            else if (this.type == "harstAle")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 247, 17, 10, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.5), 10 * 1.5, 10 * 1.5);
+            }
+            else if (this.type == "pintGlass")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 149, 19, 10, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10), 10, 10);
+            }
+            else if (this.type == "potionGlass")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 419, 1, 10, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 10, 17);
+            }
+            else if (this.type == "vialOfWater")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 406, 1, 10, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 10, 16);
+            }
             else if (this.type == "walrusLeatherWaterskin" || this.type == "walrusLeatherWaterskinOne" || this.type == "walrusLeatherWaterskinTwo" || this.type == "walrusLeatherWaterskinFull")
             {
                 XXX.beginPath();
@@ -30558,6 +30905,31 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "waterPintGlass")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 205, 2, 11, 11, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 11 * 2), 11 * 2, 11 * 2);
+            }
+            else if (this.type == "harstAle")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 247, 1, 11, 12, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 12 * 2), 11 * 2, 12 * 2);
+            }
+            else if (this.type == "pintGlass")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 148, 5, 11, 12, this.invX - (1/2 * 11), this.invY - (1/2 * 12), 11, 12);
+            }
+            else if (this.type == "potionGlass")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 419, 1, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
+            }
+            else if (this.type == "vialOfWater")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 406, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
+            }
             else if (this.type == "walrusLeatherWaterskin" || this.type == "walrusLeatherWaterskinOne" || this.type == "walrusLeatherWaterskinTwo" || this.type == "walrusLeatherWaterskinFull")
             {
                 LXX.beginPath();
@@ -31300,6 +31672,31 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "waterPintGlass")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 205, 2, 11, 11, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 11 * 2), 11 * 2, 11 * 2);
+            }
+            else if (this.type == "harstAle")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 247, 1, 11, 12, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 12 * 2), 11 * 2, 12 * 2);
+            }
+            else if (this.type == "pintGlass")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 148, 5, 11, 12, this.invX - (1/2 * 11), this.invY - (1/2 * 12), 11, 12);
+            }
+            else if (this.type == "potionGlass")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 419, 1, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
+            }
+            else if (this.type == "vialOfWater")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 406, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
             }
             else if (this.type == "walrusLeatherWaterskin" || this.type == "walrusLeatherWaterskinOne" || this.type == "walrusLeatherWaterskinTwo" || this.type == "walrusLeatherWaterskinFull")
             {
@@ -32246,7 +32643,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(2164, 1656, "Person", false, "Hilmund the Innkeeper", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.3, 0.7], 0, 0, 0.8], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2164, 1656]], merchant: true, merchandise: [[new Item("coins", false, false), 86], [new Item("bucketOfWater", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 11], [new Item("walrusMeat", false, false), 8], [new Item("bearMeat", false, false), 3], [new Item("winterWolfMeat", false, false), 5], [new Item("frichMeat", false, false), 17], [new Item("wolfLiver", false, false), 6]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(2164, 1656, "Person", false, "Hilmund the Innkeeper", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.3, 0.7], 0, 0, 0.8], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2164, 1656]], merchant: true, merchandise: [[new Item("coins", false, false), 86], [new Item("harstAle", false, false), 48], [new Item("waterPintGlass", false, false), 9], [new Item("bucketOfWater", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 11], [new Item("walrusMeat", false, false), 8], [new Item("bearMeat", false, false), 3], [new Item("winterWolfMeat", false, false), 5], [new Item("frichMeat", false, false), 17], [new Item("wolfLiver", false, false), 6]]}));
                         }
                     }
                     if (uniqueChars.bobithLDS == true)
@@ -32291,7 +32688,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(2672, 1594, "Person", false, "Maggy the Tailor", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1.2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2836, 2058], [2858, 1524]], merchant: true, merchandise: [[new Item("coins", false, false), 155], [new Item("frichFurClothing", false, false), 12], [new Item("varnFurClothing", false, false), 5], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurDress", false, false), 3], [new Item("winterWolfClothing", false, false), 1], [new Item("winterWolfOutfit", false, false), 1], [new Item("winterWolfDress", false, false), 1], [new Item("naapridLeatherArmour", false, false), 2], [new Item("walrusLeatherArmour", false, false), 3]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(2672, 1594, "Person", false, "Maggy the Tailor", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1.2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2836, 2058], [2858, 1524]], merchant: true, merchandise: [[new Item("coins", false, false), 155], [new Item("frichFurClothing", false, false), 12], [new Item("frichFurMittens", false, false), 5], [new Item("varnFurClothing", false, false), 5], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurDress", false, false), 3], [new Item("winterWolfClothing", false, false), 1], [new Item("winterWolfOutfit", false, false), 1], [new Item("winterWolfDress", false, false), 1], [new Item("naapridLeatherArmour", false, false), 2], [new Item("walrusLeatherArmour", false, false), 3]]}));
                         }
                     }
 
@@ -32345,17 +32742,6 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-1712, 2328, "Varn", false, "Starter"));
                     ArtificialIntelligenceAccess.push(new Unit(-2187, 3320, "Varn", false, "Easer"));
 
-
-                    //Bandits and bandit chief (Bandejos Nortenos)
-                    if (quests.teshirNorthRoadBandits == true)
-                    {
-                        //ArtificialIntelligenceAccess.push(new Unit(1663, 5750, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 5, speed: 1.10, outfit: ["walrusLeatherArmour", 4], weapon: ["crossbow", [0.1, 0.4], 0, 16, 1], ranged: [true, "steelBolt", 10, 2000, 12, 23, 0, "none", 2.2], patrolStops: 1, patrolLoop: false, route:[[586, 6301]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(1563, 5864, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 2, speed: 1.05, outfit: ["walrusLeatherArmour", 4], weapon: ["freydicSword", [4, 4], 0, 16, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 4, patrolLoop: true, route:[[506, 6152], [1042, 6325], [1551, 6202], [1563, 5864]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(1941, 5902, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 4, speed: 1.15, outfit: ["none", 0], weapon: ["longbow", [0.1, 0.4], 0, 0, 0.85], ranged: [true, "arrow", 6, 1750, 1, 4, 0, "none", 1.4], patrolStops: 3, patrolLoop: true, route:[[1941, 5902], [2384, 5809], [1926, 6003]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(435 - 750, 5563, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 3, speed: 1.05, outfit: ["walrusLeatherArmour", 4], weapon: ["longbow", [0.1, 0.4], 0, 16, 1], ranged: [true, "arrow", 7, 1900, 1, 4, 0, "none", 1.5], patrolStops: 4, patrolLoop: true, route:[[435 - 750, 5563], [400 - 750, 5668], [636 - 750, 5860], [827 - 750, 5357]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(348 - 750, 5428, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 5, speed: 0.90, outfit: ["none", 4], weapon: ["freydicSword", [6, 4], 0, 16, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 3, patrolLoop: true, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
-                    }
-
                     if (uniqueChars.hetmerLDS == true)
                     {
                         var hits = 0;
@@ -32370,6 +32756,16 @@ function theLegend()
                         {
                             ArtificialIntelligenceAccess.push(new Unit(35 - 750, 5540, "Soldier", false, "Hetmer The Bandit Chief", {race: "Freynor", faction: "hostile", con: 6, speed: 1.2, outfit: ["hetmerArmour", 5.5], weapon: ["freydicSword", [6, 5], 0, 16, 1], ranged: [false, "arrow", 9, 2100, 1, 7, 0, "none", 1.2], patrolStops: 1, patrolLoop: false, route:[[221 -750, 5517]]}));
                         }
+                    }
+
+                    //Bandits and bandit chief (Bandejos Nortenos)
+                    if (quests.teshirNorthRoadBandits == true)
+                    {
+                        //ArtificialIntelligenceAccess.push(new Unit(1663, 5750, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 5, speed: 1.10, outfit: ["walrusLeatherArmour", 4], weapon: ["crossbow", [0.1, 0.4], 0, 16, 1], ranged: [true, "steelBolt", 10, 2000, 12, 23, 0, "none", 2.2], patrolStops: 1, patrolLoop: false, route:[[586, 6301]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(1563, 5864, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 2, speed: 1.05, outfit: ["walrusLeatherArmour", 4], weapon: ["freydicSword", [4, 4], 0, 16, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 4, patrolLoop: true, route:[[506, 6152], [1042, 6325], [1551, 6202], [1563, 5864]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(1941, 5902, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 4, speed: 1.15, outfit: ["none", 0], weapon: ["longbow", [0.1, 0.4], 0, 0, 0.85], ranged: [true, "arrow", 6, 1750, 1, 4, 0, "none", 1.4], patrolStops: 3, patrolLoop: true, route:[[1941, 5902], [2384, 5809], [1926, 6003]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(435 - 750, 5563, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 3, speed: 1.05, outfit: ["walrusLeatherArmour", 4], weapon: ["longbow", [0.1, 0.4], 0, 16, 1], ranged: [true, "arrow", 7, 1900, 1, 4, 0, "none", 1.5], patrolStops: 4, patrolLoop: true, route:[[435 - 750, 5563], [400 - 750, 5668], [636 - 750, 5860], [827 - 750, 5357]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(348 - 750, 5428, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 5, speed: 0.90, outfit: ["none", 1], weapon: ["freydicSword", [6, 4], 0, 16, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 3, patrolLoop: true, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                     }
 
                     //Scenery

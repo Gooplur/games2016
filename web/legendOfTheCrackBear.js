@@ -3,7 +3,12 @@
  */
 
 //TODO LIST
-//todo (in the crafting menu) if you have a ingredient for something it stops showing the rest of the ingredients required [it is only showing either what you have or what you don't...
+//todo Add broken well quest and a rumor of a beast quest at the inn.
+//todo Actually add the broken well, and add a real well to the game as well (make double clicking it fill up the first container in the players inventory with water)
+//todo add sicknesses and symptons (dizziness, pox, fever, fatigue, etc.) ex: make dizziness spin the screen, make pox weaken players constitution etc., make fever decrease thirst.
+//todo add the rest of the alcohols and drinks.
+//todo add snakes and lizards to the forest.
+//Add the mushroom drug trip and the mushroom.
 //todo Goji Poison is broken (somehow zIndex is getting an undefined)
 //todo add passive spells
 //todo add ores and smelting
@@ -157,6 +162,10 @@ function legendaryPrerequisites()
     var forestEnv = new Image();
     forestEnv.src = ("images/mBank.jpg");
     window.forestEnv = forestEnv;
+
+    var horde1 = new Image();
+    horde1.src = ("images/hordepics.png");
+    window.horde1 = horde1;
 
     var polyPNG = new Image();
     polyPNG.src = ("images/polyAssets.png");
@@ -418,8 +427,8 @@ function theLegend()
     var Inventory = [];
     //todo TEST INVENTORIES
     //Inventory = [[new Item("coins", false, false), 1000000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2]];
-    Inventory = [[new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
-    //Inventory = [[new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
+    Inventory = [[new Item("jvostranPlateArmour", false, false), 1], [new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
+    //Inventory = [[new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
     //Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1]];
 
     //Test Spells
@@ -463,6 +472,7 @@ function theLegend()
     allWeapons.push(new Item("kellishClaymore", false)); //31
     allWeapons.push(new Item("hammer", false)); //32
     allWeapons.push(new Item("kellishSawClub", false)); //33
+    allWeapons.push(new Item("rasper", false)); //34
 
     //This list holds one of each type of worn item so that the player can access the worn item stats.
     var allWorn = [];
@@ -483,6 +493,7 @@ function theLegend()
     allWorn.push(new Item("varnFurCloak", false)); //14
     allWorn.push(new Item("varnFurDress", false)); //15
     allWorn.push(new Item("frichFurMittens", false)); //16
+    allWorn.push(new Item("jvostranPlateArmour", false)); //17
 
     var scenicList = [];
 
@@ -538,6 +549,7 @@ function theLegend()
     smithing.push(new Item("warHammer", false));
     smithing.push(new Item("kellishClaymore", false));
     smithing.push(new Item("bucket", false));
+    smithing.push(new Item("jvostranPlateArmour", false));
 
         //Foods (Items cooked at either a stove, an oven, or a campfire)
     var foods = [];
@@ -837,6 +849,10 @@ function theLegend()
                     unitSurround = true;
                 }
             }
+            else if (cheatcode.toLowerCase() == "clearinv")
+            {
+                Inventory = [];
+            }
             else if (cheatcode.toLowerCase() == "coords")
             {
                 if (tellCoords == true)
@@ -850,7 +866,13 @@ function theLegend()
             }
             else if (cheatcode.toLowerCase() == "fix")
             {
-                player.miniNoticeList = [];
+                if (player.name == "Desmonde" && player.raceName == "Vardan" && player.title == "Commoner")
+                {
+                    player.level = 11;
+                    player.skillPoints = 36;
+                    player.totalSkillPoints = 44;
+                    worldItems.push([new Item("coins", X, Y), 2000]);
+                }
             }
             else if (cheatcode.toLowerCase() == "wetnoodle")
             {
@@ -858,6 +880,10 @@ function theLegend()
                 player.endurance = 0;
                 player.stamina = 0;
                 player.charisma = 0;
+            }
+            else if (cheatcode.toLowerCase() == "medaunaespada")
+            {
+                worldItems.push([new Item("katana", X, Y), 1]);
             }
             else if (cheatcode.toLowerCase() == "thisgameismissingsomething")
             {
@@ -1136,7 +1162,7 @@ function theLegend()
             //NOBILITY and ROYALTY have INCREASED versions of their FACTION RELATIONS
             if (player.title == "Nobility" && player.raceName == "Kel" || player.title == "Royalty" && player.raceName == "Kel")
             {
-                player.kelFaction = 500; //green (kellish) Chieftan Har
+                player.kelFaction = 500; //green (kellish) Chieftain Har
                 player.thengarFaction = -500; //brown (thengan) King Wolthgar
                 player.freynorFaction = 25; //blue (freydic) King Jirdun
                 player.aldrekFaction = 25; //red (aldrekii) Evaraxii Zoteff
@@ -1151,7 +1177,7 @@ function theLegend()
             }
             else if (player.title == "Nobility" && player.raceName == "Thengar" || player.title == "Royalty" && player.raceName == "Thengar")
             {
-                player.kelFaction = -500; //green (kellish) Chieftan Har
+                player.kelFaction = -500; //green (kellish) Chieftain Har
                 player.thengarFaction = 500; //brown (thengan) King Wolthgar
                 player.freynorFaction = 40; //blue (freydic) King Jirdun
                 player.aldrekFaction = -5; //red (aldrekii) Evaraxii Zoteff
@@ -1166,7 +1192,7 @@ function theLegend()
             }
             else if (player.title == "Nobility" && player.raceName == "Freynor" || player.title == "Royalty" && player.raceName == "Freynor")
             {
-                player.kelFaction = 25; //green (kellish) Chieftan Har
+                player.kelFaction = 25; //green (kellish) Chieftain Har
                 player.thengarFaction = 40; //brown (thengan) King Wolthgar
                 player.freynorFaction = 500; //blue (freydic) King Jirdun
                 player.aldrekFaction = 0; //red (aldrekii) Evaraxii Zoteff
@@ -1190,7 +1216,7 @@ function theLegend()
             }
             else if (player.title == "Nobility" && player.raceName == "Aldrek" || player.title == "Royalty" && player.raceName == "Aldrek")
             {
-                player.kelFaction = 15; //green (kellish) Chieftan Har
+                player.kelFaction = 15; //green (kellish) Chieftain Har
                 player.thengarFaction = 0; //brown (thengan) King Wolthgar
                 player.freynorFaction = 0; //blue (freydic) King Jirdun
                 player.aldrekFaction = 500; //red (aldrekii) Evaraxii Zoteff
@@ -1205,7 +1231,7 @@ function theLegend()
             }
             else if (player.title == "Nobility" && player.raceName == "Orgell" || player.title == "Royalty" && player.raceName == "Orgell")
             {
-                player.kelFaction = 10; //green (kellish) Chieftan Har
+                player.kelFaction = 10; //green (kellish) Chieftain Har
                 player.thengarFaction = -49; //brown (thengan) King Wolthgar
                 player.freynorFaction = 0; //blue (freydic) King Jirdun
                 player.aldrekFaction = -500; //red (aldrekii) Evaraxii Zoteff
@@ -1221,7 +1247,7 @@ function theLegend()
             }
             else if (player.title == "Nobility" && player.raceName == "Vardan" || player.title == "Royalty" && player.raceName == "Vardan")
             {
-                player.kelFaction = -20; //green (kellish) Chieftan Har
+                player.kelFaction = -20; //green (kellish) Chieftain Har
                 player.thengarFaction = 25; //brown (thengan) King Wolthgar
                 player.freynorFaction = 0; //blue (freydic) King Jirdun
                 player.aldrekFaction = -35; //red (aldrekii) Evaraxii Zoteff
@@ -1237,7 +1263,7 @@ function theLegend()
             }
             else if (player.title == "Nobility" && player.raceName == "Cephrite" || player.title == "Royalty" && player.raceName == "Cephrite")
             {
-                player.kelFaction = 20; //green (kellish) Chieftan Har
+                player.kelFaction = 20; //green (kellish) Chieftain Har
                 player.thengarFaction = 0; //brown (thengan) King Wolthgar
                 player.freynorFaction = 0; //blue (freydic) King Jirdun
                 player.aldrekFaction = -500; //red (aldrekii) Evaraxii Zoteff
@@ -1253,7 +1279,7 @@ function theLegend()
             }
             else if (player.title == "Nobility" && player.raceName == "Nirwaden" || player.title == "Royalty" && player.raceName == "Nirwaden")
             {
-                player.kelFaction = 0; //green (kellish) Chieftan Har
+                player.kelFaction = 0; //green (kellish) Chieftain Har
                 player.thengarFaction = -35; //brown (thengan) King Wolthgar
                 player.freynorFaction = 0; //blue (freydic) King Jirdun
                 player.aldrekFaction = -500; //red (aldrekii) Evaraxii Zoteff
@@ -1959,7 +1985,7 @@ function theLegend()
                             LXX.fillStyle = "black";
                             LXX.font = "12px Book Antiqua";
                             LXX.textAlign = "left";
-                            LXX.fillText("Your mother is a Chieftan of one of the many Kellish tribes unified by Chieftan Har, growing up you knew it was your honor to inheirit the leadership and protection of your brothers and sisters in the tribe.", 5, (LCC.height / 2) + 4);
+                            LXX.fillText("Your mother is a Chieftain of one of the many Kellish tribes unified by Chieftain Har, growing up you knew it was your honor to inheirit the leadership and protection of your brothers and sisters in the tribe.", 5, (LCC.height / 2) + 4);
 
                             LXX.fillStyle = "black";
                             LXX.font = "12px Book Antiqua";
@@ -2189,7 +2215,7 @@ function theLegend()
                             LXX.fillStyle = "black";
                             LXX.font = "12px Book Antiqua";
                             LXX.textAlign = "left";
-                            LXX.fillText("Your father High Chieftan Har treats you with no more respect than he does any other brother or sister, it is his duty to the tribes to promote a selection process where the tribes themselves pick the high chief. Such a position of", 5, (LCC.height / 2) + 4);
+                            LXX.fillText("Your father High Chieftain Har treats you with no more respect than he does any other brother or sister, it is his duty to the tribes to promote a selection process where the tribes themselves pick the high chief. Such a position of", 5, (LCC.height / 2) + 4);
 
                             LXX.fillStyle = "black";
                             LXX.font = "12px Book Antiqua";
@@ -2355,7 +2381,7 @@ function theLegend()
                     player.raceName = "Kel";
                     player.race = "green";
                         //faction relations
-                    player.kelFaction = 75; //green (kellish) Chieftan Har
+                    player.kelFaction = 75; //green (kellish) Chieftain Har
                     player.thengarFaction = -200; //brown (thengan) King Wolthgar
                     player.freynorFaction = 5; //blue (freydic) King Jirdun
                     player.aldrekFaction = 5; //red (aldrekii) Evaraxii Zoteff
@@ -2386,7 +2412,7 @@ function theLegend()
                         LXX.fillStyle = "black";
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
-                        LXX.fillText("The kellish are a friendly tribal people who live off of the land. Although the Kellish tribes were once seperate there has been a unification under the Kellish chieftan, Har, who has convinced his people to come together as one in defence of their homeland against Thengan aggression.", 5, (LCC.height / 2) + 4);
+                        LXX.fillText("The kellish are a friendly tribal people who live off of the land. Although the Kellish tribes were once seperate there has been a unification under the Kellish chieftain, Har, who has convinced his people to come together as one in defence of their homeland against Thengan aggression.", 5, (LCC.height / 2) + 4);
                     }
                 }
                 else if (selectNumber == 1)
@@ -2401,7 +2427,7 @@ function theLegend()
                     player.raceName = "Thengar";
                     player.race = "#663300";
                     //faction relations
-                    player.kelFaction = -200; //green (kellish) Chieftan Har
+                    player.kelFaction = -200; //green (kellish) Chieftain Har
                     player.thengarFaction = 75; //brown (thengan) King Wolthgar
                     player.freynorFaction = 15; //blue (freydic) King Jirdun
                     player.aldrekFaction = 0; //red (aldrekii) Evaraxii Zoteff
@@ -2447,7 +2473,7 @@ function theLegend()
                     player.raceName = "Freynor";
                     player.race = "navy";
                     //faction relations
-                    player.kelFaction = 10; //green (kellish) Chieftan Har
+                    player.kelFaction = 10; //green (kellish) Chieftain Har
                     player.thengarFaction = 10; //brown (thengan) King Wolthgar
                     player.freynorFaction = 75; //blue (freydic) King Jirdun
                     player.aldrekFaction = 0; //red (aldrekii) Evaraxii Zoteff
@@ -2498,7 +2524,7 @@ function theLegend()
                     player.raceName = "Aldrek";
                     player.race = "darkRed";
                     //faction relations
-                    player.kelFaction = 10; //green (kellish) Chieftan Har
+                    player.kelFaction = 10; //green (kellish) Chieftain Har
                     player.thengarFaction = 0; //brown (thengan) King Wolthgar
                     player.freynorFaction = 0; //blue (freydic) King Jirdun
                     player.aldrekFaction = 75; //red (aldrekii) Evaraxii Zoteff
@@ -2554,7 +2580,7 @@ function theLegend()
                     player.raceName = "Orgell";
                     player.race = "gold";
                     //faction relations
-                    player.kelFaction = 5; //green (kellish) Chieftan Har
+                    player.kelFaction = 5; //green (kellish) Chieftain Har
                     player.thengarFaction = -45; //brown (thengan) King Wolthgar
                     player.freynorFaction = 0; //blue (freydic) King Jirdun
                     player.aldrekFaction = -200; //red (aldrekii) Evaraxii Zoteff
@@ -2605,7 +2631,7 @@ function theLegend()
                     player.raceName = "Vardan";
                     player.race = "#1c1c1c";
                     //faction relations
-                    player.kelFaction = -5; //green (kellish) Chieftan Har
+                    player.kelFaction = -5; //green (kellish) Chieftain Har
                     player.thengarFaction = 5; //brown (thengan) King Wolthgar
                     player.freynorFaction = 0; //blue (freydic) King Jirdun
                     player.aldrekFaction = -5; //red (aldrekii) Evaraxii Zoteff
@@ -2661,7 +2687,7 @@ function theLegend()
                     player.raceName = "Cephrite";
                     player.race = "purple";
                     //faction relations
-                    player.kelFaction = 10; //green (kellish) Chieftan Har
+                    player.kelFaction = 10; //green (kellish) Chieftain Har
                     player.thengarFaction = 0; //brown (thengan) King Wolthgar
                     player.freynorFaction = 0; //blue (freydic) King Jirdun
                     player.aldrekFaction = -200; //red (aldrekii) Evaraxii Zoteff
@@ -2707,7 +2733,7 @@ function theLegend()
                     player.raceName = "Nirwaden";
                     player.race = "#e68900";
                     //faction relations
-                    player.kelFaction = 0; //green (kellish) Chieftan Har
+                    player.kelFaction = 0; //green (kellish) Chieftain Har
                     player.thengarFaction = -10; //brown (thengan) King Wolthgar
                     player.freynorFaction = 0; //blue (freydic) King Jirdun
                     player.aldrekFaction = -200; //red (aldrekii) Evaraxii Zoteff
@@ -2753,7 +2779,7 @@ function theLegend()
                     player.raceName = "Outlander";
                     player.race = "white";
                     //faction relations
-                    player.kelFaction = -25; //green (kellish) Chieftan Har
+                    player.kelFaction = -25; //green (kellish) Chieftain Har
                     player.thengarFaction = -25; //brown (thengan) King Wolthgar
                     player.freynorFaction = -25; //blue (freydic) King Jirdun
                     player.aldrekFaction = -50; //red (aldrekii) Evaraxii Zoteff
@@ -3198,7 +3224,20 @@ function theLegend()
             projectileOperationsManagement(z);
             magicOperationsManagement(z);
         }
+        //set certain player variables. (FINAL PLAYER RESET)
+        function wornAbilities()
+        {
+            if (player.outfitType != "none")
+            {
+                if (player.outfitType.ability == "heavy")
+                {
+                    player.freeze = Math.max(player.freeze, 3);
+                }
+            }
+        }
         player.cutcut = false; //just in case their was no scenery object available to turn it off it will be turned off after all have had the opportunity to register its on-ness.
+        player.freeze = 1;
+        wornAbilities();
 
         //SHOPS/CRAFTING
         shopItemIDSetter();
@@ -3786,7 +3825,7 @@ function theLegend()
         this.magicalExperienceRequiredToLevel = 1000 + (400 * (this.level - 1));
         this.magicalSkillPoints = 0; //you gain magical skill points every magic level that you can put into magic related skills. ( 4 points per level)
         //Faction Relations
-        this.kelFaction = 0; //green (kellish) Chieftan Har
+        this.kelFaction = 0; //green (kellish) Chieftain Har
         this.thengarFaction = 0; //brown (thengan) King Wolthgar
         this.freynorFaction = 0; //blue (freydic) King Jirdun
         this.aldrekFaction = 0; //red (aldrekii) Evaraxii Zoteff
@@ -4044,6 +4083,8 @@ function theLegend()
         this.spellzLearned = 0;
         this.flashFrameTime = new Date().getTime();
         this.flashFrame = 0;
+        this.outfitType = "none";
+        this.glovesType = "none";
 
         //a function for all of the small functions to fix tiny obscure yet sometimes important details...
         this.quickFixes = function()
@@ -4292,37 +4333,37 @@ function theLegend()
                 {
                     this.warmth = 0;
                     this.frozen = true;
-                    this.freeze = 4;
+                    this.freeze = Math.max(this.freeze, 4);
                 }
                 else if (this.warmth <= 10)
                 {
                     this.frozen = false;
-                    this.freeze = 3.44;
+                    this.freeze = Math.max(this.freeze, 3.44);
                 }
                 else if (this.warmth <= 20)
                 {
                     this.frozen = false;
-                    this.freeze = 3;
+                    this.freeze = Math.max(this.freeze, 3);
                 }
                 else if (this.warmth <= 25)
                 {
                     this.frozen = false;
-                    this.freeze = 2.44;
+                    this.freeze = Math.max(this.freeze, 2.44);
                 }
                 else if (this.warmth <= 30)
                 {
                     this.frozen = false;
-                    this.freeze = 2;
+                    this.freeze = Math.max(this.freeze, 2);
                 }
                 else if (this.warmth <= 40)
                 {
                     this.frozen = false;
-                    this.freeze = 1.44;
+                    this.freeze = Math.max(this.freeze, 1.44);
                 }
                 else
                 {
                     this.frozen = false;
-                    this.freeze = 1;
+                    this.freeze = Math.max(this.freeze, 1);
                 }
 
                 //If frozen is true decrease
@@ -4766,7 +4807,7 @@ function theLegend()
 
             //Effects Operations
             //major game effects
-            this.climateEffects(); //TODO in progress... add dehydration!
+            this.climateEffects(); //todo add faster dehydration in deserts.
             this.overCucumbered(); //If the player is carrying too much weight the player all of a sudden becomes submersed in invisible cucumbers making it very challenging for him/her to move.
             //minor game effects
             this.gutWorm();
@@ -5637,6 +5678,10 @@ function theLegend()
             {
                 outfit = allWorn[15];
             }
+            else if (this.outfitEquipped == "jvostranPlateArmour")
+            {
+                outfit = allWorn[17];
+            }
             else
             {
                 outfit = allWorn[0];
@@ -5652,6 +5697,9 @@ function theLegend()
             {
                 gloves = allWorn[0];
             }
+
+            this.outfitType = outfit;
+            this.glovesType = gloves;
             //TODO add ring.
             //TODO add pendant.
             //TODO add boots.
@@ -5708,6 +5756,15 @@ function theLegend()
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation - (1 / 2 * Math.PI));
                 XXX.drawImage(oldverse, 44, 89, 51, 35, -(1 / 2 * 40.8) + 6.3, -(1 / 2 * 28) - 0.5, 45.9, 31.5);
+                XXX.restore();
+            }
+            else if (this.outfitEquipped == "jvostranPlateArmour")
+            {
+                this.outfitZ = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                XXX.drawImage(verse, 508, 659, 40, 39, -(1 / 2 * 40 * 0.8) + 2, -(1 / 2 * 39 * 0.8) + 0, 40 * 0.8, 39 * 0.8);
                 XXX.restore();
             }
             else if (this.outfitEquipped == "blackChainArmour")
@@ -8711,6 +8768,53 @@ function theLegend()
                     XXX.restore();
                 }
             }
+            //RASPER
+            if (this.weaponEquipped == "rasper")
+            {
+                this.stageEngine(5, 0.20, true);
+
+                //ATTACK
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(freeverse, 683, 43, 55, 51, -47, -49, 55 * 1.3, 51 * 1.3);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(freeverse, 755, 37, 55, 51, -39, -55, 55 * 1.3, 51 * 1.3);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(freeverse, 834, 38, 55, 51, -36, -54, 55 * 1.3, 51 * 1.3);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(freeverse, 903, 35, 55, 51, -30, -54.5, 55 * 1.3, 51 * 1.3);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(freeverse, 928, 346, 55, 51, -27, -54, 55 * 1.3, 51 * 1.3);
+                    XXX.restore();
+                }
+            }
             //LONG BOW
             if (this.weaponEquipped == "longbow")
             {
@@ -9303,6 +9407,14 @@ function theLegend()
                 //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
                 this.bubbleOfDamageX = X - Math.cos(this.rotation - 3/5 * Math.PI) * (this.mySize + 24);
                 this.bubbleOfDamageY = Y - Math.sin(this.rotation - 3/5 * Math.PI) * (this.mySize + 24);
+            }
+            else if (this.weaponEquipped == "rasper")
+            {
+                this.weapon = allWeapons[34];
+
+                //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+                this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.1/5 * Math.PI) * (this.mySize + 22);
+                this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.1/5 * Math.PI) * (this.mySize + 22);
             }
         };
 
@@ -18933,6 +19045,29 @@ function theLegend()
                     this.drawUnit(verse, 680, 332, 54, 49, -16, -43, 54 * 1.4, 49 * 1.4, 1 / 2 * Math.PI);
                 }
             }
+            else if (this.weapon == "rasper")
+            {
+                if (theCostume <= 0)
+                {
+                    this.drawUnit(freeverse, 683, 43, 55, 51, -47, -49, 55 * 1.3, 51 * 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 1)
+                {
+                    this.drawUnit(freeverse, 755, 37, 55, 51, -39, -55, 55 * 1.3, 51 * 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 2)
+                {
+                    this.drawUnit(freeverse, 834, 38, 55, 51, -36, -54, 55 * 1.3, 51 * 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 3)
+                {
+                    this.drawUnit(freeverse, 903, 35, 55, 51, -30, -54.5, 55 * 1.3, 51 * 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume >= 4)
+                {
+                    this.drawUnit(freeverse, 928, 346, 55, 51, -27, -54, 55 * 1.3, 51 * 1.3, 1 / 2 * Math.PI);
+                }
+            }
         };
 
         this.switchToRanged = function(weapon)
@@ -19187,18 +19322,17 @@ function theLegend()
             {
                 XXX.fillStyle = "white";
             }
-
             else
             {
                 //Faelan fairy Princess is the default.
                 XXX.fillStyle = "pink";
             }
+
             XXX.arc(0, 0, 10, 0, 2 * Math.PI);
             XXX.fill();
-            XXX.lineWidth = 0.5;
             XXX.strokeStyle = "black";
+            XXX.lineWidth = 0.5;
             XXX.stroke();
-
             XXX.restore();
         };
 
@@ -19309,7 +19443,7 @@ function theLegend()
                     this.heatResistance = 3;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 40) + 55;
+                    this.healthMAX = Math.floor(Math.random() * 40) + 100;
                     this.health = this.healthMAX;
                     this.armour = 2;
                     this.speed = 1.1;
@@ -19317,7 +19451,7 @@ function theLegend()
                     this.rotationSpeed = 0.035;
                     this.engagementRadius = 65; //was 55
                     this.sizeRadius = 45;
-                    this.negateArmour = 7;
+                    this.negateArmour = 17;
                     this.attackWait = 1.75;
 
                     //alpha has a larger size body and skills.
@@ -20474,7 +20608,7 @@ function theLegend()
                 {
                     if (this.alpha == true)
                     {
-                        this.Attack(35, 12);
+                        this.Attack(45, 32);
                         this.callForNearbyHelpFromType(160, "Walrus");
                     }
                     else
@@ -23355,6 +23489,10 @@ function theLegend()
                             {
                                 this.costumeEngine(7, 0.25, true);
                             }
+                            else if (this.weapon == "rasper")
+                            {
+                                this.costumeEngine(5, 0.20, true);
+                            }
                         }
                     }
                     //draw some weapons underneath the body
@@ -23628,6 +23766,10 @@ function theLegend()
                             {
                                 this.costumeEngine(7, 0.25, true);
                             }
+                            else if (this.weapon == "rasper")
+                            {
+                                this.costumeEngine(5, 0.20, true);
+                            }
                         }
                     }
                     //draw some weapons underneath the body
@@ -23647,7 +23789,6 @@ function theLegend()
 
                     //draw the Person's Outfit.
                     this.drawHumanOutfit(this.ultra.outfit[0], false);
-
                 }
                 else
                 {
@@ -28232,6 +28373,35 @@ function theLegend()
                 this.buyValue = 30 - Math.floor(player.getCharisma() / 5); // at max, buy for 20.
                 this.sellValue = 10 + Math.floor(player.getCharisma() / 5); // at max, sell for 20.
             }
+            else if (this.type == "rasper")
+            {
+                //For All Items
+                this.identity = "Rasper";
+                this.weight = 2;
+                this.size = 16;
+                this.description = "A curved steel blade with a hooked pommel.";
+                this.intForDes = 4;
+                this.intDescription = "The notorious bandit Chieftain Rasp often used Rasper's hook to gouge out the eyes of his victims.";
+
+                //Define Utility
+                this.utility = "weapon";
+
+                //Utility Focused
+                this.energyCost = 2;
+                this.distance = 22 + (this.range * 7);
+                this.range = 3 + 2/7;
+                this.rate = (100 - (player.getDexterity() / 5));
+                this.damage = 5 * (this.leveledDamageMultiple / 25) + ((4/25) * player.getStrength());
+                this.magicalDamage = 0;
+                this.negateArmour = 0;
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 76 - Math.floor(player.getCharisma() / 5); // at max, buy for 66.
+                this.sellValue = 46 + Math.floor(player.getCharisma() / 2.5); // at max, sell for 66.
+            }
             else if (this.type == "crossbow")
             {
                 //For All Items
@@ -28513,7 +28683,7 @@ function theLegend()
                 this.size = 26;
                 this.description = "Armour made from the hide of a land Walrus.";
                 this.intForDes = 0;
-                this.intDescription = "This armour was made by the bandit chieftan Hetmer who reinforced it with sharpened walrus tusks and teeth to put fear into the hearts of his enemies.";
+                this.intDescription = "This armour was made by the bandit chieftain Hetmer who reinforced it with sharpened walrus tusks and teeth to put fear into the hearts of his enemies.";
 
                 //Define Utility
                 this.utility = "worn";
@@ -28553,7 +28723,7 @@ function theLegend()
                 this.ability = "none";
 
                 //Crafting
-                //this armour can not be crafted -- it is unique and only Hetmer the bandit chieftan can drop it.
+                //this armour can not be crafted -- it is unique and only Hetmer the bandit chieftain can drop it.
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 111 - Math.floor(player.getCharisma() / 3); // at max, buy for 96.
@@ -28614,6 +28784,62 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 194 - Math.floor(player.getCharisma() / 1); // at max, buy for 144.
                 this.sellValue = 90 + Math.floor(player.getCharisma() / 1); // at max, sell for 140.
+            }
+            else if (this.type == "jvostranPlateArmour")
+            {
+                //For All Items
+                this.identity = "Jvostran Plate Armour";
+                this.weight = 172;
+                this.size = 38;
+                this.description = "Expertly forged armour made from refined jvostran ore.";
+                this.intForDes = 12;
+                this.intDescription = "Jvostran Plate armour is light blue compared to the dark blue of most jvostran because it is actually extremely thin.";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "armour";
+                //Utility Focused
+                //protections
+                this.protection = 24 * ((player.toughness / 100) + 1);
+                this.toughnessRequirement = 40;
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 0;
+                this.thirstRetention = 0;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 0;
+                this.toughnessBonus = 0;
+                this.intelligenceBonus = 0;
+                this.charismaBonus = 10;
+                this.rangedBonus = -20;
+                this.constitutionBonus = 0;
+                this.staminaBonus = 0;
+                this.dexterityBonus = -50;
+                this.stealthBonus = -50;
+                //Extra Stat Bonuses
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 0;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "heavy";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 47;
+                this.ingredients = [["Jvostran", 22]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 24000 - Math.floor(player.getCharisma() / 0.01); // at max, buy for 19000.
+                this.sellValue = 18000 + Math.floor(player.getCharisma() / 0.05); // at max, sell for 80.
             }
             else if (this.type == "chainArmour")
             {
@@ -30126,6 +30352,16 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "rasper")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 651, 45, 21, 45, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 45 * 1.3), 21 * 1.3, 45 * 1.3);
+            }
+            else if (this.type == "jvostranPlateArmour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 350, 660, 66, 106, X - this.X + (1/2 * CCC.width) - (1/2 * 66), Y - this.Y + (1/2 * CCC.height) - (1/2 * 106), 66, 106);
+            }
             else if (this.type == "waterPintGlass")
             {
                 XXX.beginPath();
@@ -30139,7 +30375,7 @@ function theLegend()
             else if (this.type == "pintGlass")
             {
                 XXX.beginPath();
-                XXX.drawImage(freeverse, 149, 19, 10, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10), 10, 10);
+                XXX.drawImage(freeverse, 149, 19, 10, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.5), 10 * 1.5, 10 * 1.5);
             }
             else if (this.type == "potionGlass")
             {
@@ -30905,6 +31141,16 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "rasper")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 651, 45, 21, 45, this.invX - (1/2 * 21 * 1.3), this.invY - (1/2 * 45 * 1.3), 21 * 1.3, 45 * 1.3);
+            }
+            else if (this.type == "jvostranPlateArmour")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 350, 660, 66, 106, this.invX - (1/2 * 66 * 0.75) - 3, this.invY - (1/2 * 106 * 0.75), 66 * 0.75, 106 * 0.75);
+            }
             else if (this.type == "waterPintGlass")
             {
                 LXX.beginPath();
@@ -30918,7 +31164,7 @@ function theLegend()
             else if (this.type == "pintGlass")
             {
                 LXX.beginPath();
-                LXX.drawImage(freeverse, 148, 5, 11, 12, this.invX - (1/2 * 11), this.invY - (1/2 * 12), 11, 12);
+                LXX.drawImage(freeverse, 148, 5, 11, 12, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 12 * 2), 11 * 2, 12 * 2);
             }
             else if (this.type == "potionGlass")
             {
@@ -31673,6 +31919,16 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "rasper")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 651, 45, 21, 45, this.invX - (1/2 * 21 * 1.3), this.invY - (1/2 * 45 * 1.3), 21 * 1.3, 45 * 1.3);
+            }
+            else if (this.type == "jvostranPlateArmour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 350, 660, 66, 106, this.invX - (1/2 * 66 * 0.75) - 3, this.invY - (1/2 * 106 * 0.75), 66 * 0.75, 106 * 0.75);
+            }
             else if (this.type == "waterPintGlass")
             {
                 XXX.beginPath();
@@ -31686,7 +31942,7 @@ function theLegend()
             else if (this.type == "pintGlass")
             {
                 XXX.beginPath();
-                XXX.drawImage(freeverse, 148, 5, 11, 12, this.invX - (1/2 * 11), this.invY - (1/2 * 12), 11, 12);
+                XXX.drawImage(freeverse, 148, 5, 11, 12, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 12 * 2), 11 * 2, 12 * 2);
             }
             else if (this.type == "potionGlass")
             {
@@ -33636,7 +33892,8 @@ function theLegend()
             bankSlots = parsed.bankSlots;
         }
     }
-
+    //gameState = "horde";
+    //playHorde();
     requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
     //gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
     //requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)

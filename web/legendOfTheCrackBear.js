@@ -11288,11 +11288,12 @@ function theLegend()
                                                 altKey = false;
                                                 var amount = prompt("Enter the amount you would like to deposit.");
                                                 var amountt = JSON.parse(amount);
+                                                console.log(amountt);
                                                 if (Inventory[i][1] - amountt <= 0)
                                                 {
                                                     if (Inventory[i][1] - amountt == 0)
                                                     {
-                                                        bankAccount.push([new Item(invenType, false, false), amount]);
+                                                        bankAccount.push([new Item(invenType, false, false), amountt]);
                                                         deletion = true;
                                                         deleteNum = i;
                                                         //Inventory.splice(i, 1);
@@ -11300,7 +11301,7 @@ function theLegend()
                                                 }
                                                 else
                                                 {
-                                                    bankAccount.push([new Item(invenType, false, false), amount]);
+                                                    bankAccount.push([new Item(invenType, false, false), amountt]);
                                                     Inventory[i][1] -= amountt;
                                                 }
                                             }
@@ -17225,7 +17226,7 @@ function theLegend()
                         {
                             if (ArtificialIntelligenceAccess[i].stackDominance > this.stackDominance || ArtificialIntelligenceAccess[i].attacking == true)
                             {
-                                console.log(Math.atan(X - this.X, Y - this.Y));
+                                //console.log(Math.atan(X - this.X, Y - this.Y));
                                 this.X += (this.speed) * Math.cos(Math.atan(X - this.X, Y - this.Y));
                                 this.Y += (this.speed) * Math.sin(Math.atan(X - this.X, Y - this.Y));
 
@@ -33892,8 +33893,10 @@ function theLegend()
             bankSlots = parsed.bankSlots;
         }
     }
-    //gameState = "horde";
-    //playHorde();
+
+    //gameState = "horde"; // this changes the gamemode so that horde will have priority.
+    //playHorde(); //This starts the card game horde.
+
     requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
     //gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
     //requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)

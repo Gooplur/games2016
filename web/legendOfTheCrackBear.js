@@ -427,7 +427,7 @@ function theLegend()
     var Inventory = [];
     //todo TEST INVENTORIES
     //Inventory = [[new Item("coins", false, false), 1000000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2]];
-    Inventory = [[new Item("jvostranPlateArmour", false, false), 1], [new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
+    Inventory = [[new Item("fermentedViperVenomGland", false, false), 1], [new Item("viperVenomGland", false, false), 1], [new Item("viperSnakeSkin", false, false), 1], [new Item("rawViperFlesh", false, false), 1], [new Item("viperMeat", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
     //Inventory = [[new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
     //Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1]];
 
@@ -571,6 +571,8 @@ function theLegend()
     foods.push(new Item("trollsBlood", false));
     foods.push(new Item("gribMeat", false));
     foods.push(new Item("boiledGlinMushrooms", false));
+    foods.push(new Item("viperMeat", false));
+
         //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     var tailoring = [];
     tailoring.push(new Item("walrusLeatherArmour", false));
@@ -598,6 +600,7 @@ function theLegend()
     alchemy.push(new Item("energyPotionI", false));
     alchemy.push(new Item("speedPotionI", false));
     alchemy.push(new Item("fermentedNarthwarpMouth", false));
+    alchemy.push(new Item("fermentedViperVenomGland", false));
         //Brewing (alcohols, liquid fermentation, etc.)
     var brewing = [];
     brewing.push(new Item("harstAle", false));
@@ -866,13 +869,11 @@ function theLegend()
             }
             else if (cheatcode.toLowerCase() == "fix")
             {
-                if (player.name == "Desmonde" && player.raceName == "Vardan" && player.title == "Commoner")
-                {
-                    player.level = 11;
-                    player.skillPoints = 36;
-                    player.totalSkillPoints = 44;
-                    worldItems.push([new Item("coins", X, Y), 2000]);
-                }
+
+            }
+            else if (cheatcode.toLowerCase() == "serpytheserpent")
+            {
+                ArtificialIntelligenceAccess.push(new Unit(X + 40, Y, "Viper", false, "Serpy the Serpent"));
             }
             else if (cheatcode.toLowerCase() == "wetnoodle")
             {
@@ -20197,6 +20198,85 @@ function theLegend()
 
                 }
             }
+            else if (this.type == "Viper")
+            {
+                this.damageFrame = "automatic";
+                this.effect = "poisonII";
+
+                if (this.alpha == true)
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = 0.1;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 11) + 16;
+                    this.health = this.healthMAX;
+                    this.armour = 1;
+                    this.speed = 3.8 + (Math.floor(Math.random() * 6) / 10);
+                    this.rangeOfSight = 425; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1;
+                    this.engagementRadius = 31.5;
+                    this.sizeRadius = 18;
+                    this.negateArmour = 4;
+                    this.attackWait = 1.65;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 20;
+                    this.xAdjustment = 56;
+                }
+                else if (this.alpha == "giant")
+                {
+                    //STATS (non-variable)
+                    this.magicalResistance = 0;
+                    this.heatResistance = 0.25;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 25) + 64;
+                    this.health = this.healthMAX;
+                    this.armour = 6;
+                    this.speed = 5.5 + (Math.floor(Math.random() * 6) / 10);
+                    this.rangeOfSight = 650; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.05;
+                    this.engagementRadius = 40;
+                    this.sizeRadius = 30;
+                    this.negateArmour = 19;
+                    this.attackWait = 2.4;
+
+                    //this multiplies the draw image skew numbers by 1 so that it stays the same
+                    this.alphaSize = 3.4;
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 50;
+                    this.xAdjustment = 120;
+
+                }
+                else
+                {
+                    //STATS (non-variable)
+                    this.magicalResistance = 0;
+                    this.attackStyle = "chunked";
+                    this.heatResistance = 0;
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random()) + 3;
+                    this.health = this.healthMAX;
+                    this.armour = 0.2;
+                    this.speed = 2.7 + (Math.floor(Math.random() * 6) / 10);
+                    this.rangeOfSight = 400; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1;
+                    this.engagementRadius = 33;
+                    this.sizeRadius = 15;
+                    this.negateArmour = 3;
+                    this.attackWait = 1.2;
+
+                    //this multiplies the draw image skew numbers by 1 so that it stays the same
+                    this.alphaSize = 1;
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+
+                }
+            }
             else if (this.type == "Naaprid")
             {
                 this.damageFrame = "manual";
@@ -21594,6 +21674,205 @@ function theLegend()
                 else
                 {
                     this.drawUnit(polypol, 471, 16, 61, 40, -35 - this.xAdjustment, -22 - this.yAdjustment, 61 * this.alphaSize, 40 * this.alphaSize);
+                }
+            }
+            //VIPER
+            if (this.type == "Viper")
+            {
+                //Set Drops and experience
+                if (this.alpha == true)
+                {
+                    if (Math.max(0, 13 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 92 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (92 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    if (player.getIntelligence() >= 23)
+                    {
+                        this.drops = [[new Item("rawViperFlesh", this.X, this.Y), 6], [new Item("viperVenomGland", this.X, this.Y), 1], [new Item("viperSnakeSkin", this.X, this.Y), 6]];
+                    }
+                    else
+                    {
+                        this.drops = [[new Item("rawViperFlesh", this.X, this.Y), 6], [new Item("viperSnakeSkin", this.X, this.Y), 6]];
+                    }
+                }
+                else if (this.alpha == "giant")
+                {
+                    if (Math.max(0, 51 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 499 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (499 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+
+                    this.drops = [[new Item("rawViperFlesh", this.X, this.Y), 17], [new Item("viperSnakeSkin", this.X, this.Y), 17]];
+                }
+                else
+                {
+                    if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 20 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = 20 * ((player.getIntelligence() / 50) + 1) / 10;
+                    }
+
+                    if (player.getIntelligence() >= 18)
+                    {
+                        this.drops = [[new Item("rawViperFlesh", this.X, this.Y), 1], [new Item("viperVenomGland", this.X, this.Y), 1], [new Item("viperSnakeSkin", this.X, this.Y), 1]];
+                    }
+                    else
+                    {
+                        this.drops = [[new Item("rawViperFlesh", this.X, this.Y), 1], [new Item("viperSnakeSkin", this.X, this.Y), 1]];
+                    }
+                }
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                if (this.alpha == true)
+                {
+                    this.rangeOfSightCalculator(700, "mildly");
+                }
+                else if (this.alpha == "giant")
+                {
+                    this.rangeOfSightCalculator(900, "mildly");
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(260, true);
+                }
+
+                //AI
+                if (this.alive == true)
+                {
+                    if (this.alpha == true)
+                    {
+                        this.Attack(9, 4);
+                    }
+                    else if (this.alpha == "giant")
+                    {
+                        this.Attack(34, 17);
+                    }
+                    else
+                    {
+                        this.Attack(3, 1);
+                    }
+
+                    //this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+                    this.pointTowardsPlayer();
+                    this.moveInRelationToPlayer();
+
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(7, 0.090, false);
+                    }
+                    else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(7, 0.145, false);
+                        }
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(freeverse, 438, 5, 70, 30, -35 - this.xAdjustment, -21 - this.yAdjustment, 61 * this.alphaSize, 40 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(freeverse, 438, 5, 70, 30, -35 - this.xAdjustment, -21 - this.yAdjustment, 61 * this.alphaSize, 40 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(freeverse, 518, 6, 70, 30, -34 - this.xAdjustment, -21 - this.yAdjustment, 61 * this.alphaSize, 40 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(freeverse, 438, 33, 70, 30, -35 - this.xAdjustment, -21 - this.yAdjustment, 61 * this.alphaSize, 40 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 2)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(freeverse, 598, 5, 70, 30, -31 - this.xAdjustment, -21 - this.yAdjustment, 61 * this.alphaSize, 40 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(freeverse, 438, 5, 70, 30, -35 - this.xAdjustment, -21 - this.yAdjustment, 61 * this.alphaSize, 40 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 3)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(freeverse, 678, 7, 70, 30, -33 - this.xAdjustment, -21 - this.yAdjustment, 61 * this.alphaSize, 40 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(freeverse, 438, 7, 70, 30, -35 - this.xAdjustment, -21 - this.yAdjustment, 61 * this.alphaSize, 40 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 4)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(freeverse, 764, 9, 70, 30, -35 - this.xAdjustment, -21 - this.yAdjustment, 61 * this.alphaSize, 40 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(freeverse, 438, 120, 70, 30, -35 - this.xAdjustment, -21 - this.yAdjustment, 61 * this.alphaSize, 40 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 5)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(freeverse, 850, 7, 70, 30, -35 - this.xAdjustment, -21 - this.yAdjustment, 61 * this.alphaSize, 40 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(freeverse, 438, 147, 70, 30, -35 - this.xAdjustment, -21 - this.yAdjustment, 61 * this.alphaSize, 40 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume >= 6)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(freeverse, 921, 7, 70, 30, -35 - this.xAdjustment, -21 - this.yAdjustment, 61 * this.alphaSize, 40 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(freeverse, 438, 172, 70, 30, -35 - this.xAdjustment, -21 - this.yAdjustment, 61 * this.alphaSize, 40 * this.alphaSize);
+                        }
+                    }
+                }
+                else
+                {
+                    this.drawUnit(freeverse, 436, 199, 70, 30, -35 - this.xAdjustment, -22 - this.yAdjustment, 61 * this.alphaSize, 40 * this.alphaSize);
                 }
 
             }
@@ -27960,6 +28239,147 @@ function theLegend()
                 this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
                 this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
             }
+            else if (this.type == "viperMeat")
+            {
+                //For All Items
+                this.identity = "Viper Meat";
+                this.weight = 1;
+                this.size = 14;
+                this.description = "The cooked flesh of a viper.";
+                this.intForDes = 0;
+                this.intDescription = "It is chewy and sort of rubbery in texture and has a mild meaty bland taste.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 3.5; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0.1; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.05; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 6;
+                this.ingredients = [["Raw Viper Flesh", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 6.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+            }
+            else if (this.type == "rawViperFlesh")
+            {
+                //For All Items
+                this.identity = "Raw Viper Flesh";
+                this.weight = 1;
+                this.size = 14;
+                this.description = "The raw flesh of a viper.";
+                this.intForDes = 3;
+                this.intDescription = "Although Vipers are poisonous their flesh is not.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 1; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -0.5; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 5 - Math.floor(player.getCharisma() / 25); // at max, buy for 3.
+                this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            }
+            else if (this.type == "viperVenomGland")
+            {
+                //For All Items
+                this.identity = "Viper Venom Gland";
+                this.weight = 1;
+                this.size = 7;
+                this.description = "The gland within a viper that allows it to produce its venom.";
+                this.intForDes = 14;
+                this.intDescription = "Certain reactants in this venom could be used for alchemaic practises if they were to be fermented.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "poisonII";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 31 - Math.floor(player.getCharisma() / 10); // at max, buy for 26.
+                this.sellValue = 9 + Math.floor(player.getCharisma() / 5); // at max, sell for 19.
+            }
+            else if (this.type == "fermentedViperVenomGland")
+            {
+                //For All Items
+                this.identity = "Fermented Viper Venom Gland";
+                this.weight = 1;
+                this.size = 9;
+                this.description = "The sour smelling bulged swolen fermented venom gland from a viper.";
+                this.intForDes = 13;
+                this.intDescription = "The poison becomes slightly less toxic after fermentation.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "poisonI";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 34 - Math.floor(player.getCharisma() / 10); // at max, buy for 29.
+                this.sellValue = 13 + Math.floor(player.getCharisma() / 5); // at max, sell for 23.
+            }
+            else if (this.type == "viperSnakeSkin")
+            {
+                //For All Items
+                this.identity = "Viper Snake Skin";
+                this.weight = 1;
+                this.size = 13;
+                this.description = "The green scaled skin of a viper.";
+                this.intForDes = 11;
+                this.intDescription = "This snake skin can be sewn into outfits and it can also be used as an alchemy ingredient for making potions.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 7 - Math.floor(player.getCharisma() / 15); // at max, buy for 4.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+            }
             else if (this.type == "torperVenomSac")
             {
                 //For All Items
@@ -28377,12 +28797,12 @@ function theLegend()
             else if (this.type == "rasper")
             {
                 //For All Items
-                this.identity = "Rasper";
+                this.identity = "Rasp";
                 this.weight = 2;
                 this.size = 16;
                 this.description = "A curved steel blade with a hooked pommel.";
                 this.intForDes = 4;
-                this.intDescription = "The notorious bandit Chieftain Rasp often used Rasper's hook to gouge out the eyes of his victims.";
+                this.intDescription = "The notorious bandit Chieftain Nelgref often used Rasp's hook to gouge out the eyes of his victims.";
 
                 //Define Utility
                 this.utility = "weapon";
@@ -30353,6 +30773,31 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "rawViperFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 529, 64, 13, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 1.3), 13 * 1.3, 12 * 1.3);
+            }
+            else if (this.type == "viperMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 543, 63, 13, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 1.3), 13 * 1.3, 12 * 1.3);
+            }
+            else if (this.type == "viperVenomGland")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 529, 78, 10, 7, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 7 * 1.3), 10 * 1.3, 7 * 1.3);
+            }
+            else if (this.type == "fermentedViperVenomGland")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 544, 77, 12, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.3), 12 * 1.3, 9 * 1.3);
+            }
+            else if (this.type == "viperSnakeSkin")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 530, 52, 28, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.3), 28 * 1.3, 10 * 1.3);
+            }
             else if (this.type == "rasper")
             {
                 XXX.beginPath();
@@ -31142,6 +31587,31 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "rawViperFlesh")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 529, 64, 13, 12, this.invX - (1/2 * 13 * 1.3), this.invY - (1/2 * 12 * 1.3), 13 * 1.3, 12 * 1.3);
+            }
+            else if (this.type == "viperMeat")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 543, 63, 13, 12, this.invX - (1/2 * 13 * 1.3), this.invY - (1/2 * 12 * 1.3), 13 * 1.3, 12 * 1.3);
+            }
+            else if (this.type == "viperVenomGland")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 529, 78, 10, 7, this.invX - (1/2 * 10 * 1.3), this.invY - (1/2 * 7 * 1.3), 10 * 1.3, 7 * 1.3);
+            }
+            else if (this.type == "fermentedViperVenomGland")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 544, 77, 12, 9, this.invX - (1/2 * 12 * 1.3), this.invY - (1/2 * 9 * 1.3), 12 * 1.3, 9 * 1.3);
+            }
+            else if (this.type == "viperSnakeSkin")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 530, 52, 28, 10, this.invX - (1/2 * 28 * 1.3), this.invY - (1/2 * 10 * 1.3), 28 * 1.3, 10 * 1.3);
+            }
             else if (this.type == "rasper")
             {
                 LXX.beginPath();
@@ -31919,6 +32389,31 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "rawViperFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 529, 64, 13, 12, this.invX - (1/2 * 13 * 1.3), this.invY - (1/2 * 12 * 1.3), 13 * 1.3, 12 * 1.3);
+            }
+            else if (this.type == "viperMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 543, 63, 13, 12, this.invX - (1/2 * 13 * 1.3), this.invY - (1/2 * 12 * 1.3), 13 * 1.3, 12 * 1.3);
+            }
+            else if (this.type == "viperVenomGland")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 529, 78, 10, 7, this.invX - (1/2 * 10 * 1.3), this.invY - (1/2 * 7 * 1.3), 10 * 1.3, 7 * 1.3);
+            }
+            else if (this.type == "fermentedViperVenomGland")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 544, 77, 12, 9, this.invX - (1/2 * 12 * 1.3), this.invY - (1/2 * 9 * 1.3), 12 * 1.3, 9 * 1.3);
+            }
+            else if (this.type == "viperSnakeSkin")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 530, 52, 28, 10, this.invX - (1/2 * 28 * 1.3), this.invY - (1/2 * 10 * 1.3), 28 * 1.3, 10 * 1.3);
             }
             else if (this.type == "rasper")
             {
@@ -33216,6 +33711,9 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-9062, 4191, "Shehid", false, "timbri"));
                     ArtificialIntelligenceAccess.push(new Unit(-9270, 4377, "Shehid", false, "timbro"));
                     ArtificialIntelligenceAccess.push(new Unit(-8787, 4040, "Shehid", false, "timbra"));
+
+                    //Vipers
+                    ArtificialIntelligenceAccess.push(new Unit(-9607, 2648, "Viper", false, "slitherz"));
 
                     //narthwarps
                     ArtificialIntelligenceAccess.push(new Unit(-11292, 3177, "Narthwarp", true, "krinklestitch"));

@@ -879,9 +879,9 @@ function theLegend()
             {
                 for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                 {
-                    if (ArtificialIntelligenceAccess.DTP() > ArtificialIntelligenceAccess.rangeOfSight)
+                    if (ArtificialIntelligenceAccess[i].DTP() > ArtificialIntelligenceAccess[i].rangeOfSight)
                     {
-                        ArtificialIntelligenceAccess.playerSeen = false;
+                        ArtificialIntelligenceAccess[i].playerSeen = false;
                     }
                 }
                 player.engagedSenser();

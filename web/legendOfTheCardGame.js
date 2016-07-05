@@ -308,6 +308,9 @@ function playHorde()
     //alternate specific (especifico a su/tu enemigo)
     var altHordeLife = 10000;
     var altBattlePoints = 5;
+    //to do with attacking and defending
+    var altAttackAdvance = false;
+    var attackAdvance = false;
 
 //Lists (Listas)
     //Player (Usted/tú)
@@ -324,6 +327,8 @@ function playHorde()
     var altAIContainer = [new alternateAI()];
     var altAI = altAIContainer[0];
     var altAttacking = []; //the list of all attacking cards.
+
+    var matchups = [];
 
 //Objects (Objetos)
 
@@ -354,6 +359,7 @@ function playHorde()
         this.defense = 0;
         this.lives = 0;
         this.attacking = false;
+        this.defending = false;
         if (round >= 0)
         {
             this.roundPlayed = round;
@@ -559,6 +565,11 @@ function playHorde()
                     conx.lineWidth = 4;
                     conx.strokeStyle = "red";
                 }
+                else if (this.defending)
+                {
+                    conx.lineWidth = 4;
+                    conx.strokeStyle = "blue";
+                }
                 else
                 {
                     conx.lineWidth = 2;
@@ -692,6 +703,43 @@ function playHorde()
                     conx.fillStyle = "black";
                     conx.textAlign = "center";
                     conx.fillText(this.lives, 0 + this.X, 65 * this.scale + this.Y);
+
+                    if (this.owner == true)
+                    {
+                        //the commands buttons
+                        //attacking button
+                        conx.drawImage(horde1, 206, 37, 116, 117, this.X - (145 * this.scale), this.Y + (165 * this.scale), 116 * (1 / 4)  * this.scale, 117 * (1 / 4)  * this.scale);
+                        if (mouseX > this.X - (145 * this.scale) -1 * this.scale && mouseX < this.X - (145 * this.scale) +30 * this.scale && mouseY > this.Y + (165 * this.scale) - 1 * this.scale && mouseY < this.Y + (165 * this.scale) + 30 * this.scale && clicked == true && this.inspection == true)
+                        {
+                            clicked = false;
+                            alert("TODO: this will make your card ready to attack for the next attacking phase!");
+                        }
+                        conx.drawImage(horde1, 50, 41, 116, 117, this.X - (115 * this.scale), this.Y + (165 * this.scale), 116 * (1 / 4)  * this.scale, 117 * (1 / 4)  * this.scale);
+                        if (mouseX > this.X - (115 * this.scale) -1 * this.scale && mouseX < this.X - (115 * this.scale) +30 * this.scale && mouseY > this.Y + (165 * this.scale) - 1 * this.scale && mouseY < this.Y + (165 * this.scale) + 30 * this.scale && clicked == true && this.inspection == true)
+                        {
+                            clicked = false;
+                            alert("TODO: this will make your card ready to defend during your defending phase!");
+                        }
+                        conx.drawImage(horde1, 212, 179, 116, 117, this.X - (85 * this.scale), this.Y + (165 * this.scale), 116 * (1 / 4)  * this.scale, 117 * (1 / 4)  * this.scale);
+                        if (mouseX > this.X - (85 * this.scale) -1 * this.scale && mouseX < this.X - (85 * this.scale) +30 * this.scale && mouseY > this.Y + (165 * this.scale) - 1 * this.scale && mouseY < this.Y + (165 * this.scale) + 30 * this.scale && clicked == true && this.inspection == true)
+                        {
+                            clicked = false;
+                            alert("TODO: This will sacrifise your card in exchange for sacrifice points!");
+                        }
+                        conx.drawImage(horde1, 52, 181, 116, 117, this.X - (55 * this.scale), this.Y + (165 * this.scale), 116 * (1 / 4)  * this.scale, 117 * (1 / 4)  * this.scale);
+                        if (mouseX > this.X - (55 * this.scale) -1 * this.scale && mouseX < this.X - (55 * this.scale) +30 * this.scale && mouseY > this.Y + (165 * this.scale) - 1 * this.scale && mouseY < this.Y + (165 * this.scale) + 30 * this.scale && clicked == true && this.inspection == true)
+                        {
+                            clicked = false;
+                            alert("TODO: This will retreat the card back into your hand.");
+                        }
+                        conx.drawImage(horde1, 212, 314, 116, 117, this.X - (25 * this.scale), this.Y + (165 * this.scale), 116 * (1 / 4)  * this.scale, 117 * (1 / 4)  * this.scale);
+                        if (mouseX > this.X - (25 * this.scale) -1 * this.scale && mouseX < this.X - (25 * this.scale) +30 * this.scale && mouseY > this.Y + (165 * this.scale) - 1 * this.scale && mouseY < this.Y + (165 * this.scale) + 30 * this.scale && clicked == true && this.inspection == true)
+                        {
+                            clicked = false;
+                            alert("TODO: This will activate this cards effect, if it has one, otherwise it will tell the player the card has no effect.");
+                        }
+                    }
+
                 }
             }
             else
@@ -829,7 +877,7 @@ function playHorde()
         }
     }
 
-    function hordeGameManager() //todo figure out why this card drawing function leads to both players drawing more than 5. //todo also the ugly out of place card are from the player's and alternate's decks, those cards have not been given coordinate to go elswhere yet.
+    function hordeGameManager()
     {
         if (playerHordeLife && altHordeLife > 0)
         {
@@ -867,24 +915,26 @@ function playHorde()
 
             if (turn == "alternate")
             {
+                var playAttempts = altHordeHand.length
                 //play a card or multiple.
-                for (var i = 0; i < altHordeHand.length; i++)
+                for (var i = 0; i < playAttempts; i++)
                 {
                     altAI.playACard();
                 }
                 turn = "altPlanningPhase";
-
             }
 
             if (turn == "altPlanningPhase")
             {
                 turn = "altAttackPhase";
                 altAI.planTheAssault();
+                altAttackAdvance = false; //this lets the game know that the attacking units have not yet advanced.
             }
 
             if (turn == "altAttackPhase")
             {
-                console.log(altAttacking)
+                console.log(altAttacking);
+
             }
         }
     }
@@ -955,6 +1005,23 @@ function playHorde()
                 return whom;
             }
 
+        };
+
+        this.defendingPhase = function()
+        {
+            if (turn == "altAttackPhase")
+            {
+                if (altAttackAdvance == false)
+                {
+                    for (var i = 0; i < altAttacking.length; i++)
+                    {
+                        altAttacking[i].Y -= 50;
+                    }
+                    altAttackAdvance = true;
+                }
+                //Player Defending Phase
+
+            }
         };
 
         this.planTheAssault = function() //TODO figure out what's wrong with this function, most of the attack methods seem to be completely disregarded.
@@ -1096,6 +1163,10 @@ function playHorde()
                 else if (afterChoices.length > 1)
                 {
                     bestChoice = afterChoices[Math.floor(Math.random() * afterChoices.length)];
+                }
+                else if (afterChoices.length == 1)
+                {
+                    bestChoice = afterChoices[0];
                 }
                 else
                 {

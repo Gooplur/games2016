@@ -915,13 +915,18 @@ function theLegend()
             {
                 player.miniNoticeList = [];
             }
-            else if (cheatcode.toLowerCase() == "fixinv")
+            else if (cheatcode.toLowerCase() == "fixinvplus")
             {
                 //invScroll = -79;
                 player.inventoryPosition += 1;
                 alert(player.inventoryPosition);
             }
-            else if (cheatcode.toLowerCase() == "invfix")
+            else if (cheatcode.toLowerCase() == "fixinv")
+            {
+                player.inventoryPosition = 0;
+                invScroll = 0;
+            }
+            else if (cheatcode.toLowerCase() == "fixinvminus")
             {
                 //invScroll = 0;
                 player.inventoryPosition -= 1;
@@ -35432,8 +35437,8 @@ function theLegend()
     //gameState = "horde"; // this changes the gamemode so that horde will have priority.
     //playHorde(); //This starts the card game horde.
 
-    //requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
+    requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
 
-    gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
-    requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
+    //gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
+    //requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
 }

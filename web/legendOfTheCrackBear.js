@@ -919,11 +919,13 @@ function theLegend()
             {
                 //invScroll = -79;
                 player.inventoryPosition += 1;
+                alert(player.inventoryPosition);
             }
             else if (cheatcode.toLowerCase() == "invfix")
             {
                 //invScroll = 0;
                 player.inventoryPosition -= 1;
+                alert(player.inventoryPosition);
             }
             else if (cheatcode.toLowerCase() == "serpytheserpent")
             {

@@ -922,7 +922,7 @@ function theLegend()
             }
             else if (cheatcode.toLowerCase() == "invfix")
             {
-                invScroll = 79;
+                invScroll = -79 * 5;
             }
             else if (cheatcode.toLowerCase() == "serpytheserpent")
             {

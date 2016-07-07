@@ -922,8 +922,8 @@ function theLegend()
             }
             else if (cheatcode.toLowerCase() == "invfix")
             {
-                invScroll = 0;
-                player.inventoryPosition = 0;
+                invScroll -= 79;
+                player.inventoryPosition += 1;
             }
             else if (cheatcode.toLowerCase() == "serpytheserpent")
             {

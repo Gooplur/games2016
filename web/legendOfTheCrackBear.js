@@ -34962,6 +34962,7 @@ function theLegend()
 
                     //Vipers
                     ArtificialIntelligenceAccess.push(new Unit(-9607, 2648, "Viper", false, "slitherz"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11027, 239, "Viper", false, "Serpil"));
 
                     //narthwarps
                     ArtificialIntelligenceAccess.push(new Unit(-11292, 3177, "Narthwarp", true, "krinklestitch"));

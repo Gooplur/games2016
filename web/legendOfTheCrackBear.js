@@ -613,6 +613,7 @@ function theLegend()
         //Alchemy (Potions and mixtures crafted at an alchemy lab station)
     var alchemy = [];
     alchemy.push(new Item("cleansingPotion", false));
+    alchemy.push(new Item("healingSalve", false));
     alchemy.push(new Item("rawTrollsBlood", false));
     alchemy.push(new Item("energyPotionI", false));
     alchemy.push(new Item("speedPotionI", false));
@@ -27967,6 +27968,42 @@ function theLegend()
                 this.buyValue = 45 - Math.floor(player.getCharisma() / 2.5); // at max, buy for 25.
                 this.sellValue = 5 + Math.floor(player.getCharisma() / 5); // at max, sell for 15.
             }
+            else if (this.type == "healingSalve") //boobleboo
+            {
+                //For All Items
+                this.identity = "Jar of Healing Salve";
+                this.weight = 3;
+                this.size = 6;
+                this.description = "An expertly devised alchemic mixture that can be used to heal minor wounds.";
+                this.intForDes = 6;
+                this.intDescription = "Healing salve is the most commonly used medacine in the lands.";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["glassJar", 1]];
+
+                //Utility Focused
+                this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 2; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "healthI";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 10;
+                this.ingredients = [["glassJar", 1], ["Naaprid Butter", 1], ["Culpris Leaf", 8], ["blubber", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 70 - Math.floor(player.getCharisma() / 2); // at max, buy for 45.
+                this.sellValue = 30 + Math.floor(player.getCharisma() / 3); // at max, sell for 45.
+            }
             else if (this.type == "trollsBlood")
             {
                 //For All Items
@@ -32208,6 +32245,11 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "healingSalve")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2944, 293, 10, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 10, 16);
+            }
             else if (this.type == "carrot")
             {
                 XXX.beginPath();
@@ -33092,6 +33134,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "healingSalve")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2944, 293, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
+            }
             else if (this.type == "carrot")
             {
                 LXX.beginPath();
@@ -33959,6 +34006,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "healingSalve")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2944, 293, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
             }
             else if (this.type == "carrot")
             {
@@ -35015,7 +35067,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(1171, 699, "Person", false, "Laandeg the Alchemist", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[744, 1133], [801, 1156], [840, 373], [744, 1545]], merchant: true, merchandise: [[new Item("coins", false, false), 29], [new Item("trollsBlood", false, false), 1], [new Item("rawTrollsBlood", false, false), 1], [new Item("cleansingPotion", false, false), 1], [new Item("energyPotionI", false, false), 3], [new Item("speedPotionI", false, false), 2], [new Item("glassJar", false, false), 14], [new Item("rawWolfLiver", false, false), 4]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(1171, 699, "Person", false, "Laandeg the Alchemist", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[744, 1133], [801, 1156], [840, 373], [744, 1545]], merchant: true, merchandise: [[new Item("coins", false, false), 29], [new Item("healingSalve", false, false), 4], [new Item("trollsBlood", false, false), 1], [new Item("rawTrollsBlood", false, false), 1], [new Item("cleansingPotion", false, false), 1], [new Item("energyPotionI", false, false), 3], [new Item("speedPotionI", false, false), 2], [new Item("glassJar", false, false), 14], [new Item("rawWolfLiver", false, false), 4]]}));
                         }
                     }
                     if (uniqueChars.hilmundLDS == true)
@@ -35556,9 +35608,9 @@ function theLegend()
 
                     if (player.level > 8 && player.level < 13 || Math.floor(Math.random() * 9) == 8) // summon giant friches if between these levels.
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-5441, -2609, "Frich", "giant", "Edard"));
-                        ArtificialIntelligenceAccess.push(new Unit(-5434, -2411, "Frich", "giant", "Robert"));
-                        ArtificialIntelligenceAccess.push(new Unit(-5570, -2522, "Frich", "giant", "Stannis"));
+                        ArtificialIntelligenceAccess.push(new Unit(-5441, -2609, "Frich", "massive", "Edard"));
+                        ArtificialIntelligenceAccess.push(new Unit(-5434, -2411, "Frich", "massive", "Robert"));
+                        ArtificialIntelligenceAccess.push(new Unit(-5570, -2522, "Frich", "massive", "Stannis"));
                     }
                     else
                     {

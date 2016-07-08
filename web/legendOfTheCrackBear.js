@@ -108,6 +108,10 @@ function legendaryPrerequisites()
     window.drohforLordVictory = drohforLordVictory;
 
     //images
+    var farmground = new Image();
+    farmground.src = ("images/farmingland.png");
+    window.farmground = farmground;
+
     var mushBlur = new Image();
     mushBlur.src = ("images/blurredGreenSwish.jpg");
     window.mushBlur = mushBlur;
@@ -3188,6 +3192,7 @@ function theLegend()
                 outlineBuilder( 7, 1, "stonePath", -0, -7);
                 outlineBuilder( 1, 6, "stonePath", -6, -7);
                 outlineBuilder( 1, 13, "stonePath", -20, -7);
+                outlineBuilder( 2, 3, "farmland", -7, 1);
             }
             if (Y < 6870 && X < - 2490) //This is the central region
             {
@@ -17411,6 +17416,10 @@ function theLegend()
                     XXX.fill();
                     XXX.stroke();
                 }
+                else if (terrain == "farmland")
+                {
+                    XXX.drawImage(farmground, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
                 else if (terrain == "greenGrass")
                 {
                     XXX.drawImage(lushGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
@@ -24537,6 +24546,7 @@ function theLegend()
         this.radius = 1;
         this.rotation = rotation;
         this.temporary = longevity; //This is whether or not it will stay permanently or is subject to despawning after time.
+        this.owned = longevity; //if an items longevity is unimportant or is obvious that can be used to define its ownership.
         this.solid = false;
         this.mouser = 10000; //this is the measurement of the mouse's distance from the Scenery object.
         this.playerer = 10000; //this is the measurement of the player's distance from the Scenery object.
@@ -24564,6 +24574,49 @@ function theLegend()
         this.treeHealth = 120;
         //Plant Variables
         this.phase = 0;
+
+        this.changeFactionRelation = function(changeAmount)
+        {
+            if (this.owned.length > 1)
+            {
+                if (this.owned = "freynor")
+                {
+                    player.freynorFaction += changeAmount;
+                }
+                else if (this.owned = "kel")
+                {
+                    player.kelFaction += changeAmount;
+                }
+                else if (this.owned = "vardan")
+                {
+                    player.vardanFaction += changeAmount;
+                }
+                else if (this.owned = "nirwaden")
+                {
+                    player.nirwadenFaction += changeAmount;
+                }
+                else if (this.owned = "outlander")
+                {
+                    player.outlanderFaction += changeAmount;
+                }
+                else if (this.owned = "aldrek")
+                {
+                    player.aldrekFaction += changeAmount;
+                }
+                else if (this.owned = "cephrite")
+                {
+                    player.cephriteFaction += changeAmount;
+                }
+                else if (this.owned = "orgel")
+                {
+                    player.orgelFaction += changeAmount;
+                }
+                else if (this.owned = "thengar")
+                {
+                    player.thengarFaction += changeAmount;
+                }
+            }
+        };
 
         this.countAdder = function()
         {
@@ -25160,6 +25213,67 @@ function theLegend()
                     if (hits == Inventory.length)
                     {
                         Inventory.push([new Item("culprisLeaf", false, false), Math.floor(1 + Math.random() * 3)]);
+                    }
+                }
+            }
+            else if (this.type == "harstPlant")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 85;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(freeverse, 240, 27, 17, 19, -(1/2 * 17 * 2), -(1/2 * 19 * 2), 17 * 2, 19 * 2);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(freeverse, 261, 42, 17, 19, -(1/2 * 17 * 2), -(1/2 * 19 * 2), 17 * 2, 19 * 2);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 17;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+
+                    //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                    if (this.owned.length > 1)
+                    {
+                        if (player.noticed == true)
+                        {
+                            this.changeFactionRelation(-5);
+                        }
+                    }
+
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "harstGrain")
+                        {
+                            Inventory[i][1] += Math.floor(1 + Math.random() * 3);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("harstGrain", false, false), Math.floor(1 + Math.random() * 2)]);
                     }
                 }
             }
@@ -27543,6 +27657,35 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 12 - Math.floor(player.getCharisma() / 10); // at max, buy for 7.
                 this.sellValue = 4 + Math.floor(player.getCharisma() / 15); // at max, sell for 7.
+            }
+            else if (this.type == "harstGrain")
+            {
+                //For All Items
+                this.identity = "Harst Grain";
+                this.weight = 0.1;
+                this.size = 7;
+                this.description = "A rough and hard shelled dark grain.";
+                this.intForDes = 8;
+                this.intDescription = "Raw, harst grain is crunchy and unappetizing; it must be boiled for over an hour to reach a more edible state.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0.5; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -1; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
             }
             else if (this.type == "stomwikLeaf")
             {
@@ -31768,6 +31911,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(freeverse, 204, 17, 11, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.5), 11 * 1.5, 10 * 1.5);
             }
+            else if (this.type == "harstGrain")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 241, 45, 12, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 12), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13), 12, 13);
+            }
             else if (this.type == "harstAle")
             {
                 XXX.beginPath();
@@ -32622,6 +32770,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(freeverse, 205, 2, 11, 11, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 11 * 2), 11 * 2, 11 * 2);
             }
+            else if (this.type == "harstGrain")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 241, 45, 12, 13, this.invX - (1/2 * 12), this.invY - (1/2 * 13), 12, 13);
+            }
             else if (this.type == "harstAle")
             {
                 LXX.beginPath();
@@ -33459,6 +33612,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(freeverse, 205, 2, 11, 11, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 11 * 2), 11 * 2, 11 * 2);
+            }
+            else if (this.type == "harstGrain")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 241, 45, 12, 13, this.invX - (1/2 * 12), this.invY - (1/2 * 13), 12, 13);
             }
             else if (this.type == "harstAle")
             {
@@ -34465,7 +34623,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(1930, 1793, "Person", false, "Medlia the Merchant", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[1710, 1717], [1812, 1835], [1713, 1882], [1930, 1793]], merchant: true, merchandise: [[new Item("coins", false, false), 179], [new Item("wood", false, false), 48], [new Item("fireStarter", false, false), 3], [new Item("rawWalrusFlesh", false, false), 8], [new Item("walrusHide", false, false), 1], [new Item("walrusTusks", false, false), 1], [new Item("frichPelt", false, false), 3], [new Item("rawFrichFlesh", false, false), 22], [new Item("winterWolfPelt", false, false), 3], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("rawWolfLiver", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 2]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(1930, 1793, "Person", false, "Medlia the Merchant", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[1710, 1717], [1812, 1835], [1713, 1882], [1930, 1793]], merchant: true, merchandise: [[new Item("coins", false, false), 179], [new Item("wood", false, false), 48], [new Item("fireStarter", false, false), 3], [new Item("rawWalrusFlesh", false, false), 8], [new Item("walrusHide", false, false), 1], [new Item("walrusTusks", false, false), 1], [new Item("frichPelt", false, false), 3], [new Item("rawFrichFlesh", false, false), 22], [new Item("winterWolfPelt", false, false), 3], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("rawWolfLiver", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 2], [new Item("harstGrain", false, false), 29]]}));
                         }
                     }
                     if (uniqueChars.maggyLDS == true)
@@ -34577,6 +34735,38 @@ function theLegend()
                     scenicList.push(new Scenery("lab", 1217, 728, 0, true));
                     //scenicList.push(new Scenery("well", 2394, 1618, 0, true));
 
+                        //The City Farm
+                    scenicList.push(new Scenery("harstPlant", 2241 , 240, Math.PI * 0.44, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2241 , 165, Math.PI * 3.1, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2241 , 52, -Math.PI * 3.1, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2241 , -31, Math.PI * 2, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2241 , -107, Math.PI * 2.45, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2241 , -197, -Math.PI * 1.66, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2241 , -286, -Math.PI * 0.1, "freynor"));
+
+                    scenicList.push(new Scenery("harstPlant", 2329 , 240, -Math.PI * 2.2, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2329 , 166, Math.PI * 3.1, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2329 , 76, Math.PI * 3.1, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2329 , -17, Math.PI * 3.1, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2329 , -105, Math.PI * 3.1, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2329 , -197, Math.PI * 3.1, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2329 , -297, Math.PI * 3.1, "freynor"));
+
+                    scenicList.push(new Scenery("harstPlant", 2422 , 240, Math.PI * 0.05, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2422 , 162, Math.PI * 0.05, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2422 , 71, Math.PI * 0.05, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2422 , -12, Math.PI * 0.05, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2422 , -95, Math.PI * 0.05, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2422 , -195, Math.PI * 0.05, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2422 , -289, Math.PI * 0.05, "freynor"));
+
+                    scenicList.push(new Scenery("harstPlant", 2498 , 240, -Math.PI * 1.56, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2498 , 164, -Math.PI * 1.56, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2498 , 59, -Math.PI * 1.56, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2498 , -24, -Math.PI * 1.56, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2498 , -95, -Math.PI * 1.56, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2498 , -192, -Math.PI * 1.56, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", 2498 , -286, -Math.PI * 1.56, "freynor"));
 
                     change = "central";
                 }
@@ -35437,8 +35627,8 @@ function theLegend()
     //gameState = "horde"; // this changes the gamemode so that horde will have priority.
     //playHorde(); //This starts the card game horde.
 
-    requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
+    //requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
 
-    //gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
-    //requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
+    gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
+    requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
 }

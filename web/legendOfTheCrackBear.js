@@ -567,6 +567,7 @@ function theLegend()
 
         //Foods (Items cooked at either a stove, an oven, or a campfire)
     var foods = [];
+    foods.push(new Item("cookedPotato", false));
     foods.push(new Item("etyrMeat", false));
     foods.push(new Item("olkrinMeat", false));
     foods.push(new Item("trollMeat", false));
@@ -587,6 +588,7 @@ function theLegend()
     foods.push(new Item("boiledGlinMushrooms", false));
     foods.push(new Item("viperMeat", false));
     foods.push(new Item("kellishClayPotOfMushroomStew", false));
+    foods.push(new Item("suuliMelonSlice", false));
 
         //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     var tailoring = [];
@@ -617,6 +619,7 @@ function theLegend()
     alchemy.push(new Item("fermentedNarthwarpMouth", false));
     alchemy.push(new Item("fermentedViperVenomGland", false));
     alchemy.push(new Item("driedCyrinthilimMushroom", false));
+    alchemy.push(new Item("suuliMelonSlice", false));
 
         //Brewing (alcohols, liquid fermentation, etc.)
     var brewing = [];
@@ -10797,7 +10800,7 @@ function theLegend()
 
                 for (var i = 0; i < preCraftMenu.length; i++)
                 {
-                    if (this.getIntelligence() > preCraftMenu[i].intForCraft)
+                    if (this.getIntelligence() >= preCraftMenu[i].intForCraft)
                     {
                         craftMenu.push(preCraftMenu[i]);
                     }
@@ -25014,6 +25017,134 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "potatoPlant")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 40;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(oldverse, 2912, 68, 20, 19, -(1/2 * 20), -(1/2 * 19), 20, 19);
+                    XXX.restore();
+                }
+                else
+                {
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 18;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+
+                    //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                    if (this.owned.length > 1)
+                    {
+                        if (player.noticed == true)
+                        {
+                            this.changeFactionRelation(-7);
+                        }
+                    }
+
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "potato")
+                        {
+                            Inventory[i][1] += Math.floor(Math.random() * 6) + 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("potato", false, false), Math.floor(Math.random() * 6) + 1]);
+                    }
+                }
+            }
+            else if (this.type == "carrotPlant")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 40;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(oldverse, 2892, 73, 13, 12, -(1/2 * 13), -(1/2 * 12), 13, 12);
+                    XXX.restore();
+                }
+                else
+                {
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 18;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+
+                    //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                    if (this.owned.length > 1)
+                    {
+                        if (player.noticed == true)
+                        {
+                            this.changeFactionRelation(-5);
+                        }
+                    }
+
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "carrot")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("carrot", false, false), 1]);
+                    }
+                }
+            }
             else if (this.type == "glinPlant")
             {
                 //TRAITS
@@ -25278,7 +25409,7 @@ function theLegend()
                     {
                         if (Inventory[i][0].type == "harstGrain")
                         {
-                            Inventory[i][1] += Math.floor(1 + Math.random() * 3);
+                            Inventory[i][1] += Math.floor(1 + Math.random() * 2);
                             break;
                         }
                         else
@@ -25289,6 +25420,67 @@ function theLegend()
                     if (hits == Inventory.length)
                     {
                         Inventory.push([new Item("harstGrain", false, false), Math.floor(1 + Math.random() * 2)]);
+                    }
+                }
+            }
+            else if (this.type == "suuliPlant")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 90;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(oldverse, 2878, 92, 49, 50, -(1/2 * 49), -(1/2 * 50), 49, 50);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(oldverse, 2947, 94, 49, 50, -(1/2 * 49), -(1/2 * 50), 49, 50);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 17;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+
+                    //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                    if (this.owned.length > 1)
+                    {
+                        if (player.noticed == true)
+                        {
+                            this.changeFactionRelation(-17);
+                        }
+                    }
+
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "suuliMelon")
+                        {
+                            Inventory[i][1] += Math.floor(1 + Math.random() * 3);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("suuliMelon", false, false), Math.floor(1 + Math.random() * 3)]);
                     }
                 }
             }
@@ -28671,6 +28863,161 @@ function theLegend()
                 this.buyValue = 0; // at max, buy for 0.
                 this.sellValue = 0; // at max, sell for 0.
             }
+            else if (this.type == "suuliMelon")
+            {
+                //For All Items
+                this.identity = "Suuli Melon";
+                this.weight = 0.1;
+                this.size = 13;
+                this.description = "A green striped melon native to the more northern climates.";
+                this.intForDes = 2;
+                this.intDescription = "Although this type of melon grows in cold climates it can not survive the snowy tundras of the far north.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 12; //satisfies hunger.
+                this.thirst = 6; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0.2; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 24 - Math.floor(player.getCharisma() / 10); // at max, buy for 19.
+                this.sellValue = 9 + Math.floor(player.getCharisma() / 5); // at max, sell for 19.
+            }
+            else if (this.type == "suuliMelonSlice")
+            {
+                //For All Items
+                this.identity = "Suuli Melon Slice";
+                this.weight = 0.1;
+                this.size = 13;
+                this.description = "A slice of suuli melon; it has a light green colour and is incredibly juicy and sweet.";
+                this.intForDes = 2;
+                this.intDescription = "Shops prefer to buy melons whole rather than cut up.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 2; //satisfies hunger.
+                this.thirst = 1; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0.1; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 6;
+                this.intForCraft = 2;
+                this.ingredients = [["Suuli Melon", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+            }
+            else if (this.type == "carrot")
+            {
+                //For All Items
+                this.identity = "Carrot";
+                this.weight = 0.1;
+                this.size = 9;
+                this.description = "A ripe orange carrot.";
+                this.intForDes = 5;
+                this.intDescription = "Carrots can be used in some recipes to create more complex dishes.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 1.5; //satisfies hunger.
+                this.thirst = 0.1; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -0.2; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 2; // at max, buy for 2.
+                this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            }
+            else if (this.type == "potato")
+            {
+                //For All Items
+                this.identity = "Potato";
+                this.weight = 0.1;
+                this.size = 9;
+                this.description = "A starchy dry variety of potato.";
+                this.intForDes = 5;
+                this.intDescription = "This is the standard variety of potato and is the most common variety to be grown in farms.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0.3; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -0.5; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "cookedPotato")
+            {
+                //For All Items
+                this.identity = "Roasted Potato";
+                this.weight = 0.1;
+                this.size = 9;
+                this.description = "A cooked potato; be careful it's hot don't drop it.";
+                this.intForDes = 1;
+                this.intDescription = "Eating Potatoes is a good way to restore hunger.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 3; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 1; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 1;
+                this.ingredients = [["Potato", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+                this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
+            }
             else if (this.type == "berulnPelt")
             {
                 //For All Items
@@ -31861,6 +32208,31 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "carrot")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2864, 68, 18, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 18), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19), 18, 19);
+            }
+            else if (this.type == "suuliMelon")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2940, 67, 16, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 16), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22), 16, 22);
+            }
+            else if (this.type == "suuliMelonSlice")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2963, 68, 16, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 14), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20), 14, 20);
+            }
+            else if (this.type == "potato")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2770, 1, 10, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 10, 16);
+            }
+            else if (this.type == "cookedPotato")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2782, 1, 10, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 10, 16);
+            }
             else if (this.type == "nechromanticDust")
             {
                 XXX.beginPath();
@@ -32720,6 +33092,31 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "carrot")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2864, 68, 18, 19, this.invX - (1/2 * 18), this.invY - (1/2 * 19), 18, 19);
+            }
+            else if (this.type == "suuliMelon")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2940, 67, 16, 22, this.invX - (1/2 * 16), this.invY - (1/2 * 22), 16, 22);
+            }
+            else if (this.type == "suuliMelonSlice")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2963, 68, 16, 22, this.invX - (1/2 * 14), this.invY - (1/2 * 20), 14, 20);
+            }
+            else if (this.type == "potato")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2770, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
+            }
+            else if (this.type == "cookedPotato")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2782, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
+            }
             else if (this.type == "nechromanticDust")
             {
                 LXX.beginPath();
@@ -33562,6 +33959,31 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "carrot")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2864, 68, 18, 19, this.invX - (1/2 * 18), this.invY - (1/2 * 19), 18, 19);
+            }
+            else if (this.type == "suuliMelon")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2940, 67, 16, 22, this.invX - (1/2 * 16), this.invY - (1/2 * 22), 16, 22);
+            }
+            else if (this.type == "suuliMelonSlice")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2963, 68, 16, 22, this.invX - (1/2 * 14), this.invY - (1/2 * 20), 14, 20);
+            }
+            else if (this.type == "potato")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2770, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
+            }
+            else if (this.type == "cookedPotato")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2782, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
             }
             else if (this.type == "nechromanticDust")
             {
@@ -34608,7 +35030,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(2164, 1656, "Person", false, "Hilmund the Innkeeper", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.3, 0.7], 0, 0, 0.8], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2164, 1656]], merchant: true, merchandise: [[new Item("coins", false, false), 86], [new Item("harstAle", false, false), 48], [new Item("waterPintGlass", false, false), 9], [new Item("bucketOfWater", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 11], [new Item("walrusMeat", false, false), 8], [new Item("bearMeat", false, false), 3], [new Item("winterWolfMeat", false, false), 5], [new Item("frichMeat", false, false), 17], [new Item("wolfLiver", false, false), 6]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(2164, 1656, "Person", false, "Hilmund the Innkeeper", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.3, 0.7], 0, 0, 0.8], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2164, 1656]], merchant: true, merchandise: [[new Item("coins", false, false), 86], [new Item("harstAle", false, false), 48], [new Item("waterPintGlass", false, false), 9], [new Item("bucketOfWater", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 11], [new Item("walrusMeat", false, false), 8], [new Item("bearMeat", false, false), 3], [new Item("winterWolfMeat", false, false), 5], [new Item("frichMeat", false, false), 17], [new Item("wolfLiver", false, false), 6], [new Item("suuliMelonSlice", false, false), 14]]}));
                         }
                     }
                     if (uniqueChars.bobithLDS == true)
@@ -34638,7 +35060,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(1930, 1793, "Person", false, "Medlia the Merchant", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[1710, 1717], [1812, 1835], [1713, 1882], [1930, 1793]], merchant: true, merchandise: [[new Item("coins", false, false), 179], [new Item("wood", false, false), 48], [new Item("fireStarter", false, false), 3], [new Item("rawWalrusFlesh", false, false), 8], [new Item("walrusHide", false, false), 1], [new Item("walrusTusks", false, false), 1], [new Item("frichPelt", false, false), 3], [new Item("rawFrichFlesh", false, false), 22], [new Item("winterWolfPelt", false, false), 3], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("rawWolfLiver", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 2], [new Item("harstGrain", false, false), 29]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(1930, 1793, "Person", false, "Medlia the Merchant", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[1710, 1717], [1812, 1835], [1713, 1882], [1930, 1793]], merchant: true, merchandise: [[new Item("coins", false, false), 179], [new Item("wood", false, false), 48], [new Item("fireStarter", false, false), 3], [new Item("rawWalrusFlesh", false, false), 8], [new Item("walrusHide", false, false), 1], [new Item("walrusTusks", false, false), 1], [new Item("frichPelt", false, false), 3], [new Item("rawFrichFlesh", false, false), 22], [new Item("winterWolfPelt", false, false), 3], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("rawWolfLiver", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 2], [new Item("harstGrain", false, false), 29], [new Item("potato", false, false), 8], [new Item("carrot", false, false), 13], [new Item("suuliMelon", false, false), 5]]}));
                         }
                     }
                     if (uniqueChars.maggyLDS == true)
@@ -34758,7 +35180,6 @@ function theLegend()
                     scenicList.push(new Scenery("harstPlant", 2241 , -107, Math.PI * 2.45, "freynor"));
                     scenicList.push(new Scenery("harstPlant", 2241 , -197, -Math.PI * 1.66, "freynor"));
                     scenicList.push(new Scenery("harstPlant", 2241 , -286, -Math.PI * 0.1, "freynor"));
-
                     scenicList.push(new Scenery("harstPlant", 2329 , 240, -Math.PI * 2.2, "freynor"));
                     scenicList.push(new Scenery("harstPlant", 2329 , 166, Math.PI * 3.1, "freynor"));
                     scenicList.push(new Scenery("harstPlant", 2329 , 76, Math.PI * 3.1, "freynor"));
@@ -34766,7 +35187,6 @@ function theLegend()
                     scenicList.push(new Scenery("harstPlant", 2329 , -105, Math.PI * 3.1, "freynor"));
                     scenicList.push(new Scenery("harstPlant", 2329 , -197, Math.PI * 3.1, "freynor"));
                     scenicList.push(new Scenery("harstPlant", 2329 , -297, Math.PI * 3.1, "freynor"));
-
                     scenicList.push(new Scenery("harstPlant", 2422 , 240, Math.PI * 0.05, "freynor"));
                     scenicList.push(new Scenery("harstPlant", 2422 , 162, Math.PI * 0.05, "freynor"));
                     scenicList.push(new Scenery("harstPlant", 2422 , 71, Math.PI * 0.05, "freynor"));
@@ -34774,7 +35194,6 @@ function theLegend()
                     scenicList.push(new Scenery("harstPlant", 2422 , -95, Math.PI * 0.05, "freynor"));
                     scenicList.push(new Scenery("harstPlant", 2422 , -195, Math.PI * 0.05, "freynor"));
                     scenicList.push(new Scenery("harstPlant", 2422 , -289, Math.PI * 0.05, "freynor"));
-
                     scenicList.push(new Scenery("harstPlant", 2498 , 240, -Math.PI * 1.56, "freynor"));
                     scenicList.push(new Scenery("harstPlant", 2498 , 164, -Math.PI * 1.56, "freynor"));
                     scenicList.push(new Scenery("harstPlant", 2498 , 59, -Math.PI * 1.56, "freynor"));
@@ -34782,6 +35201,77 @@ function theLegend()
                     scenicList.push(new Scenery("harstPlant", 2498 , -95, -Math.PI * 1.56, "freynor"));
                     scenicList.push(new Scenery("harstPlant", 2498 , -192, -Math.PI * 1.56, "freynor"));
                     scenicList.push(new Scenery("harstPlant", 2498 , -286, -Math.PI * 1.56, "freynor"));
+
+                    scenicList.push(new Scenery("potatoPlant", 2566 , 240, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2566 , 193, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2566 , 165, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2566 , 118, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2566 , 84, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2566 , 140, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2603 , 240, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2603 , 206, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2603 , 179, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2603 , 138, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2603 , 113, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2603 , 83, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2668 , 240, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2668 , 221, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2668 , 194, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2668 , 153, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2668 , 122, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2668 , 86, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2696 , 240, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2696 , 214, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2696 , 178, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2696 , 147, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2696 , 111, 0, "freynor"));
+                    scenicList.push(new Scenery("potatoPlant", 2696 , 81, 0, "freynor"));
+
+                    scenicList.push(new Scenery("suuliPlant", 2686 , 6, 1, "freynor"));
+                    scenicList.push(new Scenery("suuliPlant", 2686 , -59, 2, "freynor"));
+                    scenicList.push(new Scenery("suuliPlant", 2628 , 5, 3, "freynor"));
+                    scenicList.push(new Scenery("suuliPlant", 2628 , -60, 0, "freynor"));
+                    scenicList.push(new Scenery("suuliPlant", 2566 , 3, -0.5, "freynor"));
+                    scenicList.push(new Scenery("suuliPlant", 2566 , -61, 2.34, "freynor"));
+
+                    scenicList.push(new Scenery("carrotPlant", 2559 , -138, 1.2, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2559 , -153, -2.1, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2559 , -168, -1.2, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2559 , -183, 3, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2559 , -198, 1.78, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2559 , -213, -0.4, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2559 , -228, -3, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2559 , -243, -1.2, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2559 , -258, 3, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2559 , -273, 1.78, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2559 , -288, -0.4, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2559 , -303, -3, "freynor"));
+
+                    scenicList.push(new Scenery("carrotPlant", 2624 , -138, -0.9, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2624 , -153, -2.8, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2624 , -168, -1.9, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2624 , -183, -2, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2624 , -198, 2.34, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2624 , -213, 0.5, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2624 , -228, 1, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2624 , -243, 0, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2624 , -258, 0.1, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2624 , -273, -0.95, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2624 , -288, -3.214, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2624 , -303, 2.867, "freynor"));
+
+                    scenicList.push(new Scenery("carrotPlant", 2680 , -138, -1.8, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2680 , -153, 2.1, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2680 , -168, -1.5667, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2680 , -183, 0, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2680 , -198, 1.3, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2680 , -213, 0.4, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2680 , -228, 3, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2680 , -243, -1.5, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2680 , -258, 1.5, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2680 , -273, 1.89, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2680 , -288, -0.21, "freynor"));
+                    scenicList.push(new Scenery("carrotPlant", 2680 , -303, 0.3, "freynor"));
 
                     change = "central";
                 }

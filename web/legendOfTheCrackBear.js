@@ -27968,7 +27968,7 @@ function theLegend()
                 this.buyValue = 45 - Math.floor(player.getCharisma() / 2.5); // at max, buy for 25.
                 this.sellValue = 5 + Math.floor(player.getCharisma() / 5); // at max, sell for 15.
             }
-            else if (this.type == "healingSalve") //boobleboo
+            else if (this.type == "healingSalve")
             {
                 //For All Items
                 this.identity = "Jar of Healing Salve";
@@ -32248,7 +32248,7 @@ function theLegend()
             else if (this.type == "healingSalve")
             {
                 XXX.beginPath();
-                XXX.drawImage(oldverse, 2944, 293, 10, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 10, 16);
+                XXX.drawImage(oldverse, 2943, 252, 11, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 11), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 11, 17);
             }
             else if (this.type == "carrot")
             {
@@ -33137,7 +33137,7 @@ function theLegend()
             else if (this.type == "healingSalve")
             {
                 LXX.beginPath();
-                LXX.drawImage(oldverse, 2944, 293, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
+                LXX.drawImage(oldverse, 2943, 252, 11, 17, this.invX - (1/2 * 11), this.invY - (1/2 * 17), 11, 17);
             }
             else if (this.type == "carrot")
             {
@@ -34010,7 +34010,7 @@ function theLegend()
             else if (this.type == "healingSalve")
             {
                 XXX.beginPath();
-                XXX.drawImage(oldverse, 2944, 293, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
+                XXX.drawImage(oldverse, 2943, 252, 11, 17, this.invX - (1/2 * 11), this.invY - (1/2 * 17), 11, 17);
             }
             else if (this.type == "carrot")
             {

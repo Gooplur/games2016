@@ -3210,8 +3210,6 @@ function theLegend()
                 outlineBuilder( 4, 1, "greenGrass", 26, 9);
                 outlineBuilder( 1, 2, "greenGrass", 26, -4);
                 outlineBuilder( 1, 34, "stonePath", 14, -3);
-                //border
-                outlineBuilder( 34, 1, "forest", 14, -20);
             }
             if (Y < 6870 && X < 17891 && X > 6299) //This is the central region
             {
@@ -35017,6 +35015,8 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-7128, 1989, "Varn", false, "Tol"));
                     ArtificialIntelligenceAccess.push(new Unit(-5986, 2947, "Varn", true, "Tul"));
                     ArtificialIntelligenceAccess.push(new Unit(-6329, -3246, "Varn", false, "Tel"));
+                    ArtificialIntelligenceAccess.push(new Unit(-5897, -3461, "Varn", false, "Tela"));
+                    ArtificialIntelligenceAccess.push(new Unit(-4240, -1519, "Varn", true, "Tula"));
 
                     //lions tigers and BLACKBEARS oh my!
                     ArtificialIntelligenceAccess.push(new Unit(-11630, 5669, "BlackBear", true, "Jugtug"));
@@ -35051,6 +35051,50 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-9446, 5542, "Grib", false, "Quilcytoodlewop"));
                     ArtificialIntelligenceAccess.push(new Unit(-9827, 5637, "Grib", false, "Vandybibblbop"));
                     ArtificialIntelligenceAccess.push(new Unit(-6214, 3512, "Grib", true, "Vandybibblbeed"));
+
+                    //naaprids of the southern grasslands
+                    ArtificialIntelligenceAccess.push(new Unit(-5031, -2683, "Naaprid", "baby", "Naarimo"));
+                    ArtificialIntelligenceAccess.push(new Unit(-4966, -2960, "Naaprid", false, "Naaste"));
+                    ArtificialIntelligenceAccess.push(new Unit(-5207, -2871, "Naaprid", false, "kaaste"));
+                    ArtificialIntelligenceAccess.push(new Unit(-5169, -3136, "Naaprid", false, "Laaste"));
+                    ArtificialIntelligenceAccess.push(new Unit(-3817, -3336, "Naaprid", false, "phaashe"));
+                    ArtificialIntelligenceAccess.push(new Unit(-4940, -2567, "Naaprid", true, "Yaahmo"));
+
+                    //friches of the grasslands before the wuncwer woods
+                    ArtificialIntelligenceAccess.push(new Unit(-3891, -2492, "Frich", false, "Sansa"));
+                    ArtificialIntelligenceAccess.push(new Unit(-3961, -2617, "Frich", false, "Aria"));
+
+                    if (player.level > 8 && player.level < 13 || Math.floor(Math.random() * 9) == 8) // summon giant friches if between these levels.
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-5441, -2609, "Frich", "giant", "Edard"));
+                        ArtificialIntelligenceAccess.push(new Unit(-5434, -2411, "Frich", "giant", "Robert"));
+                        ArtificialIntelligenceAccess.push(new Unit(-5570, -2522, "Frich", "giant", "Stannis"));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-3797, -2540, "Frich", true, "Edard"));
+                        ArtificialIntelligenceAccess.push(new Unit(-5434, -2411, "Frich", false, "Robert"));
+                        ArtificialIntelligenceAccess.push(new Unit(-5342, -2290, "Frich", false, "Stannis"));
+                    }
+                    ArtificialIntelligenceAccess.push(new Unit(-5110, -2116, "Frich", false, "Renely"));
+
+                    ArtificialIntelligenceAccess.push(new Unit(-5334, -1338, "Frich", true, "Tjon"));
+                    ArtificialIntelligenceAccess.push(new Unit(-5593, -1410, "Frich", false, "Sam"));
+                    ArtificialIntelligenceAccess.push(new Unit(-5990, -910, "Frich", false, "RedDeadWalder"));
+                    ArtificialIntelligenceAccess.push(new Unit(-5508, -566, "Frich", true, "Robbstar"));
+
+                    ArtificialIntelligenceAccess.push(new Unit(-4086, 159, "Frich", true, "Ramsay"));
+                    ArtificialIntelligenceAccess.push(new Unit(-4591, -361, "Frich", false, "Umber"));
+                    ArtificialIntelligenceAccess.push(new Unit(-4428, -2500, "Frich", false, "Tormund"));
+                    ArtificialIntelligenceAccess.push(new Unit(-5508, -566, "Frich", true, "Daavos"));
+
+                    ArtificialIntelligenceAccess.push(new Unit(-4318, -3341, "Frich", false, "inspector"));
+                    ArtificialIntelligenceAccess.push(new Unit(-4688, -3525, "Frich", true, "Harold"));
+                    ArtificialIntelligenceAccess.push(new Unit(-5143, 2663, "Frich", true, "gadget"));
+                    ArtificialIntelligenceAccess.push(new Unit(-4428, 2433, "Frich", true, "toolbox"));
+
+                    ArtificialIntelligenceAccess.push(new Unit(-4757, 4016, "Frich", true, "Gizmo"));
+                    ArtificialIntelligenceAccess.push(new Unit(-5201, 5973, "Frich", true, "Gear"));
 
                     //Trees of the forest
                     scenicList.push(new Scenery("pineTree", -7703 , 1761, Math.PI, true));
@@ -35678,8 +35722,8 @@ function theLegend()
     //gameState = "horde"; // this changes the gamemode so that horde will have priority.
     //playHorde(); //This starts the card game horde.
 
-    //requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
+    requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
 
-    gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
-    requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
+    //gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
+    //requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
 }

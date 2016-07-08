@@ -439,6 +439,7 @@ function theLegend()
     //Player Inventory
     var Inventory = [];
     //todo TEST INVENTORIES
+    Inventory = [[new Item("coins", false, false), 5000], [new Item("speedPotionI", false, false), 20]];
     //Inventory = [[new Item("coins", false, false), 1000000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2]];
     //Inventory = [[new Item("driedCyrinthilimMushroom", false, false), 1], [new Item("cyrinthilimMushroom", false, false), 1], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfNaapridMilk", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 1], [new Item("kellishClayPot", false, false), 1], [new Item("fermentedViperVenomGland", false, false), 1], [new Item("viperVenomGland", false, false), 1], [new Item("viperSnakeSkin", false, false), 1], [new Item("rawViperFlesh", false, false), 1], [new Item("viperMeat", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
     //Inventory = [[new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
@@ -777,7 +778,7 @@ function theLegend()
             {
                 if (scenicList[i].zIndex == z)
                 {
-                    if (scenicList[i].X > X - (1.2 * CCC.width) && scenicList[i].X < X + (1.2 * CCC.width) && scenicList[i].Y > Y - (1.2 * CCC.height) && scenicList[i].Y < Y + (1.2 * CCC.height))
+                    if (scenicList[i].X > X - (1.6 * CCC.width) && scenicList[i].X < X + (1.6 * CCC.width) && scenicList[i].Y > Y - (1.6 * CCC.height) && scenicList[i].Y < Y + (1.6 * CCC.height))
                     {
                         scenicList[i].operations();
                     }
@@ -24703,7 +24704,23 @@ function theLegend()
 
         this.typeBuilder = function()
         {
-            if (this.type == "anvil")
+            if (this.type == "pineStumps")
+            {
+                //TRAITS
+                this.solid = false;
+
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 1, 1685, 156, 109, -(1/2 * 156 * 8), -(1/2 * 109 * 8), 156 * 8, 109 * 8);
+                XXX.restore();
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 17;
+
+            }
+            else if (this.type == "anvil")
             {
                 //TRAITS
                 this.solid = true;
@@ -24730,7 +24747,7 @@ function theLegend()
                     gameState = "paused";
                 }
             }
-            if (this.type == "well")
+            else if (this.type == "well")
             {
                 //TRAITS
                 this.solid = true;
@@ -34983,6 +35000,22 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-11783, -1025, "Varn", true, "ona"));
                     ArtificialIntelligenceAccess.push(new Unit(-11664, -901, "Varn", true, "sunnybeach"));
                     ArtificialIntelligenceAccess.push(new Unit(-11890, -897, "Varn", true, "heckyeah!!!"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7175, 5260, "Varn", true, "johny"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7497, 5379, "Varn", true, "james"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7517, 5188, "Varn", true, "jillian"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7513, 4941, "Varn", true, "jude"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7374, 4660, "Varn", true, "julian"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7625, 4700, "Varn", true, "july"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6621, 4758, "Varn", true, "jekkle"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6580, 4418, "Varn", false, "jazz"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6799, 3911, "Varn", true, "June"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7090, 3991, "Varn", false, "Jed"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6317, 204, "Varn", true, "Tal"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6594, 46, "Varn", true, "Til"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7581, -1658, "Varn", true, "Tyl"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7128, 1989, "Varn", false, "Tol"));
+                    ArtificialIntelligenceAccess.push(new Unit(-5986, 2947, "Varn", true, "Tul"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6329, -3246, "Varn", false, "Tel"));
 
                     //lions tigers and BLACKBEARS oh my!
                     ArtificialIntelligenceAccess.push(new Unit(-11630, 5669, "BlackBear", true, "Jugtug"));
@@ -35016,6 +35049,7 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-9269, 5971, "Grib", false, "Tandybibblbop"));
                     ArtificialIntelligenceAccess.push(new Unit(-9446, 5542, "Grib", false, "Quilcytoodlewop"));
                     ArtificialIntelligenceAccess.push(new Unit(-9827, 5637, "Grib", false, "Vandybibblbop"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6214, 3512, "Grib", true, "Vandybibblbeed"));
 
                     //Trees of the forest
                     scenicList.push(new Scenery("pineTree", -7703 , 1761, Math.PI, true));
@@ -35303,6 +35337,22 @@ function theLegend()
                     scenicList.push(new Scenery("glinPlant", -9157 , 4196, -1.55, true));
                     scenicList.push(new Scenery("halcifPlant", -11413 , 3822, -0.55, true));
                     scenicList.push(new Scenery("cyrinthilimPlant", -11015 , 152, 1.23, true));
+
+                    //stumps of the "Wuncwer" woods
+                    scenicList.push(new Scenery("pineStumps", -6474 , 1900, 0, true));
+                    scenicList.push(new Scenery("pineStumps", -6496 , 548, -0.75, true));
+                    scenicList.push(new Scenery("pineStumps", -6191 , 2871, 1.6, true));
+                    scenicList.push(new Scenery("pineStumps", -7423 , 4794, 0.2, true));
+                    scenicList.push(new Scenery("pineStumps", -6544 , 5895, -0.9, true));
+                    scenicList.push(new Scenery("pineStumps", -6659 , 4000, 0.23, true));
+
+                    scenicList.push(new Scenery("pineStumps", -6248 , 4985, -1.6, true));
+                    scenicList.push(new Scenery("pineStumps", -5852 , -329, 0, true));
+                    scenicList.push(new Scenery("pineStumps", -6818 , -650, -1.4, true));
+                    scenicList.push(new Scenery("pineStumps", -7003 , -1749, 0, true));
+                    scenicList.push(new Scenery("pineStumps", -6395 , -2816, -0.88, true));
+                    scenicList.push(new Scenery("pineStumps", -7911 , 5498, -0.3, true));
+
 
                     change = "e1";
                 }

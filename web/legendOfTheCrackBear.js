@@ -3,6 +3,7 @@
  */
 
 //TODO LIST
+//todo add eggs and some sort of field bird creature to lay them...
 //todo Add broken well quest and a rumor of a beast quest at the inn.
 //todo fix the shakeyness of the well and add the broken well.
 //todo add sicknesses and symptons (dizziness, pox, fever, fatigue, etc.) ex: make dizziness spin the screen, make pox weaken players constitution etc., make fever decrease thirst.
@@ -439,9 +440,9 @@ function theLegend()
     //Player Inventory
     var Inventory = [];
     //todo TEST INVENTORIES
-    Inventory = [[new Item("coins", false, false), 5000], [new Item("speedPotionI", false, false), 20]];
+    //Inventory = [[new Item("coins", false, false), 5000], [new Item("speedPotionI", false, false), 20]];
     //Inventory = [[new Item("coins", false, false), 1000000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2]];
-    //Inventory = [[new Item("driedCyrinthilimMushroom", false, false), 1], [new Item("cyrinthilimMushroom", false, false), 1], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfNaapridMilk", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 1], [new Item("kellishClayPot", false, false), 1], [new Item("fermentedViperVenomGland", false, false), 1], [new Item("viperVenomGland", false, false), 1], [new Item("viperSnakeSkin", false, false), 1], [new Item("rawViperFlesh", false, false), 1], [new Item("viperMeat", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
+    Inventory = [[new Item("healingSalve", false, false), 1], [new Item("driedCyrinthilimMushroom", false, false), 1], [new Item("cyrinthilimMushroom", false, false), 1], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfNaapridMilk", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 1], [new Item("kellishClayPot", false, false), 1], [new Item("fermentedViperVenomGland", false, false), 1], [new Item("viperVenomGland", false, false), 1], [new Item("viperSnakeSkin", false, false), 1], [new Item("rawViperFlesh", false, false), 1], [new Item("viperMeat", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
     //Inventory = [[new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
     //Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1]];
 
@@ -589,6 +590,13 @@ function theLegend()
     foods.push(new Item("viperMeat", false));
     foods.push(new Item("kellishClayPotOfMushroomStew", false));
     foods.push(new Item("suuliMelonSlice", false));
+    foods.push(new Item("santhFlour", false));
+    foods.push(new Item("santhDough", false));
+    foods.push(new Item("santhBread", false));
+    foods.push(new Item("butteredSanthBread", false));
+    foods.push(new Item("naapridButter", false));
+    foods.push(new Item("emptyBag", false));
+    foods.push(new Item("bagOfSanthFlour", false));
 
         //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     var tailoring = [];
@@ -620,7 +628,10 @@ function theLegend()
     alchemy.push(new Item("fermentedNarthwarpMouth", false));
     alchemy.push(new Item("fermentedViperVenomGland", false));
     alchemy.push(new Item("driedCyrinthilimMushroom", false));
+    alchemy.push(new Item("naapridButter", false));
     alchemy.push(new Item("suuliMelonSlice", false));
+    alchemy.push(new Item("emptyBag", false));
+    alchemy.push(new Item("bagOfSanthFlour", false));
 
         //Brewing (alcohols, liquid fermentation, etc.)
     var brewing = [];
@@ -25424,6 +25435,67 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "santhPlant")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 85;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(oldverse, 2972, 178, 24, 23, -(1/2 * 24), -(1/2 * 23), 24, 23);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(oldverse, 2941, 178, 24, 23, -(1/2 * 24), -(1/2 * 23), 24, 23);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 17;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+
+                    //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                    if (this.owned.length > 1)
+                    {
+                        if (player.noticed == true)
+                        {
+                            this.changeFactionRelation(-19);
+                        }
+                    }
+
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "santhGrain")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("santhGrain", false, false), 1]);
+                    }
+                }
+            }
             else if (this.type == "suuliPlant")
             {
                 //TRAITS
@@ -27895,6 +27967,257 @@ function theLegend()
                 this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
                 this.sellValue = 1; // at max, sell for 1.
             }
+            else if (this.type == "santhGrain")
+            {
+                //For All Items
+                this.identity = "Santh Grain";
+                this.weight = 0.1;
+                this.size = 7;
+                this.description = "The lightest and finest grain anyone would ever find, santh is used to craft the most artisan of confections.";
+                this.intForDes = 1;
+                this.intDescription = "Santh is revered by all those who have tried the baked goods made from it.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0.1; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 12 - Math.floor(player.getCharisma() / 10); // at max, buy for 7.
+                this.sellValue = 7; // at max, sell for 7.
+            }
+            else if (this.type == "santhFlour")
+            {
+                //For All Items
+                this.identity = "Santh Flour";
+                this.weight = 0.1;
+                this.size = 7;
+                this.description = "The lightest and finest grain anyone would ever find, santh is used to craft the most artisan of confections.";
+                this.intForDes = 1;
+                this.intDescription = "Santh is revered by all those who have tried the baked goods made from it.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0.1; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 9;
+                this.ingredients = [["Santh Grain", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 18 - Math.floor(player.getCharisma() / 6); // at max, buy for 10.
+                this.sellValue = 10; // at max, sell for 10.
+            }
+            else if (this.type == "bagOfSanthFlour")
+            {
+                //For All Items
+                this.identity = "Bag of Santh Flour";
+                this.weight = 8;
+                this.size = 12;
+                this.description = "A bag full of santh flour.";
+                this.intForDes = 1;
+                this.intDescription = "The bag holds fifty loads of flour.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 1;
+                this.ingredients = [["Santh Flour", 50]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 900 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 800.
+                this.sellValue = 700 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 800.
+            }
+            else if (this.type == "emptyBag")
+            {
+                //For All Items
+                this.identity = "Empty Bag";
+                this.weight = 8;
+                this.size = 12;
+                this.description = "A bag with nothing in it.";
+                this.intForDes = 0;
+                this.intDescription = "If there is nothing in the bag, isn't there something in it?";
+
+                //Define Utility
+                this.utility = "material";
+                this.subUtility = "reusable";
+                this.refund = [["santhFlour", 50]];
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 1;
+                this.ingredients = [["Bag of Santh Flour", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+            }
+            else if (this.type == "kellishSanthDough")
+            {
+                //For All Items
+                this.identity = "Santh Dough";
+                this.weight = 0.3;
+                this.size = 7;
+                this.description = "A dough for santh bread made from traditional Kellish products.";
+                this.intForDes = 2;
+                this.intDescription = "Santh like in many other cultures is highly valued by the Kellish.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 6; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -4; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 20;
+                this.ingredients = [["Santh Flour", 3], ["Naaprid Butter", 1], ["Kellish Clay Pot of Naaprid Milk", 1], ["Egg", 2]]; //boobleboo
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 40 - Math.floor(player.getCharisma() / 3); // at max, buy for 25.
+                this.sellValue = 25; // at max, sell for 25.
+            }
+            else if (this.type == "santhBread")
+            {
+                //For All Items
+                this.identity = "Santh Bread";
+                this.weight = 0.3;
+                this.size = 7;
+                this.description = "The smoothest, lightest, whitest, and most delicate bread one could ever eat.";
+                this.intForDes = 1;
+                this.intDescription = "Properly made santh bread is of a quality suitable for kings and queens.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 22; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 3; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.25; //recoops lost energy.
+                this.replenish = 0.25; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 20;
+                this.ingredients = [["Santh Dough", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 50 - Math.floor(player.getCharisma() / 3); // at max, buy for 35.
+                this.sellValue = 35; // at max, sell for 35.
+            }
+            else if (this.type == "butteredSanthBread")
+            {
+                //For All Items
+                this.identity = "Santh Bread";
+                this.weight = 0.3;
+                this.size = 7;
+                this.description = "The smoothest, lightest, whitest, and most delicate bread one could ever eat... With Butter!";
+                this.intForDes = 1;
+                this.intDescription = "Properly made santh bread is of a quality suitable for kings and queens.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 26; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 3; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.4; //recoops lost energy.
+                this.replenish = 0.35; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 20;
+                this.ingredients = [["Santh Bread", 1], ["Naaprid Butter", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 61 - Math.floor(player.getCharisma() / 3); // at max, buy for 46.
+                this.sellValue = 46; // at max, sell for 46.
+            }
+            else if (this.type == "naapridButter")
+            {
+                //For All Items
+                this.identity = "Naaprid Buttter";
+                this.weight = 0.1;
+                this.size = 5;
+                this.description = "Creamy fatty butter from a naaprid.";
+                this.intForDes = 1;
+                this.intDescription = "Naaprid butter is used in many kellish and southern freydic recipes.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 1; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 10;
+                this.intForCraft = 20;
+                this.ingredients = [["Kellish Clay Pot of Naaprid Milk", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 11 - Math.floor(player.getCharisma() / 25); // at max, buy for 9.
+                this.sellValue = 7 + Math.floor(player.getCharisma() / 25); // at max, sell for 9.
+            }
             else if (this.type == "stomwikLeaf")
             {
                 //For All Items
@@ -28839,6 +29162,26 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
                 this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+            }
+            else if (this.type == "iron")
+            {
+                //For All Items
+                this.identity = "Iron";
+                this.weight = 4;
+                this.size = 10;
+                this.description = "A forged iron bar.";
+                this.intForDes = 2;
+                this.intDescription = "This is an important raw material used in the crafting of many different weapons and armours.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 10 - Math.floor(player.getCharisma() / 15); // at max, buy for 7.
+                this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
             }
             else if (this.type == "elderWalrusTusks")
             {
@@ -32245,10 +32588,55 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "iron")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polypol, 1212, 561, 28, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 28), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18), 28, 18);
+            }
+            else if (this.type == "santhGrain")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2943, 205, 19, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 19), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19), 19, 19);
+            }
+            else if (this.type == "santhFlour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2977, 204, 19, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 19), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19), 19, 19);
+            }
+            else if (this.type == "emptyBag")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 3016, 201, 22, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 22), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28), 22, 28);
+            }
+            else if (this.type == "bagOfSanthFlour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 3050, 200, 22, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 22), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28), 22, 28);
+            }
+            else if (this.type == "kellishSanthDough")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2940, 230, 17, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 2.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 2.6), 17 * 2.6, 14 * 2.6);
+            }
+            else if (this.type == "naapridButter")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2940, 230, 17, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 17), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14), 17, 14);
+            }
+            else if (this.type == "santhBread")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2970, 225, 23, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 23), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23), 23, 23);
+            }
+            else if (this.type == "butteredSanthBread")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2965, 250, 32, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 32), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26), 32, 26);
+            }
             else if (this.type == "healingSalve")
             {
                 XXX.beginPath();
-                XXX.drawImage(oldverse, 2943, 252, 11, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 11), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 11, 17);
+                XXX.drawImage(oldverse, 2943, 252, 11, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.5), 11 * 1.5, 17 * 1.5);
             }
             else if (this.type == "carrot")
             {
@@ -33134,10 +33522,55 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "iron")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polypol, 1212, 561, 28, 18, this.invX - (1/2 * 28), this.invY - (1/2 * 18), 28, 18);
+            }
+            else if (this.type == "santhGrain")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2943, 205, 19, 19, this.invX - (1/2 * 19), this.invY - (1/2 * 19), 19, 19);
+            }
+            else if (this.type == "santhFlour")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2977, 204, 19, 19, this.invX - (1/2 * 19), this.invY - (1/2 * 19), 19, 19);
+            }
+            else if (this.type == "emptyBag")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 3016, 201, 22, 28, this.invX - (1/2 * 22), this.invY - (1/2 * 28), 22, 28);
+            }
+            else if (this.type == "bagOfSanthFlour")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 3050, 200, 22, 28, this.invX - (1/2 * 22), this.invY - (1/2 * 28), 22, 28);
+            }
+            else if (this.type == "kellishSanthDough")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2940, 230, 17, 14, this.invX - (1/2 * 17 * 2.6), this.invY - (1/2 * 14 * 2.6), 17 * 2.6, 14 * 2.6);
+            }
+            else if (this.type == "naapridButter")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2940, 230, 17, 14, this.invX - (1/2 * 17), this.invY - (1/2 * 14), 17, 14);
+            }
+            else if (this.type == "santhBread")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2970, 225, 23, 23, this.invX - (1/2 * 23), this.invY - (1/2 * 23), 23, 23);
+            }
+            else if (this.type == "butteredSanthBread")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2965, 250, 32, 26, this.invX - (1/2 * 32), this.invY - (1/2 * 26), 32, 26);
+            }
             else if (this.type == "healingSalve")
             {
                 LXX.beginPath();
-                LXX.drawImage(oldverse, 2943, 252, 11, 17, this.invX - (1/2 * 11), this.invY - (1/2 * 17), 11, 17);
+                LXX.drawImage(oldverse, 2943, 252, 11, 17, this.invX - (1/2 * 11 * 1.5), this.invY - (1/2 * 17 * 1.5), 11 * 1.5, 17 * 1.5);
             }
             else if (this.type == "carrot")
             {
@@ -34007,10 +34440,55 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "iron")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polypol, 1212, 561, 28, 18, this.invX - (1/2 * 28), this.invY - (1/2 * 18), 28, 18);
+            }
+            else if (this.type == "santhGrain")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2943, 205, 19, 19, this.invX - (1/2 * 19), this.invY - (1/2 * 19), 19, 19);
+            }
+            else if (this.type == "santhFlour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2977, 204, 19, 19, this.invX - (1/2 * 19), this.invY - (1/2 * 19), 19, 19);
+            }
+            else if (this.type == "emptyBag")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 3016, 201, 22, 28, this.invX - (1/2 * 22), this.invY - (1/2 * 28), 22, 28);
+            }
+            else if (this.type == "bagOfSanthFlour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 3050, 200, 22, 28, this.invX - (1/2 * 22), this.invY - (1/2 * 28), 22, 28);
+            }
+            else if (this.type == "kellishSanthDough")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2940, 230, 17, 14, this.invX - (1/2 * 17 * 2.6), this.invY - (1/2 * 14 * 2.6), 17 * 2.6, 14 * 2.6);
+            }
+            else if (this.type == "naapridButter")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2940, 230, 17, 14, this.invX - (1/2 * 17), this.invY - (1/2 * 14), 17, 14);
+            }
+            else if (this.type == "santhBread")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2970, 225, 23, 23, this.invX - (1/2 * 23), this.invY - (1/2 * 23), 23, 23);
+            }
+            else if (this.type == "butteredSanthBread")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2965, 250, 32, 26, this.invX - (1/2 * 32), this.invY - (1/2 * 26), 32, 26);
+            }
             else if (this.type == "healingSalve")
             {
                 XXX.beginPath();
-                XXX.drawImage(oldverse, 2943, 252, 11, 17, this.invX - (1/2 * 11), this.invY - (1/2 * 17), 11, 17);
+                XXX.drawImage(oldverse, 2943, 252, 11, 17, this.invX - (1/2 * 11 * 1.5), this.invY - (1/2 * 17 * 1.5), 11 * 1.5, 17 * 1.5);
             }
             else if (this.type == "carrot")
             {
@@ -35097,7 +35575,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(1690, 1021, "Person", false, "Svehn the Smith", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.65], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 103], [new Item("mace", false, false), 3], [new Item("hammer", false, false), 2], [new Item("freydicSpear", false, false), 5], [new Item("freydicSword", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("longbow", false, false), 2], [new Item("arrow", false, false), 92], [new Item("timberAxe", false, false), 3]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(1690, 1021, "Person", false, "Svehn the Smith", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.65], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 103], [new Item("iron", false, false), 6], [new Item("mace", false, false), 3], [new Item("hammer", false, false), 2], [new Item("freydicSpear", false, false), 5], [new Item("freydicSword", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("longbow", false, false), 2], [new Item("arrow", false, false), 92], [new Item("timberAxe", false, false), 3]]}));
                         }
                     }
                     if (uniqueChars.medliaLDS == true)
@@ -35324,6 +35802,37 @@ function theLegend()
                     scenicList.push(new Scenery("carrotPlant", 2680 , -273, 1.89, "freynor"));
                     scenicList.push(new Scenery("carrotPlant", 2680 , -288, -0.21, "freynor"));
                     scenicList.push(new Scenery("carrotPlant", 2680 , -303, 0.3, "freynor"));
+
+                    scenicList.push(new Scenery("santhPlant", 2763 , -310, Math.PI * 0.14, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2763 , -285, -Math.PI * 0.44, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2763 , -260, Math.PI * 1.8, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2763 , -235, -Math.PI * 2.34, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2763 , -210, Math.PI * 0.44, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2763 , -185, Math.PI * 0.14, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2763 , -160, -Math.PI * 0.44, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2763 , -135, Math.PI * 1.8, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2763 , -110, -Math.PI * 2.34, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2763 , -85, Math.PI * 3.2, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2823 , -310, Math.PI * 0.14, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2823 , -285, -Math.PI * 0.44, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2823 , -260, Math.PI * 1.8, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2823 , -235, -Math.PI * 2.34, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2823 , -210, Math.PI * 0.44, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2823 , -185, Math.PI * 0.14, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2823 , -160, -Math.PI * 0.44, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2823 , -135, Math.PI * 1.8, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2823 , -110, -Math.PI * 2.34, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2823 , -85, Math.PI * 3.2, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2883 , -310, Math.PI * 0.14, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2883 , -285, -Math.PI * 0.44, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2883 , -260, Math.PI * 1.8, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2883 , -235, -Math.PI * 2.34, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2883 , -210, Math.PI * 0.44, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2883 , -185, Math.PI * 0.14, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2883 , -160, -Math.PI * 0.44, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2883 , -135, Math.PI * 1.8, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2883 , -110, -Math.PI * 2.34, "freynor"));
+                    scenicList.push(new Scenery("santhPlant", 2883 , -85, Math.PI * 3.2, "freynor"));
 
                     change = "central";
                 }
@@ -36264,8 +36773,8 @@ function theLegend()
     //gameState = "horde"; // this changes the gamemode so that horde will have priority.
     //playHorde(); //This starts the card game horde.
 
-    requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
+    //requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
 
-    //gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
-    //requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
+    gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
+    requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
 }

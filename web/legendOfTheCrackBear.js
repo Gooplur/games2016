@@ -3,6 +3,20 @@
  */
 
 //TODO LIST
+//todo figure out why kellishClaymore does no damage at all when used by AI.
+//todo draw a cooked meat for the golgemoff and for the crawler.
+//todo add golgemoff -- this is also the creature that must be fought in the creature contract quest given by Kedwin.
+//todo add arrow mods such as Stunning, poison, fire, electric, ice, armour piercing...
+//todo add clawed Bush Turtle like creature as well as a bunch of similar looking bushes as a natural hiding place for it.
+//todo add electricity spells
+//todo add vines spell
+//todo add electric spear and mage boss who uses it as well as a magical shielding spell he uses.
+//todo add the tentacly beast that leaves an oozey slime trail behind it.
+//todo add bowls for the kellish soup
+//todo add olde guns for the outlanders.
+//todo add outlander starting blade (animation completed already just actually add it now).
+//todo add throwing stars for the orgel
+//todo add houses/shops/buildings.
 //todo add eggs and some sort of field bird creature to lay them...
 //todo Add broken well quest and a rumor of a beast quest at the inn.
 //todo fix the shakeyness of the well and add the broken well.
@@ -113,6 +127,14 @@ function legendaryPrerequisites()
     farmground.src = ("images/farmingland.png");
     window.farmground = farmground;
 
+    var kellStone = new Image();
+    kellStone.src = ("images/puterRocks.jpg");
+    window.kellStone = kellStone;
+
+    var kellsStone = new Image();
+    kellsStone.src = ("images/heavyRock.jpg");
+    window.kellsStone = kellsStone;
+
     var mushBlur = new Image();
     mushBlur.src = ("images/blurredGreenSwish.jpg");
     window.mushBlur = mushBlur;
@@ -181,6 +203,7 @@ function legendaryPrerequisites()
     polyPNG.src = ("images/polyAssets.png");
     window.polyPNG = polyPNG;
 
+
     polyPNG.onload = function()
     {
         secondToLastPreStage();
@@ -206,6 +229,17 @@ function almostLastPreStage()
     window.polypol = polypol;
 
     polypol.onload = function()
+    {
+        somewhatNearToLastPreStage();
+    };
+}
+function somewhatNearToLastPreStage()
+{
+    var mofu = new Image();
+    mofu.src = ("images/mofu.png");
+    window.mofu = mofu;
+
+    mofu.onload = function()
     {
         comingCloseToLastPreStage();
     };
@@ -259,8 +293,8 @@ function theLegend()
     var change = 0; //This allows the buildMaster to know when a region has just changed so that it can delete everything from the old region before building the new one.
     var X = 2000; //This X represents the worlds location X compared to you, as you are a stationary object that never moves.
     var Y = 1000; //This Y represents the worlds location Y compared to you, as you are a stationary object that never moves.
-    var spawnX = 2000;
-    var spawnY = 1000;
+    var spawnX = 0;
+    var spawnY = 0;
 
     //Game Pausing, Moderation, and Control
     var gameState = "mainMenu"; //set to "active" for ingame play, and set to "mainMenu" for the main menu.
@@ -399,7 +433,10 @@ function theLegend()
         odeeLDS: true,
         togginLDS: true,
         hetmerLDS: true,
-        neculaiLDS: true
+        neculaiLDS: true,
+        roselinLDS: true,
+        fenwikLDS: true,
+        schuylarLDS: true
     };
     //QUESTS
     var quests =
@@ -1566,6 +1603,14 @@ function theLegend()
             player.will = player.willMAX;
             player.warmth = player.warmthMAX;
             player.thirst = player.thirstMAX;
+
+            //set starting areas
+                //Freynor starting area is the default
+            if (player.raceName == "Kel")
+            {
+                X = -1297;
+                Y = -30784;
+            }
             //Actually start the game here.
             gameState = "active";
             requestAnimationFrame(gameloopOfDestiny, CCC);
@@ -3187,12 +3232,38 @@ function theLegend()
         LXX.fillStyle = "lightGrey";
         LXX.fillRect(0, 0, 1400, 80);
 
-        // THIS IS THE BACKGROUND BUILDER (height, width, type, x, y)
-            //Different parts of the world load at different Y values.
+        // THIS IS THE BACKGROUND BUILDER (height, width, type, x, y) // The tile coords 0, 0 are at the bottom right corner of Teshir City.
+            //Different parts of the world load at different Y values. // maps are 34 by 34 tiles and for somereason the maps are -20 to the left. and + 14 down.
         if (map == "world")
         {
+            //Elevation -3 (cold temperate region)
+            if (Y > -34556 && Y < -23654 && X < 7687 && X > - 3901) //X0
+            {
+                region = "s3";
+                outlineBuilder( 34, 34, "greenGrass", -20, 82);
+                outlineBuilder( 34, 1, "stonePath", 3, 82);
+                outlineBuilder( 1, 1, "forest", 3, 82);
+                outlineBuilder( 4, 4, "kelltile", 4, 103);
+                outlineBuilder( 1, 1, "farmland", 8, 104);
+            }
+            //Elevation -2 (cold temperate region)
+            if (Y > -24704 && Y < -13476 && X < 7687 && X > - 3901) //X0
+            {
+                region = "s2";
+                outlineBuilder( 34, 34, "greenGrass", -20, 48);
+                outlineBuilder( 34, 1, "stonePath", 3, 48);
+                outlineBuilder( 1, 7, "stonePath", -4, 48);
+            }
+            //Elevation -1 (cold temperate region)
+            if (Y > -14144 && Y < -3328 && X < 7687 && X > - 3901) //X0
+            {
+                region = "s1";
+                outlineBuilder( 34, 34, "greenGrass", -20, 14);
+                outlineBuilder( 34, 1, "stonePath", -4, 14);
+                outlineBuilder( 1, 1, "forest", -4, 14);
+            }
             //Elevation 0 (cold region)
-            if (Y < 6870 && X < 7687 && X > - 3901) //This is the central region
+            if (Y > -3919 && Y < 6870 && X < 7687 && X > - 3901) //X0
             {
                 region = "central";
                 outlineBuilder( 14, 6, "greenGrass", -6, -20);
@@ -3210,7 +3281,7 @@ function theLegend()
                 outlineBuilder( 1, 13, "stonePath", -20, -7);
                 outlineBuilder( 2, 3, "farmland", -7, 1);
             }
-            if (Y < 6870 && X < - 2490) //This is the central region
+            if (Y > -3919 && Y < 6870 && X < - 2490) //X1
             {
                 region = "e1";
                 outlineBuilder( 34, 22, "forest", 26, -20);
@@ -3226,7 +3297,7 @@ function theLegend()
                 outlineBuilder( 1, 2, "greenGrass", 26, -4);
                 outlineBuilder( 1, 34, "stonePath", 14, -3);
             }
-            if (Y < 6870 && X < 17891 && X > 6299) //This is the central region
+            if (Y > -3919 && Y < 6870 && X < 17891 && X > 6299) //X-1
             {
                 region = "w1";
                 outlineBuilder( 14, 6, "crag", -40, -20);
@@ -3237,20 +3308,20 @@ function theLegend()
             }
 
             //Elevation 1 (frosty region) anti warmth effects start here
-            if (Y > 6290 && Y < 32370) //this is the cold snowy environment
+            if (Y > 6290 && Y < 32370) //this is the cold snowy environment //X0
             {
                 region = "n1";
                 outlineBuilder( 20, 83, "frost", -80, -40);
                 outlineBuilder( 80, 83, "snow", -80, -105);
             }
             //Elevation 2 (freezing region)
-            if (Y > 31750 && Y < 77360) //this is the freezing arctic environment
+            if (Y > 31750 && Y < 77360) //this is the freezing arctic environment //X0
             {
                 region = "n2";
                 outlineBuilder( 150, 83, "arctic", -80, -255);
             }
             //Elevation 3 (arctic region)
-            if (Y > 76780) //this is the north Pole... basically.
+            if (Y > 76780) //this is the north Pole... basically. //X0
             {
                 region = "n3";
                 outlineBuilder( 150, 83, "arctic", -80, -405);
@@ -4406,7 +4477,27 @@ function theLegend()
                     this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
                     this.timeSinceLastWarmthChange = new Date().getTime();
                 }
+                else if (region == "s3" && new Date().getTime() - this.timeSinceLastWarmthChange > 1000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
+                {
+                    this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                    this.timeSinceLastWarmthChange = new Date().getTime();
+                }
+                else if (region == "s2" && new Date().getTime() - this.timeSinceLastWarmthChange > 1000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
+                {
+                    this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                    this.timeSinceLastWarmthChange = new Date().getTime();
+                }
+                else if (region == "s1" && new Date().getTime() - this.timeSinceLastWarmthChange > 1000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
+                {
+                    this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                    this.timeSinceLastWarmthChange = new Date().getTime();
+                }
                 else if (region == "w1" && new Date().getTime() - this.timeSinceLastWarmthChange > 1000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
+                {
+                    this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                    this.timeSinceLastWarmthChange = new Date().getTime();
+                }
+                else if (region == "e1" && new Date().getTime() - this.timeSinceLastWarmthChange > 1000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
                 {
                     this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
                     this.timeSinceLastWarmthChange = new Date().getTime();
@@ -17430,6 +17521,14 @@ function theLegend()
                     XXX.fill();
                     XXX.stroke();
                 }
+                else if (terrain == "kellstone")
+                {
+                    XXX.drawImage(kellStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "kelltile")
+                {
+                    XXX.drawImage(kellsStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
                 else if (terrain == "farmland")
                 {
                     XXX.drawImage(farmground, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
@@ -19499,6 +19598,104 @@ function theLegend()
                     this.drawUnit(freeverse, 928, 346, 55, 51, -27, -54, 55 * 1.3, 51 * 1.3, 1 / 2 * Math.PI);
                 }
             }
+            else if (this.weapon == "warHammer")
+            {
+                if (theCostume <= 0)
+                {
+                    this.drawUnit(polypol, 32, 605, 93, 87, -21, -43, 93 / 1.3, 87 / 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 1)
+                {
+                    this.drawUnit(polypol, 169, 605, 93, 87, -21, -43, 93 / 1.3, 87 / 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 2)
+                {
+                    this.drawUnit(polypol, 304, 605, 93, 87, -22, -45, 93 / 1.3, 87 / 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 3)
+                {
+                    this.drawUnit(polypol, 443, 605, 93, 87, -29, -46, 93 / 1.3, 87 / 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 4)
+                {
+                    this.drawUnit(polypol, 589, 599, 93, 87, -32, -50, 93 / 1.3, 87 / 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 5)
+                {
+                    this.drawUnit(polypol, 720, 590, 93, 87, -36, -53, 93 / 1.3, 87 / 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 6)
+                {
+                    this.drawUnit(polypol, 836, 594, 93, 87, -46, -50, 93 / 1.3, 87 / 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 7)
+                {
+                    this.drawUnit(polypol, 958, 593, 93, 87, -49, -47.5, 93 / 1.3, 87 / 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume >= 8)
+                {
+                    this.drawUnit(polypol, 1083, 591, 93, 87, -51.5, -45, 93 / 1.3, 87 / 1.3, 1 / 2 * Math.PI);
+                }
+            }
+            else if (this.weapon == "kellishClaymore")
+            {
+                if (theCostume <= 0)
+                {
+                    this.drawUnit(polypol, 491, 830, 135, 135, -50, -90, 135, 135, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 1)
+                {
+                    this.drawUnit(polypol, 654, 827, 135, 135, -50, -93, 135, 135, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 2)
+                {
+                    this.drawUnit(polypol, 870, 837, 135, 135, -46, -85, 135, 135, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 3)
+                {
+                    this.drawUnit(polypol, 1100, 838, 135, 135, -44, -80, 135, 135, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 4)
+                {
+                    this.drawUnit(polypol, 1386, 832, 135, 135, -14, -81, 135, 135, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 5)
+                {
+                    this.drawUnit(polypol, 1652, 828, 135, 135, -10, -79, 135, 135, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 6)
+                {
+                    this.drawUnit(polypol, 513, 993, 135, 135, -15, -82, 135, 135, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 7)
+                {
+                    this.drawUnit(polypol, 673, 990, 135, 135, -21, -83, 135, 135, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 8)
+                {
+                    this.drawUnit(polypol, 892, 981, 135, 135, -17, -93, 135, 135, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 9)
+                {
+                    this.drawUnit(polypol, 1106, 971, 135, 135, -18, -113, 135, 135, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 10)
+                {
+                    this.drawUnit(polypol, 1333, 963, 135, 135, -59, -124, 135, 135, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 11)
+                {
+                    this.drawUnit(polypol, 1611, 961, 135, 135, -74, -124, 135, 135, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 12)
+                {
+                    this.drawUnit(polypol, 503, 1162, 135, 135, -75, -117, 135, 135, 1 / 2 * Math.PI);
+                }
+                else if (theCostume >= 13)
+                {
+                    this.drawUnit(polypol, 680, 1158, 135, 135, -88, -112, 135, 135, 1 / 2 * Math.PI);
+                }
+            }
         };
 
         this.switchToRanged = function(weapon)
@@ -19811,6 +20008,12 @@ function theLegend()
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
                     XXX.rotate(this.rotation + 1/2 * Math.PI);
                     XXX.drawImage(verse, 2106, 5, 29, 24, -(1 / 2 * 29) + 1.75, -(1 / 2 * 24) - 0, 26, 26);
+                }
+                else if (outfit == "naapridLeatherArmour")
+                {
+                    XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    XXX.rotate(this.rotation + 1/2 * Math.PI);
+                    XXX.drawImage(verse, 3062, 1, 35, 22, -(1 / 2 * 49) + 0.5, -(1 / 2 * 30.8) + 2.25, 49, 30.8);
                 }
                 XXX.restore();
             }
@@ -23936,6 +24139,20 @@ function theLegend()
                 {
                     this.drops = [[new Item("coins", this.X, this.Y), 17]];
                 }
+                else if (this.ID == "Roselin the Tailor")
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 13]];
+                }
+                else if (this.ID == "Fenwik the Smith")
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 38]];
+                }
+                else if (this.ID == "Chieftan Schuylar")
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 97], [new Item("kellishClaymore", this.X, this.Y), 1]];
+                    this.customEXP = true;
+                    this.experience = 91 * ((player.getIntelligence() / 50) + 1);
+                }
                 else
                 {
                     this.drops = [];
@@ -24117,6 +24334,21 @@ function theLegend()
                         {
                             uniqueChars.neculaiLDS = false;
                         }
+                        else if (this.ID == "Fenwik the Smith")
+                        {
+                            uniqueChars.fenwikLDS = false;
+                            player.kelFaction -= 10;
+                        }
+                        else if (this.ID == "Roselin the Tailor")
+                        {
+                            uniqueChars.roselinLDS = false;
+                            player.kelFaction -= 12;
+                        }
+                        else if (this.ID == "Chieftan Schuylar")
+                        {
+                            uniqueChars.schuylarLDS = false;
+                            player.kelFaction -= 100;
+                        }
                         else
                         {
                             this.drops = [];
@@ -24210,6 +24442,14 @@ function theLegend()
                             else if (this.weapon == "rasper")
                             {
                                 this.costumeEngine(5, 0.20, true);
+                            }
+                            else if (this.weapon == "warHammer")
+                            {
+                                this.costumeEngine(9, 0.22, true);
+                            }
+                            else if (this.weapon == "kellishClaymore")
+                            {
+                                this.costumeEngine(14, 0.24, true);
                             }
                         }
                     }
@@ -24343,7 +24583,6 @@ function theLegend()
                     else
                     {
                         this.weapon = this.ultra.weapon[0];
-                        this.ranged = false;
                         this.hostile = false;
                         this.attacking = false;
                         this.dtp = this.DTP();
@@ -24487,6 +24726,14 @@ function theLegend()
                             else if (this.weapon == "rasper")
                             {
                                 this.costumeEngine(5, 0.20, true);
+                            }
+                            else if (this.weapon == "warHammer")
+                            {
+                                this.costumeEngine(9, 0.22, true);
+                            }
+                            else if (this.weapon == "kellishClaymore")
+                            {
+                                this.costumeEngine(14, 0.24, true);
                             }
                         }
                     }
@@ -35776,7 +36023,6 @@ function theLegend()
                     scenicList.push(new Scenery("carrotPlant", 2559 , -273, 1.78, "freynor"));
                     scenicList.push(new Scenery("carrotPlant", 2559 , -288, -0.4, "freynor"));
                     scenicList.push(new Scenery("carrotPlant", 2559 , -303, -3, "freynor"));
-
                     scenicList.push(new Scenery("carrotPlant", 2624 , -138, -0.9, "freynor"));
                     scenicList.push(new Scenery("carrotPlant", 2624 , -153, -2.8, "freynor"));
                     scenicList.push(new Scenery("carrotPlant", 2624 , -168, -1.9, "freynor"));
@@ -35789,7 +36035,6 @@ function theLegend()
                     scenicList.push(new Scenery("carrotPlant", 2624 , -273, -0.95, "freynor"));
                     scenicList.push(new Scenery("carrotPlant", 2624 , -288, -3.214, "freynor"));
                     scenicList.push(new Scenery("carrotPlant", 2624 , -303, 2.867, "freynor"));
-
                     scenicList.push(new Scenery("carrotPlant", 2680 , -138, -1.8, "freynor"));
                     scenicList.push(new Scenery("carrotPlant", 2680 , -153, 2.1, "freynor"));
                     scenicList.push(new Scenery("carrotPlant", 2680 , -168, -1.5667, "freynor"));
@@ -36453,6 +36698,194 @@ function theLegend()
                     change = "e1";
                 }
             }
+            else if (region == "s1") //Y > 6290 && Y < 32370
+            {
+                if (change != "s1")
+                {
+                    //Delete All Non-native AI Units
+                    for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                    {
+                        if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                        {
+                            ArtificialIntelligenceAccess.splice(i, 1);
+                            console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                        }
+                        else
+                        {
+                            console.log(i + " in list 'AI access' has been saved.");
+                        }
+                    }
+
+                    //Delete All Non-native Items
+                    //worldItems = [];
+
+                    //Delete All Non-native Structures
+                    //todo when structures are created add their list's refresh sequence here.
+
+                    //Delete All Non-native Scenery
+                    scenicList = [];
+
+                    //REGION CREATION
+                    //Build AI Units
+
+
+                    change = "s1";
+                }
+            }
+            else if (region == "s2") //Y > 6290 && Y < 32370
+            {
+                if (change != "s2")
+                {
+                    //Delete All Non-native AI Units
+                    for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                    {
+                        if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                        {
+                            ArtificialIntelligenceAccess.splice(i, 1);
+                            console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                        }
+                        else
+                        {
+                            console.log(i + " in list 'AI access' has been saved.");
+                        }
+                    }
+
+                    //Delete All Non-native Items
+                    //worldItems = [];
+
+                    //Delete All Non-native Structures
+                    //todo when structures are created add their list's refresh sequence here.
+
+                    //Delete All Non-native Scenery
+                    scenicList = [];
+
+                    //REGION CREATION
+                    //Build AI Units
+
+
+                    change = "s2";
+                }
+            }
+            else if (region == "s3") //Y > 6290 && Y < 32370
+            {
+                if (change != "s3")
+                {
+                    //Delete All Non-native AI Units
+                    for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                    {
+                        if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                        {
+                            ArtificialIntelligenceAccess.splice(i, 1);
+                            console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                        }
+                        else
+                        {
+                            console.log(i + " in list 'AI access' has been saved.");
+                        }
+                    }
+
+                    //Delete All Non-native Items
+                    //worldItems = [];
+
+                    //Delete All Non-native Structures
+                    //todo when structures are created add their list's refresh sequence here.
+
+                    //Delete All Non-native Scenery
+                    scenicList = [];
+
+                    //REGION CREATION
+                    //Build AI Units
+
+                    //citizens of Echlin village/tribe
+                    ArtificialIntelligenceAccess.push(new Unit(-1366, -30864, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 3, speed: 1.65, outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [10, 0], 8, 16, 1], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-1348, -30360, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 2, speed: 1.80, outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [11, 0], 8, 16, 1], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 6, patrolLoop: true, route:[[-218, -30349], [-227, -31505], [-1706, -31503], [-1724, -30600], [-1366, -30601], [-1348, -30360]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-295, -30422, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 1, speed: 1.95, outfit: ["naapridLeatherArmour", 4], weapon: ["longbow", [8, 0], 8, 16, 1], ranged: [true, "arrow", 7, 1500, 1, 3, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
+
+                    if (uniqueChars.roselinLDS == true)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Roselin the Tailor")
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-1312, -31363, "Person", false, "Roselin the Tailor", {race: "Kel", faction: "Kel", personality: "scared", outfit: ["naapridLeatherArmour", 4], weapon: ["none", [0.1, 0.4], 0, 0, 0.65], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 30], [new Item("naapridPelt", false, false), 7], [new Item("naapridHorn", false, false), 12], [new Item("naapridLeatherArmour", false, false), 5]]}));
+                        }
+                    }
+                    if (uniqueChars.fenwikLDS == true)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Fenwik the Smith")
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-963, -31386, "Person", false, "Fenwik the Smith", {race: "Kel", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [8, 1], 8, 16, 1.4], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 43], [new Item("iron", false, false), 2], [new Item("kellishSawClub", false, false), 3], [new Item("warHammer", false, false), 4], [new Item("kellishClaymore", false, false), 1], [new Item("timberAxe", false, false), 2], [new Item("longbow", false, false), 1], [new Item("arrow", false, false), 9], [new Item("mace", false, false), 2], [new Item("hammer", false, false), 3]]}));
+                        }
+                    }
+                    if (uniqueChars.schuylarLDS == true)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Chieftan Schuylar")
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-1335, -30763, "Person", false, "Chieftan Schuylar", {race: "Kel", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 6], weapon: ["kellishClaymore", [25, 1], 0, 50, 2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 492], [new Item("kellishClayPotOfNaapridMilk", false, false), 6], [new Item("naapridButter", false, false), 5], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 8], [new Item("kellishClayPot", false, false), 9], [new Item("santhBread", false, false), 1], [new Item("kellishSanthDough", false, false), 2], [new Item("rawNaapridFlesh", false, false), 4], [new Item("naapridMeat", false, false), 2]]}));
+                            ArtificialIntelligenceAccess[i].healthMAX = 22;
+                            ArtificialIntelligenceAccess[i].health = 22;
+                            ArtificialIntelligenceAccess[i].speed += 0.55;
+                        }
+                    }
+                    //Echlin Village crafting stations
+                    scenicList.push(new Scenery("anvil", -884, -31318, -Math.PI * 1/4, true));
+                    scenicList.push(new Scenery("forge", -882, -31444, Math.PI * 1/2, true));
+                    scenicList.push(new Scenery("loom", -1327, -31313, 0, true));
+
+                    //Echlin Village Farm
+                    scenicList.push(new Scenery("suuliPlant", -1651 , -30665, 3, "kel"));
+
+                    scenicList.push(new Scenery("harstPlant", -1428 , -30652, 1, "kel"));
+                    scenicList.push(new Scenery("harstPlant", -1458 , -30652, 1, "kel"));
+                    scenicList.push(new Scenery("harstPlant", -1488 , -30652, 1, "kel"));
+                    scenicList.push(new Scenery("harstPlant", -1518 , -30652, 1, "kel"));
+                    scenicList.push(new Scenery("harstPlant", -1548 , -30652, 1, "kel"));
+                    scenicList.push(new Scenery("harstPlant", -1578 , -30652, 1, "kel"));
+
+                    scenicList.push(new Scenery("potatoPlant", -1428 , -30724, 1, "kel"));
+                    scenicList.push(new Scenery("potatoPlant", -1458 , -30724, 1, "kel"));
+                    scenicList.push(new Scenery("potatoPlant", -1488 , -30724, 1, "kel"));
+                    scenicList.push(new Scenery("potatoPlant", -1518 , -30724, 1, "kel"));
+                    scenicList.push(new Scenery("potatoPlant", -1548 , -30724, 1, "kel"));
+                    scenicList.push(new Scenery("potatoPlant", -1578 , -30724, 1, "kel"));
+
+                    scenicList.push(new Scenery("carrotPlant", -1428 , -30790, 1, "kel"));
+                    scenicList.push(new Scenery("carrotPlant", -1458 , -30790, 1, "kel"));
+                    scenicList.push(new Scenery("carrotPlant", -1488 , -30790, 1, "kel"));
+                    scenicList.push(new Scenery("carrotPlant", -1518 , -30790, 1, "kel"));
+                    scenicList.push(new Scenery("carrotPlant", -1548 , -30790, 1, "kel"));
+                    scenicList.push(new Scenery("carrotPlant", -1578 , -30790, 1, "kel"));
+
+                    scenicList.push(new Scenery("santhPlant", -1652 , -30738, 1, "kel"));
+                    scenicList.push(new Scenery("santhPlant", -1652 , -30768, 1, "kel"));
+                    scenicList.push(new Scenery("santhPlant", -1652 , -30798, 1, "kel"));
+                    scenicList.push(new Scenery("santhPlant", -1652 , -30828, 1, "kel"));
+
+                    change = "s3";
+                }
+            }
         }
     }
 
@@ -36773,8 +37206,8 @@ function theLegend()
     //gameState = "horde"; // this changes the gamemode so that horde will have priority.
     //playHorde(); //This starts the card game horde.
 
-    //requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
+    requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
 
-    gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
-    requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
+    //gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
+    //requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
 }

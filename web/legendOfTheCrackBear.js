@@ -957,6 +957,23 @@ function theLegend()
             {
 
             }
+            else if (cheatcode.toLowerCase() == "restoreDesmonde")
+            {
+                if (player.name == "Desmonde")
+                {
+                    player.level = 13;
+                    player.skillPoints = 4 * 13;
+                    player.totalSkillPoints = 4 * 14;
+                    teshirNorthRoadBandits = false;
+                    teshirNorthRoadKillCount = 4;
+                    teshirNorthRoadQuest = "complete";
+                    huntingWagerFrichPack = false;
+                    huntingWagerKillCount = 3;
+                    huntingWagerQuest = "complete";
+                    Inventory = [[new Item("glinMushrooms", false, false), 3], [new Item("neprilneBerries", false, false), 6], [new Item("frichMeat", false, false), 130], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("freydicSword", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("winterWolfOutfit", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 6], [new Item("walrusLeatherWaterskin", false, false), 28], [new Item("walrusMeat", false, false), 5], [new Item("fireStarter", false, false), 1], [new Item("suuliMelonSlice", false, false), 12], [new Item("coins", false, false), 394]];
+                    bankSlots = 10;
+                }
+            }
             else if (cheatcode.toLowerCase() == "fixcombatsenser")
             {
                 for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)

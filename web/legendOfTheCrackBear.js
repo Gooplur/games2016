@@ -955,10 +955,6 @@ function theLegend()
             }
             else if (cheatcode.toLowerCase() == "fix")
             {
-
-            }
-            else if (cheatcode.toLowerCase() == "restoredesmonde")
-            {
                 if (player.name == "Desmonde")
                 {
                     player.level = 13;

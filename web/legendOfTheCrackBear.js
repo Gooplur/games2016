@@ -957,7 +957,7 @@ function theLegend()
             {
 
             }
-            else if (cheatcode.toLowerCase() == "restoreDesmonde")
+            else if (cheatcode.toLowerCase() == "restoredesmonde")
             {
                 if (player.name == "Desmonde")
                 {

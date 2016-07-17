@@ -38035,8 +38035,8 @@ function theLegend()
     //gameState = "horde"; // this changes the gamemode so that horde will have priority.
     //playHorde(); //This starts the card game horde.
 
-    //requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
+    requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
 
-    gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
-    requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
+    //gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
+    //requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
 }

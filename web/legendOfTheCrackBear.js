@@ -3,7 +3,9 @@
  */
 
 //TODO LIST
-//todo figure out why kellishClaymore does no damage at all when used by AI.
+//todo make sure the fatty liver and the egg laying functions/hatching actually works.
+//todo the raw large mofu meat is FUCKING GLITCHING LIKE FUCK it won't let me pick it up no matter how big of a size I assign it!!! I tried 300 size and it didn't work, there is no obvious diference between it and the others which by the way work great!
+//todo see if I should change all of the TTD / 16.75 to 16.75 / TTD ...
 //todo draw a cooked meat for the golgemoff and for the crawler.
 //todo add golgemoff -- this is also the creature that must be fought in the creature contract quest given by Kedwin.
 //todo add arrow mods such as Stunning, poison, fire, electric, ice, armour piercing...
@@ -477,8 +479,7 @@ function theLegend()
     //Player Inventory
     var Inventory = [];
     //todo TEST INVENTORIES
-    //Inventory = [[new Item("coins", false, false), 5000], [new Item("speedPotionI", false, false), 20]];
-    Inventory = [[new Item("coins", false, false), 1000000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2]];
+    Inventory = [[new Item("coins", false, false), 10000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2], [new Item("harstGrain", false, false), 40]];
     //Inventory = [[new Item("healingSalve", false, false), 1], [new Item("driedCyrinthilimMushroom", false, false), 1], [new Item("cyrinthilimMushroom", false, false), 1], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfNaapridMilk", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 1], [new Item("kellishClayPot", false, false), 1], [new Item("fermentedViperVenomGland", false, false), 1], [new Item("viperVenomGland", false, false), 1], [new Item("viperSnakeSkin", false, false), 1], [new Item("rawViperFlesh", false, false), 1], [new Item("viperMeat", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
     //Inventory = [[new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
     //Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1]];
@@ -636,6 +637,10 @@ function theLegend()
     foods.push(new Item("emptyBag", false));
     foods.push(new Item("bagOfSanthFlour", false));
     foods.push(new Item("grushMeat", false));
+    foods.push(new Item("cookedMofuEgg", false));
+    foods.push(new Item("mofflingMeat", false));
+    foods.push(new Item("mofuMeat", false));
+    foods.push(new Item("largeMofuMeat", false));
 
         //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     var tailoring = [];
@@ -670,6 +675,7 @@ function theLegend()
     alchemy.push(new Item("driedCyrinthilimMushroom", false));
     alchemy.push(new Item("naapridButter", false));
     alchemy.push(new Item("suuliMelonSlice", false));
+    alchemy.push(new Item("fermentedMofuEgg", false));
     alchemy.push(new Item("emptyBag", false));
     alchemy.push(new Item("bagOfSanthFlour", false));
 
@@ -15490,7 +15496,35 @@ function theLegend()
                         }
                         else
                         {
-                            if (Inventory[i][0].subUtility == "campFire")
+                            if (Inventory[i][0].ability == "mofuHatch")
+                            {
+                                var canPlace = true;
+                                var hits = 0;
+                                for (var j = 0; j < scenicList.length; j++)
+                                {
+                                    //5 is the radius of mofuEgg Scenery Object.
+                                    if (scenicList[j].X - 5 <= X + scenicList[j].radius && scenicList[j].X + 5 >= X - scenicList[j].radius && scenicList[j].Y - 5 <= Y + scenicList[j].radius && scenicList[j].Y + 5 >= Y - scenicList[j].radius)
+                                    {
+                                        canPlace = false;
+                                    }
+                                }
+
+                                if (canPlace == true)
+                                {
+                                    scenicList.push(new Scenery("fertilizedMofuEgg", X, Y, (Math.random() * (2 * Math.PI)), false));
+
+                                    if (Inventory[i][1] - 1 <= 0)
+                                    {
+                                        Inventory.splice(i, 1);
+                                    }
+                                    else
+                                    {
+                                        Inventory[i][1] -= 1;
+                                    }
+                                    break;
+                                }
+                            }
+                            else if (Inventory[i][0].subUtility == "campFire")
                             {
                                 var canPlace = true;
                                 var hits = 0;
@@ -17778,6 +17812,7 @@ function theLegend()
         this.flashFrameTime = new Date().getTime();
         //movement specific variables
         this.fleeing = false;
+        this.flying = false;
         //game pause related variables
         this.timeResistance = false;
         //death variables
@@ -17790,6 +17825,10 @@ function theLegend()
         this.legSwitch = 0;
         this.doOnDeathOnce = true; //this is for unique characters, upon their death they trigger a flag letting the game know never to respawn them.
         this.talking = false; //this notes whether or not the unit is in the middle of saying something in a conversation.
+        //Other variables
+        this.mofuTargetFood = "none";
+        this.mofuFood = 0;
+        this.eggTimer = 0;
         //effects variables
         this.blindedTime = 0;
         this.blinded = false;
@@ -19105,7 +19144,80 @@ function theLegend()
                 var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed);
                 var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed);
 
-                if (! this.isObstructed( nextX, nextY ))
+                if (! this.isObstructed( nextX, nextY ) || this.flying == true)
+                {
+                    this.X = nextX;
+                    this.Y = nextY;
+                    this.moving = true;
+                }
+                else
+                {
+                    if (this.moving && this.attacking == false)
+                    {
+                        this.timeStoppedMoving = new Date().getTime();
+                    }
+                    this.moving = false;
+
+                    if (new Date().getTime() - this.timeStoppedMoving > 500 && this.attacking == false)
+                    {
+                        this.costume = 0;
+                    }
+                }
+            }
+            else
+            {
+                if (this.moving && this.attacking == false)
+                {
+                    this.timeStoppedMoving = new Date().getTime();
+                }
+                this.moving = false;
+
+                if (new Date().getTime() - this.timeStoppedMoving > 500 && this.attacking == false)
+                {
+                    this.costume = 0;
+                }
+            }
+        };
+
+        this.distanceFinder = function(thing1, thing2)
+        {
+            return Math.sqrt((thing1.X - thing2.X)*(thing1.X - thing2.X)+(thing1.Y - thing2.Y)*(thing1.Y - thing2.Y));
+        };
+
+        this.pointTowards = function(thing)
+        {
+            if (this.blinded == false)
+            {
+                this.newRotation = Math.atan2(thing.Y - this.Y, thing.X - this.X) + Math.PI;
+            }
+            else if (this.blinded == true)
+            {
+                var rndmz = Math.floor(Math.random() * 13);
+                if (rndmz <= 3)
+                {
+                    this.newRotation += 1 * Math.PI;
+                }
+                else if (rndmz > 3 && rndmz <= 7)
+                {
+                    this.newRotation -= 1/2 * Math.PI;
+                }
+                else if (rndmz > 7 && rndmz <= 9)
+                {
+                    this.newRotation = Math.atan2(thing.Y - this.Y, thing.X - this.X) + Math.PI;
+                }
+            }
+        };
+
+        this.moveInRelationToThing = function(thing) //move towards target thing.
+        {
+            var dTo = this.distanceFinder(this, thing);
+            if (dTo > this.engagementRadius && dTo < this.rangeOfSight || this.fleeing == true && dTo < this.rangeOfSight) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
+            {
+
+                var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed);
+                var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed);
+
+                if (! this.isObstructed( nextX, nextY ) || this.flying == true)
                 {
                     this.X = nextX;
                     this.Y = nextY;
@@ -21211,6 +21323,82 @@ function theLegend()
                     // this is the adjustment the alpha type of Etyr needs to be centered.
                     this.yAdjustment = 0; //was -34
                     this.xAdjustment = 0; //was - 26
+                }
+            }
+            else if (this.type == "Mofu") //moe-foo
+            {
+                this.damageFrame = "manual";
+
+                if (this.alpha == true)
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = -0.5;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = 7 + Math.round(Math.random());
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 1.35;
+                    this.rangeOfSight = 900; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 24;
+                    this.sizeRadius = 18;
+                    this.negateArmour = 0;
+                    this.attackWait = 2.5;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else if (this.alpha == "baby")
+                {
+                    //STATS (non-variable)
+                    this.magicalResistance = 0;
+                    this.heatResistance = -0.5;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = 1;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 0.8;
+                    this.rangeOfSight = 400; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 6;
+                    this.sizeRadius = 4.5;
+                    this.negateArmour = 0;
+                    this.attackWait = 3.5;
+
+                    //this multiplies the draw image skew numbers by 1 so that it stays the same
+                    this.alphaSize = 0.5;
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else
+                {
+                    //STATS (non-variable)
+                    this.magicalResistance = 0;
+                    this.heatResistance = -0.5;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = 4;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 1;
+                    this.rangeOfSight = 800; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 12;
+                    this.sizeRadius = 9;
+                    this.negateArmour = 0;
+                    this.attackWait = 3;
+
+                    //this multiplies the draw image skew numbers by 1 so that it stays the same
+                    this.alphaSize = 1;
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
                 }
             }
             else if (this.type == "Torper")
@@ -23665,6 +23853,299 @@ function theLegend()
                 }
 
             }
+            //MOFU
+            if (this.type == "Mofu") //pronounced moe-foo
+            {
+                //Set Drops and experience
+                if (this.alpha == true)
+                {
+                    this.experience = (2 * ((player.getIntelligence() / 50) + 1));
+                    this.drops = [[new Item("rawLargeMofuFlesh", this.X, this.Y), 1], [new Item("mofuFeather", this.X, this.Y), Math.floor(Math.random() * 5) + 1], [new Item("mofuFoot", this.X, this.Y), 2]];
+                }
+                else if (this.alpha == "baby")
+                {
+                    this.experience = (2 * ((player.getIntelligence() / 50) + 1));
+                    this.drops = [[new Item("rawMofflingFlesh", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.experience = (2 * ((player.getIntelligence() / 50) + 1));
+                    this.drops = [[new Item("rawMofuFlesh", this.X, this.Y), 1], [new Item("mofuFeather", this.X, this.Y), Math.floor(Math.random() * 2) + 1], [new Item("mofuFoot", this.X, this.Y), 2]];
+                }
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                if (this.alpha == true)
+                {
+                    this.rangeOfSightCalculator(1000, false);
+                }
+                else if (this.alpha == "baby")
+                {
+                    this.rangeOfSightCalculator(400, false);
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(800, false);
+                }
+
+                //AI
+                if (this.alive == true)
+                {
+                    //this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+
+                    //Growth by food (leveling/evolution)
+                    if (this.alpha == "baby")
+                    {
+                        if (this.mofuFood >= 14)
+                        {
+                            this.mofuFood = 0;
+                            this.alpha = false;
+
+                            //new stats below:
+                            //----------------
+
+                            this.healthMAX = 4;
+                            this.health = this.healthMAX;
+                            this.engagementRadius = 12;
+                            this.sizeRadius = 9;
+                            this.attackWait = 3;
+                            this.alphaSize = 1;
+                        }
+                    }
+                    else if (this.alpha == false)
+                    {
+                        if (this.mofuFood >= 26)
+                        {
+                            this.mofuFood = 0;
+                            this.alpha = true;
+
+                            //new stats below:
+                            //----------------
+
+                            this.healthMAX = 7 + Math.round(Math.random());
+                            this.health = this.healthMAX;
+                            this.engagementRadius = 24;
+                            this.sizeRadius = 18;
+                            this.attackWait = 2.5;
+                            this.alphaSize = 2;
+                        }
+                    }
+                    else if (this.alpha == true)
+                    {
+                        if (this.mofuFood >= 66)
+                        {
+                            this.drops = [[new Item("rawLargeMofuFlesh", this.X, this.Y), 1], [new Item("mofuFeather", this.X, this.Y), Math.floor(Math.random() * 5) + 1], [new Item("mofuFoot", this.X, this.Y), 2], [new Item("fattyMofuLiver", this.X, this.Y), 1]];
+                        }
+                    }
+
+                    if (this.alpha == false || this.alpha == true)
+                    {
+                        //egg laying
+                        this.eggTimer += 1 * (TTD / 16.75);
+                        if (this.eggTimer >= 10000)
+                        {
+                            this.eggTimer = 0;
+
+                            var canPlace = true;
+                            var hits = 0;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //5 is the radius of mofuEgg Scenery Object.
+                                if (scenicList[j].X - 5 <= this.X + scenicList[j].radius && scenicList[j].X + 5 >= this.X - scenicList[j].radius && scenicList[j].Y - 5 <= this.Y + scenicList[j].radius && scenicList[j].Y + 5 >= this.Y - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("fertilizedMofuEgg", this.X, this.Y, (Math.random() * (2 * Math.PI)), false));
+                            }
+
+                            this.mofuFood = Math.max(0, this.mofuFood - 1)
+                        }
+                    }
+
+                    //BIRD BRAIN
+                    //Process
+                    if (this.DTP() <= 1/3 * this.rangeOfSight && shiftKey == true && wKey == true && player.getStealth() < 40 || this.alpha != true && this.DTP() <= 28 && this.attacking == false && altKey == false || this.alpha == true && this.DTP() <= 41 && this.attacking == false && altKey == false)
+                    {
+                        this.disturbedTime = new Date().getTime();
+                    }
+
+                    if (this.disturbed == false) //if not frightened...
+                    {
+                        this.mofuTargetFood = "none";
+                        this.moving = false;
+                        this.attacking = false;
+                        this.flying = false;
+                        if (this.alpha == false)
+                        {
+                            this.speed = 1;
+                        }
+                        else if (this.alpha == true)
+                        {
+                            this.speed = 1.35;
+                        }
+                        else if (this.alpha == "baby")
+                        {
+                            this.speed = 0.85;
+                        }
+                        for (var i = 0; i < worldItems.length; i++) //look for food... (grains and breads)
+                        {
+                            if (worldItems[i][0].type == "santhGrain" || worldItems[i][0].type == "harstGrain" || worldItems[i][0].type == "santhBread"|| worldItems[i][0].type == "butteredSanthBread" || worldItems[i][0].type == "harstBread" || worldItems[i][0].type == "butteredHarstBread")
+                            {
+                                if (this.distanceFinder(this, worldItems[i][0]) <= (this.rangeOfSight / 2)) // if grains are easy to get to go after them.
+                                {
+                                    if (this.mofuTargetFood == "none")
+                                    {
+                                        this.mofuTargetFood = worldItems[i][0];
+                                    }
+                                    else
+                                    {
+                                        if (this.distanceFinder(this, worldItems[i][0]) < this.distanceFinder(this, this.mofuTargetFood))
+                                        {
+                                            this.mofuTargetFood = worldItems[i][0];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (this.mofuTargetFood != "none")
+                        {
+                            if (this.distanceFinder(this, this.mofuTargetFood) <= this.engagementRadius)
+                            {
+                                this.attacking = true;
+                            }
+                            else
+                            {
+                                this.attacking = false;
+                                this.pointTowards(this.mofuTargetFood);
+                                this.moveInRelationToThing(this.mofuTargetFood);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.attacking = false;
+                        this.flying = true;
+                        if (this.alpha == false)
+                        {
+                            this.speed = 5;
+                        }
+                        else if (this.alpha == true)
+                        {
+                            this.speed = 6.5;
+                        }
+                        else if (this.alpha == "baby")
+                        {
+                            this.speed = 3.85;
+                        }
+                        this.pointAwayFromPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (this.moving && !this.attacking && this.disturbed == false) //walking (towards food)
+                    {
+                        this.costumeEngine(2, 0.05, false);
+                    }
+                    else if (this.moving && !this.attacking && this.disturbed == true) //flying (away from player)
+                    {
+                        this.costumeEngine(2, 0.065, false);
+                    }
+                    else if (this.attacking) //eating food (off the ground)
+                    {
+                        if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(3, 0.04, false);
+                        }
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                    //manual damaging
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(mofu, 108, 9, 40, 36, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 36 * this.alphaSize);
+                        }
+                        else if (this.moving && !this.flying)
+                        {
+                            this.drawUnit(mofu, 194, 10, 40, 36, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 36 * this.alphaSize);
+                        }
+                        else if (this.flying)
+                        {
+                            this.drawUnit(mofu, 163, 48, 40, 36, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 36 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(mofu, 108, 9, 40, 36, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 36 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume == 1)
+                    {
+                        if (this.attacking)
+                        {
+                            this.mofuFeastPrepped = true;
+                            this.drawUnit(mofu, 152, 10, 40, 36, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 36 * this.alphaSize);
+                        }
+                        else if (!this.flying)
+                        {
+                            this.drawUnit(mofu, 236, 9, 40, 36, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 36 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(mofu, 205, 47, 40, 36, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 36 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume >= 2)
+                    {
+                        if (this.attacking)
+                        {
+                            if (this.mofuFeastPrepped == true)
+                            {
+                                for (var i = 0; i < worldItems.length; i++)
+                                {
+                                    if (worldItems[i][0] === this.mofuTargetFood)
+                                    {
+                                        this.mofuFood += 1;
+                                        if (worldItems[i][1] > 1)
+                                        {
+                                            worldItems[i][1] -= 1;
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            this.mofuTargetFood = "none";
+                                            worldItems.splice(i, 1);
+                                            break;
+                                        }
+                                    }
+                                }
+                                this.mofuFeastPrepped = false;
+                            }
+                            this.drawUnit(mofu, 152, 10, 40, 36, -1 / 2 * 40 * this.alphaSize - this.xAdjustment, -1 / 2 * 36 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 36 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(mofu, 108, 9, 40, 36, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 36 * this.alphaSize);
+                        }
+                    }
+                }
+                else
+                {
+                    this.drawUnit(mofu, 348, 5, 40, 36, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 36 * this.alphaSize);
+                }
+
+            }
             //BOG TROLL
             if (this.type == "BogTroll")
             {
@@ -25392,6 +25873,8 @@ function theLegend()
         //Tree Variables
         this.treePhase = 0;
         this.treeHealth = 120;
+        //Bird variables
+        this.eggHatchTimer = 0;
         //Plant Variables
         this.phase = 0;
 
@@ -25440,7 +25923,7 @@ function theLegend()
 
         this.countAdder = function()
         {
-            this.counter += 1;
+            this.counter += 1 * (TTD / 16.75);
         };
 
         this.count = function()
@@ -25539,6 +26022,22 @@ function theLegend()
                 this.radius = 17;
 
             }
+            else if (this.type == "mofuNest")
+            {
+                //TRAITS
+                this.solid = false;
+
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mofu, 123, 89, 30, 29, -(1/2 * 30 * longevity), -(1/2 * 29 * longevity), 30 * longevity, 29 * longevity);
+                XXX.restore();
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 20;
+
+            }
             else if (this.type == "anvil")
             {
                 //TRAITS
@@ -25564,6 +26063,54 @@ function theLegend()
                     crafting = "smithing";
                     lowBar = "crafting";
                     gameState = "paused";
+                }
+            }
+            else if (this.type == "fertilizedMofuEgg")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 55;
+
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mofu, 109, 54, 8, 11, -(1/2 * 8), -(1/2 * 11), 8, 11);
+                XXX.restore();
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 5;
+
+                //HATCHING
+                this.eggHatchTimer += 1 * (TTD / 16.75);
+                if (this.eggHatchTimer >= 15000)
+                {
+                    this.eggHatchTimer = -1000000;
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Mofu", "baby", "Generic Mofu"));
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                    worldItems.push([new Item("mofuEgg", this.X, this.Y), 1]);
+
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
                 }
             }
             else if (this.type == "well")
@@ -28932,7 +29479,7 @@ function theLegend()
                 //Crafting
                 this.yield = 1;
                 this.intForCraft = 20;
-                this.ingredients = [["Santh Flour", 3], ["Naaprid Butter", 1], ["Kellish Clay Pot of Naaprid Milk", 1], ["Egg", 2]]; //boobleboo
+                this.ingredients = [["Santh Flour", 3], ["Naaprid Butter", 1], ["Kellish Clay Pot of Naaprid Milk", 1], ["Mofu Egg", 2]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 40 - Math.floor(player.getCharisma() / 3); // at max, buy for 25.
@@ -29897,6 +30444,353 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 5 - Math.floor(player.getCharisma() / 15); // at max, buy for 2.
                 this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            }
+            else if (this.type == "mofuFeather")
+            {
+                //For All Items
+                this.identity = "Mofu Feather";
+                this.weight = 0.001;
+                this.size = 8;
+                this.description = "A feather from a mofu bird.";
+                this.intForDes = 2;
+                this.intDescription = "Mofu feathers can be used in many creations.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 8 - Math.floor(player.getCharisma() / 15); // at max, buy for 5.
+                this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+            }
+            else if (this.type == "mofuEgg")
+            {
+                //For All Items
+                this.identity = "Mofu Egg";
+                this.weight = 0.001;
+                this.size = 5;
+                this.description = "An egg laid by a mofu bird.";
+                this.intForDes = 2;
+                this.intDescription = "Mofu eggs can either be cooked or left to hatch.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "mofuHatch";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+            }
+            else if (this.type == "mofuFoot")
+            {
+                //For All Items
+                this.identity = "Mofu Foot";
+                this.weight = 0.001;
+                this.size = 8;
+                this.description = "A hard rough bird foot from a mofu.";
+                this.intForDes = 7;
+                this.intDescription = "Mofu feet can be used in some alchemy recipes.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "rawMofflingFlesh")
+            {
+                //For All Items
+                this.identity = "Raw Moffling Flesh";
+                this.weight = 0.1;
+                this.size = 6;
+                this.description = "The defeathered, eviscerated, whole body of a moffling ";
+                this.intForDes = 3;
+                this.intDescription = "Moffling is a commonly used name to refer to a baby mofu bird. Oh by the way... don't eat this raw.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0.5; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "gutWorms";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+            }
+            else if (this.type == "cookedMofuEgg")
+            {
+                //For All Items
+                this.identity = "Egg";
+                this.weight = 0.1;
+                this.size = 6;
+                this.description = "A cooked egg from a mofu bird.";
+                this.intForDes = 1;
+                this.intDescription = "Eggs are a good source of protein... and fat.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 2.5; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 1; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.05; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 5;
+                this.ingredients = [["Mofu Egg", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+                this.sellValue = 1 + Math.floor(player.getCharisma() / 15); // at max, sell for 4.
+            }
+            else if (this.type == "fermentedMofuEgg")
+            {
+                //For All Items
+                this.identity = "Fermented Egg";
+                this.weight = 0.1;
+                this.size = 6;
+                this.description = "A fermented egg from a mofu bird.";
+                this.intForDes = 9;
+                this.intDescription = "Fermented egg is popular in Orgish cuisine, but it is also used in some alchemy recipes.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 2; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.05; //recoops lost energy.
+                this.replenish = -0.25; //restores will.
+                this.alcohol = 6; //intoxicates the mind.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 13;
+                this.ingredients = [["Mofu Egg", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 6.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 15); // at max, sell for 5.
+            }
+            else if (this.type == "mofflingMeat")
+            {
+                //For All Items
+                this.identity = "Moffling Meat";
+                this.weight = 0.1;
+                this.size = 6;
+                this.description = "A whole roasted moffling.";
+                this.intForDes = 1;
+                this.intDescription = "In freydic tradition moffling is sometimes served as a delicacy served with fine berry sauce.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 4; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 2; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0.1; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 20;
+                this.ingredients = [["Raw Moffling Flesh", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 18 - Math.floor(player.getCharisma() / 15); // at max, buy for 15.
+                this.sellValue = 10 + Math.floor(player.getCharisma() / 10); // at max, sell for 15.
+            }
+            else if (this.type == "rawMofuFlesh")
+            {
+                //For All Items
+                this.identity = "Raw Mofu Flesh";
+                this.weight = 3;
+                this.size = 8;
+                this.description = "The defeathered, eviscerated, whole body of a matured mofu bird. ";
+                this.intForDes = 3;
+                this.intDescription = "Mofu birds flesh is not safe to eat raw, be sure to cook it thoroughly.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 1; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "gutWorms";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 13 - Math.floor(player.getCharisma() / 12); // at max, buy for 9.
+                this.sellValue = 6 + Math.floor(player.getCharisma() / 15); // at max, sell for 9.
+            }
+            else if (this.type == "mofuMeat")
+            {
+                //For All Items
+                this.identity = "Mofu Meat";
+                this.weight = 3;
+                this.size = 8;
+                this.description = "A whole roasted mofu.";
+                this.intForDes = 0;
+                this.intDescription = "Mofu is always a beloved addition to any meal!";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 12; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 5; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0.2; //restores will.
+
+                //ability
+                this.ability = "satiate";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 20;
+                this.ingredients = [["Raw Mofu Flesh", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 30 - Math.floor(player.getCharisma() / 6); // at max, buy for 22.
+                this.sellValue = 18 + Math.floor(player.getCharisma() / 12); // at max, sell for 22.
+            }
+            else if (this.type == "rawLargeMofuFlesh")
+            {
+                //For All Items
+                this.identity = "Raw Large Mofu Flesh";
+                this.weight = 5;
+                this.size = 19;
+                this.description = "The defeathered, eviscerated, whole body of a a large mofu bird. ";
+                this.intForDes = 3;
+                this.intDescription = "Mofu birds can grow huge when there is enough food available to permit them to. Oh and by the way, Don't eat the meat raw.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 3.5; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -3; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "gutWorms";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 26 - Math.floor(player.getCharisma() / 10); // at max, buy for 21.
+                this.sellValue = 16 + Math.floor(player.getCharisma() / 10); // at max, sell for 21.
+            }
+            else if (this.type == "largeMofuMeat")
+            {
+                //For All Items
+                this.identity = "Large Mofu Meat";
+                this.weight = 5;
+                this.size = 19;
+                this.description = "A whole, slow roasted, and exceptionally large mofu.";
+                this.intForDes = 3;
+                this.intDescription = "Mofu this large is more often served at a noble's feast than a peasant's table.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 33; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 6; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0.35; //restores will.
+
+                //ability
+                this.ability = "satiate";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 26;
+                this.ingredients = [["Raw Large Mofu Flesh", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 50 - Math.floor(player.getCharisma() / 5); // at max, buy for 40.
+                this.sellValue = 30 + Math.floor(player.getCharisma() / 5); // at max, sell for 40.
+            }
+            else if (this.type == "fattyMofuLiver")
+            {
+                //For All Items
+                this.identity = "Fatty Mofu Liver";
+                this.weight = 3;
+                this.size = 9;
+                this.description = "Tender and creamy but firm mofu bird liver, known well as a culinary extravagence.";
+                this.intForDes = 4;
+                this.intDescription = "It is proper to eat fatty mofu liver raw.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 14; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0.05; //heals health.
+                this.generation = 0.3; //recoops lost energy.
+                this.replenish = 0.5; //restores will.
+
+                //ability
+                this.ability = "satiate";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 157 - Math.floor(player.getCharisma() / 5); // at max, buy for 147.
+                this.sellValue = 134 + Math.floor(player.getCharisma() / 5); // at max, sell for 144.
             }
             else if (this.type == "grushFur")
             {
@@ -33548,6 +34442,66 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "rawMofflingFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 86, 110, 17, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 0.8), 17 * 0.8, 14 * 0.8);
+            }
+            else if (this.type == "mofflingMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 104, 111, 17, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 0.8), 17 * 0.8, 14 * 0.8);
+            }
+            else if (this.type == "rawMofuFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 86, 110, 17, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.2), 17 * 1.2, 14 * 1.2);
+            }
+            else if (this.type == "mofuMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 104, 111, 17, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.2), 17 * 1.2, 14 * 1.2);
+            }
+            else if (this.type == "rawLargeMofuFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 86, 110, 17, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 2.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 2.3), 17 * 2.3, 14 * 2.3);
+            }
+            else if (this.type == "largeMofuMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 104, 111, 17, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 2.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 2.3), 17 * 2.3, 14 * 2.3);
+            }
+            else if (this.type == "fattyMofuLiver")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 114, 67, 9, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 2), 9 * 2, 9 * 2);
+            }
+            else if (this.type == "mofuFeather")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 139, 54, 11, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 11), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13), 11, 13);
+            }
+            else if (this.type == "mofuFoot")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 122, 56, 11, 7, X - this.X + (1/2 * CCC.width) - (1/2 * 11), Y - this.Y + (1/2 * CCC.height) - (1/2 * 7), 11, 7);
+            }
+            else if (this.type == "mofuEgg")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 109, 54, 8, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11), 8, 11);
+            }
+            else if (this.type == "cookedMofuEgg")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 96, 54, 11, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 11), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10), 11, 10);
+            }
+            else if (this.type == "fermentedMofuEgg")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 96, 45, 11, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 11), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10), 11, 10);
+            }
             else if (this.type == "rawGrushFlesh")
             {
                 XXX.beginPath();
@@ -34502,6 +35456,66 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "rawMofflingFlesh")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 86, 110, 17, 14, this.invX - (1/2 * 17 * 0.8), this.invY - (1/2 * 14 * 0.8), 17 * 0.8, 14 * 0.8);
+            }
+            else if (this.type == "mofflingMeat")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 104, 111, 17, 14, this.invX - (1/2 * 17 * 0.8), this.invY - (1/2 * 14 * 0.8), 17 * 0.8, 14 * 0.8);
+            }
+            else if (this.type == "rawMofuFlesh")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 86, 110, 17, 14, this.invX - (1/2 * 17 * 1.2), this.invY - (1/2 * 14 * 1.2), 17 * 1.2, 14 * 1.2);
+            }
+            else if (this.type == "mofuMeat")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 104, 111, 17, 14, this.invX - (1/2 * 17 * 1.2), this.invY - (1/2 * 14 * 1.2), 17 * 1.2, 14 * 1.2);
+            }
+            else if (this.type == "rawLargeMofuFlesh")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 86, 110, 17, 14, this.invX - (1/2 * 17 * 2.3), this.invY - (1/2 * 14 * 2.3), 17 * 2.3, 14 * 2.3);
+            }
+            else if (this.type == "largeMofuMeat")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 104, 111, 17, 14, this.invX - (1/2 * 17 * 2.3), this.invY - (1/2 * 14 * 2.3), 17 * 2.3, 14 * 2.3);
+            }
+            else if (this.type == "fattyMofuLiver")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 114, 67, 9, 9, this.invX - (1/2 * 9 * 2), this.invY - (1/2 * 9 * 2), 9 * 2, 9 * 2);
+            }
+            else if (this.type == "mofuFeather")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 139, 54, 11, 13, this.invX - (1/2 * 11), this.invY - (1/2 * 13), 11, 13);
+            }
+            else if (this.type == "mofuFoot")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 122, 56, 11, 7, this.invX - (1/2 * 11), this.invY - (1/2 * 7), 11, 7);
+            }
+            else if (this.type == "mofuEgg")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 109, 54, 8, 11, this.invX - (1/2 * 8), this.invY - (1/2 * 11), 8, 11);
+            }
+            else if (this.type == "cookedMofuEgg")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 96, 54, 11, 10, this.invX - (1/2 * 11), this.invY - (1/2 * 10), 11, 10);
+            }
+            else if (this.type == "fermentedMofuEgg")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 96, 45, 11, 10, this.invX - (1/2 * 11), this.invY - (1/2 * 10), 11, 10);
+            }
             else if (this.type == "rawGrushFlesh")
             {
                 LXX.beginPath();
@@ -35439,6 +36453,66 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "rawMofflingFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 86, 110, 17, 14, this.invX - (1/2 * 17 * 0.8), this.invY - (1/2 * 14 * 0.8), 17 * 0.5, 14 * 0.8);
+            }
+            else if (this.type == "mofflingMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 104, 111, 17, 14, this.invX - (1/2 * 17 * 0.8), this.invY - (1/2 * 14 * 0.8), 17 * 0.5, 14 * 0.8);
+            }
+            else if (this.type == "rawMofuFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 86, 110, 17, 14, this.invX - (1/2 * 17 * 1.2), this.invY - (1/2 * 14 * 1.2), 17 * 1.2, 14 * 1.2);
+            }
+            else if (this.type == "mofuMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 104, 111, 17, 14, this.invX - (1/2 * 17), this.invY - (1/2 * 14), 17, 14);
+            }
+            else if (this.type == "rawLargeMofuFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 86, 110, 17, 14, this.invX - (1/2 * 17 * 2.3), this.invY - (1/2 * 14 * 2.3), 17 * 2.3, 14 * 2.3);
+            }
+            else if (this.type == "largeMofuMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 104, 111, 17, 14, this.invX - (1/2 * 17 * 2.3), this.invY - (1/2 * 14 * 2.3), 17 * 2.3, 14 * 2.3);
+            }
+            else if (this.type == "fattyMofuLiver")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 114, 67, 9, 9, this.invX - (1/2 * 9 * 2), this.invY - (1/2 * 9 * 2), 9 * 2, 9 * 2);
+            }
+            else if (this.type == "mofuFeather")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 139, 54, 11, 13, this.invX - (1/2 * 11), this.invY - (1/2 * 13), 11, 13);
+            }
+            else if (this.type == "mofuFoot")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 122, 56, 11, 7, this.invX - (1/2 * 11), this.invY - (1/2 * 7), 11, 7);
+            }
+            else if (this.type == "mofuEgg")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 109, 54, 8, 11, this.invX - (1/2 * 8), this.invY - (1/2 * 11), 8, 11);
+            }
+            else if (this.type == "cookedMofuEgg")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 96, 54, 11, 10, this.invX - (1/2 * 11), this.invY - (1/2 * 10), 11, 10);
+            }
+            else if (this.type == "fermentedMofuEgg")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 96, 45, 11, 10, this.invX - (1/2 * 11), this.invY - (1/2 * 10), 11, 10);
             }
             else if (this.type == "rawGrushFlesh")
             {
@@ -36457,6 +37531,9 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-221, -891, "Frich", false, "Eduk"));
                     ArtificialIntelligenceAccess.push(new Unit(-121, -1062, "Frich", false, "Toog"));
                     ArtificialIntelligenceAccess.push(new Unit(-389, 2569, "Frich", false, "Gud"));
+                    ArtificialIntelligenceAccess.push(new Unit(2000, 1100, "Mofu", "baby", "Tupper"));
+                    ArtificialIntelligenceAccess.push(new Unit(2000, 1150, "Mofu", false, "Sloop"));
+                    ArtificialIntelligenceAccess.push(new Unit(2000, 1200, "Mofu", true, "Swo"));
 
                     if (quests.huntingWagerFrichPack == true && quests.huntingWagerKillCount < 3)
                     {
@@ -37678,6 +38755,7 @@ function theLegend()
                             ArtificialIntelligenceAccess[i].speed += 0.55;
                         }
                     }
+
                     //Echlin Village crafting stations
                     scenicList.push(new Scenery("anvil", -884, -31318, -Math.PI * 1/4, true));
                     scenicList.push(new Scenery("forge", -882, -31444, Math.PI * 1/2, true));
@@ -37711,6 +38789,23 @@ function theLegend()
                     scenicList.push(new Scenery("santhPlant", -1652 , -30768, 1, "kel"));
                     scenicList.push(new Scenery("santhPlant", -1652 , -30798, 1, "kel"));
                     scenicList.push(new Scenery("santhPlant", -1652 , -30828, 1, "kel"));
+
+                    ArtificialIntelligenceAccess.push(new Unit(-2089, -29849, "Mofu", false, "Tupper"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2054, -29703, "Mofu", "baby", "Goozy"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2278, -29667, "Mofu", false, "Tem"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2372, -29720, "Mofu", "baby", "Tilby"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2472, -29756, "Mofu", "baby", "Libby"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2429, -29856, "Mofu", false, "Gelnam"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2440, -29962, "Mofu", "baby", "Tally"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2500, -29938, "Mofu", "baby", "Jilin"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2176, -29434, "Mofu", true, "Loz"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2368, -29393, "Mofu", "baby", "Kleena"));
+
+                    //Mofu Habitations
+                    scenicList.push(new Scenery("mofuNest", -2089, -29849, -3, 1.2)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("mofuNest", -2278, -29667, 1, 1)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("mofuNest", -2429, -29856, 0, 1.15)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("mofuNest", -2176, -29434, -2.245, 1.9)); //for mofu nests the last number determines its size multiplier.
 
                     change = "s3";
                 }
@@ -38038,5 +39133,5 @@ function theLegend()
     requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
 
     //gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
-    //requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
+    requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
 }

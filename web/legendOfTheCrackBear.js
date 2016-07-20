@@ -3,15 +3,13 @@
  */
 
 //TODO LIST
-//todo make sure the fatty liver and the egg laying functions/hatching actually works.
-//todo the raw large mofu meat is FUCKING GLITCHING LIKE FUCK it won't let me pick it up no matter how big of a size I assign it!!! I tried 300 size and it didn't work, there is no obvious diference between it and the others which by the way work great!
-//todo see if I should change all of the TTD / 16.75 to 16.75 / TTD ...
-//todo draw a cooked meat for the golgemoff and for the crawler.
+//todo add the dexterity system: lv 10 = back-walking lv 20 = jump-back lv 30 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
 //todo add golgemoff -- this is also the creature that must be fought in the creature contract quest given by Kedwin.
 //todo add arrow mods such as Stunning, poison, fire, electric, ice, armour piercing...
 //todo add clawed Bush Turtle like creature as well as a bunch of similar looking bushes as a natural hiding place for it.
 //todo add electricity spells
 //todo add vines spell
+//todo add tornado spell
 //todo add electric spear and mage boss who uses it as well as a magical shielding spell he uses.
 //todo add the tentacly beast that leaves an oozey slime trail behind it.
 //todo add bowls for the kellish soup
@@ -366,10 +364,12 @@ function theLegend()
 
     //Key sensing variables
     var wKey = false;
+    var sKey = false;
     var spaceKey = false;
     var shiftKey = false;
     var altKey = false;
     var qKey = false;
+    var eKey = false;
     var key1 = false;
     var key2 = false;
     var key3 = false;
@@ -982,6 +982,20 @@ function theLegend()
                     huntingWagerQuest = "complete";
                     Inventory = [[new Item("glinMushrooms", false, false), 3], [new Item("neprilneBerries", false, false), 6], [new Item("frichMeat", false, false), 130], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("freydicSword", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("winterWolfOutfit", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 6], [new Item("walrusLeatherWaterskin", false, false), 28], [new Item("walrusMeat", false, false), 5], [new Item("fireStarter", false, false), 1], [new Item("suuliMelonSlice", false, false), 12], [new Item("coins", false, false), 394]];
                     bankSlots = 10;
+                }
+            }
+            else if (cheatcode.toLowerCase() == "yoglithewarriornun")
+            {
+                if (player.name == "Yogli" && player.gender == "Female")
+                {
+                    player.constitution = 4;
+                    player.strength = 10;
+                    player.stamina = 5;
+                    player.dexterity = 1;
+                    player.skillPoints = 4;
+                    player.level = 5;
+                    player.totalSkillPoints = 4 * 6;
+                    player.title = "Warrior Nun";
                 }
             }
             else if (cheatcode.toLowerCase() == "fixcombatsenser")
@@ -3737,6 +3751,16 @@ function theLegend()
             wKey = false;
         }
 
+        if (key == 83)
+        {
+            sKey = false;
+        }
+
+        if (key == 69)
+        {
+            eKey = false;
+        }
+
         if (key == 32)
         {
             spaceKey = false;
@@ -3815,6 +3839,16 @@ function theLegend()
         if (key == 87)
         {
             wKey = true;
+        }
+
+        if (key == 83)
+        {
+            sKey = true;
+        }
+
+        if (key == 69)
+        {
+            eKey = true;
         }
 
         if (key == 32)
@@ -4128,7 +4162,7 @@ function theLegend()
         //variables for walking and running related functions
         this.lLegY = 0; // this changes the length of the player's left leg
         this.rLegY = 0; // this changes the length of the player's right leg
-        this.movingType = 1; //There are three four moving types 0: standing, 1: walking, 2: running, 3: sneaking
+        this.movingType = 1; //There are three four moving types 0: standing, 1: walking, 2: running, 3: sneaking 4: backwalking
         this.legSwitch = 0;
         //Climate Affected Stats
         this.baseWarmth = 50;
@@ -4333,7 +4367,6 @@ function theLegend()
             {
                 if (new Date().getTime() - this.burningTime <= 9000 && (1.2 - this.heatResistance) > 0)
                 {
-                    console.log("pass");
                     this.flashAnimate(90, this.rotation, 0.90, [{image: polypol, imgX: 1691, imgY: 184, portionW: 24, portionH: 23, adjX: -1/2 * ((24 * 1.5)/10) * this.mySize, adjY: -1/2 * ((23 * 1.5)/10) * this.mySize, width: ((24 * 1.5)/10) * this.mySize, height: ((23 * 1.5)/10) * this.mySize}, {image: polypol, imgX: 1721, imgY: 185, portionW: 24, portionH: 23, adjX: -1/2 * ((24 * 1.5)/10) * this.mySize, adjY: -1/2 * ((23 * 1.5)/10) * this.mySize, width: ((24 * 1.5)/10) * this.mySize, height: ((23 * 1.5)/10) * this.mySize}, {image: polypol, imgX: 1750, imgY: 185, portionW: 24, portionH: 23, adjX: -1/2 * ((24 * 1.5)/10) * this.mySize, adjY: -1/2 * ((23 * 1.5)/10) * this.mySize, width: ((24 * 1.5)/10) * this.mySize, height: ((23 * 1.5)/10) * this.mySize}, {image: polypol, imgX: 1783, imgY: 185, portionW: 24, portionH: 23, adjX: -1/2 * ((24 * 1.5)/10) * this.mySize, adjY: -1/2 * ((23 * 1.5)/10) * this.mySize, width: ((24 * 1.5)/10) * this.mySize, height: ((23 * 1.5)/10) * this.mySize}]);
                     if (new Date().getTime() - this.burningTime2 >= 99)
                     {
@@ -5747,6 +5780,40 @@ function theLegend()
                 this.lLegY = 0;
                 this.rLegY = 0;
             }
+
+            // if the player is walking backwards then the player's legs move back and forth to simulate walking backwards.
+            //BACKWALKING
+            if (this.movingType == 4)
+            {
+                // the left leg goes back 25 pixles and the right goes forward 25.
+                if (this.lLegY > -23 && this.legSwitch == 0)
+                {
+                    // this makes the legs extend
+                    self.lLegY -= 1 * TTD / (16.75 - (0.17 / 4 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
+                    self.rLegY += 1 * TTD / (16.75 - (0.17 / 4 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
+                    //console.log("left" + " " + self.lLegY + " " + self.rLegY);
+                }
+                else
+                {
+                    //switch to the right leg forward routine.
+                    this.legSwitch = 1;
+                }
+
+                // the right leg goes back 25 pixles and the left goes forward 25.
+                if (this.lLegY < 23 && this.legSwitch == 1)
+                {
+                    // this makes the legs extend
+                    self.lLegY += 1 * TTD / (16.75 - (0.17 / 4 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
+                    self.rLegY -= 1 * TTD / (16.75 - (0.17 / 4 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
+                    //console.log("right" + " " + self.lLegY + " " + self.rLegY);
+                }
+                else
+                {
+                    // switch to the left leg forward routine.
+                    this.legSwitch = 0;
+                }
+            }
+
             // if the player is walking then the player's legs move back and forth to simulate walking.
             //WALKING
             if (rapidamente == true)
@@ -5805,6 +5872,7 @@ function theLegend()
                     this.legSwitch = 0;
                 }
             }
+
             //RUNNING
             //You can only run if you have the energy...
 
@@ -6085,7 +6153,7 @@ function theLegend()
             else if (this.outfitEquipped == "freydicRoyalDress")
             {
                 this.outfitZ = false;
-                if (this.movingType == 0)
+                if (this.movingType == 0 || this.movingType == 4)
                 {
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
@@ -6105,7 +6173,7 @@ function theLegend()
             else if (this.outfitEquipped == "winterWolfDress")
             {
                 this.outfitZ = false;
-                if (this.movingType == 0)
+                if (this.movingType == 0 || this.movingType == 4)
                 {
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
@@ -6197,7 +6265,7 @@ function theLegend()
             else if (this.outfitEquipped == "varnFurDress")
             {
                 this.outfitZ = false;
-                if (this.movingType == 0)
+                if (this.movingType == 0 || this.movingType == 4)
                 {
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
@@ -6224,12 +6292,12 @@ function theLegend()
             //ATTACK INITIATOR [this triggers the attack when the player presses the space key]
             if (spaceKey == true)
             {
-                //TODO include a special attacking case for spells and magic!!!
                 if (this.weaponIsRanged == false && (this.weapon.energyCost <= this.energy) && new Date().getTime() - this.attackCooldown >= 10 * this.weapon.rate && this.spell == "none")
                 {
-                    if (this.attacking == false && this.blocking == false && qKey == false)
+                    if (this.attacking == false && this.blocking == false && qKey == false && eKey == false)
                     {
                         this.energy -= this.weapon.energyCost;
+                        this.powerAttack = false;
                         this.strike = true;
                         this.cutcut = true; //for an sort of attacking of scenery this allows you to signal that an attack has happened.
                     }
@@ -6277,7 +6345,6 @@ function theLegend()
                     {
                         this.casting = true;
                         this.will -= this.spell.cost;
-                        //todo add primary spell cooldown times.
                     }
                 }
             }
@@ -6290,6 +6357,20 @@ function theLegend()
                     {
                         this.energy -= this.weapon.blockCost;
                         this.block = true;
+                    }
+                }
+            }
+            //POWER ATTACK INITIATOR
+            if (eKey == true)
+            {
+                if (this.weaponIsRanged == false && (this.weapon.energyCost * 2.5 <= this.energy) && new Date().getTime() - this.attackCooldown >= 25 * this.weapon.rate && this.getStrength() >= 10 && this.spell == "none")
+                {
+                    if (this.attacking == false && this.blocking == false && qKey == false && spaceKey == false)
+                    {
+                        this.energy -= (this.weapon.energyCost * 2.5);
+                        this.powerAttack = true;
+                        this.strike = true;
+                        this.cutcut = true; //for an sort of attacking of scenery this allows you to signal that an attack has happened.
                     }
                 }
             }
@@ -9986,20 +10067,29 @@ function theLegend()
 
                         if (dfu <= this.weapon.range * 7 && this.finalAttackStage == true)
                         {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour) + this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            if (this.powerAttack == false)
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour) + this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                console.log("You Dealt " + Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + " damage!" + " ");
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5)) + this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                console.log("Power Attack: " + Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5)) + this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) + " Damage!");
+                            }
+
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                             ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                            //console.log("You Dealt " + Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + " damage!" + " ");
 
                             //effects
+
+                            if (this.weapon.ability == "freeze")
                             {
-                                if (this.weapon.ability == "freeze")
-                                {
-                                    ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
-                                }
+                                ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
                             }
                         }
                     }
+
                     this.finalAttackStage = false;
                 }
             }
@@ -10115,8 +10205,31 @@ function theLegend()
         // CHARACTER MOVEMENT
         this.motion = function ()
         {
+            //BACKWALKING
+            if (sKey == true && shiftKey != true && wKey != true && this.getDexterity() >= 5)
+            {
+                this.movingType = 4;
+
+                // If the place where the player would move next under the same instruction is blocked then the player will not move.
+                if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
+                {
+                    var nextX = X + (Math.cos(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                    var nextY = Y + (Math.sin(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                    if (!this.isObstructed(nextX, nextY))
+                    {
+                        X += (Math.cos(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.cos(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        Y += (Math.sin(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.sin(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                    }
+                }
+                else
+                {
+                    //TODO eventually make magical walls and game borders that wallPhase does not let the player walk through.
+                    X += (Math.cos(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.cos(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                    Y += (Math.sin(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.sin(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                }
+            }
             //STANDING
-            if (wKey == false && altKey == false)
+            if (wKey == false && altKey == false && sKey == false)
             {
                 this.movingType = 0;
             }
@@ -16702,7 +16815,7 @@ function theLegend()
 
             this.ticCounter = function(rate)
             {
-                this.ticCount += rate * 0.001 * (TTD/16.75);
+                this.ticCount += rate * 0.001 * (TTD / 16.75);
                 return this.ticCount;
             };
 
@@ -37531,9 +37644,6 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-221, -891, "Frich", false, "Eduk"));
                     ArtificialIntelligenceAccess.push(new Unit(-121, -1062, "Frich", false, "Toog"));
                     ArtificialIntelligenceAccess.push(new Unit(-389, 2569, "Frich", false, "Gud"));
-                    ArtificialIntelligenceAccess.push(new Unit(2000, 1100, "Mofu", "baby", "Tupper"));
-                    ArtificialIntelligenceAccess.push(new Unit(2000, 1150, "Mofu", false, "Sloop"));
-                    ArtificialIntelligenceAccess.push(new Unit(2000, 1200, "Mofu", true, "Swo"));
 
                     if (quests.huntingWagerFrichPack == true && quests.huntingWagerKillCount < 3)
                     {
@@ -39133,5 +39243,5 @@ function theLegend()
     requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
 
     //gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
-    requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
+    //requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
 }

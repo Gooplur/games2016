@@ -296,6 +296,23 @@ function theLegend()
     var spawnX = 0;
     var spawnY = 0;
 
+    //Game Time Keeping
+    var timePlayed = 0; //this is time played in real life seconds.
+    var timeRegulator = new Date().getTime(); //this is a basic switch that helps in the process of counting time for the game.
+    var gameTime = 0; //game time is seconds in game and is 0.0625 * of a real second.
+    var gameMinute = 0;
+    var gameHour = 0;
+    var gameDay = 0;
+    var gameSeason = 0; //There are four seasons: Frost, Bounty, Bright, Harvest
+    var gameYear = 0; //game years are only 360 days made up of four 90 day seasons.
+    var hourOfDay = 0;
+    var minuteOfHour = 0;
+    var seasonOfYear = 0;
+    var secondOfMinute = 0;
+    var dayOfYear = 0;
+    var currentSeason = "Harvest";
+
+
     //Game Pausing, Moderation, and Control
     var gameState = "mainMenu"; //set to "active" for ingame play, and set to "mainMenu" for the main menu.
 
@@ -932,6 +949,13 @@ function theLegend()
                 {
                     player.eminence = 1000;
                 }
+            }
+            else if (cheatcode == "getTime")
+            {
+                alert("Total Real Time Played: " + Math.floor(timePlayed) +
+                    " Second Of Game Minute: " + secondOfMinute +
+                    " Minute Of Game Hour: " + minuteOfHour + " Hour Of Game Day: " + hourOfDay + " Day of Game Year: " + dayOfYear +
+                " Current Game Season: " + currentSeason)
             }
             else if (cheatcode == "6060842")
             {
@@ -3581,6 +3605,7 @@ function theLegend()
         }
 
         //Screen Covers
+        gameTimeKeeper();
         screenCover();
 
         if (gameState != "mainMenu" && gameState != "characterBuilder")
@@ -40043,6 +40068,7 @@ function theLegend()
         saveBrain["uniqueChars"] = uniqueChars;
         saveBrain["quests"] = quests;
         saveBrain["conversations"] = conversations;
+        saveBrain["timePlayed"] = timePlayed;
         saveBrain["X"] = X;
         saveBrain["Y"] = Y;
         saveBrain["spawnX"] = spawnX;
@@ -40262,6 +40288,7 @@ function theLegend()
             lastUpdate = parsed.update;
             map = parsed.map;
             region = parsed.region;
+            //timePlayed = parsed.timePlayed;
             X = parsed.X;
             Y = parsed.Y;
             spawnX = parsed.spawnX;
@@ -40283,6 +40310,53 @@ function theLegend()
                 conversations[key] = parsed.conversations[key];
             }
             bankSlots = parsed.bankSlots;
+        }
+    }
+
+    function gameTimeKeeper()
+    {
+        if (new Date().getTime() - timeRegulator >= 100)
+        {
+            timeRegulator = new Date().getTime();
+            timePlayed += 0.1;
+        }
+        gameTime = timePlayed / 0.0625;
+
+        gameMinute = Math.floor(gameTime / 60);
+
+        gameHour = Math.floor(gameMinute / 60);
+
+        gameDay = Math.floor(gameHour / 24);
+
+        gameSeason = Math.floor(gameDay / 90); //There are four seasons: Frost, Bounty, Bright, Harvest
+
+        gameYear = Math.floor(gameSeason / 4); //game years are only 360 days made up of four 90 day seasons.
+
+        hourOfDay = Math.floor(gameHour % 24);
+
+        seasonOfYear = Math.floor(gameSeason % 4);
+
+        dayOfYear = Math.floor(gameDay % 360);
+
+        minuteOfHour = Math.floor(gameMinute % 60);
+
+        secondOfMinute = Math.floor(gameTime % 60);
+
+        if (seasonOfYear == 1)
+        {
+            currentSeason = "Harvest";
+        }
+        else if (seasonOfYear == 2)
+        {
+            currentSeason = "Frost";
+        }
+        else if (seasonOfYear == 3)
+        {
+            currentSeason = "Bounty";
+        }
+        else if (seasonOfYear == 4)
+        {
+            currentSeason = "Bright";
         }
     }
 

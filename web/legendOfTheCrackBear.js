@@ -3,9 +3,9 @@
  */
 
 //TODO LIST
-//todo add the dexterity system: lv 10 = back-walking lv 20 = jump-back lv 30 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
+//todo add the dexterity system: lv 10 = jump-back lv 20 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
 //todo add golgemoff -- this is also the creature that must be fought in the creature contract quest given by Kedwin.
-//todo add arrow mods such as Stunning, poison, fire, electric, ice, armour piercing...
+//todo add arrow mods such as poison, electric, wind, armour piercing... and also normal steel arrows.
 //todo add clawed Bush Turtle like creature as well as a bunch of similar looking bushes as a natural hiding place for it.
 //todo add electricity spells
 //todo add vines spell
@@ -480,7 +480,7 @@ function theLegend()
     //Player Inventory
     var Inventory = [];
     //todo TEST INVENTORIES
-    Inventory = [[new Item("coins", false, false), 10000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2], [new Item("harstGrain", false, false), 40]];
+    Inventory = [[new Item("coins", false, false), 10000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2], [new Item("shehidToxinArrow", false, false), 45], [new Item("oiledArrow", false, false), 45], [new Item("fireStarter", false, false), 1], [new Item("lifeLeachArrow", false, false), 45], [new Item("fireArrow", false, false), 45], [new Item("freezingArrow", false, false), 45]];
     //Inventory = [[new Item("healingSalve", false, false), 1], [new Item("driedCyrinthilimMushroom", false, false), 1], [new Item("cyrinthilimMushroom", false, false), 1], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfNaapridMilk", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 1], [new Item("kellishClayPot", false, false), 1], [new Item("fermentedViperVenomGland", false, false), 1], [new Item("viperVenomGland", false, false), 1], [new Item("viperSnakeSkin", false, false), 1], [new Item("rawViperFlesh", false, false), 1], [new Item("viperMeat", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
     //Inventory = [[new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
     //Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1]];
@@ -527,6 +527,11 @@ function theLegend()
     allWeapons.push(new Item("hammer", false)); //32
     allWeapons.push(new Item("kellishSawClub", false)); //33
     allWeapons.push(new Item("rasper", false)); //34
+    allWeapons.push(new Item("shehidToxinArrow", false)); //35
+    allWeapons.push(new Item("oiledArrow", false)); //36
+    allWeapons.push(new Item("lifeLeachArrow", false)); //37
+    allWeapons.push(new Item("fireArrow", false)); //38
+    allWeapons.push(new Item("freezingArrow", false)); //39
 
     //This list holds one of each type of worn item so that the player can access the worn item stats.
     var allWorn = [];
@@ -578,6 +583,11 @@ function theLegend()
     smithing.push(new Item("aldrekiiBardiche", false));
     smithing.push(new Item("longbow", false));
     smithing.push(new Item("arrow", false));
+    smithing.push(new Item("shehidToxinArrow", false));
+    smithing.push(new Item("oiledArrow", false));
+    smithing.push(new Item("lifeLeachArrow", false));
+    smithing.push(new Item("freezingArrow", false));
+    smithing.push(new Item("fireArrow", false));
     smithing.push(new Item("blueBlade", false));
     smithing.push(new Item("nirineseSabre", false));
     smithing.push(new Item("freydicSpear", false));
@@ -642,6 +652,7 @@ function theLegend()
     foods.push(new Item("mofflingMeat", false));
     foods.push(new Item("mofuMeat", false));
     foods.push(new Item("largeMofuMeat", false));
+    foods.push(new Item("jarOfOil", false));
 
         //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     var tailoring = [];
@@ -679,6 +690,8 @@ function theLegend()
     alchemy.push(new Item("naapridButter", false));
     alchemy.push(new Item("suuliMelonSlice", false));
     alchemy.push(new Item("fermentedMofuEgg", false));
+    alchemy.push(new Item("shehidToxinArrow", false));
+    alchemy.push(new Item("oiledArrow", false));
     alchemy.push(new Item("emptyBag", false));
     alchemy.push(new Item("bagOfSanthFlour", false));
 
@@ -4177,7 +4190,6 @@ function theLegend()
         this.warmthMAX = 50 + (1 * this.endurance) + (4 * this.toughness); //This is how warm you are... if it goes to 0 or below then the player will start losing health at an average rate but also their speed will be massively decreased. [It only goes down in cold climates](freezing to death)
         this.warmth = this.warmthMAX; //This is the players current warmth.
         this.timeSinceLastWarmthChange = new Date().getTime(); //This is the time since the last change in the player's warmth.
-        this.timeSinceLastThirstChange = new Date().getTime();  //This is the time since the last change in the player's thirst.
         this.heatResistance = 0; //this is the amount of resistance from thirst depriving conditions and heat related effects the player has.
         this.warmthProtection = 0; //this is the amount of protection against the cold the player has.
         this.timeSinceLastColdRush = new Date().getTime(); //this is the time that has passed since the last time the player was hurt from being frozen.
@@ -4328,6 +4340,7 @@ function theLegend()
         this.gassiness = false;
         this.gassyCha = 0;
         this.gassinessTime = 0;
+        this.frozenTime = 0;
 
         //utility or extra variables
         this.outfitZ = true; //this is the layer determiner for the players outfit, so that the outfit can draw underneath or above the players body layer.
@@ -4390,6 +4403,7 @@ function theLegend()
                     this.flashAnimate(90, this.rotation, 0.90, [{image: polypol, imgX: 1691, imgY: 184, portionW: 24, portionH: 23, adjX: -1/2 * ((24 * 1.5)/10) * this.mySize, adjY: -1/2 * ((23 * 1.5)/10) * this.mySize, width: ((24 * 1.5)/10) * this.mySize, height: ((23 * 1.5)/10) * this.mySize}, {image: polypol, imgX: 1721, imgY: 185, portionW: 24, portionH: 23, adjX: -1/2 * ((24 * 1.5)/10) * this.mySize, adjY: -1/2 * ((23 * 1.5)/10) * this.mySize, width: ((24 * 1.5)/10) * this.mySize, height: ((23 * 1.5)/10) * this.mySize}, {image: polypol, imgX: 1750, imgY: 185, portionW: 24, portionH: 23, adjX: -1/2 * ((24 * 1.5)/10) * this.mySize, adjY: -1/2 * ((23 * 1.5)/10) * this.mySize, width: ((24 * 1.5)/10) * this.mySize, height: ((23 * 1.5)/10) * this.mySize}, {image: polypol, imgX: 1783, imgY: 185, portionW: 24, portionH: 23, adjX: -1/2 * ((24 * 1.5)/10) * this.mySize, adjY: -1/2 * ((23 * 1.5)/10) * this.mySize, width: ((24 * 1.5)/10) * this.mySize, height: ((23 * 1.5)/10) * this.mySize}]);
                     if (new Date().getTime() - this.burningTime2 >= 99)
                     {
+                        this.frozenTime = 0;
                         this.burningTime2 = new Date().getTime();
                         this.health -= Math.max(0, 0.12 - (this.heatResistance / 10));
                         this.warmth += 0.5;
@@ -4398,6 +4412,21 @@ function theLegend()
                 }
             };
             this.onFire();
+
+            this.onIce = function()
+            {
+                if (this.warmthProtection < 100 && new Date().getTime() - this.frozenTime <= 4500)
+                {
+                    this.burningTime = 0;
+                    this.warmth = Math.max(-5, this.warmth - ((this.warmthMAX + 5) - this.warmthProtection));
+                    XXX.save();
+                    XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                    XXX.globalAlpha = 0.9;
+                    XXX.drawImage(polypol, 1691, 240, 28, 24, - 1/2 * (28 * 1.2) / 10 * this.mySize, - 1/2 * (24 * 1.2) / 10 * this.mySize, (28 * 1.2) / 10 * this.mySize, (24 * 1.2) / 10 * this.mySize);
+                    XXX.restore();
+                }
+            };
+            this.onIce();
         };
 
         //experience and leveling function
@@ -10259,6 +10288,40 @@ function theLegend()
                             if (this.weapon.ability == "freeze")
                             {
                                 ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
+                            }
+                            else if (this.weapon.ability == "burning")
+                            {
+                                ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                            }
+                            else if (this.weapon.ability == "stunI")
+                            {
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunI = true;
+                            }
+                            else if (this.weapon.ability == "stunII")
+                            {
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunII = true;
+                            }
+                            else if (this.weapon.ability == "stunIII")
+                            {
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunIII = true;
+                            }
+                            else if (this.weapon.ability == "stunIV")
+                            {
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunIV = true;
+                            }
+                            else if (this.weapon.ability == "stunV")
+                            {
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunV = true;
                             }
                         }
                     }
@@ -17703,6 +17766,11 @@ function theLegend()
         this.statsSet = false;
         this.zIndex = 4;
 
+        //random individual variables
+        this.flameFrame = 0;
+        this.flameTic = 0;
+        this.canLight = false;
+
         //PROJECTILE AI
         //TODO this is where unique projectile AI like target following would be added.
 
@@ -17762,6 +17830,16 @@ function theLegend()
                     {
                         if (type == allWeapons[i].type)
                         {
+                            if (type == "oiledArrow")
+                            {
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "fireStarter")
+                                    {
+                                        this.canLight = true;
+                                    }
+                                }
+                            }
                             this.damage = allWeapons[i].damage;
                             this.magicalDamage = allWeapons[i].magicalDamage;
                             this.ability = allWeapons[i].ability;
@@ -17799,6 +17877,90 @@ function theLegend()
                         ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                         ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
 
+                        //Effects
+                        if (this.ability == "stunI")
+                        {
+                            if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                            {
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunI = true;
+                            }
+                        }
+                        else if (this.ability == "stunII")
+                        {
+                            if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                            {
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunII = true;
+                            }
+                        }
+                        else if (this.ability == "stunIII")
+                        {
+                            if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                            {
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunIII = true;
+                            }
+                        }
+                        else if (this.ability == "stunIV")
+                        {
+                            if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                            {
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunIV = true;
+                            }
+                        }
+                        else if (this.ability == "stunV")
+                        {
+                            if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                            {
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunV = true;
+                            }
+                        }
+                        else if (this.ability == "freeze")
+                        {
+                            if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                            {
+                                ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
+                            }
+                        }
+                        else if (this.ability == "burning")
+                        {
+                            if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                            {
+                                ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                            }
+                        }
+                        else if (this.ability == "longBurning")
+                        {
+                            ArtificialIntelligenceAccess[i].burningTime = new Date().getTime() + 5000;
+                        }
+                        else if (this.ability == "leach")
+                        {
+                            if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, 12 - ArtificialIntelligenceAccess[i].magicalResistance);
+
+                                var counterOrbCount = 0;
+                                if (ArtificialIntelligenceAccess[i].health < 0)
+                                {
+                                    counterOrbCount = Math.round(- ArtificialIntelligenceAccess[i].health);
+                                }
+                                var orbsAllowed = Math.max(0, 12 - ArtificialIntelligenceAccess[i].magicalResistance - counterOrbCount);
+                                for (var j = 0; j < orbsAllowed; j++)
+                                {
+                                    magicList.push(new Magic({ID: "drainOrb"}, false, 0, ArtificialIntelligenceAccess[i]));
+                                }
+                            }
+                        }
+
+                        //Self Delete Projectile
                         for (var j = list.length - 1; j > -1; j--)
                         {
                             if (list[j] == this)
@@ -17825,6 +17987,24 @@ function theLegend()
                             player.stunnedI = true;
                             player.stunnedTime = 5;
                         }
+                    }
+                    else if (this.ability == "burning")
+                    {
+                        if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                        {
+                            player.burningTime = new Date().getTime();
+                        }
+                    }
+                    else if (this.ability == "freeze")
+                    {
+                        if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                        {
+                            player.frozenTime = new Date().getTime();
+                        }
+                    }
+                    else if (this.ability == "longBurning")
+                    {
+                        player.burningTime = new Date().getTime() + 5000;
                     }
 
                     for (var j = list.length - 1; j > -1; j--)
@@ -17874,6 +18054,236 @@ function theLegend()
                     XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
                     XXX.rotate(this.rotation + (1 / 2 * Math.PI));
                     XXX.drawImage(polyPNG, 432, 554, 20, 8, 0, 0, 30, 12);
+                    XXX.restore();
+                }
+            }
+            else if (type == "freezingArrow")
+            {
+                if (list == playerProjectiles)
+                {
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    this.shoot();
+                    this.impact();
+
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    XXX.drawImage(mofu, 66, 73, 22, 9, 0, 0, 33, 13.5);
+                    XXX.restore();
+                }
+                else if (list == unitProjectiles)
+                {
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    this.shoot();
+                    this.impact();
+
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation + (1 / 2 * Math.PI));
+                    XXX.drawImage(mofu, 66, 73, 22, 9, 0, 0, 33, 13.5);
+                    XXX.restore();
+                }
+            }
+            else if (type == "fireArrow")
+            {
+                if (list == playerProjectiles)
+                {
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    this.shoot();
+                    this.impact();
+
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    XXX.drawImage(mofu, 66, 80, 22, 9, 0, 0, 33, 13.5);
+                    XXX.restore();
+                }
+                else if (list == unitProjectiles)
+                {
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    this.shoot();
+                    this.impact();
+
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation + (1 / 2 * Math.PI));
+                    XXX.drawImage(mofu, 66, 80, 22, 9, 0, 0, 33, 13.5);
+                    XXX.restore();
+                }
+            }
+            else if (type == "lifeLeachArrow")
+            {
+                if (list == playerProjectiles)
+                {
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    this.shoot();
+                    this.impact();
+
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    XXX.drawImage(mofu, 65, 88, 22, 9, 0, 0, 33, 13.5);
+                    XXX.restore();
+                }
+                else if (list == unitProjectiles)
+                {
+                    //todo add the complicated life drain spell equivelent for the AI in the Leach ability section.
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    this.shoot();
+                    this.impact();
+
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation + (1 / 2 * Math.PI));
+                    XXX.drawImage(mofu, 65, 88, 22, 9, 0, 0, 33, 13.5);
+                    XXX.restore();
+                }
+            }
+            else if (type == "oiledArrow")
+            {
+                if (list == playerProjectiles)
+                {
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    this.shoot();
+                    this.impact();
+
+                    if (this.canLight)
+                    {
+                        this.ability = "burning";
+                        this.flameTic += 1;
+                        if (this.flameTic % 307)
+                        {
+                            this.flameFrame += 1;
+
+                            if (this.flameFrame > 2)
+                            {
+                                this.flameFrame = 0;
+                            }
+                        }
+                    }
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    if (this.canLight)
+                    {
+                        if (this.flameFrame == 0)
+                        {
+                            XXX.drawImage(mofu, 66, 49, 23, 8, 0, 0, 34.5, 12);
+                        }
+                        else if (this.flameFrame == 1)
+                        {
+                            XXX.drawImage(mofu, 66, 41, 23, 8, 0, 0, 34.5, 12);
+                        }
+                        else if (this.flameFrame == 2)
+                        {
+                            XXX.drawImage(mofu, 66, 32, 23, 8, 0, 0, 34.5, 12);
+                        }
+                    }
+                    else
+                    {
+                        XXX.drawImage(mofu, 67, 57, 19, 7, 0, 0, 28.5, 10.5);
+                    }
+                    XXX.restore();
+                }
+                else if (list == unitProjectiles)
+                {
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    this.ability = "burning";
+                    this.flameTic += 1;
+                    if (this.flameTic % 307)
+                    {
+                        this.flameFrame += 1;
+
+                        if (this.flameFrame > 2)
+                        {
+                            this.flameFrame = 0;
+                        }
+                    }
+                    this.shoot();
+                    this.impact();
+
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation + (1 / 2 * Math.PI));
+                    if (this.flameFrame == 0)
+                    {
+                        XXX.drawImage(mofu, 66, 49, 23, 8, 0, 0, 34.5, 12);
+                    }
+                    else if (this.flameFrame == 1)
+                    {
+                        XXX.drawImage(mofu, 66, 41, 23, 8, 0, 0, 34.5, 12);
+                    }
+                    else if (this.flameFrame == 2)
+                    {
+                        XXX.drawImage(mofu, 66, 32, 23, 8, 0, 0, 34.5, 12);
+                    }
+                    XXX.restore();
+                }
+            }
+            else if (type == "shehidToxinArrow")
+            {
+                if (list == playerProjectiles)
+                {
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    this.shoot();
+                    this.impact();
+
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    XXX.drawImage(mofu, 66, 21, 22, 9, 0, 0, 33, 13.5);
+                    XXX.restore();
+                }
+                else if (list == unitProjectiles)
+                {
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    this.shoot();
+                    this.impact();
+
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation + (1 / 2 * Math.PI));
+                    XXX.drawImage(mofu, 66, 21, 22, 9, 0, 0, 33, 13.5);
                     XXX.restore();
                 }
             }
@@ -18176,6 +18586,14 @@ function theLegend()
         this.burningTime = 0;
         this.burningTime2 = new Date().getTime();
         this.frozenTime = 0;
+        this.stunTime = 0;
+        this.stunTimer = 0;
+        this.stunI = false;
+        this.stunII = false;
+        this.stunIII = false;
+        this.stunIV = false;
+        this.stunV = false;
+        this.stunned = 1;
         //Artificial Intelligence
 
         //This makes sure that each existing Unit has a different dominance ranking and so when they get stuck on eachother the one with lower dominance will move out of the way.
@@ -19482,8 +19900,8 @@ function theLegend()
             if (dtp > this.engagementRadius && dtp < this.rangeOfSight || this.fleeing == true && dtp < this.rangeOfSight) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
             {
 
-                var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed);
-                var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed);
+                var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
+                var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
 
                 if (! this.isObstructed( nextX, nextY ) || this.flying == true)
                 {
@@ -19555,8 +19973,8 @@ function theLegend()
             if (dTo > this.engagementRadius && dTo < this.rangeOfSight || this.fleeing == true && dTo < this.rangeOfSight) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
             {
 
-                var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed);
-                var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed);
+                var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
+                var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
 
                 if (! this.isObstructed( nextX, nextY ) || this.flying == true)
                 {
@@ -19716,6 +20134,7 @@ function theLegend()
             var frozenResistance = false;
             var burningResistance = false;
             var blindedResistance = false;
+            var stunResistance = false;
                 //for loop to check for resistance
             for (var i = 0; i < resistancesList.length; i++)
             {
@@ -19723,13 +20142,17 @@ function theLegend()
                 {
                     frozenResistance = true;
                 }
-                if (resistancesList[i] == "burning")
+                else if (resistancesList[i] == "burning")
                 {
                     burningResistance = true;
                 }
-                if (resistancesList[i] == "blinded")
+                else if (resistancesList[i] == "blinded")
                 {
                     blindedResistance = true;
+                }
+                else if (resistancesList[i] == "stun")
+                {
+                    stunResistance = true;
                 }
             }
 
@@ -19766,6 +20189,7 @@ function theLegend()
                 this.speed = this.freezeKeepSpeed / 4.5;
                 this.hasBeenFrozen = true;
             }
+                //Blinded Effect
             if (blindedResistance == false && new Date().getTime() - this.blindedTime <= 5000 + (1000 * (player.getConcentration() / 5)))
             {
                 this.blinded = true;
@@ -19773,6 +20197,39 @@ function theLegend()
             else
             {
                 this.blinded = false;
+            }
+                //Stun Effect
+            if (stunResistance == false && new Date().getTime() - this.stunTime <= this.stunTimer * 1000)
+            {
+                if (this.stunV)
+                {
+                    this.stunned = 0;
+                }
+                else if (this.stunIV)
+                {
+                    this.stunned = 0.2;
+                }
+                else if (this.stunIII)
+                {
+                    this.stunned = 0.3;
+                }
+                else if (this.stunII)
+                {
+                    this.stunned = 0.5;
+                }
+                else if (this.stunI)
+                {
+                    this.stunned = 0.75;
+                }
+            }
+            else
+            {
+                this.stunned = 1;
+                this.stunV = false;
+                this.stunIV = false;
+                this.stunIII = false;
+                this.stunII = false;
+                this.stunI = false;
             }
         };
             //This function increases the rangeOfSight of all of the surrounding nearby units.
@@ -20701,6 +21158,7 @@ function theLegend()
                 this.damageFrame = "automatic";
                 this.awake = Math.round(Math.random());
                 this.formChange = false; //this is for transforming from awake to asleep or sleep to awake... it signals that a change has been made so that an animation can play.
+                this.resistances = ["stun"];
 
                 if (this.alpha == true)
                 {
@@ -30563,7 +31021,7 @@ function theLegend()
                 this.identity = "Glass Jar";
                 this.weight = 1;
                 this.size = 6;
-                this.description = "A Jar made of class sealed tighly with a metal lid.";
+                this.description = "A jar made of glass sealed tighly with a metal lid.";
                 this.intForDes = 4;
                 this.intDescription = "This can be used to contain magical substances and other such commodities that should be stored in a vaccum sealed container.";
 
@@ -30581,6 +31039,31 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
                 this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            }
+            else if (this.type == "jarOfOil")
+            {
+                //For All Items
+                this.identity = "Jar of Oil";
+                this.weight = 2;
+                this.size = 6;
+                this.description = "A glass jar full to the brim with flammable oil.";
+                this.intForDes = 9;
+                this.intDescription = "This can be used to fuel torches and lamps as well as to set flammable traps or craft flammable arrows.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 9;
+                this.ingredients = [["Blubber", 1], ["Glass Jar", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 24 - Math.floor(player.getCharisma() / 12); // at max, buy for 20.
+                this.sellValue = 9 + Math.floor(player.getCharisma() / 5); // at max, sell for 19.
             }
             else if (this.type == "potionGlass")
             {
@@ -31295,8 +31778,8 @@ function theLegend()
                 this.weight = 1;
                 this.size = 10;
                 this.description = "A glob of fat...";
-                this.intForDes = 21;
-                this.intDescription = "This can be used to make oil.";
+                this.intForDes = 9;
+                this.intDescription = "This can be used to make oil which is a highly valued commodity.";
 
                 //Define Utility
                 this.utility = "material";
@@ -32947,6 +33430,167 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 44 - Math.floor(player.getCharisma() / 8); // at max, buy for 38.
                 this.sellValue = 23 + Math.floor(player.getCharisma() / 3); // at max, sell for 38.
+            }
+            else if (this.type == "oiledArrow")
+            {
+                //For All Items
+                this.identity = "Oiled Arrow";
+                this.weight = 0.05;
+                this.size = 8;
+                this.description = "An arrow with a sharp iron pointed tip dipped in flammable oil.";
+                this.intForDes = 12;
+                this.intDescription = "The arrow will only be lit on fire when shot if a tinderbox is in your inventory.";
+
+                //Define Utility
+                this.utility = "ammunition";
+                //Sub Utility
+                this.subUtility = "arrow";
+                this.subUtilityName = "Arrow";
+
+                //Utility Focused
+                this.damage = 3 * (1 + player.getRanged() / 25);
+                this.magicalDamage = 0;
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 90;
+                this.intForCraft = 8;
+                this.ingredients = [["Iron Arrow", 90], ["jar of Oil", 1]];
+                this.biproducts = [["glassJar", 1]]; //these are the accompanying items that come along with the main item being crafted.
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 5 - Math.floor(player.getCharisma() / 12); // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "lifeLeachArrow")
+            {
+                //For All Items
+                this.identity = "Life Leach Arrow";
+                this.weight = 0.1;
+                this.size = 8;
+                this.description = "A steel arrow infused with nechromantic magic.";
+                this.intForDes = 6;
+                this.intDescription = "Upon piercing its victim the life drains out of it into the one who shot the arrow.";
+
+                //Define Utility
+                this.utility = "ammunition";
+                //Sub Utility
+                this.subUtility = "arrow";
+                this.subUtilityName = "Arrow";
+
+                //Utility Focused
+                this.damage = 5 * (1 + player.getRanged() / 25);
+                this.magicalDamage = 0;
+
+                //ability
+                this.ability = "leach";
+
+                //Crafting
+                this.yield = 7;
+                this.intForCraft = 45;
+                this.ingredients = [["Steel", 1], ["Sphere of Nechromancy", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 250 - Math.floor(player.getCharisma() / 1); // at max, buy for 200.
+                this.sellValue = 100 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 200.
+            }
+            else if (this.type == "freezingArrow")
+            {
+                //For All Items
+                this.identity = "Freezing Arrow";
+                this.weight = 0.1;
+                this.size = 8;
+                this.description = "A steel arrow infused with ice magic.";
+                this.intForDes = 6;
+                this.intDescription = "This arrow has magical ice sharpness and freezes its target upon piercing.";
+
+                //Define Utility
+                this.utility = "ammunition";
+                //Sub Utility
+                this.subUtility = "arrow";
+                this.subUtilityName = "Arrow";
+
+                //Utility Focused
+                this.damage = 5 * (1 + player.getRanged() / 25);
+                this.magicalDamage = 7;
+
+                //ability
+                this.ability = "freeze";
+
+                //Crafting
+                this.yield = 7;
+                this.intForCraft = 45;
+                this.ingredients = [["Steel", 1], ["Sphere of Ice", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 250 - Math.floor(player.getCharisma() / 1); // at max, buy for 200.
+                this.sellValue = 100 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 200.
+            }
+            else if (this.type == "fireArrow")
+            {
+                //For All Items
+                this.identity = "Fire Arrow";
+                this.weight = 0.1;
+                this.size = 8;
+                this.description = "A steel arrow infused with Fiery magic.";
+                this.intForDes = 6;
+                this.intDescription = "Simply impact with a target will engulf it in long burning flames.";
+
+                //Define Utility
+                this.utility = "ammunition";
+                //Sub Utility
+                this.subUtility = "arrow";
+                this.subUtilityName = "Arrow";
+
+                //Utility Focused
+                this.damage = 5 * (1 + player.getRanged() / 25);
+                this.magicalDamage = 1;
+
+                //ability
+                this.ability = "longBurning";
+
+                //Crafting
+                this.yield = 7;
+                this.intForCraft = 45;
+                this.ingredients = [["Steel", 1], ["Sphere of Flames", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 250 - Math.floor(player.getCharisma() / 1); // at max, buy for 200.
+                this.sellValue = 100 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 200.
+            }
+            else if (this.type == "shehidToxinArrow")
+            {
+                //For All Items
+                this.identity = "Shehid Toxin Arrow";
+                this.weight = 0.07;
+                this.size = 8;
+                this.description = "An arrow with a sharp iron pointed tip dipped in shehid ooze and dried.";
+                this.intForDes = 6;
+                this.intDescription = "The dried shehid ooze will temporarily paralyze most targets upon successfully penetrating the flesh.";
+
+                //Define Utility
+                this.utility = "ammunition";
+                //Sub Utility
+                this.subUtility = "arrow";
+                this.subUtilityName = "Arrow";
+
+                //Utility Focused
+                this.damage = 3 * (1 + player.getRanged() / 25);
+                this.magicalDamage = 0;
+
+                //ability
+                this.ability = "stunIII";
+
+                //Crafting
+                this.yield = 180;
+                this.intForCraft = 8;
+                this.ingredients = [["Iron Arrow", 180], ["Shehid Ooze", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 6 - Math.floor(player.getCharisma() / 12); // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
             }
             else if (this.type == "arrow")
             {
@@ -35521,6 +36165,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 452, 33, 8, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 12), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 12, 21);
             }
+            else if (this.type == "jarOfOil")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 97, 3, 10, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21.5), 15, 21.5);
+            }
             else if (this.type == "glassJar")
             {
                 XXX.beginPath();
@@ -35725,6 +36374,31 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(verse, 7, 7, 26, 80, X - this.X + (1/2 * CCC.width) - (1/2 * 26), Y - this.Y + (1/2 * CCC.height) - (1/2 * 80), 26, 80);
+            }
+            else if (this.type == "freezingArrow")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 66, 73, 22, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 33), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13.5), 33, 13.5);
+            }
+            else if (this.type == "fireArrow")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 66, 80, 22, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 33), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13.5), 33, 13.5);
+            }
+            else if (this.type == "lifeLeachArrow")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 65, 88, 22, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 33), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13.5), 33, 13.5);
+            }
+            else if (this.type == "oiledArrow")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 67, 57, 19, 7, X - this.X + (1/2 * CCC.width) - (1/2 * 28.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10.5), 28.5, 10.5);
+            }
+            else if (this.type == "shehidToxinArrow")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 66, 21, 22, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 33), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13.5), 33, 13.5);
             }
             else if (this.type == "arrow")
             {
@@ -36529,6 +37203,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 452, 33, 8, 14, this.invX - (1/2 * 12), this.invY - (1/2 * 21), 12, 21);
             }
+            else if (this.type == "jarOfOil")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 97, 3, 10, 15, this.invX - (1/2 * 15), this.invY - (1/2 * 21.5), 15, 21.5);
+            }
             else if (this.type == "glassJar")
             {
                 LXX.beginPath();
@@ -36733,6 +37412,31 @@ function theLegend()
             {
                 LXX.beginPath();
                 LXX.drawImage(verse, 7, 7, 26, 80, this.invX - (1/2 * 19.5), this.invY - (1/2 * 60), 19.5, 60);
+            }
+            else if (this.type == "freezingArrow")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 66, 73, 22, 9, this.invX - (1/2 * 44), this.invY - (1/2 * 18), 44, 18);
+            }
+            else if (this.type == "fireArrow")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 66, 80, 22, 9, this.invX - (1/2 * 44), this.invY - (1/2 * 18), 44, 18);
+            }
+            else if (this.type == "lifeLeachArrow")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 65, 88, 22, 9, this.invX - (1/2 * 44), this.invY - (1/2 * 18), 44, 18);
+            }
+            else if (this.type == "oiledArrow")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 67, 57, 19, 7, this.invX - (1/2 * 38), this.invY - (1/2 * 14), 38, 14);
+            }
+            else if (this.type == "shehidToxinArrow")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 66, 21, 22, 9, this.invX - (1/2 * 44), this.invY - (1/2 * 18), 44, 18);
             }
             else if (this.type == "arrow")
             {
@@ -37528,6 +38232,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 452, 33, 8, 14, this.invX - (1/2 * 12), this.invY - (1/2 * 21), 12, 21);
             }
+            else if (this.type == "jarOfOil")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 97, 3, 10, 15, this.invX - (1/2 * 15), this.invY - (1/2 * 21.5), 15, 21.5);
+            }
             else if (this.type == "glassJar")
             {
                 XXX.beginPath();
@@ -37732,6 +38441,31 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(verse, 7, 7, 26, 80, this.invX - (1/2 * 19.5), this.invY - (1/2 * 60), 19.5, 60);
+            }
+            else if (this.type == "freezingArrow")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 66, 73, 22, 9, this.invX - (1/2 * 44), this.invY - (1/2 * 18), 44, 18);
+            }
+            else if (this.type == "fireArrow")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 66, 80, 22, 9, this.invX - (1/2 * 44), this.invY - (1/2 * 18), 44, 18);
+            }
+            else if (this.type == "lifeLeachArrow")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 65, 88, 22, 9, this.invX - (1/2 * 44), this.invY - (1/2 * 18), 44, 18);
+            }
+            else if (this.type == "oiledArrow")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 67, 57, 19, 7, this.invX - (1/2 * 38), this.invY - (1/2 * 14), 38, 14);
+            }
+            else if (this.type == "shehidToxinArrow")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 66, 21, 22, 9, this.invX - (1/2 * 44), this.invY - (1/2 * 18), 44, 18);
             }
             else if (this.type == "arrow")
             {
@@ -38112,7 +38846,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(1930, 1793, "Person", false, "Medlia the Merchant", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[1710, 1717], [1812, 1835], [1713, 1882], [1930, 1793]], merchant: true, merchandise: [[new Item("coins", false, false), 179], [new Item("wood", false, false), 48], [new Item("fireStarter", false, false), 3], [new Item("rawWalrusFlesh", false, false), 8], [new Item("walrusHide", false, false), 1], [new Item("walrusTusks", false, false), 1], [new Item("frichPelt", false, false), 3], [new Item("rawFrichFlesh", false, false), 22], [new Item("winterWolfPelt", false, false), 3], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("rawWolfLiver", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 2], [new Item("harstGrain", false, false), 29], [new Item("potato", false, false), 8], [new Item("carrot", false, false), 13], [new Item("suuliMelon", false, false), 5]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(1930, 1793, "Person", false, "Medlia the Merchant", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[1710, 1717], [1812, 1835], [1713, 1882], [1930, 1793]], merchant: true, merchandise: [[new Item("coins", false, false), 179], [new Item("wood", false, false), 48], [new Item("fireStarter", false, false), 3], [new Item("jarOfOil", false, false), 1], [new Item("rawWalrusFlesh", false, false), 8], [new Item("walrusHide", false, false), 1], [new Item("walrusTusks", false, false), 1], [new Item("frichPelt", false, false), 3], [new Item("rawFrichFlesh", false, false), 22], [new Item("winterWolfPelt", false, false), 3], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("rawWolfLiver", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 2], [new Item("harstGrain", false, false), 29], [new Item("potato", false, false), 8], [new Item("carrot", false, false), 13], [new Item("suuliMelon", false, false), 5]]}));
                         }
                     }
                     if (uniqueChars.maggyLDS == true)

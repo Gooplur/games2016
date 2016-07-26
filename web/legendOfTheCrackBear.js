@@ -41413,8 +41413,8 @@ function theLegend()
             map = parsed.map;
             region = parsed.region;
             timePlayed = parsed.timePlayed;
-            //sleeperTime = parsed.sleeperTime //booble
-            //elevation = parsed.elevation
+            sleeperTime = parsed.sleeperTime;
+            elevation = parsed.elevation;
             X = parsed.X;
             Y = parsed.Y;
             spawnX = parsed.spawnX;

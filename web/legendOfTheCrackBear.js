@@ -195,6 +195,10 @@ function legendaryPrerequisites()
     forestEnv.src = ("images/mBank.jpg");
     window.forestEnv = forestEnv;
 
+    var candlewic = new Image();
+    candlewic.src = ("images/candlewic.png");
+    window.candlewic = candlewic;
+
     var horde1 = new Image();
     horde1.src = ("images/hordepics.png");
     window.horde1 = horde1;
@@ -286,10 +290,16 @@ function theLegend()
     // Establish the canvas and its context
     var CCC = document.getElementById("bearPawBravo");
     var XXX = CCC.getContext("2d");
+    // Establish the night and day light cycle mask
+    var NDC = document.createElement("canvas");
+    NDC.width = CCC.width;
+    NDC.height = CCC.height;
+    var NDX = NDC.getContext("2d");
 
     //What part of the game world are you in
     var map = "world"; //this represents which map you are in.
     var region = "central"; //this represents which part of a map you are in.
+    var elevation = 0; //this is a general number based on your current region that helps determines seasonal climate effects.
     var change = 0; //This allows the buildMaster to know when a region has just changed so that it can delete everything from the old region before building the new one.
     var X = 2000; //This X represents the worlds location X compared to you, as you are a stationary object that never moves.
     var Y = 1000; //This Y represents the worlds location Y compared to you, as you are a stationary object that never moves.
@@ -300,6 +310,7 @@ function theLegend()
     var timePlayed = 0; //this is time played in real life seconds.
     var timeRegulator = new Date().getTime(); //this is a basic switch that helps in the process of counting time for the game.
     var gameTime = 0; //game time is seconds in game and is 0.0625 * of a real second.
+    var sleeperTime = (60 * 60 * 7); //the game starts 7 in game hours later than the start time.
     var gameMinute = 0;
     var gameHour = 0;
     var gameDay = 0;
@@ -311,6 +322,9 @@ function theLegend()
     var secondOfMinute = 0;
     var dayOfYear = 0;
     var currentSeason = "Harvest";
+    var timeOfDay = "Day";
+    var darkestDark = 0;
+    var nightDarkness = 0;
 
 
     //Game Pausing, Moderation, and Control
@@ -488,6 +502,12 @@ function theLegend()
     selectorList.push(new Selector(1/2 * CCC.width - 105, 300, "gender", 2)); // 1 == gender selector
     selectorList.push(new Selector(1/2 * CCC.width - 105, 340, "class", 6)); // 2 == wealth and social class selector
     selectorList.push(new Selector(1/2 * CCC.width - 105, 380, "style", 2)); // 3 == combat style selector
+
+    //This List stores all of the lights that penetrate the darkness of the night.
+    // X and Y determine location of the light, size determines its size, extraStops determines if it is a more complicated gradient with a middle stop layer, GDR is how long the alpha you specify lasts until it fades to black, the GDR's go from 0 - 1 max, Alpha is all about the transparency of the light bubble at each stage of the gradient, showMe is a way to draw the light no matter what.
+    //light objects look like this: {X:, Y:, size:, extraStops:, GRD:, Alpha:, showMe:}
+    var lights = [];
+
     //This list stores the dead from the AI list.
     var deadAIList = [];
 
@@ -497,7 +517,7 @@ function theLegend()
     //Player Inventory
     var Inventory = [];
     //todo TEST INVENTORIES
-    Inventory = [[new Item("coins", false, false), 10000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2], [new Item("shehidToxinArrow", false, false), 45], [new Item("oiledArrow", false, false), 45], [new Item("fireStarter", false, false), 1], [new Item("lifeLeachArrow", false, false), 45], [new Item("fireArrow", false, false), 45], [new Item("freezingArrow", false, false), 45]];
+    Inventory = [[new Item("coins", false, false), 10000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2], [new Item("shehidToxinArrow", false, false), 45], [new Item("oiledArrow", false, false), 45], [new Item("fireStarter", false, false), 1], [new Item("lifeLeachArrow", false, false), 45], [new Item("fireArrow", false, false), 45], [new Item("freezingArrow", false, false), 45], [new Item("oilLantern", false, false), 1]];
     //Inventory = [[new Item("healingSalve", false, false), 1], [new Item("driedCyrinthilimMushroom", false, false), 1], [new Item("cyrinthilimMushroom", false, false), 1], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfNaapridMilk", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 1], [new Item("kellishClayPot", false, false), 1], [new Item("fermentedViperVenomGland", false, false), 1], [new Item("viperVenomGland", false, false), 1], [new Item("viperSnakeSkin", false, false), 1], [new Item("rawViperFlesh", false, false), 1], [new Item("viperMeat", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
     //Inventory = [[new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
     //Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1]];
@@ -600,8 +620,6 @@ function theLegend()
     smithing.push(new Item("aldrekiiBardiche", false));
     smithing.push(new Item("longbow", false));
     smithing.push(new Item("arrow", false));
-    smithing.push(new Item("shehidToxinArrow", false));
-    smithing.push(new Item("oiledArrow", false));
     smithing.push(new Item("lifeLeachArrow", false));
     smithing.push(new Item("freezingArrow", false));
     smithing.push(new Item("fireArrow", false));
@@ -632,6 +650,8 @@ function theLegend()
     smithing.push(new Item("kellishClaymore", false));
     smithing.push(new Item("bucket", false));
     smithing.push(new Item("jvostranPlateArmour", false));
+    smithing.push(new Item("oilLampEmpty", false));
+    smithing.push(new Item("oilLanternEmpty", false));
 
         //Foods (Items cooked at either a stove, an oven, or a campfire)
     var foods = [];
@@ -656,14 +676,7 @@ function theLegend()
     foods.push(new Item("boiledGlinMushrooms", false));
     foods.push(new Item("viperMeat", false));
     foods.push(new Item("kellishClayPotOfMushroomStew", false));
-    foods.push(new Item("suuliMelonSlice", false));
-    foods.push(new Item("santhFlour", false));
-    foods.push(new Item("santhDough", false));
     foods.push(new Item("santhBread", false));
-    foods.push(new Item("butteredSanthBread", false));
-    foods.push(new Item("naapridButter", false));
-    foods.push(new Item("emptyBag", false));
-    foods.push(new Item("bagOfSanthFlour", false));
     foods.push(new Item("grushMeat", false));
     foods.push(new Item("cookedMofuEgg", false));
     foods.push(new Item("mofflingMeat", false));
@@ -704,13 +717,7 @@ function theLegend()
     alchemy.push(new Item("fermentedNarthwarpMouth", false));
     alchemy.push(new Item("fermentedViperVenomGland", false));
     alchemy.push(new Item("driedCyrinthilimMushroom", false));
-    alchemy.push(new Item("naapridButter", false));
-    alchemy.push(new Item("suuliMelonSlice", false));
     alchemy.push(new Item("fermentedMofuEgg", false));
-    alchemy.push(new Item("shehidToxinArrow", false));
-    alchemy.push(new Item("oiledArrow", false));
-    alchemy.push(new Item("emptyBag", false));
-    alchemy.push(new Item("bagOfSanthFlour", false));
 
         //Brewing (alcohols, liquid fermentation, etc.)
     var brewing = [];
@@ -719,6 +726,21 @@ function theLegend()
         //Forge
     var forge = [];
     forge.push(new Item("kellishClayPot", false));
+
+    //Handcrafted (things the player can do without a work station of some kind)
+    var handcrafted = [];
+    handcrafted.push(new Item("emptyBag", false));
+    handcrafted.push(new Item("bagOfSanthFlour", false));
+    handcrafted.push(new Item("suuliMelonSlice", false));
+    handcrafted.push(new Item("naapridButter", false));
+    handcrafted.push(new Item("butteredSanthBread", false));
+    handcrafted.push(new Item("santhFlour", false));
+    handcrafted.push(new Item("santhDough", false));
+    handcrafted.push(new Item("shehidToxinArrow", false));
+    handcrafted.push(new Item("oiledArrow", false));
+    handcrafted.push(new Item("oilLantern", false));
+    handcrafted.push(new Item("oilLamp", false));
+    handcrafted.push(new Item("candle", false));
 
     //This sets the items that are in shops.
     function shopItemIDSetter()
@@ -783,6 +805,20 @@ function theLegend()
                 for (var i = 0; i < forge.length; i++)
                 {
                     forge[i].setItemID();
+                }
+            }
+            if (crafting == "brewing" || initialcraftingItemSet == false)
+            {
+                for (var i = 0; i < brewing.length; i++)
+                {
+                    brewing[i].setItemID();
+                }
+            }
+            if (crafting == "handcrafted" || initialcraftingItemSet == false)
+            {
+                for (var i = 0; i < handcrafted.length; i++)
+                {
+                    handcrafted[i].setItemID();
                 }
             }
             initialcraftingItemSet = true;
@@ -950,11 +986,39 @@ function theLegend()
                     player.eminence = 1000;
                 }
             }
+            else if (cheatcode == "JackOLantern")
+            {
+                player.timeSinceLightSourceFuelUsed = new Date().getTime();
+                player.lightSourceDuration = 540;
+                player.lightSource = "jackOLantern";
+            }
+            else if (cheatcode == "KoolKandleKrew")
+            {
+                player.timeSinceLightSourceFuelUsed = new Date().getTime();
+                player.lightSourceDuration = 180;
+                player.lightSource = "candle";
+            }
+            else if (cheatcode == "SkiP")
+            {
+                sleeperTime += (60 * 60 * 3);
+            }
+            else if (cheatcode == "SkP")
+            {
+                sleeperTime += (60 * 60 * 1);
+            }
+            else if (cheatcode == "SliP")
+            {
+                sleeperTime -= (60 * 60 * 3);
+            }
+            else if (cheatcode == "SlP")
+            {
+                sleeperTime -= (60 * 60 * 1);
+            }
             else if (cheatcode == "getTime")
             {
                 alert("Total Real Time Played: " + Math.floor(timePlayed) +
                     " Second Of Game Minute: " + secondOfMinute +
-                    " Minute Of Game Hour: " + minuteOfHour + " Hour Of Game Day: " + hourOfDay + " Day of Game Year: " + dayOfYear +
+                    " Minute Of Game Hour: " + minuteOfHour + " Hour Of Game Day: " + hourOfDay + " Day of Game Year: " + dayOfYear + " Time of Day: " + timeOfDay +
                 " Current Game Season: " + currentSeason)
             }
             else if (cheatcode == "6060842")
@@ -1000,6 +1064,10 @@ function theLegend()
             else if (cheatcode.toLowerCase() == "clearinv")
             {
                 Inventory = [];
+            }
+            else if (cheatcode.toLowerCase() == "testinv")
+            {
+                console.log(Inventory);
             }
             else if (cheatcode.toLowerCase() == "coords")
             {
@@ -3326,9 +3394,10 @@ function theLegend()
             //Different parts of the world load at different Y values. // maps are 34 by 34 tiles and for somereason the maps are -20 to the left. and + 14 down.
         if (map == "world")
         {
-            //Elevation -3 (cold temperate region)
+            //Layer -3 (cold temperate region)
             if (Y > -34556 && Y < -23654 && X < 7687 && X > - 3901) //X0
             {
+                elevation = -1;
                 region = "s3";
                 outlineBuilder( 34, 34, "greenGrass", -20, 82);
                 outlineBuilder( 34, 1, "stonePath", 3, 82);
@@ -3336,25 +3405,28 @@ function theLegend()
                 outlineBuilder( 4, 4, "kelltile", 4, 103);
                 outlineBuilder( 1, 1, "farmland", 8, 104);
             }
-            //Elevation -2 (cold temperate region)
+            //Layer -2 (cold temperate region)
             if (Y > -24704 && Y < -13476 && X < 7687 && X > - 3901) //X0
             {
+                elevation = -1;
                 region = "s2";
                 outlineBuilder( 34, 34, "greenGrass", -20, 48);
                 outlineBuilder( 34, 1, "stonePath", 3, 48);
                 outlineBuilder( 1, 7, "stonePath", -4, 48);
             }
-            //Elevation -1 (cold temperate region)
+            //Layer -1 (cold temperate region)
             if (Y > -14144 && Y < -3328 && X < 7687 && X > - 3901) //X0
             {
+                elevation = -1;
                 region = "s1";
                 outlineBuilder( 34, 34, "greenGrass", -20, 14);
                 outlineBuilder( 34, 1, "stonePath", -4, 14);
                 outlineBuilder( 1, 1, "forest", -4, 14);
             }
-            //Elevation 0 (cold region)
+            //Layer 0 (cold region)
             if (Y > -3919 && Y < 6870 && X < 7687 && X > - 3901) //X0
             {
+                elevation = 0;
                 region = "central";
                 outlineBuilder( 14, 6, "greenGrass", -6, -20);
                 outlineBuilder( 14, 6, "greenGrass", -6, 0);
@@ -3373,6 +3445,7 @@ function theLegend()
             }
             if (Y > -3919 && Y < 6870 && X < - 2490) //X1
             {
+                elevation = 0;
                 region = "e1";
                 outlineBuilder( 34, 22, "forest", 26, -20);
                 outlineBuilder( 7, 2, "greenGrass", 26, -18);
@@ -3389,6 +3462,7 @@ function theLegend()
             }
             if (Y > -3919 && Y < 6870 && X < 17891 && X > 6299) //X-1
             {
+                elevation = 0;
                 region = "w1";
                 outlineBuilder( 14, 6, "crag", -40, -20);
                 outlineBuilder( 14, 6, "crag", -40, 0);
@@ -3397,24 +3471,27 @@ function theLegend()
                 outlineBuilder( 6, 6, "crag", -40, -6);
             }
 
-            //Elevation 1 (frosty region) anti warmth effects start here
+            //layer 1 (frosty region) anti warmth effects start here
             if (Y > 6290 && Y < 32370) //this is the cold snowy environment //X0
             {
+                elevation = 1;
                 region = "n1";
                 outlineBuilder( 20, 83, "frost", -80, -40);
                 outlineBuilder( 80, 83, "snow", -80, -105);
             }
-            //Elevation 2 (freezing region)
+            //layer 2 (freezing region)
             if (Y > 31750 && Y < 77360) //this is the freezing arctic environment //X0
             {
+                elevation = 2;
                 region = "n2";
-                outlineBuilder( 150, 83, "arctic", -80, -255);
+                outlineBuilder( 150, 83, "snow", -80, -255);
             }
-            //Elevation 3 (arctic region)
+            //layer 3 (freezing region)
             if (Y > 76780) //this is the north Pole... basically. //X0
             {
+                elevation = 2;
                 region = "n3";
-                outlineBuilder( 150, 83, "arctic", -80, -405);
+                outlineBuilder( 150, 83, "snow", -80, -405);
             }
         }
 
@@ -3622,9 +3699,6 @@ function theLegend()
     //Screen Covers (includes night and day cycle)
     function screenCover()
     {
-        //Night and Day
-        //todo add night and day cycles (add lighting system as well)
-
         //Inebriated Blur
         if (player.inebriated == true)
         {
@@ -3722,6 +3796,86 @@ function theLegend()
         //Blindness
         //todo add blindness effect.
 
+        //Night and Day
+        if (timeOfDay != "Day" && player.nightVision == false && gameState != "paused"|| player.underground && player.nightVision == false && gameState != "paused")
+        {
+            var grd;
+            var lightsDrawn = 0;
+            var filler = "blue";
+            NDX.clearRect(0, 0, NDC.width, NDC.height);
+
+            //light up miniNotices at night
+            NDX.fillStyle = "rgba(255, 255, 255, 1)";
+            NDX.beginPath();
+            NDX.rect(0, NDC.height - 137, 21 * player.miniNoticeList.length, 21);
+            NDX.fill();
+
+            //light up stats at night
+            NDX.fillStyle = "rgba(255, 255, 255, 1)";
+            NDX.beginPath();
+            NDX.rect(0, NDC.height - 115, 151, 115);
+            NDX.fill();
+
+            //light up UI at night
+            if (mouseY > 526)
+            {
+                NDX.fillStyle = "rgba(255, 255, 255, 1)";
+                NDX.beginPath();
+                NDX.rect(152, NDC.height - 22, NDC.width - 152, 22);
+                NDX.fill();
+            }
+
+            for (var i = 0; i < lights.length; i++)
+            {
+                if (lights[i].X < X + 1/2 * CCC.width + lights[i].size && lights[i].X > X - 1/2 * CCC.width - lights[i].size && lights[i].Y < Y + 1/2 * CCC.height + lights[i].size && lights[i].Y > Y - 1/2 * CCC.height - lights[i].size || lights[i].showMe == true)
+                {
+                    grd = NDX.createRadialGradient(X - lights[i].X + 1/2 * NDC.width, Y - lights[i].Y + 1/2 * NDC.height, 0, X - lights[i].X + 1/2 * NDC.width, Y - lights[i].Y + 1/2 * NDC.height, lights[i].size);
+                    filler = "rgba(255, 255, 255, " + lights[i].Alpha + ")";
+                    grd.addColorStop(0, filler);
+                    if (lights[i].extraStops)
+                    {
+                        filler = "rgba(255, 255, 255, " + lights[i].Alpha + ")";
+                        grd.addColorStop(lights[i].GRD, filler);
+                    }
+                    filler = "rgba(255, 255, 255, 0)";
+                    grd.addColorStop(1, filler);
+
+                    NDX.fillStyle = grd;
+                    NDX.beginPath();
+                    NDX.arc(X - lights[i].X + 1/2 * NDC.width, Y - lights[i].Y + 1/2 * NDC.height, lights[i].size, 0, 2 * Math.PI);
+                    NDX.fill();
+                }
+            }
+
+            //night
+            if (timeOfDay == "Night")
+            {
+                nightDarkness = darkestDark;
+            }
+            else if (timeOfDay == "Dusk")
+            {
+                nightDarkness = darkestDark * (minuteOfHour/ 60);
+            }
+            else if (timeOfDay == "Dawn")
+            {
+                nightDarkness = darkestDark - ((1/60 * darkestDark) * minuteOfHour);
+            }
+
+            //console.log(nightDarkness);
+            /* */
+            filler = "rgba(0, 0, 0, " + nightDarkness + ")";
+            NDX.fillStyle = filler;
+            NDX.save();
+            NDX.globalCompositeOperation="source-out";
+            NDX.beginPath();
+            NDX.rect( 0, 0, NDC.width, NDC.height );
+            NDX.fill();
+            NDX.restore();
+            /* */
+
+            XXX.drawImage( NDC, 0, 0 );
+        }
+        lights = [];
     }
 
     //SENSING FUNCTIONS
@@ -4200,6 +4354,8 @@ function theLegend()
         this.myScreenX = 700; //This is the midpoint X of the canvas.
         this.myScreenY = 275; //This is the midpoint Y of the canvas.
         this.rotation = 90 / 180 * Math.PI; //This is the rotation of your character in radians.
+        //Location in game
+        this.underground = false;
         //attacking variables
         this.stage = 0; //Stage represents which frame in a combat animation the character is on, and it is used to create weapon animations.
         this.attacking = false; //This variable is triggered by the attack button, when triggered and true it initiates an attack and it will not turn false again until that attack is carried out.
@@ -4366,6 +4522,11 @@ function theLegend()
         this.gassyCha = 0;
         this.gassinessTime = 0;
         this.frozenTime = 0;
+        this.nightVision = false;
+        this.nonLimitedLightSource = false; //if a light source like a magical light sword or a torch is equipped this is true;
+        this.timeSinceLightSourceFuelUsed = 0;
+        this.lightSourceDuration = 0;
+        this.lightSource = "none";
 
         //utility or extra variables
         this.outfitZ = true; //this is the layer determiner for the players outfit, so that the outfit can draw underneath or above the players body layer.
@@ -4614,50 +4775,443 @@ function theLegend()
                 }
 
                 //This is Where warmth and thirst will either increase or decrease depending on the region the player is in.
-                if (region == "central" && new Date().getTime() - this.timeSinceLastWarmthChange > 1000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
+                if (elevation == 3 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
                 {
+                    if (currentSeason == "Bright")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Harvest")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                }
+                else if (elevation == 2 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
+                {
+                    if (currentSeason == "Bright")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Harvest")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                }
+                else if (elevation == 1 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
+                {
+                    if (currentSeason == "Bright")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Harvest")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                }
+                else if (elevation == 0 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
+                {
+                    if (currentSeason == "Bright")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Harvest")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                }
+                else if (elevation == -1 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
+                {
+                    if (currentSeason == "Bright")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1.5);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1.25);
+                        }
+                    }
+                    else if (currentSeason == "Harvest")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
                     this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
                     this.timeSinceLastWarmthChange = new Date().getTime();
                 }
-                else if (region == "s3" && new Date().getTime() - this.timeSinceLastWarmthChange > 1000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
+                else if (elevation == -2 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
                 {
-                    this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
-                    this.timeSinceLastWarmthChange = new Date().getTime();
-                }
-                else if (region == "s2" && new Date().getTime() - this.timeSinceLastWarmthChange > 1000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
-                {
-                    this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
-                    this.timeSinceLastWarmthChange = new Date().getTime();
-                }
-                else if (region == "s1" && new Date().getTime() - this.timeSinceLastWarmthChange > 1000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
-                {
-                    this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
-                    this.timeSinceLastWarmthChange = new Date().getTime();
-                }
-                else if (region == "w1" && new Date().getTime() - this.timeSinceLastWarmthChange > 1000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
-                {
-                    this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
-                    this.timeSinceLastWarmthChange = new Date().getTime();
-                }
-                else if (region == "e1" && new Date().getTime() - this.timeSinceLastWarmthChange > 1000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
-                {
-                    this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
-                    this.timeSinceLastWarmthChange = new Date().getTime();
-                }
-                else if (region == "n1" && new Date().getTime() - this.timeSinceLastWarmthChange > 12000)
-                {
-                    this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
-                    this.timeSinceLastWarmthChange = new Date().getTime();
-                }
-                else if (region == "n2" && new Date().getTime() - this.timeSinceLastWarmthChange > 10000)
-                {
-                    this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
-                    this.timeSinceLastWarmthChange = new Date().getTime();
-                }
-                else if (region == "n3" && new Date().getTime() - this.timeSinceLastWarmthChange > 8000)
-                {
-                    this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
-                    this.timeSinceLastWarmthChange = new Date().getTime();
+                    if (currentSeason == "Bright")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 2);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1.5);
+                        }
+                    }
+                    else if (currentSeason == "Harvest")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.25 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
+                        }
+                    }
                 }
 
                 //This is where frozen is is set to true when your warmth runs out. //It Applies the speed decrease based on warmth here as well.
@@ -4709,7 +5263,34 @@ function theLegend()
                 }
             };
 
-            this.overCucumbered = function ()
+            this.light = function()
+            {
+                if (new Date().getTime() - this.timeSinceLightSourceFuelUsed < this.lightSourceDuration * 1000 || this.nonLimitedLightSource)
+                {
+                    if (this.lightSource == "oilLantern")
+                    {
+                        lights.push({X:X, Y: Y, size: 250, extraStops: true, GRD: 0.7, Alpha: 0.9, showMe: true})
+                    }
+                    else if (this.lightSource == "oilLamp")
+                    {
+                        lights.push({X:X, Y: Y, size: 175, extraStops: true, GRD: 0.7, Alpha: 0.8, showMe: true})
+                    }
+                    else if (this.lightSource == "jackOLantern")
+                    {
+                        lights.push({X:X, Y: Y, size: 85, extraStops: true, GRD: 0.7, Alpha: 0.4, showMe: true})
+                    }
+                    else if (this.lightSource == "candle")
+                    {
+                        lights.push({X:X, Y: Y, size: 65, extraStops: true, GRD: 0.35, Alpha: 0.5, showMe: true})
+                    }
+                }
+                else
+                {
+                    this.lightSource = "none"
+                }
+            };
+
+            this.overCucumbered = function()
             {
                 if (this.carryWeight > this.carryWeightMAX || this.unskilledUse == true)
                 {
@@ -5299,6 +5880,7 @@ function theLegend()
             this.poison();
             this.recovery();
             this.skillBoost();
+            this.light();
         };
 
         //operations for the stat/variables regarding the characters skills and leveling
@@ -10641,15 +11223,25 @@ function theLegend()
                 XXX.stroke();
                 XXX.drawImage(polyPNG, 0, 734, 25, 31, 195.5, 527, 25 / 1.45, 31 / 1.45);
 
+                //handcrafting menu button
+                XXX.beginPath();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 1;
+                XXX.fillStyle = "tan";
+                XXX.rect(215, 527, 20, 22);
+                XXX.fill();
+                XXX.stroke();
+                XXX.drawImage(polypol, 512, 514, 36, 49, 215, 528, 20, 20);
+
                 //saving menu button
                 XXX.beginPath();
                 XXX.strokeStyle = "black";
                 XXX.lineWidth = 1;
                 XXX.fillStyle = "white";
-                XXX.rect(215, 527, 20, 22);
+                XXX.rect(236, 527, 20, 22);
                 XXX.fill();
                 XXX.stroke();
-                XXX.drawImage(polyPNG, 663, 1, 31, 24, 214, 530, 21, 15.6);
+                XXX.drawImage(polyPNG, 663, 1, 31, 24, 235, 530, 21, 15.6);
             }
         };
 
@@ -10695,7 +11287,22 @@ function theLegend()
             }
 
             //When the save button is clicked the lowbar shows the player the four saving slots to choose from.
-            if (mouseX > 215 && mouseX < 236 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "save")
+            if (mouseX > 215 && mouseX < 236 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "crafting" || mouseX > 215 && mouseX < 236 && mouseY < 549 && mouseY > 527 && clickReleased == true && crafting != "handcrafted")
+            {
+                player.craftPosition = 0;
+                craftScroll = 0;
+                lowBar = "crafting";
+                crafting = "handcrafted";
+                gameState = "paused";
+            }
+            else if (mouseX > 215 && mouseX < 236 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "crafting" && crafting == "handcrafted")
+            {
+                lowBar = "information";
+                gameState = "active";
+            }
+
+            //When the save button is clicked the lowbar shows the player the four saving slots to choose from.
+            if (mouseX > 236 && mouseX < 257 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "save")
             {
                 lowBar = "save";
                 if (gameState == "paused")
@@ -10703,7 +11310,7 @@ function theLegend()
                     gameState = "active";
                 }
             }
-            else if (mouseX > 215 && mouseX < 236 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "save")
+            else if (mouseX > 236 && mouseX < 257 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "save")
             {
                 lowBar = "information";
                 gameState = "active";
@@ -10719,23 +11326,29 @@ function theLegend()
                 XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
                 XXX.fillRect(152, 527, 20, 23);
             }
-            if (lowBar == "skills")
+            else if (lowBar == "skills")
             {
                 XXX.beginPath();
                 XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
                 XXX.fillRect(173, 527, 20, 23);
             }
-            if (lowBar == "spellbook")
+            else if (lowBar == "spellbook")
             {
                 XXX.beginPath();
                 XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
                 XXX.fillRect(194, 527, 20, 23);
             }
-            if (lowBar == "save")
+            else if (lowBar == "crafting" && crafting == "handcrafted")
             {
                 XXX.beginPath();
                 XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
                 XXX.fillRect(215, 527, 20, 23);
+            }
+            else if (lowBar == "save")
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
+                XXX.fillRect(236, 527, 20, 23);
             }
         };
 
@@ -11361,9 +11974,17 @@ function theLegend()
                 {
                     preCraftMenu = alchemy;
                 }
-                else if (crafting == "forge")
+                else if (crafting == "forging")
                 {
                     preCraftMenu = forge;
+                }
+                else if (crafting == "brewing")
+                {
+                    preCraftMenu = brewing;
+                }
+                else if (crafting == "handcrafted")
+                {
+                    preCraftMenu = handcrafted;
                 }
 
                 for (var i = 0; i < preCraftMenu.length; i++)
@@ -11513,15 +12134,31 @@ function theLegend()
                                             }
                                         }
                                     }
-                                    for (var l = 0; l < deleteIngredients.length; l++)
+                                    var listToDelete = [];
+                                    for (var q = 0; q < deleteIngredients.length; q++) //todo there was a problem with crafting here....
                                     {
-                                        if (Inventory[deleteIngredients[l][0]][1] - deleteIngredients[l][1] == 0)
+                                        //console.log(Inventory);
+                                        //console.log(q);
+                                        //console.log(deleteIngredients[q][0]);
+                                        if (Inventory[deleteIngredients[q][0]][1] - deleteIngredients[q][1] == 0)
                                         {
-                                            Inventory.splice(deleteIngredients[l][0], 1);
+                                            listToDelete.push(deleteIngredients[q][0]);
                                         }
                                         else
                                         {
-                                            Inventory[deleteIngredients[l][0]][1] -= deleteIngredients[l][1];
+                                            Inventory[deleteIngredients[q][0]][1] -= deleteIngredients[q][1];
+                                        }
+                                    }
+
+                                    //console.log(listToDelete);
+                                    for (var n = Inventory.length - 1; n > 0; n--)
+                                    {
+                                        for (var m = 0; m < listToDelete.length; m++)
+                                        {
+                                            if (listToDelete[m] == n)
+                                            {
+                                                Inventory.splice(n, 1);
+                                            }
                                         }
                                     }
                                     //put the newly crafted creation into a pre-existing stack or a new one.
@@ -11608,7 +12245,7 @@ function theLegend()
                                         anti.push(preRecipe);
                                     }
                                 }
-                                console.log(anti);
+                                //console.log(anti);
                                 //Ingredient Info (normal: ingredients that you do have)
                                 XXX.font = "bold 32px Book Antiqua";
                                 XXX.fillStyle = "darkGreen";
@@ -15480,11 +16117,11 @@ function theLegend()
                                 {
                                     this.fed = true;
                                 }
-                                else if (Inventory[i][0].ability == "quench") //Food with this effect will keep you fed for a little bit.
+                                else if (Inventory[i][0].ability == "quench") //Food with this effect will keep you quenched for a little bit.
                                 {
                                     this.watered = true;
                                 }
-                                else if (Inventory[i][0].ability == "sensational") //Food with this effect will keep you fed for a little bit.
+                                else if (Inventory[i][0].ability == "sensational") //Food with this effect will keep you fed and quenched for a little bit.
                                 {
                                     this.watered = true;
                                     this.fed = true;
@@ -15920,7 +16557,72 @@ function theLegend()
                         }
                         else
                         {
-                            if (Inventory[i][0].ability == "mofuHatch")
+                            if (Inventory[i][0].ability == "lighter")
+                            {
+
+                                var useLight = false;
+
+                                for (var f = 0; f < Inventory.length; f++)
+                                {
+                                    if (Inventory[f][0].type == "fireStarter")
+                                    {
+                                        useLight = true;
+                                        break;
+                                    }
+                                }
+
+                                if (useLight)
+                                {
+                                    //some items when used will give you an item when they are used.
+                                    if (Inventory[i][0].subUtility == "reusable")
+                                    {
+                                        var hits = 0;
+                                        for (var rr = 0; rr < Inventory[i][0].refund.length; rr ++)
+                                        {
+                                            for (var r = 0; r < Inventory.length; r ++)
+                                            {
+                                                if (Inventory[r][0].type == Inventory[i][0].refund[rr][0])
+                                                {
+                                                    Inventory[r][1] += Inventory[i][0].refund[rr][1];
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    hits += 1;
+                                                }
+                                            }
+                                            if (hits == Inventory.length)
+                                            {
+                                                Inventory.push([new Item(Inventory[i][0].refund[rr][0], false, false), Inventory[i][0].refund[rr][1]]);
+                                            }
+                                        }
+                                    }
+
+                                    //Light instruments give light effect to player when used.
+                                    if (Inventory[i][0].type == "oilLantern" || Inventory[i][0].type == "oilLantern4" || Inventory[i][0].type == "oilLantern3" || Inventory[i][0].type == "oilLantern2" || Inventory[i][0].type == "oilLantern1")
+                                    {
+                                        player.timeSinceLightSourceFuelUsed = new Date().getTime();
+                                        player.lightSourceDuration = 1800;
+                                        player.lightSource = "oilLantern";
+                                    }
+                                    else if (Inventory[i][0].type == "oilLamp" || Inventory[i][0].type == "oilLamp2" || Inventory[i][0].type == "oilLamp1")
+                                    {
+                                        player.timeSinceLightSourceFuelUsed = new Date().getTime();
+                                        player.lightSourceDuration = 1200;
+                                        player.lightSource = "oilLamp";
+                                    }
+                                    else if (Inventory[i][0].type == "candle" || Inventory[i][0].type == "candle2" || Inventory[i][0].type == "candle1")
+                                    {
+                                        player.timeSinceLightSourceFuelUsed = new Date().getTime();
+                                        player.lightSourceDuration = 180;
+                                        player.lightSource = "candle";
+                                    }
+
+
+                                    Inventory.splice(i, 1);
+                                }
+                            }
+                            else if (Inventory[i][0].ability == "mofuHatch")
                             {
                                 var canPlace = true;
                                 var hits = 0;
@@ -26367,6 +27069,7 @@ function theLegend()
                         //All of this factions guards drop this:
                         this.drops = [];
 
+                        lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.7, Alpha: 0.9, showMe: false});
                         // If the target has too low a level of relations with the faction they are an enemy.
                         if (player.freynorFaction <= -50)
                         {
@@ -27095,7 +27798,7 @@ function theLegend()
                     this.activate = false;
                     player.craftPosition = 0;
                     craftScroll = 0;
-                    crafting = "forge";
+                    crafting = "forging";
                     lowBar = "crafting";
                     gameState = "paused";
                 }
@@ -28122,6 +28825,7 @@ function theLegend()
                 //animate
                 if (this.lit == true)
                 {
+                    lights.push({X:this.X, Y: this.Y, size: 140, extraStops: true, GRD: 0.5, Alpha: 0.75, showMe: false});
                     this.fireCostume += 1;
                     this.campFireTime += 1;
 
@@ -28219,12 +28923,12 @@ function theLegend()
                 if (this.playerer <= this.radius && this.lit == true) //fire burns the player but heat resistance can reduce the damage it does.
                 {
                     player.health -= Math.max(0, (0.125 - (player.heatResistance / 200)));
-                    player.warmth += Math.max(0, (0.2 - (player.heatResistance / 200)));
+                    player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
                     player.burningTime = new Date().getTime();
                 }
                 else if (this.playerer <= 50 && this.lit == true)
                 {
-                    player.warmth += Math.max(0, (0.04 - (player.heatResistance / 200)));
+                    player.warmth += Math.max(0, (0.65 - (player.heatResistance / 200)));
                 }
 
                 //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
@@ -30406,6 +31110,7 @@ function theLegend()
                 this.yield = 10;
                 this.intForCraft = 20;
                 this.ingredients = [["Kellish Clay Pot of Naaprid Milk", 1]];
+                this.biproducts = [[new Item("kellishClayPot", false), 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 11 - Math.floor(player.getCharisma() / 25); // at max, buy for 9.
@@ -30779,7 +31484,7 @@ function theLegend()
                 this.yield = 50;
                 this.intForCraft = 0;
                 this.ingredients = [["Pint Glass", 50], ["Barrel of Harst Ale", 1]];
-                this.biproducts = [[["Barrel", 1]]];
+                this.biproducts = [[[new Item("Barrel", false), 1]]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
@@ -30816,7 +31521,7 @@ function theLegend()
                 this.yield = 50;
                 this.intForCraft = 0;
                 this.ingredients = [["Pint Glass", 50], ["Barrel of Harst Ale", 1]];
-                this.biproducts = [[["Barrel", 1]]];
+                this.biproducts = [[[new Item("Barrel", false), 1]]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 2; // at max, buy for 2.
@@ -31365,6 +32070,333 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 5 - Math.floor(player.getCharisma() / 15); // at max, buy for 2.
                 this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            }
+            else if (this.type == "beesWax")
+            {
+                //For All Items
+                this.identity = "Wax";
+                this.weight = 1.8;
+                this.size = 12;
+                this.description = "A hefty glob of bee's wax.";
+                this.intForDes = 0;
+                this.intDescription = "It has an enchanting aroma of honey.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 5; // at max, buy for 5.
+                this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+            }
+            else if (this.type == "candle")
+            {
+                //For All Items
+                this.identity = "Candle";
+                this.weight = 0.6;
+                this.size = 12;
+                this.description = "A stick of wax with a wick, usually referred to as a candle.";
+                this.intForDes = 0;
+                this.intDescription = "This candle has not been used yet.";
+
+                //Define Utility
+                this.utility = "material";
+                this.subUtility = "reusable";
+                this.refund = [["candle2", 1]];
+
+                //ability
+                this.ability = "lighter";
+
+                //Crafting
+                this.yield = 3;
+                this.intForCraft = 7;
+                this.ingredients = [["Wax", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 2; // at max, buy for 2.
+                this.sellValue = 2; // at max, sell for 2.
+            }
+            else if (this.type == "candle2")
+            {
+                //For All Items
+                this.identity = "Candle (2)";
+                this.weight = 0.4;
+                this.size = 12;
+                this.description = "A stick of wax with a wick, usually referred to as a candle.";
+                this.intForDes = 0;
+                this.intDescription = "This candle has been worn in.";
+
+                //Define Utility
+                this.utility = "material";
+                this.subUtility = "reusable";
+                this.refund = [["candle1", 1]];
+
+                //ability
+                this.ability = "lighter";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "candle1")
+            {
+                //For All Items
+                this.identity = "Candle (1)";
+                this.weight = 0.2;
+                this.size = 12;
+                this.description = "A stick of wax with a wick, usually referred to as a candle.";
+                this.intForDes = 0;
+                this.intDescription = "This candle is almost all the way melted.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "lighter";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "oilLamp")
+            {
+                //For All Items
+                this.identity = "Oil Lamp";
+                this.weight = 3;
+                this.size = 12;
+                this.description = "An oil burning lamp.";
+                this.intForDes = 0;
+                this.intDescription = "The lamp is full of oil.";
+
+                //Define Utility
+                this.utility = "material";
+                this.subUtility = "reusable";
+                this.refund = [["oilLamp2", 1]];
+
+                //ability
+                this.ability = "lighter";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 0;
+                this.ingredients = [["Empty Oil Lamp", 1], ["Jar of Oil", 1]];
+                this.biproducts = [[new Item("glassJar", false), 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 50 - Math.floor(player.getCharisma() / 6); // at max, buy for 42.
+                this.sellValue = 30 + Math.floor(player.getCharisma() / 4); // at max, sell for 42.
+            }
+            else if (this.type == "oilLamp2")
+            {
+                //For All Items
+                this.identity = "Oil Lamp (2)";
+                this.weight = 2.6;
+                this.size = 12;
+                this.description = "An oil burning lamp.";
+                this.intForDes = 0;
+                this.intDescription = "There is a fair amount of oil in this lamp.";
+
+                //Define Utility
+                this.utility = "material";
+                this.subUtility = "reusable";
+                this.refund = [["oilLamp1", 1]];
+
+                //ability
+                this.ability = "lighter";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 44 - Math.floor(player.getCharisma() / 6); // at max, buy for 36.
+                this.sellValue = 24 + Math.floor(player.getCharisma() / 4); // at max, sell for 36.
+            }
+            else if (this.type == "oilLamp1")
+            {
+                //For All Items
+                this.identity = "Oil Lamp (1)";
+                this.weight = 2.3;
+                this.size = 12;
+                this.description = "An oil burning lamp.";
+                this.intForDes = 0;
+                this.intDescription = "This lamp is almost out of oil.";
+
+                //Define Utility
+                this.utility = "material";
+                this.subUtility = "reusable";
+                this.refund = [["oilLampEmpty", 1]];
+
+                //ability
+                this.ability = "lighter";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 40 - Math.floor(player.getCharisma() / 6); // at max, buy for 32.
+                this.sellValue = 20 + Math.floor(player.getCharisma() / 4); // at max, sell for 32.
+            }
+            else if (this.type == "oilLampEmpty")
+            {
+                //For All Items
+                this.identity = "Empty Oil Lamp";
+                this.weight = 2;
+                this.size = 12;
+                this.description = "An oil burning lamp.";
+                this.intForDes = 0;
+                this.intDescription = "This lamp is out of oil.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 19;
+                this.ingredients = [["Iron", 2]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 38 - Math.floor(player.getCharisma() / 6); // at max, buy for 30.
+                this.sellValue = 18 + Math.floor(player.getCharisma() / 4); // at max, sell for 30.
+            }
+            else if (this.type == "oilLantern")
+            {
+                //For All Items
+                this.identity = "Oil Lantern";
+                this.weight = 4;
+                this.size = 12;
+                this.description = "A finely crafted lantern that runs on oil.";
+                this.intForDes = 0;
+                this.intDescription = "The lantern is full of oil.";
+
+                //Define Utility
+                this.utility = "material";
+                this.subUtility = "reusable";
+                this.refund = [["oilLantern4", 1]];
+
+                //ability
+                this.ability = "lighter";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 0;
+                this.ingredients = [["Empty Oil Lantern", 1], ["Jar of Oil", 1]];
+                this.biproducts = [[new Item("glassJar", false), 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 82 - Math.floor(player.getCharisma() / 3); // at max, buy for 67.
+                this.sellValue = 48 + Math.floor(player.getCharisma() / 3); // at max, sell for 63.
+            }
+            else if (this.type == "oilLantern4")
+            {
+                //For All Items
+                this.identity = "Oil Lantern (4)";
+                this.weight = 3.8;
+                this.size = 12;
+                this.description = "A finely crafted lantern that runs on oil.";
+                this.intForDes = 0;
+                this.intDescription = "Most of the oil in the lantern remains.";
+
+                //Define Utility
+                this.utility = "material";
+                this.subUtility = "reusable";
+                this.refund = [["oilLantern3", 1]];
+
+                //ability
+                this.ability = "lighter";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 78 - Math.floor(player.getCharisma() / 3); // at max, buy for 63.
+                this.sellValue = 44 + Math.floor(player.getCharisma() / 3); // at max, sell for 59.
+            }
+            else if (this.type == "oilLantern3")
+            {
+                //For All Items
+                this.identity = "Oil Lantern (3)";
+                this.weight = 3.6;
+                this.size = 12;
+                this.description = "A finely crafted lantern that runs on oil.";
+                this.intForDes = 0;
+                this.intDescription = "The lantern has just over half of its oil.";
+
+                //Define Utility
+                this.utility = "material";
+                this.subUtility = "reusable";
+                this.refund = [["oilLantern2", 1]];
+
+                //ability
+                this.ability = "lighter";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 74 - Math.floor(player.getCharisma() / 3); // at max, buy for 59.
+                this.sellValue = 40 + Math.floor(player.getCharisma() / 3); // at max, sell for 55.
+            }
+            else if (this.type == "oilLantern2")
+            {
+                //For All Items
+                this.identity = "Oil Lantern (2)";
+                this.weight = 3.4;
+                this.size = 12;
+                this.description = "A finely crafted lantern that runs on oil.";
+                this.intForDes = 0;
+                this.intDescription = "The lantern has just under half of its oil.";
+
+                //Define Utility
+                this.utility = "material";
+                this.subUtility = "reusable";
+                this.refund = [["oilLantern1", 1]];
+
+                //ability
+                this.ability = "lighter";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 72 - Math.floor(player.getCharisma() / 3); // at max, buy for 57.
+                this.sellValue = 38 + Math.floor(player.getCharisma() / 3); // at max, sell for 53.
+            }
+            else if (this.type == "oilLantern1")
+            {
+                //For All Items
+                this.identity = "Oil Lantern (1)";
+                this.weight = 3.2;
+                this.size = 12;
+                this.description = "A finely crafted lantern that runs on oil.";
+                this.intForDes = 0;
+                this.intDescription = "The lantern is running low on oil..";
+
+                //Define Utility
+                this.utility = "material";
+                this.subUtility = "reusable";
+                this.refund = [["oilLanternEmpty", 1]];
+
+                //ability
+                this.ability = "lighter";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 71 - Math.floor(player.getCharisma() / 3); // at max, buy for 56.
+                this.sellValue = 38 + Math.floor(player.getCharisma() / 3); // at max, sell for 53.
+            }
+            else if (this.type == "oilLanternEmpty")
+            {
+                //For All Items
+                this.identity = "Empty Oil Lantern";
+                this.weight = 3;
+                this.size = 12;
+                this.description = "A finely crafted lantern that runs on oil.";
+                this.intForDes = 0;
+                this.intDescription = "The Lantern has run out of oil.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 22;
+                this.ingredients = [["Wood", 1], ["Iron", 3]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 70 - Math.floor(player.getCharisma() / 3); // at max, buy for 55.
+                this.sellValue = 38 + Math.floor(player.getCharisma() / 3); // at max, sell for 53.
             }
             else if (this.type == "mofuFeather")
             {
@@ -32336,7 +33368,7 @@ function theLegend()
                 this.yield = 6;
                 this.intForCraft = 5;
                 this.ingredients = [["Glin Mushrooms", 6], ["Bucket of Water", 1]];
-                this.biproducts = [["bucket", 1]];
+                this.biproducts = [[new Item("bucket", false), 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 11 - Math.floor(player.getCharisma() / 12); // at max, buy for 7.
@@ -33482,8 +34514,8 @@ function theLegend()
                 //Crafting
                 this.yield = 90;
                 this.intForCraft = 8;
-                this.ingredients = [["Iron Arrow", 90], ["jar of Oil", 1]];
-                this.biproducts = [["glassJar", 1]]; //these are the accompanying items that come along with the main item being crafted.
+                this.ingredients = [["Iron Arrow", 90], ["Jar of Oil", 1]];
+                this.biproducts = [[new Item("glassJar", false), 1]]; //these are the accompanying items that come along with the main item being crafted.
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 5 - Math.floor(player.getCharisma() / 12); // at max, buy for 1.
@@ -33701,7 +34733,7 @@ function theLegend()
                 this.toughnessRequirement = 0;
                 this.eminenceRequirement = 0;
                 this.magicalProtection = 0;
-                this.warmthRetention = 0.1;
+                this.warmthRetention = 0.2;
                 this.thirstRetention = -0.05;
                 //Main Stat Bonuses
                 this.strengthBonus = 0;
@@ -33756,7 +34788,7 @@ function theLegend()
                 this.toughnessRequirement = 4;
                 this.eminenceRequirement = 0;
                 this.magicalProtection = 0;
-                this.warmthRetention = 1;
+                this.warmthRetention = 3;
                 this.thirstRetention = - 0.5;
                     //Main Stat Bonuses
                 this.strengthBonus = 0;
@@ -33812,7 +34844,7 @@ function theLegend()
                 this.toughnessRequirement = 5;
                 this.eminenceRequirement = 0;
                 this.magicalProtection = 0;
-                this.warmthRetention = 1;
+                this.warmthRetention = 3;
                 this.thirstRetention = - 0.5;
                 //Main Stat Bonuses
                 this.strengthBonus = 1;
@@ -34090,7 +35122,7 @@ function theLegend()
                 this.toughnessRequirement = 2;
                 this.eminenceRequirement = 0;
                 this.magicalProtection = 0;
-                this.warmthRetention = 0.65;
+                this.warmthRetention = 1.5;
                 this.thirstRetention = - 0.35;
                 //Main Stat Bonuses
                 this.strengthBonus = 0;
@@ -34258,7 +35290,7 @@ function theLegend()
                 this.eminenceRequirement = 0;
                 this.magicalProtection = 0;
                 this.warmthRetention = 2;
-                this.thirstRetention = -1.5;
+                this.thirstRetention = -0.5;
                 //Main Stat Bonuses
                 this.strengthBonus = 0;
                 this.enduranceBonus = 0;
@@ -34312,8 +35344,8 @@ function theLegend()
                 this.toughnessRequirement = 0;
                 this.eminenceRequirement = 0;
                 this.magicalProtection = 0;
-                this.warmthRetention = 1.85;
-                this.thirstRetention = -1.25;
+                this.warmthRetention = 2;
+                this.thirstRetention = -0.5;
                 //Main Stat Bonuses
                 this.strengthBonus = 0;
                 this.enduranceBonus = 0;
@@ -34367,8 +35399,8 @@ function theLegend()
                 this.toughnessRequirement = 0;
                 this.eminenceRequirement = 0;
                 this.magicalProtection = 0;
-                this.warmthRetention = 2;
-                this.thirstRetention = -1;
+                this.warmthRetention = 1.25;
+                this.thirstRetention = -0.25;
                 //Main Stat Bonuses
                 this.strengthBonus = 0;
                 this.enduranceBonus = 0;
@@ -34422,8 +35454,8 @@ function theLegend()
                 this.toughnessRequirement = 0;
                 this.eminenceRequirement = 0;
                 this.magicalProtection = 0;
-                this.warmthRetention = 0.5;
-                this.thirstRetention = -0.4;
+                this.warmthRetention = 1;
+                this.thirstRetention = -0.25;
                 //Main Stat Bonuses
                 this.strengthBonus = 0;
                 this.enduranceBonus = 0;
@@ -34532,8 +35564,8 @@ function theLegend()
                 this.toughnessRequirement = 0;
                 this.eminenceRequirement = 0;
                 this.magicalProtection = 0;
-                this.warmthRetention = 0.65;
-                this.thirstRetention = -0.55;
+                this.warmthRetention = 1.5;
+                this.thirstRetention = -0.35;
                 //Main Stat Bonuses
                 this.strengthBonus = 0;
                 this.enduranceBonus = 0;
@@ -34587,8 +35619,8 @@ function theLegend()
                 this.toughnessRequirement = 0;
                 this.eminenceRequirement = 0;
                 this.magicalProtection = 0;
-                this.warmthRetention = 0.65;
-                this.thirstRetention = -0.55;
+                this.warmthRetention = 1.5;
+                this.thirstRetention = -0.35;
                 //Main Stat Bonuses
                 this.strengthBonus = 0;
                 this.enduranceBonus = 0;
@@ -34642,8 +35674,8 @@ function theLegend()
                 this.toughnessRequirement = 0;
                 this.eminenceRequirement = 0;
                 this.magicalProtection = 0;
-                this.warmthRetention = 0.55;
-                this.thirstRetention = -0.35;
+                this.warmthRetention = 0.5;
+                this.thirstRetention = -0.15;
                 //Main Stat Bonuses
                 this.strengthBonus = 0;
                 this.enduranceBonus = 0;
@@ -35523,6 +36555,36 @@ function theLegend()
                         }
                     }
                 }
+            }
+            else if (this.type == "beesWax")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 1, 2, 12, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1.4), 12 * 1.4, 13 * 1.4);
+            }
+            else if (this.type == "oilLantern" || this.type == "oilLantern4" || this.type == "oilLantern3" || this.type == "oilLantern2" || this.type == "oilLantern1" || this.type == "oilLanternEmpty")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 26, 109, 16, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 16 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.2), 16 * 1.2, 16 * 1.2);
+            }
+            else if (this.type == "oilLamp" || this.type == "oilLamp2" || this.type == "oilLamp1" || this.type == "oilLampEmpty")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 51, 110, 14, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1.2), 14 * 1.2, 15 * 1.2);
+            }
+            else if (this.type == "candle")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 14, 1, 11, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.2), 11 * 1.2, 16 * 1.2);
+            }
+            else if (this.type == "candle2")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 25, 1, 12, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1.2), 12 * 1.2, 13 * 1.2);
+            }
+            else if (this.type == "candle1")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 35, 1, 12, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.2), 12 * 1.2, 10 * 1.2);
             }
             else if (this.type == "rawMofflingFlesh")
             {
@@ -36573,6 +37635,36 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "beesWax")
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 1, 2, 12, 13, this.invX - (1/2 * 12 * 1.4), this.invY - (1/2 * 13 * 1.4), 12 * 1.4, 13 * 1.4);
+            }
+            else if (this.type == "oilLantern" || this.type == "oilLantern4" || this.type == "oilLantern3" || this.type == "oilLantern2" || this.type == "oilLantern1" || this.type == "oilLanternEmpty")
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 48, 1, 11, 27, this.invX - (1/2 * 11 * 1.2), this.invY - (1/2 * 27 * 1.2), 11 * 1.2, 27 * 1.2);
+            }
+            else if (this.type == "oilLamp" || this.type == "oilLamp2" || this.type == "oilLamp1" || this.type == "oilLampEmpty")
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 14, 17, 12, 15, this.invX - (1/2 * 12 * 1.2), this.invY - (1/2 * 15 * 1.2), 12 * 1.2, 15 * 1.2);
+            }
+            else if (this.type == "candle")
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 14, 1, 11, 16, this.invX - (1/2 * 11 * 1.2), this.invY - (1/2 * 16 * 1.2), 11 * 1.2, 16 * 1.2);
+            }
+            else if (this.type == "candle2")
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 25, 1, 12, 13, this.invX - (1/2 * 12 * 1.2), this.invY - (1/2 * 13 * 1.2), 12 * 1.2, 13 * 1.2);
+            }
+            else if (this.type == "candle1")
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 35, 1, 12, 10, this.invX - (1/2 * 12 * 1.2), this.invY - (1/2 * 10 * 1.2), 12 * 1.2, 10 * 1.2);
+            }
             else if (this.type == "rawMofflingFlesh")
             {
                 LXX.beginPath();
@@ -37605,6 +38697,36 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "beesWax")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 1, 2, 12, 13, this.invX - (1/2 * 12 * 1.4), this.invY - (1/2 * 13 * 1.4), 12 * 1.4, 13 * 1.4);
+            }
+            else if (this.type == "oilLantern" || this.type == "oilLantern4" || this.type == "oilLantern3" || this.type == "oilLantern2" || this.type == "oilLantern1" || this.type == "oilLanternEmpty")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 48, 1, 11, 27, this.invX - (1/2 * 11 * 1.2), this.invY - (1/2 * 27 * 1.2), 11 * 1.2, 27 * 1.2);
+            }
+            else if (this.type == "oilLamp" || this.type == "oilLamp2" || this.type == "oilLamp1" || this.type == "oilLampEmpty")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 14, 17, 12, 15, this.invX - (1/2 * 12 * 1.2), this.invY - (1/2 * 15 * 1.2), 12 * 1.2, 15 * 1.2);
+            }
+            else if (this.type == "candle")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 14, 1, 11, 16, this.invX - (1/2 * 11 * 1.2), this.invY - (1/2 * 16 * 1.2), 11 * 1.2, 16 * 1.2);
+            }
+            else if (this.type == "candle2")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 25, 1, 12, 13, this.invX - (1/2 * 12 * 1.2), this.invY - (1/2 * 13 * 1.2), 12 * 1.2, 13 * 1.2);
+            }
+            else if (this.type == "candle1")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 35, 1, 12, 10, this.invX - (1/2 * 12 * 1.2), this.invY - (1/2 * 10 * 1.2), 12 * 1.2, 10 * 1.2);
             }
             else if (this.type == "rawMofflingFlesh")
             {
@@ -38871,7 +39993,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(1930, 1793, "Person", false, "Medlia the Merchant", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[1710, 1717], [1812, 1835], [1713, 1882], [1930, 1793]], merchant: true, merchandise: [[new Item("coins", false, false), 179], [new Item("wood", false, false), 48], [new Item("fireStarter", false, false), 3], [new Item("jarOfOil", false, false), 1], [new Item("rawWalrusFlesh", false, false), 8], [new Item("walrusHide", false, false), 1], [new Item("walrusTusks", false, false), 1], [new Item("frichPelt", false, false), 3], [new Item("rawFrichFlesh", false, false), 22], [new Item("winterWolfPelt", false, false), 3], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("rawWolfLiver", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 2], [new Item("harstGrain", false, false), 29], [new Item("potato", false, false), 8], [new Item("carrot", false, false), 13], [new Item("suuliMelon", false, false), 5]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(1930, 1793, "Person", false, "Medlia the Merchant", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[1710, 1717], [1812, 1835], [1713, 1882], [1930, 1793]], merchant: true, merchandise: [[new Item("coins", false, false), 179], [new Item("wood", false, false), 48], [new Item("fireStarter", false, false), 3], [new Item("jarOfOil", false, false), 1], [new Item("rawWalrusFlesh", false, false), 8], [new Item("walrusHide", false, false), 1], [new Item("walrusTusks", false, false), 1], [new Item("oilLampEmpty", false, false), 2], [new Item("oilLanternEmpty", false, false), 5], [new Item("candle", false, false), 12], [new Item("beesWax", false, false), 9], [new Item("frichPelt", false, false), 3], [new Item("rawFrichFlesh", false, false), 22], [new Item("winterWolfPelt", false, false), 3], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("rawWolfLiver", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 2], [new Item("harstGrain", false, false), 29], [new Item("potato", false, false), 8], [new Item("carrot", false, false), 13], [new Item("suuliMelon", false, false), 5]]}));
                         }
                     }
                     if (uniqueChars.maggyLDS == true)
@@ -40069,6 +41191,8 @@ function theLegend()
         saveBrain["quests"] = quests;
         saveBrain["conversations"] = conversations;
         saveBrain["timePlayed"] = timePlayed;
+        saveBrain["sleeperTime"] = sleeperTime;
+        saveBrain["elevation"] = elevation;
         saveBrain["X"] = X;
         saveBrain["Y"] = Y;
         saveBrain["spawnX"] = spawnX;
@@ -40288,7 +41412,9 @@ function theLegend()
             lastUpdate = parsed.update;
             map = parsed.map;
             region = parsed.region;
-            //timePlayed = parsed.timePlayed;
+            timePlayed = parsed.timePlayed;
+            //sleeperTime = parsed.sleeperTime //booble
+            //elevation = parsed.elevation
             X = parsed.X;
             Y = parsed.Y;
             spawnX = parsed.spawnX;
@@ -40320,7 +41446,7 @@ function theLegend()
             timeRegulator = new Date().getTime();
             timePlayed += 0.1;
         }
-        gameTime = timePlayed / 0.0625;
+        gameTime = (timePlayed / 0.0625) + sleeperTime;
 
         gameMinute = Math.floor(gameTime / 60);
 
@@ -40357,6 +41483,88 @@ function theLegend()
         else if (seasonOfYear == 4)
         {
             currentSeason = "Bright";
+        }
+
+        //determine when night and day is in the different Seasons
+        if (currentSeason == "Bright")
+        {
+            darkestDark = 0.92; //the darkest night is able to be during the season. (how much alpha is the nights maximum)
+            if (hourOfDay < 5 || hourOfDay > 21) //gets light at 5AM and gets dark at 9PM
+            {
+                timeOfDay = "Night";
+            }
+            else if (hourOfDay == 5)
+            {
+                timeOfDay = "Dawn";
+            }
+            else if (hourOfDay == 21)
+            {
+                timeOfDay = "Dusk";
+            }
+            else
+            {
+                timeOfDay = "Day";
+            }
+        }
+        else if (currentSeason == "Harvest")
+        {
+            darkestDark = 0.95;
+            if (hourOfDay < 6 || hourOfDay > 19) //gets light at 7AM and gets dark at 8PM
+            {
+                timeOfDay = "Night";
+            }
+            else if (hourOfDay == 6)
+            {
+                timeOfDay = "Dawn";
+            }
+            else if (hourOfDay == 19)
+            {
+                timeOfDay = "Dusk";
+            }
+            else
+            {
+                timeOfDay = "Day";
+            }
+        }
+        else if (currentSeason == "Frost")
+        {
+            darkestDark = 0.98;
+            if (hourOfDay < 7 || hourOfDay > 17) //gets light at 8AM and gets dark at 6PM
+            {
+                timeOfDay = "Night";
+            }
+            else if (hourOfDay == 7)
+            {
+                timeOfDay = "Dawn";
+            }
+            else if (hourOfDay == 17)
+            {
+                timeOfDay = "Dusk";
+            }
+            else
+            {
+                timeOfDay = "Day";
+            }
+        }
+        else if (currentSeason == "Bounty")
+        {
+            darkestDark = 0.95;
+            if (hourOfDay < 6 || hourOfDay > 19) //gets light at 7AM and gets dark at 8PM
+            {
+                timeOfDay = "Night";
+            }
+            else if (hourOfDay == 6)
+            {
+                timeOfDay = "Dawn";
+            }
+            else if (hourOfDay == 19)
+            {
+                timeOfDay = "Dusk";
+            }
+            else
+            {
+                timeOfDay = "Day";
+            }
         }
     }
 

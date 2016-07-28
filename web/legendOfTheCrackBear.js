@@ -3,6 +3,8 @@
  */
 
 //TODO LIST
+//todo add items: Ogard nut, Ground Ogard Nut (has a wild hot sweet and nutty aromatic)
+//todo add sleep system including sleep deprivation that weakens magic and gives fatigue effect, and insomnia which prevents the player from sleeping.
 //todo add the dexterity system: lv 10 = jump-back lv 20 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
 //todo add golgemoff -- this is also the creature that must be fought in the creature contract quest given by Kedwin.
 //todo add arrow mods such as poison, electric, wind, armour piercing... and also normal steel arrows.
@@ -378,7 +380,7 @@ function theLegend()
     var secondarySpells = [];
     var tertiarySpells = [];
         //Well List
-    var wellConversionList = [["pintGlass", "waterPintGlass"], ["walrusLeatherWaterskin", "walrusLeatherWaterskinFull"], ["bucket", "bucketOfWater"], ["potionGlass", "vialOfWater"], ["kellishClayPot", "kellishClayPotOfWater"]]; //todo use this to have the well convert empty containers into water-filled versions.
+    var wellConversionList = [["pintGlass", "waterPintGlass"], ["walrusLeatherWaterskin", "walrusLeatherWaterskinFull"], ["bucket", "bucketOfWater"], ["potionGlass", "vialOfWater"], ["kellishClayPot", "kellishClayPotOfWater"], ["glassBottle", "glassBottleOfWater"]]; //todo use this to have the well convert empty containers into water-filled versions.
         //conversations and dialogue
     var conversationID = ["none", 0]; //[Person conversing with, stage in conversation]
     var conversations =
@@ -683,6 +685,8 @@ function theLegend()
     foods.push(new Item("mofuMeat", false));
     foods.push(new Item("largeMofuMeat", false));
     foods.push(new Item("jarOfOil", false));
+    foods.push(new Item("roastedPumpkin", false));
+    foods.push(new Item("bucketOfHotPluttBerryCider", false));
 
         //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     var tailoring = [];
@@ -703,6 +707,7 @@ function theLegend()
     var jewelry = [];
     jewelry.push(new Item("glassJar", false));
     jewelry.push(new Item("pintGlass", false));
+    jewelry.push(new Item("glassBottle", false));
     jewelry.push(new Item("potionGlass", false));
     jewelry.push(new Item("fireStarter", false));
         //Alchemy (Potions and mixtures crafted at an alchemy lab station)
@@ -718,10 +723,14 @@ function theLegend()
     alchemy.push(new Item("fermentedViperVenomGland", false));
     alchemy.push(new Item("driedCyrinthilimMushroom", false));
     alchemy.push(new Item("fermentedMofuEgg", false));
+    alchemy.push(new Item("groundOgardNut", false));
+
+
 
         //Brewing (alcohols, liquid fermentation, etc.)
     var brewing = [];
     brewing.push(new Item("harstAle", false));
+    brewing.push(new Item("glassBottleOfPluttWine", false));
 
         //Forge
     var forge = [];
@@ -741,6 +750,13 @@ function theLegend()
     handcrafted.push(new Item("oilLantern", false));
     handcrafted.push(new Item("oilLamp", false));
     handcrafted.push(new Item("candle", false));
+    handcrafted.push(new Item("jackOLanternEmpty", false));
+    handcrafted.push(new Item("jackOLantern", false));
+    handcrafted.push(new Item("waterPintGlass", false));
+    handcrafted.push(new Item("bucketOfPluttJuice", false)); //booble
+    handcrafted.push(new Item("pluttJuicePintGlass", false));
+    handcrafted.push(new Item("pluttCiderPintGlass", false));
+    handcrafted.push(new Item("pluttWine", false));
 
     //This sets the items that are in shops.
     function shopItemIDSetter()
@@ -986,7 +1002,7 @@ function theLegend()
                     player.eminence = 1000;
                 }
             }
-            else if (cheatcode == "JackOLantern")
+            else if (cheatcode == "SerJackOfLantern")
             {
                 player.timeSinceLightSourceFuelUsed = new Date().getTime();
                 player.lightSourceDuration = 540;
@@ -16617,6 +16633,12 @@ function theLegend()
                                         player.lightSourceDuration = 180;
                                         player.lightSource = "candle";
                                     }
+                                    else if (Inventory[i][0].type == "jackOLantern" || Inventory[i][0].type == "jackOLantern2" || Inventory[i][0].type == "jackOLantern1")
+                                    {
+                                        player.timeSinceLightSourceFuelUsed = new Date().getTime();
+                                        player.lightSourceDuration = 540;
+                                        player.lightSource = "jackOLantern";
+                                    }
 
                                     if (Inventory[i][1] > 1)
                                     {
@@ -28459,6 +28481,67 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "pumpkinPlant")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 80;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(candlewic, 27, 28, 56, 39, -(1/2 * 56 * 1.2), -(1/2 * 39 * 1.2), 56 * 1.2, 39 * 1.2);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(candlewic, 27, 64, 56, 39, -(1/2 * 56 * 1.2), -(1/2 * 39 * 1.2), 56 * 1.2, 39 * 1.2);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 17;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+
+                    //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                    if (this.owned.length > 1)
+                    {
+                        if (player.noticed == true)
+                        {
+                            this.changeFactionRelation(-14);
+                        }
+                    }
+
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "pumpkin")
+                        {
+                            Inventory[i][1] += Math.floor(1 + Math.random() * 3);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("pumpkin", false, false), Math.floor(1 + Math.random() * 3)]);
+                    }
+                }
+            }
             else if (this.type == "tylunPlant")
             {
                 //TRAITS
@@ -28558,6 +28641,91 @@ function theLegend()
                     if (hits == Inventory.length)
                     {
                         Inventory.push([new Item("akerBerries", false, false), Math.floor(1 + Math.random() * 5)]);
+                    }
+                }
+            }
+            else if (this.type == "bushkaPlant")
+            {
+                //TRAITS
+                this.solid = true;
+                this.interactionRange = 80;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(candlewic, 1, 174, 41, 33, -(1/2 * 41), -(1/2 * 33), 41, 33);
+                    XXX.restore();
+                }
+                if (this.phase == 1)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(candlewic, 2, 138, 41, 33, -(1/2 * 41), -(1/2 * 33), 41, 33);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(candlewic, 40, 138, 39, 34, -(1/2 * 39), -(1/2 * 34), 39, 34);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 18;
+
+                //INTERACTION
+                if (this.activate == true && this.phase != "picked")
+                {
+                    this.activate = false;
+                    if (this.phase == 0)
+                    {
+
+                        this.phase = 1;
+                        var hits = 0;
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            if (Inventory[i][0].type == "bushkaBerries")
+                            {
+                                Inventory[i][1] += Math.floor(1 + Math.random() * 6);
+                                break;
+                            }
+                            else
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == Inventory.length)
+                        {
+                            Inventory.push([new Item("bushkaBerries", false, false), Math.floor(1 + Math.random() * 6)]);
+                        }
+                    }
+                    else if (this.phase == 1)
+                    {
+
+                        this.phase = "picked";
+                        var hits = 0;
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            if (Inventory[i][0].type == "bushkaLeaves")
+                            {
+                                Inventory[i][1] += Math.floor(2 + Math.random() * 7);
+                                break;
+                            }
+                            else
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == Inventory.length)
+                        {
+                            Inventory.push([new Item("bushkaLeaves", false, false), Math.floor(2 + Math.random() * 7)]);
+                        }
                     }
                 }
             }
@@ -30754,6 +30922,35 @@ function theLegend()
                 this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
                 this.sellValue = 1; // at max, sell for 1.
             }
+            else if (this.type == "bushkaBerries")
+            {
+                //For All Items
+                this.identity = "Bushka Berries";
+                this.weight = 0.1;
+                this.size = 6;
+                this.description = "Little white berries that are mildly sweet and have a weirdly exotic aftertaste.";
+                this.intForDes = 10;
+                this.intDescription = "Bushka plants only live in cold and snowy climates, they also appear in warmer climates during the winter.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0.6; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0.05; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
             else if (this.type == "pluttBerries")
             {
                 //For All Items
@@ -30840,6 +31037,26 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 12 - Math.floor(player.getCharisma() / 10); // at max, buy for 7.
                 this.sellValue = 4 + Math.floor(player.getCharisma() / 15); // at max, sell for 7.
+            }
+            else if (this.type == "bushkaLeaves")
+            {
+                //For All Items
+                this.identity = "Bushka Leaves";
+                this.weight = 0.1;
+                this.size = 7;
+                this.description = "Small waxy hard turquoise colored leaves from a bushka plant.";
+                this.intForDes = 3;
+                this.intDescription = "These can be used in several alchemy recipes.";
+
+                //Define Utility
+                this.utility = "Material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
+                this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
             }
             else if (this.type == "harstGrain")
             {
@@ -31365,6 +31582,173 @@ function theLegend()
                 this.buyValue = 10 - Math.floor(player.getCharisma() / 10); // at max, buy for 5.
                 this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
             }
+            else if (this.type == "bucketOfPluttJuice")
+            {
+                //For All Items
+                this.identity = "Bucket of Plutt Juice";
+                this.weight = 7;
+                this.size = 12;
+                this.description = "An iron bucket filled to the brim with fresh squeezed plutt berry juice.";
+                if (player.raceName == "Freynor")
+                {
+                    this.intForDes = 1;
+                }
+                else
+                {
+                    this.intForDes = 11;
+                }
+                this.intDescription = "Hot plutt berry cider, a freydic specialty, can be made by heating plutt berry juice with some ground ogard nut.";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["bucket", 1]];
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 14; //satisfies hunger.
+                this.thirst = 40; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 1; //recoops lost energy.
+                this.replenish = 2; //restores will.
+
+                //ability
+                this.ability = "quench";
+
+                //Crafting
+                this.yield = 1;
+                if (player.raceName == "Freynor")
+                {
+                    this.intForCraft = 0;
+                }
+                else
+                {
+                    this.intForCraft = 4;
+                }
+                this.ingredients = [["Bucket", 1], ["Plutt Berries", 14]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 75 - Math.floor(player.getCharisma() / 5); // at max, buy for 65.
+                this.sellValue = 35 + Math.floor(player.getCharisma() / 3); // at max, sell for 50.
+            }
+            else if (this.type == "pluttJuicePintGlass")
+            {
+                //For All Items
+                this.identity = "Pint Glass of Plutt Juice";
+                this.weight = 1;
+                this.size = 6;
+                this.description = "A pint glass filled with fresh squeezed plutt berry juice.";
+                this.intForDes = 0;
+                this.intDescription = "It has a pulpy somewhat viscous texture and a strong natural sweetness.";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["pintGlass", 1]];
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 1.4; //satisfies hunger.
+                this.thirst = 5; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.1; //recoops lost energy.
+                this.replenish = 0.2; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 10;
+                this.intForCraft = 0;
+                this.ingredients = [["Pint Glass", 10], ["Bucket of Plutt Juice", 1]];
+                this.biproducts = [[[new Item("bucket", false), 1]]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 9 - Math.floor(player.getCharisma() / 50); // at max, buy for 8.
+                this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+            }
+            else if (this.type == "bucketOfHotPluttBerryCider")
+            {
+                //For All Items
+                this.identity = "Bucket of Hot Plutt Berry Cider";
+                this.weight = 7;
+                this.size = 12;
+                this.description = "An iron bucket filled to the brim with sweet spiced plutt berry cider.";
+                this.intForDes = 0;
+                this.intDescription = "The cider fills the air around it with a hot, nutty and sweet berry scent.";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["bucket", 1]];
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 15; //satisfies hunger.
+                this.thirst = 40; //quenches thirst.
+                this.warmth = 40; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 1; //recoops lost energy.
+                this.replenish = 2; //restores will.
+
+                //ability
+                this.ability = "quench";
+
+                //Crafting
+                this.yield = 1;
+                if (player.raceName == "Freynor")
+                {
+                    this.intForDes = 1;
+                }
+                else
+                {
+                    this.intForDes = 11;
+                }
+                this.ingredients = [["Bucket of Plutt Juice", 1], ["Ground Ogard Nut", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 100 - Math.floor(player.getCharisma() / 5); // at max, buy for 90.
+                this.sellValue = 55 + Math.floor(player.getCharisma() / 3); // at max, sell for 70.
+            }
+            else if (this.type == "pluttCiderPintGlass")
+            {
+                //For All Items
+                this.identity = "Pint Glass of Hot Plutt Berry Cider";
+                this.weight = 1;
+                this.size = 6;
+                this.description = "A pint glass filled with spiced plutt berry cider.";
+                this.intForDes = 0;
+                this.intDescription = "Plutt berry cider has a strong spicy and nutty aroma that accompanies that of the plutt berries.";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["pintGlass", 1]];
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 1.5; //satisfies hunger.
+                this.thirst = 5; //quenches thirst.
+                this.warmth = 5; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.1; //recoops lost energy.
+                this.replenish = 0.2; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 10;
+                this.intForCraft = 0;
+                this.ingredients = [["Pint Glass", 10], ["Bucket of Hot Plutt Berry Cider", 1]];
+                this.biproducts = [[[new Item("bucket", false), 1]]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 14 - Math.floor(player.getCharisma() / 15); // at max, buy for 11.
+                this.sellValue = 5 + Math.floor(player.getCharisma() / 12); // at max, sell for 9.
+            }
             else if (this.type == "walrusLeatherWaterskinFull")
             {
                 //For All Items
@@ -31464,7 +31848,7 @@ function theLegend()
                 this.identity = "Harst Ale";
                 this.weight = 1;
                 this.size = 6;
-                this.description = "A glass pint of Harst Ale.";
+                this.description = "A glass pint of harst ale.";
                 this.intForDes = 1;
                 this.intDescription = "This ale is made from harst grain.";
 
@@ -31487,14 +31871,147 @@ function theLegend()
                 this.ability = "none";
 
                 //Crafting
-                this.yield = 50;
+                this.yield = 200;
                 this.intForCraft = 0;
-                this.ingredients = [["Pint Glass", 50], ["Barrel of Harst Ale", 1]];
-                this.biproducts = [[[new Item("Barrel", false), 1]]];
+                this.ingredients = [["Pint Glass", 200], ["Barrel of Harst Ale", 1]];
+                this.biproducts = [[[new Item("barrel", false), 1]]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
                 this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            }
+            else if (this.type == "pluttWine")
+            {
+                //For All Items
+                this.identity = "Pint of Plutt Wine";
+                this.weight = 1;
+                this.size = 6;
+                this.description = "A glass pint of plutt wine.";
+                this.intForDes = 1;
+                this.intDescription = "This wine is made from plutt berries.";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["pintGlass", 1]];
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0.5; //satisfies hunger.
+                this.thirst = 4; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.5; //recoops lost energy.
+                this.replenish = -3; //restores will.
+                this.alcohol = 50; //intoxicates the mind.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 200;
+                this.intForCraft = 0;
+                this.ingredients = [["Bottle of Plutt Wine", 1], ["Pint Glass", 4]];
+                this.biproducts = [[[new Item("glassBottle", false), 1]]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 22 - Math.floor(player.getCharisma() / 15); // at max, buy for 19.
+                this.sellValue = 17 + Math.floor(player.getCharisma() / 25); // at max, sell for 19.
+            }
+            else if (this.type == "glassBottleOfPluttWine")
+            {
+                //For All Items
+                this.identity = "Bottle of Plutt Wine";
+                this.weight = 4;
+                this.size = 6;
+                this.description = "A bottle of plutt berry wine.";
+                this.intForDes = 0;
+                this.intDescription = "It is a fairly sweet wine with notes of honey, spice and a butteryness attained by aging in wood.";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["glassBottle", 1]];
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 2; //satisfies hunger.
+                this.thirst = 16; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 2; //recoops lost energy.
+                this.replenish = -12; //restores will.
+                this.alcohol = 200; //intoxicates the mind.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 40;
+                this.intForCraft = 0;
+                this.ingredients = [["Glass Bottle", 50], ["Cask of Plutt Wine", 1]];
+                this.biproducts = [[[new Item("barrel", false), 1]]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 82 - Math.floor(player.getCharisma() / 5); // at max, buy for 72.
+                this.sellValue = 66 + Math.floor(player.getCharisma() / 8); // at max, sell for 72.
+            }
+            else if (this.type == "glassBottleOfWater")
+            {
+                //For All Items
+                this.identity = "Bottle of Water";
+                this.weight = 4;
+                this.size = 6;
+                this.description = "A bottle of water.";
+                this.intForDes = 0;
+                this.intDescription = "The water inside the bottle is wet... be careful.";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["glassBottle", 1]];
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0; //satisfies hunger.
+                this.thirst = 16; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0.4; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 10 - Math.floor(player.getCharisma() / 15); // at max, buy for 7.
+                this.sellValue = 2; // at max, sell for 72.
+            }
+            else if (this.type == "glassBottle")
+            {
+                //For All Items
+                this.identity = "Glass Bottle";
+                this.weight = 0.5;
+                this.size = 6;
+                this.description = "An empty bottle made of glass.";
+                this.intForDes = 0;
+                this.intDescription = "Usually this type of container is used to hold wine or other fancy alcoholic drinks.";
+
+                //Define Utility
+                this.utility = "Material";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 13;
+                this.ingredients = [["Glass", 1]];
+
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 2; // at max, buy for 2.
+                this.sellValue = 2; // at max, sell for 2.
             }
             else if (this.type == "waterPintGlass")
             {
@@ -31524,10 +32041,10 @@ function theLegend()
                 this.ability = "none";
 
                 //Crafting
-                this.yield = 50;
+                this.yield = 10;
                 this.intForCraft = 0;
-                this.ingredients = [["Pint Glass", 50], ["Barrel of Harst Ale", 1]];
-                this.biproducts = [[[new Item("Barrel", false), 1]]];
+                this.ingredients = [["Pint Glass", 10], ["Bucket of Water", 1]];
+                this.biproducts = [[[new Item("bucket", false), 1]]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 2; // at max, buy for 2.
@@ -32165,6 +32682,170 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 1; // at max, buy for 1.
                 this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "jackOLantern")
+            {
+                //For All Items
+                this.identity = "Jack O Lantern";
+                this.weight = 7;
+                this.size = 12;
+                this.description = "A decoratively carved pumpkin lit with several candles.";
+                this.intForDes = 0;
+                this.intDescription = "All of its candles are unused as of this point.";
+
+                //Define Utility
+                this.utility = "material";
+                this.subUtility = "reusable";
+                this.refund = [["jackOLantern2", 1]];
+
+                //ability
+                this.ability = "lighter";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 0;
+                this.ingredients = [["Burnt Out Jack O Lantern", 1], ["Candle", 3]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 23 - Math.floor(player.getCharisma() / 10); // at max, buy for 18.
+                this.sellValue = 12 + Math.floor(player.getCharisma() / 8); // at max, sell for 18.
+            }
+            else if (this.type == "jackOLantern2")
+            {
+                //For All Items
+                this.identity = "Jack O Lantern (2)";
+                this.weight = 7;
+                this.size = 12;
+                this.description = "A decoratively carved pumpkin lit with several candles.";
+                this.intForDes = 0;
+                this.intDescription = "Its candles are all somewhat melted.";
+
+                //Define Utility
+                this.utility = "material";
+                this.subUtility = "reusable";
+                this.refund = [["jackOLantern1", 1]];
+
+                //ability
+                this.ability = "lighter";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 21 - Math.floor(player.getCharisma() / 10); // at max, buy for 16.
+                this.sellValue = 10 + Math.floor(player.getCharisma() / 8); // at max, sell for 16.
+            }
+            else if (this.type == "jackOLantern1")
+            {
+                //For All Items
+                this.identity = "Jack O Lantern (1)";
+                this.weight = 7;
+                this.size = 12;
+                this.description = "A decoratively carved pumpkin lit with several candles.";
+                this.intForDes = 0;
+                this.intDescription = "Its candles are almost completely melted.";
+
+                //Define Utility
+                this.utility = "material";
+                this.subUtility = "reusable";
+                this.refund = [["jackOLanternEmpty", 1]];
+
+                //ability
+                this.ability = "lighter";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 19 - Math.floor(player.getCharisma() / 10); // at max, buy for 14.
+                this.sellValue = 8 + Math.floor(player.getCharisma() / 8); // at max, sell for 14.
+            }
+            else if (this.type == "jackOLanternEmpty")
+            {
+                //For All Items
+                this.identity = "Burnt Out Jack O Lantern";
+                this.weight = 7;
+                this.size = 12;
+                this.description = "A decoratively carved pumpkin.";
+                this.intForDes = 0;
+                this.intDescription = "Its candles are the way melted.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                if (player.raceName == "Kel")
+                {
+                    this.intForCraft = 0;
+                }
+                else
+                {
+                    this.intForCraft = 3;
+                }
+                this.ingredients = [["Pumpkin", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 16 - Math.floor(player.getCharisma() / 10); // at max, buy for 11.
+                this.sellValue = 5 + Math.floor(player.getCharisma() / 8); // at max, sell for 11.
+            }
+            else if (this.type == "pumpkin")
+            {
+                //For All Items
+                this.identity = "Pumpkin";
+                this.weight = 11;
+                this.size = 12;
+                this.description = "A large rounded orange squash.";
+                this.intForDes = 0;
+                this.intDescription = "Pumpkins are primarily cultivated by the kellish tribes; they are used as food and for carving.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 11 - Math.floor(player.getCharisma() / 12); // at max, buy for 7.
+                this.sellValue = 4 + Math.floor(player.getCharisma() / 15); // at max, sell for 7.
+            }
+            else if (this.type == "roastedPumpkin")
+            {
+                //For All Items
+                this.identity = "Roasted Pumpkin";
+                this.weight = 10;
+                this.size = 6;
+                this.description = "A stringy textured mildly sweet roasted pumpkin squash.";
+                this.intForDes = 10;
+                this.intDescription = "Cooked pumpkin is best used in pumpkin bread or pumpkin pie.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 9; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 3; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -4; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                if (player.raceName == "Kel")
+                {
+                    this.intForCraft = 4;
+                }
+                else
+                {
+                    this.intForCraft = 10;
+                }
+                this.ingredients = [["Pumpkin", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+                this.sellValue = 1 + Math.floor(player.getCharisma() / 15); // at max, sell for 4.
             }
             else if (this.type == "oilLamp")
             {
@@ -36562,6 +37243,36 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "bucketOfPluttJuice" || this.type == "bucketOfHotPluttBerryCider" )
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 88, 93, 12, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 2), 12 * 2, 13 * 2);
+            }
+            else if (this.type == "pluttJuicePintGlass" || this.type == "pluttCiderPintGlass" )
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 2, 31, 9, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 2), 9 * 2, 9 * 2);
+            }
+            else if (this.type == "glassBottle" || this.type == "glassBottleOfWater" || this.type == "glassBottleOfPluttWine")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 185, 36, 11, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 2), 11 * 2, 12 * 2);
+            }
+            else if (this.type == "pluttWine")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 46, 196, 11, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 2), 11 * 2, 11 * 2);
+            }
+            else if (this.type == "bushkaBerries")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 23, 125, 13, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 13), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12), 13, 12);
+            }
+            else if (this.type == "bushkaLeaves")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 3, 118, 14, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 14), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15), 14, 15);
+            }
             else if (this.type == "beesWax")
             {
                 XXX.beginPath();
@@ -36576,6 +37287,21 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(candlewic, 51, 110, 14, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1.2), 14 * 1.2, 15 * 1.2);
+            }
+            else if (this.type == "jackOLantern" || this.type == "jackOLantern2" || this.type == "jackOLantern1" || this.type == "jackOLanternEmpty")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 4, 100, 17, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.2), 17 * 1.2, 18 * 1.2);
+            }
+            else if (this.type == "pumpkin")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 4, 100, 17, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.2), 17 * 1.2, 18 * 1.2);
+            }
+            else if (this.type == "roastedPumpkin")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 85, 44, 15, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.2), 15 * 1.2, 16 * 1.2);
             }
             else if (this.type == "candle")
             {
@@ -37641,6 +38367,46 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "bucketOfPluttJuice" || this.type == "bucketOfHotPluttBerryCider" )
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 87, 66, 13, 20, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 20 * 2), 13 * 2, 20 * 2);
+            }
+            else if (this.type == "pluttJuicePintGlass" || this.type == "pluttCiderPintGlass" )
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 1, 15, 12, 12, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 12 * 2), 12 * 2, 12 * 2);
+            }
+            else if (this.type == "glassBottle")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 173, 32, 10, 20, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 20 * 2), 10 * 2, 20 * 2);
+            }
+            else if (this.type == "glassBottleOfWater")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 149, 31, 10, 20, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 20 * 2), 10 * 2, 20 * 2);
+            }
+            else if (this.type == "glassBottleOfPluttWine")
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 45, 208, 12, 22, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 22 * 2), 12 * 2, 22 * 2);
+            }
+            else if (this.type == "pluttWine")
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 45, 181, 11, 11, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 11 * 2), 11 * 2, 11 * 2);
+            }
+            else if (this.type == "bushkaBerries")
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 23, 125, 13, 12, this.invX - (1/2 * 13 * 1.15), this.invY - (1/2 * 12 * 1.15), 13 * 1.15, 12 * 1.5);
+            }
+            else if (this.type == "bushkaLeaves")
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 3, 118, 14, 15, this.invX - (1/2 * 14 * 1.15), this.invY - (1/2 * 15 * 1.15), 14 * 1.15, 15 * 1.15);
+            }
             else if (this.type == "beesWax")
             {
                 LXX.beginPath();
@@ -37655,6 +38421,21 @@ function theLegend()
             {
                 LXX.beginPath();
                 LXX.drawImage(candlewic, 14, 17, 12, 15, this.invX - (1/2 * 12 * 1.2), this.invY - (1/2 * 15 * 1.2), 12 * 1.2, 15 * 1.2);
+            }
+            else if (this.type == "jackOLantern" || this.type == "jackOLantern2" || this.type == "jackOLantern1" || this.type == "jackOLanternEmpty")
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 82, 2, 18, 19, this.invX - (1/2 * 18 * 1.2), this.invY - (1/2 * 19 * 1.2), 18 * 1.2, 19 * 1.2);
+            }
+            else if (this.type == "pumpkin")
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 64, 2, 18, 19, this.invX - (1/2 * 18 * 1.2), this.invY - (1/2 * 19 * 1.2), 18 * 1.2, 19 * 1.2);
+            }
+            else if (this.type == "roastedPumpkin")
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 83, 23, 16, 18, this.invX - (1/2 * 16 * 1.2), this.invY - (1/2 * 18 * 1.2), 16 * 1.2, 18 * 1.2);
             }
             else if (this.type == "candle")
             {
@@ -38704,6 +39485,46 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "bucketOfPluttJuice" || this.type == "bucketOfHotPluttBerryCider" )
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 87, 66, 13, 20, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 20 * 2), 13 * 2, 20 * 2);
+            }
+            else if (this.type == "pluttJuicePintGlass" || this.type == "pluttCiderPintGlass" )
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 1, 15, 12, 12, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 12 * 2), 12 * 2, 12 * 2);
+            }
+            else if (this.type == "glassBottle")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 173, 32, 10, 20, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 20 * 2), 10 * 2, 20 * 2);
+            }
+            else if (this.type == "glassBottleOfWater")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 149, 31, 10, 20, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 20 * 2), 10 * 2, 20 * 2);
+            }
+            else if (this.type == "glassBottleOfPluttWine")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 45, 208, 12, 22, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 22 * 2), 12 * 2, 22 * 2);
+            }
+            else if (this.type == "pluttWine")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 45, 181, 11, 11, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 11 * 2), 11 * 2, 11 * 2);
+            }
+            else if (this.type == "bushkaBerries")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 23, 125, 13, 12, this.invX - (1/2 * 13 * 1.15), this.invY - (1/2 * 12 * 1.15), 13 * 1.15, 12 * 1.5);
+            }
+            else if (this.type == "bushkaLeaves")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 3, 118, 14, 15, this.invX - (1/2 * 14 * 1.15), this.invY - (1/2 * 15 * 1.15), 14 * 1.15, 15 * 1.15);
+            }
             else if (this.type == "beesWax")
             {
                 XXX.beginPath();
@@ -38718,6 +39539,21 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(candlewic, 14, 17, 12, 15, this.invX - (1/2 * 12 * 1.2), this.invY - (1/2 * 15 * 1.2), 12 * 1.2, 15 * 1.2);
+            }
+            else if (this.type == "jackOLantern" || this.type == "jackOLantern2" || this.type == "jackOLantern1" || this.type == "jackOLanternEmpty")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 82, 2, 18, 19, this.invX - (1/2 * 18 * 1.2), this.invY - (1/2 * 19 * 1.2), 18 * 1.2, 19 * 1.2);
+            }
+            else if (this.type == "pumpkin")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 64, 2, 18, 19, this.invX - (1/2 * 18 * 1.2), this.invY - (1/2 * 19 * 1.2), 18 * 1.2, 19 * 1.2);
+            }
+            else if (this.type == "roastedPumpkin")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 83, 23, 16, 18, this.invX - (1/2 * 16 * 1.2), this.invY - (1/2 * 18 * 1.2), 16 * 1.2, 18 * 1.2);
             }
             else if (this.type == "candle")
             {
@@ -39969,7 +40805,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(2164, 1656, "Person", false, "Hilmund the Innkeeper", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.3, 0.7], 0, 0, 0.8], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2164, 1656]], merchant: true, merchandise: [[new Item("coins", false, false), 86], [new Item("harstAle", false, false), 48], [new Item("waterPintGlass", false, false), 9], [new Item("bucketOfWater", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 11], [new Item("walrusMeat", false, false), 8], [new Item("bearMeat", false, false), 3], [new Item("winterWolfMeat", false, false), 5], [new Item("frichMeat", false, false), 17], [new Item("wolfLiver", false, false), 6], [new Item("suuliMelonSlice", false, false), 14]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(2164, 1656, "Person", false, "Hilmund the Innkeeper", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.3, 0.7], 0, 0, 0.8], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2164, 1656]], merchant: true, merchandise: [[new Item("coins", false, false), 86], [new Item("harstAle", false, false), 64], [new Item("pluttWine", false, false), 19], [new Item("glassBottleOfPluttWine", false, false), 6], [new Item("pluttCiderPintGlass", false, false), 7], [new Item("waterPintGlass", false, false), 9], [new Item("bucketOfWater", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 11], [new Item("walrusMeat", false, false), 8], [new Item("bearMeat", false, false), 3], [new Item("winterWolfMeat", false, false), 5], [new Item("frichMeat", false, false), 17], [new Item("wolfLiver", false, false), 6], [new Item("suuliMelonSlice", false, false), 14]]}));
                         }
                     }
                     if (uniqueChars.bobithLDS == true)
@@ -40289,6 +41125,9 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(2500, 8600, "WinterWolf", false, "German"));
                     ArtificialIntelligenceAccess.push(new Unit(4000, 10000, "WinterWolf", true, "Ghost"));
 
+
+                    //Scenery
+                    scenicList.push(new Scenery("bushkaPlant", 2410 , 7578, 2.5, true));
                     //Gulfreys in the jungle
                     //ArtificialIntelligenceAccess.push(new Unit(3400, 8820, "Gulfrey", true, "Plikt"));
                     //ArtificialIntelligenceAccess.push(new Unit(3600, 8940, "Gulfrey", true, "Plakt"));
@@ -41061,7 +41900,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-1335, -30763, "Person", false, "Chieftan Schuylar", {race: "Kel", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 6], weapon: ["kellishClaymore", [25, 1], 0, 50, 2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 492], [new Item("kellishClayPotOfNaapridMilk", false, false), 6], [new Item("naapridButter", false, false), 5], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 8], [new Item("kellishClayPot", false, false), 9], [new Item("santhBread", false, false), 1], [new Item("kellishSanthDough", false, false), 2], [new Item("rawNaapridFlesh", false, false), 4], [new Item("naapridMeat", false, false), 2]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-1335, -30763, "Person", false, "Chieftan Schuylar", {race: "Kel", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 6], weapon: ["kellishClaymore", [25, 1], 0, 50, 2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 492], [new Item("kellishClayPotOfNaapridMilk", false, false), 6], [new Item("naapridButter", false, false), 5], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 8], [new Item("kellishClayPot", false, false), 9], [new Item("santhBread", false, false), 1], [new Item("kellishSanthDough", false, false), 2], [new Item("rawNaapridFlesh", false, false), 4], [new Item("naapridMeat", false, false), 2], [new Item("pumpkin", false, false), 2], [new Item("jackOLanternEmpty", false, false), 3], [new Item("beesWax", false, false), 4], [new Item("candle", false, false), 6], [new Item("fireStarter", false, false), 2]]}));
                             ArtificialIntelligenceAccess[i].healthMAX = 22;
                             ArtificialIntelligenceAccess[i].health = 22;
                             ArtificialIntelligenceAccess[i].speed += 0.55;
@@ -41101,6 +41940,11 @@ function theLegend()
                     scenicList.push(new Scenery("santhPlant", -1652 , -30768, 1, "kel"));
                     scenicList.push(new Scenery("santhPlant", -1652 , -30798, 1, "kel"));
                     scenicList.push(new Scenery("santhPlant", -1652 , -30828, 1, "kel"));
+
+                    scenicList.push(new Scenery("pumpkinPlant", -1653 , -30888, 2, "kel"));
+                    scenicList.push(new Scenery("pumpkinPlant", -1583 , -30888, -1, "kel"));
+                    scenicList.push(new Scenery("pumpkinPlant", -1513 , -30888, 1, "kel"));
+                    scenicList.push(new Scenery("pumpkinPlant", -1443 , -30888, 0, "kel"));
 
                     ArtificialIntelligenceAccess.push(new Unit(-2089, -29849, "Mofu", false, "Tupper"));
                     ArtificialIntelligenceAccess.push(new Unit(-2054, -29703, "Mofu", "baby", "Goozy"));
@@ -41577,8 +42421,8 @@ function theLegend()
     //gameState = "horde"; // this changes the gamemode so that horde will have priority.
     //playHorde(); //This starts the card game horde.
 
-    //requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
+    requestAnimationFrame(mainMenuLoop, CCC); //This starts the game as normal.
 
-    gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
-    requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
+    //gameState = "active"; //This is for testing the game (if turned on it will let you bypass the main menu)
+    //requestAnimationFrame(gameloopOfDestiny, CCC); //This is for testing the game (if turned on it will let you bypass the main menu)
 }

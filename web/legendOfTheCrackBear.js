@@ -3,12 +3,20 @@
  */
 
 //TODO LIST
-//todo add items: Ogard nut, Ground Ogard Nut (has a wild hot sweet and nutty aromatic)
-//todo add sleep system including sleep deprivation that weakens magic and gives fatigue effect, and insomnia which prevents the player from sleeping.
+
+//todo finish adding the beast journal.
+//todo have Teber move back to Teshir as an artisan if he is pardoned.
+//todo add brain flies and flying creatures having a resistance to melee attacks while flying.
+//todo make all dresses decrease charisma for guys.
+//todo integrate the sleep system to beds, add hangover, and soarness effects as well as mini notices.
+//todo add a rest without bed button on the UI that uses a homemade confirm popup to ask if you are sure you want to sleep.
+//todo add beds all the way
+//todo add the nappy closed eye for the sleepButton. (it's on poly)
+//todo add beehive with bees wax and collectable honey
+//todo add items: harst bread, pumpkin bread, dried plutt with honey
 //todo add the dexterity system: lv 10 = jump-back lv 20 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
 //todo add golgemoff -- this is also the creature that must be fought in the creature contract quest given by Kedwin.
 //todo add arrow mods such as poison, electric, wind, armour piercing... and also normal steel arrows.
-//todo add clawed Bush Turtle like creature as well as a bunch of similar looking bushes as a natural hiding place for it.
 //todo add electricity spells
 //todo add vines spell
 //todo add tornado spell
@@ -16,30 +24,24 @@
 //todo add the tentacly beast that leaves an oozey slime trail behind it.
 //todo add bowls for the kellish soup
 //todo add olde guns for the outlanders.
+//todo add the new plains crawler creatures
 //todo add outlander starting blade (animation completed already just actually add it now).
 //todo add throwing stars for the orgel
 //todo add houses/shops/buildings.
-//todo add eggs and some sort of field bird creature to lay them...
-//todo Add broken well quest and a rumor of a beast quest at the inn.
-//todo fix the shakeyness of the well and add the broken well.
+//todo Add broken well quest.
 //todo add sicknesses and symptons (dizziness, pox, fever, fatigue, etc.) ex: make dizziness spin the screen, make pox weaken players constitution etc., make fever decrease thirst.
 //todo add the rest of the alcohols and drinks.
 //todo add lizards to the forest.
 //todo add passive spells
 //todo add ores and smelting
 //todo make anthracite (coal) a requirement to make good steel.
-//todo add a current and completed quest menu with quest descriptions etc.
 //todo make alpha Olkrin's death animation line up slightly more.
 //todo add options menu with button: it will allow you to toggle certain settings like mouse combat mode, game coordinates, and other such features.
-//todo add the trate "reusable" to some items, it would let them give the player an item upon consumption, example: you drink a jar of trolls blood and get back a glass jar.
-//todo Add harsh hot weather conditions: deserts cause dehydration (droplet with an increasingly red background) [cured by liquids]: drinkable items like drinks alcohols and water etc.
-//todo build the intelligence based inspect system in which a character with high enough intelligence can find out certain details about a target Unit by clicking on them.
+//todo Add harsh hot weather conditions: deserts cause faster dehydration.
 //todo It would be cool to add swimming, but it is not necessarily something that the game needs.
 //todo Add multi dimensional gameplay... meaning Dungeons, Caves, trapdoors, castles, cellars, buildings, etc.
-//todo Design a spawn system that slightly directs Unit re-spawning, and allows them to spawn in multiple locations.
-//todo Add a structure class: a structure could be a wall or a barrier or a dimensional entrance like a home or a trap door, or a mountain cave.
 //todo Add lore, human characters, guards, and important figures. King Wolthgar perhaps... or not... we'll see!
-//todo Add beartraps and other traps that you can set
+//todo Add beartraps and other traps that you can set stealth is also a trapping skill.
 //todo Add haeflower... psycodelic, takes you to a drug trip world with a slowly flashing rainbow floor and a fog of disoriented colors plus in that world fight weird things like crack bears with a fish as your weapon.
 function legendaryPrerequisites()
 {
@@ -124,6 +126,276 @@ function legendaryPrerequisites()
     var drohforLordVictory = new Audio("sounds/polySounds/drohforLordVictory.mp3");
     window.drohforLordVictory = drohforLordVictory;
 
+    var stendorGoodDay = new Audio("sounds/polySounds/stendorGoodDay.mp3");
+    window.stendorGoodDay = stendorGoodDay;
+
+    var stendorYourPeople = new Audio("sounds/polySounds/stendorYourPeople.mp3");
+    window.stendorYourPeople = stendorYourPeople;
+
+    var stendorHelpingPeople = new Audio("sounds/polySounds/stendorHelpingPeople.mp3");
+    window.stendorHelpingPeople = stendorHelpingPeople;
+
+    var stendorHereTheyAre = new Audio("sounds/polySounds/stendorHereTheyAre.mp3");
+    window.stendorHereTheyAre = stendorHereTheyAre;
+
+    var stendorItemsGo = new Audio("sounds/polySounds/stendorItemsGo.mp3");
+    window.stendorItemsGo = stendorItemsGo;
+
+    var stendorTryAsking = new Audio("sounds/polySounds/stendorTryAsking.mp3");
+    window.stendorTryAsking = stendorTryAsking;
+
+    var stendorPoorWretch = new Audio("sounds/polySounds/stendorPoorWretch.mp3");
+    window.stendorPoorWretch = stendorPoorWretch;
+
+    var stendorWishLord = new Audio("sounds/polySounds/stendorWishLord.mp3");
+    window.stendorWishLord = stendorWishLord;
+
+    var stendorNeevsAreReal = new Audio("sounds/polySounds/stendorNeevsAreReal.mp3");
+    window.stendorNeevsAreReal = stendorNeevsAreReal;
+
+    var stendorHetmerTough = new Audio("sounds/polySounds/stendorHetmerTough.mp3");
+    window.stendorHetmerTough = stendorHetmerTough;
+
+    var stendorAlwaysComeBack = new Audio("sounds/polySounds/stendorAlwaysComeBack.mp3");
+    window.stendorAlwaysComeBack = stendorAlwaysComeBack;
+
+    var stendorExcellent = new Audio("sounds/polySounds/stendorExcellent.mp3");
+    window.stendorExcellent = stendorExcellent;
+
+    var stendorWishLady = new Audio("sounds/polySounds/stendorWishLady.mp3");
+    window.stendorWishLady = stendorWishLady;
+
+    var stendorFarSouth = new Audio("sounds/polySounds/stendorFarSouth.mp3");
+    window.stendorFarSouth = stendorFarSouth;
+
+    var stendorPoorSoul = new Audio("sounds/polySounds/stendorPoorSoul.mp3");
+    window.stendorPoorSoul = stendorPoorSoul;
+
+    var stendorFairThee = new Audio("sounds/polySounds/stendorFairThee.mp3");
+    window.stendorFairThee = stendorFairThee;
+
+    var stendorHighness = new Audio("sounds/polySounds/stendorHighness.mp3");
+    window.stendorHighness = stendorHighness;
+
+    var stendorHealth = new Audio("sounds/polySounds/stendorHealth.mp3");
+    window.stendorHealth = stendorHealth;
+
+    var stendorBeWell = new Audio("sounds/polySounds/stendorBeWell.mp3");
+    window.stendorBeWell = stendorBeWell;
+
+    var stendorTrouble = new Audio("sounds/polySounds/stendorTrouble.mp3");
+    window.stendorTrouble = stendorTrouble;
+
+    var maggyJustCleaning = new Audio("sounds/polySounds/maggyJustCleaning.mp3");
+    window.maggyJustCleaning = maggyJustCleaning;
+
+    var maggyJustLovely = new Audio("sounds/polySounds/MaggyJustLovely.mp3");
+    window.maggyJustLovely = maggyJustLovely;
+
+    var maggyLifeStory = new Audio("sounds/polySounds/maggyLifeStory.mp3");
+    window.maggyLifeStory = maggyLifeStory;
+
+    var maggyMostlyCleaning = new Audio("sounds/polySounds/maggyMostlyCleaning.mp3");
+    window.maggyMostlyCleaning = maggyMostlyCleaning;
+
+    var kedwinRumors = new Audio("sounds/polySounds/kedwinRumors.mp3");
+    window.kedwinRumors = kedwinRumors;
+
+    var kedwinNeverHeard = new Audio("sounds/polySounds/kedwinNeverHeard.mp3");
+    window.kedwinNeverHeard = kedwinNeverHeard;
+
+    var kedwinSomeone = new Audio("sounds/polySounds/kedwinSomeone.mp3");
+    window.kedwinSomeone = kedwinSomeone;
+
+    var kedwinYourLoss = new Audio("sounds/polySounds/kedwinYourLoss.mp3");
+    window.kedwinYourLoss = kedwinYourLoss;
+
+    var kedwinNothing = new Audio("sounds/polySounds/kedwinNothing.mp3");
+    window.kedwinNothing = kedwinNothing;
+
+    var kedwinBetter = new Audio("sounds/polySounds/kedwinBetter.mp3");
+    window.kedwinBetter = kedwinBetter;
+
+    var kedwinCause = new Audio("sounds/polySounds/kedwinCause.mp3");
+    window.kedwinCause = kedwinCause;
+
+    var kedwinEitherWay = new Audio("sounds/polySounds/kedwinEitherWay.mp3");
+    window.kedwinEitherWay = kedwinEitherWay;
+
+    var kedwinGobblin = new Audio("sounds/polySounds/kedwinGobblin.mp3");
+    window.kedwinGobblin = kedwinGobblin;
+
+    var medliaMaybeIf = new Audio("sounds/polySounds/medliaMaybeIf.mp3");
+    window.medliaMaybeIf = medliaMaybeIf;
+
+    var medliaGuessItIs = new Audio("sounds/polySounds/medliaGuessItIs.mp3");
+    window.medliaGuessItIs = medliaGuessItIs;
+
+    var medliaFine = new Audio("sounds/polySounds/medliaFine.mp3");
+    window.medliaFine = medliaFine;
+
+    var medliaMyMyMeLady = new Audio("sounds/polySounds/medliaMyMyMeLady.mp3");
+    window.medliaMyMyMeLady = medliaMyMyMeLady;
+
+    var medliaMyMyMeLord = new Audio("sounds/polySounds/medliaMyMyMeLord.mp3");
+    window.medliaMyMyMeLord = medliaMyMyMeLord;
+
+    var medliaCantPretend = new Audio("sounds/polySounds/medliaCantPretend.mp3");
+    window.medliaCantPretend = medliaCantPretend;
+
+    var medliaOurProblem = new Audio("sounds/polySounds/medliaOurProblem.mp3");
+    window.medliaOurProblem = medliaOurProblem;
+
+    var medliaTheProblem = new Audio("sounds/polySounds/medliaTheProblem.mp3");
+    window.medliaTheProblem = medliaTheProblem;
+
+    var medliaTen = new Audio("sounds/polySounds/medliaTen.mp3");
+    window.medliaTen = medliaTen;
+
+    var medliaEighteen = new Audio("sounds/polySounds/medliaEighteen.mp3");
+    window.medliaEighteen = medliaEighteen;
+
+    var medliaThatFar = new Audio("sounds/polySounds/medliaThatFar.mp3");
+    window.medliaThatFar = medliaThatFar;
+
+    var medliaHurtHim = new Audio("sounds/polySounds/medliaHurtHim.mp3");
+    window.medliaHurtHim = medliaHurtHim;
+
+    var medliaItWorked = new Audio("sounds/polySounds/medliaItWorked.mp3");
+    window.medliaItWorked = medliaItWorked;
+
+    var teberShanToor = new Audio("sounds/polySounds/teberShanToor.mp3");
+    window.teberShanToor = teberShanToor;
+
+    var teberSkills = new Audio("sounds/polySounds/teberSkills.mp3");
+    window.teberSkills = teberSkills;
+
+    var teberArtCareer = new Audio("sounds/polySounds/teberArtCareer.mp3");
+    window.teberArtCareer = teberArtCareer;
+
+    var teberLastJob = new Audio("sounds/polySounds/teberLastJob.mp3");
+    window.teberLastJob = teberLastJob;
+
+    var teberQueBellas = new Audio("sounds/polySounds/teberQueBellas.mp3");
+    window.teberQueBellas = teberQueBellas;
+
+    var teberPleaseDont = new Audio("sounds/polySounds/teberPleaseDont.mp3");
+    window.teberPleaseDont = teberPleaseDont;
+
+    var teberAnyways = new Audio("sounds/polySounds/teberAnyways.mp3");
+    window.teberAnyways = teberAnyways;
+
+    var teberOkay = new Audio("sounds/polySounds/teberOkay.mp3");
+    window.teberOkay = teberOkay;
+
+    var teberDontWant = new Audio("sounds/polySounds/teberDontWant.mp3");
+    window.teberDontWant = teberDontWant;
+
+    var neculaiBountyHere = new Audio("sounds/polySounds/neculaiBountyHere.mp3");
+    window.neculaiBountyHere = neculaiBountyHere;
+
+    var neculaiStirUp = new Audio("sounds/polySounds/neculaiStirUp.mp3");
+    window.neculaiStirUp = neculaiStirUp;
+
+    var neculaiSpecialDeals = new Audio("sounds/polySounds/neculaiSpecialDeals.mp3");
+    window.neculaiSpecialDeals = neculaiSpecialDeals;
+
+    var neculaiEveryDay = new Audio("sounds/polySounds/neculaiEveryDay.mp3");
+    window.neculaiEveryDay = neculaiEveryDay;
+
+    var neculaiLots = new Audio("sounds/polySounds/neculaiLots.mp3");
+    window.neculaiLots = neculaiLots;
+
+    var neculaiZes = new Audio("sounds/polySounds/neculaiZes.mp3");
+    window.neculaiZes = neculaiZes;
+
+    var neculaiDontThinkSo = new Audio("sounds/polySounds/neculaiDontThinkSo.mp3");
+    window.neculaiDontThinkSo = neculaiDontThinkSo;
+
+    var neculaiMuchBetter = new Audio("sounds/polySounds/neculaiMuchBetter.mp3");
+    window.neculaiMuchBetter = neculaiMuchBetter;
+
+    var neculaiBiggerProblem = new Audio("sounds/polySounds/neculaiBiggerProblem.mp3");
+    window.neculaiBiggerProblem = neculaiBiggerProblem;
+
+    var neculaiThenganMercs = new Audio("sounds/polySounds/neculaiThenganMercs.mp3");
+    window.neculaiThenganMercs = neculaiThenganMercs;
+
+    var neculaiFine = new Audio("sounds/polySounds/neculaiFine.mp3");
+    window.neculaiFine = neculaiFine;
+
+    var neculaiRid = new Audio("sounds/polySounds/neculaiRid.mp3");
+    window.neculaiRid = neculaiRid;
+
+    var neculaiZertyOne = new Audio("sounds/polySounds/neculaiZertyOne.mp3");
+    window.neculaiZertyOne = neculaiZertyOne;
+
+    var neculaiZerGone = new Audio("sounds/polySounds/neculaiZerGone.mp3");
+    window.neculaiZerGone = neculaiZerGone;
+
+    var kronheimeHaventHeard = new Audio("sounds/polySounds/kronheimeHaventHeard.mp3");
+    window.kronheimeHaventHeard = kronheimeHaventHeard;
+
+    var kronheimeLastADay = new Audio("sounds/polySounds/kronheimeLastADay.mp3");
+    window.kronheimeLastADay = kronheimeLastADay;
+
+    var kronheimeTalkTo = new Audio("sounds/polySounds/kronheimeTalkTo.mp3");
+    window.kronheimeTalkTo = kronheimeTalkTo;
+
+    var kronheimeWheresTheBoss = new Audio("sounds/polySounds/kronheimeWheresTheBoss.mp3");
+    window.kronheimeWheresTheBoss = kronheimeWheresTheBoss;
+
+    var kronheimeTalkQuick = new Audio("sounds/polySounds/kronheimeTalkQuick.mp3");
+    window.kronheimeTalkQuick = kronheimeTalkQuick;
+
+    var kronheimeYourWith = new Audio("sounds/polySounds/kronheimeYourWith.mp3");
+    window.kronheimeYourWith = kronheimeYourWith;
+
+    var kronheimeNoLess = new Audio("sounds/polySounds/kronheimeNoLess.mp3");
+    window.kronheimeNoLess = kronheimeNoLess;
+
+    var kronheimeThatVardanian = new Audio("sounds/polySounds/kronheimeThatVardanian.mp3");
+    window.kronheimeThatVardanian = kronheimeThatVardanian;
+
+    var kronheimeDidntRealize = new Audio("sounds/polySounds/kronheimeDidntRealize.mp3");
+    window.kronheimeDidntRealize = kronheimeDidntRealize;
+
+    var kronheimeThisSlight = new Audio("sounds/polySounds/kronheimeThisSlight.mp3");
+    window.kronheimeThisSlight = kronheimeThisSlight;
+
+    var kronheimeLeaving = new Audio("sounds/polySounds/kronheimeLeaving.mp3");
+    window.kronheimeLeaving = kronheimeLeaving;
+
+    var kronheimeKillHer = new Audio("sounds/polySounds/kronheimeKillHer.mp3");
+    window.kronheimeKillHer = kronheimeKillHer;
+
+    var kronheimeKillHim = new Audio("sounds/polySounds/kronheimeKillHim.mp3");
+    window.kronheimeKillHim = kronheimeKillHim;
+
+    var kronheimeKillIt = new Audio("sounds/polySounds/kronheimeKillIt.mp3");
+    window.kronheimeKillIt = kronheimeKillIt;
+
+    var kronheimeSimple = new Audio("sounds/polySounds/kronheimeSimple.mp3");
+    window.kronheimeSimple = kronheimeSimple;
+
+    var kronheimeDontHaveEnough = new Audio("sounds/polySounds/kronheimeDontHaveEnough.mp3");
+    window.kronheimeDontHaveEnough = kronheimeDontHaveEnough;
+
+    var kronheimeEarAsProof = new Audio("sounds/polySounds/kronheimEarAsProof.mp3");
+    window.kronheimeEarAsProof = kronheimeEarAsProof;
+
+    var kronheimeAnotherEar = new Audio("sounds/polySounds/kronheimeAnotherEar.mp3");
+    window.kronheimeAnotherEar = kronheimeAnotherEar;
+
+    var kronheimeGetAway = new Audio("sounds/polySounds/kronheimeGetAway.mp3");
+    window.kronheimeGetAway = kronheimeGetAway;
+
+    var kronheimeNecklace = new Audio("sounds/polySounds/kronheimeNecklace.mp3");
+    window.kronheimeNecklace = kronheimeNecklace;
+
+    var kronheimeGood = new Audio("sounds/polySounds/kronheimeGood.mp3");
+    window.kronheimeGood = kronheimeGood;
+
     //images
     var farmground = new Image();
     farmground.src = ("images/farmingland.png");
@@ -196,6 +468,10 @@ function legendaryPrerequisites()
     var forestEnv = new Image();
     forestEnv.src = ("images/mBank.jpg");
     window.forestEnv = forestEnv;
+
+    var poly = new Image();
+    poly.src = ("images/poly.png");
+    window.poly = poly;
 
     var candlewic = new Image();
     candlewic.src = ("images/candlewic.png");
@@ -341,6 +617,7 @@ function theLegend()
     var saveType = 1;
     var loadType = 1;
     var saveBrain = {};
+    var autosaving = true;
 
     //Important Sensing Variables
     var mouseX = 0; //main canvas mouse coords.
@@ -356,11 +633,15 @@ function theLegend()
     //Other Variables (extra)
     var drunkScreenShift = 0;
     var drunkDirectionSwitch = false;
+    var itemDescriptionBox = false;
+    var showBeastStat = -1;
 
     //Lower Canvas
     var lowBar = "information"; //This variable determines what type of menu the lower bar is.
         //inventory
     var invScroll = 0; //this is the variable that lets you scroll through the inventory.
+        //questLog
+    var questScroll = 0;
         //shop
     var merchScroll = 0;
     var itemAmount = 1;
@@ -386,7 +667,14 @@ function theLegend()
     var conversations =
     {
         toggin: ["Toggin", 0],
-        drohfor: ["Drohfor", 0]
+        teber: ["Teber", 0],
+        drohfor: ["Drohfor", 0],
+        maggy: ["Maggy", 0],
+        kedwin: ["Kedwin", 0],
+        stendor: ["Stendor", 0],
+        medlia: ["Medlia", 0],
+        neculai: ["Neculai", 0],
+        kronheime: ["Kronheime", 0]
     };
 
     //time Tracker Variables
@@ -394,6 +682,7 @@ function theLegend()
     var TTN = 0; //Current Time a.k.a [Time Now]
     var TTP = 0; //Previous Time a.k.a [Time Previous]
     var TTD = 0; //Difference in time a.k.a [Delta Time]
+    var fairSleep = true; //when the game starts this makes sure the sleep timer is caught up to game time.
 
     //Key sensing variables
     var wKey = false;
@@ -413,6 +702,7 @@ function theLegend()
     var key8 = false;
     var key9 = false;
     var key0 = false;
+    var tildKey = false;
 
     //DEVELOPMENTAL VARIABLES (variables for the developer to use)
         //Locational
@@ -441,6 +731,10 @@ function theLegend()
     var cheatItem = 0; //When the cheat is not active this should be at zero. This number represents the extra amount of items generated by the drop all option.
         //displays
     var showAntiVenomBar = false;
+    
+        //dialogue variables
+    var playersTurnToSpeak = true;
+    var playersTurnToMove = true;// this is how I will force it to behave.
 
     //In-Game Pop Ups Variables
     var popDuration = 0; //This is the timer for how long some popups will last.
@@ -455,6 +749,7 @@ function theLegend()
     var save6 = null;
     var save7 = null;
     var save8 = null;
+
     //UNIQUE CHARACTERS
     var uniqueChars =
     {
@@ -463,12 +758,15 @@ function theLegend()
         medliaLDS: true,
         drohforLDS: true,
         hilmundLDS: true,
+        teberLDS: true,
         kedwinLDS: true,
         laandegLDS: true,
         maggyLDS: true,
         odeeLDS: true,
         togginLDS: true,
         hetmerLDS: true,
+        kronheimeLDS: true,
+        stendorLDS: true,
         neculaiLDS: true,
         roselinLDS: true,
         fenwikLDS: true,
@@ -477,6 +775,18 @@ function theLegend()
     //QUESTS
     var quests =
     {
+        //questLog variables
+        questMenu: "active",
+        activeQuests: [],
+        completeQuests: [],
+
+        //SHOP DEALS/OTHER VARIABLES TO DO STUFF WITH DIALOGUE
+        neculaiShopDeal: false,
+        bankruptNeculai: false,
+        medliaNewWealth: 0,
+        bobithNewWealth: 0,
+        neculaiNewWealth: 0,
+
         //QUEST: Teshir North Road ---- given by Toggin
         teshirNorthRoadBandits: true,
         teshirNorthRoadKillCount: 0,
@@ -485,7 +795,32 @@ function theLegend()
         //QUEST: Hunting Wager ---- given by Drohfor
         huntingWagerFrichPack: false,
         huntingWagerKillCount: 0,
-        huntingWagerQuest: false
+        huntingWagerQuest: false,
+
+        //QUEST: Medlia Competition Control ---- given by Medlia
+        medliaCompetitionControlReward: 0,
+        medliaCompetitionControlCompletionStyle: false,
+        medliaCompetitionControlQuest: false,
+
+        //QUEST: The Balgur Mercenaries ---- given by Neculai
+        theBalgurMercenariesReward: 0,
+        theBalgurMercenariesNecklace: false,
+        theBalgurMercenariesMercsKilled: 0,
+        theBalgurMercenariesCompletionStyle: false,
+        theBalgurMercenariesQuest: false,
+
+        //QUEST: The Master Thief of Teshir ---- given by Stendor
+        theMasterThiefOfTeshirNeevSlain: false,
+        theMasterThiefOfTeshirNeevKnown: false,
+        theMasterThiefOfTeshirQuest: false,
+
+        //QUEST: Bounty: Hetmer the Bandit Chieftain ---- given by Stendor
+        bountyHetmerQuest: false,
+
+        //QUEST: Bounty: Teber the Deserter ---- given by Stendor
+        bountyTeberCompletionStyle: false,
+        bountyteberQuest: false
+
     };
 
     //IMPORTANT LISTS
@@ -505,6 +840,11 @@ function theLegend()
     selectorList.push(new Selector(1/2 * CCC.width - 105, 340, "class", 6)); // 2 == wealth and social class selector
     selectorList.push(new Selector(1/2 * CCC.width - 105, 380, "style", 2)); // 3 == combat style selector
 
+    //this list is of all the beast your character learns about in the world.
+        //this is an example beast entry:
+    //this.beastEntry = {intReq: 0, name: "", health: "", armour: "", damage: "", negate: "", ability: "", fireProof: #, habitat: "", sight: #, alpha: "", magicProof: #, size: #, speed: #, rotation: #, rate: #, experience: #, description: [""], image: [IMG, strX, strY, W, H, adjX, adjY, SzX, SzY]};
+    var beastJournal = [];
+
     //This List stores all of the lights that penetrate the darkness of the night.
     // X and Y determine location of the light, size determines its size, extraStops determines if it is a more complicated gradient with a middle stop layer, GDR is how long the alpha you specify lasts until it fades to black, the GDR's go from 0 - 1 max, Alpha is all about the transparency of the light bubble at each stage of the gradient, showMe is a way to draw the light no matter what.
     //light objects look like this: {X:, Y:, size:, extraStops:, GRD:, Alpha:, showMe:}
@@ -519,10 +859,10 @@ function theLegend()
     //Player Inventory
     var Inventory = [];
     //todo TEST INVENTORIES
-    Inventory = [[new Item("coins", false, false), 10000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2], [new Item("shehidToxinArrow", false, false), 45], [new Item("oiledArrow", false, false), 45], [new Item("fireStarter", false, false), 1], [new Item("lifeLeachArrow", false, false), 45], [new Item("fireArrow", false, false), 45], [new Item("freezingArrow", false, false), 45], [new Item("oilLantern", false, false), 1]];
+    //Inventory = [[new Item("coins", false, false), 10000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2], [new Item("shehidToxinArrow", false, false), 45], [new Item("oiledArrow", false, false), 45], [new Item("fireStarter", false, false), 1], [new Item("lifeLeachArrow", false, false), 45], [new Item("fireArrow", false, false), 45], [new Item("freezingArrow", false, false), 45], [new Item("oilLantern", false, false), 1], [new Item("berulnToothNecklace", false, false), 1], [new Item("ogardPerfume", false, false), 2]];
     //Inventory = [[new Item("healingSalve", false, false), 1], [new Item("driedCyrinthilimMushroom", false, false), 1], [new Item("cyrinthilimMushroom", false, false), 1], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfNaapridMilk", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 1], [new Item("kellishClayPot", false, false), 1], [new Item("fermentedViperVenomGland", false, false), 1], [new Item("viperVenomGland", false, false), 1], [new Item("viperSnakeSkin", false, false), 1], [new Item("rawViperFlesh", false, false), 1], [new Item("viperMeat", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
-    //Inventory = [[new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
-    //Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1]];
+    //Inventory = [[new Item("balgurCaptainArmour", false, false), 1], [new Item("balgurMercArmour", false, false), 1], [new Item("longSpikedMorningStar", false, false), 1], [new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
+    Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1]];
 
     //Test Spells
     primarySpells = [];
@@ -571,6 +911,7 @@ function theLegend()
     allWeapons.push(new Item("lifeLeachArrow", false)); //37
     allWeapons.push(new Item("fireArrow", false)); //38
     allWeapons.push(new Item("freezingArrow", false)); //39
+    allWeapons.push(new Item("longSpikedMorningStar", false)); //40
 
     //This list holds one of each type of worn item so that the player can access the worn item stats.
     var allWorn = [];
@@ -593,6 +934,9 @@ function theLegend()
     allWorn.push(new Item("frichFurMittens", false)); //16
     allWorn.push(new Item("jvostranPlateArmour", false)); //17
     allWorn.push(new Item("grushFurClothing", false)); //18
+    allWorn.push(new Item("balgurMercArmour", false)); //19
+    allWorn.push(new Item("balgurCaptainArmour", false)); //20
+    allWorn.push(new Item("berulnToothNecklace", false)); //21
 
     var scenicList = [];
 
@@ -654,6 +998,7 @@ function theLegend()
     smithing.push(new Item("jvostranPlateArmour", false));
     smithing.push(new Item("oilLampEmpty", false));
     smithing.push(new Item("oilLanternEmpty", false));
+    smithing.push(new Item("longSpikedMorningStar", false));
 
         //Foods (Items cooked at either a stove, an oven, or a campfire)
     var foods = [];
@@ -682,11 +1027,14 @@ function theLegend()
     foods.push(new Item("grushMeat", false));
     foods.push(new Item("cookedMofuEgg", false));
     foods.push(new Item("mofflingMeat", false));
+    foods.push(new Item("akerMoffling", false));
+    foods.push(new Item("pluttMoffling", false));
     foods.push(new Item("mofuMeat", false));
     foods.push(new Item("largeMofuMeat", false));
     foods.push(new Item("jarOfOil", false));
     foods.push(new Item("roastedPumpkin", false));
     foods.push(new Item("bucketOfHotPluttBerryCider", false));
+    foods.push(new Item("bucketOfTechiTea", false));
 
         //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     var tailoring = [];
@@ -703,6 +1051,9 @@ function theLegend()
     tailoring.push(new Item("varnFurDress", false));
     tailoring.push(new Item("walrusLeatherWaterskin", false));
     tailoring.push(new Item("grushFurClothing", false));
+    tailoring.push(new Item("tent", false));
+    tailoring.push(new Item("cloth", false));
+    tailoring.push(new Item("naapridFiber", false));
         //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     var jewelry = [];
     jewelry.push(new Item("glassJar", false));
@@ -710,6 +1061,7 @@ function theLegend()
     jewelry.push(new Item("glassBottle", false));
     jewelry.push(new Item("potionGlass", false));
     jewelry.push(new Item("fireStarter", false));
+    jewelry.push(new Item("berulnToothNecklace", false));
         //Alchemy (Potions and mixtures crafted at an alchemy lab station)
     var alchemy = [];
     alchemy.push(new Item("cleansingPotion", false));
@@ -723,7 +1075,8 @@ function theLegend()
     alchemy.push(new Item("fermentedViperVenomGland", false));
     alchemy.push(new Item("driedCyrinthilimMushroom", false));
     alchemy.push(new Item("fermentedMofuEgg", false));
-    alchemy.push(new Item("groundOgardNut", false));
+    alchemy.push(new Item("groundOgard", false));
+    alchemy.push(new Item("ogardPerfume", false));
 
 
 
@@ -753,10 +1106,13 @@ function theLegend()
     handcrafted.push(new Item("jackOLanternEmpty", false));
     handcrafted.push(new Item("jackOLantern", false));
     handcrafted.push(new Item("waterPintGlass", false));
-    handcrafted.push(new Item("bucketOfPluttJuice", false)); //booble
+    handcrafted.push(new Item("bucketOfPluttJuice", false));
     handcrafted.push(new Item("pluttJuicePintGlass", false));
     handcrafted.push(new Item("pluttCiderPintGlass", false));
     handcrafted.push(new Item("pluttWine", false));
+    handcrafted.push(new Item("driedPluttBerries", false));
+    handcrafted.push(new Item("driedTechiLeaf", false));
+    handcrafted.push(new Item("techiTea", false));
 
     //This sets the items that are in shops.
     function shopItemIDSetter()
@@ -982,6 +1338,11 @@ function theLegend()
             {
                 
             }
+            else if (cheatcode == "1390")
+            {
+                player.concentration = Math.round(player.concentration / 2);
+                player.eminence = Math.round(player.eminence / 2);
+            }
             else if (cheatcode == "00567817")
             {
                 player.concentration = 0;
@@ -994,6 +1355,19 @@ function theLegend()
                 {
                     player.willpower = 1;
                 }
+            }
+            else if (cheatcode == "8675309")
+            {
+                magicList.push(new Magic({ID: "chasingLights"}, true));
+                magicList.push(new Magic({ID: "chasingLights"}, true));
+                magicList.push(new Magic({ID: "chasingLights"}, true));
+                magicList.push(new Magic({ID: "chasingLights"}, true));
+                magicList.push(new Magic({ID: "chasingLights"}, true));
+                magicList.push(new Magic({ID: "chasingLights"}, true));
+                magicList.push(new Magic({ID: "chasingLights"}, true));
+                magicList.push(new Magic({ID: "chasingLights"}, true));
+                magicList.push(new Magic({ID: "chasingLights"}, true));
+                magicList.push(new Magic({ID: "chasingLights"}, true));
             }
             else if (cheatcode == "111248392741664s")
             {
@@ -1058,6 +1432,17 @@ function theLegend()
                 player.gassinessTime += 10;
                 magicList.push(new Magic({ID:"fart"}, true));
             }
+            else if (cheatcode.toLowerCase() == "resetquests")
+            {
+                quests.teshirNorthRoadQuest = false;
+                quests.teshirNorthRoadBandits = true;
+                quests.teshirNorthRoadKillCount = 0;
+                uniqueChars.hetmerLDS = true;
+
+                quests.huntingWagerQuest = false;
+                quests.huntingWagerFrichPack = true;
+                quests.huntingWagerKillCount = 0;
+            }
             else if (cheatcode == "4444444444444444")
             {
                 if (player.eminence == 50 && player.knowledge == 50)
@@ -1077,6 +1462,10 @@ function theLegend()
                     unitSurround = true;
                 }
             }
+            else if (cheatcode.toLowerCase() == "tellme")
+            {
+                alert(player.necklaceEquipped);
+            }
             else if (cheatcode.toLowerCase() == "clearinv")
             {
                 Inventory = [];
@@ -1084,6 +1473,10 @@ function theLegend()
             else if (cheatcode.toLowerCase() == "testinv")
             {
                 console.log(Inventory);
+            }
+            else if (cheatcode.toLowerCase() == "buensiesta")
+            {
+                sleep();
             }
             else if (cheatcode.toLowerCase() == "coords")
             {
@@ -1094,6 +1487,17 @@ function theLegend()
                 else
                 {
                     tellCoords = true;
+                }
+            }
+            else if (cheatcode.toLowerCase() == "attackbubble")
+            {
+                if (showPlayerAttackBubble == true)
+                {
+                    showPlayerAttackBubble = false;
+                }
+                else
+                {
+                    showPlayerAttackBubble = true;
                 }
             }
             else if (cheatcode.toLowerCase() == "restoredesmonde")
@@ -1137,6 +1541,36 @@ function theLegend()
                 }
                 player.engagedSenser();
             }
+            else if (cheatcode.toLowerCase() == "howsexyami")
+            {
+                player.charisma = JSON.parse(prompt("You tell me, how sexy are you???"));
+            }
+            else if (cheatcode.toLowerCase() == "easterly")
+            {
+                ArtificialIntelligenceAccess.push(new Unit(X + 55, Y - 55, "Neev", false, "Bruma"));
+            }
+            else if (cheatcode.toLowerCase() == "westerly")
+            {
+                ArtificialIntelligenceAccess.push(new Unit(X - 55, Y - 55, "Neev", true, "Wester"));
+            }
+            else if (cheatcode.toLowerCase() == "racepickeradvanced")
+            {
+                player.raceName = prompt("Welcome to the all new race picker advanced edition, Enter your desired racial preload:");
+            }
+            else if (cheatcode.toLowerCase() == "selfproclaimedtitle")
+            {
+                player.title = prompt("Proclaim your new title then...");
+            }
+            else if (cheatcode.toLowerCase() == "unstuckme")
+            {
+                this.speechMovementInhibitor = false;
+                playersTurnToSpeak = true;
+
+                {
+                    X = X + Math.cos(player.rotation + 1/2 * Math.PI) * 55;
+                    Y = Y + Math.sin(player.rotation + 1/2 * Math.PI) * 55;
+                }
+            }
             else if (cheatcode.toLowerCase() == "fixmininoticelist")
             {
                 player.miniNoticeList = [];
@@ -1162,6 +1596,14 @@ function theLegend()
             {
                 ArtificialIntelligenceAccess.push(new Unit(X + 40, Y, "Viper", false, "Serpy the Serpent"));
             }
+            else if (cheatcode.toLowerCase() == "traavinjathetroll")
+            {
+                ArtificialIntelligenceAccess.push(new Unit(X + 1000, Y + 1000, "BogTroll", false, "Traavinja the Troll"));
+            }
+            else if (cheatcode.toLowerCase() == "gravimullthetroll")
+            {
+                ArtificialIntelligenceAccess.push(new Unit(X + 1100, Y + 1100, "BogTroll", true, "Gravimull the Troll"));
+            }
             else if (cheatcode.toLowerCase() == "wetnoodle")
             {
                 player.toughness = 0;
@@ -1177,6 +1619,10 @@ function theLegend()
             else if (cheatcode.toLowerCase() == "dameunaespada")
             {
                 worldItems.push([new Item("katana", X, Y), 1]);
+            }
+            else if (cheatcode == "over9000")
+            {
+                player.level = 9001;
             }
             else if (cheatcode.toLowerCase() == "thisgameismissingsomething")
             {
@@ -3250,27 +3696,63 @@ function theLegend()
             XXX.fillText("Select a Game to Load", 330, 90);
 
             //load the game functions
-            this.loadClickability = function(x, y, w, h, loadNumber)
+            this.loadClickability = function(x, y, w, h, loadNumber, auto)
             {
-                if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h)
+                if (auto != true)
                 {
-                    XXX.beginPath();
-                    XXX.fillStyle = "rgba(255,215,0, 0.35)";
-                    XXX.lineWidth = "1";
-                    XXX.rect(x, y, w, h);
-                    XXX.fill();
-                    XXX.stroke();
-
-                    if (clicked == true)
+                    if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h)
                     {
-                        clicked = false;
-                        loadType = loadNumber;
-                        gameState = "active";
-                        load();
-                        requestAnimationFrame(gameloopOfDestiny, CCC);
+                        XXX.beginPath();
+                        XXX.fillStyle = "rgba(255,215,0, 0.35)";
+                        XXX.lineWidth = "1";
+                        XXX.rect(x, y, w, h);
+                        XXX.fill();
+                        XXX.stroke();
+
+                        if (clicked == true)
+                        {
+                            clicked = false;
+                            loadType = loadNumber;
+                            gameState = "active";
+                            load();
+                            requestAnimationFrame(gameloopOfDestiny, CCC);
+                        }
+                    }
+                }
+                else
+                {
+                    if (lMouseX > 0 && lMouseX < LCC.width && lMouseY > 0 && lMouseY < LCC.height)
+                    {
+                        LXX.beginPath();
+                        LXX.fillStyle = "rgba(255,215,0, 0.35)";
+                        LXX.lineWidth = "1";
+                        LXX.rect(0, 0, LCC.width, LCC.height);
+                        LXX.fill();
+                        LXX.stroke();
+
+                        if (clicked == true)
+                        {
+                            clicked = false;
+                            loadType = "autosave";
+                            gameState = "active";
+                            load();
+                            requestAnimationFrame(gameloopOfDestiny, CCC);
+                        }
                     }
                 }
             };
+            //autosave
+            LXX.beginPath();
+            LXX.fillStyle = "lightGrey";
+            LXX.lineWidth = "1";
+            LXX.rect(0, 0, LCC.width, LCC.height);
+            LXX.fill();
+            LXX.stroke();
+            this.loadClickability(0, 0, 0, 0, 0, true);
+            LXX.textAlign = "center";
+            LXX.fillStyle = "black";
+            LXX.font = "bold 65px Book Antiqua";
+            LXX.fillText("Autosave", LCC.width / 2, LCC.height * 2 / 3 + 5);
             //load buttons 1-8
                 //load save 1;
                     //box
@@ -3405,6 +3887,9 @@ function theLegend()
         LXX.beginPath();
         LXX.fillStyle = "lightGrey";
         LXX.fillRect(0, 0, 1400, 80);
+
+        //this resets the variable that determines whether or not to light the inv desciption box.
+        itemDescriptionBox = false;
 
         // THIS IS THE BACKGROUND BUILDER (height, width, type, x, y) // The tile coords 0, 0 are at the bottom right corner of Teshir City.
             //Different parts of the world load at different Y values. // maps are 34 by 34 tiles and for somereason the maps are -20 to the left. and + 14 down.
@@ -3696,10 +4181,19 @@ function theLegend()
                 }
             }
         }
+        //Autosave
+        autosave();
 
         //Screen Covers
         gameTimeKeeper();
         screenCover();
+
+        //UI type text that needs to be read over the night and day cycle
+        if (gameState == "active")
+        {
+            player.showNoticeName();
+            player.tellCoordinates();
+        }
 
         if (gameState != "mainMenu" && gameState != "characterBuilder")
         {
@@ -3809,9 +4303,6 @@ function theLegend()
 
         }
 
-        //Blindness
-        //todo add blindness effect.
-
         //Night and Day
         if (timeOfDay != "Day" && player.nightVision == false && gameState != "paused"|| player.underground && player.nightVision == false && gameState != "paused")
         {
@@ -3838,6 +4329,14 @@ function theLegend()
                 NDX.fillStyle = "rgba(255, 255, 255, 1)";
                 NDX.beginPath();
                 NDX.rect(152, NDC.height - 22, NDC.width - 152, 22);
+                NDX.fill();
+            }
+
+            if (itemDescriptionBox == true)
+            {
+                NDX.fillStyle = "rgba(255, 255, 255, 1)";
+                NDX.beginPath();
+                NDX.rect(152, NDC.height - 90, NDC.width - 152, 68);
                 NDX.fill();
             }
 
@@ -3892,6 +4391,14 @@ function theLegend()
             XXX.drawImage( NDC, 0, 0 );
         }
         lights = [];
+
+        //Blindness
+        if (player.blinded == true)
+        {
+            XXX.fillStyle = "black";
+            XXX.beginPath();
+            XXX.fillRect(0, 0, CCC.width, CCC.height);
+        }
     }
 
     //SENSING FUNCTIONS
@@ -3964,6 +4471,11 @@ function theLegend()
         if (key == 87)
         {
             wKey = false;
+        }
+
+        if (key == 192)
+        {
+            tildKey = false;
         }
 
         if (key == 83)
@@ -4054,6 +4566,11 @@ function theLegend()
         if (key == 87)
         {
             wKey = true;
+        }
+
+        if (key == 192)
+        {
+            tildKey = true;
         }
 
         if (key == 83)
@@ -4284,6 +4801,10 @@ function theLegend()
         this.vardanFaction = 0; //black (vardanian) High Count Arlod
         this.cephriteFaction = 0; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
         this.nirwadenFaction = 0; //orange (nirinese) Queen Lelaine
+        //Lesser Faction Relations
+        this.theBalgurMercenariesFaction = 0; //A fearsome and powerful mercinary group in the lands of Thengaria.
+        //ranks
+        this.theBalgurMercenariesRank = "none";
         //Skills
         this.constitution = 50; //this determines the amount of health that the player has. (4 health per point) (50 Maximum Constitution)
         this.strength = 50; //this skill adds or subtracts from your physical damage blows based on whether or not it is positive or negative. [+ 5 points of carry weight per level] (50 Maximum Strength)
@@ -4306,6 +4827,7 @@ function theLegend()
         this.AdEndurance = 0; //this is the amount of stat adjustment to endurance.
         this.AdToughness = 0; //this is the amount of stat adjustment to toughness.
         this.AdCharisma = 0; //this is the amount of stat adjustment to charisma.
+        this.AdSleep = 0; //this is the amount of adjustment to sleep.
             //more skill adjusters
         this.dexBoost = 0; //this is stat adjustment by magic and potions.
         this.emiBoost = 0; //this is stat adjustment by magic and potions.
@@ -4351,6 +4873,10 @@ function theLegend()
         this.hunger = this.hungerMAX;
         this.thirstMAX = 20;
         this.thirst = this.thirstMAX;
+        this.sleepMAX = 24;
+        this.sleep = this.sleepMAX;
+        this.extraSleep = 0; //this is sleep that is affected by spells or potion effects etc.
+        this.totalSleep = this.sleepMAX + this.extraSleep + this.AdSleep;
         //Non-SkillBased Stats
         this.armour = 0; //this is the armor that is gained from worn equipment.
         this.magicalResistance = 0; //this is the magical resistance that is gained from worn equipment.
@@ -4448,6 +4974,7 @@ function theLegend()
         this.projectileReleased = true;
         this.rangedWeaponType = "none";
         this.areGlovesEquipped = false;
+        this.isNecklaceEquipped = false;
         //Shop Variables
         this.merchPosition = 0;
         //Bank Variables
@@ -4543,6 +5070,22 @@ function theLegend()
         this.timeSinceLightSourceFuelUsed = 0;
         this.lightSourceDuration = 0;
         this.lightSource = "none";
+        this.storeGameTimeForSleep = gameTime;
+        this.tireless = false; //if activated sleep does not go down or affect you. (this is like satiate or quench for sleep)
+        this.tirelessTime = 15; //this is the timer in seconds that tireless endures.
+        this.tirelessStoreTime = 0; //this needs to be set to new Date().getTime() in order for tireless to be activated.
+        this.insomnia = false;
+        this.insomniaTime = 0;
+        this.insomniaStoreTime = 0;
+        this.insomniated = false; //this is a flag that lets thing give the player permanent insomnia until this is switched off by something.
+        this.blinded = false;
+        this.blindedTime = 0;
+        this.blindedStoreTime = 0;
+        this.brainMaggots = false; //brain maggots give you brain damage and insomnia and eventually leads to blindness and death.
+        this.perfume = "none";
+        this.perfumeTime = 0;
+        this.perfumeStoreTime = 0;
+        this.perfumeCHA = 0;
 
         //utility or extra variables
         this.outfitZ = true; //this is the layer determiner for the players outfit, so that the outfit can draw underneath or above the players body layer.
@@ -4559,10 +5102,21 @@ function theLegend()
         this.flashFrame = 0;
         this.outfitType = "none";
         this.glovesType = "none";
+        this.necklaceType = "none";
 
         //a function for all of the small functions to fix tiny obscure yet sometimes important details...
         this.quickFixes = function()
         {
+            //keep the player from getting stuck outside of dialogue for dialogue reasons.
+            if (lowBar != "dialogue")
+            {
+                this.speechMovementInhibitor = false;
+                playersTurnToMove = true;
+            }
+            else
+            {
+                playersTurnToMove = false;
+            }
             //noUnequipRangeWhileLoaded
             if (this.weapon.subUtility == "bow")
             {
@@ -4682,8 +5236,25 @@ function theLegend()
                 }
             }
 
-            this.magicalExperienceRequiredToLevel = 1200 + (400 * (this.magicLevel - 1));
-            this.experienceRequiredToLevel = 400 + (200 * (this.level - 1));
+            if (this.magicLevel < 20)
+            {
+                this.magicalExperienceRequiredToLevel = 1200 + (400 * (this.magicLevel - 1));
+            }
+            else
+            {
+                this.magicalExperienceRequiredToLevel = 2000 + (600 * (this.magicLevel - 1));
+            }
+
+
+            if (this.level < 10)
+            {
+                this.experienceRequiredToLevel = 400 + (200 * (this.level - 1));
+            }
+            else
+            {
+                this.experienceRequiredToLevel = 1000 + (400 * (this.level - 1));
+            }
+
 
             if (this.experience >= this.experienceRequiredToLevel)
             {
@@ -4714,7 +5285,7 @@ function theLegend()
             this.fistDamage = 0.25 + (this.getStrength() / 50); // this is the damage done by the player's fists
             this.antiVenomMAX = 0 + (0.7 * (this.getToughness() / 50)) + (0.3 * (this.getEndurance() / 50)); //this is the maximum amount of venom resistance the player can have.
             this.carryWeightMAX = 10 + (5 * this.getStrength());
-            this.naturalArmour = this.getToughness() / 10;
+            this.naturalArmour = this.getToughness() / 50;
             this.armourTotal = this.naturalArmour + this.armour + this.shielding;
             this.willMAX = 0.1 + this.willpower;
             this.energyMAX = 6 + (5 * this.getStamina());
@@ -4725,6 +5296,8 @@ function theLegend()
             this.thirstMAX = this.baseThirst;
             this.warmthMAX = this.baseWarmth + (1 * this.getEndurance()) + (4 * this.getToughness());
             this.spellSlots = 1 + Math.floor(this.memory * 8 / 50);
+            this.sleepMAX = 24 + this.getEndurance();
+            this.totalSleep = this.sleepMAX + this.extraSleep + this.AdSleep;
 
             //this sets carry weight based on the total added weights in the player's inventory.
             if (Inventory.length > 0)
@@ -4778,6 +5351,177 @@ function theLegend()
 
         this.effects = function ()
         {
+            this.sleepCalculator = function()
+            {
+                if (new Date().getTime() - this.tirelessStoreTime <= this.tirelessTime * 1000)
+                {
+                    this.tireless = true;
+                }
+                else
+                {
+                    this.tireless = false;
+                }
+
+                if (this.tireless != true)
+                {
+                    if (gameTime - this.storeGameTimeForSleep >= 60)
+                    {
+                        if (fairSleep)
+                        {
+                            this.storeGameTimeForSleep = gameTime;
+                            fairSleep = false;
+                        }
+                        this.sleep -= (gameTime - this.storeGameTimeForSleep)/(60 * 60);
+                        this.storeGameTimeForSleep = gameTime;
+                    }
+                }
+                else
+                {
+                    this.storeGameTimeForSleep = gameTime;
+                }
+
+                //console.log(this.sleep + " :: " + (gameTime - this.storeGameTimeForSleep) + " ;; " + minuteOfHour);
+
+                if (this.sleep > this.totalSleep) //total sleep == sleepMAX extraSleep and AdSleep
+                {
+                    this.sleep = this.totalSleep;
+                }
+
+                //da la (player) efectos negativos por no haber dormido por mucho tiempo.
+                if (this.sleep <= 0 && this.sleep > -24)
+                {
+                    if (this.energilI != true)
+                    {
+                        this.fatigueI = true;
+                        this.energilTime = Math.max(4, this.energilTime);
+                        this.timeSinceLastEnergil = new Date().getTime;
+                        if (this.will > this.willMAX / 2)
+                        {
+                            this.will = this.willMAX / 2;
+                        }
+                    }
+                }
+                else if (this.sleep <= -24 && this.sleep > -48)
+                {
+                    if (this.energilII != true)
+                    {
+                        this.fatigueII = true;
+                        this.energilTime = Math.max(4, this.energilTime);
+                        this.timeSinceLastEnergil = new Date().getTime;
+                        if (this.will > this.willMAX / 4)
+                        {
+                            this.will = this.willMAX / 4;
+                        }
+                    }
+                }
+                else if (this.sleep <= -48 && this.sleep > -72)
+                {
+                    if (this.energilIII != true)
+                    {
+                        this.fatigueIII = true;
+                        this.energilTime = Math.max(4, this.energilTime);
+                        this.timeSinceLastEnergil = new Date().getTime;
+                        if (this.will > this.willMAX / 8)
+                        {
+                            this.will = this.willMAX / 8;
+                        }
+                    }
+                }
+                else if (this.sleep <= -72 && this.sleep > -96)
+                {
+                    if (this.energilIV != true)
+                    {
+                        this.fatigueIV = true;
+                        this.energilTime = Math.max(4, this.energilTime);
+                        this.timeSinceLastEnergil = new Date().getTime;
+                        if (this.will > this.willMAX / 16)
+                        {
+                            this.will = this.willMAX / 16;
+                        }
+                    }
+                }
+                else if (this.sleep <= -96)
+                {
+                    if (this.energilV != true)
+                    {
+                        this.fatigueV = true;
+                        this.energilTime = Math.max(4, this.energilTime);
+                        this.timeSinceLastEnergil = new Date().getTime;
+                        if (this.will > this.willMAX / 32)
+                        {
+                            this.will = this.willMAX / 32;
+                        }
+                    }
+                }
+
+                //Insomnia
+                if (new Date().getTime() - this.insomniaStoreTime <= this.insomniaTime * 1000 || this.brainMaggots == true || this.cyrinthilimTime > 0 || this.insomniated == true)
+                {
+                    this.insomnia = true;
+                }
+                else
+                {
+                    this.insomnia = false;
+                }
+            };
+
+            this.blinder = function()
+            {
+                //Blinded
+                if (new Date().getTime() - this.blindedStoreTime <= this.blindedTime * 1000 || this.intelligence < -15 && this.brainMaggots == true)
+                {
+                    this.blinded = true;
+                }
+                else
+                {
+                    this.blinded = false;
+                }
+            };
+
+            this.brainMaggot = function()
+            {
+                if (this.brainMaggots == true)
+                {
+                    if (gameLoopNumber % 5500 == 0)
+                    {
+                        this.intelligence -= 1;
+                        if (this.intelligence < -5)
+                        {
+                            this.health -= 6;
+                            this.energy -= 3;
+                            this.will -= 9;
+                        }
+                    }
+                }
+            };
+
+            this.perfumed = function()
+            {
+                if (this.perfume != "none")
+                {
+                    if (new Date().getTime() - this.perfumeStoreTime < 1000 * this.perfumeTime)
+                    {
+                        if (this.gender != "Male")
+                        {
+                            if (this.perfume == "ogard")
+                            {
+                                this.perfumeCHA = 4;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.perfumeTime = 0;
+                        this.perfumeStoreTime = 0;
+                        this.perfume = "none";
+                    }
+                }
+                else
+                {
+                    this.perfumeCHA = 0;
+                }
+            };
+
             this.climateEffects = function ()
             {
                 //If the player's warmth is not at max then the flag for the mini notice is true otherwise it is false.
@@ -5285,19 +6029,19 @@ function theLegend()
                 {
                     if (this.lightSource == "oilLantern")
                     {
-                        lights.push({X:X, Y: Y, size: 250, extraStops: true, GRD: 0.7, Alpha: 0.9, showMe: true})
+                        lights.push({X:X, Y: Y, size: 250, extraStops: true, GRD: 0.7, Alpha: 0.9, showMe: true});
                     }
                     else if (this.lightSource == "oilLamp")
                     {
-                        lights.push({X:X, Y: Y, size: 175, extraStops: true, GRD: 0.7, Alpha: 0.8, showMe: true})
+                        lights.push({X:X, Y: Y, size: 175, extraStops: true, GRD: 0.7, Alpha: 0.8, showMe: true});
                     }
                     else if (this.lightSource == "jackOLantern")
                     {
-                        lights.push({X:X, Y: Y, size: 85, extraStops: true, GRD: 0.7, Alpha: 0.4, showMe: true})
+                        lights.push({X:X, Y: Y, size: 85, extraStops: true, GRD: 0.7, Alpha: 0.4, showMe: true});
                     }
                     else if (this.lightSource == "candle")
                     {
-                        lights.push({X:X, Y: Y, size: 65, extraStops: true, GRD: 0.35, Alpha: 0.5, showMe: true})
+                        lights.push({X:X, Y: Y, size: 65, extraStops: true, GRD: 0.35, Alpha: 0.5, showMe: true});
                     }
                 }
                 else
@@ -5889,14 +6633,18 @@ function theLegend()
             this.overCucumbered(); //If the player is carrying too much weight the player all of a sudden becomes submersed in invisible cucumbers making it very challenging for him/her to move.
             //minor game effects
             this.sightSeeing();
+            this.perfumed();
             this.gutWorm();
             this.fleshMite();
+            this.brainMaggot();
             this.alcoholManagement();
             this.stunnedTimer();
             this.poison();
             this.recovery();
             this.skillBoost();
             this.light();
+            this.sleepCalculator();
+            this.blinder();
         };
 
         //operations for the stat/variables regarding the characters skills and leveling
@@ -6005,7 +6753,7 @@ function theLegend()
 
         this.getCharisma = function()
         {
-            return (Math.max(0, this.charisma + this.AdCharisma + this.gassyCha));
+            return (Math.max(0, Math.min(50, this.charisma + this.AdCharisma + this.gassyCha + this.perfumeCHA)));
         };
 
         this.getWillpower = function()
@@ -6099,7 +6847,14 @@ function theLegend()
                     if (mouseX >= (1 + (21 * i)) && mouseX <= (1 + (21 * i)) + 20)
                     {
                         XXX.textAlign = "left";
-                        XXX.fillStyle = "black";
+                        if (timeOfDay == "Day" && this.underground != true)
+                        {
+                            XXX.fillStyle = "black";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "white";
+                        }
                         XXX.font = "bold 22px Book Antiqua";
                         XXX.fillText(this.miniNoticeList[i], 1, 407);
                     }
@@ -6159,6 +6914,78 @@ function theLegend()
             {
                 //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
                 this.removeNotice("Starvation");
+            }
+        };
+
+        //Sleep Deprivation Notice Function
+        this.deprivationChecker = function()
+        {
+            if (this.sleep <= 0)
+            {
+                // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+                this.addNotice("Sleep Deprivation");
+                //red background
+                XXX.beginPath();
+                XXX.fillStyle = "#000080";
+                XXX.lineWidth = 1;
+                XXX.strokeStyle = "black";
+                XXX.rect(this.arrangeNotices("Sleep Deprivation"), 413, 20, 20);
+                XXX.fill();
+                XXX.stroke();
+                XXX.drawImage(freeverse, 625, 59, 19, 18, this.arrangeNotices("Sleep Deprivation"), 412.5, 20, 20);
+            }
+            else
+            {
+                //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+                this.removeNotice("Sleep Deprivation");
+            }
+        };
+
+        //Brain Maggots Notice Function
+        this.brainMaggotsChecker = function()
+        {
+            if (this.brainMaggots == true)
+            {
+                // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+                this.addNotice("Brain Maggots");
+                //red background
+                XXX.beginPath();
+                XXX.fillStyle = "#BAA0A1";
+                XXX.lineWidth = 1;
+                XXX.strokeStyle = "black";
+                XXX.rect(this.arrangeNotices("Brain Maggots"), 413, 20, 20);
+                XXX.fill();
+                XXX.stroke();
+                XXX.drawImage(poly, 211, 114, 23, 20, this.arrangeNotices("Brain Maggots"), 412.5, 20, 20);
+            }
+            else
+            {
+                //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+                this.removeNotice("Brain Maggots");
+            }
+        };
+
+        //Insomnia Notice Function
+        this.insomniaChecker = function()
+        {
+            if (this.insomnia == true)
+            {
+                // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+                this.addNotice("Insomnia");
+                //red background
+                XXX.beginPath();
+                XXX.fillStyle = "black";
+                XXX.lineWidth = 1;
+                XXX.strokeStyle = "black";
+                XXX.rect(this.arrangeNotices("Insomnia"), 413, 20, 20);
+                XXX.fill();
+                XXX.stroke();
+                XXX.drawImage(candlewic, 14, 32, 10, 9, this.arrangeNotices("Insomnia") + 4, 417, 12.5, 11);
+            }
+            else
+            {
+                //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+                this.removeNotice("Insomnia");
             }
         };
 
@@ -6524,6 +7351,30 @@ function theLegend()
             }
         };
 
+        //SATIATION Notice Function
+        this.perfumedChecker = function ()
+        {
+            if (this.perfume != "none")
+            {
+                // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+
+                this.addNotice("Perfumed");
+                XXX.beginPath();
+                XXX.fillStyle = "pink";
+                XXX.lineWidth = 1;
+                XXX.strokeStyle = "black";
+                XXX.rect(this.arrangeNotices("Perfumed"), 413, 20, 20);
+                XXX.fill();
+                XXX.stroke();
+                XXX.drawImage(poly, 57, 50, 8, 8, this.arrangeNotices("Perfumed") + 1.25, 415, 16, 16);
+            }
+            else
+            {
+                //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+                this.removeNotice("Perfumed");
+            }
+        };
+
         //SEEN BY TARGET Notice Function (noticed by any AI unit)
         this.noticedChecker = function ()
         {
@@ -6570,6 +7421,8 @@ function theLegend()
         {
             this.arrangeNotices();
             this.noticedChecker();
+            this.perfumedChecker();
+            this.brainMaggotsChecker();
             this.satiationChecker();
             this.freezingChecker();
             this.hinderanceChecker();
@@ -6587,8 +7440,8 @@ function theLegend()
             this.indigestionChecker();
             this.tirelessnessChecker();
             this.fatigueChecker();
-
-            this.showNoticeName();
+            this.deprivationChecker();
+            this.insomniaChecker();
         };
 
         //MOVEMENT ANIMATION
@@ -6872,6 +7725,14 @@ function theLegend()
             {
                 outfit = allWorn[18];
             }
+            else if (this.outfitEquipped == "balgurMercArmour")
+            {
+                outfit = allWorn[19];
+            }
+            else if (this.outfitEquipped == "balgurCaptainArmour")
+            {
+                outfit = allWorn[20];
+            }
             else
             {
                 outfit = allWorn[0];
@@ -6888,37 +7749,49 @@ function theLegend()
                 gloves = allWorn[0];
             }
 
+            var necklace;
+
+            if (this.necklaceEquipped == "berulnToothNecklace")
+            {
+                necklace = allWorn[21];
+            }
+            else
+            {
+                necklace = allWorn[0];
+            }
+
             this.outfitType = outfit;
             this.glovesType = gloves;
+            this.necklaceType = necklace;
             //TODO add ring.
-            //TODO add pendant.
             //TODO add boots.
 
-            this.armour = outfit.protection + gloves.protection; //TODO add ring, pendant, and boot's stats to all of the stats as well.
-            this.magicalResistance = outfit.magicalProtection + gloves.magicalProtection;
-            this.warmthProtection = outfit.warmthRetention + gloves.warmthRetention;
-            this.heatResistance = outfit.thirstRetention + gloves.thirstRetention;
+            this.armour = outfit.protection + gloves.protection + necklace.protection; //TODO add ring, pendant, and boot's stats to all of the stats as well.
+            this.magicalResistance = outfit.magicalProtection + gloves.magicalProtection + necklace.magicalProtection;
+            this.warmthProtection = outfit.warmthRetention + gloves.warmthRetention + necklace.warmthRetention;
+            this.heatResistance = outfit.thirstRetention + gloves.thirstRetention + necklace.thirstRetention;
             //Main Stat Bonuses
-            this.AdStrength = outfit.strengthBonus + gloves.strengthBonus;
-            this.AdEndurance = outfit.enduranceBonus + gloves.enduranceBonus;
-            this.AdToughness = outfit.toughnessBonus + gloves.toughnessBonus;
-            this.AdIntelligence = outfit.intelligenceBonus + gloves.intelligenceBonus;
-            this.AdCharisma = outfit.charismaBonus + gloves.charismaBonus;
-            this.AdRanged = outfit.rangedBonus + gloves.rangedBonus;
-            this.AdConstitution = outfit.constitutionBonus + gloves.constitutionBonus;
-            this.AdStamina = outfit.staminaBonus + gloves.staminaBonus;
-            this.AdDexterity = outfit.dexterityBonus + gloves.dexterityBonus;
-            this.AdStealth = outfit.stealthBonus + gloves.stealthBonus;
+            this.AdStrength = outfit.strengthBonus + gloves.strengthBonus + necklace.strengthBonus;
+            this.AdEndurance = outfit.enduranceBonus + gloves.enduranceBonus + necklace.enduranceBonus;
+            this.AdToughness = outfit.toughnessBonus + gloves.toughnessBonus + necklace.toughnessBonus;
+            this.AdIntelligence = outfit.intelligenceBonus + gloves.intelligenceBonus + necklace.intelligenceBonus;
+            this.AdCharisma = outfit.charismaBonus + gloves.charismaBonus + necklace.charismaBonus;
+            this.AdRanged = outfit.rangedBonus + gloves.rangedBonus + necklace.rangedBonus;
+            this.AdConstitution = outfit.constitutionBonus + gloves.constitutionBonus + necklace.constitutionBonus;
+            this.AdStamina = outfit.staminaBonus + gloves.staminaBonus + necklace.staminaBonus;
+            this.AdDexterity = outfit.dexterityBonus + gloves.dexterityBonus + necklace.dexterityBonus;
+            this.AdStealth = outfit.stealthBonus + gloves.stealthBonus + necklace.stealthBonus;
             //Extra Stat Bonuses
-            this.hungerMAX = this.hungerMAX + outfit.hungerBonus + gloves.hungerBonus;
-            this.thirstMAX = this.thirstMAX + outfit.thirstBonus + gloves.thirstBonus;
-            this.warmthMAX = this.warmthMAX + outfit.warmthBonus + gloves.warmthBonus;
+            this.AdSleep = outfit.sleepBonus + gloves.sleepBonus + necklace.sleepBonus;
+            this.hungerMAX = this.hungerMAX + outfit.hungerBonus + gloves.hungerBonus + necklace.hungerBonus;
+            this.thirstMAX = this.thirstMAX + outfit.thirstBonus + gloves.thirstBonus + necklace.thirstBonus;
+            this.warmthMAX = this.warmthMAX + outfit.warmthBonus + gloves.warmthBonus + necklace.warmthBonus;
             //Magical Stat Bonuses
-            this.AdEminence = outfit.eminenceBonus + gloves.eminenceBonus;
-            this.AdWillpower = outfit.willpowerBonus + gloves.willpowerBonus;
-            this.AdKnowledge = outfit.knowledgeBonus + gloves.knowledgeBonus;
-            this.AdConcentration = outfit.concentrationBonus + gloves.concentrationBonus;
-            this.AdMemory = outfit.memoryBonus + gloves.memoryBonus;
+            this.AdEminence = outfit.eminenceBonus + gloves.eminenceBonus + necklace.eminenceBonus;
+            this.AdWillpower = outfit.willpowerBonus + gloves.willpowerBonus + necklace.willpowerBonus;
+            this.AdKnowledge = outfit.knowledgeBonus + gloves.knowledgeBonus + necklace.knowledgeBonus;
+            this.AdConcentration = outfit.concentrationBonus + gloves.concentrationBonus + necklace.concentrationBonus;
+            this.AdMemory = outfit.memoryBonus + gloves.memoryBonus + necklace.memoryBonus;
 
             if (this.getToughness() < outfit.toughnessRequirement)
             {
@@ -7022,6 +7895,24 @@ function theLegend()
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(verse, 3062, 1, 35, 22, -(1 / 2 * 49) + 0.5, -(1 / 2 * 30.8) + 2.25, 49, 30.8);
+                XXX.restore();
+            }
+            else if (this.outfitEquipped == "balgurMercArmour")
+            {
+                this.outfitZ = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - (Math.PI));
+                XXX.drawImage(poly, 48, 106, 40, 32, -(1 / 2 * 40 * 1.2) - 3.65, -(1 / 2 * 32 * 1.2) -18.25, 40 * 1.38, 32 * 1.73);
+                XXX.restore();
+            }
+            else if (this.outfitEquipped == "balgurCaptainArmour")
+            {
+                this.outfitZ = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - (Math.PI));
+                XXX.drawImage(poly, 50, 140, 36, 36, -(1 / 2 * 36 * 1.2) + 5, -(1 / 2 * 36 * 1.2) -9.5, 36 * 0.9, 36 * 1.45);
                 XXX.restore();
             }
             else if (this.outfitEquipped == "grushFurClothing")
@@ -7370,6 +8261,70 @@ function theLegend()
                                 this.will -= secondarySpells[i].cost;
                                 this.magicalExperience += secondarySpells[i].EXP;
                                 magicList.push(new Magic({ID: "repel"}, true));
+                                this.secondaryCastingCooldown = new Date().getTime();
+                            }
+                        }
+                            //Chasing Lights
+                        if (secondarySpells[i].ID == "chasingLights")
+                        {
+                            if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                            {
+                                this.will -= secondarySpells[i].cost;
+                                this.magicalExperience += secondarySpells[i].EXP;
+
+                                magicList.push(new Magic({ID: "chasingLights"}, true));
+
+                                if (this.getConcentration() > 2)
+                                {
+                                    magicList.push(new Magic({ID: "chasingLights"}, true));
+                                }
+
+                                if (this.getConcentration() > 4)
+                                {
+                                    magicList.push(new Magic({ID: "chasingLights"}, true));
+                                }
+
+                                if (this.getConcentration() > 7)
+                                {
+                                    magicList.push(new Magic({ID: "chasingLights"}, true));
+                                }
+
+                                if (this.getConcentration() > 10)
+                                {
+                                    magicList.push(new Magic({ID: "chasingLights"}, true));
+                                }
+
+                                if (this.getConcentration() > 15)
+                                {
+                                    magicList.push(new Magic({ID: "chasingLights"}, true));
+                                }
+
+                                if (this.getConcentration() > 20)
+                                {
+                                    magicList.push(new Magic({ID: "chasingLights"}, true));
+                                    magicList.push(new Magic({ID: "chasingLights"}, true));
+                                }
+
+                                if (this.getConcentration() > 30)
+                                {
+                                    magicList.push(new Magic({ID: "chasingLights"}, true));
+                                    magicList.push(new Magic({ID: "chasingLights"}, true));
+                                }
+
+                                if (this.getConcentration() > 40)
+                                {
+                                    magicList.push(new Magic({ID: "chasingLights"}, true));
+                                    magicList.push(new Magic({ID: "chasingLights"}, true));
+                                }
+
+                                if (this.getConcentration() > 50)
+                                {
+                                    magicList.push(new Magic({ID: "chasingLights"}, true));
+                                    magicList.push(new Magic({ID: "chasingLights"}, true));
+                                    magicList.push(new Magic({ID: "chasingLights"}, true));
+                                }
+
+
                                 this.secondaryCastingCooldown = new Date().getTime();
                             }
                         }
@@ -8306,6 +9261,61 @@ function theLegend()
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
                     XXX.drawImage(polyPNG, 520, 59, 105, 69, -28, -43, 72, 47);
+                    XXX.restore();
+                }
+            }
+            //LONG-SPIKED MORNING STAR
+            if (this.weaponEquipped == "longSpikedMorningStar")
+            {
+                this.stageEngine(7, 0.125, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+                //ATTACK ANIMATION
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poly, 207, 143, 55, 58, -34, -39, 55 * 1.15, 58 * 1.15);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poly, 260, 145, 55, 58, -30, -42, 55 * 1.15, 58 * 1.15);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poly, 307, 147, 55, 58, -31, -40, 55 * 1.15, 58 * 1.15);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poly, 356, 147, 55, 58, -33, -39, 55 * 1.15, 58 * 1.15);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poly, 400, 142, 55, 58, -30, -47, 55 * 1.15, 58 * 1.15);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poly, 452, 141, 55, 58, -31, -51, 55 * 1.15, 58 * 1.15);
                     XXX.restore();
                 }
             }
@@ -10851,6 +11861,14 @@ function theLegend()
                 this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.1/5 * Math.PI) * (this.mySize + 22);
                 this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.1/5 * Math.PI) * (this.mySize + 22);
             }
+            else if (this.weaponEquipped == "longSpikedMorningStar")
+            {
+                this.weapon = allWeapons[40];
+
+                //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+                this.bubbleOfDamageX = X - Math.cos(this.rotation - 1/2 * Math.PI) * (this.mySize + 31);
+                this.bubbleOfDamageY = Y - Math.sin(this.rotation - 1/2 * Math.PI) * (this.mySize + 31);
+            }
         };
 
         //BLOCKING FUNCTION
@@ -10894,12 +11912,12 @@ function theLegend()
                         {
                             if (this.powerAttack == false)
                             {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour) + this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance));
                                 console.log("You Dealt " + Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + " damage!" + " ");
                             }
                             else
                             {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5)) + this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance));
                                 console.log("Power Attack: " + Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5)) + this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) + " Damage!");
                             }
 
@@ -11055,7 +12073,7 @@ function theLegend()
             //TODO add a similar routine for the structure list when it is added...
 
             //When an AI Unit is speaking you are forced to be polite and not move while you listen to them.
-            if (this.speechMovementInhibitor == true)
+            if (this.speechMovementInhibitor == true && playersTurnToMove == false)
             {
                 return true;
             }
@@ -11190,7 +12208,7 @@ function theLegend()
         this.buildUIBar = function ()
         {
             XXX.beginPath();
-            if (mouseY < 526 && lowBar != "skills" && lowBar != "shop" && lowBar != "bank" && lowBar != "crafting" && lowBar != "spellbook")
+            if (mouseY < 526 && lowBar != "skills" && lowBar != "shop" && lowBar != "bank" && lowBar != "crafting" && lowBar != "spellbook" && lowBar != "beastJournal" && lowBar != "questLog")
             {
                 XXX.fillStyle = "rgba(211, 211, 211, 0.1)";
                 XXX.strokeStyle = "rgba(211, 211, 211, 0.1)"
@@ -11207,7 +12225,7 @@ function theLegend()
         //UI Buttons
         this.uiButton = function ()
         {
-            if (mouseY > 526 || lowBar == "skills" || lowBar == "shop" || lowBar == "bank" || lowBar == "crafting" || lowBar == "spellbook")
+            if (mouseY > 526 || lowBar == "skills" || lowBar == "shop" || lowBar == "bank" || lowBar == "crafting" || lowBar == "spellbook" || lowBar == "beastJournal" || lowBar == "questLog")
             {
                 //inventory button
                 XXX.beginPath();
@@ -11249,15 +12267,35 @@ function theLegend()
                 XXX.stroke();
                 XXX.drawImage(polypol, 512, 514, 36, 49, 215, 528, 20, 20);
 
+                //Beast Journal menu button
+                XXX.beginPath();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 1;
+                XXX.fillStyle = "#BBCC96";
+                XXX.rect(236, 527, 20, 22);
+                XXX.fill();
+                XXX.stroke();
+                XXX.drawImage(polypol, 1978, 11, 18, 23, 237, 529, 16.4, 18.4);
+
+                //Quest Log menu button
+                XXX.beginPath();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 1;
+                XXX.fillStyle = "#D8ADE7";
+                XXX.rect(257, 527, 20, 22);
+                XXX.fill();
+                XXX.stroke();
+                XXX.drawImage(horde1, 364, 53, 119, 92, 258, 528, 20, 20);
+
                 //saving menu button
                 XXX.beginPath();
                 XXX.strokeStyle = "black";
                 XXX.lineWidth = 1;
                 XXX.fillStyle = "white";
-                XXX.rect(236, 527, 20, 22);
+                XXX.rect(278, 527, 20, 22);
                 XXX.fill();
                 XXX.stroke();
-                XXX.drawImage(polyPNG, 663, 1, 31, 24, 235, 530, 21, 15.6);
+                XXX.drawImage(polyPNG, 663, 1, 31, 24, 277, 530, 21, 15.6);
             }
         };
 
@@ -11290,7 +12328,7 @@ function theLegend()
                 gameState = "active";
             }
 
-            //When the save button is clicked the lowbar and screen shows the player the spellBook.
+            //When the spellbook button is clicked the lowbar and screen shows the player the spellBook.
             if (mouseX > 194 && mouseX < 214 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "spellbook")
             {
                 lowBar = "spellbook";
@@ -11302,7 +12340,7 @@ function theLegend()
                 gameState = "active";
             }
 
-            //When the save button is clicked the lowbar shows the player the four saving slots to choose from.
+            //When the crafting button is clicked it opens the handcrafting menu.
             if (mouseX > 215 && mouseX < 236 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "crafting" || mouseX > 215 && mouseX < 236 && mouseY < 549 && mouseY > 527 && clickReleased == true && crafting != "handcrafted")
             {
                 player.craftPosition = 0;
@@ -11317,8 +12355,37 @@ function theLegend()
                 gameState = "active";
             }
 
+            //When the beastJournal button is clicked it shows the player information about creatures they have logged.
+            if (mouseX > 236 && mouseX < 257 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "beastJournal")
+            {
+                lowBar = "beastJournal";
+                showBeastStat = -1;
+                player.inventoryPosition = 0;
+                invScroll = 0;
+                gameState = "paused";
+            }
+            else if (mouseX > 236 && mouseX < 257 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "beastJournal")
+            {
+                lowBar = "information";
+                player.inventoryPosition = 0;
+                invScroll = 0;
+                gameState = "active";
+            }
+
             //When the save button is clicked the lowbar shows the player the four saving slots to choose from.
-            if (mouseX > 236 && mouseX < 257 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "save")
+            if (mouseX > 257 && mouseX < 278 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "questLog")
+            {
+                lowBar = "questLog";
+                gameState = "paused";
+            }
+            else if (mouseX > 257 && mouseX < 278 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "questLog")
+            {
+                lowBar = "information";
+                gameState = "active";
+            }
+
+            //When the save button is clicked the lowbar shows the player the four saving slots to choose from.
+            if (mouseX > 278 && mouseX < 299 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "save")
             {
                 lowBar = "save";
                 if (gameState == "paused")
@@ -11326,7 +12393,7 @@ function theLegend()
                     gameState = "active";
                 }
             }
-            else if (mouseX > 236 && mouseX < 257 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "save")
+            else if (mouseX > 278 && mouseX < 299 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "save")
             {
                 lowBar = "information";
                 gameState = "active";
@@ -11360,11 +12427,23 @@ function theLegend()
                 XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
                 XXX.fillRect(215, 527, 20, 23);
             }
-            else if (lowBar == "save")
+            else if (lowBar == "beastJournal")
             {
                 XXX.beginPath();
                 XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
                 XXX.fillRect(236, 527, 20, 23);
+            }
+            else if (lowBar == "questLog")
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
+                XXX.fillRect(257, 527, 20, 23);
+            }
+            else if (lowBar == "save")
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
+                XXX.fillRect(278, 527, 20, 23);
             }
         };
 
@@ -11850,20 +12929,6 @@ function theLegend()
 
                 this.dialogueScrolling = function()
                 {
-                    var playersTurnToSpeak = true;
-                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
-                    {
-                        if (conversationID[0] != "none")
-                        {
-                            if (conversationID[0] == ArtificialIntelligenceAccess[i].ID)
-                            {
-                                if (ArtificialIntelligenceAccess[i].talking == true)
-                                {
-                                    playersTurnToSpeak = false;
-                                }
-                            }
-                        }
-                    }
                     if (playersTurnToSpeak)
                     {
                         if (this.dialogueChoiceMade == false && this.dialogueOptions.length >= 1)
@@ -12475,6 +13540,507 @@ function theLegend()
                 this.showCrafting();
                 this.craftScrolling();
                 this.craftingInteract();
+            }
+        };
+
+        //BEAST JOURNAL
+        this.displayBeastJournal = function()
+        {
+            if (lowBar == "beastJournal")
+            {
+                //MAIN BACKGROUND
+                XXX.beginPath();
+                XXX.fillStyle = "lightGrey";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 1;
+                XXX.rect(1, 1, 1398, 526);
+                XXX.fill();
+                XXX.stroke();
+
+                //Exit bank Button
+                //the button part
+                if (mouseX > 2 && mouseX < 2 + 148 && mouseY > 529 && mouseY < 529 + 20)
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "gold";
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 3;
+                    XXX.rect(2, 529, 148, 20);
+                    XXX.fill();
+                    XXX.stroke();
+
+                    if (clicked == true)
+                    {
+                        clicked = false;
+                        lowBar = "information";
+                        gameState = "active";
+                    }
+                }
+                else
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "E8E8E8";
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 3;
+                    XXX.rect(2, 529, 148, 20);
+                    XXX.fill();
+                    XXX.stroke();
+                }
+                //the text part
+                XXX.font = "bold 14px Book Antiqua";
+                XXX.fillStyle = "black";
+                XXX.textAlign = "center";
+                XXX.fillText("Exit Beast Journal", 75, 543);
+
+                //DISPLAY PLAYER'S INVENTORY
+                this.showBeastBar = function()
+                {
+                    // each inventory slot is a list with three things in it... [Item, quantity]
+                    for (var i = 0; i < beastJournal.length; i++)
+                    {
+
+                        LXX.beginPath();
+                        LXX.lineWidth = 2;
+                        LXX.fillStyle ="rgba(222, 184, 135, 0.15)";
+                        LXX.strokeStyle ="black";
+                        LXX.rect(invScroll + 20.5 + (79 * i), 0.5, 79, 79);
+                        LXX.fill();
+                        LXX.stroke();
+                        LXX.save();
+                        LXX.translate(invScroll + 20.5 + (79 * i) + (1/2 * 79), 1/2 * 79);
+                        //sourcing image from list: beastJournal -- each element in which is an object.
+                        //              IMG                         Start X                    Start Y                  Width                      Height                        Centering X            +  Adjust X                            Centering Y          +  Adjust Y                       SizeX                    SizeY
+                        LXX.drawImage(beastJournal[i].image[0], beastJournal[i].image[1], beastJournal[i].image[2], beastJournal[i].image[3], beastJournal[i].image[4], -1/2 * beastJournal[i].image[7] + beastJournal[i].image[5], -1/2 * beastJournal[i].image[8] + beastJournal[i].image[6], beastJournal[i].image[7], beastJournal[i].image[8])
+                        LXX.restore();
+                    }
+
+                    //left scroll arrow
+                    LXX.beginPath();
+                    LXX.lineWidth = 1;
+                    LXX.fillStyle ="darkGrey";
+                    LXX.strokeStyle ="black";
+                    LXX.rect(0.5, 0.5, 20, 79);
+                    LXX.fill();
+                    LXX.stroke();
+                    LXX.drawImage(polyPNG, 1, 735, 11, 30, 4, 8, 12, 64);
+
+                    //right scroll arrow
+                    LXX.beginPath();
+                    LXX.lineWidth=1;
+                    LXX.fillStyle ="darkGrey";
+                    LXX.strokeStyle ="black";
+                    LXX.rect(1379.5, 0.5, 20, 79);
+                    LXX.fill();
+                    LXX.stroke();
+                    LXX.drawImage(polyPNG, 11, 735, 11, 30, 1384, 8, 12, 64);
+                };
+
+                //Show Beast Stats
+                this.showBeastStats = function()
+                {
+                    var listOfInvX1Coords = []; //this is the list of the X coordinates for the Inventory Slots.
+
+                    for (var i = -this.inventoryPosition; i < Inventory.length - this.inventoryPosition; i++)
+                    {
+                        listOfInvX1Coords.push(20.5 + (79 * i));
+                    }
+
+
+                    var listOfInvX2Coords = []; //This is the same as the X1 coords except for with an added 79 to each.
+
+                    for (var i = -this.inventoryPosition; i < Inventory.length - this.inventoryPosition; i++)
+                    {
+                        listOfInvX2Coords.push(20.5 + (79 * i) + 79);
+                    }
+
+
+                    var invY1Coord = 0.5; //This doesn't change.
+
+
+                    var invY2Coord = 79.5; //this is just Y + 79
+
+                    for (var i = beastJournal.length - 1; i > -1; i--)
+                    {
+                        if (lMouseX >= 21 && lMouseX <= 1329) //This checks if the mouse is between the scroll buttons rather than on them.
+                        {
+                            if (clickReleased == true && lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord && this.REQB == false) //When you click on a beast it shows you its information.
+                            {
+                                showBeastStat = i;
+                            }
+                        }
+                    }
+
+                    if (showBeastStat != -1) //Show the stats of the clicked on beast in the list
+                    {
+                        //The Name of the Beast
+                        XXX.font = "bold 42px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "center"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText(beastJournal[showBeastStat].name, 1/2 * CCC.width, 50);
+
+                        for (var i = 0; i < beastJournal[showBeastStat].description.length; i++)
+                        {
+                            //The description of the Beast
+                            XXX.font = "bold 20px Book Antiqua";
+                            XXX.fillStyle = "black";
+                            XXX.textAlign = "center"; //this is to reset it to the standard for the rest to come.
+                            XXX.fillText(beastJournal[showBeastStat].description[i], 1/2 * CCC.width, 85 + (i * 25));
+                        }
+
+                        //FIRST ROW
+                        //The description of the Beast
+                        XXX.font = "bold 20px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("Health: " + beastJournal[showBeastStat].health, 4, 25 + ( 85 + (beastJournal[showBeastStat].description.length * 25)));
+
+                        //The description of the Beast
+                        XXX.font = "bold 20px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("Armour: " + beastJournal[showBeastStat].armour, 224, 25 + ( 85 + (beastJournal[showBeastStat].description.length * 25)));
+
+                        //The description of the Beast
+                        XXX.font = "bold 20px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("Damage: " + beastJournal[showBeastStat].damage, 444, 25 + ( 85 + (beastJournal[showBeastStat].description.length * 25)));
+
+                        //The description of the Beast
+                        XXX.font = "bold 20px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("Armour Negation: " + beastJournal[showBeastStat].negate, 664, 25 + ( 85 + (beastJournal[showBeastStat].description.length * 25)));
+
+                        //The description of the Beast
+                        XXX.font = "bold 20px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("Ability: " + beastJournal[showBeastStat].ability, 944, 25 + ( 85 + (beastJournal[showBeastStat].description.length * 25)));
+
+                        //The description of the Beast
+                        XXX.font = "bold 20px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("Fire-Proofing: " + beastJournal[showBeastStat].fireProof, 1204, 25 + ( 85 + (beastJournal[showBeastStat].description.length * 25)));
+
+                        //SECOND ROW
+                        //The description of the Beast
+                        XXX.font = "bold 20px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("Habitat: " + beastJournal[showBeastStat].habitat, 4, 100 + ( 85 + (beastJournal[showBeastStat].description.length * 25)));
+
+                        //The description of the Beast
+                        XXX.font = "bold 20px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("Variety: " + beastJournal[showBeastStat].alpha, 364, 100 + ( 85 + (beastJournal[showBeastStat].description.length * 25)));
+
+                        //The description of the Beast
+                        XXX.font = "bold 20px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("Longest Range of Sight: " + beastJournal[showBeastStat].sight, 624, 100 + ( 85 + (beastJournal[showBeastStat].description.length * 25)));
+
+                        //The description of the Beast
+                        XXX.font = "bold 20px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("Magic-Proofing: " + beastJournal[showBeastStat].magicProof, 944, 100 + ( 85 + (beastJournal[showBeastStat].description.length * 25)));
+
+                        //The description of the Beast
+                        XXX.font = "bold 20px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("Vital Area Radius: " + beastJournal[showBeastStat].size, 1174, 100 + ( 85 + (beastJournal[showBeastStat].description.length * 25)));
+
+                        //THIRD ROW
+                        //The description of the Beast
+                        XXX.font = "bold 20px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("Movement Speed: " + beastJournal[showBeastStat].speed, 4, 175 + ( 85 + (beastJournal[showBeastStat].description.length * 25)));
+
+                        //The description of the Beast
+                        XXX.font = "bold 20px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("Rotation Speed: " + beastJournal[showBeastStat].rotation, 304, 175 + ( 85 + (beastJournal[showBeastStat].description.length * 25)));
+
+                        //The description of the Beast
+                        XXX.font = "bold 20px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("Attack Rate: " + beastJournal[showBeastStat].rate, 604, 175 + ( 85 + (beastJournal[showBeastStat].description.length * 25)));
+
+                        //The description of the Beast
+                        XXX.font = "bold 20px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("Experience Earned For Killing: " + beastJournal[showBeastStat].experience, 944, 175 + ( 85 + (beastJournal[showBeastStat].description.length * 25)));
+                    }
+                };
+
+                this.beastBarScrolling = function()
+                {
+                    //When the left inventory scroll is clicked scroll one to the left if there is one to the left otherwise don't.
+                    if (this.inventoryPosition < beastJournal.length && lMouseX > 1379.5 && lMouseX < 1399.5 && lMouseY > 0.5 && lMouseY < 80 && clickReleased == true) //this (20.5, 0.5, 79, 79) is the position the first in the list will be in if the left scroll will not work.
+                    {
+                        this.timeSinceLastScrolled = new Date().getTime();
+                        invScroll -= 79;
+                        this.inventoryPosition += 1;
+                    }
+
+                    //When the right inventory scroll is clicked scroll one to the right if there is one to the right otherwise don't.
+                    if (this.inventoryPosition > 0 && lMouseX > 0.5 && lMouseX < 20.5 && lMouseY > 0.5 && lMouseY < 80 && clickReleased == true)
+                    {
+                        this.timeSinceLastScrolled = new Date().getTime();
+                        invScroll += 79;
+                        this.inventoryPosition -= 1;
+                    }
+                };
+
+                this.beastBarScrolling();
+                this.showBeastBar();
+                this.showBeastStats();
+            }
+        };
+
+        //QUEST LOG
+        this.displayQuestLog = function()
+        {
+            if (lowBar == "questLog")
+            {
+                //MAIN BACKGROUND
+                XXX.beginPath();
+                XXX.fillStyle = "lightGrey";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 1;
+                XXX.rect(1, 1, 1398, 526);
+                XXX.fill();
+                XXX.stroke();
+
+                //Fame Box
+                if (mouseX > 2 && mouseX < 2 + 148 && mouseY > 529 && mouseY < 529 + 20)
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "white";
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 3;
+                    XXX.rect(2, 529, 148, 20);
+                    XXX.fill();
+                    XXX.stroke();
+
+                    //the text part
+                    XXX.font = "bold 14px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center";
+                    XXX.fillText(player.fame, 75, 543);
+                }
+                else
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "E8E8E8";
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 3;
+                    XXX.rect(2, 529, 148, 20);
+                    XXX.fill();
+                    XXX.stroke();
+
+                    //the text part
+                    XXX.font = "bold 14px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Fame", 75, 543);
+                }
+
+                //low bar controls which quests you see.
+                if (lMouseY > 0 && lMouseY < 80)
+                {
+                    if (clicked)
+                    {
+                        clicked = false;
+
+                        questScroll = 0;
+
+                        if (quests.questMenu == "active")
+                        {
+                            quests.questMenu = "complete";
+                        }
+                        else if (quests.questMenu == "complete")
+                        {
+                            quests.questMenu = "active";
+                        }
+                    }
+                }
+
+                if (quests.questMenu == "active")
+                {
+                    //the text
+                    LXX.font = "bold 46px Book Antiqua";
+                    LXX.fillStyle = "black";
+                    LXX.textAlign = "center";
+                    LXX.fillText("Active Quests ( " + quests.activeQuests.length + " )", 1398 / 2, 55);
+                }
+                else if (quests.questMenu == "complete")
+                {
+                    //the text
+                    LXX.font = "bold 46px Book Antiqua";
+                    LXX.fillStyle = "black";
+                    LXX.textAlign = "center";
+                    LXX.fillText("Completed Quests ( " + quests.completeQuests.length + " )", 1398 / 2, 55);
+                }
+
+                this.questScrolling = function()
+                {
+                    //scroll arrows /\  \/
+                    XXX.save();
+                    XXX.translate(700, 11);
+                    XXX.rotate(1/2 * Math.PI);
+                    //XXX.drawImage(polyPNG, 1, 735, 11, 30, 0 - 1/2 * 12 * 2, 0 - 1/2 * 64 * 2, 12 * 2, 64 * 2);
+                    XXX.drawImage(polyPNG, 1, 735, 11, 30, 0 - 1/2 * 12, 0 - 1/2 * 64, 12, 64);
+                    XXX.restore();
+
+                    XXX.save();
+                    XXX.translate(700, 517);
+                    XXX.rotate(- 1/2 * Math.PI);
+                    //XXX.drawImage(polyPNG, 1, 735, 11, 30, 0 - 1/2 * 12  * 2, 0 - 1/2 * 64  * 2, 12 * 2, 64 * 2);
+                    XXX.drawImage(polyPNG, 1, 735, 11, 30, 0 - 1/2 * 12, 0 - 1/2 * 64, 12, 64);
+                    XXX.restore();
+
+                    var currentQuestMenuLength;
+                    if (quests.questMenu == "active")
+                    {
+                        currentQuestMenuLength = quests.activeQuests.length;
+                    }
+                    else if (quests.questMenu == "complete")
+                    {
+                        currentQuestMenuLength = quests.completeQuests.length;
+                    }
+
+                    if (mouseX > (700 - 64) && mouseX < (700 + 64) && mouseY > 13 - 12 && mouseY < 13 + 12 && clicked && questScroll > 0)
+                    {
+                        clicked = false;
+                        questScroll -= 1;
+                    }
+                    else if (mouseX > (700 - 64) && mouseX < (700 + 64) && mouseY > 515 - 12 && mouseY < 515 + 12 && clicked && questScroll + 12 < currentQuestMenuLength)
+                    {
+                        clicked = false;
+                        questScroll += 1;
+                    }
+                };
+
+                this.buildQuestList = function()
+                {
+                    if (quests.questMenu == "active")
+                    {
+                        for (var i = 0; i < quests.activeQuests.length; i ++)
+                        {
+                            if ((i - questScroll) >= 0 && (i - questScroll) <= 11)
+                            {
+                                if (mouseY > 50 + (36 * i) - (questScroll * 36) && mouseY < 50 + (36 * i) - (questScroll * 36) + 36)
+                                {
+                                    XXX.beginPath();
+                                    XXX.fillStyle = "gold";
+                                    XXX.strokeStyle = "black";
+                                    XXX.lineWidth = 2;
+                                    XXX.rect(1, 50 + (36 * i) - (questScroll * 36), 1398, 36);
+                                    XXX.fill();
+                                    XXX.stroke();
+
+                                    //the text
+                                    XXX.font = "bold 18px Book Antiqua";
+                                    XXX.fillStyle = "black";
+                                    XXX.textAlign = "center";
+                                    XXX.fillText(quests.activeQuests[i].description, 1398 / 2, 50 + (36 * i) - (questScroll * 36) + 23.5);
+                                }
+                                else
+                                {
+                                    XXX.beginPath();
+                                    XXX.fillStyle = "white";
+                                    XXX.strokeStyle = "black";
+                                    XXX.lineWidth = 2;
+                                    XXX.rect(1, 50 + (36 * i) - (questScroll * 36), 1398, 36);
+                                    XXX.fill();
+                                    XXX.stroke();
+
+                                    //the text
+                                    XXX.font = "bold 26px Book Antiqua";
+                                    XXX.fillStyle = "black";
+                                    XXX.textAlign = "center";
+                                    XXX.fillText(quests.activeQuests[i].name, 1398 / 2, 50 + (36 * i) - (questScroll * 36) + 27);
+                                }
+                            }
+                        }
+                    }
+                    else if (quests.questMenu == "complete")
+                    {
+                        for (var i = 0; i < quests.completeQuests.length; i ++)
+                        {
+                            if ((i - questScroll) >= 0 && (i - questScroll) <= 11)
+                            {
+                                if (mouseY > 50 + (36 * i) - (questScroll * 36) && mouseY < 50 + (36 * i) - (questScroll * 36) + 36)
+                                {
+                                    XXX.beginPath();
+                                    XXX.fillStyle = "gold";
+                                    XXX.strokeStyle = "black";
+                                    XXX.lineWidth = 2;
+                                    XXX.rect(1, 50 + (36 * i) - (questScroll * 36), 1398, 36);
+                                    XXX.fill();
+                                    XXX.stroke();
+
+                                    //the text
+                                    XXX.font = "bold 18px Book Antiqua";
+                                    XXX.fillStyle = "black";
+                                    XXX.textAlign = "center";
+                                    XXX.fillText(quests.completeQuests[i].description, 1398 / 2, 50 + (36 * i) - (questScroll * 36) + 23.5);
+                                }
+                                else
+                                {
+                                    XXX.beginPath();
+                                    XXX.fillStyle = "white";
+                                    XXX.strokeStyle = "black";
+                                    XXX.lineWidth = 2;
+                                    XXX.rect(1, 50 + (36 * i) - (questScroll * 36), 1398, 36);
+                                    XXX.fill();
+                                    XXX.stroke();
+
+                                    //the text
+                                    XXX.font = "bold 26px Book Antiqua";
+                                    XXX.fillStyle = "black";
+                                    XXX.textAlign = "center";
+                                    XXX.fillText(quests.completeQuests[i].name, 1398 / 2, 50 + (36 * i) - (questScroll * 36) + 27);
+                                }
+                            }
+                        }
+                    }
+                };
+
+                this.questCompleter = function() //if there is a quest of the same name in the complete quests lists as in the active list it will delete the one in the active list.
+                {
+                    var hit = -1;
+                    for (var i = 0; i < quests.completeQuests.length; i++)
+                    {
+                        for (var j = 0; j < quests.activeQuests.length; j++)
+                        {
+                            if (quests.activeQuests[j].name == quests.completeQuests[i].name)
+                            {
+                                hit = j;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (hit >= 0)
+                    {
+                        quests.activeQuests.splice(hit, 1);
+                    }
+                };
+
+                this.questCompleter();
+                this.questScrolling();
+                this.buildQuestList();
             }
         };
 
@@ -16085,6 +17651,7 @@ function theLegend()
                             this.will = Math.min(this.willMAX, this.will + Inventory[i][0].replenish);
                             this.warmth = Math.min(this.warmthMAX, this.warmth + Inventory[i][0].warmth);
                             this.thirst = Math.min(this.thirstMAX, this.thirst + Inventory[i][0].thirst);
+                            this.sleep = Math.min(this.sleepMAX, this.sleep + Inventory[i][0].wake);
                             this.inebriation += Inventory[i][0].alcohol;
 
                             //some items when used will give you an item when they are used.
@@ -16247,6 +17814,12 @@ function theLegend()
                                     this.energizeTime = 100;
                                     this.energizeI = true;
                                 }
+                                else if (Inventory[i][0].ability == "ogardPerfume") //This makes you smell good therefore enchanting those you interact with to like you more and give you better deals... that is if you are not a man.
+                                {
+                                    this.perfume = "ogard";
+                                    this.perfumeTime = 540;
+                                    this.perfumeStoreTime = new Date().getTime();
+                                }
                                 else if (Inventory[i][0].ability == "speedI") //This is for enhancing dexterity.
                                 {
                                     this.dexTime = new Date().getTime();
@@ -16286,8 +17859,9 @@ function theLegend()
                                 }
                                 else if (Inventory[i][0].ability == "cleansing")
                                 {
-                                    //takes away satiation
+                                    //takes away satiation and quenched
                                     this.fedClock = 0;
+                                    this.wateredClock = 0;
 
                                     //takes away up to poisonIII
                                     this.poisonI = false;
@@ -16301,8 +17875,13 @@ function theLegend()
                                     }
                                     this.fleshMites = false;
                                     this.gutWorms = false;
+                                    this.brainMaggots = false;
                                     this.gojiiTimer = 0;
                                     this.gojiiPoisoned = false;
+                                    this.insomniaTime = 0;
+                                    this.insomniaStoreTime = 0;
+                                    this.insomniated = false; //this is a flag that lets thing give the player permanent insomnia until this is switched off by something.
+
 
                                     //food poison and reduced hunger.
                                     if (this.timeSinceBadFoodEaten == 0)
@@ -16535,11 +18114,11 @@ function theLegend()
                                     Inventory[i][0].equipped = true;
                                     this.isArmourEquipped = true;
                                     this.outfitEquipped = Inventory[i][0].type;
-                                    console.log(Inventory[i][0].type + " :: " + this.armour);
+                                    //console.log(Inventory[i][0].type + " :: " + this.armour);
                                 }
                                 else
                                 {
-                                    console.log(Inventory[i][0].type + " :: " + this.armour);
+                                    //console.log(Inventory[i][0].type + " :: " + this.armour);
                                     //unequipping armour
                                     if (Inventory[i][0].equipped == true)
                                     {
@@ -16569,7 +18148,27 @@ function theLegend()
                                     }
                                 }
                             }
-                            //TODO add equipping for other accessories such as pendants, rings, and shoes/boots.
+                            else if (Inventory[i][0].subUtility == "necklace")
+                            {
+                                //equpping necklace
+                                if (this.isNecklaceEquipped == false)
+                                {
+                                    Inventory[i][0].equipped = true;
+                                    this.isNecklaceEquipped = true;
+                                    this.necklaceEquipped = Inventory[i][0].type;
+                                }
+                                else
+                                {
+                                    //unequipping necklace
+                                    if (Inventory[i][0].equipped == true)
+                                    {
+                                        Inventory[i][0].equipped = false;
+                                        this.isNecklaceEquipped = false;
+                                        this.necklaceEquipped = "none";
+                                    }
+                                }
+                            }
+                            //TODO add equipping for other accessories such as rings, and shoes/boots.
                         }
                         else
                         {
@@ -16589,8 +18188,118 @@ function theLegend()
 
                                 if (useLight)
                                 {
+                                    //Light instruments give light effect to player when used.
+                                    if (Inventory[i][0].type == "oilLantern" || Inventory[i][0].type == "oilLantern4" || Inventory[i][0].type == "oilLantern3" || Inventory[i][0].type == "oilLantern2" || Inventory[i][0].type == "oilLantern1")
+                                    {
+                                        if (shiftKey)
+                                        {
+                                            useLight = false;
+                                            if (Inventory[i][0].type == "oilLantern")
+                                            {
+                                                scenicList.push(new Scenery("oilLantern", X, Y, Math.random() * Math.PI, false, [1800, 5]));
+                                            }
+                                            else if (Inventory[i][0].type == "oilLantern4")
+                                            {
+                                                scenicList.push(new Scenery("oilLantern", X, Y, Math.random() * Math.PI, false, [1800, 4]));
+                                            }
+                                            else if (Inventory[i][0].type == "oilLantern3")
+                                            {
+                                                scenicList.push(new Scenery("oilLantern", X, Y, Math.random() * Math.PI, false, [1800, 3]));
+                                            }
+                                            else if (Inventory[i][0].type == "oilLantern2")
+                                            {
+                                                scenicList.push(new Scenery("oilLantern", X, Y, Math.random() * Math.PI, false, [1800, 2]));
+                                            }
+                                            else
+                                            {
+                                                scenicList.push(new Scenery("oilLantern", X, Y, Math.random() * Math.PI, false, [1800, 1]));
+                                            }
+                                        }
+                                        else
+                                        {
+                                            player.timeSinceLightSourceFuelUsed = new Date().getTime();
+                                            player.lightSourceDuration = 1800;
+                                            player.lightSource = "oilLantern";
+                                        }
+                                    }
+                                    else if (Inventory[i][0].type == "oilLamp" || Inventory[i][0].type == "oilLamp2" || Inventory[i][0].type == "oilLamp1")
+                                    {
+                                        if (shiftKey)
+                                        {
+                                            useLight = false;
+                                            if (Inventory[i][0].type == "oilLamp")
+                                            {
+                                                scenicList.push(new Scenery("oilLamp", X, Y, Math.random() * Math.PI, false, [1200, 3]));
+                                            }
+                                            else if (Inventory[i][0].type == "oilLamp2")
+                                            {
+                                                scenicList.push(new Scenery("oilLamp", X, Y, Math.random() * Math.PI, false, [1200, 2]));
+                                            }
+                                            else
+                                            {
+                                                scenicList.push(new Scenery("oilLamp", X, Y, Math.random() * Math.PI, false, [1200, 1]));
+                                            }
+                                        }
+                                        else
+                                        {
+                                            player.timeSinceLightSourceFuelUsed = new Date().getTime();
+                                            player.lightSourceDuration = 1200;
+                                            player.lightSource = "oilLamp";
+                                        }
+                                    }
+                                    else if (Inventory[i][0].type == "candle" || Inventory[i][0].type == "candle2" || Inventory[i][0].type == "candle1")
+                                    {
+                                        if (shiftKey)
+                                        {
+                                            useLight = false;
+                                            if (Inventory[i][0].type == "candle")
+                                            {
+                                                scenicList.push(new Scenery("candle", X, Y, Math.random() * Math.PI, false, [180, 3]));
+                                            }
+                                            else if (Inventory[i][0].type == "candle2")
+                                            {
+                                                scenicList.push(new Scenery("candle", X, Y, Math.random() * Math.PI, false, [180, 2]));
+                                            }
+                                            else
+                                            {
+                                                scenicList.push(new Scenery("candle", X, Y, Math.random() * Math.PI, false, [180, 1]));
+                                            }
+                                        }
+                                        else
+                                        {
+                                            player.timeSinceLightSourceFuelUsed = new Date().getTime();
+                                            player.lightSourceDuration = 180;
+                                            player.lightSource = "candle";
+                                        }
+                                    }
+                                    else if (Inventory[i][0].type == "jackOLantern" || Inventory[i][0].type == "jackOLantern2" || Inventory[i][0].type == "jackOLantern1")
+                                    {
+                                        if (shiftKey)
+                                        {
+                                            useLight = false;
+                                            if (Inventory[i][0].type == "jackOLantern")
+                                            {
+                                                scenicList.push(new Scenery("jackOLantern", X, Y, Math.random() * Math.PI, false, [540, 3]));
+                                            }
+                                            else if (Inventory[i][0].type == "jackOLantern2")
+                                            {
+                                                scenicList.push(new Scenery("jackOLantern", X, Y, Math.random() * Math.PI, false, [540, 2]));
+                                            }
+                                            else
+                                            {
+                                                scenicList.push(new Scenery("jackOLantern", X, Y, Math.random() * Math.PI, false, [540, 1]));
+                                            }
+                                        }
+                                        else
+                                        {
+                                            player.timeSinceLightSourceFuelUsed = new Date().getTime();
+                                            player.lightSourceDuration = 540;
+                                            player.lightSource = "jackOLantern";
+                                        }
+                                    }
+
                                     //some items when used will give you an item when they are used.
-                                    if (Inventory[i][0].subUtility == "reusable")
+                                    if (Inventory[i][0].subUtility == "reusable" && useLight)
                                     {
                                         var hits = 0;
                                         for (var rr = 0; rr < Inventory[i][0].refund.length; rr ++)
@@ -16612,32 +18321,6 @@ function theLegend()
                                                 Inventory.push([new Item(Inventory[i][0].refund[rr][0], false, false), Inventory[i][0].refund[rr][1]]);
                                             }
                                         }
-                                    }
-
-                                    //Light instruments give light effect to player when used.
-                                    if (Inventory[i][0].type == "oilLantern" || Inventory[i][0].type == "oilLantern4" || Inventory[i][0].type == "oilLantern3" || Inventory[i][0].type == "oilLantern2" || Inventory[i][0].type == "oilLantern1")
-                                    {
-                                        player.timeSinceLightSourceFuelUsed = new Date().getTime();
-                                        player.lightSourceDuration = 1800;
-                                        player.lightSource = "oilLantern";
-                                    }
-                                    else if (Inventory[i][0].type == "oilLamp" || Inventory[i][0].type == "oilLamp2" || Inventory[i][0].type == "oilLamp1")
-                                    {
-                                        player.timeSinceLightSourceFuelUsed = new Date().getTime();
-                                        player.lightSourceDuration = 1200;
-                                        player.lightSource = "oilLamp";
-                                    }
-                                    else if (Inventory[i][0].type == "candle" || Inventory[i][0].type == "candle2" || Inventory[i][0].type == "candle1")
-                                    {
-                                        player.timeSinceLightSourceFuelUsed = new Date().getTime();
-                                        player.lightSourceDuration = 180;
-                                        player.lightSource = "candle";
-                                    }
-                                    else if (Inventory[i][0].type == "jackOLantern" || Inventory[i][0].type == "jackOLantern2" || Inventory[i][0].type == "jackOLantern1")
-                                    {
-                                        player.timeSinceLightSourceFuelUsed = new Date().getTime();
-                                        player.lightSourceDuration = 540;
-                                        player.lightSource = "jackOLantern";
                                     }
 
                                     if (Inventory[i][1] > 1)
@@ -16718,10 +18401,41 @@ function theLegend()
                                     break;
                                 }
                             }
+                            else if (Inventory[i][0].subUtility == "tent" && this.weaponEquipped == "hammer")
+                            {
+                                var canPlace = true;
+                                var hits = 0;
+                                var inFrontY = Y + Math.sin(this.rotation + 1/2 * Math.PI) * 52;
+                                var inFrontX = X + Math.cos(this.rotation + 1/2 * Math.PI) * 52;
+                                for (var j = 0; j < scenicList.length; j++)
+                                {
+                                    //42 is the radius of tent Scenery Object.
+                                    if (scenicList[j].X - 42 <= inFrontX + scenicList[j].radius && scenicList[j].X + 42 >= inFrontX - scenicList[j].radius && scenicList[j].Y - 42 <= inFrontY + scenicList[j].radius && scenicList[j].Y + 42 >= inFrontY - scenicList[j].radius)
+                                    {
+                                        canPlace = false;
+                                    }
+                                }
+
+                                if (canPlace == true)
+                                {
+                                    scenicList.push(new Scenery("tent", inFrontX, inFrontY, (this.rotation), false));
+
+                                    if (Inventory[i][1] - 1 <= 0)
+                                    {
+                                        Inventory.splice(i, 1);
+                                    }
+                                    else
+                                    {
+                                        Inventory[i][1] -= 1;
+                                    }
+                                    break;
+                                }
+                            }
                         }
                     }
                     else if (lowBar == "inventory" && lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord) //give the name of the Item and its stats when hovered over.
                     {
+                        itemDescriptionBox = true;
                         //this allows intelligence based descriptions if the player's character meets the correct requirements in intelligence.
                         var regProps;
                         var intDes;
@@ -16870,6 +18584,20 @@ function theLegend()
                             XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
                             XXX.fillText("      Junk", 157, 514);
                         }
+                        else if (Inventory[i][0].utility == "tool")
+                        {
+                            XXX.font="14px Book Antiqua";
+                            XXX.fillStyle = "black";
+                            XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+                            XXX.fillText("      Utility", 157, 514);
+                        }
+                        else if (Inventory[i][0].utility == "questItem")
+                        {
+                            XXX.font="14px Book Antiqua";
+                            XXX.fillStyle = "black";
+                            XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+                            XXX.fillText("      Quest Item", 157, 514);
+                        }
                         else if (Inventory[i][0].utility == "worn")
                         {
                             //How much hunger, thirst, and warmth it gives.
@@ -16880,11 +18608,18 @@ function theLegend()
                             {
                                 XXX.fillText("      Armour + " + Math.floor(Inventory[i][0].protection) + "   Magical Resistance  + " + Inventory[i][0].magicalProtection + "    Heat Resistance + " + Inventory[i][0].thirstRetention + "    Cold Resistance + " + Inventory[i][0].warmthRetention + "    Toughness Required: " + Math.floor(Inventory[i][0].toughnessRequirement), 157, 514);
                             }
-                            else if (Inventory[i][0].subUtility == "clothing")
+                            else if (Inventory[i][0].subUtility == "clothing" || Inventory[i][0].subUtility == "gloves" || Inventory[i][0].subUtility == "boots")
                             {
                                 XXX.fillText("      Heat Resistance + " + Inventory[i][0].thirstRetention + "    Cold Resistance + " + Inventory[i][0].warmthRetention, 157, 514);
                             }
-                            //TODO add stat displays for: "magic" which is like armour but shows eminence requirement etc.,"ring", "Pendant", "Boots", etc. ...
+                            else if (Inventory[i][0].subUtility == "necklace")
+                            {
+                                XXX.fillText("      Pendant", 157, 514);
+                            }
+                            else if (Inventory[i][0].subUtility == "ring")
+                            {
+                                XXX.fillText("      Ring", 157, 514);
+                            }
                         }
                     }
                 }
@@ -17173,6 +18908,12 @@ function theLegend()
             //Bank
             this.displayBank(); //#Bank
 
+            //Beast Journal
+            this.displayBeastJournal(); //#BeastJournal
+
+            //Quest Log
+            this.displayQuestLog(); //#QuestLog
+
             //Skills
             this.displayCharacterInfo(); //#Skills
 
@@ -17183,7 +18924,10 @@ function theLegend()
             this.displaySaves(); //#Saves
 
             //Inventory
-            this.inventoryScrolling(); //#Inventory
+            if (lowBar != "beastJournal")
+            {
+                this.inventoryScrolling(); //#Inventory
+            }
             this.displayInventory(); //#Inventory
             this.pickUpItem(); //#Inventory
             this.interactWithInventory(); //#Inventory
@@ -17305,7 +19049,7 @@ function theLegend()
         {
             if (this.satiated == false)
             {
-                this.hunger -= 1 * (TTD / (30000 + 300 * this.getEndurance() * 2));
+                this.hunger -= 1 * (TTD / (40000 + 300 * this.getEndurance() * 2));
 
                 if (this.hunger <= 1/10 * this.hungerMAX && this.hunger > -10) // at 1/10 of hunger the player loses the use of energy... That means no attacks.
                 {
@@ -17323,7 +19067,7 @@ function theLegend()
         {
             if (this.quenched == false)
             {
-                this.thirst -= 1 * (TTD / (50000 + 200 * this.getEndurance() * 2));
+                this.thirst -= 1 * (TTD / (60000 + 200 * this.getEndurance() * 2));
 
                 if (this.thirst <= 0)
                 {
@@ -17657,7 +19401,7 @@ function theLegend()
                     this.drawBody();
 
                     //most weapons draw beneath the armour layer.
-                    if (this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore") //add more cases for more overhead weapons.
+                    if (this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore") //add more cases for more overhead weapons.
                     {
                         this.drawArms();
                     }
@@ -17694,7 +19438,7 @@ function theLegend()
                     }
 
                     //certain weapons draw over the armour layer
-                    if (this.weaponEquipped == "nirineseSabre") //add more cases for more overhead weapons.
+                    if (this.weaponEquipped == "nirineseSabre" || this.weaponEquipped == "longSpikedMorningStar") //add more cases for more overhead weapons.
                     {
                         this.drawArms();
                     }
@@ -17706,7 +19450,6 @@ function theLegend()
                 if (zindex == 6)
                 {
                     //effect notices, and deveoper functions, etc.
-                    this.tellCoordinates();
                     this.miniNotices();
 
                     //Stat recharging
@@ -17730,6 +19473,61 @@ function theLegend()
         };
     }
 
+    //sleep function
+    function sleep(safe)
+    {
+        if (player.insomnia == false)
+        {
+            var durationOfSleep = prompt("For how many hours would you like to sleep?");
+            var dOS = JSON.parse(durationOfSleep);
+
+            if (typeof dOS == "number")
+            {
+                if (dOS > 0 && dOS < 25)
+                {
+                    sleeperTime += (60 * 60 * dOS);
+
+                    //make the screen dark
+                    player.blindedTime = dOS;
+                    player.blindedStoreTime = new Date().getTime();
+
+                    //reduce drug effects
+                        //alcohol
+                            //hangover
+                    if (player.inebriation >= 3 * (100 + (3 * player.getToughness())))
+                    {
+                        //todo give player a hangover.
+                    }
+                    player.inebriation = Math.max(0, player.inebriation - (225 * dOS));
+                    //todo decrease other drug effect's time as well.
+
+                    //Give the player rest -- if you sleep for a reasonable amount of time your get more rest
+                    if (dOS >= 8)
+                    {
+                        dOS = dOS * 3;
+                    }
+                    else if (dOS >= 6)
+                    {
+                        dOS = dOS * 2.5;
+                    }
+                    else
+                    {
+                        dOS = dOS * 2;
+                    }
+
+                    player.sleep = Math.min(player.totalSleep, player.sleep + dOS);
+
+                    //this is where if you are sleeping in an untraditional way you could be ambushed and will certainly be "sore" in the morning.
+                    if (safe == false)
+                    {
+                        //todo add potential monster/enemy ambush and add soreness which will weaken constitution and dexterity and ranged and strength and endurance and stealth and all magic skills except knowledge by - 1 //booble
+                    }
+                }
+            }
+        }
+    }
+
+    //Official Magic Class
     function Magic(spellInfo, caster, instructions, unitSelf) //caster means either the player or an AI UNIT true: player false: AI UNIT //unitSelf is the object that the unit is so that this function can track its data. (this is for AI UNITS only) //instructions is for any extra input the spell might need.
     {
         if (spellInfo != "none")
@@ -17749,6 +19547,9 @@ function theLegend()
             this.playerRotation = player.rotation;
             this.ticCount = 0;
             this.repeated = false;
+            this.size = 0;
+            this.claim = "none"; //this is used as part of the claim and chase movement method.
+            this.doOnce = true; //this is not to be used for a function.
             //SPELL BUILDER (functions that can be given to each individual spell to define its characteristics)
             this.spellTimer = function(duration)
             {
@@ -17865,6 +19666,106 @@ function theLegend()
                 return this.ticCount;
             };
 
+            var checkClosestClaimDist;
+            var closestClaimDist = "none";
+            var closestClaim = "none";
+            var chasingLightsLockOn = false;
+
+            //CLAIM AND CHASE - pick a target and follow them.
+            this.claimAndChase = function(range, speed, extraRot)
+            {
+                if (this.claim == "none")
+                {
+                    var otherClaims = [];
+                    for (var i = 0; i < magicList.length; i++)
+                    {
+                        if (magicList[i].claim != "none" && magicList[i].spellType == this.spellType)
+                        {
+                            otherClaims.push(magicList[i].claim);
+                        }
+                    }
+
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        var claimHitz = 0;
+                        for (var j = 0; j < otherClaims.length; j++)
+                        {
+                            if (ArtificialIntelligenceAccess[i] !== otherClaims[j])
+                            {
+                                claimHitz += 1;
+                            }
+                        }
+                        if (claimHitz >= otherClaims.length)
+                        {
+                            checkClosestClaimDist = Math.sqrt((this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X) + (this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y));
+                            if (range == true || checkClosestClaimDist <= range)
+                            {
+                                if (closestClaimDist == "none")
+                                {
+                                    closestClaimDist = checkClosestClaimDist;
+                                    closestClaim = ArtificialIntelligenceAccess[i];
+                                }
+                                else if (checkClosestClaimDist < closestClaimDist)
+                                {
+                                    closestClaimDist = checkClosestClaimDist;
+                                    closestClaim = ArtificialIntelligenceAccess[i];
+                                }
+                            }
+                        }
+                    }
+
+                    console.log(closestClaim);
+                    if (closestClaim == "none")
+                    {
+                        for (var i = 0; i < magicList.length; i++)
+                        {
+                            if (this === magicList[i])
+                            {
+                                magicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.claim = closestClaim;
+                    }
+                }
+
+
+                if (this.spellType == "chasingLights")
+                {
+                    if (chasingLightsLockOn == false)
+                    {
+                        if (gameLoopNumber % 3)
+                        {
+                            checkClosestClaimDist = Math.sqrt((this.X - this.claim.X)*(this.X - this.claim.X) + (this.Y - this.claim.Y)*(this.Y - this.claim.Y));
+                        }
+                        this.rotation = Math.atan2(this.claim.Y - this.Y, this.claim.X - this.X) + extraRot;
+                        this.X += Math.cos(this.rotation + extraRot) * speed;
+                        this.Y += Math.sin(this.rotation + extraRot) * speed;
+
+                        if (checkClosestClaimDist <= this.claim.sizeRadius)
+                        {
+                            chasingLightsLockOn = true;
+                        }
+                        this.size = 4;
+                    }
+                    else
+                    {
+                        this.size = this.claim.sizeRadius * 2.2;
+                        this.X = this.claim.X;
+                        this.Y = this.claim.Y;
+                    }
+                }
+                else
+                {
+                    this.rotation = Math.atan2(this.claim.Y - this.Y, this.claim.X - this.X) + extraRot;
+                    this.X += Math.cos(this.rotation + extraRot) * speed;
+                    this.Y += Math.sin(this.rotation + extraRot) * speed;
+                }
+            };
+
             this.damageThenGoAway = function(radius, whatDoIDo, damage, negate, affectPlayer)
             {
                 if (affectPlayer == true)
@@ -17914,7 +19815,7 @@ function theLegend()
                                 ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                                 ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                                 //todo add that it turns lifeforce successfully stolen into magical life orbs that shoot off to the player and heal him/her.
-                                var counterOrbCount = 0
+                                var counterOrbCount = 0;
                                 if (ArtificialIntelligenceAccess[i].health < 0)
                                 {
                                     counterOrbCount = Math.round(- ArtificialIntelligenceAccess[i].health);
@@ -18117,7 +20018,12 @@ function theLegend()
             };
 
             //SPELL OUTLINES (this section is the outline for what the spells are)
-            //FART
+                //CHASING LIGHTS
+            if (this.spellType == "chasingLights")
+            {
+                this.orientToCaster(0, 1 / 2 * Math.PI);
+            }
+                //FART
             if (this.spellType == "fart")
             {
                 this.orientToCaster(10, - 1 / 2 * Math.PI);
@@ -18237,7 +20143,24 @@ function theLegend()
             //OPERATIONS
             this.operations = function ()
             {
-                    //ICE SPIKES
+                //CHASING LIGHTS
+                if (this.spellType == "chasingLights")
+                {
+                    this.claimAndChase(true, 4, 0);
+                    if (caster)
+                    {
+                        lights.push({X: this.X, Y: this.Y, size: this.size, extraStops: true, GRD: 0.7, Alpha: 0.4, showMe: false});
+                    }
+                    else
+                    {
+                        //todo add chasing lights spell for AI
+                    }
+
+
+                    this.spellTimer(180 + 3 * player.getConcentration());
+
+                }
+                //ICE SPIKES
                 if (this.spellType == "iceSpikes")
                 {
                     if (caster)
@@ -18354,11 +20277,13 @@ function theLegend()
                         {
                             this.contactDamage(false, 24, ((Math.random() + 3) + 0.2 * player.getConcentration()) / 2, 250, "fire", "fireI");
                             this.flashAnimate(90, false, 1, [{image: polypol, imgX: 1688, imgY: 212, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * 2, adjY: -1 / 2 * 26 * 2, width: 29 * 2, height: 26 * 2}, {image: polypol, imgX: 1720, imgY: 210, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * 2, adjY: -1 / 2 * 26 * 2, width: 29 * 2, height: 26 * 2}, {image: polypol, imgX: 1754, imgY: 211, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * 2, adjY: -1 / 2 * 26 * 2, width: 29 * 2, height: 26 * 2}]);
+                            lights.push({X: this.X, Y: this.Y, size: 30, extraStops: true, GRD: 0.75, Alpha: 0.7, showMe: false});
                         }
                         else
                         {
                             this.contactDamage(false, 14, ((Math.random() + 3) + 0.2 * player.getConcentration()) / 2, 250,  "fire", "fireI");
                             this.flashAnimate(100, false, 1, [{image: polypol, imgX: 1688, imgY: 212, portionW: 29, portionH: 26, adjX: -1 / 2 * 29, adjY: -1 / 2 * 26, width: 29, height: 26}, {image: polypol, imgX: 1720, imgY: 210, portionW: 29, portionH: 26, adjX: -1 / 2 * 29, adjY: -1 / 2 * 26, width: 29, height: 26}, {image: polypol, imgX: 1754, imgY: 211, portionW: 29, portionH: 26, adjX: -1 / 2 * 29, adjY: -1 / 2 * 26, width: 29, height: 26}]);
+                            lights.push({X: this.X, Y: this.Y, size: 17.5, extraStops: true, GRD: 0.75, Alpha: 0.7, showMe: false});
                         }
                     }
                     else
@@ -18387,15 +20312,15 @@ function theLegend()
                     {
                         if (player.getConcentration() >= 30)
                         {
-                            this.contactDamage(false, 20 * 1.5, ((Math.random() * 6 + 6) + 0.3 * player.getConcentration()) / 5, 100,  "fire", "none");
+                            this.contactDamage(false, 16, ((Math.random() * 6 + 6) + 0.3 * player.getConcentration()) / 5, 100,  "fire", "none");
                             this.flashAnimate(90, false, 1, [{image: polypol, imgX: 1691, imgY: 184, portionW: 24, portionH: 23, adjX: -1 / 2 * 24 * 1.5, adjY: -1 / 2 * 23 * 1.5, width: 24 * 1.5, height: 23 * 1.5}, {image: polypol, imgX: 1721, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24 * 1.5, adjY: -1 / 2 * 23 * 1.5, width: 24 * 1.5, height: 23 * 1.5}, {image: polypol, imgX: 1750, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24 * 1.5, adjY: -1 / 2 * 23 * 1.5, width: 24 * 1.5, height: 23 * 1.5}, {image: polypol, imgX: 1783, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24 * 1.5, adjY: -1 / 2 * 23 * 1.5, width: 24 * 1.5, height: 23 * 1.5}]);
-
+                            lights.push({X: this.X, Y: this.Y, size: 16, extraStops: true, GRD: 0.86, Alpha: 0.7, showMe: false});
                         }
                         else
                         {
-                            this.contactDamage(false, 20, ((Math.random() * 4 + 4) + 0.3 * player.getConcentration()) / 5, 100,  "fire", "none");
+                            this.contactDamage(false, 11, ((Math.random() * 4 + 4) + 0.3 * player.getConcentration()) / 5, 100,  "fire", "none");
                             this.flashAnimate(100, false, 1, [{image: polypol, imgX: 1691, imgY: 184, portionW: 24, portionH: 23, adjX: -1 / 2 * 24, adjY: -1 / 2 * 23, width: 24, height: 23}, {image: polypol, imgX: 1721, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24, adjY: -1 / 2 * 23, width: 24, height: 23}, {image: polypol, imgX: 1750, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24, adjY: -1 / 2 * 23, width: 24, height: 23}, {image: polypol, imgX: 1783, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24, adjY: -1 / 2 * 23, width: 24, height: 23}]);
-
+                            lights.push({X: this.X, Y: this.Y, size: 11, extraStops: true, GRD: 0.86, Alpha: 0.7, showMe: false});
                         }
                         this.project(this.playerRotation + 1/2 * Math.PI, 100 * ((50 + 3 * player.getConcentration()) / 50), 3 * ((50 + player.getConcentration()) / 50), true);
                     }
@@ -18482,20 +20407,23 @@ function theLegend()
                             this.ticCounter(1400);
                             this.flashAnimate(25, false, 0.98, [{image: polypol, imgX: 1725, imgY: 238, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * this.ticCount, adjY: -1 / 2 * 26 * this.ticCount, width: 29 * this.ticCount, height: 26 * this.ticCount}, {image: polypol, imgX: 1756, imgY: 238, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * this.ticCount, adjY: -1 / 2 * 26 * this.ticCount, width: 29 * this.ticCount, height: 26 * this.ticCount}, {image: polypol, imgX: 1788, imgY: 238, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * this.ticCount, adjY: -1 / 2 * 26 * this.ticCount, width: 29 * this.ticCount, height: 26 * this.ticCount}, {image: polypol, imgX: 1818, imgY: 238, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * this.ticCount, adjY: -1 / 2 * 26 * this.ticCount, width: 29 * this.ticCount, height: 26 * this.ticCount}]);
                             this.spellTimer(2);
+                            lights.push({X: this.X, Y: this.Y, size: 10000, extraStops: true, GRD: 0.95, Alpha: 0.8, showMe: false});
                         }
                         else if (player.getConcentration() >= 15)
                         {
                             this.ticCounter(120);
-                            this.contactDamage(false, 20 + 1.5 * this.ticCount, 0, 100,  "blinding", "none");
+                            this.contactDamage(false, 20 + 6 * this.ticCount, 0, 100,  "blinding", "none");
                             this.flashAnimate(25, false, 0.98, [{image: polypol, imgX: 1725, imgY: 238, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * this.ticCount, adjY: -1 / 2 * 26 * this.ticCount, width: 29 * this.ticCount, height: 26 * this.ticCount}, {image: polypol, imgX: 1756, imgY: 238, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * this.ticCount, adjY: -1 / 2 * 26 * this.ticCount, width: 29 * this.ticCount, height: 26 * this.ticCount}, {image: polypol, imgX: 1788, imgY: 238, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * this.ticCount, adjY: -1 / 2 * 26 * this.ticCount, width: 29 * this.ticCount, height: 26 * this.ticCount}, {image: polypol, imgX: 1818, imgY: 238, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * this.ticCount, adjY: -1 / 2 * 26 * this.ticCount, width: 29 * this.ticCount, height: 26 * this.ticCount}]);
                             this.spellTimer(2);
+                            lights.push({X: this.X, Y: this.Y, size: 20 + 10 * this.ticCount, extraStops: true, GRD: 0.65, Alpha: 0.8, showMe: false});
                         }
                         else
                         {
                             this.ticCounter(90);
-                            this.contactDamage(false, 20 + 1.25 * this.ticCount, 0, 100,  "blinding", "none");
+                            this.contactDamage(false, 20 + 6 * this.ticCount, 0, 100,  "blinding", "none");
                             this.flashAnimate(25, false, 0.98, [{image: polypol, imgX: 1725, imgY: 238, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * this.ticCount, adjY: -1 / 2 * 26 * this.ticCount, width: 29 * this.ticCount, height: 26 * this.ticCount}, {image: polypol, imgX: 1756, imgY: 238, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * this.ticCount, adjY: -1 / 2 * 26 * this.ticCount, width: 29 * this.ticCount, height: 26 * this.ticCount}, {image: polypol, imgX: 1788, imgY: 238, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * this.ticCount, adjY: -1 / 2 * 26 * this.ticCount, width: 29 * this.ticCount, height: 26 * this.ticCount}, {image: polypol, imgX: 1818, imgY: 238, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * this.ticCount, adjY: -1 / 2 * 26 * this.ticCount, width: 29 * this.ticCount, height: 26 * this.ticCount}]);
                             this.spellTimer(1.2);
+                            lights.push({X: this.X, Y: this.Y, size: 20 + 8 * this.ticCount, extraStops: true, GRD: 0.65, Alpha: 0.8, showMe: false});
                         }
                         this.project(this.playerRotation + 1/2 * Math.PI, 10000, 2, true);
                     }
@@ -19284,6 +21212,7 @@ function theLegend()
         this.alive = true;
         this.alpha = isalpha;
         this.alphaSize = 1;
+        this.beastEntry = "none";
         //AI and sensing variables
         this.closestDistance; //this is the distance away from this unit that the closest other unit is.
         this.closestUnit; // this is the exact unit that is the closest at the moment.
@@ -19330,7 +21259,6 @@ function theLegend()
         this.rLegY = 0;
         this.legSwitch = 0;
         this.doOnDeathOnce = true; //this is for unique characters, upon their death they trigger a flag letting the game know never to respawn them.
-        this.talking = false; //this notes whether or not the unit is in the middle of saying something in a conversation.
         //Other variables
         this.mofuTargetFood = "none";
         this.mofuFood = 0;
@@ -19389,7 +21317,7 @@ function theLegend()
         {
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
-                if (gameLoopNumber % 5 == 0 && ArtificialIntelligenceAccess[i] !== this)
+                if (gameLoopNumber % 5 == 0 && ArtificialIntelligenceAccess[i] !== this) //todo whilst this is set to == 0 it will not truly ever work but it think i prefer it not working.
                 {
                     if (unitSurround)
                     {
@@ -19496,7 +21424,7 @@ function theLegend()
                     if (this.type == "Person" || this.type == "Soldier")
                     {
                         //CONVERSATION AND SOCIAL INTERACTIONS WITH AI CHARACTERS
-                        if (clickReleased == true && dtm < this.sizeRadius && dtp < 100 && this.disturbed == false || conversationID[0] != "none" && dtp < 100 && this.disturbed == false || this.talking == true)
+                        if (clickReleased == true && dtm < this.sizeRadius && dtp < 100 && this.disturbed == false || conversationID[0] != "none" && dtp < 100 && this.disturbed == false || playersTurnToSpeak == false)
                         {
                             this.engagedInDialogue = true;
 
@@ -19538,17 +21466,17 @@ function theLegend()
                                                 if (player.dialogueOptions[i][2] == "a")
                                                 {
                                                     conversationID[1] = "0a";
-                                                    this.talking = true;
+                                                    playersTurnToSpeak = false;
                                                 }
                                                 else if (player.dialogueOptions[i][2] == "b")
                                                 {
                                                     conversationID[1] = "0b";
-                                                    this.talking = true;
+                                                    playersTurnToSpeak = false;
                                                 }
                                                 else if (player.dialogueOptions[i][2] == "c")
                                                 {
                                                     conversationID[1] = "0c";
-                                                    this.talking = true;
+                                                    playersTurnToSpeak = false;
                                                 }
                                             }
                                         }
@@ -19559,7 +21487,7 @@ function theLegend()
                                     drohforGreet.play();
                                     drohforGreet.onended = function()
                                     {
-                                        self.talking = false;
+                                        playersTurnToSpeak = true;
                                         player.dialoguePosition = 0;
                                         conversationID[1] = 0;
                                         self.SC();
@@ -19572,7 +21500,7 @@ function theLegend()
                                         drohforWastingTime.play();
                                         drohforWastingTime.onended = function()
                                         {
-                                            self.talking = false;
+                                            playersTurnToSpeak = true;
                                             player.dialoguePosition = 0;
                                             conversationID[1] = 0;
                                             self.SC();
@@ -19585,7 +21513,7 @@ function theLegend()
                                             drohforTrackingMLady.play();
                                             drohforTrackingMLady.onended = function()
                                             {
-                                                self.talking = false;
+                                                playersTurnToSpeak = true;
                                                 player.dialoguePosition = 0;
                                                 conversationID[1] = 1;
                                                 self.SC();
@@ -19596,7 +21524,7 @@ function theLegend()
                                             drohforTrackingMLord.play();
                                             drohforTrackingMLord.onended = function()
                                             {
-                                                self.talking = false;
+                                                playersTurnToSpeak = true;
                                                 player.dialoguePosition = 0;
                                                 conversationID[1] = 1;
                                                 self.SC();
@@ -19608,7 +21536,7 @@ function theLegend()
                                         drohforTrackingCHA.play();
                                         drohforTrackingCHA.onended = function()
                                         {
-                                            self.talking = false;
+                                            playersTurnToSpeak = true;
                                             player.dialoguePosition = 0;
                                             conversationID[1] = 1;
                                             self.SC();
@@ -19620,7 +21548,7 @@ function theLegend()
                                     drohforOutfit.play();
                                     drohforOutfit.onended = function()
                                     {
-                                        self.talking = false;
+                                        playersTurnToSpeak = true;
                                         player.dialoguePosition = 0;
                                         conversationID[1] = 0;
                                         self.SC();
@@ -19648,14 +21576,14 @@ function theLegend()
                                             {
                                                 if (player.dialogueOptions[i][2] == "a")
                                                 {
-                                                    self.talking = false;
+                                                    playersTurnToSpeak = true;
                                                     player.dialoguePosition = 0;
                                                     conversationID[1] = 0;
                                                     self.SC();
                                                 }
                                                 else if (player.dialogueOptions[i][2] == "b")
                                                 {
-                                                    self.talking = false;
+                                                    playersTurnToSpeak = true;
                                                     player.dialoguePosition = 0;
                                                     conversationID[1] = 0;
                                                     self.SC();
@@ -19663,7 +21591,7 @@ function theLegend()
                                                 else if (player.dialogueOptions[i][2] == "c")
                                                 {
                                                     conversationID[1] = "1c";
-                                                    this.talking = true;
+                                                    playersTurnToSpeak = false;
                                                 }
                                             }
                                         }
@@ -19673,12 +21601,12 @@ function theLegend()
                                 {
                                     if (player.title == "Royalty" || player.title == "Nobility")
                                     {
-                                        if (player.gender == "Female" && player.getCharisma > 1 && player.raceName != "Freynor" || player.gender == "Female" && player.getCharisma > 1 && player.raceName != "Kellish")
+                                        if (player.gender == "Female" && player.getCharisma > 1 && player.raceName != "Thengar" || player.gender == "Female" && player.getCharisma > 1 && player.raceName != "Freynor" || player.gender == "Female" && player.getCharisma > 1 && player.raceName != "Kellish")
                                         {
                                             drohforLadyWins.play();
                                             drohforLadyWins.onended = function ()
                                             {
-                                                self.talking = false;
+                                                playersTurnToSpeak = true;
                                                 player.dialoguePosition = 0;
                                                 conversationID[1] = 0;
                                                 self.SC();
@@ -19691,8 +21619,9 @@ function theLegend()
                                                 drohforHighbornLad.play();
                                                 drohforHighbornLad.onended = function ()
                                                 {
-                                                    self.talking = false;
+                                                    playersTurnToSpeak = true;
                                                     player.dialoguePosition = 0;
+                                                    quests.activeQuests.push({name: "Hunting Wager", description: "After insulting Drohfor he suggested that you would no better at hunting the pack of peculiar friches he was after."});
                                                     conversationID[1] = 2;
                                                     quests.huntingWagerFrichPack = true;
                                                     change = "none";
@@ -19704,8 +21633,9 @@ function theLegend()
                                                 drohforHighbornLasse.play();
                                                 drohforHighbornLasse.onended = function ()
                                                 {
-                                                    self.talking = false;
+                                                    playersTurnToSpeak = true;
                                                     player.dialoguePosition = 0;
+                                                    quests.activeQuests.push({name: "Hunting Wager", description: "After insulting Drohfor he suggested that you would no better at hunting the pack of peculiar friches he was after."});
                                                     conversationID[1] = 2;
                                                     quests.huntingWagerFrichPack = true;
                                                     change = "none";
@@ -19721,8 +21651,9 @@ function theLegend()
                                             drohforSoEasy.play();
                                             drohforSoEasy.onended = function ()
                                             {
-                                                self.talking = false;
+                                                playersTurnToSpeak = true;
                                                 player.dialoguePosition = 0;
+                                                quests.activeQuests.push({name: "Hunting Wager", description: "After insulting Drohfor he bet you 15 coins that you would do no better at hunting the peculiar pack of friches he was after."});
                                                 conversationID[1] = 2;
                                                 quests.huntingWagerFrichPack = true;
                                                 change = "none";
@@ -19734,8 +21665,9 @@ function theLegend()
                                             drohforTailBetweenLegs.play();
                                             drohforTailBetweenLegs.onended = function ()
                                             {
-                                                self.talking = false;
+                                                playersTurnToSpeak = true;
                                                 player.dialoguePosition = 0;
+                                                quests.activeQuests.push({name: "Hunting Wager", description: "After insulting Drohfor he bet you 15 coins that you would do no better at hunting the peculiar pack of friches he was after."});
                                                 conversationID[1] = 2;
                                                 quests.huntingWagerFrichPack = true;
                                                 change = "none";
@@ -19779,7 +21711,7 @@ function theLegend()
                                     {
                                         player.dialoguePosition = 0;
                                         conversationID[1] = 3;
-                                        this.talking = true;
+                                        playersTurnToSpeak = false;
                                         self.SC();
                                     }
                                 }
@@ -19788,6 +21720,7 @@ function theLegend()
                                     if (quests.huntingWagerKillCount >= 3 && quests.huntingWagerQuest == false)
                                     {
                                         quests.huntingWagerQuest = "complete";
+                                        quests.completeQuests.push({name: "Hunting Wager", description: "You successfully tracked down and slayed the pack of giant friches that Drohfor had been after."});
                                         quests.huntingWagerFrichPack = false;
                                         player.experience += 110;
                                         player.fame += 1;
@@ -19811,7 +21744,7 @@ function theLegend()
                                     }
                                     else
                                     {
-                                        this.talking = false;
+                                        playersTurnToSpeak = true;
                                     }
 
                                     if (quests.huntingWagerQuest == "complete")
@@ -19841,7 +21774,7 @@ function theLegend()
                                                     else if (player.dialogueOptions[i][2] == "b")
                                                     {
                                                         conversationID[1] = "3b";
-                                                        this.talking = true;
+                                                        playersTurnToSpeak = false;
                                                     }
                                                 }
                                             }
@@ -19850,7 +21783,7 @@ function theLegend()
                                 }
                                 else if (conversationID[1] == "3a")
                                 {
-                                    self.talking = false;
+                                    playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 0;
                                     self.SC();
@@ -19863,7 +21796,7 @@ function theLegend()
                                         drohforNoMore.play();
                                         drohforNoMore.onended = function()
                                         {
-                                            self.talking = false;
+                                            playersTurnToSpeak = true;
                                             player.dialoguePosition = 0;
                                             conversationID[1] = 0;
                                             self.SC();
@@ -19874,7 +21807,7 @@ function theLegend()
                                         drohforShutUp.play();
                                         drohforShutUp.onended = function()
                                         {
-                                            self.talking = false;
+                                            playersTurnToSpeak = true;
                                             player.dialoguePosition = 0;
                                             conversationID[1] = 0;
                                             self.SC();
@@ -19921,22 +21854,22 @@ function theLegend()
                                                 if (player.dialogueOptions[i][2] == "a")
                                                 {
                                                     conversationID[1] = "0a";
-                                                    this.talking = true;
+                                                    playersTurnToSpeak = false;
                                                 }
                                                 else if (player.dialogueOptions[i][2] == "b")
                                                 {
                                                     conversationID[1] = "0b";
-                                                    this.talking = true;
+                                                    playersTurnToSpeak = false;
                                                 }
                                                 else if (player.dialogueOptions[i][2] == "c")
                                                 {
                                                     conversationID[1] = "0c";
-                                                    this.talking = true;
+                                                    playersTurnToSpeak = false;
                                                 }
                                                 else if (player.dialogueOptions[i][2] == "d")
                                                 {
                                                     conversationID[1] = "0d";
-                                                    this.talking = true;
+                                                    playersTurnToSpeak = false;
                                                 }
                                             }
                                         }
@@ -19947,7 +21880,7 @@ function theLegend()
                                     togginGreet.play();
                                     togginGreet.onended = function()
                                     {
-                                        self.talking = false;
+                                        playersTurnToSpeak = true;
                                         player.dialoguePosition = 0;
                                         conversationID[1] = 0;
                                         self.SC();
@@ -19958,7 +21891,7 @@ function theLegend()
                                     togginLiving.play();
                                     togginLiving.onended = function()
                                     {
-                                        self.talking = false;
+                                        playersTurnToSpeak = true;
                                         player.dialoguePosition = 0;
                                         conversationID[1] = 0;
                                         self.SC();
@@ -19974,7 +21907,7 @@ function theLegend()
                                             togginFDecline.play();
                                             togginFDecline.onended = function()
                                             {
-                                                self.talking = false;
+                                                playersTurnToSpeak = true;
                                                 player.dialoguePosition = 0;
                                                 conversationID[1] = 0;
                                                 self.SC();
@@ -19985,7 +21918,7 @@ function theLegend()
                                             togginMDecline.play();
                                             togginMDecline.onended = function()
                                             {
-                                                self.talking = false;
+                                                playersTurnToSpeak = true;
                                                 player.dialoguePosition = 0;
                                                 conversationID[1] = 0;
                                                 self.SC();
@@ -19997,7 +21930,7 @@ function theLegend()
                                         togginScat.play();
                                         togginScat.onended = function()
                                         {
-                                            self.talking = false;
+                                            playersTurnToSpeak = true;
                                             player.dialoguePosition = 0;
                                             conversationID[1] = 0;
                                             self.SC();
@@ -20011,7 +21944,7 @@ function theLegend()
                                     console.log(conversationID[0] != "none" && dtp < 100 && this.disturbed == false);
                                     togginAdmit.onended = function()
                                     {
-                                        self.talking = false;
+                                        playersTurnToSpeak = true;
                                         player.dialoguePosition = 0;
                                         conversationID[1] = 1;
                                         self.SC();
@@ -20037,12 +21970,12 @@ function theLegend()
                                                 else if (player.dialogueOptions[i][2] == "b")
                                                 {
                                                     conversationID[1] = "1b";
-                                                    self.talking = true;
+                                                    playersTurnToSpeak = false;
                                                 }
                                                 else if (player.dialogueOptions[i][2] == "c")
                                                 {
                                                     conversationID[1] = "1c";
-                                                    self.talking = true;
+                                                    playersTurnToSpeak = false;
                                                 }
                                             }
                                         }
@@ -20053,6 +21986,7 @@ function theLegend()
                                     if (quests.teshirNorthRoadQuest != "complete")
                                     {
                                         player.dialoguePosition = 0;
+                                        quests.activeQuests.push({name: "Teshir North Road", description: "Bandits block the road to the north, get rid of them so that Toggin can get back home."})
                                         quests.teshirNorthRoadQuest = true;
                                         conversationID[1] = 2;
                                         self.SC();
@@ -20063,7 +21997,7 @@ function theLegend()
                                     togginTooLong.play();
                                     togginTooLong.onended = function()
                                     {
-                                        self.talking = false;
+                                        playersTurnToSpeak = true;
                                         player.dialoguePosition = 0;
                                         conversationID[1] = 1;
                                         self.SC();
@@ -20074,7 +22008,7 @@ function theLegend()
                                     togginChangeMind.play();
                                     togginChangeMind.onended = function()
                                     {
-                                        self.talking = false;
+                                        playersTurnToSpeak = true;
                                         player.dialoguePosition = 0;
                                         conversationID[1] = 1;
                                         self.SC();
@@ -20092,16 +22026,2723 @@ function theLegend()
                                         player.freynorFaction += 10;
                                         player.fame += 1;
                                         worldItems.push([new Item("coins", X, Y), 20]);
+                                        quests.completeQuests.push({name: "Teshir North Road", description: "You have slain the bandits blocking the way to the north along with their fearsome bandit chieftan, Hetmer."})
                                     }
                                     togginBanditPayment.onended = function()
                                     {
+                                        change = "none";
                                         player.dialoguePosition = 0;
                                         conversationID[1] = 0;
                                         self.SC();
                                     }
                                 }
+                            }
 
-                                //TODO Add more of the AI's responses to all of the possible results and have at least one of them initiate a quest.
+                            if (this.ID == "Maggy the Tailor" || conversationID[0] == "Maggy")
+                            {
+                                lowBar = "dialogue";
+                                conversationID[0] = "Maggy";
+
+                                if (clickReleased)
+                                {
+                                    self.RC();
+                                }
+
+                                //CONVERSATION
+                                if (conversationID[1] == 0)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["Good Day.", false, "a"], ["What is that you're working on?", false, "b"], ["What's new Maggy?", false, "c"], ["How's business?", false, "d"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0c";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "d")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0d";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0a")
+                                {
+                                    maggyJustLovely.play();
+                                    maggyJustLovely.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0b")
+                                {
+                                    maggyJustCleaning.play();
+                                    maggyJustCleaning.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0c")
+                                {
+                                    maggyMostlyCleaning.play();
+                                    maggyMostlyCleaning.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0d")
+                                {
+                                    maggyLifeStory.play();
+                                    maggyLifeStory.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                            }
+
+                            if (this.ID == "Medlia the Merchant" || conversationID[0] == "Medlia")
+                            {
+                                lowBar = "dialogue";
+                                conversationID[0] = "Medlia";
+
+                                if (clickReleased)
+                                {
+                                    self.RC();
+                                }
+
+                                //CONVERSATION
+                                if (conversationID[1] == 0)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["Nice day isn't it?", false, "a"], ["How's business?", false, "b"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    conversationID[1] = "0a";
+                                                    playersTurnToSpeak = false;
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    conversationID[1] = "0b";
+                                                    playersTurnToSpeak = false;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0a")
+                                {
+                                    if (player.getCharisma() < 2)
+                                    {
+                                        medliaMaybeIf.play();
+                                        medliaMaybeIf.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        medliaGuessItIs.play();
+                                        medliaGuessItIs.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+
+                                }
+                                else if (conversationID[1] == "0b")
+                                {
+                                    if (player.title == "Royalty" && player.freynorFaction > -50 || player.title == "Nobility" && player.freynorFaction > -50)
+                                    {
+                                        if (player.gender == "Male")
+                                        {
+                                            medliaMyMyMeLord.play();
+                                            medliaMyMyMeLord.onended = function()
+                                            {
+                                                playersTurnToSpeak = true;
+                                                player.dialoguePosition = 0;
+                                                conversationID[1] = 0;
+                                                self.SC();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            medliaMyMyMeLady.play();
+                                            medliaMyMyMeLady.onended = function()
+                                            {
+                                                playersTurnToSpeak = true;
+                                                player.dialoguePosition = 0;
+                                                conversationID[1] = 0;
+                                                self.SC();
+                                            }
+                                        }
+                                    }
+                                    else if (player.getCharisma() > 2 && quests.medliaCompetitionControlQuest != "complete" && quests.bankruptNeculai != true)
+                                    {
+                                        medliaCantPretend.play();
+                                        medliaCantPretend.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 1;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        medliaFine.play();
+                                        medliaFine.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == 1)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["What's the problem?", false, "a"], ["I didn't mean to pry.", false, "b"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    conversationID[1] = "1a";
+                                                    playersTurnToSpeak = false;
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    conversationID[1] = "1b";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "1a")
+                                {
+                                    if (player.raceName == "Freynor")
+                                    {
+                                        medliaOurProblem.play();
+                                        medliaOurProblem.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 2;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        medliaTheProblem.play();
+                                        medliaTheProblem.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 2;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "1b")
+                                {
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == 2)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["Is there something I can do?", false, "a"], ["I'm done with this subject for now.", false, "b"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    conversationID[1] = "2a";
+                                                    playersTurnToSpeak = false;
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    conversationID[1] = "2b";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "2a")
+                                {
+                                    medliaTen.play();
+                                    medliaTen.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        quests.medliaCompetitionControlReward = 10;
+                                        conversationID[1] = 3;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "2b")
+                                {
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == 3)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        if (player.getCharisma() > 5)
+                                        {
+                                            player.dialogueOptions = [["I think that doing away with your competition is worth a bit more. don't you?", false, "a"], ["It's a deal.", false, "b"], ["No deal.", false, "c"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["It's a deal.", false, "b"], ["No deal.", false, "c"]];
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    conversationID[1] = "3a";
+                                                    playersTurnToSpeak = false;
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    conversationID[1] = "3b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    conversationID[1] = "3c";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "3a")
+                                {
+                                    medliaEighteen.play();
+                                    medliaEighteen.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        quests.medliaCompetitionControlReward = 18;
+                                        quests.medliaCompetitionControlQuest = true;
+                                        quests.activeQuests.push({name: "Medlia's Competition Control", description: "Medlia feels that she is losing business to a Vardanian merchant that moved to town, she wants you to make him leave."});
+                                        conversationID[1] = 4;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "3b")
+                                {
+                                    player.dialoguePosition = 0;
+                                    quests.medliaCompetitionControlQuest = true;
+                                    quests.activeQuests.push({name: "Medlia's Competition Control", description: "Medlia feels that she is losing business to a Vardanian merchant that moved to town, she wants you to make him leave."});
+                                    conversationID[1] = 4;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == "3c")
+                                {
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == 4 && quests.medliaCompetitionControlQuest != "complete")
+                                {
+                                    player.dialogueOptions = [];
+                                    if (quests.medliaCompetitionControlCompletionStyle == "friendly" || quests.medliaCompetitionControlCompletionStyle == "intimidate")
+                                    {
+                                        playersTurnToSpeak = false;
+                                        medliaItWorked.play();
+                                        conversationID[1] = 0;
+                                        medliaItWorked.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            quests.medliaCompetitionControlQuest = "complete";
+                                            if (quests.medliaCompetitionControlCompletionStyle == "friendly")
+                                            {
+                                                quests.completeQuests.push({name: "Medlia's Competition Control", description: "You persuaded Neculai to leave town by kindly suggesting that he trade in a larger town with more opportunity and customers."});
+                                                player.vardanFaction += 1;
+                                            }
+                                            else
+                                            {
+                                                quests.completeQuests.push({name: "Medlia's Competition Control", description: "You persuaded Neculai to leave town by threatening him."});
+                                            }
+                                            player.freynorFaction += 1;
+                                            worldItems.push([new Item("coins", X, Y), quests.medliaCompetitionControlReward]);
+                                            player.experience += 65;
+                                            quests.medliaNewWealth += 55;
+                                            quests.bobithNewWealth += 17;
+                                            change = "none";
+                                            self.SC();
+                                        }
+                                    }
+                                    else if (uniqueChars.neculaiLDS == false)
+                                    {
+                                        playersTurnToSpeak = false;
+                                        medliaThatFar.play();
+                                        conversationID[1] = 0;
+                                        medliaThatFar.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            quests.medliaCompetitionControlCompletionStyle = "murder";
+                                            quests.medliaCompetitionControlQuest = "complete";
+                                            player.freynorFaction += 1;
+                                            quests.completeQuests.push({name: "Medlia's Competition Control", description: "Rather than making Neculai leave town you decided to murder him."});
+                                            worldItems.push([new Item("coins", X, Y), quests.medliaCompetitionControlReward]);
+                                            player.experience += 65;
+                                            quests.medliaNewWealth += 55;
+                                            quests.bobithNewWealth += 17;
+                                            change = "none";
+                                            self.SC();
+                                        }
+                                    }
+                                    else if (quests.medliaCompetitionControlCompletionStyle == "violence")
+                                    {
+                                        playersTurnToSpeak = false;
+                                        medliaHurtHim.play();
+                                        conversationID[1] = 0;
+                                        medliaHurtHim.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            quests.medliaCompetitionControlQuest = "complete";
+                                            player.freynorFaction += 1;
+                                            quests.completeQuests.push({name: "Medlia's Competition Control", description: "You attacked Neculai leaving him no choice but to flee town."});
+                                            worldItems.push([new Item("coins", X, Y), quests.medliaCompetitionControlReward]);
+                                            player.experience += 65;
+                                            quests.medliaNewWealth += 55;
+                                            quests.bobithNewWealth += 17;
+                                            change = "none";
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (this.ID == "Neculai the Merchant" || conversationID[0] == "Neculai")
+                            {
+                                lowBar = "dialogue";
+                                conversationID[0] = "Neculai";
+
+                                if (clickReleased)
+                                {
+                                    self.RC();
+                                }
+
+                                //CONVERSATION
+                                if (conversationID[1] == 0)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        if (player.raceName == "Vardan" && quests.theBalgurMercenariesQuest != "complete" || player.raceName == "Vardan" && quests.medliaCompetitionControlCompletionStyle == "friendly" && quests.medliaCompetitionControlQuest == "complete")
+                                        {
+                                            player.dialogueOptions = [["What brings you so far from the homeland?", false, "a"], ["Good day.", false, "b"], ["How's business?", false, "c"]];
+                                            if (quests.neculaiShopDeal == false)
+                                            {
+                                                player.dialogueOptions.push(["Do you have any special deals for a fellow homelander?", false, "d"]);
+                                            }
+                                            if (quests.medliaCompetitionControlQuest == true && quests.medliaCompetitionControlCompletionStyle == false)
+                                            {
+                                                player.dialogueOptions.push(["We need to talk...", false, "e"]);
+                                            }
+                                        }
+                                        else if (player.raceName == "Vardan")
+                                        {
+                                            player.dialogueOptions = [["What brings you so far from the homeland?", false, "a"], ["Good day.", false, "b"]];
+                                            if (quests.neculaiShopDeal == false)
+                                            {
+                                                player.dialogueOptions.push(["Do you have any special deals for a fellow homelander?", false, "d"]);
+                                            }
+                                            if (quests.medliaCompetitionControlQuest == true && quests.medliaCompetitionControlCompletionStyle == false)
+                                            {
+                                                player.dialogueOptions.push(["We need to talk...", false, "e"]);
+                                            }
+                                        }
+                                        else if (quests.theBalgurMercenariesQuest != "complete" || quests.medliaCompetitionControlCompletionStyle == "friendly" && quests.medliaCompetitionControlQuest == "complete")
+                                        {
+                                            player.dialogueOptions = [["Good day.", false, "b"], ["How's business?", false, "c"]];
+                                            if (quests.medliaCompetitionControlQuest == true && quests.medliaCompetitionControlCompletionStyle == false)
+                                            {
+                                                player.dialogueOptions.push(["We need to talk...", false, "e"]);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["Good day.", false, "b"]];
+                                            if (quests.medliaCompetitionControlQuest == true && quests.medliaCompetitionControlCompletionStyle == false)
+                                            {
+                                                player.dialogueOptions.push(["We need to talk...", false, "e"]);
+                                            }
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0c";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "d")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0d";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "e")
+                                                {
+                                                    conversationID[1] = "0e";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0a")
+                                {
+                                    neculaiBountyHere.play();
+                                    neculaiBountyHere.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0b")
+                                {
+                                    neculaiEveryDay.play();
+                                    neculaiEveryDay.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0c")
+                                {
+                                    if (quests.medliaCompetitionControlCompletionStyle == "friendly" && quests.medliaCompetitionControlQuest == "complete")
+                                    {
+                                        neculaiMuchBetter.play();
+                                        neculaiMuchBetter.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        neculaiBiggerProblem.play();
+                                        neculaiBiggerProblem.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 2;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0d")
+                                {
+                                    if (player.getCharisma() > 5)
+                                    {
+                                        neculaiSpecialDeals.play();
+                                        neculaiSpecialDeals.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            quests.neculaiShopDeal = true;
+                                            worldItems.push([new Item("frichPelt", X, Y), 6]);
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        neculaiStirUp.play();
+                                        neculaiStirUp.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+
+                                }
+                                else if (conversationID[1] == "0e")
+                                {
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == 1)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        if (player.getCharisma() >= 10)
+                                        {
+                                            player.dialogueOptions = [["[convince Neculai that he would make more money trading in a larger town]", false, "a"], ["You're not wanted here, pack up your shop and leave, before I make you leave.", false, "b"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["You're not wanted here, pack up your shop and leave, before I make you leave.", false, "b"]];
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1b";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "1a")
+                                {
+                                    neculaiLots.play();
+                                    neculaiLots.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        quests.medliaCompetitionControlCompletionStyle = "friendly";
+                                        player.experience += 15;
+                                        player.vardanFaction += 1;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "1b")
+                                {
+                                    if (player.getCharisma() > 4 && player.getStrength() > 9)
+                                    {
+                                        neculaiZes.play();
+                                        neculaiZes.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            quests.medliaCompetitionControlCompletionStyle = "intimidate";
+                                            player.experience += 15;
+                                            player.vardanFaction -= 1;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        neculaiDontThinkSo.play();
+                                        neculaiDontThinkSo.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.vardanFaction -= 1;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == 2)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["Is there anything that I can do?", false, "a"], ["Good luck with that... I don't care.", false, "b"], ["Can we talk about something else?", false, "c"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "2a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "2b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "2c";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "2a")
+                                {
+                                    neculaiThenganMercs.play();
+                                    neculaiThenganMercs.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 3;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "2b")
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == "2c")
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == 3)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["It's a deal.", false, "a"], ["I will do it for 40.", false, "b"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    conversationID[1] = "3a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "3b";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "3a")
+                                {
+                                    player.dialoguePosition = 0;
+                                    quests.theBalgurMercenariesReward = 30;
+                                    quests.theBalgurMercenariesQuest = true;
+                                    quests.activeQuests.push({name: "The Balgur Mercenaries", description: "Neculai hired you to get rid of a crew of mercenaries that have been harrassing him."});
+                                    change = "none";
+                                    conversationID[1] = 4;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == "3b")
+                                {
+                                    if (player.getCharisma() > 10)
+                                    {
+                                        neculaiFine.play();
+                                        neculaiFine.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            quests.theBalgurMercenariesReward = 40;
+                                            quests.theBalgurMercenariesQuest = true;
+                                            quests.activeQuests.push({name: "The Balgur Mercenaries", description: "Neculai hired you to get rid of a crew of mercenaries that have been harrassing him."});
+                                            change = "none";
+                                            conversationID[1] = 4;
+                                            self.SC();
+                                        }
+                                    }
+                                    else if (player.getCharisma() > 7)
+                                    {
+                                        neculaiRid.play();
+                                        neculaiRid.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            quests.theBalgurMercenariesReward = 35;
+                                            quests.theBalgurMercenariesQuest = true;
+                                            quests.activeQuests.push({name: "The Balgur Mercenaries", description: "Neculai hired you to get rid of a crew of mercenaries that have been harrassing him."});
+                                            change = "none";
+                                            conversationID[1] = 4;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        neculaiZertyOne.play();
+                                        neculaiZertyOne.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            quests.theBalgurMercenariesReward = 31;
+                                            quests.theBalgurMercenariesQuest = true;
+                                            quests.activeQuests.push({name: "The Balgur Mercenaries", description: "Neculai hired you to get rid of a crew of mercenaries that have been harrassing him."});
+                                            change = "none";
+                                            conversationID[1] = 4;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == 4)
+                                {
+                                    player.dialogueOptions = [];
+                                    if (quests.theBalgurMercenariesMercsKilled >= 8 && uniqueChars.kronheimeLDS == false || quests.theBalgurMercenariesCompletionStyle == "paidMercs" || quests.theBalgurMercenariesCompletionStyle == "threaten" || quests.theBalgurMercenariesCompletionStyle == "royalProtection")
+                                    {
+                                        playersTurnToSpeak = false;
+                                        neculaiZerGone.play();
+                                        conversationID[1] = 0;
+                                        neculaiZerGone.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            if (quests.theBalgurMercenariesMercsKilled >= 8 && uniqueChars.kronheimeLDS == false)
+                                            {
+                                                quests.theBalgurMercenariesCompletionStyle = "killedMercs";
+                                                quests.completeQuests.push({name: "The Balgur Mercenaries", description: "You slayed the entire band of mercenaries that had been harrassing Neculai."});
+                                                player.fame += 2;
+                                            }
+                                            else
+                                            {
+                                                if (quests.theBalgurMercenariesCompletionStyle == "paidMercs")
+                                                {
+                                                    quests.completeQuests.push({name: "The Balgur Mercenaries", description: "The band of mercenaries left after you paid them the money that Neculai owed."});
+                                                }
+                                                else if (quests.theBalgurMercenariesCompletionStyle == "threaten")
+                                                {
+                                                    quests.completeQuests.push({name: "The Balgur Mercenaries", description: "You threatened to kill the mercenaries, who saw that they were no match for you and left without any trouble."});
+                                                }
+                                                else
+                                                {
+                                                    quests.completeQuests.push({name: "The Balgur Mercenaries", description: "Declaring your royal freydic patronage you decreed Neculai was under your kingdom's protection."});
+                                                }
+                                                player.fame += 1;
+                                            }
+                                            quests.theBalgurMercenariesQuest = "complete";
+                                            worldItems.push([new Item("coins", X, Y), quests.theBalgurMercenariesReward]);
+                                            player.experience += 350;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (this.ID == "Mercenary Captain Kronheime" || conversationID[0] == "Kronheim")
+                            {
+                                lowBar = "dialogue";
+                                conversationID[0] = "Kronheime";
+
+                                if (clickReleased)
+                                {
+                                    self.RC();
+                                }
+
+                                //CONVERSATION
+                                if (conversationID[1] == 0)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [];
+                                        if (player.theBalgurMercenariesRank == "none")
+                                        {
+                                            player.dialogueOptions.push(["Who are the balgur mercenaries exactly?", false, "a"]);
+                                        }
+                                        if (player.theBalgurMercenariesFaction > - 50 && player.theBalgurMercenariesRank == "none")
+                                        {
+                                            player.dialogueOptions.push(["What would I have to do to join this mercenary group?", false, "b"]);
+                                        }
+                                        if (quests.theBalgurMercenariesQuest == true)
+                                        {
+                                            player.dialogueOptions.push(["About Neculai...", false, "c"]);
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0c";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0a")
+                                {
+                                    kronheimeHaventHeard.play();
+                                    kronheimeHaventHeard.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0b")
+                                {
+                                    if (player.getStrength() < 20 && player.fame < 65)
+                                    {
+                                        kronheimeLastADay.play();
+                                        kronheimeLastADay.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        kronheimeTalkTo.play();
+                                        kronheimeTalkTo.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 1;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0c")
+                                {
+                                    if (player.fame < 65 && player.getStrength() < 40 && player.getConstitution() < 35 && player.getStamina() < 35 && player.magicLevel < 99)
+                                    {
+                                        kronheimeTalkQuick.play();
+                                        kronheimeTalkQuick.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 2;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        kronheimeYourWith.play();
+                                        kronheimeYourWith.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 2;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == 1)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["Where is the commander?", false, "a"], ["Enough of this topic for now.", false, "b"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    conversationID[1] = "1b";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "1a")
+                                {
+                                    kronheimeWheresTheBoss.play();
+                                    kronheimeWheresTheBoss.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "1b")
+                                {
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == 2)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["Leave or face my wrath!", false, "a"], ["How much does he owe you?", false, "b"]];
+                                        if (player.raceName == "Freynor" && player.title == "Royalty")
+                                        {
+                                            player.dialogueOptions.unshift(["As the heir to the crown of Freynor I hereby command you to take your group and leave, Neculai is under this kingdom's protection.", false, "c"]);
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "2a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "2b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "2c";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "2a")
+                                {
+                                    if (player.fame >= 65 || player.getStrength() >= 40 && player.getConstitution() >= 35 && player.getStamina() >= 35 || player.magicLevel > 99)
+                                    {
+                                        kronheimeLeaving.play();
+                                        kronheimeLeaving.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            quests.theBalgurMercenariesCompletionStyle = "threaten";
+                                            player.theBalgurMercenariesFaction -= 15;
+                                            player.blindedTime = 2;
+                                            player.blindedStoreTime = new Date().getTime();
+                                            ArtificialIntelligenceAccess = [];
+                                            player.dialogueOptions = [];
+                                            change = "none";
+                                            conversationID[1] = 0;
+                                            lowBar = "information";
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (player.gender == "Male")
+                                        {
+                                            kronheimeKillHim.play();
+                                            kronheimeKillHim.onended = function()
+                                            {
+                                                playersTurnToSpeak = true;
+                                                player.dialoguePosition = 0;
+                                                conversationID[1] = 0;
+                                                self.SC();
+                                                this.disturbed = true;
+                                            }
+                                        }
+                                        else if (player.gender == "Female")
+                                        {
+                                            kronheimeKillHer.play();
+                                            kronheimeKillHer.onended = function()
+                                            {
+                                                playersTurnToSpeak = true;
+                                                player.dialoguePosition = 0;
+                                                conversationID[1] = 0;
+                                                self.SC();
+                                                this.disturbed = true;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            kronheimeKillIt.play();
+                                            kronheimeKillIt.onended = function()
+                                            {
+                                                playersTurnToSpeak = true;
+                                                player.dialoguePosition = 0;
+                                                conversationID[1] = 0;
+                                                self.SC();
+                                                this.disturbed = true;
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "2b")
+                                {
+                                    kronheimeNoLess.play();
+                                    kronheimeNoLess.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 3;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "2c")
+                                {
+                                    kronheimeThisSlight.play();
+                                    kronheimeThisSlight.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        quests.theBalgurMercenariesCompletionStyle = "royalProtection";
+                                        player.theBalgurMercenariesFaction -= 3;
+                                        player.blindedTime = 2;
+                                        player.blindedStoreTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess = [];
+                                        player.dialogueOptions = [];
+                                        change = "none";
+                                        conversationID[1] = 0;
+                                        lowBar = "information";
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 3)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["Why have haven't you collected your money from him then?", false, "a"], ["I will pay Neculai's debt.", false, "b"], ["[go back to last set of options]", false, "c"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "3a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "3b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    conversationID[1] = "3c";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "3a")
+                                {
+                                    kronheimeThatVardanian.play();
+                                    kronheimeThatVardanian.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 4;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "3b")
+                                {
+                                    var hasEnoughToPay = -1;
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 200)
+                                        {
+                                            hasEnoughToPay = i;
+                                        }
+                                    }
+
+                                    if (hasEnoughToPay == -1)
+                                    {
+                                        kronheimeDontHaveEnough.play();
+                                        kronheimeDontHaveEnough.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 3;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (Inventory[hasEnoughToPay][1] > 200)
+                                        {
+                                            Inventory[hasEnoughToPay][1] -= 200;
+                                        }
+                                        else
+                                        {
+                                            Inventory.splice(hasEnoughToPay, 1);
+                                        }
+
+                                        kronheimeSimple.play();
+                                        conversationID[1] = 0;
+                                        kronheimeSimple.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            quests.theBalgurMercenariesCompletionStyle = "paidMercs";
+                                            player.theBalgurMercenariesFaction += 5;
+                                            player.blindedTime = 2;
+                                            player.blindedStoreTime = new Date().getTime();
+                                            ArtificialIntelligenceAccess = [];
+                                            player.dialogueOptions = [];
+                                            change = "none";
+                                            lowBar = "information";
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "3c")
+                                {
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 2;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == 4)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["I could try to convince him to pay.", false, "a"], ["[go back to last set of options]", false, "b"]];
+                                        if (player.raceName == "Freynor" && player.title == "Royalty")
+                                        {
+                                            if (uniqueChars.neculaiLDS == true)
+                                            {
+                                                player.dialogueOptions.unshift(["As heir to the crown of Freynor, I will have him executed and brought to you along with his possessions.", false, "d"]);
+                                                player.dialogueOptions.unshift(["As heir to the crown of Freynor I grant you permission to take what you are owed, but leave him alive and unharmed.", false, "c"]);
+                                            }
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "4a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    conversationID[1] = "4b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "4c";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "d")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "4d";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "4a")
+                                {
+                                    kronheimeEarAsProof.play();
+                                    kronheimeEarAsProof.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 5;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "4b")
+                                {
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 3;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == "4c")
+                                {
+                                    kronheimeDidntRealize.play();
+                                    kronheimeDidntRealize.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        quests.theBalgurMercenariesCompletionStyle = "bankruptedNeculai";
+                                        player.theBalgurMercenariesFaction += 10;
+                                        player.blindedTime = 2;
+                                        player.blindedStoreTime = new Date().getTime();
+                                        quests.bankruptNeculai = true;
+                                        quests.theBalgurMercenariesQuest = "complete";
+                                        quests.completeQuests.push({name: "The Balgur Mercenaries", description: "As the heir to The Kingdom of Freynor you allowed the mercenaries to take what they were owed from Neculai so long as they left him unharmed."});
+                                        player.experience += 350;
+                                        player.fame += 1;
+                                        ArtificialIntelligenceAccess = [];
+                                        player.dialogueOptions = [];
+                                        change = "none";
+                                        conversationID[1] = 0;
+                                        lowBar = "information";
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "4d")
+                                {
+                                    kronheimeDidntRealize.play();
+                                    kronheimeDidntRealize.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        quests.theBalgurMercenariesCompletionStyle = "executedNeculai";
+                                        player.theBalgurMercenariesFaction += 15;
+                                        player.blindedTime = 2;
+                                        player.blindedStoreTime = new Date().getTime();
+                                        uniqueChars.neculaiLDS = false;
+                                        quests.theBalgurMercenariesQuest = "complete";
+                                        quests.completeQuests.push({name: "The Balgur Mercenaries", description: "With the power vested in you as the heir to The Kingdom of Freynor you ordered Neculai to be Executed and brought to the mercenaries along with all of his possessions."});
+                                        player.experience += 350;
+                                        player.fame += 1;
+                                        ArtificialIntelligenceAccess = [];
+                                        player.dialogueOptions = [];
+                                        change = "none";
+                                        conversationID[1] = 0;
+                                        lowBar = "information";
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 5)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["I'll do it.", false, "a"], ["What will I get in exchange for this? ", false, "b"], ["I'm not killing anyone for you.", false, "c"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "5a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "5b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "5c";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "5a")
+                                {
+                                    kronheimeGood.play();
+                                    kronheimeGood.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 7;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "5b")
+                                {
+                                    kronheimeNecklace.play();
+                                    kronheimeNecklace.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 6;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "5c")
+                                {
+                                    kronheimeGetAway.play();
+                                    kronheimeGetAway.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 4;
+                                        player.theBalgurMercenariesFaction -= 3;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 6)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["I'll do it.", false, "a"], ["I'll have to think about this. ", false, "b"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "6a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "6b";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "6a")
+                                {
+                                    kronheimeGood.play();
+                                    kronheimeGood.onended = function()
+                                    {
+                                        quests.theBalgurMercenariesNecklace = true;
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 7;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "6b")
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 4;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == 7)
+                                {
+                                    player.dialogueOptions = [];
+
+                                    var hasPlayerDoneTheStuff = false;
+                                    if (uniqueChars.neculaiLDS == false && quests.theBalgurMercenariesQuest == true)
+                                    {
+                                        for (var i = 0; i < Inventory.length; i++)
+                                        {
+                                            if (Inventory[i][0].type == "neculaisEar")
+                                            {
+                                                hasPlayerDoneTheStuff = true;
+                                                Inventory.splice(i, 1);
+                                                break;
+                                            }
+                                        }
+
+                                        if (hasPlayerDoneTheStuff)
+                                        {
+                                            kronheimeAnotherEar.play();
+                                            conversationID[1] = 0;
+                                            kronheimeAnotherEar.onended = function()
+                                            {
+                                                playersTurnToSpeak = true;
+                                                quests.theBalgurMercenariesCompletionStyle = "murderedNeculai";
+                                                player.theBalgurMercenariesFaction += 15;
+                                                player.blindedTime = 2;
+                                                player.blindedStoreTime = new Date().getTime();
+                                                quests.theBalgurMercenariesQuest = "complete";
+                                                quests.completeQuests.push({name: "The Balgur Mercenaries", description: "You turned the tables on Neculai, instead of getting rid of the mercenaries, you took up the mercenaries' offer to kill Neculai."});
+                                                player.experience += 350;
+                                                player.fame += 1;
+                                                ArtificialIntelligenceAccess = [];
+                                                change = "none";
+                                                if (quests.theBalgurMercenariesNecklace == true)
+                                                {
+                                                    Inventory.unshift([new Item("BerulnToothNecklace", X, Y), 1]);
+                                                }
+                                                player.dialoguePosition = 0;
+                                                lowBar = "information";
+                                                self.SC();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (this.ID == "Torg Commissioner Stendor" || conversationID[0] == "Stendor")
+                            {
+                                lowBar = "dialogue";
+                                conversationID[0] = "Stendor";
+
+                                if (clickReleased)
+                                {
+                                    self.RC();
+                                }
+
+                                //CONVERSATION
+                                if (conversationID[1] == 0)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["Good Day.", false, "a"], ["Is there anything I can do to improve my relations with the kingdom of Freynor.", false, "b"], ["Can I see the active bounties for this town?", false, "c"], ["Goodbye.", false, "d"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0c";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "d")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0d";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0a")
+                                {
+                                    stendorGoodDay.play();
+                                    stendorGoodDay.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0b")
+                                {
+                                    if (player.title == "Royalty" && player.raceName == "Freynor" || player.title == "Nobility" && player.raceName == "Freynor")
+                                    {
+                                        stendorYourPeople.play();
+                                        stendorYourPeople.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        stendorHelpingPeople.play();
+                                        stendorHelpingPeople.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0c")
+                                {
+                                    stendorHereTheyAre.play();
+                                    stendorHereTheyAre.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 1;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0d")
+                                {
+                                    if (player.title == "Royalty" || player.title == "Nobility")
+                                    {
+                                        if (player.gender == "Male")
+                                        {
+                                            stendorHealth.play();
+                                            stendorHealth.onended = function()
+                                            {
+                                                playersTurnToSpeak = true;
+                                                player.dialoguePosition = 0;
+                                                conversationID[1] = 0;
+                                                self.SC();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            stendorFairThee.play();
+                                            stendorFairThee.onended = function()
+                                            {
+                                                playersTurnToSpeak = true;
+                                                player.dialoguePosition = 0;
+                                                conversationID[1] = 0;
+                                                self.SC();
+                                            }
+                                        }
+                                    }
+                                    else if (player.title == "Highfolk")
+                                    {
+                                        stendorBeWell.play();
+                                        stendorBeWell.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        stendorTrouble.play();
+                                        stendorTrouble.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                    lowBar = "information";
+                                }
+                                else if (conversationID[1] == 1)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [];
+                                        if (quests.theMasterThiefOfTeshirQuest == false)
+                                        {
+                                            player.dialogueOptions.push(["{ Wanted: Master Thief ; 65 coins }", false, "a"]);
+                                        }
+                                        if (quests.bountyHetmerQuest == false && uniqueChars.hetmerLDS == true)
+                                        {
+                                            player.dialogueOptions.push(["{ Wanted: Bandit Chief Hetmer ; 38 coins }", false, "b"]);
+                                        }
+                                        if (quests.bountyteberQuest == false && uniqueChars.teberLDS == true)
+                                        {
+                                            player.dialogueOptions.push(["{ Wanted: Teber the Deserter ; 25 coins }", false, "c"]);
+                                        }
+                                        if (player.dialogueOptions.length < 1)
+                                        {
+                                            player.dialogueOptions.push(["(No Active Bounties: return to previous dialogue selection)", false, "d"]);
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1c";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "d")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1d";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "1a")
+                                {
+                                    stendorItemsGo.play();
+                                    stendorItemsGo.onended = function()
+                                    {
+                                        quests.theMasterThiefOfTeshirQuest = true;
+                                        quests.activeQuests.push({name: "The Master Thief of Teshir", description: "You took a bounty to aprehend or kill the skilled thief that has been stealing goods in the city of Teshir."});
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 2;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "1b")
+                                {
+                                    stendorHetmerTough.play();
+                                    stendorHetmerTough.onended = function()
+                                    {
+                                        quests.bountyHetmerQuest = true;
+                                        quests.activeQuests.push({name: "Bounty: Hetmer the Bandit Chieftain", description: "Kill Hetmer the Bandit Chieftain and then return to Commissioner Stendor for payment."});
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 4;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "1c")
+                                {
+                                    stendorPoorWretch.play();
+                                    stendorPoorWretch.onended = function()
+                                    {
+                                        quests.bountyTeberQuest = true;
+                                        quests.activeQuests.push({name: "Bounty: Teber the Deserter", description: "Kill Teber, a soldier who deserted the freydic jarl Torg's army."});
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 5;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "1d")
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == 2)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [];
+                                        if (quests.theMasterThiefOfTeshirNeevKnown == true)
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 3;
+                                            self.SC();
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.push(["Where should I start looking?", false, "a"]);
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "2a";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "2a")
+                                {
+                                    stendorTryAsking.play();
+                                    stendorTryAsking.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 2;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 3)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [];
+                                        if (quests.theMasterThiefOfTeshirQuest == true && quests.theMasterThiefOfTeshirNeevKnown == true && quests.theMasterThiefOfTeshirNeevSlain == true)
+                                        {
+                                            player.dialogueOptions.push(["It turns out the thief was a Neev, I've slain it for all to see.", false, "a"]);
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "3a";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "3a")
+                                {
+                                    if (quests.theMasterThiefOfTeshirQuest == true && quests.theMasterThiefOfTeshirNeevKnown == true && quests.theMasterThiefOfTeshirNeevSlain == true)
+                                    {
+                                        stendorNeevsAreReal.play();
+                                        stendorNeevsAreReal.onended = function()
+                                        {
+                                            quests.theMasterThiefOfTeshirQuest = "complete";
+                                            quests.completeQuests.push({name: "The Master Thief of Teshir", description: "You killed the thief, which turned out to be a magical creature commonly known as a beer fairy."});
+                                            worldItems.push([new Item("coins", X, Y), 65]);
+                                            player.freynorFaction += 25;
+                                            player.fame += 1;
+                                            if (player.class == "Mage")
+                                            {
+                                                player.magicalExperience += 75;
+                                            }
+                                            else
+                                            {
+                                                player.experience += 75;
+                                            }
+                                            player.magicalExperience += 25;
+                                            player.experience += 25;
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == 4)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [];
+                                        if (uniqueChars.hetmerLDS == false)
+                                        {
+                                            player.dialogueOptions.push(["The bandit Hetmer has been brought to justice.", false, "a"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.push(["Where might I find him?", false, "b"]);
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "4a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "4b";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "4a")
+                                {
+                                    if (quests.bountyHetmerQuest == true)
+                                    {
+                                        stendorExcellent.play();
+                                        stendorExcellent.onended = function()
+                                        {
+                                            quests.bountyHetmerQuest = "complete";
+                                            quests.completeQuests.push({name: "Bounty: Hetmer the Bandit Chieftain", description: "You killed the bandit chieftan Hetmer and collected your payment."});
+                                            worldItems.push([new Item("coins", X, Y), 38]);
+                                            player.freynorFaction += 5;
+                                            player.fame += 1;
+                                            player.experience += 75;
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "4b")
+                                {
+                                    stendorAlwaysComeBack.play();
+                                    stendorAlwaysComeBack.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 4;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 5)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [];
+                                        if (quests.bountyTeberQuest == "complete")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                        else if (uniqueChars.teberLDS == false)
+                                        {
+                                            player.dialogueOptions.push(["Teber has been dealt with.", false, "a"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.push(["Do you know where he is?", false, "b"]);
+                                            if (player.title == "Royalty" && player.raceName == "Freynor")
+                                            {
+                                                player.dialogueOptions.push(["As the heir to the kingdom of Freynor I hereby clear all charges against this soldier.", false, "c"]);
+                                            }
+                                            else if (player.title == "Nobility" && player.raceName == "Freynor")
+                                            {
+                                                player.dialogueOptions.push(["As the heir to the house of Torg I declare Teber cleared of all charges against him.", false, "d"]);
+                                            }
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "5a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "5b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "5c";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "d")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "5d";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "5a")
+                                {
+                                    if (quests.bountyTeberQuest == true)
+                                    {
+                                        stendorPoorSoul.play();
+                                        stendorPoorSoul.onended = function()
+                                        {
+                                            quests.bountyTeberQuest = "complete";
+                                            quests.bountyTeberCompletionStyle = "killed teber";
+                                            quests.completeQuests.push({name: "Bounty: Teber the Deserter", description: "You tracked down and killed the soldier that had deserted Jarl Torg's army then collected payment."});
+                                            worldItems.push([new Item("coins", X, Y), 25]);
+                                            player.freynorFaction += 2;
+                                            player.fame += 1;
+                                            player.experience += 55;
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "5b")
+                                {
+                                    stendorFarSouth.play();
+                                    stendorFarSouth.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 5;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "5c")
+                                {
+                                    if (quests.bountyTeberQuest == true)
+                                    {
+                                        stendorHighness.play();
+                                        stendorHighness.onended = function()
+                                        {
+                                            quests.bountyTeberQuest = "complete";
+                                            quests.bountyTeberCompletionStyle = "royal pardon";
+                                            quests.completeQuests.push({name: "Bounty: Teber the Deserter", description: "As the heir to the kingdom of Freynor, you pardoned Teber's desertion."});
+                                            player.experience += 25;
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "5d")
+                                {
+                                    if (quests.bountyTeberQuest == true)
+                                    {
+                                        if (player.gender == "Female")
+                                        {
+                                            stendorWishLady.play();
+                                            stendorWishLady.onended = function()
+                                            {
+                                                quests.bountyTeberQuest = "complete";
+                                                quests.bountyTeberCompletionStyle = "royal pardon";
+                                                quests.completeQuests.push({name: "Bounty: Teber the Deserter", description: "As the heir to the house of Torg, the very house whose army Teber deserted from, You pardoned Teber's Desertion."});
+                                                player.experience += 25;
+                                                playersTurnToSpeak = true;
+                                                player.dialoguePosition = 0;
+                                                conversationID[1] = 0;
+                                                self.SC();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            stendorWishLord.play();
+                                            stendorWishLord.onended = function()
+                                            {
+                                                quests.bountyTeberQuest = "complete";
+                                                quests.bountyTeberCompletionStyle = "royal pardon";
+                                                quests.completeQuests.push({name: "Bounty: Teber the Deserter", description: "As the heir to the house of Torg, the very house whose army Teber deserted from, You pardoned Teber's Desertion."});
+                                                player.experience += 25;
+                                                playersTurnToSpeak = true;
+                                                player.dialoguePosition = 0;
+                                                conversationID[1] = 0;
+                                                self.SC();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (this.ID == "Kedwin" || conversationID[0] == "Kedwin")
+                            {
+                                lowBar = "dialogue";
+                                conversationID[0] = "Kedwin";
+
+                                if (clickReleased)
+                                {
+                                    self.RC();
+                                }
+
+                                //CONVERSATION
+                                if (conversationID[1] == 0)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["How goes the day?", false, "a"]];
+                                        if (quests.theMasterThiefOfTeshirQuest == true && quests.theMasterThiefOfTeshirNeevKnown == false)
+                                        {
+                                            player.dialogueOptions.push(["Have you heard any rumors that would help me find the thief that is on the loose?", false, "b"]);
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0b";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0a")
+                                {
+                                    kedwinBetter.play();
+                                    kedwinBetter.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0b")
+                                {
+                                    kedwinRumors.play();
+                                    kedwinRumors.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 1;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 1)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["[give harst ale]", false, "a"], ["[threaten him into telling you]", false, "b"], ["Actually let's not discuss rumors.", false, "c"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1c";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "1a")
+                                {
+                                    var gaveAleToKed = -1;
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].type == "harstAle")
+                                        {
+                                            gaveAleToKed = i;
+                                        }
+                                    }
+
+                                    if (gaveAleToKed != -1)
+                                    {
+                                        quests.theMasterThiefOfTeshirNeevKnown = true;
+                                        if (quests.theMasterThiefOfTeshirNeevSlain == false)
+                                        {
+                                            kedwinGobblin.play();
+                                            kedwinGobblin.onended = function()
+                                            {
+                                                if (Inventory[gaveAleToKed][1] > 1)
+                                                {
+                                                    Inventory[gaveAleToKed][1] -= 1;
+                                                }
+                                                else
+                                                {
+                                                    Inventory.splice(gaveAleToKed, 1);
+                                                }
+
+                                                playersTurnToSpeak = true;
+                                                player.dialoguePosition = 0;
+                                                conversationID[1] = 2;
+                                                self.SC();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            kedwinSomeone.play();
+                                            kedwinSomeone.onended = function()
+                                            {
+                                                if (Inventory[gaveAleToKed][1] > 1)
+                                                {
+                                                    Inventory[gaveAleToKed][1] -= 1;
+                                                }
+                                                else
+                                                {
+                                                    Inventory.splice(gaveAleToKed, 1);
+                                                }
+
+                                                playersTurnToSpeak = true;
+                                                player.dialoguePosition = 0;
+                                                conversationID[1] = 3;
+                                                self.SC();
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 1;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "1b")
+                                {
+                                    if (player.getCharisma() >= 15)
+                                    {
+                                        quests.theMasterThiefOfTeshirNeevKnown = true;
+                                        if (quests.theMasterThiefOfTeshirNeevSlain == false)
+                                        {
+                                            kedwinGobblin.play();
+                                            kedwinGobblin.onended = function()
+                                            {
+                                                playersTurnToSpeak = true;
+                                                player.dialoguePosition = 0;
+                                                conversationID[1] = 2;
+                                                self.SC();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            kedwinSomeone.play();
+                                            kedwinSomeone.onended = function()
+                                            {
+                                                playersTurnToSpeak = true;
+                                                player.dialoguePosition = 0;
+                                                conversationID[1] = 3;
+                                                self.SC();
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                        this.disturbedTime = new Date().getTime();
+                                    }
+                                }
+                                else if (conversationID[1] == "1c")
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == 2)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["What is a Beer Fairy?", false, "a"]];
+                                        if (player.getIntelligence() > 11)
+                                        {
+                                            player.dialogueOptions.unshift(["Beer fairies are just fairytales, they don't actually exist. Now tell me something useful.", false, "b"]);
+                                        }
+                                        if (player.getIntelligence() > 19)
+                                        {
+                                            player.dialogueOptions.push(["Sounds like a Neev to me...", false, "c"]);
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "2a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "2b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "2c";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "2a")
+                                {
+                                    kedwinNeverHeard.play();
+                                    kedwinNeverHeard.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 3;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "2b")
+                                {
+                                    kedwinEitherWay.play();
+                                    kedwinEitherWay.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 3;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "2c")
+                                {
+                                    kedwinCause.play();
+                                    kedwinCause.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 3)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["That's bogus!", false, "a"], ["Thanks for the help.", false, "b"], ["This is what I get for asking a drunk to help me with a serious problem...", false, "c"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "3a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "3b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "3c";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "3a" || conversationID[1] == "3c")
+                                {
+                                    kedwinYourLoss.play();
+                                    kedwinYourLoss.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "3b")
+                                {
+                                    kedwinNothing.play();
+                                    kedwinNothing.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                            }
+
+                            if (this.ID == "Teber the Deserter" || this.ID == "Teber the Artisan" || conversationID[0] == "Teber")
+                            {
+                                lowBar = "dialogue";
+                                conversationID[0] = "Teber";
+
+                                if (clickReleased)
+                                {
+                                    self.RC();
+                                }
+
+                                //CONVERSATION
+                                if (conversationID[1] == 0)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["Good Day.", false, "a"], ["What skills do you know?", false, "b"]];
+                                        if (player.raceName == "Kel")
+                                        {
+                                            player.dialogueOptions.push(["What brings you to our tribe?", false, "c"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.push(["What brings you so far from your land?", false, "c"]);
+                                        }
+                                        if (quests.bountyTeberCompletionStyle != "doublecross")
+                                        {
+                                            player.dialogueOptions.push(["[trade 5 mofu feathers and 52 coins for a mofu feather necklace]", false, "d"]);
+                                        }
+                                        if (quests.bountyTeberCompletionStyle == false && quests.bountyTeberQuest == true)
+                                        {
+                                            player.dialogueOptions.push(["I'm here to kill you deserter... any last words?", false, "e"]);
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0c";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "d")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0d";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "e")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0e";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0a")
+                                {
+                                    teberShanToor.play();
+                                    teberShanToor.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0b")
+                                {
+                                    teberSkills.play();
+                                    teberSkills.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0c")
+                                {
+                                    if (player.getCharisma() >= 10)
+                                    {
+                                        teberArtCareer.play();
+                                        teberArtCareer.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        teberLastJob.play();
+                                        teberLastJob.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0d")
+                                {
+                                    teberQueBellas.play();
+                                    teberQueBellas.onended = function()
+                                    {
+                                        //todo actually make the trade take place here. //booble
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0e")
+                                {
+                                    if (player.level >= 8 || player.magicLevel >= 6)
+                                    {
+                                        teberPleaseDont.play();
+                                        teberPleaseDont.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 1;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        teberDontWant.play();
+                                        teberDontWant.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == 1)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["If you pay me double your bounty I will let you live. (LIE)", false, "a"], ["If you pay me double your bounty I will let you live. (TRUTH)", false, "d"], ["Enough groveling deserter... Stand and fight me with whatever last scraps of honor you still have.", false, "b"], ["Okay... I won't kill you... but that doesn't mean somebody else won't, you're a wanted man.", false, "c"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1c";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "d")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1d";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "1a")
+                                {
+                                    teberAnyways.play();
+                                    teberAnyways.onended = function()
+                                    {
+                                        quests.bountyTeberCompletionStyle = "doublecross";
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 2;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "1b")
+                                {
+                                    this.disturbedTime = new Date().getTime();
+                                }
+                                else if (conversationID[1] == "1c")
+                                {
+                                    quests.bountyTeberCompletionStyle = "spare";
+                                    quests.bountyTeberQuest = "complete";
+                                    quests.completeQuests.push({name: "Bounty: Teber the Deserter", description: "After hearing Teber's side of the story you decided to let him live."});
+                                    player.kelFaction += 3;
+                                    player.freynorFaction -= 5;
+                                    player.experience += 45;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == "1d")
+                                {
+                                    teberAnyways.play();
+                                    teberAnyways.onended = function()
+                                    {
+                                        quests.bountyTeberCompletionStyle = "doublespare";
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 2;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 2)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["I could kill you and take your money now if you would like...", false, "a"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "2a";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "2a")
+                                {
+                                    teberOkay.play();
+                                    teberOkay.onended = function()
+                                    {
+                                        if (quests.bountyTeberCompletionStyle == "doublespare")
+                                        {
+                                            quests.bountyTeberQuest = "complete";
+                                            quests.completeQuests.push({name: "Bounty: Teber the Deserter", description: "You spared Teber in exchange for double the price of his bounty."});
+                                            player.freynorFaction -= 5;
+                                            worldItems.push([new Item("coins", X, Y), 50]);
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                        else
+                                        {
+                                            worldItems.push([new Item("coins", X, Y), 50]);
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                }
                             }
                         }
                         else
@@ -21259,6 +25900,7 @@ function theLegend()
             }
             else if (this.weapon == "freydicSword")
             {
+                this.damageFrame = "automatic";
                 if (theCostume <= 0)
                 {
                     this.drawUnit(oldverse, 2210, 1, 73, 63, -13, -60, 91.875, 78.75, 1 / 2 * Math.PI);
@@ -21290,6 +25932,7 @@ function theLegend()
             }
             else if (this.weapon == "freydicGreatSword")
             {
+                this.damageFrame = "automatic";
                 if (theCostume <= 0)
                 {
                     this.drawUnit(oldverse, 2205, 203, 89, 88, -7, -80, 106.8, 105.6, 1 / 2 * Math.PI);
@@ -21325,6 +25968,7 @@ function theLegend()
             }
             else if (this.weapon == "timberAxe")
             {
+                this.damageFrame = "automatic";
                 if (theCostume <= 0)
                 {
                     this.drawUnit(verse, 334, 332, 54, 49, -60.25, -42, 54 * 1.4, 49 * 1.4, 1 / 2 * Math.PI);
@@ -21354,8 +25998,41 @@ function theLegend()
                     this.drawUnit(verse, 680, 332, 54, 49, -16, -43, 54 * 1.4, 49 * 1.4, 1 / 2 * Math.PI);
                 }
             }
+            else if (this.weapon == "longSpikedMorningStar")
+            {
+                this.damageFrame = "automatic";
+                if (theCostume <= 0)
+                {
+                    this.drawUnit(poly, 207, 143, 55, 58, -34, -39, 55 * 1.15, 58 * 1.15, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 1)
+                {
+                    this.drawUnit(poly, 260, 145, 55, 58, -30, -42, 55 * 1.15, 58 * 1.15, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 2)
+                {
+                    this.drawUnit(poly, 307, 147, 55, 58, -31, -40, 55 * 1.15, 58 * 1.15, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 3)
+                {
+                    this.drawUnit(poly, 356, 147, 55, 58, -33, -39, 55 * 1.15, 58 * 1.15, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 4)
+                {
+                    this.drawUnit(poly, 400, 142, 55, 58, -30, -47, 55 * 1.15, 58 * 1.15, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 5)
+                {
+                    this.drawUnit(poly, 452, 141, 55, 58, -31, -51, 55 * 1.15, 58 * 1.15, 1 / 2 * Math.PI);
+                }
+                else if (theCostume >= 6)
+                {
+                    this.drawUnit(poly, 452, 141, 55, 58, -31, -51, 55 * 1.15, 58 * 1.15, 1 / 2 * Math.PI);
+                }
+            }
             else if (this.weapon == "rasper")
             {
+                this.damageFrame = "automatic";
                 if (theCostume <= 0)
                 {
                     this.drawUnit(freeverse, 683, 43, 55, 51, -47, -49, 55 * 1.3, 51 * 1.3, 1 / 2 * Math.PI);
@@ -21379,6 +26056,7 @@ function theLegend()
             }
             else if (this.weapon == "warHammer")
             {
+                this.damageFrame = "automatic";
                 if (theCostume <= 0)
                 {
                     this.drawUnit(polypol, 32, 605, 93, 87, -21, -43, 93 / 1.3, 87 / 1.3, 1 / 2 * Math.PI);
@@ -21418,6 +26096,7 @@ function theLegend()
             }
             else if (this.weapon == "kellishClaymore")
             {
+                this.damageFrame = "automatic";
                 if (theCostume <= 0)
                 {
                     this.drawUnit(polypol, 491, 830, 135, 135, -50, -90, 135, 135, 1 / 2 * Math.PI);
@@ -21473,6 +26152,61 @@ function theLegend()
                 else if (theCostume >= 13)
                 {
                     this.drawUnit(polypol, 680, 1158, 135, 135, -88, -112, 135, 135, 1 / 2 * Math.PI);
+                }
+            }
+            else if (this.weapon == "flail")
+            {
+                this.damageFrame = "manual";
+                if (theCostume <= 0) //11 frames
+                {
+                    this.drawUnit(oldverse, 2194, 128, 66, 72, -42, -102, 99, 108, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 1)
+                {
+                    this.drawUnit(oldverse, 2253, 128, 66, 72, -47.5, -103, 99, 108, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 2)
+                {
+                    this.drawUnit(oldverse, 2313, 128, 66, 72, -41.75, -103, 99, 108, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 3)
+                {
+                    this.doAttackThisFrame = true;
+                    this.drawUnit(oldverse, 2373, 128, 66, 72, -46.5, -102, 99, 108, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 4)
+                {
+                    //this is the frame that should do the damage.
+                    if (this.doAttackThisFrame)
+                    {
+                        this.doAttackThisFrame = false;
+                        this.finalAttackCostume = true;
+                    }
+                    this.drawUnit(oldverse, 2430, 128, 66, 72, -62, -104.5, 99, 108, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 5)
+                {
+                    this.drawUnit(oldverse, 2489, 128, 66, 72, -57.5, -105, 99, 108, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 6)
+                {
+                    this.drawUnit(oldverse, 2539, 128, 66, 72, -59.25, -103, 99, 108, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 7)
+                {
+                    this.drawUnit(oldverse, 2588, 128, 66, 72, -61.5, -104.5, 99, 108, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 8)
+                {
+                    this.drawUnit(oldverse, 2639, 128, 66, 72, -58, -104, 99, 108, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 9)
+                {
+                    this.drawUnit(oldverse, 2689, 128, 66, 72, -62, -104, 99, 108, 1 / 2 * Math.PI);
+                }
+                else if (theCostume >= 10)
+                {
+                    this.drawUnit(oldverse, 2744, 128, 66, 72, -51.5, -105, 99, 108, 1 / 2 * Math.PI);
                 }
             }
         };
@@ -21554,6 +26288,26 @@ function theLegend()
                         worldItems.push([new Item("nechromanticDust", this.X, this.Y), 1 + Math.floor(this.healthMAX / 35)]);
                     }
 
+                    if (this.beastEntry != "none")
+                    {
+                        if (player.getIntelligence() >= this.beastEntry.intReq)
+                        {
+                            var addEntry = true;
+                            for (var i = 0; i < beastJournal.length; i++)
+                            {
+                                if (this.beastEntry.name == beastJournal[i].name && this.beastEntry.alpha == beastJournal[i].alpha)
+                                {
+                                    addEntry = false;
+                                    break;
+                                }
+                            }
+
+                            if (addEntry)
+                            {
+                                beastJournal.push(this.beastEntry);
+                            }
+                        }
+                    }
 
                     //transference into the list of the dead...
                     var me = ArtificialIntelligenceAccess.indexOf(this);
@@ -21714,7 +26468,7 @@ function theLegend()
             {
                 XXX.fillStyle = "#1c1c1c";
             }
-            else if (this.ultra.race == "Thengan")
+            else if (this.ultra.race == "Thengar")
             {
                 XXX.fillStyle = "#663300";
             }
@@ -21794,6 +26548,18 @@ function theLegend()
                     XXX.rotate(this.rotation + 1/2 * Math.PI);
                     XXX.drawImage(verse, 3062, 1, 35, 22, -(1 / 2 * 49) + 0.5, -(1 / 2 * 30.8) + 2.25, 49, 30.8);
                 }
+                else if (outfit == "balgurMercArmour")
+                {
+                    XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    XXX.drawImage(poly, 48, 106, 40, 32, -(1 / 2 * 40 * 1.2) - 3.65, -(1 / 2 * 32 * 1.2) -18.25, 40 * 1.38, 32 * 1.73);
+                }
+                else if (outfit == "balgurCaptainArmour")
+                {
+                    XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    XXX.drawImage(poly, 50, 140, 36, 36, -(1 / 2 * 36 * 1.2) + 5, -(1 / 2 * 36 * 1.2) -9.5, 36 * 0.9, 36 * 1.45);
+                }
                 XXX.restore();
             }
         };
@@ -21821,6 +26587,7 @@ function theLegend()
                     this.sizeRadius = 30;
                     this.negateArmour = 5;
                     this.attackWait = 0.55;
+                    this.beastEntry = {intReq: 3, name: "Etyr", health: "6 - 11", armour: "3", damage: "1 - 7", negate: "5", ability: "none", fireProof: 1, habitat: "Jungle", sight: 600, alpha: "Alpha", magicProof: 0, size: 30, speed: 2.75, rotation: 0.025, rate: 0.55, experience: 40, description: ["Etyr's are scaley reptilian creatures that have a behavior similar to that of a wolf. They hunt in packs, it is very", "rare to find one alone, and if you do the rest of its pack is probably about to ambush you. They", "usually lurk about the forest floor eating whatever small critters they can get their jaws around."], image: [theCrack, 56, 18, 53, 41, 0, 0, 53 * 1.5 / 3, 41 * 1.5 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 1.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -21845,6 +26612,7 @@ function theLegend()
                     this.sizeRadius = 20;
                     this.negateArmour = 3;
                     this.attackWait = 0.57;
+                    this.beastEntry = {intReq: 1, name: "Etyr", health: "3 - 5", armour: "1", damage: "1 - 4", negate: "3", ability: "none", fireProof: 1, habitat: "Jungle", sight: 450, alpha: "Normal", magicProof: 0, size: 20, speed: 2, rotation: 0.1, rate: 0.57, experience: 22, description: ["Etyr's are scaley reptilian creatures that have a behavior similar to that of a wolf. They hunt in packs, it is very", "rare to find one alone, and if you do the rest of its pack is probably about to ambush you. They", "usually lurk about the forest floor eating whatever small critters they can get their jaws around."], image: [theCrack, 56, 18, 53, 0, 0, 20, 53 / 3, 41 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1;
@@ -21875,6 +26643,7 @@ function theLegend()
                     this.sizeRadius = 45;
                     this.negateArmour = 17;
                     this.attackWait = 1.75;
+                    this.beastEntry = {intReq: 13, name: "Walrus", health: "100 - 139", armour: "2", damage: "32 - 77", negate: "17", ability: "Cold Resistant", fireProof: 3, habitat: "Ice Flats", sight: 330, alpha: "Elder", magicProof: 0, size: 45, speed: 1.1, rotation: 0.035, rate: 1.75, experience: 104, description: ["It is said that elder walruses are just walruses that have lived for hundreds of years. They tend to be fairly solitary unlike", "the younger variety, except of course when they have to mate, then the male usually protects the female while it is pregnant."], image: [polyPNG, 871, 695, 77, 63, 0, 0, 146 * 1.35 / 3, 126 * 1.35 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 1.35; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -21891,14 +26660,15 @@ function theLegend()
                     this.attackRate = 0;  //this is for rapid style combat only.
                     this.healthMAX = Math.floor(Math.random() * 10) + 18;
                     this.health = this.healthMAX;
-                    this.armour = 0.5;
+                    this.armour = 1;
                     this.speed = 0.85;
                     this.rangeOfSight = 250; //This is just to set the variable initially. The rest is variable.
                     this.rotationSpeed = 0.025; // 0.01 is a standard turn speed.
                     this.engagementRadius = 59; //was 49
                     this.sizeRadius = 40;
-                    this.negateArmour = 2;
+                    this.negateArmour = 6;
                     this.attackWait = 3.25;
+                    this.beastEntry = {intReq: 4, name: "Walrus", health: "18 - 27", armour: "1", damage: "2 - 14", negate: "6", ability: "Cold Resistant", fireProof: 2, habitat: "Ice Flats", sight: 250, alpha: "Normal", magicProof: 0, size: 40, speed: 0.85, rotation: 0.025, rate: 3.25, experience: 28, description: ["Walruses are large tusked animals with thick skin and a large blubber layer of fat to keep them warm in the harsh cold climate that they", "live in. They tend to group together so as to keep predators away by numbers, but it is not uncommon for one to be found alone."], image: [polyPNG, 871, 695, 77, 63, 0, 0, 146 / 3, 126 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1;
@@ -21932,6 +26702,7 @@ function theLegend()
                     this.negateArmour = 10;
                     this.attackWait = 2;
                     this.effect = "stunII";
+                    this.beastEntry = {intReq: 20, name: "Shehid", health: "26 - 42", armour: "0 - 56", damage: "6 - 20", negate: "10", ability: "StunII", fireProof: "1 - 56", habitat: "Northern / Temperate Forests", sight: "65 - 285", alpha: "Alpha", magicProof: 5, size: 25, speed: 1.65, rotation: 0.085, rate: 2, experience: 77, description: ["Shehids are a form of living ooze creature that has a biologically formed shell and insectoid legs. The shehid's ooze is highly toxic to the", "extent of paralasis and it is used to melt and absorb its prey. Shehids normally rest in their shell which is colored to look like a mossy", "rock so that they can ooze out and devour unsuspecting creatures that happen to wander by."], image: [polypol, 1170, 11, 43, 40, 0, 0, 43 * 2 / 3, 40 * 2 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -21957,6 +26728,7 @@ function theLegend()
                     this.negateArmour = 10;
                     this.attackWait = 1.25;
                     this.effect = "stunI";
+                    this.beastEntry = {intReq: 14, name: "Shehid", health: "12 - 20", armour: "0 - 30", damage: "3 - 10", negate: "10", ability: "StunI", fireProof: "1 - 30", habitat: "Northern / Temperate Forests", sight: "65 - 185", alpha: "Normal", magicProof: 2, size: 14, speed: 1.35, rotation: 0.085, rate: 1.25, experience: 38, description: ["Shehids are a form of living ooze creature that has a biologically formed shell and insectoid legs. The shehid's ooze is highly toxic to the", "extent of paralysis and it is used to melt and absorb its prey. Shehids normally rest in their shell which is colored to look like a mossy", "rock so that they can ooze out and devour unsuspecting creatures that happen to wander by."], image: [polypol, 1170, 11, 43, 40, 0, 0, 43 / 3, 40 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1;
@@ -21989,6 +26761,7 @@ function theLegend()
                     this.negateArmour = 11;
                     this.attackWait = 0.6;
                     this.effect = "none";
+                    this.beastEntry = {intReq: 30, name: "Grush", health: "204 - 243", armour: "0 - 75", damage: "10 - 18", negate: "11", ability: "none", fireProof: -1, habitat: "Grasslands", sight: "80 - 140", alpha: "Giant", magicProof: 0, size: 25, speed: 3.2, rotation: 0.09, rate: 0.6, experience: 1100, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resember the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have itself a feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near there", "resting place or they go back to sleep."], image: [mofu, 877, 1, 72, 72, 0, 0, 72 * 3 / 3, 72 * 3 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 3; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -22014,6 +26787,7 @@ function theLegend()
                     this.negateArmour = 0.1;
                     this.attackWait = 0.5;
                     this.effect = "none";
+                    this.beastEntry = {intReq: 6, name: "Grush", health: "1", armour: "0 - 15", damage: "0.5 - 1", negate: 0.1, ability: "none", fireProof: -1, habitat: "Grasslands", sight: "45 - 60", alpha: "Baby", magicProof: 0, size: 8, speed: 0.85, rotation: 0.05, rate: 0.5, experience: 4, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resemble the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have itself a feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near their", "resting place or they go back to sleep."], image: [mofu, 877, 1, 72, 72, 0, 0, 72 * 0.6 / 3, 72 * 0.6 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 0.6; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -22038,6 +26812,7 @@ function theLegend()
                     this.negateArmour = 2.5;
                     this.attackWait = 0.6;
                     this.effect = "none";
+                    this.beastEntry = {intReq: 16, name: "Grush", health: "44 - 53", armour: "0 - 55", damage: "3 - 9", negate: "2.5", ability: "none", fireProof: -1, habitat: "Grasslands", sight: "55 - 90", alpha: "Alpha", magicProof: 0, size: 21, speed: 1.6, rotation: 0.085, rate: 0.6, experience: 95, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resemble the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have a itself feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near their", "resting place or they go back to sleep."], image: [mofu, 877, 1, 72, 72, 0, 0, 72 * 1.5 / 3, 72 * 1.5 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 1.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -22063,6 +26838,7 @@ function theLegend()
                     this.negateArmour = 1;
                     this.attackWait = 0.5;
                     this.effect = "none";
+                    this.beastEntry = {intReq: 9, name: "Grush", health: "29 - 36", armour: "0 - 35", damage: "2 - 6", negate: 1, ability: "none", fireProof: -1, habitat: "Grasslands", sight: "45 - 60", alpha: "Normal", magicProof: 0, size: 14, speed: 1, rotation: 0.05, rate: 0.5, experience: 45, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resemble the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have a itself feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near their", "resting place or they go back to sleep."], image: [mofu, 877, 1, 72, 72, 0, 0, 72 / 3, 72 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1;
@@ -22081,9 +26857,9 @@ function theLegend()
                     this.heatResistance = 1;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 12) + 43;
+                    this.healthMAX = Math.floor(Math.random() * 17) + 53;
                     this.health = this.healthMAX;
-                    this.armour = 3.5;
+                    this.armour = 4.5;
                     this.speed = 2.75;
                     this.rangeOfSight = 550; //This is just to set the variable initially. The rest is variable.
                     this.rotationSpeed = 0.09;
@@ -22092,6 +26868,7 @@ function theLegend()
                     this.negateArmour = 1;
                     this.attackWait = 1.5;
                     this.effect = "narthwarpToxin";
+                    this.beastEntry = {intReq: 28, name: "Narthwarp", health: "53 - 69", armour: 4.5, damage: "7 - 21", negate: 1, ability: "Narthwarp Toxin", fireProof: 1, habitat: "Northern / Temperate Forests", sight: 550, alpha: "Alpha", magicProof: 0, size: 25, speed: 2.75, rotation: 0.09, rate: 1.5, experience: 95, description: ["Narthwarps are large six-legged armoured insects that have a long barbed appendage that it uses as a tool for food absorption as well as to release", "its toxins into its prey. The toxins a narthwarp produces cause their victim to lose energy and if the injection was large enough they could", "even faint."], image: [polypol, 29, 400, 71, 81, 0, 0, 71 * 2 / 3, 81 * 2 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -22103,7 +26880,7 @@ function theLegend()
                 {
                     //STATS (non-variable)
                     this.magicalResistance = 0;
-                    this.heatResistance = 0;
+                    this.heatResistance = 0.1;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
                     this.healthMAX = Math.floor(Math.random() * 3) + 3;
@@ -22117,6 +26894,7 @@ function theLegend()
                     this.negateArmour = 0;
                     this.attackWait = 0.85;
                     this.effect = "narthwarpToxin";
+                    this.beastEntry = {intReq: 4, name: "Narthwarp", health: "3 - 5", armour: 0.5, damage: "1 - 2", negate: 0, ability: "Narthwarp Toxin", fireProof: 0.1, habitat: "Northern / Temperate Forests", sight: 300, alpha: "Baby", magicProof: 0, size: 10, speed: 1.75, rotation: 0.1, rate: 0.85, experience: 4, description: ["Narthwarps are large six-legged armoured insects that have a long barbed appendage that it uses as a tool for food absorption as well as to release", "its toxins into its prey. The toxins a narthwarp produces cause their victim to lose energy and if the injection was large enough they could", "even faint."], image: [polypol, 29, 400, 71, 81, 0, 0, 71 * 0.5 / 3, 81 * 0.5 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 0.5;
@@ -22128,12 +26906,12 @@ function theLegend()
                 {
                     //STATS (non-variable)
                     this.magicalResistance = 0;
-                    this.heatResistance = 0;
+                    this.heatResistance = 0.5;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
                     this.healthMAX = Math.floor(Math.random() * 10) + 16;
                     this.health = this.healthMAX;
-                    this.armour = 1;
+                    this.armour = 1.5;
                     this.speed = 2.25;
                     this.rangeOfSight = 425; //This is just to set the variable initially. The rest is variable.
                     this.rotationSpeed = 0.095; // 0.01 is a standard turn speed.
@@ -22142,6 +26920,7 @@ function theLegend()
                     this.negateArmour = 0.5;
                     this.attackWait = 1.45;
                     this.effect = "narthwarpToxin";
+                    this.beastEntry = {intReq: 8, name: "Narthwarp", health: "16 - 25", armour: 1.5, damage: "4 - 9", negate: 0.5, ability: "Narthwarp Toxin", fireProof: 0.5, habitat: "Northern / Temperate Forests", sight: 425, alpha: "Normal", magicProof: 0, size: 14, speed: 2.25, rotation: 0.095, rate: 1.45, experience: 36, description: ["Narthwarps are large six-legged armoured insects that have a long barbed appendage that it uses as a tool for food absorption as well as to release", "its toxins into its prey. The toxins a narthwarp produces cause their victim to lose energy and if the injection was large enough they could", "even faint."], image: [polypol, 29, 400, 71, 81, 0, 0, 71 / 3, 81 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1;
@@ -22168,8 +26947,9 @@ function theLegend()
                     this.rotationSpeed = 0.075; // was 0.05
                     this.engagementRadius = 69;
                     this.sizeRadius = 50;
-                    this.negateArmour = 8;
+                    this.negateArmour = 10;
                     this.attackWait = 0.75;
+                    this.beastEntry = {intReq: 13, name: "Beruln", health: "36 - 61", armour: 0, damage: "8 - 22", negate: 10, ability: "None", fireProof: -1, habitat: "Northern Rocky Barrens", sight: 900, alpha: "Alpha", magicProof: 0, size: 50, speed: "6.1 - 6.5", rotation: 0.075, rate: 0.75, experience: 93, description: ["Berulns are massive grey furred beasts that are known for their ferocity. They have an extra thick patch of fur that goes from the back of their", "head and widenes as it bristles back toward their tail end. Berulns are skilled hunters and they can be fairly silent while stalking prey and can", "also be exceptionally good climbers. Berulns are savage when it comes to eating, they will grasp their victim in their jaws and swing it around and", "smash it into the ground or large rocks before finally settling down to eat it. Alpha Berulns are slightly larger than the normal ones and they are a bit more agressive and perceptive to prey as well."], image: [polyPNG, 92, 599, 77, 54, 0, 0, 154 * 1.1 / 3, 108 * 1.1 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 1.1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -22192,8 +26972,9 @@ function theLegend()
                     this.rotationSpeed = 0.075; // was 0.05
                     this.engagementRadius = 61;
                     this.sizeRadius = 42;
-                    this.negateArmour = 6;
+                    this.negateArmour = 9;
                     this.attackWait = 0.85;
+                    this.beastEntry = {intReq: 11, name: "Beruln", health: "32 - 45", armour: 0, damage: "7 - 22", negate: 9, ability: "None", fireProof: -1, habitat: "Northern Rocky Barrens", sight: 850, alpha: "Normal", magicProof: 0, size: 42, speed: "5.8 - 6", rotation: 0.075, rate: 0.85, experience: 81, description: ["Berulns are massive grey furred beasts that are known for their ferocity. They have an extra thick patch of fur that goes from the back of their", "head and widenes as it bristles back toward their tail end. Berulns are skilled hunters and they can be fairly silent while stalking prey and can", "also be exceptionally good climbers. Berulns are savage when it comes to eating, they will grasp their victim in their jaws and swing it around and", "smash it into the ground or large rocks before finally settling down to eat it."], image: [polyPNG, 92, 599, 77, 54, 0, 0, 154 / 3, 108 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1;
@@ -22213,7 +26994,7 @@ function theLegend()
                     this.heatResistance = 0;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 26) + 300;
+                    this.healthMAX = Math.floor(Math.random() * 101) + 500;
                     this.health = this.healthMAX;
                     this.armour = 9;
                     this.speed = 7.1 + (Math.floor(Math.random() * 5) / 10);
@@ -22221,8 +27002,9 @@ function theLegend()
                     this.rotationSpeed = 0.1; // was 0.05
                     this.engagementRadius = 69;
                     this.sizeRadius = 47;
-                    this.negateArmour = 15;
+                    this.negateArmour = 20;
                     this.attackWait = 3;
+                    this.beastEntry = {intReq: 45, name: "Olkrin", health: "500 - 600", armour: 9, damage: "36 - 64", negate: 20, ability: "None", fireProof: 0, habitat: "Rocky Barrens", sight: 1100, alpha: "Goliath", magicProof: 0, size: 47, speed: "7.1 - 7.5", rotation: 0.1, rate: 3, experience: 1400, description: ["Olkrins are thought to be of only of myth and legend for the reason that they are not common to find, which is because they are humongous beasts with vast appetites that need to be filled and many places do not have the right ecosystem to support their species' size. Those who do recognize there existence often consider olkrins to be a type of demon, but in truth they are just an ancient species of abnormally huge ferocious monsters that may be on the verge of extinction."], image: [verse, 156, 706, 117, 157, 0, 0, 117 * 2.4 / 3, 157 * 2.4 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 2.40; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -22237,7 +27019,7 @@ function theLegend()
                     this.heatResistance = 0;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 11) + 40;
+                    this.healthMAX = Math.floor(Math.random() * 16) + 45;
                     this.health = this.healthMAX;
                     this.armour = 2.5;
                     this.speed = 5.1 + (Math.floor(Math.random() * 3) / 10);
@@ -22247,6 +27029,7 @@ function theLegend()
                     this.sizeRadius = 24;
                     this.negateArmour = 10;
                     this.attackWait = 2;
+                    this.beastEntry = {intReq: 35, name: "Olkrin", health: "45 - 60", armour: 2.5, damage: "12 - 20", negate: 10, ability: "None", fireProof: 0, habitat: "Rocky Barrens", sight: 750, alpha: "Baby", magicProof: 0, size: 24, speed: "5.1 - 5.3", rotation: 0.1, rate: 2, experience: 172, description: ["Olkrins are thought to be of only of myth and legend for the reason that they are not common to find, which is because they are humongous beasts with vast appetites that need to be filled and many places do not have the right ecosystem to support their species' size. Those who do recognize there existence often consider olkrins to be a type of demon, but in truth they are just an ancient species of abnormally huge ferocious monsters that may be on the verge of extinction."], image: [verse, 156, 706, 117, 157, 0, 0, 117 * 1.1 / 3, 157 * 1.1 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1.1;
@@ -22261,7 +27044,7 @@ function theLegend()
                     this.heatResistance = 0;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 16) + 115;
+                    this.healthMAX = Math.floor(Math.random() * 86) + 225;
                     this.health = this.healthMAX;
                     this.armour = 5;
                     this.speed = 6.8 + (Math.floor(Math.random() * 3) / 10);
@@ -22269,8 +27052,9 @@ function theLegend()
                     this.rotationSpeed = 0.1; // was 0.05
                     this.engagementRadius = 61;
                     this.sizeRadius = 42;
-                    this.negateArmour = 10;
+                    this.negateArmour = 14;
                     this.attackWait = 3;
+                    this.beastEntry = {intReq: 40, name: "Olkrin", health: "225 - 310", armour: 5, damage: "24 - 40", negate: 14, ability: "None", fireProof: 0, habitat: "Rocky Barrens", sight: 900, alpha: "Normal", magicProof: 0, size: 42, speed: "6.8 - 7", rotation: 0.1, rate: 3, experience: 1000, description: ["Olkrins are thought to be of only of myth and legend for the reason that they are not common to find, which is because they are humongous beasts with vast appetites that need to be filled and many places do not have the right ecosystem to support their species' size. Those who do recognize there existence often consider olkrins to be a type of demon, but in truth they are just an ancient species of abnormally huge ferocious monsters that may be on the verge of extinction."], image: [verse, 156, 706, 117, 157, 0, 0, 117 * 1.75 / 3, 157 * 1.75 / 3]}; //booble : last entry so far
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1.75;
@@ -22461,6 +27245,59 @@ function theLegend()
                     // this is the adjustment the alpha type of Etyr needs to be centered.
                     this.yAdjustment = -37; //was -34
                     this.xAdjustment = -26; //was - 26
+
+                }
+            }
+            else if (this.type == "Neev")
+            {
+                this.damageFrame = "automatic";
+
+                if (this.alpha == true)
+                {
+                    this.magicalResistance = 7;
+                    this.heatResistance = -1;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 16) + 39;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 3.2 + (Math.floor(Math.random() * 5) / 10);
+                    this.rangeOfSight = 800; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1;
+                    this.engagementRadius = 32;
+                    this.sizeRadius = 16;
+                    this.negateArmour = 1;
+                    this.attackWait = 1;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 1.8; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 20;
+                    this.xAdjustment = 6;
+                }
+                else
+                {
+                    //STATS (non-variable)
+                    this.magicalResistance = 5;
+                    this.heatResistance = -1;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 7) + 11;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 2.4 + (Math.floor(Math.random() * 6) / 10);
+                    this.rangeOfSight = 650; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1;
+                    this.engagementRadius = 23;
+                    this.sizeRadius = 13;
+                    this.negateArmour = 0;
+                    this.attackWait = 1;
+
+                    //this multiplies the draw image skew numbers by 1 so that it stays the same
+                    this.alphaSize = 1;
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 4; //was -34
+                    this.xAdjustment = -11; //was - 26
 
                 }
             }
@@ -23251,7 +28088,7 @@ function theLegend()
                 //Set Drops and experience
                 if (this.alpha == true)
                 {
-                    if (Math.max(0, 47 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    if (Math.max(0, 60 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                     {
                         this.experience = 104 * ((player.getIntelligence() / 50) + 1);
                     }
@@ -24300,6 +29137,265 @@ function theLegend()
                     this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
                 }
             }
+            //NEEV
+            if (this.type == "Neev")
+            {
+                //Set Drops and experience
+                if (this.alpha == true)
+                {
+                    if (Math.max(0, 11 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 55 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (55 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    this.drops = [[new Item("neevFlesh", this.X, this.Y), 3], [new Item("neevFur", this.X, this.Y), 2]];
+                }
+                else
+                {
+                    if (Math.max(0, 4.5 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 20 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = 20 * ((player.getIntelligence() / 50) + 1) / 10;
+                    }
+
+                    this.drops = [[new Item("neevFlesh", this.X, this.Y), 1], [new Item("neevFur", this.X, this.Y), 1]];
+                }
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                if (this.alpha == true)
+                {
+                    this.rangeOfSightCalculator(800, true);
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(650, "mildy");
+                }
+
+                //AI
+                if (this.alive == true)
+                {
+                    //NEEV BRAIN
+                    //Process
+
+                    if (this.DTP() <= 1/6 * this.rangeOfSight && player.inebriation >= 100 + (player.getToughness() * 3))
+                    {
+                        this.disturbedTime = new Date().getTime();
+                    }
+
+                    if (this.disturbed == false) //if not frightened...
+                    {
+                        this.mofuTargetFood = "none";
+                        this.moving = false;
+                        this.attacking = false;
+
+                        if (player.inebriation < 100 + (player.getToughness() * 3) && this.DTP() <= 1/12 * this.rangeOfSight) //somehow this: && this.disturbed == false actually fixes the running around...
+                        {
+                            this.pointAwayFromPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                        else
+                        {
+                            for (var i = 0; i < worldItems.length; i++) //look for any item but quest items to eat/steal.
+                            {
+                                if (worldItems[i][0].utility != "questItem")
+                                {
+                                    if (this.distanceFinder(this, worldItems[i][0]) <= this.rangeOfSight)
+                                    {
+                                        if (this.mofuTargetFood == "none")
+                                        {
+                                            this.mofuTargetFood = worldItems[i][0];
+                                        }
+                                        else
+                                        {
+                                            if (this.distanceFinder(this, worldItems[i][0]) < this.distanceFinder(this, this.mofuTargetFood))
+                                            {
+                                                this.mofuTargetFood = worldItems[i][0];
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (this.mofuTargetFood != "none")
+                            {
+                                if (this.distanceFinder(this, this.mofuTargetFood) <= this.engagementRadius)
+                                {
+                                    this.eating = true;
+
+                                    //Actually eat the thing at the right frame.
+                                    if (Math.floor(this.costume) <= 1)
+                                    {
+                                        this.mofuFeastPrepped = true;
+                                    }
+                                    else if (Math.floor(this.costume) <= 2)
+                                    {
+                                        if (this.mofuFeastPrepped == true)
+                                        {
+                                            for (var i = 0; i < worldItems.length; i++)
+                                            {
+                                                if (worldItems[i][0] === this.mofuTargetFood)
+                                                {
+                                                    this.mofuFood += 1;
+                                                    if (worldItems[i][1] > 1)
+                                                    {
+                                                        worldItems[i][1] -= 1;
+                                                        break;
+                                                    }
+                                                    else
+                                                    {
+                                                        this.mofuTargetFood = "none";
+                                                        worldItems.splice(i, 1);
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            this.mofuFeastPrepped = false;
+                                        }
+                                    }
+                                    //end of eating item code block
+                                }
+                                else
+                                {
+                                    this.eating = false;
+                                    this.pointTowards(this.mofuTargetFood);
+                                    this.moveInRelationToThing(this.mofuTargetFood);
+                                }
+                            }
+                            else
+                            {
+                                this.eating = false;
+                            }
+                        }
+                    }
+                    else if (this.disturbed == true)
+                    {
+                        if (this.alpha == true)
+                        {
+                            this.Attack(8, 3);
+                            this.callForNearbyHelpFromType(2000, "Neev");
+                        }
+                        else
+                        {
+                            this.Attack(3, 1.5);
+                            this.callForNearbyHelpFromType(2000, "Neev");
+                        }
+
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+
+                    //this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+
+                    //FOR NEEVS ANIMATION STARTER IS MOVED RIGHT HERE
+                    if (this.moving && !this.attacking && !this.eating) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(4, 0.09, false);
+                    }
+                    else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(3, 0.20, true);
+                        }
+                    }
+                    else if (this.eating) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(4, 0.11, true);
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.doOnDeathOnce)
+                    {
+                        if (this.ID == "Easter")
+                        {
+                            quests.theMasterThiefOfTeshirNeevSlain = true;
+                        }
+
+                        this.doOnDeathOnce = false;
+                    }
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true && player.inebriation >= 100 + (player.getToughness() * 3))
+                {
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(poly, 284, 46, 48, 51, -35 - this.xAdjustment, -22 - this.yAdjustment, 48 * this.alphaSize, 51 * this.alphaSize);
+                        }
+                        else if (this.eating)
+                        {
+                            this.drawUnit(poly, 235, 3, 48, 51, -35 - this.xAdjustment, -22 - this.yAdjustment, 48 * this.alphaSize, 51 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(poly, 186, 3, 48, 51, -35 - this.xAdjustment, -22 - this.yAdjustment, 48 * this.alphaSize, 51 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(poly, 235, 3, 48, 51, -35 - this.xAdjustment, -22 - this.yAdjustment, 48 * this.alphaSize, 51 * this.alphaSize);
+                        }
+                        else if (this.eating)
+                        {
+                            this.drawUnit(poly, 285, 1, 48, 51, -35 - this.xAdjustment, -22 - this.yAdjustment, 48 * this.alphaSize, 51 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(poly, 387, 4, 48, 51, -35 - this.xAdjustment, -22 - this.yAdjustment, 48 * this.alphaSize, 51 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 2)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(poly, 234, 45, 48, 51, -35 - this.xAdjustment, -22 - this.yAdjustment, 48 * this.alphaSize, 51 * this.alphaSize);
+                        }
+                        else if (this.eating)
+                        {
+                            this.drawUnit(poly, 331, 4, 48, 51, -35 - this.xAdjustment, -22 - this.yAdjustment, 48 * this.alphaSize, 51 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(poly, 186, 3, 48, 51, -35 - this.xAdjustment, -22 - this.yAdjustment, 48 * this.alphaSize, 51 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume >= 3)
+                    {
+                        if (this.attacking || this.eating)
+                        {
+                            this.drawUnit(poly, 234, 45, 48, 51, -35 - this.xAdjustment, -22 - this.yAdjustment, 48 * this.alphaSize, 51 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(poly, 439, 6, 48, 51, -35 - this.xAdjustment, -22 - this.yAdjustment, 48 * this.alphaSize, 51 * this.alphaSize);
+                        }
+                    }
+                }
+                else if (this.alive == false)
+                {
+                    this.drawUnit(poly, 124, 7, 65, 41, -35 - this.xAdjustment, -22 - this.yAdjustment, 65 * this.alphaSize, 41 * this.alphaSize);
+                }
+            }
             //GRIB
             if (this.type == "Grib")
             {
@@ -24952,11 +30048,11 @@ function theLegend()
                     var randoom = Math.round(Math.random());
                     if (Math.max(0, 57 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                     {
-                        this.experience = 1200 * ((player.getIntelligence() / 50) + 1);
+                        this.experience = 1400 * ((player.getIntelligence() / 50) + 1);
                     }
                     else
                     {
-                        this.experience = (1200 * ((player.getIntelligence() / 50) + 1)) / 10;
+                        this.experience = (1400 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
                     if (randoom == 0)
@@ -24972,11 +30068,11 @@ function theLegend()
                 {
                     if (Math.max(0, 18 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                     {
-                        this.experience = 100 * ((player.getIntelligence() / 50) + 1);
+                        this.experience = 172 * ((player.getIntelligence() / 50) + 1);
                     }
                     else
                     {
-                        this.experience = (100 * ((player.getIntelligence() / 50) + 1)) / 10;
+                        this.experience = (172 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
                     this.drops = [[new Item("rawOlkrinFlesh", this.X, this.Y), 1]];
@@ -24986,11 +30082,11 @@ function theLegend()
                     var randoom = Math.round(Math.random());
                     if (Math.max(0, 36 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                     {
-                        this.experience = 950 * ((player.getIntelligence() / 50) + 1);
+                        this.experience = 1000 * ((player.getIntelligence() / 50) + 1);
                     }
                     else
                     {
-                        this.experience = (950 * ((player.getIntelligence() / 50) + 1)) / 10;
+                        this.experience = (1000 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
                     if (randoom)
@@ -25004,6 +30100,7 @@ function theLegend()
                 }
 
                 //RANGE OF SIGHT (anything related to range of sight)
+
                 if (this.alpha == true)
                 {
                     this.rangeOfSightCalculator(1100, "very");
@@ -25028,12 +30125,12 @@ function theLegend()
                     else if (this.alpha == "baby")
                     {
                         this.Attack(8, 12);
-                        this.callForNearbyHelpFromType(650, "Olkrin");
+                        this.callForNearbyHelpFromType(1600, "Olkrin");
                     }
                     else
                     {
                         this.Attack(16, 24);
-                        this.callForNearbyHelpFromType(800, "Olkrin");
+                        this.callForNearbyHelpFromType(1000, "Olkrin");
                     }
 
                     //this.deathChecker();
@@ -26703,11 +31800,11 @@ function theLegend()
                 }
                 if (this.ID == "Svehn the Smith")
                 {
-                    this.drops = [[new Item("coins", this.X, this.Y), 95]];
+                    this.drops = [[new Item("coins", this.X, this.Y), 95 + (quests.bobithNewWealth / 2)]];
                 }
                 else if (this.ID == "Medlia the Merchant")
                 {
-                    this.drops = [[new Item("coins", this.X, this.Y), 109]];
+                    this.drops = [[new Item("coins", this.X, this.Y), 109 + (quests.medliaNewWealth / 2)]];
                 }
                 else if (this.ID == "Drohfor")
                 {
@@ -26729,9 +31826,34 @@ function theLegend()
                     this.customEXP = true;
                     this.experience = 25 * ((player.getIntelligence() / 50) + 1);
                 }
+                else if (this.ID == "Kedwin")
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 2], [new Item("pintGlass", this.X, this.Y), 1]];
+                    this.customEXP = true;
+                    this.experience = 6 * ((player.getIntelligence() / 50) + 1);
+                }
                 else if (this.ID == "Neculai the Merchant")
                 {
-                    this.drops = [[new Item("coins", this.X, this.Y), 17]];
+                    if (quests.bankruptNeculai != true || quests.medliaCompetitionControlCompletionStyle == "friendly" && quests.medliaCompetitionControlQuest == "complete")
+                    {
+                        this.drops = [[new Item("coins", this.X, this.Y), 17 + (quests.neculaiNewWealth / 2)]];
+                    }
+                    else
+                    {
+                        this.drops = [];
+                    }
+
+                    if (quests.theBalgurMercenariesQuest == true)
+                    {
+                       this.drops.push([new Item("neculaisEar", this.X, this.Y), 1]);
+                    }
+
+
+
+                    if (this.health < this.healthMAX && quests.medliaCompetitionControlCompletionStyle != "friendly" && quests.medliaCompetitionControlQuest == true)
+                    {
+                        quests.medliaCompetitionControlCompletionStyle = "violence";
+                    }
                 }
                 else if (this.ID == "Roselin the Tailor")
                 {
@@ -26899,6 +32021,10 @@ function theLegend()
                             uniqueChars.kedwinLDS = false;
                             player.freynorFaction -= 7;
                         }
+                        else if (this.ID == "Teber the Deserter" || this.ID == "Teber the Artisan")
+                        {
+                            uniqueChars.teberLDS = false;
+                        }
                         else if (this.ID == "Hilmund the Innkeeper")
                         {
                             uniqueChars.hilmundLDS = false;
@@ -26924,7 +32050,7 @@ function theLegend()
                             uniqueChars.togginLDS = false;
                             player.freynorFaction -= 6;
                         }
-                        else if (this.ID == "Neculai the Merchant")
+                        else if (this.ID == "Neculai the Merchant" || this.ID == "Neculai the Beggar")
                         {
                             uniqueChars.neculaiLDS = false;
                         }
@@ -27037,6 +32163,10 @@ function theLegend()
                             {
                                 this.costumeEngine(5, 0.20, true);
                             }
+                            else if (this.weapon == "longSpikedMorningStar")
+                            {
+                                this.costumeEngine(7, 0.125, true);
+                            }
                             else if (this.weapon == "warHammer")
                             {
                                 this.costumeEngine(9, 0.22, true);
@@ -27045,10 +32175,14 @@ function theLegend()
                             {
                                 this.costumeEngine(14, 0.32, true);
                             }
+                            else if (this.weapon == "flail")
+                            {
+                                this.costumeEngine(11, 0.18, false);
+                            }
                         }
                     }
                     //draw some weapons underneath the body
-                    if (this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow")
+                    if (this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore")
                     {
                         this.drawHumanArms();
                     }
@@ -27057,13 +32191,19 @@ function theLegend()
                     this.drawHuman();
 
                     //draw the others over it.
-                    if (this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow")
+                    if (this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore")
                     {
                         this.drawHumanArms();
                     }
 
                     //draw the Person's Outfit.
                     this.drawHumanOutfit(this.ultra.outfit[0], false);
+
+                    //draw some weapons over the outfit
+                    if (this.weapon == "longSpikedMorningStar")
+                    {
+                        this.drawHumanArms();
+                    }
                 }
                 else
                 {
@@ -27091,15 +32231,92 @@ function theLegend()
                 {
                     if (this.ultra.faction == "Freynor")
                     {
+                        if (this.ID == "Torg Soldier" || this.ID == "Torg Captain" || this.ID == "Torg Commissioner Stendor")
+                        {
+                            //RANGE OF SIGHT (anything related to range of sight)
+                            this.rangeOfSightCalculator(750, "true");
+
+                            //All of this factions guards drop this:
+                            this.drops = [[new Item("coins", this.X, this.Y), 1 + Math.random() * 24]];
+
+                            lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.7, Alpha: 0.9, showMe: false});
+                            // If the target has too low a level of relations with the faction they are an enemy.
+                            if (player.freynorFaction <= -50)
+                            {
+                                if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction || player.freynorFaction <= -500)
+                                {
+                                    this.disturbed = true;
+                                }
+                                else if (this.health >= this.healthMAX * 5/6 && player.title == "Royalty" && player.raceName == this.ultra.faction|| this.health >= this.healthMAX * 5/6 && player.title == "Nobility" && player.raceName == this.ultra.faction)
+                                {
+                                    this.disturbed = false;
+                                }
+                            }
+                            else if (this.health >= this.healthMAX * 5/6 && player.title == "Royalty" && player.raceName == this.ultra.faction|| this.health >= this.healthMAX * 5/6 && player.title == "Nobility" && player.raceName == this.ultra.faction)
+                            {
+                                this.disturbed = false;
+                            }
+
+                            //Call for help from other guards unless the culprit is the royal leader.
+                            if (this.disturbed == true)
+                            {
+                                if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
+                                {
+                                    this.callForNearbyHelpFromType(2000, "Soldier");
+                                }
+                            }
+
+                            this.switchToRanged("longbow");
+                        }
+                        else
+                        {
+                            //RANGE OF SIGHT (anything related to range of sight)
+                            this.rangeOfSightCalculator(750, "true");
+
+                            //All of this factions guards drop this:
+                            this.drops = [];
+
+                            lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.7, Alpha: 0.9, showMe: false});
+                            // If the target has too low a level of relations with the faction they are an enemy.
+                            if (player.freynorFaction <= -50)
+                            {
+                                if (player.title != "Royalty" || player.raceName != this.ultra.faction || player.freynorFaction <= -500)
+                                {
+                                    this.disturbed = true;
+                                }
+                                else if (this.health >= this.healthMAX * 5/6 && player.title == "Royalty" && player.raceName == this.ultra.faction)
+                                {
+                                    this.disturbed = false;
+                                }
+                            }
+                            else if (this.health >= this.healthMAX * 5/6 && player.title == "Royalty" && player.raceName == this.ultra.faction)
+                            {
+                                this.disturbed = false;
+                            }
+
+                            //Call for help from other guards unless the culprit is the royal leader.
+                            if (this.disturbed == true)
+                            {
+                                if (player.title != "Royalty" || player.raceName != this.ultra.faction)
+                                {
+                                    this.callForNearbyHelpFromType(2000, "Soldier");
+                                }
+                            }
+
+                            this.switchToRanged("longbow");
+                        }
+                    }
+                    else if (this.ultra.faction == "Kel")
+                    {
                         //RANGE OF SIGHT (anything related to range of sight)
                         this.rangeOfSightCalculator(750, "true");
 
                         //All of this factions guards drop this:
                         this.drops = [];
 
-                        lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.7, Alpha: 0.9, showMe: false});
+                        lights.push({X: this.X, Y: this.Y, size: 85, extraStops: true, GRD: 0.7, Alpha: 0.4, showMe: false});
                         // If the target has too low a level of relations with the faction they are an enemy.
-                        if (player.freynorFaction <= -50)
+                        if (player.kelFaction <= -50)
                         {
                             this.disturbed = true;
                         }
@@ -27107,13 +32324,40 @@ function theLegend()
                         //Call for help from other guards unless the culprit is the royal leader.
                         if (this.disturbed == true)
                         {
-                            if (player.title != "Royalty" || player.raceName != this.ultra.faction)
-                            {
-                                this.callForNearbyHelpFromType(2000, "Soldier");
-                            }
+                            this.callForNearbyHelpFromType(2000, "Soldier");
+                        }
+                    }
+                    else if (this.ultra.faction == "TheBalgurMercenaries")
+                    {
+                        if (player.theBalgurMercenariesFaction <= -50)
+                        {
+                            this.disturbed = true;
                         }
 
-                        this.switchToRanged("longbow");
+                        if (this.ID == "Mercenary Captain Kronheime")
+                        {
+                            //RANGE OF SIGHT (anything related to range of sight)
+                            this.rangeOfSightCalculator(325, false);
+
+                            this.drops = [[new Item("balgurCaptainArmour", this.X, this.Y), 1], [new Item("berulnToothNecklace", this.X, this.Y), 1], [new Item("flail", this.X, this.Y), 1], [new Item("coins", this.X, this.Y), Math.floor(Math.random() * 140) + 43]];
+
+                            if (this.disturbed == true)
+                            {
+                                this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
+                            }
+                        }
+                        else if (this.ID == "Balgur Mercenary")
+                        {
+                            //RANGE OF SIGHT (anything related to range of sight)
+                            this.rangeOfSightCalculator(300, false);
+
+                            this.drops = [[new Item("balgurMercArmour", this.X, this.Y), 1], [new Item("coins", this.X, this.Y), Math.floor(Math.random() * 14) + 5]];
+
+                            if (this.disturbed == true)
+                            {
+                                this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
+                            }
+                        }
                     }
                     else if (this.ultra.faction == "hostile")
                     {
@@ -27221,6 +32465,16 @@ function theLegend()
                         {
                             uniqueChars.hetmerLDS = false;
                         }
+                        else if (this.ID == "Mercenary Captain Kronheime")
+                        {
+                            uniqueChars.kronheimeLDS = false;
+                            player.theBalgurMercenariesFaction -= 75;
+                        }
+                        else if (this.ID == "Torg Commissioner Stendor")
+                        {
+                            uniqueChars.stendorLDS = false;
+                            player.freynorFaction -= 80;
+                        }
 
                         //track Deaths Of Certain Non-Unique Units During Certain Quests
 
@@ -27230,6 +32484,14 @@ function theLegend()
                             if (this.ID == "Northern Bandit")
                             {
                                 quests.teshirNorthRoadKillCount += 1;
+                            }
+                        }
+                        if (quests.theBalgurMercenariesQuest == true)
+                        {
+                            if (this.ID == "Balgur Mercenary")
+                            {
+                                quests.theBalgurMercenariesMercsKilled += 1;
+                                player.theBalgurMercenariesFaction -= 50;
                             }
                         }
 
@@ -27322,6 +32584,10 @@ function theLegend()
                             {
                                 this.costumeEngine(5, 0.20, true);
                             }
+                            else if (this.weapon == "longSpikedMorningStar")
+                            {
+                                this.costumeEngine(7, 0.125, true);
+                            }
                             else if (this.weapon == "warHammer")
                             {
                                 this.costumeEngine(9, 0.22, true);
@@ -27330,10 +32596,14 @@ function theLegend()
                             {
                                 this.costumeEngine(14, 0.32, true);
                             }
+                            else if (this.weapon == "flail")
+                            {
+                                this.costumeEngine(11, 0.18, false);
+                            }
                         }
                     }
                     //draw some weapons underneath the body
-                    if (this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow")
+                    if (this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore")
                     {
                         this.drawHumanArms();
                     }
@@ -27342,13 +32612,19 @@ function theLegend()
                     this.drawHuman();
 
                     //draw the others over it.
-                    if (this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow")
+                    if (this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore")
                     {
                         this.drawHumanArms();
                     }
 
                     //draw the Person's Outfit.
                     this.drawHumanOutfit(this.ultra.outfit[0], false);
+
+                    //draw some weapons over the outfit
+                    if (this.weapon == "longSpikedMorningStar")
+                    {
+                        this.drawHumanArms();
+                    }
                 }
                 else
                 {
@@ -27386,6 +32662,15 @@ function theLegend()
             {
                 this.testForCenter();
             }
+
+            //Error Sponge: this sucks up the nasty draw errors that affect the last thing drawn.
+            XXX.beginPath();
+            XXX.lineWidth = 1;
+            XXX.fillStyle = "black";
+            XXX.arc(-100, -100, 5, 0, Math.PI);
+            XXX.fill();
+            XXX.stroke();
+            
             //this is a test to see what the true size of the unit is.
             if (testingUnitSizes == true && this.alive == true)
             {
@@ -27394,7 +32679,7 @@ function theLegend()
         };
     };
 
-    function Scenery(type, x, y, rotation, longevity)
+    function Scenery(type, x, y, rotation, longevity, information) //longevity is used either to portray permanence or ownership, information is an extra input for anything
     {
         this.type = type;
         this.X = x;
@@ -27413,6 +32698,7 @@ function theLegend()
         this.loopNum = 0;
         this.loopRate = 0;
         this.frameLoopComplete = false;
+        this.runOneTime = true; //this will not be used in general functions, only for making sure each type of scenery can run something only once.
         //Campfire variables
         this.lit = false;
         this.fireCostume = 0;
@@ -27432,6 +32718,9 @@ function theLegend()
         this.eggHatchTimer = 0;
         //Plant Variables
         this.phase = 0;
+        //light source variables
+        this.lightGetTime = new Date().getTime();
+        this.lightTime = 0;
 
         this.changeFactionRelation = function(changeAmount)
         {
@@ -27620,6 +32909,373 @@ function theLegend()
                     gameState = "paused";
                 }
             }
+            else if (this.type == "candle")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 45;
+
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(candlewic, 33, 16, 9, 9, -(1/2 * 9 * 1.2), -(1/2 * 9 * 1.2), 9 * 1.2, 9 * 1.2);
+                XXX.restore();
+
+                // for the candle scenery object information == [lightsource duration, type of candle (fuel left in used candle)]
+                if (this.runOneTime == true)
+                {
+                    this.runOneTime = false;
+                    this.lightTime = information[0];
+                }
+
+                if (longevity != true)
+                {
+                    if (new Date().getTime() - this.lightGetTime < this.lightTime * 1000)
+                    {
+                        lights.push({X: this.X, Y: this.Y, size: 65, extraStops: true, GRD: 0.35, Alpha: 0.5, showMe: false});
+                    }
+                    else
+                    {
+                        if (information[1] == 3)
+                        {
+                            worldItems.push([new Item("candle2", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 2)
+                        {
+                            worldItems.push([new Item("candle1", this.X, this.Y), 1])
+                        }
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i] === this)
+                            {
+                                scenicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lights.push({X: this.X, Y: this.Y, size: 65, extraStops: true, GRD: 0.35, Alpha: 0.5, showMe: false});
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 8;
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                    if (player.getIntelligence() < 1)
+                    {
+                        player.health = Math.min(player.health, player.health - (0.25 - player.heatResistance)); //it burns the players finger :( ... or not
+                    }
+                    else if (longevity != true)
+                    {
+                        if (information[1] == 3)
+                        {
+                            worldItems.push([new Item("candle2", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 2)
+                        {
+                            worldItems.push([new Item("candle1", this.X, this.Y), 1])
+                        }
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i] === this)
+                            {
+                                scenicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+
+                }
+            }
+            else if (this.type == "jackOLantern")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 45;
+
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(candlewic, 4, 100, 17, 18, - (1/2 * 17 * 1.2), - (1/2 * 18 * 1.2), 17 * 1.2, 18 * 1.2);
+                XXX.restore();
+
+                // for the candle scenery object information == [lightsource duration, type of candle (fuel left in used candle)]
+                if (this.runOneTime == true)
+                {
+                    this.runOneTime = false;
+                    this.lightTime = information[0];
+                }
+
+                if (longevity != true)
+                {
+                    if (new Date().getTime() - this.lightGetTime < this.lightTime * 1000)
+                    {
+                        lights.push({X: this.X, Y: this.Y, size: 85, extraStops: true, GRD: 0.7, Alpha: 0.4, showMe: false});
+                    }
+                    else
+                    {
+                        if (information[1] == 3)
+                        {
+                            worldItems.push([new Item("jackOLantern2", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 2)
+                        {
+                            worldItems.push([new Item("jackOLantern1", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 1)
+                        {
+                            worldItems.push([new Item("jackOLanternEmpty", this.X, this.Y), 1])
+                        }
+
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i] === this)
+                            {
+                                scenicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lights.push({X: this.X, Y: this.Y, size: 85, extraStops: true, GRD: 0.7, Alpha: 0.4, showMe: false});
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 14;
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                    if (longevity != true)
+                    {
+                        if (information[1] == 3)
+                        {
+                            worldItems.push([new Item("jackOLantern2", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 2)
+                        {
+                            worldItems.push([new Item("jackOLantern1", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 1)
+                        {
+                            worldItems.push([new Item("jackOLanternEmpty", this.X, this.Y), 1])
+                        }
+
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i] === this)
+                            {
+                                scenicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            else if (this.type == "oilLamp")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 45;
+
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(candlewic, 51, 110, 14, 15, - (1/2 * 14 * 1.2), - (1/2 * 15 * 1.2), 14 * 1.2, 15 * 1.2);
+                XXX.restore();
+
+                // for the candle scenery object information == [lightsource duration, type of candle (fuel left in used candle)]
+                if (this.runOneTime == true)
+                {
+                    this.runOneTime = false;
+                    this.lightTime = information[0];
+                }
+
+                if (longevity != true)
+                {
+                    if (new Date().getTime() - this.lightGetTime < this.lightTime * 1000)
+                    {
+                        lights.push({X: this.X, Y: this.Y, size: 175, extraStops: true, GRD: 0.7, Alpha: 0.8, showMe: false});
+                    }
+                    else
+                    {
+                        if (information[1] == 3)
+                        {
+                            worldItems.push([new Item("oilLamp2", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 2)
+                        {
+                            worldItems.push([new Item("oilLamp1", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 1)
+                        {
+                            worldItems.push([new Item("oilLampEmpty", this.X, this.Y), 1])
+                        }
+
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i] === this)
+                            {
+                                scenicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lights.push({X: this.X, Y: this.Y, size: 175, extraStops: true, GRD: 0.7, Alpha: 0.8, showMe: false});
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 11;
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                    if (longevity != true)
+                    {
+                        if (information[1] == 3)
+                        {
+                            worldItems.push([new Item("oilLamp2", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 2)
+                        {
+                            worldItems.push([new Item("oilLamp1", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 1)
+                        {
+                            worldItems.push([new Item("oilLampEmpty", this.X, this.Y), 1])
+                        }
+
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i] === this)
+                            {
+                                scenicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            else if (this.type == "oilLantern")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 45;
+
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(candlewic, 26, 109, 16, 16, - (1/2 * 16 * 1.2), - (1/2 * 16 * 1.2), 16 * 1.2, 16 * 1.2);
+                XXX.restore();
+
+                // for the candle scenery object information == [lightsource duration, type of candle (fuel left in used candle)]
+                if (this.runOneTime == true)
+                {
+                    this.runOneTime = false;
+                    this.lightTime = information[0];
+                }
+
+                if (longevity != true)
+                {
+                    if (new Date().getTime() - this.lightGetTime < this.lightTime * 1000)
+                    {
+                        lights.push({X: this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.7, Alpha: 0.9, showMe: false});
+                    }
+                    else
+                    {
+                        if (information[1] == 5)
+                        {
+                            worldItems.push([new Item("oilLantern4", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 4)
+                        {
+                            worldItems.push([new Item("oilLantern3", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 3)
+                        {
+                            worldItems.push([new Item("oilLantern2", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 2)
+                        {
+                            worldItems.push([new Item("oilLantern1", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 1)
+                        {
+                            worldItems.push([new Item("oilLanternEmpty", this.X, this.Y), 1])
+                        }
+
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i] === this)
+                            {
+                                scenicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lights.push({X: this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.7, Alpha: 0.9, showMe: false});
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 11;
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                    if (longevity != true)
+                    {
+                        if (information[1] == 5)
+                        {
+                            worldItems.push([new Item("oilLantern4", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 4)
+                        {
+                            worldItems.push([new Item("oilLantern3", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 3)
+                        {
+                            worldItems.push([new Item("oilLantern2", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 2)
+                        {
+                            worldItems.push([new Item("oilLantern1", this.X, this.Y), 1])
+                        }
+                        else if (information[1] == 1)
+                        {
+                            worldItems.push([new Item("oilLanternEmpty", this.X, this.Y), 1])
+                        }
+
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i] === this)
+                            {
+                                scenicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
             else if (this.type == "fertilizedMofuEgg")
             {
                 //TRAITS
@@ -27668,6 +33324,52 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "rubbledHome")
+            {
+                //TRAITS
+                this.solid = true;
+                this.interactionRange = 135;
+
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(freeverse, 273, 416, 64, 71, -(1/2 * 64 * 2.5), -(1/2 * 71 * 2.5), 64 * 2.5, 71 * 2.5);
+                XXX.drawImage(freeverse, 306, 487, 28, 13, -(8.5 * 2.5), (19 * 2.5), 28 * 2.5, 13 * 2.5);
+                XXX.drawImage(freeverse, 363, 411, 64, 71, -(1/2 * 64 * 2.5), -(1/2 * 71 * 2.5), 64 * 2.5, 71 * 2.5);
+                XXX.restore();
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 90;
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                }
+            }
+            else if (this.type == "brokenWell")
+            {
+                //TRAITS
+                this.solid = true;
+                this.interactionRange = 100;
+
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(freeverse, 146, 336, 47, 40, -(1/2 * 47 * 1.6), -(1/2 * 40 * 1.6), 47 * 1.6, 40 * 1.6);
+                XXX.restore();
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 27;
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                }
+            }
             else if (this.type == "well")
             {
                 //TRAITS
@@ -27681,7 +33383,7 @@ function theLegend()
                     this.wellListo = false;
                     if (this.toggleWell == true)
                     {
-                        this.frameLoop([[freeverse, 88, 46, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 88, 85, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 146, 85, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 203, 85, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 256, 85, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 306, 85, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 309, 126, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 256, 126, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 199, 126, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 140, 126, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 88, 126, 46, 39, 46 * 1.6, 39 * 1.6]], 10, 18, false);
+                        this.frameLoop([[freeverse, 87, 46, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 87, 85, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 145, 84, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 202, 83, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 255, 83, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 306, 82, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 308, 124, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 255, 124, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 198, 125, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 140, 126, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 87.65, 125.65, 47, 40, 47 * 1.6, 40 * 1.6]], 10, 18, false);
                         if (this.frameLoopComplete == true)
                         {
                             this.wellChange = false;
@@ -27691,7 +33393,7 @@ function theLegend()
                     }
                     else if (this.toggleWell == false)
                     {
-                        this.frameLoop([[freeverse, 88, 126, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 140, 126, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 199, 126, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 256, 126, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 309, 126, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 306, 85, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 256, 85, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 203, 85, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 146, 85, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 88, 85, 46, 39, 46 * 1.6, 39 * 1.6], [freeverse, 88, 46, 46, 39, 46 * 1.6, 39 * 1.6]], 10, 18, false);
+                        this.frameLoop([[freeverse, 87.65, 125.65, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 140, 126, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 198, 125, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 255, 124, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 308, 124, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 306, 82, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 255, 83, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 202, 83, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 145, 84, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 87, 85, 47, 40, 47 * 1.6, 40 * 1.6], [freeverse, 87, 46, 47, 40, 47 * 1.6, 40 * 1.6]], 10, 18, false);
                         if (this.frameLoopComplete == true)
                         {
                             this.wellChange = false;
@@ -27708,7 +33410,7 @@ function theLegend()
                         XXX.save();
                         XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                         XXX.rotate(this.rotation);
-                        XXX.drawImage(freeverse, 88, 126, 46, 39, -(1/2 * 46 * 1.6), -(1/2 * 39 * 1.6), 46 * 1.6, 39 * 1.6);
+                        XXX.drawImage(freeverse, 87.65, 125.65, 47, 40, -(1/2 * 47 * 1.6), -(1/2 * 40 * 1.6), 47 * 1.6, 40 * 1.6);
                         XXX.restore();
                     }
                     else if (this.wellUp == false)
@@ -27716,7 +33418,7 @@ function theLegend()
                         XXX.save();
                         XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                         XXX.rotate(this.rotation);
-                        XXX.drawImage(freeverse, 88, 46, 46, 39, -(1/2 * 46 * 1.6), -(1/2 * 39 * 1.6), 46 * 1.6, 39 * 1.6);
+                        XXX.drawImage(freeverse, 87, 46, 47, 40, -(1/2 * 47 * 1.6), -(1/2 * 40 * 1.6), 47 * 1.6, 40 * 1.6);
                         XXX.restore();
                     }
                 }
@@ -27816,6 +33518,12 @@ function theLegend()
                 XXX.rotate(this.rotation);
                 XXX.drawImage(verse, 2907, 149, 35, 19, -(1/2 * 70), -(1/2 * 38), 70, 38);
                 XXX.restore();
+
+                //produce light
+                if (timeOfDay != "Day")
+                {
+                    lights.push({X:this.X, Y: this.Y, size: 100, extraStops: true, GRD: 0.25, Alpha: 0.875, showMe: false});
+                }
 
                 //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
                 this.radius = 25;
@@ -28831,11 +34539,113 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "techiPlant")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 90;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(candlewic, 79, 108, 18, 21, -(1/2 * 18), -(1/2 * 21), 18, 21);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(candlewic, 79, 128, 18, 21, -(1/2 * 18), -(1/2 * 21), 18, 21);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 18;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "techiLeaf")
+                        {
+                            Inventory[i][1] += Math.floor(1 + Math.random() * 3);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("techiLeaf", false, false), Math.floor(1 + Math.random() * 3)]);
+                    }
+                }
+            }
+            else if (this.type == "ogardPlant")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 85;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poly, 60, 66, 34, 32, -(1/2 * 34 * 1.3), -(1/2 * 32 * 1.3), 34 * 1.3, 32 * 1.3);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(poly, 19, 65, 34, 32, -(1/2 * 34 * 1.3), -(1/2 * 32 * 1.3), 34 * 1.3, 32 * 1.3);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 22;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "ogard")
+                        {
+                            Inventory[i][1] += Math.floor(1 + Math.random() * 3);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("ogard", false, false), Math.floor(1 + Math.random() * 3)]);
+                    }
+                }
+            }
             else if (this.type == "tent")
             {
                 //TRAITS
                 this.solid = true;
-                this.interactionRange = 60;
+                this.interactionRange = 110;
 
                 //DRAWSELF
                 XXX.save();
@@ -28851,7 +34661,23 @@ function theLegend()
                 if (this.activate == true)
                 {
                     this.activate = false;
-                    //TODO add sleeping in tents!
+                    if (player.weaponEquipped == "hammer" && longevity == false) //if hammer is equipped deconstruct the tent.
+                    {
+                        worldItems.push([new Item("tent", this.X, this.Y), 1]);
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i] === this)
+                            {
+                                scenicList.splice(i, 1);
+                                break;
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        sleep();
+                    }
                 }
             }
             else if (this.type == "pineTree")
@@ -29158,6 +34984,7 @@ function theLegend()
         this.zIndex = 1;
         this.biproducts = []; //these are the accompanying items that come along with the main item being crafted.
         this.alcohol = 0;
+        this.wake = 0;
 
         this.setItemID = function()
         {
@@ -29265,6 +35092,7 @@ function theLegend()
                 this.dexterityBonus = 0;
                 this.stealthBonus = 0;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 0;
@@ -29396,6 +35224,49 @@ function theLegend()
                 this.spellDescription = "A beautiful flurry of flying orbs of colourful light bright enough to blind that which gets too close.";
                 this.spellKnowledgeRequirement = 2;
                 this.spellRange = "Medium";
+            }
+            else if (this.type == "chasingLights")
+            {
+                //For All Items
+                if (player.getKnowledge() >= 8)
+                {
+                    this.identity = "Scroll of Chasing Lights";
+                    this.description = "Studying this scroll will teach you how to conjure spheres of light that race to the nearest beings around aside from the caster.";
+                    this.intForDes = 0;
+                    this.intDescription = "This spell is best used to find enemies during the night.";
+                    this.buyValue = 340 - Math.floor(player.getCharisma() / 1); // at max, buy for 290.
+                    this.sellValue = 190 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 290.
+                }
+                else
+                {
+                    this.identity = "Scroll";
+                    this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                    this.intForDes = 2;
+                    this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                    this.buyValue = 340 - Math.floor(player.getCharisma() / 1); // at max, buy for 290.
+                    this.sellValue = 1; // at max, sell for 1.
+                }
+                this.weight = 0.02;
+                this.size = 12;
+
+                //Define Utility
+                this.utility = "spell";
+
+                //ability
+                this.ability = "none";
+
+                //Utility Focused
+                this.damages = false;
+                this.spellCost = Math.max(1, 3 + 7 / 50 * player.getConcentration() - (1 / 7) * player.getEminence());
+                this.spellGroup = "Incantation";
+                this.spellGenre = "Illusion";
+                this.spellName = "Chasing Lights";
+                this.spellID = "chasingLights";
+                this.spellEXP = 4 * ((50 + player.getMemory()) / 50);
+                this.spellCooldown = Math.max(0.1, 3 + (6/50) * player.getConcentration() - (7/50) * player.getEminence());
+                this.spellDescription = "Spheres of light that are attracted to any beings nearby.";
+                this.spellKnowledgeRequirement = 8;
+                this.spellRange = "Medium-Long";
             }
             else if (this.type == "repel")
             {
@@ -30380,6 +36251,43 @@ function theLegend()
                 this.buyValue = 1; // at max, buy for 1.
                 this.sellValue = 1; // at max, sell for 1.
             }
+            else if (this.type == "neevFlesh")
+            {
+                //For All Items
+                this.identity = "Neev Flesh";
+                this.weight = 1;
+                this.size = 6;
+                this.description = "A pure black flesh gooey with sticky tar-like black blood.";
+                this.intForDes = 0;
+
+                if (player.getIntelligence() < 20)
+                {
+                    this.intDescription = "This does not look like something anyone would want to ingest.";
+                }
+                else
+                {
+                    this.intDescription = "This can be drained for the blood which can be used as a base for some powerful alchemy recipes.";
+                }
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = -10; //satisfies hunger.
+                this.thirst = -10; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = -5; //heals health.
+                this.generation = -5; //recoops lost energy.
+                this.replenish = -25; //restores will.
+
+                //ability
+                this.ability = "foodPoisoning";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 105 - Math.floor(player.getCharisma() / 1.5); // at max, buy for 72.
+                this.sellValue = 42 + Math.floor(player.getCharisma() / 2); // at max, sell for 67.
+            }
             else if (this.type == "frichMeat")
             {
                 //For All Items
@@ -30951,6 +36859,40 @@ function theLegend()
                 this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
                 this.sellValue = 1; // at max, sell for 1.
             }
+            else if (this.type == "driedPluttBerries")
+            {
+                //For All Items
+                this.identity = "Dried Plutt Berries";
+                this.weight = 0.7;
+                this.size = 7;
+                this.description = "Sweet chewy and flavorful dried berries.";
+                this.intForDes = 6;
+                this.intDescription = "These make an excellent dessert when served with honey.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 2.5; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 2;
+                this.ingredients = [["Plutt Berries", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 9 - Math.floor(player.getCharisma() / 12); // at max, buy for 5.
+                this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+            }
             else if (this.type == "pluttBerries")
             {
                 //For All Items
@@ -30967,7 +36909,7 @@ function theLegend()
                 //Utility Focused
                 this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
                 this.hunger = 2; //satisfies hunger.
-                this.thirst = 0; //quenches thirst.
+                this.thirst = 0.25; //quenches thirst.
                 this.warmth = 0; //warms player.
                 this.heal = 0; //heals health.
                 this.generation = 0; //recoops lost energy.
@@ -31339,6 +37281,149 @@ function theLegend()
                 this.buyValue = 11 - Math.floor(player.getCharisma() / 25); // at max, buy for 9.
                 this.sellValue = 7 + Math.floor(player.getCharisma() / 25); // at max, sell for 9.
             }
+            else if (this.type == "ogard")
+            {
+                //For All Items
+                this.identity = "Ogard";
+                this.weight = 0.9;
+                this.size = 8;
+                this.description = "Ogard is a large ovular hard seed produced by the ogard plant.";
+                if (player.raceName == "Freynor")
+                {
+                    this.intForDes = 0;
+                }
+                else
+                {
+                    this.intForDes = 4;
+                }
+                this.intDescription = "It is popularly used ground as a spice to flavour certain foods and drinks.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //Utility Focused
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 46 - Math.floor(player.getCharisma() / 5); // at max, buy for 36.
+                this.sellValue = 18 + Math.floor(player.getCharisma() / 3); // at max, sell for 33.
+            }
+            else if (this.type == "groundOgard")
+            {
+                //For All Items
+                this.identity = "Ground Ogard";
+                this.weight = 0.9;
+                this.size = 8;
+                this.description = "Ground ogard has a strong, hot, nutty, wood aromatic.";
+                if (player.raceName == "Freynor")
+                {
+                    this.intForDes = 0;
+                }
+                else
+                {
+                    this.intForDes = 4;
+                }
+
+                this.intDescription = "This spice originates from the north where it is commonly used in hot drinks, baked goods, and desserts.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //Utility Focused
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 9;
+                this.intForCraft = 2;
+                this.ingredients = [["Ogard", 1]];
+                this.biproducts = [[new Item("ogardPollen", false), 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 7 - Math.floor(player.getCharisma() / 15); // at max, buy for 4.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+            }
+            else if (this.type == "ogardPollen")
+            {
+                //For All Items
+                this.identity = "Ogard Pollen";
+                this.weight = 0.02;
+                this.size = 8;
+                this.description = "Ogard Pollen is a light yellow fluffy airy substance that smells imensely sweet, hot, and nutty.";
+                if (player.raceName == "Freynor")
+                {
+                    this.intForDes = 2;
+                }
+                else
+                {
+                    this.intForDes = 7;
+                }
+                this.intDescription = "Ogard pollen is used in alchemy and to make fine perfume.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //Utility Focused
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 19 - Math.floor(player.getCharisma() / 10); // at max, buy for 14.
+                this.sellValue = 10 + Math.floor(player.getCharisma() / 12); // at max, sell for 14.
+            }
+            else if (this.type == "driedTechiLeaf")
+            {
+                //For All Items
+                this.identity = "Dried Techi Leaf";
+                this.weight = 0.1;
+                this.size = 7;
+                this.description = "The dried leaf of a techi weed.";
+                this.intForDes = 5;
+                this.intDescription = "This dried herb makes up the body of much of the tea drunk throughout the lands.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //Utility Focused
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 2;
+                this.ingredients = [["Techi Leaf", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "techiLeaf")
+            {
+                //For All Items
+                this.identity = "Techi Leaf";
+                this.weight = 0.1;
+                this.size = 7;
+                this.description = "Techi weeds grow scattered among the northern plains.";
+                this.intForDes = 5;
+                this.intDescription = "Techi leaf can be used in alchemy or it can be dried and made into a bitter tea.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //Utility Focused
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
             else if (this.type == "stomwikLeaf")
             {
                 //For All Items
@@ -31582,6 +37667,81 @@ function theLegend()
                 this.buyValue = 10 - Math.floor(player.getCharisma() / 10); // at max, buy for 5.
                 this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
             }
+            else if (this.type == "bucketOfTechiTea")
+            {
+                //For All Items
+                this.identity = "Bucket of Techi Tea";
+                this.weight = 6;
+                this.size = 12;
+                this.description = "An iron bucket filled to the brim with hot leave juice.";
+                this.intForDes = 1;
+                this.intDescription = "Techi weed is the standard base for almost all tea in the lands.";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["bucket", 1]];
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0; //satisfies hunger.
+                this.thirst = 35; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 2.5; //recoops lost energy.
+                this.replenish = 4; //restores will.
+                this.wake = 5; //awakens player.
+
+                //ability
+                this.ability = "quench";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 1;
+                this.ingredients = [["Bucket of Water", 1], ["Dried Techi Leaf", 9]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue =  45 - Math.floor(player.getCharisma() / 2); // at max, buy for 20.
+                this.sellValue = 12 + Math.floor(player.getCharisma() / 6); // at max, sell for 20.
+            }
+            else if (this.type == "techiTea")
+            {
+                //For All Items
+                this.identity = "Techi Tea";
+                this.weight = 1;
+                this.size = 6;
+                this.description = "A pint glass filled with plain unflavoured techi tea.";
+                this.intForDes = 2;
+                this.intDescription = "It is a hot drink that is both energizing and calming.";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["pintGlass", 1]];
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0; //satisfies hunger.
+                this.thirst = 4; //quenches thirst.
+                this.warmth = 5; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.25; //recoops lost energy.
+                this.replenish = 0.5; //restores will.
+                this.wake = 0.5; //awakens player.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 10;
+                this.intForCraft = 0;
+                this.ingredients = [["Pint Glass", 10], ["Bucket of Techi Tea", 1]];
+                this.biproducts = [[new Item("bucket", false), 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 5 - Math.floor(player.getCharisma() / 25); // at max, buy for 3.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+            }
             else if (this.type == "bucketOfPluttJuice")
             {
                 //For All Items
@@ -31597,7 +37757,7 @@ function theLegend()
                 {
                     this.intForDes = 11;
                 }
-                this.intDescription = "Hot plutt berry cider, a freydic specialty, can be made by heating plutt berry juice with some ground ogard nut.";
+                this.intDescription = "Hot plutt berry cider, a freydic specialty, can be made by heating plutt berry juice with some ground ogard.";
 
                 //Define Utility
                 this.utility = "food";
@@ -31706,7 +37866,7 @@ function theLegend()
                 {
                     this.intForDes = 11;
                 }
-                this.ingredients = [["Bucket of Plutt Juice", 1], ["Ground Ogard Nut", 1]];
+                this.ingredients = [["Bucket of Plutt Juice", 1], ["Ground Ogard", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 100 - Math.floor(player.getCharisma() / 5); // at max, buy for 90.
@@ -32374,6 +38534,42 @@ function theLegend()
                 this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
                 this.sellValue = 1; // at max, sell for 1.
             }
+            else if (this.type == "ogardPerfume")
+            {
+                //For All Items
+                this.identity = "Ogard Perfume";
+                this.weight = 0.5;
+                this.size = 5;
+                this.description = "A liquid perfume with the scent of ogard spice.";
+                this.intForDes = 0;
+                this.intDescription = "It smells sweet and wild, with a hot, nutty aroma.";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["potionGlass", 1]];
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "ogardPerfume";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 14;
+                this.ingredients = [["Vial of Water", 1], ["Ogard Pollen", 2]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 34 - Math.floor(player.getCharisma() / 6); // at max, buy for 26.
+                this.sellValue = 20 + Math.floor(player.getCharisma() / 8); // at max, sell for 26.
+            }
             else if (this.type == "cleansingPotion")
             {
                 //For All Items
@@ -32407,8 +38603,8 @@ function theLegend()
                 this.ingredients = [["Potion Glass", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-                this.buyValue = 425 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 325.
-                this.sellValue = 95 + Math.floor(player.getCharisma() / 0.325); // at max, sell for 248.
+                this.buyValue = 925 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 725.
+                this.sellValue = 495 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 695.
             }
             else if (this.type == "energyPotionI")
             {
@@ -32574,6 +38770,26 @@ function theLegend()
                 this.buyValue = 9 - Math.floor(player.getCharisma() / 15); // at max, buy for 6.
                 this.sellValue = 2 + Math.floor(player.getCharisma() / 15); // at max, sell for 5.
             }
+            else if (this.type == "neevFur")
+            {
+                //For All Items
+                this.identity = "Neev Fur";
+                this.weight = 0.5;
+                this.size = 15;
+                this.description = "The soft matted greyish brown fur of a neev.";
+                this.intForDes = 9;
+                this.intDescription = "The fur is incredibly soft, durable, and it has high elasticity.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 268 - Math.floor(player.getCharisma() / 0.35); // at max, buy for 126.
+                this.sellValue = 75 + Math.floor(player.getCharisma() / 1); // at max, sell for 125.
+            }
             else if (this.type == "frichPelt")
             {
                 //For All Items
@@ -32593,6 +38809,26 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 5 - Math.floor(player.getCharisma() / 15); // at max, buy for 2.
                 this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            }
+            else if (this.type == "neculaisEar")
+            {
+                //For All Items
+                this.identity = "Neculai's Ear";
+                this.weight = 0.05;
+                this.size = 6;
+                this.description = "After killing Neculai you cut off his ear.";
+                this.intForDes = 1;
+                this.intDescription = "Without his ear he can't hear, oh dear!";
+
+                //Define Utility
+                this.utility = "questItem";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
             }
             else if (this.type == "beesWax")
             {
@@ -32625,7 +38861,7 @@ function theLegend()
                 this.intDescription = "This candle has not been used yet.";
 
                 //Define Utility
-                this.utility = "material";
+                this.utility = "tool";
                 this.subUtility = "reusable";
                 this.refund = [["candle2", 1]];
 
@@ -32652,7 +38888,7 @@ function theLegend()
                 this.intDescription = "This candle has been worn in.";
 
                 //Define Utility
-                this.utility = "material";
+                this.utility = "tool";
                 this.subUtility = "reusable";
                 this.refund = [["candle1", 1]];
 
@@ -32674,7 +38910,7 @@ function theLegend()
                 this.intDescription = "This candle is almost all the way melted.";
 
                 //Define Utility
-                this.utility = "material";
+                this.utility = "tool";
 
                 //ability
                 this.ability = "lighter";
@@ -32694,7 +38930,7 @@ function theLegend()
                 this.intDescription = "All of its candles are unused as of this point.";
 
                 //Define Utility
-                this.utility = "material";
+                this.utility = "tool";
                 this.subUtility = "reusable";
                 this.refund = [["jackOLantern2", 1]];
 
@@ -32721,7 +38957,7 @@ function theLegend()
                 this.intDescription = "Its candles are all somewhat melted.";
 
                 //Define Utility
-                this.utility = "material";
+                this.utility = "tool";
                 this.subUtility = "reusable";
                 this.refund = [["jackOLantern1", 1]];
 
@@ -32743,7 +38979,7 @@ function theLegend()
                 this.intDescription = "Its candles are almost completely melted.";
 
                 //Define Utility
-                this.utility = "material";
+                this.utility = "tool";
                 this.subUtility = "reusable";
                 this.refund = [["jackOLanternEmpty", 1]];
 
@@ -32765,7 +39001,7 @@ function theLegend()
                 this.intDescription = "Its candles are the way melted.";
 
                 //Define Utility
-                this.utility = "material";
+                this.utility = "tool";
 
                 //ability
                 this.ability = "none";
@@ -32858,7 +39094,7 @@ function theLegend()
                 this.intDescription = "The lamp is full of oil.";
 
                 //Define Utility
-                this.utility = "material";
+                this.utility = "tool";
                 this.subUtility = "reusable";
                 this.refund = [["oilLamp2", 1]];
 
@@ -32886,7 +39122,7 @@ function theLegend()
                 this.intDescription = "There is a fair amount of oil in this lamp.";
 
                 //Define Utility
-                this.utility = "material";
+                this.utility = "tool";
                 this.subUtility = "reusable";
                 this.refund = [["oilLamp1", 1]];
 
@@ -32908,7 +39144,7 @@ function theLegend()
                 this.intDescription = "This lamp is almost out of oil.";
 
                 //Define Utility
-                this.utility = "material";
+                this.utility = "tool";
                 this.subUtility = "reusable";
                 this.refund = [["oilLampEmpty", 1]];
 
@@ -32930,7 +39166,7 @@ function theLegend()
                 this.intDescription = "This lamp is out of oil.";
 
                 //Define Utility
-                this.utility = "material";
+                this.utility = "tool";
 
                 //ability
                 this.ability = "none";
@@ -32955,7 +39191,7 @@ function theLegend()
                 this.intDescription = "The lantern is full of oil.";
 
                 //Define Utility
-                this.utility = "material";
+                this.utility = "tool";
                 this.subUtility = "reusable";
                 this.refund = [["oilLantern4", 1]];
 
@@ -32983,7 +39219,7 @@ function theLegend()
                 this.intDescription = "Most of the oil in the lantern remains.";
 
                 //Define Utility
-                this.utility = "material";
+                this.utility = "tool";
                 this.subUtility = "reusable";
                 this.refund = [["oilLantern3", 1]];
 
@@ -33005,7 +39241,7 @@ function theLegend()
                 this.intDescription = "The lantern has just over half of its oil.";
 
                 //Define Utility
-                this.utility = "material";
+                this.utility = "tool";
                 this.subUtility = "reusable";
                 this.refund = [["oilLantern2", 1]];
 
@@ -33027,7 +39263,7 @@ function theLegend()
                 this.intDescription = "The lantern has just under half of its oil.";
 
                 //Define Utility
-                this.utility = "material";
+                this.utility = "tool";
                 this.subUtility = "reusable";
                 this.refund = [["oilLantern1", 1]];
 
@@ -33049,7 +39285,7 @@ function theLegend()
                 this.intDescription = "The lantern is running low on oil..";
 
                 //Define Utility
-                this.utility = "material";
+                this.utility = "tool";
                 this.subUtility = "reusable";
                 this.refund = [["oilLanternEmpty", 1]];
 
@@ -33071,7 +39307,7 @@ function theLegend()
                 this.intDescription = "The Lantern has run out of oil.";
 
                 //Define Utility
-                this.utility = "material";
+                this.utility = "tool";
 
                 //ability
                 this.ability = "none";
@@ -33276,6 +39512,74 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 18 - Math.floor(player.getCharisma() / 15); // at max, buy for 15.
                 this.sellValue = 10 + Math.floor(player.getCharisma() / 10); // at max, sell for 15.
+            }
+            else if (this.type == "pluttMoffling")
+            {
+                //For All Items
+                this.identity = "Moffling Meat in Plutt Berry Sauce";
+                this.weight = 0.1;
+                this.size = 6;
+                this.description = "A whole roasted moffling served with a thick sweet plutt berry sauce poured over it.";
+                this.intForDes = 1;
+                this.intDescription = "Moffling with plutt berry sauce is a delicacy enjoyed even by freydic nobles.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 7; //satisfies hunger.
+                this.thirst = 0.25; //quenches thirst.
+                this.warmth = 4; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0.2; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 25;
+                this.ingredients = [["Moffling Meat", 1], ["Plutt Berries", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 30 - Math.floor(player.getCharisma() / 10); // at max, buy for 25.
+                this.sellValue = 20 + Math.floor(player.getCharisma() / 10); // at max, sell for 25.
+            }
+            else if (this.type == "akerMoffling")
+            {
+                //For All Items
+                this.identity = "Moffling Meat in Aker Berry Sauce";
+                this.weight = 0.1;
+                this.size = 6;
+                this.description = "A whole roasted moffling served with a tart aker berry sauce poured over it.";
+                this.intForDes = 1;
+                this.intDescription = "Moffling with aker berry sauce is a delicacy enjoyed even by freydic nobles.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 5.5; //satisfies hunger.
+                this.thirst = 0.1; //quenches thirst.
+                this.warmth = 4; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0.2; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 23;
+                this.ingredients = [["Moffling Meat", 1], ["Aker Berries", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 25 - Math.floor(player.getCharisma() / 10); // at max, buy for 20.
+                this.sellValue = 15 + Math.floor(player.getCharisma() / 10); // at max, sell for 20.
             }
             else if (this.type == "rawMofuFlesh")
             {
@@ -33579,6 +39883,32 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 13 - Math.floor(player.getCharisma() / 15); // at max, buy for 10.
                 this.sellValue = 5 + Math.floor(player.getCharisma() / 15); // at max, sell for 8.
+            }
+            else if (this.type == "tent")
+            {
+                //For All Items
+                this.identity = "Tent";
+                this.weight = 6;
+                this.size = 15;
+                this.description = "A quick-to-set-up inhabitance that provides safe and comfortable rest.";
+                this.intForDes = 1;
+                this.intDescription = "If you have a hammer equipped click the tent in your inventory to place it, and double click on the placed tent to disassemble it.";
+
+                //Define Utility
+                this.utility = "tool";
+                this.subUtility = "tent";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 15;
+                this.ingredients = [["Cloth", 6], ["Iron", 1], ["Fiber", 3]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 55 - Math.floor(player.getCharisma() / 2); // at max, buy for 30.
+                this.sellValue = 25 + Math.floor(player.getCharisma() / 10); // at max, sell for 30.
             }
             else if (this.type == "wood")
             {
@@ -34060,6 +40390,56 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 11 - Math.floor(player.getCharisma() / 12); // at max, buy for 7.
                 this.sellValue = 3 + Math.floor(player.getCharisma() / 12); // at max, sell for 7.
+            }
+            else if (this.type == "cloth")
+            {
+                //For All Items
+                this.identity = "Cloth";
+                this.weight = 0.5;
+                this.size = 12;
+                this.description = "Thin fibers sewn together to form a smooth and consistent fabric.";
+                this.intForDes = 1;
+                this.intDescription = "Cloth is a basic material used in many crafting recipies.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 17;
+                this.ingredients = [["Fiber", 5]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 6 - Math.floor(player.getCharisma() / 15); // at max, buy for 3.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+            }
+            else if (this.type == "naapridFiber")
+            {
+                //For All Items
+                this.identity = "Fiber";
+                this.weight = 0.1;
+                this.size = 10;
+                this.description = "Strong thin strands of fiber.";
+                this.intForDes = 1;
+                this.intDescription = "Fiber is a basic material used in many crafting recipies.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 10;
+                this.intForCraft = 25;
+                this.ingredients = [["Naaprid Pelt", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
             }
             else if (this.type == "winterWolfPelt")
             {
@@ -34817,6 +41197,40 @@ function theLegend()
                 this.buyValue = 18 - Math.floor(player.getCharisma() / 6); // at max, buy for 12.
                 this.sellValue = 7 + Math.floor(player.getCharisma() / 10); // at max, sell for 12.
             }
+            else if (this.type == "longSpikedMorningStar")
+            {
+                //For All Items
+                this.identity = "Long-Spiked Morning Star";
+                this.weight = 8;
+                this.size = 19;
+                this.description = "A morning star build with long steel spikes for piercing armour. ";
+                this.intForDes = 1;
+                this.intDescription = "This weapon is meant to be used to pierce well-armoured enemies.";
+
+                //Define Utility
+                this.utility = "weapon";
+
+                //Utility Focused
+                this.energyCost = 7.5;
+                this.distance = 31 + (this.range * 7);
+                this.range = 1 + 4/7;
+                this.rate = 240;
+                this.damage = (10 - (this.damageHandicap * 2)) * (this.leveledDamageMultiple / 25) + ((6/50) * player.getStrength());
+                this.magicalDamage = 0;
+                this.negateArmour = 14;
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 34;
+                this.ingredients = [["Steel", 3]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 67 - Math.floor(player.getCharisma() / 3); // at max, buy for 52.
+                this.sellValue = 30 + Math.floor(player.getCharisma() / 3); // at max, sell for 45.
+            }
             else if (this.type == "hammer")
             {
                 //For All Items
@@ -35169,7 +41583,7 @@ function theLegend()
                 //Crafting
                 this.yield = 1;
                 this.intForCraft = 25;
-                this.ingredients = [["Wood", 1], ["Fibers", 1]];
+                this.ingredients = [["Wood", 1], ["Fiber", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 44 - Math.floor(player.getCharisma() / 8); // at max, buy for 38.
@@ -35417,7 +41831,6 @@ function theLegend()
                 //Utility Focused
                 //protections
                 this.protection = 0 * ((player.toughness / 100) + 1);
-                this.toughnessRequirement = 0;
                 this.eminenceRequirement = 0;
                 this.magicalProtection = 0;
                 this.warmthRetention = 0.2;
@@ -35434,6 +41847,7 @@ function theLegend()
                 this.dexterityBonus = 0;
                 this.stealthBonus = 0;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 1;
@@ -35454,6 +41868,61 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
                 this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
+            }
+            else if (this.type == "berulnToothNecklace")
+            {
+                //For All Items
+                this.identity = "Beruln Tooth Necklace";
+                this.weight = 0.1;
+                this.size = 11;
+                this.description = "A necklace made with the tooth of a beruln.";
+                this.intForDes = 1;
+                this.intDescription = "Either you are a fearless adventurer who slayed a beruln and put its tooth onto a string, or you bought this at a shop.";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "necklace";
+                //Utility Focused
+                //protections
+                this.protection = 0 * ((player.toughness / 100) + 1);
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 0;
+                this.thirstRetention = 0;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 0;
+                this.toughnessBonus = 0;
+                this.intelligenceBonus = 0;
+                this.charismaBonus = 3;
+                this.rangedBonus = 0;
+                this.constitutionBonus = 0;
+                this.staminaBonus = 0;
+                this.dexterityBonus = 0;
+                this.stealthBonus = 0;
+                //Extra Stat Bonuses
+                this.sleepBonus = 0;
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 1;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "none";
+
+                this.yield = 34;
+                this.intForCraft = 25;
+                this.ingredients = [["Fiber", 9], ["Beruln Skull", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 16 - Math.floor(player.getCharisma() / 6); // at max, buy for 8.
+                this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
             }
             else if (this.type == "walrusLeatherArmour")
             {
@@ -35489,6 +41958,7 @@ function theLegend()
                 this.dexterityBonus = 0;
                 this.stealthBonus = 0;
                     //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 0;
@@ -35510,6 +41980,110 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 71 - Math.floor(player.getCharisma() / 3); // at max, buy for 56.
                 this.sellValue = 29 + Math.floor(player.getCharisma() / 2); // at max, sell for 54.
+            }
+            else if (this.type == "balgurMercArmour")
+            {
+                //For All Items
+                this.identity = "Balgur Mercenary Armour";
+                this.weight = 4;
+                this.size = 26;
+                this.description = "The standard design for all armour worn by members of the balgur mercenary crew.";
+                this.intForDes = 3;
+                this.intDescription = "The Balgur Mercenaries are feared and respected throughout Thengaria and the surrounding regions.";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "armour";
+                //Utility Focused
+                //protections
+                this.protection = 3.5 * ((player.toughness / 100) + 1);
+                this.toughnessRequirement = 3;
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 0.75;
+                this.thirstRetention = -0.1;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 1;
+                this.toughnessBonus = 0;
+                this.intelligenceBonus = 0;
+                this.charismaBonus = 5;
+                this.rangedBonus = 0;
+                this.constitutionBonus = 0;
+                this.staminaBonus = 0;
+                this.dexterityBonus = 0;
+                this.stealthBonus = 0;
+                //Extra Stat Bonuses
+                this.sleepBonus = 1;
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 0;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 80 - Math.floor(player.getCharisma() / 3); // at max, buy for 65.
+                this.sellValue = 35 + Math.floor(player.getCharisma() / 2); // at max, sell for 60.
+            }
+            else if (this.type == "balgurCaptainArmour")
+            {
+                //For All Items
+                this.identity = "Balgur Mercenary Captain Armour";
+                this.weight = 7;
+                this.size = 26;
+                this.description = "This design of armour is specially made for only the captains of The Balgur Mercenaries.";
+                this.intForDes = 3;
+                this.intDescription = "The captains among The Balgur Mercenaries did not attain their ranks with ease; they are some of the most fearsome warriors you would meet.";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "armour";
+                //Utility Focused
+                //protections
+                this.protection = 6 * ((player.toughness / 100) + 1);
+                this.toughnessRequirement = 3;
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 0.9;
+                this.thirstRetention = -0.1;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 2;
+                this.toughnessBonus = 0;
+                this.intelligenceBonus = 0;
+                this.charismaBonus = 8;
+                this.rangedBonus = 0;
+                this.constitutionBonus = 0;
+                this.staminaBonus = 1;
+                this.dexterityBonus = 0;
+                this.stealthBonus = 0;
+                //Extra Stat Bonuses
+                this.sleepBonus = 2;
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 0;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 145 - Math.floor(player.getCharisma() / 3); // at max, buy for 130.
+                this.sellValue = 100 + Math.floor(player.getCharisma() / 2); // at max, sell for 125.
             }
             else if (this.type == "hetmerArmour")
             {
@@ -35538,16 +42112,17 @@ function theLegend()
                 this.enduranceBonus = 0;
                 this.toughnessBonus = 0;
                 this.intelligenceBonus = 0;
-                this.charismaBonus = 2;
+                this.charismaBonus = 6;
                 this.rangedBonus = 0;
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
                 this.stealthBonus = 0;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
-                this.warmthBonus = 0;
+                this.warmthBonus = 2;
                 //Magical Stat Bonuses
                 this.eminenceBonus = 0;
                 this.willpowerBonus = 0;
@@ -35599,6 +42174,7 @@ function theLegend()
                 this.dexterityBonus = -1;
                 this.stealthBonus = -12;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 0;
@@ -35655,6 +42231,7 @@ function theLegend()
                 this.dexterityBonus = -50;
                 this.stealthBonus = -50;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 0;
@@ -35711,6 +42288,7 @@ function theLegend()
                 this.dexterityBonus = -4;
                 this.stealthBonus = -15;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 0;
@@ -35767,6 +42345,7 @@ function theLegend()
                 this.dexterityBonus = -5;
                 this.stealthBonus = -20;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 0;
@@ -35823,6 +42402,7 @@ function theLegend()
                 this.dexterityBonus = 0;
                 this.stealthBonus = 0;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 0;
@@ -35879,6 +42459,7 @@ function theLegend()
                 this.dexterityBonus = -5;
                 this.stealthBonus = -5;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 10;
@@ -35935,6 +42516,7 @@ function theLegend()
                 this.dexterityBonus = 0;
                 this.stealthBonus = 0;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 50;
@@ -35990,6 +42572,7 @@ function theLegend()
                 this.dexterityBonus = 0;
                 this.stealthBonus = 0;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 20;
@@ -36045,6 +42628,7 @@ function theLegend()
                 this.dexterityBonus = 0;
                 this.stealthBonus = 0;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 10;
@@ -36100,6 +42684,7 @@ function theLegend()
                 this.dexterityBonus = -5;
                 this.stealthBonus = -5;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 10;
@@ -36155,6 +42740,7 @@ function theLegend()
                 this.dexterityBonus = 0;
                 this.stealthBonus = 0;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 0;
@@ -36210,6 +42796,7 @@ function theLegend()
                 this.dexterityBonus = 0;
                 this.stealthBonus = 2;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 0;
@@ -36265,6 +42852,7 @@ function theLegend()
                 this.dexterityBonus = 0;
                 this.stealthBonus = 0;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 5;
@@ -36320,6 +42908,7 @@ function theLegend()
                 this.dexterityBonus = 1;
                 this.stealthBonus = 1;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 5;
@@ -36375,6 +42964,7 @@ function theLegend()
                 this.dexterityBonus = -5;
                 this.stealthBonus = -5;
                 //Extra Stat Bonuses
+                this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
                 this.warmthBonus = 5;
@@ -36757,11 +43347,22 @@ function theLegend()
                 this.utility = "weapon";
 
                 //Utility Focused
-                this.energyCost = 20;
+                if (player.getEndurance() >= 50)
+                {
+                    this.energyCost = 20;
+                }
+                else if (player.getEndurance() > 34)
+                {
+                    this.energyCost = 23;
+                }
+                else
+                {
+                    this.energyCost = 25;
+                }
                 this.distance = 55 + (this.range * 7);
                 this.range = 3.6;
                 this.rate = 165;
-                this.damage = (17 - this.damageHandicap - this.damageHandicapII) * (this.leveledDamageMultiple / 25) + Math.floor(((1/6.6) * player.getStrength()));
+                this.damage = (20 - this.damageHandicap - this.damageHandicapII) * (this.leveledDamageMultiple / 25) + Math.floor(((1/6.6) * player.getStrength()));
                 this.magicalDamage = 0;
                 this.negateArmour = 0;
 
@@ -36840,11 +43441,11 @@ function theLegend()
                 this.rate = 235;
                 if (player.getStrength() < 8)
                 {
-                    this.damage = (11 - (this.damageHandicap * 4)) * (this.leveledDamageMultiple / 25) + ((1/25) * player.getStrength());
+                    this.damage = (11 - (this.damageHandicap * 4)) * (this.leveledDamageMultiple / 25) + ((2/25) * player.getStrength());
                 }
                 else
                 {
-                    this.damage = 15 * (this.leveledDamageMultiple / 25) + ((1/25) * player.getStrength());
+                    this.damage = 15 * (this.leveledDamageMultiple / 25) + (9 / 50 * player.getStrength());
                 }
                 this.magicalDamage = 0;
                 this.negateArmour = 0;
@@ -36893,7 +43494,7 @@ function theLegend()
                 this.distance = 66 + (this.range * 7);
                 this.range = 7;
                 this.rate = 185;
-                this.damage = (13 - (this.damageHandicap * 2)) * (this.leveledDamageMultiple / 25) + ((1/25) * player.getStrength());
+                this.damage = (14 - (this.damageHandicap * 3)) * (this.leveledDamageMultiple / 25) + ((7/50) * player.getStrength());
                 this.magicalDamage = 0;
                 this.negateArmour = 0;
 
@@ -37243,6 +43844,75 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "neevFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 148, 67, 21, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.25), 21 * 1.25, 17 * 1.25);
+            }
+            else if (this.type == "neevFur")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 176, 64, 35, 25, X - this.X + (1/2 * CCC.width) - (1/2 * 35 * 1.15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 25 * 1.15), 35 * 1.15, 25 * 1.15);
+            }
+            else if (this.type == "ogardPerfume")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 50, 4, 15, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19), 15, 19);
+            }
+            else if (this.type == "driedTechiLeaf")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 35, 6, 11, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 11), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 11, 16);
+            }
+            else if (this.type == "ogard")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 36, 28, 15, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.3), 15 * 1.3, 16 * 1.3);
+            }
+            else if (this.type == "groundOgard")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 37, 47, 16, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 16), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14), 16, 14);
+            }
+            else if (this.type == "ogardPollen")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 57, 50, 9, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.3), 9 * 1.3, 9 * 1.3);
+            }
+            else if (this.type == "cloth")
+            {
+                XXX.beginPath();
+                XXX.save();
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                XXX.rotate(5/8 * 2 * Math.PI);
+                XXX.drawImage(verse, 3955, 309, 29, 10,  - (1/2 * 29 * 1.5), - (1/2 * 10 * 1.5), 29 * 1.5, 10 * 1.5);
+                XXX.restore();
+            }
+            else if (this.type == "naapridFiber")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 85, 46, 10, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.65), 10 * 1.65, 18 * 1.65);
+            }
+            else if (this.type == "tent")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 1, 1, 32, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 32 * 1.75), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32 * 1.75), 32 * 1.75, 32 * 1.75);
+            }
+            else if (this.type == "neculaisEar")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 71, 48, 9, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 1.2), 9 * 1.2, 12 * 1.2);
+            }
+            else if (this.type == "berulnToothNecklace")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 96, 3, 14, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.2), 14 * 1.2, 21 * 1.2);
+            }
+            else if (this.type == "techiLeaf")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 83, 147, 13, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 13), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15), 13, 15);
+            }
             else if (this.type == "bucketOfPluttJuice" || this.type == "bucketOfHotPluttBerryCider" )
             {
                 XXX.beginPath();
@@ -37251,7 +43921,7 @@ function theLegend()
             else if (this.type == "pluttJuicePintGlass" || this.type == "pluttCiderPintGlass" )
             {
                 XXX.beginPath();
-                XXX.drawImage(candlewic, 2, 31, 9, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 2), 9 * 2, 9 * 2);
+                XXX.drawImage(candlewic, 2, 31, 9, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.5), 9 * 1.5, 9 * 1.5);
             }
             else if (this.type == "glassBottle" || this.type == "glassBottleOfWater" || this.type == "glassBottleOfPluttWine")
             {
@@ -37261,7 +43931,7 @@ function theLegend()
             else if (this.type == "pluttWine")
             {
                 XXX.beginPath();
-                XXX.drawImage(candlewic, 46, 196, 11, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 2), 11 * 2, 11 * 2);
+                XXX.drawImage(candlewic, 46, 196, 11, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 1.5), 11 * 1.5, 11 * 1.5);
             }
             else if (this.type == "bushkaBerries")
             {
@@ -37317,6 +43987,16 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(candlewic, 35, 1, 12, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.2), 12 * 1.2, 10 * 1.2);
+            }
+            else if (this.type == "pluttMoffling")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 1, 211, 18, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 0.8), 18 * 0.8, 15 * 0.8);
+            }
+            else if (this.type == "akerMoffling")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 22, 211, 18, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 0.8), 18 * 0.8, 15 * 0.8);
             }
             else if (this.type == "rawMofflingFlesh")
             {
@@ -37548,6 +44228,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(freeverse, 247, 17, 10, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.5), 10 * 1.5, 10 * 1.5);
             }
+            else if (this.type == "techiTea")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 21, 48, 13, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1.5), 13 * 1.5, 13 * 1.5);
+            }
             else if (this.type == "pintGlass")
             {
                 XXX.beginPath();
@@ -37582,6 +44267,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(freeverse, 133, 27, 14, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 2), 14 * 2, 15 * 2);
+            }
+            else if (this.type == "bucketOfTechiTea")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 2, 61, 17, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 2), 17 * 2, 17 * 2);
             }
             else if (this.type == "bucketOfNaapridMilk")
             {
@@ -37637,6 +44327,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(verse, 2111, 32, 19, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 19), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19), 19, 19);
+            }
+            else if (this.type == "driedPluttBerries")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 104, 47, 17, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 17), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19), 17, 19);
             }
             else if (this.type == "akerBerries")
             {
@@ -37713,7 +44408,7 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polypol, 1928, 39, 40, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 40), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 40, 21);
             }
-            else if (this.type == "frostWind")
+            else if (this.type == "frostWind" || this.type == "chasingLights")
             {
                 XXX.beginPath();
                 XXX.drawImage(polypol, 1773, 3, 28, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 28), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30), 28, 30);
@@ -38269,6 +44964,16 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 734, 202, 52, 58, X - this.X + (1/2 * CCC.width) - (1/2 * 52), Y - this.Y + (1/2 * CCC.height) - (1/2 * 58), 72.8, 81.2);
             }
+            else if (this.type == "balgurMercArmour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 4, 105, 39, 70, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 70 * 1.5), 39 * 1.5, 70 * 1.5);
+            }
+            else if (this.type == "balgurCaptainArmour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 97, 108, 39, 70, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 70 * 1.5), 39 * 1.5, 70 * 1.5);
+            }
             else if (this.type == "rawWalrusFlesh")
             {
                 XXX.beginPath();
@@ -38319,6 +45024,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 554, 10, 61, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 61), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36), 61, 36);
             }
+            else if (this.type == "longSpikedMorningStar")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 151, 128, 39, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1.15), 39 * 1.15, 39 * 1.15);
+            }
             else if (this.type == "longsword")
             {
                 XXX.beginPath();
@@ -38366,6 +45076,75 @@ function theLegend()
             {
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "neevFlesh")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 148, 67, 21, 17, this.invX - (1/2 * 21 * 1.25), this.invY - (1/2 * 17 * 1.25), 21 * 1.25, 17 * 1.25);
+            }
+            else if (this.type == "neevFur")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 176, 64, 35, 25, this.invX - (1/2 * 35 * 1.25), this.invY - (1/2 * 25 * 1.25), 35 * 1.25, 25 * 1.25);
+            }
+            else if (this.type == "ogardPerfume")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 50, 4, 15, 19, this.invX - (1/2 * 15), this.invY - (1/2 * 19), 15, 19);
+            }
+            else if (this.type == "driedTechiLeaf")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 35, 6, 11, 16, this.invX - (1/2 * 11), this.invY - (1/2 * 16), 11, 16);
+            }
+            else if (this.type == "ogard")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 36, 28, 15, 16, this.invX - (1/2 * 15 * 1.3), this.invY - (1/2 * 16 * 1.3), 15 * 1.3, 16 * 1.3);
+            }
+            else if (this.type == "groundOgard")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 37, 47, 16, 14, this.invX - (1/2 * 16), this.invY - (1/2 * 14), 16, 14);
+            }
+            else if (this.type == "ogardPollen")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 57, 50, 9, 9, this.invX - (1/2 * 9 * 1.3), this.invY - (1/2 * 9 * 1.3), 9 * 1.3, 9 * 1.3);
+            }
+            else if (this.type == "cloth")
+            {
+                LXX.beginPath();
+                LXX.save();
+                LXX.translate(this.invX, this.invY);
+                LXX.rotate(5/8 * 2 * Math.PI);
+                LXX.drawImage(verse, 3955, 309, 29, 10,  - (1/2 * 29 * 1.5), - (1/2 * 10 * 1.5), 29 * 1.5, 10 * 1.5);
+                LXX.restore();
+            }
+            else if (this.type == "naapridFiber")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 85, 46, 10, 18, this.invX - (1/2 * 10 * 1.65), this.invY - (1/2 * 18 * 1.65), 10 * 1.65, 18 * 1.65);
+            }
+            else if (this.type == "tent")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 1, 1, 32, 32, this.invX - (1/2 * 32 * 1.5), this.invY - (1/2 * 32 * 1.5), 32 * 1.5, 32 * 1.5);
+            }
+            else if (this.type == "neculaisEar")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 71, 48, 9, 12, this.invX - (1/2 * 9 * 1.4), this.invY - (1/2 * 12 * 1.4), 9 * 1.4, 12 * 1.4);
+            }
+            else if (this.type == "berulnToothNecklace")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 96, 3, 14, 21, this.invX - (1/2 * 14 * 1.2), this.invY - (1/2 * 21 * 1.2), 14 * 1.2, 21 * 1.2);
+            }
+            else if (this.type == "techiLeaf")
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 83, 147, 13, 15, this.invX - (1/2 * 13), this.invY - (1/2 * 15), 13, 15);
             }
             else if (this.type == "bucketOfPluttJuice" || this.type == "bucketOfHotPluttBerryCider" )
             {
@@ -38451,6 +45230,16 @@ function theLegend()
             {
                 LXX.beginPath();
                 LXX.drawImage(candlewic, 35, 1, 12, 10, this.invX - (1/2 * 12 * 1.2), this.invY - (1/2 * 10 * 1.2), 12 * 1.2, 10 * 1.2);
+            }
+            else if (this.type == "pluttMoffling")
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 1, 211, 18, 15, this.invX - (1/2 * 18 * 0.8), this.invY - (1/2 * 15 * 0.8), 18 * 0.8, 15 * 0.8);
+            }
+            else if (this.type == "akerMoffling")
+            {
+                LXX.beginPath();
+                LXX.drawImage(candlewic, 22, 211, 18, 15, this.invX - (1/2 * 18 * 0.8), this.invY - (1/2 * 15 * 0.8), 18 * 0.8, 15 * 0.8);
             }
             else if (this.type == "rawMofflingFlesh")
             {
@@ -38682,6 +45471,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(freeverse, 247, 1, 11, 12, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 12 * 2), 11 * 2, 12 * 2);
             }
+            else if (this.type == "techiTea")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 19, 32, 17, 16, this.invX - (1/2 * 17 * 2), this.invY - (1/2 * 16 * 2), 17 * 2, 16 * 2);
+            }
             else if (this.type == "pintGlass")
             {
                 LXX.beginPath();
@@ -38716,6 +45510,11 @@ function theLegend()
             {
                 LXX.beginPath();
                 LXX.drawImage(freeverse, 133, 1, 14, 21, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 21 * 2), 14 * 2, 21 * 2);
+            }
+            else if (this.type == "bucketOfTechiTea")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 3, 36, 13, 20, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 20 * 2), 13 * 2, 20 * 2);
             }
             else if (this.type == "bucketOfNaapridMilk")
             {
@@ -38772,6 +45571,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(verse, 2111, 32, 19, 19, this.invX - (1/2 * 19), this.invY - (1/2 * 19), 19, 19);
             }
+            else if (this.type == "driedPluttBerries")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 104, 47, 17, 19, this.invX - (1/2 * 17), this.invY - (1/2 * 19), 17, 19);
+            }
             else if (this.type == "akerBerries")
             {
                 LXX.beginPath();
@@ -38817,7 +45621,7 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
             }
-            else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification")
+            else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights")
             {
                 LXX.beginPath();
                 LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -39392,6 +46196,16 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 734, 202, 52, 58, this.invX - (1/2 * 52), this.invY - (1/2 * 58), 52, 58);
             }
+            else if (this.type == "balgurMercArmour")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 4, 105, 39, 70, this.invX - (1/2 * 39), this.invY - (1/2 * 70), 39, 70);
+            }
+            else if (this.type == "balgurCaptainArmour")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 97, 108, 39, 70, this.invX - (1/2 * 39), this.invY - (1/2 * 70), 39, 70);
+            }
             else if (this.type == "rawWalrusFlesh")
             {
                 LXX.beginPath();
@@ -39436,6 +46250,11 @@ function theLegend()
             {
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 554, 10, 61, 36, this.invX - (1/2 * 61), this.invY - (1/2 * 38), 61, 36);
+            }
+            else if (this.type == "longSpikedMorningStar")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 151, 128, 39, 39, this.invX - (1/2 * 39 * 1.15), this.invY - (1/2 * 39 * 1.15), 39 * 1.15, 39 * 1.15);
             }
             else if (this.type == "longsword")
             {
@@ -39484,6 +46303,75 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "neevFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 148, 67, 21, 17, this.invX - (1/2 * 21 * 1.25), this.invY - (1/2 * 17 * 1.25), 21 * 1.25, 17 * 1.25);
+            }
+            else if (this.type == "neevFur")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 176, 64, 35, 25, this.invX - (1/2 * 35 * 1.25), this.invY - (1/2 * 25 * 1.25), 35 * 1.25, 25 * 1.25);
+            }
+            else if (this.type == "ogardPerfume")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 50, 4, 15, 19, this.invX - (1/2 * 15), this.invY - (1/2 * 19), 15, 19);
+            }
+            else if (this.type == "driedTechiLeaf")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 35, 6, 11, 16, this.invX - (1/2 * 11), this.invY - (1/2 * 16), 11, 16);
+            }
+            else if (this.type == "ogard")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 36, 28, 15, 16, this.invX - (1/2 * 15 * 1.3), this.invY - (1/2 * 16 * 1.3), 15 * 1.3, 16 * 1.3);
+            }
+            else if (this.type == "groundOgard")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 37, 47, 16, 14, this.invX - (1/2 * 16), this.invY - (1/2 * 14), 16, 14);
+            }
+            else if (this.type == "ogardPollen")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 57, 50, 9, 9, this.invX - (1/2 * 9 * 1.3), this.invY - (1/2 * 9 * 1.3), 9 * 1.3, 9 * 1.3);
+            }
+            else if (this.type == "cloth")
+            {
+                XXX.beginPath();
+                XXX.save();
+                XXX.translate(this.invX, this.invY);
+                XXX.rotate(5/8 * 2 * Math.PI);
+                XXX.drawImage(verse, 3955, 309, 29, 10,  - (1/2 * 29 * 1.5), - (1/2 * 10 * 1.5), 29 * 1.5, 10 * 1.5);
+                XXX.restore();
+            }
+            else if (this.type == "naapridFiber")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 85, 46, 10, 18, this.invX - (1/2 * 10 * 1.65), this.invY - (1/2 * 18 * 1.65), 10 * 1.65, 18 * 1.65);
+            }
+            else if (this.type == "tent")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 1, 1, 32, 32, this.invX - (1/2 * 32 * 1.5), this.invY - (1/2 * 32 * 1.5), 32 * 1.5, 32 * 1.5);
+            }
+            else if (this.type == "neculaisEar")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 71, 48, 9, 12, this.invX - (1/2 * 9 * 1.4), this.invY - (1/2 * 12 * 1.4), 9 * 1.4, 12 * 1.4);
+            }
+            else if (this.type == "berulnToothNecklace")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 96, 3, 14, 21, this.invX - (1/2 * 14 * 1.2), this.invY - (1/2 * 21 * 1.2), 14 * 1.2, 21 * 1.2);
+            }
+            else if (this.type == "techiLeaf")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 83, 147, 13, 15, this.invX - (1/2 * 13), this.invY - (1/2 * 15), 13, 15);
             }
             else if (this.type == "bucketOfPluttJuice" || this.type == "bucketOfHotPluttBerryCider" )
             {
@@ -39569,6 +46457,16 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(candlewic, 35, 1, 12, 10, this.invX - (1/2 * 12 * 1.2), this.invY - (1/2 * 10 * 1.2), 12 * 1.2, 10 * 1.2);
+            }
+            else if (this.type == "pluttMoffling")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 1, 211, 18, 15, this.invX - (1/2 * 18 * 0.8), this.invY - (1/2 * 15 * 0.8), 18 * 0.8, 15 * 0.8);
+            }
+            else if (this.type == "akerMoffling")
+            {
+                XXX.beginPath();
+                XXX.drawImage(candlewic, 22, 211, 18, 15, this.invX - (1/2 * 18 * 0.8), this.invY - (1/2 * 15 * 0.8), 18 * 0.8, 15 * 0.8);
             }
             else if (this.type == "rawMofflingFlesh")
             {
@@ -39800,6 +46698,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(freeverse, 247, 1, 11, 12, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 12 * 2), 11 * 2, 12 * 2);
             }
+            else if (this.type == "techiTea")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 19, 32, 17, 16, this.invX - (1/2 * 17 * 2), this.invY - (1/2 * 16 * 2), 17 * 2, 16 * 2);
+            }
             else if (this.type == "pintGlass")
             {
                 XXX.beginPath();
@@ -39834,6 +46737,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(freeverse, 133, 1, 14, 21, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 21 * 2), 14 * 2, 21 * 2);
+            }
+            else if (this.type == "bucketOfTechiTea")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 3, 36, 13, 20, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 20 * 2), 13 * 2, 20 * 2);
             }
             else if (this.type == "bucketOfNaapridMilk")
             {
@@ -39890,6 +46798,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(verse, 2111, 32, 19, 19, this.invX - (1/2 * 19), this.invY - (1/2 * 19), 19, 19);
             }
+            else if (this.type == "driedPluttBerries")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 104, 47, 17, 19, this.invX - (1/2 * 17), this.invY - (1/2 * 19), 17, 19);
+            }
             else if (this.type == "akerBerries")
             {
                 XXX.beginPath();
@@ -39935,7 +46848,7 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
             }
-            else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI")
+            else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights")
             {
                 XXX.beginPath();
                 XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -40506,6 +47419,16 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 734, 202, 52, 58, this.invX - (1/2 * 52), this.invY - (1/2 * 58), 52, 58);
             }
+            else if (this.type == "balgurMercArmour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 4, 105, 39, 70, this.invX - (1/2 * 39), this.invY - (1/2 * 70), 39, 70);
+            }
+            else if (this.type == "balgurCaptainArmour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 97, 108, 39, 70, this.invX - (1/2 * 39), this.invY - (1/2 * 70), 39, 70);
+            }
             else if (this.type == "rawWalrusFlesh")
             {
                 XXX.beginPath();
@@ -40550,6 +47473,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 554, 10, 61, 36, this.invX - (1/2 * 61), this.invY - (1/2 * 38), 61, 36);
+            }
+            else if (this.type == "longSpikedMorningStar")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 151, 128, 39, 39, this.invX - (1/2 * 39 * 1.15), this.invY - (1/2 * 39 * 1.15), 39 * 1.15, 39 * 1.15);
             }
             else if (this.type == "longsword")
             {
@@ -40633,6 +47561,11 @@ function theLegend()
 
                     //REGION CREATION
                         //Build AI Units
+                    //The master thief of teshir
+                    if (quests.theMasterThiefOfTeshirNeevSlain != true)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(2100, 1050, "Neev", false, "Easter"));
+                    }
 
                     //Friches in the plains
                     ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));
@@ -40682,6 +47615,14 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-221, -891, "Frich", false, "Eduk"));
                     ArtificialIntelligenceAccess.push(new Unit(-121, -1062, "Frich", false, "Toog"));
                     ArtificialIntelligenceAccess.push(new Unit(-389, 2569, "Frich", false, "Gud"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1673, -2423, "Frich", true, "mayonzuko"));
+                        //Alpha only frich pack guarding the lone farm house
+                    ArtificialIntelligenceAccess.push(new Unit(-885, -1994, "Frich", true, "Chucky"));
+                    ArtificialIntelligenceAccess.push(new Unit(-836, -2136, "Frich", true, "Chucky2"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1048, -1858, "Frich", true, "Chucky3"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1156, -1766, "Frich", true, "Chucky4"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1277, -1974, "Frich", true, "Chucky5"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1080, -2190, "Frich", true, "Chucky6"));
 
                     if (quests.huntingWagerFrichPack == true && quests.huntingWagerKillCount < 3)
                     {
@@ -40707,10 +47648,10 @@ function theLegend()
 
                         //Projectile(TYPE ultra.ranged[1],startX, startY, startAngle, SPEED ultra.ranged[2], RANGE ultra.ranged[3], NEGATION ultra.ranged[4], list, DAMAGE ultra.ranged[5], MAGIC DAMAGE ultra.ranged[6], ABILITY ultra.ranged[7])
 
-                    ArtificialIntelligenceAccess.push(new Unit(1661, 2311, "Soldier", false, "Freynor Captain", {race: "Freynor", faction: "Freynor", con: 9, speed: 1.15, outfit: ["chainArmour", 10], weapon: ["freydicGreatSword", [20, 14], 0, 35, 2.25], ranged: [false, "arrow", 7, 1800, 1, 6, 0, "stunI", 2.4], patrolStops: 4, patrolLoop: true, route:[[1654, 1507], [1661, 2311], [1864, 2315], [1852, 1499]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(2254, 311, "Soldier", false, "Freynor Soldier", {race: "Freynor", faction: "Freynor", con: 5, speed: 1.50, outfit: ["chainArmour", 7], weapon: ["freydicSword", [9, 7], 0, 16, 1], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 3, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(2741, 1421, "Soldier", false, "Freynor Soldier", {race: "Freynor", faction: "Freynor", con: 4, speed: 1.25, outfit: ["chainArmour", 9], weapon: ["freydicSword", [8, 6], 0, 16, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[1833, 1424], [1848, 2413], [3046, 2407], [2741, 1421]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(1247, 1210, "Soldier", false, "Freynor Soldier", {race: "Freynor", faction: "Freynor", con: 6, speed: 1.40, outfit: ["chainArmour", 8], weapon: ["freydicSword", [8, 9], 0, 16, 1], ranged: [false, "arrow", 6, 1950, 1, 4, 0, "none", 1.35], patrolStops: 6, patrolLoop: true, route:[[901, 1195], [969, 527], [1932, 549], [1941, 814], [1932, 549], [969, 527]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(1661, 2311, "Soldier", false, "Torg Captain", {race: "Freynor", faction: "Freynor", con: 9, speed: 1.15, outfit: ["chainArmour", 10], weapon: ["freydicGreatSword", [25, 14], 0, 35, 2.25], ranged: [false, "arrow", 7, 1800, 1, 6, 0, "stunI", 2.4], patrolStops: 4, patrolLoop: true, route:[[1654, 1507], [1661, 2311], [1864, 2315], [1852, 1499]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(2254, 311, "Soldier", false, "Torg Soldier", {race: "Freynor", faction: "Freynor", con: 5, speed: 1.50, outfit: ["chainArmour", 7], weapon: ["freydicSword", [9, 7], 0, 16, 1], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 3, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(2741, 1421, "Soldier", false, "Torg Soldier", {race: "Freynor", faction: "Freynor", con: 4, speed: 1.25, outfit: ["chainArmour", 9], weapon: ["freydicSword", [8, 6], 0, 16, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[1833, 1424], [1848, 2413], [3046, 2407], [2741, 1421]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(1247, 1210, "Soldier", false, "Torg Soldier", {race: "Freynor", faction: "Freynor", con: 6, speed: 1.40, outfit: ["chainArmour", 8], weapon: ["freydicSword", [8, 9], 0, 16, 1], ranged: [false, "arrow", 6, 1950, 1, 4, 0, "none", 1.35], patrolStops: 6, patrolLoop: true, route:[[901, 1195], [969, 527], [1932, 549], [1941, 814], [1932, 549], [969, 527]]}));
                     ArtificialIntelligenceAccess.push(new Unit(2584, 1385, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 5, patrolLoop: true, route:[[2523, 2061], [2041, 2046], [2036, 2118], [2594, 2169], [2584, 1385]]}));
                     ArtificialIntelligenceAccess.push(new Unit(2338, 1205, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[1622, 1196], [1655, 1300], [2518, 1366], [2338, 1205]]}));
                     ArtificialIntelligenceAccess.push(new Unit(2335, 924, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 5, patrolLoop: true, route:[[1355, 935], [1402, 1962], [1402, 1962], [1461, 902], [2335, 924]]}));
@@ -40760,7 +47701,15 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(2072, 1535, "Person", false, "Kedwin", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.3, 0.9], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[2072, 1535], [1939, 1509], [2033, 1499]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(2072, 1535, "Person", false, "Kedwin", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.5, 1], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[2072, 1535], [1939, 1509], [2033, 1499]]}));
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].ID == "Kedwin")
+                                {
+                                    ArtificialIntelligenceAccess[i].healthMAX = 19;
+                                    ArtificialIntelligenceAccess[i].health = 19;
+                                }
+                            }
                         }
                     }
                     if (uniqueChars.odeeLDS == true)
@@ -40776,6 +47725,21 @@ function theLegend()
                         if (hits == 0)
                         {
                             ArtificialIntelligenceAccess.push(new Unit(2232, 1142, "Person", false, "Odee the Banker", {race: "Orgell", faction: "Freynor", personality: "calculated", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.85], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 0, patrolLoop: false, route:[[2200, 1460]], banker: true}));
+                        }
+                    }
+                    if (uniqueChars.stendorLDS == true)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Torg Commissioner Stendor")
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(1949, 2282, "Soldier", false, "Torg Commissioner Stendor", {race: "Freynor", faction: "Freynor", con: 12, speed: 1.32, outfit: ["chainArmour", 10], weapon: ["freydicGreatSword", [25, 14], 0, 35, 2.25], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], patrolStops: 0, patrolLoop: true, route:[[1654, 1507], [1661, 2311], [1864, 2315], [1852, 1499]]}));
                         }
                     }
                     if (uniqueChars.laandegLDS == true)
@@ -40820,7 +47784,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(1690, 1021, "Person", false, "Svehn the Smith", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.65], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 103], [new Item("iron", false, false), 6], [new Item("mace", false, false), 3], [new Item("hammer", false, false), 2], [new Item("freydicSpear", false, false), 5], [new Item("freydicSword", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("longbow", false, false), 2], [new Item("arrow", false, false), 92], [new Item("timberAxe", false, false), 3]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(1690, 1021, "Person", false, "Svehn the Smith", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.65], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 103 + quests.bobithNewWealth], [new Item("iron", false, false), 6], [new Item("mace", false, false), 3], [new Item("hammer", false, false), 2], [new Item("freydicSpear", false, false), 5], [new Item("freydicSword", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("longbow", false, false), 2], [new Item("arrow", false, false), 92], [new Item("timberAxe", false, false), 3]]}));
                         }
                     }
                     if (uniqueChars.medliaLDS == true)
@@ -40835,7 +47799,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(1930, 1793, "Person", false, "Medlia the Merchant", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[1710, 1717], [1812, 1835], [1713, 1882], [1930, 1793]], merchant: true, merchandise: [[new Item("coins", false, false), 179], [new Item("wood", false, false), 48], [new Item("fireStarter", false, false), 3], [new Item("jarOfOil", false, false), 1], [new Item("rawWalrusFlesh", false, false), 8], [new Item("walrusHide", false, false), 1], [new Item("walrusTusks", false, false), 1], [new Item("oilLampEmpty", false, false), 2], [new Item("oilLanternEmpty", false, false), 5], [new Item("candle", false, false), 12], [new Item("beesWax", false, false), 9], [new Item("frichPelt", false, false), 3], [new Item("rawFrichFlesh", false, false), 22], [new Item("winterWolfPelt", false, false), 3], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("rawWolfLiver", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 2], [new Item("harstGrain", false, false), 29], [new Item("potato", false, false), 8], [new Item("carrot", false, false), 13], [new Item("suuliMelon", false, false), 5]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(1930, 1793, "Person", false, "Medlia the Merchant", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[1710, 1717], [1812, 1835], [1713, 1882], [1930, 1793]], merchant: true, merchandise: [[new Item("coins", false, false), 179 + quests.medliaNewWealth], [new Item("wood", false, false), 48], [new Item("tent", false, false), 2], [new Item("fireStarter", false, false), 3], [new Item("jarOfOil", false, false), 1], [new Item("rawWalrusFlesh", false, false), 8], [new Item("walrusHide", false, false), 1], [new Item("walrusTusks", false, false), 1], [new Item("oilLampEmpty", false, false), 2], [new Item("oilLanternEmpty", false, false), 5], [new Item("candle", false, false), 12], [new Item("beesWax", false, false), 9], [new Item("ogardPerfume", false, false), 2], [new Item("frichPelt", false, false), 3], [new Item("rawFrichFlesh", false, false), 22], [new Item("winterWolfPelt", false, false), 3], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("rawWolfLiver", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 2], [new Item("harstGrain", false, false), 29], [new Item("potato", false, false), 8], [new Item("carrot", false, false), 13], [new Item("suuliMelon", false, false), 5], [new Item("driedTechiLeaf", false, false), 14], [new Item("ogard", false, false), 1]]}));
                         }
                     }
                     if (uniqueChars.maggyLDS == true)
@@ -40854,8 +47818,8 @@ function theLegend()
                         }
                     }
 
-                    //a vardanian merchant who will not be in town long... (take him out of the town/game soon)
-                    if (uniqueChars.neculaiLDS == true)
+                    //a vardanian merchant who can be kicked out of town in a quest.
+                    if (uniqueChars.neculaiLDS == true && quests.medliaCompetitionControlQuest != "complete")
                     {
                         if (player.raceName != "Freynor" || player.title != "Royalty" || player.raceName == "Freynor" && player.title == "Royalty" && player.vardanFaction >= 0) // if you are royalty of freynor your actions determine the nations friends and enemies.
                         {
@@ -40869,7 +47833,15 @@ function theLegend()
                             }
                             if (hits == 0)
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(2365, 1059, "Person", false, "Neculai the Merchant", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("frichFurClothing", false, false), 3], [new Item("mace", false, false), 1], [new Item("vardanianAxe", false, false), 3], [new Item("vardanianAxeDual", false, false), 2], [new Item("vardanianCleaver", false, false), 1], [new Item("rawWolfLiver", false, false), 4], [new Item("blackChainArmour", false, false), 2], [new Item("trollFlesh", false, false), 2], [new Item("wood", false, false), 14], [new Item("freydicSword", false, false), 1], [new Item("frichPelt", false, false), 6], [new Item("rawWalrusFlesh", false, false), 5], [new Item("walrusMeat", false, false), 1]]}));
+                                if (quests.bankruptNeculai != true)
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(2365, 1059, "Person", false, "Neculai the Merchant", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("frichFurClothing", false, false), 3], [new Item("mace", false, false), 1], [new Item("vardanianAxe", false, false), 3], [new Item("vardanianAxeDual", false, false), 2], [new Item("vardanianCleaver", false, false), 1], [new Item("rawWolfLiver", false, false), 4], [new Item("blackChainArmour", false, false), 2], [new Item("trollFlesh", false, false), 2], [new Item("wood", false, false), 14], [new Item("freydicSword", false, false), 1], [new Item("frichPelt", false, false), 6], [new Item("rawWalrusFlesh", false, false), 5], [new Item("walrusMeat", false, false), 1]]}));
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(2365, 1059, "Person", false, "Neculai the Beggar", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[]}));
+                                }
+
                             }
                         }
                     }
@@ -40920,7 +47892,7 @@ function theLegend()
                         }
                     }
 
-                    //Bandits and bandit chief (Bandejos Nortenos)
+                    //Bandits and bandit chief (Bandidos Nortenos)
                     if (quests.teshirNorthRoadBandits == true)
                     {
                         //ArtificialIntelligenceAccess.push(new Unit(1663, 5750, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 5, speed: 1.10, outfit: ["walrusLeatherArmour", 4], weapon: ["crossbow", [0.1, 0.4], 0, 16, 1], ranged: [true, "steelBolt", 10, 2000, 12, 23, 0, "none", 2.2], patrolStops: 1, patrolLoop: false, route:[[586, 6301]]}));
@@ -40928,6 +47900,35 @@ function theLegend()
                         ArtificialIntelligenceAccess.push(new Unit(1941, 5902, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 4, speed: 1.15, outfit: ["none", 0], weapon: ["longbow", [0.1, 0.4], 0, 0, 0.85], ranged: [true, "arrow", 6, 1750, 1, 4, 0, "none", 1.4], patrolStops: 3, patrolLoop: true, route:[[1941, 5902], [2384, 5809], [1926, 6003]]}));
                         ArtificialIntelligenceAccess.push(new Unit(435 - 750, 5563, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 3, speed: 1.05, outfit: ["walrusLeatherArmour", 4], weapon: ["longbow", [0.1, 0.4], 0, 16, 1], ranged: [true, "arrow", 7, 1900, 1, 4, 0, "none", 1.5], patrolStops: 4, patrolLoop: true, route:[[435 - 750, 5563], [400 - 750, 5668], [636 - 750, 5860], [827 - 750, 5357]]}));
                         ArtificialIntelligenceAccess.push(new Unit(348 - 750, 5428, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 5, speed: 0.90, outfit: ["none", 1], weapon: ["freydicSword", [6, 4], 0, 16, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 3, patrolLoop: true, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    }
+
+                    //a well known thengan mercenary crew's captain.
+                    if (uniqueChars.kronheimeLDS == true && quests.theBalgurMercenariesQuest == true && quests.theBalgurMercenariesCompletionStyle != "threaten" && quests.theBalgurMercenariesCompletionStyle != "paidMercs"&& quests.theBalgurMercenariesCompletionStyle != "royalProtection")
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Mercenary Captain Kronheime")
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(4062, 2531, "Soldier", false, "Mercenary Captain Kronheime", {race: "Thengar", faction: "TheBalgurMercenaries", con: 20, speed: 1.3, outfit: ["balgurCaptainArmour", 7], weapon: ["flail", [25, 7], 11, 63, 3.1], ranged: [false, "arrow", 7, 1800, 1, 6, 0, "none", 2.4], patrolStops: 0, patrolLoop: false, route:[[1654, 1507], [1661, 2311], [1864, 2315], [1852, 1499]]}));
+                        }
+                    }
+                    //balgur mercenaries
+                    if (quests.theBalgurMercenariesQuest == true && quests.theBalgurMercenariesCompletionStyle != "threaten" && quests.theBalgurMercenariesCompletionStyle != "paidMercs" && quests.theBalgurMercenariesCompletionStyle != "royalProtection")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(4143, 2400, "Soldier", false, "Balgur Mercenary", {race: "Thengar", faction: "TheBalgurMercenaries", con: 10, speed: 1.2, outfit: ["balgurMercArmour", 5], weapon: ["longSpikedMorningStar", [13, 5], 14, 20, 2.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(4138, 2642, "Soldier", false, "Balgur Mercenary", {race: "Thengar", faction: "TheBalgurMercenaries", con: 8, speed: 1.25, outfit: ["balgurMercArmour", 3.5], weapon: ["longSpikedMorningStar", [11, 4], 14, 20, 2.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(4321, 2575, "Soldier", false, "Balgur Mercenary", {race: "Thengar", faction: "TheBalgurMercenaries", con: 10, speed: 1.3, outfit: ["balgurMercArmour", 3.5], weapon: ["longSpikedMorningStar", [12, 4], 14, 20, 2.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(4322, 2486, "Soldier", false, "Balgur Mercenary", {race: "Thengar", faction: "TheBalgurMercenaries", con: 12, speed: 1.225, outfit: ["balgurMercArmour", 4.5], weapon: ["longSpikedMorningStar", [14, 6], 14, 20, 2.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(3912, 2723, "Soldier", false, "Balgur Mercenary", {race: "Thengar", faction: "TheBalgurMercenaries", con: 7, speed: 1.175, outfit: ["balgurMercArmour", 3.5], weapon: ["longSpikedMorningStar", [10, 3], 14, 20, 2.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(3924, 2341, "Soldier", false, "Balgur Mercenary", {race: "Thengar", faction: "TheBalgurMercenaries", con: 13, speed: 1.3, outfit: ["balgurMercArmour", 5], weapon: ["longSpikedMorningStar", [14, 7], 14, 20, 2.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(3796, 2347, "Soldier", false, "Balgur Mercenary", {race: "Thengar", faction: "TheBalgurMercenaries", con: 11, speed: 1.25, outfit: ["balgurMercArmour", 4], weapon: ["longSpikedMorningStar", [13, 6], 14, 20, 2.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 2, patrolLoop: true, route:[[3409, 2704], [3796, 2347]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(3785, 2716, "Soldier", false, "Balgur Mercenary", {race: "Thengar", faction: "TheBalgurMercenaries", con: 9, speed: 1.25, outfit: ["balgurMercArmour", 4], weapon: ["longSpikedMorningStar", [12, 5], 14, 20, 2.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 2, patrolLoop: true, route:[[3414, 2337], [3785, 2716]]}));
                     }
 
                     //Scenery
@@ -40945,7 +47946,25 @@ function theLegend()
                     scenicList.push(new Scenery("forge", 1770, 1086, Math.PI, true));
                     scenicList.push(new Scenery("loom", 2625, 1569, 1/2 * Math.PI, true));
                     scenicList.push(new Scenery("lab", 1217, 728, 0, true));
-                    //scenicList.push(new Scenery("well", 2394, 1618, 0, true));
+                    if (quests.theBrokenWellQuest == "complete")
+                    {
+                        scenicList.push(new Scenery("well", 2394, 1618, 0, true));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("brokenWell", 2394, 1618, 0, true));
+                    }
+
+                        //The lonely farm house
+                    scenicList.push(new Scenery("rubbledHome", -1107, -1974, 0, true));
+                        //its own broken well
+                    scenicList.push(new Scenery("brokenWell", -1398, -1886, -2.74, true));
+                        //its little farm
+                    scenicList.push(new Scenery("harstPlant", -940 , -1944, Math.PI * 0.58, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", -987 , -2007, Math.PI * 1, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", -892 , -2019, -Math.PI * 2.2, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", -822 , -1975, Math.PI * 3, "freynor"));
+                    scenicList.push(new Scenery("harstPlant", -816 , -2069, -Math.PI * 0.4675, "freynor"));
 
                         //The City Farm
                     scenicList.push(new Scenery("harstPlant", 2241 , 240, Math.PI * 0.44, "freynor"));
@@ -41076,6 +48095,11 @@ function theLegend()
                     scenicList.push(new Scenery("santhPlant", 2883 , -135, Math.PI * 1.8, "freynor"));
                     scenicList.push(new Scenery("santhPlant", 2883 , -110, -Math.PI * 2.34, "freynor"));
                     scenicList.push(new Scenery("santhPlant", 2883 , -85, Math.PI * 3.2, "freynor"));
+
+                    //plains plants
+                    scenicList.push(new Scenery("techiPlant", 3781 , -1155, -Math.PI * 0.2, true));
+                    scenicList.push(new Scenery("techiPlant", 5001 , 164, Math.PI * 0.5, true));
+                    scenicList.push(new Scenery("techiPlant", 6014 , -1047, 3, true));
 
                     change = "central";
                 }
@@ -41765,9 +48789,11 @@ function theLegend()
                     if (bushornot == 5)
                     {
                         ArtificialIntelligenceAccess.push(new Unit(5593, -4493, "Grush", true, "turtletom"));
+                        scenicList.push(new Scenery("ogardPlant", -597 , -5256, 0, true));
                     }
                     else
                     {
+                        scenicList.push(new Scenery("techiPlant", -597 , -5256, 0, true));
                         scenicList.push(new Scenery("grushweedPlant", 5593, -4493, 0, 1.5)); //for grush weed the last number determines its size multiplier.
                     }
 
@@ -41785,6 +48811,13 @@ function theLegend()
                     scenicList.push(new Scenery("grushweedPlant", 5547 , -5043, 0, 1)); //for grush weed the last number determines its size multiplier.
                     scenicList.push(new Scenery("grushweedPlant", 5842 , -5190, 0, 0.6)); //for grush weed the last number determines its size multiplier.
                     scenicList.push(new Scenery("grushweedPlant", 5568 , -5328, -1, 1)); //for grush weed the last number determines its size multiplier.
+                    scenicList.push(new Scenery("techiPlant", 4234 , -5994, -2.5, true));
+                    scenicList.push(new Scenery("techiPlant", 5419 , -6449, 2.146, true));
+                    scenicList.push(new Scenery("techiPlant", 6059 , -6527, 1, true));
+                    scenicList.push(new Scenery("techiPlant", 5391 , -5262, -0.1, true));
+                    scenicList.push(new Scenery("techiPlant", 2227 , -13406, -1.6, true));
+                    scenicList.push(new Scenery("techiPlant", 3043 , -13540, 1.82, true));
+                    scenicList.push(new Scenery("techiPlant", 288 , -13032, 0, true));
 
                     change = "s1";
                 }
@@ -41857,7 +48890,37 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-1366, -30864, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 3, speed: 1.65, outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [10, 0], 8, 16, 1], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
                     ArtificialIntelligenceAccess.push(new Unit(-1348, -30360, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 2, speed: 1.80, outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [11, 0], 8, 16, 1], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 6, patrolLoop: true, route:[[-218, -30349], [-227, -31505], [-1706, -31503], [-1724, -30600], [-1366, -30601], [-1348, -30360]]}));
                     ArtificialIntelligenceAccess.push(new Unit(-295, -30422, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 1, speed: 1.95, outfit: ["naapridLeatherArmour", 4], weapon: ["longbow", [8, 0], 8, 16, 1], ranged: [true, "arrow", 7, 1500, 1, 3, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
+                    if (uniqueChars.teberLDS == true && quests.bountyTeberCompletionStyle != "royal pardon")
+                    {
+                        var teberName = "Teber the Artisan";
+                        if (quests.bountyTeberQuest == true)
+                        {
+                            teberName = "Teber the Deserter";
+                        }
 
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == teberName)
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-631, -30389, "Person", false, teberName, {race: "Freynor", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 4], weapon: ["freydicSword", [6, 6], 0, 0, 1.45], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 62], [new Item("Fiber", false, false), 11], [new Item("pintGlass", false, false), 18], [new Item("potionGlass", false, false), 16], [new Item("glassJar", false, false), 7]]}));
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].ID == teberName)
+                                {
+                                    ArtificialIntelligenceAccess[i].healthMAX = 29;
+                                    ArtificialIntelligenceAccess[i].health = 29;
+                                    ArtificialIntelligenceAccess[i].speed += 0.05;
+                                    ArtificialIntelligenceAccess[i].grudge = 340;
+                                }
+                            }
+                        }
+                    }
                     if (uniqueChars.roselinLDS == true)
                     {
                         var hits = 0;
@@ -41901,9 +48964,18 @@ function theLegend()
                         if (hits == 0)
                         {
                             ArtificialIntelligenceAccess.push(new Unit(-1335, -30763, "Person", false, "Chieftan Schuylar", {race: "Kel", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 6], weapon: ["kellishClaymore", [25, 1], 0, 50, 2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 492], [new Item("kellishClayPotOfNaapridMilk", false, false), 6], [new Item("naapridButter", false, false), 5], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 8], [new Item("kellishClayPot", false, false), 9], [new Item("santhBread", false, false), 1], [new Item("kellishSanthDough", false, false), 2], [new Item("rawNaapridFlesh", false, false), 4], [new Item("naapridMeat", false, false), 2], [new Item("pumpkin", false, false), 2], [new Item("jackOLanternEmpty", false, false), 3], [new Item("beesWax", false, false), 4], [new Item("candle", false, false), 6], [new Item("fireStarter", false, false), 2]]}));
-                            ArtificialIntelligenceAccess[i].healthMAX = 22;
-                            ArtificialIntelligenceAccess[i].health = 22;
-                            ArtificialIntelligenceAccess[i].speed += 0.55;
+
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].ID == "Chieftan Schuylar")
+                                {
+                                    ArtificialIntelligenceAccess[i].healthMAX = 32;
+                                    ArtificialIntelligenceAccess[i].health = 32;
+                                    ArtificialIntelligenceAccess[i].speed += 0.55;
+                                    ArtificialIntelligenceAccess[i].grudge = 340;
+
+                                }
+                            }
                         }
                     }
 
@@ -41965,6 +49037,43 @@ function theLegend()
 
                     change = "s3";
                 }
+            }
+        }
+    }
+
+    var doAutosave = false;
+    var singleAuto = false;
+    function autosave()
+    {
+        //Manual autosaving
+        if (tildKey == false)
+        {
+            doAutosave = true;
+        }
+        else if (tildKey == true && doAutosave == true && lowBar != "Save")
+        {
+            doAutosave = false;
+            saveType = "autosave";
+            save();
+            saveType = null;
+        }
+        //Automatic autosaving
+        if (autosaving == true)
+        {
+            if (Math.round(timePlayed % 180) == 1 && singleAuto == true && timePlayed >= 180)
+            {
+                singleAuto = false;
+                if (lowBar != "save" && doAutosave == true)
+                {
+                    //alert("** Autosave **");
+                    saveType = "autosave";
+                    save();
+                    saveType = null;
+                }
+            }
+            else if (Math.round(timePlayed % 180) != 1)
+            {
+                singleAuto = true;
             }
         }
     }
@@ -42040,6 +49149,7 @@ function theLegend()
         saveBrain["uniqueChars"] = uniqueChars;
         saveBrain["quests"] = quests;
         saveBrain["conversations"] = conversations;
+        saveBrain["beastJournal"] = beastJournal;
         saveBrain["timePlayed"] = timePlayed;
         saveBrain["sleeperTime"] = sleeperTime;
         saveBrain["elevation"] = elevation;
@@ -42089,6 +49199,10 @@ function theLegend()
         else if (saveType == 8)
         {
             localStorage.setItem("save8", saveFile);
+        }
+        else if (saveType == "autosave")
+        {
+            localStorage.setItem("autosave", saveFile);
         }
 
 
@@ -42200,6 +49314,10 @@ function theLegend()
         {
             var restore = localStorage.getItem("save8");
         }
+        else if (loadType == "autosave")
+        {
+            var restore = localStorage.getItem("autosave");
+        }
 
         var parsed = JSON.parse(restore);
 
@@ -42272,6 +49390,7 @@ function theLegend()
             primarySpells = parsed.primarySpells;
             secondarySpells = parsed.secondarySpells;
             tertiarySpells = parsed.tertiarySpells;
+            //beastJournal = parsed.beastJournal; //booble
 
             for (var key in parsed.uniqueChars)
             {

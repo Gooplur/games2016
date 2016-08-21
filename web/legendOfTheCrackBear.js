@@ -49409,7 +49409,7 @@ function theLegend()
             primarySpells = parsed.primarySpells;
             secondarySpells = parsed.secondarySpells;
             tertiarySpells = parsed.tertiarySpells;
-            //beastJournal = parsed.beastJournal; //booble
+            beastJournal = parsed.beastJournal;
 
             for (var key in parsed.uniqueChars)
             {

@@ -1432,6 +1432,10 @@ function theLegend()
                 player.gassinessTime += 10;
                 magicList.push(new Magic({ID:"fart"}, true));
             }
+            else if (cheatcode.toLowerCase() == "clearbeastjournal")
+            {
+                beastJournal = [];
+            }
             else if (cheatcode.toLowerCase() == "resetquests")
             {
                 quests.teshirNorthRoadQuest = false;
@@ -3890,6 +3894,20 @@ function theLegend()
 
         //this resets the variable that determines whether or not to light the inv desciption box.
         itemDescriptionBox = false;
+
+        //this fixes the noticed box geting stuck sometimes
+        if (gameLoopNumber % 50 == 0)
+        {
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                if (ArtificialIntelligenceAccess[i].DTP() > ArtificialIntelligenceAccess[i].rangeOfSight)
+                {
+                    ArtificialIntelligenceAccess[i].playerSeen = false;
+                }
+            }
+            player.engagedSenser();
+        }
+
 
         // THIS IS THE BACKGROUND BUILDER (height, width, type, x, y) // The tile coords 0, 0 are at the bottom right corner of Teshir City.
             //Different parts of the world load at different Y values. // maps are 34 by 34 tiles and for somereason the maps are -20 to the left. and + 14 down.
@@ -49060,7 +49078,7 @@ function theLegend()
         //Automatic autosaving
         if (autosaving == true)
         {
-            if (Math.round(timePlayed % 180) == 1 && singleAuto == true && timePlayed >= 180)
+            if (Math.round(timePlayed % 180) == 0 && singleAuto == true && timePlayed >= 180)
             {
                 singleAuto = false;
                 if (lowBar != "save" && doAutosave == true)
@@ -49071,7 +49089,7 @@ function theLegend()
                     saveType = null;
                 }
             }
-            else if (Math.round(timePlayed % 180) != 1)
+            else if (Math.round(timePlayed % 180) != 0)
             {
                 singleAuto = true;
             }
@@ -49165,6 +49183,7 @@ function theLegend()
         saveBrain["primarySpells"] = primarySpells;
         saveBrain["secondarySpells"] = secondarySpells;
         saveBrain["tertiarySpells"] = tertiarySpells;
+        saveBrain["beastJournal"] = beastJournal;
 
         var saveFile = JSON.stringify(saveBrain);
         //based on what save type the player chooses the save will be stored in one of the four game slots.
@@ -49390,7 +49409,7 @@ function theLegend()
             primarySpells = parsed.primarySpells;
             secondarySpells = parsed.secondarySpells;
             tertiarySpells = parsed.tertiarySpells;
-            beastJournal = parsed.beastJournal;
+            //beastJournal = parsed.beastJournal; //booble
 
             for (var key in parsed.uniqueChars)
             {

@@ -4,7 +4,7 @@
 
 //TODO LIST
 
-//todo finish adding the beast journal.
+//todo finish adding the beast journal. AND FIGURE OUT HOW TO GET BEAST JOURNAL TO SAVE!!!
 //todo have Teber move back to Teshir as an artisan if he is pardoned.
 //todo add brain flies and flying creatures having a resistance to melee attacks while flying.
 //todo make all dresses decrease charisma for guys.
@@ -841,7 +841,7 @@ function theLegend()
     selectorList.push(new Selector(1/2 * CCC.width - 105, 380, "style", 2)); // 3 == combat style selector
 
     //this list is of all the beast your character learns about in the world.
-        //this is an example beast entry:
+    //this is an example beast entry:
     //this.beastEntry = {intReq: 0, name: "", health: "", armour: "", damage: "", negate: "", ability: "", fireProof: #, habitat: "", sight: #, alpha: "", magicProof: #, size: #, speed: #, rotation: #, rate: #, experience: #, description: [""], image: [IMG, strX, strY, W, H, adjX, adjY, SzX, SzY]};
     var beastJournal = [];
 
@@ -1431,10 +1431,6 @@ function theLegend()
             {
                 player.gassinessTime += 10;
                 magicList.push(new Magic({ID:"fart"}, true));
-            }
-            else if (cheatcode.toLowerCase() == "clearbeastjournal")
-            {
-                beastJournal = [];
             }
             else if (cheatcode.toLowerCase() == "resetquests")
             {
@@ -13626,9 +13622,10 @@ function theLegend()
                         LXX.stroke();
                         LXX.save();
                         LXX.translate(invScroll + 20.5 + (79 * i) + (1/2 * 79), 1/2 * 79);
-                        //sourcing image from list: beastJournal -- each element in which is an object.
-                        //              IMG                         Start X                    Start Y                  Width                      Height                        Centering X            +  Adjust X                            Centering Y          +  Adjust Y                       SizeX                    SizeY
-                        LXX.drawImage(beastJournal[i].image[0], beastJournal[i].image[1], beastJournal[i].image[2], beastJournal[i].image[3], beastJournal[i].image[4], -1/2 * beastJournal[i].image[7] + beastJournal[i].image[5], -1/2 * beastJournal[i].image[8] + beastJournal[i].image[6], beastJournal[i].image[7], beastJournal[i].image[8])
+                        //sourcing image from list: //this list is of all the beasts your character learns about in the world.
+                        //beastJournal List -- each element in which is an object.
+                        //              IMG                         Start X                    Start Y                  Width                      Height                        Centering X            +  Adjust X                            Centering Y          +        Adjust Y                   SizeX                    SizeY
+                        LXX.drawImage(beastJournal[i].image[0], beastJournal[i].image[1], beastJournal[i].image[2], beastJournal[i].image[3], beastJournal[i].image[4], -1/2 * beastJournal[i].image[7] + beastJournal[i].image[5], -1/2 * beastJournal[i].image[8] + beastJournal[i].image[6], beastJournal[i].image[7], beastJournal[i].image[8]);
                         LXX.restore();
                     }
 
@@ -23750,7 +23747,7 @@ function theLegend()
                                         {
                                             player.dialogueOptions.push(["{ Wanted: Bandit Chief Hetmer ; 38 coins }", false, "b"]);
                                         }
-                                        if (quests.bountyteberQuest == false && uniqueChars.teberLDS == true)
+                                        if (quests.bountyTeberQuest == false && uniqueChars.teberLDS == true)
                                         {
                                             player.dialogueOptions.push(["{ Wanted: Teber the Deserter ; 25 coins }", false, "c"]);
                                         }
@@ -47820,6 +47817,31 @@ function theLegend()
                             ArtificialIntelligenceAccess.push(new Unit(1930, 1793, "Person", false, "Medlia the Merchant", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[1710, 1717], [1812, 1835], [1713, 1882], [1930, 1793]], merchant: true, merchandise: [[new Item("coins", false, false), 179 + quests.medliaNewWealth], [new Item("wood", false, false), 48], [new Item("tent", false, false), 2], [new Item("fireStarter", false, false), 3], [new Item("jarOfOil", false, false), 1], [new Item("rawWalrusFlesh", false, false), 8], [new Item("walrusHide", false, false), 1], [new Item("walrusTusks", false, false), 1], [new Item("oilLampEmpty", false, false), 2], [new Item("oilLanternEmpty", false, false), 5], [new Item("candle", false, false), 12], [new Item("beesWax", false, false), 9], [new Item("ogardPerfume", false, false), 2], [new Item("frichPelt", false, false), 3], [new Item("rawFrichFlesh", false, false), 22], [new Item("winterWolfPelt", false, false), 3], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("rawWolfLiver", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 2], [new Item("harstGrain", false, false), 29], [new Item("potato", false, false), 8], [new Item("carrot", false, false), 13], [new Item("suuliMelon", false, false), 5], [new Item("driedTechiLeaf", false, false), 14], [new Item("ogard", false, false), 1]]}));
                         }
                     }
+                    if (uniqueChars.teberLDS == true && quests.bountyTeberCompletionStyle == "royal pardon")
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Teber the Artisan")
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-631, -30389, "Person", false, "Teber the Artisan", {race: "Freynor", faction: "Kel", personality: "scared", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.4, 0.6], 0, 0, 1.15], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 75], [new Item("naapridFiber", false, false), 7], [new Item("pintGlass", false, false), 19], [new Item("potionGlass", false, false), 18], [new Item("glassJar", false, false), 10]]}));
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].ID == "Teber the Artisan")
+                                {
+                                    ArtificialIntelligenceAccess[i].healthMAX = 29;
+                                    ArtificialIntelligenceAccess[i].health = 29;
+                                    ArtificialIntelligenceAccess[i].speed += 0.05;
+                                    ArtificialIntelligenceAccess[i].grudge = 340;
+                                }
+                            }
+                        }
+                    }
                     if (uniqueChars.maggyLDS == true)
                     {
                         var hits = 0;
@@ -48926,7 +48948,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-631, -30389, "Person", false, teberName, {race: "Freynor", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 4], weapon: ["freydicSword", [6, 6], 0, 0, 1.45], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 62], [new Item("Fiber", false, false), 11], [new Item("pintGlass", false, false), 18], [new Item("potionGlass", false, false), 16], [new Item("glassJar", false, false), 7]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-631, -30389, "Person", false, teberName, {race: "Freynor", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 4], weapon: ["freydicSword", [6, 6], 0, 0, 1.45], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 62], [new Item("naapridFiber", false, false), 11], [new Item("pintGlass", false, false), 18], [new Item("potionGlass", false, false), 16], [new Item("glassJar", false, false), 7]]}));
                             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                             {
                                 if (ArtificialIntelligenceAccess[i].ID == teberName)
@@ -49167,7 +49189,6 @@ function theLegend()
         saveBrain["uniqueChars"] = uniqueChars;
         saveBrain["quests"] = quests;
         saveBrain["conversations"] = conversations;
-        saveBrain["beastJournal"] = beastJournal;
         saveBrain["timePlayed"] = timePlayed;
         saveBrain["sleeperTime"] = sleeperTime;
         saveBrain["elevation"] = elevation;
@@ -49183,7 +49204,6 @@ function theLegend()
         saveBrain["primarySpells"] = primarySpells;
         saveBrain["secondarySpells"] = secondarySpells;
         saveBrain["tertiarySpells"] = tertiarySpells;
-        saveBrain["beastJournal"] = beastJournal;
 
         var saveFile = JSON.stringify(saveBrain);
         //based on what save type the player chooses the save will be stored in one of the four game slots.
@@ -49409,7 +49429,6 @@ function theLegend()
             primarySpells = parsed.primarySpells;
             secondarySpells = parsed.secondarySpells;
             tertiarySpells = parsed.tertiarySpells;
-            beastJournal = parsed.beastJournal;
 
             for (var key in parsed.uniqueChars)
             {

@@ -21027,7 +21027,15 @@ function theLegend()
 
                     if (distanceFromUnit < ArtificialIntelligenceAccess[i].sizeRadius)
                     {
-                        ArtificialIntelligenceAccess[i].health -= Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                        //bullets do half damage against large enough non-human creatures. All others damage always remains the same.
+                        if (type == "bullet" && ArtificialIntelligenceAccess[i].healthMAX > 100 && ArtificialIntelligenceAccess[i].type != "Person" && ArtificialIntelligenceAccess[i].type != "Soldier")
+                        {
+                            ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.damage / 2) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.negateArmour / 2))) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess[i].health -= Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                        }
                         ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                         ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
 
@@ -27643,7 +27651,7 @@ function theLegend()
                     this.heatResistance = 7;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 41) + 160;
+                    this.healthMAX = Math.floor(Math.random() * 41) + 180;
                     this.health = this.healthMAX;
                     this.armour = 1;
                     this.speed = 5.2 + (Math.floor(Math.random() * 6) / 10);
@@ -27668,7 +27676,7 @@ function theLegend()
                     this.heatResistance = 3;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 9) + 17;
+                    this.healthMAX = Math.floor(Math.random() * 9) + 23;
                     this.health = this.healthMAX;
                     this.armour = 0;
                     this.speed = 3.1 + (Math.floor(Math.random() * 7) / 10);
@@ -27693,7 +27701,7 @@ function theLegend()
                     this.heatResistance = 5;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 36) + 80;
+                    this.healthMAX = Math.floor(Math.random() * 36) + 101;
                     this.health = this.healthMAX;
                     this.armour = 1;
                     this.speed = 4.4 + (Math.floor(Math.random() * 7) / 10);
@@ -43532,7 +43540,7 @@ function theLegend()
                 }
                 else if (player.weaponEquipped == "blunderbuss")
                 {
-                    this.damage = 22;
+                    this.damage = 32;
                 }
                 else if (player.weaponEquipped == "pistol")
                 {

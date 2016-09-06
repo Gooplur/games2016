@@ -3,7 +3,6 @@
  */
 
 //TODO LIST
-
 //todo finish adding the beast journal. AND FIGURE OUT HOW TO GET BEAST JOURNAL TO SAVE!!!
 //todo add brain flies and flying creatures having a resistance to melee attacks while flying.
 //todo make all dresses decrease charisma for guys.
@@ -43,11 +42,20 @@
 //todo Add haeflower... psycodelic, takes you to a drug trip world with a slowly flashing rainbow floor and a fog of disoriented colors plus in that world fight weird things like crack bears with a fish as your weapon.
 function legendaryPrerequisites()
 {
-    //cheat sounds
+    //action sounds
     var crossbowGun = new Audio("sounds/basicGunSound.mp3");
     window.crossbowGun = crossbowGun;
 
-    //sounds
+    var blunder = new Audio("sounds/polySounds/heavyShot.wav");
+    window.blunder = blunder;
+
+    var musket = new Audio("sounds/polySounds/musket.wav");
+    window.musket = musket;
+
+    var musketRld = new Audio("sounds/polySounds/musketReload.wav");
+    window.musketRld = musketRld;
+
+    //dialogue sounds
         //TOGGIN CHARACTER: voice acting
     var togginGreet = new Audio("sounds/polySounds/togginGreeting.mp3");
     window.togginGreet = togginGreet;
@@ -817,7 +825,7 @@ function theLegend()
 
         //QUEST: Bounty: Teber the Deserter ---- given by Stendor
         bountyTeberCompletionStyle: false,
-        bountyteberQuest: false
+        bountyTeberQuest: false
 
     };
 
@@ -857,9 +865,9 @@ function theLegend()
     //Player Inventory
     var Inventory = [];
     //todo TEST INVENTORIES
-    Inventory = [[new Item("coins", false, false), 10000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2], [new Item("shehidToxinArrow", false, false), 45], [new Item("oiledArrow", false, false), 45], [new Item("fireStarter", false, false), 1], [new Item("lifeLeachArrow", false, false), 45], [new Item("fireArrow", false, false), 45], [new Item("freezingArrow", false, false), 45], [new Item("oilLantern", false, false), 1], [new Item("berulnToothNecklace", false, false), 1], [new Item("ogardPerfume", false, false), 2]];
+    //Inventory = [[new Item("coins", false, false), 10000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2], [new Item("shehidToxinArrow", false, false), 45], [new Item("oiledArrow", false, false), 45], [new Item("fireStarter", false, false), 1], [new Item("lifeLeachArrow", false, false), 45], [new Item("fireArrow", false, false), 45], [new Item("freezingArrow", false, false), 45], [new Item("oilLantern", false, false), 1], [new Item("berulnToothNecklace", false, false), 1], [new Item("ogardPerfume", false, false), 2]];
     //Inventory = [[new Item("avrakLeatherArmour", false, false), 1], [new Item("varnFiber", false, false), 1], [new Item("avrakHide", false, false), 1], [new Item("rawAvrakFlesh", false, false), 1], [new Item("avrakMeat", false, false), 1], [new Item("healingSalve", false, false), 1], [new Item("driedCyrinthilimMushroom", false, false), 1], [new Item("cyrinthilimMushroom", false, false), 1], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfNaapridMilk", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 1], [new Item("kellishClayPot", false, false), 1], [new Item("fermentedViperVenomGland", false, false), 1], [new Item("viperVenomGland", false, false), 1], [new Item("viperSnakeSkin", false, false), 1], [new Item("rawViperFlesh", false, false), 1], [new Item("viperMeat", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
-    //Inventory = [[new Item("avrakLeatherArmour", false, false), 1], [new Item("balgurCaptainArmour", false, false), 1], [new Item("balgurMercArmour", false, false), 1], [new Item("longSpikedMorningStar", false, false), 1], [new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
+    Inventory = [[new Item("bullet", false, false), 200], [new Item("blackPowder", false, false), 200], [new Item("musket", false, false), 1], [new Item("blunderbuss", false, false), 1], [new Item("cutlass", false, false), 1], [new Item("avrakLeatherArmour", false, false), 1], [new Item("balgurCaptainArmour", false, false), 1], [new Item("balgurMercArmour", false, false), 1], [new Item("longSpikedMorningStar", false, false), 1], [new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
     //Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1]];
 
     //Test Spells
@@ -910,6 +918,10 @@ function theLegend()
     allWeapons.push(new Item("fireArrow", false)); //38
     allWeapons.push(new Item("freezingArrow", false)); //39
     allWeapons.push(new Item("longSpikedMorningStar", false)); //40
+    allWeapons.push(new Item("cutlass", false)); //41
+    allWeapons.push(new Item("musket", false)); //42
+    allWeapons.push(new Item("bullet", false)); //43
+    allWeapons.push(new Item("blunderbuss", false)); //44
 
     //This list holds one of each type of worn item so that the player can access the worn item stats.
     var allWorn = [];
@@ -998,6 +1010,10 @@ function theLegend()
     smithing.push(new Item("oilLampEmpty", false));
     smithing.push(new Item("oilLanternEmpty", false));
     smithing.push(new Item("longSpikedMorningStar", false));
+    smithing.push(new Item("cutlass", false));
+    smithing.push(new Item("musket", false));
+    smithing.push(new Item("blunderbuss", false));
+    smithing.push(new Item("bullet", false));
 
         //Foods (Items cooked at either a stove, an oven, or a campfire)
     var foods = [];
@@ -1467,7 +1483,7 @@ function theLegend()
             }
             else if (cheatcode.toLowerCase() == "tellme")
             {
-                alert(player.necklaceEquipped);
+                alert(quests.bountyTeberQuest + " :: " + uniqueChars.teberLDS);
             }
             else if (cheatcode.toLowerCase() == "clearinv")
             {
@@ -2139,9 +2155,9 @@ function theLegend()
                     Inventory.push([new Item("kellishClaymore", false, false), 1]);
                 }
             }
-            else if (player.class == "Fighter") //This is the general one for all that don't meet a specific exception.
+            else if (player.class == "Fighter" && player.raceName == "Outlander") //This is the general one for all that don't meet a specific exception.
             {
-                Inventory.push([new Item("mace", false, false), 1]);
+                Inventory.push([new Item("cutlass", false, false), 1]);
             }
             //RANGER starting weapon kit
             if (player.class == "Ranger" && player.raceName == "Aldrek")
@@ -2171,9 +2187,32 @@ function theLegend()
                     Inventory.push([new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 45]);
                 }
             }
-            else if (player.class == "Ranger")//This is the general one for all that don't meet a specific exception.
+            else if (player.class == "Ranger" && player.raceName == "Outlander")//This is the general one for all that don't meet a specific exception.
             {
-                Inventory.push([new Item("longbow", false, false), 1], [new Item("arrow", false, false), 25]);
+                if (player.title == "Vagabond")
+                {
+                    Inventory.push([new Item("musket", false, false), 1], [new Item("blackPowder", false, false), 9], [new Item("bullet", false, false), 9]);
+                }
+                else if (player.title == "Peasant")
+                {
+                    Inventory.push([new Item("musket", false, false), 1], [new Item("blackPowder", false, false), 56], [new Item("bullet", false, false), 56]);
+                }
+                else if (player.title == "Commoner")
+                {
+                    Inventory.push([new Item("musket", false, false), 1], [new Item("blackPowder", false, false), 100], [new Item("bullet", false, false), 100]);
+                }
+                else if (player.title == "Tradefolk")
+                {
+                    Inventory.push([new Item("blunderbuss", false, false), 1], [new Item("blackPowder", false, false), 60], [new Item("bullet", false, false), 300]);
+                }
+                else if (player.title == "Highfolk")
+                {
+                    Inventory.push([new Item("blunderbuss", false, false), 1], [new Item("blackPowder", false, false), 100], [new Item("bullet", false, false), 500]);
+                }
+                else
+                {
+                    Inventory.push([new Item("blunderbuss", false, false), 1], [new Item("musket", false, false), 1], [new Item("blackPowder", false, false), 300], [new Item("bullet", false, false), 1100]);
+                }
             }
             //MAGE starting weapon kit
             //TODO start mages off with a basic level combat magic scroll.
@@ -5157,6 +5196,17 @@ function theLegend()
                     this.REQB = true;
                 }
             }
+            else if (this.weapon.subUtility == "gun")
+            {
+                if (this.ammoLoaded == false)
+                {
+                    this.REQB = false;
+                }
+                else
+                {
+                    this.REQB = true;
+                }
+            }
 
             //setSpellToFalseWhenWeaponIsTrue
             if (this.weaponEquipped != "none" && this.spell != "none")
@@ -8083,6 +8133,46 @@ function theLegend()
                                 }
                             }
                         }
+                        else if (Inventory[i][0].utility == "ammunition" && Inventory[i][0].subUtility == "bullet" && Inventory[i][0].equipped == true && this.rangedWeaponType == "gun")
+                        {
+                            var blkPwder = -1;
+                            for (var j = Inventory.length - 1; j > -1; j--)
+                            {
+                                if (Inventory[j][0].type == "blackPowder" && Inventory[j][1] >= 1)
+                                {
+                                    blkPwder = j;
+                                    break;
+                                }
+                            }
+                            spaceKey = false;
+                            if (this.attacking != true)
+                            {
+                                var amnt;
+                                if (this.weaponEquipped == "blunderbuss")
+                                {
+                                    amnt = 5;
+                                }
+                                else
+                                {
+                                    amnt = 1;
+                                }
+
+                                if (Inventory[i][1] >= amnt && blkPwder > -1 && this.ammoLoaded == false)
+                                {
+
+                                    Inventory[i][1] -= amnt;
+                                    Inventory[blkPwder][1] -= 1;
+                                    this.projectileReleased = false;
+                                    this.strike = true;
+                                }
+
+                                //console.log("projectile released " + this.projectileReleased + " ammo loaded " + this.ammoLoaded + " attacking " + this.attacking);
+                                if (this.ammoLoaded == true)
+                                {
+                                    this.projectileReleased = true;
+                                }
+                            }
+                        }
                     }
                 }
                 else if (this.weaponEquipped == "none" && this.spell != "none")
@@ -9291,6 +9381,53 @@ function theLegend()
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
                     XXX.drawImage(polyPNG, 520, 59, 105, 69, -28, -43, 72, 47);
+                    XXX.restore();
+                }
+            }
+            //CUTLASS
+            if (this.weaponEquipped == "cutlass")
+            {
+                this.stageEngine(5, 0.18, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+                //ATTACK ANIMATION
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mofu, 640, 106, 57, 57, -43.5, -51, 57 * 1.65, 57 * 1.65);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mofu, 701, 110, 57, 57, -43, -49, 57 * 1.65, 57 * 1.65);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mofu, 769, 110, 57, 57, -46.5, -52, 57 * 1.65, 57 * 1.65);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mofu, 830, 107, 57, 57, -42, -56, 57 * 1.65, 57 * 1.65);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mofu, 892, 104, 57, 57, -45, -62, 57 * 1.65, 57 * 1.65);
                     XXX.restore();
                 }
             }
@@ -11619,6 +11756,136 @@ function theLegend()
                     XXX.restore();
                 }
             }
+            //MUSKET
+            if (this.weaponEquipped == "musket")
+            {
+                if (this.ammoLoaded == false)
+                {
+                    if (new Date().getTime() - this.reloadTime > allWeapons[42].rate * 100)
+                    {
+                        this.stageEngine(3, 0.10, true);
+                    }
+                }
+                else
+                {
+                    if (this.projectileReleased == false)
+                    {
+                        if (this.stage != "loadedAndReady")
+                        {
+                            musketRld.play();
+                        }
+                        this.stage = "loadedAndReady";
+                    }
+                    else
+                    {
+                        this.stage = 0;
+                    }
+                }
+
+                //Loading ANIMATION
+                //This cycles through the stages of the load
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mofu, 517, 100, 25, 44, -14, -60, 25 * 1.8, 44 * 1.8);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mofu, 552, 100, 25, 44, -14, -61, 25 * 1.8, 44 * 1.8);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mofu, 587, 99, 25, 44, -11, -60, 25 * 1.8, 44 * 1.8);
+                    XXX.restore();
+                    this.attacking = false;
+                    this.ammoLoaded = true;
+
+
+                }
+                else if (this.stage == "loadedAndReady")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mofu, 587, 99, 25, 44, -11, -60, 25 * 1.8, 44 * 1.8);
+                    XXX.restore();
+                }
+            }
+            //BLUNDERBUSS
+            if (this.weaponEquipped == "blunderbuss")
+            {
+                if (this.ammoLoaded == false)
+                {
+                    if (new Date().getTime() - this.reloadTime > allWeapons[42].rate * 100)
+                    {
+                        this.stageEngine(3, 0.10, true);
+                    }
+                }
+                else
+                {
+                    if (this.projectileReleased == false)
+                    {
+                        if (this.stage != "loadedAndReady")
+                        {
+                            musketRld.play();
+                        }
+                        this.stage = "loadedAndReady";
+                    }
+                    else
+                    {
+                        this.stage = 0;
+                    }
+                }
+
+                //Loading ANIMATION
+                //This cycles through the stages of the load
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mofu, 518, 153, 25, 44, -9, -47, 25 * 1.8, 44 * 1.8);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mofu, 552, 153, 25, 44, -9, -47, 25 * 1.8, 44 * 1.8);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mofu, 587, 153, 25, 44, -9, -47, 25 * 1.8, 44 * 1.8);
+                    XXX.restore();
+                    this.attacking = false;
+                    this.ammoLoaded = true;
+
+
+                }
+                else if (this.stage == "loadedAndReady")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mofu, 587, 153, 25, 44, -9, -47, 25 * 1.8, 44 * 1.8);
+                    XXX.restore();
+                }
+            }
         };
 
         this.weaponSetup = function ()
@@ -11649,6 +11916,22 @@ function theLegend()
                     this.projectileX = 4.85;
                     this.projectileY = 4.85;
                 }
+            }
+            else if (this.weaponEquipped == "musket")
+            {
+                this.weapon = allWeapons[42];
+
+                //This adjusts the starting position of the bullet.
+                this.projectileX = -9;
+                this.projectileY = -7;
+            }
+            else if (this.weaponEquipped == "blunderbuss")
+            {
+                this.weapon = allWeapons[44];
+
+                //This adjusts the starting position of the bullet.
+                this.projectileX = -20;
+                this.projectileY = -20;
             }
 
             //Access Stats for each weapon first. //1/2 is directly forward facing.
@@ -11899,6 +12182,14 @@ function theLegend()
                 this.bubbleOfDamageX = X - Math.cos(this.rotation - 1/2 * Math.PI) * (this.mySize + 31);
                 this.bubbleOfDamageY = Y - Math.sin(this.rotation - 1/2 * Math.PI) * (this.mySize + 31);
             }
+            else if (this.weaponEquipped == "cutlass")
+            {
+                this.weapon = allWeapons[41];
+
+                //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+                this.bubbleOfDamageX = X - Math.cos(this.rotation - 2/5 * Math.PI) * (this.mySize + 25);
+                this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2/5 * Math.PI) * (this.mySize + 25);
+            }
         };
 
         //BLOCKING FUNCTION
@@ -12003,7 +12294,7 @@ function theLegend()
             else if (this.weaponIsRanged == true)
             {
                 //On release the projectile is fired.
-                if (this.projectileReleased == false && spaceKey == false && this.ammoLoaded == true && this.weapon.subUtility == "bow" || this.weapon.subUtility == "crossbow" && this.projectileReleased == true && this.ammoLoaded == true)
+                if (this.projectileReleased == false && spaceKey == false && this.ammoLoaded == true && this.weapon.subUtility == "bow" || this.weapon.subUtility == "crossbow" && this.projectileReleased == true && this.ammoLoaded == true || this.weapon.subUtility == "gun" && this.projectileReleased == true && this.ammoLoaded == true)
                 {
                     this.attacking = false;
                     this.reloadTime = new Date().getTime();
@@ -12014,6 +12305,10 @@ function theLegend()
                         this.releaseStage = true;
                     }
                     else if (this.weapon.subUtility == "crossbow")
+                    {
+                        this.projectileReleased = false;
+                    }
+                    else if (this.weapon.subUtility == "gun")
                     {
                         this.projectileReleased = false;
                     }
@@ -12042,7 +12337,25 @@ function theLegend()
                     }
                     else
                     {
-                        playerProjectiles.push(new Projectile(loaded.type, X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation, projector.speed, projector.range, projector.negateArmour, playerProjectiles));
+                        if (player.weaponEquipped == "musket")
+                        {
+                            musket.currentTime = 0;
+                            musket.play();
+                        }
+
+                        if (player.weaponEquipped == "blunderbuss")
+                        {
+                            blunder.currentTime = 0;
+                            blunder.play();
+                            for (var k = 0; k < 5; k++)
+                            {
+                                playerProjectiles.push(new Projectile(loaded.type, X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation + (Math.random() * ((Math.PI / 360) * 50)) - ((Math.PI / 360) * 25), projector.speed, projector.range, projector.negateArmour, playerProjectiles));
+                            }
+                        }
+                        else
+                        {
+                            playerProjectiles.push(new Projectile(loaded.type, X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation, projector.speed, projector.range, projector.negateArmour, playerProjectiles));
+                        }
                     }
 
                     for (var i = 0; i < Inventory.length; i++)
@@ -12052,6 +12365,17 @@ function theLegend()
                             this.isAmmoEquipped = false;
                             Inventory.splice(i, 1);
                             break;
+                        }
+                    }
+                    if (this.weapon.subUtility == "gun")
+                    {
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            if (Inventory[i][1] < 1 && Inventory[i][0].type == "blackPowder")
+                            {
+                                Inventory.splice(i, 1);
+                                break;
+                            }
                         }
                     }
                 }
@@ -18555,6 +18879,10 @@ function theLegend()
                             {
                                 XXX.fillText("      Range + " + Math.floor(Inventory[i][0].range) + "    Projectile Speed + " + Math.floor(Inventory[i][0].speed) + "    Armour Negation + " + Math.floor(Inventory[i][0].negateArmour), 157, 514);
                             }
+                            else if (Inventory[i][0].subUtility == "gun")
+                            {
+                                XXX.fillText("      Range + " + Math.floor(Inventory[i][0].range) + "   Rate + " + Math.floor(Inventory[i][0].rate) + "    Projectile Speed + " + Math.floor(Inventory[i][0].speed * 2) + "    Armour Negation + " + Math.floor(Inventory[i][0].negateArmour), 157, 514);
+                            }
 
                         }
                         else if (Inventory[i][0].utility == "ammunition")
@@ -19307,7 +19635,7 @@ function theLegend()
                     }
 
                     //this is rare, but some weapons draw below the body layer.
-                    if (this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore") //add more cases for more overhead weapons.
+                    if (this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore") //add more cases for more overhead weapons.
                     {
                         this.drawArms();
                     }
@@ -19434,7 +19762,7 @@ function theLegend()
                     this.drawBody();
 
                     //most weapons draw beneath the armour layer.
-                    if (this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore") //add more cases for more overhead weapons.
+                    if (this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore") //add more cases for more overhead weapons.
                     {
                         this.drawArms();
                     }
@@ -21201,6 +21529,46 @@ function theLegend()
                     XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
                     XXX.rotate(this.rotation + (1 / 2 * Math.PI));
                     XXX.drawImage(verse, 2832, 3, 41, 12, 0, 0, 32, 12);
+                    XXX.restore();
+                }
+            }
+            else if (type == "bullet")
+            {
+                if (list == playerProjectiles)
+                {
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    //The bullet moves thrice and checks for damaging thrice so it can move fast without skipping small targets.
+                    this.shoot();
+                    this.impact();
+                    this.shoot();
+                    this.impact();
+                    this.shoot();
+                    this.impact();
+
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    XXX.drawImage(mofu, 1321, 16, 5, 5, 4, 4, 8, 8);
+                    XXX.restore();
+                }
+                else if (list == unitProjectiles)
+                {
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    this.shoot();
+                    this.impact();
+
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation + (1 / 2 * Math.PI));
+                    XXX.drawImage(mofu, 1321, 16, 5, 5, 4, 4, 8, 8);
                     XXX.restore();
                 }
             }
@@ -42671,6 +43039,54 @@ function theLegend()
                 this.buyValue = 8 - Math.floor(player.getCharisma() / 15); // at max, buy for 5.
                 this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
             }
+            else if (this.type == "cutlass")
+            {
+                //For All Items
+                this.identity = "Cutlass";
+                this.weight = 1.5;
+                this.size = 15;
+                if (player.raceName != "Outlander")
+                {
+                    this.description = "A strange blade of foreign design, clearly not of the known world.";
+                }
+                else
+                {
+                    this.description = "A standard issue iron cutlass.";
+                }
+                this.intForDes = 8;
+                this.intDescription = "This type of weapon was created in the unknown lands of the outlanders, and is primarily used by sailors.";
+
+                //Define Utility
+                this.utility = "weapon";
+
+                //Utility Focused
+                this.energyCost = 2;
+                this.distance = 25 + (this.range * 7);
+                this.range = 3 + 3/7;
+                this.rate = 125 - (35 * player.getDexterity() / 50);
+                this.damage = (3.5) * (this.leveledDamageMultiple / 25) + ((6/50) * player.getStrength()) + ((2/50) * player.getDexterity());
+                this.magicalDamage = 0;
+                this.negateArmour = 0;
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                if (player.raceName == "Outlander")
+                {
+                    this.intForCraft = 8;
+                }
+                else
+                {
+                    this.intForCraft = 30;
+                }
+                this.ingredients = [["Iron", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 25 - Math.floor(player.getCharisma() / 6); // at max, buy for 17.
+                this.sellValue = 12 + Math.floor(player.getCharisma() / 10); // at max, sell for 17.
+            }
             else if (this.type == "mace")
             {
                 //For All Items
@@ -42998,6 +43414,172 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 76 - Math.floor(player.getCharisma() / 5); // at max, buy for 66.
                 this.sellValue = 46 + Math.floor(player.getCharisma() / 2.5); // at max, sell for 66.
+            }
+            else if (this.type == "blunderbuss")
+            {
+                //For All Items
+                this.identity = "Blunderbuss";
+                this.weight = 6;
+                this.size = 20;
+                this.description = "A steel flint-lock blunderbuss.";
+                this.intForDes = 0;
+                this.intDescription = "This gun combusts black-powder in order to propel several projectiles in the targets generalish direction at high velocity.";
+
+                //Define Utility
+                this.utility = "ranged";
+                //Sub Utility
+                this.subUtility = "gun";
+
+                //Utility Focused
+                this.range = 1100 + (400 * player.getRanged() / 50);
+                this.rate = 100;
+                this.speed = 8 + 1/3; //guns shoot triple their noted speed.
+                this.negateArmour = 25;
+
+                //ability
+                this.ability = "none";
+
+                if (player.raceName != "Outlander")
+                {
+                    //Crafting
+                    this.yield = 1;
+                    this.intForCraft = 50;
+                    this.ingredients = [["Steel", 6], ["Flint", 1]];
+
+                    //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                    this.buyValue = 1100 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 1000.
+                    this.sellValue = 900 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 1000.
+                }
+                else
+                {
+                    //Crafting
+                    this.yield = 1;
+                    this.intForCraft = 26;
+                    this.ingredients = [["Steel", 6], ["Flint", 1]];
+
+                    //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                    this.buyValue = 191 - Math.floor(player.getCharisma() / 3); // at max, buy for 176.
+                    this.sellValue = 125 + Math.floor(player.getCharisma() / 1); // at max, sell for 175.
+                }
+            }
+            else if (this.type == "musket")
+            {
+                //For All Items
+                this.identity = "Musket";
+                this.weight = 5;
+                this.size = 20;
+                this.description = "A steel flint-lock musket.";
+                this.intForDes = 0;
+                this.intDescription = "This gun combusts black-powder in order to propel a thick steel ball towards the target at high velocity.";
+
+                //Define Utility
+                this.utility = "ranged";
+                //Sub Utility
+                this.subUtility = "gun";
+
+                //Utility Focused
+                this.range = 3000 + (350 * player.getRanged() / 50);
+                this.rate = 82;
+                this.speed = 8 + 1/3; //guns shoot triple their noted speed.
+                this.negateArmour = 20;
+
+                //ability
+                this.ability = "none";
+
+                if (player.raceName != "Outlander")
+                {
+                    //Crafting
+                    this.yield = 1;
+                    this.intForCraft = 50;
+                    this.ingredients = [["Steel", 5], ["Flint", 1]];
+
+                    //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                    this.buyValue = 900 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 800.
+                    this.sellValue = 700 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 800.
+                }
+                else
+                {
+                    //Crafting
+                    this.yield = 1;
+                    this.intForCraft = 20;
+                    this.ingredients = [["Steel", 5], ["Flint", 1]];
+
+                    //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                    this.buyValue = 115 - Math.floor(player.getCharisma() / 10); // at max, buy for 110.
+                    this.sellValue = 84 + Math.floor(player.getCharisma() / 2); // at max, sell for 109.
+                }
+            }
+            else if (this.type == "bullet")
+            {
+                //For All Items
+                this.identity = "Bullet";
+                this.weight = 0.05;
+                this.size = 2;
+                this.description = "A smooth ball of steel.";
+                this.intForDes = 1;
+                this.intDescription = "When Propelled at extreme speeds this metal ball can cause a lot of damage.";
+
+                //Define Utility
+                this.utility = "ammunition";
+                //Sub Utility
+                this.subUtility = "bullet";
+                this.subUtilityName = "Bullet";
+
+                //Utility Focused
+                if (player.weaponEquipped == "musket")
+                {
+                    this.damage = 92;
+                }
+                else if (player.weaponEquipped == "blunderbuss")
+                {
+                    this.damage = 22;
+                }
+                else if (player.weaponEquipped == "pistol")
+                {
+                    this.damage = 43;
+                }
+                else
+                {
+                    this.damage = 0;
+                }
+                this.magicalDamage = 0;
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 36;
+                this.intForCraft = 5;
+                this.ingredients = [["Steel", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "blackPowder")
+            {
+                //For All Items
+                this.identity = "Black-Powder";
+                this.weight = 0.001;
+                this.size = 4;
+                this.description = "A gritty black powder.";
+                this.intForDes = 36;
+                this.intDescription = "An alchemic mixture of coal, nitre, and sulfur, all boiled in alcohol; It happens to be massively combustible.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 200;
+                this.intForCraft = 36;
+                this.ingredients = [["Coal", 3], ["Nitre", 15], ["Sulfur", 2], ["Alcohol", 2]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 4; // at max, buy for 4.
+                this.sellValue = 4; // at max, sell for 4.
             }
             else if (this.type == "crossbow")
             {
@@ -45409,6 +45991,31 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "blunderbuss")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 1305, 12, 13, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1.65), 13 * 1.65, 35 * 1.65);
+            }
+            else if (this.type == "musket")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 1334, 11, 11, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1.65), 11 * 1.65, 36 * 1.65);
+            }
+            else if (this.type == "bullet")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 1321, 16, 5, 5, X - this.X + (1/2 * CCC.width) - (1/2 * 8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 8), 8, 8);
+            }
+            else if (this.type == "blackPowder")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 1350, 13, 13, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 13), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11), 13, 11);
+            }
+            else if (this.type == "cutlass")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 1369, 10, 19, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * 1.65), 19 * 1.65, 37 * 1.65);
+            }
             else if (this.type == "golgemoffFeelers")
             {
                 XXX.beginPath();
@@ -46677,6 +47284,31 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "blunderbuss")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 1305, 12, 13, 35, this.invX - (1/2 * 13 * 1.65), this.invY - (1/2 * 35 * 1.65), 13 * 1.65, 35 * 1.65);
+            }
+            else if (this.type == "musket")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 1334, 11, 11, 36, this.invX - (1/2 * 11 * 1.65), this.invY - (1/2 * 36 * 1.65), 11 * 1.65, 36 * 1.65);
+            }
+            else if (this.type == "bullet")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 1321, 16, 5, 5, this.invX - (1/2 * 8), this.invY - (1/2 * 8), 8, 8);
+            }
+            else if (this.type == "blackPowder")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 1350, 13, 13, 11, this.invX - (1/2 * 13), this.invY - (1/2 * 11), 13, 11);
+            }
+            else if (this.type == "cutlass")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 1369, 10, 19, 37, this.invX - (1/2 * 19 * 1.65), this.invY - (1/2 * 37 * 1.65), 19 * 1.65, 37 * 1.65);
+            }
             else if (this.type == "golgemoffFeelers")
             {
                 LXX.beginPath();
@@ -47938,6 +48570,31 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "blunderbuss")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 1305, 12, 13, 35, this.invX - (1/2 * 13 * 1.65), this.invY - (1/2 * 35 * 1.65), 13 * 1.65, 35 * 1.65);
+            }
+            else if (this.type == "musket")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 1334, 11, 11, 36, this.invX - (1/2 * 11 * 1.65), this.invY - (1/2 * 36 * 1.65), 11 * 1.65, 36 * 1.65);
+            }
+            else if (this.type == "bullet")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 1321, 16, 5, 5, this.invX - (1/2 * 8), this.invY - (1/2 * 8), 8, 8);
+            }
+            else if (this.type == "blackPowder")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 1350, 13, 13, 11, this.invX - (1/2 * 13), this.invY - (1/2 * 11), 13, 11);
+            }
+            else if (this.type == "cutlass")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 1369, 10, 19, 37, this.invX - (1/2 * 19 * 1.65), this.invY - (1/2 * 37 * 1.65), 19 * 1.65, 37 * 1.65);
             }
             else if (this.type == "golgemoffFeelers")
             {

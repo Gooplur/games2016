@@ -1590,6 +1590,16 @@ function theLegend()
                     worldItems.push([new Item(chtItem, X, Y), chtAmnt]);
                 }
             }
+            else if (cheatcode == "thereallyverysuperspecialcorner")
+            {
+                //1899 2373
+                if (X < 1899 + 50 && X > 1899 - 50 && Y < 2373 + 50 && Y > 2373 - 50)
+                {
+                    var chtItem = prompt("And so it was that you reached enlightenment here on the street corner of Teshir City... Suddenly it all became clear... the physical the spiritual... one and the same!!! Imagine and you shall create:");
+                    var chtAmnt = JSON.parse(prompt("What quantity of " + chtItem + " do you imagine will appear into this worldy mesh of confused energy?"));
+                    worldItems.push([new Item(chtItem, X, Y), chtAmnt]);
+                }
+            }
             else if (cheatcode == "GOP")
             {
                 if (player.name == "Gooplur" && player.race == "#336600")
@@ -1653,13 +1663,11 @@ function theLegend()
             }
             else if (cheatcode.toLowerCase() == "tellme")
             {
-                alert(player.swollenI + "   " + player.swollenTime + "   " + player.timeSinceLastSwollen);
+                alert(player.sleep);
             }
             else if (cheatcode.toLowerCase() == "test")
             {
-                player.fatigueV = true;
-                player.energilTime = 4;
-                player.timeSinceLastEnergil = new Date().getTime();
+                player.sleep = player.sleepMAX;
             }
             else if (cheatcode.toLowerCase() == "clearinv")
             {
@@ -24436,7 +24444,7 @@ function theLegend()
                                                 change = "none";
                                                 if (quests.theBalgurMercenariesNecklace == true)
                                                 {
-                                                    Inventory.unshift([new Item("BerulnToothNecklace", X, Y), 1]);
+                                                    Inventory.unshift([new Item("berulnToothNecklace", X, Y), 1]);
                                                 }
                                                 player.dialoguePosition = 0;
                                                 lowBar = "information";
@@ -29039,7 +29047,7 @@ function theLegend()
                 this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
                 this.engagementRadius = 0;
                 this.sizeRadius = 12;
-                this.negateArmour = 1.5;
+                this.negateArmour = 45;
                 this.attackWait = 0.1;
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
@@ -47908,7 +47916,7 @@ function theLegend()
             else if (this.type == "honey")
             {
                 XXX.beginPath();
-                XXX.drawImage(poly, 34, 244, 18, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 18), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 18, 21);
+                XXX.drawImage(oldverse, 34, 244, 18, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 18), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 18, 21);
             }
             else if (this.type == "bee")
             {
@@ -49261,7 +49269,7 @@ function theLegend()
             else if (this.type == "honey")
             {
                 LXX.beginPath();
-                LXX.drawImage(poly, 34, 244, 18, 21, this.invX - (1/2 * 18), this.invY - (1/2 * 21), 18, 21);
+                LXX.drawImage(oldverse, 34, 244, 18, 21, this.invX - (1/2 * 18), this.invY - (1/2 * 21), 18, 21);
             }
             else if (this.type == "bee")
             {
@@ -50608,7 +50616,7 @@ function theLegend()
             else if (this.type == "honey")
             {
                 XXX.beginPath();
-                XXX.drawImage(poly, 34, 244, 18, 21, this.invX - (1/2 * 18), this.invY - (1/2 * 21), 18, 21);
+                XXX.drawImage(oldverse, 34, 244, 18, 21, this.invX - (1/2 * 18), this.invY - (1/2 * 21), 18, 21);
             }
             else if (this.type == "bee")
             {

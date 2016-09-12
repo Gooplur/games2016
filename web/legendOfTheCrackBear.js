@@ -3,9 +3,9 @@
  */
 
 //TODO LIST
+//todo revise the sleeping system... as of right now it is an absolute crazy juju ball made of sand candy!!! Which is a bad thing.
 //todo finish adding the beast journal. AND FIGURE OUT HOW TO GET BEAST JOURNAL TO SAVE!!!
-//todo add brain flies and flying creatures having a resistance to melee attacks while flying.
-//todo make all dresses decrease charisma for guys.
+//todo add brain flies.
 //todo integrate the sleep system to beds, add hangover, and soarness effects as well as mini notices.
 //todo add a rest without bed button on the UI that uses a homemade confirm popup to ask if you are sure you want to sleep.
 //todo add beds all the way
@@ -1826,6 +1826,7 @@ function theLegend()
             else if (cheatcode == "over9000")
             {
                 player.level = 9001;
+                player.sleep = 0;
             }
             else if (cheatcode.toLowerCase() == "thisgameismissingsomething")
             {
@@ -5632,10 +5633,16 @@ function theLegend()
                         if (fairSleep)
                         {
                             this.storeGameTimeForSleep = gameTime;
+                            this.storeSleeperTime = sleeperTime;
                             fairSleep = false;
                         }
-                        this.sleep -= (gameTime - this.storeGameTimeForSleep)/(60 * 60);
-                        this.storeGameTimeForSleep = gameTime;
+                        if (gameTime > this.storeGameTimeForSleep)
+                        {
+                            console.log(((gameTime - this.storeGameTimeForSleep)/(60 * 60)));
+                            this.sleep -= ((gameTime - (this.storeGameTimeForSleep + (sleeperTime - this.storeSleeperTime)))/(60 * 60));
+                            this.storeGameTimeForSleep = gameTime;
+                            this.storeSleeperTime = sleeperTime;
+                        }
                     }
                 }
                 else
@@ -20221,20 +20228,22 @@ function theLegend()
                     //todo decrease other drug effect's time as well.
 
                     //Give the player rest -- if you sleep for a reasonable amount of time your get more rest
+                    var sleepChange;
                     if (dOS >= 8)
                     {
-                        dOS = dOS * 3;
+                        sleepChange = dOS * 3;
                     }
                     else if (dOS >= 6)
                     {
-                        dOS = dOS * 2.5;
+                        sleepChange = dOS * 2.5;
                     }
                     else
                     {
-                        dOS = dOS * 2;
+                        sleepChange = dOS * 2;
                     }
+                    //console.log(player.sleep + " + " + sleepChange + " = " + (player.sleep + sleepChange));
 
-                    player.sleep = Math.min(player.totalSleep, player.sleep + dOS);
+                    player.sleep += sleepChange;
 
                     //this is where if you are sleeping in an untraditional way you could be ambushed and will certainly be "sore" in the morning.
                     if (safe == false)

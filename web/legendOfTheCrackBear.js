@@ -949,7 +949,7 @@ function theLegend()
     //todo TEST INVENTORIES
     //Inventory = [[new Item("coins", false, false), 10000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2], [new Item("shehidToxinArrow", false, false), 45], [new Item("oiledArrow", false, false), 45], [new Item("fireStarter", false, false), 1], [new Item("lifeLeachArrow", false, false), 45], [new Item("fireArrow", false, false), 45], [new Item("freezingArrow", false, false), 45], [new Item("oilLantern", false, false), 1], [new Item("berulnToothNecklace", false, false), 1], [new Item("ogardPerfume", false, false), 2]];
     //Inventory = [[new Item("avrakLeatherArmour", false, false), 1], [new Item("varnFiber", false, false), 1], [new Item("avrakHide", false, false), 1], [new Item("rawAvrakFlesh", false, false), 1], [new Item("avrakMeat", false, false), 1], [new Item("healingSalve", false, false), 1], [new Item("driedCyrinthilimMushroom", false, false), 1], [new Item("cyrinthilimMushroom", false, false), 1], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfNaapridMilk", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 1], [new Item("kellishClayPot", false, false), 1], [new Item("fermentedViperVenomGland", false, false), 1], [new Item("viperVenomGland", false, false), 1], [new Item("viperSnakeSkin", false, false), 1], [new Item("rawViperFlesh", false, false), 1], [new Item("viperMeat", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
-    Inventory = [[new Item("smashStick", false, false), 1], [new Item("burningSmashStick", false, false), 1], [new Item("bullet", false, false), 200], [new Item("blackPowder", false, false), 200], [new Item("musket", false, false), 1], [new Item("blunderbuss", false, false), 1], [new Item("cutlass", false, false), 1], [new Item("avrakLeatherArmour", false, false), 1], [new Item("balgurCaptainArmour", false, false), 1], [new Item("balgurMercArmour", false, false), 1], [new Item("longSpikedMorningStar", false, false), 1], [new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
+    Inventory = [[new Item("lightningCorseque", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("burningSmashStick", false, false), 1], [new Item("bullet", false, false), 200], [new Item("blackPowder", false, false), 200], [new Item("musket", false, false), 1], [new Item("blunderbuss", false, false), 1], [new Item("cutlass", false, false), 1], [new Item("avrakLeatherArmour", false, false), 1], [new Item("balgurCaptainArmour", false, false), 1], [new Item("balgurMercArmour", false, false), 1], [new Item("longSpikedMorningStar", false, false), 1], [new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
     //Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1]];
 
     //Test Spells
@@ -1006,6 +1006,7 @@ function theLegend()
     allWeapons.push(new Item("blunderbuss", false)); //44
     allWeapons.push(new Item("smashStick", false)); //45
     allWeapons.push(new Item("burningSmashStick", false)); //46
+    allWeapons.push(new Item("lightningCorseque", false)); //47
 
     //This list holds one of each type of worn item so that the player can access the worn item stats.
     var allWorn = [];
@@ -1105,6 +1106,7 @@ function theLegend()
     smithing.push(new Item("bullet", false));
     smithing.push(new Item("smashStick", false));
     smithing.push(new Item("burningSmashStick", false));
+    smithing.push(new Item("lightningCorseque", false));
 
         //Foods (Items cooked at either a stove, an oven, or a campfire)
     var foods = [];
@@ -1168,6 +1170,7 @@ function theLegend()
     tailoring.push(new Item("cloth", false));
     tailoring.push(new Item("naapridFiber", false));
     tailoring.push(new Item("varnFiber", false));
+
         //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     var jewelry = [];
     jewelry.push(new Item("glassJar", false));
@@ -1176,6 +1179,7 @@ function theLegend()
     jewelry.push(new Item("potionGlass", false));
     jewelry.push(new Item("fireStarter", false));
     jewelry.push(new Item("berulnToothNecklace", false));
+
         //Alchemy (Potions and mixtures crafted at an alchemy lab station)
     var alchemy = [];
     alchemy.push(new Item("cleansingPotion", false));
@@ -1192,8 +1196,6 @@ function theLegend()
     alchemy.push(new Item("groundOgard", false));
     alchemy.push(new Item("ogardPerfume", false));
     alchemy.push(new Item("wyrExtract", false));
-
-
 
         //Brewing (alcohols, liquid fermentation, etc.)
     var brewing = [];
@@ -10100,6 +10102,25 @@ function theLegend()
                     XXX.restore();
                 }
             }
+            //MACE
+            if (this.weaponEquipped == "lightningCorseque")
+            {
+                this.stageEngine(4, 0.18, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+                //ATTACK ANIMATION
+                if (Math.floor(this.stage) <= 0)
+                {
+                    this.flashAnimate(90, this.rotation, 0.90, [{image: mofu, imgX: 327, imgY: 43, portionW: 33, portionH: 77, adjX: -7, adjY: -92, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 365, imgY: 43, portionW: 33, portionH: 77, adjX: -7, adjY: -92, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 404, imgY: 43.5, portionW: 33, portionH: 77, adjX: -7, adjY: -92, width: 33 * 1.5, height: 77 * 1.5}]);
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    this.flashAnimate(90, this.rotation, 0.90, [{image: mofu, imgX: 325, imgY: 222, portionW: 33, portionH: 77, adjX: -6, adjY: -102, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 366, imgY: 222, portionW: 33, portionH: 77, adjX: -6, adjY: -102, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 406, imgY: 222, portionW: 33, portionH: 77, adjX: -6, adjY: -102, width: 33 * 1.5, height: 77 * 1.5}]);
+                }
+                else if (Math.floor(this.stage) >= 2)
+                {
+                    this.flashAnimate(90, this.rotation, 0.90, [{image: mofu, imgX: 329, imgY: 133, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 370.5, imgY: 134, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 409.5, imgY: 134, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}]);
+                }
+            }
             //HEAVY SPIKED CLUB
             if (this.weaponEquipped == "smashStick")
             {
@@ -13043,6 +13064,14 @@ function theLegend()
                 //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
                 this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.1/5 * Math.PI) * (this.mySize + 24);
                 this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.1/5 * Math.PI) * (this.mySize + 24);
+            }
+            else if (this.weaponEquipped == "lightningCorseque")
+            {
+                this.weapon = allWeapons[47];
+
+                //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+                this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.25/5 * Math.PI) * (this.mySize + 70);
+                this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.25/5 * Math.PI) * (this.mySize + 70);
             }
         };
 
@@ -20644,7 +20673,7 @@ function theLegend()
                     }
 
                     //this is rare, but some weapons draw below the body layer.
-                    if (this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick") //add more cases for more overhead weapons.
+                    if (this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque") //add more cases for more overhead weapons.
                     {
                         this.drawArms();
                     }
@@ -20771,7 +20800,7 @@ function theLegend()
                     this.drawBody();
 
                     //most weapons draw beneath the armour layer.
-                    if (this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick") //add more cases for more overhead weapons.
+                    if (this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque") //add more cases for more overhead weapons.
                     {
                         this.drawArms();
                     }
@@ -46682,6 +46711,40 @@ function theLegend()
                 this.buyValue = 18 - Math.floor(player.getCharisma() / 6); // at max, buy for 12.
                 this.sellValue = 7 + Math.floor(player.getCharisma() / 10); // at max, sell for 12.
             }
+            else if (this.type == "lightningCorseque")
+            {
+                //For All Items
+                this.identity = "Lightning Corseque";
+                this.weight = 14;
+                this.size = 19;
+                this.description = "An electrically imbued corseque; it has one long electrified blade and four smaller blades.";
+                this.intForDes = 1;
+                this.intDescription = "The essence of electricity inhabits this weapon.";
+
+                //Define Utility
+                this.utility = "weapon";
+
+                //Utility Focused
+                this.energyCost = 5;
+                this.distance = 70 + (this.range * 7);
+                this.range = 2 + 4/7;
+                this.rate = 175;
+                this.damage = (7 - (this.damageHandicap * 2)) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+                this.magicalDamage = 5;
+                this.negateArmour = 4 + ((1/10) * player.getStrength());
+
+                //ability
+                this.ability = "shock";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 40;
+                this.ingredients = [["Steel", 1], ["Iron", 3], ["Sphere of Electricity", 3]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1200; // at max, buy for 1200.
+                this.sellValue = 1000 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 1200.
+            }
             else if (this.type == "smashStick")
             {
                 //For All Items
@@ -51146,6 +51209,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 554, 10, 61, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 61), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36), 61, 36);
             }
+            else if (this.type == "lightningCorseque")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 247, 54, 33, 77, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 77 * 1.5), 33 * 1.5, 77 * 1.5);
+            }
             else if (this.type == "smashStick" || this.type == "burningSmashStick")
             {
                 XXX.beginPath();
@@ -52547,14 +52615,10 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 554, 10, 61, 36, this.invX - (1/2 * 61), this.invY - (1/2 * 38), 61, 36);
             }
-            else if (this.type == "smashStick" || this.type == "burningSmashStick")
+            else if (this.type == "lightningCorseque")
             {
-                XXX.beginPath();
-                XXX.save();
-                XXX.translate(this.invX, this.invY);
-                XXX.rotate(9/10 * Math.PI);
-                XXX.drawImage(mofu, 189, 86, 23, 44, - (1/2 * 23 * 1.5), - (1/2 * 44 * 1.5), 23 * 1.5, 44 * 1.5);
-                XXX.restore();
+                LXX.beginPath();
+                LXX.drawImage(mofu, 247, 54, 33, 77, this.invX - (1/2 * 33), this.invY - (1/2 * 77), 33, 77);
             }
             else if (this.type == "longSpikedMorningStar")
             {
@@ -52608,6 +52672,15 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "smashStick" || this.type == "burningSmashStick")
+            {
+                XXX.beginPath();
+                XXX.save();
+                XXX.translate(this.invX, this.invY);
+                XXX.rotate(9/10 * Math.PI);
+                XXX.drawImage(mofu, 189, 86, 23, 44, - (1/2 * 23 * 1.5), - (1/2 * 44 * 1.5), 23 * 1.5, 44 * 1.5);
+                XXX.restore();
             }
             else if (this.type == "pumpkinDough")
             {
@@ -53938,6 +54011,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 554, 10, 61, 36, this.invX - (1/2 * 61), this.invY - (1/2 * 38), 61, 36);
+            }
+            else if (this.type == "lightningCorseque")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 247, 54, 33, 77, this.invX - (1/2 * 33), this.invY - (1/2 * 77), 33, 77);
             }
             else if (this.type == "longSpikedMorningStar")
             {

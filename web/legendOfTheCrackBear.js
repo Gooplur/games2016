@@ -1147,6 +1147,7 @@ function theLegend()
     foods.push(new Item("bucketOfTechiTea", false));
     foods.push(new Item("avrakMeat", false));
     foods.push(new Item("golgemoffMeat", false));
+    foods.push(new Item("ardilMeat", false));
 
         //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     var tailoring = [];
@@ -1687,7 +1688,7 @@ function theLegend()
             }
             else if (cheatcode.toLowerCase() == "test")
             {
-                player.sleep = player.sleepMAX;
+                ArtificialIntelligenceAccess.push(new Unit(X, Y - 24, "Shehid", false, "Slushy"));
             }
             else if (cheatcode.toLowerCase() == "clearinv")
             {
@@ -17846,7 +17847,7 @@ function theLegend()
                         {
                             this.skillPoints -= 1;
                             this.stamina += 1;
-                            this.energy += 1;
+                            this.energy += 2.5;
                         }
                     }
 
@@ -22186,7 +22187,7 @@ function theLegend()
         }
     }
 
-    function Projectile(type, startX, startY, startAngle, speed, range, negation, list, damage, magicDamage, ability)
+    function Projectile(type, startX, startY, startAngle, speed, range, negation, list, damage, magicDamage, ability, nonPlayer, team)
     {
         this.X = startX;
         this.Y = startY;
@@ -22198,6 +22199,7 @@ function theLegend()
         this.ability = "none";
         this.statsSet = false;
         this.zIndex = 4;
+        this.team = team;
 
         //random individual variables
         this.flameFrame = 0;
@@ -22215,8 +22217,16 @@ function theLegend()
                 this.distanceFromStart = Math.sqrt((this.X - startX)*(this.X - startX)+(this.Y - startY)*(this.Y - startY));
                 if (this.distanceFromStart < range)
                 {
-                    this.X += (Math.cos(this.rotation + (1/2 * Math.PI)) * speed) * (TTD / 16.75);
-                    this.Y += (Math.sin(this.rotation + (1/2 * Math.PI)) * speed) * (TTD / 16.75);
+                    if (typeof(nonPlayer) == "undefined")
+                    {
+                        this.X += (Math.cos(this.rotation + (1/2 * Math.PI)) * speed) * (TTD / 16.75);
+                        this.Y += (Math.sin(this.rotation + (1/2 * Math.PI)) * speed) * (TTD / 16.75);
+                    }
+                    else
+                    {
+                        this.X += (Math.cos(this.rotation - (1/2 * Math.PI)) * speed) * (TTD / 16.75);
+                        this.Y += (Math.sin(this.rotation - (1/2 * Math.PI)) * speed) * (TTD / 16.75);
+                    }
                 }
                 else
                 {
@@ -22300,6 +22310,11 @@ function theLegend()
         {
             if (list == playerProjectiles)
             {
+                if (typeof(this.team) == "undefined")
+                {
+                    this.team = "player";
+                }
+
                 for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                 {
                     var distanceFromUnit = Math.sqrt((this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X)+(this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y));
@@ -22307,107 +22322,110 @@ function theLegend()
                     if (distanceFromUnit < ArtificialIntelligenceAccess[i].sizeRadius)
                     {
                         //bullets do half damage against large enough non-human creatures. All others damage always remains the same.
-                        if (type == "bullet" && ArtificialIntelligenceAccess[i].healthMAX > 100 && ArtificialIntelligenceAccess[i].type != "Person" && ArtificialIntelligenceAccess[i].type != "Soldier")
+                        if (ArtificialIntelligenceAccess[i].team != this.team)
                         {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.damage / 2) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.negateArmour / 2))) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                        }
-                        else
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                        }
-                        ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            if (type == "bullet" && ArtificialIntelligenceAccess[i].healthMAX > 100 && ArtificialIntelligenceAccess[i].type != "Person" && ArtificialIntelligenceAccess[i].type != "Soldier")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.damage / 2) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.negateArmour / 2))) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            }
+                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
 
-                        //Effects
-                        if (this.ability == "stunI")
-                        {
-                            if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                            //Effects
+                            if (this.ability == "stunI")
                             {
-                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                                ArtificialIntelligenceAccess[i].stunTimer = 5;
-                                ArtificialIntelligenceAccess[i].stunI = true;
-                            }
-                        }
-                        else if (this.ability == "stunII")
-                        {
-                            if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
-                            {
-                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                                ArtificialIntelligenceAccess[i].stunTimer = 5;
-                                ArtificialIntelligenceAccess[i].stunII = true;
-                            }
-                        }
-                        else if (this.ability == "stunIII")
-                        {
-                            if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
-                            {
-                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                                ArtificialIntelligenceAccess[i].stunTimer = 5;
-                                ArtificialIntelligenceAccess[i].stunIII = true;
-                            }
-                        }
-                        else if (this.ability == "stunIV")
-                        {
-                            if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
-                            {
-                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                                ArtificialIntelligenceAccess[i].stunTimer = 5;
-                                ArtificialIntelligenceAccess[i].stunIV = true;
-                            }
-                        }
-                        else if (this.ability == "stunV")
-                        {
-                            if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
-                            {
-                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                                ArtificialIntelligenceAccess[i].stunTimer = 5;
-                                ArtificialIntelligenceAccess[i].stunV = true;
-                            }
-                        }
-                        else if (this.ability == "freeze")
-                        {
-                            if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
-                            {
-                                ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
-                            }
-                        }
-                        else if (this.ability == "burning")
-                        {
-                            if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
-                            {
-                                ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
-                            }
-                        }
-                        else if (this.ability == "longBurning")
-                        {
-                            ArtificialIntelligenceAccess[i].burningTime = new Date().getTime() + 5000;
-                        }
-                        else if (this.ability == "leach")
-                        {
-                            if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
-                            {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, 12 - ArtificialIntelligenceAccess[i].magicalResistance);
-
-                                var counterOrbCount = 0;
-                                if (ArtificialIntelligenceAccess[i].health < 0)
+                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
                                 {
-                                    counterOrbCount = Math.round(- ArtificialIntelligenceAccess[i].health);
-                                }
-                                var orbsAllowed = Math.max(0, 12 - ArtificialIntelligenceAccess[i].magicalResistance - counterOrbCount);
-                                for (var j = 0; j < orbsAllowed; j++)
-                                {
-                                    magicList.push(new Magic({ID: "drainOrb"}, false, 0, ArtificialIntelligenceAccess[i]));
+                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                    ArtificialIntelligenceAccess[i].stunI = true;
                                 }
                             }
-                        }
-
-                        //Self Delete Projectile
-                        for (var j = list.length - 1; j > -1; j--)
-                        {
-                            if (list[j] == this)
+                            else if (this.ability == "stunII")
                             {
-                                list.splice(j, 1);
-                                break;
+                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                {
+                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                    ArtificialIntelligenceAccess[i].stunII = true;
+                                }
+                            }
+                            else if (this.ability == "stunIII")
+                            {
+                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                {
+                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                    ArtificialIntelligenceAccess[i].stunIII = true;
+                                }
+                            }
+                            else if (this.ability == "stunIV")
+                            {
+                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                {
+                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                    ArtificialIntelligenceAccess[i].stunIV = true;
+                                }
+                            }
+                            else if (this.ability == "stunV")
+                            {
+                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                {
+                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                    ArtificialIntelligenceAccess[i].stunV = true;
+                                }
+                            }
+                            else if (this.ability == "freeze")
+                            {
+                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                {
+                                    ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
+                                }
+                            }
+                            else if (this.ability == "burning")
+                            {
+                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                {
+                                    ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                                }
+                            }
+                            else if (this.ability == "longBurning")
+                            {
+                                ArtificialIntelligenceAccess[i].burningTime = new Date().getTime() + 5000;
+                            }
+                            else if (this.ability == "leach")
+                            {
+                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, 12 - ArtificialIntelligenceAccess[i].magicalResistance);
+
+                                    var counterOrbCount = 0;
+                                    if (ArtificialIntelligenceAccess[i].health < 0)
+                                    {
+                                        counterOrbCount = Math.round(- ArtificialIntelligenceAccess[i].health);
+                                    }
+                                    var orbsAllowed = Math.max(0, 12 - ArtificialIntelligenceAccess[i].magicalResistance - counterOrbCount);
+                                    for (var j = 0; j < orbsAllowed; j++)
+                                    {
+                                        magicList.push(new Magic({ID: "drainOrb"}, false, 0, ArtificialIntelligenceAccess[i]));
+                                    }
+                                }
+                            }
+
+                            //Self Delete Projectile
+                            for (var j = list.length - 1; j > -1; j--)
+                            {
+                                if (list[j] == this)
+                                {
+                                    list.splice(j, 1);
+                                    break;
+                                }
                             }
                         }
                     }
@@ -22991,6 +23009,10 @@ function theLegend()
         this.Y = unitY; // this is the units Y position in the world
         this.type = type; //This determines what kind of unit it is.
         this.zIndex = 2;
+        this.team = "wild"; //wild = all predators //herd = all passive or not predator animals //neutral = all creatures that are pure neutral but are not targeted //freynor = freynor faction etc.
+        this.allys = []; // all non-enemy teams.
+        this.target = "none";
+        this.targetDistance = "none";
 
         //variables concerning code functionality
         this.ultra = ultra;
@@ -23004,10 +23026,12 @@ function theLegend()
         this.magicalResistance = 0;
         this.speed = 0;
         this.rangeOfSight = 120;
+        this.baseSight = 120;
         this.alpha = false;
         this.effect = "none"; //This is a special effect that happens on attacks against the player.
         this.drops = []; //This is the list of items that this unit will drop upon death.
         this.experience = 1; //This is the amount of experience that the player will earn from slaying this creature. It becomes either regular or magical experience depending on what means the player used to get the killing blow.
+        this.lessEXP = 0;
         this.resistances = [];
         //Operational game variables
         this.rotation = 0; //this is the unit's current rotation.
@@ -23021,6 +23045,7 @@ function theLegend()
         this.alpha = isalpha;
         this.alphaSize = 1;
         this.beastEntry = "none";
+        this.killNotByPlayer = false;
         //AI and sensing variables
         this.closestDistance; //this is the distance away from this unit that the closest other unit is.
         this.closestUnit; // this is the exact unit that is the closest at the moment.
@@ -23029,6 +23054,7 @@ function theLegend()
         this.extraRangeTime = 0;
         this.disturbed = false; //When activated the creature will have twice as much sight!
         this.disturbedTime = 0; //this is the timer that regulates how long a creature is in the disturbed state.
+        this.offended = false; //this is if the unit is mad at targetable AI that attacked first.
         //animation variables
         this.resetFrameOrder = true; //This switches the costumeEngine back to positive direction framerate
         this.attacking = false; //This flag is active while this unit is attacking so that the game knows when this unit is attacking.
@@ -23197,9 +23223,115 @@ function theLegend()
             return Math.sqrt((X - this.X) * (X - this.X) + (Y - this.Y) * (Y - this.Y));
         };
 
+        this.DTU = function(target)
+        {
+            return Math.sqrt((target.X - this.X) * (target.X - this.X) + (target.Y - this.Y) * (target.Y - this.Y));
+        };
+
         this.DTM = function()
         {
             return Math.sqrt((this.X - (X - mouseX + (1/2 * CCC.width)))*(this.X - (X - mouseX + (1/2 * CCC.width))) + (this.Y - (Y - mouseY + (1/2 * CCC.height)))*(this.Y - (Y - mouseY + (1/2 * CCC.height))));
+        };
+
+        this.targeting = function()
+        {
+            this.target = "none";
+            if (this.targetDistance == "none")
+            {
+                this.targetDistance = 1000000;
+            }
+            var allianced = false;
+            for (var j = 0; j < this.allys.length; j++)
+            {
+                if (this.allys[j] == "player")
+                {
+                    allianced = true;
+                }
+            }
+            if (allianced == false)
+            {
+                this.target = player;
+                this.targetDistance = this.DTP();
+            }
+
+            if (this.team != "neutral")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    var swtchTrgt = false;
+                    for (var j = 0; j < this.allys.length; j++)
+                    {
+                        if (this.allys[j] == ArtificialIntelligenceAccess[i].team)
+                        {
+                            swtchTrgt = true;
+                            break;
+                        }
+                    }
+
+                    if (!swtchTrgt && ArtificialIntelligenceAccess[i] != this)
+                    {
+                        var storeDTU = this.DTU(ArtificialIntelligenceAccess[i]);
+                        if (this.targetDistance > storeDTU)
+                        {
+                            this.targetDistance = storeDTU;
+                            this.target = ArtificialIntelligenceAccess[i];
+                        }
+                    }
+                }
+            }
+
+            if (this.target != "none")
+            {
+                if (this.target != player && this.DTU(this.target) > this.baseSight)
+                {
+                    this.target = "none";
+                    this.offended = false;
+                    this.attacking = false;
+                }
+            }
+
+            if (typeof(this.target) == "undefined")
+            {
+                this.target = "none";
+                this.offended = false;
+                this.attacking = false;
+            }
+        };
+
+        this.friendDecider = function()
+        {
+            this.allys = [this.team, "neutral"];
+
+            if (this.team == "Freynor")
+            {
+                if (player.freynorFaction > -50)
+                {
+                    this.allys.push("player");
+                }
+
+                this.allys.push("theBalgurMercenaries"); //temporarily so that the guards will not slay the mercs. //booble
+                this.allys.push("Vardan"); //temporarily so that the guards will not slay neculai. //booble
+            }
+            if (this.team == "Vardan")
+            {
+                if (player.vardanFaction > -50)
+                {
+                    this.allys.push("player");
+                }
+
+                this.allys.push("Freynor"); //temporarily so that neculai will not slay the villagers. //booble
+            }
+            if (this.team == "Kel")
+            {
+                if (player.kelFaction > -50)
+                {
+                    this.allys.push("player");
+                }
+            }
+            if (this.team == "wild")
+            {
+                this.allys.push("shehidia");
+            }
         };
 
         this.interaction = function()
@@ -23239,7 +23371,7 @@ function theLegend()
                     if (this.type == "Person" || this.type == "Soldier")
                     {
                         //CONVERSATION AND SOCIAL INTERACTIONS WITH AI CHARACTERS
-                        if (clickReleased == true && dtm < this.sizeRadius && dtp < 100 && this.disturbed == false || conversationID[0] != "none" && dtp < 100 && this.disturbed == false || playersTurnToSpeak == false)
+                        if (clickReleased == true && dtm < this.sizeRadius && dtp < 100 && this.disturbed == false && this.offended == false || conversationID[0] != "none" && dtp < 100 && this.disturbed == false && this.offended == false || playersTurnToSpeak == false)
                         {
                             this.engagedInDialogue = true;
 
@@ -27341,6 +27473,31 @@ function theLegend()
                 this.playerSeen = false;
             }
         };
+
+        this.pointAway = function(thing)
+        {
+            if (this.blinded == false)
+            {
+                this.newRotation = Math.atan2(thing.Y - this.Y, thing.X - this.X);
+            }
+            else if (this.blinded == true)
+            {
+                var rndmz = Math.floor(Math.random() * 13);
+                if (rndmz <= 3)
+                {
+                    this.newRotation += 1 * Math.PI;
+                }
+                else if (rndmz > 3 && rndmz <= 7)
+                {
+                    this.newRotation -= 1/2 * Math.PI;
+                }
+                else if (rndmz > 7 && rndmz <= 9)
+                {
+                    this.newRotation = Math.atan2(thing.Y - this.Y, thing.X - this.X);
+                }
+            }
+        };
+
             //this points away from the player.
         this.pointAwayFromPlayer = function()
         {
@@ -27730,6 +27887,7 @@ function theLegend()
             //this determines a unit's range of sight in a number of different situations.
         this.rangeOfSightCalculator = function(baseSight, hostile) //base sight is the base amount of rangeOfSight that the unit has, hostile implys that this particular type of unit will persue its prey for much longer than others would.
         {
+            this.baseSight = baseSight;
             // if the extra range is expired then set it to 0.
             if (new Date().getTime() - this.extraRangeTime > 4000)
             {
@@ -27905,31 +28063,33 @@ function theLegend()
 
         this.Attack = function(randomDamage, setDamage)
         {
-            //this method relies on the class variable being set: this.timeBetweenAttacks = new Date().getTime();
-            var dtp = this.DTP();
-            if (dtp <= this.engagementRadius && dtp <= this.rangeOfSight)
+            if (this.target == player)
             {
-                this.attacking = true;
-            }
-            else
-            {
-                this.attacking = false;
-            }
-
-            if (this.attacking == true)
-            {
-                player.inCombat = true;
-                if (this.attackStyle == "rapid")
+                //this method relies on the class variable being set: this.timeBetweenAttacks = new Date().getTime();
+                var dtp = this.DTP();
+                if (dtp <= this.engagementRadius && dtp <= this.rangeOfSight)
                 {
-                    if (this.damage > player.armourTotal)
-                    {
-                        this.damage = Math.floor(Math.random() * (randomDamage + 1)) + setDamage;
-                        player.health -= Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / (16.75 + (100 * this.attackRate)));
-                        player.decreaseInHealth += Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / (16.75 + (100 * this.attackRate))); // this is how much health is displayed as blood red for the player;
-                    }
+                    this.attacking = true;
                 }
-                if (this.attackStyle == "chunked")
+                else
                 {
+                    this.attacking = false;
+                }
+
+                if (this.attacking == true)
+                {
+                    player.inCombat = true;
+                    if (this.attackStyle == "rapid")
+                    {
+                        if (this.damage > player.armourTotal)
+                        {
+                            this.damage = Math.floor(Math.random() * (randomDamage + 1)) + setDamage;
+                            player.health -= Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / (16.75 + (100 * this.attackRate)));
+                            player.decreaseInHealth += Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / (16.75 + (100 * this.attackRate))); // this is how much health is displayed as blood red for the player;
+                        }
+                    }
+                    if (this.attackStyle == "chunked")
+                    {
                         if (this.justAttacked == true)
                         {
                             this.finalAttackCostume = false;
@@ -28043,9 +28203,152 @@ function theLegend()
                                 }
                             }
                         }
+                    }
                 }
             }
+            else if (this.target != "none")
+            {
+                //this method relies on the class variable being set: this.timeBetweenAttacks = new Date().getTime();
+                var dtu = this.DTU(this.target);
 
+                if (dtu <= this.engagementRadius + (this.target.sizeRadius - 10) && dtu <= this.baseSight)
+                {
+                    this.attacking = true;
+                }
+                else
+                {
+                    this.attacking = false;
+                }
+
+                if (this.attacking == true)
+                {
+                    if (this.attackStyle == "rapid")
+                    {
+                        if (this.damage > this.target.armour)
+                        {
+                            this.damage = Math.floor(Math.random() * (randomDamage + 1)) + setDamage;
+                            this.target.health -= Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) * (TTD / (16.75 + (100 * this.attackRate)));
+                        }
+                    }
+                    if (this.attackStyle == "chunked")
+                    {
+                        if (this.justAttacked == true)
+                        {
+                            this.finalAttackCostume = false;
+                            this.justAttacked = false;
+                            this.damage = Math.floor(Math.random() * (randomDamage + 1)) + setDamage;
+                        }
+
+                        if (this.finalAttackCostume)
+                        {
+                            //console.log(this.damage + " is the damage done by " + this.ID + " through an armour total of " + player.armourTotal + ". The resulting damage was " + Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / 16.75) + ".");
+
+                            this.target.health -= Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour));
+                            this.target.lessEXP += this.target.experience * (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) / this.target.healthMAX);
+                            this.target.offended = true;
+                            if (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour) > 0))
+                            {
+                                this.target.healthShownTime = new Date().getTime();
+                            }
+                            if (this.target.health <= 0)
+                            {
+                                this.target.killNotByPlayer = true;
+                            }
+                            this.justAttacked = true;
+
+                            //Special Attacking Effects
+
+                            if (this.effect == "stunV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.stunV = true;
+                                this.target.stunTimer = 12;
+                                this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "stunIV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.stunIV = true;
+                                this.target.stunTimer = 12;
+                                this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "stunIII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.stunIII = true;
+                                this.target.stunTimer = 11;
+                                this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "stunII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.stunII = true;
+                                this.target.stunTimer = 8;
+                                this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "stunI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.stunI = true;
+                                this.target.stunTimer = 5;
+                                this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "smashbackI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                var twrdsUnit = Math.atan2(this.Y - this.target.Y, this.X - this.target.X);
+                                this.target.X -= Math.cos(twrdsUnit) * 50;
+                                this.target.Y -= Math.sin(twrdsUnit) * 50;
+                                this.target.stunIII = true;
+                                this.target.stunTimer = 3;
+                                this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "smashbackII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                var twrdsUnit = Math.atan2(this.Y - this.target.Y, this.X - this.target.X);
+                                this.target.X -= Math.cos(twrdsUnit) * 125;
+                                this.target.Y -= Math.sin(twrdsUnit) * 125;
+                                this.target.stunIII = true;
+                                this.target.stunTimer = 4;
+                                this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "smashbackIII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                var twrdsUnit = Math.atan2(this.Y - this.target.Y, this.X - this.target.X);
+                                this.target.X -= Math.cos(twrdsUnit) * 325;
+                                this.target.Y -= Math.sin(twrdsUnit) * 325;
+                                this.target.stunIII = true;
+                                this.target.stunTimer = 4;
+                                this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "blindingI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.blinded = true;
+                                this.target.blindedStoreTime = new Date().getTime();
+                                this.target.blindedTime = 2;
+                            }
+                            else if (this.effect == "blindingII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.blinded = true;
+                                this.target.blindedStoreTime = new Date().getTime();
+                                this.target.blindedTime = 3;
+                            }
+                            else if (this.effect == "blindingIII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.blinded = true;
+                                this.target.blindedStoreTime = new Date().getTime();
+                                this.target.blindedTime = 5;
+                            }
+                            else if (this.effect == "blindingIV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.blinded = true;
+                                this.target.blindedStoreTime = new Date().getTime();
+                                this.target.blindedTime = 8;
+                            }
+                            else if (this.effect == "blindingV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.blinded = true;
+                                this.target.blindedStoreTime = new Date().getTime();
+                                this.target.blindedTime = 13;
+                            }
+                        }
+                    }
+                }
+            }
         };
 
         this.flashAnimate = function(framerate, rotation, transparency, list)
@@ -28233,6 +28536,17 @@ function theLegend()
             }
         };
 
+        this.callForHelp = function(range, type)
+        {
+            var nearbyUnitsList = [];
+            this.findNearbyUnitTypeGroup(range, type, nearbyUnitsList);
+
+            for (var i = 0; i < nearbyUnitsList.length; i++)
+            {
+                nearbyUnitsList[i].offended = true;
+            }
+        };
+
             //this unit's rangeOfSight is shown as a transparent red bubble.
         this.visibleSight = function()
         {
@@ -28281,8 +28595,18 @@ function theLegend()
         {
             if (this.ranged == true)
             {
-                var dtp = this.DTP();
-                if (this.disturbed == true && dtp <= this.rangeOfSight && this.playerSeen == true) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                var dtp;
+                var dtu;
+                if (this.target == player)
+                {
+                    dtp = this.DTP();
+                }
+                else if (this.target != "none")
+                {
+                    dtu = this.DTU(this.target);
+                }
+
+                if (this.disturbed == true && dtp <= this.rangeOfSight && this.playerSeen == true || dtu <= this.baseSight && this.target != player) //otherwise if it is attacking then initiate attacking animation, and if neither...
                 {
                     this.attacking = true;
                     if(new Date().getTime() - this.timeBetweenAttacks > (this.ultra.ranged[8] * 1000))
@@ -28301,7 +28625,14 @@ function theLegend()
                     {
                         this.finalAttackCostume = false;
                         this.timeBetweenAttacks = new Date().getTime();
-                        unitProjectiles.push(new Projectile(this.ultra.ranged[1], this.X, this.Y, this.rotation -  1 / 2 * Math.PI, this.ultra.ranged[2], this.ultra.ranged[3], this.ultra.ranged[4], unitProjectiles, this.ultra.ranged[5], this.ultra.ranged[6], this.ultra.ranged[7]));
+                        if (this.target == player)
+                        {
+                            unitProjectiles.push(new Projectile(this.ultra.ranged[1], this.X, this.Y, this.rotation -  1 / 2 * Math.PI, this.ultra.ranged[2], this.ultra.ranged[3], this.ultra.ranged[4], unitProjectiles, this.ultra.ranged[5], this.ultra.ranged[6], this.ultra.ranged[7], true, this.team));
+                        }
+                        else if (this.target != "none")
+                        {
+                            playerProjectiles.push(new Projectile(this.ultra.ranged[1], this.X, this.Y, this.rotation -  1 / 2 * Math.PI, this.ultra.ranged[2], this.ultra.ranged[3], this.ultra.ranged[4], playerProjectiles, this.ultra.ranged[5], this.ultra.ranged[6], this.ultra.ranged[7], true, this.team));
+                        }
                     }
                 }
             }
@@ -28788,10 +29119,20 @@ function theLegend()
 
         this.switchToRanged = function(weapon)
         {
-            if (this.disturbed == true)
+            if (this.disturbed == true || this.DTU(this.target) <= this.baseSight)
             {
-                var dtp = this.DTP();
-                if (this.engagementRadius < dtp)
+                if (this.target == player)
+                {
+                    var dtp = this.DTP();
+                    var targRad = player.mySize;
+                }
+                else if (this.target != "none")
+                {
+                    var dtp = this.DTU(this.target);
+                    var targRad = this.target.sizeRadius;
+                }
+
+                if (this.engagementRadius + (targRad - 10) < dtp)
                 {
                     this.weapon = weapon;
                     this.ranged = true;
@@ -28846,21 +29187,24 @@ function theLegend()
                     this.timeSinceDead = new Date().getTime();
 
                     //loot and experience
-                    if (player.spell == "none")
+                    if (player.spell == "none" && this.killNotByPlayer == false)
                     {
-                        player.experience += this.experience;
+                        player.experience += Math.max(0, this.experience - this.lessEXP);
                     }
 
-                    if (this.revived != true)
+                    if (this.killNotByPlayer == false)
                     {
-                        for (var i = 0; i < this.drops.length; i++)
+                        if (this.revived != true)
                         {
-                            worldItems.push([this.drops[i][0], this.drops[i][1]]);
+                            for (var i = 0; i < this.drops.length; i++)
+                            {
+                                worldItems.push([this.drops[i][0], this.drops[i][1]]);
+                            }
                         }
-                    }
-                    else
-                    {
-                        worldItems.push([new Item("nechromanticDust", this.X, this.Y), 1 + Math.floor(this.healthMAX / 35)]);
+                        else
+                        {
+                            worldItems.push([new Item("nechromanticDust", this.X, this.Y), 1 + Math.floor(this.healthMAX / 35)]);
+                        }
                     }
 
                     if (this.beastEntry != "none")
@@ -29157,6 +29501,8 @@ function theLegend()
             if (this.type == "Etyr")
             {
                 this.damageFrame = "automatic";
+                this.team = "wild";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -29213,6 +29559,8 @@ function theLegend()
             {
                 this.damageFrame = "automatic";
                 this.resistances = ["frozen", "shock"];
+                this.team = "walarusia";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -29271,6 +29619,8 @@ function theLegend()
                 this.awake = Math.round(Math.random());
                 this.formChange = false; //this is for transforming from awake to asleep or sleep to awake... it signals that a change has been made so that an animation can play.
                 this.resistances = ["stun", "burning", "shock"];
+                this.team = "shehidia";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -29331,6 +29681,8 @@ function theLegend()
                 this.awake = Math.round(Math.random());
                 this.formChange = false; //this is for transforming from awake to asleep or sleep to awake... it signals that a change has been made so that an animation can play.
                 this.resistances = ["shock"];
+                this.team = "wild";
+                this.baseTeam = this.team;
 
                 if (this.alpha == "giant")
                 {
@@ -29438,6 +29790,8 @@ function theLegend()
             else if (this.type == "Narthwarp")
             {
                 this.damageFrame = "automatic";
+                this.team = "wild";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -29520,6 +29874,8 @@ function theLegend()
             else if (this.type == "Beruln")
             {
                 this.damageFrame = "manual";
+                this.team = "berulnia";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -29575,6 +29931,8 @@ function theLegend()
             else if (this.type == "Olkrin")
             {
                 this.damageFrame = "manual";
+                this.team = "olkrinia";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -29654,6 +30012,8 @@ function theLegend()
             else if (this.type == "BogTroll")
             {
                 this.justAttacked = true;
+                this.team = "trollia";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -29733,6 +30093,8 @@ function theLegend()
             else if (this.type == "WinterWolf")
             {
                 this.damageFrame = "manual";
+                this.team = "wild";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -29787,6 +30149,8 @@ function theLegend()
             {
                 this.damageFrame = "automatic";
                 this.resistances = ["shock"];
+                this.team = "wild";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -29840,6 +30204,8 @@ function theLegend()
             else if (this.type == "Neev")
             {
                 this.damageFrame = "automatic";
+                this.team = "neutral";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -29894,6 +30260,8 @@ function theLegend()
             {
                 this.damageFrame = "automatic";
                 this.effect = "blindingIII";
+                this.team = "golgemoffia";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -29993,6 +30361,7 @@ function theLegend()
             else if (this.type == "Bees")
             {
                 this.damageFrame = "automatic";
+                this.team = "neutral";
 
                 //STATS (non-variable)
                 this.magicalResistance = 0;
@@ -30019,6 +30388,8 @@ function theLegend()
             else if (this.type == "Frich")
             {
                 this.damageFrame = "automatic";
+                this.team = "wild";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -30095,6 +30466,8 @@ function theLegend()
             else if (this.type == "Varn")
             {
                 this.damageFrame = "automatic";
+                this.team = "wild";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -30148,6 +30521,8 @@ function theLegend()
             else if (this.type == "Avrak")
             {
                 this.damageFrame = "automatic";
+                this.team = "wild";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -30225,6 +30600,8 @@ function theLegend()
                 this.damageFrame = "automatic";
                 this.state = "resting";
                 this.resistances = ["shock"];
+                this.team = "neutral";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -30323,6 +30700,8 @@ function theLegend()
             else if (this.type == "Grib")
             {
                 this.damageFrame = "automatic";
+                this.team = "wild";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -30376,6 +30755,8 @@ function theLegend()
             else if (this.type == "BlackBear")
             {
                 this.damageFrame = "automatic";
+                this.team = "wild";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -30455,6 +30836,8 @@ function theLegend()
             {
                 this.damageFrame = "automatic";
                 this.effect = "poisonII";
+                this.team = "wild";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -30533,6 +30916,8 @@ function theLegend()
             else if (this.type == "Naaprid")
             {
                 this.damageFrame = "manual";
+                this.team = "herd";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -30609,6 +30994,8 @@ function theLegend()
             else if (this.type == "Mofu") //moe-foo
             {
                 this.damageFrame = "manual";
+                this.team = "herd";
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -30682,10 +31069,118 @@ function theLegend()
                     this.xAdjustment = 0;
                 }
             }
+            else if (this.type == "Ardil")
+            {
+                this.damageFrame = "manual";
+                this.team = "herd";
+                this.baseTeam = this.team;
+                this.sex = "Young";
+
+                if (this.alpha == true)
+                {
+                    if (Math.round(Math.random()))
+                    {
+                        this.sex = "Female";
+                        this.magicalResistance = 0;
+                        this.heatResistance = -1;
+                        this.attackStyle = "chunked";
+                        this.attackRate = 0;  //this is for rapid style combat only.
+                        this.healthMAX = 4;
+                        this.health = this.healthMAX;
+                        this.armour = 0;
+                        this.speed = 3;
+                        this.rangeOfSight = 800; //This is just to set the variable initially. The rest is variable.
+                        this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                        this.engagementRadius = 24;
+                        this.sizeRadius = 17;
+                        this.negateArmour = 0;
+                        this.attackWait = 3;
+
+                        //alpha has a larger size body and skills.
+                        this.alphaSize = 1.65; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                        // this is the adjustment the alpha type of Etyr needs to be centered.
+                        this.yAdjustment = 0;
+                        this.xAdjustment = 0;
+                    }
+                    else
+                    {
+                        this.sex = "Male";
+                        this.magicalResistance = 0;
+                        this.heatResistance = -1;
+                        this.attackStyle = "chunked";
+                        this.attackRate = 0;  //this is for rapid style combat only.
+                        this.healthMAX = 3;
+                        this.health = this.healthMAX;
+                        this.armour = 0;
+                        this.speed = 4;
+                        this.rangeOfSight = 800; //This is just to set the variable initially. The rest is variable.
+                        this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                        this.engagementRadius = 24;
+                        this.sizeRadius = 14;
+                        this.negateArmour = 0;
+                        this.attackWait = 2;
+
+                        //alpha has a larger size body and skills.
+                        this.alphaSize = 1.45; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                        // this is the adjustment the alpha type of Etyr needs to be centered.
+                        this.yAdjustment = 0;
+                        this.xAdjustment = 0;
+                    }
+                }
+                else if (this.alpha == "baby")
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = -1;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = 0.5;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 2.75;
+                    this.rangeOfSight = 700; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 24;
+                    this.sizeRadius = 7;
+                    this.negateArmour = 0;
+                    this.attackWait = 2.4;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 0.65; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = -1;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = 1;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 3.4;
+                    this.rangeOfSight = 800; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 24;
+                    this.sizeRadius = 11;
+                    this.negateArmour = 0;
+                    this.attackWait = 2;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+            }
             else if (this.type == "Torper")
             {
                 this.damageFrame = "automatic";
                 this.effect = "poisonIII";
+                this.team = "torperia";
+                this.flying = true;
+                this.baseTeam = this.team;
 
                 if (this.alpha == true)
                 {
@@ -30740,6 +31235,8 @@ function theLegend()
             {
                 this.damageFrame = "automatic";
                 this.customEXP = false;
+                this.team = this.ultra.faction;
+                this.baseTeam = this.team;
 
                 //Personality effected STATS
                 if (this.ultra.personality == "scared")
@@ -30784,6 +31281,8 @@ function theLegend()
             else if (this.type == "Soldier")
             {
                 this.damageFrame = "automatic";
+                this.team = this.ultra.faction;
+                this.baseTeam = this.team;
 
                 //STATS (non-variable)
                 this.ranged = this.ultra.ranged[0];
@@ -31030,8 +31529,19 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+
+                    this.friendDecider();
+                    this.targeting();
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
 
                 }
 
@@ -31162,8 +31672,19 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
 
                 }
                 else
@@ -31272,6 +31793,9 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
+                    this.friendDecider();
+                    this.targeting();
+
                     if (this.DTP() > 90 && typeof(this.ultra) != "undefined" && !this.disturbed)
                     {
                         this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
@@ -31433,15 +31957,34 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
-                    if (this.DTP() > this.rangeOfSight && typeof(this.ultra) != "undefined")
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
                     {
-                        this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                        if (this.DTP() > this.rangeOfSight && typeof(this.ultra) != "undefined")
+                        {
+                            this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                        }
+                        else
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToPlayer();
+                        }
                     }
-                    else
+                    else if (this.target != "none")
                     {
-                        this.pointTowardsPlayer();
-                        this.moveInRelationToPlayer();
+                        if (this.DTU(this.target) > this.baseSight && typeof(this.ultra) != "undefined")
+                        {
+                            this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                        }
+                        else
+                        {
+                            this.pointTowards(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
                     }
+
                 }
                 else
                 {
@@ -31658,6 +32201,8 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
+                    this.friendDecider();
+                    this.targeting();
                 }
                 else
                 {
@@ -31929,8 +32474,19 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
 
                 }
                 else
@@ -32155,57 +32711,120 @@ function theLegend()
             //SHEHID
             if (this.type == "Shehid")
             {
+                if (this.alive)
+                {
+                    this.friendDecider();
+                    this.targeting();
+                }
                 //If it is attacked it will wake up.
-                this.dtp = this.DTP();
 
-                if (this.disturbed == true && this.disturbedPrereq == true|| this.dtp <= this.rangeOfSight)
+                if (this.target != "none" && this.target != player)
                 {
-                    if (this.awake == 0 || this.formChange == "wake")
+                    this.dtu = this.DTU(this.target);
+
+                    if (this.disturbed == true && this.disturbedPrereq == true|| this.dtu <= this.baseSight)
                     {
-                        this.formChange = "wake";
-                    }
-                    else
-                    {
-                        this.formChange = false;
+                        if (this.awake == 0 || this.formChange == "wake")
+                        {
+                            this.formChange = "wake";
+                        }
+                        else
+                        {
+                            this.formChange = false;
+                        }
+
+                        this.awake = 1;
+                        this.disturbedPrereq = false;
                     }
 
-                    this.awake = 1;
-                    this.disturbedPrereq = false;
+                    //If the player is no longer being persued it will go to sleep (this is primarily my way of making it good against archers)
+                    if (this.dtu > this.baseSight)
+                    {
+                        if (this.awake == 1 || this.formChange == "sleep")
+                        {
+                            this.formChange = "sleep";
+                        }
+                        else
+                        {
+                            this.formChange = false;
+                        }
+                        this.attacking = false; // just in case...
+                        this.disturbed = false;
+                        this.awake = 0;
+                    }
+                    //Armour is much greater while asleep
+                    if (this.awake == 0)
+                    {
+                        this.attacking = false; // just in case...
+                        this.disturbed = false;
+                        this.disturbedPrereq = true;
+
+                        if (this.alpha == true)
+                        {
+                            this.armour = 56;
+                            this.heatResistance = 56;
+                        }
+                        else
+                        {
+                            this.armour = 30;
+                            this.heatResistance = 30;
+                        }
+                    }
+                }
+                else
+                {
+                    this.dtp = this.DTP();
+
+                    if (this.disturbed == true && this.disturbedPrereq == true|| this.dtp <= this.rangeOfSight)
+                    {
+                        if (this.awake == 0 || this.formChange == "wake")
+                        {
+                            this.formChange = "wake";
+                        }
+                        else
+                        {
+                            this.formChange = false;
+                        }
+
+                        this.awake = 1;
+                        this.disturbedPrereq = false;
+                    }
+
+                    //If the player is no longer being persued it will go to sleep (this is primarily my way of making it good against archers)
+                    if (this.dtp > this.rangeOfSight)
+                    {
+                        if (this.awake == 1 || this.formChange == "sleep")
+                        {
+                            this.formChange = "sleep";
+                        }
+                        else
+                        {
+                            this.formChange = false;
+                        }
+                        this.attacking = false; // just in case...
+                        this.disturbed = false;
+                        this.awake = 0;
+                    }
+                    //Armour is much greater while asleep
+                    if (this.awake == 0)
+                    {
+                        this.attacking = false; // just in case...
+                        this.disturbed = false;
+                        this.disturbedPrereq = true;
+
+                        if (this.alpha == true)
+                        {
+                            this.armour = 56;
+                            this.heatResistance = 56;
+                        }
+                        else
+                        {
+                            this.armour = 30;
+                            this.heatResistance = 30;
+                        }
+                    }
                 }
 
-                //If the player is no longer being persued it will go to sleep (this is primarily my way of making it good against archers)
-                if (this.dtp > this.rangeOfSight)
-                {
-                    if (this.awake == 1 || this.formChange == "sleep")
-                    {
-                        this.formChange = "sleep";
-                    }
-                    else
-                    {
-                        this.formChange = false;
-                    }
-                    this.attacking = false; // just in case...
-                    this.disturbed = false;
-                    this.awake = 0;
-                }
-                //Armour is much greater while asleep
-                if (this.awake == 0)
-                {
-                    this.attacking = false; // just in case...
-                    this.disturbed = false;
-                    this.disturbedPrereq = true;
-
-                    if (this.alpha == true)
-                    {
-                        this.armour = 56;
-                        this.heatResistance = 56;
-                    }
-                    else
-                    {
-                        this.armour = 30;
-                        this.heatResistance = 30;
-                    }
-                }
                 //Set Drops and experience
                 if (this.alpha == true)
                 {
@@ -32275,8 +32894,17 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
 
                 }
 
@@ -32492,63 +33120,133 @@ function theLegend()
             //Grush
             if (this.type == "Grush")
             {
-                //If it is attacked it will wake up.
-                this.dtp = this.DTP();
-
-                if (this.disturbed == true && this.disturbedPrereq == true || this.dtp <= this.rangeOfSight)
+                if (this.alive)
                 {
-                    if (this.awake == 0 || this.formChange == "wake")
-                    {
-                        this.formChange = "wake";
-                    }
-                    else
-                    {
-                        this.formChange = false;
-                    }
-
-                    this.awake = 1;
-                    this.disturbedPrereq = false;
+                    this.friendDecider();
+                    this.targeting();
                 }
 
-                //If the player is no longer being persued it will go to sleep (this is primarily my way of making it good against archers)
-                if (this.dtp > this.rangeOfSight)
+                if (this.target != "none" && this.target != player)
                 {
-                    if (this.awake == 1 || this.formChange == "sleep")
-                    {
-                        this.formChange = "sleep";
-                    }
-                    else
-                    {
-                        this.formChange = false;
-                    }
-                    this.attacking = false; // just in case...
-                    this.disturbed = false;
-                    this.awake = 0;
-                }
-                //Armour is much greater while asleep
-                if (this.awake == 0)
-                {
-                    this.attacking = false; // just in case...
-                    this.disturbed = false;
-                    this.disturbedPrereq = true;
+                    //If it is attacked it will wake up.
+                    this.dtu = this.DTU(this.target);
 
-                    if (this.alpha == true)
+                    if (this.disturbed == true && this.disturbedPrereq == true || this.dtu <= this.baseSight)
                     {
-                        this.armour = 55;
+                        if (this.awake == 0 || this.formChange == "wake")
+                        {
+                            this.formChange = "wake";
+                        }
+                        else
+                        {
+                            this.formChange = false;
+                        }
+
+                        this.awake = 1;
+                        this.disturbedPrereq = false;
                     }
-                    else if (this.alpha == "giant")
+
+                    //If the player is no longer being persued it will go to sleep (this is primarily my way of making it good against archers)
+                    if (this.dtu > this.baseSight)
                     {
-                        this.armour = 75;
+                        if (this.awake == 1 || this.formChange == "sleep")
+                        {
+                            this.formChange = "sleep";
+                        }
+                        else
+                        {
+                            this.formChange = false;
+                        }
+                        this.attacking = false; // just in case...
+                        this.disturbed = false;
+                        this.awake = 0;
                     }
-                    else if (this.alpha == "baby")
+                    //Armour is much greater while asleep
+                    if (this.awake == 0)
                     {
-                        this.armour = 15;
-                    }
-                    else
-                    {
-                        this.armour = 35;
+                        this.attacking = false; // just in case...
+                        this.disturbed = false;
+                        this.disturbedPrereq = true;
+
+                        if (this.alpha == true)
+                        {
+                            this.armour = 55;
+                        }
+                        else if (this.alpha == "giant")
+                        {
+                            this.armour = 75;
+                        }
+                        else if (this.alpha == "baby")
+                        {
+                            this.armour = 15;
+                        }
+                        else
+                        {
+                            this.armour = 35;
+                        }
                     }
                 }
+                else
+                {
+                    //If it is attacked it will wake up.
+                    this.dtp = this.DTP();
+
+                    if (this.disturbed == true && this.disturbedPrereq == true || this.dtp <= this.rangeOfSight)
+                    {
+                        if (this.awake == 0 || this.formChange == "wake")
+                        {
+                            this.formChange = "wake";
+                        }
+                        else
+                        {
+                            this.formChange = false;
+                        }
+
+                        this.awake = 1;
+                        this.disturbedPrereq = false;
+                    }
+
+                    //If the player is no longer being persued it will go to sleep (this is primarily my way of making it good against archers)
+                    if (this.dtp > this.rangeOfSight)
+                    {
+                        if (this.awake == 1 || this.formChange == "sleep")
+                        {
+                            this.formChange = "sleep";
+                        }
+                        else
+                        {
+                            this.formChange = false;
+                        }
+                        this.attacking = false; // just in case...
+                        this.disturbed = false;
+                        this.awake = 0;
+                    }
+                    //Armour is much greater while asleep
+                    if (this.awake == 0)
+                    {
+                        this.attacking = false; // just in case...
+                        this.disturbed = false;
+                        this.disturbedPrereq = true;
+
+                        if (this.alpha == true)
+                        {
+                            this.armour = 55;
+                        }
+                        else if (this.alpha == "giant")
+                        {
+                            this.armour = 75;
+                        }
+                        else if (this.alpha == "baby")
+                        {
+                            this.armour = 15;
+                        }
+                        else
+                        {
+                            this.armour = 35;
+                        }
+                    }
+                }
+
                 //Set Drops and experience
                 if (this.alpha == true)
                 {
@@ -32679,8 +33377,17 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
 
                 }
 
@@ -32887,8 +33594,19 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
 
                 }
 
@@ -33106,6 +33824,8 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
+                    this.friendDecider();
+                    this.targeting();
 
                     //FOR NEEVS ANIMATION STARTER IS MOVED RIGHT HERE
                     if (this.moving && !this.attacking && !this.eating) //If moving and not attacking initiate moving animation...
@@ -33267,8 +33987,19 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
 
                 }
 
@@ -33446,8 +34177,19 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
 
                 }
 
@@ -33619,8 +34361,19 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
 
                 }
 
@@ -33785,8 +34538,19 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
 
                 }
 
@@ -33949,8 +34713,19 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
 
                 }
 
@@ -34206,26 +34981,63 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
+                    this.friendDecider();
+                    this.targeting();
                     if (this.alpha == true)
                     {
-                        this.pointTowardsPlayer();
+                        if (this.target == player)
+                        {
+                            this.pointTowardsPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.pointTowards(this.target);
+                        }
                     }
                     else if (this.alpha == "baby")
                     {
-                        this.pointAwayFromPlayer();
+                        if (this.target == player)
+                        {
+                            this.pointAwayFromPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.pointAway(this.target);
+                        }
                     }
                     else
                     {
                         if (this.disturbed == true && this.health > (this.healthMAX * (3/4)))
                         {
-                            this.pointTowardsPlayer();
+                            if (this.target == player)
+                            {
+                                this.pointTowardsPlayer();
+                            }
+                            else if (this.target != "none")
+                            {
+                                this.pointTowards(this.target);
+                            }
                         }
                         else
                         {
-                            this.pointAwayFromPlayer();
+                            if (this.target == player)
+                            {
+                                this.pointAwayFromPlayer();
+                            }
+                            else if (this.target != "none")
+                            {
+                                this.pointAway(this.target);
+                            }
                         }
                     }
-                    this.moveInRelationToPlayer();
+                    if (this.target == player)
+                    {
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.moveInRelationToThing(this.target);
+                    }
 
                 }
 
@@ -34357,6 +35169,8 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
+                    this.friendDecider();
+                    this.targeting();
 
                     //Growth by food (leveling/evolution)
                     if (this.alpha == "baby")
@@ -34433,9 +35247,12 @@ function theLegend()
 
                     //BIRD BRAIN
                     //Process
-                    if (this.DTP() <= 1/3 * this.rangeOfSight && shiftKey == true && wKey == true && player.getStealth() < 40 || this.alpha != true && this.DTP() <= 28 && this.attacking == false && altKey == false || this.alpha == true && this.DTP() <= 41 && this.attacking == false && altKey == false)
+                    if (this.team != "player")
                     {
-                        this.disturbedTime = new Date().getTime();
+                        if (this.DTP() <= 1/3 * this.rangeOfSight && shiftKey == true && wKey == true && player.getStealth() < 40 || this.alpha != true && this.DTP() <= 28 && this.attacking == false && altKey == false || this.alpha == true && this.DTP() <= 41 && this.attacking == false && altKey == false || this.DTU(this.target) <= 36 && this.target != player)
+                        {
+                            this.disturbedTime = new Date().getTime();
+                        }
                     }
 
                     if (this.disturbed == false) //if not frightened...
@@ -34506,8 +35323,17 @@ function theLegend()
                         {
                             this.speed = 3.85;
                         }
-                        this.pointAwayFromPlayer();
-                        this.moveInRelationToPlayer();
+
+                        if (this.target == player)
+                        {
+                            this.pointAwayFromPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.pointAway(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
                     }
                 }
 
@@ -34607,6 +35433,262 @@ function theLegend()
                 else
                 {
                     this.drawUnit(mofu, 348, 5, 40, 36, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 36 * this.alphaSize);
+                }
+
+            }
+            //Ardil
+            if (this.type == "Ardil")
+            {
+                //Set Drops and experience
+                if (this.alpha == true)
+                {
+                    this.experience = (1 * ((player.getIntelligence() / 50) + 1));
+                    this.drops = [[new Item("rawArdilFlesh", this.X, this.Y), 2], [new Item("ardilPelt", this.X, this.Y), 1]];
+                }
+                else if (this.alpha == "baby")
+                {
+                    this.experience = (1 * ((player.getIntelligence() / 50) + 1));
+                }
+                else
+                {
+                    this.experience = (1 * ((player.getIntelligence() / 50) + 1));
+                    this.drops = [[new Item("rawArdilFlesh", this.X, this.Y), 1], [new Item("ardilPelt", this.X, this.Y), 1]];
+                }
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                if (this.alpha == true)
+                {
+                    this.rangeOfSightCalculator(800, false);
+                }
+                else if (this.alpha == "baby")
+                {
+                    this.rangeOfSightCalculator(700, false);
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(800, false);
+                }
+
+                //AI
+                if (this.alive == true)
+                {
+                    //this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+                    this.friendDecider();
+                    this.targeting();
+
+                    //Growth by food (leveling/evolution)
+                    if (this.alpha == "baby")
+                    {
+                        if (this.mofuFood >= 10)
+                        {
+                            this.mofuFood = 0;
+                            this.alpha = false;
+
+                            //new stats below:
+                            //----------------
+
+                            this.healthMAX = 1;
+                            this.health = this.healthMAX;
+                            this.engagementRadius = 12;
+                            this.sizeRadius = 11;
+                            this.attackWait = 2;
+                            this.alphaSize = 1;
+                            this.speed = 3.4
+                        }
+                    }
+                    else if (this.alpha == false)
+                    {
+                        if (this.mofuFood >= 22)
+                        {
+                            this.mofuFood = 0;
+                            this.alpha = true;
+
+                            //new stats below:
+                            //----------------
+
+                            if (Math.round(Math.random()))
+                            {
+                                this.healthMAX = 4;
+                                this.health = this.healthMAX;
+                                this.engagementRadius = 24;
+                                this.sizeRadius = 16;
+                                this.attackWait = 3;
+                                this.alphaSize = 1.65;
+                                this.speed = 3;
+                                this.sex = "Female";
+                            }
+                            else
+                            {
+                                this.healthMAX = 3;
+                                this.health = this.healthMAX;
+                                this.engagementRadius = 24;
+                                this.sizeRadius = 14;
+                                this.attackWait = 2;
+                                this.alphaSize = 1.45;
+                                this.speed = 4;
+                                this.sex = "Male";
+                            }
+                        }
+                    }
+
+                    if (this.sex == "Female")
+                    {
+                        //egg laying
+                        this.eggTimer += 1 * (TTD / 16.75);
+                        if (this.eggTimer >= 20000)
+                        {
+                            this.eggTimer = 0;
+                            var babyAmt = Math.floor(Math.random() * 3) + 1;
+                            for (var i = 0; i < babyAmt; i++)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Ardil", "baby", "Unit Generated Ardil"));
+                            }
+                            this.mofuFood = Math.max(0, this.mofuFood - 22)
+                        }
+                    }
+
+                    //Ardil BRAIN
+                    //Process
+                    if (this.team != "player")
+                    {
+                        if (this.DTP() <= 1/2 * this.rangeOfSight && wKey == true && player.getStealth() < 40 || this.DTU(this.target) <= 1/2 * this.rangeOfSight && this.target != player)
+                        {
+                            this.disturbedTime = new Date().getTime();
+                        }
+                    }
+
+                    if (this.disturbed == false) //if not frightened...
+                    {
+                        this.mofuTargetFood = "none";
+                        this.moving = false;
+                        this.attacking = false;
+
+                        for (var i = 0; i < worldItems.length; i++) //look for food... (grains and breads)
+                        {
+                            if (worldItems[i][0].type == "santhGrain" || worldItems[i][0].type == "harstGrain" || worldItems[i][0].type == "santhBread" || worldItems[i][0].type == "butteredSanthBread" || worldItems[i][0].type == "harstBread" || worldItems[i][0].type == "butteredHarstBread" || worldItems[i][0].type == "akerBerries" || worldItems[i][0].type == "pluttBerries" || worldItems[i][0].type == "bushkaBerries" || worldItems[i][0].type == "gojiiBerries" || worldItems[i][0].type == "luufBerries" || worldItems[i][0].type == "suuliMelonSlice")
+                            {
+                                if (this.distanceFinder(this, worldItems[i][0]) <= (this.rangeOfSight / 2)) // if grains are easy to get to go after them.
+                                {
+                                    if (this.mofuTargetFood == "none")
+                                    {
+                                        this.mofuTargetFood = worldItems[i][0];
+                                    }
+                                    else
+                                    {
+                                        if (this.distanceFinder(this, worldItems[i][0]) < this.distanceFinder(this, this.mofuTargetFood))
+                                        {
+                                            this.mofuTargetFood = worldItems[i][0];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (this.mofuTargetFood != "none")
+                        {
+                            if (this.distanceFinder(this, this.mofuTargetFood) <= this.engagementRadius)
+                            {
+                                this.attacking = true;
+                            }
+                            else
+                            {
+                                this.attacking = false;
+                                this.pointTowards(this.mofuTargetFood);
+                                this.moveInRelationToThing(this.mofuTargetFood);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.attacking = false;
+
+                        if (this.target == player)
+                        {
+                            this.pointAwayFromPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.pointAway(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
+                    }
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (this.moving && !this.attacking) //walking (towards food)
+                    {
+                        this.costumeEngine(2, 0.05, false);
+                    }
+                    else if (this.attacking) //eating food (off the ground)
+                    {
+                        if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(3, 0.05, false);
+                        }
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                    //manual damaging
+                    if (theCostume <= 0)
+                    {
+                        this.drawUnit(theCrack, 864, 700, 41, 22, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 22 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 22 * this.alphaSize);
+                    }
+                    else if (theCostume == 1)
+                    {
+                        this.drawUnit(theCrack, 928, 700, 41, 22, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 22 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 22 * this.alphaSize);
+                        if (this.attacking)
+                        {
+                            this.mofuFeastPrepped = true
+                        }
+                    }
+                    else if (theCostume >= 2)
+                    {
+                        if (this.attacking)
+                        {
+                            if (this.mofuFeastPrepped == true)
+                            {
+                                for (var i = 0; i < worldItems.length; i++)
+                                {
+                                    if (worldItems[i][0] === this.mofuTargetFood)
+                                    {
+                                        this.mofuFood += 1;
+                                        if (worldItems[i][0].ability == "poisonI" || worldItems[i][0].ability == "poisonII" || worldItems[i][0].ability == "poisonIII" || worldItems[i][0].ability == "poisonIV" || worldItems[i][0].ability == "poisonV")
+                                        {
+                                            this.health = 0;
+                                        }
+                                        if (worldItems[i][1] > 1)
+                                        {
+                                            worldItems[i][1] -= 1;
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            this.mofuTargetFood = "none";
+                                            worldItems.splice(i, 1);
+                                            break;
+                                        }
+                                    }
+                                }
+                                this.mofuFeastPrepped = false;
+                            }
+                            this.drawUnit(theCrack, 864, 700, 41, 22, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 22 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 22 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(theCrack, 864, 700, 41, 22, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 22 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 22 * this.alphaSize);
+                        }
+                    }
+                }
+                else
+                {
+                    this.drawUnit(theCrack, 928, 700, 41, 22, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 22 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 22 * this.alphaSize);
                 }
 
             }
@@ -34716,7 +35798,7 @@ function theLegend()
                     }
                     else if (this.alpha == "baby")
                     {
-                        this.callForNearbyHelpFromType(750, "wTroll");
+                        this.callForNearbyHelpFromType(750, "Troll");
 
                         //troll health regeneration
                         if (this.health < this.healthMAX)
@@ -34791,8 +35873,19 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
 
                 }
 
@@ -35023,8 +36116,19 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
 
                 }
 
@@ -35167,8 +36271,19 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
 
                 }
 
@@ -35330,8 +36445,19 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
 
                 }
 
@@ -35490,8 +36616,19 @@ function theLegend()
                     //this.deathChecker();
                     this.disturbedTimer();
                     this.visibleSight();
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
 
                 }
 
@@ -35602,9 +36739,24 @@ function theLegend()
             //PERSON
             if (this.type == "Person")
             {
+                if (this.alive)
+                {
+                    this.friendDecider();
+                    this.targeting();
+                }
                 //RANGE OF SIGHT (anything related to range of sight)
 
                 this.rangeOfSightCalculator(600, "true");
+
+                //other faction-like stuff
+                if (this.ultra.faction == "Freynor")
+                {
+                    if (player.title == "Royalty" && player.raceName == "Freynor")
+                    {
+                        this.team = "player";
+                        this.baseTeam = "player"
+                    }
+                }
 
                 //Unique Characters and special type -- drops and experience
                 if (this.ID == "Laandeg the Alchemist")
@@ -35703,37 +36855,40 @@ function theLegend()
                 if (this.alive == true)
                 {
 
-                    if (this.disturbed == true)
+                    if (this.disturbed == true || this.DTU(this.target) <= this.baseSight)
                     {
-                        this.hostile = true; //let the games animation know to display the person's name in red.
+                        if (this.disturbed == true)
+                        {
+                            this.hostile = true; //let the games animation know to display the person's name in red.
+                        }
 
                         if (this.ultra.personality == "violent")
                         {
-                            this.pointTowardsPlayer();
-                            this.moveInRelationToPlayer();
-                            if (this.ranged == false)
+                            if (this.target == player && this.disturbed)
                             {
-                                this.Attack(this.ultra.weapon[1][1], this.ultra.weapon[1][0]);
-                            }
-
-                            if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
-                            {
-                                this.callForNearbyHelpFromType(1850, "Soldier");
-                            }
-                        }
-                        else if (this.ultra.personality == "calculated")
-                        {
-                            if (player.weaponEquipped == "none" && player.armourTotal < 0.5)
-                            {
-                                this.fleeing = false;
-                                this.ranged = this.ultra.ranged[0];
                                 this.pointTowardsPlayer();
                                 this.moveInRelationToPlayer();
-                                if (this.ranged == false)
+                            }
+                            else if (this.target != "none")
+                            {
+                                this.pointTowards(this.target);
+                                this.moveInRelationToThing(this.target);
+                            }
+                            else
+                            {
+                                this.offended = false;
+                            }
+
+                            if (this.ranged == false)
+                            {
+                                if (this.target == player && this.disturbed || this.target != player)
                                 {
                                     this.Attack(this.ultra.weapon[1][1], this.ultra.weapon[1][0]);
                                 }
+                            }
 
+                            if (this.disturbed == true)
+                            {
                                 if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
                                 {
                                     this.callForNearbyHelpFromType(1850, "Soldier");
@@ -35741,24 +36896,111 @@ function theLegend()
                             }
                             else
                             {
+                                //this.callForHelp(1850, "Soldier");
+                            }
+                        }
+                        else if (this.ultra.personality == "calculated")
+                        {
+                            if (player.weaponEquipped == "none" && player.armourTotal < 0.5 || this.target != player)
+                            {
+                                this.fleeing = false;
+                                this.ranged = this.ultra.ranged[0];
+
+                                if (this.target == player && this.disturbed)
+                                {
+                                    this.pointTowardsPlayer();
+                                    this.moveInRelationToPlayer();
+                                }
+                                else if (this.target != "none")
+                                {
+                                    this.pointTowards(this.target);
+                                    this.moveInRelationToThing(this.target);
+                                }
+                                else
+                                {
+                                    this.offended = false;
+                                }
+
+                                if (this.ranged == false)
+                                {
+                                    if (this.target == player && this.disturbed || this.target != player)
+                                    {
+                                        this.Attack(this.ultra.weapon[1][1], this.ultra.weapon[1][0]);
+                                    }
+                                }
+
+                                if (this.disturbed == true)
+                                {
+                                    if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
+                                    {
+                                        this.callForNearbyHelpFromType(1850, "Soldier");
+                                    }
+                                }
+                                else
+                                {
+                                    //this.callForHelp(1850, "Soldier");
+                                }
+                            }
+                            else
+                            {
                                 this.ranged = false;
                                 this.attacking = false;
-                                this.moveInRelationToPlayer();
-                                this.pointAwayFromPlayer();
-                                if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
+                                if (this.target == player && this.disturbed)
                                 {
-                                    this.callForNearbyHelpFromType(1850, "Soldier");
+                                    this.moveInRelationToPlayer();
+                                    this.pointAwayFromPlayer();
+                                }
+                                else if (this.target != "none")
+                                {
+                                    this.pointAway(this.target);
+                                    this.moveInRelationToThing(this.target);
+                                }
+                                else
+                                {
+                                    this.offended = false;
+                                }
+
+                                if (this.disturbed == true)
+                                {
+                                    if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
+                                    {
+                                        this.callForNearbyHelpFromType(1850, "Soldier");
+                                    }
+                                }
+                                else
+                                {
+                                    //this.callForHelp(1850, "Soldier");
                                 }
                             }
                         }
                         else if (this.ultra.personality == "scared")
                         {
                             this.ranged = false;
-                            this.moveInRelationToPlayer();
-                            this.pointAwayFromPlayer();
-                            if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
+                            if (this.target == player && this.disturbed)
                             {
-                                this.callForNearbyHelpFromType(1850, "Soldier");
+                                this.moveInRelationToPlayer();
+                                this.pointAwayFromPlayer();
+                            }
+                            else if (this.target != "none")
+                            {
+                                this.pointAway(this.target);
+                                this.moveInRelationToThing(this.target);
+                            }
+                            else
+                            {
+                                this.offended = false;
+                            }
+
+                            if (this.disturbed == true)
+                            {
+                                if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
+                                {
+                                    this.callForNearbyHelpFromType(1850, "Soldier");
+                                }
+                            }
+                            else
+                            {
+                                this.callForHelp(1850, "Soldier");
                             }
                         }
                     }
@@ -35788,7 +37030,7 @@ function theLegend()
                     if (this.doOnDeathOnce == true)
                     {
                         //Faction relation decreases
-                        if (this.ultra.faction == "Freynor")
+                        if (this.ultra.faction == "Freynor" && this.killNotByPlayer == false)
                         {
                             player.freynorFaction -= 25;
                             if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
@@ -35796,7 +37038,7 @@ function theLegend()
                                 this.callForNearbyHelpFromType(1850, "Soldier");
                             }
                         }
-                        else if (this.ultra.faction == "Orgell")
+                        else if (this.ultra.faction == "Orgell" && this.killNotByPlayer == false)
                         {
                             player.orgellFaction -= 25;
                             if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
@@ -35804,7 +37046,7 @@ function theLegend()
                                 this.callForNearbyHelpFromType(1850, "Soldier");
                             }
                         }
-                        else if (this.ultra.faction == "Vardan")
+                        else if (this.ultra.faction == "Vardan" && this.killNotByPlayer == false)
                         {
                             player.vardanFaction -= 25;
                             if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
@@ -35817,22 +37059,34 @@ function theLegend()
                         if (this.ID == "Laandeg the Alchemist")
                         {
                             uniqueChars.laandegLDS = false;
-                            player.freynorFaction -= 6;
+                            if (this.killNotByPlayer == false)
+                            {
+                                player.freynorFaction -= 6;
+                            }
                         }
                         if (this.ID == "Svehn the Smith")
                         {
                             uniqueChars.bobithLDS = false;
-                            player.freynorFaction -= 9;
+                            if (this.killNotByPlayer == false)
+                            {
+                                player.freynorFaction -= 9;
+                            }
                         }
                         else if (this.ID == "Medlia the Merchant")
                         {
                             uniqueChars.medliaLDS = false;
-                            player.freynorFaction -= 12;
+                            if (this.killNotByPlayer == false)
+                            {
+                                player.freynorFaction -= 12;
+                            }
                         }
                         else if (this.ID == "Kedwin")
                         {
                             uniqueChars.kedwinLDS = false;
-                            player.freynorFaction -= 7;
+                            if (this.killNotByPlayer == false)
+                            {
+                                player.freynorFaction -= 7;
+                            }
                         }
                         else if (this.ID == "Teber the Deserter" || this.ID == "Teber the Artisan")
                         {
@@ -35841,27 +37095,42 @@ function theLegend()
                         else if (this.ID == "Hilmund the Innkeeper")
                         {
                             uniqueChars.hilmundLDS = false;
-                            player.freynorFaction -= 15;
+                            if (this.killNotByPlayer == false)
+                            {
+                                player.freynorFaction -= 15;
+                            }
                         }
                         else if (this.ID == "Drohfor")
                         {
                             uniqueChars.drohforLDS = false;
-                            player.freynorFaction -= 2;
+                            if (this.killNotByPlayer == false)
+                            {
+                                player.freynorFaction -= 2;
+                            }
                         }
                         else if (this.ID == "Maggy the Tailor")
                         {
                             uniqueChars.maggyLDS = false;
-                            player.freynorFaction -= 14;
+                            if (this.killNotByPlayer == false)
+                            {
+                                player.freynorFaction -= 14;
+                            }
                         }
                         else if (this.ID == "Odee the Banker")
                         {
                             uniqueChars.odeeLDS = false;
-                            player.freynorFaction -= 11;
+                            if (this.killNotByPlayer == false)
+                            {
+                                player.freynorFaction -= 11;
+                            }
                         }
                         else if (this.ID == "Toggin")
                         {
                             uniqueChars.togginLDS = false;
-                            player.freynorFaction -= 6;
+                            if (this.killNotByPlayer == false)
+                            {
+                                player.freynorFaction -= 6;
+                            }
                         }
                         else if (this.ID == "Neculai the Merchant" || this.ID == "Neculai the Beggar")
                         {
@@ -35870,17 +37139,26 @@ function theLegend()
                         else if (this.ID == "Fenwik the Smith")
                         {
                             uniqueChars.fenwikLDS = false;
-                            player.kelFaction -= 10;
+                            if (this.killNotByPlayer == false)
+                            {
+                                player.kelFaction -= 10;
+                            }
                         }
                         else if (this.ID == "Roselin the Tailor")
                         {
                             uniqueChars.roselinLDS = false;
-                            player.kelFaction -= 12;
+                            if (this.killNotByPlayer == false)
+                            {
+                                player.kelFaction -= 12;
+                            }
                         }
                         else if (this.ID == "Chieftan Schuylar")
                         {
                             uniqueChars.schuylarLDS = false;
-                            player.kelFaction -= 100;
+                            if (this.killNotByPlayer == false)
+                            {
+                                player.kelFaction -= 100;
+                            }
                         }
                         else
                         {
@@ -36042,10 +37320,24 @@ function theLegend()
                 //AI
                 if (this.alive == true)
                 {
+                    this.friendDecider();
+                    this.targeting();
+
                     if (this.ultra.faction == "Freynor")
                     {
+                        if (player.title == "Royalty" && player.raceName == "Freynor")
+                        {
+                            this.team = "player";
+                            this.baseTeam = "player"
+                        }
+
                         if (this.ID == "Torg Soldier" || this.ID == "Torg Captain" || this.ID == "Torg Commissioner Stendor")
                         {
+                            if (player.title == "Nobility" && player.raceName == "Freynor")
+                            {
+                                this.team = "player";
+                                this.baseTeam = "player"
+                            }
                             //RANGE OF SIGHT (anything related to range of sight)
                             this.rangeOfSightCalculator(750, "true");
 
@@ -36222,14 +37514,34 @@ function theLegend()
                         this.drops = [];
                     }
 
-                    if (this.disturbed == true)
+                    if (this.disturbed == true || this.DTU(this.target) <= this.baseSight && this.target != player)
                     {
-                        this.hostile = true; //let the games animation know to display the person's name in red.
-                        this.pointTowardsPlayer();
-                        this.moveInRelationToPlayer();
+                        if (this.disturbed == true)
+                        {
+                            this.hostile = true; //let the games animation know to display the person's name in red.
+                        }
+
+                        if (this.target == player && this.disturbed)
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.pointTowards(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
+                        else
+                        {
+                            this.offended = false;
+                        }
+
                         if (this.ranged == false)
                         {
-                            this.Attack(this.ultra.weapon[1][1], this.ultra.weapon[1][0]);
+                            if (this.target == player && this.disturbed || this.target != player)
+                            {
+                                this.Attack(this.ultra.weapon[1][1], this.ultra.weapon[1][0]);
+                            }
                         }
                     }
                     else
@@ -36259,19 +37571,28 @@ function theLegend()
                     {
                         if (this.ultra.faction == "hostile")
                         {
-                            if (this.ID == "Northern Bandit" || this.ID == "Hetmer The Bandit Chief")
+                            if (this.killNotByPlayer == false)
                             {
-                                this.callForNearbyHelpFromType(350, "Soldier");
+                                if (this.ID == "Northern Bandit" || this.ID == "Hetmer The Bandit Chief")
+                                {
+                                    this.callForNearbyHelpFromType(350, "Soldier");
+                                }
                             }
                         }
                         else if (player.title != "Royalty" || player.raceName != this.ultra.faction)
                         {
-                            this.callForNearbyHelpFromType(2000, "Soldier");
+                            if (this.killNotByPlayer == false)
+                            {
+                                this.callForNearbyHelpFromType(2000, "Soldier");
+                            }
                         }
                         //Faction relation decreases
                         if (this.ultra.faction == "Freynor")
                         {
-                            player.freynorFaction -= 50;
+                            if (this.killNotByPlayer == false)
+                            {
+                                player.freynorFaction -= 50;
+                            }
                         }
                         //Unique Characters Permanent Death
                         if (this.ID == "Hetmer The Bandit Chief")
@@ -36281,12 +37602,18 @@ function theLegend()
                         else if (this.ID == "Mercenary Captain Kronheime")
                         {
                             uniqueChars.kronheimeLDS = false;
-                            player.theBalgurMercenariesFaction -= 75;
+                            if (this.killNotByPlayer == false)
+                            {
+                                player.theBalgurMercenariesFaction -= 75;
+                            }
                         }
                         else if (this.ID == "Torg Commissioner Stendor")
                         {
                             uniqueChars.stendorLDS = false;
-                            player.freynorFaction -= 80;
+                            if (this.killNotByPlayer == false)
+                            {
+                                player.freynorFaction -= 80;
+                            }
                         }
 
                         //track Deaths Of Certain Non-Unique Units During Certain Quests
@@ -36304,7 +37631,10 @@ function theLegend()
                             if (this.ID == "Balgur Mercenary")
                             {
                                 quests.theBalgurMercenariesMercsKilled += 1;
-                                player.theBalgurMercenariesFaction -= 50;
+                                if (this.killNotByPlayer == false)
+                                {
+                                    player.theBalgurMercenariesFaction -= 50;
+                                }
                             }
                         }
 
@@ -40393,6 +41723,41 @@ function theLegend()
                 this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
                 this.sellValue = 1; // at max, sell for 1.
             }
+            else if (this.type == "ardilMeat")
+            {
+                //For All Items
+                this.identity = "Ardil Meat";
+                this.weight = 0.3;
+                this.size = 4;
+                this.description = "The cooked meat of an Ardil.";
+                this.intForDes = 1;
+                this.intDescription = "Chewy, and a bit gamey... but it's alright.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 1.5; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 1; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 1;
+                this.ingredients = [["Raw Ardil Flesh", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 2 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
             else if (this.type == "hugeBogTrollSkull")
             {
                 //For All Items
@@ -40967,6 +42332,35 @@ function theLegend()
                 this.warmth = 0; //warms player.
                 this.heal = 0; //heals health.
                 this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "gutWorms";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "rawArdilFlesh")
+            {
+                //For All Items
+                this.identity = "Raw Ardil Flesh";
+                this.weight = 0.35;
+                this.size = 4;
+                this.description = "The raw flesh from an Ardil.";
+                this.intForDes = 4;
+                this.intDescription = "Just a little bit infested with gut worms...";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0.5; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -0.5; //recoops lost energy.
                 this.replenish = 0; //restores will.
 
                 //ability
@@ -43918,6 +45312,26 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 9 - Math.floor(player.getCharisma() / 15); // at max, buy for 6.
                 this.sellValue = 2 + Math.floor(player.getCharisma() / 15); // at max, sell for 5.
+            }
+            else if (this.type == "ardilPelt")
+            {
+                //For All Items
+                this.identity = "Ardil Pelt";
+                this.weight = 0.4;
+                this.size = 6;
+                this.description = "The redish brown furred, three tailed pelt of an ardil.";
+                this.intForDes = 2;
+                this.intDescription = "Ardil pelts are a cheap commodity used to make basic fur clothing.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+                this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
             }
             else if (this.type == "neevFur")
             {
@@ -49869,6 +51283,21 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "rawArdilFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 50, 687, 8, 8, X - this.X + (1/2 * CCC.width) - (1/2 * 8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 8), 8, 8);
+            }
+            else if (this.type == "ardilMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 82, 686, 8, 8, X - this.X + (1/2 * CCC.width) - (1/2 * 8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 8), 8, 8);
+            }
+            else if (this.type == "ardilPelt")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 928, 701, 29, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 29), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20), 29, 20);
+            }
             else if (this.type == "pumpkinDough")
             {
                 XXX.beginPath();
@@ -51272,6 +52701,21 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "rawArdilFlesh")
+            {
+                LXX.beginPath();
+                LXX.drawImage(theCrack, 50, 687, 8, 8, this.invX - (1/2 * 8), this.invY - (1/2 * 8), 8, 8);
+            }
+            else if (this.type == "ardilMeat")
+            {
+                LXX.beginPath();
+                LXX.drawImage(theCrack, 82, 686, 8, 8, this.invX - (1/2 * 8), this.invY - (1/2 * 8), 8, 8);
+            }
+            else if (this.type == "ardilPelt")
+            {
+                LXX.beginPath();
+                LXX.drawImage(theCrack, 928, 701, 29, 20, this.invX - (1/2 * 29), this.invY - (1/2 * 20), 29, 20);
+            }
             else if (this.type == "pumpkinDough")
             {
                 LXX.beginPath();
@@ -52672,6 +54116,21 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "rawArdilFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 50, 687, 8, 8, this.invX - (1/2 * 8), this.invY - (1/2 * 8), 8, 8);
+            }
+            else if (this.type == "ardilMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 82, 686, 8, 8, this.invX - (1/2 * 8), this.invY - (1/2 * 8), 8, 8);
+            }
+            else if (this.type == "ardilPelt")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 928, 701, 29, 20, this.invX - (1/2 * 29), this.invY - (1/2 * 20), 29, 20);
             }
             else if (this.type == "smashStick" || this.type == "burningSmashStick")
             {
@@ -54426,6 +55885,19 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(5986, -1355, "Naaprid", "baby", "Aaptelava"));
                     ArtificialIntelligenceAccess.push(new Unit(6111, -943, "Naaprid", true, "Paaktolav"));
 
+                    //Grassland Ardils
+                    ArtificialIntelligenceAccess.push(new Unit(-24, -235, "Ardil", true, "Fuzzybut"));
+                    ArtificialIntelligenceAccess.push(new Unit(1796, -2657, "Ardil", true, "Fannyfur"));
+                    ArtificialIntelligenceAccess.push(new Unit(-3756, -1947, "Ardil", true, "Fannybut"));
+                    ArtificialIntelligenceAccess.push(new Unit(-3953, -2040, "Ardil", false, "Fannyfran"));
+                    ArtificialIntelligenceAccess.push(new Unit(-3432, 884, "Ardil", false, "Frannyfran"));
+                    ArtificialIntelligenceAccess.push(new Unit(-103, 1881, "Ardil", true, "Fannylanlan"));
+                    ArtificialIntelligenceAccess.push(new Unit(301, 4049, "Ardil", false, "Frannyfranfran"));
+                    ArtificialIntelligenceAccess.push(new Unit(4575, 4970, "Ardil", false, "fuzybut"));
+                    ArtificialIntelligenceAccess.push(new Unit(5756, 5372, "Ardil", true, "furrybut"));
+                    ArtificialIntelligenceAccess.push(new Unit(6183, 1172, "Ardil", false, "Furryfran"));
+                    ArtificialIntelligenceAccess.push(new Unit(4742, 2099, "Ardil", true, "Fuzzyfran"));
+
                     //Wild Varns ventured into grassland to find new food source (because of clearcut)
                     ArtificialIntelligenceAccess.push(new Unit(-42, -1983, "Varn", true, "Scrag"));
                     ArtificialIntelligenceAccess.push(new Unit(-420, -1871, "Varn", false, "Kretta"));
@@ -54848,6 +56320,10 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-9062, 4191, "Shehid", false, "timbri"));
                     ArtificialIntelligenceAccess.push(new Unit(-9270, 4377, "Shehid", false, "timbro"));
                     ArtificialIntelligenceAccess.push(new Unit(-8787, 4040, "Shehid", false, "timbra"));
+
+                    //Ardils
+                    ArtificialIntelligenceAccess.push(new Unit(-3936, 5729, "Ardil", true, "Fannyfranfran"));
+                    ArtificialIntelligenceAccess.push(new Unit(-4277, 4587, "Ardil", false, "busybut"));
 
                     //Vipers
                     ArtificialIntelligenceAccess.push(new Unit(-9607, 2648, "Viper", false, "slitherz"));
@@ -55750,6 +57226,15 @@ function theLegend()
     }
     function save()
     {
+        //Set target to none for all Units before saving. //both dead and alive
+        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+        {
+            ArtificialIntelligenceAccess[i].target = "none";
+        }
+        for (var i = 0; i < deadAIList.length; i++)
+        {
+            deadAIList[i].target = "none";
+        }
         //This is the stuff that will be saved to the local storage.
         saveList(mainCharacterAccess, "mainCharacterAccess");
         saveList(ArtificialIntelligenceAccess, "ArtificialIntelligenceAccess");

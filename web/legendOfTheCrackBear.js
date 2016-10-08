@@ -16051,7 +16051,7 @@ function theLegend()
         };
 
         //SAVE SLOTS
-        this.displaySaves = function()
+        this.displaySaves = function() //superbooble
         {
             if (lowBar == "save")
             {
@@ -16066,11 +16066,38 @@ function theLegend()
                 //text
                 LXX.fillStyle = "black";
                 LXX.textAlign ="center";
-                LXX.font="bold 30px Book Antiqua";
-                LXX.fillText("Save 1", 87.5, 52);
+                var getSaveData = localStorage.getItem("save1");
+                var getData = "none";
+                var dataList = [];
                 //sensing/action
                 if (lMouseX > 1 && lMouseX < 175 && lMouseY > 1 && lMouseY < 78)
                 {
+                    loadType = 1;
+                    if (typeof(getSaveData) != "undefined")
+                    {
+                        getData = JSON.parse(getSaveData);
+                        if (getData != null)
+                        {
+                            dataList = loadList("mainCharacterAccess");
+                            LXX.font="bold 16px Book Antiqua";
+                            LXX.fillText(dataList[0].name, 87.5, 27);
+                            LXX.font="bold 10px Book Antiqua";
+                            LXX.fillText("LV: " + dataList[0].level, 87.5, 47);
+                            LXX.fillText("MLV: " + dataList[0].magicLevel, 87.5, 60);
+                            LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints), 87.5, 73);
+                        }
+                        else
+                        {
+                            LXX.font="bold 30px Book Antiqua";
+                            LXX.fillText("Empty", 87.5, 52);
+                        }
+                    }
+                    else
+                    {
+                        LXX.font="bold 30px Book Antiqua";
+                        LXX.fillText("Empty", 87.5, 52);
+                    }
+
                     //highlight
                     LXX.beginPath();
                     LXX.fillStyle = "rgba(255,215,0, 0.35)";
@@ -16091,6 +16118,11 @@ function theLegend()
                         save1 = null;
                     }
                 }
+                else
+                {
+                    LXX.font="bold 30px Book Antiqua";
+                    LXX.fillText("Save 1", 87.5, 52);
+                }
 
                 //box 2
                 LXX.beginPath();
@@ -16103,11 +16135,38 @@ function theLegend()
                 //text
                 LXX.fillStyle = "black";
                 LXX.textAlign ="center";
-                LXX.font="bold 30px Book Antiqua";
-                LXX.fillText("Save 2", 176 + 87.5, 52);
+                var getSaveData = localStorage.getItem("save2");
+                var getData = "none";
+                var dataList = [];
                 //sensing/action
                 if (lMouseX > 176 && lMouseX < 176 + 173 && lMouseY > 1 && lMouseY < 78)
                 {
+                    loadType = 2;
+                    if (typeof(getSaveData) != "undefined")
+                    {
+                        getData = JSON.parse(getSaveData);
+                        if (getData != null)
+                        {
+                            dataList = loadList("mainCharacterAccess");
+                            LXX.font="bold 16px Book Antiqua";
+                            LXX.fillText(dataList[0].name, 176 + 87.5, 27);
+                            LXX.font="bold 10px Book Antiqua";
+                            LXX.fillText("LV: " + dataList[0].level, 176 + 87.5, 47);
+                            LXX.fillText("MLV: " + dataList[0].magicLevel, 176 + 87.5, 60);
+                            LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints), 176 + 87.5, 73);
+                        }
+                        else
+                        {
+                            LXX.font="bold 30px Book Antiqua";
+                            LXX.fillText("Empty", 176 + 87.5, 52);
+                        }
+                    }
+                    else
+                    {
+                        LXX.font="bold 30px Book Antiqua";
+                        LXX.fillText("Empty", 176 + 87.5, 52);
+                    }
+
                     //highlight
                     LXX.beginPath();
                     LXX.fillStyle = "rgba(255,215,0, 0.35)";
@@ -16128,6 +16187,11 @@ function theLegend()
                         save2 = null;
                     }
                 }
+                else
+                {
+                    LXX.font="bold 30px Book Antiqua";
+                    LXX.fillText("Save 2", 176 + 87.5, 52);
+                }
 
                 //box 3
                 LXX.beginPath();
@@ -16140,11 +16204,38 @@ function theLegend()
                 //text
                 LXX.fillStyle = "black";
                 LXX.textAlign ="center";
-                LXX.font="bold 30px Book Antiqua";
-                LXX.fillText("Save 3", 351 + 87.5, 52);
+                var getSaveData = localStorage.getItem("save3");
+                var getData = "none";
+                var dataList = [];
                 //sensing/action
                 if (lMouseX > 351 && lMouseX < 351 + 173 && lMouseY > 1 && lMouseY < 78)
                 {
+                    loadType = 3;
+                    if (typeof(getSaveData) != "undefined")
+                    {
+                        getData = JSON.parse(getSaveData);
+                        if (getData != null)
+                        {
+                            dataList = loadList("mainCharacterAccess");
+                            LXX.font="bold 16px Book Antiqua";
+                            LXX.fillText(dataList[0].name, 351 + 87.5, 27);
+                            LXX.font="bold 10px Book Antiqua";
+                            LXX.fillText("LV: " + dataList[0].level, 351 + 87.5, 47);
+                            LXX.fillText("MLV: " + dataList[0].magicLevel, 351 + 87.5, 60);
+                            LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints), 351 + 87.5, 73);
+                        }
+                        else
+                        {
+                            LXX.font="bold 30px Book Antiqua";
+                            LXX.fillText("Empty", 351 + 87.5, 52);
+                        }
+                    }
+                    else
+                    {
+                        LXX.font="bold 30px Book Antiqua";
+                        LXX.fillText("Empty", 351 + 87.5, 52);
+                    }
+
                     //highlight
                     LXX.beginPath();
                     LXX.fillStyle = "rgba(255,215,0, 0.35)";
@@ -16165,6 +16256,11 @@ function theLegend()
                         save3 = null;
                     }
                 }
+                else
+                {
+                    LXX.font="bold 30px Book Antiqua";
+                    LXX.fillText("Save 3", 351 + 87.5, 52);
+                }
 
                 //box 4
                 LXX.beginPath();
@@ -16177,11 +16273,38 @@ function theLegend()
                 //text
                 LXX.fillStyle = "black";
                 LXX.textAlign ="center";
-                LXX.font="bold 30px Book Antiqua";
-                LXX.fillText("Save 4", 526 + 87.5, 52);
+                var getSaveData = localStorage.getItem("save4");
+                var getData = "none";
+                var dataList = [];
                 //sensing/action
                 if (lMouseX > 526 && lMouseX < 526 + 173 && lMouseY > 1 && lMouseY < 78)
                 {
+                    loadType = 4;
+                    if (typeof(getSaveData) != "undefined")
+                    {
+                        getData = JSON.parse(getSaveData);
+                        if (getData != null)
+                        {
+                            dataList = loadList("mainCharacterAccess");
+                            LXX.font="bold 16px Book Antiqua";
+                            LXX.fillText(dataList[0].name, 526 + 87.5, 27);
+                            LXX.font="bold 10px Book Antiqua";
+                            LXX.fillText("LV: " + dataList[0].level, 526 + 87.5, 47);
+                            LXX.fillText("MLV: " + dataList[0].magicLevel, 526 + 87.5, 60);
+                            LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints), 526 + 87.5, 73);
+                        }
+                        else
+                        {
+                            LXX.font="bold 30px Book Antiqua";
+                            LXX.fillText("Empty", 526 + 87.5, 52);
+                        }
+                    }
+                    else
+                    {
+                        LXX.font="bold 30px Book Antiqua";
+                        LXX.fillText("Empty", 526 + 87.5, 52);
+                    }
+
                     //highlight
                     LXX.beginPath();
                     LXX.fillStyle = "rgba(255,215,0, 0.35)";
@@ -16202,6 +16325,11 @@ function theLegend()
                         save4 = null;
                     }
                 }
+                else
+                {
+                    LXX.font="bold 30px Book Antiqua";
+                    LXX.fillText("Save 4", 526 + 87.5, 52);
+                }
                 //box 5
                 LXX.beginPath();
                 LXX.fillStyle = "lightGrey";
@@ -16213,11 +16341,38 @@ function theLegend()
                 //text
                 LXX.fillStyle = "black";
                 LXX.textAlign ="center";
-                LXX.font="bold 30px Book Antiqua";
-                LXX.fillText("Save 5", 701 + 87.5, 52);
+                var getSaveData = localStorage.getItem("save5");
+                var getData = "none";
+                var dataList = [];
                 //sensing/action
                 if (lMouseX > 701 && lMouseX < 701 + 173 && lMouseY > 1 && lMouseY < 78)
                 {
+                    loadType = 5;
+                    if (typeof(getSaveData) != "undefined")
+                    {
+                        getData = JSON.parse(getSaveData);
+                        if (getData != null)
+                        {
+                            dataList = loadList("mainCharacterAccess");
+                            LXX.font="bold 16px Book Antiqua";
+                            LXX.fillText(dataList[0].name, 701 + 87.5, 27);
+                            LXX.font="bold 10px Book Antiqua";
+                            LXX.fillText("LV: " + dataList[0].level, 701 + 87.5, 47);
+                            LXX.fillText("MLV: " + dataList[0].magicLevel, 701 + 87.5, 60);
+                            LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints), 701 + 87.5, 73);
+                        }
+                        else
+                        {
+                            LXX.font="bold 30px Book Antiqua";
+                            LXX.fillText("Empty", 701 + 87.5, 52);
+                        }
+                    }
+                    else
+                    {
+                        LXX.font="bold 30px Book Antiqua";
+                        LXX.fillText("Empty", 701 + 87.5, 52);
+                    }
+
                     //highlight
                     LXX.beginPath();
                     LXX.fillStyle = "rgba(255,215,0, 0.35)";
@@ -16238,6 +16393,11 @@ function theLegend()
                         save5 = null;
                     }
                 }
+                else
+                {
+                    LXX.font="bold 30px Book Antiqua";
+                    LXX.fillText("Save 5", 701 + 87.5, 52);
+                }
                 //box 6
                 LXX.beginPath();
                 LXX.fillStyle = "lightGrey";
@@ -16249,11 +16409,38 @@ function theLegend()
                 //text
                 LXX.fillStyle = "black";
                 LXX.textAlign ="center";
-                LXX.font="bold 30px Book Antiqua";
-                LXX.fillText("Save 6", 876 + 87.5, 52);
+                var getSaveData = localStorage.getItem("save6");
+                var getData = "none";
+                var dataList = [];
                 //sensing/action
                 if (lMouseX > 876 && lMouseX < 876 + 173 && lMouseY > 1 && lMouseY < 78)
                 {
+                    loadType = 6;
+                    if (typeof(getSaveData) != "undefined")
+                    {
+                        getData = JSON.parse(getSaveData);
+                        if (getData != null)
+                        {
+                            dataList = loadList("mainCharacterAccess");
+                            LXX.font="bold 16px Book Antiqua";
+                            LXX.fillText(dataList[0].name, 876 + 87.5, 27);
+                            LXX.font="bold 10px Book Antiqua";
+                            LXX.fillText("LV: " + dataList[0].level, 876 + 87.5, 47);
+                            LXX.fillText("MLV: " + dataList[0].magicLevel, 876 + 87.5, 60);
+                            LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints), 876 + 87.5, 73);
+                        }
+                        else
+                        {
+                            LXX.font="bold 30px Book Antiqua";
+                            LXX.fillText("Empty", 876 + 87.5, 52);
+                        }
+                    }
+                    else
+                    {
+                        LXX.font="bold 30px Book Antiqua";
+                        LXX.fillText("Empty", 876 + 87.5, 52);
+                    }
+
                     //highlight
                     LXX.beginPath();
                     LXX.fillStyle = "rgba(255,215,0, 0.35)";
@@ -16274,6 +16461,11 @@ function theLegend()
                         save6 = null;
                     }
                 }
+                else
+                {
+                    LXX.font="bold 30px Book Antiqua";
+                    LXX.fillText("Save 6", 876 + 87.5, 52);
+                }
                 //box 7
                 LXX.beginPath();
                 LXX.fillStyle = "lightGrey";
@@ -16285,11 +16477,38 @@ function theLegend()
                 //text
                 LXX.fillStyle = "black";
                 LXX.textAlign ="center";
-                LXX.font="bold 30px Book Antiqua";
-                LXX.fillText("Save 7", 1051 + 87.5, 52);
+                var getSaveData = localStorage.getItem("save7");
+                var getData = "none";
+                var dataList = [];
                 //sensing/action
                 if (lMouseX > 1051 && lMouseX < 1051 + 173 && lMouseY > 1 && lMouseY < 78)
                 {
+                    loadType = 7;
+                    if (typeof(getSaveData) != "undefined")
+                    {
+                        getData = JSON.parse(getSaveData);
+                        if (getData != null)
+                        {
+                            dataList = loadList("mainCharacterAccess");
+                            LXX.font="bold 16px Book Antiqua";
+                            LXX.fillText(dataList[0].name, 1051 + 87.5, 27);
+                            LXX.font="bold 10px Book Antiqua";
+                            LXX.fillText("LV: " + dataList[0].level, 1051 + 87.5, 47);
+                            LXX.fillText("MLV: " + dataList[0].magicLevel, 1051 + 87.5, 60);
+                            LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints), 1051 + 87.5, 73);
+                        }
+                        else
+                        {
+                            LXX.font="bold 30px Book Antiqua";
+                            LXX.fillText("Empty", 1051 + 87.5, 52);
+                        }
+                    }
+                    else
+                    {
+                        LXX.font="bold 30px Book Antiqua";
+                        LXX.fillText("Empty", 1051 + 87.5, 52);
+                    }
+
                     //highlight
                     LXX.beginPath();
                     LXX.fillStyle = "rgba(255,215,0, 0.35)";
@@ -16310,6 +16529,11 @@ function theLegend()
                         save7 = null;
                     }
                 }
+                else
+                {
+                    LXX.font="bold 30px Book Antiqua";
+                    LXX.fillText("Save 7", 1051 + 87.5, 52);
+                }
                 //box 8
                 LXX.beginPath();
                 LXX.fillStyle = "lightGrey";
@@ -16321,11 +16545,38 @@ function theLegend()
                 //text
                 LXX.fillStyle = "black";
                 LXX.textAlign ="center";
-                LXX.font="bold 30px Book Antiqua";
-                LXX.fillText("Save 8", 1226 + 87.5, 52);
+                var getSaveData = localStorage.getItem("save8");
+                var getData = "none";
+                var dataList = [];
                 //sensing/action
                 if (lMouseX > 1226 && lMouseX < 1226 + 173 && lMouseY > 1 && lMouseY < 78)
                 {
+                    loadType = 8;
+                    if (typeof(getSaveData) != "undefined")
+                    {
+                        getData = JSON.parse(getSaveData);
+                        if (getData != null)
+                        {
+                            dataList = loadList("mainCharacterAccess");
+                            LXX.font="bold 16px Book Antiqua";
+                            LXX.fillText(dataList[0].name, 1226 + 87.5, 27);
+                            LXX.font="bold 10px Book Antiqua";
+                            LXX.fillText("LV: " + dataList[0].level, 1226 + 87.5, 47);
+                            LXX.fillText("MLV: " + dataList[0].magicLevel, 1226 + 87.5, 60);
+                            LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints), 1226 + 87.5, 73);
+                        }
+                        else
+                        {
+                            LXX.font="bold 30px Book Antiqua";
+                            LXX.fillText("Empty", 1226 + 87.5, 52);
+                        }
+                    }
+                    else
+                    {
+                        LXX.font="bold 30px Book Antiqua";
+                        LXX.fillText("Empty", 1226 + 87.5, 52);
+                    }
+
                     //highlight
                     LXX.beginPath();
                     LXX.fillStyle = "rgba(255,215,0, 0.35)";
@@ -16345,6 +16596,11 @@ function theLegend()
                         confirmed = false;
                         save8 = null;
                     }
+                }
+                else
+                {
+                    LXX.font="bold 30px Book Antiqua";
+                    LXX.fillText("Save 8", 1226 + 87.5, 52);
                 }
             }
         };

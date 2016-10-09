@@ -582,6 +582,17 @@ function secondToLastPreStage()
 
     theCrack.onload = function()
     {
+        comingUpToLastPreStage();
+    };
+}
+function comingUpToLastPreStage()
+{
+    var polpol = new Image();
+    polpol.src = ("images/polpol.png");
+    window.polpol = polpol;
+
+    polpol.onload = function()
+    {
         almostLastPreStage();
     };
 }
@@ -949,7 +960,7 @@ function theLegend()
     //todo TEST INVENTORIES
     //Inventory = [[new Item("coins", false, false), 10000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2], [new Item("shehidToxinArrow", false, false), 45], [new Item("oiledArrow", false, false), 45], [new Item("fireStarter", false, false), 1], [new Item("lifeLeachArrow", false, false), 45], [new Item("fireArrow", false, false), 45], [new Item("freezingArrow", false, false), 45], [new Item("oilLantern", false, false), 1], [new Item("berulnToothNecklace", false, false), 1], [new Item("ogardPerfume", false, false), 2]];
     //Inventory = [[new Item("avrakLeatherArmour", false, false), 1], [new Item("varnFiber", false, false), 1], [new Item("avrakHide", false, false), 1], [new Item("rawAvrakFlesh", false, false), 1], [new Item("avrakMeat", false, false), 1], [new Item("healingSalve", false, false), 1], [new Item("driedCyrinthilimMushroom", false, false), 1], [new Item("cyrinthilimMushroom", false, false), 1], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfNaapridMilk", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 1], [new Item("kellishClayPot", false, false), 1], [new Item("fermentedViperVenomGland", false, false), 1], [new Item("viperVenomGland", false, false), 1], [new Item("viperSnakeSkin", false, false), 1], [new Item("rawViperFlesh", false, false), 1], [new Item("viperMeat", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
-    Inventory = [[new Item("lightningCorseque", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("burningSmashStick", false, false), 1], [new Item("bullet", false, false), 200], [new Item("blackPowder", false, false), 200], [new Item("musket", false, false), 1], [new Item("blunderbuss", false, false), 1], [new Item("cutlass", false, false), 1], [new Item("avrakLeatherArmour", false, false), 1], [new Item("balgurCaptainArmour", false, false), 1], [new Item("balgurMercArmour", false, false), 1], [new Item("longSpikedMorningStar", false, false), 1], [new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
+    Inventory = [[new Item("kellishSword", false, false), 1], [new Item("lightningCorseque", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("burningSmashStick", false, false), 1], [new Item("bullet", false, false), 200], [new Item("blackPowder", false, false), 200], [new Item("musket", false, false), 1], [new Item("blunderbuss", false, false), 1], [new Item("cutlass", false, false), 1], [new Item("avrakLeatherArmour", false, false), 1], [new Item("balgurCaptainArmour", false, false), 1], [new Item("balgurMercArmour", false, false), 1], [new Item("longSpikedMorningStar", false, false), 1], [new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
     //Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1]];
 
     //Test Spells
@@ -1007,6 +1018,7 @@ function theLegend()
     allWeapons.push(new Item("smashStick", false)); //45
     allWeapons.push(new Item("burningSmashStick", false)); //46
     allWeapons.push(new Item("lightningCorseque", false)); //47
+    allWeapons.push(new Item("kellishSword", false)); //48
 
     //This list holds one of each type of worn item so that the player can access the worn item stats.
     var allWorn = [];
@@ -1035,6 +1047,8 @@ function theLegend()
     allWorn.push(new Item("avrakLeatherArmour", false)); //22
     allWorn.push(new Item("blackBearLeatherArmour", false)); //23
     allWorn.push(new Item("blackBearFurClothing", false)); //24
+    allWorn.push(new Item("skinAndBones", false)); //25
+    allWorn.push(new Item("mofuFive", false)); //26
 
     var scenicList = [];
 
@@ -1104,6 +1118,7 @@ function theLegend()
     smithing.push(new Item("musket", false));
     smithing.push(new Item("blunderbuss", false));
     smithing.push(new Item("bullet", false));
+    smithing.push(new Item("kellishSword", false));
     smithing.push(new Item("smashStick", false));
     smithing.push(new Item("burningSmashStick", false));
     smithing.push(new Item("lightningCorseque", false));
@@ -1180,6 +1195,7 @@ function theLegend()
     jewelry.push(new Item("potionGlass", false));
     jewelry.push(new Item("fireStarter", false));
     jewelry.push(new Item("berulnToothNecklace", false));
+    jewelry.push(new Item("mofuFive", false));
 
         //Alchemy (Potions and mixtures crafted at an alchemy lab station)
     var alchemy = [];
@@ -1659,9 +1675,18 @@ function theLegend()
                     player.romance.push("hilmund");
                 }
             }
-            else if (cheatcode.toLowerCase() == "resetquests")
+            else if (cheatcode.toLowerCase() == "testunits")
             {
-
+                if (testingUnitCenters == true)
+                {
+                    testingUnitCenters = false;
+                    testingUnitSizes = false;
+                }
+                else
+                {
+                    testingUnitCenters = true;
+                    testingUnitSizes = true;
+                }
             }
             else if (cheatcode == "4444444444444444")
             {
@@ -4323,6 +4348,14 @@ function theLegend()
                 if (player.outfitType.ability == "heavy")
                 {
                     player.freeze = Math.max(player.freeze, 3);
+                }
+                if (player.outfitType.ability == "hefty")
+                {
+                    player.freeze = Math.max(player.freeze, 2);
+                }
+                if (player.outfitType.ability == "slow")
+                {
+                    player.freeze = Math.max(player.freeze, 1.5);
                 }
             }
         }
@@ -8271,6 +8304,10 @@ function theLegend()
             {
                 outfit = allWorn[24];
             }
+            else if (this.outfitEquipped == "skinAndBones")
+            {
+                outfit = allWorn[25];
+            }
             else
             {
                 outfit = allWorn[0];
@@ -8292,6 +8329,10 @@ function theLegend()
             if (this.necklaceEquipped == "berulnToothNecklace")
             {
                 necklace = allWorn[21];
+            }
+            if (this.necklaceEquipped == "mofuFive")
+            {
+                necklace = allWorn[26];
             }
             else
             {
@@ -8385,6 +8426,16 @@ function theLegend()
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(verse, 1915, 1, 31, 27, -(1 / 2 * 26) - 1.3, -(1 / 2 * 27) + 1.5, 27, 27);
+                XXX.restore();
+            }
+            else if (this.outfitEquipped == "skinAndBones")
+            {
+                this.outfitZ = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                //XXX.drawImage(polpol, 112, 139, 21, 26, -(1 / 2 * 21 * 1.6) - 2, -(1 / 2 * 26 * 1.6) + 2, 21 * 1.6, 26 * 1.6);
+                XXX.drawImage(polpol, 112, 139, 21, 26, -(1 / 2 * 21 * 2) - 2, -(1 / 2 * 26 * 2) + 2, 21 * 2, 26 * 2);
                 XXX.restore();
             }
             else if (this.outfitEquipped == "blackBearLeatherArmour")
@@ -10103,7 +10154,70 @@ function theLegend()
                     XXX.restore();
                 }
             }
-            //MACE
+            //KELLISH SWORD
+            if (this.weaponEquipped == "kellishSword")
+            {
+                this.stageEngine(7, 0.21, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+                //ATTACK ANIMATION
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 160, 14, 77, 75, -1/2 * 77 * 1.3 + 4, -1/2 * 75 * 1.3 - 17, 77 * 1.3, 75 * 1.3);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 161, 101, 77, 75, -1/2 * 77 * 1.3 + 1, -1/2 * 75 * 1.3 - 13, 77 * 1.3, 75 * 1.3);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 160, 14, 77, 75, -1/2 * 77 * 1.3 + 4, -1/2 * 75 * 1.3 - 17, 77 * 1.3, 75 * 1.3);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 166, 190, 77, 75, -1/2 * 77 * 1.3 - 0.2, -1/2 * 75 * 1.3 - 22, 77 * 1.3, 75 * 1.3);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 248, 9, 77, 75, -1/2 * 77 * 1.3 -0.5, -1/2 * 75 * 1.3 - 23, 77 * 1.3, 75 * 1.3);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 258, 99, 77, 75, -1/2 * 77 * 1.3 + 0.5, -1/2 * 75 * 1.3 - 15, 77 * 1.3, 75 * 1.3);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 6)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 258, 205, 77, 75, -1/2 * 77 * 1.3 - 3, -1/2 * 75 * 1.3 - 3.5, 77 * 1.3, 75 * 1.3);
+                    XXX.restore();
+                }
+            }
+            //LIGHTNING CORSEQUE
             if (this.weaponEquipped == "lightningCorseque")
             {
                 this.stageEngine(4, 0.18, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
@@ -13073,6 +13187,14 @@ function theLegend()
                 //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
                 this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.25/5 * Math.PI) * (this.mySize + 70);
                 this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.25/5 * Math.PI) * (this.mySize + 70);
+            }
+            else if (this.weaponEquipped == "kellishSword")
+            {
+                this.weapon = allWeapons[48];
+
+                //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+                this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.75/5 * Math.PI) * (this.mySize + 35);
+                this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.75/5 * Math.PI) * (this.mySize + 35);
             }
         };
 
@@ -20573,7 +20695,7 @@ function theLegend()
         {
             if (this.health < this.healthMAX && this.health > 0 && this.fleshMites == false && this.hunger > 0 && this.thirst > 0)
             {
-                this.health += 1 * (TTD / (45000 - 420 * this.getEndurance() * 2));
+                this.health += 1 * (TTD / (45000 - 420 * Math.min(58.333, this.getEndurance()) * 2));
             }
             if (this.health > this.healthMAX)
             {
@@ -20631,7 +20753,7 @@ function theLegend()
                 {
                     if (this.energy < this.energyMAX)
                     {
-                        this.energy += 1 * (TTD / (6000 - 57 * this.getEndurance() * 2));
+                        this.energy += 1 * (TTD / (6000 - 57 * Math.min(52, this.getEndurance()) * 2));
                     }
 
                     //increased regeneration speed when not in combat and not moving and when you are not at lower than two thirds of your maximum energy.
@@ -20639,7 +20761,7 @@ function theLegend()
                     {
                         if (this.energy >= (2/3 * this.energyMAX))
                         {
-                            this.energy += 1 * (TTD / (2000 - 10 * this.getEndurance() * 2));
+                            this.energy += 1 * (TTD / (2000 - 10 * Math.min(52, this.getEndurance()) * 2));
                         }
                     }
 
@@ -20654,7 +20776,7 @@ function theLegend()
             {
                 if (this.energy > 0)
                 {
-                    this.energy -= 1 * energil * (TTD / (1300 + 50 * this.getEndurance() * 2));
+                    this.energy -= 1 * energil * (TTD / (1300 + 50 * Math.min(52, this.getEndurance()) * 2));
                 }
 
                 if (this.energy < 0)
@@ -23560,33 +23682,51 @@ function theLegend()
 
             if (this.team == "Freynor")
             {
-                if (player.freynorFaction > -50)
-                {
-                    this.allys.push("player");
-                }
-
                 this.allys.push("theBalgurMercenaries"); //temporarily so that the guards will not slay the mercs. //booble
                 this.allys.push("Vardan"); //temporarily so that the guards will not slay neculai. //booble
             }
             if (this.team == "Vardan")
             {
-                if (player.vardanFaction > -50)
-                {
-                    this.allys.push("player");
-                }
-
                 this.allys.push("Freynor"); //temporarily so that neculai will not slay the villagers. //booble
             }
             if (this.team == "Kel")
             {
-                if (player.kelFaction > -50)
-                {
-                    this.allys.push("player");
-                }
+
             }
             if (this.team == "wild")
             {
                 this.allys.push("shehidia");
+                this.allys.push("narthwarpia");
+                this.allys.push("bearia");
+                this.allys.push("ulgoyia");
+            }
+            if (this.team == "ulgoyia")
+            {
+                this.allys.push("shehidia");
+            }
+            if (this.team == "shehidia")
+            {
+                this.allys.push("ulgoyia");
+            }
+            if (this.team == "narthwarpia")
+            {
+                this.allys.push("wild");
+                this.allys.push("gribia");
+                this.allys.push("bearia");
+            }
+            if (this.team == "gribia")
+            {
+                this.allys.push("shehidia");
+                this.allys.push("narthwarpia");
+                this.allys.push("bearia");
+                this.allys.push("ulgoyia");
+            }
+            if (this.team == "bearia")
+            {
+                this.allys.push("shehidia");
+                this.allys.push("narthwarpia");
+                this.allys.push("gribia");
+                this.allys.push("wild");
             }
         };
 
@@ -26788,11 +26928,75 @@ function theLegend()
                                     teberQueBellas.play();
                                     teberQueBellas.onended = function()
                                     {
-                                        //todo actually make the trade take place here. //booble
                                         playersTurnToSpeak = true;
                                         player.dialoguePosition = 0;
                                         conversationID[1] = 0;
                                         self.SC();
+
+                                        var featherHitz = -1;
+                                        var coinHitz = -1;
+                                        var giveNecklace = false;
+                                        for (var i = 0; i < Inventory.length; i++)
+                                        {
+                                            if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 52)
+                                            {
+                                                coinHitz = i;
+                                            }
+                                            if (Inventory[i][0].type == "mofuFeather" && Inventory[i][1] >= 5)
+                                            {
+                                                featherHitz = i;
+                                            }
+                                        }
+
+                                        if (featherHitz > -1 && coinHitz > -1)
+                                        {
+                                            if (coinHitz > featherHitz)
+                                            {
+                                                if (Inventory[coinHitz][1] == 52)
+                                                {
+                                                    Inventory.splice(coinHitz, 1);
+                                                }
+                                                else
+                                                {
+                                                    Inventory[coinHitz][1] -= 52
+                                                }
+
+                                                if (Inventory[featherHitz][1] == 5)
+                                                {
+                                                    Inventory.splice(featherHitz, 1);
+                                                }
+                                                else
+                                                {
+                                                    Inventory[featherHitz][1] -= 5;
+                                                }
+                                                giveNecklace = true;
+                                            }
+                                            else
+                                            {
+                                                if (Inventory[featherHitz][1] == 5)
+                                                {
+                                                    Inventory.splice(featherHitz, 1);
+                                                }
+                                                else
+                                                {
+                                                    Inventory[featherHitz][1] -= 5;
+                                                }
+
+                                                if (Inventory[coinHitz][1] == 52)
+                                                {
+                                                    Inventory.splice(coinHitz, 1);
+                                                }
+                                                else
+                                                {
+                                                    Inventory[coinHitz][1] -= 52
+                                                }
+                                                giveNecklace = true;
+                                            }
+                                            if (giveNecklace)
+                                            {
+                                                Inventory.push([new Item("mofuFive", false, false), 1]);
+                                            }
+                                        }
                                     }
                                 }
                                 else if (conversationID[1] == "0e")
@@ -28401,7 +28605,7 @@ function theLegend()
                                 }
                                 else if (this.effect == "narthwarpToxin" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
-                                    player.energy -= Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) / 4;
+                                    player.energy -= Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) / 1.5;
                                 }
                                 else if (this.effect == "smashbackI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
@@ -29192,6 +29396,38 @@ function theLegend()
                     this.drawUnit(poly, 452, 141, 55, 58, -31, -51, 55 * 1.15, 58 * 1.15, 1 / 2 * Math.PI);
                 }
             }
+            else if (this.weapon == "kellishSword")
+            {
+                this.damageFrame = "automatic";
+                if (theCostume <= 0)
+                {
+                    this.drawUnit(polpol, 160, 14, 77, 75, -1/2 * 77 * 1.3 + 4, -1/2 * 75 * 1.3 - 17, 77 * 1.3, 75 * 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 1)
+                {
+                    this.drawUnit(polpol, 161, 101, 77, 75, -1/2 * 77 * 1.3 + 1, -1/2 * 75 * 1.3 - 13, 77 * 1.3, 75 * 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 2)
+                {
+                    this.drawUnit(polpol, 160, 14, 77, 75, -1/2 * 77 * 1.3 + 4, -1/2 * 75 * 1.3 - 17, 77 * 1.3, 75 * 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 3)
+                {
+                    this.drawUnit(polpol, 166, 190, 77, 75, -1/2 * 77 * 1.3 - 0.2, -1/2 * 75 * 1.3 - 22, 77 * 1.3, 75 * 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 4)
+                {
+                    this.drawUnit(polpol, 248, 9, 77, 75, -1/2 * 77 * 1.3 -0.5, -1/2 * 75 * 1.3 - 23, 77 * 1.3, 75 * 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume <= 5)
+                {
+                    this.drawUnit(polpol, 258, 99, 77, 75, -1/2 * 77 * 1.3 + 0.5, -1/2 * 75 * 1.3 - 15, 77 * 1.3, 75 * 1.3, 1 / 2 * Math.PI);
+                }
+                else if (theCostume >= 6)
+                {
+                    this.drawUnit(polpol, 258, 205, 77, 75, -1/2 * 77 * 1.3 - 3, -1/2 * 75 * 1.3 - 3.5, 77 * 1.3, 75 * 1.3, 1 / 2 * Math.PI);
+                }
+            }
             else if (this.weapon == "rasper")
             {
                 this.damageFrame = "automatic";
@@ -29741,6 +29977,13 @@ function theLegend()
                     XXX.rotate(this.rotation);
                     XXX.drawImage(polypol, 622, 26, 23, 22, -(1 / 2 * 23 * 1.3) - 0, -(1 / 2 * 22 * 1.3) + 0, 23 * 1.3, 22 * 1.3);
                 }
+                else if (outfit == "skinAndBones")
+                {
+                    XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    //XXX.drawImage(polpol, 112, 139, 21, 26, -(1 / 2 * 21 * 1.6) - 2, -(1 / 2 * 26 * 1.6) + 2, 21 * 1.6, 26 * 1.6);
+                    XXX.drawImage(polpol, 112, 139, 21, 26, -(1 / 2 * 21 * 2) - 2, -(1 / 2 * 26 * 2) + 2, 21 * 2, 26 * 2);
+                }
                 else if (outfit == "blackBearFurClothing")
                 {
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
@@ -30046,7 +30289,7 @@ function theLegend()
             else if (this.type == "Narthwarp")
             {
                 this.damageFrame = "automatic";
-                this.team = "wild";
+                this.team = "narthwarpia";
                 this.baseTeam = this.team;
 
                 if (this.alpha == true)
@@ -30719,6 +30962,109 @@ function theLegend()
 
                 }
             }
+            else if (this.type == "Ulgoy")
+            {
+                this.stackDominance -= 100;
+                this.damageFrame = "automatic";
+                this.team = "ulgoyia";
+                this.baseTeam = this.team;
+                this.mode = "waiting";
+
+                if (this.alpha == true)
+                {
+                    this.magicalResistance = 3;
+                    this.heatResistance = 4;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 23) + 43;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 0;
+                    this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 61;
+                    this.sizeRadius = 24;
+                    this.negateArmour = 4;
+                    this.attackWait = 4.5;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 2.2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0; //was - 10
+                    this.xAdjustment = 0; //was 30
+                }
+                else if (this.alpha == "giant")
+                {
+                    this.magicalResistance = 4;
+                    this.heatResistance = 4;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 131) + 210;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 3.3 + (Math.floor(Math.random() * 3) / 10);
+                    this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 160;
+                    this.sizeRadius = 56;
+                    this.negateArmour = 10;
+                    this.attackWait = 12;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else if (this.alpha == "baby")
+                {
+                    this.magicalResistance = 1;
+                    this.heatResistance = 4;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 5) + 5;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 0;
+                    this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 32;
+                    this.sizeRadius = 9;
+                    this.negateArmour = 1;
+                    this.attackWait = 3.6;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 0.8; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else
+                {
+                    //STATS (non-variable)
+                    this.magicalResistance = 2;
+                    this.heatResistance = 4;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 9) + 22;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 0;
+                    this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 44;
+                    this.sizeRadius = 14;
+                    this.negateArmour = 3;
+                    this.attackWait = 4.1;
+
+                    //this multiplies the draw image skew numbers by 1 so that it stays the same
+                    this.alphaSize = 1.4;
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0; //was -34
+                    this.xAdjustment = 0; //was - 26
+
+                }
+            }
             else if (this.type == "Varn")
             {
                 this.damageFrame = "automatic";
@@ -30956,7 +31302,7 @@ function theLegend()
             else if (this.type == "Grib")
             {
                 this.damageFrame = "automatic";
-                this.team = "wild";
+                this.team = "gribia";
                 this.baseTeam = this.team;
 
                 if (this.alpha == true)
@@ -31011,7 +31357,7 @@ function theLegend()
             else if (this.type == "BlackBear")
             {
                 this.damageFrame = "automatic";
-                this.team = "wild";
+                this.team = "bearia";
                 this.baseTeam = this.team;
 
                 if (this.alpha == true)
@@ -32003,6 +32349,503 @@ function theLegend()
                 else
                 {
                     this.drawUnit(verse, 1742, 5, 83, 33, -55 - this.xAdjustment, -16 - this.yAdjustment, 83 * this.alphaSize, 33 * this.alphaSize);
+                }
+
+            }
+            //ULGOY
+            if (this.type == "Ulgoy")
+            {
+                //Set Drops and experience
+                if (this.alpha == true)
+                {
+                    if (Math.max(0, 25 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 139 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (139 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+                }
+                else if (this.alpha == "giant")
+                {
+                    if (Math.max(0, 175 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 660 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (660 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+                }
+                else if (this.alpha == "baby")
+                {
+                    if (Math.max(0, 5 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 8 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (8 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+                }
+                else
+                {
+                    if (Math.max(0, 15 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 25 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = 12 * ((player.getIntelligence() / 50) + 1) / 10;
+                    }
+                }
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                if (this.alpha == true)
+                {
+                    this.rangeOfSightCalculator(350, false);
+                }
+                else if (this.alpha == "giant")
+                {
+                    this.rangeOfSightCalculator(600, false);
+                }
+                else if (this.alpha == "baby")
+                {
+                    this.rangeOfSightCalculator(300, false);
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(300, false);
+                }
+
+                //AI
+                if (this.alive == true)
+                {
+                    if (this.alpha == true)
+                    {
+                        this.Attack(19, 9);
+                    }
+                    else if (this.alpha == "giant")
+                    {
+                        this.Attack(125, 60);
+                    }
+                    else if (this.alpha == "baby")
+                    {
+                        this.Attack(4, 2);
+                    }
+                    else
+                    {
+                        this.Attack(9, 4);
+                    }
+
+                    //this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                    }
+
+                    if (this.target == player)
+                    {
+                        if (this.DTP() <= this.rangeOfSight)
+                        {
+                            this.modeRequest = "active";
+                        }
+                        else
+                        {
+                            this.modeRequest = "waiting";
+                        }
+                    }
+                    else if (this.target != "none")
+                    {
+                        if (this.DTU(this.target) <= this.rangeOfSight)
+                        {
+                            this.modeRequest = "active";
+                        }
+                        else
+                        {
+                            this.modeRequest = "waiting";
+                        }
+                    }
+
+                }
+                else
+                {
+                    //do stuff when a frich dies...
+                    if (this.doOnDeathOnce == true)
+                    {
+
+                        this.doOnDeathOnce = false;
+                    }
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (this.modeRequest != this.mode) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(3, 0.5, false);
+                    }
+                    else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(10, 0.20, false);
+                        }
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                        }
+                        else if (this.modeRequest != this.mode)
+                        {
+                            if (this.mode == "waiting" && this.modeRequest == "active")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            if (this.mode == "active" && this.modeRequest == "waiting")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+
+                        }
+                        else
+                        {
+                            if (this.mode == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            else if (this.mode == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(polpol, 225, 457, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            this.drawUnit(polpol, 225, 457, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                        }
+                        else if (this.modeRequest != this.mode)
+                        {
+                            this.drawUnit(polpol, 225, 457, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            this.drawUnit(polpol, 225, 457, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                        }
+                        else
+                        {
+                            if (this.mode == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            else if (this.mode == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                        }
+                    }
+                    else if (theCostume <= 2)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                        }
+                        else if (this.modeRequest != this.mode)
+                        {
+                            if (this.mode == "waiting" && this.modeRequest == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            if (this.mode == "active" && this.modeRequest == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            this.mode = this.modeRequest;
+                        }
+                        else
+                        {
+                            if (this.mode == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            else if (this.mode == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                        }
+                    }
+                    else if (theCostume <= 3)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(polpol, 224, 506, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            this.drawUnit(polpol, 224, 506, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                        }
+                        else if (this.modeRequest != this.mode)
+                        {
+                            if (this.mode == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            else if (this.mode == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                        }
+                        else
+                        {
+                            if (this.mode == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            else if (this.mode == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                        }
+                    }
+                    else if (theCostume <= 4)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(polpol, 226, 537, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            this.drawUnit(polpol, 226, 537, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                        }
+                        else if (this.modeRequest != this.mode)
+                        {
+                            if (this.mode == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            else if (this.mode == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                        }
+                        else
+                        {
+                            if (this.mode == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            else if (this.mode == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                        }
+                    }
+                    else if (theCostume <= 5)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(polpol, 225, 568, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            this.drawUnit(polpol, 225, 568, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                        }
+                        else if (this.modeRequest != this.mode)
+                        {
+                            if (this.mode == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            else if (this.mode == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                        }
+                        else
+                        {
+                            if (this.mode == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            else if (this.mode == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                        }
+                    }
+                    else if (theCostume <= 6)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(polpol, 272, 434, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            this.drawUnit(polpol, 272, 434, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                        }
+                        else if (this.modeRequest != this.mode)
+                        {
+                            if (this.mode == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            else if (this.mode == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                        }
+                        else
+                        {
+                            if (this.mode == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            else if (this.mode == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                        }
+                    }
+                    else if (theCostume <= 7)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(polpol, 272, 469, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            this.drawUnit(polpol, 272, 469, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                        }
+                        else if (this.modeRequest != this.mode)
+                        {
+                            if (this.mode == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            else if (this.mode == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                        }
+                        else
+                        {
+                            if (this.mode == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            else if (this.mode == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                        }
+                    }
+                    else if (theCostume <= 8)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(polpol, 274, 499, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            this.drawUnit(polpol, 274, 499, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                        }
+                        else if (this.modeRequest != this.mode)
+                        {
+                            if (this.mode == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            else if (this.mode == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                        }
+                        else
+                        {
+                            if (this.mode == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            else if (this.mode == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                        }
+                    }
+                    else if (theCostume <= 9)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(polpol, 272, 524, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            this.drawUnit(polpol, 272, 524, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                        }
+                        else if (this.modeRequest != this.mode)
+                        {
+                            if (this.mode == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            else if (this.mode == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                        }
+                        else
+                        {
+                            if (this.mode == "waiting")
+                            {
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 230, 433, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                            else if (this.mode == "active")
+                            {
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                                this.drawUnit(polpol, 224, 480, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    this.drawUnit(polpol, 275, 555, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
+                    this.drawUnit(polpol, 275, 555, 48, 28, -1/2 * 48 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 48 * this.alphaSize, 28 * this.alphaSize);
                 }
 
             }
@@ -37514,6 +38357,10 @@ function theLegend()
                             {
                                 this.costumeEngine(7, 0.125, true);
                             }
+                            else if (this.weapon == "kellishSword")
+                            {
+                                this.costumeEngine(7, 0.21, true);
+                            }
                             else if (this.weapon == "warHammer")
                             {
                                 this.costumeEngine(9, 0.22, true);
@@ -37986,6 +38833,10 @@ function theLegend()
                             else if (this.weapon == "longSpikedMorningStar")
                             {
                                 this.costumeEngine(7, 0.125, true);
+                            }
+                            else if (this.weapon == "kellishSword")
+                            {
+                                this.costumeEngine(7, 0.21, true);
                             }
                             else if (this.weapon == "warHammer")
                             {
@@ -39819,6 +40670,111 @@ function theLegend()
                     if (hits == Inventory.length)
                     {
                         Inventory.push([new Item("tylunFlower", false, false), 1]);
+                    }
+                }
+            }
+            else if (this.type == "ulgoyPlant")
+            {
+                //TRAITS
+                this.variety = "plant";
+                this.solid = false;
+                this.interactionRange = 50 * longevity;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 245, 385, 39, 34, -(1/2 * 31 * longevity), -(1/2 * 30 * longevity), 31 * longevity, 30 * longevity);
+                    XXX.drawImage(polpol, 245, 385, 39, 34, -(1/2 * 31 * longevity), -(1/2 * 30 * longevity), 31 * longevity, 30 * longevity);
+                    XXX.restore();
+                }
+                else if (this.phase == 1)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 286, 385, 39, 34, -(1/2 * 31 * longevity), -(1/2 * 30 * longevity), 31 * longevity, 30 * longevity);
+                    XXX.drawImage(polpol, 286, 385, 39, 34, -(1/2 * 31 * longevity), -(1/2 * 30 * longevity), 31 * longevity, 30 * longevity);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 317, 385, 39, 34, -(1/2 * 31 * longevity), -(1/2 * 30 * longevity), 31 * longevity, 30 * longevity);
+                    XXX.drawImage(polpol, 317, 385, 39, 34, -(1/2 * 31 * longevity), -(1/2 * 30 * longevity), 31 * longevity, 30 * longevity);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 10 * longevity;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = 1;
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "ulgoyLeaf")
+                        {
+                            Inventory[i][1] += Math.floor(1 + Math.random() * 3);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("ulgoyLeaf", false, false), Math.floor(1 + Math.random() * 3)]);
+                    }
+                }
+                else if (this.activate == true && this.phase == 1)
+                {
+                    this.activate = false;
+                    var jarHitz = [-1, 1];
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].type == "glassJar")
+                        {
+                            jarHitz[0] = i;
+                            jarHitz[1] = Inventory[i][1];
+                        }
+                    }
+                    if (jarHitz[0] > -1 && player.getIntelligence() >= 12)
+                    {
+                        if (jarHitz[1] - 1 > 0)
+                        {
+                            Inventory[jarHitz[0]][1] -= 1;
+                        }
+                        else
+                        {
+                            Inventory.splice(jarHitz[0], 1);
+                        }
+                        this.phase = "picked";
+                        var hits = 0;
+                        for (var i = 0; i < Inventory.length; i ++)
+                        {
+                            if (Inventory[i][0].type == "jarOfUlgoyNectar")
+                            {
+                                Inventory[i][1] += 1;
+                                break;
+                            }
+                            else
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == Inventory.length)
+                        {
+                            Inventory.push([new Item("jarOfUlgoyNectar", false, false), 1]);
+                        }
                     }
                 }
             }
@@ -44209,6 +45165,28 @@ function theLegend()
                 this.buyValue = 15 - Math.floor(player.getCharisma() / 10); // at max, buy for 10.
                 this.sellValue = 3 + Math.floor(player.getCharisma() / 10); // at max, sell for 8.
             }
+            else if (this.type == "ulgoyLeaf")
+            {
+                //For All Items
+                this.identity = "Ulgoy Leaf";
+                this.weight = 2.6;
+                this.size = 12;
+                this.description = "A leaf from a carnivorous ulgoy plant.";
+                this.intForDes = 7;
+                this.intDescription = "This can be used in rare alchemy recipes.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //Utility Focused
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 22 - Math.floor(player.getCharisma() / 8); // at max, buy for 16.
+                this.sellValue = 8 + Math.floor(player.getCharisma() / 6); // at max, sell for 16.
+            }
             else if (this.type == "tylunFlower")
             {
                 //For All Items
@@ -44367,6 +45345,37 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 690 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 590.
                 this.sellValue = 185 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 285.
+            }
+            else if (this.type == "jarOfUlgoyNectar")
+            {
+                //For All Items
+                this.identity = "Jar of Ulgoy Nectar";
+                this.weight = 3.5;
+                this.size = 6;
+                this.description = "The sweet yet sharply sour nectar of the ulgoy plant.";
+                this.intForDes = 9;
+                this.intDescription = "This nectar also acts as the Ulgoy plant's stomach acid so it is best not to eat it.";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["glassJar", 1]];
+
+                //Utility Focused
+                this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 5; //satisfies hunger.
+                this.thirst = 4; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = -12; //heals health.
+                this.generation = -5; //recoops lost energy.
+                this.replenish = -5; //restores will.
+
+                //ability
+                this.ability = "foodpoisoning";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 45 - Math.floor(player.getCharisma() / 3); // at max, buy for 30.
+                this.sellValue = 15 + Math.floor(player.getCharisma() / 3); // at max, sell for 30.
             }
             else if (this.type == "bucketOfNaapridMilk")
             {
@@ -48631,7 +49640,7 @@ function theLegend()
                 this.distance = 29 + (this.range * 7);
                 this.range = 5;
                 this.rate = 145;
-                this.damage = (6 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+                this.damage = (6.5 - this.damageHandicap * 1.5) * (this.leveledDamageMultiple / 25) + ((9/50) * player.getStrength());
                 this.magicalDamage = 0;
                 this.negateArmour = 0;
 
@@ -49406,6 +50415,62 @@ function theLegend()
                 this.buyValue = 16 - Math.floor(player.getCharisma() / 6); // at max, buy for 8.
                 this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
             }
+            else if (this.type == "mofuFive")
+            {
+                //For All Items
+                this.identity = "Mofu Feather Necklace";
+                this.weight = 0.1;
+                this.size = 11;
+                this.description = "Five mofu feathers hanging from a thin cord of fiber.";
+                this.intForDes = 1;
+                this.intDescription = "You are one with the mofu...";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "necklace";
+                //Utility Focused
+                //protections
+                this.protection = 0 * ((player.toughness / 100) + 1);
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 0;
+                this.thirstRetention = 0;
+                this.shockResist = 0;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 0;
+                this.toughnessBonus = 0;
+                this.intelligenceBonus = 0;
+                this.charismaBonus = 2;
+                this.rangedBonus = 0;
+                this.constitutionBonus = 0;
+                this.staminaBonus = 0;
+                this.dexterityBonus = 0;
+                this.stealthBonus = 0;
+                //Extra Stat Bonuses
+                this.sleepBonus = 0;
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 0;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "none";
+
+                this.yield = 4;
+                this.intForCraft = 21;
+                this.ingredients = [["Fiber", 1], ["mofuFeather", 20]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 63 - Math.floor(player.getCharisma() / 2.5); // at max, buy for 43.
+                this.sellValue = 43; // at max, sell for 6.
+            }
             else if (this.type == "avrakLeatherArmour")
             {
                 //For All Items
@@ -49521,6 +50586,59 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 71 - Math.floor(player.getCharisma() / 3); // at max, buy for 56.
                 this.sellValue = 29 + Math.floor(player.getCharisma() / 2); // at max, sell for 54.
+            }
+            else if (this.type == "skinAndBones")
+            {
+                //For All Items
+                this.identity = "Worn Skin and Bones";
+                this.weight = 11;
+                this.size = 29;
+                this.description = "Made from skinned human skin, and decorated with their bones.";
+                this.intForDes = 11;
+                this.intDescription = "This ghastly outfit belonged to the bandit chieftain Nelgref who would skin his victims and patch the new pieces onto this creation.";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "armour";
+                //Utility Focused
+                //protections
+                this.protection = 4 * ((player.toughness / 100) + 1);
+                this.toughnessRequirement = 11;
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 2.5;
+                this.thirstRetention = -2.5;
+                this.shockResist = 1;
+                //Main Stat Bonuses
+                this.strengthBonus = 3;
+                this.enduranceBonus = 3;
+                this.toughnessBonus = 6;
+                this.intelligenceBonus = 0;
+                this.charismaBonus = 11;
+                this.rangedBonus = 0;
+                this.constitutionBonus = 6;
+                this.staminaBonus = -3;
+                this.dexterityBonus = -11;
+                this.stealthBonus = -11;
+                //Extra Stat Bonuses
+                this.sleepBonus = 6;
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 0;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "hefty";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1000 - Math.floor(player.getCharisma() / 0.1); // at max, buy for 500.
+                this.sellValue = 0; // at max, sell for 0.
             }
             else if (this.type == "blackBearLeatherArmour")
             {
@@ -51204,6 +52322,54 @@ function theLegend()
                 this.buyValue = 160 - Math.floor(player.getCharisma() / 1); // at max, buy for 110.
                 this.sellValue = 70 + Math.floor(player.getCharisma() / 1.25); // at max, sell for 110.
             }
+            else if (this.type == "kellishSword")
+            {
+                //For All Items
+                this.identity = "Longsword";
+                this.weight = 3;
+                this.size = 14;
+                this.description = "A sharp iron longsword.";
+                this.intForDes = 2;
+                this.intDescription = "This sword is of kellish design.";
+
+                //Define Utility
+                this.utility = "weapon";
+
+                //Utility Focused
+                if (player.getEndurance() >= 25)
+                {
+                    this.energyCost = 2.5;
+                }
+                else if (player.getEndurance() >= 10)
+                {
+                    this.energyCost = 3;
+                }
+                else
+                {
+                    this.energyCost = 3.5;
+                }
+                this.distance = 35 + (this.range * 7);
+                this.range = 3 + 5/7;
+                this.rate = 100;
+                if (player.getEndurance() >= 10)
+                {
+                    this.rate = 95;
+                }
+                this.damage = (4.5 - (this.damageHandicap * 0.5)) * (this.leveledDamageMultiple / 25) + ((5/50) * player.getStrength());
+                this.magicalDamage = 0;
+                this.negateArmour = 0;
+
+                //ability
+                this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 13;
+                this.ingredients = [["Iron", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 36 - Math.floor(player.getCharisma() / 8); // at max, buy for 30.
+                this.sellValue = 20 + Math.floor(player.getCharisma() / 6); // at max, sell for 28.
+            }
             else if (this.type == "kellishSawClub")
             {
                 //For All Items
@@ -51538,6 +52704,21 @@ function theLegend()
                         }
                     }
                 }
+            }
+            else if (this.type == "jarOfUlgoyNectar")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 287, 347, 11, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 17.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24), 17.5, 24);
+            }
+            else if (this.type == "ulgoyLeaf")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 305, 348, 18, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.25), 18 * 1.25, 14 * 1.25);
+            }
+            else if (this.type == "mofuFive")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 1, 1, 27, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.2), 27 * 1.2, 24 * 1.2);
             }
             else if (this.type == "rawArdilFlesh")
             {
@@ -52654,6 +53835,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(oldverse, 2089, 2, 13, 46, X - this.X + (1/2 * CCC.width) - (1/2 * 16.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57.5), 16.25, 57.5);
             }
+            else if (this.type == "kellishSword")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 70, 1, 15, 49, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 49 * 1.3), 15 * 1.3, 49 * 1.3);
+            }
             else if (this.type == "pickaxe")
             {
                 XXX.beginPath();
@@ -52834,6 +54020,12 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 734, 202, 52, 58, X - this.X + (1/2 * CCC.width) - (1/2 * 52), Y - this.Y + (1/2 * CCC.height) - (1/2 * 58), 72.8, 81.2);
             }
+            else if (this.type == "skinAndBones")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 105, 172, 30, 40, X - this.X + (1/2 * CCC.width) - (1/2 * 72), Y - this.Y + (1/2 * CCC.height) - (1/2 * 96), 72, 96);
+                XXX.drawImage(polpol, 105, 172, 30, 40, X - this.X + (1/2 * CCC.width) - (1/2 * 72), Y - this.Y + (1/2 * CCC.height) - (1/2 * 96), 72, 96);
+            }
             else if (this.type == "balgurMercArmour")
             {
                 XXX.beginPath();
@@ -52956,6 +54148,21 @@ function theLegend()
             {
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "jarOfUlgoyNectar")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 287, 347, 11, 16, this.invX - (1/2 * 17.5), this.invY - (1/2 * 24), 17.5, 24);
+            }
+            else if (this.type == "ulgoyLeaf")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 305, 348, 18, 14, this.invX - (1/2 * 18 * 1.25), this.invY - (1/2 * 14 * 1.25), 18 * 1.25, 14 * 1.25);
+            }
+            else if (this.type == "mofuFive")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 1, 1, 27, 24, this.invX - (1/2 * 27 * 1.2), this.invY - (1/2 * 24 * 1.2), 27 * 1.2, 24 * 1.2);
             }
             else if (this.type == "rawArdilFlesh")
             {
@@ -54080,6 +55287,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(oldverse, 2089, 2, 13, 46, this.invX - (1/2 * 16.25), this.invY - (1/2 * 57.5), 16.25, 57.5);
             }
+            else if (this.type == "kellishSword")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 70, 1, 15, 49, this.invX - (1/2 * 15 * 1.3), this.invY - (1/2 * 49 * 1.3), 15 * 1.3, 49 * 1.3);
+            }
             else if (this.type == "pickaxe")
             {
                 LXX.beginPath();
@@ -54260,6 +55472,12 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 734, 202, 52, 58, this.invX - (1/2 * 52), this.invY - (1/2 * 58), 52, 58);
             }
+            else if (this.type == "skinAndBones")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 105, 172, 30, 40, this.invX - (1/2 * 45), this.invY - (1/2 * 60), 45, 60);
+                LXX.drawImage(polpol, 105, 172, 30, 40, this.invX - (1/2 * 45), this.invY - (1/2 * 60), 45, 60);
+            }
             else if (this.type == "balgurMercArmour")
             {
                 LXX.beginPath();
@@ -54372,6 +55590,21 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "jarOfUlgoyNectar")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 287, 347, 11, 16, this.invX - (1/2 * 17.5), this.invY - (1/2 * 24), 17.5, 24);
+            }
+            else if (this.type == "ulgoyLeaf")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 305, 348, 18, 14, this.invX - (1/2 * 18 * 1.25), this.invY - (1/2 * 14 * 1.25), 18 * 1.25, 14 * 1.25);
+            }
+            else if (this.type == "mofuFive")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 1, 1, 27, 24, this.invX - (1/2 * 27 * 1.2), this.invY - (1/2 * 24 * 1.2), 27 * 1.2, 24 * 1.2);
             }
             else if (this.type == "rawArdilFlesh")
             {
@@ -55492,6 +56725,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(oldverse, 2089, 2, 13, 46, this.invX - (1/2 * 16.25), this.invY - (1/2 * 57.5), 16.25, 57.5);
             }
+            else if (this.type == "kellishSword")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 70, 1, 15, 49, this.invX - (1/2 * 15 * 1.3), this.invY - (1/2 * 49 * 1.3), 15 * 1.3, 49 * 1.3);
+            }
             else if (this.type == "pickaxe")
             {
                 XXX.beginPath();
@@ -55671,6 +56909,12 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 734, 202, 52, 58, this.invX - (1/2 * 52), this.invY - (1/2 * 58), 52, 58);
+            }
+            else if (this.type == "skinAndBones")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 105, 172, 30, 40, this.invX - (1/2 * 45), this.invY - (1/2 * 60), 45, 60);
+                XXX.drawImage(polpol, 105, 172, 30, 40, this.invX - (1/2 * 45), this.invY - (1/2 * 60), 45, 60);
             }
             else if (this.type == "balgurMercArmour")
             {
@@ -56042,7 +57286,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(1690, 1021, "Person", false, "Svehn the Smith", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.65], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 103 + quests.bobithNewWealth], [new Item("Steel", false, false), 8], [new Item("iron", false, false), 6], [new Item("mace", false, false), 3], [new Item("hammer", false, false), 2], [new Item("freydicSpear", false, false), 5], [new Item("freydicSword", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("longbow", false, false), 2], [new Item("arrow", false, false), 92], [new Item("timberAxe", false, false), 3]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(1690, 1021, "Person", false, "Svehn the Smith", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.65], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 103 + quests.bobithNewWealth], [new Item("steel", false, false), 8], [new Item("iron", false, false), 6], [new Item("mace", false, false), 3], [new Item("hammer", false, false), 2], [new Item("freydicSpear", false, false), 5], [new Item("freydicSword", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("longbow", false, false), 2], [new Item("arrow", false, false), 92], [new Item("timberAxe", false, false), 3]]}));
                         }
                     }
                     if (uniqueChars.medliaLDS == true)
@@ -56587,6 +57831,16 @@ function theLegend()
 
                     //Bees
                     scenicList.push(new Scenery("beeHive", -8287 , 3377, 0, true));
+
+                    //Ulgoys
+                    scenicList.push(new Scenery("ulgoyPlant", -9580, 3557, 0, 3.2));
+                    ArtificialIntelligenceAccess.push(new Unit(-9569, 3566, "Ulgoy", true, "Venus"));
+                    scenicList.push(new Scenery("ulgoyPlant", -9125, 494, 0, 2));
+                    ArtificialIntelligenceAccess.push(new Unit(-9118, 497, "Ulgoy", false, "Trampa"));
+                    scenicList.push(new Scenery("ulgoyPlant", -11382, 351, 0, 1.15));
+                    ArtificialIntelligenceAccess.push(new Unit(-11379, 353, "Ulgoy", "baby", "Flytrap"));
+                    scenicList.push(new Scenery("ulgoyPlant", -11008, 568, 0, 1.15));
+                    ArtificialIntelligenceAccess.push(new Unit(-11005, 570, "Ulgoy", "baby", "Trap"));
 
                     //narthwarps
                     ArtificialIntelligenceAccess.push(new Unit(-11292, 3177, "Narthwarp", true, "krinklestitch"));

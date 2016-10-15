@@ -3,6 +3,8 @@
  */
 
 //TODO LIST
+//todo add another bank system (Silver Keep) perhaps add loans from both banks.
+//todo finish work on the mofuMatriarchHeaddress - so far: added in allworn and has an item definer - still needs: All images and dress animations
 //todo revise the sleeping system... as of right now it is an absolute crazy juju ball made of sand candy!!! Which is a bad thing.
 //todo finish adding the beast journal. AND FIGURE OUT HOW TO GET BEAST JOURNAL TO SAVE!!!
 //todo add brain flies.
@@ -15,6 +17,9 @@
 //todo add arrow mods such as poison, electric, wind, armour piercing... and also normal steel arrows.
 //todo add electricity spells
 //todo add vines spell
+//todo add summon spell
+//todo add weaken spell
+//todo add charm spell
 //todo add tornado spell
 //todo add electric spear and mage boss who uses it as well as a magical shielding spell he uses.
 //todo add the tentacly beast that leaves an oozey slime trail behind it.
@@ -959,8 +964,8 @@ function theLegend()
     var Inventory = [];
     //todo TEST INVENTORIES
     //Inventory = [[new Item("coins", false, false), 10000], [new Item("vardanianBattleAxe", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("walrusLeatherWaterskinFull", false, false), 2], [new Item("shehidToxinArrow", false, false), 45], [new Item("oiledArrow", false, false), 45], [new Item("fireStarter", false, false), 1], [new Item("lifeLeachArrow", false, false), 45], [new Item("fireArrow", false, false), 45], [new Item("freezingArrow", false, false), 45], [new Item("oilLantern", false, false), 1], [new Item("berulnToothNecklace", false, false), 1], [new Item("ogardPerfume", false, false), 2]];
-    //Inventory = [[new Item("avrakLeatherArmour", false, false), 1], [new Item("varnFiber", false, false), 1], [new Item("avrakHide", false, false), 1], [new Item("rawAvrakFlesh", false, false), 1], [new Item("avrakMeat", false, false), 1], [new Item("healingSalve", false, false), 1], [new Item("driedCyrinthilimMushroom", false, false), 1], [new Item("cyrinthilimMushroom", false, false), 1], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfNaapridMilk", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 1], [new Item("kellishClayPot", false, false), 1], [new Item("fermentedViperVenomGland", false, false), 1], [new Item("viperVenomGland", false, false), 1], [new Item("viperSnakeSkin", false, false), 1], [new Item("rawViperFlesh", false, false), 1], [new Item("viperMeat", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
-    Inventory = [[new Item("kellishSword", false, false), 1], [new Item("lightningCorseque", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("burningSmashStick", false, false), 1], [new Item("bullet", false, false), 200], [new Item("blackPowder", false, false), 200], [new Item("musket", false, false), 1], [new Item("blunderbuss", false, false), 1], [new Item("cutlass", false, false), 1], [new Item("avrakLeatherArmour", false, false), 1], [new Item("balgurCaptainArmour", false, false), 1], [new Item("balgurMercArmour", false, false), 1], [new Item("longSpikedMorningStar", false, false), 1], [new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
+    Inventory = [[new Item("mofuMatriarchHeaddress", false, false), 1], [new Item("avrakLeatherArmour", false, false), 1], [new Item("varnFiber", false, false), 1], [new Item("avrakHide", false, false), 1], [new Item("rawAvrakFlesh", false, false), 1], [new Item("avrakMeat", false, false), 1], [new Item("healingSalve", false, false), 1], [new Item("driedCyrinthilimMushroom", false, false), 1], [new Item("cyrinthilimMushroom", false, false), 1], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfNaapridMilk", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 1], [new Item("kellishClayPot", false, false), 1], [new Item("fermentedViperVenomGland", false, false), 1], [new Item("viperVenomGland", false, false), 1], [new Item("viperSnakeSkin", false, false), 1], [new Item("rawViperFlesh", false, false), 1], [new Item("viperMeat", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
+    //Inventory = [[new Item("kellishSword", false, false), 1], [new Item("lightningCorseque", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("burningSmashStick", false, false), 1], [new Item("bullet", false, false), 200], [new Item("blackPowder", false, false), 200], [new Item("musket", false, false), 1], [new Item("blunderbuss", false, false), 1], [new Item("cutlass", false, false), 1], [new Item("avrakLeatherArmour", false, false), 1], [new Item("balgurCaptainArmour", false, false), 1], [new Item("balgurMercArmour", false, false), 1], [new Item("longSpikedMorningStar", false, false), 1], [new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
     //Inventory = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1]];
 
     //Test Spells
@@ -1019,6 +1024,7 @@ function theLegend()
     allWeapons.push(new Item("burningSmashStick", false)); //46
     allWeapons.push(new Item("lightningCorseque", false)); //47
     allWeapons.push(new Item("kellishSword", false)); //48
+    allWeapons.push(new Item("dualVardanianBattleAxe", false)); //49
 
     //This list holds one of each type of worn item so that the player can access the worn item stats.
     var allWorn = [];
@@ -1049,6 +1055,14 @@ function theLegend()
     allWorn.push(new Item("blackBearFurClothing", false)); //24
     allWorn.push(new Item("skinAndBones", false)); //25
     allWorn.push(new Item("mofuFive", false)); //26
+    allWorn.push(new Item("mofuMatriarchHeaddress", false)); //27
+    allWorn.push(new Item("mofuTribalWear", false)); //28
+    allWorn.push(new Item("mofuRunnerOutfit", false)); //29
+    allWorn.push(new Item("ardilFurClothing", false)); //30
+    allWorn.push(new Item("ardilFurSkirt", false)); //31
+    allWorn.push(new Item("ardilFurGloves", false)); //32
+    allWorn.push(new Item("thenganPlateArmour", false)); //33
+    allWorn.push(new Item("swampWalkerArmour", false)); //34
 
     var scenicList = [];
 
@@ -1122,6 +1136,8 @@ function theLegend()
     smithing.push(new Item("smashStick", false));
     smithing.push(new Item("burningSmashStick", false));
     smithing.push(new Item("lightningCorseque", false));
+    smithing.push(new Item("thenganPlateArmour", false));
+    smithing.push(new Item("swampWalkerArmour", false));
 
         //Foods (Items cooked at either a stove, an oven, or a campfire)
     var foods = [];
@@ -1186,6 +1202,11 @@ function theLegend()
     tailoring.push(new Item("cloth", false));
     tailoring.push(new Item("naapridFiber", false));
     tailoring.push(new Item("varnFiber", false));
+    tailoring.push(new Item("mofuTribalWear", false));
+    tailoring.push(new Item("mofuRunnerOutfit", false));
+    tailoring.push(new Item("ardilFurClothing", false));
+    tailoring.push(new Item("ardilFurSkirt", false));
+    tailoring.push(new Item("ardilFurGloves", false));
 
         //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     var jewelry = [];
@@ -1254,6 +1275,7 @@ function theLegend()
     handcrafted.push(new Item("driedPluttBerries", false));
     handcrafted.push(new Item("driedTechiLeaf", false));
     handcrafted.push(new Item("techiTea", false));
+    handcrafted.push(new Item("dualVardanianBattleAxe", false));
 
     //This sets the items that are in shops.
     function shopItemIDSetter()
@@ -1711,9 +1733,13 @@ function theLegend()
             {
                 alert(magicList);
             }
+            else if (cheatcode.toLowerCase() == "dime")
+            {
+                alert(player.warmthProtection);
+            }
             else if (cheatcode.toLowerCase() == "test")
             {
-                ArtificialIntelligenceAccess.push(new Unit(X, Y - 24, "Shehid", false, "Slushy"));
+
             }
             else if (cheatcode.toLowerCase() == "clearinv")
             {
@@ -1847,11 +1873,11 @@ function theLegend()
             }
             else if (cheatcode.toLowerCase() == "traavinjathetroll")
             {
-                ArtificialIntelligenceAccess.push(new Unit(X + 1000, Y + 1000, "BogTroll", false, "Traavinja the Troll"));
+                ArtificialIntelligenceAccess.push(new Unit(X + 500 - 1/2 * CCC.width, Y + 500 - 1/2 * CCC.height, "BogTroll", false, "Traavinja the Troll"));
             }
             else if (cheatcode.toLowerCase() == "gravimullthetroll")
             {
-                ArtificialIntelligenceAccess.push(new Unit(X + 1100, Y + 1100, "BogTroll", true, "Gravimull the Troll"));
+                ArtificialIntelligenceAccess.push(new Unit(X + 500 - 1/2 * CCC.width, Y + 500 - 1/2 * CCC.height, "BogTroll", true, "Gravimull the Troll"));
             }
             else if (cheatcode.toLowerCase() == "wetnoodle")
             {
@@ -1868,6 +1894,10 @@ function theLegend()
             else if (cheatcode.toLowerCase() == "dameunaespada")
             {
                 worldItems.push([new Item("katana", X, Y), 1]);
+            }
+            else if (cheatcode.toLowerCase() == "damedinero")
+            {
+                worldItems.push([new Item("coins", X, Y), 100]);
             }
             else if (cheatcode == "over9000")
             {
@@ -5426,6 +5456,7 @@ function theLegend()
         this.shockedTime2 = new Date().getTime();
 
         //utility or extra variables
+        this.AdAbility = []; //this is a list of all active abilities held by armours and equipped outfits
         this.outfitZ = true; //this is the layer determiner for the players outfit, so that the outfit can draw underneath or above the players body layer.
         this.capeFlappiness = 0; //this is a variable that determines what costume the cape will be.
         this.wasCapeFlapping = false; //this lets the cape know it was showing so when the player slows down or stops moving the cape will ease back.
@@ -5688,11 +5719,18 @@ function theLegend()
             }
         };
 
-        this.flashAnimate = function(framerate, rotation, transparency, list)
+        this.flashAnimate = function(framerate, rotation, transparency, list, doAfter)
         {
             //use a list with coords for images: [{image:, imgX:, imgY:, portionW:, portionH:, adjX:, adjY:, width:, height:}, ... etc.]
             if (this.flashFrame >= list.length)
             {
+                if (typeof(doAfter) != "undefined")
+                {
+                    if (doAfter == true)
+                    {
+                        return true;
+                    }
+                }
                 this.flashFrame = 0;
             }
 
@@ -5722,6 +5760,34 @@ function theLegend()
 
         this.effects = function ()
         {
+            this.outfitEffects = function()
+            {
+                //CHECK FOR EFFECTS
+                    //set flags
+                var resistDiseaseFlag = false;
+
+                    //search worn ability list for abilities
+                for (var i = 0; i < this.AdAbility.length; i++)
+                {
+                    if (this.AdAbility[i] == "resistDisease")
+                    {
+                        resistDiseaseFlag = true;
+                    }
+                }
+
+                //EXECUTE EFFECTS
+
+                //resistDisease
+                if (resistDiseaseFlag)
+                {
+                    this.resistDisease = true;
+                }
+                else
+                {
+                    this.resistDisease = false;
+                }
+            };
+
             this.sleepCalculator = function()
             {
                 if (new Date().getTime() - this.tirelessStoreTime <= this.tirelessTime * 1000)
@@ -7070,6 +7136,8 @@ function theLegend()
             //major game effects
             this.climateEffects(); //todo add faster dehydration in deserts.
             this.overCucumbered(); //If the player is carrying too much weight the player all of a sudden becomes submersed in invisible cucumbers making it very challenging for him/her to move.
+            this.outfitEffects();
+
             //minor game effects
             this.sightSeeing();
             this.perfumed();
@@ -8308,6 +8376,34 @@ function theLegend()
             {
                 outfit = allWorn[25];
             }
+            else if (this.outfitEquipped == "mofuMatriarchHeaddress")
+            {
+                outfit = allWorn[27];
+            }
+            else if (this.outfitEquipped == "mofuTribalWear")
+            {
+                outfit = allWorn[28];
+            }
+            else if (this.outfitEquipped == "mofuRunnerOutfit")
+            {
+                outfit = allWorn[29];
+            }
+            else if (this.outfitEquipped == "ardilFurClothing")
+            {
+                outfit = allWorn[30];
+            }
+            else if (this.outfitEquipped == "ardilFurSkirt")
+            {
+                outfit = allWorn[31];
+            }
+            else if (this.outfitEquipped == "thenganPlateArmour")
+            {
+                outfit = allWorn[33];
+            }
+            else if (this.outfitEquipped == "swampWalkerArmour")
+            {
+                outfit = allWorn[34];
+            }
             else
             {
                 outfit = allWorn[0];
@@ -8318,6 +8414,10 @@ function theLegend()
             if (this.glovesEquipped == "frichFurMittens")
             {
                 gloves = allWorn[16];
+            }
+            else if (this.glovesEquipped == "ardilFurGloves")
+            {
+                gloves = allWorn[32];
             }
             else
             {
@@ -8373,6 +8473,7 @@ function theLegend()
             this.AdConcentration = outfit.concentrationBonus + gloves.concentrationBonus + necklace.concentrationBonus;
             this.AdMemory = outfit.memoryBonus + gloves.memoryBonus + necklace.memoryBonus;
 
+            this.AdAbility = [outfit.ability, gloves.ability, necklace.ability];
             if (this.getToughness() < outfit.toughnessRequirement)
             {
                 this.unskilledUse = true;
@@ -8505,6 +8606,24 @@ function theLegend()
                 XXX.drawImage(verse, 3062, 1, 35, 22, -(1 / 2 * 49) + 0.5, -(1 / 2 * 30.8) + 2.25, 49, 30.8);
                 XXX.restore();
             }
+            else if (this.outfitEquipped == "thenganPlateArmour")
+            {
+                this.outfitZ = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - (Math.PI));
+                XXX.drawImage(theCrack, 127, 614, 23, 20, -(1 / 2 * 23 * 1.6) - 0, -(1 / 2 * 20 * 1.6) -0, 23 * 1.6, 20 * 1.6);
+                XXX.restore();
+            }
+            else if (this.outfitEquipped == "swampWalkerArmour")
+            {
+                this.outfitZ = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - (Math.PI));
+                XXX.drawImage(theCrack, 128, 584, 21, 19, -(1 / 2 * 21 * 1.55) - 0, -(1 / 2 * 19 * 1.55) -0, 21 * 1.55, 19 * 1.55);
+                XXX.restore();
+            }
             else if (this.outfitEquipped == "balgurMercArmour")
             {
                 this.outfitZ = true;
@@ -8613,6 +8732,88 @@ function theLegend()
                     XXX.rotate(this.rotation);
                     XXX.drawImage(verse, 3, 390, 43, 43, -(1 / 2 * 86) + 26, -(1 / 2 * 86) + 27.3, 34.4, 40);
                     XXX.restore();
+                }
+            }
+            else if (this.outfitEquipped == "mofuMatriarchHeaddress")
+            {
+                this.outfitZ = false;
+                if (this.movingType == 0 || this.movingType == 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation + 1/2 * Math.PI);
+                    XXX.drawImage(polpol, 99, 39, 53, 39, -(1 / 2 * 53) + 1, -(1 / 2 * 39) + 1.85, 53, 39);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation + 1/2 * Math.PI);
+                    XXX.drawImage(polpol, 100, 1, 53, 39, -(1 / 2 * 53) + 1.6, -(1 / 2 * 39) + 4, 53, 39);
+                    XXX.restore();
+                }
+            }
+            else if (this.outfitEquipped == "mofuTribalWear")
+            {
+                this.outfitZ = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation + 1/2 * Math.PI);
+                XXX.drawImage(polpol, 61, 97, 32, 32, -(1 / 2 * 32 * 1.25) + 4, -(1 / 2 * 32 * 1.25) + 0.75, 32 * 1.25, 32 * 1.25);
+                XXX.restore();
+            }
+            else if (this.outfitEquipped == "mofuRunnerOutfit")
+            {
+                this.outfitZ = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation + 1/2 * Math.PI);
+                XXX.drawImage(polpol, 61, 97, 32, 32, -(1 / 2 * 32 * 1.25) + 4, -(1 / 2 * 32 * 1.35) + 0.75, 32 * 1.25, 32 * 1.35);
+                XXX.restore();
+            }
+            else if (this.outfitEquipped == "ardilFurClothing" || this.outfitEquipped == "ardilFurSkirt")
+            {
+                this.outfitZ = true;
+                if (this.movingType == 0 || this.movingType == 1 || this.movingType == 4 || this.freeze > 1.5)
+                {
+                    if (this.outfitState == 1)
+                    {
+                        if (this.flashAnimate(250, this.rotation - 1/2 * Math.PI, 1, [{image: polpol, imgX: 4, imgY: 256, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 4, imgY: 234, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}], true))
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation - 1/2 * Math.PI);
+                            XXX.drawImage(polpol, 4, 234, 41, 22, -(1 / 2 * 41 * 1.7) - 4, -(1 / 2 * 22 * 1.7) - 0.2, 41 * 1.7, 22 * 1.7);
+                            XXX.restore();
+                            this.outfitState = 0;
+                        }
+                    }
+                    else
+                    {
+                        this.outfitState = 0;
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        XXX.drawImage(polpol, 4, 234, 41, 22, -(1 / 2 * 41 * 1.7) - 4, -(1 / 2 * 22 * 1.7) - 0.2, 41 * 1.7, 22 * 1.7);
+                        XXX.restore();
+                    }
+                }
+                else if (this.outfitState == 0)
+                {
+                    if (this.flashAnimate(250, this.rotation - 1/2 * Math.PI, 1, [{image: polpol, imgX: 4, imgY: 234, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 4, imgY: 256, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}], true))
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        XXX.drawImage(polpol, 4, 256, 41, 22, -(1 / 2 * 41 * 1.7) - 4, -(1 / 2 * 22 * 1.7) - 0.2, 41 * 1.7, 22 * 1.7);
+                        XXX.restore();
+                        this.outfitState = 1;
+                    }
+                }
+                else if (this.outfitState == 1)
+                {
+                    this.flashAnimate(120, this.rotation - 1/2 * Math.PI, 1, [{image: polpol, imgX: 4, imgY: 214, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 4, imgY: 319, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 3.5, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 3.4, imgY: 300, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 4, imgY: 279, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 3.3, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}]);
                 }
             }
         };
@@ -11928,6 +12129,53 @@ function theLegend()
                     XXX.restore();
                 }
             }
+            //VARDANIAN BATTLE AXES
+            if (this.weaponEquipped == "dualVardanianBattleAxe")
+            {
+                this.stageEngine(5, 0.19, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+                //ATTACK
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 420, 360, 70, 68, -1/2 * 70 * 1.4, -1/2 * 68 * 1.4 - 14, 70 * 1.4, 68 * 1.4);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 521, 347, 56, 103, -1/2 * 56 * 1.4 - 2, -1/2 * 103 * 1.4 - 10, 56 * 1.4, 103 * 1.4);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 624, 346, 59, 118, -1/2 * 59 * 1.4 + 0.75, -1/2 * 118 * 1.4 - 5, 59 * 1.4, 118 * 1.4);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 733, 355, 115, 90, -1/2 * 115 * 1.4 - 0.25, -1/2 * 90 * 1.4 - 7, 115 * 1.4, 90 * 1.4);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 882, 375, 134, 59, -1/2 * 134 * 1.4 - 0.35, -1/2 * 59 * 1.4 + 4, 134 * 1.4, 59 * 1.4);
+                    XXX.restore();
+                }
+            }
             //VARDANIAN BATTLE AXE
             if (this.weaponEquipped == "vardanianBattleAxe")
             {
@@ -13195,6 +13443,14 @@ function theLegend()
                 //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
                 this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.75/5 * Math.PI) * (this.mySize + 35);
                 this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.75/5 * Math.PI) * (this.mySize + 35);
+            }
+            else if (this.weaponEquipped == "dualVardanianBattleAxe")
+            {
+                this.weapon = allWeapons[49];
+
+                //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+                this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 25);
+                this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 25);
             }
         };
 
@@ -14617,7 +14873,7 @@ function theLegend()
                                     }
 
                                     //console.log(listToDelete);
-                                    for (var n = Inventory.length - 1; n > 0; n--)
+                                    for (var n = Inventory.length - 1; n > -1; n--)
                                     {
                                         for (var m = 0; m < listToDelete.length; m++)
                                         {
@@ -21175,6 +21431,65 @@ function theLegend()
                         }
                     }
 
+                    else if (this.outfitEquipped == "mofuRunnerOutfit")
+                    {
+                        if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
+                        {
+                            this.wasCapeFlapping = true; //this lets the cape know it was showing so when the player slows down or stops moving the cape will ease back.
+                            this.capeFlappiness += 1; //this is a variable that determines what costume the cape will be.
+                            if (this.capeFlappiness > 100)
+                            {
+                                this.capeFlappiness = 0;
+                            }
+
+                            if (this.capeFlappiness <= 12.5 || this.capeFlappiness > 25 && this.capeFlappiness <= 37.5 || this.capeFlappiness > 50 && this.capeFlappiness <= 62.5 || this.capeFlappiness > 75 && this.capeFlappiness <= 87.5)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation);
+                                XXX.drawImage(polpol, 108, 79, 30, 57, -(1 / 2 * 30) - 8.5, -(1 / 2 * 57) + 35.5, 45, 40);
+                                XXX.restore();
+                            }
+                            else if (this.capeFlappiness > 12.5 && this.capeFlappiness <= 25 || this.capeFlappiness > 37.5 && this.capeFlappiness <= 50 || this.capeFlappiness > 62.5 && this.capeFlappiness <= 75 || this.capeFlappiness > 87.5)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation);
+                                XXX.drawImage(polpol, 108, 79, 30, 57, -(1 / 2 * 30) - 8.9, -(1 / 2 * 57) + 35.5, 47, 42);
+                                XXX.restore();
+                            }
+                        }
+                        else if (this.wasCapeFlapping == true)
+                        {
+                            this.capeFlappiness = 40;
+                            this.wasCapeFlapping = "gooblebunches";
+                            //display the cape while codey stuff happens...
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(polpol, 108, 79, 30, 57, -(1 / 2 * 30) - 8.5, -(1 / 2 * 57) + 35.5, 45, 40);
+                            XXX.restore();
+                        }
+                        else if (this.wasCapeFlapping == "gooblebunches")
+                        {
+                            this.capeFlappiness -= 1; //this time cape flappiness referrs to the cape flapping down on its way out of being displayed.
+                            if (this.capeFlappiness < 1)
+                            {
+                                this.capeFlappiness = 0;
+                                this.wasCapeFlapping = false;
+                            }
+
+                            if (this.capeFlappiness > 0)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation);
+                                XXX.drawImage(polpol, 108, 79, 30, 57, -(1 / 2 * 30) - 8.5, -(1 / 2 * 57) + 35.5, 45, this.capeFlappiness);
+                                XXX.restore();
+                            }
+                        }
+                    }
+
                     //the player's body
                     this.drawBody();
 
@@ -21212,6 +21527,15 @@ function theLegend()
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation);
                         XXX.drawImage(verse, 8, 469, 33, 15, -(1 / 2 * 38) + 1.9, -(1 / 2 * 42) + 14.5, 33, 15);
+                        XXX.restore();
+                    }
+                    else if (this.outfitEquipped == "mofuMatriarchHeaddress")
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation + 1/2 * Math.PI);
+                        XXX.drawImage(polpol, 47, 54, 49, 34, -(1 / 2 * 49 * 1.15) - 4, -(1 / 2 * 34 * 1.15) + 0, 49 * 1.15, 34 * 1.15);
+                        XXX.drawImage(polpol, 47, 54, 49, 34, -(1 / 2 * 49 * 1.15) - 4, -(1 / 2 * 34 * 1.15) + 0, 49 * 1.15, 34 * 1.15);
                         XXX.restore();
                     }
 
@@ -29953,6 +30277,12 @@ function theLegend()
                     XXX.rotate(this.rotation + 1/2 * Math.PI);
                     XXX.drawImage(verse, 2106, 5, 29, 24, -(1 / 2 * 29) + 1.75, -(1 / 2 * 24) - 0, 26, 26);
                 }
+                else if (outfit == "ardilFurClothing" || outfit == "ardilFurSkirt")
+                {
+                    XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 4, 234, 41, 22, -(1 / 2 * 41 * 1.7) - 4, -(1 / 2 * 22 * 1.7) - 0.2, 41 * 1.7, 22 * 1.7);
+                }
                 else if (outfit == "naapridLeatherArmour")
                 {
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
@@ -30982,7 +31312,7 @@ function theLegend()
                     this.speed = 0;
                     this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
                     this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
-                    this.engagementRadius = 61;
+                    this.engagementRadius = 85;
                     this.sizeRadius = 24;
                     this.negateArmour = 4;
                     this.attackWait = 4.5;
@@ -31005,7 +31335,7 @@ function theLegend()
                     this.speed = 3.3 + (Math.floor(Math.random() * 3) / 10);
                     this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
                     this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
-                    this.engagementRadius = 160;
+                    this.engagementRadius = 190;
                     this.sizeRadius = 56;
                     this.negateArmour = 10;
                     this.attackWait = 12;
@@ -31028,7 +31358,7 @@ function theLegend()
                     this.speed = 0;
                     this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
                     this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
-                    this.engagementRadius = 32;
+                    this.engagementRadius = 45;
                     this.sizeRadius = 9;
                     this.negateArmour = 1;
                     this.attackWait = 3.6;
@@ -31052,7 +31382,7 @@ function theLegend()
                     this.speed = 0;
                     this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
                     this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
-                    this.engagementRadius = 44;
+                    this.engagementRadius = 64;
                     this.sizeRadius = 14;
                     this.negateArmour = 3;
                     this.attackWait = 4.1;
@@ -32882,8 +33212,11 @@ function theLegend()
                             player.health -= Math.max(0, 0.015 - Math.max(0, player.armourTotal - this.negateArmour));
                             if (Math.max(0, 0.015 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                             {
-                                player.swollenI = true;
-                                player.swollenTime = Math.max(player.swollenTime, 180);
+                                if (!player.resistDisease)
+                                {
+                                    player.swollenI = true;
+                                    player.swollenTime = Math.max(player.swollenTime, 180);
+                                }
                             }
                         }
                     }
@@ -38445,7 +38778,7 @@ function theLegend()
                             this.rangeOfSightCalculator(750, "true");
 
                             //All of this factions guards drop this:
-                            this.drops = [[new Item("coins", this.X, this.Y), 1 + Math.random() * 24]];
+                            this.drops = [[new Item("coins", this.X, this.Y), 1 + Math.floor(Math.random() * 24)]];
 
                             lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.7, Alpha: 0.9, showMe: false});
                             // If the target has too low a level of relations with the faction they are an enemy.
@@ -40830,6 +41163,113 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "wightbloomPlant")
+            {
+                //TRAITS
+                this.variety = "plant";
+                this.solid = false;
+                this.interactionRange = 100;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 154, 523, 27, 27, -(1/2 * 27 * 1.5), -(1/2 * 27 * 1.5), 27 * 1.5, 27 * 1.5);
+                    XXX.drawImage(theCrack, 154, 523, 27, 27, -(1/2 * 27 * 1.5), -(1/2 * 27 * 1.5), 27 * 1.5, 27 * 1.5);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 116, 524, 27, 27, -(1/2 * 27 * 1.5), -(1/2 * 27 * 1.5), 27 * 1.5, 27 * 1.5);
+                    XXX.drawImage(theCrack, 116, 524, 27, 27, -(1/2 * 27 * 1.5), -(1/2 * 27 * 1.5), 27 * 1.5, 27 * 1.5);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 21;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "wightbloomBerries")
+                        {
+                            Inventory[i][1] += Math.floor(1 + Math.random() * 3);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("wightbloomBerries", false, false), Math.floor(1 + Math.random() * 3)]);
+                    }
+                }
+            }
+            else if (this.type == "ishPlant")
+            {
+                //TRAITS
+                this.variety = "plant";
+                this.interactionRange = 95;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    this.solid = true;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 759, 542, 47, 46, -(1/2 * 47), -(1/2 * 46), 47, 46);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    this.solid = false;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 809, 543, 47, 46, -(1/2 * 47), -(1/2 * 46), 47, 46);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 22;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "ishBranch")
+                        {
+                            Inventory[i][1] += Math.floor(2 + Math.random() * 8);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("ishBranch", false, false), Math.floor(2 + Math.random() * 8)]);
+                    }
+                }
+            }
             else if (this.type == "wyrPlant")
             {
                 //TRAITS
@@ -41391,6 +41831,20 @@ function theLegend()
                         if (distFromCutCut <= player.weapon.range * 7 + 35)
                         {
                             this.treeHealth -= 0.4;
+                        }
+
+                        if (this.treeHealth <= 0)
+                        {
+                            this.treePhase = 1
+                        }
+                    }
+                    else if (player.weaponEquipped == "dualVardanianBattleAxe" && player.cutcut == true && this.playerer < 130)
+                    {
+                        var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                        console.log(distFromCutCut);
+                        if (distFromCutCut <= player.weapon.range * 10 + 35)
+                        {
+                            this.treeHealth -= 0.8;
                         }
 
                         if (this.treeHealth <= 0)
@@ -44161,6 +44615,42 @@ function theLegend()
                 this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
                 this.sellValue = 1; // at max, sell for 1.
             }
+            else if (this.type == "wightbloomBerries")
+            {
+                //For All Items
+                this.identity = "Wightbloom Berries";
+                this.weight = 0.62;
+                this.size = 9;
+                this.description = "Elongated, grey, ovalular berries that are wrinkled along their length.";
+                this.intForDes = 38;
+                this.intDescription = "These berries contain an enzyme that temporarily stops your body from producing natural heat.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                if (player.getIntelligence() >= 38)
+                {
+                    this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+                }
+                else
+                {
+                    this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                }
+                this.hunger = 1.2; //satisfies hunger.
+                this.thirst = 0.1; //quenches thirst.
+                this.warmth = -26; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 10); // at max, sell for 7.
+            }
             else if (this.type == "luufBerries")
             {
                 //For All Items
@@ -45164,6 +45654,28 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 15 - Math.floor(player.getCharisma() / 10); // at max, buy for 10.
                 this.sellValue = 3 + Math.floor(player.getCharisma() / 10); // at max, sell for 8.
+            }
+            else if (this.type == "ishBranch")
+            {
+                //For All Items
+                this.identity = "Ish Branch";
+                this.weight = 0.4;
+                this.size = 7;
+                this.description = "One branch of an ish bush.";
+                this.intForDes = 0;
+                this.intDescription = "A plain, completely ordinary branch covered in bushy leaves.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //Utility Focused
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 0; // at max, sell for 0.
             }
             else if (this.type == "ulgoyLeaf")
             {
@@ -48077,7 +48589,7 @@ function theLegend()
                 this.buyValue = 10 - Math.floor(player.getCharisma() / 15); // at max, buy for 7.
                 this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
             }
-            else if (this.type == "steel")
+            else if (this.type == "steel") //realsteel
             {
                 //For All Items
                 this.identity = "Steel";
@@ -50359,6 +50871,62 @@ function theLegend()
                 this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
                 this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
             }
+            else if (this.type == "ardilFurGloves")
+            {
+                //For All Items
+                this.identity = "Ardil Fur Gloves";
+                this.weight = 0.25;
+                this.size = 11;
+                this.description = "Gloves sewn from the pelt of an ardil.";
+                this.intForDes = 1;
+                this.intDescription = "Ardil gloves are soft, comfortable, and warm.";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "gloves";
+                //Utility Focused
+                //protections
+                this.protection = 0 * ((player.toughness / 100) + 1);
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 0.3;
+                this.thirstRetention = -0.06;
+                this.shockResist = 0;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 0;
+                this.toughnessBonus = 0;
+                this.intelligenceBonus = 0;
+                this.charismaBonus = 0;
+                this.rangedBonus = 0;
+                this.constitutionBonus = 0;
+                this.staminaBonus = 0;
+                this.dexterityBonus = 0;
+                this.stealthBonus = 0;
+                //Extra Stat Bonuses
+                this.sleepBonus = 0;
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 2;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 15;
+                this.ingredients = [["Ardil Pelt", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
+                this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+            }
             else if (this.type == "berulnToothNecklace")
             {
                 //For All Items
@@ -50470,6 +51038,64 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 63 - Math.floor(player.getCharisma() / 2.5); // at max, buy for 43.
                 this.sellValue = 43; // at max, sell for 6.
+            }
+            else if (this.type == "swampWalkerArmour")
+            {
+                //For All Items
+                this.identity = "Swamp Walker Armour";
+                this.weight = 3.5;
+                this.size = 25;
+                this.description = "Dark leather armour, a black hood that covers a metal mask which has stained glass eyes, and a blackish-green bandana.";
+                this.intForDes = 13;
+                this.intDescription = "This armour prevents airborne sickness.";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "armour";
+                //Utility Focused
+                //protections
+                this.protection = 3.5 * ((player.toughness / 100) + 1);
+                this.toughnessRequirement = 3;
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 0.45;
+                this.thirstRetention = 0;
+                this.shockResist = -1;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 0;
+                this.toughnessBonus = 0;
+                this.intelligenceBonus = 0;
+                this.charismaBonus = 6;
+                this.rangedBonus = 2;
+                this.constitutionBonus = 0;
+                this.staminaBonus = 0;
+                this.dexterityBonus = 2;
+                this.stealthBonus = 5;
+                //Extra Stat Bonuses
+                this.sleepBonus = 3;
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 0;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "resistDisease";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 29;
+                this.ingredients = [["Mountain Frich Pelt", 3], ["Iron", 1], ["Cloth", 1], ["Glass", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 130 - Math.floor(player.getCharisma() / 2); // at max, buy for 105.
+                this.sellValue = 65 + Math.floor(player.getCharisma() / 2); // at max, sell for 90.
             }
             else if (this.type == "avrakLeatherArmour")
             {
@@ -50946,7 +51572,7 @@ function theLegend()
                 this.enduranceBonus = 0;
                 this.toughnessBonus = 0;
                 this.intelligenceBonus = 0;
-                this.charismaBonus = 10;
+                this.charismaBonus = 25;
                 this.rangedBonus = -20;
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
@@ -51033,6 +51659,64 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 95 - Math.floor(player.getCharisma() / 3); // at max, buy for 80.
                 this.sellValue = 65 + Math.floor(player.getCharisma() / 3); // at max, sell for 80.
+            }
+            else if (this.type == "thenganPlateArmour")
+            {
+                //For All Items
+                this.identity = "Steel Plate Armour";
+                this.weight = 80;
+                this.size = 26;
+                this.description = "Forged steel plate armour with elaborate enlayed patterns.";
+                this.intForDes = 16;
+                this.intDescription = "This armour is designed in the Thengan style and its enlayed patterns honor royal Thengan heraldry.";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "armour";
+                //Utility Focused
+                //protections
+                this.protection = 14 * ((player.toughness / 100) + 1);
+                this.toughnessRequirement = 15;
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 0;
+                this.thirstRetention = 0;
+                this.shockResist = -8;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 0;
+                this.toughnessBonus = 0;
+                this.intelligenceBonus = 0;
+                this.charismaBonus = 15;
+                this.rangedBonus = -20;
+                this.constitutionBonus = 0;
+                this.staminaBonus = 0;
+                this.dexterityBonus = -50;
+                this.stealthBonus = -50;
+                //Extra Stat Bonuses
+                this.sleepBonus = 0;
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 0;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "heavy";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 36;
+                this.ingredients = [["Steel", 18]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 640 - Math.floor(player.getCharisma() / 3); // at max, buy for 625.
+                this.sellValue = 600 + Math.floor(player.getCharisma() / 2); // at max, sell for 625.
             }
             else if (this.type == "blackChainArmour")
             {
@@ -51204,7 +51888,7 @@ function theLegend()
                 this.memoryBonus = 0;
 
                 //ability
-                this.ability = "none";
+                this.ability = "hefty";
 
                 //Crafting
                 this.yield = 1;
@@ -51440,7 +52124,7 @@ function theLegend()
                 this.memoryBonus = 0;
 
                 //ability
-                this.ability = "none";
+                this.ability = "hefty";
 
                 this.yield = 1;
                 this.intForCraft = 34;
@@ -51506,6 +52190,127 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 14 - Math.floor(player.getCharisma() / 10); // at max, buy for 9.
                 this.sellValue = 5 + Math.floor(player.getCharisma() / 12); // at max, sell for 9.
+            }
+            else if (this.type == "ardilFurClothing")
+            {
+                //For All Items
+                this.identity = "Ardil Fur Clothing";
+                this.weight = 1;
+                this.size = 25;
+                this.description = "Clothing sewn from the pelts of ardils.";
+                this.intForDes = 1;
+                this.intDescription = "Because ardils can be hard to catch and it takes numerous pelts to make an outfit, ardil clothing is prized.";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "clothing";
+                //Utility Focused
+                //protections
+                this.protection = 0 * ((player.toughness / 100) + 1);
+                this.toughnessRequirement = 0;
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 2;
+                this.thirstRetention = -1;
+                this.shockResist = 0;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 0;
+                this.toughnessBonus = 0;
+                this.intelligenceBonus = 0;
+                this.charismaBonus = 1;
+                this.rangedBonus = 1;
+                this.constitutionBonus = 0;
+                this.staminaBonus = 0;
+                this.dexterityBonus = 0;
+                this.stealthBonus = 0;
+                //Extra Stat Bonuses
+                this.sleepBonus = 0;
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 3;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 14;
+                this.ingredients = [["Ardil Pelt", 9]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 33;
+                this.sellValue = 28 + Math.floor(player.getCharisma() / 10); // at max, sell for 33.
+            }
+            else if (this.type == "ardilFurSkirt")
+            {
+                //For All Items
+                this.identity = "Ardil Fur Skirt with Leggings";
+                this.weight = 1;
+                this.size = 25;
+                this.description = "An artfully sewn skirt and leggings made using ardil pelts.";
+                this.intForDes = 1;
+                this.intDescription = "Because ardils can be hard to catch and it takes numerous pelts to make an outfit, ardil clothing is prized.";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "clothing";
+                //Utility Focused
+                //protections
+                this.protection = 0 * ((player.toughness / 100) + 1);
+                this.toughnessRequirement = 0;
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 2;
+                this.thirstRetention = -1;
+                this.shockResist = 0;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 0;
+                this.toughnessBonus = 0;
+                this.intelligenceBonus = 0;
+                if (player.gender == "Male")
+                {
+                    this.charismaBonus = -50;
+                }
+                else
+                {
+                    this.charismaBonus = 4;
+                }
+                this.rangedBonus = 1;
+                this.constitutionBonus = 0;
+                this.staminaBonus = 0;
+                this.dexterityBonus = 0;
+                this.stealthBonus = 0;
+                //Extra Stat Bonuses
+                this.sleepBonus = 0;
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 3;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 15;
+                this.ingredients = [["Ardil Pelt", 10]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 43 - Math.floor(player.getCharisma() / 12); // at max, buy for 39.
+                this.sellValue = 33 + Math.floor(player.getCharisma() / 8); // at max, sell for 39.
             }
             else if (this.type == "grushFurClothing")
             {
@@ -51789,7 +52594,7 @@ function theLegend()
                 this.memoryBonus = 0;
 
                 //ability
-                this.ability = "none";
+                this.ability = "hefty";
 
                 this.yield = 1;
                 this.intForCraft = 19;
@@ -51798,6 +52603,181 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 33 - Math.floor(player.getCharisma() / 8); // at max, buy for 27.
                 this.sellValue = 17 + Math.floor(player.getCharisma() / 5); // at max, sell for 27.
+            }
+            else if (this.type == "mofuMatriarchHeaddress")
+            {
+                //For All Items
+                this.identity = "Alzkwaya Matriarch Dress";
+                this.weight = 1;
+                this.size = 26;
+                this.description = "A dress tailored from dyed mofu feathers of different sizes for the ruling matriarch of the kellish Alzkwaya tribe.";
+                this.intForDes = 25;
+                this.intDescription = "The Alzkwaya believe that this outfit draws out wisdom from nature and the spirit realm.";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "clothing";
+                //Utility Focused
+                //protections
+                this.protection = 0 * ((player.toughness / 100) + 1);
+                this.toughnessRequirement = 0;
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 1;
+                this.thirstRetention = -3;
+                this.shockResist = 0;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 0;
+                this.toughnessBonus = 0;
+                if (player.gender == "Male")
+                {
+                    this.charismaBonus = -50;
+                    this.intelligenceBonus = 0;
+                }
+                else
+                {
+                    this.charismaBonus = 20;
+                    this.intelligenceBonus = 2;
+                }
+                this.rangedBonus = 0;
+                this.constitutionBonus = 0;
+                this.staminaBonus = -3;
+                this.dexterityBonus = -12;
+                this.stealthBonus = -14;
+                //Extra Stat Bonuses
+                this.sleepBonus = 2;
+                this.hungerBonus = 2;
+                this.thirstBonus = 2;
+                this.warmthBonus = 0;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 1;
+
+                //ability
+                this.ability = "hefty";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 828 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 628.
+                this.sellValue = 345 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 545.
+            }
+            else if (this.type == "mofuTribalWear")
+            {
+                //For All Items
+                this.identity = "Alzkwaya Outfit";
+                this.weight = 1;
+                this.size = 22;
+                this.description = "The mofu feather tailored outfit worn by the kellish Alzkwaya tribe's members.";
+                this.intForDes = 22;
+                this.intDescription = "In Alzkwaya culture a mofu's feathers are seen as being able to enable a link to the spirit world.";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "clothing";
+                //Utility Focused
+                //protections
+                this.protection = 0 * ((player.toughness / 100) + 1);
+                this.toughnessRequirement = 0;
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 1;
+                this.thirstRetention = -3;
+                this.shockResist = 0;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 0;
+                this.toughnessBonus = 0;
+                this.charismaBonus = 3;
+                this.intelligenceBonus = 0;
+                this.rangedBonus = 0;
+                this.constitutionBonus = 0;
+                this.staminaBonus = 0;
+                this.dexterityBonus = 1;
+                this.stealthBonus = -1;
+                //Extra Stat Bonuses
+                this.sleepBonus = 1;
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 0;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 20;
+                this.ingredients = [["Mofu Feather", 30]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 105 - Math.floor(player.getCharisma() / 2); // at max, buy for 80.
+                this.sellValue = 70 + Math.floor(player.getCharisma() / 5); // at max, sell for 80.
+            }
+            else if (this.type == "mofuRunnerOutfit")
+            {
+                //For All Items
+                this.identity = "Alzkwaya Runner Outfit";
+                this.weight = 1;
+                this.size = 24;
+                this.description = "An Alzkwayan outfit with a cape of mofu feathers; worn by the Alzkwaya tribe's messengers.";
+                this.intForDes = 25;
+                this.intDescription = "To the Alzkwaya a cape of feathers is seen as a means of calling forth speed from the spirit world.";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "clothing";
+                //Utility Focused
+                //protections
+                this.protection = 0 * ((player.toughness / 100) + 1);
+                this.toughnessRequirement = 0;
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 1;
+                this.thirstRetention = -3;
+                this.shockResist = 0;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 0;
+                this.toughnessBonus = 0;
+                this.charismaBonus = 4;
+                this.intelligenceBonus = 0;
+                this.rangedBonus = 0;
+                this.constitutionBonus = 0;
+                this.staminaBonus = 0;
+                this.dexterityBonus = 2;
+                this.stealthBonus = -2;
+                //Extra Stat Bonuses
+                this.sleepBonus = 1;
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 0;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 21;
+                this.ingredients = [["Mofu Feather", 40]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 155 - Math.floor(player.getCharisma() / 2); // at max, buy for 130.
+                this.sellValue = 120 + Math.floor(player.getCharisma() / 5); // at max, sell for 130.
             }
             else if (this.type == "longsword")
             {
@@ -52112,6 +53092,46 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 720 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 620.
                 this.sellValue = 290 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 390.
+            }
+            else if (this.type == "dualVardanianBattleAxe")
+            {
+                //For All Items
+                this.identity = "Vardanian Battle Axes";
+                this.weight = 34;
+                this.size = 32;
+                this.description = "Two finely forged nechrovite and steel battle axes, one in each hand.";
+                this.intForDes = 0;
+                this.intDescription = "It is a true feat of strength to be able to fight with two Vardanian battle axes at once.";
+
+                //Define Utility
+                this.utility = "weapon";
+
+                //Utility Focused
+                if (player.getStrength() >= 35)
+                {
+                    this.energyCost = 50;
+                }
+                else
+                {
+                    this.energyCost = 100;
+                }
+                this.distance = 25 + (this.range * 7);
+                this.range = 10;
+                this.rate = 350 - (player.getDexterity());
+                this.damage = (36 - this.damageHandicap - this.damageHandicapII) * (this.leveledDamageMultiple / 25) + ((2/25) * player.getStrength());
+                this.magicalDamage = 0;
+                this.negateArmour = 5;
+
+                //ability
+                this.ability = "none";
+
+                this.yield = 1;
+                this.intForCraft = 56;
+                this.ingredients = [["Vardanian Battle Axe", 2]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1440 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1240.
+                this.sellValue = 580 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 780.
             }
             else if (this.type == "flail")
             {
@@ -52704,6 +53724,56 @@ function theLegend()
                         }
                     }
                 }
+            }
+            else if (this.type == "swampWalkerArmour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 18, 581, 35, 65, X - this.X + (1/2 * CCC.width) - (1/2 * 35 * 1.325), Y - this.Y + (1/2 * CCC.height) - (1/2 * 65 * 1.325), 35 * 1.325, 65 * 1.325);
+            }
+            else if (this.type == "thenganPlateArmour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 72, 581, 35, 65, X - this.X + (1/2 * CCC.width) - (1/2 * 35 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 65 * 1.5), 35 * 1.5, 65 * 1.5);
+            }
+            else if (this.type == "wightbloomBerries")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 197, 528, 18, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.5), 18 * 1.5, 17 * 1.5);
+            }
+            else if (this.type == "ishBranch")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 865, 550, 18, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 18), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 18, 21);
+            }
+            else if (this.type == "ardilFurClothing")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 49, 299, 30, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 2.35), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 2.35), 30 * 2.35, 42 * 2.35);
+            }
+            else if (this.type == "ardilFurSkirt")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 48, 256, 30, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 2.35), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 2.35), 30 * 2.35, 42 * 2.35);
+            }
+            else if (this.type == "ardilFurGloves")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 58, 233, 15, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 2.35), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 2.35), 15 * 2.35, 17 * 2.35);
+            }
+            else if (this.type == "mofuTribalWear")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 4, 137, 38, 60, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 60 * 1.6), 38 * 1.6, 60 * 1.6);
+            }
+            else if (this.type == "mofuRunnerOutfit")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 50, 137, 37, 60, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 60 * 1.6), 37 * 1.6, 60 * 1.6);
+            }
+            else if (this.type == "mofuMatriarchHeaddress")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 5, 43, 35, 67, X - this.X + (1/2 * CCC.width) - (1/2 * 35 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 67 * 1.4), 35 * 1.4, 67 * 1.4);
             }
             else if (this.type == "jarOfUlgoyNectar")
             {
@@ -53589,6 +54659,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(theCrack, 374, 354, 29, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 37.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 74.1), 37.7, 74.1);
             }
+            else if (this.type == "dualVardanianBattleAxe")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 135, 682, 58, 64, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 64 * 1.4), 58 * 1.4, 64 * 1.4);
+            }
             else if (this.type == "rawOlkrinFlesh")
             {
                 XXX.beginPath();
@@ -54148,6 +55223,56 @@ function theLegend()
             {
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "swampWalkerArmour")
+            {
+                LXX.beginPath();
+                LXX.drawImage(theCrack, 18, 581, 35, 65, this.invX - (1/2 * 35 * 1.1), this.invY - (1/2 * 65 * 1.1), 35 * 1.1, 65 * 1.1);
+            }
+            else if (this.type == "thenganPlateArmour")
+            {
+                LXX.beginPath();
+                LXX.drawImage(theCrack, 72, 581, 35, 65, this.invX - (1/2 * 35 * 1.1), this.invY - (1/2 * 65 * 1.1), 35 * 1.1, 65 * 1.1);
+            }
+            else if (this.type == "wightbloomBerries")
+            {
+                LXX.beginPath();
+                LXX.drawImage(theCrack, 197, 528, 18, 17, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 17 * 1.5), 18 * 1.5, 17 * 1.5);
+            }
+            else if (this.type == "ishBranch")
+            {
+                LXX.beginPath();
+                LXX.drawImage(theCrack, 865, 550, 18, 21, this.invX - (1/2 * 18), this.invY - (1/2 * 21), 18, 21);
+            }
+            else if (this.type == "ardilFurClothing")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 49, 299, 30, 42, this.invX - (1/2 * 30 * 1.65), this.invY - (1/2 * 42 * 1.65), 30 * 1.65, 42 * 1.65);
+            }
+            else if (this.type == "ardilFurSkirt")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 48, 256, 30, 42, this.invX - (1/2 * 30 * 1.65), this.invY - (1/2 * 42 * 1.65), 30 * 1.65, 42 * 1.65);
+            }
+            else if (this.type == "ardilFurGloves")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 58, 233, 15, 17, this.invX - (1/2 * 15 * 1.65), this.invY - (1/2 * 17 * 1.65), 15 * 1.65, 17 * 1.65);
+            }
+            else if (this.type == "mofuTribalWear")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 4, 137, 38, 60, this.invX - (1/2 * 38 * 1.15), this.invY - (1/2 * 60 * 1.15), 38 * 1.15, 60 * 1.15);
+            }
+            else if (this.type == "mofuRunnerOutfit")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 50, 137, 37, 60, this.invX - (1/2 * 37 * 1.15), this.invY - (1/2 * 60 * 1.15), 37 * 1.15, 60 * 1.15);
+            }
+            else if (this.type == "mofuMatriarchHeaddress")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 5, 43, 35, 67, this.invX - (1/2 * 35 * 1.15), this.invY - (1/2 * 67 * 1.15), 35 * 1.15, 67 * 1.15);
             }
             else if (this.type == "jarOfUlgoyNectar")
             {
@@ -55041,6 +56166,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(theCrack, 374, 354, 29, 57, this.invX - (1/2 * 37.7), this.invY - (1/2 * 74.1), 37.7, 74.1);
             }
+            else if (this.type == "dualVardanianBattleAxe")
+            {
+                LXX.beginPath();
+                LXX.drawImage(theCrack, 135, 682, 58, 64, this.invX - (1/2 * 58 * 1.4), this.invY - (1/2 * 64 * 1.4), 58 * 1.4, 64 * 1.4);
+            }
             else if (this.type == "rawOlkrinFlesh")
             {
                 LXX.beginPath();
@@ -55590,6 +56720,56 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "swampWalkerArmour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 18, 581, 35, 65, this.invX - (1/2 * 35 * 1.1), this.invY - (1/2 * 65 * 1.1), 35 * 1.1, 65 * 1.1);
+            }
+            else if (this.type == "thenganPlateArmour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 72, 581, 35, 65, this.invX - (1/2 * 35 * 1.1), this.invY - (1/2 * 65 * 1.1), 35 * 1.1, 65 * 1.1);
+            }
+            else if (this.type == "wightbloomBerries")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 197, 528, 18, 17, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 17 * 1.5), 18 * 1.5, 17 * 1.5);
+            }
+            else if (this.type == "ishBranch")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 865, 550, 18, 21, this.invX - (1/2 * 18), this.invY - (1/2 * 21), 18, 21);
+            }
+            else if (this.type == "ardilFurClothing")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 49, 299, 30, 42, this.invX - (1/2 * 30 * 1.65), this.invY - (1/2 * 42 * 1.65), 30 * 1.65, 42 * 1.65);
+            }
+            else if (this.type == "ardilFurSkirt")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 48, 256, 30, 42, this.invX - (1/2 * 30 * 1.65), this.invY - (1/2 * 42 * 1.65), 30 * 1.65, 42 * 1.65);
+            }
+            else if (this.type == "ardilFurGloves")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 58, 233, 15, 17, this.invX - (1/2 * 15 * 1.65), this.invY - (1/2 * 17 * 1.65), 15 * 1.65, 17 * 1.65);
+            }
+            else if (this.type == "mofuTribalWear")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 4, 137, 38, 60, this.invX - (1/2 * 38 * 1.15), this.invY - (1/2 * 60 * 1.15), 38 * 1.15, 60 * 1.15);
+            }
+            else if (this.type == "mofuRunnerOutfit")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 50, 137, 37, 60, this.invX - (1/2 * 37 * 1.15), this.invY - (1/2 * 60 * 1.15), 37 * 1.15, 60 * 1.15);
+            }
+            else if (this.type == "mofuMatriarchHeaddress")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 5, 43, 35, 67, this.invX - (1/2 * 35 * 1.15), this.invY - (1/2 * 67 * 1.15), 35 * 1.15, 67 * 1.15);
             }
             else if (this.type == "jarOfUlgoyNectar")
             {
@@ -56479,6 +57659,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(theCrack, 374, 354, 29, 57, this.invX - (1/2 * 37.7), this.invY - (1/2 * 74.1), 37.7, 74.1);
             }
+            else if (this.type == "dualVardanianBattleAxe")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 135, 682, 58, 64, this.invX - (1/2 * 58 * 1.4), this.invY - (1/2 * 64 * 1.4), 58 * 1.4, 64 * 1.4);
+            }
             else if (this.type == "rawOlkrinFlesh")
             {
                 XXX.beginPath();
@@ -57341,7 +58526,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(2672, 1594, "Person", false, "Maggy the Tailor", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1.2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2836, 2058], [2858, 1524]], merchant: true, merchandise: [[new Item("coins", false, false), 155], [new Item("frichFurClothing", false, false), 12], [new Item("frichFurMittens", false, false), 5], [new Item("varnFurClothing", false, false), 5], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurDress", false, false), 3], [new Item("winterWolfClothing", false, false), 1], [new Item("winterWolfOutfit", false, false), 1], [new Item("winterWolfDress", false, false), 1], [new Item("naapridLeatherArmour", false, false), 2], [new Item("walrusLeatherArmour", false, false), 3], [new Item("blackBearFurClothing", false, false), 1], [new Item("emptyBagHarst", false, false), 3]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(2672, 1594, "Person", false, "Maggy the Tailor", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["ardilFurSkirt", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1.2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2836, 2058], [2858, 1524]], merchant: true, merchandise: [[new Item("coins", false, false), 180], [new Item("frichFurClothing", false, false), 12], [new Item("frichFurMittens", false, false), 5], [new Item("varnFurClothing", false, false), 5], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurDress", false, false), 3], [new Item("ardilFurClothing", false, false), 1], [new Item("ardilFurSkirt", false, false), 2], [new Item("ardilFurGloves", false, false), 4], [new Item("winterWolfClothing", false, false), 1], [new Item("winterWolfOutfit", false, false), 1], [new Item("winterWolfDress", false, false), 1], [new Item("naapridLeatherArmour", false, false), 2], [new Item("walrusLeatherArmour", false, false), 3], [new Item("blackBearFurClothing", false, false), 1], [new Item("emptyBagHarst", false, false), 3]]}));
                         }
                     }
 
@@ -57362,7 +58547,14 @@ function theLegend()
                             {
                                 if (quests.bankruptNeculai != true)
                                 {
-                                    ArtificialIntelligenceAccess.push(new Unit(2365, 1059, "Person", false, "Neculai the Merchant", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("frichFurClothing", false, false), 3], [new Item("mace", false, false), 1], [new Item("vardanianAxe", false, false), 3], [new Item("vardanianAxeDual", false, false), 2], [new Item("vardanianCleaver", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("rawWolfLiver", false, false), 4], [new Item("blackChainArmour", false, false), 2], [new Item("trollFlesh", false, false), 2], [new Item("wood", false, false), 14], [new Item("freydicSword", false, false), 1], [new Item("frichPelt", false, false), 6], [new Item("rawWalrusFlesh", false, false), 5], [new Item("walrusMeat", false, false), 1]]}));
+                                    if (quests.theBalgurMercenariesCompletionStyle == "killedMercs" && quests.theBalgurMercenariesQuest == "complete" || quests.theBalgurMercenariesCompletionStyle == "royalProtection" && quests.theBalgurMercenariesQuest == "complete"|| quests.theBalgurMercenariesCompletionStyle == "threaten" && quests.theBalgurMercenariesQuest == "complete" || quests.theBalgurMercenariesCompletionStyle == "paidMercs" && quests.theBalgurMercenariesQuest == "complete") //if you beat neculai's quest in a way positive for neculai he likes you enough to sell his swamp walker armour.
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(2365, 1059, "Person", false, "Neculai the Merchant", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("frichFurClothing", false, false), 3], [new Item("mace", false, false), 1], [new Item("vardanianAxe", false, false), 3], [new Item("vardanianAxeDual", false, false), 2], [new Item("vardanianCleaver", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("rawWolfLiver", false, false), 4], [new Item("blackChainArmour", false, false), 2], [new Item("trollFlesh", false, false), 2], [new Item("wood", false, false), 14], [new Item("freydicSword", false, false), 1], [new Item("frichPelt", false, false), 6], [new Item("rawWalrusFlesh", false, false), 5], [new Item("walrusMeat", false, false), 1], [new Item("swampWalkerArmour", false, false), 1]]}));
+                                    }
+                                    else
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(2365, 1059, "Person", false, "Neculai the Merchant", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("frichFurClothing", false, false), 3], [new Item("mace", false, false), 1], [new Item("vardanianAxe", false, false), 3], [new Item("vardanianAxeDual", false, false), 2], [new Item("vardanianCleaver", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("rawWolfLiver", false, false), 4], [new Item("blackChainArmour", false, false), 2], [new Item("trollFlesh", false, false), 2], [new Item("wood", false, false), 14], [new Item("freydicSword", false, false), 1], [new Item("frichPelt", false, false), 6], [new Item("rawWalrusFlesh", false, false), 5], [new Item("walrusMeat", false, false), 1]]}));
+                                    }
                                 }
                                 else
                                 {
@@ -57692,6 +58884,8 @@ function theLegend()
 
                     //Scenery
                     scenicList.push(new Scenery("bushkaPlant", 2410 , 7578, 2.5, true));
+                    scenicList.push(new Scenery("bushkaPlant", 2710 , 7478, -1, true));
+                    scenicList.push(new Scenery("wightbloomPlant", 2900 , 7900, 0, true));
                     //Gulfreys in the jungle
                     //ArtificialIntelligenceAccess.push(new Unit(3400, 8820, "Gulfrey", true, "Plikt"));
                     //ArtificialIntelligenceAccess.push(new Unit(3600, 8940, "Gulfrey", true, "Plakt"));
@@ -58430,6 +59624,8 @@ function theLegend()
                     scenicList.push(new Scenery("techiPlant", 6269 , -4950, -3, true));
                     scenicList.push(new Scenery("techiPlant", 6317 , -4979, 3, true));
                     scenicList.push(new Scenery("luufPlant", 6164 , -5617, 1.111, true));
+                    scenicList.push(new Scenery("ishPlant", 3967 , -8854, -2.25, true));
+                    scenicList.push(new Scenery("ishPlant", 5067 , -9141, 3.25, true));
 
                     change = "s1";
                 }

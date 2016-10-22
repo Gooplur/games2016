@@ -1025,6 +1025,7 @@ function theLegend()
     allWeapons.push(new Item("lightningCorseque", false)); //47
     allWeapons.push(new Item("kellishSword", false)); //48
     allWeapons.push(new Item("dualVardanianBattleAxe", false)); //49
+    allWeapons.push(new Item("vardanianClub", false)); //50
 
     //This list holds one of each type of worn item so that the player can access the worn item stats.
     var allWorn = [];
@@ -1138,6 +1139,7 @@ function theLegend()
     smithing.push(new Item("lightningCorseque", false));
     smithing.push(new Item("thenganPlateArmour", false));
     smithing.push(new Item("swampWalkerArmour", false));
+    smithing.push(new Item("vardanianClub", false));
 
         //Foods (Items cooked at either a stove, an oven, or a campfire)
     var foods = [];
@@ -1179,6 +1181,7 @@ function theLegend()
     foods.push(new Item("avrakMeat", false));
     foods.push(new Item("golgemoffMeat", false));
     foods.push(new Item("ardilMeat", false));
+    foods.push(new Item("boiledPalntRoot", false));
 
         //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     var tailoring = [];
@@ -10606,6 +10609,77 @@ function theLegend()
                     XXX.restore();
                 }
             }
+            //VARDANIAN CLUB
+            if (this.weaponEquipped == "vardanianClub")
+            {
+                this.stageEngine(8, 0.19, true);
+
+                //ATTACK ANIMATION
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 449, 456, 83, 54, -1/2 * 83 * 1.5 + 4, -1/2 * 54 * 1.5 - 0.25, 83 * 1.4, 54 * 1.4);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 521, 454, 83, 54, -1/2 * 83 * 1.5 + 17, -1/2 * 54 * 1.5 + 1, 83 * 1.4, 54 * 1.4);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 449, 456, 83, 54, -1/2 * 83 * 1.5 +4, -1/2 * 54 * 1.5 - 0.25, 83 * 1.4, 54 * 1.4);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 594, 457, 83, 54, -1/2 * 83 * 1.5 + 6.5, -1/2 * 54 * 1.5 + 0, 83 * 1.4, 54 * 1.4);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 675, 454, 83, 54, -1/2 * 83 * 1.5 + 5, -1/2 * 54 * 1.5 - 4, 83 * 1.4, 54 * 1.4);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 745, 447, 83, 54, -1/2 * 83 * 1.5 - 1, -1/2 * 54 * 1.5 - 8.25, 83 * 1.4, 54 * 1.4);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 6)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 838, 449, 83, 54, -1/2 * 83 * 1.5 + 2.75, -1/2 * 54 * 1.5 - 4, 83 * 1.4, 54 * 1.4);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 7)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 932, 448, 83, 54, -1/2 * 83 * 1.5 + 2.25, -1/2 * 54 * 1.5 - 1.45, 83 * 1.4, 54 * 1.4);
+                    XXX.restore();
+                }
+            }
             //LONG-SPIKED MORNING STAR
             if (this.weaponEquipped == "longSpikedMorningStar")
             {
@@ -13451,6 +13525,14 @@ function theLegend()
                 //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
                 this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 25);
                 this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 25);
+            }
+            else if (this.weaponEquipped == "vardanianClub")
+            {
+                this.weapon = allWeapons[50];
+
+                //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+                this.bubbleOfDamageX = X - Math.cos(this.rotation - 3.15/5 * Math.PI) * (this.mySize + 15);
+                this.bubbleOfDamageY = Y - Math.sin(this.rotation - 3.15/5 * Math.PI) * (this.mySize + 15);
             }
         };
 
@@ -41163,6 +41245,88 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "palntPlant")
+            {
+                //TRAITS
+                this.variety = "plant";
+                this.solid = false;
+                this.interactionRange = 85;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 157, 467, 20, 20, -(1/2 * 20 * 1.35), -(1/2 * 20 * 1.35), 20 * 1.3, 20 * 1.35);
+                    XXX.restore();
+                }
+                else if (this.phase == 1)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 158, 495, 20, 20, -(1/2 * 20 * 1.35), -(1/2 * 20 * 1.35), 20 * 1.3, 20 * 1.35);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 177, 492, 32, 23, -(1/2 * 32 * 1.35 * 1.75), -(1/2 * 23 * 1.35 * 1.75), 32 * 1.35 * 1.75, 23 * 1.35 * 1.75);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 18;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = 1;
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "palntRoot")
+                        {
+                            Inventory[i][1] += Math.floor(1 + Math.random() * 3);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("palntRoot", false, false), Math.floor(1 + Math.random() * 3)]);
+                    }
+                }
+                else if (this.activate == true && this.phase == 1)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "palntFlower")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("palntFlower", false, false), 1]);
+                    }
+                }
+            }
             else if (this.type == "wightbloomPlant")
             {
                 //TRAITS
@@ -44615,6 +44779,100 @@ function theLegend()
                 this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
                 this.sellValue = 1; // at max, sell for 1.
             }
+            else if (this.type == "palntFlower")
+            {
+                //For All Items
+                this.identity = "Palnt Flower";
+                this.weight = 0.001;
+                this.size = 6;
+                this.description = "One flower comprised of many small white flowers.";
+                this.intForDes = 20;
+                this.intDescription = "Although this is poisoness to eat, its poison can be neutralized when mixed with other certain alchemic ingredients.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "poisonII";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "palntRoot")
+            {
+                //For All Items
+                this.identity = "Palnt Root";
+                this.weight = 0.6;
+                this.size = 7;
+                this.description = "A light tannish coloured root that is crunchy and relatively bland.";
+                this.intForDes = 2;
+                this.intDescription = "When cooked palnt root is chalky, flavorless and starchy.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0.45; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "boiledPalntRoot")
+            {
+                //For All Items
+                this.identity = "Boiled Palnt Root";
+                this.weight = 0.8;
+                this.size = 7;
+                this.description = "A light tannish coloured root that is crunchy and relatively bland.";
+                this.intForDes = 2;
+                this.intDescription = "When cooked palnt root is chalky, flavorless and starchy.";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["bucket", 1]];
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 2.5; //satisfies hunger.
+                this.thirst = 0.25; //quenches thirst.
+                this.warmth = 1; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.1; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 9;
+                this.intForCraft = 3;
+                this.ingredients = [["Palnt Root", 9], ["Bucket of Water", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 2; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
             else if (this.type == "wightbloomBerries")
             {
                 //For All Items
@@ -45780,7 +46038,7 @@ function theLegend()
                 //Crafting
                 this.yield = 1;
                 this.intForCraft = 10;
-                this.ingredients = [["glassJar", 1], ["Naaprid Butter", 1], ["Culpris Leaf", 8], ["blubber", 1]];
+                this.ingredients = [["Glass Jar", 1], ["Naaprid Butter", 1], ["Culpris Leaf", 8], ["blubber", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 70 - Math.floor(player.getCharisma() / 2); // at max, buy for 45.
@@ -50165,8 +50423,8 @@ function theLegend()
                 this.ingredients = [["Steel", 2], ["Jvostran Melt", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-                this.buyValue = 38 - Math.floor(player.getCharisma() / 3); // at max, buy for 22.
-                this.sellValue = 14 + Math.floor(player.getCharisma() / 10); // at max, sell for 19.
+                this.buyValue = 92 - Math.floor(player.getCharisma() / 8); // at max, buy for 86.
+                this.sellValue = 80 + Math.floor(player.getCharisma() / 8); // at max, sell for 86.
             }
             else if (this.type == "pickaxe")
             {
@@ -50201,6 +50459,40 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 26 - Math.floor(player.getCharisma() / 5); // at max, buy for 16.
                 this.sellValue = 9 + Math.floor(player.getCharisma() / 10); // at max, sell for 14.
+            }
+            else if (this.type == "vardanianClub")
+            {
+                //For All Items
+                this.identity = "Club";
+                this.weight = 1.5;
+                this.size = 14;
+                this.description = "Sharpened iron studs attached to the end of a wooden handle.";
+                this.intForDes = 4;
+                this.intDescription = "It is for smacking with...";
+
+                //Define Utility
+                this.utility = "weapon";
+
+                //Utility Focused
+                this.energyCost = Math.max(1, 2 - (player.getEndurance() / 50));
+                this.distance = 15 + (this.range * 7);
+                this.range = 4;
+                this.rate = Math.max(95, 125 - (30 * player.getDexterity() / 50));
+                this.damage = (3 - this.damageHandicap) * (this.leveledDamageMultiple / 25);
+                this.magicalDamage = 0;
+                this.negateArmour = 3;
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 2;
+                this.intForCraft = 15;
+                this.ingredients = [["Iron", 1], ["Wood", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 14 - Math.floor(player.getCharisma() / 25); // at max, buy for 12.
+                this.sellValue = 8 + Math.floor(player.getCharisma() / 12); // at max, sell for 12.
             }
             else if (this.type == "iceBlade")
             {
@@ -53725,6 +54017,26 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "palntRoot")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 205, 473, 10, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1.4), 10 * 1.4, 15 * 1.4);
+            }
+            else if (this.type == "boiledPalntRoot")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 206, 478, 9, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.5), 9 * 1.5, 9 * 1.5);
+            }
+            else if (this.type == "palntFlower")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 185, 472, 9, 8, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 1.35), Y - this.Y + (1/2 * CCC.height) - (1/2 * 8 * 1.35), 9 * 1.35, 8 * 1.35);
+            }
+            else if (this.type == "vardanianClub")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 319, 453, 12, 38, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 38 * 1.4), 12 * 1.4, 38 * 1.4);
+            }
             else if (this.type == "swampWalkerArmour")
             {
                 XXX.beginPath();
@@ -55224,6 +55536,26 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "palntRoot")
+            {
+                LXX.beginPath();
+                LXX.drawImage(theCrack, 205, 473, 10, 15, this.invX - (1/2 * 10 * 1.4), this.invY - (1/2 * 15 * 1.4), 10 * 1.4, 15 * 1.4);
+            }
+            else if (this.type == "boiledPalntRoot")
+            {
+                LXX.beginPath();
+                LXX.drawImage(theCrack, 206, 478, 9, 9, this.invX - (1/2 * 9 * 1.5), this.invY - (1/2 * 9 * 1.5), 9 * 1.5, 9 * 1.5);
+            }
+            else if (this.type == "palntFlower")
+            {
+                LXX.beginPath();
+                LXX.drawImage(theCrack, 185, 472, 9, 8, this.invX - (1/2 * 9 * 1.35), this.invY - (1/2 * 8 * 1.35), 9 * 1.35, 8 * 1.35);
+            }
+            else if (this.type == "vardanianClub")
+            {
+                LXX.beginPath();
+                LXX.drawImage(theCrack, 319, 453, 12, 38, this.invX - (1/2 * 12 * 1.4), this.invY - (1/2 * 38 * 1.4), 12 * 1.4, 38 * 1.4);
+            }
             else if (this.type == "swampWalkerArmour")
             {
                 LXX.beginPath();
@@ -56720,6 +57052,26 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "palntRoot")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 205, 473, 10, 15, this.invX - (1/2 * 10 * 1.4), this.invY - (1/2 * 15 * 1.4), 10 * 1.4, 15 * 1.4);
+            }
+            else if (this.type == "boiledPalntRoot")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 206, 478, 9, 9, this.invX - (1/2 * 9 * 1.5), this.invY - (1/2 * 9 * 1.5), 9 * 1.5, 9 * 1.5);
+            }
+            else if (this.type == "palntFlower")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 185, 472, 9, 8, this.invX - (1/2 * 9 * 1.35), this.invY - (1/2 * 8 * 1.35), 9 * 1.35, 8 * 1.35);
+            }
+            else if (this.type == "vardanianClub")
+            {
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 319, 453, 12, 38, this.invX - (1/2 * 12 * 1.4), this.invY - (1/2 * 38 * 1.4), 12 * 1.4, 38 * 1.4);
             }
             else if (this.type == "swampWalkerArmour")
             {
@@ -58549,7 +58901,7 @@ function theLegend()
                                 {
                                     if (quests.theBalgurMercenariesCompletionStyle == "killedMercs" && quests.theBalgurMercenariesQuest == "complete" || quests.theBalgurMercenariesCompletionStyle == "royalProtection" && quests.theBalgurMercenariesQuest == "complete"|| quests.theBalgurMercenariesCompletionStyle == "threaten" && quests.theBalgurMercenariesQuest == "complete" || quests.theBalgurMercenariesCompletionStyle == "paidMercs" && quests.theBalgurMercenariesQuest == "complete") //if you beat neculai's quest in a way positive for neculai he likes you enough to sell his swamp walker armour.
                                     {
-                                        ArtificialIntelligenceAccess.push(new Unit(2365, 1059, "Person", false, "Neculai the Merchant", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("frichFurClothing", false, false), 3], [new Item("mace", false, false), 1], [new Item("vardanianAxe", false, false), 3], [new Item("vardanianAxeDual", false, false), 2], [new Item("vardanianCleaver", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("rawWolfLiver", false, false), 4], [new Item("blackChainArmour", false, false), 2], [new Item("trollFlesh", false, false), 2], [new Item("wood", false, false), 14], [new Item("freydicSword", false, false), 1], [new Item("frichPelt", false, false), 6], [new Item("rawWalrusFlesh", false, false), 5], [new Item("walrusMeat", false, false), 1], [new Item("swampWalkerArmour", false, false), 1]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(2365, 1059, "Person", false, "Neculai the Merchant", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("frichFurClothing", false, false), 3], [new Item("mace", false, false), 1], [new Item("vardanianAxe", false, false), 3], [new Item("vardanianAxeDual", false, false), 2], [new Item("vardanianCleaver", false, false), 1], [new Item("vardanianClub", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("rawWolfLiver", false, false), 4], [new Item("blackChainArmour", false, false), 2], [new Item("trollFlesh", false, false), 2], [new Item("wood", false, false), 14], [new Item("freydicSword", false, false), 1], [new Item("frichPelt", false, false), 6], [new Item("rawWalrusFlesh", false, false), 5], [new Item("walrusMeat", false, false), 1], [new Item("swampWalkerArmour", false, false), 1]]}));
                                     }
                                     else
                                     {
@@ -59626,6 +59978,12 @@ function theLegend()
                     scenicList.push(new Scenery("luufPlant", 6164 , -5617, 1.111, true));
                     scenicList.push(new Scenery("ishPlant", 3967 , -8854, -2.25, true));
                     scenicList.push(new Scenery("ishPlant", 5067 , -9141, 3.25, true));
+                    scenicList.push(new Scenery("palntPlant", 5412 , -6751, 0, true));
+                    scenicList.push(new Scenery("palntPlant", -134 , -5841, 1, true));
+                    scenicList.push(new Scenery("palntPlant", 852 , -8584, 2, true));
+                    scenicList.push(new Scenery("palntPlant", 410 , -11262, 3, true));
+                    scenicList.push(new Scenery("palntPlant", 3047 , -12626, -2.5, true));
+                    scenicList.push(new Scenery("techiPlant", 2228 , -4731, -1.46, true));
 
                     change = "s1";
                 }

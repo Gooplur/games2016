@@ -41289,28 +41289,6 @@ function theLegend()
                     var hits = 0;
                     for (var i = 0; i < Inventory.length; i ++)
                     {
-                        if (Inventory[i][0].type == "palntRoot")
-                        {
-                            Inventory[i][1] += Math.floor(1 + Math.random() * 3);
-                            break;
-                        }
-                        else
-                        {
-                            hits += 1;
-                        }
-                    }
-                    if (hits == Inventory.length)
-                    {
-                        Inventory.push([new Item("palntRoot", false, false), Math.floor(1 + Math.random() * 3)]);
-                    }
-                }
-                else if (this.activate == true && this.phase == 1)
-                {
-                    this.activate = false;
-                    this.phase = "picked";
-                    var hits = 0;
-                    for (var i = 0; i < Inventory.length; i ++)
-                    {
                         if (Inventory[i][0].type == "palntFlower")
                         {
                             Inventory[i][1] += 1;
@@ -41324,6 +41302,28 @@ function theLegend()
                     if (hits == Inventory.length)
                     {
                         Inventory.push([new Item("palntFlower", false, false), 1]);
+                    }
+                }
+                else if (this.activate == true && this.phase == 1)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "palntRoot")
+                        {
+                            Inventory[i][1] += Math.floor(1 + Math.random() * 3);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("palntRoot", false, false), Math.floor(1 + Math.random() * 3)]);
                     }
                 }
             }

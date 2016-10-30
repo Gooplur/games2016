@@ -13691,6 +13691,13 @@ function theLegend()
                                     }
                                 }
                             }
+                            else if (this.weapon.ability == "freezingStun")
+                            {
+                                ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunIV = true;
+                            }
                             else if (this.weapon.ability == "shock")
                             {
                                 ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
@@ -29083,6 +29090,18 @@ function theLegend()
                                     player.stunnedI = true;
                                     player.stunnedTime = 5;
                                 }
+                                else if (this.effect == "freezingStun")
+                                {
+                                    player.stunnedIII = true;
+                                    player.stunnedTime = 20;
+                                    player.warmth -= 20;
+
+                                    XXX.save();
+                                    XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                                    XXX.globalAlpha = 0.6;
+                                    XXX.drawImage(polypol, 1691, 240, 28, 24, - 1/2 * (28 * 1.2), - 1/2 * (24 * 1.2), (28 * 1.2), (24 * 1.2));
+                                    XXX.restore();
+                                }
                                 else if (this.effect == "narthwarpToxin" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.energy -= Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) / 1.5;
@@ -29227,6 +29246,13 @@ function theLegend()
                                 this.target.stunI = true;
                                 this.target.stunTimer = 5;
                                 this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "freezingStun" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.stunV = true;
+                                this.target.stunTimer = 12;
+                                this.target.stunTime = new Date().getTime();
+                                this.target.frozenTime = new Date().getTime();
                             }
                             else if (this.effect == "smashbackI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
@@ -31464,7 +31490,7 @@ function theLegend()
                     this.healthMAX = Math.floor(Math.random() * 4) + 20;
                     this.health = this.healthMAX;
                     this.armour = 0;
-                    this.speed = 1.3 + (Math.floor(Math.random() * 8) / 10);
+                    this.speed = 0.3 + (Math.floor(Math.random() * 8) / 10);
                     this.rangeOfSight = 700; //This is just to set the variable initially. The rest is variable.
                     this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
                     this.engagementRadius = 53;
@@ -31488,7 +31514,7 @@ function theLegend()
                     this.healthMAX = Math.floor(Math.random() * 7) + 31;
                     this.health = this.healthMAX;
                     this.armour = 0;
-                    this.speed = 2.2 + (Math.floor(Math.random() * 8) / 10);
+                    this.speed = 1 + (Math.floor(Math.random() * 8) / 10);
                     this.rangeOfSight = 700; //This is just to set the variable initially. The rest is variable.
                     this.rotationSpeed = 0.025; // 0.01 is a standard turn speed.
                     this.engagementRadius = 65;
@@ -31512,7 +31538,7 @@ function theLegend()
                     this.healthMAX = Math.floor(Math.random() * 3) + 10;
                     this.health = this.healthMAX;
                     this.armour = 0;
-                    this.speed = 0.8 + (Math.floor(Math.random() * 8) / 10);
+                    this.speed = 0.2 + (Math.floor(Math.random() * 8) / 10);
                     this.rangeOfSight = 700; //This is just to set the variable initially. The rest is variable.
                     this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
                     this.engagementRadius = 26;
@@ -31520,6 +31546,86 @@ function theLegend()
                     this.negateArmour = 8;
                     this.attackWait = 0.45 + Math.random();
                     this.effect = "stunI";
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+            }
+            else if (this.type == "Glutid")
+            {
+                this.damageFrame = "automatic";
+                this.resistances = ["stun", "blinded", "shock", "burning", "frozen"];
+                this.team = "shehidia";
+                this.baseTeam = this.team;
+
+                if (this.alpha == true)
+                {
+                    this.magicalResistance = 5;
+                    this.heatResistance = 4;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0; //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 7) + 34;
+                    this.health = this.healthMAX;
+                    this.armour = 6;
+                    this.speed = 0.25 + (Math.floor(Math.random() * 5) / 10);
+                    this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 34;
+                    this.sizeRadius = 18;
+                    this.negateArmour = 6;
+                    this.attackWait = 1 + Math.random();
+                    this.effect = "freezingStun";
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 1.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else if (this.alpha == "massive")
+                {
+                    this.magicalResistance = 5;
+                    this.heatResistance = 4;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0; //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 9) + 59;
+                    this.health = this.healthMAX;
+                    this.armour = 7;
+                    this.speed = 0.25 + (Math.floor(Math.random() * 5) / 10);
+                    this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 43;
+                    this.sizeRadius = 23;
+                    this.negateArmour = 6;
+                    this.attackWait = 1 + Math.random();
+                    this.effect = "freezingStun";
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else
+                {
+                    this.magicalResistance = 5;
+                    this.heatResistance = 4;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0; //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 4) + 19;
+                    this.health = this.healthMAX;
+                    this.armour = 5;
+                    this.speed = 0.25 + (Math.floor(Math.random() * 5) / 10);
+                    this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 27;
+                    this.sizeRadius = 13;
+                    this.negateArmour = 6;
+                    this.attackWait = 1 + Math.random();
+                    this.effect = "freezingStun";
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -33258,19 +33364,16 @@ function theLegend()
                     {
                         this.Attack(8, 6);
                         this.callForNearbyHelpFromType(1000, "Oolid");
-                        this.callForNearbyHelpFromType(1000, "Shehid");
                     }
                     if (this.alpha == "massive")
                     {
                         this.Attack(12, 9);
                         this.callForNearbyHelpFromType(1000, "Oolid");
-                        this.callForNearbyHelpFromType(1000, "Shehid");
                     }
                     else
                     {
                         this.Attack(4, 3);
                         this.callForNearbyHelpFromType(1000, "Oolid");
-                        this.callForNearbyHelpFromType(1000, "Shehid");
                     }
 
                     //this.deathChecker();
@@ -33325,7 +33428,7 @@ function theLegend()
                     }
                     else if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
                     {
-                        this.costumeEngine(2, 0.10, true);
+                        this.costumeEngine(4, 0.10, true);
                     }
                     else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
                     {
@@ -33344,10 +33447,6 @@ function theLegend()
                         {
                             this.drawUnit(theCrack, 38, 171, 38, 36, -1/2 * 38 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 38 * this.alphaSize, 36 * this.alphaSize, 1/2 * Math.PI);
                         }
-                        else if (this.moving)
-                        {
-                            this.drawUnit(theCrack, 31, 209, 51, 41, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 41 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 41 * this.alphaSize, 1/2 * Math.PI);
-                        }
                         else
                         {
                             this.drawUnit(theCrack, 38, 171, 38, 36, -1/2 * 38 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 38 * this.alphaSize, 36 * this.alphaSize, 1/2 * Math.PI);
@@ -33361,7 +33460,7 @@ function theLegend()
                         }
                         else
                         {
-                            this.drawUnit(theCrack, 33, 258, 51, 41, -1/2 * 51 * this.alphaSize - this.xAdjustment - 9, -1/2 * 41 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 41 * this.alphaSize, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 38, 171, 38, 36, -1/2 * 38 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 38 * this.alphaSize, 36 * this.alphaSize * 1.08, 1/2 * Math.PI);
                         }
                     }
                     else if (theCostume <= 2)
@@ -33372,7 +33471,7 @@ function theLegend()
                         }
                         else
                         {
-                            this.drawUnit(theCrack, 31, 209, 51, 41, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 41 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 41 * this.alphaSize, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 38, 171, 38, 36, -1/2 * 38 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 38 * this.alphaSize, 36 * this.alphaSize * 1.16, 1/2 * Math.PI);
                         }
                     }
                     else if (theCostume >= 3)
@@ -33383,7 +33482,236 @@ function theLegend()
                         }
                         else
                         {
-                            this.drawUnit(theCrack, 33, 258, 51, 41, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 41 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 41 * this.alphaSize, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 38, 171, 38, 36, -1/2 * 38 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 38 * this.alphaSize, 36 * this.alphaSize * 1.24, 1/2 * Math.PI);
+                        }
+                    }
+                }
+                else
+                {
+                    //this.drawUnit(theCrack, 38, 171, 38, 36, -1/2 * 38 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 38 * this.alphaSize, 36 * this.alphaSize);
+                }
+            }
+            //GLUTID
+            if (this.type == "Glutid")
+            {
+                //Set Drops and experience
+                if (this.alpha == true)
+                {
+                    if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 30 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (30 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    //this.drops = [[new Item("medOolidOozeRemains", this.X, this.Y), 1]];
+                }
+                else if (this.alpha == "massive")
+                {
+                    if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 50 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (50 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    //this.drops = [[new Item("lrgOolidOozeRemains", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    if (Math.max(0, 2 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 15 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = 15 * ((player.getIntelligence() / 50) + 1) / 10;
+                    }
+
+                    //this.drops = [[new Item("smlOolidOozeRemains", this.X, this.Y), 1]];
+                }
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                if (this.alpha == true)
+                {
+                    this.rangeOfSightCalculator(600, true);
+                }
+                else if (this.alpha == "massive")
+                {
+                    this.rangeOfSightCalculator(600, true);
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(600, true);
+                }
+
+                //AI
+                if (this.alive == true)
+                {
+                    if (this.alpha == true)
+                    {
+                        this.Attack(12, 8);
+                        this.callForNearbyHelpFromType(860, "Glutid");
+                    }
+                    if (this.alpha == "massive")
+                    {
+                        this.Attack(16, 12);
+                        this.callForNearbyHelpFromType(860, "Glutid");
+                    }
+                    else
+                    {
+                        this.Attack(8, 6);
+                        this.callForNearbyHelpFromType(860, "Glutid");
+                    }
+
+                    //this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        if (this.DTP() > this.rangeOfSight && typeof(this.ultra) != "undefined")
+                        {
+                            this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                        }
+                        else
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                    }
+                    else if (this.target != "none")
+                    {
+                        if (this.DTU(this.target) > this.baseSight && typeof(this.ultra) != "undefined")
+                        {
+                            this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                        }
+                        else
+                        {
+                            this.pointTowards(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
+                    }
+
+                }
+                else
+                {
+                    //do stuff when a oolid dies...
+                    if (this.doOnDeathOnce == true)
+                    {
+
+                        this.doOnDeathOnce = false;
+                    }
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (!this.moving && !this.attacking) //If not moving and not attacking initiate standing animation...
+                    {
+                        this.costume = 0;
+                    }
+                    else if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(6, 0.10, true);
+                    }
+                    else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(5, 0.15, true);
+                        }
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.25, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                        if (this.moving)
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.25, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment -5 * this.alphaSize, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.35, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.3, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 2)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment - 7.5 * this.alphaSize, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.45, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.35, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 3)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment - 10 * this.alphaSize, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.55, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.4, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 4)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment - 11.25 * this.alphaSize, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.6, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.45, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume >= 5)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(theCrack, 743, 260, 78, 49, -1/2 * 78 * this.alphaSize - this.xAdjustment + 3, -1/2 * 49 * this.alphaSize - this.yAdjustment, 78 * this.alphaSize, 49 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.5, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
                         }
                     }
                 }
@@ -60220,6 +60548,10 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(2500, 8600, "WinterWolf", false, "German"));
                     ArtificialIntelligenceAccess.push(new Unit(4000, 10000, "WinterWolf", true, "Ghost"));
 
+                    //glutids
+                    ArtificialIntelligenceAccess.push(new Unit(895, 9921, "Glutid", "massive", "Glub", {patrolStops: 7, patrolLoop: true, route:[[1527, 10105], [1114, 10325], [834, 10992], [895, 9921]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(2255, 10148, "Glutid", true, "Glup", {patrolStops: 7, patrolLoop: true, route:[[1741, 10369], [1898, 9900], [1602, 9909], [1635, 10189], [2255, 10148]]}));
+
 
                     //Scenery
                     scenicList.push(new Scenery("bushkaPlant", 2410 , 7578, 2.5, true));
@@ -60508,9 +60840,6 @@ function theLegend()
 
                     ArtificialIntelligenceAccess.push(new Unit(-4757, 4016, "Frich", true, "Gizmo"));
                     ArtificialIntelligenceAccess.push(new Unit(-5201, 5973, "Frich", true, "Gear"));
-
-                    //oolids in the forest
-                    ArtificialIntelligenceAccess.push(new Unit(-8187, 1943, "Oolid", false, "Glut"));
 
                     //Trees of the forest
                     scenicList.push(new Scenery("pineTree", -7703 , 1761, Math.PI, true));

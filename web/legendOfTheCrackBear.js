@@ -3,6 +3,7 @@
  */
 
 //TODO LIST
+//todo add drops for Glutid (slime creature)
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
 //todo finish work on the mofuMatriarchHeaddress - so far: added in allworn and has an item definer - still needs: All images and dress animations
 //todo revise the sleeping system... as of right now it is an absolute crazy juju ball made of sand candy!!! Which is a bad thing.
@@ -1613,6 +1614,12 @@ function theLegend()
                 player.energilTime = 100;
                 player.fatigueI = true;
             }
+            else if (cheatcode == "SMFSGD")
+            {
+                player.warmth += 5;
+                player.thirst += 3;
+                player.hunger += 2;
+            }
             else if (cheatcode == "GOOPGOOPGOOPGOOP")
             {
                 player.endurance = 50;
@@ -1740,11 +1747,23 @@ function theLegend()
             }
             else if (cheatcode.toLowerCase() == "dime")
             {
-                alert(player.warmthProtection);
+                alert([player.illnesses[0][0], player.illnesses[0][1]]);
             }
             else if (cheatcode.toLowerCase() == "test")
             {
+                var chekked = 0
+                for (var i = 0; i < player.illnesses.length; i++)
+                {
+                    if (player.illnesses[i][0] == "Throat-Frost")
+                    {
+                        chekked = 1;
+                    }
+                }
 
+                if (chekked == 0)
+                {
+                    player.illnesses.push(["Throat-Frost", 0, 43]);
+                }
             }
             else if (cheatcode.toLowerCase() == "clearinv")
             {
@@ -2528,7 +2547,7 @@ function theLegend()
             }
             else if (player.raceName == "Freynor")
             {
-                player.baseWarmth = 80;
+                player.baseWarmth = 200;
             }
             else if (player.raceName == "Kel")
             {
@@ -5460,6 +5479,9 @@ function theLegend()
         this.perfumeCHA = 0;
         this.shockedTime = 0;
         this.shockedTime2 = new Date().getTime();
+        this.immune = false; //this while true makes enemy damage equal to 0.
+        this.illnesses = [];
+        this.antibodies = [];
 
         //utility or extra variables
         this.AdAbility = []; //this is a list of all active abilities held by armours and equipped outfits
@@ -5478,6 +5500,14 @@ function theLegend()
         this.outfitType = "none";
         this.glovesType = "none";
         this.necklaceType = "none";
+        //extra-movement variables
+        this.jumpBackKeepTime = 0;
+        this.jumpBackTime = 8;
+        this.jumpDistance = 5;
+        this.jumpingBack = false;
+        this.jBack = 0;
+        this.readyToStopJumpingBack = false;
+        this.readyForAnotherJumpBack = true;
 
         //a function for all of the small functions to fix tiny obscure yet sometimes important details...
         this.quickFixes = function()
@@ -5706,6 +5736,7 @@ function theLegend()
             this.sleepMAX = 24 + this.getEndurance();
             this.totalSleep = this.sleepMAX + this.extraSleep + this.AdSleep;
             this.totalShockResist = this.shockResist + this.AdShockResist;
+            this.jumpBackTime = 8 - (this.getEndurance() / 12.5);
 
             //this sets carry weight based on the total added weights in the player's inventory.
             if (Inventory.length > 0)
@@ -5791,6 +5822,59 @@ function theLegend()
                 else
                 {
                     this.resistDisease = false;
+                }
+            };
+
+            this.sickness = function() //illnesses lists are so: ["name", #timeSick#, #initialIllnessDuration#]
+            {
+                for (var j = 0; j < this.illnesses.length; j++)
+                {
+                    for (var i = 0; i < this.antibodies.length; i++)
+                    {
+
+                        if (this.antibodies[i][1] <= 0)
+                        {
+                            this.antibodies.splice(i, 1);
+                            break;
+                        }
+                        else
+                        {
+                            this.antibodies[i][1] -= 0.001;
+
+                            if (this.illnesses[j][0] == this.antibodies[i][0])
+                            {
+                                this.illnesses.splice(j, 1);
+                                break;
+                            }
+                        }
+                    }
+                    var illDuration = Math.max(6, this.illnesses[j][2] - this.getToughness());
+                    if (this.illnesses[j][1] >= this.illDuration)
+                    {
+                        this.antibodies.push([this.illnesses[j][0], 2500 + (12 * this.getToughness())]);
+                    }
+                    else
+                    {
+                        this.illnesses[j][1] += 0.001;
+
+                        if (this.illnesses[j][1] >= (illDuration / 8))
+                        {
+                            //ILLNESSES TAKE EFFECT HERE
+                            if (this.illnesses[j][0] == "Throat-Frost")
+                            {
+                                //Throat-Frost causes your body to stop producing enough natural heat.
+                                this.warmth -= 0.0002;
+
+                                //by the middle of its duration the body reacts with swelling
+                                if (this.illnesses[j][1] >= (illDuration * 5 / 8) && this.illnesses[j][1] <= (illDuration * 7.25 / 8))
+                                {
+                                    this.swollenII = true;
+                                    swollenTime = Math.max(player.swollenTime, 90);
+                                    this.energy -= 0.0001;
+                                }
+                            }
+                        }
+                    }
                 }
             };
 
@@ -7143,6 +7227,7 @@ function theLegend()
             this.climateEffects(); //todo add faster dehydration in deserts.
             this.overCucumbered(); //If the player is carrying too much weight the player all of a sudden becomes submersed in invisible cucumbers making it very challenging for him/her to move.
             this.outfitEffects();
+            this.sickness();
 
             //minor game effects
             this.sightSeeing();
@@ -7719,6 +7804,35 @@ function theLegend()
         };
 
         //Gut Worms Notice Function
+        this.sicknessChecker = function ()
+        {
+            if (this.illnesses.length > 0)
+            {
+                // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+                this.addNotice("Sickness");
+
+                //pinkish gut-like background colour.
+                XXX.beginPath();
+                XXX.fillStyle = "rgba(64, 64, 64, 1)";
+                XXX.lineWidth = 1;
+                XXX.strokeStyle = "black";
+                XXX.rect(this.arrangeNotices("Sickness"), 413, 20, 20);
+                XXX.fill();
+                XXX.stroke();
+                XXX.drawImage(oldverse, 1821, 179, 48, 35, this.arrangeNotices("Sickness") + 1.5, 413.5, 9, 12);
+                XXX.drawImage(polyPNG, 207, 7, 13, 12, this.arrangeNotices("Sickness") + 2.5, 415, 19, 19);
+                XXX.drawImage(polyPNG, 5, 716, 18, 16, this.arrangeNotices("Sickness") + 1.5, 414, 18, 11);
+                XXX.drawImage(poly, 211, 114, 23, 20, this.arrangeNotices("Sickness") + 1.5, 412.5, 16, 20);
+                XXX.drawImage(poly, 57, 50, 8, 8, this.arrangeNotices("Sickness") + 2.75, 415, 15, 15);
+            }
+            else
+            {
+                //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+                this.removeNotice("Sickness");
+            }
+        };
+
+        //Gut Worms Notice Function
         this.gutWormsChecker = function ()
         {
             if (this.gutWorms == true)
@@ -8061,6 +8175,7 @@ function theLegend()
             this.hinderanceChecker();
             this.stunnedChecker();
             this.gutWormsChecker();
+            this.sicknessChecker();
             this.fleshMights();
             this.poisonedChecker();
             this.recoveredChecker();
@@ -8220,32 +8335,35 @@ function theLegend()
             //SNEAKING
             if (this.movingType == 3)
             {
-                // the right leg goes back 25 pixles and the left goes forward 25.
-                if (this.lLegY < 15 && this.legSwitch == 0)
+                if (shiftKey)
                 {
-                    // this makes the legs extend
-                    self.lLegY += 1 * TTD / (50.75 - (0.3 / 2 * this.getDexterity())); // 0.3 subtracted from the DT stabilizer is to make the sneaking animation speed as dexterity is increased.
-                    self.rLegY -= 1 * TTD / (50.75 - (0.3 / 2 * this.getDexterity())); // 0.3 subtracted from the DT stabilizer is to make the sneaking animation speed as dexterity is increased.
-                    //console.log("left" + " " + self.lLegY + " " + self.rLegY);
-                }
-                else
-                {
-                    //switch to the right leg forward routine.
-                    this.legSwitch = 1;
-                }
+                    // the right leg goes back 25 pixles and the left goes forward 25.
+                    if (this.lLegY < 15 && this.legSwitch == 0)
+                    {
+                        // this makes the legs extend
+                        self.lLegY += 1 * TTD / (50.75 - (0.3 / 2 * this.getDexterity())); // 0.3 subtracted from the DT stabilizer is to make the sneaking animation speed as dexterity is increased.
+                        self.rLegY -= 1 * TTD / (50.75 - (0.3 / 2 * this.getDexterity())); // 0.3 subtracted from the DT stabilizer is to make the sneaking animation speed as dexterity is increased.
+                        //console.log("left" + " " + self.lLegY + " " + self.rLegY);
+                    }
+                    else
+                    {
+                        //switch to the right leg forward routine.
+                        this.legSwitch = 1;
+                    }
 
-                // the left leg goes back 25 pixles and the right goes forward 25.
-                if (this.lLegY > -15 && this.legSwitch == 1)
-                {
-                    // this makes the legs extend
-                    self.lLegY -= 1 * TTD / (50.75 - (0.3 / 2 * this.getDexterity())); // 0.3 subtracted from the DT stabilizer is to make the sneaking animation speed as dexterity is increased.
-                    self.rLegY += 1 * TTD / (50.75 - (0.3 / 2 * this.getDexterity())); // 0.3 subtracted from the DT stabilizer is to make the sneaking animation speed as dexterity is increased.
-                    //console.log("right" + " " + self.lLegY + " " + self.rLegY);
-                }
-                else
-                {
-                    // switch to the left leg forward routine.
-                    this.legSwitch = 0;
+                    // the left leg goes back 25 pixles and the right goes forward 25.
+                    if (this.lLegY > -15 && this.legSwitch == 1)
+                    {
+                        // this makes the legs extend
+                        self.lLegY -= 1 * TTD / (50.75 - (0.3 / 2 * this.getDexterity())); // 0.3 subtracted from the DT stabilizer is to make the sneaking animation speed as dexterity is increased.
+                        self.rLegY += 1 * TTD / (50.75 - (0.3 / 2 * this.getDexterity())); // 0.3 subtracted from the DT stabilizer is to make the sneaking animation speed as dexterity is increased.
+                        //console.log("right" + " " + self.lLegY + " " + self.rLegY);
+                    }
+                    else
+                    {
+                        // switch to the left leg forward routine.
+                        this.legSwitch = 0;
+                    }
                 }
             }
         };
@@ -8436,7 +8554,7 @@ function theLegend()
             {
                 necklace = allWorn[21];
             }
-            if (this.necklaceEquipped == "mofuFive")
+            else if (this.necklaceEquipped == "mofuFive")
             {
                 necklace = allWorn[26];
             }
@@ -8480,6 +8598,7 @@ function theLegend()
             this.AdMemory = outfit.memoryBonus + gloves.memoryBonus + necklace.memoryBonus;
 
             this.AdAbility = [outfit.ability, gloves.ability, necklace.ability];
+
             if (this.getToughness() < outfit.toughnessRequirement)
             {
                 this.unskilledUse = true;
@@ -13835,14 +13954,17 @@ function theLegend()
         };
 
         //This makes the character always face the mouse pointer.
-        this.pointAtMouse = function ()
+        this.pointAtMouse = function()
         {
-            this.rotation = Math.atan2(mouseY - this.myScreenY, mouseX - this.myScreenX) + Math.PI / 2;
+            if (!this.jumpingBack)
+            {
+                this.rotation = Math.atan2(mouseY - this.myScreenY, mouseX - this.myScreenX) + Math.PI / 2;
+            }
             //console.log(this.rotation);
         };
 
         //OBSTRUCTION CHECKER (this checks to see if something is in the player's way).
-        this.isObstructed = function (x, y)
+        this.isObstructed = function(x, y)
         {
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
@@ -13885,7 +14007,7 @@ function theLegend()
         this.motion = function ()
         {
             //BACKWALKING
-            if (sKey == true && shiftKey != true && wKey != true && this.getDexterity() >= 5)
+            if (sKey == true && shiftKey != true && wKey != true && this.getDexterity() >= 5 && !this.jumpingBack)
             {
                 this.movingType = 4;
 
@@ -13908,12 +14030,12 @@ function theLegend()
                 }
             }
             //STANDING
-            if (wKey == false && altKey == false && sKey == false)
+            if (wKey == false && altKey == false && sKey == false && !this.jumpingBack)
             {
                 this.movingType = 0;
             }
             //WALKING
-            if (wKey == true && shiftKey != true)
+            if (wKey == true && shiftKey != true && !this.jumpingBack)
             {
                 this.movingType = 1;
 
@@ -13937,7 +14059,7 @@ function theLegend()
             }
             //RUNNING
             // if you run out of energy while running you regress into a walk.
-            if (this.energy <= 0 && wKey == true && shiftKey == true)
+            if (this.energy <= 0 && wKey == true && shiftKey == true && !this.jumpingBack)
             {
                 this.movingType = 1;
 
@@ -13959,7 +14081,7 @@ function theLegend()
                 }
             }
 
-            if (wKey == true && shiftKey == true && this.energy > 0)
+            if (wKey == true && shiftKey == true && this.energy > 0 && !this.jumpingBack)
             {
                 this.movingType = 2;
 
@@ -13981,26 +14103,111 @@ function theLegend()
                 }
             }
             //SNEAKING
-            if (altKey == true && wKey == false)
+            if (altKey == true && wKey == false && !this.jumpingBack)
             {
                 this.movingType = 3;
-
-                // If the place where the player would move next under the same instruction is blocked then the player will not move.
-                if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
+                if (shiftKey)
                 {
-                    var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                    var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                    if (!this.isObstructed(nextX, nextY))
+                    // If the place where the player would move next under the same instruction is blocked then the player will not move.
+                    if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
                     {
-                        X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                        Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        if (!this.isObstructed(nextX, nextY))
+                        {
+                            X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                            Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        }
                     }
+                    else
+                    {
+                        X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity())) * (TTD / 16.75);
+                        Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity())) * (TTD / 16.75);
+                    }
+                }
+            }
+            //JUMP-BACK
+            if (sKey == true && shiftKey == true && this.jumpingBack == false && this.readyForAnotherJumpBack && this.getDexterity() >= 10 && this.energy >= 5 && this.movingType != 2)
+            {
+                if (this.freeze <= 1.5)
+                {
+                    this.energy -= 5;
+                    this.movingType = 5;
+                    this.jumpingBack = true;
+                    this.readyForAnotherJumpBack = false;
+                    this.jBack = 0;
+                    this.jumpBack();
+
+                    var jumpHitter = true;
+                    for (var i = 1; i <= 17 + this.jumpDistance; i++)
+                    {
+                        var nextX = X - 2 * i * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
+                        var nextY = Y - 2 * i * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
+                        if (this.isObstructed(nextX, nextY))
+                        {
+                            jumpHitter = false;
+                        }
+                    }
+
+                    if (jumpHitter)
+                    {
+                        this.immune = true;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].target == player && ArtificialIntelligenceAccess[i].ranged == false && ArtificialIntelligenceAccess[i].unavoidable == false)
+                            {
+                                ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 500;
+                            }
+                        }
+                    }
+                }
+            }
+            //Segment the jump process
+            if (this.jumpingBack)
+            {
+                if (this.jBack < (17 + this.jumpDistance))
+                {
+                    this.jumpBack();
+                    this.jumpBackKeepTime = new Date().getTime();
                 }
                 else
                 {
-                    X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity())) * (TTD / 16.75);
-                    Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity())) * (TTD / 16.75);
+                    this.readyToStopJumpingBack = true;
+                    this.jumpingBack = false;
                 }
+            }
+            //End the jump back and have a wait time.
+            if (this.readyToStopJumpingBack && this.jBack > 0)
+            {
+                this.immune = false;
+                if (new Date().getTime() - this.jumpBackKeepTime > this.jumpBackTime * 1000)
+                {
+                    this.readyToStopJumpingBack = false;
+                    this.readyForAnotherJumpBack = true;
+                    this.jBack = 0;
+                }
+            }
+        };
+
+        this.jumpBack = function()
+        {
+            this.jBack += 1;
+
+            // If the place where the player would move next under the same instruction is blocked then the player will not move.
+            if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
+            {
+                var nextX = X - 2 * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
+                var nextY = Y - 2 * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
+                if (!this.isObstructed(nextX, nextY))
+                {
+                    X -= 2 * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
+                    Y -= 2 * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
+                }
+            }
+            else
+            {
+                X -= 2 * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity()))) * (TTD / 16.75);
+                Y -= 2 * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity()))) * (TTD / 16.75);
             }
         };
 
@@ -20629,7 +20836,14 @@ function theLegend()
                             }
                             else
                             {
-                                XXX.fillText("      Food + " + Inventory[i][0].hunger + "   Drink + " + Inventory[i][0].thirst + "    Warming + " + Inventory[i][0].warmth, 157, 514);
+                                if (Inventory[i][0].warmth > 0)
+                                {
+                                    XXX.fillText("      Food + " + Inventory[i][0].hunger + "   Drink + " + Inventory[i][0].thirst + "    Warming + " + Inventory[i][0].warmth, 157, 514);
+                                }
+                                else
+                                {
+                                    XXX.fillText("      Food + " + Inventory[i][0].hunger + "   Drink + " + Inventory[i][0].thirst, 157, 514);
+                                }
                             }
                         }
                         else if (Inventory[i][0].utility == "weapon")
@@ -23898,6 +24112,7 @@ function theLegend()
         this.experience = 1; //This is the amount of experience that the player will earn from slaying this creature. It becomes either regular or magical experience depending on what means the player used to get the killing blow.
         this.lessEXP = 0;
         this.resistances = [];
+        this.unavoidable = false; //if this is true the player can not use jump back or any other immunity based dodging technique to dodge.
         //Operational game variables
         this.rotation = 0; //this is the unit's current rotation.
         this.newRotation = 0; //this is the target rotation, or the rotation that the unit would like to be at.
@@ -29031,6 +29246,12 @@ function theLegend()
                         if (this.damage > player.armourTotal)
                         {
                             this.damage = Math.floor(Math.random() * (randomDamage + 1)) + setDamage;
+
+                            if (player.immune && this.unavoidable == false)
+                            {
+                                this.damage = 0;
+                            }
+
                             player.health -= Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / (16.75 + (100 * this.attackRate)));
                             player.decreaseInHealth += Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / (16.75 + (100 * this.attackRate))); // this is how much health is displayed as blood red for the player;
                         }
@@ -29046,6 +29267,10 @@ function theLegend()
 
                         if (this.finalAttackCostume)
                         {
+                            if (player.immune && this.unavoidable == false)
+                            {
+                                this.damage = 0;
+                            }
                             //console.log(this.damage + " is the damage done by " + this.ID + " through an armour total of " + player.armourTotal + ". The resulting damage was " + Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / 16.75) + ".");
                             if (player.mageShield > 0)
                             {
@@ -33506,7 +33731,7 @@ function theLegend()
                         this.experience = (30 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    //this.drops = [[new Item("medOolidOozeRemains", this.X, this.Y), 1]];
+                    this.drops = [[new Item("medGlutidOoze", this.X, this.Y), 1]];
                 }
                 else if (this.alpha == "massive")
                 {
@@ -33519,7 +33744,7 @@ function theLegend()
                         this.experience = (50 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    //this.drops = [[new Item("lrgOolidOozeRemains", this.X, this.Y), 1]];
+                    this.drops = [[new Item("lrgGlutidOoze", this.X, this.Y), 1]];
                 }
                 else
                 {
@@ -33532,7 +33757,7 @@ function theLegend()
                         this.experience = 15 * ((player.getIntelligence() / 50) + 1) / 10;
                     }
 
-                    //this.drops = [[new Item("smlOolidOozeRemains", this.X, this.Y), 1]];
+                    this.drops = [[new Item("smlGlutidOoze", this.X, this.Y), 1]];
                 }
 
                 //RANGE OF SIGHT (anything related to range of sight)
@@ -33608,6 +33833,135 @@ function theLegend()
 
                         this.doOnDeathOnce = false;
                     }
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (!this.moving && !this.attacking) //If not moving and not attacking initiate standing animation...
+                    {
+                        this.costume = 0;
+                    }
+                    else if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(6, 0.10, true);
+                    }
+                    else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(5, 0.15, true);
+                        }
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.25, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                        if (this.moving)
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.25, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment -5 * this.alphaSize, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.35, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.3, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 2)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment - 7.5 * this.alphaSize, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.45, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.35, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 3)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment - 10 * this.alphaSize, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.55, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.4, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 4)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment - 11.25 * this.alphaSize, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.6, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.45, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume >= 5)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(theCrack, 743, 260, 78, 49, -1/2 * 78 * this.alphaSize - this.xAdjustment + 3, -1/2 * 49 * this.alphaSize - this.yAdjustment, 78 * this.alphaSize, 49 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(theCrack, 312, 266, 41, 39, -1/2 * 41 * this.alphaSize * 1.25 - this.xAdjustment + 3, -1/2 * 39 * this.alphaSize * 1.25 - this.yAdjustment, 41 * this.alphaSize * 1.25, 39 * this.alphaSize * 1.5, 1/2 * Math.PI);
+                            this.drawUnit(theCrack, 372, 265, 41, 39, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 39 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 39 * this.alphaSize);
+                        }
+                    }
+                }
+                else
+                {
+                    this.drawUnit(theCrack, 372, 268, 40, 37, - (1/2 * 40 * this.alphaSize), - (1/2 * 37 * this.alphaSize), 40 * this.alphaSize, 37 * this.alphaSize);
+                }
+            }
+            //Bacteria
+            if (this.type == "Bacteria")
+            {
+                //Set Drops and experience
+                if (this.alpha == true)
+                {
+                //AI
+
+                    if (typeof(this.ultra) != "undefined")
+                    {
+                        this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                    }
+
+                }
+                else
+                {
+                    this.health = this.healthMAX;
                 }
 
                 //ANIMATIONS
@@ -43287,6 +43641,40 @@ function theLegend()
         this.alcohol = 0;
         this.wake = 0;
 
+        this.flashFrame = 0;
+        this.flashFrameTime = new Date().getTime();
+        this.flashAnimate = function(framerate, rotation, transparency, list)
+        {
+            //use a list with coords for images: [{image:, imgX:, imgY:, portionW:, portionH:, adjX:, adjY:, width:, height:}, ... etc.]
+            if (this.flashFrame >= list.length)
+            {
+                this.flashFrame = 0;
+            }
+
+            if (rotation != false)
+            {
+                XXX.save();
+                XXX.globalAlpha = transparency;
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(rotation);
+                XXX.drawImage(list[this.flashFrame].image, list[this.flashFrame].imgX, list[this.flashFrame].imgY, list[this.flashFrame].portionW, list[this.flashFrame].portionH, list[this.flashFrame].adjX, list[this.flashFrame].adjY, list[this.flashFrame].width, list[this.flashFrame].height);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.globalAlpha = transparency;
+                XXX.drawImage(list[this.flashFrame].image, list[this.flashFrame].imgX, list[this.flashFrame].imgY, list[this.flashFrame].portionW, list[this.flashFrame].portionH, X - this.X + (1 / 2 * CCC.width) + list[this.flashFrame].adjX, Y - this.Y + (1 / 2 * CCC.height) + list[this.flashFrame].adjY, list[this.flashFrame].width, list[this.flashFrame].height);
+                XXX.restore();
+            }
+
+            if (new Date().getTime() - this.flashFrameTime >= framerate)
+            {
+                this.flashFrameTime = new Date().getTime();
+                this.flashFrame += 1;
+            }
+        };
+
         this.setItemID = function()
         {
             //defaults
@@ -51058,6 +51446,66 @@ function theLegend()
                 this.buyValue = 90 - Math.floor(player.getCharisma() / 1.63); // at max, buy for 60.
                 this.sellValue = 30 + Math.floor(player.getCharisma() / 1.63); // at max, sell for 60.
             }
+            else if (this.type == "smlGlutidOoze")
+            {
+                //For All Items
+                this.identity = "Glutid Ooze";
+                this.weight = 30;
+                this.size = 14;
+                this.description = "The sticky, super-toxic, highly-acidic, blue ooze of a glutid.";
+                this.intForDes = 25;
+                this.intDescription = "The ooze will boil if held in a temperature warmer than freezing.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 25 - Math.floor(player.getCharisma() / 10); // at max, buy for 20.
+                this.sellValue = 10 + Math.floor(player.getCharisma() / 5); // at max, sell for 20.
+            }
+            else if (this.type == "medGlutidOoze")
+            {
+                //For All Items
+                this.identity = "Glutid Ooze";
+                this.weight = 50;
+                this.size = 14;
+                this.description = "The sticky, super-toxic, highly-acidic, blue ooze of a glutid.";
+                this.intForDes = 25;
+                this.intDescription = "The ooze will boil if held in a temperature warmer than freezing.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 35 - Math.floor(player.getCharisma() / 10); // at max, buy for 30.
+                this.sellValue = 20 + Math.floor(player.getCharisma() / 5); // at max, sell for 30.
+            }
+            else if (this.type == "lrgGlutidOoze")
+            {
+                //For All Items
+                this.identity = "Glutid Ooze";
+                this.weight = 90;
+                this.size = 14;
+                this.description = "The sticky, super-toxic, highly-acidic, blue ooze of a glutid.";
+                this.intForDes = 25;
+                this.intDescription = "The ooze will boil if held in a temperature warmer than freezing.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 55 - Math.floor(player.getCharisma() / 10); // at max, buy for 50.
+                this.sellValue = 40 + Math.floor(player.getCharisma() / 5); // at max, sell for 50.
+            }
             else if (this.type == "smlOolidOozeRemains")
             {
                 //For All Items
@@ -56066,6 +56514,45 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polypol, 779, 1, 17, 68, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 68 * 1.1), 17 * 1.1, 68 * 1.1);
             }
+            else if (this.type == "smlGlutidOoze")
+            {
+                var sizeMult = 1;
+                if (Y > 6290 || Y > -3919 && currentSeason == "Frost")
+                {
+                    XXX.beginPath();
+                    XXX.drawImage(theCrack, 313, 268, 40, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 40 * sizeMult), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * sizeMult), 40 * sizeMult, 37 * sizeMult);
+                }
+                else
+                {
+                    this.flashAnimate(100 + 100 * Math.random(), 0, 1, [{image: theCrack, imgX: 313, imgY: 268, portionW: 40, portionH: 37, adjX: - (1/2 * 40 * sizeMult), adjY: - (1/2 * 37 * sizeMult), width: 40 * sizeMult, height: 37 * sizeMult}, {image: theCrack, imgX: 250, imgY: 266, portionW: 40, portionH: 37, adjX: - (1/2 * 40 * sizeMult), adjY: - (1/2 * 37 * sizeMult), width: 40 * sizeMult, height: 37 * sizeMult}, {image: theCrack, imgX: 187, imgY: 270, portionW: 40, portionH: 37, adjX: - (1/2 * 40 * sizeMult), adjY: - (1/2 * 37 * sizeMult), width: 40 * sizeMult, height: 37 * sizeMult}, {image: theCrack, imgX: 123, imgY: 268, portionW: 40, portionH: 37, adjX: - (1/2 * 40 * sizeMult), adjY: - (1/2 * 37 * sizeMult), width: 40 * sizeMult, height: 37 * sizeMult}]);
+                }
+            }
+            else if (this.type == "medGlutidOoze")
+            {
+                var sizeMult = 1.5;
+                if (Y > 6290 || Y > -3919 && currentSeason == "Frost")
+                {
+                    XXX.beginPath();
+                    XXX.drawImage(theCrack, 313, 268, 40, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 40 * sizeMult), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * sizeMult), 40 * sizeMult, 37 * sizeMult);
+                }
+                else
+                {
+                    this.flashAnimate(100 + 100 * Math.random(), 0, 1, [{image: theCrack, imgX: 313, imgY: 268, portionW: 40, portionH: 37, adjX: - (1/2 * 40 * sizeMult), adjY: - (1/2 * 37 * sizeMult), width: 40 * sizeMult, height: 37 * sizeMult}, {image: theCrack, imgX: 250, imgY: 266, portionW: 40, portionH: 37, adjX: - (1/2 * 40 * sizeMult), adjY: - (1/2 * 37 * sizeMult), width: 40 * sizeMult, height: 37 * sizeMult}, {image: theCrack, imgX: 187, imgY: 270, portionW: 40, portionH: 37, adjX: - (1/2 * 40 * sizeMult), adjY: - (1/2 * 37 * sizeMult), width: 40 * sizeMult, height: 37 * sizeMult}, {image: theCrack, imgX: 123, imgY: 268, portionW: 40, portionH: 37, adjX: - (1/2 * 40 * sizeMult), adjY: - (1/2 * 37 * sizeMult), width: 40 * sizeMult, height: 37 * sizeMult}]);
+                }
+            }
+            else if (this.type == "lrgGlutidOoze")
+            {
+                var sizeMult = 2;
+                if (Y > 6290 || Y > -3919 && currentSeason == "Frost")
+                {
+                    XXX.beginPath();
+                    XXX.drawImage(theCrack, 313, 268, 40, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 40 * sizeMult), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * sizeMult), 40 * sizeMult, 37 * sizeMult);
+                }
+                else
+                {
+                    this.flashAnimate(100 + 100 * Math.random(), 0, 1, [{image: theCrack, imgX: 313, imgY: 268, portionW: 40, portionH: 37, adjX: - (1/2 * 40 * sizeMult), adjY: - (1/2 * 37 * sizeMult), width: 40 * sizeMult, height: 37 * sizeMult}, {image: theCrack, imgX: 250, imgY: 266, portionW: 40, portionH: 37, adjX: - (1/2 * 40 * sizeMult), adjY: - (1/2 * 37 * sizeMult), width: 40 * sizeMult, height: 37 * sizeMult}, {image: theCrack, imgX: 187, imgY: 270, portionW: 40, portionH: 37, adjX: - (1/2 * 40 * sizeMult), adjY: - (1/2 * 37 * sizeMult), width: 40 * sizeMult, height: 37 * sizeMult}, {image: theCrack, imgX: 123, imgY: 268, portionW: 40, portionH: 37, adjX: - (1/2 * 40 * sizeMult), adjY: - (1/2 * 37 * sizeMult), width: 40 * sizeMult, height: 37 * sizeMult}]);
+                }
+            }
             else if (this.type == "smlOolidOozeRemains")
             {
                 XXX.beginPath();
@@ -56760,6 +57247,27 @@ function theLegend()
             {
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "smlGlutidOoze")
+            {
+                var sizeMult = 1;
+
+                LXX.beginPath();
+                LXX.drawImage(theCrack, 313, 268, 40, 37, this.invX - (1/2 * 40 * sizeMult), this.invY - (1/2 * 37 * sizeMult), 40 * sizeMult, 37 * sizeMult);
+            }
+            else if (this.type == "medGlutidOoze")
+            {
+                var sizeMult = 1.5;
+
+                LXX.beginPath();
+                LXX.drawImage(theCrack, 313, 268, 40, 37, this.invX - (1/2 * 40 * sizeMult), this.invY - (1/2 * 37 * sizeMult), 40 * sizeMult, 37 * sizeMult);
+            }
+            else if (this.type == "lrgGlutidOoze")
+            {
+                var sizeMult = 2;
+
+                LXX.beginPath();
+                LXX.drawImage(theCrack, 313, 268, 40, 37, this.invX - (1/2 * 40 * sizeMult), this.invY - (1/2 * 37 * sizeMult), 40 * sizeMult, 37 * sizeMult);
             }
             else if (this.type == "smlOolidOozeRemains")
             {
@@ -58322,6 +58830,27 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "smlGlutidOoze")
+            {
+                var sizeMult = 1;
+
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 313, 268, 40, 37, this.invX - (1/2 * 40 * sizeMult), this.invY - (1/2 * 37 * sizeMult), 40 * sizeMult, 37 * sizeMult);
+            }
+            else if (this.type == "medGlutidOoze")
+            {
+                var sizeMult = 1.5;
+
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 313, 268, 40, 37, this.invX - (1/2 * 40 * sizeMult), this.invY - (1/2 * 37 * sizeMult), 40 * sizeMult, 37 * sizeMult);
+            }
+            else if (this.type == "lrgGlutidOoze")
+            {
+                var sizeMult = 2;
+
+                XXX.beginPath();
+                XXX.drawImage(theCrack, 313, 268, 40, 37, this.invX - (1/2 * 40 * sizeMult), this.invY - (1/2 * 37 * sizeMult), 40 * sizeMult, 37 * sizeMult);
             }
             else if (this.type == "smlOolidOozeRemains")
             {

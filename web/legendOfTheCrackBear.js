@@ -1519,6 +1519,16 @@ function theLegend()
                 player.concentration = Math.round(player.concentration / 2);
                 player.eminence = Math.round(player.eminence / 2);
             }
+            else if (cheatcode == "671W19THAVE")
+            {
+                player.skillPoints += 10;
+                player.gender = "!*&#$^*CHEATER!#(&*#(&(";
+                player.name = "***!!NOOB-SUCKER198!!***";
+                player.title = "&*%^&$%^$^%**$";
+                player.race = "&&&$0Wh4T&&&!^!!";
+                player.raceName = "&&&$0Wh4T&&&!^!!";
+
+            }
             else if (cheatcode == "2863980297")
             {
                 player.concentration = JSON.parse(prompt("How much concentration would you like?"));
@@ -1743,15 +1753,7 @@ function theLegend()
             }
             else if (cheatcode.toLowerCase() == "tellme")
             {
-                for (var i = 0; i < scenicList.length; i++)
-                {
-                    if (scenicList[i].type == "ulgoyPlant")
-                    {
-                        console.log(scenicList[i]);
-                    }
-                }
 
-                console.log(scenicList);
             }
             else if (cheatcode.toLowerCase() == "dime")
             {
@@ -14166,8 +14168,8 @@ function theLegend()
                     var jumpHitter = true;
                     for (var i = 1; i <= 17 + this.jumpDistance; i++)
                     {
-                        var nextX = X - 3 * i * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
-                        var nextY = Y - 3 * i * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
+                        var nextX = X - 3 * i * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * 40 / this.freeze))) * (TTD / 16.75);
+                        var nextY = Y - 3 * i * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * 40 / this.freeze))) * (TTD / 16.75);
                         if (this.isObstructed(nextX, nextY))
                         {
                             jumpHitter = false;
@@ -14181,7 +14183,14 @@ function theLegend()
                         {
                             if (ArtificialIntelligenceAccess[i].target == player && ArtificialIntelligenceAccess[i].ranged == false && ArtificialIntelligenceAccess[i].unavoidable == false)
                             {
-                                ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 500;
+                                if (this.freeze > 1)
+                                {
+                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 450;
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 900;
+                                }
                             }
                         }
                     }
@@ -14221,18 +14230,18 @@ function theLegend()
             // If the place where the player would move next under the same instruction is blocked then the player will not move.
             if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
             {
-                var nextX = X - 3 * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
-                var nextY = Y - 3 * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
+                var nextX = X - 3 * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * 40 / this.freeze))) * (TTD / 16.75);
+                var nextY = Y - 3 * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * 40 / this.freeze))) * (TTD / 16.75);
                 if (!this.isObstructed(nextX, nextY))
                 {
-                    X -= 3 * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
-                    Y -= 3 * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
+                    X -= 3 * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * 40 / this.freeze))) * (TTD / 16.75);
+                    Y -= 3 * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * 40 / this.freeze))) * (TTD / 16.75);
                 }
             }
             else
             {
-                X -= 3 * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity()))) * (TTD / 16.75);
-                Y -= 3 * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity()))) * (TTD / 16.75);
+                X -= 3 * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * 40))) * (TTD / 16.75);
+                Y -= 3 * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * 40))) * (TTD / 16.75);
             }
         };
 

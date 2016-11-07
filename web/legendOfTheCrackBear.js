@@ -1743,7 +1743,15 @@ function theLegend()
             }
             else if (cheatcode.toLowerCase() == "tellme")
             {
-                alert(magicList);
+                for (var i = 0; i < scenicList.length; i++)
+                {
+                    if (scenicList[i].type == "ulgoyPlant")
+                    {
+                        console.log(scenicList[i]);
+                    }
+                }
+
+                console.log(scenicList);
             }
             else if (cheatcode.toLowerCase() == "dime")
             {
@@ -1890,6 +1898,23 @@ function theLegend()
                 //invScroll = 0;
                 player.inventoryPosition -= 1;
                 alert(player.inventoryPosition);
+            }
+            else if (cheatcode.toLowerCase() == "fixshopplus")
+            {
+                //merchScroll = -79;
+                player.merchPosition += 1;
+                alert(player.merchPosition);
+            }
+            else if (cheatcode.toLowerCase() == "fixshop")
+            {
+                player.merchPosition = 0;
+                merchScroll = 0;
+            }
+            else if (cheatcode.toLowerCase() == "fixshopminus")
+            {
+                //merchScroll = 0;
+                player.merchPosition -= 1;
+                alert(player.merchPosition);
             }
             else if (cheatcode.toLowerCase() == "serpytheserpent")
             {
@@ -14141,8 +14166,8 @@ function theLegend()
                     var jumpHitter = true;
                     for (var i = 1; i <= 17 + this.jumpDistance; i++)
                     {
-                        var nextX = X - 2 * i * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
-                        var nextY = Y - 2 * i * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
+                        var nextX = X - 3 * i * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
+                        var nextY = Y - 3 * i * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
                         if (this.isObstructed(nextX, nextY))
                         {
                             jumpHitter = false;
@@ -14196,18 +14221,18 @@ function theLegend()
             // If the place where the player would move next under the same instruction is blocked then the player will not move.
             if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
             {
-                var nextX = X - 2 * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
-                var nextY = Y - 2 * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
+                var nextX = X - 3 * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
+                var nextY = Y - 3 * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
                 if (!this.isObstructed(nextX, nextY))
                 {
-                    X -= 2 * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
-                    Y -= 2 * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
+                    X -= 3 * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
+                    Y -= 3 * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze))) * (TTD / 16.75);
                 }
             }
             else
             {
-                X -= 2 * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity()))) * (TTD / 16.75);
-                Y -= 2 * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity()))) * (TTD / 16.75);
+                X -= 3 * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity()))) * (TTD / 16.75);
+                Y -= 3 * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity()))) * (TTD / 16.75);
             }
         };
 
@@ -28573,15 +28598,19 @@ function theLegend()
                                 var parsedFactionRelation = 0;
                             }
                             
-                            if (dClick == true && this.ultra.merchant == true && dtp < 100 && this.disturbed == false && parsedFactionRelation >= -25)
+                            if (dClick == true && this.ultra.merchant == true && dtp < 100 && this.disturbed == false && parsedFactionRelation >= -25) //merchant by click
                             {
                                 shopInventory = this.ultra.merchandise;
                                 shopID = this.ID;
+                                player.merchPosition = 0;
+                                merchScroll = 0;
                                 lowBar = "shop";
                                 gameState = "paused";
                             }
-                            else if (dClick == true && this.ultra.banker == true && dtp < 100 && this.disturbed == false && parsedFactionRelation >= -49)
+                            else if (dClick == true && this.ultra.banker == true && dtp < 100 && this.disturbed == false && parsedFactionRelation >= -49) //banker by click
                             {
+                                player.bankPosition = 0;
+                                bankScroll = 0;
                                 lowBar = "bank";
                                 gameState = "paused";
                             }
@@ -41686,11 +41715,11 @@ function theLegend()
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(oldverse, 3022, 233, 40, 42, -1/2 * 20 * longevity, -1/2 * 42 * longevity, 40 * longevity, 42 * longevity);
+                    XXX.drawImage(oldverse, 3022, 233, 40, 42, -1/2 * 20 * this.owned, -1/2 * 42 * this.owned, 40 * this.owned, 42 * this.owned);
                     XXX.restore();
 
                 //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-                this.radius = 16 * longevity;
+                this.radius = 16 * this.owned;
             }
             else if (this.type == "neprilnePlant")
             {
@@ -42403,7 +42432,7 @@ function theLegend()
                 //TRAITS
                 this.variety = "plant";
                 this.solid = false;
-                this.interactionRange = 50 * longevity;
+                this.interactionRange = 50 * this.owned;
 
                 //DRAWSELF
                 if (this.phase == 0)
@@ -42411,8 +42440,8 @@ function theLegend()
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(polpol, 245, 385, 39, 34, -(1/2 * 31 * longevity), -(1/2 * 30 * longevity), 31 * longevity, 30 * longevity);
-                    XXX.drawImage(polpol, 245, 385, 39, 34, -(1/2 * 31 * longevity), -(1/2 * 30 * longevity), 31 * longevity, 30 * longevity);
+                    XXX.drawImage(polpol, 245, 385, 39, 34, -(1/2 * 31 * this.owned), -(1/2 * 30 * this.owned), 31 * this.owned, 30 * this.owned);
+                    XXX.drawImage(polpol, 245, 385, 39, 34, -(1/2 * 31 * this.owned), -(1/2 * 30 * this.owned), 31 * this.owned, 30 * this.owned);
                     XXX.restore();
                 }
                 else if (this.phase == 1)
@@ -42420,8 +42449,8 @@ function theLegend()
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(polpol, 286, 385, 39, 34, -(1/2 * 31 * longevity), -(1/2 * 30 * longevity), 31 * longevity, 30 * longevity);
-                    XXX.drawImage(polpol, 286, 385, 39, 34, -(1/2 * 31 * longevity), -(1/2 * 30 * longevity), 31 * longevity, 30 * longevity);
+                    XXX.drawImage(polpol, 286, 385, 39, 34, -(1/2 * 31 * this.owned), -(1/2 * 30 * this.owned), 31 * this.owned, 30 * this.owned);
+                    XXX.drawImage(polpol, 286, 385, 39, 34, -(1/2 * 31 * this.owned), -(1/2 * 30 * this.owned), 31 * this.owned, 30 * this.owned);
                     XXX.restore();
                 }
                 else if (this.phase == "picked")
@@ -42429,13 +42458,13 @@ function theLegend()
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(polpol, 317, 385, 39, 34, -(1/2 * 31 * longevity), -(1/2 * 30 * longevity), 31 * longevity, 30 * longevity);
-                    XXX.drawImage(polpol, 317, 385, 39, 34, -(1/2 * 31 * longevity), -(1/2 * 30 * longevity), 31 * longevity, 30 * longevity);
+                    XXX.drawImage(polpol, 317, 385, 39, 34, -(1/2 * 31 * this.owned), -(1/2 * 30 * this.owned), 31 * this.owned, 30 * this.owned);
+                    XXX.drawImage(polpol, 317, 385, 39, 34, -(1/2 * 31 * this.owned), -(1/2 * 30 * this.owned), 31 * this.owned, 30 * this.owned);
                     XXX.restore();
                 }
 
                 //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-                this.radius = 10 * longevity;
+                this.radius = 10 * this.owned;
 
                 //INTERACTION
                 if (this.activate == true && this.phase == 0)

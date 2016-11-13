@@ -1534,6 +1534,10 @@ function theLegend()
                 player.concentration = JSON.parse(prompt("How much concentration would you like?"));
                 player.eminence = JSON.parse(prompt("How much eminence would you like?"));
             }
+            else if (cheatcode == "MedliaKit")
+            {
+                uniqueChars.medliaLDS = true;
+            }
             else if (cheatcode == "00567817")
             {
                 player.concentration = 0;

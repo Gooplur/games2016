@@ -1028,6 +1028,7 @@ function theLegend()
     allWeapons.push(new Item("dualVardanianBattleAxe", false)); //49
     allWeapons.push(new Item("vardanianClub", false)); //50
     allWeapons.push(new Item("theNorthernGem", false)); //51
+    allWeapons.push(new Item("steelArrow", false)); //52
 
     //This list holds one of each type of worn item so that the player can access the worn item stats.
     var allWorn = [];
@@ -1122,6 +1123,7 @@ function theLegend()
     smithing.push(new Item("vardanianBattleAxe", false));
     smithing.push(new Item("crossbow", false));
     smithing.push(new Item("steelBolt", false));
+    smithing.push(new Item("steelArrow", false));
     smithing.push(new Item("timberAxe", false));
     smithing.push(new Item("vardanianHeavyCleaver", false));
     smithing.push(new Item("warHammer", false));
@@ -23643,6 +23645,41 @@ function theLegend()
                     XXX.restore();
                 }
             }
+            else if (type == "steelArrow")
+            {
+                if (list == playerProjectiles)
+                {
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    this.shoot();
+                    this.impact();
+
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    XXX.drawImage(poly, 182, 104, 23, 9, 0, 0, 34.5, 13.5);
+                    XXX.restore();
+                }
+                else if (list == unitProjectiles)
+                {
+                    //WHAT IT WILL DO...
+                    player.projYAd = 0;
+                    player.projXAd = 0;
+                    this.setStats();
+                    this.shoot();
+                    this.impact();
+
+                    //HOW IT WILL DRAW...
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation + (1 / 2 * Math.PI));
+                    XXX.drawImage(poly, 182, 104, 23, 9, 0, 0, 34.5, 13.5);
+                    XXX.restore();
+                }
+            }
             else if (type == "freezingArrow")
             {
                 if (list == playerProjectiles)
@@ -41648,6 +41685,12 @@ function theLegend()
                     lights.push({X:this.X, Y: this.Y, size: 100, extraStops: true, GRD: 0.25, Alpha: 0.875, showMe: false});
                 }
 
+                //produce heat
+                if (this.playerer <= 105)
+                {
+                    player.warmth += Math.max(0, (0.90 - (player.heatResistance / 200)));
+                }
+
                 //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
                 this.radius = 25;
 
@@ -52529,7 +52572,7 @@ function theLegend()
                 this.subUtilityName = "Arrow";
 
                 //Utility Focused
-                this.damage = 3 * (1 + player.getRanged() / 25);
+                this.damage = 4 * (1 + player.getRanged() / 25);
                 this.magicalDamage = 0;
 
                 //ability
@@ -52562,7 +52605,7 @@ function theLegend()
                 this.subUtilityName = "Arrow";
 
                 //Utility Focused
-                this.damage = 5 * (1 + player.getRanged() / 25);
+                this.damage = 6 * (1 + player.getRanged() / 25);
                 this.magicalDamage = 0;
 
                 //ability
@@ -52594,7 +52637,7 @@ function theLegend()
                 this.subUtilityName = "Arrow";
 
                 //Utility Focused
-                this.damage = 5 * (1 + player.getRanged() / 25);
+                this.damage = 6 * (1 + player.getRanged() / 25);
                 this.magicalDamage = 7;
 
                 //ability
@@ -52626,7 +52669,7 @@ function theLegend()
                 this.subUtilityName = "Arrow";
 
                 //Utility Focused
-                this.damage = 5 * (1 + player.getRanged() / 25);
+                this.damage = 6 * (1 + player.getRanged() / 25);
                 this.magicalDamage = 1;
 
                 //ability
@@ -52658,7 +52701,7 @@ function theLegend()
                 this.subUtilityName = "Arrow";
 
                 //Utility Focused
-                this.damage = 3 * (1 + player.getRanged() / 25);
+                this.damage = 4 * (1 + player.getRanged() / 25);
                 this.magicalDamage = 0;
 
                 //ability
@@ -52690,20 +52733,52 @@ function theLegend()
                 this.subUtilityName = "Arrow";
 
                 //Utility Focused
-                this.damage = 3 * (1 + player.getRanged() / 25);
+                this.damage = 4 * (1 + player.getRanged() / 25);
                 this.magicalDamage = 0;
 
                 //ability
                 this.ability = "none";
 
                 //Crafting
-                this.yield = 15;
+                this.yield = 17;
                 this.intForCraft = 5;
                 this.ingredients = [["Wood", 1], ["Iron", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 1; // at max, buy for 1.
                 this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "steelArrow")
+            {
+                //For All Items
+                this.identity = "Steel Arrow";
+                this.weight = 0.1;
+                this.size = 8;
+                this.description = "An arrow with a long, sharp, steel pointed tip";
+                this.intForDes = 4;
+                this.intDescription = "It is the arrow that determines the damage, not the bow.";
+
+                //Define Utility
+                this.utility = "ammunition";
+                //Sub Utility
+                this.subUtility = "arrow";
+                this.subUtilityName = "Arrow";
+
+                //Utility Focused
+                this.damage = 6 * (1 + player.getRanged() / 25);
+                this.magicalDamage = 0;
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 10;
+                this.intForCraft = 15;
+                this.ingredients = [["Wood", 1], ["Steel", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 4; // at max, buy for 4.
+                this.sellValue = 4; // at max, sell for 4.
             }
             else if (this.type == "aldrekiiArrow")
             {
@@ -52729,7 +52804,7 @@ function theLegend()
                 this.ability = "none";
 
                 //Crafting
-                this.yield = 10;
+                this.yield = 6;
                 this.intForCraft = 30;
                 this.ingredients = [["Wood", 1], ["Ikrinium", 1]];
 
@@ -57086,6 +57161,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(mofu, 66, 21, 22, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 33), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13.5), 33, 13.5);
             }
+            else if (this.type == "steelArrow")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 182, 104, 23, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 34.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13.5), 23, 9);
+            }
             else if (this.type == "arrow")
             {
                 XXX.beginPath();
@@ -58704,6 +58784,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(mofu, 66, 21, 22, 9, this.invX - (1/2 * 44), this.invY - (1/2 * 18), 44, 18);
             }
+            else if (this.type == "steelArrow")
+            {
+                LXX.beginPath();
+                LXX.drawImage(poly, 182, 104, 23, 9, this.invX - (1/2 * 46), this.invY - (1/2 * 18), 46, 18);
+            }
             else if (this.type == "arrow")
             {
                 LXX.beginPath();
@@ -60283,6 +60368,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(mofu, 66, 21, 22, 9, this.invX - (1/2 * 44), this.invY - (1/2 * 18), 44, 18);
             }
+            else if (this.type == "steelArrow")
+            {
+                XXX.beginPath();
+                XXX.drawImage(poly, 182, 104, 23, 9, this.invX - (1/2 * 46), this.invY - (1/2 * 18), 46, 18);
+            }
             else if (this.type == "arrow")
             {
                 XXX.beginPath();
@@ -60709,7 +60799,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(1690, 1021, "Person", false, "Svehn the Smith", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.65], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 103 + quests.bobithNewWealth], [new Item("steel", false, false), 8], [new Item("iron", false, false), 6], [new Item("mace", false, false), 3], [new Item("hammer", false, false), 2], [new Item("freydicSpear", false, false), 5], [new Item("freydicSword", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("longbow", false, false), 2], [new Item("arrow", false, false), 92], [new Item("timberAxe", false, false), 3]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(1690, 1021, "Person", false, "Svehn the Smith", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.65], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 103 + quests.bobithNewWealth], [new Item("steel", false, false), 8], [new Item("iron", false, false), 6], [new Item("mace", false, false), 3], [new Item("hammer", false, false), 2], [new Item("freydicSpear", false, false), 5], [new Item("freydicSword", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("longbow", false, false), 2], [new Item("arrow", false, false), 92], [new Item("steelArrow", false, false), 61], [new Item("timberAxe", false, false), 3]]}));
                         }
                     }
                     if (uniqueChars.medliaLDS == true)

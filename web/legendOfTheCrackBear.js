@@ -1067,6 +1067,7 @@ function theLegend()
     allWorn.push(new Item("ardilFurGloves", false)); //32
     allWorn.push(new Item("thenganPlateArmour", false)); //33
     allWorn.push(new Item("swampWalkerArmour", false)); //34
+    allWorn.push(new Item("evrakLeatherArmour", false)); //35
 
     var scenicList = [];
 
@@ -1183,6 +1184,7 @@ function theLegend()
     foods.push(new Item("bucketOfHotPluttBerryCider", false));
     foods.push(new Item("bucketOfTechiTea", false));
     foods.push(new Item("avrakMeat", false));
+    foods.push(new Item("evrakMeat", false));
     foods.push(new Item("golgemoffMeat", false));
     foods.push(new Item("ardilMeat", false));
     foods.push(new Item("boiledPalntRoot", false));
@@ -1206,10 +1208,13 @@ function theLegend()
     tailoring.push(new Item("walrusLeatherWaterskin", false));
     tailoring.push(new Item("grushFurClothing", false));
     tailoring.push(new Item("avrakLeatherArmour", false));
+    tailoring.push(new Item("evrakLeatherArmour", false));
     tailoring.push(new Item("tent", false));
     tailoring.push(new Item("cloth", false));
     tailoring.push(new Item("naapridFiber", false));
     tailoring.push(new Item("varnFiber", false));
+    tailoring.push(new Item("avrakFiber", false));
+    tailoring.push(new Item("evrakFiber", false));
     tailoring.push(new Item("mofuTribalWear", false));
     tailoring.push(new Item("mofuRunnerOutfit", false));
     tailoring.push(new Item("ardilFurClothing", false));
@@ -8561,6 +8566,10 @@ function theLegend()
             {
                 outfit = allWorn[34];
             }
+            else if (this.outfitEquipped == "evrakLeatherArmour")
+            {
+                outfit = allWorn[35];
+            }
             else
             {
                 outfit = allWorn[0];
@@ -8807,6 +8816,15 @@ function theLegend()
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation - (1 / 2 * Math.PI));
                 XXX.drawImage(mofu, 92, 2119, 48, 39, -(1 / 2 * 48 * 0.9) - 2, -(1 / 2 * 39 * 0.9) + 0, 48 * 0.9, 39 * 0.9);
+                XXX.restore();
+            }
+            if (this.outfitEquipped == "evrakLeatherArmour")
+            {
+                this.outfitZ = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                XXX.drawImage(mofu, 71, 2186, 53, 57, -(1 / 2 * 53 * 0.7) + 2, -(1 / 2 * 57 * 0.7) + 1, 53 * 0.7, 57 * 0.7);
                 XXX.restore();
             }
             else if (this.outfitEquipped == "grushFurClothing")
@@ -30757,6 +30775,12 @@ function theLegend()
                     XXX.rotate(this.rotation);
                     XXX.drawImage(polyPNG, 792, 308, 52, 48, -(1 / 2 * 62.4) + 0, -(1 / 2 * 57.6) - 2.5, 67.6, 62.4);
                 }
+                else if (outfit == "evrakLeatherArmour")
+                {
+                    XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mofu, 71, 2186, 53, 57, -(1 / 2 * 53 * 0.7) + 2, -(1 / 2 * 57 * 0.7) + 1, 53 * 0.7, 57 * 0.7);
+                }
                 else if (outfit == "frichFurClothing")
                 {
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
@@ -32248,6 +32272,83 @@ function theLegend()
                     this.alphaSize = 0.4;
                     // this is the adjustment the alpha type of Etyr needs to be centered.
                     this.yAdjustment = 0; //was -34
+                    this.xAdjustment = 0; //was - 26
+
+                }
+            }
+            else if (this.type == "Evrak")
+            {
+                this.damageFrame = "automatic";
+                this.team = "wild";
+                this.baseTeam = this.team;
+
+                if (this.alpha == true)
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = 1;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 34) + 62;
+                    this.health = this.healthMAX;
+                    this.armour = 3;
+                    this.speed = 6 + (Math.floor(Math.random() * 6) / 10);
+                    this.rangeOfSight = 950; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 50;
+                    this.sizeRadius = 25;
+                    this.negateArmour = 4;
+                    this.attackWait = 1.65;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 0.65; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 7; //was - 10
+                    this.xAdjustment = 0; //was 30
+                }
+                else if (this.alpha == "giant")
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = 2;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 64) + 234;
+                    this.health = this.healthMAX;
+                    this.armour = 5;
+                    this.speed = 8.5 + (Math.floor(Math.random() * 6) / 10);
+                    this.rangeOfSight = 1250; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 98;
+                    this.sizeRadius = 81;
+                    this.negateArmour = 9;
+                    this.attackWait = 2;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 1.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 9;
+                    this.xAdjustment = 0;
+                }
+                else
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = 1;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 16) + 20;
+                    this.health = this.healthMAX;
+                    this.armour = 2;
+                    this.speed = 5 + (Math.floor(Math.random() * 6) / 10);
+                    this.rangeOfSight = 750; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 36;
+                    this.sizeRadius = 20;
+                    this.negateArmour = 3;
+                    this.attackWait = 1.5;
+
+                    //this multiplies the draw image skew numbers by 1 so that it stays the same
+                    this.alphaSize = 0.4;
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 8; //was -34
                     this.xAdjustment = 0; //was - 26
 
                 }
@@ -35609,7 +35710,178 @@ function theLegend()
                 {
                     this.drawUnit(mofu, 605, 210, 278, 224, -1/2 * 278 * this.alphaSize - this.xAdjustment, -1/2 * 224 * this.alphaSize - this.yAdjustment, 278 * this.alphaSize, 224 * this.alphaSize);
                 }
+            }
+            //EVRAK
+            if (this.type == "Evrak")
+            {
+                //Set Drops and experience
+                if (this.alpha == true)
+                {
+                    if (Math.max(0, 20 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 110 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (110 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
 
+                    this.drops = [[new Item("rawEvrakFlesh", this.X, this.Y), 4], [new Item("evrakHide", this.X, this.Y), 3]];
+                }
+                if (this.alpha == "giant")
+                {
+                    if (Math.max(0, 40 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 500 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (500 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    this.drops = [[new Item("rawEvrakFlesh", this.X, this.Y), 16], [new Item("evrakHide", this.X, this.Y), 11]];
+                }
+                else
+                {
+                    if (Math.max(0, 10 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 26 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = 26 * ((player.getIntelligence() / 50) + 1) / 10;
+                    }
+
+                    this.drops = [[new Item("rawEvrakFlesh", this.X, this.Y), 1], [new Item("evrakHide", this.X, this.Y), 1]];
+                }
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                if (this.alpha == true)
+                {
+                    this.rangeOfSightCalculator(800, true);
+                }
+                else if (this.alpha == "giant")
+                {
+                    this.rangeOfSightCalculator(1000, true);
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(700, true);
+                }
+
+                //AI
+                if (this.alive == true)
+                {
+                    if (this.alpha == true)
+                    {
+                        this.Attack(15, 9);
+                        this.callForNearbyHelpFromType(920, "Evrak");
+                        this.callForNearbyHelpFromType(860, "Avrak");
+                    }
+                    else if (this.alpha == "giant")
+                    {
+                        this.Attack(33, 15);
+                        this.callForNearbyHelpFromType(920, "Evrak");
+                        this.callForNearbyHelpFromType(860, "Avrak");
+                    }
+                    else
+                    {
+                        this.Attack(8, 4);
+                        this.callForNearbyHelpFromType(920, "Evrak");
+                        this.callForNearbyHelpFromType(860, "Avrak");
+                    }
+
+                    //this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(4, 0.075, false);
+                    }
+                    else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(4, 0.105, true);
+                        }
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(mofu, 944, 2256, 230, 211, - 1/2 * 230 * this.alphaSize - this.xAdjustment, - 1/2 * 211 * this.alphaSize - this.yAdjustment, 230 * this.alphaSize, 211 * this.alphaSize);
+                        }
+                        else if (this.moving)
+                        {
+                            this.drawUnit(mofu, 463, 2252, 230, 211, - 1/2 * 230 * this.alphaSize - this.xAdjustment, - 1/2 * 211 * this.alphaSize - this.yAdjustment, 230 * this.alphaSize, 211 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(mofu, 730, 2250, 230, 211, - 1/2 * 230 * this.alphaSize - this.xAdjustment, - 1/2 * 211 * this.alphaSize - this.yAdjustment, 230 * this.alphaSize, 211 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(mofu, 944, 2256, 230, 211, - 1/2 * 230 * this.alphaSize - this.xAdjustment, - 1/2 * 211 * this.alphaSize - this.yAdjustment, 230 * this.alphaSize, 211 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(mofu, 200, 2258, 230, 211, - 1/2 * 230 * this.alphaSize - this.xAdjustment, - 1/2 * 211 * this.alphaSize - this.yAdjustment, 230 * this.alphaSize, 211 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 2)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(mofu, 1171, 2264, 230, 211, - 1/2 * 230 * this.alphaSize - this.xAdjustment, - 1/2 * 211 * this.alphaSize - this.yAdjustment, 230 * this.alphaSize, 211 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(mofu, 463, 2252, 230, 211, - 1/2 * 230 * this.alphaSize - this.xAdjustment, - 1/2 * 211 * this.alphaSize - this.yAdjustment, 230 * this.alphaSize, 211 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume >= 3)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(mofu, 940, 2258, 230, 211, - 1/2 * 230 * this.alphaSize - this.xAdjustment, - 1/2 * 211 * this.alphaSize - this.yAdjustment, 230 * this.alphaSize, 211 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(mofu, 200, 2258, 230, 211, - 1/2 * 230 * this.alphaSize - this.xAdjustment, - 1/2 * 211 * this.alphaSize - this.yAdjustment, 230 * this.alphaSize, 211 * this.alphaSize);
+                        }
+                    }
+                }
+                else
+                {
+                    this.drawUnit(mofu, 1420, 2290, 197, 167, - 1/2 * 197 * this.alphaSize - this.xAdjustment, - 1/2 * 167 * this.alphaSize - this.yAdjustment, 197 * this.alphaSize, 167 * this.alphaSize);
+                }
             }
             //SHEHID
             if (this.type == "Shehid")
@@ -50144,6 +50416,76 @@ function theLegend()
                 this.buyValue = 20 - Math.floor(player.getCharisma() / 10); // at max, buy for 15.
                 this.sellValue = 5 + Math.floor(player.getCharisma() / 5); // at max, sell for 15.
             }
+            else if (this.type == "evrakHide")
+            {
+                //For All Items
+                this.identity = "Evrak Hide";
+                this.weight = 3;
+                this.size = 15;
+                this.description = "A thick dark-brown hide from an evrak.";
+                this.intForDes = 36;
+                this.intDescription = "This can be tanned and made into leather armour or it can be made into fiber.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 25 - Math.floor(player.getCharisma() / 10); // at max, buy for 20.
+                this.sellValue = 8 + Math.floor(player.getCharisma() / 4); // at max, sell for 20.
+            }
+            else if (this.type == "evrakFiber")
+            {
+                //For All Items
+                this.identity = "Fiber";
+                this.weight = 0.1;
+                this.size = 10;
+                this.description = "Strong thin strands of fiber.";
+                this.intForDes = 1;
+                this.intDescription = "Fiber is a basic material used in many crafting recipies.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 6;
+                this.intForCraft = 19;
+                this.ingredients = [["Evrak Hide", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 3; // at max, buy for 3.
+                this.sellValue = 3; // at max, sell for 3.
+            }
+            else if (this.type == "avrakFiber")
+            {
+                //For All Items
+                this.identity = "Fiber";
+                this.weight = 0.1;
+                this.size = 10;
+                this.description = "Strong thin strands of fiber.";
+                this.intForDes = 1;
+                this.intDescription = "Fiber is a basic material used in many crafting recipies.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 7;
+                this.intForCraft = 18;
+                this.ingredients = [["Avrak Hide", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 2; // at max, buy for 2.
+                this.sellValue = 2; // at max, sell for 2.
+            }
             else if (this.type == "varnFiber")
             {
                 //For All Items
@@ -50199,6 +50541,36 @@ function theLegend()
                 this.buyValue = 18 - Math.floor(player.getCharisma() / 12); // at max, buy for 14.
                 this.sellValue = 9 + Math.floor(player.getCharisma() / 10); // at max, sell for 14.
             }
+            else if (this.type == "rawEvrakFlesh")
+            {
+                //For All Items
+                this.identity = "Raw Evrak Flesh";
+                this.weight = 3.5;
+                this.size = 12;
+                this.description = "A strange tender flesh with a good deal of fat.";
+                this.intForDes = 1;
+                this.intDescription = "Evrak flesh can be eaten raw as a delicacy.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 5; //satisfies hunger.
+                this.thirst = 1; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 18 - Math.floor(player.getCharisma() / 12); // at max, buy for 14.
+                this.sellValue = 9 + Math.floor(player.getCharisma() / 10); // at max, sell for 14.
+            }
             else if (this.type == "avrakMeat")
             {
                 //For All Items
@@ -50233,15 +50605,15 @@ function theLegend()
                 this.buyValue = 32 - Math.floor(player.getCharisma() / 6); // at max, buy for 24.
                 this.sellValue = 19 + Math.floor(player.getCharisma() / 10); // at max, sell for 24.
             }
-            else if (this.type == "avrakMeat")
+            else if (this.type == "evrakMeat")
             {
                 //For All Items
-                this.identity = "Avrak Meat";
+                this.identity = "Evrak Meat";
                 this.weight = 0.1;
                 this.size = 6;
-                this.description = "The strangely tender and fatty cooked meat of an avrak.";
+                this.description = "The strangely tender and fatty cooked meat of an evrak.";
                 this.intForDes = 1;
-                this.intDescription = "Due to the fact that it is fatty, rich and exotic tasting tender meat avrak meat is highly sought after.";
+                this.intDescription = "Due to the fact that it is fatty, rich and exotic tasting tender meat evrak meat is highly sought after.";
 
                 //Define Utility
                 this.utility = "food";
@@ -50261,7 +50633,7 @@ function theLegend()
                 //Crafting
                 this.yield = 1;
                 this.intForCraft = 22;
-                this.ingredients = [["Avrak Flesh", 1]];
+                this.ingredients = [["Raw Evrak Flesh", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 32 - Math.floor(player.getCharisma() / 6); // at max, buy for 24.
@@ -53152,6 +53524,64 @@ function theLegend()
                 this.buyValue = 92 - Math.floor(player.getCharisma() / 2); // at max, buy for 67.
                 this.sellValue = 42 + Math.floor(player.getCharisma() / 2); // at max, sell for 67.
             }
+            else if (this.type == "evrakLeatherArmour")
+            {
+                //For All Items
+                this.identity = "Evrak Leather Armour";
+                this.weight = 8;
+                this.size = 26;
+                this.description = "Armour made from the hide of an evrak.";
+                this.intForDes = 1;
+                this.intDescription = "Evrak hide is particularly thick and makes for a sturdy leather armour.";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "armour";
+                //Utility Focused
+                //protections
+                this.protection = 6 * ((player.toughness / 100) + 1);
+                this.toughnessRequirement = 5;
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 0.95;
+                this.thirstRetention = 0;
+                this.shockResist = 0;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 0;
+                this.toughnessBonus = 1;
+                this.intelligenceBonus = 0;
+                this.charismaBonus = 0;
+                this.rangedBonus = 1;
+                this.constitutionBonus = 1;
+                this.staminaBonus = 1;
+                this.dexterityBonus = 0;
+                this.stealthBonus = 0;
+                //Extra Stat Bonuses
+                this.sleepBonus = 0;
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 0;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 30;
+                this.ingredients = [["Evrak Hide", 2]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 99 - Math.floor(player.getCharisma() / 2.5); // at max, buy for 79.
+                this.sellValue = 54 + Math.floor(player.getCharisma() / 2); // at max, sell for 79.
+            }
             else if (this.type == "walrusLeatherArmour")
             {
                 //For All Items
@@ -55987,12 +56417,12 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(mofu, 999, 264, 17, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.4), 17 * 1.4, 16 * 1.4);
             }
-            else if (this.type == "rawAvrakFlesh")
+            else if (this.type == "rawAvrakFlesh" || this.type == "rawEvrakFlesh")
             {
                 XXX.beginPath();
                 XXX.drawImage(mofu, 139, 2350, 39, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 0.8), 39 * 0.8, 29 * 0.8);
             }
-            else if (this.type == "avrakMeat")
+            else if (this.type == "avrakMeat" || this.type == "evrakMeat")
             {
                 XXX.beginPath();
                 XXX.drawImage(mofu, 141, 2394, 39, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 0.8), 39 * 0.8, 29 * 0.8);
@@ -56002,10 +56432,20 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(mofu, 142, 2287, 41, 50, X - this.X + (1/2 * CCC.width) - (1/2 * 41 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 50 * 0.6), 41 * 0.6, 50 * 0.6);
             }
+            else if (this.type == "evrakHide")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 62, 2314, 59, 50, X - this.X + (1/2 * CCC.width) - (1/2 * 59 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 50 * 0.6), 59 * 0.6, 50 * 0.6);
+            }
             else if (this.type == "avrakLeatherArmour")
             {
                 XXX.beginPath();
                 XXX.drawImage(mofu, 8, 2091, 66, 83, X - this.X + (1/2 * CCC.width) - (1/2 * 66), Y - this.Y + (1/2 * CCC.height) - (1/2 * 83), 66, 83);
+            }
+            else if (this.type == "evrakLeatherArmour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 18, 2002, 47, 80, X - this.X + (1/2 * CCC.width) - (1/2 * 47 * 1.05), Y - this.Y + (1/2 * CCC.height) - (1/2 * 80 * 1.05), 47 * 1.05, 80 * 1.05);
             }
             else if (this.type == "neevFlesh")
             {
@@ -56051,7 +56491,7 @@ function theLegend()
                 XXX.drawImage(verse, 3955, 309, 29, 10,  - (1/2 * 29 * 1.5), - (1/2 * 10 * 1.5), 29 * 1.5, 10 * 1.5);
                 XXX.restore();
             }
-            else if (this.type == "naapridFiber" || this.type == "varnFiber")
+            else if (this.type == "naapridFiber" || this.type == "varnFiber" || this.type == "evrakFiber" || this.type == "avrakFiber")
             {
                 XXX.beginPath();
                 XXX.drawImage(poly, 85, 46, 10, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.65), 10 * 1.65, 18 * 1.65);
@@ -57656,12 +58096,12 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(mofu, 999, 264, 17, 16, this.invX - (1/2 * 17 * 1.6), this.invY - (1/2 * 16 * 1.6), 17 * 1.6, 16 * 1.6);
             }
-            else if (this.type == "rawAvrakFlesh")
+            else if (this.type == "rawAvrakFlesh" || this.type == "rawEvrakFlesh")
             {
                 LXX.beginPath();
                 LXX.drawImage(mofu, 139, 2350, 39, 29, this.invX - (1/2 * 39 * 0.8), this.invY - (1/2 * 29 * 0.8), 39 * 0.8, 29 * 0.8);
             }
-            else if (this.type == "avrakMeat")
+            else if (this.type == "avrakMeat" || this.type == "evrakMeat")
             {
                 LXX.beginPath();
                 LXX.drawImage(mofu, 141, 2394, 39, 29, this.invX - (1/2 * 39 * 0.8), this.invY - (1/2 * 29 * 0.8), 39 * 0.8, 29 * 0.8);
@@ -57671,10 +58111,20 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(mofu, 142, 2287, 41, 50, this.invX - (1/2 * 41 * 0.6), this.invY - (1/2 * 50 * 0.6), 41 * 0.6, 50 * 0.6);
             }
+            else if (this.type == "evrakHide")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 62, 2314, 59, 50, this.invX - (1/2 * 59 * 0.6), this.invY - (1/2 * 50 * 0.6), 59 * 0.6, 50 * 0.6);
+            }
             else if (this.type == "avrakLeatherArmour")
             {
                 LXX.beginPath();
                 LXX.drawImage(mofu, 8, 2091, 66, 83, this.invX - (1/2 * 66 * 0.85), this.invY - (1/2 * 83 * 0.85), 66 * 0.85, 83 * 0.85);
+            }
+            else if (this.type == "evrakLeatherArmour")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mofu, 18, 2002, 47, 80, this.invX - (1/2 * 47 * 0.85), this.invY - (1/2 * 80 * 0.85), 47 * 0.85, 80 * 0.85);
             }
             else if (this.type == "neevFlesh")
             {
@@ -57729,7 +58179,7 @@ function theLegend()
                 LXX.drawImage(verse, 3955, 309, 29, 10,  - (1/2 * 29 * 1.5), - (1/2 * 10 * 1.5), 29 * 1.5, 10 * 1.5);
                 LXX.restore();
             }
-            else if (this.type == "naapridFiber" || this.type == "varnFiber")
+            else if (this.type == "naapridFiber" || this.type == "varnFiber" || this.type == "evrakFiber" || this.type == "avrakFiber")
             {
                 LXX.beginPath();
                 LXX.drawImage(poly, 85, 46, 10, 18, this.invX - (1/2 * 10 * 1.65), this.invY - (1/2 * 18 * 1.65), 10 * 1.65, 18 * 1.65);
@@ -59253,12 +59703,12 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(mofu, 999, 264, 17, 16, this.invX - (1/2 * 17 * 1.6), this.invY - (1/2 * 16 * 1.6), 17 * 1.6, 16 * 1.6);
             }
-            else if (this.type == "rawAvrakFlesh")
+            else if (this.type == "rawAvrakFlesh" || this.type == "rawEvrakFlesh")
             {
                 XXX.beginPath();
                 XXX.drawImage(mofu, 139, 2350, 39, 29, this.invX - (1/2 * 39 * 0.8), this.invY - (1/2 * 29 * 0.8), 39 * 0.8, 29 * 0.8);
             }
-            else if (this.type == "avrakMeat")
+            else if (this.type == "avrakMeat" || this.type == "evrakMeat")
             {
                 XXX.beginPath();
                 XXX.drawImage(mofu, 141, 2394, 39, 29, this.invX - (1/2 * 39 * 0.8), this.invY - (1/2 * 29 * 0.8), 39 * 0.8, 29 * 0.8);
@@ -59268,10 +59718,20 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(mofu, 142, 2287, 41, 50, this.invX - (1/2 * 41 * 0.6), this.invY - (1/2 * 50 * 0.6), 41 * 0.6, 50 * 0.6);
             }
+            else if (this.type == "evrakHide")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 62, 2314, 59, 50, this.invX - (1/2 * 59 * 0.6), this.invY - (1/2 * 50 * 0.6), 59 * 0.6, 50 * 0.6);
+            }
             else if (this.type == "avrakLeatherArmour")
             {
                 XXX.beginPath();
                 XXX.drawImage(mofu, 8, 2091, 66, 83, this.invX - (1/2 * 66 * 0.85), this.invY - (1/2 * 83 * 0.85), 66 * 0.85, 83 * 0.85);
+            }
+            else if (this.type == "evrakLeatherArmour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mofu, 18, 2002, 47, 80, this.invX - (1/2 * 47 * 0.85), this.invY - (1/2 * 80 * 0.85), 47 * 0.85, 80 * 0.85);
             }
             else if (this.type == "neevFlesh")
             {
@@ -59317,7 +59777,7 @@ function theLegend()
                 XXX.drawImage(verse, 3955, 309, 29, 10,  - (1/2 * 29 * 1.5), - (1/2 * 10 * 1.5), 29 * 1.5, 10 * 1.5);
                 XXX.restore();
             }
-            else if (this.type == "naapridFiber" || this.type == "varnFiber")
+            else if (this.type == "naapridFiber" || this.type == "varnFiber" || this.type == "evrakFiber" || this.type == "avrakFiber")
             {
                 XXX.beginPath();
                 XXX.drawImage(poly, 85, 46, 10, 18, this.invX - (1/2 * 10 * 1.65), this.invY - (1/2 * 18 * 1.65), 10 * 1.65, 18 * 1.65);
@@ -61919,6 +62379,9 @@ function theLegend()
                         }
                     }
                     ArtificialIntelligenceAccess.push(new Unit(4526, -5718, "Golgemoff", false, "Keek", {patrolStops: 7, patrolLoop: true, route:[[6981, -6924], [6042, -5080], [5943, -4895], [5813, -4301], [-3119, -4307], [-1572, -6834], 4526, -5718]}));
+
+                    //Evrak and Avrak dominating the plains!!!
+                    ArtificialIntelligenceAccess.push(new Unit(577, -5839, "Evrak", false, "elvin"));
 
                     //Naaprids grazing!!!
                     ArtificialIntelligenceAccess.push(new Unit(808, -11538, "Naaprid", false, "Hueso"));

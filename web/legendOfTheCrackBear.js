@@ -56,6 +56,12 @@ function legendaryPrerequisites()
     var musketRld = new Audio("sounds/polySounds/musketReload.wav");
     window.musketRld = musketRld;
 
+    var anterHillCollapse = new Audio("sounds/polySounds/anterHillCollapse.mp3");
+    window.anterHillCollapse = anterHillCollapse;
+
+    var impaction = new Audio("sounds/impact.mp3");
+    window.impaction = impaction;
+
     //dialogue sounds
 
         //TOGGIN CHARACTER: voice acting
@@ -1068,6 +1074,7 @@ function theLegend()
     allWorn.push(new Item("thenganPlateArmour", false)); //33
     allWorn.push(new Item("swampWalkerArmour", false)); //34
     allWorn.push(new Item("evrakLeatherArmour", false)); //35
+    allWorn.push(new Item("anterShellArmour", false)); //36
 
     var scenicList = [];
 
@@ -1117,6 +1124,7 @@ function theLegend()
     smithing.push(new Item("thenganSwordAndShield", false));
     smithing.push(new Item("katana", false));
     smithing.push(new Item("gulfreyShellArmour", false));
+    smithing.push(new Item("anterShellArmour", false));
     smithing.push(new Item("blackChainArmour", false));
     smithing.push(new Item("chainArmour", false));
     smithing.push(new Item("freydicRoyalOutfit", false));
@@ -1544,6 +1552,10 @@ function theLegend()
             else if (cheatcode == "MedliaKit")
             {
                 uniqueChars.medliaLDS = true;
+            }
+            else if (cheatcode == "showsize")
+            {
+                testingUnitSizes = true;
             }
             else if (cheatcode == "00567817")
             {
@@ -5546,6 +5558,11 @@ function theLegend()
         this.jBack = 0;
         this.readyToStopJumpingBack = false;
         this.readyForAnotherJumpBack = true;
+        //mount variables
+        this.mounted = false; //Are you mounted?
+        this.mountType = "none"; //What type of mount is it?
+        this.mountSpeed = 0; //The official speed of your mount
+        this.mountMove = 0; //how fast your mount moves.
 
         //a function for all of the small functions to fix tiny obscure yet sometimes important details...
         this.quickFixes = function()
@@ -8404,7 +8421,73 @@ function theLegend()
                     }
                 }
             }
+
+            //MOUNTED
+            if (this.movingType == 6)
+            {
+                this.lLegY = 0;
+                this.rLegY = 0;
+            }
         };
+        //DRAW AND DO MOUNT STUFF
+        this.mount = function() //player mount
+        {
+            if (this.mountType == "none")
+            {
+                //STATS
+                this.mounted = false;
+                this.mountSpeed = 0;
+                //DRAW
+                //---- n/a
+            }
+            else if (this.mountType == "Naaprid") //todo fix this section/add mounts
+            {
+                //STATS
+                this.mounted = true;
+                this.mountSpeed = 72;
+                //DRAW
+                if (wKey == true && shiftKey == true) //If moving and not attacking initiate moving animation...
+                {
+                    this.stageEngine(3, 0.210, false);
+                    this.mountStage = Math.floor( this.stage );
+                }
+                else if (wKey == true) //If moving and not attacking initiate moving animation...
+                {
+                    this.stageEngine(3, 0.140, false);
+                    this.mountStage = Math.floor( this.stage );
+                }
+                else
+                {
+                    this.mountStage = 0;
+                }
+
+                if (this.mountStage <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(screenX + 1/2 * CCC.width, screenY + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    XXX.drawImage(verse, 2849, 50, 61, 37, -1 * 61 * 2.15, -1 * 37 * 2.15,  61 * 2.15, 37 * 2.15);
+                    XXX.restore();
+                }
+                else if (this.mountStage == 1)
+                {
+                    XXX.save();
+                    XXX.translate(screenX + 1/2 * CCC.width, screenY + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    XXX.drawImage(verse, 3088, 50, 61, 37, 1/2 * 61, 1/2 * 37, 61 * 2.15, 37 * 2.15);
+                    XXX.restore();
+                }
+                else if (this.mountStage == 2)
+                {
+                    XXX.save();
+                    XXX.translate(screenX + 1/2 * CCC.width, screenY + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    XXX.drawImage(verse, 3005, 50, 61, 37, 1/2 * 61, 1/2 * 37, 61 * 2.15, 37 * 2.15);
+                    XXX.restore();
+                }
+            }
+        }
+
         //DRAW SELF STUFF
         //to put it simply, this function draws two lines that represent the main character's legs.
         this.drawLegs = function ()
@@ -8570,6 +8653,10 @@ function theLegend()
             {
                 outfit = allWorn[35];
             }
+            else if (this.outfitEquipped == "anterShellArmour")
+            {
+                outfit = allWorn[36];
+            }
             else
             {
                 outfit = allWorn[0];
@@ -8685,6 +8772,15 @@ function theLegend()
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(verse, 1948, 1, 31, 27, -(1 / 2 * 26) - 0.3, -(1 / 2 * 27) + 1.5, 27, 27);
+                XXX.restore();
+            }
+            else if (this.outfitEquipped == "anterShellArmour")
+            {
+                this.outfitZ = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polpol, 71, 450, 34, 35, -(1 / 2 * 34 * 1.3) - 0.6, -(1 / 2 * 35 * 1.3) - 2, 34 * 1.3, 35 * 1.3);
                 XXX.restore();
             }
             else if (this.outfitEquipped == "chainArmour")
@@ -9004,7 +9100,7 @@ function theLegend()
             {
                 if (this.weaponIsRanged == false && (this.weapon.energyCost * energil <= this.energy) && new Date().getTime() - this.attackCooldown >= 10 * this.weapon.rate && this.spell == "none")
                 {
-                    if (this.attacking == false && this.blocking == false && qKey == false && eKey == false)
+                    if (this.attacking == false && this.blocking == false && qKey == false && eKey == false && this.mounted == false)
                     {
                         this.energy -= this.weapon.energyCost * energil;
                         this.powerAttack = false;
@@ -9012,7 +9108,7 @@ function theLegend()
                         this.cutcut = true; //for an sort of attacking of scenery this allows you to signal that an attack has happened.
                     }
                 }
-                else if (this.weaponIsRanged == true && this.spell == "none")
+                else if (this.weaponIsRanged == true && this.spell == "none" && this.mounted == false)
                 {
                     for (var i = Inventory.length - 1; i > -1; i--)
                     {
@@ -9089,7 +9185,7 @@ function theLegend()
                         }
                     }
                 }
-                else if (this.weaponEquipped == "none" && this.spell != "none")
+                else if (this.weaponEquipped == "none" && this.spell != "none" && this.mounted == false)
                 {
                     if (this.casting == false && this.will >= this.spell.cost && new Date().getTime() - this.castingCooldown >= (this.spell.cooldown * 1000))
                     {
@@ -9101,7 +9197,7 @@ function theLegend()
             //BLOCK INITIATOR
             if (qKey == true)
             {
-                if (this.weapon.subUtility == "shield" && this.blocking == false)
+                if (this.weapon.subUtility == "shield" && this.blocking == false && this.mounted == false)
                 {
                     if (this.weapon.blockCost <= this.energy && this.attacking == false && spaceKey == false)
                     {
@@ -9113,7 +9209,7 @@ function theLegend()
             //POWER ATTACK INITIATOR
             if (eKey == true)
             {
-                if (this.weaponIsRanged == false && (this.weapon.energyCost * 2.5 * energil <= this.energy) && new Date().getTime() - this.attackCooldown >= 25 * this.weapon.rate && this.getStrength() >= 10 && this.spell == "none")
+                if (this.weaponIsRanged == false && (this.weapon.energyCost * 2.5 * energil <= this.energy) && new Date().getTime() - this.attackCooldown >= 25 * this.weapon.rate && this.getStrength() >= 10 && this.spell == "none" && this.mounted == false)
                 {
                     if (this.attacking == false && this.blocking == false && qKey == false && spaceKey == false)
                     {
@@ -14058,7 +14154,7 @@ function theLegend()
         this.motion = function ()
         {
             //BACKWALKING
-            if (sKey == true && shiftKey != true && wKey != true && this.getDexterity() >= 5 && !this.jumpingBack)
+            if (sKey == true && shiftKey != true && wKey != true && this.getDexterity() >= 5 && !this.jumpingBack && this.mounted == false)
             {
                 this.movingType = 4;
 
@@ -14081,12 +14177,12 @@ function theLegend()
                 }
             }
             //STANDING
-            if (wKey == false && altKey == false && sKey == false && !this.jumpingBack)
+            if (wKey == false && altKey == false && sKey == false && !this.jumpingBack && this.mounted == false)
             {
                 this.movingType = 0;
             }
             //WALKING
-            if (wKey == true && shiftKey != true && !this.jumpingBack)
+            if (wKey == true && shiftKey != true && !this.jumpingBack && this.mounted == false)
             {
                 this.movingType = 1;
 
@@ -14110,7 +14206,7 @@ function theLegend()
             }
             //RUNNING
             // if you run out of energy while running you regress into a walk.
-            if (this.energy <= 0 && wKey == true && shiftKey == true && !this.jumpingBack)
+            if (this.energy <= 0 && wKey == true && shiftKey == true && !this.jumpingBack && this.mounted == false)
             {
                 this.movingType = 1;
 
@@ -14132,7 +14228,7 @@ function theLegend()
                 }
             }
 
-            if (wKey == true && shiftKey == true && this.energy > 0 && !this.jumpingBack)
+            if (wKey == true && shiftKey == true && this.energy > 0 && !this.jumpingBack && this.mounted == false)
             {
                 this.movingType = 2;
 
@@ -14154,7 +14250,7 @@ function theLegend()
                 }
             }
             //SNEAKING
-            if (altKey == true && wKey == false && !this.jumpingBack)
+            if (altKey == true && wKey == false && !this.jumpingBack && this.mounted == false)
             {
                 this.movingType = 3;
                 if (shiftKey)
@@ -14178,7 +14274,7 @@ function theLegend()
                 }
             }
             //JUMP-BACK
-            if (sKey == true && shiftKey == true && this.jumpingBack == false && this.readyForAnotherJumpBack && this.getDexterity() >= 10 && this.energy >= 5 && this.movingType != 2)
+            if (sKey == true && shiftKey == true && this.jumpingBack == false && this.readyForAnotherJumpBack && this.getDexterity() >= 10 && this.energy >= 5 && this.movingType != 2 && this.mounted == false)
             {
                 if (this.freeze <= 1.5)
                 {
@@ -14268,6 +14364,36 @@ function theLegend()
                 Y -= 3 * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * 40))) * (TTD / 16.75);
             }
         };
+
+        //MOUNTED -- riding animals as mounts
+        if (wKey == true && this.mounted)
+        {
+            this.movingType = 6;
+            if (shiftKey == true)
+            {
+                this.mountMove = this.mountSpeed * 1.5;
+            }
+            else
+            {
+                this.mountMove = this.mountSpeed;
+            }
+            // If the place where the player would move next under the same instruction is blocked then the player will not move.
+            if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
+            {
+                var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * (4) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.mountMove)) * (TTD / 16.75);
+                var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * (4) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.mountMove)) * (TTD / 16.75);
+                if (!this.isObstructed(nextX, nextY))
+                {
+                    X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * (4) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.mountMove)) * (TTD / 16.75);
+                    Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * (4) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.mountMove)) * (TTD / 16.75);
+                }
+            }
+            else
+            {
+                X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * (4) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.mountMove)) * (TTD / 16.75);
+                Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * (4) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.mountMove)) * (TTD / 16.75);
+            }
+        }
 
         //USER INTERFACE BAR
 
@@ -21732,6 +21858,8 @@ function theLegend()
             {
                 if (gameState == "active" || gameState == "stopTime" || gameState == "popUp") //This makes it so that the players operations do not play while the game is paused.
                 {
+                    //this.mountType = "Naaprid"; //mount test
+                    //this.mount();
                     //Draw the player
 
                     //the player's legs
@@ -29276,12 +29404,16 @@ function theLegend()
             }
         };
 
-        this.moveInRelationToThing = function(thing) //move towards target thing.
+        this.moveInRelationToThing = function(thing, extraSight) //move towards target thing.
         {
-            var dTo = this.distanceFinder(this, thing);
-            if (dTo > this.engagementRadius && dTo < this.rangeOfSight || this.fleeing == true && dTo < this.rangeOfSight) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
+            var extraS = extraSight;
+            if (typeof(extraS) == "undefined")
             {
-
+                extraS = 0;
+            }
+            var dTo = this.distanceFinder(this, thing);
+            if (dTo > this.engagementRadius && dTo < (this.rangeOfSight + extraS) || this.fleeing == true && dTo < (this.rangeOfSight + extraS)) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
+            {
                 var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
                 var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
 
@@ -31802,6 +31934,83 @@ function theLegend()
 
                 }
             }
+            else if (this.type == "Anter")
+            {
+                this.damageFrame = "automatic";
+                this.team = "wild";
+                this.baseTeam = this.team;
+
+                if (this.alpha == true)
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = 0.5;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 7) + 9;
+                    this.health = this.healthMAX;
+                    this.armour = 6;
+                    this.speed = 3.9 + (Math.floor(Math.random() * 3) / 10);
+                    this.rangeOfSight = 400; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 57;
+                    this.sizeRadius = 17;
+                    this.negateArmour = 3;
+                    this.attackWait = 1.25;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 1.6; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0; //was - 10
+                    this.xAdjustment = 0; //was 30
+                }
+                else if (this.alpha == "massive")
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = 0.5;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 12) + 35;
+                    this.health = this.healthMAX;
+                    this.armour = 6;
+                    this.speed = 3.9 + (Math.floor(Math.random() * 3) / 10);
+                    this.rangeOfSight = 400; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 46;
+                    this.sizeRadius = 18;
+                    this.negateArmour = 3;
+                    this.attackWait = 1.25;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = 0.5;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 5) + 5;
+                    this.health = this.healthMAX;
+                    this.armour = 6;
+                    this.speed = 3.9 + (Math.floor(Math.random() * 3) / 10);
+                    this.rangeOfSight = 400; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 59;
+                    this.sizeRadius = 15;
+                    this.negateArmour = 3;
+                    this.attackWait = 1.25;
+
+                    //this multiplies the draw image skew numbers by 1 so that it stays the same
+                    this.alphaSize = 1.3;
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0; //was -34
+                    this.xAdjustment = 0; //was - 26
+
+                }
+            }
             else if (this.type == "Oolid")
             {
                 this.damageFrame = "automatic";
@@ -32288,7 +32497,7 @@ function theLegend()
                     this.heatResistance = 1;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 34) + 62;
+                    this.healthMAX = Math.floor(Math.random() * 11) + 20;
                     this.health = this.healthMAX;
                     this.armour = 3;
                     this.speed = 6 + (Math.floor(Math.random() * 6) / 10);
@@ -32311,7 +32520,7 @@ function theLegend()
                     this.heatResistance = 2;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 64) + 234;
+                    this.healthMAX = Math.floor(Math.random() * 31) + 140;
                     this.health = this.healthMAX;
                     this.armour = 5;
                     this.speed = 8.5 + (Math.floor(Math.random() * 6) / 10);
@@ -32334,7 +32543,7 @@ function theLegend()
                     this.heatResistance = 1;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 16) + 20;
+                    this.healthMAX = Math.floor(Math.random() * 7) + 12;
                     this.health = this.healthMAX;
                     this.armour = 2;
                     this.speed = 5 + (Math.floor(Math.random() * 6) / 10);
@@ -35080,6 +35289,336 @@ function theLegend()
                 }
 
             }
+            //ANTER
+            if (this.type == "Anter") //giant ant
+            {
+                //Set Drops and experience
+                if (this.alpha == true) //SOLDIER
+                {
+                    if (Math.max(0, 5 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 20 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (20 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    this.drops = [[new Item("anterInnards", this.X, this.Y), 2], [new Item("anterShell", this.X, this.Y), 1], [new Item("anterMandibles", this.X, this.Y), 1]];
+
+                    if (Math.round(Math.random()) == 1)
+                    {
+                        this.drops.unshift([new Item("anterAcid", this.X, this.Y), 1]);
+                    }
+                }
+                else if (this.alpha == "massive") //ROYAL
+                {
+                    if (Math.max(0, 8 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 60 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (60 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    this.drops = [[new Item("anterInnards", this.X, this.Y), 5], [new Item("anterShell", this.X, this.Y), 2], [new Item("anterMandibles", this.X, this.Y), 1]];
+
+                    if (Math.round(Math.random()) == 1)
+                    {
+                        this.drops.unshift([new Item("anterAcid", this.X, this.Y), 3]);
+                    }
+                }
+                else //WORKER
+                {
+                    if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 14 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = 14 * ((player.getIntelligence() / 50) + 1) / 10;
+                    }
+
+                    this.drops = [[new Item("anterInnards", this.X, this.Y), 2], [new Item("anterShell", this.X, this.Y), 1], [new Item("anterMandibles", this.X, this.Y), 1]];
+
+                    if (Math.round(Math.random()) == 1)
+                    {
+                        this.drops.unshift([new Item("anterAcid", this.X, this.Y), 1]);
+                    }
+                }
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                if (this.alpha == true)
+                {
+                    this.rangeOfSightCalculator(400, true);
+                }
+                else if (this.alpha == "massive")
+                {
+                    this.rangeOfSightCalculator(500, true);
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(400, false);
+                }
+
+                //AI
+                if (this.alive == true)
+                {
+                    if (this.alpha == true)
+                    {
+                        this.Attack(3, 3);
+                        this.callForNearbyHelpFromType(400, "Anter");
+                    }
+                    else if (this.alpha == "massive")
+                    {
+                        this.Attack(5, 4);
+                        this.callForNearbyHelpFromType(500, "Anter");
+                    }
+                    else
+                    {
+                        this.Attack(2, 2);
+                        this.callForNearbyHelpFromType(400, "Anter");
+                    }
+
+                    if (this.target == player)
+                    {
+                        if (this.DTP() > this.rangeOfSight)
+                        {
+                            this.mofuTargetFood = "none";
+                            this.moving = false;
+                            this.eating = false;
+
+                            for (var i = 0; i < worldItems.length; i++) //look for food...
+                            {
+                                if (worldItems[i][0].utility == "food")
+                                {
+                                    if (worldItems[i][0].hunger >= 1)
+                                    {
+                                        if (this.distanceFinder(this, worldItems[i][0]) <= (this.rangeOfSight + 1200)) //go after nearby food.
+                                        {
+                                            if (this.mofuTargetFood == "none")
+                                            {
+                                                this.mofuTargetFood = worldItems[i][0];
+                                            }
+                                            else
+                                            {
+                                                if (this.distanceFinder(this, worldItems[i][0]) < this.distanceFinder(this, this.mofuTargetFood))
+                                                {
+                                                    this.mofuTargetFood = worldItems[i][0];
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (this.mofuTargetFood != "none")
+                            {
+                                if (this.distanceFinder(this, this.mofuTargetFood) <= this.engagementRadius)
+                                {
+                                    this.eating = true;
+                                }
+                                else
+                                {
+                                    this.eating = false;
+                                    this.pointTowards(this.mofuTargetFood);
+                                    this.moveInRelationToThing(this.mofuTargetFood, 1200);
+                                }
+                            }
+                            else if (typeof(this.ultra) != "undefined")
+                            {
+                                this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                            }
+                        }
+                        else
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                    }
+                    else if (this.target != "none")
+                    {
+                        if (this.DTU(this.target) > this.baseSight)
+                        {
+                            this.mofuTargetFood = "none";
+                            this.moving = false;
+                            this.eating = false;
+
+                            for (var i = 0; i < worldItems.length; i++) //look for food...
+                            {
+                                if (worldItems[i][0].utility == "food")
+                                {
+                                    if (worldItems[i][0].hunger >= 1)
+                                    {
+                                        if (this.distanceFinder(this, worldItems[i][0]) <= (this.rangeOfSight + 1200)) //go after nearby food.
+                                        {
+                                            if (this.mofuTargetFood == "none")
+                                            {
+                                                this.mofuTargetFood = worldItems[i][0];
+                                            }
+                                            else
+                                            {
+                                                if (this.distanceFinder(this, worldItems[i][0]) < this.distanceFinder(this, this.mofuTargetFood))
+                                                {
+                                                    this.mofuTargetFood = worldItems[i][0];
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (this.mofuTargetFood != "none")
+                            {
+                                if (this.distanceFinder(this, this.mofuTargetFood) <= this.engagementRadius)
+                                {
+                                    this.eating = true;
+                                }
+                                else
+                                {
+                                    this.eating = false;
+                                    this.pointTowards(this.mofuTargetFood);
+                                    this.moveInRelationToThing(this.mofuTargetFood, 1200);
+                                }
+                            }
+                            else if (typeof(this.ultra) != "undefined")
+                            {
+                                this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                            }
+                        }
+                        else
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                    }
+
+                    //this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+                    this.friendDecider();
+                    this.targeting();
+
+                }
+                else
+                {
+                    //do stuff when a anter dies...
+                    if (this.doOnDeathOnce == true)
+                    {
+                        this.doOnDeathOnce = false;
+                    }
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(5, 0.15, false);
+                    }
+                    else if (this.attacking || this.eating) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(4, 0.14, false);
+                        }
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking || this.eating)
+                        {
+                            this.drawUnit(polpol, 13, 489, 50, 30, - this.xAdjustment - 1/2 * 50 * this.alphaSize, - this.yAdjustment - 1/2 * 30 * this.alphaSize, 50 * this.alphaSize, 30 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(polpol, 13, 489, 50, 30, - this.xAdjustment - 1/2 * 50 * this.alphaSize, - this.yAdjustment - 1/2 * 30 * this.alphaSize, 50 * this.alphaSize, 30 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        if (this.attacking || this.eating)
+                        {
+                            this.drawUnit(polpol, 13, 518, 50, 30, - this.xAdjustment - 1/2 * 50 * this.alphaSize, - this.yAdjustment - 1/2 * 30 * this.alphaSize, 50 * this.alphaSize, 30 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(polpol, 13, 458, 50, 30, - this.xAdjustment - 1/2 * 50 * this.alphaSize, - this.yAdjustment - 1/2 * 30 * this.alphaSize, 50 * this.alphaSize, 30 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 2)
+                    {
+                        if (this.attacking || this.eating)
+                        {
+                            this.mofuFeastPrepped = true;
+                            this.drawUnit(polpol, 13, 489, 50, 30, - this.xAdjustment - 1/2 * 50 * this.alphaSize, - this.yAdjustment - 1/2 * 30 * this.alphaSize, 50 * this.alphaSize, 30 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(polpol, 12, 426, 50, 30, - this.xAdjustment - 1/2 * 50 * this.alphaSize, - this.yAdjustment - 1/2 * 30 * this.alphaSize, 50 * this.alphaSize, 30 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 3)
+                    {
+                        if (this.attacking || this.eating)
+                        {
+                            this.drawUnit(polpol, 13, 548, 50, 30, - this.xAdjustment - 1/2 * 50 * this.alphaSize, - this.yAdjustment - 1/2 * 30 * this.alphaSize, 50 * this.alphaSize, 30 * this.alphaSize);
+                            if (this.eating && !this.attacking)
+                            {
+                                if (this.mofuFeastPrepped == true)
+                                {
+                                    for (var i = 0; i < worldItems.length; i++)
+                                    {
+                                        if (worldItems[i][0] === this.mofuTargetFood)
+                                        {
+                                            this.mofuFood += 1;
+                                            if (worldItems[i][0].ability == "poisonI" || worldItems[i][0].ability == "poisonII" || worldItems[i][0].ability == "poisonIII" || worldItems[i][0].ability == "poisonIV" || worldItems[i][0].ability == "poisonV")
+                                            {
+                                                this.health = 0;
+                                            }
+                                            if (worldItems[i][1] > 1)
+                                            {
+                                                worldItems[i][1] -= 1;
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                this.mofuTargetFood = "none";
+                                                worldItems.splice(i, 1);
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    this.mofuFeastPrepped = false;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            this.drawUnit(polpol, 13, 394, 50, 30, - this.xAdjustment - 1/2 * 50 * this.alphaSize, - this.yAdjustment - 1/2 * 30 * this.alphaSize, 50 * this.alphaSize, 30 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume >= 4)
+                    {
+                        if (this.attacking || this.eating)
+                        {
+                            this.drawUnit(polpol, 13, 548, 50, 30, - this.xAdjustment - 1/2 * 50 * this.alphaSize, - this.yAdjustment - 1/2 * 30 * this.alphaSize, 50 * this.alphaSize, 30 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(polpol, 13, 361, 50, 30, - this.xAdjustment - 1/2 * 50 * this.alphaSize, - this.yAdjustment - 1/2 * 30 * this.alphaSize, 50 * this.alphaSize, 30 * this.alphaSize);
+                        }
+                    }
+                }
+                else
+                {
+                    this.drawUnit(polpol, 63, 489, 50, 30, - this.xAdjustment - 1/2 * 50 * this.alphaSize, - this.yAdjustment - 1/2 * 30 * this.alphaSize, 50 * this.alphaSize, 30 * this.alphaSize);
+                }
+
+            }
             //STONE GOLEM
             if (this.type == "StoneGolem")
             {
@@ -35717,39 +36256,39 @@ function theLegend()
                 //Set Drops and experience
                 if (this.alpha == true)
                 {
-                    if (Math.max(0, 20 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                     {
-                        this.experience = 110 * ((player.getIntelligence() / 50) + 1);
+                        this.experience = 25 * ((player.getIntelligence() / 50) + 1);
                     }
                     else
                     {
-                        this.experience = (110 * ((player.getIntelligence() / 50) + 1)) / 10;
+                        this.experience = (25 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
                     this.drops = [[new Item("rawEvrakFlesh", this.X, this.Y), 4], [new Item("evrakHide", this.X, this.Y), 3]];
                 }
                 if (this.alpha == "giant")
                 {
-                    if (Math.max(0, 40 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    if (Math.max(0, 30 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                     {
-                        this.experience = 500 * ((player.getIntelligence() / 50) + 1);
+                        this.experience = 190 * ((player.getIntelligence() / 50) + 1);
                     }
                     else
                     {
-                        this.experience = (500 * ((player.getIntelligence() / 50) + 1)) / 10;
+                        this.experience = (190 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
                     this.drops = [[new Item("rawEvrakFlesh", this.X, this.Y), 16], [new Item("evrakHide", this.X, this.Y), 11]];
                 }
                 else
                 {
-                    if (Math.max(0, 10 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    if (Math.max(0, 3 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                     {
-                        this.experience = 26 * ((player.getIntelligence() / 50) + 1);
+                        this.experience = 10 * ((player.getIntelligence() / 50) + 1);
                     }
                     else
                     {
-                        this.experience = 26 * ((player.getIntelligence() / 50) + 1) / 10;
+                        this.experience = 10 * ((player.getIntelligence() / 50) + 1) / 10;
                     }
 
                     this.drops = [[new Item("rawEvrakFlesh", this.X, this.Y), 1], [new Item("evrakHide", this.X, this.Y), 1]];
@@ -35774,19 +36313,19 @@ function theLegend()
                 {
                     if (this.alpha == true)
                     {
-                        this.Attack(15, 9);
+                        this.Attack(3, 4);
                         this.callForNearbyHelpFromType(920, "Evrak");
                         this.callForNearbyHelpFromType(860, "Avrak");
                     }
                     else if (this.alpha == "giant")
                     {
-                        this.Attack(33, 15);
+                        this.Attack(19, 11);
                         this.callForNearbyHelpFromType(920, "Evrak");
                         this.callForNearbyHelpFromType(860, "Avrak");
                     }
                     else
                     {
-                        this.Attack(8, 4);
+                        this.Attack(1, 2.5);
                         this.callForNearbyHelpFromType(920, "Evrak");
                         this.callForNearbyHelpFromType(860, "Avrak");
                     }
@@ -43817,6 +44356,166 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "anterHill")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 200;
+
+                if (this.runOneTime)
+                {
+                    this.runOneTime = false;
+
+                    this.phase = "sturdy";
+                    this.health = 125;
+                    this.tiic = 0;
+                    this.minionsMAX = 21; //total amount of soldiers the hive can have.
+                    this.summonRate = 100; //how long in seconds it takes to summon a new minion.
+                    this.selTyp = Math.round(Math.random()); //selection type
+                }
+                console.log(player.cutcut);
+                //DRAWSELF
+                if (this.phase == "sturdy")
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    if (this.selTyp == 1)
+                    {
+                        XXX.drawImage(theCrack, 923, 507, 78, 74, -(1/2 * 78 * 1.5), -(1/2 * 74 * 1.5), 78 * 1.5, 74 * 1.5);
+                    }
+                    else
+                    {
+                        XXX.drawImage(theCrack, 923, 600, 78, 74, -(1/2 * 78 * 1.5), -(1/2 * 74 * 1.5), 78 * 1.5, 74 * 1.5);
+                    }
+                    XXX.restore();
+                }
+                else if (this.phase == "break1")
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 735, 608, 78, 74, -(1/2 * 78 * 1.5), -(1/2 * 74 * 1.5), 78 * 1.5, 74 * 1.5);
+                    XXX.restore();
+                }
+                else if (this.phase == "break2")
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 737, 689, 78, 74, -(1/2 * 78 * 1.5), -(1/2 * 74 * 1.5), 78 * 1.5, 74 * 1.5);
+                    XXX.restore();
+                }
+                else if (this.phase == "break3")
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 638, 689, 78, 74, -(1/2 * 78 * 1.5), -(1/2 * 74 * 1.5), 78 * 1.5, 74 * 1.5);
+                    XXX.restore();
+                }
+                else if (this.phase == "broken")
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theCrack, 830, 603, 78, 74, -(1/2 * 78 * 1.5), -(1/2 * 74 * 1.5), 78 * 1.5, 74 * 1.5);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 100;
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                }
+
+                //HIVE
+                this.minionCount();
+                if (this.minions < this.minionsMAX && this.phase == "sturdy")
+                {
+                    if (new Date().getTime() - this.summonTime > this.summonRate * 1000)
+                    {
+                        this.summonTime = new Date().getTime();
+                        var random = Math.floor(Math.random() * 4);
+                        var randAlpha = Math.floor(Math.random() * 6);
+                        var alphaPicks = [false, false, false, true, true, "massive"];
+
+                        if (random == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Anter", alphaPicks[randAlpha], this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X + (Math.random() * 1200) - 600, this.Y + (Math.random() * 1200) - 600], [this.X + (Math.random() * 1200) - 600, this.Y + (Math.random() * 1200) - 600], [this.X + (Math.random() * 1200) - 600, this.Y + (Math.random() * 1200) - 600], [this.X + (Math.random() * 1200) - 600, this.Y + (Math.random() * 1200) - 600], [this.X, this.Y], [this.X + (Math.random() * 1200) - 600, this.Y + (Math.random() * 1200) - 600]]}));
+                        }
+                        else if (random == 1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Anter", alphaPicks[randAlpha], this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X + (Math.random() * 1800) - 900, this.Y + (Math.random() * 1800) - 900], [this.X + (Math.random() * 1800) - 900, this.Y + (Math.random() * 1800) - 900], [this.X + (Math.random() * 1800) - 900, this.Y + (Math.random() * 1800) - 900], [this.X + (Math.random() * 1800) - 900, this.Y + (Math.random() * 1800) - 900], [this.X + (Math.random() * 1800) - 900, this.Y + (Math.random() * 1800) - 900], [this.X, this.Y]]}));
+                        }
+                        else if (random == 2)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Anter", alphaPicks[randAlpha], this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X, this.Y], [this.X + (Math.random() * 2400) - 1200, this.Y + (Math.random() * 2400) - 1200], [this.X + (Math.random() * 2400) - 1200, this.Y + (Math.random() * 2400) - 1200], [this.X, this.Y], [this.X + (Math.random() * 2400) - 1200, this.Y + (Math.random() * 2400) - 1200], [this.X + (Math.random() * 2400) - 1200, this.Y + (Math.random() * 2400) - 1200]]}));
+                        }
+                        else if (random == 3)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Anter", alphaPicks[randAlpha], this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X + (Math.random() * 800) - 400, this.Y + (Math.random() * 800) - 400], [this.X, this.Y], [this.X + (Math.random() * 800) - 400, this.Y + (Math.random() * 800) - 400], [this.X, this.Y], [this.X + (Math.random() * 800) - 400, this.Y + (Math.random() * 800) - 400], [this.X, this.Y]]}));
+                        }
+                    }
+                }
+
+                //DAMAGE AND DEATH SENSING
+                if (player.cutcut == true)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    if (distFromCutCut <= player.weapon.range * 7 + this.radius)
+                    {
+                        this.health -= player.weapon.damage;
+                    }
+                }
+                console.log(this.health);
+                if (this.health <= 0 && this.phase == "sturdy")
+                {
+                    console.log("pass");
+                    this.tiic += 1;
+                    if (this.tiic >= 12)
+                    {
+                        this.tiic = 0;
+                        this.phase = "break1";
+                        anterHillCollapse.play();
+                    }
+                }
+                if (this.phase == "break1")
+                {
+                    this.tiic += 1;
+                    if (this.tiic >= 12)
+                    {
+                        this.tiic = 0;
+                        this.phase = "break2";
+                    }
+                }
+                if (this.phase == "break2")
+                {
+                    this.tiic += 1;
+                    if (this.tiic >= 12)
+                    {
+                        this.tiic = 0;
+                        this.phase = "break3";
+                    }
+                }
+                if (this.phase == "break3")
+                {
+                    this.tiic += 1;
+                    if (this.tiic >= 12)
+                    {
+                        this.tiic = 0;
+                        this.phase = "broken";
+                    }
+                }
+            }
             else if (this.type == "campFire")
             {
                 //TRAITS
@@ -46061,6 +46760,92 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 105 - Math.floor(player.getCharisma() / 1.5); // at max, buy for 72.
                 this.sellValue = 42 + Math.floor(player.getCharisma() / 2); // at max, sell for 67.
+            }
+            else if (this.type == "anterInnards")
+            {
+                //For All Items
+                this.identity = "Anter Innards";
+                this.weight = 3;
+                this.size = 9;
+                this.description = "The gooey innards of an anter.";
+                this.intForDes = 0;
+                this.intDescription = "Anter innards smell like someone was split open and left to rot for days...";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0.5; //satisfies hunger.
+                this.thirst = 1; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = -0.5; //heals health.
+                this.generation = -3; //recoops lost energy.
+                this.replenish = -5; //restores will.
+
+                //ability
+                this.ability = "foodPoisoning";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "anterAcid")
+            {
+                //For All Items
+                this.identity = "Anter Acid";
+                this.weight = 2.5;
+                this.size = 9;
+                this.description = "Toxic residue found inside anters.";
+                this.intForDes = 7;
+                this.intDescription = "Anter acid is used by anters to mark new terrotory because it has a powerful acidic odor.";
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 12 - Math.floor(player.getCharisma() / 15); // at max, buy for 9.
+                this.sellValue = 7 + Math.floor(player.getCharisma() / 50); // at max, sell for 9.
+            }
+            else if (this.type == "anterShell")
+            {
+                //For All Items
+                this.identity = "Anter Shell";
+                this.weight = 6;
+                this.size = 15;
+                this.description = "The hard, shiny, black shell of an anter.";
+                this.intForDes = 10;
+                this.intDescription = "Can be crafted into armour.";
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 12 - Math.floor(player.getCharisma() / 12); // at max, buy for 8.
+                this.sellValue = 6 + Math.floor(player.getCharisma() / 25); // at max, sell for 8.
+            }
+            else if (this.type == "anterMandibles")
+            {
+                //For All Items
+                this.identity = "Anter Mandibles";
+                this.weight = 2;
+                this.size = 12;
+                this.description = "The mandibles of an anter.";
+                this.intForDes = 2;
+                this.intDescription = "Anters use their mandibles to devour their prey and also to carry food back to their hive.";
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 5; // at max, buy for 10.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 15); // at max, sell for 5.
             }
             else if (this.type == "frichMeat")
             {
@@ -53495,10 +54280,10 @@ function theLegend()
                 this.toughnessBonus = 0;
                 this.intelligenceBonus = 0;
                 this.charismaBonus = 2;
-                this.rangedBonus = 0;
+                this.rangedBonus = 1;
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
-                this.dexterityBonus = 1;
+                this.dexterityBonus = 3;
                 this.stealthBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
@@ -53912,6 +54697,64 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 111 - Math.floor(player.getCharisma() / 3); // at max, buy for 96.
                 this.sellValue = 71 + Math.floor(player.getCharisma() / 2); // at max, sell for 96.
+            }
+            else if (this.type == "anterShellArmour")
+            {
+                //For All Items
+                this.identity = "Anter Shell Plate Armour";
+                this.weight = 43;
+                this.size = 28;
+                this.description = "Armour made from the shells of anters.";
+                this.intForDes = 1;
+                this.intDescription = "This armour is heavy and not at all easy to move around in...";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "armour";
+                //Utility Focused
+                //protections
+                this.protection = 8 * ((player.toughness / 100) + 1);
+                this.toughnessRequirement = 6;
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 0;
+                this.thirstRetention = 2;
+                this.shockResist = 2;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 0;
+                this.toughnessBonus = 0;
+                this.intelligenceBonus = 0;
+                this.charismaBonus = 1;
+                this.rangedBonus = -8;
+                this.constitutionBonus = 0;
+                this.staminaBonus = 0;
+                this.dexterityBonus = -8;
+                this.stealthBonus = -22;
+                //Extra Stat Bonuses
+                this.sleepBonus = 0;
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 0;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "heavy";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 24;
+                this.ingredients = [["Anter Mandibles", 1], ["Anter Shell", 7]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 99; // at max, buy for 99.
+                this.sellValue = 95 + Math.floor(player.getCharisma() / 12); // at max, sell for 99.
             }
             else if (this.type == "gulfreyShellArmour")
             {
@@ -56192,6 +57035,31 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "anterInnards")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 77, 371, 11, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.5), 11 * 1.5, 10 * 1.5);
+            }
+            else if (this.type == "anterAcid")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 93, 371, 11, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.5), 11 * 1.5, 10 * 1.5);
+            }
+            else if (this.type == "anterShell")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 75, 530, 24, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.6), 24 * 1.6, 16 * 1.6);
+            }
+            else if (this.type == "anterMandibles")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 77, 548, 20, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.5), 20 * 1.5, 24 * 1.5);
+            }
+            else if (this.type == "anterShellArmour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 70, 389, 34, 52, X - this.X + (1/2 * CCC.width) - (1/2 * 34 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 52 * 2), 34 * 2, 52 * 2);
+            }
             else if (this.type == "palntRoot")
             {
                 XXX.beginPath();
@@ -57810,6 +58678,31 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
+            else if (this.type == "anterInnards")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 77, 371, 11, 10, this.invX - (1/2 * 11 * 1.5), this.invY - (1/2 * 10 * 1.5), 11 * 1.5, 10 * 1.5);
+            }
+            else if (this.type == "anterAcid")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 93, 371, 11, 10, this.invX - (1/2 * 11 * 1.5), this.invY - (1/2 * 10 * 1.5), 11 * 1.5, 10 * 1.5);
+            }
+            else if (this.type == "anterShell")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 75, 530, 24, 16, this.invX - (1/2 * 24 * 1.6), this.invY - (1/2 * 16 * 1.6), 24 * 1.6, 16 * 1.6);
+            }
+            else if (this.type == "anterMandibles")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 77, 548, 20, 24, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 24 * 1.5), 20 * 1.5, 24 * 1.5);
+            }
+            else if (this.type == "anterShellArmour")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 70, 389, 34, 52, this.invX - (1/2 * 34 * 1.5), this.invY - (1/2 * 52 * 1.5), 34 * 1.5, 52 * 1.5);
+            }
             else if (this.type == "smlGlutidOoze")
             {
                 var sizeMult = 1;
@@ -59407,6 +60300,31 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "anterInnards")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 77, 371, 11, 10, this.invX - (1/2 * 11 * 1.5), this.invY - (1/2 * 10 * 1.5), 11 * 1.5, 10 * 1.5);
+            }
+            else if (this.type == "anterAcid")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 93, 371, 11, 10, this.invX - (1/2 * 11 * 1.5), this.invY - (1/2 * 10 * 1.5), 11 * 1.5, 10 * 1.5);
+            }
+            else if (this.type == "anterShell")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 75, 530, 24, 16, this.invX - (1/2 * 24 * 1.6), this.invY - (1/2 * 16 * 1.6), 24 * 1.6, 16 * 1.6);
+            }
+            else if (this.type == "anterMandibles")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 77, 548, 20, 24, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 24 * 1.5), 20 * 1.5, 24 * 1.5);
+            }
+            else if (this.type == "anterShellArmour")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 70, 389, 34, 52, this.invX - (1/2 * 34 * 1.5), this.invY - (1/2 * 52 * 1.5), 34 * 1.5, 52 * 1.5);
             }
             else if (this.type == "smlGlutidOoze")
             {
@@ -62382,6 +63300,9 @@ function theLegend()
 
                     //Evrak and Avrak dominating the plains!!!
                     ArtificialIntelligenceAccess.push(new Unit(577, -5839, "Evrak", false, "elvin"));
+
+                    //Anters!!!
+                    scenicList.push(new Scenery("anterHill", 400, -6000, 0, true));
 
                     //Naaprids grazing!!!
                     ArtificialIntelligenceAccess.push(new Unit(808, -11538, "Naaprid", false, "Hueso"));

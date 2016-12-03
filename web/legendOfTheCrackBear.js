@@ -1162,9 +1162,11 @@ function theLegend()
     foods.push(new Item("trollMeat", false));
     foods.push(new Item("walrusMeat", false));
     foods.push(new Item("frichMeat", false));
+    foods.push(new Item("mountainFrichMeat", false));
     foods.push(new Item("youngNaapridMeat", false));
     foods.push(new Item("naapridMeat", false));
     foods.push(new Item("berulnMeat", false));
+    foods.push(new Item("greyWolfMeat", false));
     foods.push(new Item("winterWolfMeat", false));
     foods.push(new Item("wolfLiver", false));
     foods.push(new Item("gulfreyMeat", false));
@@ -5440,6 +5442,7 @@ function theLegend()
         this.swollenCON = 0;
         this.swollenEND = 0;
         this.swollenTime = 0;
+        this.fungalFever = false;
         this.timeSinceLastSwollen = new Date().getTime();
         this.timeSinceLastGutFeast = new Date().getTime();
         this.gutWorms = false; //this effect slowly saps the players hunger until the gutWorms starve to death or the player does at -1 hunger.
@@ -6045,6 +6048,20 @@ function theLegend()
                 else
                 {
                     this.insomnia = false;
+                }
+            };
+
+            this.tepprekliaFungalFever = function()
+            {
+                if (this.swollenV == false)
+                {
+                    this.fungalFever = false;
+                }
+
+                if (this.fungalFever)
+                {
+                    this.warmth += 0.002;
+                    this.thirst -= 0.001;
                 }
             };
 
@@ -7288,6 +7305,7 @@ function theLegend()
             this.sightSeeing();
             this.perfumed();
             this.swollen();
+            this.tepprekliaFungalFever();
             this.gutWorm();
             this.fleshMite();
             this.brainMaggot();
@@ -7710,6 +7728,30 @@ function theLegend()
             {
                 //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
                 this.removeNotice("Brain Maggots");
+            }
+        };
+
+        //Fungal Fever Notice Function
+        this.fungalFeverChecker = function()
+        {
+            if (this.fungalFever == true)
+            {
+                // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+                this.addNotice("Fungal Fever");
+                //red background
+                XXX.beginPath();
+                XXX.fillStyle = "#DCD060";
+                XXX.lineWidth = 1;
+                XXX.strokeStyle = "black";
+                XXX.rect(this.arrangeNotices("Fungal Fever"), 413, 20, 20);
+                XXX.fill();
+                XXX.stroke();
+                XXX.drawImage(oldverse, 3196, 60, 54, 48, this.arrangeNotices("Fungal Fever"), 412.5, 20, 20);
+            }
+            else
+            {
+                //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+                this.removeNotice("Fungal Fever");
             }
         };
 
@@ -8223,6 +8265,7 @@ function theLegend()
             this.arrangeNotices();
             this.noticedChecker();
             this.perfumedChecker();
+            this.fungalFeverChecker();
             this.swollenChecker();
             this.brainMaggotsChecker();
             this.satiationChecker();
@@ -8521,6 +8564,24 @@ function theLegend()
             XXX.stroke();
             XXX.fill();
             XXX.restore();
+
+            //draw affliction: from disease or other source
+            //fungal fever from teppreklia ingestion
+            if (this.fungalFever)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                XXX.rotate(this.rotation);
+                XXX.beginPath();
+                XXX.globalALpha = 0.35;
+                XXX.lineWidth = 1;
+                XXX.arc(0, 0, this.mySize, 0, 2 * Math.PI);
+                XXX.strokeStyle = "#DCD060";
+                //XXX.fillStyle = "#DCD060";
+                XXX.stroke();
+                //XXX.fill();
+                XXX.restore();
+            }
         };
 
         this.drawOutfit = function ()
@@ -20190,6 +20251,28 @@ function theLegend()
                                     this.poisonIV = false;
                                     this.poisonV = false;
                                 }
+                                else if (Inventory[i][0].ability == "swellingI")
+                                {
+                                    this.swollenI = true;
+                                    this.swollenTime = Math.max(player.swollenTime, 200);
+                                }
+                                else if (Inventory[i][0].ability == "swellingII")
+                                {
+                                    this.swollenII = true;
+                                    this.swollenTime = Math.max(player.swollenTime, 300);
+                                }
+                                else if (Inventory[i][0].ability == "swellingIII")
+                                {
+                                    this.swollenIII = true;
+                                    this.swollenTime = Math.max(player.swollenTime, 400);
+                                }
+                                else if (Inventory[i][0].ability == "teppreklia")
+                                {
+                                    this.swollenV = true;
+                                    this.swollenTime = Math.max(player.swollenTime, 1200);
+                                    this.thirst -= 10;
+                                    this.fungalFever = true;
+                                }
                                 else if (Inventory[i][0].ability == "satiate") //Food with this effect will keep you fed for a little bit.
                                 {
                                     this.fed = true;
@@ -31616,6 +31699,61 @@ function theLegend()
 
                 }
             }
+            else if (this.type == "GreyWolf")
+            {
+                this.damageFrame = "manual";
+                this.team = "wild";
+                this.baseTeam = this.team;
+
+                if (this.alpha == true)
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = -1;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 20) + 28;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 4.7 + (Math.floor(Math.random() * 5) / 10);
+                    this.rangeOfSight = 650; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.085; // was 0.05
+                    this.engagementRadius = 59;
+                    this.sizeRadius = 35;
+                    this.negateArmour = 2.5;
+                    this.attackWait = 1.65;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 3.2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = -2;
+                    this.xAdjustment = 4;
+                }
+                else
+                {
+                    //STATS (non-variable)
+                    this.magicalResistance = 0;
+                    this.heatResistance = -1;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 8) + 8;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 4.5 + (Math.floor(Math.random() * 3) / 10);
+                    this.rangeOfSight = 575; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.085; // was 0.05
+                    this.engagementRadius = 35;
+                    this.sizeRadius = 24;
+                    this.negateArmour = 0.5;
+                    this.attackWait = 1.65;
+
+                    //this multiplies the draw image skew numbers by 1 so that it stays the same
+                    this.alphaSize = 1.8;
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = -24;
+                    this.xAdjustment = -33;
+
+                }
+            }
             else if (this.type == "Gulfrey")
             {
                 this.damageFrame = "automatic";
@@ -31931,6 +32069,84 @@ function theLegend()
                     // this is the adjustment the alpha type of Etyr needs to be centered.
                     this.yAdjustment = 0; //was -34
                     this.xAdjustment = 0; //was - 26
+
+                }
+            }
+            else if (this.type == "MountainFrich")
+            {
+                this.damageFrame = "automatic";
+                this.team = "wild";
+                this.baseTeam = this.team;
+
+                if (this.alpha == true)
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = -1;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 16) + 47;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 3.6 + (Math.floor(Math.random() * 4) / 10);
+                    this.rangeOfSight = 625; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 50;
+                    this.sizeRadius = 19;
+                    this.negateArmour = 2;
+                    this.attackWait = 0.85;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 10; //was - 10
+                    this.xAdjustment = 50; //was 30
+                }
+                else if (this.alpha == "massive")
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = -1;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 22) + 73;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 4.1 + (Math.floor(Math.random() * 3) / 10);
+                    this.rangeOfSight = 725; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 51;
+                    this.sizeRadius = 24;
+                    this.negateArmour = 3;
+                    this.attackWait = 0.90;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 2.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 20;
+                    this.xAdjustment = 86;
+                }
+                else
+                {
+                    //STATS (non-variable)
+                    this.magicalResistance = 0;
+                    this.heatResistance = -1;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 7) + 30;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 3.2 + (Math.floor(Math.random() * 5) / 10);
+                    this.rangeOfSight = 525; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 46;
+                    this.sizeRadius = 18;
+                    this.negateArmour = 1;
+                    this.attackWait = 0.8;
+
+                    //this multiplies the draw image skew numbers by 1 so that it stays the same
+                    this.alphaSize = 1.5;
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 5.5; //was -34
+                    this.xAdjustment = 26; //was - 26
 
                 }
             }
@@ -33910,6 +34126,161 @@ function theLegend()
                 else
                 {
                     this.drawUnit(verse, 1742, 5, 83, 33, -55 - this.xAdjustment, -16 - this.yAdjustment, 83 * this.alphaSize, 33 * this.alphaSize);
+                }
+
+            }
+            //MOUNTAIN FRICH
+            if (this.type == "MountainFrich")
+            {
+                //Set Drops and experience
+                if (this.alpha == true)
+                {
+                    if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 41 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (41 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    this.drops = [[new Item("mountainFrichPelt", this.X, this.Y), 2], [new Item("rawMountainFrichFlesh", this.X, this.Y), 2]];
+                }
+                else if (this.alpha == "massive")
+                {
+                    if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 55 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (55 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    this.drops = [[new Item("mountainFrichPelt", this.X, this.Y), 4], [new Item("rawMountainFrichFlesh", this.X, this.Y), 4]];
+                }
+                else
+                {
+                    if (Math.max(0, 2 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 30 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = 30 * ((player.getIntelligence() / 50) + 1) / 10;
+                    }
+
+                    this.drops = [[new Item("mountainFrichPelt", this.X, this.Y), 1], [new Item("rawMountainFrichFlesh", this.X, this.Y), 1]];
+                }
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                if (this.alpha == true)
+                {
+                    this.rangeOfSightCalculator(625, "mildly");
+                }
+                else if (this.alpha == "massive")
+                {
+                    this.rangeOfSightCalculator(725, "mildly");
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(525, "mildy");
+                }
+
+                //AI
+                if (this.alive == true)
+                {
+                    if (this.alpha == true)
+                    {
+                        this.Attack(7, 3);
+                        this.callForNearbyHelpFromType(600, "MountainFrich");
+                    }
+                    if (this.alpha == "massive")
+                    {
+                        this.Attack(10, 4);
+                        this.callForNearbyHelpFromType(700, "MountainFrich");
+                    }
+                    else
+                    {
+                        this.Attack(5, 2);
+                        this.callForNearbyHelpFromType(500, "MountainFrich");
+                    }
+
+                    //this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+
+                }
+                else
+                {
+                    //do stuff when a frich dies...
+                    if (this.doOnDeathOnce == true)
+                    {
+                        //track Deaths Of Certain Non-Unique Units During Certain Quests
+
+
+                        this.doOnDeathOnce = false;
+                    }
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(2, 0.075, false);
+                    }
+                    else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(2, 0.03, false);
+                        }
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(oldverse, 1529, 3, 83, 33, -55 - this.xAdjustment, -16 - this.yAdjustment, 83 * this.alphaSize, 33 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(oldverse, 1290, 5, 83, 33, -55 - this.xAdjustment, -16 - this.yAdjustment, 83 * this.alphaSize, 33 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume >= 1)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(oldverse, 1641, 3, 83, 33, -55 - this.xAdjustment, -18 - this.yAdjustment, 83 * this.alphaSize, 33 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(oldverse, 1402, 5, 83, 33, -55 - this.xAdjustment, -16 - this.yAdjustment, 83 * this.alphaSize, 33 * this.alphaSize);
+                        }
+                    }
+                }
+                else
+                {
+                    this.drawUnit(oldverse, 1742, 5, 83, 33, -55 - this.xAdjustment, -16 - this.yAdjustment, 83 * this.alphaSize, 33 * this.alphaSize);
                 }
 
             }
@@ -39927,6 +40298,176 @@ function theLegend()
                 }
 
             }
+            //GREY WOLF
+            if (this.type == "GreyWolf")
+            {
+                var rndm = Math.round(Math.random());
+                //Set Drops and experience
+                if (this.alpha == true)
+                {
+                    if (Math.max(0, 22 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 90 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (90 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    if (rndm)
+                    {
+                        this.drops = [[new Item("massiveGreyWolfPelt", this.X, this.Y), 1], [new Item("rawGreyWolfFlesh", this.X, this.Y), 3], [new Item("rawWolfLiver", this.X, this.Y), 1]];
+                    }
+                    else
+                    {
+                        this.drops = [[new Item("massiveGreyWolfPelt", this.X, this.Y), 1], [new Item("rawGreyWolfFlesh", this.X, this.Y), 3]];
+                    }
+                }
+                else
+                {
+                    if (Math.max(0, 8 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 38 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (38 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    if (rndm)
+                    {
+                        this.drops = [[new Item("greyWolfPelt", this.X, this.Y), 1], [new Item("rawGreyWolfFlesh", this.X, this.Y), 1], [new Item("rawWolfLiver", this.X, this.Y), 1]];
+                    }
+                    else
+                    {
+                        this.drops = [[new Item("greyWolfPelt", this.X, this.Y), 1], [new Item("rawGreyWolfFlesh", this.X, this.Y), 1]];
+                    }
+                }
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                if (this.alpha == true)
+                {
+                    this.rangeOfSightCalculator(700, "very");
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(600, "very");
+                }
+
+                //AI
+                if (this.alive == true)
+                {
+                    if (this.alpha == true)
+                    {
+                        this.Attack(17, 5);
+                        this.callForNearbyHelpFromType(300, "GreyWolf");
+                    }
+                    else
+                    {
+                        this.Attack(5, 3);
+                        this.callForNearbyHelpFromType(550, "GreyWolf");
+                    }
+
+                    //this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(3, 0.100, false);
+                    }
+                    else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(5, 0.1, false);
+                        }
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+                    //manual damaging
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(oldverse, 2853, 17, 49, 29, -89 - this.xAdjustment, -53 - this.yAdjustment, 49 * this.alphaSize, 29 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(oldverse, 2853, 17, 49, 29, -89 - this.xAdjustment, -53 - this.yAdjustment, 49 * this.alphaSize, 29 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume == 1)
+                    {
+                        if (this.damageDealt == false) // if the Unit has not yet dealt damage to its target then...
+                        {
+                            this.finalAttackCostume = true; //deal the damage!
+                            this.damageDealt = true; //tell the loop that the Unit has already dealt the damage for this attack.
+                        }
+
+                        if (this.attacking)
+                        {
+                            this.drawUnit(oldverse, 2911, 18, 49, 29, -89 - this.xAdjustment, -48 - this.yAdjustment, 49 * this.alphaSize, 29 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(oldverse, 2730, 16, 49, 29, -89 - this.xAdjustment, -53 - this.yAdjustment, 49 * this.alphaSize, 29 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume == 2)
+                    {
+                        this.damageDealt = false; //this resets the potential for the Unit to damage its target, because by this point the unit has already passed the damaging phase.
+
+                        if (this.attacking)
+                        {
+                            this.drawUnit(oldverse, 2968, 18, 49, 29, -89 - this.xAdjustment, -53 - this.yAdjustment, 49 * this.alphaSize, 29 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(oldverse, 2791, 17, 49, 29, -89 - this.xAdjustment, -52 - this.yAdjustment, 49 * this.alphaSize, 29 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume == 3)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(oldverse, 3027, 18, 49, 29, -89 - this.xAdjustment, -55 - this.yAdjustment, 49 * this.alphaSize, 29 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume >= 4)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(oldverse, 3083, 21, 49, 29, -89 - this.xAdjustment, -51 - this.yAdjustment, 49 * this.alphaSize, 29 * this.alphaSize);
+                        }
+                    }
+                }
+                else
+                {
+                    this.drawUnit(oldverse, 3139, 24, 49, 29, -93 - this.xAdjustment, -44 - this.yAdjustment, 49 * this.alphaSize, 29 * this.alphaSize);
+                }
+
+            }
             //GULFREY
             if (this.type == "Gulfrey")
             {
@@ -43451,6 +43992,111 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "tepprekliaPlant")
+            {
+                //TRAITS
+                this.solid = true;
+                this.variety = "plant";
+                this.subVariety = "fungi";
+                this.interactionRange = 110;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(oldverse, 3190, 59, 78, 72, -(1/2 * 78), -(1/2 * 72), 78, 72);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(oldverse, 3105, 62, 78, 72, -(1/2 * 78), -(1/2 * 72), 78, 72);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 25;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "tepprekliaFungus")
+                        {
+                            Inventory[i][1] += Math.floor(1 + Math.random() * 9);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("tepprekliaFungus", false, false), Math.floor(1 + Math.random() * 9)]);
+                    }
+                }
+            }
+            else if (this.type == "bequonPlant")
+            {
+                //TRAITS
+                this.variety = "plant";
+                this.solid = false;
+                this.interactionRange = 50;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(oldverse, 3028, 72, 68, 57, -(1/2 * 68), -(1/2 * 57), 68, 57);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(oldverse, 3024, 129, 68, 57, -(1/2 * 68), -(1/2 * 57), 68, 57);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 19;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "bequonFruit")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("bequonFruit", false, false), 1]);
+                    }
+                }
+            }
             else if (this.type == "palntPlant")
             {
                 //TRAITS
@@ -46639,12 +47285,12 @@ function theLegend()
             else if (this.type == "ogoFruit")
             {
                 //For All Items
-                this.identity = "Ogo Fruit";
+                this.identity = "Ogo";
                 this.weight = 1;
                 this.size = 7;
                 this.description = "The ogo fruit is sweet, tender, and smooth.";
                 this.intForDes = 19;
-                this.intDescription = "The ogo fruit has been known to make people get a bit hyper!";
+                this.intDescription = "Ogo has been known to make people get a bit hyper!";
 
                 //Define Utility
                 this.utility = "food";
@@ -46655,7 +47301,7 @@ function theLegend()
                 this.thirst = 0; //quenches thirst.
                 this.warmth = 0; //warms player.
                 this.heal = 0; //heals health.
-                this.generation = 1; //recoops lost energy.
+                this.generation = 1.5; //recoops lost energy.
                 this.replenish = 0; //restores will.
 
 
@@ -46909,6 +47555,69 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 1; // at max, buy for 1.
                 this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "mountainFrichMeat")
+            {
+                //For All Items
+                this.identity = "Mountain-Frich Meat";
+                this.weight = 2.5;
+                this.size = 18;
+                this.description = "The cooked flesh of a mountain-frich.";
+                this.intForDes = 2;
+                this.intDescription = "Cooking it didn't do much to soften it up, but at least it is safe to eat...";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 11; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -2.5; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 3;
+                this.ingredients = [["Raw Mountain-Frich Flesh", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
+                this.sellValue = 4 + Math.floor(player.getCharisma() / 50); // at max, sell for 5.
+            }
+            else if (this.type == "rawMountainFrichFlesh")
+            {
+                //For All Items
+                this.identity = "Raw Mountain-Frich Flesh";
+                this.weight = 3;
+                this.size = 18;
+                this.description = "The raw flesh from a mountain-frich.";
+                this.intForDes = 4;
+                this.intDescription = "It is tough, slimy with curdling blood, and finished with an occasionally gut worm here or there.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 2.5; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -2.5; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "gutWorms";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 3; // at max, buy for 3.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
             }
             else if (this.type == "rawYoungNaapridFlesh")
             {
@@ -47388,6 +48097,35 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
                 this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "bequonFruit")
+            {
+                //For All Items
+                this.identity = "Bequon";
+                this.weight = 2.25;
+                this.size = 14;
+                this.description = "A bumpy purple fruit that is sweet, tender and extremely juicy!";
+                this.intForDes = 1;
+                this.intDescription = "Bequon can be juiced and drunk as a beverage, or simply eated whole as a whole fruit.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 3.5; //satisfies hunger.
+                this.thirst = 3; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0.2; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 10; // at max, buy for 10.
+                this.sellValue = 5 + Math.floor(player.getCharisma() / 10); // at max, sell for 10.
             }
             else if (this.type == "palntFlower")
             {
@@ -50018,6 +50756,26 @@ function theLegend()
                 this.buyValue = 5 - Math.floor(player.getCharisma() / 15); // at max, buy for 2.
                 this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
             }
+            else if (this.type == "mountainFrichPelt")
+            {
+                //For All Items
+                this.identity = "Mountain Frich Pelt";
+                this.weight = 1;
+                this.size = 12;
+                this.description = "The foul smelling, mangy, black pelt of a mountain-frich.";
+                this.intForDes = 4;
+                this.intDescription = "This can be made into inexpensive clothing.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
+                this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+            }
             else if (this.type == "neculaisEar")
             {
                 //For All Items
@@ -51852,6 +52610,35 @@ function theLegend()
                 this.buyValue = 98 - Math.floor(player.getCharisma() / 1); // at max, buy for 48.
                 this.sellValue = 13 + Math.floor(player.getCharisma() / 2); // at max, sell for 38.
             }
+            else if (this.type == "tepprekliaFungus")
+            {
+                //For All Items
+                this.identity = "Teppreklia Fungus";
+                this.weight = 0.5;
+                this.size = 10;
+                this.description = "A yellowish fungal growth picked off of the tip of a vine.";
+                this.intForDes = 11;
+                this.intDescription = "Teppreklia is a fungus which invades a host. It grows throughout the inner veination of a vine and then sprouts bulbous yellowish pertrusions from the tips.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 2; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 5; //warms player.
+                this.heal = -1; //heals health.
+                this.generation = -5; //recoops lost energy.
+                this.replenish = -6; //restores will.
+
+                //ability
+                this.ability = "teppreklia";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
             else if (this.type == "glinMushrooms")
             {
                 //For All Items
@@ -52086,6 +52873,46 @@ function theLegend()
                 this.buyValue = 24 - Math.floor(player.getCharisma() / 8); // at max, buy for 20.
                 this.sellValue = 5 + Math.floor(player.getCharisma() / 3); // at max, sell for 20.
             }
+            else if (this.type == "GreyWolfPelt")
+            {
+                //For All Items
+                this.identity = "Grey Wolf Pelt";
+                this.weight = 2;
+                this.size = 16;
+                this.description = "The ragged fur of a grey wolf.";
+                this.intForDes = 8;
+                this.intDescription = "Grey wolf fur can be used to make basic clothing and tailored goods.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 12 - Math.floor(player.getCharisma() / 15); // at max, buy for 9.
+                this.sellValue = 3 + Math.floor(player.getCharisma() / 8); // at max, sell for 9.
+            }
+            else if (this.type == "massiveGreyWolfPelt")
+            {
+                //For All Items
+                this.identity = "Massive Grey Wolf Pelt";
+                this.weight = 6;
+                this.size = 24;
+                this.description = "The ragged fur of a monstrously huge grey wolf.";
+                this.intForDes = 13;
+                this.intDescription = "Giant grey wolf fur is a valuable commodity, as grey wolves are hardly found so large.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 70 - Math.floor(player.getCharisma() / 5); // at max, buy for 60.
+                this.sellValue = 45 + Math.floor(player.getCharisma() / 3); // at max, sell for 60.
+            }
             else if (this.type == "massiveWinterWolfPelt")
             {
                 //For All Items
@@ -52185,6 +53012,68 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 12 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 8.
                 this.sellValue = 5 + Math.floor(player.getCharisma() / 8); // at max, sell for 8.
+            }
+            else if (this.type == "rawGreyWolfFlesh")
+            {
+                //For All Items
+                this.identity = "Raw Grey Wolf Flesh";
+                this.weight = 1;
+                this.size = 14;
+                this.description = "A tough hunk of meat cut from a grey wolf.";
+                this.intForDes = 2;
+                this.intDescription = "Grey wolf flesh is rarely eaten by humans. Some hunters have tried it, but only as a means of survival.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 1; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -1; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "fleshMites";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 5 - Math.floor(player.getCharisma() / 15); // at max, buy for 2.
+                this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            }
+            else if (this.type == "greyWolfMeat")
+            {
+                //For All Items
+                this.identity = "Grey Wolf Meat";
+                this.weight = 1;
+                this.size = 14;
+                this.description = "The cooked meat of a grey wolf.";
+                this.intForDes = 1;
+                this.intDescription = "This meat is not particularly desirable as a food product.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.thirst = 0; //quenches thirst.
+                this.heal = 0; //heals health.
+                this.replenish = 0; //restores will.
+                this.hunger = 4; //satisfies hunger.
+                this.warmth = 0; //warms player.
+                this.generation = -1; //recoops lost energy.
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 4;
+                this.ingredients = [["Raw Grey Wolf Flesh", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 8 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 4.
+                this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
             }
             else if (this.type == "rawWolfLiver")
             {
@@ -56929,56 +57818,76 @@ function theLegend()
                 this.sellValue = 13 + Math.floor(player.getCharisma() / 10); // at max, sell for 18.
             }
             else if (this.type == "curvedDagger")
+            {
+                //For All Items
+                this.identity = "Curved Dagger";
+                this.weight = 0.5;
+                this.size = 17;
+                this.description = "A thin, light weight, and extremely sharp curved steel dagger.";
+                this.intForDes = 6;
+                this.intDescription = "The more one trains their endurance and speed the more effective they become with the use of this dagger.";
+
+                //Define Utility
+                this.utility = "weapon";
+
+                //Utility Focused
+                if (player.getEndurance() < 8)
                 {
-                    //For All Items
-                    this.identity = "Curved Dagger";
-                    this.weight = 0.5;
-                    this.size = 17;
-                    this.description = "A thin, light weight, and extremely sharp curved steel dagger.";
-                    this.intForDes = 6;
-                    this.intDescription = "The more one trains their endurance and speed the more effective they become with the use of this dagger.";
-
-                    //Define Utility
-                    this.utility = "weapon";
-
-                    //Utility Focused
-                    if (player.getEndurance() < 8)
-                    {
-                        this.energyCost = 2;
-                    }
-                    else
-                    {
-                        this.energyCost = 1;
-                    }
-                    this.distance = 26 + (this.range * 7);
-                    this.range = (2 + 4/7);
-                    if (player.getDexterity() < 7)
-                    {
-                        this.rate = 65;
-                    }
-                    else if (player.getDexterity() < 14)
-                    {
-                        this.rate = 55;
-                    }
-                    else
-                    {
-                        this.rate = 45;
-                    }
-                    this.damage = (2 - (1/2 * this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((1/16) * player.getDexterity());
-                    this.magicalDamage = 0;
-                    this.negateArmour = 0;
-
-                    //ability
-                    this.ability = "none";
-
-                    this.yield = 2;
-                    this.intForCraft = 13;
-                    this.ingredients = [["Steel", 1]];
-
-                    //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-                    this.buyValue = 12 - Math.floor(player.getCharisma() / 15); // at max, buy for 9.
-                    this.sellValue = 6 + Math.floor(player.getCharisma() / 15); // at max, sell for 9.
+                    this.energyCost = 2;
                 }
+                else
+                {
+                    this.energyCost = 1;
+                }
+                this.distance = 26 + (this.range * 7);
+                this.range = (2 + 4/7);
+                if (player.getDexterity() < 7)
+                {
+                    this.rate = 65;
+                }
+                else if (player.getDexterity() < 14)
+                {
+                    this.rate = 55;
+                }
+                else
+                {
+                    this.rate = 45;
+                }
+                this.damage = (2 - (1/2 * this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((1/16) * player.getDexterity());
+                this.magicalDamage = 0;
+                this.negateArmour = 0;
+
+                //ability
+                this.ability = "none";
+
+                this.yield = 2;
+                this.intForCraft = 13;
+                this.ingredients = [["Steel", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 12 - Math.floor(player.getCharisma() / 15); // at max, buy for 9.
+                this.sellValue = 6 + Math.floor(player.getCharisma() / 15); // at max, sell for 9.
+            }
+            else if (this.type == "adminMarker")
+            {
+                //For All Items
+                this.identity = "Marker";
+                this.weight = 0;
+                this.size = 12;
+                this.description = "Place a marker to show where an item will be spawned in the future so that you don't get mixed up.";
+                this.intForDes = 0;
+                this.intDescription = "These are not a real game item.";
+
+                //Define Utility
+                this.utility = "junk";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 0; // at max, buy for 0.
+                this.sellValue = 0; // at max, sell for 0.
+            }
         };
 
         //This draws items onto the map.
@@ -57034,6 +57943,13 @@ function theLegend()
                         }
                     }
                 }
+            }
+            else if (this.type == "adminMarker")
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "gold";
+                XXX.arc(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
+                XXX.fill();
             }
             else if (this.type == "anterInnards")
             {
@@ -57769,6 +58685,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(freeverse, 5, 1, 18, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 18), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18), 18, 18);
             }
+            else if (this.type == "tepprekliaFungus")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 3011, 70, 14, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 14), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 14, 16);
+            }
             else if (this.type == "driedCyrinthilimMushroom")
             {
                 XXX.beginPath();
@@ -57813,6 +58734,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(verse, 2170, 20, 22, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 22), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19), 22, 19);
+            }
+            else if (this.type == "bequonFruit")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2990, 70, 17, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 17), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 17, 17);
             }
             else if (this.type == "luufBerries")
             {
@@ -58314,6 +59240,26 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(verse, 2737, 2, 29, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 92.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 51.2), 92.8, 51.2);
             }
+            else if (this.type == "greyWolfMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2812, 1, 14, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 21), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24), 21, 24);
+            }
+            else if (this.type == "rawGreyWolfFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2794, 1, 14, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 21), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24), 21, 24);
+            }
+            else if (this.type == "greyWolfPelt")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2737, 2, 29, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 52.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28.8), 52.2, 28.8);
+            }
+            else if (this.type == "massiveGreyWolfPelt")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2737, 2, 29, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 92.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 51.2), 92.8, 51.2);
+            }
             else if (this.type == "energyPotionI")
             {
                 XXX.beginPath();
@@ -58384,6 +59330,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(verse, 1832, 10, 31, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 31), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18), 31, 18);
             }
+            else if (this.type == "mountainFrichPelt")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 1832, 10, 31, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.5), 31 * 1.5, 18 * 1.5);
+            }
             else if (this.type == "rawFrichFlesh")
             {
                 XXX.beginPath();
@@ -58393,6 +59344,16 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(verse, 79, 227, 10, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 20), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24), 20, 24);
+            }
+            else if (this.type == "rawMountainFrichFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 65, 226, 10, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 2.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 2), 20 * 2, 24 * 2);
+            }
+            else if (this.type == "MountainFrichMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 79, 227, 10, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 2.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 2), 20 * 2, 24 * 2);
             }
             else if (this.type == "vardanianAxe")
             {
@@ -58677,6 +59638,13 @@ function theLegend()
             {
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "adminMarker")
+            {
+                LXX.beginPath();
+                LXX.fillStyle = "gold";
+                LXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
+                LXX.fill();
             }
             else if (this.type == "anterInnards")
             {
@@ -59492,6 +60460,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(freeverse, 5, 1, 18, 18, this.invX - (1/2 * 18 * 2), this.invY - (1/2 * 18 * 2), 18 * 2, 18 * 2);
             }
+            else if (this.type == "tepprekliaFungus")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 3011, 70, 14, 16, this.invX - (1/2 * 14), this.invY - (1/2 * 16), 14, 16);
+            }
             else if (this.type == "driedCyrinthilimMushroom")
             {
                 LXX.beginPath();
@@ -59536,6 +60509,11 @@ function theLegend()
             {
                 LXX.beginPath();
                 LXX.drawImage(verse, 2170, 20, 22, 19, this.invX - (1/2 * 22), this.invY - (1/2 * 19), 22, 19);
+            }
+            else if (this.type == "bequonFruit")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2990, 70, 17, 17, this.invX - (1/2 * 17), this.invY - (1/2 * 17), 17, 17);
             }
             else if (this.type == "luufBerries")
             {
@@ -59972,6 +60950,26 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(verse, 2737, 2, 29, 16, this.invX - (1/2 * 58), this.invY - (1/2 * 32), 58, 32);
             }
+            else if (this.type == "greyWolfMeat")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2812, 1, 14, 16, this.invX - (1/2 * 21), this.invY - (1/2 * 24), 21, 24);
+            }
+            else if (this.type == "rawGreyWolfFlesh")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2794, 1, 14, 16, this.invX - (1/2 * 21), this.invY - (1/2 * 24), 21, 24);
+            }
+            else if (this.type == "greyWolfPelt")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2737, 2, 26, 16, this.invX - (1/2 * 34.8), this.invY - (1/2 * 19.2), 34.8, 19.2);
+            }
+            else if (this.type == "massiveGreyWolfPelt")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2737, 2, 29, 16, this.invX - (1/2 * 58), this.invY - (1/2 * 32), 58, 32);
+            }
             else if (this.type == "energyPotionI")
             {
                 LXX.beginPath();
@@ -60042,6 +61040,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(verse, 1832, 10, 31, 18, this.invX - (1/2 * 31), this.invY - (1/2 * 18), 31, 18);
             }
+            else if (this.type == "mountainFrichPelt")
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 1832, 10, 31, 18, this.invX - (1/2 * 31 * 1.5), this.invY - (1/2 * 18 * 1.5), 31 * 1.5, 18 * 1.5);
+            }
             else if (this.type == "rawFrichFlesh")
             {
                 LXX.beginPath();
@@ -60051,6 +61054,16 @@ function theLegend()
             {
                 LXX.beginPath();
                 LXX.drawImage(verse, 79, 227, 10, 12, this.invX - (1/2 * 20), this.invY - (1/2 * 24), 20, 24);
+            }
+            else if (this.type == "rawMountainFrichFlesh")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 65, 226, 10, 12, this.invX - (1/2 * 20 * 2), this.invY - (1/2 * 24 * 2), 20 * 2, 24 * 2);
+            }
+            else if (this.type == "mountainFrichMeat")
+            {
+                LXX.beginPath();
+                LXX.drawImage(verse, 79, 227, 10, 12, this.invX - (1/2 * 20 * 2), this.invY - (1/2 * 24 * 2), 20 * 2, 24 * 2);
             }
             else if (this.type == "vardanianAxe")
             {
@@ -60300,6 +61313,13 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
+            }
+            else if (this.type == "adminMarker")
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "gold";
+                XXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
+                XXX.fill();
             }
             else if (this.type == "anterInnards")
             {
@@ -61115,6 +62135,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(freeverse, 5, 1, 18, 18, this.invX - (1/2 * 18 * 2), this.invY - (1/2 * 18 * 2), 18 * 2, 18 * 2);
             }
+            else if (this.type == "tepprekliaFungus")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 3011, 70, 14, 16, this.invX - (1/2 * 14), this.invY - (1/2 * 16), 14, 16);
+            }
             else if (this.type == "driedCyrinthilimMushroom")
             {
                 XXX.beginPath();
@@ -61159,6 +62184,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(verse, 2170, 20, 22, 19, this.invX - (1/2 * 22), this.invY - (1/2 * 19), 22, 19);
+            }
+            else if (this.type == "bequonFruit")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2990, 70, 17, 17, this.invX - (1/2 * 17), this.invY - (1/2 * 17), 17, 17);
             }
             else if (this.type == "luufBerries")
             {
@@ -61591,6 +62621,26 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(verse, 2737, 2, 29, 16, this.invX - (1/2 * 58), this.invY - (1/2 * 32), 58, 32);
             }
+            else if (this.type == "greyWolfMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2812, 1, 14, 16, this.invX - (1/2 * 21), this.invY - (1/2 * 24), 21, 24);
+            }
+            else if (this.type == "rawGreyWolfFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2794, 1, 14, 16, this.invX - (1/2 * 21), this.invY - (1/2 * 24), 21, 24);
+            }
+            else if (this.type == "greyWolfPelt")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2737, 2, 26, 16, this.invX - (1/2 * 34.8), this.invY - (1/2 * 19.2), 34.8, 19.2);
+            }
+            else if (this.type == "massiveGreyWolfPelt")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2737, 2, 29, 16, this.invX - (1/2 * 58), this.invY - (1/2 * 32), 58, 32);
+            }
             else if (this.type == "energyPotionI")
             {
                 XXX.beginPath();
@@ -61661,6 +62711,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(verse, 1832, 10, 31, 18, this.invX - (1/2 * 31), this.invY - (1/2 * 18), 31, 18);
             }
+            else if (this.type == "mountainFrichPelt")
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 1832, 10, 31, 18, this.invX - (1/2 * 31 * 1.5), this.invY - (1/2 * 18 * 1.5), 31 * 1.5, 18 * 1.5);
+            }
             else if (this.type == "rawFrichFlesh")
             {
                 XXX.beginPath();
@@ -61670,6 +62725,16 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(verse, 79, 227, 10, 12, this.invX - (1/2 * 20), this.invY - (1/2 * 24), 20, 24);
+            }
+            else if (this.type == "rawMountainFrichFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 65, 226, 10, 12, this.invX - (1/2 * 20 * 2), this.invY - (1/2 * 24 * 2), 20 * 2, 24 * 2);
+            }
+            else if (this.type == "mountainFrichMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(verse, 79, 227, 10, 12, this.invX - (1/2 * 20 * 2), this.invY - (1/2 * 24 * 2), 20 * 2, 24 * 2);
             }
             else if (this.type == "vardanianAxe")
             {
@@ -62538,6 +63603,13 @@ function theLegend()
                     scenicList.push(new Scenery("techiPlant", 3781 , -1155, -Math.PI * 0.2, true));
                     scenicList.push(new Scenery("techiPlant", 5001 , 164, Math.PI * 0.5, true));
                     scenicList.push(new Scenery("techiPlant", 6014 , -1047, 3, true));
+                    scenicList.push(new Scenery("techiPlant", 3021 , -2478, 1, true));
+                    scenicList.push(new Scenery("techiPlant", 3068 , -2418, Math.PI * 9.1, true));
+                    scenicList.push(new Scenery("techiPlant", 6018 , -2253, 2, true));
+                    scenicList.push(new Scenery("techiPlant", 5689 , 3451, Math.PI * 1.7, true));
+                    scenicList.push(new Scenery("techiPlant", 2937 , 5977, Math.PI * 0.66, true));
+                    scenicList.push(new Scenery("techiPlant", -1057 , 2813, Math.PI * 3.8, true));
+                    scenicList.push(new Scenery("techiPlant", -62 , -46, Math.PI * -62.46, true));
 
                     change = "central";
                 }
@@ -62637,12 +63709,22 @@ function theLegend()
                     //REGION CREATION
                     //Build AI Units
 
+                    //High-Hill Howlers
+                    ArtificialIntelligenceAccess.push(new Unit(7100, 4000, "GreyWolf", false, "Clawface"));
+                    ArtificialIntelligenceAccess.push(new Unit(9100, 1900, "GreyWolf", false, "Clawder"));
+                    //The friches of the rocky west
+                    ArtificialIntelligenceAccess.push(new Unit(8491, 3382, "MountainFrich", false, "Frus"));
+                    ArtificialIntelligenceAccess.push(new Unit(8924, 575, "MountainFrich", true, "Frel"));
+                    ArtificialIntelligenceAccess.push(new Unit(11382, 3044, "MountainFrich", "massive", "Fruyuk"));
+
                     //berulns in the west
-                    ArtificialIntelligenceAccess.push(new Unit(10700, 1100, "Beruln", true, "Grug"));
-                    ArtificialIntelligenceAccess.push(new Unit(10700, 500, "Beruln", false, "Dak"));
-                    ArtificialIntelligenceAccess.push(new Unit(11900, 1300, "Beruln", false, "Nosh"));
-                    ArtificialIntelligenceAccess.push(new Unit(12000, 2000, "Beruln", true, "Drelk"));
+                    ArtificialIntelligenceAccess.push(new Unit(12700, 1100, "Beruln", true, "Grug"));
+                    ArtificialIntelligenceAccess.push(new Unit(12700, 500, "Beruln", false, "Dak"));
+                    ArtificialIntelligenceAccess.push(new Unit(13500, 1300, "Beruln", false, "Nosh"));
+                    ArtificialIntelligenceAccess.push(new Unit(13000, 2000, "Beruln", true, "Drelk"));
                     ArtificialIntelligenceAccess.push(new Unit(13800, 3500, "Beruln", false, "Kagim"));
+
+                    //Rocky Rock Monsters of the Rocky Rock West
                     ArtificialIntelligenceAccess.push(new Unit(8199, 2310, "StoneGolem", false, "Orefaw"));
                     ArtificialIntelligenceAccess.push(new Unit(8516, 5121, "StoneGolem", "baby", "Bluston"));
 
@@ -63226,9 +64308,11 @@ function theLegend()
                         ArtificialIntelligenceAccess.push(new Unit(2977, -4894, "Grush", false, "turtlebob"));
                         ArtificialIntelligenceAccess.push(new Unit(3082, -4954, "Grush", "baby", "turtletim"));
                         ArtificialIntelligenceAccess.push(new Unit(5669, -4701, "Grush", false, "turtledahlia"));
+                        scenicList.push(new Scenery("ogardPlant", -1071 , -10780, 12.6, true));
                     }
                     else
                     {
+                        scenicList.push(new Scenery("techiPlant", -1071 , -10780, 12.6, true));
                         scenicList.push(new Scenery("grushweedPlant", 2977, -4894, 0, 1)); //for grush weed the last number determines its size multiplier.
                         scenicList.push(new Scenery("grushweedPlant", 3082, -4954, 0, 0.6)); //for grush weed the last number determines its size multiplier.
                         scenicList.push(new Scenery("grushweedPlant", 5669, -4701, 0, 1)); //for grush weed the last number determines its size multiplier.
@@ -63238,43 +64322,81 @@ function theLegend()
                     {
                         ArtificialIntelligenceAccess.push(new Unit(5612, -4955, "Grush", false, "turtlejoe"));
                         ArtificialIntelligenceAccess.push(new Unit(5885, -5133, "Grush", "baby", "turtlejimmy"));
+                        ArtificialIntelligenceAccess.push(new Unit(765, -7802, "Grush", "baby", "turtletommy"));
+                        ArtificialIntelligenceAccess.push(new Unit(704, -7814, "Grush", "baby", "turtletimmy"));
+                        ArtificialIntelligenceAccess.push(new Unit(616, -7845, "Grush", "baby", "turtledarly"));
+                        ArtificialIntelligenceAccess.push(new Unit(728, -7995, "Grush", false, "turtlejohn"));
+                        scenicList.push(new Scenery("bequonPlant", -1544 , -7933, -2.1, true));
                     }
                     else
                     {
+                        scenicList.push(new Scenery("palntPlant", -1544 , -7933, -2.1, true));
+                        scenicList.push(new Scenery("grushweedPlant", 728, -7995, 2.5, 1)); //for grush weed the last number determines its size multiplier.
+                        scenicList.push(new Scenery("grushweedPlant", 704, -7814, 2.5, 0.6)); //for grush weed the last number determines its size multiplier.
+                        scenicList.push(new Scenery("grushweedPlant", 765, -7802, 0, 0.6)); //for grush weed the last number determines its size multiplier.
+                        scenicList.push(new Scenery("grushweedPlant", 616, -7845, -1, 0.6)); //for grush weed the last number determines its size multiplier.
                         scenicList.push(new Scenery("grushweedPlant", 5612, -4955, 0, 1)); //for grush weed the last number determines its size multiplier.
                         scenicList.push(new Scenery("grushweedPlant", 5885, -5133, 0, 0.6)); //for grush weed the last number determines its size multiplier.
                     }
 
                     if (bushornot == 7)
                     {
+                        ArtificialIntelligenceAccess.push(new Unit(-1294, -7184, "Grush", false, "turtlejamz"));
+                        scenicList.push(new Scenery("grushweedPlant", -1495, -7108, 0, 1)); //for grush weed the last number determines its size multiplier.
                         ArtificialIntelligenceAccess.push(new Unit(5798, -4989, "Grush", true, "turtleTrudge"));
-                        ArtificialIntelligenceAccess.push(new Unit(-972, -5781, "Golgemoff", true, "sweetling"));
+                        ArtificialIntelligenceAccess.push(new Unit(1345, -13190, "Grush", false, "turtleBudge"));
+                        scenicList.push(new Scenery("bequonPlant", -1387 , -10444, 2.2, true));
+                        ArtificialIntelligenceAccess.push(new Unit(-2293, -9072, "Evrak", true, "evil"));
                     }
                     else
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-972, -5781, "Golgemoff", false, "sweetypie"));
+                        scenicList.push(new Scenery("grushweedPlant", -1294, -7184, 0, 1)); //for grush weed the last number determines its size multiplier.
+                        ArtificialIntelligenceAccess.push(new Unit(-1495, -7108, "Grush", false, "turtlejamza"));
+                        ArtificialIntelligenceAccess.push(new Unit(-2293, -9072, "Evrak", false, "evil"));
+                        scenicList.push(new Scenery("ishPlant", -1387 , -10444, -2.2, true));
+                        scenicList.push(new Scenery("grushweedPlant", 1345, -13190, 0, 1.425)); //for grush weed the last number determines its size multiplier.
                         scenicList.push(new Scenery("grushweedPlant", 5798, -4989, 2, 1.6)); //for grush weed the last number determines its size multiplier.
                     }
 
                     if (bushornot == 5)
                     {
+                        ArtificialIntelligenceAccess.push(new Unit(1217, -8134, "Grush", true, "turtledarla"));
                         ArtificialIntelligenceAccess.push(new Unit(5593, -4493, "Grush", true, "turtletom"));
                         scenicList.push(new Scenery("ogardPlant", -597 , -5256, 0, true));
-                        ArtificialIntelligenceAccess.push(new Unit(4878, -4843, "Avrak", true, "alvy"));
+                        ArtificialIntelligenceAccess.push(new Unit(1080, -13248, "Grush", "baby", "turtletonk"));
+                        ArtificialIntelligenceAccess.push(new Unit(-1838, -11241, "Frich", "massive", "superpuper"));
+                        ArtificialIntelligenceAccess.push(new Unit(1486, -13498, "Golgemoff", true, "Sweetling"));
                     }
                     else
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(4878, -4843, "Avrak", false, "alvin"));
+                        scenicList.push(new Scenery("grushweedPlant", 1080, -13248, 0.6, 0.6)); //for grush weed the last number determines its size multiplier.
                         scenicList.push(new Scenery("techiPlant", -597 , -5256, 0, true));
+                        scenicList.push(new Scenery("grushweedPlant", 1217, -8134, 1, 1.5)); //for grush weed the last number determines its size multiplier.
                         scenicList.push(new Scenery("grushweedPlant", 5593, -4493, 0, 1.5)); //for grush weed the last number determines its size multiplier.
                     }
 
                     //Friches in the plains
                     ArtificialIntelligenceAccess.push(new Unit(4510, -6220, "Frich", true, "sweatypie"));
                     ArtificialIntelligenceAccess.push(new Unit(4676, -6326, "Frich", false, "manospequenas"));
+                    ArtificialIntelligenceAccess.push(new Unit(922, -6521, "Frich", true, "paydulce"));
+                    ArtificialIntelligenceAccess.push(new Unit(819, -6556, "Frich", false, "piespequenos"));
+                    ArtificialIntelligenceAccess.push(new Unit(1006, -6779, "Frich", false, "culo"));
+                    ArtificialIntelligenceAccess.push(new Unit(1048, -6976, "Frich", true, "verga"));
+                    ArtificialIntelligenceAccess.push(new Unit(912, -6945, "Frich", false, "huelefeo"));
+                    ArtificialIntelligenceAccess.push(new Unit(492, -7087, "Frich", false, "mesamesa"));
+                    ArtificialIntelligenceAccess.push(new Unit(-818, -11490, "Frich", true, "superculo"));
+                    ArtificialIntelligenceAccess.push(new Unit(-901, -11511, "Frich", true, "superverga"));
+                    ArtificialIntelligenceAccess.push(new Unit(-870, -11615, "Frich", true, "superfeo"));
+                    ArtificialIntelligenceAccess.push(new Unit(-989, -11564, "Frich", false, "sillasilla"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1706, -11155, "Frich", false, "superfea"));
+                    ArtificialIntelligenceAccess.push(new Unit(840, -9459, "Frich", false, "superfly"));
+                    ArtificialIntelligenceAccess.push(new Unit(5050, -5181, "Frich", false, "chal"));
+                    ArtificialIntelligenceAccess.push(new Unit(4779, -5070, "Frich", false, "chol"));
+                    ArtificialIntelligenceAccess.push(new Unit(4909, -4986, "Frich", false, "chil"));
+
 
                     //Golgemoffs crawling through your nightmares...
-                    var golgSz = "baby";
+                    /*var golgSz = "baby";
 
                     if (currentSeason == "Frost")
                     {
@@ -63295,14 +64417,42 @@ function theLegend()
                                 ArtificialIntelligenceAccess.push(new Unit(3337 + rdmX, -5504 + rdmY, "Golgemoff", golgSz, "Teek", {patrolStops: 5, patrolLoop: true, route:[[3617 + rdmX, -7861 + rdmY], [529 + rdmX, -10411 + rdmY], [-698 + rdmX, -8887 + rdmY], [-2232 + rdmX, -8130 + rdmY], [3337 + rdmX, -5504 + rdmY]]}));
                             }
                         }
-                    }
+                    }*/
                     ArtificialIntelligenceAccess.push(new Unit(4526, -5718, "Golgemoff", false, "Keek", {patrolStops: 7, patrolLoop: true, route:[[6981, -6924], [6042, -5080], [5943, -4895], [5813, -4301], [-3119, -4307], [-1572, -6834], 4526, -5718]}));
 
                     //Evrak and Avrak dominating the plains!!!
                     ArtificialIntelligenceAccess.push(new Unit(577, -5839, "Evrak", false, "elvin"));
+                    ArtificialIntelligenceAccess.push(new Unit(727, -12342, "Evrak", false, "evin"));
+                    ArtificialIntelligenceAccess.push(new Unit(3273, -9944, "Evrak", false, "evarin"));
+                    ArtificialIntelligenceAccess.push(new Unit(5974, -7025, "Evrak", false, "evarlin"));
+                    ArtificialIntelligenceAccess.push(new Unit(3584, -12245, "Evrak", true, "Telvarin"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1799, -12734, "Avrak", true, "alkra"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1235, -12105, "Avrak", false, "alka"));
+                    ArtificialIntelligenceAccess.push(new Unit(4638, -5615, "Avrak", false, "alkro"));
+                    ArtificialIntelligenceAccess.push(new Unit(1298, -10506, "Avrak", false, "alko"));
+                    ArtificialIntelligenceAccess.push(new Unit(942, -10185, "Avrak", false, "alkii"));
+                    ArtificialIntelligenceAccess.push(new Unit(5611, -10601, "Avrak", true, "alkrii"));
+
+                    //A few varns prowl the fields!!!
+                    ArtificialIntelligenceAccess.push(new Unit(782, -9091, "Varn", true, "elp"));
+                    ArtificialIntelligenceAccess.push(new Unit(703, -9124, "Varn", true, "h"));
+                    ArtificialIntelligenceAccess.push(new Unit(451, -9021, "Varn", true, "mepl"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2228, -10171, "Varn", false, "ease"));
+                    ArtificialIntelligenceAccess.push(new Unit(-813, -8554, "Varn", false, "coolBouy"));
 
                     //Anters!!!
                     scenicList.push(new Scenery("anterHill", 400, -6000, 0, true));
+                    scenicList.push(new Scenery("anterHill", 170, -10453, 2.7, true));
+                    scenicList.push(new Scenery("anterHill", 5691, -13164, -5.7, true));
+
+                    //Ardils!!!
+                    ArtificialIntelligenceAccess.push(new Unit(-1190, -9867, "Ardil", true, "Butklii"));
+                    ArtificialIntelligenceAccess.push(new Unit(-232, -9270, "Ardil", false, "Butkliil"));
+                    ArtificialIntelligenceAccess.push(new Unit(15, -9447, "Ardil", true, "Butkliik"));
+                    ArtificialIntelligenceAccess.push(new Unit(138, -13222, "Ardil", false, "Buttlick"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2433, -12028, "Ardil", true, "Buklii"));
+                    ArtificialIntelligenceAccess.push(new Unit(5792, -5342, "Ardil", false, "Buliil"));
+                    ArtificialIntelligenceAccess.push(new Unit(2934, -5905, "Ardil", false, "Buliilk"));
 
                     //Naaprids grazing!!!
                     ArtificialIntelligenceAccess.push(new Unit(808, -11538, "Naaprid", false, "Hueso"));
@@ -63313,6 +64463,26 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(924, -11594, "Naaprid", "baby", "Huequita"));
                     ArtificialIntelligenceAccess.push(new Unit(254, -11037, "Naaprid", true, "Sufrimiento"));
                     ArtificialIntelligenceAccess.push(new Unit(475, -12180, "Naaprid", true, "Agobio"));
+                    ArtificialIntelligenceAccess.push(new Unit(5017, -8591, "Naaprid", false, "ad"));
+                    ArtificialIntelligenceAccess.push(new Unit(4740, -8444, "Naaprid", false, "lad"));
+                    ArtificialIntelligenceAccess.push(new Unit(4813, -8159, "Naaprid", false, "dad"));
+                    ArtificialIntelligenceAccess.push(new Unit(5077, -8224, "Naaprid", false, "Pad"));
+                    ArtificialIntelligenceAccess.push(new Unit(4350, -8271, "Naaprid", false, "Pod"));
+                    ArtificialIntelligenceAccess.push(new Unit(4483, -8366, "Naaprid", "baby", "rod"));
+                    ArtificialIntelligenceAccess.push(new Unit(4933, -8304, "Naaprid", "baby", "claud"));
+                    ArtificialIntelligenceAccess.push(new Unit(4931, -8444, "Naaprid", "baby", "bo"));
+                    ArtificialIntelligenceAccess.push(new Unit(4626, -8263, "Naaprid", "baby", "shu"));
+                    ArtificialIntelligenceAccess.push(new Unit(4717, -8770, "Naaprid", true, "tod"));
+                    ArtificialIntelligenceAccess.push(new Unit(4102, -8558, "Naaprid", true, "kerod"));
+                    ArtificialIntelligenceAccess.push(new Unit(4368, -7993, "Naaprid", true, "dod"));
+                    ArtificialIntelligenceAccess.push(new Unit(5110, -7913, "Naaprid", true, "kerod"));
+                    ArtificialIntelligenceAccess.push(new Unit(5472, -8361, "Naaprid", true, "dode"));
+
+                    //Perma-Grushes!!!
+                    ArtificialIntelligenceAccess.push(new Unit(1166, -7761, "Grush", true, "Cruncher"));
+                    ArtificialIntelligenceAccess.push(new Unit(1196, -13286, "Grush", false, "Crutcher"));
+                    ArtificialIntelligenceAccess.push(new Unit(-831, -4602, "Grush", false, "Brutcher"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1625, -7172, "Grush", "baby", "Butch"));
 
                     //Scenery
                     scenicList.push(new Scenery("grushweedPlant", 3160 , -4483, -0.3, 1)); //for grush weed the last number determines its size multiplier.
@@ -63328,26 +64498,77 @@ function theLegend()
                     scenicList.push(new Scenery("grushweedPlant", 5547 , -5043, 0, 1)); //for grush weed the last number determines its size multiplier.
                     scenicList.push(new Scenery("grushweedPlant", 5842 , -5190, 0, 0.6)); //for grush weed the last number determines its size multiplier.
                     scenicList.push(new Scenery("grushweedPlant", 5568 , -5328, -1, 1)); //for grush weed the last number determines its size multiplier.
+                    scenicList.push(new Scenery("grushweedPlant", 1436 , -8010, 0, 1)); //for grush weed the last number determines its size multiplier.
+                    scenicList.push(new Scenery("grushweedPlant", 1400 , -8000, 0, 1.15)); //for grush weed the last number determines its size multiplier.
+                    scenicList.push(new Scenery("grushweedPlant", 851 , -8382, -5, 1.5)); //for grush weed the last number determines its size multiplier.
+                    scenicList.push(new Scenery("grushweedPlant", 395 , -8227, 5, 1.2)); //for grush weed the last number determines its size multiplier.
+                    scenicList.push(new Scenery("grushweedPlant", 1006 , -12969, 1.111, 1.5)); //for grush weed the last number determines its size multiplier.
+                    scenicList.push(new Scenery("grushweedPlant", 837 , -12997, 1, 1)); //for grush weed the last number determines its size multiplier.
+                    scenicList.push(new Scenery("grushweedPlant", 882 , -12903, 1.6, 1)); //for grush weed the last number determines its size multiplier.
+                    scenicList.push(new Scenery("grushweedPlant", -1501 , -7190, 3.9, 0.9)); //for grush weed the last number determines its size multiplier.
+                    scenicList.push(new Scenery("grushweedPlant", -1770 , -7376, -1.43, 1.7)); //for grush weed the last number determines its size multiplier.
+                    scenicList.push(new Scenery("grushweedPlant", -1398 , -7335, 2.43, 1)); //for grush weed the last number determines its size multiplier.
+                    scenicList.push(new Scenery("grushweedPlant", -1508 , -7609, 3.333, 1.1657)); //for grush weed the last number determines its size multiplier.
+                    scenicList.push(new Scenery("grushweedPlant", -634 , -4556, -5.333, 1.5)); //for grush weed the last number determines its size multiplier.
+                    scenicList.push(new Scenery("grushweedPlant", -928 , -4507, 6.333, 1)); //for grush weed the last number determines its size multiplier.
                     scenicList.push(new Scenery("techiPlant", 4234 , -5994, -2.5, true));
                     scenicList.push(new Scenery("techiPlant", 5419 , -6449, 2.146, true));
+                    scenicList.push(new Scenery("techiPlant", 1213 , -10947, -2.146, true));
+                    scenicList.push(new Scenery("techiPlant", 1818 , -13349, -3.05, true));
                     scenicList.push(new Scenery("techiPlant", 6059 , -6527, 1, true));
                     scenicList.push(new Scenery("techiPlant", 5391 , -5262, -0.1, true));
+                    scenicList.push(new Scenery("techiPlant", 890 , -7731, -0.2, true));
                     scenicList.push(new Scenery("techiPlant", 2227 , -13406, -1.6, true));
+                    scenicList.push(new Scenery("techiPlant", 707 , -13146, 1.2, true));
                     scenicList.push(new Scenery("techiPlant", 3043 , -13540, 1.82, true));
                     scenicList.push(new Scenery("techiPlant", 288 , -13032, 0, true));
-                    scenicList.push(new Scenery("luufPlant", 1040 , -6090, 0, true));
-                    scenicList.push(new Scenery("luufPlant", 189 , -7280, 2, true));
+                    scenicList.push(new Scenery("techiPlant", 2228 , -4731, -1.46, true));
+                    scenicList.push(new Scenery("techiPlant", 1510 , -8302, 1.5, true));
                     scenicList.push(new Scenery("techiPlant", 6269 , -4950, -3, true));
                     scenicList.push(new Scenery("techiPlant", 6317 , -4979, 3, true));
+                    scenicList.push(new Scenery("techiPlant", 1332 , -13530, 1.45, true));
+                    scenicList.push(new Scenery("techiPlant", -339 , -10565, 0.1, true));
+                    scenicList.push(new Scenery("techiPlant", 247 , -10314, -0.05, true));
+                    scenicList.push(new Scenery("techiPlant", -907 , -4618, 5, true));
+                    scenicList.push(new Scenery("techiPlant", 1165 , -5317, 4.5, true));
+                    scenicList.push(new Scenery("techiPlant", 6013 , -5986, 0, true));
+                    scenicList.push(new Scenery("techiPlant", 2391 , -13076, -4.85, true));
+                    scenicList.push(new Scenery("luufPlant", 1040 , -6090, 0, true));
+                    scenicList.push(new Scenery("luufPlant", 3986 , -5087, -6.4, true));
+                    scenicList.push(new Scenery("luufPlant", 1270 , -12813, -3, true));
+                    scenicList.push(new Scenery("luufPlant", 189 , -7280, 2, true));
+                    scenicList.push(new Scenery("luufPlant", 359 , -10792, 1.11, true));
                     scenicList.push(new Scenery("luufPlant", 6164 , -5617, 1.111, true));
+                    scenicList.push(new Scenery("luufPlant", 395 , -12528, 2.3, true));
+                    scenicList.push(new Scenery("luufPlant", -1373 , -4875, -6.111, true));
+                    scenicList.push(new Scenery("luufPlant", 6011 , -8981, 2.5, true));
+                    scenicList.push(new Scenery("luufPlant", 6263 , -12475, -3, true));
                     scenicList.push(new Scenery("ishPlant", 3967 , -8854, -2.25, true));
                     scenicList.push(new Scenery("ishPlant", 5067 , -9141, 3.25, true));
+                    scenicList.push(new Scenery("ishPlant", 1721 , -10010, -40.4, true));
+                    scenicList.push(new Scenery("ishPlant", -1912 , -12299, 0, true));
+                    scenicList.push(new Scenery("ishPlant", -715 , -11942, 1, true));
+                    scenicList.push(new Scenery("ishPlant", -1536 , -11629, -2.264, true));
+                    scenicList.push(new Scenery("ishPlant", 328 , -4654, -2.4, true));
+                    scenicList.push(new Scenery("ishPlant", 4636 , -4323, 5.5, true));
+                    scenicList.push(new Scenery("ishPlant", 4427 , -11153, -4.444, true));
+                    scenicList.push(new Scenery("palntPlant", 3758 , -4310, 6, true));
                     scenicList.push(new Scenery("palntPlant", 5412 , -6751, 0, true));
                     scenicList.push(new Scenery("palntPlant", -134 , -5841, 1, true));
                     scenicList.push(new Scenery("palntPlant", 852 , -8584, 2, true));
+                    scenicList.push(new Scenery("palntPlant", 819 , -13343, 4, true));
                     scenicList.push(new Scenery("palntPlant", 410 , -11262, 3, true));
+                    scenicList.push(new Scenery("palntPlant", 4141 , -11693, -3.2, true));
+                    scenicList.push(new Scenery("palntPlant", -1572 , -9399, -1.4, true));
                     scenicList.push(new Scenery("palntPlant", 3047 , -12626, -2.5, true));
-                    scenicList.push(new Scenery("techiPlant", 2228 , -4731, -1.46, true));
+                    scenicList.push(new Scenery("palntPlant", 1076 , -9888, 0, true));
+                    scenicList.push(new Scenery("palntPlant", 1544 , -9168, -3.14159, true));
+                    scenicList.push(new Scenery("palntPlant", -779 , -5189, 1.9, true));
+                    scenicList.push(new Scenery("palntPlant", 4348 , -7674, 4.89, true));
+                    scenicList.push(new Scenery("bequonPlant", 5326 , -8149, -1.9, true));
+                    scenicList.push(new Scenery("bequonPlant", 5586 , -12299, 6.2, true));
+                    scenicList.push(new Scenery("ogardPlant", 4099 , -12455, 6.66666, true));
+
 
                     change = "s1";
                 }

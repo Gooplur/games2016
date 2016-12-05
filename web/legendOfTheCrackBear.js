@@ -21241,6 +21241,20 @@ function theLegend()
                             XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
                             XXX.fillText("      Utility", 157, 514);
                         }
+                        else if (Inventory[i][0].utility == "book")
+                        {
+                            XXX.font="14px Book Antiqua";
+                            XXX.fillStyle = "black";
+                            XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+                            XXX.fillText("      Book", 157, 514);
+                        }
+                        else if (Inventory[i][0].utility == "recipe")
+                        {
+                            XXX.font="14px Book Antiqua";
+                            XXX.fillStyle = "black";
+                            XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+                            XXX.fillText("      Recipe", 157, 514);
+                        }
                         else if (Inventory[i][0].utility == "questItem")
                         {
                             XXX.font="14px Book Antiqua";
@@ -32081,6 +32095,7 @@ function theLegend()
                     this.yAdjustment = 5.5;
                     this.xAdjustment = 26;
                 }
+
                 else
                 {
                     //STATS (non-variable)
@@ -33384,6 +33399,59 @@ function theLegend()
                     this.sizeRadius = 11;
                     this.negateArmour = 0;
                     this.attackWait = 2;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+            }
+            else if (this.type == "Lizard")
+            {
+                this.damageFrame = "manual";
+                this.team = "herd";
+                this.baseTeam = this.team;
+
+                if (this.alpha == true)
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = 0;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = 1.5;
+                    this.health = this.healthMAX;
+                    this.armour = 0.25;
+                    this.speed = 2.5;
+                    this.rangeOfSight = 250; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 10;
+                    this.sizeRadius = 4;
+                    this.negateArmour = 0;
+                    this.attackWait = 0.01;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = 0;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = 0.5;
+                    this.health = this.healthMAX;
+                    this.armour = 0.1;
+                    this.speed = 2;
+                    this.rangeOfSight = 250; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 10;
+                    this.sizeRadius = 2;
+                    this.negateArmour = 0;
+                    this.attackWait = 0.01;
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -39809,6 +39877,84 @@ function theLegend()
                 else
                 {
                     this.drawUnit(theCrack, 928, 700, 41, 22, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 22 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 22 * this.alphaSize);
+                }
+
+            }
+            //LIZARD
+            if (this.type == "Lizard")
+            {
+                //Set Drops and experience
+                if (this.alpha == true)
+                {
+                    this.experience = (1 * ((player.getIntelligence() / 50) + 1));
+                    this.drops = [[new Item("lizardTail", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.experience = (0.5 * ((player.getIntelligence() / 50) + 1));
+                    this.drops = [[new Item("lizardTail", this.X, this.Y), 1]];
+                }
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                if (this.alpha == true)
+                {
+                    this.rangeOfSightCalculator(250, false);
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(225, false);
+                }
+
+                //AI
+                if (this.alive == true)
+                {
+                    //this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointAwayFromPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointAway(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (this.moving && !this.attacking) //walking (towards food)
+                    {
+                        this.costumeEngine(3, 0.12, false);
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                    //manual damaging
+                    if (theCostume <= 0)
+                    {
+                        this.drawUnit(polypol, 1452, 24, 21, 14, -1/2 * 21 * this.alphaSize - this.xAdjustment, -1/2 * 14 * this.alphaSize - this.yAdjustment, 21 * this.alphaSize, 14 * this.alphaSize);
+                    }
+                    else if (theCostume == 1)
+                    {
+                        this.drawUnit(polypol, 1475, 25, 21, 14, -1/2 * 21 * this.alphaSize - this.xAdjustment, -1/2 * 14 * this.alphaSize - this.yAdjustment, 21 * this.alphaSize, 14 * this.alphaSize);
+                    }
+                    else if (theCostume >= 2)
+                    {
+                        this.drawUnit(polypol, 1499, 26, 21, 14, -1/2 * 21 * this.alphaSize - this.xAdjustment, -1/2 * 14 * this.alphaSize - this.yAdjustment, 21 * this.alphaSize, 14 * this.alphaSize);
+                    }
+                }
+                else
+                {
+                    this.drawUnit(polypol, 1521, 26, 21, 14, -1/2 * 21 * this.alphaSize - this.xAdjustment, -1/2 * 14 * this.alphaSize - this.yAdjustment, 21 * this.alphaSize, 14 * this.alphaSize);
                 }
 
             }
@@ -50751,6 +50897,26 @@ function theLegend()
                 this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
                 this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
             }
+            else if (this.type == "lizardTail")
+            {
+                //For All Items
+                this.identity = "Lizard Tail";
+                this.weight = 0.15;
+                this.size = 5;
+                this.description = "The green scaled tail of a lizard.";
+                this.intForDes = 5;
+                this.intDescription = "Lizard tails can be used to make alchemic potions.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+            }
             else if (this.type == "neevFur")
             {
                 //For All Items
@@ -58111,6 +58277,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(theCrack, 928, 701, 29, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 29), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20), 29, 20);
             }
+            else if (this.type == "lizardTail")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polypol, 1544, 29, 10, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 12.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12.5), 12.5, 12.5);
+            }
             else if (this.type == "pumpkinDough")
             {
                 XXX.beginPath();
@@ -59867,6 +60038,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(theCrack, 928, 701, 29, 20, this.invX - (1/2 * 29), this.invY - (1/2 * 20), 29, 20);
             }
+            else if (this.type == "lizardTail")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polypol, 1544, 29, 10, 10, this.invX - (1/2 * 14), this.invY - (1/2 * 14), 14, 14);
+            }
             else if (this.type == "pumpkinDough")
             {
                 LXX.beginPath();
@@ -61541,6 +61717,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(theCrack, 928, 701, 29, 20, this.invX - (1/2 * 29), this.invY - (1/2 * 20), 29, 20);
+            }
+            else if (this.type == "lizardTail")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polypol, 1544, 29, 10, 10, this.invX - (1/2 * 14), this.invY - (1/2 * 14), 14, 14);
             }
             else if (this.type == "smashStick" || this.type == "burningSmashStick")
             {
@@ -63850,6 +64031,21 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-9607, 2648, "Viper", false, "slitherz"));
                     ArtificialIntelligenceAccess.push(new Unit(-11027, 239, "Viper", false, "Serpil"));
 
+                    //Lizards
+                    ArtificialIntelligenceAccess.push(new Unit(-8277, 1718, "Lizard", false, "Lizzy"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9173, 1272, "Lizard", true, "Lizander"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10079, 274, "Lizard", false, "Lizabeth"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11443, 1183, "Lizard", false, "Lizzer"));
+                    ArtificialIntelligenceAccess.push(new Unit(-12784, 2278, "Lizard", true, "Lizzely"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10461, -337, "Lizard", false, "Liza"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9394, -1962, "Lizard", false, "Lizian"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8182, -2325, "Lizard", true, "Lizel"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7434, -2070, "Lizard", false, "Liz"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9265, 5185, "Lizard", false, "Liziela"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10220, 1426, "Lizard", true, "Lizalt"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10284, 2670, "Lizard", false, "Liziana"));
+                    ArtificialIntelligenceAccess.push(new Unit(-12115, 1323, "Lizard", false, "Lizarina"));
+
                     //Bees
                     scenicList.push(new Scenery("beeHive", -8287 , 3377, 0, true));
 
@@ -64399,6 +64595,7 @@ function theLegend()
                     {
                         ArtificialIntelligenceAccess.push(new Unit(1217, -8134, "Grush", true, "turtledarla"));
                         ArtificialIntelligenceAccess.push(new Unit(5593, -4493, "Grush", true, "turtletom"));
+                        ArtificialIntelligenceAccess.push(new Unit(2253, -12972, "Grush", false, "turtletyler"));
                         scenicList.push(new Scenery("ogardPlant", -597 , -5256, 0, true));
                         ArtificialIntelligenceAccess.push(new Unit(1080, -13248, "Grush", "baby", "turtletonk"));
                         ArtificialIntelligenceAccess.push(new Unit(-1838, -11241, "Frich", "massive", "superpuper"));
@@ -64406,6 +64603,7 @@ function theLegend()
                     }
                     else
                     {
+                        scenicList.push(new Scenery("grushweedPlant", 2253, -12972, 6.5, 1)); //for grush weed the last number determines its size multiplier.
                         scenicList.push(new Scenery("grushweedPlant", 1080, -13248, 0.6, 0.6)); //for grush weed the last number determines its size multiplier.
                         scenicList.push(new Scenery("techiPlant", -597 , -5256, 0, true));
                         scenicList.push(new Scenery("grushweedPlant", 1217, -8134, 1, 1.5)); //for grush weed the last number determines its size multiplier.
@@ -64544,6 +64742,8 @@ function theLegend()
                     //Scenery
                     scenicList.push(new Scenery("grushweedPlant", 3160 , -4483, -0.3, 1)); //for grush weed the last number determines its size multiplier.
                     scenicList.push(new Scenery("grushweedPlant", 3250 , -4508, -1.3, 0.6)); //for grush weed the last number determines its size multiplier.
+                    scenicList.push(new Scenery("grushweedPlant", 2260 , -13141, -1.3, 1)); //for grush weed the last number determines its size multiplier.
+                    scenicList.push(new Scenery("grushweedPlant", 2327 , -12965, 2, 0.6)); //for grush weed the last number determines its size multiplier.
                     scenicList.push(new Scenery("grushweedPlant", 3200 , -4541, 0.3, 0.6)); //for grush weed the last number determines its size multiplier.
                     scenicList.push(new Scenery("grushweedPlant", 3257 , -4597, 3.2, 1.2)); //for grush weed the last number determines its size multiplier.
                     scenicList.push(new Scenery("grushweedPlant", 3129 , -4815, -0.8, 1)); //for grush weed the last number determines its size multiplier.
@@ -64568,6 +64768,7 @@ function theLegend()
                     scenicList.push(new Scenery("grushweedPlant", -1508 , -7609, 3.333, 1.1657)); //for grush weed the last number determines its size multiplier.
                     scenicList.push(new Scenery("grushweedPlant", -634 , -4556, -5.333, 1.5)); //for grush weed the last number determines its size multiplier.
                     scenicList.push(new Scenery("grushweedPlant", -928 , -4507, 6.333, 1)); //for grush weed the last number determines its size multiplier.
+                    scenicList.push(new Scenery("techiPlant", 2702 , -12061, -8.5, true));
                     scenicList.push(new Scenery("techiPlant", 4234 , -5994, -2.5, true));
                     scenicList.push(new Scenery("techiPlant", 5419 , -6449, 2.146, true));
                     scenicList.push(new Scenery("techiPlant", 1213 , -10947, -2.146, true));
@@ -64598,6 +64799,7 @@ function theLegend()
                     scenicList.push(new Scenery("techiPlant", 6302 , -4235, -3.55, true));
                     scenicList.push(new Scenery("techiPlant", 4348 , -13031, 8, true));
                     scenicList.push(new Scenery("techiPlant", 1298 , -10232, -0.65, true));
+                    scenicList.push(new Scenery("techiPlant", 4921 , -10739, 0.45, true));
                     scenicList.push(new Scenery("luufPlant", 1040 , -6090, 0, true));
                     scenicList.push(new Scenery("luufPlant", 3986 , -5087, -6.4, true));
                     scenicList.push(new Scenery("luufPlant", 1270 , -12813, -3, true));

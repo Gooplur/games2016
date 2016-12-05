@@ -16617,22 +16617,31 @@ function theLegend()
                                             {
                                                 altKey = false;
                                                 var amount = prompt("Enter the amount you would like to deposit.");
-                                                var amountt = JSON.parse(amount);
-                                                if (Inventory[i][1] - amountt <= 0)
+                                                var amountt = 0;
+                                                if (amount != "")
                                                 {
-                                                    if (Inventory[i][1] - amountt == 0)
+                                                    amountt = JSON.parse(amount);
+                                                }
+
+                                                if (amountt != 0)
+                                                {
+                                                    if (Inventory[i][1] - amountt <= 0)
+                                                    {
+                                                        if (Inventory[i][1] - amountt == 0 && amountt != 0)
+                                                        {
+                                                            bankAccount[j][1] += amountt;
+                                                            deletion = true;
+                                                            deleteNum = i;
+                                                            //Inventory.splice(i, 1);
+                                                        }
+                                                    }
+                                                    else
                                                     {
                                                         bankAccount[j][1] += amountt;
-                                                        deletion = true;
-                                                        deleteNum = i;
-                                                        //Inventory.splice(i, 1);
+                                                        Inventory[i][1] -= amountt;
                                                     }
                                                 }
-                                                else
-                                                {
-                                                    bankAccount[j][1] += amountt;
-                                                    Inventory[i][1] -= amountt;
-                                                }
+
                                             }
                                             else if (shiftKey)
                                             {
@@ -16666,23 +16675,31 @@ function theLegend()
                                             {
                                                 altKey = false;
                                                 var amount = prompt("Enter the amount you would like to deposit.");
-                                                var amountt = JSON.parse(amount);
-                                                console.log(amountt);
-                                                if (Inventory[i][1] - amountt <= 0)
+                                                var amountt = 0;
+                                                if (amount != "")
                                                 {
-                                                    if (Inventory[i][1] - amountt == 0)
+                                                    amountt = JSON.parse(amount);
+                                                }
+
+                                                if (amountt != 0)
+                                                {
+                                                    if (Inventory[i][1] - amountt <= 0)
+                                                    {
+                                                        if (Inventory[i][1] - amountt == 0)
+                                                        {
+                                                            bankAccount.push([new Item(invenType, false, false), amountt]);
+                                                            deletion = true;
+                                                            deleteNum = i;
+                                                            //Inventory.splice(i, 1);
+                                                        }
+                                                    }
+                                                    else
                                                     {
                                                         bankAccount.push([new Item(invenType, false, false), amountt]);
-                                                        deletion = true;
-                                                        deleteNum = i;
-                                                        //Inventory.splice(i, 1);
+                                                        Inventory[i][1] -= amountt;
                                                     }
                                                 }
-                                                else
-                                                {
-                                                    bankAccount.push([new Item(invenType, false, false), amountt]);
-                                                    Inventory[i][1] -= amountt;
-                                                }
+
                                             }
                                             else if (shiftKey)
                                             {
@@ -16794,21 +16811,30 @@ function theLegend()
                                         {
                                             altKey = false;
                                             var amount = prompt("Enter the amount you would like to withdraw.");
-                                            var amountt = JSON.parse(amount);
-                                            if (bankAccount[i][1] - amountt <= 0)
+                                            var amountt = 0;
+                                            if (amount != "")
                                             {
-                                                if (bankAccount[i][1] - amountt == 0)
+                                                amountt = JSON.parse(amount);
+                                            }
+
+                                            if (amountt != 0)
+                                            {
+                                                if (bankAccount[i][1] - amountt <= 0)
+                                                {
+                                                    if (bankAccount[i][1] - amountt == 0)
+                                                    {
+                                                        Inventory[j][1] += amountt;
+                                                        bankAccount.splice(i, 1);
+                                                        break;
+                                                    }
+                                                }
+                                                else
                                                 {
                                                     Inventory[j][1] += amountt;
-                                                    bankAccount.splice(i, 1);
-                                                    break;
+                                                    bankAccount[i][1] -= amountt;
                                                 }
                                             }
-                                            else
-                                            {
-                                                Inventory[j][1] += amountt;
-                                                bankAccount[i][1] -= amountt;
-                                            }
+
                                         }
                                         else if (shiftKey)
                                         {
@@ -16839,20 +16865,29 @@ function theLegend()
                                     {
                                         altKey = false;
                                         var amount = prompt("Enter the amount you would like to withdraw.");
-                                        var amountt = JSON.parse(amount);
-                                        if (bankAccount[i][1] - amountt <= 0)
+                                        var amountt = 0;
+                                        if (amount != "")
                                         {
-                                            if (bankAccount[i][1] - amountt == 0)
+                                            amountt = JSON.parse(amount);
+                                        }
+
+                                        if (amountt != 0)
+                                        {
+                                            if (bankAccount[i][1] - amountt <= 0)
+                                            {
+                                                if (bankAccount[i][1] - amountt == 0 && amountt != 0)
+                                                {
+                                                    Inventory.push([new Item(invenType, false, false), amountt]);
+                                                    bankAccount.splice(i, 1);
+                                                }
+                                            }
+                                            else
                                             {
                                                 Inventory.push([new Item(invenType, false, false), amountt]);
-                                                bankAccount.splice(i, 1);
+                                                bankAccount[i][1] -= amountt;
                                             }
                                         }
-                                        else
-                                        {
-                                            Inventory.push([new Item(invenType, false, false), amountt]);
-                                            bankAccount[i][1] -= amountt;
-                                        }
+
                                     }
                                     else if (shiftKey)
                                     {
@@ -45006,7 +45041,7 @@ function theLegend()
             {
                 //TRAITS
                 this.solid = false;
-                this.interactionRange = 200;
+                this.interactionRange = 1;
 
                 if (this.runOneTime)
                 {
@@ -47535,7 +47570,7 @@ function theLegend()
                 this.size = 12;
                 this.description = "The raw flesh from a Frich.";
                 this.intForDes = 4;
-                this.intDescription = "It is tough, slimy with curdling blood, and finished with an occasionally gut worm here or there.";
+                this.intDescription = "It is tough, slimy with curdling blood, and finished with an occasional gut worm here or there.";
 
                 //Define Utility
                 this.utility = "food";
@@ -47598,7 +47633,7 @@ function theLegend()
                 this.size = 18;
                 this.description = "The raw flesh from a mountain-frich.";
                 this.intForDes = 4;
-                this.intDescription = "It is tough, slimy with curdling blood, and finished with an occasionally gut worm here or there.";
+                this.intDescription = "It is tough, slimy with curdling blood, and finished with an occasional gut worm here or there.";
 
                 //Define Utility
                 this.utility = "food";
@@ -49386,7 +49421,7 @@ function theLegend()
                 //Crafting
                 this.yield = 1;
                 this.intForCraft = 10;
-                this.ingredients = [["Glass Jar", 1], ["Naaprid Butter", 1], ["Culpris Leaf", 8], ["blubber", 1]];
+                this.ingredients = [["Glass Jar", 1], ["Naaprid Butter", 1], ["Culpris Leaf", 8], ["Blubber", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 70 - Math.floor(player.getCharisma() / 2); // at max, buy for 45.
@@ -50760,7 +50795,7 @@ function theLegend()
             {
                 //For All Items
                 this.identity = "Mountain Frich Pelt";
-                this.weight = 1;
+                this.weight = 2.35;
                 this.size = 12;
                 this.description = "The foul smelling, mangy, black pelt of a mountain-frich.";
                 this.intForDes = 4;
@@ -52873,7 +52908,7 @@ function theLegend()
                 this.buyValue = 24 - Math.floor(player.getCharisma() / 8); // at max, buy for 20.
                 this.sellValue = 5 + Math.floor(player.getCharisma() / 3); // at max, sell for 20.
             }
-            else if (this.type == "GreyWolfPelt")
+            else if (this.type == "greyWolfPelt")
             {
                 //For All Items
                 this.identity = "Grey Wolf Pelt";
@@ -64326,10 +64361,12 @@ function theLegend()
                         ArtificialIntelligenceAccess.push(new Unit(704, -7814, "Grush", "baby", "turtletimmy"));
                         ArtificialIntelligenceAccess.push(new Unit(616, -7845, "Grush", "baby", "turtledarly"));
                         ArtificialIntelligenceAccess.push(new Unit(728, -7995, "Grush", false, "turtlejohn"));
-                        scenicList.push(new Scenery("bequonPlant", -1544 , -7933, -2.1, true));
+                        scenicList.push(new Scenery("palntPlant", -1544 , -7933, -2.1, true));
+                        ArtificialIntelligenceAccess.push(new Unit(1658, -7708, "Naaprid", false, "dopra"));
                     }
                     else
                     {
+                        ArtificialIntelligenceAccess.push(new Unit(3008, -7333, "Naaprid", false, "opra"));
                         scenicList.push(new Scenery("palntPlant", -1544 , -7933, -2.1, true));
                         scenicList.push(new Scenery("grushweedPlant", 728, -7995, 2.5, 1)); //for grush weed the last number determines its size multiplier.
                         scenicList.push(new Scenery("grushweedPlant", 704, -7814, 2.5, 0.6)); //for grush weed the last number determines its size multiplier.
@@ -64345,7 +64382,7 @@ function theLegend()
                         scenicList.push(new Scenery("grushweedPlant", -1495, -7108, 0, 1)); //for grush weed the last number determines its size multiplier.
                         ArtificialIntelligenceAccess.push(new Unit(5798, -4989, "Grush", true, "turtleTrudge"));
                         ArtificialIntelligenceAccess.push(new Unit(1345, -13190, "Grush", false, "turtleBudge"));
-                        scenicList.push(new Scenery("bequonPlant", -1387 , -10444, 2.2, true));
+                        scenicList.push(new Scenery("palntPlant", -1387 , -10444, 2.2, true));
                         ArtificialIntelligenceAccess.push(new Unit(-2293, -9072, "Evrak", true, "evil"));
                     }
                     else
@@ -64393,6 +64430,13 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(5050, -5181, "Frich", false, "chal"));
                     ArtificialIntelligenceAccess.push(new Unit(4779, -5070, "Frich", false, "chol"));
                     ArtificialIntelligenceAccess.push(new Unit(4909, -4986, "Frich", false, "chil"));
+                    ArtificialIntelligenceAccess.push(new Unit(-308, -4190, "Frich", true, "cholera"));
+                    ArtificialIntelligenceAccess.push(new Unit(1175, -4670, "Frich", false, "chale"));
+                    ArtificialIntelligenceAccess.push(new Unit(1274, -4852, "Frich", false, "chole"));
+                    ArtificialIntelligenceAccess.push(new Unit(1166, -4813, "Frich", false, "chile"));
+                    ArtificialIntelligenceAccess.push(new Unit(-914, -4703, "Frich", true, "argentina"));
+                    ArtificialIntelligenceAccess.push(new Unit(2819, -5572, "Frich", true, "bolivia"));
+                    ArtificialIntelligenceAccess.push(new Unit(6325, -4420, "Frich", false, "chule"));
 
 
                     //Golgemoffs crawling through your nightmares...
@@ -64432,6 +64476,7 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(1298, -10506, "Avrak", false, "alko"));
                     ArtificialIntelligenceAccess.push(new Unit(942, -10185, "Avrak", false, "alkii"));
                     ArtificialIntelligenceAccess.push(new Unit(5611, -10601, "Avrak", true, "alkrii"));
+                    ArtificialIntelligenceAccess.push(new Unit(3873, -7008, "Avrak", false, "alke"));
 
                     //A few varns prowl the fields!!!
                     ArtificialIntelligenceAccess.push(new Unit(782, -9091, "Varn", true, "elp"));
@@ -64439,6 +64484,10 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(451, -9021, "Varn", true, "mepl"));
                     ArtificialIntelligenceAccess.push(new Unit(-2228, -10171, "Varn", false, "ease"));
                     ArtificialIntelligenceAccess.push(new Unit(-813, -8554, "Varn", false, "coolBouy"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2474, -4294, "Varn", true, "ent"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2860, -4164, "Varn", true, "artm"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2301, -4213, "Varn", false, "dep"));
+
 
                     //Anters!!!
                     scenicList.push(new Scenery("anterHill", 400, -6000, 0, true));
@@ -64453,6 +64502,9 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-2433, -12028, "Ardil", true, "Buklii"));
                     ArtificialIntelligenceAccess.push(new Unit(5792, -5342, "Ardil", false, "Buliil"));
                     ArtificialIntelligenceAccess.push(new Unit(2934, -5905, "Ardil", false, "Buliilk"));
+                    ArtificialIntelligenceAccess.push(new Unit(4273, -9773, "Ardil", true, "Buklii"));
+                    ArtificialIntelligenceAccess.push(new Unit(2361, -8858, "Ardil", false, "Bullkilt"));
+                    ArtificialIntelligenceAccess.push(new Unit(3644, -5757, "Ardil", false, "Bullkilp"));
 
                     //Naaprids grazing!!!
                     ArtificialIntelligenceAccess.push(new Unit(808, -11538, "Naaprid", false, "Hueso"));
@@ -64477,6 +64529,11 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(4368, -7993, "Naaprid", true, "dod"));
                     ArtificialIntelligenceAccess.push(new Unit(5110, -7913, "Naaprid", true, "kerod"));
                     ArtificialIntelligenceAccess.push(new Unit(5472, -8361, "Naaprid", true, "dode"));
+
+                    ArtificialIntelligenceAccess.push(new Unit(3400, -7644, "Naaprid", true, "tode"));
+                    ArtificialIntelligenceAccess.push(new Unit(2769, -7608, "Naaprid", false, "doda"));
+                    ArtificialIntelligenceAccess.push(new Unit(3028, -7728, "Naaprid", false, "poda"));
+                    ArtificialIntelligenceAccess.push(new Unit(3010, -7568, "Naaprid", "baby", "dodo"));
 
                     //Perma-Grushes!!!
                     ArtificialIntelligenceAccess.push(new Unit(1166, -7761, "Grush", true, "Cruncher"));
@@ -64522,6 +64579,7 @@ function theLegend()
                     scenicList.push(new Scenery("techiPlant", 707 , -13146, 1.2, true));
                     scenicList.push(new Scenery("techiPlant", 3043 , -13540, 1.82, true));
                     scenicList.push(new Scenery("techiPlant", 288 , -13032, 0, true));
+                    scenicList.push(new Scenery("techiPlant", 3204 , -5508, 4, true));
                     scenicList.push(new Scenery("techiPlant", 2228 , -4731, -1.46, true));
                     scenicList.push(new Scenery("techiPlant", 1510 , -8302, 1.5, true));
                     scenicList.push(new Scenery("techiPlant", 6269 , -4950, -3, true));
@@ -64533,6 +64591,13 @@ function theLegend()
                     scenicList.push(new Scenery("techiPlant", 1165 , -5317, 4.5, true));
                     scenicList.push(new Scenery("techiPlant", 6013 , -5986, 0, true));
                     scenicList.push(new Scenery("techiPlant", 2391 , -13076, -4.85, true));
+                    scenicList.push(new Scenery("techiPlant", 4478 , -9698, -4.5, true));
+                    scenicList.push(new Scenery("techiPlant", 6212 , -7094, -0.5, true));
+                    scenicList.push(new Scenery("techiPlant", 3088 , -7476, 3.55, true));
+                    scenicList.push(new Scenery("techiPlant", 5112 , -10337, -3.75, true));
+                    scenicList.push(new Scenery("techiPlant", 6302 , -4235, -3.55, true));
+                    scenicList.push(new Scenery("techiPlant", 4348 , -13031, 8, true));
+                    scenicList.push(new Scenery("techiPlant", 1298 , -10232, -0.65, true));
                     scenicList.push(new Scenery("luufPlant", 1040 , -6090, 0, true));
                     scenicList.push(new Scenery("luufPlant", 3986 , -5087, -6.4, true));
                     scenicList.push(new Scenery("luufPlant", 1270 , -12813, -3, true));
@@ -64543,6 +64608,9 @@ function theLegend()
                     scenicList.push(new Scenery("luufPlant", -1373 , -4875, -6.111, true));
                     scenicList.push(new Scenery("luufPlant", 6011 , -8981, 2.5, true));
                     scenicList.push(new Scenery("luufPlant", 6263 , -12475, -3, true));
+                    scenicList.push(new Scenery("luufPlant", 1212 , -4303, -6.111, true));
+                    scenicList.push(new Scenery("luufPlant", 5130 , -11435, 0, true));
+                    scenicList.push(new Scenery("luufPlant", 4990 , -13386, -5.4321, true));
                     scenicList.push(new Scenery("ishPlant", 3967 , -8854, -2.25, true));
                     scenicList.push(new Scenery("ishPlant", 5067 , -9141, 3.25, true));
                     scenicList.push(new Scenery("ishPlant", 1721 , -10010, -40.4, true));
@@ -64552,6 +64620,11 @@ function theLegend()
                     scenicList.push(new Scenery("ishPlant", 328 , -4654, -2.4, true));
                     scenicList.push(new Scenery("ishPlant", 4636 , -4323, 5.5, true));
                     scenicList.push(new Scenery("ishPlant", 4427 , -11153, -4.444, true));
+                    scenicList.push(new Scenery("ishPlant", 2326 , -8795, 6.4, true));
+                    scenicList.push(new Scenery("ishPlant", 5033 , -4823, -6.4, true));
+                    scenicList.push(new Scenery("ishPlant", 6229 , -3987, 1.5, true));
+                    scenicList.push(new Scenery("ishPlant", 3171 , -10964, 0, true));
+                    scenicList.push(new Scenery("ishPlant", 6441 , -9318, 2.5, true));
                     scenicList.push(new Scenery("palntPlant", 3758 , -4310, 6, true));
                     scenicList.push(new Scenery("palntPlant", 5412 , -6751, 0, true));
                     scenicList.push(new Scenery("palntPlant", -134 , -5841, 1, true));
@@ -64565,8 +64638,12 @@ function theLegend()
                     scenicList.push(new Scenery("palntPlant", 1544 , -9168, -3.14159, true));
                     scenicList.push(new Scenery("palntPlant", -779 , -5189, 1.9, true));
                     scenicList.push(new Scenery("palntPlant", 4348 , -7674, 4.89, true));
-                    scenicList.push(new Scenery("bequonPlant", 5326 , -8149, -1.9, true));
-                    scenicList.push(new Scenery("bequonPlant", 5586 , -12299, 6.2, true));
+                    scenicList.push(new Scenery("palntPlant", 5326 , -8149, -1.9, true));
+                    scenicList.push(new Scenery("palntPlant", 5586 , -12299, 6.2, true));
+                    scenicList.push(new Scenery("palntPlant", -714 , -6487, 2.3, true));
+                    scenicList.push(new Scenery("palntPlant", 2858 , -5643, 0.25, true));
+                    scenicList.push(new Scenery("palntPlant", 3579 , -9140, -1, true));
+                    scenicList.push(new Scenery("palntPlant", 2950 , -11178, 0, true));
                     scenicList.push(new Scenery("ogardPlant", 4099 , -12455, 6.66666, true));
 
 

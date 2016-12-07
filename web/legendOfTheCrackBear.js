@@ -48378,8 +48378,6 @@ function theLegend()
 
                 //Define Utility
                 this.utility = "food";
-                this.subUtility = "reusable";
-                this.refund = [["bucket", 1]];
 
                 //Utility Focused
                 this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
@@ -48397,6 +48395,7 @@ function theLegend()
                 this.yield = 9;
                 this.intForCraft = 3;
                 this.ingredients = [["Palnt Root", 9], ["Bucket of Water", 1]];
+                this.biproducts = [[new Item("bucket", false), 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 2; // at max, buy for 1.

@@ -1212,6 +1212,7 @@ function theLegend()
     foods.push(new Item("ardilMeat", false));
     foods.push(new Item("boiledPalntRoot", false));
     foods.push(new Item("tilkMeat", false));
+    foods.push(new Item("tunskMeat", false));
 
         //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     var tailoring = [];
@@ -1235,7 +1236,6 @@ function theLegend()
     tailoring.push(new Item("tent", false));
     tailoring.push(new Item("mufFiber", false));
     tailoring.push(new Item("mufCloth", false));
-    tailoring.push(new Item("dyedMufCloth", false));
     tailoring.push(new Item("cloth", false));
     tailoring.push(new Item("naapridFiber", false));
     tailoring.push(new Item("varnFiber", false));
@@ -5750,23 +5750,48 @@ function theLegend()
                 }
             }
 
-            if (this.magicLevel < 20)
+            //MAGICAL LEVELING
+            if (this.magicLevel < 25)
             {
                 this.magicalExperienceRequiredToLevel = 1200 + (400 * (this.magicLevel - 1));
             }
-            else
+            else if (this.magicLevel < 35)
             {
                 this.magicalExperienceRequiredToLevel = 2000 + (600 * (this.magicLevel - 1));
             }
+            else if (this.magicLevel < 55)
+            {
+                this.magicalExperienceRequiredToLevel = 3000 + (900 * (this.magicLevel - 1));
+            }
+            else
+            {
+                this.magicalExperienceRequiredToLevel = 4200 + (1300 * (this.magicLevel - 1));
+            }
 
-
+            //STANDARD LEVELING
             if (this.level < 10)
             {
                 this.experienceRequiredToLevel = 400 + (200 * (this.level - 1));
             }
-            else
+            else if (this.level < 20)
             {
                 this.experienceRequiredToLevel = 1000 + (400 * (this.level - 1));
+            }
+            else if (this.level < 30)
+            {
+                this.experienceRequiredToLevel = 2200 + (600 * (this.level - 1));
+            }
+            else if (this.level < 40)
+            {
+                this.experienceRequiredToLevel = 4600 + (800 * (this.level - 1));
+            }
+            else if (this.level < 50)
+            {
+                this.experienceRequiredToLevel = 9400 + (1000 * (this.level - 1));
+            }
+            else
+            {
+                this.experienceRequiredToLevel = 19000 + (1200 * (this.level - 1));
             }
 
 
@@ -33550,6 +33575,67 @@ function theLegend()
                     this.xAdjustment = 0;
                 }
             }
+            else if (this.type == "Tunsk")
+            {
+                this.damageFrame = "manual";
+                this.team = "herd";
+                this.baseTeam = this.team;
+                if (Math.random() <= 0.49)
+                {
+                    this.tunskTurn = 1;
+                }
+                else
+                {
+                    this.tunskTurn = -1
+                }
+
+                if (this.alpha == true)
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = 0;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = 4;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 3.1;
+                    this.rangeOfSight = 350; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 10;
+                    this.sizeRadius = 5;
+                    this.negateArmour = 0;
+                    this.attackWait = 0.01;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 2.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = 0;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = 3;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 2.75;
+                    this.rangeOfSight = 300; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 10;
+                    this.sizeRadius = 4;
+                    this.negateArmour = 0;
+                    this.attackWait = 0.01;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 1.7; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+            }
             else if (this.type == "Torper")
             {
                 this.damageFrame = "automatic";
@@ -40048,6 +40134,108 @@ function theLegend()
                 }
 
             }
+            //TUNSK
+            if (this.type == "Tunsk")
+            {
+                //Set Drops and experience
+                if (this.alpha == true)
+                {
+                    this.experience = (2 * ((player.getIntelligence() / 50) + 1));
+                    this.drops = [[new Item("rawTunskFlesh", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.experience = (1 * ((player.getIntelligence() / 50) + 1));
+                    this.drops = [[new Item("rawTunskFlesh", this.X, this.Y), 1]];
+                }
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                if (this.alpha == true)
+                {
+                    this.rangeOfSightCalculator(375, false);
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(325, false);
+                }
+
+                //AI
+                if (this.alive == true)
+                {
+                    //this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        //this.pointAwayFromPlayer();
+                        //this.moveInRelationToPlayer();
+                        if (this.moving)
+                        {
+                            this.newRotation -= (Math.random() / 5) * this.tunskTurn;
+
+                            if (Math.round(Math.random()))
+                            {
+                                this.pointAwayFromPlayer();
+                            }
+                        }
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        //this.pointAway(this.target);
+                        //this.moveInRelationToThing(this.target);
+                        if (this.moving)
+                        {
+                            this.newRotation -= (Math.random() / 5) * this.tunskTurn;
+
+                            if (Math.round(Math.random()))
+                            {
+                                this.pointAway(this.target);
+                            }
+                        }
+                        this.moveInRelationToThing(this.target);
+                    }
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (this.moving && !this.attacking) //walking (towards food)
+                    {
+                        this.costumeEngine(4, 0.135, false);
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                    //manual damaging
+                    if (theCostume <= 0)
+                    {
+                        this.drawUnit(mufmuf, 16, 3, 19, 15, -1/2 * 19 * this.alphaSize - this.xAdjustment, -1/2 * 15 * this.alphaSize - this.yAdjustment, 19 * this.alphaSize, 15 * this.alphaSize);
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        this.drawUnit(mufmuf, 45, 3, 19, 15, -1/2 * 19 * this.alphaSize - this.xAdjustment, -1/2 * 15 * this.alphaSize - this.yAdjustment, 19 * this.alphaSize, 15 * this.alphaSize);
+                    }
+                    else if (theCostume <= 2)
+                    {
+                        this.drawUnit(mufmuf, 16, 3, 19, 15, -1/2 * 19 * this.alphaSize - this.xAdjustment, -1/2 * 15 * this.alphaSize - this.yAdjustment, 19 * this.alphaSize, 15 * this.alphaSize);
+                    }
+                    else if (theCostume >= 3)
+                    {
+                        this.drawUnit(mufmuf, 75, 3, 19, 15, -1/2 * 19 * this.alphaSize - this.xAdjustment, -1/2 * 15 * this.alphaSize - this.yAdjustment, 19 * this.alphaSize, 15 * this.alphaSize);
+                    }
+                }
+                else
+                {
+                    this.drawUnit(mufmuf, 104, 4, 19, 15, -1/2 * 19 * this.alphaSize - this.xAdjustment, -1/2 * 15 * this.alphaSize - this.yAdjustment, 19 * this.alphaSize, 15 * this.alphaSize);
+                }
+
+            }
             //BOG TROLL
             if (this.type == "BogTroll")
             {
@@ -45669,6 +45857,109 @@ function theLegend()
                     {
                         this.tiic = 0;
                         this.phase = "broken";
+                    }
+                }
+            }
+            else if (this.type == "tunskMound")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 1;
+
+                if (this.runOneTime)
+                {
+                    this.runOneTime = false;
+
+                    this.phase = "sturdy";
+                    this.tiic = 0;
+                    this.selTyp = Math.round(Math.random()); //selection type
+                }
+
+                //DRAWSELF
+                if (this.phase == "sturdy")
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mufmuf, 145, 3, 18, 17, -(1/2 * 18 * 2.4), -(1/2 * 17 * 2.4), 18 * 2.4, 17 * 2.4);
+                    XXX.restore();
+                }
+                else if (this.phase == "break1")
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mufmuf, 164, 3, 18, 17, -(1/2 * 18 * 2.4), -(1/2 * 17 * 2.4), 18 * 2.4, 17 * 2.4);
+                    XXX.restore();
+                }
+                else if (this.phase == "break2")
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mufmuf, 183, 2, 18, 17, -(1/2 * 18 * 2.4), -(1/2 * 17 * 2.4), 18 * 2.4, 17 * 2.4);
+                    XXX.restore();
+                }
+                else if (this.phase == "broken")
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mufmuf, 206, 3, 18, 17, -(1/2 * 18 * 2.4), -(1/2 * 17 * 2.4), 18 * 2.4, 17 * 2.4);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 10;
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                }
+
+                //A tunsk scurries out of its burrow when a player is near for too long.
+
+                var distToPlayer = Math.sqrt((this.X - X) * (this.X - X) + (this.Y - Y) * (this.Y - Y));
+                if (distToPlayer <= 130 && this.phase == "sturdy")
+                {
+                    this.tiic += 1;
+                    if (this.tiic >= 290)
+                    {
+                        this.tiic = 0;
+                        this.phase = "break1";
+                        anterHillCollapse.play();
+                    }
+                }
+                if (this.phase == "break1")
+                {
+                    this.tiic += 1;
+                    if (this.tiic >= 14)
+                    {
+                        this.tiic = 0;
+                        this.phase = "break2";
+                    }
+                }
+                if (this.phase == "break2")
+                {
+                    this.tiic += 1;
+                    if (this.tiic >= 14)
+                    {
+                        this.tiic = 0;
+                        this.phase = "broken";
+
+                        if (this.selTyp == 1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Tunsk", true, "Un-burrowed Tunsk"));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Tunsk", false, "Un-burrowed Tunsk"));
+                        }
                     }
                 }
             }
@@ -52781,6 +53072,70 @@ function theLegend()
                 this.buyValue = 1; // at max, buy for 1.
                 this.sellValue = 1; // at max, sell for 1.
             }
+            else if (this.type == "rawTunskFlesh")
+            {
+                //For All Items
+                this.identity = "Raw Tunsk Flesh";
+                this.weight = 0.9;
+                this.size = 9;
+                this.description = "The raw flesh of a tunsk.";
+                this.intForDes = 2;
+                this.intDescription = "When cooked tunsk meat is rather tasty, if you don't mind its gamey flavour. Eating this raw may result in vomiting.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0.75; //satisfies hunger.
+                this.thirst = 0.25; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "potentialFoodPoisoning";
+
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "tunskMeat")
+            {
+                //For All Items
+                this.identity = "Tunsk Meat";
+                this.weight = 0.85;
+                this.size = 9;
+                this.description = "The cooked meat of a tunsk.";
+                this.intForDes = 1;
+                this.intDescription = "The meat is tender, moist, and gamey.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 4.5; //satisfies hunger.
+                this.thirst = 0.05; //quenches thirst.
+                this.warmth = 0.5; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 13;
+                this.ingredients = [["Raw Tunsk Flesh", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+                this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            }
             else if (this.type == "rawAvrakFlesh")
             {
                 //For All Items
@@ -58730,6 +59085,16 @@ function theLegend()
                 XXX.arc(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
                 XXX.fill();
             }
+            else if (this.type == "rawTunskFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 130, 6, 10, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.85), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.85), 10 * 1.85, 9 * 1.85);
+            }
+            else if (this.type == "tunskMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 130, 15, 10, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.85), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.85), 10 * 1.85, 9 * 1.85);
+            }
             else if (this.type == "anterInnards")
             {
                 XXX.beginPath();
@@ -60477,6 +60842,16 @@ function theLegend()
                 LXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
                 LXX.fill();
             }
+            else if (this.type == "rawTunskFlesh")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mufmuf, 130, 6, 10, 9, this.invX - (1/2 * 10 * 1.85), this.invY - (1/2 * 9 * 1.85), 10 * 1.85, 9 * 1.85);
+            }
+            else if (this.type == "tunskMeat")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mufmuf, 130, 15, 10, 9, this.invX - (1/2 * 10 * 1.85), this.invY - (1/2 * 9 * 1.85), 10 * 1.85, 9 * 1.85);
+            }
             else if (this.type == "anterInnards")
             {
                 LXX.beginPath();
@@ -62203,6 +62578,16 @@ function theLegend()
                 XXX.fillStyle = "turquoise";
                 XXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
                 XXX.fill();
+            }
+            else if (this.type == "rawTunskFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 130, 6, 10, 9, this.invX - (1/2 * 10 * 1.85), this.invY - (1/2 * 9 * 1.85), 10 * 1.85, 9 * 1.85);
+            }
+            else if (this.type == "tunskMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 130, 15, 10, 9, this.invX - (1/2 * 10 * 1.85), this.invY - (1/2 * 9 * 1.85), 10 * 1.85, 9 * 1.85);
             }
             else if (this.type == "anterInnards")
             {
@@ -66726,6 +67111,9 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-2500, -29938, "Mofu", "baby", "Jilin"));
                     ArtificialIntelligenceAccess.push(new Unit(-2176, -29434, "Mofu", true, "Loz"));
                     ArtificialIntelligenceAccess.push(new Unit(-2368, -29393, "Mofu", "baby", "Kleena"));
+
+                    //ArtificialIntelligenceAccess.push(new Unit(-2326, -30565, "Tunsk", true, "Gut"));
+                    scenicList.push(new Scenery("tunskMound", -2326, -30565, 0, true)); //for mofu nests the last number determines its size multiplier.
 
                     //Mofu Habitations
                     scenicList.push(new Scenery("mofuNest", -2089, -29849, -3, 1.2)); //for mofu nests the last number determines its size multiplier.

@@ -605,9 +605,22 @@ function comingUpToLastPreStage()
 
     polpol.onload = function()
     {
+        somewhatToLastPreStage();
+    };
+}
+
+function somewhatToLastPreStage()
+{
+    var mufmuf = new Image();
+    mufmuf.src = ("images/mufmuf.png");
+    window.mufmuf = mufmuf;
+
+    mufmuf.onload = function()
+    {
         almostLastPreStage();
     };
 }
+
 function almostLastPreStage()
 {
     var polypol = new Image();
@@ -1220,6 +1233,9 @@ function theLegend()
     tailoring.push(new Item("avrakLeatherArmour", false));
     tailoring.push(new Item("evrakLeatherArmour", false));
     tailoring.push(new Item("tent", false));
+    tailoring.push(new Item("mufFiber", false));
+    tailoring.push(new Item("mufCloth", false));
+    tailoring.push(new Item("dyedMufCloth", false));
     tailoring.push(new Item("cloth", false));
     tailoring.push(new Item("naapridFiber", false));
     tailoring.push(new Item("varnFiber", false));
@@ -1257,6 +1273,7 @@ function theLegend()
     alchemy.push(new Item("groundOgard", false));
     alchemy.push(new Item("ogardPerfume", false));
     alchemy.push(new Item("wyrExtract", false));
+    alchemy.push(new Item("tenicPaste", false));
 
         //Brewing (alcohols, liquid fermentation, etc.)
     var brewing = [];
@@ -1299,6 +1316,7 @@ function theLegend()
     handcrafted.push(new Item("driedTechiLeaf", false));
     handcrafted.push(new Item("techiTea", false));
     handcrafted.push(new Item("dualVardanianBattleAxe", false));
+    handcrafted.push(new Item("dyedMufCloth", false));
 
     //This sets the items that are in shops.
     function shopItemIDSetter()
@@ -4298,7 +4316,7 @@ function theLegend()
             //Different parts of the world load at different Y values. // maps are 34 by 34 tiles and for somereason the maps are -20 to the left. and + 14 down.
         if (map == "world")
         {
-            //Layer -3 (cold temperate region)
+            //Layer -3 (cold temperate region) //mapS3
             if (Y > -34556 && Y < -23654 && X < 7687 && X > - 3901) //X0
             {
                 elevation = -1;
@@ -4309,7 +4327,7 @@ function theLegend()
                 outlineBuilder( 4, 4, "kelltile", 4, 103);
                 outlineBuilder( 1, 1, "farmland", 8, 104);
             }
-            //Layer -2 (cold temperate region)
+            //Layer -2 (cold temperate region)//mapS2
             if (Y > -24704 && Y < -13476 && X < 7687 && X > - 3901) //X0
             {
                 elevation = -1;
@@ -4317,8 +4335,15 @@ function theLegend()
                 outlineBuilder( 34, 34, "greenGrass", -20, 48);
                 outlineBuilder( 34, 1, "stonePath", 3, 48);
                 outlineBuilder( 1, 7, "stonePath", -4, 48);
+                outlineBuilder( 8, 10, "forest", -13, 62); //little patch of forest in the middle of the kellish northern plains
+                outlineBuilder( 1, 5, "forest", -13, 61); //^
+                outlineBuilder( 1, 3, "forest", -7, 61); //^
+                outlineBuilder( 1, 3, "forest", -12, 60); //^
+                outlineBuilder( 5, 1, "forest", -3, 64); //^
+                outlineBuilder( 3, 1, "forest", -14, 65); //^
+                outlineBuilder( 1, 6, "forest", -10, 70); //^
             }
-            //Layer -1 (cold temperate region)
+            //Layer -1 (cold temperate region)//mapS1
             if (Y > -14144 && Y < -3328 && X < 7687 && X > - 3901) //X0
             {
                 elevation = -1;
@@ -4327,7 +4352,7 @@ function theLegend()
                 outlineBuilder( 34, 1, "stonePath", -4, 14);
                 outlineBuilder( 1, 1, "forest", -4, 14);
             }
-            //Layer 0 (cold region)
+            //Layer 0 (cold region)//mapCentral
             if (Y > -3919 && Y < 6870 && X < 7687 && X > - 3901) //X0
             {
                 elevation = 0;
@@ -4347,6 +4372,7 @@ function theLegend()
                 outlineBuilder( 1, 13, "stonePath", -20, -7);
                 outlineBuilder( 2, 3, "farmland", -7, 1);
             }
+            //mapE1
             if (Y > -3919 && Y < 6870 && X < - 2490) //X1
             {
                 elevation = 0;
@@ -4364,6 +4390,7 @@ function theLegend()
                 outlineBuilder( 1, 2, "greenGrass", 26, -4);
                 outlineBuilder( 1, 34, "stonePath", 14, -3);
             }
+            //mapW1
             if (Y > -3919 && Y < 6870 && X < 17891 && X > 6299) //X-1
             {
                 elevation = 0;
@@ -14362,15 +14389,51 @@ function theLegend()
                         this.immune = true;
                         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                         {
-                            if (ArtificialIntelligenceAccess[i].target == player && ArtificialIntelligenceAccess[i].ranged == false && ArtificialIntelligenceAccess[i].unavoidable == false)
+                            if (ArtificialIntelligenceAccess[i].target == player && ArtificialIntelligenceAccess[i].ranged != true && ArtificialIntelligenceAccess[i].unavoidable != true)
                             {
-                                if (this.freeze > 1)
+                                if (player.getDexterity() >= 25)
                                 {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 450;
+                                    if (this.freeze > 1)
+                                    {
+                                        ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 750;
+                                    }
+                                    else
+                                    {
+                                        ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1500;
+                                    }
+                                }
+                                else if (player.getDexterity() >= 20)
+                                {
+                                    if (this.freeze > 1)
+                                    {
+                                        ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 650;
+                                    }
+                                    else
+                                    {
+                                        ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1300;
+                                    }
+                                }
+                                else if (player.getDexterity() >= 15)
+                                {
+                                    if (this.freeze > 1)
+                                    {
+                                        ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 550;
+                                    }
+                                    else
+                                    {
+                                        ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1100;
+                                    }
                                 }
                                 else
                                 {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 900;
+                                    if (this.freeze > 1)
+                                    {
+                                        ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 450;
+                                    }
+                                    else
+                                    {
+                                        ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 900;
+                                    }
                                 }
                             }
                         }
@@ -15584,13 +15647,13 @@ function theLegend()
                                 }
                                 //console.log(anti);
                                 //Ingredient Info (normal: ingredients that you do have)
-                                XXX.font = "bold 32px Book Antiqua";
+                                XXX.font = "bold 20px Book Antiqua"; //used to be 32px but the ingredients would not all fit...
                                 XXX.fillStyle = "darkGreen";
                                 XXX.textAlign = "center"; //this is to reset it to the standard for the rest to come.
                                 XXX.fillText(recipe.join("    "), 1/2 * CCC.width, 300);
 
                                 //Ingredient Info (anti: missing ingredients)
-                                XXX.font = "bold 32px Book Antiqua";
+                                XXX.font = "bold 20px Book Antiqua";
                                 XXX.fillStyle = "crimson";
                                 XXX.textAlign = "center"; //this is to reset it to the standard for the rest to come.
                                 XXX.fillText(anti.join("    "), 1/2 * CCC.width, 500);
@@ -24752,27 +24815,41 @@ function theLegend()
             {
                 this.allys.push("shehidia");
                 this.allys.push("narthwarpia");
+                this.allys.push("docile");
                 this.allys.push("bearia");
                 this.allys.push("ulgoyia");
             }
             if (this.team == "ulgoyia")
             {
                 this.allys.push("shehidia");
+                this.allys.push("docile");
             }
             if (this.team == "shehidia")
             {
                 this.allys.push("ulgoyia");
+                this.allys.push("docile");
             }
             if (this.team == "narthwarpia")
             {
                 this.allys.push("wild");
                 this.allys.push("gribia");
                 this.allys.push("bearia");
+                this.allys.push("docile");
+            }
+            if (this.team == "docile") //Narthwarps that are not in a hunting mood. //Gribs that have betrayed their very nature and have dedicated their lives solely to hunting the player. //Bears that just aren't in the mood to hunt... anything but you.
+            {
+                this.allys.push("herd");
+                this.allys.push("wild");
+                this.allys.push("gribia");
+                this.allys.push("bearia");
+                this.allys.push("shehidia");
+                this.allys.push("ulgoyia");
             }
             if (this.team == "gribia")
             {
                 this.allys.push("shehidia");
                 this.allys.push("narthwarpia");
+                this.allys.push("docile");
                 this.allys.push("bearia");
                 this.allys.push("ulgoyia");
             }
@@ -24780,6 +24857,7 @@ function theLegend()
             {
                 this.allys.push("shehidia");
                 this.allys.push("narthwarpia");
+                this.allys.push("docile");
                 this.allys.push("gribia");
                 this.allys.push("wild");
             }
@@ -31394,6 +31472,10 @@ function theLegend()
             {
                 this.damageFrame = "automatic";
                 this.team = "narthwarpia";
+                if (this.ID == "docile")
+                {
+                    this.team = "docile";
+                }
                 this.baseTeam = this.team;
 
                 if (this.alpha == true)
@@ -32934,6 +33016,10 @@ function theLegend()
             {
                 this.damageFrame = "automatic";
                 this.team = "gribia";
+                if (this.ID == "docile")
+                {
+                    this.team = "docile";
+                }
                 this.baseTeam = this.team;
 
                 if (this.alpha == true)
@@ -32989,6 +33075,10 @@ function theLegend()
             {
                 this.damageFrame = "automatic";
                 this.team = "bearia";
+                if (this.ID == "docile")
+                {
+                    this.team = "docile";
+                }
                 this.baseTeam = this.team;
 
                 if (this.alpha == true)
@@ -44278,6 +44368,88 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "tenicPlant")
+            {
+                //TRAITS
+                this.variety = "plant";
+                this.solid = false;
+                this.interactionRange = 75;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mufmuf, 222, 65, 33, 27, -(1/2 * 33 * 2), -(1/2 * 27 * 2), 33 * 2, 27 * 2);
+                    XXX.restore();
+                }
+                else if (this.phase == 1)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mufmuf, 260, 66, 33, 27, -(1/2 * 33 * 2), -(1/2 * 27 * 2), 33 * 2, 27 * 2);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mufmuf, 180, 65, 33, 27, -(1/2 * 33 * 2), -(1/2 * 27 * 2), 33 * 2, 27 * 2);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 19;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = 1;
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "tenicFlower")
+                        {
+                            Inventory[i][1] += Math.floor(1 + Math.random() * 3);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("tenicFlower", false, false), Math.floor(1 + Math.random() * 3)]);
+                    }
+                }
+                else if (this.activate == true && this.phase == 1)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "tenicLeaf")
+                        {
+                            Inventory[i][1] += Math.floor(1 + Math.random() * 7);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("tenicLeaf", false, false), Math.floor(1 + Math.random() * 7)]);
+                    }
+                }
+            }
             else if (this.type == "palntPlant")
             {
                 //TRAITS
@@ -44464,6 +44636,163 @@ function theLegend()
                     if (hits == Inventory.length)
                     {
                         Inventory.push([new Item("ishBranch", false, false), Math.floor(2 + Math.random() * 8)]);
+                    }
+                }
+            }
+            else if (this.type == "itlinPlant")
+            {
+                //TRAITS
+                this.variety = "plant";
+                this.interactionRange = 85;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    this.solid = true;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mufmuf, 469, 59, 25, 22, -(1/2 * 25 * 2), -(1/2 * 22 * 2), 25 * 2, 22 * 2);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    this.solid = false;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mufmuf, 470, 82, 25, 22, -(1/2 * 25 * 2), -(1/2 * 22 * 2), 25 * 2, 22 * 2);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 14;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "itlinBranch")
+                        {
+                            Inventory[i][1] += Math.floor(2 + Math.random() * 6);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("itlinBranch", false, false), Math.floor(2 + Math.random() * 6)]);
+                    }
+                }
+            }
+            else if (this.type == "butterMellowPlant")
+            {
+                //TRAITS
+                this.variety = "plant";
+                this.interactionRange = 50;
+                this.solid = false;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mufmuf, 274, 46, 10, 8, -(1/2 * 10 * 2), -(1/2 * 8 * 2), 10 * 2, 8 * 2);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mufmuf, 287, 46, 10, 8, -(1/2 * 10 * 2), -(1/2 * 8 * 2), 10 * 2, 8 * 2);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 14;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "butterMellowFlower")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("butterMellowFlower", false, false), 1]);
+                    }
+                }
+            }
+            else if (this.type == "mufPlant")
+            {
+                //TRAITS
+                this.variety = "plant";
+                this.interactionRange = 85;
+                this.solid = false;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mufmuf, 278, 5, 13, 12, -(1/2 * 13 * 2), -(1/2 * 12 * 2), 13 * 2, 12 * 2);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mufmuf, 294, 5, 13, 12, -(1/2 * 13 * 2), -(1/2 * 12 * 2), 13 * 2, 12 * 2);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 14;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "mufBall")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("mufBall", false, false), 1]);
                     }
                 }
             }
@@ -45055,7 +45384,7 @@ function theLegend()
             {
                 //TRAITS
                 this.solid = true;
-                this.interactionRange = 25;
+                this.interactionRange = 1;
 
                 if (this.runOneTime)
                 {
@@ -49463,6 +49792,204 @@ function theLegend()
                 this.buyValue = 1; // at max, buy for 1.
                 this.sellValue = 0; // at max, sell for 0.
             }
+            else if (this.type == "butterMellowFlower")
+            {
+                //For All Items
+                this.identity = "Butter-Mellow Flower";
+                this.weight = 0.14;
+                this.size = 8;
+                this.description = "A thick stemmed flower with large yellow petals.";
+                this.intForDes = 27;
+                this.intDescription = "A light yellow oil that clings to the smooth petals makes this flower popular for use in alchemy.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //Utility Focused
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 3; // at max, buy for 3.
+                this.sellValue = 1 + Math.floor((20 + player.getCharisma()) / 25); // at max, sell for 3.
+            }
+            else if (this.type == "mufBall")
+            {
+                //For All Items
+                this.identity = "Muf";
+                this.weight = 0.025;
+                this.size = 4;
+                this.description = "A ball of muf picked from the plant; muf is soft, fluffy, and fibrous.";
+                this.intForDes = 11;
+                this.intDescription = "Muf is used to make cheap cloth for manufacture into clothing and other goods.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //Utility Focused
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "mufFiber")
+            {
+                //For All Items
+                this.identity = "Muf Fiber";
+                this.weight = 0.1;
+                this.size = 8;
+                this.description = "Muf that has been woven into strands for production into cloth.";
+                this.intForDes = 11;
+                this.intDescription = "Muf fiber is used to make cheap cloth for manufacture into clothing and other goods.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //Utility Focused
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 11;
+                this.ingredients = [["Muf", 4]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 4; // at max, buy for 1.
+                this.sellValue = 4; // at max, sell for 1.
+            }
+            else if (this.type == "mufCloth")
+            {
+                //For All Items
+                this.identity = "Muf Cloth";
+                this.weight = 0.2;
+                this.size = 10;
+                this.description = "Cloth made from a soft and fluffy plant material known as muf.";
+                this.intForDes = 3;
+                this.intDescription = "Muf cloth must be dyed white before it can be made into standard cloth products.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //Utility Focused
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 14;
+                this.ingredients = [["Muf Fiber", 2]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 9; // at max, buy for 9.
+                this.sellValue = 9; // at max, sell for 9.
+            }
+            else if (this.type == "tenicLeaf")
+            {
+                //For All Items
+                this.identity = "Tenic Leaf";
+                this.weight = 0.55;
+                this.size = 8;
+                this.description = "A long fuzzy pointed green leaf from a tenic plant.";
+                this.intForDes = 5;
+                this.intDescription = "Tenic Leaves have curing properties as well as other diverse alchemic effects.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //Utility Focused
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 2; // at max, buy for 2.
+                this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            }
+            else if (this.type == "tenicFlower")
+            {
+                //For All Items
+                this.identity = "Tenic Flower";
+                this.weight = 0.25;
+                this.size = 6;
+                this.description = "A flower made up of a number of small white bubble-like enclosures.";
+                this.intForDes = 5;
+                this.intDescription = "Tenic flowers have some alchemic properties but are mostly used to make dye.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //Utility Focused
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            else if (this.type == "tenicPaste")
+            {
+                //For All Items
+                this.identity = "Tenic Paste";
+                this.weight = 0.5;
+                this.size = 7;
+                this.description = "A white paste made from mashed tenic flower and a hint of water.";
+                this.intForDes = 2;
+                this.intDescription = "Used as a dye.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //Utility Focused
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 4;
+                this.ingredients = [["Tenic Flower", 2]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 2; // at max, buy for 2.
+                this.sellValue = 2; // at max, sell for 2.
+            }
+            else if (this.type == "itlinBranch")
+            {
+                //For All Items
+                this.identity = "Itlin Branch";
+                this.weight = 0.4;
+                this.size = 7;
+                this.description = "One branch of an itlin bush.";
+                if (player.raceName == "Kel")
+                {
+                    this.intForDes = 0;
+                }
+                else
+                {
+                    this.intForDes = 6;
+                }
+                this.intDescription = "Many Kellish tribes believe that itlin branches ward off bad spirits.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //Utility Focused
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 0; // at max, sell for 0.
+            }
             else if (this.type == "ulgoyLeaf")
             {
                 //For All Items
@@ -49566,7 +50093,7 @@ function theLegend()
                 //Crafting
                 this.yield = 1;
                 this.intForCraft = 10;
-                this.ingredients = [["Glass Jar", 1], ["Naaprid Butter", 1], ["Culpris Leaf", 8], ["Blubber", 1]];
+                this.ingredients = [["Glass Jar", 1], ["Naaprid Butter", 1], ["Culpris Leaf", 8], ["Lizard Tail", 1], ["Blubber", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 70 - Math.floor(player.getCharisma() / 2); // at max, buy for 45.
@@ -50706,7 +51233,7 @@ function theLegend()
                 //Crafting
                 this.yield = 1;
                 this.intForCraft = 35;
-                this.ingredients = [["Potion Glass", 1]];
+                this.ingredients = [["Wyr Leaf Extract", 1], ["Neprilne Berries", 2], ["Bear Tongue", 1], ["Neev Flesh", 1], ["Palnt Flower", 8], ["Fermented Viper Venom Gland", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 925 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 725.
@@ -50742,7 +51269,7 @@ function theLegend()
                 //Crafting
                 this.yield = 1;
                 this.intForCraft = 32;
-                this.ingredients = [["Potion Glass", 1]];
+                this.ingredients = [["Vial of Water", 1], ["Raw Wolf Liver", 1], ["Palnt Flower", 1], ["Honey", 1], ["Fermented Narthwarp Mouth", 1], ["Lizard Tail", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 140 - Math.floor(player.getCharisma() / 1); // at max, buy for 90.
@@ -50778,7 +51305,7 @@ function theLegend()
                 //Crafting
                 this.yield = 1;
                 this.intForCraft = 30;
-                this.ingredients = [["Potion Glass", 1]];
+                this.ingredients = [["Potion Glass", 1], ["Ulgoy Leaf", 2], ["Lizard Tail", 1], ["Honey", 1], ["Palnt Flower", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 208 - Math.floor(player.getCharisma() / 1); // at max, buy for 158.
@@ -50797,7 +51324,7 @@ function theLegend()
                 //Define Utility
                 this.utility = "food";
                 this.subUtility = "reusable";
-                this.refund = [["potionGlass", 1]];
+                this.refund = [["Potion Glass", 1]];
 
                 //Utility Focused
                 this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
@@ -50814,7 +51341,7 @@ function theLegend()
                 //Crafting
                 this.yield = 1;
                 this.intForCraft = 36;
-                this.ingredients = [["Potion Glass", 1]];
+                this.ingredients = [["Potion Glass", 1], ["Ulgoy Leaf", 2], ["Mofu Foot", 1], ["Lizard Tail", 1], ["Honey", 1], ["Palnt Flower", 2]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 349 - Math.floor(player.getCharisma() / 1); // at max, buy for 299.
@@ -50850,7 +51377,7 @@ function theLegend()
                 //Crafting
                 this.yield = 1;
                 this.intForCraft = 33;
-                this.ingredients = [["Potion Glass", 1]];
+                this.ingredients = [["Vial of Water", 1], ["Raw Wolf Liver", 1], ["Tylun Flower", 1], ["Viper Snake Skin", 1], ["Honey", 1], ["Fermented Narthwarp Mouth", 1], ["Lizard Tail", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 225 - Math.floor(player.getCharisma() / 1); // at max, buy for 175.
@@ -52818,7 +53345,7 @@ function theLegend()
                 this.size = 10;
                 this.description = "A yellowish fungal growth picked off of the tip of a vine.";
                 this.intForDes = 11;
-                this.intDescription = "Teppreklia is a fungus which invades a host. It grows throughout the inner veination of a vine and then sprouts bulbous yellowish pertrusions from the tips.";
+                this.intDescription = "Teppreklia is a fungus. It grows throughout the inner veination of a vine and then sprouts bulbous yellowish pertrusions from the tips.";
 
                 //Define Utility
                 this.utility = "food";
@@ -53002,6 +53529,31 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 11 - Math.floor(player.getCharisma() / 12); // at max, buy for 7.
                 this.sellValue = 3 + Math.floor(player.getCharisma() / 12); // at max, sell for 7.
+            }
+            else if (this.type == "dyedMufCloth")
+            {
+                //For All Items
+                this.identity = "Cloth";
+                this.weight = 0.5;
+                this.size = 12;
+                this.description = "Muf cloth dyed white with tenic paste.";
+                this.intForDes = 1;
+                this.intDescription = "Dyed muf cloth can be used for manufacture just as any other cloth can.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 5;
+                this.ingredients = [["Muf Cloth", 1], ["Tenic Paste", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 12; // at max, buy for 12.
+                this.sellValue = 12; // at max, sell for 12.
             }
             else if (this.type == "cloth")
             {
@@ -58068,7 +58620,27 @@ function theLegend()
                 this.buyValue = 12 - Math.floor(player.getCharisma() / 15); // at max, buy for 9.
                 this.sellValue = 6 + Math.floor(player.getCharisma() / 15); // at max, sell for 9.
             }
-            else if (this.type == "adminMarker")
+            else if (this.type == "unitMarker")
+            {
+                //For All Items
+                this.identity = "Marker";
+                this.weight = 0;
+                this.size = 12;
+                this.description = "Place a marker to show where an item will be spawned in the future so that you don't get mixed up.";
+                this.intForDes = 0;
+                this.intDescription = "These are not a real game item.";
+
+                //Define Utility
+                this.utility = "junk";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 0; // at max, buy for 0.
+                this.sellValue = 0; // at max, sell for 0.
+            }
+            else if (this.type == "plantMarker")
             {
                 //For All Items
                 this.identity = "Marker";
@@ -58144,10 +58716,17 @@ function theLegend()
                     }
                 }
             }
-            else if (this.type == "adminMarker")
+            else if (this.type == "unitMarker")
             {
                 XXX.beginPath();
                 XXX.fillStyle = "gold";
+                XXX.arc(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
+                XXX.fill();
+            }
+            else if (this.type == "plantMarker")
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "turquoise";
                 XXX.arc(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
                 XXX.fill();
             }
@@ -58215,6 +58794,46 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(theCrack, 865, 550, 18, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 18), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 18, 21);
+            }
+            else if (this.type == "itlinBranch")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 477, 103, 12, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 2), 12 * 2, 10 * 2);
+            }
+            else if (this.type == "butterMellowFlower")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 256, 39, 14, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 2), 14 * 2, 16 * 2);
+            }
+            else if (this.type == "mufBall")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 267, 19, 7, 7, X - this.X + (1/2 * CCC.width) - (1/2 * 7 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 7 * 2), 7 * 2, 7 * 2);
+            }
+            else if (this.type == "mufFiber")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 335, 23, 15, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 2), 15 * 2, 12 * 2);
+            }
+            else if (this.type == "mufCloth")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 315, 10, 11, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 2), 11 * 2, 13 * 2);
+            }
+            else if (this.type == "tenicFlower")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 295, 23, 14, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 2), 14 * 2, 14 * 2);
+            }
+            else if (this.type == "tenicLeaf")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 279, 24, 14, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 2), 14 * 2, 14 * 2);
+            }
+            else if (this.type == "tenicPaste")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 302, 24, 4, 6, X - this.X + (1/2 * CCC.width) - (1/2 * 4 * 2.35), Y - this.Y + (1/2 * CCC.height) - (1/2 * 6 * 2.25), 4 * 2.35, 6 * 2.25);
             }
             else if (this.type == "ardilFurClothing")
             {
@@ -58471,7 +59090,7 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(poly, 57, 50, 9, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.3), 9 * 1.3, 9 * 1.3);
             }
-            else if (this.type == "cloth")
+            else if (this.type == "cloth" || this.type == "dyedMufCloth")
             {
                 XXX.beginPath();
                 XXX.save();
@@ -59844,10 +60463,17 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
-            else if (this.type == "adminMarker")
+            else if (this.type == "unitMarker")
             {
                 LXX.beginPath();
                 LXX.fillStyle = "gold";
+                LXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
+                LXX.fill();
+            }
+            else if (this.type == "plantMarker")
+            {
+                LXX.beginPath();
+                LXX.fillStyle = "turquoise";
                 LXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
                 LXX.fill();
             }
@@ -59976,6 +60602,46 @@ function theLegend()
             {
                 LXX.beginPath();
                 LXX.drawImage(theCrack, 865, 550, 18, 21, this.invX - (1/2 * 18), this.invY - (1/2 * 21), 18, 21);
+            }
+            else if (this.type == "itlinBranch")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mufmuf, 477, 103, 12, 10, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 10 * 2), 12 * 2, 10 * 2);
+            }
+            else if (this.type == "butterMellowFlower")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mufmuf, 256, 39, 14, 16, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 16 * 2), 14 * 2, 16 * 2);
+            }
+            else if (this.type == "mufBall")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mufmuf, 267, 19, 7, 7, this.invX - (1/2 * 7 * 2), this.invY - (1/2 * 7 * 2), 7 * 2, 7 * 2);
+            }
+            else if (this.type == "mufFiber")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mufmuf, 335, 23, 15, 12, this.invX - (1/2 * 15 * 2), this.invY - (1/2 * 12 * 2), 15 * 2, 12 * 2);
+            }
+            else if (this.type == "mufCloth")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mufmuf, 315, 10, 11, 13, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 13 * 2), 11 * 2, 13 * 2);
+            }
+            else if (this.type == "tenicFlower")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mufmuf, 295, 23, 14, 14, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 14 * 2), 14 * 2, 14 * 2);
+            }
+            else if (this.type == "tenicLeaf")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mufmuf, 279, 24, 14, 14, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 14 * 2), 14 * 2, 14 * 2);
+            }
+            else if (this.type == "tenicPaste")
+            {
+                LXX.beginPath();
+                LXX.drawImage(mufmuf, 302, 24, 4, 6, this.invX - (1/2 * 4 * 2.35), this.invY - (1/2 * 6 * 2.25), 4 * 2.35, 6 * 2.25);
             }
             else if (this.type == "ardilFurClothing")
             {
@@ -60241,7 +60907,7 @@ function theLegend()
                 LXX.drawImage(mofu, 189, 86, 23, 44, - (1/2 * 23 * 1.5), - (1/2 * 44 * 1.5), 23 * 1.5, 44 * 1.5);
                 LXX.restore();
             }
-            else if (this.type == "cloth")
+            else if (this.type == "cloth" || this.type == "dyedMufCloth")
             {
                 LXX.beginPath();
                 LXX.save();
@@ -61524,10 +62190,17 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polyPNG, 405, 4, 16, 17, this.invX - (1/2 * 32), this.invY - (1/2 * 34), 32, 34);
             }
-            else if (this.type == "adminMarker")
+            else if (this.type == "unitMarker")
             {
                 XXX.beginPath();
                 XXX.fillStyle = "gold";
+                XXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
+                XXX.fill();
+            }
+            else if (this.type == "plantMarker")
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "turquoise";
                 XXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
                 XXX.fill();
             }
@@ -61656,6 +62329,46 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(theCrack, 865, 550, 18, 21, this.invX - (1/2 * 18), this.invY - (1/2 * 21), 18, 21);
+            }
+            else if (this.type == "itlinBranch")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 477, 103, 12, 10, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 10 * 2), 12 * 2, 10 * 2);
+            }
+            else if (this.type == "butterMellowFlower")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 256, 39, 14, 16, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 16 * 2), 14 * 2, 16 * 2);
+            }
+            else if (this.type == "mufBall")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 267, 19, 7, 7, this.invX - (1/2 * 7 * 2), this.invY - (1/2 * 7 * 2), 7 * 2, 7 * 2);
+            }
+            else if (this.type == "mufFiber")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 335, 23, 15, 12, this.invX - (1/2 * 15 * 2), this.invY - (1/2 * 12 * 2), 15 * 2, 12 * 2);
+            }
+            else if (this.type == "mufCloth")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 315, 10, 11, 13, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 13 * 2), 11 * 2, 13 * 2);
+            }
+            else if (this.type == "tenicFlower")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 295, 23, 14, 14, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 14 * 2), 14 * 2, 14 * 2);
+            }
+            else if (this.type == "tenicLeaf")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 279, 24, 14, 14, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 14 * 2), 14 * 2, 14 * 2);
+            }
+            else if (this.type == "tenicPaste")
+            {
+                XXX.beginPath();
+                XXX.drawImage(mufmuf, 302, 24, 4, 6, this.invX - (1/2 * 4 * 2.35), this.invY - (1/2 * 6 * 2.25), 4 * 2.35, 6 * 2.25);
             }
             else if (this.type == "ardilFurClothing")
             {
@@ -61921,7 +62634,7 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(poly, 57, 50, 9, 9, this.invX - (1/2 * 9 * 1.3), this.invY - (1/2 * 9 * 1.3), 9 * 1.3, 9 * 1.3);
             }
-            else if (this.type == "cloth")
+            else if (this.type == "cloth" || this.type == "dyedMufCloth")
             {
                 XXX.beginPath();
                 XXX.save();
@@ -64538,7 +65251,7 @@ function theLegend()
                         ArtificialIntelligenceAccess.push(new Unit(2977, -4894, "Grush", false, "turtlebob"));
                         ArtificialIntelligenceAccess.push(new Unit(3082, -4954, "Grush", "baby", "turtletim"));
                         ArtificialIntelligenceAccess.push(new Unit(5669, -4701, "Grush", false, "turtledahlia"));
-                        scenicList.push(new Scenery("ogardPlant", -1071 , -10780, 12.6, true));
+                        scenicList.push(new Scenery("butterMellowPlant", -1071 , -10780, 12.6, true));
                     }
                     else
                     {
@@ -64585,7 +65298,7 @@ function theLegend()
                         scenicList.push(new Scenery("grushweedPlant", -1294, -7184, 0, 1)); //for grush weed the last number determines its size multiplier.
                         ArtificialIntelligenceAccess.push(new Unit(-1495, -7108, "Grush", false, "turtlejamza"));
                         ArtificialIntelligenceAccess.push(new Unit(-2293, -9072, "Evrak", false, "evil"));
-                        scenicList.push(new Scenery("ishPlant", -1387 , -10444, -2.2, true));
+                        scenicList.push(new Scenery("itlinPlant", -1387 , -10444, -2.2, true));
                         scenicList.push(new Scenery("grushweedPlant", 1345, -13190, 0, 1.425)); //for grush weed the last number determines its size multiplier.
                         scenicList.push(new Scenery("grushweedPlant", 5798, -4989, 2, 1.6)); //for grush weed the last number determines its size multiplier.
                     }
@@ -64595,7 +65308,7 @@ function theLegend()
                         ArtificialIntelligenceAccess.push(new Unit(1217, -8134, "Grush", true, "turtledarla"));
                         ArtificialIntelligenceAccess.push(new Unit(5593, -4493, "Grush", true, "turtletom"));
                         ArtificialIntelligenceAccess.push(new Unit(2253, -12972, "Grush", false, "turtletyler"));
-                        scenicList.push(new Scenery("ogardPlant", -597 , -5256, 0, true));
+                        scenicList.push(new Scenery("butterMellowPlant", -597 , -5256, 0, true));
                         ArtificialIntelligenceAccess.push(new Unit(1080, -13248, "Grush", "baby", "turtletonk"));
                         ArtificialIntelligenceAccess.push(new Unit(-1838, -11241, "Frich", "massive", "superpuper"));
                         ArtificialIntelligenceAccess.push(new Unit(1486, -13498, "Golgemoff", true, "Sweetling"));
@@ -64812,20 +65525,20 @@ function theLegend()
                     scenicList.push(new Scenery("luufPlant", 1212 , -4303, -6.111, true));
                     scenicList.push(new Scenery("luufPlant", 5130 , -11435, 0, true));
                     scenicList.push(new Scenery("luufPlant", 4990 , -13386, -5.4321, true));
-                    scenicList.push(new Scenery("ishPlant", 3967 , -8854, -2.25, true));
-                    scenicList.push(new Scenery("ishPlant", 5067 , -9141, 3.25, true));
-                    scenicList.push(new Scenery("ishPlant", 1721 , -10010, -40.4, true));
-                    scenicList.push(new Scenery("ishPlant", -1912 , -12299, 0, true));
-                    scenicList.push(new Scenery("ishPlant", -715 , -11942, 1, true));
-                    scenicList.push(new Scenery("ishPlant", -1536 , -11629, -2.264, true));
-                    scenicList.push(new Scenery("ishPlant", 328 , -4654, -2.4, true));
-                    scenicList.push(new Scenery("ishPlant", 4636 , -4323, 5.5, true));
-                    scenicList.push(new Scenery("ishPlant", 4427 , -11153, -4.444, true));
-                    scenicList.push(new Scenery("ishPlant", 2326 , -8795, 6.4, true));
-                    scenicList.push(new Scenery("ishPlant", 5033 , -4823, -6.4, true));
-                    scenicList.push(new Scenery("ishPlant", 6229 , -3987, 1.5, true));
-                    scenicList.push(new Scenery("ishPlant", 3171 , -10964, 0, true));
-                    scenicList.push(new Scenery("ishPlant", 6441 , -9318, 2.5, true));
+                    scenicList.push(new Scenery("itlinPlant", 3967 , -8854, -2.25, true));
+                    scenicList.push(new Scenery("itlinPlant", 5067 , -9141, 3.25, true));
+                    scenicList.push(new Scenery("itlinPlant", 1721 , -10010, -40.4, true));
+                    scenicList.push(new Scenery("itlinPlant", -1912 , -12299, 0, true));
+                    scenicList.push(new Scenery("itlinPlant", -715 , -11942, 1, true));
+                    scenicList.push(new Scenery("itlinPlant", -1536 , -11629, -2.264, true));
+                    scenicList.push(new Scenery("itlinPlant", 328 , -4654, -2.4, true));
+                    scenicList.push(new Scenery("itlinPlant", 4636 , -4323, 5.5, true));
+                    scenicList.push(new Scenery("itlinPlant", 4427 , -11153, -4.444, true));
+                    scenicList.push(new Scenery("itlinPlant", 2326 , -8795, 6.4, true));
+                    scenicList.push(new Scenery("itlinPlant", 5033 , -4823, -6.4, true));
+                    scenicList.push(new Scenery("itlinPlant", 6229 , -3987, 1.5, true));
+                    scenicList.push(new Scenery("itlinPlant", 3171 , -10964, 0, true));
+                    scenicList.push(new Scenery("itlinPlant", 6441 , -9318, 2.5, true));
                     scenicList.push(new Scenery("palntPlant", 3758 , -4310, 6, true));
                     scenicList.push(new Scenery("palntPlant", 5412 , -6751, 0, true));
                     scenicList.push(new Scenery("palntPlant", -134 , -5841, 1, true));
@@ -64845,7 +65558,7 @@ function theLegend()
                     scenicList.push(new Scenery("palntPlant", 2858 , -5643, 0.25, true));
                     scenicList.push(new Scenery("palntPlant", 3579 , -9140, -1, true));
                     scenicList.push(new Scenery("palntPlant", 2950 , -11178, 0, true));
-                    scenicList.push(new Scenery("ogardPlant", 4099 , -12455, 6.66666, true));
+                    scenicList.push(new Scenery("butterMellowPlant", 4099 , -12455, 6.66666, true));
 
 
                     change = "s1";
@@ -64881,6 +65594,962 @@ function theLegend()
                     //REGION CREATION
                     //Build AI Units
 
+                    //pine trees of the Hent Woods
+                    scenicList.push(new Scenery("pineTree", 4454 , -17547, 0, true));
+                    scenicList.push(new Scenery("pineTree", 4165 , -17636, -2, true));
+                    scenicList.push(new Scenery("pineTree", 4096 , -17461, 0.25, true));
+                    scenicList.push(new Scenery("pineTree", 3881 , -17567, 6, true));
+                    scenicList.push(new Scenery("pineTree", 4458 , -17811, -5.5, true));
+                    scenicList.push(new Scenery("pineTree", 4760 , -17816, 0, true));
+                    scenicList.push(new Scenery("pineTree", 4690 , -18108, 3, true));
+                    scenicList.push(new Scenery("pineTree", 4257 , -18126, -4, true));
+                    scenicList.push(new Scenery("pineTree", 4030 , -17864, -2.87, true));
+                    scenicList.push(new Scenery("pineTree", 3592 , -17885, -0.25, true));
+                    scenicList.push(new Scenery("pineTree", 3911 , -18085, 1.4, true));
+                    scenicList.push(new Scenery("pineTree", 3527 , -18125, -3.6, true));
+                    scenicList.push(new Scenery("pineTree", 3200 , -18090, 1, true));
+                    scenicList.push(new Scenery("pineTree", 2945 , -17832, -1, true));
+                    scenicList.push(new Scenery("pineTree", 2930 , -18115, 0.64, true));
+                    scenicList.push(new Scenery("pineTree", 2628 , -17873, -21, true));
+                    scenicList.push(new Scenery("pineTree", 2463 , -18015, -4.25, true));
+                    scenicList.push(new Scenery("pineTree", 2400 , -17827, 5, true));
+                    scenicList.push(new Scenery("pineTree", 2604 , -18292, -6, true));
+                    scenicList.push(new Scenery("pineTree", 2150 , -18202, -3.333, true));
+                    scenicList.push(new Scenery("pineTree", 2302 , -18474, 2.62, true));
+                    scenicList.push(new Scenery("pineTree", 2067 , -18710, -4, true));
+                    scenicList.push(new Scenery("pineTree", 1758 , -18755, 2.9, true));
+                    scenicList.push(new Scenery("pineTree", 1819 , -19032, -3.2, true));
+                    scenicList.push(new Scenery("pineTree", 1779 , -19291, -1.4, true));
+                    scenicList.push(new Scenery("pineTree", 1689 , -19530, 3.45, true));
+                    scenicList.push(new Scenery("pineTree", 1788 , -19793, 10, true));
+                    scenicList.push(new Scenery("pineTree", 1784 , -19975, -1, true));
+                    scenicList.push(new Scenery("pineTree", 2184 , -20173, 0, true));
+                    scenicList.push(new Scenery("pineTree", 2507 , -20311, -2.6, true));
+                    scenicList.push(new Scenery("pineTree", 2380 , -20519, 6.25, true));
+                    scenicList.push(new Scenery("pineTree", 2516 , -20051, 1.9, true));
+                    scenicList.push(new Scenery("pineTree", 2625 , -20605, 5.4, true));
+                    scenicList.push(new Scenery("pineTree", 2855 , -20359, -1.3, true));
+                    scenicList.push(new Scenery("pineTree", 3001 , -20632, 3, true));
+                    scenicList.push(new Scenery("pineTree", 3273 , -20420, 420, true));
+                    scenicList.push(new Scenery("pineTree", 3562 , -20574, -2.95, true));
+                    scenicList.push(new Scenery("pineTree", 3827 , -20435, 2.25, true));
+                    scenicList.push(new Scenery("pineTree", 3777 , -20587, 1.4, true));
+                    scenicList.push(new Scenery("pineTree", 3287 , -20705, -3.8, true));
+                    scenicList.push(new Scenery("pineTree", 3858 , -20196, 0, true));
+                    scenicList.push(new Scenery("pineTree", 3549 , -20041, 5.1, true));
+                    scenicList.push(new Scenery("pineTree", 3397 , -20228, -4.64, true));
+                    scenicList.push(new Scenery("pineTree", 3075 , -20114, -2.2, true));
+                    scenicList.push(new Scenery("pineTree", 3278 , -19859, -5.25, true));
+                    scenicList.push(new Scenery("pineTree", 2900 , -19899, 5.27, true));
+                    scenicList.push(new Scenery("pineTree", 4203 , -20271, 6, true));
+                    scenicList.push(new Scenery("pineTree", 4095 , -19928, 3.333, true));
+                    scenicList.push(new Scenery("pineTree", 4590 , -20355, -2.62, true));
+                    scenicList.push(new Scenery("pineTree", 4455 , -20090, -4.8, true));
+                    scenicList.push(new Scenery("pineTree", 4782 , -20162, -2.9, true));
+                    scenicList.push(new Scenery("pineTree", 4648 , -19831, 3.2, true));
+                    scenicList.push(new Scenery("pineTree", 4288 , -19741, 1.8, true));
+                    scenicList.push(new Scenery("pineTree", 2147 , -19859, 5.45, true));
+                    scenicList.push(new Scenery("pineTree", 2560 , -19729, -9, true));
+                    scenicList.push(new Scenery("pineTree", 2080 , -19510, 6.4, true));
+                    scenicList.push(new Scenery("pineTree", 2294 , -19131, 0, true));
+                    scenicList.push(new Scenery("pineTree", 2687 , -19276, 5.1, true));
+                    scenicList.push(new Scenery("pineTree", 3061 , -19422, -4.64, true));
+                    scenicList.push(new Scenery("pineTree", 2617 , -18834, -2.2, true));
+                    scenicList.push(new Scenery("pineTree", 3736 , -19516, -5.25, true));
+                    scenicList.push(new Scenery("pineTree", 3566 , -19178, 5.27, true));
+                    scenicList.push(new Scenery("pineTree", 3080 , -18993, 6, true));
+                    scenicList.push(new Scenery("pineTree", 4236 , -19212, 3.17, true));
+                    scenicList.push(new Scenery("pineTree", 4954 , -19360, -2.62, true));
+                    scenicList.push(new Scenery("pineTree", 5164 , -19079, -4.8, true));
+                    scenicList.push(new Scenery("pineTree", 4725 , -18928, -2.9, true));
+                    scenicList.push(new Scenery("pineTree", 5044 , -19662, 3.9, true));
+                    scenicList.push(new Scenery("pineTree", 4689 , -18608, 1.8, true));
+                    scenicList.push(new Scenery("pineTree", 4089 , -18840, 5.45, true));
+                    scenicList.push(new Scenery("pineTree", 3554 , -18767, -0.9, true));
+                    scenicList.push(new Scenery("pineTree", 3903 , -18510, 6.21, true));
+                    scenicList.push(new Scenery("pineTree", 3170 , -18554, 0, true));
+                    scenicList.push(new Scenery("pineTree", 3442 , -18398, -1.8, true));
+                    scenicList.push(new Scenery("pineTree", 4535 , -19436, 4.525, true));
+                    scenicList.push(new Scenery("pineTree", 4322 , -18519, -2.7, true));
+                    scenicList.push(new Scenery("pineTree", 2876 , -18659, 2.25, true));
+
+                    //shehids of the Hent Woods
+                    ArtificialIntelligenceAccess.push(new Unit(3932, -17662, "Shehid", true, "Kulbai"));
+                    ArtificialIntelligenceAccess.push(new Unit(4035, -17625, "Shehid", false, "Kelb"));
+                    ArtificialIntelligenceAccess.push(new Unit(3938, -17523, "Shehid", false, "Kalblii"));
+                    ArtificialIntelligenceAccess.push(new Unit(4022, -17478, "Shehid", false, "Kellib"));
+                    ArtificialIntelligenceAccess.push(new Unit(4151, -17714, "Shehid", true, "Kulblii"));
+                    ArtificialIntelligenceAccess.push(new Unit(4393, -17575, "Shehid", false, "Kalb"));
+                    ArtificialIntelligenceAccess.push(new Unit(4507, -17775, "Shehid", false, "Kolblii"));
+                    ArtificialIntelligenceAccess.push(new Unit(4141, -19864, "Shehid", true, "Kulb"));
+                    ArtificialIntelligenceAccess.push(new Unit(4366, -19780, "Shehid", false, "Kelblii"));
+                    ArtificialIntelligenceAccess.push(new Unit(4226, -20180, "Shehid", false, "Kilb"));
+                    ArtificialIntelligenceAccess.push(new Unit(3423, -20291, "Shehid", false, "Kilblii"));
+                    ArtificialIntelligenceAccess.push(new Unit(3364, -20321, "Shehid", true, "Kullib"));
+                    ArtificialIntelligenceAccess.push(new Unit(3288, -20360, "Shehid", false, "Kilbin"));
+                    ArtificialIntelligenceAccess.push(new Unit(3315, -20481, "Shehid", false, "Kilobii"));
+                    ArtificialIntelligenceAccess.push(new Unit(3239, -20496, "Shehid", false, "Kilobin"));
+                    ArtificialIntelligenceAccess.push(new Unit(3709, -20608, "Shehid", true, "Kulobii"));
+                    ArtificialIntelligenceAccess.push(new Unit(4471, -19469, "Shehid", true, "Kulobin"));
+                    ArtificialIntelligenceAccess.push(new Unit(4587, -19363, "Shehid", false, "Kelobii"));
+                    ArtificialIntelligenceAccess.push(new Unit(4436, -19307, "Shehid", false, "Keloblii"));
+                    ArtificialIntelligenceAccess.push(new Unit(4294, -19340, "Shehid", false, "Kalobii"));
+                    ArtificialIntelligenceAccess.push(new Unit(4262, -19156, "Shehid", false, "Kaloblii"));
+                    ArtificialIntelligenceAccess.push(new Unit(4339, -19166, "Shehid", false, "Kelobin"));
+                    ArtificialIntelligenceAccess.push(new Unit(4476, -19184, "Shehid", false, "Kalobin"));
+                    ArtificialIntelligenceAccess.push(new Unit(4784, -19147, "Shehid", true, "Kulublii"));
+                    ArtificialIntelligenceAccess.push(new Unit(4931, -19224, "Shehid", false, "Kaloblin"));
+                    ArtificialIntelligenceAccess.push(new Unit(4647, -19220, "Shehid", false, "Keloblin"));
+                    ArtificialIntelligenceAccess.push(new Unit(4771, -19344, "Shehid", false, "Kiloblii"));
+                    ArtificialIntelligenceAccess.push(new Unit(4647, -19461, "Shehid", false, "Kiloblin"));
+                    ArtificialIntelligenceAccess.push(new Unit(4839, -19518, "Shehid", true, "Kulub"));
+                    ArtificialIntelligenceAccess.push(new Unit(4673, -19017, "Shehid", false, "Kilbii"));
+                    ArtificialIntelligenceAccess.push(new Unit(4514, -18962, "Shehid", false, "Kalbii"));
+                    ArtificialIntelligenceAccess.push(new Unit(4141, -18799, "Shehid", false, "Kelbii"));
+                    ArtificialIntelligenceAccess.push(new Unit(5068, -19003, "Shehid", false, "Kolbii"));
+                    ArtificialIntelligenceAccess.push(new Unit(4027, -18966, "Shehid", false, "Kolblin"));
+                    ArtificialIntelligenceAccess.push(new Unit(4651, -18044, "Shehid", true, "Kulbii"));
+                    ArtificialIntelligenceAccess.push(new Unit(4385, -18047, "Shehid", false, "Kilbolin"));
+                    ArtificialIntelligenceAccess.push(new Unit(2574, -19383, "Shehid", false, "Kalbilin"));
+                    ArtificialIntelligenceAccess.push(new Unit(2731, -19378, "Shehid", false, "Kolbelin"));
+                    ArtificialIntelligenceAccess.push(new Unit(1719, -19712, "Shehid", false, "Kelbalin"));
+                    ArtificialIntelligenceAccess.push(new Unit(1768, -19896, "Shehid", true, "Kulbulun"));
+                    ArtificialIntelligenceAccess.push(new Unit(2130, -20041, "Shehid", false, "Kellbell"));
+
+                    //Plants in the Hent Woods
+                    scenicList.push(new Scenery("glinPlant", 4600 , -19019, 0.2, true));
+                    scenicList.push(new Scenery("glinPlant", 4561 , -18967, -2, true));
+                    scenicList.push(new Scenery("glinPlant", 4671 , -19123, 1, true));
+                    scenicList.push(new Scenery("glinPlant", 4284 , -19098, -3, true));
+                    scenicList.push(new Scenery("glinPlant", 4620 , -19317, 2.3, true));
+                    scenicList.push(new Scenery("glinPlant", 4790 , -19239, 4, true));
+                    scenicList.push(new Scenery("glinPlant", 4375 , -19333, -0.6, true));
+                    scenicList.push(new Scenery("glinPlant", 4366 , -19272, 4.3, true));
+                    scenicList.push(new Scenery("glinPlant", 4515 , -19202, -0.15, true));
+                    scenicList.push(new Scenery("glinPlant", 4122 , -18173, 3.15, true));
+                    scenicList.push(new Scenery("glinPlant", 3466 , -19105, 0, true));
+                    scenicList.push(new Scenery("glinPlant", 2469 , -19910, -5.15, true));
+                    scenicList.push(new Scenery("glinPlant", 3086 , -18163, 6, true));
+                    scenicList.push(new Scenery("glinPlant", 2759 , -18588, -1, true));
+                    scenicList.push(new Scenery("cyrinthilimPlant", 3272 , -20230, 5.3, true));
+                    scenicList.push(new Scenery("cyrinthilimPlant", 3750 , -19465, 0, true));
+                    scenicList.push(new Scenery("cyrinthilimPlant", 2502 , -17940, -4.75, true));
+                    scenicList.push(new Scenery("tepprekliaPlant", 2786 , -19180, 4, true));
+                    scenicList.push(new Scenery("tepprekliaPlant", 3447 , -19738, 1, true));
+                    scenicList.push(new Scenery("tepprekliaPlant", 4295 , -19967, -2, true));
+                    scenicList.push(new Scenery("tepprekliaPlant", 2456 , -19518, -5, true));
+                    scenicList.push(new Scenery("culprisPlant", 3873 , -19086, -3.1, true));
+                    scenicList.push(new Scenery("culprisPlant", 3520 , -18606, 2.4, true));
+                    scenicList.push(new Scenery("culprisPlant", 2823 , -18275, 4.6, true));
+                    scenicList.push(new Scenery("culprisPlant", 3546 , -18276, -1.9, true));
+                    scenicList.push(new Scenery("culprisPlant", 4032 , -17721, -3.1, true));
+                    scenicList.push(new Scenery("stomwikPlant", 4355 , -18817, 0.25, true));
+                    scenicList.push(new Scenery("stomwikPlant", 3873 , -19909, 2, true));
+                    scenicList.push(new Scenery("stomwikPlant", 2241 , -18805, -1.11112, true));
+                    scenicList.push(new Scenery("akerPlant", 3670 , -20463, 0, true));
+                    scenicList.push(new Scenery("akerPlant", 3569 , -20203, -5, true));
+                    scenicList.push(new Scenery("akerPlant", 3739 , -20320, 3.8, true));
+                    scenicList.push(new Scenery("akerPlant", 2496 , -18207, -6, true));
+                    scenicList.push(new Scenery("akerPlant", 3670 , -18860, 2, true));
+                    scenicList.push(new Scenery("akerPlant", 4586 , -19997, -4, true));
+                    scenicList.push(new Scenery("bequonPlant", 3884 , -18747, 0, true));
+                    scenicList.push(new Scenery("bequonPlant", 4256 , -17828, -5.56, true));
+
+                    //creatures of the Hent Woods
+                    var random = Math.floor(Math.random() * 8);
+
+                    if (random == 0) //Varns and Snakes and Bears, oh my!
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(4519, -19650, "BlackBear", false, "Juvjuv"));
+                        ArtificialIntelligenceAccess.push(new Unit(3599, -20269, "BlackBear", false, "Juvjuvjuv"));
+                        ArtificialIntelligenceAccess.push(new Unit(4400, -20315, "BlackBear", true, "Juv"));
+                        ArtificialIntelligenceAccess.push(new Unit(4413, -18753, "BlackBear", false, "Juvjuvjuvjuv"));
+                        ArtificialIntelligenceAccess.push(new Unit(3554, -20498, "Viper", false, "slitherin'"));
+                        ArtificialIntelligenceAccess.push(new Unit(3004, -19881, "Viper", false, "Serpal"));
+                        ArtificialIntelligenceAccess.push(new Unit(2704, -17946, "Viper", false, "Serper"));
+                        ArtificialIntelligenceAccess.push(new Unit(3939, -18619, "Viper", false, "Serperus"));
+                        ArtificialIntelligenceAccess.push(new Unit(2685, -18280, "Viper", true, "Serpenta"));
+                        ArtificialIntelligenceAccess.push(new Unit(1629, -20101, "Lizard", false, "Lizella"));
+                        ArtificialIntelligenceAccess.push(new Unit(4529, -17865, "Lizard", false, "Lizette"));
+                        ArtificialIntelligenceAccess.push(new Unit(3435, -17908, "Varn", true, "Dog"));
+                        ArtificialIntelligenceAccess.push(new Unit(3540, -17820, "Varn", false, "Dogdog"));
+                        ArtificialIntelligenceAccess.push(new Unit(3504, -17954, "Varn", false, "Doggy"));
+                        ArtificialIntelligenceAccess.push(new Unit(3583, -18003, "Varn", false, "Doggydog"));
+                        ArtificialIntelligenceAccess.push(new Unit(3969, -17955, "Varn", true, "Doggg"));
+                        ArtificialIntelligenceAccess.push(new Unit(4102, -17937, "Varn", true, "Dogg"));
+                        ArtificialIntelligenceAccess.push(new Unit(3412, -18028, "Varn", true, "Dogggg"));
+                        ArtificialIntelligenceAccess.push(new Unit(3270, -18037, "Varn", true, "Doggdog"));
+                        ArtificialIntelligenceAccess.push(new Unit(3205, -17996, "Varn", false, "Doggdogdog"));
+                        ArtificialIntelligenceAccess.push(new Unit(2989, -17786, "Varn", true, "Doggdogg"));
+                        ArtificialIntelligenceAccess.push(new Unit(3922, -19819, "Varn", true, "Gen"));
+                        ArtificialIntelligenceAccess.push(new Unit(3688, -19583, "Varn", true, "Gengen"));
+                        ArtificialIntelligenceAccess.push(new Unit(3764, -20017, "Varn", false, "Gengengen"));
+                        ArtificialIntelligenceAccess.push(new Unit(3148, -19486, "Varn", true, "Gengengengen"));
+                        ArtificialIntelligenceAccess.push(new Unit(3335, -19775, "Varn", false, "Gengengengengen"));
+                    }
+                    else if (random == 1) //Gribs, Lizards, and Narthwarps + more
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(2382, -18246, "Lizard", true, "lizelia"));
+                        ArtificialIntelligenceAccess.push(new Unit(3232, -18359, "Lizard", true, "lizario"));
+                        ArtificialIntelligenceAccess.push(new Unit(3528, -18283, "Lizard", false, "Lizuel"));
+                        ArtificialIntelligenceAccess.push(new Unit(3899, -19196, "Lizard", false, "Lizlo"));
+                        ArtificialIntelligenceAccess.push(new Unit(4529, -17865, "Lizard", false, "Lizette"));
+                        ArtificialIntelligenceAccess.push(new Unit(1629, -20101, "Lizard", false, "Lizella"));
+                        ArtificialIntelligenceAccess.push(new Unit(4112, -18408, "Narthwarp", false, "Mokmok"));
+                        ArtificialIntelligenceAccess.push(new Unit(3471, -18754, "Narthwarp", false, "Mokmokmok"));
+                        ArtificialIntelligenceAccess.push(new Unit(3566, -18703, "Narthwarp", false, "Mokmokmokmok"));
+                        ArtificialIntelligenceAccess.push(new Unit(2280, -19632, "Narthwarp", false, "Mokmokmokmokmok"));
+                        ArtificialIntelligenceAccess.push(new Unit(2263, -18893, "Narthwarp", false, "Mokkmokk"));
+                        ArtificialIntelligenceAccess.push(new Unit(2111, -18829, "Narthwarp", false, "Mokk"));
+                        ArtificialIntelligenceAccess.push(new Unit(2065, -18977, "Narthwarp", false, "Mokkmokkmokk"));
+                        ArtificialIntelligenceAccess.push(new Unit(2588, -19033, "Narthwarp", false, "Mokkmokkmokkmokk"));
+                        ArtificialIntelligenceAccess.push(new Unit(2493, -19087, "Narthwarp", false, "Mokkmokkmokkmokkmokk"));
+                        ArtificialIntelligenceAccess.push(new Unit(3922, -19819, "Grib", true, "Gen"));
+                        ArtificialIntelligenceAccess.push(new Unit(3688, -19583, "Grib", true, "Gengen"));
+                        ArtificialIntelligenceAccess.push(new Unit(3764, -20017, "Grib", false, "Gengengen"));
+                        ArtificialIntelligenceAccess.push(new Unit(3148, -19486, "Grib", true, "Gengengengen"));
+                        ArtificialIntelligenceAccess.push(new Unit(3335, -19775, "Grib", false, "Gengengengengen"));
+                        ArtificialIntelligenceAccess.push(new Unit(2924, -19247, "BlackBear", false, "Juvjuvjuvjuv"));
+                        ArtificialIntelligenceAccess.push(new Unit(4572, -19736, "Viper", false, "Serperal"));
+                        ArtificialIntelligenceAccess.push(new Unit(4509, -19980, "Varn", true, "Gengengengengen"));
+                        ArtificialIntelligenceAccess.push(new Unit(3914, -20453, "Varn", false, "Gengengen"));
+                        ArtificialIntelligenceAccess.push(new Unit(3593, -20375, "BlackBear", true, "Juv"));
+                        ArtificialIntelligenceAccess.push(new Unit(3122, -20103, "Grib", true, "Genn"));
+                        ArtificialIntelligenceAccess.push(new Unit(2713, -20004, "BlackBear", false, "Juvjuv"));
+                        ArtificialIntelligenceAccess.push(new Unit(4832, -20389, "Varn", true, "Genegen"));
+                        ArtificialIntelligenceAccess.push(new Unit(3983, -20706, "Varn", true, "Gengenege"));
+                        ArtificialIntelligenceAccess.push(new Unit(4317, -17697, "Lizard", true, "Genngenn"));
+                        ArtificialIntelligenceAccess.push(new Unit(4460, -17692, "Lizard", false, "Gengengenn"));
+                        scenicList.push(new Scenery("beeHive", 4386 , -19231, -5.7, true));
+                    }
+                    else if (random == 2) //mix of all + extra Lizards and Shehids
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(4312, -17799, "Shehid", true, "Oogluk"));
+                        ArtificialIntelligenceAccess.push(new Unit(4259, -17920, "Shehid", true, "Ooglook"));
+                        ArtificialIntelligenceAccess.push(new Unit(3915, -18710, "BlackBear", true, "Juv"));
+                        ArtificialIntelligenceAccess.push(new Unit(3689, -18923, "BlackBear", false, "Juve"));
+                        ArtificialIntelligenceAccess.push(new Unit(3981, -19126, "BlackBear", false, "Juva"));
+                        ArtificialIntelligenceAccess.push(new Unit(4521, -19642, "Varn", true, "Genegen"));
+                        ArtificialIntelligenceAccess.push(new Unit(4466, -19796, "Varn", true, "Gengenege"));
+                        ArtificialIntelligenceAccess.push(new Unit(4658, -19933, "Varn", false, "Genegene"));
+                        ArtificialIntelligenceAccess.push(new Unit(4534, -20054, "Varn", false, "Gengenegeg"));
+                        ArtificialIntelligenceAccess.push(new Unit(4739, -19996, "Varn", false, "Gengegnegeg"));
+                        ArtificialIntelligenceAccess.push(new Unit(4609, -20199, "Varn", true, "Gengengegg"));
+                        ArtificialIntelligenceAccess.push(new Unit(4219, -20339, "Varn", false, "Gengegnegegegg"));
+                        ArtificialIntelligenceAccess.push(new Unit(4074, -20492, "Varn", true, "Gengengeggeg"));
+                        ArtificialIntelligenceAccess.push(new Unit(3517, -20388, "Lizard", true, "lil"));
+                        ArtificialIntelligenceAccess.push(new Unit(3451, -20442, "Lizard", false, "lili"));
+                        ArtificialIntelligenceAccess.push(new Unit(3630, -20386, "Lizard", false, "lilil"));
+                        ArtificialIntelligenceAccess.push(new Unit(3628, -20278, "Lizard", true, "lilily"));
+                        ArtificialIntelligenceAccess.push(new Unit(3730, -20247, "Lizard", true, "lilili"));
+                        ArtificialIntelligenceAccess.push(new Unit(3609, -20199, "Lizard", false, "lililil"));
+                        ArtificialIntelligenceAccess.push(new Unit(3822, -19959, "Shehid", true, "looklook"));
+                        ArtificialIntelligenceAccess.push(new Unit(3366, -19871, "Viper", false, "Serpal"));
+                        ArtificialIntelligenceAccess.push(new Unit(3275, -19793, "Viper", false, "Serpette"));
+                        ArtificialIntelligenceAccess.push(new Unit(3236, -19926, "Viper", false, "Serpikk"));
+                        ArtificialIntelligenceAccess.push(new Unit(3209, -20196, "Shehid", false, "Aglolok"));
+                        ArtificialIntelligenceAccess.push(new Unit(3321, -20228, "Shehid", false, "Agloolok"));
+                        ArtificialIntelligenceAccess.push(new Unit(2528, -20469, "Narthwarp", false, "Mokk"));
+                        ArtificialIntelligenceAccess.push(new Unit(2065, -20536, "Narthwarp", false, "Mokmok"));
+                        ArtificialIntelligenceAccess.push(new Unit(2298, -20584, "Narthwarp", false, "Mok"));
+                        ArtificialIntelligenceAccess.push(new Unit(2564, -20385, "Narthwarp", false, "Mokkmokk"));
+                        ArtificialIntelligenceAccess.push(new Unit(2795, -20356, "Narthwarp", false, "Mokkmokkmokk"));
+                        ArtificialIntelligenceAccess.push(new Unit(2189, -20240, "Narthwarp", false, "Mokmokmok"));
+                        ArtificialIntelligenceAccess.push(new Unit(1900, -19618, "Grib", false, "Genden"));
+                        ArtificialIntelligenceAccess.push(new Unit(1722, -19423, "Grib", true, "Gengen"));
+                        ArtificialIntelligenceAccess.push(new Unit(2182, -19675, "Grib", false, "Gengengen"));
+                        ArtificialIntelligenceAccess.push(new Unit(2368, -20157, "Shehid", true, "Uglug"));
+                        ArtificialIntelligenceAccess.push(new Unit(2385, -19351, "BlackBear", false, "Juvu"));
+                        ArtificialIntelligenceAccess.push(new Unit(1792, -19565, "Grib", true, "Gengenggle"));
+                        ArtificialIntelligenceAccess.push(new Unit(2835, -18881, "Varn", false, "Gengenegegee"));
+                        ArtificialIntelligenceAccess.push(new Unit(2572, -18527, "Narthwarp", false, "Mokkly"));
+                        ArtificialIntelligenceAccess.push(new Unit(2386, -18217, "Narthwarp", false, "Mokmokly"));
+                        ArtificialIntelligenceAccess.push(new Unit(3128, -18323, "Narthwarp", false, "Mokly"));
+                        ArtificialIntelligenceAccess.push(new Unit(3009, -18300, "Narthwarp", false, "Mokkmokkly"));
+                        ArtificialIntelligenceAccess.push(new Unit(2787, -17985, "Lizard", true, "lililily"));
+                        ArtificialIntelligenceAccess.push(new Unit(2243, -17750, "Lizard", false, "lillii"));
+                        ArtificialIntelligenceAccess.push(new Unit(2105, -18961, "Lizard", false, "llili"));
+                        ArtificialIntelligenceAccess.push(new Unit(3744, -18017, "Viper", false, "Serpilate"));
+                        ArtificialIntelligenceAccess.push(new Unit(3428, -17772, "Lizard", true, "lilililii"));
+                        ArtificialIntelligenceAccess.push(new Unit(3642, -18547, "BlackBear", false, "Juvjuv"));
+                    }
+                    else if (random == 3)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(3848, -18740, "Viper", true, "Serpral"));
+                        ArtificialIntelligenceAccess.push(new Unit(4235, -17914, "Narthwarp", true, "tantan"));
+                        ArtificialIntelligenceAccess.push(new Unit(4327, -17734, "Narthwarp", false, "tant"));
+                        ArtificialIntelligenceAccess.push(new Unit(4323, -17625, "Narthwarp", false, "tanto"));
+                        ArtificialIntelligenceAccess.push(new Unit(4260, -17499, "Narthwarp", false, "tanta"));
+                        ArtificialIntelligenceAccess.push(new Unit(4116, -18008, "Narthwarp", false, "tantin"));
+                        ArtificialIntelligenceAccess.push(new Unit(4479, -18079, "Narthwarp", false, "tantil"));
+                        ArtificialIntelligenceAccess.push(new Unit(4429, -18138, "Narthwarp", false, "tantilizer"));
+                        ArtificialIntelligenceAccess.push(new Unit(4134, -18013, "Narthwarp", false, "tanton"));
+                        ArtificialIntelligenceAccess.push(new Unit(4005, -18143, "Narthwarp", false, "tantorl"));
+                        ArtificialIntelligenceAccess.push(new Unit(4087, -18229, "Narthwarp", false, "tantarl"));
+                        ArtificialIntelligenceAccess.push(new Unit(3973, -18441, "Narthwarp", false, "tantirl"));
+                        if (player.level >= 16 && Math.random() > 0.78)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(3868, -19021, "Viper", "giant", "Seprias Lady-Regent of Snakes"));
+                            ArtificialIntelligenceAccess.push(new Unit(2660, -19158, "Viper", true, "Serprala the Lady's Daughter"));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(2660, -19158, "Viper", false, "Serpserp"));
+                            ArtificialIntelligenceAccess.push(new Unit(3411, -19806, "Grib", true, "Gengenagin"));
+                            ArtificialIntelligenceAccess.push(new Unit(3900, -19921, "Grib", true, "Gengenagen"));
+                            ArtificialIntelligenceAccess.push(new Unit(3617, -20306, "Grib", false, "Gengenagon"));
+                        }
+                        ArtificialIntelligenceAccess.push(new Unit(3148, -18301, "Viper", true, "Serpril"));
+                        ArtificialIntelligenceAccess.push(new Unit(2514, -18338, "Viper", false, "Serprol"));
+                        ArtificialIntelligenceAccess.push(new Unit(2209, -18137, "Viper", false, "Serprul"));
+                        ArtificialIntelligenceAccess.push(new Unit(2277, -18815, "BlackBear", false, "Juvjuv"));
+                        ArtificialIntelligenceAccess.push(new Unit(1844, -18832, "Viper", false, "Serprool"));
+                        ArtificialIntelligenceAccess.push(new Unit(2735, -20136, "Lizard", true, "lizzzzzzzzzzzzz"));
+                        ArtificialIntelligenceAccess.push(new Unit(2890, -20208, "Lizard", false, "lizz"));
+                        ArtificialIntelligenceAccess.push(new Unit(3063, -20462, "Shehid", true, "Uglug"));
+                        ArtificialIntelligenceAccess.push(new Unit(3260, -20145, "Lizard", false, "lizzz"));
+                        ArtificialIntelligenceAccess.push(new Unit(4177, -20089, "BlackBear", true, "Juve"));
+                        ArtificialIntelligenceAccess.push(new Unit(4445, -19885, "BlackBear", false, "Juva"));
+                        ArtificialIntelligenceAccess.push(new Unit(4394, -20305, "Varn", false, "Geng"));
+                        ArtificialIntelligenceAccess.push(new Unit(1597, -19724, "Varn", true, "Genge"));
+                        ArtificialIntelligenceAccess.push(new Unit(2285, -20689, "Varn", false, "Gengen"));
+                        ArtificialIntelligenceAccess.push(new Unit(2442, -20721, "Varn", true, "Gen"));
+                        ArtificialIntelligenceAccess.push(new Unit(1931, -20187, "Varn", true, "Genger"));
+                        ArtificialIntelligenceAccess.push(new Unit(1939, -20390, "Varn", true, "Gengerly"));
+                        ArtificialIntelligenceAccess.push(new Unit(2161, -20412, "Varn", true, "Gengar"));
+                        ArtificialIntelligenceAccess.push(new Unit(3945, -20676, "Lizard", true, "lizzzz"));
+                    }
+                    else if (random == 4) //Leveled/Random Map
+                    {
+
+                        if (player.level >= 9)
+                        {
+                            if (Math.random() > 0.5)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(2687, -20340, "Grib", true, "geg"));
+                                ArtificialIntelligenceAccess.push(new Unit(2526, -20468, "Grib", true, "Gege"));
+                                ArtificialIntelligenceAccess.push(new Unit(2819, -20542, "Grib", false, "Gech"));
+                                ArtificialIntelligenceAccess.push(new Unit(3002, -20457, "Grib", false, "Goch"));
+                                ArtificialIntelligenceAccess.push(new Unit(3162, -20555, "Grib", false, "Gich"));
+                                ArtificialIntelligenceAccess.push(new Unit(3133, -20755, "Grib", false, "Guch"));
+                                ArtificialIntelligenceAccess.push(new Unit(2791, -20695, "Grib", false, "Gooch"));
+
+                                ArtificialIntelligenceAccess.push(new Unit(2587, -19656, "Varn", false, "Geng"));
+                                ArtificialIntelligenceAccess.push(new Unit(2527, -19619, "Varn", true, "Genge"));
+                                ArtificialIntelligenceAccess.push(new Unit(2489, -19693, "Varn", false, "Gengen"));
+                                ArtificialIntelligenceAccess.push(new Unit(2138, -19535, "Varn", true, "Gen"));
+                                ArtificialIntelligenceAccess.push(new Unit(2119, -19443, "Varn", true, "Genger"));
+                                ArtificialIntelligenceAccess.push(new Unit(2229, -19145, "Varn", false, "Gengenar"));
+                                ArtificialIntelligenceAccess.push(new Unit(1856, -19245, "Varn", true, "Genar"));
+                                ArtificialIntelligenceAccess.push(new Unit(2311, -19255, "Varn", true, "Gengar"));
+                                ArtificialIntelligenceAccess.push(new Unit(3129, -19416, "Viper", false, "Serprul"));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(2687, -20340, "Varn", true, "geg"));
+                                ArtificialIntelligenceAccess.push(new Unit(2526, -20468, "Varn", true, "Gege"));
+                                ArtificialIntelligenceAccess.push(new Unit(2819, -20542, "Varn", false, "Gech"));
+                                ArtificialIntelligenceAccess.push(new Unit(3002, -20457, "Varn", false, "Goch"));
+                                ArtificialIntelligenceAccess.push(new Unit(3162, -20555, "Varn", false, "Gich"));
+                                ArtificialIntelligenceAccess.push(new Unit(3133, -20755, "Varn", false, "Guch"));
+                                ArtificialIntelligenceAccess.push(new Unit(2791, -20695, "Varn", false, "Gooch"));
+
+                                ArtificialIntelligenceAccess.push(new Unit(2587, -19656, "Grib", false, "Geng"));
+                                ArtificialIntelligenceAccess.push(new Unit(2527, -19619, "Grib", true, "Genge"));
+                                ArtificialIntelligenceAccess.push(new Unit(2489, -19693, "Grib", false, "Gengen"));
+                                ArtificialIntelligenceAccess.push(new Unit(2138, -19535, "Grib", true, "Gen"));
+                                ArtificialIntelligenceAccess.push(new Unit(2119, -19443, "Grib", true, "Genger"));
+                                ArtificialIntelligenceAccess.push(new Unit(2229, -19145, "Grib", false, "Gengenar"));
+                                ArtificialIntelligenceAccess.push(new Unit(1856, -19245, "Grib", true, "Genar"));
+                                ArtificialIntelligenceAccess.push(new Unit(2311, -19255, "Grib", true, "Gengar"));
+                            }
+                            ArtificialIntelligenceAccess.push(new Unit(3751, -17759, "Grib", true, "Giigor"));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(2687, -20340, "Lizard", true, "geg"));
+                            ArtificialIntelligenceAccess.push(new Unit(2526, -20468, "Lizard", true, "Gege"));
+                            ArtificialIntelligenceAccess.push(new Unit(2819, -20542, "Lizard", false, "Gech"));
+                            ArtificialIntelligenceAccess.push(new Unit(3002, -20457, "Varn", false, "Goch"));
+                            ArtificialIntelligenceAccess.push(new Unit(3162, -20555, "Varn", false, "Gich"));
+                            ArtificialIntelligenceAccess.push(new Unit(3133, -20755, "Varn", false, "Guch"));
+                            ArtificialIntelligenceAccess.push(new Unit(2791, -20695, "Varn", false, "Gooch"));
+
+                            ArtificialIntelligenceAccess.push(new Unit(2587, -19656, "Grib", false, "Geng"));
+                            ArtificialIntelligenceAccess.push(new Unit(2527, -19619, "Lizard", true, "Genge"));
+                            ArtificialIntelligenceAccess.push(new Unit(2489, -19693, "Lizard", false, "Gengen"));
+                            ArtificialIntelligenceAccess.push(new Unit(2138, -19535, "Lizard", true, "Gen"));
+                            ArtificialIntelligenceAccess.push(new Unit(2229, -19145, "Lizard", false, "Gengenar"));
+                            ArtificialIntelligenceAccess.push(new Unit(1856, -19245, "Grib", false, "Genar"));
+                            ArtificialIntelligenceAccess.push(new Unit(2311, -19255, "Grib", false, "Gengar"));
+                        }
+
+                        ArtificialIntelligenceAccess.push(new Unit(2681, -19030, "BlackBear", false, "Juvjuv"));
+                        ArtificialIntelligenceAccess.push(new Unit(3179, -19216, "Lizard", true, "Liz"));
+                        ArtificialIntelligenceAccess.push(new Unit(3442, -20728, "Varn", true, "Gronny"));
+                        ArtificialIntelligenceAccess.push(new Unit(4042, -19877, "Lizard", false, "Lizonya"));
+                        ArtificialIntelligenceAccess.push(new Unit(4492, -19925, "BlackBear", true, "Juv"));
+                        ArtificialIntelligenceAccess.push(new Unit(4219, -19484, "Lizard", true, "anaverga"));
+                        ArtificialIntelligenceAccess.push(new Unit(3553, -18984, "Narthwarp", false, "tantarla"));
+                        ArtificialIntelligenceAccess.push(new Unit(3650, -18626, "Narthwarp", false, "tentarla"));
+                        ArtificialIntelligenceAccess.push(new Unit(3889, -18583, "Narthwarp", false, "tintarla"));
+                        ArtificialIntelligenceAccess.push(new Unit(4451, -18796, "BlackBear", false, "Jalva"));
+                        ArtificialIntelligenceAccess.push(new Unit(4680, -18325, "Narthwarp", false, "tintarla"));
+                        ArtificialIntelligenceAccess.push(new Unit(4263, -17901, "Varn", true, "Grealnny"));
+                        ArtificialIntelligenceAccess.push(new Unit(3166, -18316, "Lizard", true, "anapico"));
+                        ArtificialIntelligenceAccess.push(new Unit(3355, -18232, "Lizard", false, "anapene"));
+                        ArtificialIntelligenceAccess.push(new Unit(2481, -17945, "Lizard", true, "Lizeg"));
+                        ArtificialIntelligenceAccess.push(new Unit(4727, -17895, "Lizard", false, "Lizplog"));
+
+                        if (Math.random > 0.4)
+                        {
+                            scenicList.push(new Scenery("beeHive", 3674 , 20495, 3, true));
+                        }
+
+                        if (player.level >= 7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(3419, -19562, "BlackBear", true, "Juva"));
+                            ArtificialIntelligenceAccess.push(new Unit(3419, -19562, "BlackBear", false, "Julva"));
+                            ArtificialIntelligenceAccess.push(new Unit(3712, -20276, "Varn", true, "Gren"));
+                            ArtificialIntelligenceAccess.push(new Unit(3605, -20258, "Varn", true, "Grenny"));
+                            ArtificialIntelligenceAccess.push(new Unit(3635, -20757, "Varn", true, "Grinny"));
+                            ArtificialIntelligenceAccess.push(new Unit(3813, -20752, "Varn", false, "Grunny"));
+                            ArtificialIntelligenceAccess.push(new Unit(4028, -20382, "Varn", true, "Grilnny"));
+                            ArtificialIntelligenceAccess.push(new Unit(3987, -20702, "Varn", false, "Gralnny"));
+                            ArtificialIntelligenceAccess.push(new Unit(4321, -20178, "Varn", true, "Grolnny"));
+                            ArtificialIntelligenceAccess.push(new Unit(2647, -18539, "Grib", true, "Gulch"));
+                            ArtificialIntelligenceAccess.push(new Unit(2333, -18795, "Grib", true, "Golch"));
+                            ArtificialIntelligenceAccess.push(new Unit(2706, -18085, "BlackBear", true, "Juve"));
+                            ArtificialIntelligenceAccess.push(new Unit(3973, -18693, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(3827, -18705, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(3823, -19007, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(4329, -18900, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(4503, -18785, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(4753, -18549, "Varn", false, "Graelnie"));
+                            ArtificialIntelligenceAccess.push(new Unit(4312, -18210, "Varn", true, "Graeln"));
+                            ArtificialIntelligenceAccess.push(new Unit(3887, -18275, "BlackBear", false, "Juventud"));
+                            ArtificialIntelligenceAccess.push(new Unit(4323, -17698, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(4061, -17747, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(3971, -17992, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(4322, -18068, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(2277, -18032, "Grib", true, "Galch"));
+                            ArtificialIntelligenceAccess.push(new Unit(3146, -17891, "Grib", true, "Giich"));
+                            ArtificialIntelligenceAccess.push(new Unit(3224, -18019, "Grib", false, "Giichii"));
+                            ArtificialIntelligenceAccess.push(new Unit(3425, -18015, "Grib", true, "Giichiich"));
+                            ArtificialIntelligenceAccess.push(new Unit(3448, -17765, "Grib", true, "Giichiichii"));
+                        }
+                        else if (player.level >= 3)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(3419, -19562, "BlackBear", false, "Juvu"));
+                            ArtificialIntelligenceAccess.push(new Unit(3419, -19562, "Grib", false, "Gerk"));
+                            ArtificialIntelligenceAccess.push(new Unit(3605, -20259, "BlackBear", false, "Juvjuv"));
+                            ArtificialIntelligenceAccess.push(new Unit(3635, -20757, "Varn", false, "Grinny"));
+                            ArtificialIntelligenceAccess.push(new Unit(4321, -20178, "Varn", false, "Grolnny"));
+                            ArtificialIntelligenceAccess.push(new Unit(2647, -18539, "Grib", true, "Gulch"));
+                            ArtificialIntelligenceAccess.push(new Unit(2333, -18795, "Grib", false, "Golch"));
+                            ArtificialIntelligenceAccess.push(new Unit(2706, -18085, "BlackBear", false, "Juvjuvjuv"));
+                            ArtificialIntelligenceAccess.push(new Unit(3973, -18693, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(3827, -18705, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(4503, -18785, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(4753, -18549, "Varn", false, "Graelnie"));
+                            ArtificialIntelligenceAccess.push(new Unit(3887, -18275, "Lizard", true, "Lizpor"));
+                            ArtificialIntelligenceAccess.push(new Unit(4323, -17698, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(4061, -17747, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(2277, -18032, "Grib", false, "Galch"));
+                            ArtificialIntelligenceAccess.push(new Unit(3146, -17891, "Grib", false, "Giich"));
+                            ArtificialIntelligenceAccess.push(new Unit(3224, -18019, "Grib", false, "Giichii"));
+                            ArtificialIntelligenceAccess.push(new Unit(3425, -18015, "Grib", true, "Giichiich"));
+                            ArtificialIntelligenceAccess.push(new Unit(3448, -17765, "Grib", false, "Giichiichii"));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(3419, -19562, "Varn", false, "Vam"));
+                            ArtificialIntelligenceAccess.push(new Unit(3419, -19562, "Lizard", true, "LizardBoy"));
+                            ArtificialIntelligenceAccess.push(new Unit(3686, -20349, "Lizard", false, "Lizp"));
+                            ArtificialIntelligenceAccess.push(new Unit(3615, -20287, "Lizard", true, "Lizpon"));
+                            ArtificialIntelligenceAccess.push(new Unit(2647, -18539, "Grib", false, "Gulch"));
+                            ArtificialIntelligenceAccess.push(new Unit(2333, -18795, "Grib", false, "Golch"));
+                            ArtificialIntelligenceAccess.push(new Unit(2706, -18085, "BlackBear", false, "Juvjuvjuv"));
+                            ArtificialIntelligenceAccess.push(new Unit(3973, -18693, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(4503, -18785, "Varn", false, "Tumvam"));
+                            ArtificialIntelligenceAccess.push(new Unit(3887, -18275, "Lizard", false, "Lizpy"));
+                            ArtificialIntelligenceAccess.push(new Unit(4323, -17698, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(2277, -18032, "Varn", false, "Vamtum"));
+                            ArtificialIntelligenceAccess.push(new Unit(3146, -17891, "Varn", false, "Giich"));
+                            ArtificialIntelligenceAccess.push(new Unit(3224, -18019, "Varn", false, "Giichii"));
+                            ArtificialIntelligenceAccess.push(new Unit(3425, -18015, "Varn", false, "Giichiich"));
+                            ArtificialIntelligenceAccess.push(new Unit(3448, -17765, "Varn", false, "Giichiichii"));
+                            if (Math.random() < 0.6)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(3751, -17759, "varn", true, "Fizigor"));
+                                ArtificialIntelligenceAccess.push(new Unit(3935, -20447, "Lizard", true, "Lizpila"));
+                                ArtificialIntelligenceAccess.push(new Unit(4020, -20326, "Lizard", false, "Lizpil"));
+                                ArtificialIntelligenceAccess.push(new Unit(4394, -20285, "Lizard", true, "Lizpilo"));
+                                ArtificialIntelligenceAccess.push(new Unit(5151, -19278, "Lizard", false, "Lizpilona"));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(4855, -17761, "varn", false, "Fizigor"));
+                                ArtificialIntelligenceAccess.push(new Unit(3935, -20447, "Lizard", false, "Lizpil"));
+                                ArtificialIntelligenceAccess.push(new Unit(4020, -20326, "Lizard", true, "Lizpila"));
+                                ArtificialIntelligenceAccess.push(new Unit(4809, -20370, "Lizard", true, "Lizpilo"));
+                                ArtificialIntelligenceAccess.push(new Unit(5132, -19480, "Lizard", true, "Lizpilon"));
+                            }
+                        }
+
+
+                    }
+                    else if (random == 5) //Mostly docile-Narthwarps + a few other creatures...
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(3393, -20539, "Narthwarp", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(3651, -20226, "Narthwarp", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(3700, -20367, "Narthwarp", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(3540, -20233, "Narthwarp", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(3151, -20186, "Narthwarp", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(3010, -20568, "Narthwarp", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(2549, -20398, "Narthwarp", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(2606, -20704, "Lizard", false, "Lizard"));
+                        ArtificialIntelligenceAccess.push(new Unit(2274, -20513, "Lizard", false, "Lizard"));
+                        ArtificialIntelligenceAccess.push(new Unit(1989, -20179, "Lizard", true, "Lizard"));
+                        ArtificialIntelligenceAccess.push(new Unit(1728, -19425, "Lizard", false, "Lizard"));
+                        ArtificialIntelligenceAccess.push(new Unit(2767, -18754, "Lizard", true, "Lizard"));
+                        ArtificialIntelligenceAccess.push(new Unit(4579, -18346, "Lizard", false, "Lizard"));
+                        ArtificialIntelligenceAccess.push(new Unit(3580, -17967, "Lizard", false, "Lizard"));
+
+                        ArtificialIntelligenceAccess.push(new Unit(4252, -17859, "Varn", true, "Grib"));
+                        ArtificialIntelligenceAccess.push(new Unit(4332, -17707, "Varn", false, "Grib"));
+                        ArtificialIntelligenceAccess.push(new Unit(4427, -17490, "Varn", true, "Grib"));
+                        ArtificialIntelligenceAccess.push(new Unit(4108, -17398, "Varn", false, "Grib"));
+                        ArtificialIntelligenceAccess.push(new Unit(3794, -17792, "Varn", false, "Grib"));
+                        ArtificialIntelligenceAccess.push(new Unit(3915, -17962, "Varn", true, "Grib"));
+
+                        if (Math.random() > 0.71 && player.level >= 5)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(3705, -18333, "BlackBear", true, "Juv"));
+                            ArtificialIntelligenceAccess.push(new Unit(4182, -18886, "Varn", true, "Luv"));
+                            ArtificialIntelligenceAccess.push(new Unit(4611, -17819, "Varn", true, "Gribbly"));
+                            ArtificialIntelligenceAccess.push(new Unit(2634, -19204, "Viper", false, "Serprul"));
+                            ArtificialIntelligenceAccess.push(new Unit(2813, -20089, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(2685, -20290, "Narthwarp", false, "docile"));
+
+                            if (Math.random() <= 0.34 && player.level >= 10)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(2371, -19404, "Narthwarp", true, "docile"));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(2371, -19404, "BlackBear", true, "docile"));
+                            }
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(3705, -18333, "BlackBear", false, "Juvjuv"));
+                            ArtificialIntelligenceAccess.push(new Unit(3538, -18844, "Viper", false, "Serprul"));
+                            ArtificialIntelligenceAccess.push(new Unit(2359, -19873, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(2371, -19404, "BlackBear", false, "docile"));
+                        }
+
+                        ArtificialIntelligenceAccess.push(new Unit(4097, -18654, "BlackBear", false, "Juvo"));
+                        ArtificialIntelligenceAccess.push(new Unit(2942, -18395, "BlackBear", false, "Juvon"));
+                        ArtificialIntelligenceAccess.push(new Unit(4658, -18861, "Varn", true, "Luvy"));
+                        ArtificialIntelligenceAccess.push(new Unit(4701, -18694, "Varn", false, "Luvii"));
+                        ArtificialIntelligenceAccess.push(new Unit(2863, -19212, "Viper", false, "Serpral"));
+                        ArtificialIntelligenceAccess.push(new Unit(2229, -18912, "Varn", false, "Luviy"));
+                        ArtificialIntelligenceAccess.push(new Unit(2179, -18591, "Varn", false, "Luviiy"));
+                        ArtificialIntelligenceAccess.push(new Unit(2019, -18381, "Varn", true, "Luvil"));
+                        ArtificialIntelligenceAccess.push(new Unit(1800, -18703, "Varn", false, "Luviil"));
+                        ArtificialIntelligenceAccess.push(new Unit(2122, -18902, "Varn", false, "Luviila"));
+                        ArtificialIntelligenceAccess.push(new Unit(1664, -19146, "Varn", true, "Luto"));
+                        ArtificialIntelligenceAccess.push(new Unit(1542, -19283, "Varn", false, "Luvluv"));
+                        ArtificialIntelligenceAccess.push(new Unit(2045, -19245, "Varn", false, "Luviduv"));
+
+                        ArtificialIntelligenceAccess.push(new Unit(2819, -19500, "Varn", true, "Luta"));
+                        ArtificialIntelligenceAccess.push(new Unit(2644, -19719, "Varn", false, "Luvlov"));
+                        ArtificialIntelligenceAccess.push(new Unit(2045, -19245, "Varn", false, "Luvidov"));
+                        ArtificialIntelligenceAccess.push(new Unit(3225, -19798, "Varn", false, "Luvidove"));
+                        ArtificialIntelligenceAccess.push(new Unit(3549, -19961, "Varn", true, "Luvlove"));
+                        ArtificialIntelligenceAccess.push(new Unit(3725, -19595, "Varn", false, "Loveydove"));
+
+                        ArtificialIntelligenceAccess.push(new Unit(2143, -18132, "Grib", true, "Giichiil"));
+
+                        ArtificialIntelligenceAccess.push(new Unit(4244, -20082, "Narthwarp", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(4037, -20302, "Narthwarp", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(4595, -20192, "Narthwarp", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(4609, -19901, "Narthwarp", false, "docile"));
+
+                        ArtificialIntelligenceAccess.push(new Unit(2493, -17938, "Shehid", true, "Kulborlii"));
+                        ArtificialIntelligenceAccess.push(new Unit(2723, -17863, "Shehid", false, "Kulborliin"));
+                        ArtificialIntelligenceAccess.push(new Unit(2812, -17989, "Shehid", true, "Kulborl"));
+                        ArtificialIntelligenceAccess.push(new Unit(2689, -17946, "Shehid", false, "Kulboriin"));
+                        ArtificialIntelligenceAccess.push(new Unit(2743, -18276, "Shehid", false, "Kulboliin"));
+                        ArtificialIntelligenceAccess.push(new Unit(2896, -17759, "Shehid", false, "Koolboliin"));
+                    }
+                    else if (random == 6) //Docile-Gribs, docile-Narthwarps, Varn Pack, bit of a mix
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(4291, -17495, "Grib", true, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(4347, -17692, "Grib", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(4096, -18117, "Grib", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(4484, -18050, "Grib", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(4170, -19196, "Grib", true, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(4281, -19688, "Grib", true, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(3790, -17838, "Lizard", false, "Lizard"));
+                        ArtificialIntelligenceAccess.push(new Unit(3750, -18020, "Lizard", true, "Lizard"));
+                        ArtificialIntelligenceAccess.push(new Unit(3645, -18037, "Lizard", false, "Lizard"));
+                        ArtificialIntelligenceAccess.push(new Unit(4814, -18254, "Lizard", true, "Lizard"));
+                        ArtificialIntelligenceAccess.push(new Unit(4598, -20192, "Lizard", false, "Lizard"));
+                        ArtificialIntelligenceAccess.push(new Unit(4401, -20284, "Lizard", true, "Lizard"));
+                        ArtificialIntelligenceAccess.push(new Unit(4307, -20421, "Lizard", false, "Lizard"));
+                        ArtificialIntelligenceAccess.push(new Unit(4612, -17919, "Lizard", false, "Lizard"));
+                        ArtificialIntelligenceAccess.push(new Unit(4433, -19881, "Narthwarp", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(4363, -20088, "Narthwarp", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(4653, -19999, "Ardil", false, "Chipp"));
+                        ArtificialIntelligenceAccess.push(new Unit(3705, -19815, "BlackBear", false, "Juvjuv"));
+                        ArtificialIntelligenceAccess.push(new Unit(3636, -20386, "BlackBear", true, "Juv"));
+                        ArtificialIntelligenceAccess.push(new Unit(3323, -20671, "Viper", false, "Serpral"));
+                        ArtificialIntelligenceAccess.push(new Unit(3051, -20328, "Varn", true, "Luta"));
+                        ArtificialIntelligenceAccess.push(new Unit(3327, -20042, "Varn", true, "Luto"));
+                        ArtificialIntelligenceAccess.push(new Unit(2976, -20028, "Varn", false, "Luvidov"));
+                        ArtificialIntelligenceAccess.push(new Unit(2661, -20404, "Varn", false, "Luvidove"));
+                        ArtificialIntelligenceAccess.push(new Unit(2784, -20705, "Varn", true, "Lute"));
+                        ArtificialIntelligenceAccess.push(new Unit(2577, -20742, "Varn", false, "Luvydove"));
+                        ArtificialIntelligenceAccess.push(new Unit(2465, -20662, "Varn", false, "Lovduv"));
+                        ArtificialIntelligenceAccess.push(new Unit(2214, -20411, "Varn", true, "Luviidove"));
+                        ArtificialIntelligenceAccess.push(new Unit(2161, -19494, "Narthwarp", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(2560, -19663, "Narthwarp", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(2800, -19032, "BlackBear", false, "Juvjuvjuv"));
+                        ArtificialIntelligenceAccess.push(new Unit(2698, -18094, "BlackBear", true, "Juva"));
+                        ArtificialIntelligenceAccess.push(new Unit(2608, -18573, "Grib", true, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(2041, -18980, "Grib", true, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(2091, -18130, "Grib", false, "docile"));
+                    }
+                    else if (random == 7) //Docile-BlackBears, Random, Vipers, docile-others, Lizards, Mix
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(3429, -19926, "BlackBear", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(3153, -20195, "Narthwarp", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(3006, -20550, "Narthwarp", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(3864, -20276, "Viper", false, "Serpile"));
+                        ArtificialIntelligenceAccess.push(new Unit(3294, -20656, "Viper", false, "Serpinala"));
+                        ArtificialIntelligenceAccess.push(new Unit(2118, -18778, "Viper", false, "Serpella"));
+                        ArtificialIntelligenceAccess.push(new Unit(3485, -18481, "Viper", false, "Serpine"));
+                        ArtificialIntelligenceAccess.push(new Unit(2816, -20636, "Lizard", true, "Lizalina"));
+                        ArtificialIntelligenceAccess.push(new Unit(2658, -20406, "Lizard", false, "Lizarene"));
+                        ArtificialIntelligenceAccess.push(new Unit(2537, -20470, "Lizard", false, "Lizara"));
+                        ArtificialIntelligenceAccess.push(new Unit(2596, -20183, "Lizard", false, "Lizelle"));
+                        ArtificialIntelligenceAccess.push(new Unit(3901, -19211, "Lizard", false, "Lizarena")); //
+                        ArtificialIntelligenceAccess.push(new Unit(3823, -19446, "Lizard", false, "Lizaria"));
+                        ArtificialIntelligenceAccess.push(new Unit(3587, -19390, "Lizard", false, "Lizello"));
+                        ArtificialIntelligenceAccess.push(new Unit(2693, -19898, "Lizard", true, "Lizette"));
+                        ArtificialIntelligenceAccess.push(new Unit(3095, -19921, "Lizard", true, "Lizayette"));
+                        ArtificialIntelligenceAccess.push(new Unit(2690, -18669, "Lizard", false, "Lizanburdough"));
+                        ArtificialIntelligenceAccess.push(new Unit(4826, -20366, "Lizard", true, "Lizonardo Di'Caprio"));
+                        ArtificialIntelligenceAccess.push(new Unit(2835, -20118, "BlackBear", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(2800, -19579, "BlackBear", true, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(3299, -18800, "Lizard", false, "Lizellia"));
+                        ArtificialIntelligenceAccess.push(new Unit(3753, -19823, "BlackBear", true, "Juv"));
+                        ArtificialIntelligenceAccess.push(new Unit(4704, -18702, "Grib", true, "Grit"));
+                        ArtificialIntelligenceAccess.push(new Unit(4437, -18547, "Grib", true, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(4559, -18322, "Grib", false, "Gritlin"));
+                        ArtificialIntelligenceAccess.push(new Unit(3569, -17987, "Narthwarp", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(4289, -17748, "BlackBear", true, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(2066, -19286, "Lizard", true, "Lizaloria"));
+
+                        if (Math.random() > 0.32)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(3650, -20234, "BlackBear", true, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(3642, -20418, "BlackBear", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(3689, -20334, "BlackBear", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(2498, -19377, "BlackBear", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(2308, -19649, "Lizard", false, "Lizalite"));
+                            ArtificialIntelligenceAccess.push(new Unit(4040, -19394, "Grib", false, "docile"));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(3632, -20281, "Viper", true, "Serpevera"));
+                            ArtificialIntelligenceAccess.push(new Unit(2308, -19649, "BlackBear", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(4166, -17973, "BlackBear", false, "docile"));
+                        }
+
+                        if (Math.random() <= 0.47)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(2869, -18754, "Grib", true, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(3074, -19188, "Grib", true, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(2965, -18979, "Grib", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(2689, -18067, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(2373, -18223, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(3070, -18081, "Narthwarp", false, "Master Henriquez El Tercero"));
+                            ArtificialIntelligenceAccess.push(new Unit(2677, -18246, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(3814, -18853, "BlackBear", true, "docile"));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(2869, -18754, "Varn", false, "Tum"));
+                            ArtificialIntelligenceAccess.push(new Unit(3074, -19188, "Varn", true, "Timtum"));
+                            ArtificialIntelligenceAccess.push(new Unit(2965, -18979, "Varn", true, "Tid"));
+                            ArtificialIntelligenceAccess.push(new Unit(2689, -18067, "Grib", true, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(2373, -18223, "Grib", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(3070, -18081, "Narthwarp", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(2677, -18246, "Grib", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(3814, -18853, "BlackBear", false, "docile"));
+                            ArtificialIntelligenceAccess.push(new Unit(1609, -19128, "Lizard", false, "Lizaline"));
+
+                            if (Math.random() < 0.25)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(2504, -17936, "Viper", true, "Serprandora"));
+                                ArtificialIntelligenceAccess.push(new Unit(4194, -20081, "BlackBear", false, "docile"));
+                                ArtificialIntelligenceAccess.push(new Unit(4514, -19928, "BlackBear", false, "Juve"));
+                                ArtificialIntelligenceAccess.push(new Unit(3710, -18617, "BlackBear", false, "docile"));
+                                ArtificialIntelligenceAccess.push(new Unit(1647, -19177, "Lizard", true, "Lizalina"));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(2504, -17936, "Viper", false, "Serpranda"));
+                                ArtificialIntelligenceAccess.push(new Unit(4750, -20065, "Varn", false, "Tum"));
+                                ArtificialIntelligenceAccess.push(new Unit(4610, -19921, "Varn", false, "Timtum"));
+                                ArtificialIntelligenceAccess.push(new Unit(4444, -20015, "Varn", true, "Tid"));
+                                ArtificialIntelligenceAccess.push(new Unit(4433, -19836, "Varn", false, "Timtumtin"));
+                                ArtificialIntelligenceAccess.push(new Unit(4073, -20007, "Varn", true, "Tidtim"));
+                            }
+                        }
+                    }
+
+                    //Plants in the plains
+                    scenicList.push(new Scenery("tenicPlant", 4733, -21143, 0, true));
+                    scenicList.push(new Scenery("tenicPlant", 4181, -15438, 6, true));
+                    scenicList.push(new Scenery("tenicPlant", -1836, -16383, -5, true));
+                    scenicList.push(new Scenery("tenicPlant", -2063, -19190, 2, true));
+                    scenicList.push(new Scenery("mufPlant", -2223, -22349, 0, true));
+                    scenicList.push(new Scenery("mufPlant", 1279, -22813, -4.444, true));
+                    scenicList.push(new Scenery("mufPlant", 4760, -22801, 5.45, true));
+                    scenicList.push(new Scenery("mufPlant", -986, -17496, 3.2, true));
+                    scenicList.push(new Scenery("mufPlant", 860, -20301, -2.34, true));
+                    scenicList.push(new Scenery("mufPlant", -2283, -17095, 6.1, true));
+                    scenicList.push(new Scenery("mufPlant", -1738, -22652, -6.1, true));
+                    scenicList.push(new Scenery("mufPlant", 3443, -21920, 1.4, true));
+                    scenicList.push(new Scenery("mufPlant", -2474, -20415, -1.5, true));
+                    scenicList.push(new Scenery("butterMellowPlant", 1056, -18795, 0, true));
+                    scenicList.push(new Scenery("butterMellowPlant", -1971, -21494, 2, true));
+                    scenicList.push(new Scenery("butterMellowPlant", 5900, -16792, 3, true));
+                    scenicList.push(new Scenery("butterMellowPlant", 2159, -17200, 5, true));
+                    scenicList.push(new Scenery("butterMellowPlant", -2656, -22817, -1, true));
+                    scenicList.push(new Scenery("butterMellowPlant", 6028, -15547, -4.5, true));
+                    scenicList.push(new Scenery("palntPlant", 2735, -21625, 1, true));
+                    scenicList.push(new Scenery("palntPlant", 5698, -18767, 0, true));
+                    scenicList.push(new Scenery("palntPlant", 1118, -20842, 2.2, true));
+                    scenicList.push(new Scenery("palntPlant", 295, -20660, 8, true));
+                    scenicList.push(new Scenery("palntPlant", -1186, -20800, -2.5, true));
+                    scenicList.push(new Scenery("palntPlant", 3159, -16400, 2.8, true));
+                    scenicList.push(new Scenery("palntPlant", 2825, -14371, 3.8, true));
+                    scenicList.push(new Scenery("palntPlant", -2596, -17742, -0.024, true));
+                    scenicList.push(new Scenery("palntPlant", -853, -22338, 0, true));
+                    scenicList.push(new Scenery("palntPlant", -2523, -21197, -2.4, true));
+                    scenicList.push(new Scenery("palntPlant", -1395, -19579, 1.1, true));
+                    scenicList.push(new Scenery("palntPlant", -1481, -18743, 3, true));
+                    scenicList.push(new Scenery("palntPlant", 6238, -21848, 0.55, true));
+                    scenicList.push(new Scenery("palntPlant", 2321, -14880, -1.85, true));
+                    scenicList.push(new Scenery("palntPlant", 4610, -16078, 5, true));
+                    scenicList.push(new Scenery("techiPlant", 1616, -20636, 0, true));
+                    scenicList.push(new Scenery("techiPlant", 1652, -21154, -1.2, true));
+                    scenicList.push(new Scenery("techiPlant", 894, -19586, -4.2, true));
+                    scenicList.push(new Scenery("techiPlant", -915, -21455, 3.56, true));
+                    scenicList.push(new Scenery("techiPlant", -1032, -21601, -3.08, true));
+                    scenicList.push(new Scenery("techiPlant", -642, -20181, -5.56, true));
+                    scenicList.push(new Scenery("techiPlant", 4065, -17035, -2.25, true));
+                    scenicList.push(new Scenery("techiPlant", 1174, -14411, 2.75, true));
+                    scenicList.push(new Scenery("techiPlant", -2122, -18474, 5.75, true));
+                    scenicList.push(new Scenery("techiPlant", -799, -19885, -3.92, true));
+                    scenicList.push(new Scenery("techiPlant", 5837, -17667, 4.22, true));
+                    scenicList.push(new Scenery("techiPlant", -943, -18314, 5, true));
+                    scenicList.push(new Scenery("techiPlant", 4462, -14910, 6, true));
+                    scenicList.push(new Scenery("techiPlant", 5925, -21159, -3.3, true));
+                    scenicList.push(new Scenery("techiPlant", 6575, -16872, 0, true));
+                    scenicList.push(new Scenery("techiPlant", 3259, -15092, 0.5, true));
+                    scenicList.push(new Scenery("techiPlant", 5405, -19306, 6.3, true));
+                    scenicList.push(new Scenery("techiPlant", 5434, -17520, 3.5, true));
+                    scenicList.push(new Scenery("techiPlant", -2166, -18274, 1, true));
+                    scenicList.push(new Scenery("techiPlant", 4024, -14955, 2.25, true));
+                    scenicList.push(new Scenery("luufPlant", 5068, -17446, -2.06, true));
+                    scenicList.push(new Scenery("luufPlant", 2710, -16097, -1, true));
+                    scenicList.push(new Scenery("luufPlant", -1693, -15572, 3, true));
+                    scenicList.push(new Scenery("luufPlant", -1377, -19963, 0, true));
+                    scenicList.push(new Scenery("luufPlant", -1497, -23407, 4.6, true));
+                    scenicList.push(new Scenery("luufPlant", -1421, -14786, -6, true));
+                    scenicList.push(new Scenery("itlinPlant", 1332, -21470, 2.3, true));
+                    scenicList.push(new Scenery("itlinPlant", 6052, -19890, -2.9, true));
+                    scenicList.push(new Scenery("itlinPlant", 6342, -14468, 4.1, true));
+                    scenicList.push(new Scenery("itlinPlant", -675, -20348, 6.425, true));
+                    scenicList.push(new Scenery("itlinPlant", -2905, -17392, -5.3, true));
+                    scenicList.push(new Scenery("itlinPlant", -2447, -23431, 1.3, true));
+                    scenicList.push(new Scenery("grushweedPlant", 5971, -14811, 6.1, 1));
+                    scenicList.push(new Scenery("grushweedPlant", 6399, -14768, 3.05, 1.7));
+                    scenicList.push(new Scenery("grushweedPlant", -1291, -18621, 3.05, 1.3));
+                    scenicList.push(new Scenery("grushweedPlant", -977, -18860, 0, 0.6));
+                    scenicList.push(new Scenery("grushweedPlant", -732, -19624, 4.6, 1.5));
+                    scenicList.push(new Scenery("grushweedPlant", -808, -19963, 0.38, 1));
+
+                    //Random
+                    random = Math.floor(Math.random() * 8);
+
+                    if (random == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(6249, -14933, "Grush", true, "Grassy"));
+                        ArtificialIntelligenceAccess.push(new Unit(2030, -15428, "Grush", "baby", "Gratzini"));
+                        ArtificialIntelligenceAccess.push(new Unit(2047, -15510, "Grush", false, "Gratz"));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("grushweedPlant", 6249, -14933, 0, 1.5));
+                        scenicList.push(new Scenery("grushweedPlant", 2030, -15428, 0, 0.49));
+                        scenicList.push(new Scenery("grushweedPlant", 2047, -15510, 1, 1.02));
+                    }
+
+                    if (random == 2)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(6201, -14686, "Grush", false, "Grassy-ass"));
+                        ArtificialIntelligenceAccess.push(new Unit(6169, -14817, "Grush", "baby", "Grassito"));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("grushweedPlant", 6201, -14686, 0, 1));
+                        scenicList.push(new Scenery("grushweedPlant", 6169, -14817, 0, 0.6));
+                    }
+
+                    if (random == 4)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(1814, -15460, "Grush", false, "Grasselle"));
+                        ArtificialIntelligenceAccess.push(new Unit(5946, -14724, "Grush", false, "Grassia"));
+                        ArtificialIntelligenceAccess.push(new Unit(6012, -14645, "Grush", "baby", "Grassita"));
+                        ArtificialIntelligenceAccess.push(new Unit(-940, -18757, "Grush", false, "Grassette"));
+                        ArtificialIntelligenceAccess.push(new Unit(-738, -19814, "Grush", "baby", "Hierbita"));
+                        ArtificialIntelligenceAccess.push(new Unit(-824, -19786, "Grush", "baby", "Pastito"));
+                        ArtificialIntelligenceAccess.push(new Unit(-923, -19865, "Grush", false, "Hierba"));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("grushweedPlant", -738, -19814, 0, 0.6));
+                        scenicList.push(new Scenery("grushweedPlant", -824, -19786, 0, 0.6));
+                        scenicList.push(new Scenery("grushweedPlant", -923, -19865, 0, 1));
+                        scenicList.push(new Scenery("grushweedPlant", 5946, -14724, 0, 1));
+                        scenicList.push(new Scenery("grushweedPlant", 6012, -14645, 0, 0.6));
+                        scenicList.push(new Scenery("grushweedPlant", 1814, -15460, 0, 1));
+                        scenicList.push(new Scenery("grushweedPlant", -940, -18757, -2, 1.25));
+                    }
+
+                    if (random == 5)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-1723, -18922, "Grush", "giant", "The Hill"));
+                        ArtificialIntelligenceAccess.push(new Unit(6622, -14666, "Grush", false, "Grassio"));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("grushweedPlant", 6622, -14666, 0.34, 1.21));
+                        scenicList.push(new Scenery("grushweedPlant", -1723, -18922, 0, 3));
+                    }
+
+                    if (random == 7)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(2179, -15473, "Grush", false, "Grassi"));
+                        scenicList.push(new Scenery("grushweedPlant", -1562, -18668, 0, 1.9));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("grushweedPlant", 2179, -15473, 0, 1));
+                    }
+
+                    if (random == 8)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-644, -19755, "Grush", false, "Grawly"));
+                        ArtificialIntelligenceAccess.push(new Unit(-1177, -18763, "Grush", true, "Grawls"));
+                        ArtificialIntelligenceAccess.push(new Unit(2258, -15590, "Grush", false, "Grass"));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("grushweedPlant", -1177, -18763, 4, 1.6));
+                        scenicList.push(new Scenery("grushweedPlant", 2258, -15590, -4.34, 0.92));
+                        scenicList.push(new Scenery("grushweedPlant", -644, -19755, 0, 1));
+                    }
+                    //Avraks/Evraks of the plains
+                    ArtificialIntelligenceAccess.push(new Unit(2991, -14637, "Evrak", false, "Telve"));
+                    ArtificialIntelligenceAccess.push(new Unit(4922, -15301, "Avrak", false, "Akreve"));
+                    ArtificialIntelligenceAccess.push(new Unit(2802, -17230, "Avrak", false, "Akrevel"));
+                    ArtificialIntelligenceAccess.push(new Unit(6208, -18260, "Avrak", false, "Akrevii"));
+                    ArtificialIntelligenceAccess.push(new Unit(4030, -23183, "Evrak", false, "Telvel"));
+                    ArtificialIntelligenceAccess.push(new Unit(2093, -23518, "Evrak", false, "Telvel"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2319, -21510, "Avrak", false, "Akrevele"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1762, -19934, "Avrak", false, "Akrevelii"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1151, -14374, "Evrak", false, "Telven"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1944, -15540, "Avrak", false, "Akreven"));
+
+                    //Mofu Nests / Mofu
+                    ArtificialIntelligenceAccess.push(new Unit(-1421, -23142, "Mofu", true, "Klenda"));
+                    ArtificialIntelligenceAccess.push(new Unit(-943, -23383, "Mofu", true, "Klen"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1126, -23311, "Mofu", false, "Klene"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1043, -23077, "Mofu", false, "Klena"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1037, -23202, "Mofu", "baby", "Klee"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1342, -23373, "Mofu", "baby", "Klea"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1001, -23405, "Mofu", "baby", "Kleo"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1467, -23256, "Mofu", "baby", "Kley"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1505, -23383, "Mofu", false, "Kleno"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1194, -23568, "Mofu", true, "Klendo"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1641, -23205, "Mofu", false, "Klenoo"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1365, -22911, "Mofu", false, "Klendoo"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1194, -22876, "Mofu", "baby", "Kli"));
+                    ArtificialIntelligenceAccess.push(new Unit(1908, -23210, "Mofu", false, "Klendup"));
+                    ArtificialIntelligenceAccess.push(new Unit(2133, -23285, "Mofu", false, "Klip"));
+                    ArtificialIntelligenceAccess.push(new Unit(1998, -23350, "Mofu", "baby", "Klup"));
+                    ArtificialIntelligenceAccess.push(new Unit(848, -20033, "Mofu", true, "Klendup"));
+                    scenicList.push(new Scenery("mofuNest", -943, -23383, -5.5, 1.4)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("mofuNest", -1126, -23311, 6, 1.124)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("mofuNest", -1043, -23077, -1, 1)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("mofuNest", -1421, -23142, -3, 1.6)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("mofuNest", -1505, -23383, 2.5, 1.25)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("mofuNest", -1365, -22911, 4.3, 1)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("mofuNest", 1908, -23210, -4.6, 1.055)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("mofuNest", 2133, -23285, 2.1, 0.9)); //for mofu nests the last number determines its size multiplier.
+
+                    //Naaprid herds
+                    ArtificialIntelligenceAccess.push(new Unit(-1463, -22360, "Naaprid", true, "gove"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1270, -22172, "Naaprid", true, "gabe"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1635, -22635, "Naaprid", false, "gebriela"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1061, -22709, "Naaprid", false, "govree"));
+                    ArtificialIntelligenceAccess.push(new Unit(-990, -22556, "Naaprid", "baby", "gode"));
+                    ArtificialIntelligenceAccess.push(new Unit(5784, -20732, "Naaprid", true, "gebriel"));
+                    ArtificialIntelligenceAccess.push(new Unit(5883, -20926, "Naaprid", false, "gabii"));
+                    ArtificialIntelligenceAccess.push(new Unit(5514, -21045, "Naaprid", false, "govrea"));
+
+                    //Frich Packs
+                    ArtificialIntelligenceAccess.push(new Unit(-2650, -22483, "Frich", false, "Friz"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2897, -22179, "Frich", false, "Frez"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2765, -22644, "Frich", true, "Frilz"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2363, -22713, "Frich", true, "Frelz"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2864, -22379, "Frich", false, "Frizly"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1810, -20015, "Frich", true, "Fraz"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1678, -20281, "Frich", false, "Frezno"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1804, -20245, "Frich", false, "Freliz"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2473, -20333, "Frich", false, "Freloz"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2697, -19285, "Frich", true, "Frel"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1085, -18128, "Frich", true, "Frele"));
+                    ArtificialIntelligenceAccess.push(new Unit(1193, -14827, "Frich", false, "Fraloz"));
+                    ArtificialIntelligenceAccess.push(new Unit(6703, -19799, "Frich", false, "Fralooz"));
+                    ArtificialIntelligenceAccess.push(new Unit(5863, -22420, "Frich", true, "Freliz"));
+                    ArtificialIntelligenceAccess.push(new Unit(6346, -22565, "Frich", false, "Freloz"));
+                    ArtificialIntelligenceAccess.push(new Unit(6511, -15230, "Frich", true, "Frelaz"));
+                    ArtificialIntelligenceAccess.push(new Unit(878, -19133, "Frich", false, "Frooz"));
+
+                    //Varns
+                    ArtificialIntelligenceAccess.push(new Unit(-1244, -19247, "Varn", true, "Frel"));
+                    ArtificialIntelligenceAccess.push(new Unit(5740, -17079, "Varn", false, "Fral"));
+                    ArtificialIntelligenceAccess.push(new Unit(4016, -21134, "Varn", true, "Freel));
+                    ArtificialIntelligenceAccess.push(new Unit(3907, -21317, "Varn", true, "Frol));
+                    ArtificialIntelligenceAccess.push(new Unit(2801, -21413, "Varn", false, "Frool"));
+                    ArtificialIntelligenceAccess.push(new Unit(1155, -17721, "Varn", true, "Frul));
+
+                    //Ardils
+                    ArtificialIntelligenceAccess.push(new Unit(-558, -22201, "Ardil", false, "Fluffers"));
+                    ArtificialIntelligenceAccess.push(new Unit(-815, -20960, "Ardil", true, "Fluffiez"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1514, -16661, "Ardil", false, "Fluffy"));
+                    ArtificialIntelligenceAccess.push(new Unit(1929, -16664, "Ardil", true, "Fluffez"));
+                    ArtificialIntelligenceAccess.push(new Unit(5968, -19355, "Ardil", false, "Fluff"));
+                    ArtificialIntelligenceAccess.push(new Unit(1385, -21580, "Ardil", true, "Fluffel"));
 
                     change = "s2";
                 }

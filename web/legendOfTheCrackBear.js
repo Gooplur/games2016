@@ -66538,10 +66538,10 @@ function theLegend()
                     //Varns
                     ArtificialIntelligenceAccess.push(new Unit(-1244, -19247, "Varn", true, "Frel"));
                     ArtificialIntelligenceAccess.push(new Unit(5740, -17079, "Varn", false, "Fral"));
-                    ArtificialIntelligenceAccess.push(new Unit(4016, -21134, "Varn", true, "Freel));
-                    ArtificialIntelligenceAccess.push(new Unit(3907, -21317, "Varn", true, "Frol));
+                    ArtificialIntelligenceAccess.push(new Unit(4016, -21134, "Varn", true, "Freel"));
+                    ArtificialIntelligenceAccess.push(new Unit(3907, -21317, "Varn", true, "Frol"));
                     ArtificialIntelligenceAccess.push(new Unit(2801, -21413, "Varn", false, "Frool"));
-                    ArtificialIntelligenceAccess.push(new Unit(1155, -17721, "Varn", true, "Frul));
+                    ArtificialIntelligenceAccess.push(new Unit(1155, -17721, "Varn", true, "Frul"));
 
                     //Ardils
                     ArtificialIntelligenceAccess.push(new Unit(-558, -22201, "Ardil", false, "Fluffers"));

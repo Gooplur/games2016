@@ -951,6 +951,7 @@ function theLegend()
         //QUEST: Teshir North Road ---- given by Toggin
         lostDeliveryDetailsTold: false,
         lostDeliveryPetsKilled: 0,
+        lostDeliveryCompletionStyle: false,
         lostDeliveryQuest: false,
 
         //QUEST: The Broken Well ---- given by Hilmund
@@ -20753,6 +20754,35 @@ function theLegend()
 
                             }
                         }
+                        else if (Inventory[i][0].utility == "package") //store is a list of which items you get from the container.
+                        {
+                            var psh = true;
+                            for (var g = 0; g < Inventory[i][0].store.length; g++)
+                            {
+                                psh = true;
+                                for (var inv = 0; inv < Inventory.length; inv++)
+                                {
+                                    if (Inventory[inv][0].type == Inventory[i][0].store[g][0].type)
+                                    {
+                                        Inventory[inv][1] += Inventory[i][0].store[g][1];
+                                        psh = false;
+                                    }
+                                }
+                                if (psh == true)
+                                {
+                                    Inventory.push(Inventory[i][0].store[g]);
+                                }
+                            }
+
+                            if (Inventory[i][1] <= 1)
+                            {
+                                Inventory.splice(i, 1);
+                            }
+                            else
+                            {
+                                Inventory[i][1] -= 1;
+                            }
+                        }
                         else if (Inventory[i][0].utility == "spell")
                         {
                             var slaps = 0;
@@ -21396,6 +21426,13 @@ function theLegend()
                             XXX.fillStyle = "black";
                             XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
                             XXX.fillText("      Quest Item", 157, 514);
+                        }
+                        else if (Inventory[i][0].utility == "package")
+                        {
+                            XXX.font="14px Book Antiqua";
+                            XXX.fillStyle = "black";
+                            XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+                            XXX.fillText("      Package", 157, 514);
                         }
                         else if (Inventory[i][0].utility == "worn")
                         {
@@ -25918,7 +25955,17 @@ function theLegend()
                                     if (player.dialogueChoiceMade == false)
                                     {
                                         player.dialogueOptions = [];
-                                        if (uniqueChars.nelgrefLDS == true)
+
+                                        var hitz = false;
+                                        for (var i = 0; i < Inventory.length; i++)
+                                        {
+                                            if (Inventory[i][0].identity == "Svehn's Shipment")
+                                            {
+                                                hitz = true;
+                                            }
+                                        }
+
+                                        if (!hitz)
                                         {
                                             player.dialogueOptions.push(["Not Yet.", false, "a"]);
                                         }
@@ -25941,7 +25988,7 @@ function theLegend()
                                                 }
                                                 else if (player.dialogueOptions[i][2] == "b")
                                                 {
-                                                    playersTurnToSpeak = false;
+                                                    playersTurnToSpeak = true;
                                                     conversationID[1] = "3b";
                                                 }
                                                 else if (player.dialogueOptions[i][2] == "c")
@@ -25967,10 +26014,25 @@ function theLegend()
                                 else if (conversationID[1] == "3b")
                                 {
                                     quests.lostDeliveryQuest = "complete";
+                                    quests.lostDeliveryCompletionStyle = "keptShipment";
                                     quests.completeQuests.push({name: "A Lost Delivery", description: "You slayed Nelgref the Flayer, took the shipment, and lied to Svehn about finding it keeping his delivery for yourself."});
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 0;
                                     self.SC();
+                                    var hit = -1;
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].identity == "Svehn's Shipment")
+                                        {
+                                            hit = i;
+                                        }
+                                    }
+                                    if (hit != -1)
+                                    {
+                                        Inventory.splice(hit, 1);
+                                    }
+
+                                    Inventory.push([new Item("svehnsLoot", false, false), 1]);
                                 }
                                 else if (conversationID[1] == "3c")
                                 {
@@ -26011,8 +26073,20 @@ function theLegend()
                                         }
                                     }
                                     quests.lostDeliveryQuest = "complete";
+                                    quests.lostDeliveryCompletionStyle = "soldShipment";
                                     quests.completeQuests.push({name: "A Lost Delivery", description: "You slayed Nelgref the Flayer, took the shipment, and sold Svehn his delivery."});
-                                    player.fame += 1;
+                                    var hit = -1;
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].identity == "Svehn's Shipment")
+                                        {
+                                            hit = i;
+                                        }
+                                    }
+                                    if (hit != -1)
+                                    {
+                                        Inventory.splice(hit, 1);
+                                    }
                                 }
                                 else if (conversationID[1] == "3d")
                                 {
@@ -26020,6 +26094,7 @@ function theLegend()
                                     svehnSeemsFair.onended = function()
                                     {
                                         quests.lostDeliveryQuest = "complete";
+                                        quests.lostDeliveryCompletionStyle = "gaveShipment"
                                         quests.completeQuests.push({name: "A Lost Delivery", description: "You slayed Nelgref the Flayer, took the shipment and gave it to Svehn."});
                                         player.fame += 1;
                                         playersTurnToSpeak = true;
@@ -26027,6 +26102,18 @@ function theLegend()
                                         conversationID[1] = 0;
                                         self.SC();
                                         worldItems.push([new Item("coins", X, Y), 120]);
+                                    }
+                                    var hit = -1;
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].identity == "Svehn's Shipment")
+                                        {
+                                            hit = i;
+                                        }
+                                    }
+                                    if (hit != -1)
+                                    {
+                                        Inventory.splice(hit, 1);
                                     }
                                 }
                             }
@@ -46550,6 +46637,7 @@ function theLegend()
         this.biproducts = []; //these are the accompanying items that come along with the main item being crafted.
         this.alcohol = 0;
         this.wake = 0;
+        this.store = []; //these are the items you gain from opening a package utility item.
 
         this.flashFrame = 0;
         this.flashFrameTime = new Date().getTime();
@@ -52221,6 +52309,74 @@ function theLegend()
                 this.buyValue = 1; // at max, buy for 1.
                 this.sellValue = 1; // at max, sell for 1.
             }
+            else if (this.type == "svehnsShipment")
+            {
+                //For All Items
+                this.identity = "Svehn's Shipment";
+                this.weight = 138;
+                this.size = 21;
+                this.description = "A crate of goods from the kingdom of Nirwaden.";
+                this.intForDes = 0;
+                this.intDescription = "Speak to Svehn the Smith to deliver the shipment.";
+
+                //Define Utility
+                this.utility = "questItem";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1500; // at max, buy for 1500.
+                this.sellValue = 0; // at max, sell for 0.
+            }
+            else if (this.type == "svehnsLoot")
+            {
+                //For All Items
+                this.identity = "Svehn's Shipment";
+                this.weight = 138;
+                this.size = 21;
+                this.description = "A crate of goods from the kingdom of Nirwaden.";
+                this.intForDes = 0;
+                this.intDescription = "You decided to keep the loot for yourself...";
+
+                //Define Utility
+                this.utility = "package";
+                this.store = [[new Item("svehnsLootEmpty", false, false), 1], [new Item("nirineseSpear", false, false), 10], [new Item("nirineseSabre", false, false), 10], [new Item("thriceForgedSteel", false, false), 4]];
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1500; // at max, buy for 1500.
+                if (shopID != "Svehn the Smith")
+                {
+                    this.sellValue = 1100; // at max, sell for 1100.
+                }
+                else
+                {
+                    this.sellValue = 0; // at max, sell for 0.
+                }
+            }
+            else if (this.type == "svehnsLootEmpty")
+            {
+                //For All Items
+                this.identity = "Svehn's Shipment (Empty)";
+                this.weight = 42;
+                this.size = 21;
+                this.description = "An empty crate that once held goods from the kingdom of Nirwaden.";
+                this.intForDes = 0;
+                this.intDescription = "You have looted the merchandise...";
+
+                //Define Utility
+                this.utility = "junk";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 22; // at max, buy for 1500.
+                this.sellValue = 17; // at max, sell for 0.
+            }
             else if (this.type == "wellAxle")
             {
                 //For All Items
@@ -53823,6 +53979,64 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 30 - Math.floor(player.getCharisma() / 10); // at max, buy for 25.
                 this.sellValue = 15 + Math.floor(player.getCharisma() / 5); // at max, sell for 25.
+            }
+            else if (this.type == "twiceForgedSteel") //real steel
+            {
+                //For All Items
+                this.identity = "Twice Forged Steel";
+                this.weight = 4;
+                this.size = 10;
+                this.description = "A twice forged steel bar.";
+                this.intForDes = 2;
+                this.intDescription = "Steel that has been refined using ancient techniques.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 25;
+                this.ingredients = [["Steel", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 35 - Math.floor(player.getCharisma() / 10); // at max, buy for 30.
+                this.sellValue = 20 + Math.floor(player.getCharisma() / 5); // at max, sell for 30.
+            }
+            else if (this.type == "thriceForgedSteel") //realSteel
+            {
+                //For All Items
+                this.identity = "Thrice Forged Steel";
+                this.weight = 4;
+                this.size = 10;
+                this.description = "A thrice forged steel bar.";
+                this.intForDes = 2;
+                this.intDescription = "Steel that has been refined to perfection using ancient techniques.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 50;
+                this.ingredients = [["Twice Forged Steel", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                if (shopID == "Svehn the Smith")
+                {
+                    this.buyValue = 75 - Math.floor(player.getCharisma() / 10); // at max, buy for 65.
+                    this.sellValue = 50 + Math.floor(player.getCharisma() / 5); // at max, sell for 60.
+                }
+                else
+                {
+                    this.buyValue = 55 - Math.floor(player.getCharisma() / 10); // at max, buy for 50.
+                    this.sellValue = 40 + Math.floor(player.getCharisma() / 5); // at max, sell for 50.
+                }
             }
             else if (this.type == "elderWalrusTusks")
             {
@@ -58684,7 +58898,7 @@ function theLegend()
                 }
                 else
                 {
-                    this.damage = 8 * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+                    this.damage = 9 * (this.leveledDamageMultiple / 25) + ((7/50) * player.getStrength());
                 }
                 this.magicalDamage = 0;
                 this.negateArmour = 0;
@@ -58694,11 +58908,11 @@ function theLegend()
 
                 this.yield = 1;
                 this.intForCraft = 35;
-                this.ingredients = [["Steel", 4]];
+                this.ingredients = [["Thrice Forged Steel", 1]];
 
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-                this.buyValue = 57 - Math.floor(player.getCharisma() / 5); // at max, buy for 47.
-                this.sellValue = 22 + Math.floor(player.getCharisma() / 2); // at max, sell for 47.
+                this.buyValue = 67 - Math.floor(player.getCharisma() / 5); // at max, buy for 57.
+                this.sellValue = 32 + Math.floor(player.getCharisma() / 2); // at max, sell for 57.
             }
             else if (this.type == "blueBlade")
             {
@@ -59491,6 +59705,26 @@ function theLegend()
                 XXX.fillStyle = "turquoise";
                 XXX.arc(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
                 XXX.fill();
+            }
+            else if (this.type == "twiceForgedSteel")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polypol, 1427, 561, 30, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 30), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20), 30, 20);
+            }
+            else if (this.type == "thriceForgedSteel")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polypol, 1393, 561, 30, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 30), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20), 30, 20);
+            }
+            else if (this.type == "svehnsShipment" || this.type == "svehnsLoot")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 104, 213, 36, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * 1.4), 36 * 1.4, 37 * 1.4);
+            }
+            else if (this.type == "svehnsLootEmpty")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 95, 260, 51, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 1.4), 51 * 1.4, 42 * 1.4);
             }
             else if (this.type == "rawTunskFlesh")
             {
@@ -61249,6 +61483,26 @@ function theLegend()
                 LXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
                 LXX.fill();
             }
+            else if (this.type == "twiceForgedSteel")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polypol, 1427, 561, 30, 20, this.invX - (1/2 * 30), this.invY - (1/2 * 20), 30, 20);
+            }
+            else if (this.type == "thriceForgedSteel")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polypol, 1393, 561, 30, 20, this.invX - (1/2 * 30), this.invY - (1/2 * 20), 30, 20);
+            }
+            else if (this.type == "svehnsShipment" || this.type == "svehnsLoot")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 104, 213, 36, 37, this.invX - (1/2 * 36 * 1.4), this.invY - (1/2 * 37 * 1.4), 36 * 1.4, 37 * 1.4);
+            }
+            else if (this.type == "svehnsLootEmpty")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 95, 260, 51, 42, this.invX - (1/2 * 51 * 1.4), this.invY - (1/2 * 42 * 1.4), 51 * 1.4, 42 * 1.4);
+            }
             else if (this.type == "rawTunskFlesh")
             {
                 LXX.beginPath();
@@ -62985,6 +63239,26 @@ function theLegend()
                 XXX.fillStyle = "turquoise";
                 XXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
                 XXX.fill();
+            }
+            else if (this.type == "twiceForgedSteel")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polypol, 1427, 561, 30, 20, this.invX - (1/2 * 30), this.invY - (1/2 * 20), 30, 20);
+            }
+            else if (this.type == "thriceForgedSteel")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polypol, 1393, 561, 30, 20, this.invX - (1/2 * 30), this.invY - (1/2 * 20), 30, 20);
+            }
+            else if (this.type == "svehnsShipment" || this.type == "svehnsLoot")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 104, 213, 36, 37, this.invX - (1/2 * 36 * 1.4), this.invY - (1/2 * 37 * 1.4), 36 * 1.4, 37 * 1.4);
+            }
+            else if (this.type == "svehnsLootEmpty")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 95, 260, 51, 42, this.invX - (1/2 * 51 * 1.4), this.invY - (1/2 * 42 * 1.4), 51 * 1.4, 42 * 1.4);
             }
             else if (this.type == "rawTunskFlesh")
             {
@@ -64962,7 +65236,14 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(1690, 1021, "Person", false, "Svehn the Smith", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.65], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 103 + quests.bobithNewWealth], [new Item("steel", false, false), 8], [new Item("iron", false, false), 6], [new Item("mace", false, false), 3], [new Item("hammer", false, false), 2], [new Item("freydicSpear", false, false), 5], [new Item("freydicSword", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("longbow", false, false), 2], [new Item("arrow", false, false), 92], [new Item("steelArrow", false, false), 61], [new Item("timberAxe", false, false), 3]]}));
+                            if (quests.lostDeliveryCompletionStyle != "keptShipment" && quests.lostDeliveryQuest == "complete")
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(1690, 1021, "Person", false, "Svehn the Smith", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.65], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 124 + quests.bobithNewWealth], [new Item("thriceForgedSteel", false, false), 1], [new Item("steel", false, false), 8], [new Item("iron", false, false), 6], [new Item("mace", false, false), 3], [new Item("hammer", false, false), 2], [new Item("freydicSpear", false, false), 5], [new Item("freydicSword", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("longbow", false, false), 2], [new Item("arrow", false, false), 92], [new Item("steelArrow", false, false), 61], [new Item("timberAxe", false, false), 3], [new Item("nirineseSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(1690, 1021, "Person", false, "Svehn the Smith", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.65], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 103 + quests.bobithNewWealth], [new Item("steel", false, false), 8], [new Item("iron", false, false), 6], [new Item("mace", false, false), 3], [new Item("hammer", false, false), 2], [new Item("freydicSpear", false, false), 5], [new Item("freydicSword", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("longbow", false, false), 2], [new Item("arrow", false, false), 92], [new Item("steelArrow", false, false), 61], [new Item("timberAxe", false, false), 3]]}));
+                            }
                         }
                     }
                     if (uniqueChars.medliaLDS == true)

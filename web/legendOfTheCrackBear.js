@@ -3,9 +3,8 @@
  */
 
 //TODO LIST
-//todo add drops for Glutid (slime creature)
+//todo finish Svehn's Quest "A Lost Delivery"
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
-//todo finish work on the mofuMatriarchHeaddress - so far: added in allworn and has an item definer - still needs: All images and dress animations
 //todo revise the sleeping system... as of right now it is an absolute crazy juju ball made of sand candy!!! Which is a bad thing.
 //todo finish adding the beast journal. AND FIGURE OUT HOW TO GET BEAST JOURNAL TO SAVE!!!
 //todo add brain flies.
@@ -13,8 +12,8 @@
 //todo add a rest without bed button on the UI that uses a homemade confirm popup to ask if you are sure you want to sleep.
 //todo add beds all the way
 //todo add the nappy closed eye for the sleepButton. (it's on poly)
-//todo add items: harst bread, pumpkin bread, dried plutt with honey
-//todo add the dexterity system: lv 10 = jump-back lv 20 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
+//todo add items: dried plutt with honey
+//todo add the dexterity system: lv 20 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
 //todo add arrow mods such as poison, electric, wind, armour piercing... and also normal steel arrows.
 //todo add electricity spells
 //todo add vines spell
@@ -29,8 +28,6 @@
 //todo add houses/shops/buildings.
 //todo add sicknesses and symptons (dizziness, pox, fever, fatigue, etc.) ex: make dizziness spin the screen, make pox weaken players constitution etc., make fever decrease thirst.
 //todo add the rest of the alcohols and drinks.
-//todo add lizards to the forest.
-//todo add passive spells
 //todo add ores and smelting
 //todo make anthracite (coal) a requirement to make good steel.
 //todo make alpha Olkrin's death animation line up slightly more.
@@ -63,6 +60,44 @@ function legendaryPrerequisites()
     window.impaction = impaction;
 
     //dialogue sounds
+
+        //SVEHN CHARACTER: voice acting
+
+    var svehnMyWay = new Audio("sounds/polySounds/svehnMyWay.mp3");
+    window.svehnMyWay = svehnMyWay;
+
+    var svehnWell = new Audio("sounds/polySounds/svehnWell.mp3");
+    window.svehnWell = svehnWell;
+
+    var svehnParts = new Audio("sounds/polySounds/svehnParts.mp3");
+    window.svehnParts = svehnParts;
+
+    var svehnAsISaid = new Audio("sounds/polySounds/svehnAsISaid.mp3");
+    window.svehnAsISaid = svehnAsISaid;
+
+    var svehnShame = new Audio("sounds/polySounds/svehnShame.mp3");
+    window.svehnShame = svehnShame;
+
+    var svehnSmithing = new Audio("sounds/polySounds/svehnSmithing.mp3");
+    window.svehnSmithing = svehnSmithing;
+
+    var svehnSeemsFair = new Audio("sounds/polySounds/svehnSeemsFair.mp3");
+    window.svehnSeemsFair = svehnSeemsFair;
+
+    var svehnGo = new Audio("sounds/polySounds/svehnGo.mp3");
+    window.svehnGo = svehnGo;
+
+    var svehnHow = new Audio("sounds/polySounds/svehnHow.mp3");
+    window.svehnHow = svehnHow;
+
+    var svehnOnlyFair = new Audio("sounds/polySounds/svehnOnlyFair.mp3");
+    window.svehnOnlyFair = svehnOnlyFair;
+
+    var svehnGetOutaHere = new Audio("sounds/polySounds/svehnGetOutaHere.mp3");
+    window.svehnGetOutaHere = svehnGetOutaHere;
+
+    var svehnCrook = new Audio("sounds/polySounds/svehnCrook.mp3");
+    window.svehnCrook = svehnCrook;
 
         //TOGGIN CHARACTER: voice acting
 
@@ -783,6 +818,7 @@ function theLegend()
     var conversationID = ["none", 0]; //[Person conversing with, stage in conversation]
     var conversations =
     {
+        svehn: ["Svehn", 0],
         toggin: ["Toggin", 0],
         teber: ["Teber", 0],
         drohfor: ["Drohfor", 0],
@@ -874,6 +910,7 @@ function theLegend()
         //Unique character life/death status //true means alive false means dead...
         bobithLDS: true,
         medliaLDS: true,
+        nelgrefLDS: true,
         drohforLDS: true,
         hilmundLDS: true,
         teberLDS: true,
@@ -911,9 +948,15 @@ function theLegend()
         teshirNorthRoadKillCount: 0,
         teshirNorthRoadQuest: false,
 
+        //QUEST: Teshir North Road ---- given by Toggin
+        lostDeliveryDetailsTold: false,
+        lostDeliveryPetsKilled: 0,
+        lostDeliveryQuest: false,
+
         //QUEST: The Broken Well ---- given by Hilmund
         theBrokenWellFixed: false,
         theBrokenWellDetailsTold: false,
+        theBrokenWellSvehn: false,
         theBrokenWellQuest: false,
 
         //QUEST: Hunting Wager ---- given by Drohfor
@@ -1572,6 +1615,10 @@ function theLegend()
             else if (cheatcode == "MedliaKit")
             {
                 uniqueChars.medliaLDS = true;
+            }
+            else if (cheatcode == "screwnelgref")
+            {
+                uniqueChars.nelgrefLDS = false;
             }
             else if (cheatcode == "showsize")
             {
@@ -25633,6 +25680,357 @@ function theLegend()
                                 }
                             }
 
+                            if (this.ID == "Svehn the Smith" || conversationID[0] == "Svehn")
+                            {
+                                lowBar = "dialogue";
+                                conversationID[0] = "Svehn";
+
+                                if (clickReleased)
+                                {
+                                    self.RC();
+                                }
+
+                                //CONVERSATION
+                                if (conversationID[1] == 0)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["How goes the day?", false, "a"], ["Can I use your forge and anvil?", false, "b"], ["How's business?", false, "c"]];
+
+                                        if (quests.lostDeliveryQuest == false)
+                                        {
+                                            player.dialogueOptions.push(["Do you have any work I could help with?", false, "d"]);
+                                        }
+                                        if (quests.theBrokenWellQuest == true && quests.theBrokenWellSvehn == false)
+                                        {
+                                            player.dialogueOptions.unshift(["Do you know where I could find parts to fix the well?", false, "e"]);
+                                        }
+                                        if (quests.theBrokenWellQuest == true && quests.theBrokenWellSvehn == true)
+                                        {
+                                            player.dialogueOptions.unshift(["Do you know where I could find parts to fix the well?", false, "g"]);
+                                        }
+                                        if (quests.theBrokenWellSvehn == true && quests.theBrokenWellQuest == "complete")
+                                        {
+                                            player.dialogueOptions.unshift(["Old man Hettin is dead, his farmhouse was overrun by friches.", false, "f"]);
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0c";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "d")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0d";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "e")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0e";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "f")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0f";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "g")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0g";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0a")
+                                {
+                                    svehnWell.play();
+                                    svehnWell.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0b")
+                                {
+                                    svehnMyWay.play();
+                                    svehnMyWay.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0c")
+                                {
+                                    svehnSmithing.play();
+                                    svehnSmithing.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0d")
+                                {
+                                    svehnGo.play();
+                                    svehnGo.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 1;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0e")
+                                {
+                                    svehnParts.play();
+                                    svehnParts.onended = function()
+                                    {
+                                        quests.theBrokenWellSvehn = true;
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0f")
+                                {
+                                    svehnShame.play();
+                                    svehnShame.onended = function()
+                                    {
+                                        quests.theBrokenWellSvehn = "over";
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0g")
+                                {
+                                    svehnAsISaid.play();
+                                    svehnAsISaid.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 1)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["Sure, I'll go check on the delivery for you.", false, "a"], ["As good as done.", false, "a"], ["Okay.", false, "a"], ["No.", false, "b"], ["Not right now.", false, "b"], ["Sounds like a waste of my time.", false, "b"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = true;
+                                                    conversationID[1] = "1a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = true;
+                                                    conversationID[1] = "1b";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "1a")
+                                {
+                                    quests.lostDeliveryQuest = true;
+                                    quests.activeQuests.push({name: "A Lost Delivery", description: "Svehn asked you to check on an absent delivery of Nirinese goods from the east."});
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 2;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == "1b")
+                                {
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == 2)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["I'm back.", false, "a"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "2a";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "2a")
+                                {
+                                    svehnHow.play();
+                                    svehnHow.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 3;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 3)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [];
+                                        if (uniqueChars.nelgrefLDS == true)
+                                        {
+                                            player.dialogueOptions.push(["Not Yet.", false, "a"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.push(["I wasn't able to find it. (LIE)", false, "b"], ["I found it... but your going to have to pay me for it.", false, "c"], ["The shipment was attacked by woodland bandits, but I managed to grab the goods.", false, "d"]);
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = true;
+                                                    conversationID[1] = "3a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "3b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "3c";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "d")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "3d";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "3a")
+                                {
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 2;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == "3b")
+                                {
+                                    quests.lostDeliveryQuest = "complete";
+                                    quests.completeQuests.push({name: "A Lost Delivery", description: "You slayed Nelgref the Flayer, took the shipment, and lied to Svehn about finding it keeping his delivery for yourself."});
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == "3c")
+                                {
+                                    if (player.getCharisma() >= 37)
+                                    {
+                                        svehnOnlyFair.play();
+                                        svehnOnlyFair.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                            worldItems.push([new Item("coins", X, Y), 1100]);
+                                        }
+                                    }
+                                    else if (player.getCharisma() >= 14)
+                                    {
+                                        svehnCrook.play();
+                                        svehnCrook.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                            worldItems.push([new Item("coins", X, Y), 200]);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        svehnGetOutaHere.play();
+                                        svehnGetOutaHere.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                            worldItems.push([new Item("coins", X, Y), 80]);
+                                        }
+                                    }
+                                    quests.lostDeliveryQuest = "complete";
+                                    quests.completeQuests.push({name: "A Lost Delivery", description: "You slayed Nelgref the Flayer, took the shipment, and sold Svehn his delivery."});
+                                    player.fame += 1;
+                                }
+                                else if (conversationID[1] == "3d")
+                                {
+                                    svehnSeemsFair.play();
+                                    svehnSeemsFair.onended = function()
+                                    {
+                                        quests.lostDeliveryQuest = "complete";
+                                        quests.completeQuests.push({name: "A Lost Delivery", description: "You slayed Nelgref the Flayer, took the shipment and gave it to Svehn."});
+                                        player.fame += 1;
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                        worldItems.push([new Item("coins", X, Y), 120]);
+                                    }
+                                }
+                            }
+
                             if (this.ID == "Medlia the Merchant" || conversationID[0] == "Medlia")
                             {
                                 lowBar = "dialogue";
@@ -28824,6 +29222,7 @@ function theLegend()
                                     hilmundFind.play();
                                     hilmundFind.onended = function()
                                     {
+                                        quests.theBrokenWellQuest = true;
                                         playersTurnToSpeak = true;
                                         quests.activeQuests.push({name: "The Broken Well", description: "You offered to help Hilmund find the parts to fix the town well."});
                                         player.dialoguePosition = 0;
@@ -42333,6 +42732,10 @@ function theLegend()
                                 player.freynorFaction -= 80;
                             }
                         }
+                        else if (this.ID == "Nelgref the Flayer") //also a bandit chieftain
+                        {
+                            uniqueChars.nelgrefLDS = false;
+                        }
 
                         //track Deaths Of Certain Non-Unique Units During Certain Quests
 
@@ -42343,6 +42746,10 @@ function theLegend()
                             {
                                 quests.teshirNorthRoadKillCount += 1;
                             }
+                        }
+                        if (this.ID == "Nelgref's Pet Bandit")
+                        {
+                            quests.lostDeliveryPetsKilled += 1;
                         }
                         if (quests.theBalgurMercenariesQuest == true)
                         {

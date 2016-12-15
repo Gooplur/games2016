@@ -26015,7 +26015,14 @@ function theLegend()
                                 {
                                     quests.lostDeliveryQuest = "complete";
                                     quests.lostDeliveryCompletionStyle = "keptShipment";
-                                    quests.completeQuests.push({name: "A Lost Delivery", description: "You slayed Nelgref the Flayer, took the shipment, and lied to Svehn about finding it keeping his delivery for yourself."});
+                                    if (uniqueChars.nelgrefLDS)
+                                    {
+                                        quests.completeQuests.push({name: "A Lost Delivery", description: "You evaded Nelgref the Flayer, took the shipment, and lied to Svehn about finding it keeping his delivery for yourself."});
+                                    }
+                                    else
+                                    {
+                                        quests.completeQuests.push({name: "A Lost Delivery", description: "You slayed Nelgref the Flayer, took the shipment, and lied to Svehn about finding it keeping his delivery for yourself."});
+                                    }
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 0;
                                     self.SC();
@@ -26045,7 +26052,29 @@ function theLegend()
                                             player.dialoguePosition = 0;
                                             conversationID[1] = 0;
                                             self.SC();
+                                            var hit = -1;
+                                             for (var i = 0; i < Inventory.length; i++)
+                                             {
+                                                 if (Inventory[i][0].identity == "Svehn's Shipment")
+                                                 {
+                                                    hit = i;
+                                                 }
+                                             }
+                                             if (hit != -1)
+                                             {
+                                                Inventory.splice(hit, 1);
+                                             }
                                             worldItems.push([new Item("coins", X, Y), 1100]);
+                                            quests.lostDeliveryQuest = "complete";
+                                            quests.lostDeliveryCompletionStyle = "soldShipment";
+                                            if (uniqueChars.nelgrefLDS)
+                                            {
+                                                quests.completeQuests.push({name: "A Lost Delivery", description: "You evaded Nelgref the Flayer, took the shipment, and sold Svehn his delivery."});
+                                            }
+                                            else
+                                            {
+                                                quests.completeQuests.push({name: "A Lost Delivery", description: "You slayed Nelgref the Flayer, took the shipment, and sold Svehn his delivery."});
+                                            }
                                         }
                                     }
                                     else if (player.getCharisma() >= 14)
@@ -26057,7 +26086,30 @@ function theLegend()
                                             player.dialoguePosition = 0;
                                             conversationID[1] = 0;
                                             self.SC();
+                                            var hit = -1;
+                                            for (var i = 0; i < Inventory.length; i++)
+                                            {
+                                                if (Inventory[i][0].identity == "Svehn's Shipment")
+                                                {
+                                                    hit = i;
+                                                }
+                                            }
+                                            if (hit != -1)
+                                            {
+                                                Inventory.splice(hit, 1);
+                                            }
                                             worldItems.push([new Item("coins", X, Y), 200]);
+                                            quests.lostDeliveryQuest = "complete";
+                                            quests.lostDeliveryCompletionStyle = "soldShipment";
+
+                                            if (uniqueChars.nelgrefLDS)
+                                            {
+                                                quests.completeQuests.push({name: "A Lost Delivery", description: "You evaded Nelgref the Flayer, took the shipment, and sold Svehn his delivery."});
+                                            }
+                                            else
+                                            {
+                                                quests.completeQuests.push({name: "A Lost Delivery", description: "You slayed Nelgref the Flayer, took the shipment, and sold Svehn his delivery."});
+                                            }
                                         }
                                     }
                                     else
@@ -26069,23 +26121,30 @@ function theLegend()
                                             player.dialoguePosition = 0;
                                             conversationID[1] = 0;
                                             self.SC();
+                                            var hit = -1;
+                                            for (var i = 0; i < Inventory.length; i++)
+                                            {
+                                                if (Inventory[i][0].identity == "Svehn's Shipment")
+                                                {
+                                                    hit = i;
+                                                }
+                                            }
+                                            if (hit != -1)
+                                            {
+                                                Inventory.splice(hit, 1);
+                                            }
                                             worldItems.push([new Item("coins", X, Y), 80]);
+                                            quests.lostDeliveryQuest = "complete";
+                                            quests.lostDeliveryCompletionStyle = "soldShipment";
+                                            if (uniqueChars.nelgrefLDS)
+                                            {
+                                                quests.completeQuests.push({name: "A Lost Delivery", description: "You evaded Nelgref the Flayer, took the shipment, and sold Svehn his delivery."});
+                                            }
+                                            else
+                                            {
+                                                quests.completeQuests.push({name: "A Lost Delivery", description: "You slayed Nelgref the Flayer, took the shipment, and sold Svehn his delivery."});
+                                            }
                                         }
-                                    }
-                                    quests.lostDeliveryQuest = "complete";
-                                    quests.lostDeliveryCompletionStyle = "soldShipment";
-                                    quests.completeQuests.push({name: "A Lost Delivery", description: "You slayed Nelgref the Flayer, took the shipment, and sold Svehn his delivery."});
-                                    var hit = -1;
-                                    for (var i = 0; i < Inventory.length; i++)
-                                    {
-                                        if (Inventory[i][0].identity == "Svehn's Shipment")
-                                        {
-                                            hit = i;
-                                        }
-                                    }
-                                    if (hit != -1)
-                                    {
-                                        Inventory.splice(hit, 1);
                                     }
                                 }
                                 else if (conversationID[1] == "3d")
@@ -26094,26 +26153,33 @@ function theLegend()
                                     svehnSeemsFair.onended = function()
                                     {
                                         quests.lostDeliveryQuest = "complete";
-                                        quests.lostDeliveryCompletionStyle = "gaveShipment"
-                                        quests.completeQuests.push({name: "A Lost Delivery", description: "You slayed Nelgref the Flayer, took the shipment and gave it to Svehn."});
+                                        quests.lostDeliveryCompletionStyle = "gaveShipment";
+                                        if (uniqueChars.nelgrefLDS)
+                                        {
+                                            quests.completeQuests.push({name: "A Lost Delivery", description: "You evaded Nelgref the Flayer, took the shipment and gave it to Svehn."});
+                                        }
+                                        else
+                                        {
+                                            quests.completeQuests.push({name: "A Lost Delivery", description: "You slayed Nelgref the Flayer, took the shipment and gave it to Svehn."});
+                                        }
                                         player.fame += 1;
                                         playersTurnToSpeak = true;
                                         player.dialoguePosition = 0;
                                         conversationID[1] = 0;
                                         self.SC();
-                                        worldItems.push([new Item("coins", X, Y), 120]);
-                                    }
-                                    var hit = -1;
-                                    for (var i = 0; i < Inventory.length; i++)
-                                    {
-                                        if (Inventory[i][0].identity == "Svehn's Shipment")
+                                        var hit = -1;
+                                        for (var i = 0; i < Inventory.length; i++)
                                         {
-                                            hit = i;
+                                            if (Inventory[i][0].identity == "Svehn's Shipment")
+                                            {
+                                                hit = i;
+                                            }
                                         }
-                                    }
-                                    if (hit != -1)
-                                    {
-                                        Inventory.splice(hit, 1);
+                                        if (hit != -1)
+                                        {
+                                            Inventory.splice(hit, 1);
+                                        }
+                                        worldItems.push([new Item("coins", X, Y), 120]);
                                     }
                                 }
                             }

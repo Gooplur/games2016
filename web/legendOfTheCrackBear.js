@@ -68005,6 +68005,12 @@ function theLegend()
                     scenicList.push(new Scenery("pineTree", -13009 , -5159, -1.29, true));
                     scenicList.push(new Scenery("pineTree", -11286 , -5204, 7, true));
 
+                    //Plants of the souther tip of the wuncwer woods
+                    scenicList.push(new Scenery("akerPlant", -7460 , -4008, 6.8, true));
+                    scenicList.push(new Scenery("glinPlant", -8837 , -4003, 1, true));
+                    scenicList.push(new Scenery("culprisPlant", -12566 , -4628, -2, true));
+                    scenicList.push(new Scenery("neprilnePlant", -11329 , -4441, 3, true));
+                    scenicList.push(new Scenery("akerPlant", -12309 , -5242, -5.5, true));
 
 
                     change = "s1e1";

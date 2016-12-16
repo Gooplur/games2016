@@ -3,7 +3,7 @@
  */
 
 //TODO LIST
-//todo finish Svehn's Quest "A Lost Delivery"
+//todo finish Svehn's Quest "A Lost Delivery" by adding the new forest map and Nelgref's bandit crew (broken caravan and crate)
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
 //todo revise the sleeping system... as of right now it is an absolute crazy juju ball made of sand candy!!! Which is a bad thing.
 //todo finish adding the beast journal. AND FIGURE OUT HOW TO GET BEAST JOURNAL TO SAVE!!!
@@ -4420,8 +4420,21 @@ function theLegend()
                 outlineBuilder( 1, 13, "stonePath", -20, -7);
                 outlineBuilder( 2, 3, "farmland", -7, 1);
             }
+            //mapS1 E1
+            if (Y > -14144 && Y < -3328 && X < - 2490 && X > -14114) //X1
+            {
+                elevation = -1;
+                region = "s1e1";
+                outlineBuilder( 34, 34, "outline", 14, 14);
+                outlineBuilder( 1, 22, "snow", 26, 14);
+                outlineBuilder( 1, 20, "forest", 28, 15);
+                outlineBuilder( 1, 13, "forest", 35, 16);
+                outlineBuilder( 1, 9, "forest", 39, 17);
+                outlineBuilder( 1, 7, "forest", 41, 18);
+                outlineBuilder( 1, 4, "forest", 44, 19);
+            }
             //mapE1
-            if (Y > -3919 && Y < 6870 && X < - 2490) //X1
+            if (Y > -3919 && Y < 6870 && X < - 2490 && X > -14114) //X1
             {
                 elevation = 0;
                 region = "e1";
@@ -67876,6 +67889,45 @@ function theLegend()
                     scenicList.push(new Scenery("mofuNest", -2176, -29434, -2.245, 1.9)); //for mofu nests the last number determines its size multiplier.
 
                     change = "s3";
+                }
+            }
+            else if (region == "s1e1")
+            {
+                if (change != "s1e1")
+                {
+                    //Delete All Non-native AI Units
+                    for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                    {
+                        if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                        {
+                            ArtificialIntelligenceAccess.splice(i, 1);
+                            console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                        }
+                        else
+                        {
+                            console.log(i + " in list 'AI access' has been saved.");
+                        }
+                    }
+
+                    //Delete All Non-native Items
+                    //worldItems = [];
+
+                    //Delete All Non-native Structures
+                    //todo when structures are created add their list's refresh sequence here.
+
+                    //Delete All Non-native Scenery
+                    scenicList = [];
+
+                    //REGION CREATION
+                    //Build AI Units
+
+                    ArtificialIntelligenceAccess.push(new Unit(-2368, -29393, "Mofu", "baby", "Kleena"));
+
+                    //Build Scenery
+
+                    scenicList.push(new Scenery("mofuNest", -2089, -29849, -3, 1.2)); //for mofu nests the last number determines its size multiplier.
+
+                    change = "s1e1";
                 }
             }
         }

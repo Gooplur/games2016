@@ -4425,8 +4425,8 @@ function theLegend()
             {
                 elevation = -1;
                 region = "s1e1";
-                outlineBuilder( 34, 34, "outline", 14, 14);
-                outlineBuilder( 1, 22, "snow", 26, 14);
+                outlineBuilder( 34, 34, "greenGrass", 14, 14);
+                outlineBuilder( 1, 22, "forest", 26, 14);
                 outlineBuilder( 1, 20, "forest", 28, 15);
                 outlineBuilder( 1, 13, "forest", 35, 16);
                 outlineBuilder( 1, 9, "forest", 39, 17);
@@ -67961,7 +67961,28 @@ function theLegend()
                     //REGION CREATION
                     //Build AI Units
 
-                    ArtificialIntelligenceAccess.push(new Unit(-2368, -29393, "Mofu", "baby", "Kleena"));
+                    //Animals in the forest
+                    ArtificialIntelligenceAccess.push(new Unit(-12632, -4608, "Grib", false, "Kab"));
+                    ArtificialIntelligenceAccess.push(new Unit(-12339, -4511, "Grib", true, "Keb"));
+                    ArtificialIntelligenceAccess.push(new Unit(-12856, -4354, "Grib", true, "Kubb"));
+                    ArtificialIntelligenceAccess.push(new Unit(-12706, -4829, "Grib", true, "Kiib"));
+                    ArtificialIntelligenceAccess.push(new Unit(-12423, -5247, "Narthwarp", false, "Grax"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11373, -4376, "Shehid", false, "Toot"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11348, -4490, "Shehid", false, "Tut"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11120, -4466, "Shehid", false, "Tat"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10984, -4232, "Shehid", false, "Tittle"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11225, -4217, "Shehid", false, "Tit"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10009, -4348, "Shehid", false, "Tilt"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10428, -4256, "BlackBear", true, "Grrrr"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7498, -4088, "BlackBear", false, "Grrr"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10009, -4348, "Shehid", false, "Tilt"));
+                    scenicList.push(new Scenery("ulgoyPlant", -11988, -4219, 2, 3.4));
+                    ArtificialIntelligenceAccess.push(new Unit(-11988, -4219, "Ulgoy", true, "Neptune"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8839, -4188, "Varn", true, "fluff"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9071, -4112, "Varn", false, "fluf"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8965, -4248, "Varn", false, "flufff"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11025, -4803, "Viper", false, "scale"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11448, -4055, "Lizard", true, "eLIZabeth"));
 
                     //Build Scenery
 

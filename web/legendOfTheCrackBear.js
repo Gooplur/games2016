@@ -66293,6 +66293,46 @@ function theLegend()
                     scenicList.push(new Scenery("pineTree", -12332 , 430, 0.54, true));
                     scenicList.push(new Scenery("pineTree", -12017 , 569, Math.PI * 0.21, true));
 
+                    //replacement trees of the map s1e1
+                    scenicList.push(new Scenery("pineTree", -7583 , -3885, 1.2, true));
+                    scenicList.push(new Scenery("pineTree", -8065 , -3688, -3, true));
+                    scenicList.push(new Scenery("pineTree", -8710 , -3916, -2.5, true));
+                    scenicList.push(new Scenery("pineTree", -9578 , -3837, 4, true));
+                    scenicList.push(new Scenery("pineTree", -10111 , -3906, -5, true));
+                    scenicList.push(new Scenery("pineTree", -11025 , -3706, 2.6, true));
+                    scenicList.push(new Scenery("pineTree", -11548 , -3882, 5.2, true));
+                    scenicList.push(new Scenery("pineTree", -12132 , -3725, -1, true));
+                    scenicList.push(new Scenery("pineTree", -12700 , -3822, 6, true));
+                    scenicList.push(new Scenery("pineTree", -13186 , -3942, -6.3, true));
+                    scenicList.push(new Scenery("pineTree", -6995 , -3821, 6.995, true));
+                    scenicList.push(new Scenery("pineTree", -6398 , -3743, 0.23, true));
+                    scenicList.push(new Scenery("pineTree", -6848 , -4186, -3.678, true));
+                    scenicList.push(new Scenery("pineTree", -8029 , -4161, 3.1, true));
+                    scenicList.push(new Scenery("pineTree", -7448 , -4370, 4.5, true));
+                    scenicList.push(new Scenery("pineTree", -8620 , -4332, -1.7, true));
+                    scenicList.push(new Scenery("pineTree", -9388 , -4224, -4.62, true));
+                    scenicList.push(new Scenery("pineTree", -9795 , -4691, -5.9, true));
+                    scenicList.push(new Scenery("pineTree", -9968 , -4233, 2.3, true));
+                    scenicList.push(new Scenery("pineTree", -10507 , -4023, 2.5, true));
+                    scenicList.push(new Scenery("pineTree", -10465 , -4521, 3.98, true));
+                    scenicList.push(new Scenery("pineTree", -11005 , -4119, -4.1, true));
+                    scenicList.push(new Scenery("pineTree", -10660 , -4900, -2, true));
+                    scenicList.push(new Scenery("pineTree", -11008 , -4524, -4.8, true));
+                    scenicList.push(new Scenery("pineTree", -11744 , -4280, -1.891, true));
+                    scenicList.push(new Scenery("pineTree", -11263 , -4864, 5.435, true));
+                    scenicList.push(new Scenery("pineTree", -11857 , -4696, 3.82, true));
+                    scenicList.push(new Scenery("pineTree", -11717 , -5059, -6.42, true));
+                    scenicList.push(new Scenery("pineTree", -12329 , -4069, 2.93, true));
+                    scenicList.push(new Scenery("pineTree", -12245 , -4426, -4.7, true));
+                    scenicList.push(new Scenery("pineTree", -12174 , -4947, -2.2, true));
+                    scenicList.push(new Scenery("pineTree", -12232 , -5375, 5.68, true));
+                    scenicList.push(new Scenery("pineTree", -12808 , -5502, 1, true));
+                    scenicList.push(new Scenery("pineTree", -12913 , -4233, -1.5, true));
+                    scenicList.push(new Scenery("pineTree", -13143 , -4801, 3, true));
+                    scenicList.push(new Scenery("pineTree", -12722, -4981, 2.136, true));
+                    scenicList.push(new Scenery("pineTree", -13009 , -5159, -1.29, true));
+                    scenicList.push(new Scenery("pineTree", -11286 , -5204, 7, true));
+
                     //plants of the forest
                     scenicList.push(new Scenery("neprilnePlant", -9639 , 2010, 0.11, true));
                     scenicList.push(new Scenery("neprilnePlant", -10556 , -1226, -0.39, true));
@@ -67925,7 +67965,7 @@ function theLegend()
 
                     //Build Scenery
 
-                    //trees
+                    //trees in the southern wuncwer woods.
                     scenicList.push(new Scenery("pineTree", -7583 , -3885, 1.2, true));
                     scenicList.push(new Scenery("pineTree", -8065 , -3688, -3, true));
                     scenicList.push(new Scenery("pineTree", -8710 , -3916, -2.5, true));

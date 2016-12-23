@@ -1147,6 +1147,7 @@ function theLegend()
     allWorn.push(new Item("swampWalkerArmour", false)); //34
     allWorn.push(new Item("evrakLeatherArmour", false)); //35
     allWorn.push(new Item("anterShellArmour", false)); //36
+    allWorn.push(new Item("theCorpseRing", false)); //37
 
     var scenicList = [];
 
@@ -1631,10 +1632,6 @@ function theLegend()
             else if (cheatcode == "MedliaKit")
             {
                 uniqueChars.medliaLDS = true;
-            }
-            else if (cheatcode == "screwnelgref")
-            {
-                uniqueChars.nelgrefLDS = false;
             }
             else if (cheatcode == "showsize")
             {
@@ -5520,6 +5517,8 @@ function theLegend()
         this.rangedWeaponType = "none";
         this.areGlovesEquipped = false;
         this.isNecklaceEquipped = false;
+        this.isRingEquipped = false;
+        this.areBootsEquipped = false;
         //Shop Variables
         this.merchPosition = 0;
         //Bank Variables
@@ -6000,6 +5999,8 @@ function theLegend()
                 //CHECK FOR EFFECTS
                     //set flags
                 var resistDiseaseFlag = false;
+                var drainPlayerFlag = false;
+                var drainCorpseFlag = false;
 
                     //search worn ability list for abilities
                 for (var i = 0; i < this.AdAbility.length; i++)
@@ -6007,6 +6008,14 @@ function theLegend()
                     if (this.AdAbility[i] == "resistDisease")
                     {
                         resistDiseaseFlag = true;
+                    }
+                    if (this.AdAbility[i] == "drainPlayer")
+                    {
+                        drainPlayerFlag = true;
+                    }
+                    if (this.AdAbility[i] == "drainCorpse")
+                    {
+                        drainCorpseFlag = true;
                     }
                 }
 
@@ -6020,6 +6029,28 @@ function theLegend()
                 else
                 {
                     this.resistDisease = false;
+                }
+
+                if (drainPlayerFlag)
+                {
+                    this.health -= 0.11;
+                }
+
+                if (drainCorpseFlag)
+                {
+                    for (var i = 0; i < deadAIList.length; i++)
+                    {
+                        var distToCorpse = Math.sqrt((X - deadAIList[i].X) * (X - deadAIList[i].X) + (Y - deadAIList[i].Y) * (Y - deadAIList[i].Y));
+                        var corpseDrainAmount = 2 + Math.floor(this.getEminence() / 10);
+                        if (distToCorpse <= 25 + (15 * this.getEminence()))
+                        {
+                            for (var j = 0; j < corpseDrainAmount; j++)
+                            {
+                                magicList.push(new Magic({ID: "drainOrb"}, false, 0, deadAIList[i]));
+                            }
+                            deadAIList.splice(i, 1);
+                        }
+                    }
                 }
             };
 
@@ -8893,41 +8924,52 @@ function theLegend()
                 necklace = allWorn[0];
             }
 
+            var ring;
+
+            if (this.ringEquipped == "theCorpseRing")
+            {
+                ring = allWorn[37];
+            }
+            else
+            {
+                ring = allWorn[0];
+            }
+
             this.outfitType = outfit;
             this.glovesType = gloves;
             this.necklaceType = necklace;
-            //TODO add ring.
+            this.ringType = ring;
             //TODO add boots.
 
-            this.armour = outfit.protection + gloves.protection + necklace.protection; //TODO add ring, pendant, and boot's stats to all of the stats as well.
-            this.magicalResistance = outfit.magicalProtection + gloves.magicalProtection + necklace.magicalProtection;
-            this.warmthProtection = outfit.warmthRetention + gloves.warmthRetention + necklace.warmthRetention;
-            this.heatResistance = outfit.thirstRetention + gloves.thirstRetention + necklace.thirstRetention;
-            this.AdShockResist = outfit.shockResist + gloves.shockResist + necklace.shockResist;
+            this.armour = outfit.protection + gloves.protection + necklace.protection + ring.protection; //TODO add boot's stats to all of the stats as well.
+            this.magicalResistance = outfit.magicalProtection + gloves.magicalProtection + necklace.magicalProtection + ring.magicalProtection;
+            this.warmthProtection = outfit.warmthRetention + gloves.warmthRetention + necklace.warmthRetention + ring.warmthRetention;
+            this.heatResistance = outfit.thirstRetention + gloves.thirstRetention + necklace.thirstRetention + ring.thirstRetention;
+            this.AdShockResist = outfit.shockResist + gloves.shockResist + necklace.shockResist + ring.shockResist;
             //Main Stat Bonuses
-            this.AdStrength = outfit.strengthBonus + gloves.strengthBonus + necklace.strengthBonus;
-            this.AdEndurance = outfit.enduranceBonus + gloves.enduranceBonus + necklace.enduranceBonus;
-            this.AdToughness = outfit.toughnessBonus + gloves.toughnessBonus + necklace.toughnessBonus;
-            this.AdIntelligence = outfit.intelligenceBonus + gloves.intelligenceBonus + necklace.intelligenceBonus;
-            this.AdCharisma = outfit.charismaBonus + gloves.charismaBonus + necklace.charismaBonus;
-            this.AdRanged = outfit.rangedBonus + gloves.rangedBonus + necklace.rangedBonus;
-            this.AdConstitution = outfit.constitutionBonus + gloves.constitutionBonus + necklace.constitutionBonus;
-            this.AdStamina = outfit.staminaBonus + gloves.staminaBonus + necklace.staminaBonus;
-            this.AdDexterity = outfit.dexterityBonus + gloves.dexterityBonus + necklace.dexterityBonus;
-            this.AdStealth = outfit.stealthBonus + gloves.stealthBonus + necklace.stealthBonus;
+            this.AdStrength = outfit.strengthBonus + gloves.strengthBonus + necklace.strengthBonus + ring.strengthBonus;
+            this.AdEndurance = outfit.enduranceBonus + gloves.enduranceBonus + necklace.enduranceBonus + ring.enduranceBonus;
+            this.AdToughness = outfit.toughnessBonus + gloves.toughnessBonus + necklace.toughnessBonus + ring.toughnessBonus;
+            this.AdIntelligence = outfit.intelligenceBonus + gloves.intelligenceBonus + necklace.intelligenceBonus + ring.intelligenceBonus;
+            this.AdCharisma = outfit.charismaBonus + gloves.charismaBonus + necklace.charismaBonus + ring.charismaBonus;
+            this.AdRanged = outfit.rangedBonus + gloves.rangedBonus + necklace.rangedBonus + ring.rangedBonus;
+            this.AdConstitution = outfit.constitutionBonus + gloves.constitutionBonus + necklace.constitutionBonus + ring.constitutionBonus;
+            this.AdStamina = outfit.staminaBonus + gloves.staminaBonus + necklace.staminaBonus + ring.staminaBonus;
+            this.AdDexterity = outfit.dexterityBonus + gloves.dexterityBonus + necklace.dexterityBonus + ring.dexterityBonus;
+            this.AdStealth = outfit.stealthBonus + gloves.stealthBonus + necklace.stealthBonus + ring.stealthBonus;
             //Extra Stat Bonuses
             this.AdSleep = outfit.sleepBonus + gloves.sleepBonus + necklace.sleepBonus;
-            this.hungerMAX = this.hungerMAX + outfit.hungerBonus + gloves.hungerBonus + necklace.hungerBonus;
-            this.thirstMAX = this.thirstMAX + outfit.thirstBonus + gloves.thirstBonus + necklace.thirstBonus;
-            this.warmthMAX = this.warmthMAX + outfit.warmthBonus + gloves.warmthBonus + necklace.warmthBonus;
+            this.hungerMAX = this.hungerMAX + outfit.hungerBonus + gloves.hungerBonus + necklace.hungerBonus + ring.hungerBonus;
+            this.thirstMAX = this.thirstMAX + outfit.thirstBonus + gloves.thirstBonus + necklace.thirstBonus + ring.thirstBonus;
+            this.warmthMAX = this.warmthMAX + outfit.warmthBonus + gloves.warmthBonus + necklace.warmthBonus + ring.warmthBonus;
             //Magical Stat Bonuses
-            this.AdEminence = outfit.eminenceBonus + gloves.eminenceBonus + necklace.eminenceBonus;
-            this.AdWillpower = outfit.willpowerBonus + gloves.willpowerBonus + necklace.willpowerBonus;
-            this.AdKnowledge = outfit.knowledgeBonus + gloves.knowledgeBonus + necklace.knowledgeBonus;
-            this.AdConcentration = outfit.concentrationBonus + gloves.concentrationBonus + necklace.concentrationBonus;
-            this.AdMemory = outfit.memoryBonus + gloves.memoryBonus + necklace.memoryBonus;
+            this.AdEminence = outfit.eminenceBonus + gloves.eminenceBonus + necklace.eminenceBonus + ring.eminenceBonus;
+            this.AdWillpower = outfit.willpowerBonus + gloves.willpowerBonus + necklace.willpowerBonus + ring.willpowerBonus;
+            this.AdKnowledge = outfit.knowledgeBonus + gloves.knowledgeBonus + necklace.knowledgeBonus + ring.knowledgeBonus;
+            this.AdConcentration = outfit.concentrationBonus + gloves.concentrationBonus + necklace.concentrationBonus + ring.concentrationBonus;
+            this.AdMemory = outfit.memoryBonus + gloves.memoryBonus + necklace.memoryBonus + ring.memoryBonus;
 
-            this.AdAbility = [outfit.ability, gloves.ability, necklace.ability];
+            this.AdAbility = [outfit.ability, gloves.ability, necklace.ability, ring.ability];
 
             if (this.getToughness() < outfit.toughnessRequirement)
             {
@@ -21012,7 +21054,46 @@ function theLegend()
                                     }
                                 }
                             }
-                            //TODO add equipping for other accessories such as rings, and shoes/boots.
+                            else if (Inventory[i][0].subUtility == "ring")
+                            {
+                                //equpping ring
+                                if (this.isRingEquipped == false)
+                                {
+                                    Inventory[i][0].equipped = true;
+                                    this.isRingEquipped = true;
+                                    this.ringEquipped = Inventory[i][0].type;
+                                }
+                                else
+                                {
+                                    //unequipping ring
+                                    if (Inventory[i][0].equipped == true)
+                                    {
+                                        Inventory[i][0].equipped = false;
+                                        this.isRingEquipped = false;
+                                        this.ringEquipped = "none";
+                                    }
+                                }
+                            }
+                            else if (Inventory[i][0].subUtility == "boots")
+                            {
+                                //equpping boots
+                                if (this.areBootsEquipped == false)
+                                {
+                                    Inventory[i][0].equipped = true;
+                                    this.areBootsEquipped = true;
+                                    this.bootsEquipped = Inventory[i][0].type;
+                                }
+                                else
+                                {
+                                    //unequipping boots
+                                    if (Inventory[i][0].equipped == true)
+                                    {
+                                        Inventory[i][0].equipped = false;
+                                        this.areBootsEquipped = false;
+                                        this.bootsEquipped = "none";
+                                    }
+                                }
+                            }
                         }
                         else
                         {
@@ -24556,86 +24637,89 @@ function theLegend()
         {
             for(var j = 0; j < length; j++)
             {
-                if (player.cyrinthilimTrip)
+                if ((j - 1) * 300 + (extraX * 300) >= -X - 1 * CCC.width && (j - 1) * 300 + (extraX * 300) <= -X + 1 * CCC.width && (i - 1) * 300 + (extraY * 300) >= -Y - 1 * CCC.height && (i - 1) * 300 + (extraY * 300) <= -Y + 1 * CCC.height)
                 {
-                    XXX.save();
-                    XXX.globalAlpha = 0.4;
-                    XXX.scale(Math.random() * 6 + 1,Math.random() * 6 + 1)
-                    XXX.drawImage(blurDots, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                    XXX.restore();
-                }
-                else if (terrain == "outline")
-                {
-                    XXX.beginPath();
-                    XXX.fillStyle = "white";
-                    XXX.strokeStyle = "black";
-                    XXX.rect((j-1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                    XXX.fill();
-                    XXX.stroke();
-                }
-                else if (terrain == "kellstone")
-                {
-                    XXX.drawImage(kellStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "kelltile")
-                {
-                    XXX.drawImage(kellsStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "farmland")
-                {
-                    XXX.drawImage(farmground, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "greenGrass")
-                {
-                    XXX.drawImage(lushGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "hotGrass")
-                {
-                    XXX.drawImage(greenGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "jungle")
-                {
-                    XXX.drawImage(forestEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "crag")
-                {
-                    XXX.drawImage(rockyFlatEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "desert")
-                {
-                    XXX.drawImage(sandyEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "frost")
-                {
-                    XXX.drawImage(snowyEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "stoneWork")
-                {
-                    XXX.drawImage(stoneWorkEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "molten")
-                {
-                    XXX.drawImage(volcanicEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "dryGrass")
-                {
-                    XXX.drawImage(dryGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "snow")
-                {
-                    XXX.drawImage(snowEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "stonePath")
-                {
-                    XXX.drawImage(stonePathEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "arctic")
-                {
-                    XXX.drawImage(frozenEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "forest")
-                {
-                    XXX.drawImage(nordWoods, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    if (player.cyrinthilimTrip)
+                    {
+                        XXX.save();
+                        XXX.globalAlpha = 0.4;
+                        XXX.scale(Math.random() * 6 + 1,Math.random() * 6 + 1)
+                        XXX.drawImage(blurDots, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.restore();
+                    }
+                    else if (terrain == "outline")
+                    {
+                        XXX.beginPath();
+                        XXX.fillStyle = "white";
+                        XXX.strokeStyle = "black";
+                        XXX.rect((j-1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    else if (terrain == "kellstone")
+                    {
+                        XXX.drawImage(kellStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (terrain == "kelltile")
+                    {
+                        XXX.drawImage(kellsStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (terrain == "farmland")
+                    {
+                        XXX.drawImage(farmground, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (terrain == "greenGrass")
+                    {
+                        XXX.drawImage(lushGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (terrain == "hotGrass")
+                    {
+                        XXX.drawImage(greenGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (terrain == "jungle")
+                    {
+                        XXX.drawImage(forestEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (terrain == "crag")
+                    {
+                        XXX.drawImage(rockyFlatEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (terrain == "desert")
+                    {
+                        XXX.drawImage(sandyEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (terrain == "frost")
+                    {
+                        XXX.drawImage(snowyEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (terrain == "stoneWork")
+                    {
+                        XXX.drawImage(stoneWorkEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (terrain == "molten")
+                    {
+                        XXX.drawImage(volcanicEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (terrain == "dryGrass")
+                    {
+                        XXX.drawImage(dryGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (terrain == "snow")
+                    {
+                        XXX.drawImage(snowEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (terrain == "stonePath")
+                    {
+                        XXX.drawImage(stonePathEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (terrain == "arctic")
+                    {
+                        XXX.drawImage(frozenEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (terrain == "forest")
+                    {
+                        XXX.drawImage(nordWoods, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
                 }
             }
 
@@ -24997,6 +25081,8 @@ function theLegend()
                 this.allys.push("bearia");
                 this.allys.push("shehidia");
                 this.allys.push("ulgoyia");
+                this.allys.push("narthwarpia");
+                this.allys.push("berulnia");
             }
             if (this.team == "gribia")
             {
@@ -25013,6 +25099,10 @@ function theLegend()
                 this.allys.push("docile");
                 this.allys.push("gribia");
                 this.allys.push("wild");
+            }
+            if (this.team == "berulnia")
+            {
+                this.allys.push("docile");
             }
         };
 
@@ -57117,6 +57207,79 @@ function theLegend()
                 this.buyValue = 16 - Math.floor(player.getCharisma() / 6); // at max, buy for 8.
                 this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
             }
+            else if (this.type == "theCorpseRing")
+            {
+                //For All Items
+                this.identity = "The Corpse Ring";
+                this.weight = 0.01;
+                this.size = 3;
+                this.description = "A tar-black ring with a miniature whithered skull embedded in it as the centerpiece.";
+                this.intForDes = 22;
+                if (player.getEminence() < 5)
+                {
+                    this.intDescription = "This ring will drain your life force if you do not have the power to control it.";
+                }
+                else
+                {
+                    this.intDescription = "This ring feeds off of souls that still cling to their corpses, healing the wearer.";
+                }
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "ring";
+                //Utility Focused
+                //protections
+                this.protection = 0 * ((player.toughness / 100) + 1);
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 0;
+                this.thirstRetention = 0;
+                this.shockResist = 0;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 0;
+                this.toughnessBonus = 0;
+                this.intelligenceBonus = 0;
+                this.charismaBonus = 3;
+                this.rangedBonus = 0;
+                this.constitutionBonus = 0;
+                this.staminaBonus = 0;
+                this.dexterityBonus = 0;
+                this.stealthBonus = 0;
+                //Extra Stat Bonuses
+                this.sleepBonus = 0;
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 1;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                if (player.getEminence() < 5)
+                {
+                    this.ability = "drainPlayer";
+                }
+                else
+                {
+                    this.ability = "drainCorpse";
+                }
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 3090 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 2890.
+                if (player.getEminence() < 5)
+                {
+                    this.sellValue = 0; // at max, sell for 0.
+                }
+                else
+                {
+                    this.sellValue = 2200 + Math.floor(player.getCharisma() / 0.1); // at max, sell for 2700.
+                }
+            }
             else if (this.type == "mofuFive")
             {
                 //For All Items
@@ -60249,6 +60412,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polpol, 1, 1, 27, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.2), 27 * 1.2, 24 * 1.2);
             }
+            else if (this.type == "theCorpseRing")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 48, 44, 13, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1), 13 * 1, 9 * 1);
+            }
             else if (this.type == "rawArdilFlesh")
             {
                 XXX.beginPath();
@@ -62087,6 +62255,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polpol, 1, 1, 27, 24, this.invX - (1/2 * 27 * 1.2), this.invY - (1/2 * 24 * 1.2), 27 * 1.2, 24 * 1.2);
             }
+            else if (this.type == "theCorpseRing")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 48, 44, 13, 9, this.invX - (1/2 * 13 * 1.25), this.invY - (1/2 * 9 * 1.25), 13 * 1.25, 9 * 1.25);
+            }
             else if (this.type == "rawArdilFlesh")
             {
                 LXX.beginPath();
@@ -63843,6 +64016,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polpol, 1, 1, 27, 24, this.invX - (1/2 * 27 * 1.2), this.invY - (1/2 * 24 * 1.2), 27 * 1.2, 24 * 1.2);
+            }
+            else if (this.type == "theCorpseRing")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 48, 44, 13, 9, this.invX - (1/2 * 13 * 1.25), this.invY - (1/2 * 9 * 1.25), 13 * 1.25, 9 * 1.25);
             }
             else if (this.type == "rawArdilFlesh")
             {
@@ -68471,6 +68649,22 @@ function theLegend()
                         ArtificialIntelligenceAccess.push(new Unit(-19102, 5055, "Soldier", false, "Nelgref's Pet Bandit", {race: "Freynor", faction: "hostile", con: 6, speed: 1.89, outfit: ["blackBearLeatherArmour", 4], weapon: ["freydicSword", [9, 4], 0, 17, 1.4], ranged: [false, "steelBolt", 11, 2250, 18, 40, 0, "none", 7], patrolStops: 0, patrolLoop: true, route:[[3071, 314]]}));
                         ArtificialIntelligenceAccess.push(new Unit(-18829, 4944, "Soldier", false, "Nelgref's Pet Bandit", {race: "Freynor", faction: "hostile", con: 5, speed: 1.95, outfit: ["blackBearLeatherArmour", 4.5], weapon: ["freydicSword", [8, 5], 0, 17, 1.65], ranged: [false, "steelBolt", 11, 2250, 18, 40, 0, "none", 7], patrolStops: 0, patrolLoop: true, route:[[3071, 314]]}));
                     }
+                    else if (uniqueChars.nelgrefLDS == false)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-19031, 5072, "Shehid", true, "shetop"));
+                        ArtificialIntelligenceAccess.push(new Unit(-19209, 4955, "Shehid", true, "shetel"));
+                        ArtificialIntelligenceAccess.push(new Unit(-19220, 4736, "Shehid", false, "shetlip"));
+                        ArtificialIntelligenceAccess.push(new Unit(-19361, 4670, "Shehid", false, "shetlic"));
+                        ArtificialIntelligenceAccess.push(new Unit(-19390, 4819, "Shehid", false, "shetlil"));
+                        ArtificialIntelligenceAccess.push(new Unit(-19028, 4798, "Shehid", false, "shetlaf"));
+                        ArtificialIntelligenceAccess.push(new Unit(-18892, 4652, "Shehid", true, "shetlint"));
+                        ArtificialIntelligenceAccess.push(new Unit(-19029, 5211, "Shehid", false, "shetluf"));
+                        ArtificialIntelligenceAccess.push(new Unit(-18844, 4864, "Shehid", false, "shetlif"));
+                        scenicList.push(new Scenery("glinPlant", -19151 , 5065, 5, true));
+                        scenicList.push(new Scenery("glinPlant", -19348 , 4690, 1, true));
+                        scenicList.push(new Scenery("glinPlant", -19192 , 4937, -2.94, true));
+                        scenicList.push(new Scenery("glinPlant", -19087 , 4935, 0, true));
+                    }
 
                     //The Victims
                     scenicList.push(new Scenery("skeleton", -19230, 5008, 5.12, 1.75));
@@ -68533,8 +68727,16 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-15646, 4550, "Narthwarp", false, "docile"));
                     ArtificialIntelligenceAccess.push(new Unit(-15865, 4466, "Narthwarp", false, "docile"));
                     ArtificialIntelligenceAccess.push(new Unit(-16109, 4842, "Narthwarp", false, "docile"));
-                    scenicList.push(new Scenery("ulgoyPlant", -16510, 3927, 4.9, 3));
-                    ArtificialIntelligenceAccess.push(new Unit(-16521, 3939, "Ulgoy", "giant", "The Really Big Plant"));
+                    if (uniqueChars.nelgrefLDS == false)
+                    {
+                        scenicList.push(new Scenery("ulgoyPlant", -16488, 3908, 4.9, 7));
+                        ArtificialIntelligenceAccess.push(new Unit(-16473, 3885, "Ulgoy", "giant", "The Really Big Plant"));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("ulgoyPlant", -16488, 3908, -1, 3.15));
+                        ArtificialIntelligenceAccess.push(new Unit(-16473, 3885, "Ulgoy", true, "Biggy-Realz"));
+                    }
                     ArtificialIntelligenceAccess.push(new Unit(-16247, 3330, "BlackBear", true, "docile"));
                     ArtificialIntelligenceAccess.push(new Unit(-16497, 2348, "Grib", true, "Gral"));
                     ArtificialIntelligenceAccess.push(new Unit(-16874, 2476, "Grib", true, "Grul"));
@@ -68553,8 +68755,8 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-21779, 2420, "Grib", true, "Frodo"));
                     ArtificialIntelligenceAccess.push(new Unit(-21522, 2687, "Grib", true, "Samwise"));
                     ArtificialIntelligenceAccess.push(new Unit(-22888, 2091, "Varn", true, "Flaib"));
-                    scenicList.push(new Scenery("ulgoyPlant", -22542, 4129, -3, 1.05));
-                    ArtificialIntelligenceAccess.push(new Unit(-22544, 4132, "Ulgoy", false, "Planter"));
+                    scenicList.push(new Scenery("ulgoyPlant", -22546, 4123, -3, 2.12));
+                    ArtificialIntelligenceAccess.push(new Unit(-22550, 4118, "Ulgoy", false, "Planter"));
                     ArtificialIntelligenceAccess.push(new Unit(-20755, 3424, "BlackBear", false, "Clibord the Bear"));
                     ArtificialIntelligenceAccess.push(new Unit(-21610, 5421, "Lizard", false, "Liva"));
                     ArtificialIntelligenceAccess.push(new Unit(-21075, 4279, "Varn", false, "docile"));
@@ -68590,13 +68792,101 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-15621, -2601, "Varn", true, "Tob"));
                     ArtificialIntelligenceAccess.push(new Unit(-13547, -3147, "Grib", true, "Todder"));
                     ArtificialIntelligenceAccess.push(new Unit(-14165, -1195, "Lizard", true, "docile"));
-                    scenicList.push(new Scenery("ulgoyPlant", -14555, 441, -1, 1.3));
-                    ArtificialIntelligenceAccess.push(new Unit(-14565, 445, "Ulgoy", true, "Planted"));
+                    scenicList.push(new Scenery("ulgoyPlant", -14555, 441, -1, 3.25));
+                    ArtificialIntelligenceAccess.push(new Unit(-14546, 437, "Ulgoy", true, "Planted"));
                     ArtificialIntelligenceAccess.push(new Unit(-15058, -47, "BlackBear", false, "Plant Food"));
                     ArtificialIntelligenceAccess.push(new Unit(-14311, -383, "Varn", true, "docile"));
                     ArtificialIntelligenceAccess.push(new Unit(-15181, -576, "Lizard", true, "docile"));
                     ArtificialIntelligenceAccess.push(new Unit(-18661, 424, "BlackBear", false, "Berry Buffer"));
-
+                    ArtificialIntelligenceAccess.push(new Unit(-16843, -1317, "Narthwarp", false, "docile"));
+                    ArtificialIntelligenceAccess.push(new Unit(-14871, -912, "Varn", true, "docile"));
+                    if (Math.random() > 0.74)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-17651, -2072, "Narthwarp", true, "Kulpatelep"));
+                        ArtificialIntelligenceAccess.push(new Unit(-18089, -2704, "Narthwarp", false, "Telp"));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-17651, -2072, "Narthwarp", false, "Kulpa"));
+                        ArtificialIntelligenceAccess.push(new Unit(-17449, -2093, "Narthwarp", false, "Telep"));
+                        ArtificialIntelligenceAccess.push(new Unit(-17798, -2281, "Narthwarp", false, "Leplep"));
+                        ArtificialIntelligenceAccess.push(new Unit(-17836, -2802, "Narthwarp", false, "Telp"));
+                        ArtificialIntelligenceAccess.push(new Unit(-18278, -2802, "Narthwarp", false, "Tepla"));
+                        ArtificialIntelligenceAccess.push(new Unit(-19849, -3181, "BlackBear", false, "Juvelina"));
+                    }
+                    ArtificialIntelligenceAccess.push(new Unit(-19272, -2795, "BlackBear", true, "Juvelin"));
+                    ArtificialIntelligenceAccess.push(new Unit(-20060, -2796, "Lizard", true, "docile"));
+                    ArtificialIntelligenceAccess.push(new Unit(-20511, -2924, "Grib", true, "Tedder"));
+                    ArtificialIntelligenceAccess.push(new Unit(-20619, -2502, "Grib", false, "Tedrit"));
+                    ArtificialIntelligenceAccess.push(new Unit(-18988, -2543, "Viper", false, "Slick-scale"));
+                    if (Math.random() > 0.82)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-18630, -2335, "Viper", true, "Slick-skin"));
+                        ArtificialIntelligenceAccess.push(new Unit(-16830, -64, "BlackBear", false, "Juvelen"));
+                        ArtificialIntelligenceAccess.push(new Unit(-21241, 638, "BlackBear", false, "Juvalic"));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-18630, -2335, "Viper", false, "Slick-skin"));
+                        ArtificialIntelligenceAccess.push(new Unit(-16830, -64, "BlackBear", true, "Juvelen"));
+                        ArtificialIntelligenceAccess.push(new Unit(-21241, 638, "Lizard", false, "docile"));
+                        ArtificialIntelligenceAccess.push(new Unit(-21031, 477, "Lizard", false, "docile"));
+                    }
+                    ArtificialIntelligenceAccess.push(new Unit(-17137, -593, "BlackBear", false, "Juvel"));
+                    ArtificialIntelligenceAccess.push(new Unit(-17886, -1025, "Lizard", false, "lizter"));
+                    ArtificialIntelligenceAccess.push(new Unit(-18023, -1131, "Lizard", false, "liztel"));
+                    ArtificialIntelligenceAccess.push(new Unit(-17567, -1193, "Lizard", false, "lizt"));
+                    ArtificialIntelligenceAccess.push(new Unit(-16960, 534, "Shehid", false, "Glup"));
+                    ArtificialIntelligenceAccess.push(new Unit(-17007, 150, "Shehid", false, "Glip"));
+                    ArtificialIntelligenceAccess.push(new Unit(-14576, 812, "Shehid", true, "Glap"));
+                    ArtificialIntelligenceAccess.push(new Unit(-15164, 722, "Shehid", false, "Glep"));
+                    ArtificialIntelligenceAccess.push(new Unit(-15561, 844, "Shehid", true, "Glop"));
+                    ArtificialIntelligenceAccess.push(new Unit(-19052, -2302, "Shehid", false, "Gliip"));
+                    ArtificialIntelligenceAccess.push(new Unit(-20743, -2220, "Shehid", false, "Gleep"));
+                    ArtificialIntelligenceAccess.push(new Unit(-20938, -1931, "Shehid", false, "Gleap"));
+                    ArtificialIntelligenceAccess.push(new Unit(-20776, -1903, "Varn", true, "docdoc"));
+                    ArtificialIntelligenceAccess.push(new Unit(-20580, -1805, "Varn", true, "docedoc"));
+                    ArtificialIntelligenceAccess.push(new Unit(-20254, -1786, "Varn", true, "doc"));
+                    ArtificialIntelligenceAccess.push(new Unit(-20446, -1736, "Varn", true, "dock"));
+                    ArtificialIntelligenceAccess.push(new Unit(-20558, -1394, "Varn", true, "doce"));
+                    ArtificialIntelligenceAccess.push(new Unit(-20809, -1594, "Varn", false, "dewey"));
+                    ArtificialIntelligenceAccess.push(new Unit(-20745, -1272, "Varn", false, "scrappy"));
+                    ArtificialIntelligenceAccess.push(new Unit(-21055, -724, "Narthwarp", false, "Kulta"));
+                    ArtificialIntelligenceAccess.push(new Unit(-20815, -833, "Narthwarp", false, "Tultet"));
+                    ArtificialIntelligenceAccess.push(new Unit(-21202, 974, "Shehid", false, "Glupt"));
+                    ArtificialIntelligenceAccess.push(new Unit(-22587, 760, "Grib", true, "Talgtits"));
+                    ArtificialIntelligenceAccess.push(new Unit(-22665, 465, "Shehid", false, "Glipt"));
+                    ArtificialIntelligenceAccess.push(new Unit(-22492, -2627, "Shehid", true, "Glept"));
+                    ArtificialIntelligenceAccess.push(new Unit(-22330, -2847, "Shehid", false, "Glapt"));
+                    ArtificialIntelligenceAccess.push(new Unit(-21940, -2697, "Shehid", false, "Glopt"));
+                    ArtificialIntelligenceAccess.push(new Unit(-23064, -3078, "Varn", false, "B-Dew"));
+                    ArtificialIntelligenceAccess.push(new Unit(-22850, -1810, "Shehid", false, "Gleept"));
+                    ArtificialIntelligenceAccess.push(new Unit(-22400, -1305, "Lizard", false, "liztil"));
+                    ArtificialIntelligenceAccess.push(new Unit(-18456, 3006, "Shehid", false, "Glilpt"));
+                    ArtificialIntelligenceAccess.push(new Unit(-17556, 3418, "Shehid", true, "Glulpt"));
+                    ArtificialIntelligenceAccess.push(new Unit(-14218, 4947, "Shehid", false, "Glolpt"));
+                    ArtificialIntelligenceAccess.push(new Unit(-16711, 5327, "Shehid", false, "Glelpt"));
+                    ArtificialIntelligenceAccess.push(new Unit(-21770, 5635, "Shehid", false, "Glelpt"));
+                    ArtificialIntelligenceAccess.push(new Unit(-14530, -669, "Shehid", false, "Gloolpt"));
+                    ArtificialIntelligenceAccess.push(new Unit(-22718, -369, "Lizard", false, "docile"));
+                    if (Math.random() > 0.80)
+                    {
+                        if (Math.random() > 5)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-21429, 1215, "Viper", false, "Dry-scale"));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-21429, 1215, "Shehid", true, "Glum"));
+                        }
+                    }
+                    else
+                    {
+                        if (Math.random() > 6.5)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-21429, 1215, "Shehid", false, "Glim"));
+                        }
+                    }
                     //Build Scenery
 
                     //trees in the wuncwer woods.

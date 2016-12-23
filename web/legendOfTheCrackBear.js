@@ -1377,6 +1377,7 @@ function theLegend()
     handcrafted.push(new Item("techiTea", false));
     handcrafted.push(new Item("dualVardanianBattleAxe", false));
     handcrafted.push(new Item("dyedMufCloth", false));
+    handcrafted.push(new Item("culprisBandage", false));
 
     //This sets the items that are in shops.
     function shopItemIDSetter()
@@ -5647,8 +5648,11 @@ function theLegend()
         this.shockedTime = 0;
         this.shockedTime2 = new Date().getTime();
         this.immune = false; //this while true makes enemy damage equal to 0.
-        this.illnesses = [];
-        this.antibodies = [];
+        this.illnesses = []; //what you're sick with.
+        this.antibodies = []; //what you were once sick with and now immune to.
+        this.bandagedStoreTime = new Date().getTime();
+        this.bandagedTime = 0; //time limit for bandages
+        this.bandaged = false; //this flag is true when your character has applied bandages which are still in effect.
 
         //utility or extra variables
         this.AdAbility = []; //this is a list of all active abilities held by armours and equipped outfits
@@ -7022,6 +7026,26 @@ function theLegend()
                 }
             };
 
+            this.bandagedTimer = function()
+            {
+                if (this.bandagedTime >= 1)
+                {
+                    if (new Date().getTime() - this.bandagedStoreTime >= 1000)
+                    {
+                        this.bandagedStoreTime = new Date().getTime();
+                        this.bandagedTime -= 1;
+                    }
+                }
+                if (this.bandagedTime > 0)
+                {
+                    this.bandaged = true;
+                }
+                else
+                {
+                    this.bandaged = false;
+                }
+            };
+
             this.stunnedTimer = function()
             {
                 if (this.stunnedTime >= 1)
@@ -7481,6 +7505,7 @@ function theLegend()
             this.fleshMite();
             this.brainMaggot();
             this.alcoholManagement();
+            this.bandagedTimer();
             this.stunnedTimer();
             this.poison();
             this.recovery();
@@ -7923,6 +7948,30 @@ function theLegend()
             {
                 //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
                 this.removeNotice("Fungal Fever");
+            }
+        };
+
+        //Insomnia Notice Function
+        this.bandagedChecker = function()
+        {
+            if (this.bandaged == true)
+            {
+                // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+                this.addNotice("Bandaged");
+                //red background
+                XXX.beginPath();
+                XXX.fillStyle = "#76EEC6";
+                XXX.lineWidth = 1;
+                XXX.strokeStyle = "black";
+                XXX.rect(this.arrangeNotices("Bandaged"), 413, 20, 20);
+                XXX.fill();
+                XXX.stroke();
+                XXX.drawImage(verse, 3955, 309, 29, 10, this.arrangeNotices("Bandaged") + 5, 417, 11, 16);
+            }
+            else
+            {
+                //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+                this.removeNotice("Bandaged");
             }
         };
 
@@ -8459,6 +8508,7 @@ function theLegend()
             this.fatigueChecker();
             this.deprivationChecker();
             this.insomniaChecker();
+            this.bandagedChecker();
         };
 
         //MOVEMENT ANIMATION
@@ -21356,6 +21406,44 @@ function theLegend()
                                     break;
                                 }
                             }
+                            else if (Inventory[i][0].subUtility == "bandage")
+                            {
+                                if (Inventory[i][0].ability == "bandageI")
+                                {
+                                    this.bandagedTime = Math.max(200, this.bandagedTime);
+                                }
+                                else if (Inventory[i][0].ability == "bandageII")
+                                {
+                                    this.health += 0.5;
+                                    this.bandagedTime = Math.max(400, this.bandagedTime);
+                                }
+                                else if (Inventory[i][0].ability == "bandageIII")
+                                {
+                                    this.health += 1;
+                                    this.bandagedTime = Math.max(640, this.bandagedTime);
+                                }
+                                else if (Inventory[i][0].ability == "bandageIV")
+                                {
+                                    this.health += 2;
+                                    this.bandagedTime = Math.max(880, this.bandagedTime);
+                                }
+                                else if (Inventory[i][0].ability == "bandageV")
+                                {
+                                    this.health += 3;
+                                    this.bandagedTime = Math.max(1200, this.bandagedTime);
+                                }
+                                //todo if bleeding effect is a thing have that be stopped by bandages here.
+                                //delete bandage when used...
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
                         }
                     }
                     else if (lowBar == "inventory" && lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord) //give the name of the Item and its stats when hovered over.
@@ -21935,7 +22023,15 @@ function theLegend()
             //Health
         this.healthRegeneration = function()
         {
-            if (this.health < this.healthMAX && this.health > 0 && this.fleshMites == false && this.hunger > 0 && this.thirst > 0)
+            if (this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/2) && this.energy >= this.energyMAX && this.hunger >= (8/10 * this.hungerMAX) && this.thirst >= (8/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: A bandage must be used.
+            {
+                this.health += 5 * (TTD / (45000 - 420 * Math.min(58.333, this.getEndurance()) * 2));
+            }
+            else if (this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 3/5) && this.energy >= this.energyMAX && this.hunger >= (9/10 * this.hungerMAX) && this.thirst >= (9/10 * this.thirstMAX) && this.fleshMites == false && this.getEndurance() >= 10) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: If level 10 endurance is achieved.
+            {
+                this.health += 2 * (TTD / (45000 - 420 * Math.min(58.333, this.getEndurance()) * 2));
+            }
+            else if (this.health < this.healthMAX && this.health > 0 && this.fleshMites == false && this.hunger > 0 && this.thirst > 0)
             {
                 this.health += 1 * (TTD / (45000 - 420 * Math.min(58.333, this.getEndurance()) * 2));
             }
@@ -54976,6 +55072,32 @@ function theLegend()
                 this.buyValue = 6 - Math.floor(player.getCharisma() / 15); // at max, buy for 3.
                 this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
             }
+            else if (this.type == "culprisBandage")
+            {
+                //For All Items
+                this.identity = "Bandage";
+                this.weight = 0.05;
+                this.size = 3;
+                this.description = "A strip of cloth rubbed with culpris.";
+                this.intForDes = 5;
+                this.intDescription = "Bandages can only be used effectively when you are above 1/2 health (50%), your energy is full (100%), and you have been thouroughly watered and fed (80%).";
+
+                //Define Utility
+                this.utility = "tool";
+                this.subUtility = "bandage";
+
+                //ability
+                this.ability = "bandageI";
+
+                //Crafting
+                this.yield = 4;
+                this.intForCraft = 2;
+                this.ingredients = [["Culpris Leaf", 3], ["Cloth", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+            }
             else if (this.type == "naapridFiber")
             {
                 //For All Items
@@ -56466,7 +56588,7 @@ function theLegend()
                     this.size = 16;
                     this.description = "There will be blood.";
                     this.intForDes = 10;
-                    this.intDescription = "When you have achieve 14 points in Dexterity, Endurance, or Strength you unlock for each a unique bonus for this blade while you are below 1/3 health.";
+                    this.intDescription = "When you have achieved 14 points in Dexterity, Endurance, or Strength you unlock for each a unique bonus for this blade while you are below 1/3 health.";
                 }
                 else
                 {
@@ -60636,6 +60758,15 @@ function theLegend()
                 XXX.drawImage(verse, 3955, 309, 29, 10,  - (1/2 * 29 * 1.5), - (1/2 * 10 * 1.5), 29 * 1.5, 10 * 1.5);
                 XXX.restore();
             }
+            else if (this.type == "culprisBandage")
+            {
+                XXX.beginPath();
+                XXX.save();
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                XXX.rotate(3/8 * 2 * Math.PI);
+                XXX.drawImage(verse, 3955, 309, 29, 10,  - (1/2 * 29 / 1.25), - (1/2 * 10 / 1.25), 29 / 1.25, 10 / 1.25);
+                XXX.restore();
+            }
             else if (this.type == "naapridFiber" || this.type == "varnFiber" || this.type == "evrakFiber" || this.type == "avrakFiber")
             {
                 XXX.beginPath();
@@ -62488,6 +62619,15 @@ function theLegend()
                 LXX.drawImage(verse, 3955, 309, 29, 10,  - (1/2 * 29 * 1.5), - (1/2 * 10 * 1.5), 29 * 1.5, 10 * 1.5);
                 LXX.restore();
             }
+            else if (this.type == "culprisBandage")
+            {
+                LXX.beginPath();
+                LXX.save();
+                LXX.translate(this.invX, this.invY);
+                LXX.rotate(3/8 * 2 * Math.PI);
+                LXX.drawImage(verse, 3955, 309, 29, 10,  - (1/2 * 29 / 1.25), - (1/2 * 10 / 1.25), 29 / 1.25, 10 / 1.25);
+                LXX.restore();
+            }
             else if (this.type == "naapridFiber" || this.type == "varnFiber" || this.type == "evrakFiber" || this.type == "avrakFiber")
             {
                 LXX.beginPath();
@@ -64250,6 +64390,15 @@ function theLegend()
                 XXX.drawImage(verse, 3955, 309, 29, 10,  - (1/2 * 29 * 1.5), - (1/2 * 10 * 1.5), 29 * 1.5, 10 * 1.5);
                 XXX.restore();
             }
+            else if (this.type == "culprisBandage")
+            {
+                XXX.beginPath();
+                XXX.save();
+                XXX.translate(this.invX, this.invY);
+                XXX.rotate(3/8 * 2 * Math.PI);
+                XXX.drawImage(verse, 3955, 309, 29, 10,  - (1/2 * 29 / 1.25), - (1/2 * 10 / 1.25), 29 / 1.25, 10 / 1.25);
+                XXX.restore();
+            }
             else if (this.type == "naapridFiber" || this.type == "varnFiber" || this.type == "evrakFiber" || this.type == "avrakFiber")
             {
                 XXX.beginPath();
@@ -65747,7 +65896,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(1171, 699, "Person", false, "Laandeg the Alchemist", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[744, 1133], [801, 1156], [840, 373], [744, 1545]], merchant: true, merchandise: [[new Item("coins", false, false), 29], [new Item("healingSalve", false, false), 4], [new Item("trollsBlood", false, false), 1], [new Item("rawTrollsBlood", false, false), 1], [new Item("cleansingPotion", false, false), 1], [new Item("energyPotionI", false, false), 3], [new Item("speedPotionI", false, false), 2], [new Item("energilPotionI", false, false), 2], [new Item("energilPotionII", false, false), 1], [new Item("potionGlass", false, false), 18], [new Item("glassJar", false, false), 14], [new Item("rawWolfLiver", false, false), 4]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(1171, 699, "Person", false, "Laandeg the Alchemist", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[744, 1133], [801, 1156], [840, 373], [744, 1545]], merchant: true, merchandise: [[new Item("coins", false, false), 29], [new Item("culprisBandage", false, false), 2], [new Item("healingSalve", false, false), 4], [new Item("trollsBlood", false, false), 1], [new Item("rawTrollsBlood", false, false), 1], [new Item("cleansingPotion", false, false), 1], [new Item("energyPotionI", false, false), 3], [new Item("speedPotionI", false, false), 2], [new Item("energilPotionI", false, false), 2], [new Item("energilPotionII", false, false), 1], [new Item("potionGlass", false, false), 18], [new Item("glassJar", false, false), 14], [new Item("rawWolfLiver", false, false), 4]]}));
                         }
                     }
                     if (uniqueChars.hilmundLDS == true)

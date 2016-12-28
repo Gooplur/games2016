@@ -3,10 +3,11 @@
  */
 
 //TODO LIST
-//todo finish Svehn's Quest "A Lost Delivery" by adding the new forest map and Nelgref's bandit crew (broken caravan and crate)
+
+//todo fix summoned wolves so that they can damage enemies. a problem concerning teams they work if not on the team "player" also they are a "manual" style attacking creature.
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
 //todo revise the sleeping system... as of right now it is an absolute crazy juju ball made of sand candy!!! Which is a bad thing.
-//todo finish adding the beast journal. AND FIGURE OUT HOW TO GET BEAST JOURNAL TO SAVE!!!
+//todo finish adding the beast journal.
 //todo add brain flies.
 //todo integrate the sleep system to beds, add hangover, and soarness effects as well as mini notices.
 //todo add a rest without bed button on the UI that uses a homemade confirm popup to ask if you are sure you want to sleep.
@@ -14,10 +15,8 @@
 //todo add the nappy closed eye for the sleepButton. (it's on poly)
 //todo add items: dried plutt with honey
 //todo add the dexterity system: lv 20 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
-//todo add arrow mods such as poison, electric, wind, armour piercing... and also normal steel arrows.
-//todo add electricity spells
+//todo add arrow mods such as poison, electric, wind, armour piercing...
 //todo add vines spell
-//todo add summon spell
 //todo add weaken spell
 //todo add charm spell
 //todo add tornado spell
@@ -871,6 +870,7 @@ function theLegend()
     var key9 = false;
     var key0 = false;
     var tildKey = false;
+    var rKey = false;
 
     //DEVELOPMENTAL VARIABLES (variables for the developer to use)
         //Locational
@@ -924,6 +924,7 @@ function theLegend()
         //Unique character life/death status //true means alive false means dead...
         bobithLDS: true,
         medliaLDS: true,
+        garldLDS: true,
         nelgrefLDS: true,
         drohforLDS: true,
         hilmundLDS: true,
@@ -1610,6 +1611,23 @@ function theLegend()
             {
                 
             }
+            else if (cheatcode == "monsterMaker")
+            {
+                var creature = prompt("Pick creature type...");
+                var alpha = prompt("Pick creature's alpha...");
+                if (alpha == "true")
+                {
+                    alpha = true;
+                }
+                var equis = prompt("Set X value...");
+                var yGriega = prompt("Set Y value...");
+                ArtificialIntelligenceAccess.unshift(new Unit(equis, yGriega, creature, alpha, "syntheticMonster"));
+                console.log(ArtificialIntelligenceAccess);
+            }
+            else if (cheatcode == "unitListChecker")
+            {
+                console.log(ArtificialIntelligenceAccess);
+            }
             else if (cheatcode == "1390")
             {
                 player.concentration = Math.round(player.concentration / 2);
@@ -1633,6 +1651,11 @@ function theLegend()
             else if (cheatcode == "MedliaKit")
             {
                 uniqueChars.medliaLDS = true;
+            }
+            else if (cheatcode == "fixOrgell")
+            {
+                player.baseThirst = 25;
+                player.baseHunger = 55;
             }
             else if (cheatcode == "showsize")
             {
@@ -5001,6 +5024,11 @@ function theLegend()
             tildKey = false;
         }
 
+        if (key == 82)
+        {
+            rKey = false;
+        }
+
         if (key == 83)
         {
             sKey = false;
@@ -5094,6 +5122,11 @@ function theLegend()
         if (key == 192)
         {
             tildKey = true;
+        }
+
+        if (key == 82)
+        {
+            rKey = true;
         }
 
         if (key == 83)
@@ -10381,6 +10414,133 @@ function theLegend()
 
                     }
                     this.castingCooldown = new Date().getTime();
+                }
+            }
+
+            //Summoning Form
+            if (this.spell.ID == "summonFrich" || this.spell.ID == "summonWolf")
+            {
+                this.stageEngine(7, 0.20, false);
+
+                //ATTACK
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 163, 367, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 165, 450, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 174, 490, 37, 29, -1/2 * 37 * 1.25, -1/2 * 29 * 1.25, 37 * 1.25, 29 * 1.25);
+                    XXX.restore();
+                    this.doMagic = true;
+                }
+                else if (Math.floor(this.stage) <= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 175, 570, 37, 29, -1/2 * 37 * 1.25, -1/2 * 29 * 1.25, 37 * 1.25, 29 * 1.25);
+                    XXX.restore();
+                    if (this.doMagic)
+                    {
+                        this.doMagic = false;
+                        this.magicalExperience += this.spell.EXP;
+
+                        if (player.getConcentration() >= 50)
+                        {
+                            magicList.push(new Magic(player.spell, true, 1));
+                            magicList.push(new Magic(player.spell, true, 2));
+                            magicList.push(new Magic(player.spell, true, 3));
+                            magicList.push(new Magic(player.spell, true, 4));
+                            magicList.push(new Magic(player.spell, true, 5));
+                            magicList.push(new Magic(player.spell, true, 6));
+                        }
+                        else if (player.getConcentration() >= 40)
+                        {
+                            magicList.push(new Magic(player.spell, true, 1));
+                            magicList.push(new Magic(player.spell, true, 2));
+                            magicList.push(new Magic(player.spell, true, 3));
+                            magicList.push(new Magic(player.spell, true, 4));
+                            magicList.push(new Magic(player.spell, true, 5));
+                        }
+                        else if (player.getConcentration() >= 30)
+                        {
+                            magicList.push(new Magic(player.spell, true, 1));
+                            magicList.push(new Magic(player.spell, true, 2));
+                            magicList.push(new Magic(player.spell, true, 3));
+                            magicList.push(new Magic(player.spell, true, 4));
+                        }
+                        else if (player.getConcentration() >= 20)
+                        {
+                            magicList.push(new Magic(player.spell, true, 1));
+                            magicList.push(new Magic(player.spell, true, 2));
+                            magicList.push(new Magic(player.spell, true, 3));
+                        }
+                        else if (player.getConcentration() >= 10)
+                        {
+                            magicList.push(new Magic(player.spell, true, 1));
+                            magicList.push(new Magic(player.spell, true, 2));
+                        }
+                        else
+                        {
+                            magicList.push(new Magic(player.spell, true, 1));
+                        }
+                    }
+                    this.castingCooldown = new Date().getTime();
+                }
+                else if (Math.floor(this.stage) <= 6)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 174, 490, 37, 29, -1/2 * 37 * 1.25, -1/2 * 29 * 1.25, 37 * 1.25, 29 * 1.25);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 7)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 8)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 165, 450, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
+                    XXX.restore();
                 }
             }
 
@@ -16132,10 +16292,51 @@ function theLegend()
                         LXX.stroke();
                         LXX.save();
                         LXX.translate(invScroll + 20.5 + (79 * i) + (1/2 * 79), 1/2 * 79);
+                        var picture;
+                        if (beastJournal[i].image[0] == "verse")
+                        {
+                            picture = verse;
+                        }
+                        else if (beastJournal[i].image[0] == "polypol")
+                        {
+                            picture = polypol;
+                        }
+                        else if (beastJournal[i].image[0] == "polpol")
+                        {
+                            picture = polpol;
+                        }
+                        else if (beastJournal[i].image[0] == "oldverse")
+                        {
+                            picture = oldverse;
+                        }
+                        else if (beastJournal[i].image[0] == "freeverse")
+                        {
+                            picture = freeverse;
+                        }
+                        else if (beastJournal[i].image[0] == "theCrack")
+                        {
+                            picture = theCrack;
+                        }
+                        else if (beastJournal[i].image[0] == "polyPNG")
+                        {
+                            picture = polyPNG;
+                        }
+                        else if (beastJournal[i].image[0] == "mofu")
+                        {
+                            picture = mofu;
+                        }
+                        else if (beastJournal[i].image[0] == "poly")
+                        {
+                            picture = poly;
+                        }
+                        else if (beastJournal[i].image[0] == "mufmuf")
+                        {
+                            picture = mufmuf;
+                        }
                         //sourcing image from list: //this list is of all the beasts your character learns about in the world.
                         //beastJournal List -- each element in which is an object.
                         //              IMG                         Start X                    Start Y                  Width                      Height                        Centering X            +  Adjust X                            Centering Y          +        Adjust Y                   SizeX                    SizeY
-                        LXX.drawImage(beastJournal[i].image[0], beastJournal[i].image[1], beastJournal[i].image[2], beastJournal[i].image[3], beastJournal[i].image[4], -1/2 * beastJournal[i].image[7] + beastJournal[i].image[5], -1/2 * beastJournal[i].image[8] + beastJournal[i].image[6], beastJournal[i].image[7], beastJournal[i].image[8]);
+                        LXX.drawImage(picture, beastJournal[i].image[1], beastJournal[i].image[2], beastJournal[i].image[3], beastJournal[i].image[4], -1/2 * beastJournal[i].image[7] + beastJournal[i].image[5], -1/2 * beastJournal[i].image[8] + beastJournal[i].image[6], beastJournal[i].image[7], beastJournal[i].image[8]);
                         LXX.restore();
                     }
 
@@ -16165,7 +16366,7 @@ function theLegend()
                 {
                     var listOfInvX1Coords = []; //this is the list of the X coordinates for the Inventory Slots.
 
-                    for (var i = -this.inventoryPosition; i < Inventory.length - this.inventoryPosition; i++)
+                    for (var i = -this.inventoryPosition; i < beastJournal.length - this.inventoryPosition; i++)
                     {
                         listOfInvX1Coords.push(20.5 + (79 * i));
                     }
@@ -16173,7 +16374,7 @@ function theLegend()
 
                     var listOfInvX2Coords = []; //This is the same as the X1 coords except for with an added 79 to each.
 
-                    for (var i = -this.inventoryPosition; i < Inventory.length - this.inventoryPosition; i++)
+                    for (var i = -this.inventoryPosition; i < beastJournal.length - this.inventoryPosition; i++)
                     {
                         listOfInvX2Coords.push(20.5 + (79 * i) + 79);
                     }
@@ -16188,6 +16389,14 @@ function theLegend()
                     {
                         if (lMouseX >= 21 && lMouseX <= 1329) //This checks if the mouse is between the scroll buttons rather than on them.
                         {
+                            if (lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord)
+                            {
+                                console.log("true");
+                            }
+                            else
+                            {
+                                console.log("false");
+                            }
                             if (clickReleased == true && lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord && this.REQB == false) //When you click on a beast it shows you its information.
                             {
                                 showBeastStat = i;
@@ -23543,6 +23752,41 @@ function theLegend()
                     this.orientToCaster(16 + rdxn, 4 / 6 * Math.PI );
                 }
             }
+                //Summoning
+            if (this.spellType == "summonFrich" || this.spellType == "summonWolf")
+            {
+                this.spin = ((Math.random() * 11) - 5) / 25;
+                var rdxn = Math.floor(Math.random() * 8);
+
+                if (instructions == 1)
+                {
+                    this.orientToCaster(19, 1 / 2 * Math.PI);
+                }
+                else if (instructions == 2)
+                {
+                    this.orientToCaster(16 + rdxn, 4 / 6 * Math.PI );
+                }
+                else if (instructions == 3)
+                {
+                    this.orientToCaster(16 + rdxn, 2 / 6 * Math.PI );
+                }
+                else if (instructions == 4)
+                {
+                    this.orientToCaster(16 + rdxn, 3 / 6 * Math.PI );
+                }
+                else if (instructions == 5)
+                {
+                    this.orientToCaster(16 + rdxn, 1.6 / 6 * Math.PI );
+                }
+                else if (instructions == 6)
+                {
+                    this.orientToCaster(16 + rdxn, 0.6 / 6 * Math.PI );
+                }
+                else if (instructions == 7)
+                {
+                    this.orientToCaster(16 + rdxn, 4 / 6 * Math.PI );
+                }
+            }
                 //FLYING COLOURS
             if (this.spellType == "flyingColours")
             {
@@ -23603,6 +23847,94 @@ function theLegend()
                         this.spellTimer(0.45);
                     }
                 }
+
+                //SUMMONING
+                if (this.spellType == "summonFrich" || this.spellType == "summonWolf")
+                {
+                    this.turn += this.spin;
+                    if (caster)
+                    {
+                        var rang = 175 * ((50 + 2 * player.getConcentration()) / 50);
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.turn);
+                        if ((this.distanceCovered / rang) <= 0.4)
+                        {
+                            XXX.drawImage(polpol, 125, 504, 15, 15, - (1/2 * 15), - (1/2 * 15), 15, 15);
+                        }
+                        else if ((this.distanceCovered / rang) <= 0.6)
+                        {
+                            XXX.drawImage(polpol, 122, 525, 19, 16, - (1/2 * 19), - (1/2 * 16), 19, 16);
+                        }
+                        else if ((this.distanceCovered / rang) <= 0.8)
+                        {
+                            XXX.drawImage(polpol, 122, 546, 19, 18, - (1/2 * 19), - (1/2 * 18), 19, 18);
+                        }
+                        else
+                        {
+                            XXX.drawImage(polpol, 118, 569, 25, 23, - (1/2 * 25), - (1/2 * 23), 25, 23);
+                        }
+
+                        XXX.restore();
+
+
+                        if (this.spellType == "summonFrich" && this.alert)
+                        {
+                            var alph = (Math.random() * 100) + 1;
+                            if (alph <= 1 + (player.getConcentration() / 2))
+                            {
+                                alph = "massive";
+                            }
+                            else if (alph <= 20 + player.getConcentration())
+                            {
+                                alph = true;
+                            }
+                            else
+                            {
+                                alph = false
+                            }
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Frich", alph, "playerSummonedFrich"));
+
+                            for (var i = 0; i < magicList.length; i++)
+                            {
+                                if (magicList[i] === this)
+                                {
+                                    magicList.splice(i, 1);
+                                    break;
+                                }
+                            }
+                        }
+                        else if (this.spellType == "summonWolf" && this.alert)
+                        {
+                            var alph = (Math.random() * 100) + 1;
+                            if (alph <= 1 + (player.getConcentration() / 5))
+                            {
+                                alph = true;
+                            }
+                            else
+                            {
+                                alph = false
+                            }
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "GreyWolf", alph, "playerSummonedWolf"));
+
+                            for (var i = 0; i < magicList.length; i++)
+                            {
+                                if (magicList[i] === this)
+                                {
+                                    magicList.splice(i, 1);
+                                    break;
+                                }
+                            }
+                        }
+                        this.project(this.playerRotation + 1/2 * Math.PI, rang, 3.5 * ((50 + player.getConcentration()) / 50), "alert");
+
+                    }
+                    else
+                    {
+                        //todo add summoning spell for AI
+                    }
+                }
+
                 //FROST WIND
                 if (this.spellType == "frostWind")
                 {
@@ -24117,6 +24449,11 @@ function theLegend()
                             else
                             {
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            }
+
+                            if (nonPlayer && ArtificialIntelligenceAccess[i].health <= 0) //booble if this works then delete this message
+                            {
+                                ArtificialIntelligenceAccess[i].killNotByPlayer = true;
                             }
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                             ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
@@ -25069,19 +25406,10 @@ function theLegend()
             {
                 this.targetDistance = 1000000;
             }
-            var allianced = false;
-            for (var j = 0; j < this.allys.length; j++)
-            {
-                if (this.allys[j] == "player")
-                {
-                    allianced = true;
-                }
-            }
-            if (allianced == false)
-            {
-                this.target = player;
-                this.targetDistance = this.DTP();
-            }
+
+            this.target = player;
+            this.targetDistance = this.DTP();
+
 
             if (this.team != "neutral")
             {
@@ -29845,8 +30173,23 @@ function theLegend()
             if (dtp < this.rangeOfSight && this.blinded == false) //if the player is close enough to the unit the unit will rotate toward him/her.
             {
                 this.playerSeen = true;
-                this.newRotation = Math.atan2(Y - this.Y, X - this.X) + Math.PI;
-                //console.log(this.rotation + " | " + this.newRotation);
+                if (this.team != "player")
+                {
+                    this.newRotation = Math.atan2(Y - this.Y, X - this.X) + Math.PI;
+                    //console.log(this.rotation + " | " + this.newRotation);
+                }
+                else
+                {
+                    if (rKey)
+                    {
+                        this.fleeing = true;
+                        this.newRotation = Math.atan2(Y - this.Y, X - this.X); //The player sends their minions away from them with the tild key
+                    }
+                    else
+                    {
+                        this.newRotation = Math.atan2(Y - this.Y, X - this.X) + Math.PI; //the player's minions return to their master if the master is in sight
+                    }
+                }
             }
             else if (this.blinded == true)
             {
@@ -29915,9 +30258,24 @@ function theLegend()
             if (dtp < this.rangeOfSight && this.blinded == false) //if the player is close enough to the unit the unit will rotate toward him/her.
             {
                 this.playerSeen = true;
-                this.fleeing = true;
-                this.newRotation = Math.atan2(Y - this.Y, X - this.X);
-                //console.log(this.rotation + " | " + this.newRotation);
+                if (this.team != "player")
+                {
+                    this.fleeing = true;
+                    this.newRotation = Math.atan2(Y - this.Y, X - this.X);
+                    //console.log(this.rotation + " | " + this.newRotation);
+                }
+                else
+                {
+                    if (rKey)
+                    {
+                        this.fleeing = true;
+                        this.newRotation = Math.atan2(Y - this.Y, X - this.X); //The player sends their minions away from them with the tild key
+                    }
+                    else
+                    {
+                        this.newRotation = Math.atan2(Y - this.Y, X - this.X) + Math.PI; //the player's minions return to their master if the master is in sight
+                    }
+                }
             }
             else if (this.blinded == true)
             {
@@ -30532,7 +30890,7 @@ function theLegend()
 
         this.Attack = function(randomDamage, setDamage)
         {
-            if (this.target == player)
+            if (this.target == player && this.team != "player")
             {
                 //this method relies on the class variable being set: this.timeBetweenAttacks = new Date().getTime();
                 var dtp = this.DTP();
@@ -31735,25 +32093,25 @@ function theLegend()
                         {
                             worldItems.push([new Item("nechromanticDust", this.X, this.Y), 1 + Math.floor(this.healthMAX / 35)]);
                         }
-                    }
 
-                    if (this.beastEntry != "none")
-                    {
-                        if (player.getIntelligence() >= this.beastEntry.intReq)
+                        if (this.beastEntry != "none")
                         {
-                            var addEntry = true;
-                            for (var i = 0; i < beastJournal.length; i++)
+                            if (player.getIntelligence() >= this.beastEntry.intReq)
                             {
-                                if (this.beastEntry.name == beastJournal[i].name && this.beastEntry.alpha == beastJournal[i].alpha)
+                                var addEntry = true;
+                                for (var i = 0; i < beastJournal.length; i++)
                                 {
-                                    addEntry = false;
-                                    break;
+                                    if (this.beastEntry.name == beastJournal[i].name && this.beastEntry.alpha == beastJournal[i].alpha)
+                                    {
+                                        addEntry = false;
+                                        break;
+                                    }
                                 }
-                            }
 
-                            if (addEntry)
-                            {
-                                beastJournal.push(this.beastEntry);
+                                if (addEntry)
+                                {
+                                    beastJournal.push(this.beastEntry);
+                                }
                             }
                         }
                     }
@@ -32069,7 +32427,7 @@ function theLegend()
                     this.sizeRadius = 30;
                     this.negateArmour = 5;
                     this.attackWait = 0.55;
-                    this.beastEntry = {intReq: 3, name: "Etyr", health: "6 - 11", armour: "3", damage: "1 - 7", negate: "5", ability: "none", fireProof: 1, habitat: "Jungle", sight: 600, alpha: "Alpha", magicProof: 0, size: 30, speed: 2.75, rotation: 0.025, rate: 0.55, experience: 40, description: ["Etyr's are scaley reptilian creatures that have a behavior similar to that of a wolf. They hunt in packs, it is very", "rare to find one alone, and if you do the rest of its pack is probably about to ambush you. They", "usually lurk about the forest floor eating whatever small critters they can get their jaws around."], image: [theCrack, 56, 18, 53, 41, 0, 0, 53 * 1.5 / 3, 41 * 1.5 / 3]};
+                    this.beastEntry = {intReq: 3, name: "Etyr", health: "6 - 11", armour: "3", damage: "1 - 7", negate: "5", ability: "none", fireProof: 1, habitat: "Jungle", sight: 600, alpha: "Alpha", magicProof: 0, size: 30, speed: 2.75, rotation: 0.025, rate: 0.55, experience: 40, description: ["Etyr's are scaley reptilian creatures that have a behavior similar to that of a wolf. They hunt in packs, it is very", "rare to find one alone, and if you do the rest of its pack is probably about to ambush you. They", "usually lurk about the forest floor eating whatever small critters they can get their jaws around."], image: ["theCrack", 56, 18, 53, 41, 0, 0, 53 * 1.5 / 3, 41 * 1.5 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 1.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -32094,7 +32452,7 @@ function theLegend()
                     this.sizeRadius = 20;
                     this.negateArmour = 3;
                     this.attackWait = 0.57;
-                    this.beastEntry = {intReq: 1, name: "Etyr", health: "3 - 5", armour: "1", damage: "1 - 4", negate: "3", ability: "none", fireProof: 1, habitat: "Jungle", sight: 450, alpha: "Normal", magicProof: 0, size: 20, speed: 2, rotation: 0.1, rate: 0.57, experience: 22, description: ["Etyr's are scaley reptilian creatures that have a behavior similar to that of a wolf. They hunt in packs, it is very", "rare to find one alone, and if you do the rest of its pack is probably about to ambush you. They", "usually lurk about the forest floor eating whatever small critters they can get their jaws around."], image: [theCrack, 56, 18, 53, 0, 0, 20, 53 / 3, 41 / 3]};
+                    this.beastEntry = {intReq: 1, name: "Etyr", health: "3 - 5", armour: "1", damage: "1 - 4", negate: "3", ability: "none", fireProof: 1, habitat: "Jungle", sight: 450, alpha: "Normal", magicProof: 0, size: 20, speed: 2, rotation: 0.1, rate: 0.57, experience: 22, description: ["Etyr's are scaley reptilian creatures that have a behavior similar to that of a wolf. They hunt in packs, it is very", "rare to find one alone, and if you do the rest of its pack is probably about to ambush you. They", "usually lurk about the forest floor eating whatever small critters they can get their jaws around."], image: ["theCrack", 56, 18, 53, 0, 0, 20, 53 / 3, 41 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1;
@@ -32127,7 +32485,7 @@ function theLegend()
                     this.sizeRadius = 45;
                     this.negateArmour = 17;
                     this.attackWait = 1.75;
-                    this.beastEntry = {intReq: 13, name: "Walrus", health: "100 - 139", armour: "2", damage: "32 - 77", negate: "17", ability: "Cold Resistant", fireProof: 3, habitat: "Ice Flats", sight: 330, alpha: "Elder", magicProof: 0, size: 45, speed: 1.1, rotation: 0.035, rate: 1.75, experience: 104, description: ["It is said that elder walruses are just walruses that have lived for hundreds of years. They tend to be fairly solitary unlike", "the younger variety, except of course when they have to mate, then the male usually protects the female while it is pregnant."], image: [polyPNG, 871, 695, 77, 63, 0, 0, 146 * 1.35 / 3, 126 * 1.35 / 3]};
+                    this.beastEntry = {intReq: 13, name: "Walrus", health: "100 - 139", armour: "2", damage: "32 - 77", negate: "17", ability: "Cold Resistant", fireProof: 3, habitat: "Ice Flats", sight: 330, alpha: "Elder", magicProof: 0, size: 45, speed: 1.1, rotation: 0.035, rate: 1.75, experience: 104, description: ["It is said that elder walruses are just walruses that have lived for hundreds of years. They tend to be fairly solitary unlike", "the younger variety, except of course when they have to mate, then the male usually protects the female while it is pregnant."], image: ["polyPNG", 871, 695, 77, 63, 0, 0, 146 * 1.35 / 3, 126 * 1.35 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 1.35; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -32152,7 +32510,7 @@ function theLegend()
                     this.sizeRadius = 40;
                     this.negateArmour = 6;
                     this.attackWait = 3.25;
-                    this.beastEntry = {intReq: 4, name: "Walrus", health: "18 - 27", armour: "1", damage: "2 - 14", negate: "6", ability: "Cold Resistant", fireProof: 2, habitat: "Ice Flats", sight: 250, alpha: "Normal", magicProof: 0, size: 40, speed: 0.85, rotation: 0.025, rate: 3.25, experience: 28, description: ["Walruses are large tusked animals with thick skin and a large blubber layer of fat to keep them warm in the harsh cold climate that they", "live in. They tend to group together so as to keep predators away by numbers, but it is not uncommon for one to be found alone."], image: [polyPNG, 871, 695, 77, 63, 0, 0, 146 / 3, 126 / 3]};
+                    this.beastEntry = {intReq: 4, name: "Walrus", health: "18 - 27", armour: "1", damage: "2 - 14", negate: "6", ability: "Cold Resistant", fireProof: 2, habitat: "Ice Flats", sight: 250, alpha: "Normal", magicProof: 0, size: 40, speed: 0.85, rotation: 0.025, rate: 3.25, experience: 28, description: ["Walruses are large tusked animals with thick skin and a large blubber layer of fat to keep them warm in the harsh cold climate that they", "live in. They tend to group together so as to keep predators away by numbers, but it is not uncommon for one to be found alone."], image: ["polyPNG", 871, 695, 77, 63, 0, 0, 146 / 3, 126 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1;
@@ -32188,7 +32546,7 @@ function theLegend()
                     this.negateArmour = 10;
                     this.attackWait = 2;
                     this.effect = "stunII";
-                    this.beastEntry = {intReq: 20, name: "Shehid", health: "26 - 42", armour: "0 - 56", damage: "6 - 20", negate: "10", ability: "StunII", fireProof: "1 - 56", habitat: "Northern / Temperate Forests", sight: "65 - 285", alpha: "Alpha", magicProof: 5, size: 25, speed: 1.65, rotation: 0.085, rate: 2, experience: 77, description: ["Shehids are a form of living ooze creature that has a biologically formed shell and insectoid legs. The shehid's ooze is highly toxic to the", "extent of paralasis and it is used to melt and absorb its prey. Shehids normally rest in their shell which is colored to look like a mossy", "rock so that they can ooze out and devour unsuspecting creatures that happen to wander by."], image: [polypol, 1170, 11, 43, 40, 0, 0, 43 * 2 / 3, 40 * 2 / 3]};
+                    this.beastEntry = {intReq: 20, name: "Shehid", health: "26 - 42", armour: "0 - 56", damage: "6 - 20", negate: "10", ability: "StunII", fireProof: "1 - 56", habitat: "Northern / Temperate Forests", sight: "65 - 285", alpha: "Alpha", magicProof: 5, size: 25, speed: 1.65, rotation: 0.085, rate: 2, experience: 77, description: ["Shehids are a form of living ooze creature that has a biologically formed shell and insectoid legs. The shehid's ooze is highly toxic to the", "extent of paralasis and it is used to melt and absorb its prey. Shehids normally rest in their shell which is colored to look like a mossy", "rock so that they can ooze out and devour unsuspecting creatures that happen to wander by."], image: ["polypol", 1170, 11, 43, 40, 0, 0, 43 * 2 / 3, 40 * 2 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -32214,7 +32572,7 @@ function theLegend()
                     this.negateArmour = 10;
                     this.attackWait = 1.25;
                     this.effect = "stunI";
-                    this.beastEntry = {intReq: 14, name: "Shehid", health: "12 - 20", armour: "0 - 30", damage: "3 - 10", negate: "10", ability: "StunI", fireProof: "1 - 30", habitat: "Northern / Temperate Forests", sight: "65 - 185", alpha: "Normal", magicProof: 2, size: 14, speed: 1.35, rotation: 0.085, rate: 1.25, experience: 38, description: ["Shehids are a form of living ooze creature that has a biologically formed shell and insectoid legs. The shehid's ooze is highly toxic to the", "extent of paralysis and it is used to melt and absorb its prey. Shehids normally rest in their shell which is colored to look like a mossy", "rock so that they can ooze out and devour unsuspecting creatures that happen to wander by."], image: [polypol, 1170, 11, 43, 40, 0, 0, 43 / 3, 40 / 3]};
+                    this.beastEntry = {intReq: 14, name: "Shehid", health: "12 - 20", armour: "0 - 30", damage: "3 - 10", negate: "10", ability: "StunI", fireProof: "1 - 30", habitat: "Northern / Temperate Forests", sight: "65 - 185", alpha: "Normal", magicProof: 2, size: 14, speed: 1.35, rotation: 0.085, rate: 1.25, experience: 38, description: ["Shehids are a form of living ooze creature that has a biologically formed shell and insectoid legs. The shehid's ooze is highly toxic to the", "extent of paralysis and it is used to melt and absorb its prey. Shehids normally rest in their shell which is colored to look like a mossy", "rock so that they can ooze out and devour unsuspecting creatures that happen to wander by."], image: ["polypol", 1170, 11, 43, 40, 0, 0, 43 / 3, 40 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1;
@@ -32250,7 +32608,7 @@ function theLegend()
                     this.negateArmour = 11;
                     this.attackWait = 0.6;
                     this.effect = "none";
-                    this.beastEntry = {intReq: 30, name: "Grush", health: "204 - 243", armour: "0 - 75", damage: "10 - 18", negate: "11", ability: "none", fireProof: -1, habitat: "Grasslands", sight: "80 - 140", alpha: "Giant", magicProof: 0, size: 25, speed: 3.2, rotation: 0.09, rate: 0.6, experience: 1100, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resember the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have itself a feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near there", "resting place or they go back to sleep."], image: [mofu, 877, 1, 72, 72, 0, 0, 72 * 3 / 3, 72 * 3 / 3]};
+                    this.beastEntry = {intReq: 30, name: "Grush", health: "204 - 243", armour: "0 - 75", damage: "10 - 18", negate: "11", ability: "none", fireProof: -1, habitat: "Grasslands", sight: "80 - 140", alpha: "Giant", magicProof: 0, size: 25, speed: 3.2, rotation: 0.09, rate: 0.6, experience: 1100, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resember the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have itself a feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near there", "resting place or they go back to sleep."], image: ["mofu", 877, 1, 72, 72, 0, 0, 72 * 3 / 3, 72 * 3 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 3; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -32276,7 +32634,7 @@ function theLegend()
                     this.negateArmour = 0.1;
                     this.attackWait = 0.5;
                     this.effect = "none";
-                    this.beastEntry = {intReq: 6, name: "Grush", health: "1", armour: "0 - 15", damage: "0.5 - 1", negate: 0.1, ability: "none", fireProof: -1, habitat: "Grasslands", sight: "45 - 60", alpha: "Baby", magicProof: 0, size: 8, speed: 0.85, rotation: 0.05, rate: 0.5, experience: 4, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resemble the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have itself a feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near their", "resting place or they go back to sleep."], image: [mofu, 877, 1, 72, 72, 0, 0, 72 * 0.6 / 3, 72 * 0.6 / 3]};
+                    this.beastEntry = {intReq: 6, name: "Grush", health: "1", armour: "0 - 15", damage: "0.5 - 1", negate: 0.1, ability: "none", fireProof: -1, habitat: "Grasslands", sight: "45 - 60", alpha: "Baby", magicProof: 0, size: 8, speed: 0.85, rotation: 0.05, rate: 0.5, experience: 4, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resemble the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have itself a feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near their", "resting place or they go back to sleep."], image: ["mofu", 877, 1, 72, 72, 0, 0, 72 * 0.6 / 3, 72 * 0.6 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 0.6; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -32301,7 +32659,7 @@ function theLegend()
                     this.negateArmour = 2.5;
                     this.attackWait = 0.6;
                     this.effect = "none";
-                    this.beastEntry = {intReq: 16, name: "Grush", health: "44 - 53", armour: "0 - 55", damage: "3 - 9", negate: "2.5", ability: "none", fireProof: -1, habitat: "Grasslands", sight: "55 - 90", alpha: "Alpha", magicProof: 0, size: 21, speed: 1.6, rotation: 0.085, rate: 0.6, experience: 95, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resemble the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have a itself feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near their", "resting place or they go back to sleep."], image: [mofu, 877, 1, 72, 72, 0, 0, 72 * 1.5 / 3, 72 * 1.5 / 3]};
+                    this.beastEntry = {intReq: 16, name: "Grush", health: "44 - 53", armour: "0 - 55", damage: "3 - 9", negate: "2.5", ability: "none", fireProof: -1, habitat: "Grasslands", sight: "55 - 90", alpha: "Alpha", magicProof: 0, size: 21, speed: 1.6, rotation: 0.085, rate: 0.6, experience: 95, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resemble the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have a itself feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near their", "resting place or they go back to sleep."], image: ["mofu", 877, 1, 72, 72, 0, 0, 72 * 1.5 / 3, 72 * 1.5 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 1.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -32327,7 +32685,7 @@ function theLegend()
                     this.negateArmour = 1;
                     this.attackWait = 0.5;
                     this.effect = "none";
-                    this.beastEntry = {intReq: 9, name: "Grush", health: "29 - 36", armour: "0 - 35", damage: "2 - 6", negate: 1, ability: "none", fireProof: -1, habitat: "Grasslands", sight: "45 - 60", alpha: "Normal", magicProof: 0, size: 14, speed: 1, rotation: 0.05, rate: 0.5, experience: 45, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resemble the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have a itself feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near their", "resting place or they go back to sleep."], image: [mofu, 877, 1, 72, 72, 0, 0, 72 / 3, 72 / 3]};
+                    this.beastEntry = {intReq: 9, name: "Grush", health: "29 - 36", armour: "0 - 35", damage: "2 - 6", negate: 1, ability: "none", fireProof: -1, habitat: "Grasslands", sight: "45 - 60", alpha: "Normal", magicProof: 0, size: 14, speed: 1, rotation: 0.05, rate: 0.5, experience: 45, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resemble the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have a itself feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near their", "resting place or they go back to sleep."], image: ["mofu", 877, 1, 72, 72, 0, 0, 72 / 3, 72 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1;
@@ -32363,7 +32721,7 @@ function theLegend()
                     this.negateArmour = 1;
                     this.attackWait = 1.5;
                     this.effect = "narthwarpToxin";
-                    this.beastEntry = {intReq: 28, name: "Narthwarp", health: "53 - 69", armour: 4.5, damage: "7 - 21", negate: 1, ability: "Narthwarp Toxin", fireProof: 1, habitat: "Northern / Temperate Forests", sight: 550, alpha: "Alpha", magicProof: 0, size: 25, speed: 2.75, rotation: 0.09, rate: 1.5, experience: 95, description: ["Narthwarps are large six-legged armoured insects that have a long barbed appendage that it uses as a tool for food absorption as well as to release", "its toxins into its prey. The toxins a narthwarp produces cause their victim to lose energy and if the injection was large enough they could", "even faint."], image: [polypol, 29, 400, 71, 81, 0, 0, 71 * 2 / 3, 81 * 2 / 3]};
+                    this.beastEntry = {intReq: 28, name: "Narthwarp", health: "53 - 69", armour: 4.5, damage: "7 - 21", negate: 1, ability: "Narthwarp Toxin", fireProof: 1, habitat: "Northern / Temperate Forests", sight: 550, alpha: "Alpha", magicProof: 0, size: 25, speed: 2.75, rotation: 0.09, rate: 1.5, experience: 95, description: ["Narthwarps are large six-legged armoured insects that have a long barbed appendage that it uses as a tool for food absorption as well as to release", "its toxins into its prey. The toxins a narthwarp produces cause their victim to lose energy and if the injection was large enough they could", "even faint. A narthwarps favorite foods are shehids and ulgoy plants because the toxins in both are digested and formed by", "a complex chemical process into the narthwarp's own toxin."], image: ["polypol", 29, 400, 71, 81, 0, 0, 71 * 2 / 3, 81 * 2 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -32389,7 +32747,7 @@ function theLegend()
                     this.negateArmour = 0;
                     this.attackWait = 0.85;
                     this.effect = "narthwarpToxin";
-                    this.beastEntry = {intReq: 4, name: "Narthwarp", health: "3 - 5", armour: 0.5, damage: "1 - 2", negate: 0, ability: "Narthwarp Toxin", fireProof: 0.1, habitat: "Northern / Temperate Forests", sight: 300, alpha: "Baby", magicProof: 0, size: 10, speed: 1.75, rotation: 0.1, rate: 0.85, experience: 4, description: ["Narthwarps are large six-legged armoured insects that have a long barbed appendage that it uses as a tool for food absorption as well as to release", "its toxins into its prey. The toxins a narthwarp produces cause their victim to lose energy and if the injection was large enough they could", "even faint."], image: [polypol, 29, 400, 71, 81, 0, 0, 71 * 0.5 / 3, 81 * 0.5 / 3]};
+                    this.beastEntry = {intReq: 4, name: "Narthwarp", health: "3 - 5", armour: 0.5, damage: "1 - 2", negate: 0, ability: "Narthwarp Toxin", fireProof: 0.1, habitat: "Northern / Temperate Forests", sight: 300, alpha: "Baby", magicProof: 0, size: 10, speed: 1.75, rotation: 0.1, rate: 0.85, experience: 4, description: ["Narthwarps are large six-legged armoured insects that have a long barbed appendage that it uses as a tool for food absorption as well as to release", "its toxins into its prey. The toxins a narthwarp produces cause their victim to lose energy and if the injection was large enough they could", "even faint. A narthwarps favorite foods are shehids and ulgoy plants because the toxins in both are digested and formed by", "a complex chemical process into the narthwarp's own toxin."], image: ["polypol", 29, 400, 71, 81, 0, 0, 71 * 0.5 / 3, 81 * 0.5 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 0.5;
@@ -32415,7 +32773,7 @@ function theLegend()
                     this.negateArmour = 0.5;
                     this.attackWait = 1.45;
                     this.effect = "narthwarpToxin";
-                    this.beastEntry = {intReq: 8, name: "Narthwarp", health: "16 - 25", armour: 1.5, damage: "4 - 9", negate: 0.5, ability: "Narthwarp Toxin", fireProof: 0.5, habitat: "Northern / Temperate Forests", sight: 425, alpha: "Normal", magicProof: 0, size: 14, speed: 2.25, rotation: 0.095, rate: 1.45, experience: 36, description: ["Narthwarps are large six-legged armoured insects that have a long barbed appendage that it uses as a tool for food absorption as well as to release", "its toxins into its prey. The toxins a narthwarp produces cause their victim to lose energy and if the injection was large enough they could", "even faint."], image: [polypol, 29, 400, 71, 81, 0, 0, 71 / 3, 81 / 3]};
+                    this.beastEntry = {intReq: 8, name: "Narthwarp", health: "16 - 25", armour: 1.5, damage: "4 - 9", negate: 0.5, ability: "Narthwarp Toxin", fireProof: 0.5, habitat: "Northern / Temperate Forests", sight: 425, alpha: "Normal", magicProof: 0, size: 14, speed: 2.25, rotation: 0.095, rate: 1.45, experience: 36, description: ["Narthwarps are large six-legged armoured insects that have a long barbed appendage that it uses as a tool for food absorption as well as to release", "its toxins into its prey. The toxins a narthwarp produces cause their victim to lose energy and if the injection was large enough they could", "even faint. A narthwarps favorite foods are shehids and ulgoy plants because the toxins in both are digested and formed by", "a complex chemical process into the narthwarp's own toxin."], image: ["polypol", 29, 400, 71, 81, 0, 0, 71 / 3, 81 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1;
@@ -32428,6 +32786,14 @@ function theLegend()
             {
                 this.damageFrame = "manual";
                 this.team = "berulnia";
+                if (this.ID == "playerSummonedBeruln")
+                {
+                    this.team = "player";
+                }
+                else if (this.ID == "docile")
+                {
+                    this.team = "docile";
+                }
                 this.baseTeam = this.team;
 
                 if (this.alpha == true)
@@ -32446,7 +32812,7 @@ function theLegend()
                     this.sizeRadius = 50;
                     this.negateArmour = 10;
                     this.attackWait = 0.75;
-                    this.beastEntry = {intReq: 13, name: "Beruln", health: "36 - 61", armour: 0, damage: "8 - 22", negate: 10, ability: "None", fireProof: -1, habitat: "Northern Rocky Barrens", sight: 900, alpha: "Alpha", magicProof: 0, size: 50, speed: "6.1 - 6.5", rotation: 0.075, rate: 0.75, experience: 93, description: ["Berulns are massive grey furred beasts that are known for their ferocity. They have an extra thick patch of fur that goes from the back of their", "head and widenes as it bristles back toward their tail end. Berulns are skilled hunters and they can be fairly silent while stalking prey and can", "also be exceptionally good climbers. Berulns are savage when it comes to eating, they will grasp their victim in their jaws and swing it around and", "smash it into the ground or large rocks before finally settling down to eat it. Alpha Berulns are slightly larger than the normal ones and they are a bit more agressive and perceptive to prey as well."], image: [polyPNG, 92, 599, 77, 54, 0, 0, 154 * 1.1 / 3, 108 * 1.1 / 3]};
+                    this.beastEntry = {intReq: 13, name: "Beruln", health: "36 - 61", armour: 0, damage: "8 - 22", negate: 10, ability: "None", fireProof: -1, habitat: "Northern Rocky Barrens", sight: 900, alpha: "Alpha", magicProof: 0, size: 50, speed: "6.1 - 6.5", rotation: 0.075, rate: 0.75, experience: 93, description: ["Berulns are massive grey furred beasts that are known for their ferocity. They have an extra thick patch of fur that goes from the back of their", "head and widenes as it bristles back toward their tail end. Berulns are skilled hunters and they can be fairly silent while stalking prey and can", "also be exceptionally good climbers. Berulns are savage when it comes to eating, they will grasp their victim in their jaws and swing it around and", "smash it into the ground or large rocks before finally settling down to eat it. Alpha Berulns are slightly larger than the normal ones and they are a bit more agressive and perceptive to prey as well."], image: ["polyPNG", 92, 599, 77, 54, 0, 0, 154 * 1.1 / 3, 108 * 1.1 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 1.1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -32471,7 +32837,7 @@ function theLegend()
                     this.sizeRadius = 42;
                     this.negateArmour = 9;
                     this.attackWait = 0.85;
-                    this.beastEntry = {intReq: 11, name: "Beruln", health: "32 - 45", armour: 0, damage: "7 - 22", negate: 9, ability: "None", fireProof: -1, habitat: "Northern Rocky Barrens", sight: 850, alpha: "Normal", magicProof: 0, size: 42, speed: "5.8 - 6", rotation: 0.075, rate: 0.85, experience: 81, description: ["Berulns are massive grey furred beasts that are known for their ferocity. They have an extra thick patch of fur that goes from the back of their", "head and widenes as it bristles back toward their tail end. Berulns are skilled hunters and they can be fairly silent while stalking prey and can", "also be exceptionally good climbers. Berulns are savage when it comes to eating, they will grasp their victim in their jaws and swing it around and", "smash it into the ground or large rocks before finally settling down to eat it."], image: [polyPNG, 92, 599, 77, 54, 0, 0, 154 / 3, 108 / 3]};
+                    this.beastEntry = {intReq: 11, name: "Beruln", health: "32 - 45", armour: 0, damage: "7 - 22", negate: 9, ability: "None", fireProof: -1, habitat: "Northern Rocky Barrens", sight: 850, alpha: "Normal", magicProof: 0, size: 42, speed: "5.8 - 6", rotation: 0.075, rate: 0.85, experience: 81, description: ["Berulns are massive grey furred beasts that are known for their ferocity. They have an extra thick patch of fur that goes from the back of their", "head and widenes as it bristles back toward their tail end. Berulns are skilled hunters and they can be fairly silent while stalking prey and can", "also be exceptionally good climbers. Berulns are savage when it comes to eating, they will grasp their victim in their jaws and swing it around and", "smash it into the ground or large rocks before finally settling down to eat it."], image: ["polyPNG", 92, 599, 77, 54, 0, 0, 154 / 3, 108 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1;
@@ -32503,7 +32869,7 @@ function theLegend()
                     this.sizeRadius = 47;
                     this.negateArmour = 20;
                     this.attackWait = 3;
-                    this.beastEntry = {intReq: 45, name: "Olkrin", health: "500 - 600", armour: 9, damage: "36 - 64", negate: 20, ability: "None", fireProof: 0, habitat: "Rocky Barrens", sight: 1100, alpha: "Goliath", magicProof: 0, size: 47, speed: "7.1 - 7.5", rotation: 0.1, rate: 3, experience: 1400, description: ["Olkrins are thought to be of only of myth and legend for the reason that they are not common to find, which is because they are humongous beasts with vast appetites that need to be filled and many places do not have the right ecosystem to support their species' size. Those who do recognize there existence often consider olkrins to be a type of demon, but in truth they are just an ancient species of abnormally huge ferocious monsters that may be on the verge of extinction."], image: [verse, 156, 706, 117, 157, 0, 0, 117 * 2.4 / 3, 157 * 2.4 / 3]};
+                    this.beastEntry = {intReq: 45, name: "Olkrin", health: "500 - 600", armour: 9, damage: "36 - 64", negate: 20, ability: "None", fireProof: 0, habitat: "Rocky Barrens", sight: 1100, alpha: "Goliath", magicProof: 0, size: 47, speed: "7.1 - 7.5", rotation: 0.1, rate: 3, experience: 1400, description: ["Olkrins are thought to be only of myth and legend for the reason that they are not common to find, which is because they are humongous beasts", "with vast appetites that need to be filled and many places do not have the right ecosystem to support their species' size. Those who do recognize there", "existence often consider olkrins to be a type of demon, but in truth they are just an ancient species of abnormally huge ferocious monsters that may be", "on the verge of extinction."], image: ["verse", 156, 706, 117, 157, 0, 0, 117 * 2.4 / 3, 157 * 2.4 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 2.40; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -32528,7 +32894,7 @@ function theLegend()
                     this.sizeRadius = 24;
                     this.negateArmour = 10;
                     this.attackWait = 2;
-                    this.beastEntry = {intReq: 35, name: "Olkrin", health: "45 - 60", armour: 2.5, damage: "12 - 20", negate: 10, ability: "None", fireProof: 0, habitat: "Rocky Barrens", sight: 750, alpha: "Baby", magicProof: 0, size: 24, speed: "5.1 - 5.3", rotation: 0.1, rate: 2, experience: 172, description: ["Olkrins are thought to be of only of myth and legend for the reason that they are not common to find, which is because they are humongous beasts with vast appetites that need to be filled and many places do not have the right ecosystem to support their species' size. Those who do recognize there existence often consider olkrins to be a type of demon, but in truth they are just an ancient species of abnormally huge ferocious monsters that may be on the verge of extinction."], image: [verse, 156, 706, 117, 157, 0, 0, 117 * 1.1 / 3, 157 * 1.1 / 3]};
+                    this.beastEntry = {intReq: 35, name: "Olkrin", health: "45 - 60", armour: 2.5, damage: "12 - 20", negate: 10, ability: "None", fireProof: 0, habitat: "Rocky Barrens", sight: 750, alpha: "Baby", magicProof: 0, size: 24, speed: "5.1 - 5.3", rotation: 0.1, rate: 2, experience: 172, description: ["Olkrins are thought to be only of myth and legend for the reason that they are not common to find, which is because they are humongous beasts", "with vast appetites that need to be filled and many places do not have the right ecosystem to support their species' size. Those who do recognize there", "existence often consider olkrins to be a type of demon, but in truth they are just an ancient species of abnormally huge ferocious monsters that may be", "on the verge of extinction."], image: ["verse", 156, 706, 117, 157, 0, 0, 117 * 1.1 / 3, 157 * 1.1 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1.1;
@@ -32553,7 +32919,7 @@ function theLegend()
                     this.sizeRadius = 42;
                     this.negateArmour = 14;
                     this.attackWait = 3;
-                    this.beastEntry = {intReq: 40, name: "Olkrin", health: "225 - 310", armour: 5, damage: "24 - 40", negate: 14, ability: "None", fireProof: 0, habitat: "Rocky Barrens", sight: 900, alpha: "Normal", magicProof: 0, size: 42, speed: "6.8 - 7", rotation: 0.1, rate: 3, experience: 1000, description: ["Olkrins are thought to be of only of myth and legend for the reason that they are not common to find, which is because they are humongous beasts with vast appetites that need to be filled and many places do not have the right ecosystem to support their species' size. Those who do recognize there existence often consider olkrins to be a type of demon, but in truth they are just an ancient species of abnormally huge ferocious monsters that may be on the verge of extinction."], image: [verse, 156, 706, 117, 157, 0, 0, 117 * 1.75 / 3, 157 * 1.75 / 3]}; //booble : last entry so far
+                    this.beastEntry = {intReq: 40, name: "Olkrin", health: "225 - 310", armour: 5, damage: "24 - 40", negate: 14, ability: "None", fireProof: 0, habitat: "Rocky Barrens", sight: 900, alpha: "Normal", magicProof: 0, size: 42, speed: "6.8 - 7", rotation: 0.1, rate: 3, experience: 1000, description: ["Olkrins are thought to be only of myth and legend for the reason that they are not common to find, which is because they are humongous beasts", "with vast appetites that need to be filled and many places do not have the right ecosystem to support their species' size. Those who do recognize there", "existence often consider olkrins to be a type of demon, but in truth they are just an ancient species of abnormally huge ferocious monsters that may be", "on the verge of extinction."], image: ["verse", 156, 706, 117, 157, 0, 0, 117 * 1.75 / 3, 157 * 1.75 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1.75;
@@ -32585,6 +32951,7 @@ function theLegend()
                     this.sizeRadius = 80;
                     this.negateArmour = 16;
                     this.attackWait = 4.2;
+                    this.beastEntry = {intReq: 38, name: "Bog Troll", health: "180 - 220", armour: 1, damage: "40 - 100", negate: 16, ability: "Health Regeneration", fireProof: 7, habitat: "Marshes/Bogs/Swamps", sight: 1000, alpha: "Alpha", magicProof: 5, size: 80, speed: "5.2 - 5.7", rotation: 0.035, rate: 4.2, experience: 1580, description: ["Bog trolls are a ferocious sort, but at times they can be found soaking lazily in the bog water only eating that which gets too close to their mouths.", "When they are not lazing about bog trolls are notably dangerous. 'Fear not the deadly plagues of the bog for the trolls will kill you first'"], image: ["verse", 3770, 16, 106, 129, 0, 0, 154 * 2 / 3, 108 * 2 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -32610,6 +32977,7 @@ function theLegend()
                     this.sizeRadius = 42;
                     this.negateArmour = 3;
                     this.attackWait = 3.2;
+                    this.beastEntry = {intReq: 25, name: "Bog Troll", health: "23 - 32", armour: 0, damage: "4 - 14", negate: 3, ability: "Health Regeneration", fireProof: 3, habitat: "Marshes/Bogs/Swamps", sight: 600, alpha: "Baby", magicProof: 1.5, size: 42, speed: "3.1 - 3.7", rotation: 0.035, rate: 3.2, experience: 116, description: ["Bog trolls give birth to numerous young at once. It is not at all uncommon to see a baby bog troll wandering about without a parent, this is because the", "mother is likely to eat the young right after birth if they are not fit enough to escape her reach. Many young bog trolls fall victim to the dangers of", "the swamp, but the sheer number of offspring ensures the survival of their species."], image: ["verse", 3770, 16, 106, 129, 0, 0, 154 * 0.65 / 3, 108 * 0.65 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 0.65;
@@ -32624,7 +32992,7 @@ function theLegend()
                     this.heatResistance = 5;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 36) + 101;
+                    this.healthMAX = Math.floor(Math.random() * 36) + 102;
                     this.health = this.healthMAX;
                     this.armour = 1;
                     this.speed = 4.4 + (Math.floor(Math.random() * 7) / 10);
@@ -32635,6 +33003,7 @@ function theLegend()
                     this.sizeRadius = 42;
                     this.negateArmour = 10;
                     this.attackWait = 3.2;
+                    this.beastEntry = {intReq: 34, name: "Bog Troll", health: "102 - 137", armour: 1, damage: "23 - 61", negate: 10, ability: "Health Regeneration", fireProof: 5, habitat: "Marshes/Bogs/Swamps", sight: 850, alpha: "Normal", magicProof: 3, size: 42, speed: "4.4 - 5", rotation: 0.035, rate: 3.2, experience: 940, description: ["Bog trolls are a ferocious sort, but at times they can be found soaking lazily in the bog water only eating that which gets too close to their mouths.", "When they are not lazing about bog trolls are notably dangerous. 'Fear not the deadly plagues of the bog for the trolls will kill you first'"], image: ["verse", 3770, 16, 106, 129, 0, 0, 154 * 1.4 / 3, 108 * 1.4 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1.4;
@@ -32665,6 +33034,7 @@ function theLegend()
                     this.sizeRadius = 35;
                     this.negateArmour = 3;
                     this.attackWait = 1.5;
+                    this.beastEntry = {intReq: 12, name: "Winter Wolf", health: "30 - 55", armour: 0, damage: "6 - 25", negate: 3, ability: "None", fireProof: -1, habitat: "Frozen Tundra/Ice Flats", sight: 775, alpha: "Massive", magicProof: 0, size: 35, speed: "5 - 5.4", rotation: 0.085, rate: 1.5, experience: 100, description: ["Winter wolves can grow to monstrous proportions; the largest of them can make a full grown wolf seem like a new born pup. Winter wolves are highly valued", "for their blizzard white pelts, for this reason winter wolves are often hunted by the Freydic people of the north."], image: ["verse", 2853, 17, 49, 29, 0, 0, 49 * 3.2 / 3, 29 * 3.2 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 3.2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -32689,6 +33059,7 @@ function theLegend()
                     this.sizeRadius = 24;
                     this.negateArmour = 1;
                     this.attackWait = 1.5;
+                    this.beastEntry = {intReq: 10, name: "Winter Wolf", health: "9 - 17", armour: 0, damage: "4 - 10", negate: 1, ability: "None", fireProof: -1, habitat: "Frozen Tundra/Ice Flats", sight: 665, alpha: "Normal", magicProof: 0, size: 24, speed: "4.7 - 4.9", rotation: 0.085, rate: 1.5, experience: 49, description: ["White as a winter storm, winter wolves are the fierce canine hunters of the cold northern lands. They are commonly thought to be more ruthless and feral", "than most other varieties of wolves."], image: ["verse", 2853, 17, 49, 29, 0, 0, 49 * 1.8 / 3, 29 * 1.8 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1.8;
@@ -32702,6 +33073,15 @@ function theLegend()
             {
                 this.damageFrame = "manual";
                 this.team = "wild";
+                if (this.ID == "playerSummonedWolf")
+                {
+                    this.team = "player";
+                }
+                else if (this.ID == "docile")
+                {
+                    this.team = "docile";
+                }
+
                 this.baseTeam = this.team;
 
                 if (this.alpha == true)
@@ -32720,6 +33100,7 @@ function theLegend()
                     this.sizeRadius = 35;
                     this.negateArmour = 2.5;
                     this.attackWait = 1.65;
+                    this.beastEntry = {intReq: 11, name: "Grey Wolf", health: "28 - 47", armour: 0, damage: "5 - 22", negate: 2.5, ability: "None", fireProof: -1, habitat: "Mountains/Rocky Barrens/Temperate Forest", sight: 700, alpha: "Massive", magicProof: 0, size: 35, speed: "4.7 - 5.1", rotation: 0.085, rate: 1.65, experience: 90, description: ["Tales have been told of such oversized man-eating wolves. Grey wolves are the most common wolves of the lands, though there is nothing common about the much larger version of these fearsome grey-furred beasts."], image: ["oldverse", 2853, 17, 49, 29, 0, 0, 49 * 3.2 / 3, 29 * 3.2 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 3.2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -32744,6 +33125,7 @@ function theLegend()
                     this.sizeRadius = 24;
                     this.negateArmour = 0.5;
                     this.attackWait = 1.65;
+                    this.beastEntry = {intReq: 6, name: "Grey Wolf", health: "8 - 15", armour: 0, damage: "3 - 8", negate: 0.5, ability: "None", fireProof: -1, habitat: "Mountains/Rocky Barrens/Temperate Forest", sight: 600, alpha: "Normal", magicProof: 0, size: 24, speed: "4.5 - 4.7", rotation: 0.085, rate: 1.65, experience: 38, description: ["Grey wolves are the most common type of wolf in the lands. They are found in small to medium large packs, which may be found in forest regions, in", "mountainous regions, and in rocky barrens."], image: ["oldverse", 2853, 17, 49, 29, 0, 0, 49 * 1.8 / 3, 29 * 1.8 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 1.8;
@@ -32766,7 +33148,7 @@ function theLegend()
                     this.heatResistance = 4;
                     this.attackStyle = "chunked";
                     this.attackRate = 0;  //this is for rapid style combat only.
-                    this.healthMAX = Math.floor(Math.random() * 19) + 13;
+                    this.healthMAX = Math.floor(Math.random() * 19) + 16;
                     this.health = this.healthMAX;
                     this.armour = 8;
                     this.speed = 3 + (Math.floor(Math.random() * 3) / 10);
@@ -32776,6 +33158,7 @@ function theLegend()
                     this.sizeRadius = 33;
                     this.negateArmour = 7;
                     this.attackWait = 0.5;
+                    this.beastEntry = {intReq: 13, name: "Gulfrey", health: "16 - 34", armour: 8, damage: "4 - 10", negate: 7, ability: "None", fireProof: 4, habitat: "Jungle", sight: 490, alpha: "Normal", magicProof: 0, size: 33, speed: "3 - 3.2", rotation: 0.05, rate: 0.5, experience: 21, description: ["Gulfreys are long shelled insects with multiple shell sections that allow them much maneuverability. The larger gulfreys often hunt alone. They have", "large mandibles that they use to force their prey towards their gnarly insectoid eating graspers. They will usually eat whatever creatures are available", "to them, given that they are not too dangerous to contend with."], image: ["oldverse", 242, 10, 123, 52, 0, 0, 123 * 1.5 / 3, 52 * 1.5 / 3]};
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 1.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -32800,6 +33183,7 @@ function theLegend()
                     this.sizeRadius = 13;
                     this.negateArmour = 4;
                     this.attackWait = 0.5;
+                    this.beastEntry = {intReq: 9, name: "Gulfrey", health: "4 - 8", armour: 4, damage: "2 - 4", negate: 4, ability: "None", fireProof: 1, habitat: "Jungle", sight: 440, alpha: "Baby", magicProof: 0, size: 13, speed: "2.8 - 3.1", rotation: 0.05, rate: 0.5, experience: 8, description: ["Gulfreys are long shelled insects with multiple shell sections that allow them much maneuverability. Young Gulfreys are born from large clusters of eggs and they tend to be successful at surviving if they hatch because they will all hunt together. A pack of young gulfreys is a fearful sight, but worse is when they each grow into their fully grown form which is massive."], image: ["oldverse", 242, 10, 123, 52, 0, 0, 123 * 0.65 / 3, 52 * 0.65 / 3]};
 
                     //this multiplies the draw image skew numbers by 1 so that it stays the same
                     this.alphaSize = 0.65;
@@ -32997,6 +33381,14 @@ function theLegend()
             {
                 this.damageFrame = "automatic";
                 this.team = "wild";
+                if (this.ID == "playerSummonedFrich")
+                {
+                    this.team = "player";
+                }
+                else if (this.ID == "docile")
+                {
+                    this.team = "docile";
+                }
                 this.baseTeam = this.team;
 
                 if (this.alpha == true)
@@ -42340,6 +42732,10 @@ function theLegend()
                 {
                     this.drops = [[new Item("coins", this.X, this.Y), 109 + (quests.medliaNewWealth / 2)]];
                 }
+                else if (this.ID == "Garld the Crazy Beggar" || this.ID == "Garld, Sage of Gemith")
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 10], [new Item("summonFrich", this.X, this.Y), 1]];
+                }
                 else if (this.ID == "Drohfor")
                 {
                     this.drops = [[new Item("longbow", this.X, this.Y), 1], [new Item("arrow", this.X, this.Y), 19]];
@@ -42631,6 +43027,22 @@ function theLegend()
                             if (this.killNotByPlayer == false)
                             {
                                 player.freynorFaction -= 6;
+                            }
+                        }
+                        if (this.ID == "Garld the Crazy Beggar" || this.ID == "Garld, Sage of Gemith")
+                        {
+                            uniqueChars.garldLDS = false;
+                            if (this.killNotByPlayer == false)
+                            {
+                                if (this.ID == "Garld, Sage of Gemith")
+                                {
+                                    player.freynorFaction -= 17;
+                                }
+                                else
+                                {
+                                    player.freynorFaction += 10;
+                                }
+
                             }
                         }
                         if (this.ID == "Svehn the Smith")
@@ -47428,6 +47840,96 @@ function theLegend()
                 this.spellDescription = "A beautiful flurry of flying orbs of colourful light bright enough to blind that which gets too close.";
                 this.spellKnowledgeRequirement = 2;
                 this.spellRange = "Medium";
+            }
+            else if (this.type == "summonFrich")
+            {
+                //For All Items
+                if (player.getKnowledge() >= 2)
+                {
+                    this.identity = "Scroll of Frich Summoning";
+                    this.description = "Studying this scroll will teach you how to magically synthesize a frich to fight for you.";
+                    this.intForDes = 0;
+                    this.intDescription = "The more concentration the caster has, the more friches can be summoned.";
+                    this.buyValue = 230 - Math.floor(player.getCharisma() / 1); // at max, buy for 180.
+                    this.sellValue = 130 + Math.floor(player.getCharisma() / 1); // at max, sell for 180.
+                }
+                else
+                {
+                    this.identity = "Scroll";
+                    this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                    this.intForDes = 2;
+                    this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                    this.buyValue = 230 - Math.floor(player.getCharisma() / 1); // at max, buy for 180.
+                    this.sellValue = 1; // at max, sell for 1.
+                }
+                this.weight = 0.02;
+                this.size = 12;
+
+                //Define Utility
+                this.utility = "spell";
+
+                //ability
+                this.ability = "none";
+
+                //Utility Focused
+                this.damages = false;
+
+                this.spellCost = Math.max(1, 2 + 11 / 50 * player.getConcentration() - (9 / 50) * player.getEminence());
+
+                this.spellGroup = "Form";
+                this.spellGenre = "Conjuration";
+                this.spellName = "Frich Summoning";
+                this.spellID = "summonFrich";
+                this.spellEXP = 5 * ((50 + player.getMemory()) / 50);
+                this.spellCooldown = Math.max(3, 8 + (6/50) * player.getConcentration() - (11/50) * player.getEminence());
+                this.spellDescription = "A blast of magical synthesis energy that forms an allied frich.";
+                this.spellKnowledgeRequirement = 2;
+                this.spellRange = "Near-Medium";
+            }
+            else if (this.type == "summonWolf")
+            {
+                //For All Items
+                if (player.getKnowledge() >= 4)
+                {
+                    this.identity = "Scroll of Wolf Summoning";
+                    this.description = "Studying this scroll will teach you how to magically synthesize a wolf to fight for you.";
+                    this.intForDes = 0;
+                    this.intDescription = "The more concentration the caster has, the more wolves can be summoned.";
+                    this.buyValue = 250 - Math.floor(player.getCharisma() / 1); // at max, buy for 200.
+                    this.sellValue = 150 + Math.floor(player.getCharisma() / 1); // at max, sell for 200.
+                }
+                else
+                {
+                    this.identity = "Scroll";
+                    this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                    this.intForDes = 2;
+                    this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                    this.buyValue = 250 - Math.floor(player.getCharisma() / 1); // at max, buy for 180.
+                    this.sellValue = 1; // at max, sell for 1.
+                }
+                this.weight = 0.02;
+                this.size = 12;
+
+                //Define Utility
+                this.utility = "spell";
+
+                //ability
+                this.ability = "none";
+
+                //Utility Focused
+                this.damages = false;
+
+                this.spellCost = Math.max(2, 2 + 12 / 50 * player.getConcentration() - (9 / 50) * player.getEminence());
+
+                this.spellGroup = "Form";
+                this.spellGenre = "Conjuration";
+                this.spellName = "Wolf Summoning";
+                this.spellID = "summonWolf";
+                this.spellEXP = 7 * ((50 + player.getMemory()) / 50);
+                this.spellCooldown = Math.max(4, 9 + (6/50) * player.getConcentration() - (11/50) * player.getEminence());
+                this.spellDescription = "A blast of magical synthesis energy that forms an allied wolf.";
+                this.spellKnowledgeRequirement = 4;
+                this.spellRange = "Near-Medium";
             }
             else if (this.type == "chasingLights")
             {
@@ -61297,12 +61799,12 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polypol, 1844, 64, 37, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 37), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32), 37, 32);
             }
-            else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "drainingI" || this.type == "fireHands" || this.type == "sorcerer'sRaincoat")
+            else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "drainingI" || this.type == "fireHands" || this.type == "sorcerer'sRaincoat" || this.type == "summonWolf")
             {
                 XXX.beginPath();
                 XXX.drawImage(polypol, 1967, 67, 33, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 33), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26), 33, 26);
             }
-            else if (this.type == "repel" || this.type == "lifeTap" || this.type == "electricBolt" || this.type == "chargedTouch" || this.type == "shieldingIII" || this.type == "shieldingIV")
+            else if (this.type == "repel" || this.type == "lifeTap" || this.type == "electricBolt" || this.type == "chargedTouch" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "summonFrich")
             {
                 XXX.beginPath();
                 XXX.drawImage(polypol, 1922, 4, 23, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 23), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32), 23, 32);
@@ -63153,7 +63655,7 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
             }
-            else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV")
+            else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf")
             {
                 LXX.beginPath();
                 LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -64924,7 +65426,7 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
             }
-            else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV")
+            else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf")
             {
                 XXX.beginPath();
                 XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -65854,6 +66356,29 @@ function theLegend()
                             }
                         }
                     }
+                    if (uniqueChars.garldLDS == true)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Garld the Crazy Beggar" || ArtificialIntelligenceAccess[i].ID == "Garld, Sage of Gemith")
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(1282, 1622, "Person", false, "Garld the Crazy Beggar", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.5, 1], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[2072, 1535], [1939, 1509], [2033, 1499]]}));
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].ID == "Garld the Crazy Beggar" || ArtificialIntelligenceAccess[i].ID == "Garld, Sage of Gemith")
+                                {
+                                    ArtificialIntelligenceAccess[i].healthMAX = 12.1;
+                                    ArtificialIntelligenceAccess[i].health = 12.1;
+                                }
+                            }
+                        }
+                    }
                     if (uniqueChars.odeeLDS == true)
                     {
                         var hits = 0;
@@ -66000,7 +66525,7 @@ function theLegend()
                             var hits = 0;
                             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                             {
-                                if (ArtificialIntelligenceAccess[i].ID == "Neculai the Merchant")
+                                if (ArtificialIntelligenceAccess[i].ID == "Neculai the Merchant" || ArtificialIntelligenceAccess[i].ID == "Neculai the Beggar")
                                 {
                                     hits += 1;
                                 }
@@ -69734,6 +70259,7 @@ function theLegend()
         saveBrain["primarySpells"] = primarySpells;
         saveBrain["secondarySpells"] = secondarySpells;
         saveBrain["tertiarySpells"] = tertiarySpells;
+        saveBrain["beastJournal"] = beastJournal;
 
         var saveFile = JSON.stringify(saveBrain);
         //based on what save type the player chooses the save will be stored in one of the four game slots.
@@ -69960,6 +70486,7 @@ function theLegend()
             primarySpells = parsed.primarySpells;
             secondarySpells = parsed.secondarySpells;
             tertiarySpells = parsed.tertiarySpells;
+            //beastJournal = parsed.beastJournal;
 
             for (var key in parsed.uniqueChars)
             {

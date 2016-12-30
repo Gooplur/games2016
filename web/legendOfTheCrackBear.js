@@ -826,7 +826,9 @@ function theLegend()
     var secondarySpells = [];
     var tertiarySpells = [];
         //Well List
-    var wellConversionList = [["pintGlass", "waterPintGlass"], ["walrusLeatherWaterskin", "walrusLeatherWaterskinFull"], ["bucket", "bucketOfWater"], ["potionGlass", "vialOfWater"], ["kellishClayPot", "kellishClayPotOfWater"], ["glassBottle", "glassBottleOfWater"]]; //todo use this to have the well convert empty containers into water-filled versions.
+    var wellConversionList = [["pintGlass", "waterPintGlass"], ["walrusLeatherWaterskin", "walrusLeatherWaterskinFull"], ["bucket", "bucketOfWater"], ["potionGlass", "vialOfWater"], ["kellishClayPot", "kellishClayPotOfWater"], ["glassBottle", "glassBottleOfWater"]];
+        //Milking/Juicing/Sapping Lists
+    var naapridConversionList = [["bucket", "bucketOfNaapridMilk"], ["kellishClayPot", "kellishClayPotOfNaapridMilk"]];
         //conversations and dialogue
     var conversationID = ["none", 0]; //[Person conversing with, stage in conversation]
     var conversations =
@@ -1149,6 +1151,7 @@ function theLegend()
     allWorn.push(new Item("evrakLeatherArmour", false)); //35
     allWorn.push(new Item("anterShellArmour", false)); //36
     allWorn.push(new Item("theCorpseRing", false)); //37
+    allWorn.push(new Item("ironRing", false)); //38
 
     var scenicList = [];
 
@@ -9012,6 +9015,10 @@ function theLegend()
             if (this.ringEquipped == "theCorpseRing")
             {
                 ring = allWorn[37];
+            }
+            else if (this.ringEquipped == "ironRing")
+            {
+                ring = allWorn[38];
             }
             else
             {
@@ -19819,7 +19826,7 @@ function theLegend()
                 XXX.font = "30px Book Antiqua";
                 XXX.fillStyle = "black";
                 XXX.textAlign = "center";
-                XXX.fillText("Stealth", 360 + (1 / 2 * 235), 137 + 263);
+                XXX.fillText("Survivalism", 360 + (1 / 2 * 235), 137 + 263);
 
                         //box: response half
                 XXX.beginPath();
@@ -32096,7 +32103,7 @@ function theLegend()
 
                         if (this.beastEntry != "none")
                         {
-                            if (player.getIntelligence() >= this.beastEntry.intReq)
+                            if (player.getStealth() >= this.beastEntry.intReq)
                             {
                                 var addEntry = true;
                                 for (var i = 0; i < beastJournal.length; i++)
@@ -34509,6 +34516,7 @@ function theLegend()
                 this.damageFrame = "manual";
                 this.team = "herd";
                 this.baseTeam = this.team;
+                this.milkTime = new Date().getTime();
 
                 if (this.alpha == true)
                 {
@@ -40569,14 +40577,79 @@ function theLegend()
                 {
                     this.rangeOfSightCalculator(300, "very");
                 }
+                //Milking Naaprid
+                if (this.alpha == false && player.getStealth() >= 10 && X - mouseX + 1/2 * CCC.width < this.X + this.sizeRadius && X - mouseX + 1/2 * CCC.width > this.X - this.sizeRadius && Y - mouseY + 1/2 * CCC.height < this.Y + this.sizeRadius && Y - mouseY + 1/2 * CCC.height > this.Y - this.sizeRadius)
+                {
+                    if (this.DTP() <= this.sizeRadius + 70 && dClick && new Date().getTime() > this.milkTime + 40000)
+                    {
+                        this.milkTime = new Date().getTime();
+                        this.doBreak = false;
+                        this.yaTiene = false;
+
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            for (var j = 0; j < naapridConversionList.length; j++)
+                            {
+                                //console.log(Inventory[i][0].type + " v.s. "  + naapridConversionList[j][0]);
+                                if (Inventory[i][0].type == naapridConversionList[j][0])
+                                {
+                                    for (var k = 0; k < Inventory.length; k++)
+                                    {
+                                        if (Inventory[k][0].type == naapridConversionList[j][1])
+                                        {
+                                            this.yaTiene = k;
+                                        }
+                                    }
+
+                                    if (Inventory[i][1] > 1)
+                                    {
+                                        Inventory[i][1] -= 1;
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.push([new Item(naapridConversionList[j][1], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.splice(i, 1);
+                                            Inventory.push([new Item(naapridConversionList[j][1], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                            Inventory.splice(i, 1);
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (this.doBreak == true)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
 
                 //AI
                 if (this.alive == true)
                 {
                     if (this.alpha == true)
                     {
-                        this.Attack(7, 2);
-                        this.callForNearbyHelpFromType(385, "Naaprid");
+                        if (this.disturbed || player.getStealth() < 10 || player.weaponEquipped != "none")
+                        {
+                            this.Attack(7, 2);
+                            this.callForNearbyHelpFromType(385, "Naaprid");
+                        }
                     }
                     else if (this.alpha == "baby")
                     {
@@ -40585,8 +40658,11 @@ function theLegend()
                     }
                     else
                     {
-                        this.Attack(5, 1);
-                        this.callForNearbyHelpFromType(350, "Naaprid");
+                        if (this.disturbed || player.getStealth() < 10|| player.weaponEquipped != "none")
+                        {
+                            this.Attack(5, 1);
+                            this.callForNearbyHelpFromType(350, "Naaprid");
+                        }
                     }
 
                     //this.deathChecker();
@@ -40618,7 +40694,7 @@ function theLegend()
                     }
                     else
                     {
-                        if (this.disturbed == true && this.health > (this.healthMAX * (3/4)))
+                        if (this.disturbed == true && this.health > (this.healthMAX * (3/4)) || player.weaponEquipped == "none" && player.getStealth() >= 10 && this.disturbed == false)
                         {
                             if (this.target == player)
                             {
@@ -40641,7 +40717,7 @@ function theLegend()
                             }
                         }
                     }
-                    if (this.target == player)
+                    if (this.target == player && player.getStealth() < 10 || this.target == player && this.disturbed || this.target == player && player.weaponEquipped != "none")
                     {
                         this.moveInRelationToPlayer();
                     }
@@ -57875,7 +57951,7 @@ function theLegend()
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
                 this.thirstBonus = 0;
-                this.warmthBonus = 1;
+                this.warmthBonus = 0;
                 //Magical Stat Bonuses
                 this.eminenceBonus = 0;
                 this.willpowerBonus = 0;
@@ -57903,6 +57979,63 @@ function theLegend()
                 {
                     this.sellValue = 2200 + Math.floor(player.getCharisma() / 0.1); // at max, sell for 2700.
                 }
+            }
+            else if (this.type == "ironRing")
+            {
+                //For All Items
+                this.identity = "Iron Ring";
+                this.weight = 0.025;
+                this.size = 3;
+                this.description = "A thick ring of iron.";
+                this.intForDes = 0;
+                this.intDescription = "Just a simple boring old ring.";
+
+                //Define Utility
+                this.utility = "worn";
+                //the type of armour/clothing it is...
+                this.subUtility = "ring";
+                //Utility Focused
+                //protections
+                this.protection = 0 * ((player.toughness / 100) + 1);
+                this.eminenceRequirement = 0;
+                this.magicalProtection = 0;
+                this.warmthRetention = 0;
+                this.thirstRetention = 0;
+                this.shockResist = 0;
+                //Main Stat Bonuses
+                this.strengthBonus = 0;
+                this.enduranceBonus = 0;
+                this.toughnessBonus = 0;
+                this.intelligenceBonus = 0;
+                this.charismaBonus = 0;
+                this.rangedBonus = 0;
+                this.constitutionBonus = 0;
+                this.staminaBonus = 0;
+                this.dexterityBonus = 0;
+                this.stealthBonus = 0;
+                //Extra Stat Bonuses
+                this.sleepBonus = 0;
+                this.hungerBonus = 0;
+                this.thirstBonus = 0;
+                this.warmthBonus = 0;
+                //Magical Stat Bonuses
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "none";
+
+                //crafting
+                this.yield = 8;
+                this.intForCraft = 11;
+                this.ingredients = [["Iron", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
             }
             else if (this.type == "mofuFive")
             {
@@ -57952,6 +58085,7 @@ function theLegend()
                 //ability
                 this.ability = "none";
 
+                //crafting
                 this.yield = 4;
                 this.intForCraft = 21;
                 this.ingredients = [["Fiber", 1], ["mofuFeather", 20]];
@@ -61041,6 +61175,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(polpol, 48, 44, 13, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1), 13 * 1, 9 * 1);
             }
+            else if (this.type == "ironRing")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 32, 22, 11, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 1), 11 * 1, 11 * 1);
+            }
             else if (this.type == "rawArdilFlesh")
             {
                 XXX.beginPath();
@@ -62893,6 +63032,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(polpol, 48, 44, 13, 9, this.invX - (1/2 * 13 * 1.25), this.invY - (1/2 * 9 * 1.25), 13 * 1.25, 9 * 1.25);
             }
+            else if (this.type == "ironRing")
+            {
+                LXX.beginPath();
+                LXX.drawImage(polpol, 32, 22, 11, 11, this.invX - (1/2 * 11 * 1.25), this.invY - (1/2 * 11 * 1.25), 11 * 1.25, 11 * 1.25);
+            }
             else if (this.type == "rawArdilFlesh")
             {
                 LXX.beginPath();
@@ -64663,6 +64807,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(polpol, 48, 44, 13, 9, this.invX - (1/2 * 13 * 1.25), this.invY - (1/2 * 9 * 1.25), 13 * 1.25, 9 * 1.25);
+            }
+            else if (this.type == "ironRing")
+            {
+                XXX.beginPath();
+                XXX.drawImage(polpol, 32, 22, 11, 11, this.invX - (1/2 * 11 * 1.25), this.invY - (1/2 * 11 * 1.25), 11 * 1.25, 11 * 1.25);
             }
             else if (this.type == "rawArdilFlesh")
             {
@@ -69028,7 +69177,7 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-631, -30389, "Person", false, teberName, {race: "Freynor", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 4], weapon: ["freydicSword", [6, 6], 0, 0, 1.45], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 62], [new Item("naapridFiber", false, false), 11], [new Item("pintGlass", false, false), 18], [new Item("potionGlass", false, false), 16], [new Item("glassJar", false, false), 7]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-631, -30389, "Person", false, teberName, {race: "Freynor", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 4], weapon: ["freydicSword", [6, 6], 0, 0, 1.45], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 62], [new Item("naapridFiber", false, false), 11], [new Item("ironRing", false, false), 6], [new Item("pintGlass", false, false), 18], [new Item("potionGlass", false, false), 16], [new Item("glassJar", false, false), 7]]}));
                             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                             {
                                 if (ArtificialIntelligenceAccess[i].ID == teberName)
@@ -70486,7 +70635,7 @@ function theLegend()
             primarySpells = parsed.primarySpells;
             secondarySpells = parsed.secondarySpells;
             tertiarySpells = parsed.tertiarySpells;
-            //beastJournal = parsed.beastJournal;
+            beastJournal = parsed.beastJournal;
 
             for (var key in parsed.uniqueChars)
             {

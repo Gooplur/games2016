@@ -35,7 +35,7 @@
 //todo It would be cool to add swimming, but it is not necessarily something that the game needs.
 //todo Add multi dimensional gameplay... meaning Dungeons, Caves, trapdoors, castles, cellars, buildings, etc.
 //todo Add lore, human characters, guards, and important figures. King Wolthgar perhaps... or not... we'll see!
-//todo Add beartraps and other traps that you can set stealth is also a trapping skill.
+//todo Add beartraps and other traps that you can set Survivalism is also a trapping skill.
 //todo Add haeflower... psycodelic, takes you to a drug trip world with a slowly flashing rainbow floor and a fog of disoriented colors plus in that world fight weird things like crack bears with a fish as your weapon.
 function legendaryPrerequisites()
 {
@@ -1822,7 +1822,7 @@ function theLegend()
             {
                 if (player.name == "Gooplur" && player.race == "#336600")
                 {
-                    player.stealth = 500;
+                    player.survivalism = 500;
                 }
             }
             else if (cheatcode == "drugsaregoodandifyoudothempeoplethinkthatyou'recool")
@@ -3641,7 +3641,7 @@ function theLegend()
                     player.stamina = 0;
                     player.dexterity = 1;
                     player.ranged = 0;
-                    player.stealth = 0;
+                    player.survivalism = 0;
                     player.intelligence = 0;
                     player.endurance = 3;
                     player.toughness = 0;
@@ -3687,7 +3687,7 @@ function theLegend()
                     player.stamina = 2;
                     player.dexterity = 0;
                     player.ranged = 0;
-                    player.stealth = 0;
+                    player.survivalism = 0;
                     player.intelligence = 0;
                     player.endurance = 0;
                     player.toughness = 0;
@@ -3733,7 +3733,7 @@ function theLegend()
                     player.stamina = 0;
                     player.dexterity = 0;
                     player.ranged = 0;
-                    player.stealth = 0;
+                    player.survivalism = 0;
                     player.intelligence = 0;
                     player.endurance = 0;
                     player.toughness = 2;
@@ -3784,7 +3784,7 @@ function theLegend()
                     player.stamina = 0;
                     player.dexterity = 0;
                     player.ranged = 3;
-                    player.stealth = 0;
+                    player.survivalism = 0;
                     player.intelligence = 0;
                     player.endurance = 1;
                     player.toughness = 0;
@@ -3840,7 +3840,7 @@ function theLegend()
                     player.stamina = 0;
                     player.dexterity = 0;
                     player.ranged = 0;
-                    player.stealth = 0;
+                    player.survivalism = 0;
                     player.intelligence = 2;
                     player.endurance = 0;
                     player.toughness = 0;
@@ -3891,7 +3891,7 @@ function theLegend()
                     player.stamina = 3;
                     player.dexterity = 1;
                     player.ranged = 0;
-                    player.stealth = 0;
+                    player.survivalism = 0;
                     player.intelligence = 0;
                     player.endurance = 0;
                     player.toughness = 0;
@@ -3947,7 +3947,7 @@ function theLegend()
                     player.stamina = 0;
                     player.dexterity = 0;
                     player.ranged = 0;
-                    player.stealth = 0;
+                    player.survivalism = 0;
                     player.intelligence = 0;
                     player.endurance = 0;
                     player.toughness = 0;
@@ -3993,7 +3993,7 @@ function theLegend()
                     player.stamina = 1;
                     player.dexterity = 1;
                     player.ranged = 1;
-                    player.stealth = 0;
+                    player.survivalism = 0;
                     player.intelligence = 0;
                     player.endurance = 0;
                     player.toughness = 0;
@@ -4039,7 +4039,7 @@ function theLegend()
                     player.stamina = 0;
                     player.dexterity = 0;
                     player.ranged = 0;
-                    player.stealth = 0;
+                    player.survivalism = 0;
                     player.intelligence = 0;
                     player.endurance = 0;
                     player.toughness = 0;
@@ -5368,10 +5368,10 @@ function theLegend()
         this.constitution = 50; //this determines the amount of health that the player has. (4 health per point) (50 Maximum Constitution)
         this.strength = 50; //this skill adds or subtracts from your physical damage blows based on whether or not it is positive or negative. [+ 5 points of carry weight per level] (50 Maximum Strength)
         this.stamina = 50; //stamina determines the amount of energy you have for running and attacking. (5 energy per point) (50 Maximum Stamina)
-        this.dexterity = 50; //this determines how fast you can move and how fast you can run. (50 Maximum Dexterity) [don't let it be boosted past 86]
+        this.dexterity = 50; //this determines how fast you can move and how fast you can run. Dexterity also determines how well you can sneak.(50 Maximum Dexterity) [don't let it be boosted past 86]
         this.ranged = 50; //this skill increases the effectiveness of ranged weaponry.
-        this.stealth = 50; //this skill determines how well your character can sneak, meaning [alt key movement]. Better stealth allows you to sneak by your enemies without being detected, and it gives you a bonus to successful theft and any other thing that may require stealth... perhaps lockpicking. (50 Maximum Stealth)
-        this.intelligence = 50; //intelligence helps you earn experience faster in both magical and physical leveling systems.
+        this.survivalism = 50; //This skill lets you unlock the ability to add new beast journal entries, it increases the effectiveness of traps, and it determines all stats related to animal taming, and companionship. (50 Maximum survivalism)
+        this.intelligence = 50; //intelligence helps you earn experience faster in both magical and physical leveling systems, it lets you get special bonuses from certain reading materials, and it is the key skill for use of the crafting system.
         this.endurance = 50; //this skill determines the rate of regeneration for both energy and health it also increases your total hunger points. (50 Maximum Endurance) [for developer use: 58.333 repeating is the maximum amount for energy regeneration before it breaks... at this speed it is basically instant. Health will regenerate in a negative direction though at this number, so be careful...]
         this.toughness = 50; //this skill determine the player's natural armour (up to 5!), or how much damage a player can take without it affecting the player's health. Toughness also increases the players resistance to the environment and it reduces the likeliness of taking on negative effects. (50 Maximum Toughness)
         this.charisma = 0; //this skill allows you to access certain options gained through socializing, and it also determines how fast you gain and lose fame. [high charisma means that you will gain positive as well as negative fame quicker because your actions are more noticed by people]
@@ -5381,7 +5381,7 @@ function theLegend()
         this.AdStamina = 0; //this is the amount of stat adjustment to stamina.
         this.AdDexterity = 0; //this is the amount of stat adjustment to dexterity.
         this.AdRanged = 0; //this is the amount of stat adjustment to ranged.
-        this.AdStealth = 0; //this is the amount of stat adjustment to stealth.
+        this.AdSurvivalism = 0; //this is the amount of stat adjustment to survivalism.
         this.AdIntelligence = 0; //this is the amount of stat adjustment to intelligence.
         this.AdEndurance = 0; //this is the amount of stat adjustment to endurance.
         this.AdToughness = 0; //this is the amount of stat adjustment to toughness.
@@ -7390,7 +7390,7 @@ function theLegend()
             };
             this.sightSeeing = function()
             {
-                if (this.getStealth() >= 50 && this.movingType == 3 || adminShowSight)
+                if (adminShowSight || this.getDexterity() >= 50 && this.movingType == 3)
                 {
                     showSight = true;
                 }
@@ -7739,9 +7739,9 @@ function theLegend()
             return (Math.max(0, this.ranged + this.AdRanged + this.swollenRNG));
         };
 
-        this.getStealth = function()
+        this.getSurvivalism = function()
         {
-            return (Math.max(0, this.stealth + this.AdStealth + this.gassyCha));
+            return (Math.max(0, this.survivalism + this.AdSurvivalism + this.gassyCha));
         };
 
         this.getIntelligence = function()
@@ -9046,7 +9046,7 @@ function theLegend()
             this.AdConstitution = outfit.constitutionBonus + gloves.constitutionBonus + necklace.constitutionBonus + ring.constitutionBonus;
             this.AdStamina = outfit.staminaBonus + gloves.staminaBonus + necklace.staminaBonus + ring.staminaBonus;
             this.AdDexterity = outfit.dexterityBonus + gloves.dexterityBonus + necklace.dexterityBonus + ring.dexterityBonus;
-            this.AdStealth = outfit.stealthBonus + gloves.stealthBonus + necklace.stealthBonus + ring.stealthBonus;
+            this.AdSurvivalism = outfit.survivalismBonus + gloves.survivalismBonus + necklace.survivalismBonus + ring.survivalismBonus;
             //Extra Stat Bonuses
             this.AdSleep = outfit.sleepBonus + gloves.sleepBonus + necklace.sleepBonus;
             this.hungerMAX = this.hungerMAX + outfit.hungerBonus + gloves.hungerBonus + necklace.hungerBonus + ring.hungerBonus;
@@ -19813,7 +19813,7 @@ function theLegend()
                 XXX.textAlign = "center";
                 XXX.fillText("+", 730, 136 + 213);
 
-                    //Stealth
+                    //Survivalism
                         //box: subject half
                 XXX.beginPath();
                 XXX.fillStyle = "#E8E8E8";
@@ -19837,26 +19837,26 @@ function theLegend()
                 XXX.fill();
                 XXX.stroke();
                             //text
-                if (this.AdStealth > 0)
+                if (this.AdSurvivalism > 0)
                 {
                     XXX.font = "bold 30px Book Antiqua";
                     XXX.fillStyle = "#00EE76";
                     XXX.textAlign = "center";
-                    XXX.fillText(this.stealth + " + " + this.AdStealth, 605 + (1 / 2 * 105), 137 + 263);
+                    XXX.fillText(this.survivalism + " + " + this.AdSurvivalism, 605 + (1 / 2 * 105), 137 + 263);
                 }
-                else if (this.AdStealth < 0)
+                else if (this.AdSurvivalism < 0)
                 {
                     XXX.font = "bold 30px Book Antiqua";
                     XXX.fillStyle = "#EE0000";
                     XXX.textAlign = "center";
-                    XXX.fillText(this.stealth + " - " + (this.AdStealth * -1), 605 + (1 / 2 * 105), 137 + 263);
+                    XXX.fillText(this.survivalism + " - " + (this.AdSurvivalism * -1), 605 + (1 / 2 * 105), 137 + 263);
                 }
                 else
                 {
                     XXX.font = "30px Book Antiqua";
                     XXX.fillStyle = "black";
                     XXX.textAlign = "center";
-                    XXX.fillText(this.stealth, 605 + (1 / 2 * 105), 137 + 263);
+                    XXX.fillText(this.survivalism, 605 + (1 / 2 * 105), 137 + 263);
                 }
 
                 if (mouseX > 720 && mouseX < 740 && mouseY > 118 + 263 && mouseY < 138 + 263)
@@ -19864,10 +19864,10 @@ function theLegend()
                     if (clicked == true && this.skillPoints >= 1)
                     {
                         clicked = false;
-                        if (this.stealth < 50)
+                        if (this.survivalism < 50)
                         {
                             this.skillPoints -= 1;
-                            this.stealth += 1;
+                            this.survivalism += 1;
                         }
                     }
 
@@ -22936,7 +22936,7 @@ function theLegend()
                     //this is where if you are sleeping in an untraditional way you could be ambushed and will certainly be "sore" in the morning.
                     if (safe == false)
                     {
-                        //todo add potential monster/enemy ambush and add soreness which will weaken constitution and dexterity and ranged and strength and endurance and stealth and all magic skills except knowledge by - 1 //booble
+                        //todo add potential monster/enemy ambush and add soreness which will weaken constitution and dexterity and ranged and strength and endurance and all magic skills except knowledge by - 1 //booble
                     }
                 }
             }
@@ -30684,9 +30684,9 @@ function theLegend()
                     this.rangeOfSight = baseSight * 1.35 + this.extraRange;
                 }
             }
-            else if (altKey == true && wKey == false && this.playerSeen == false && this.disturbed == false) // If sneaking and the player has not yet been noticed by the enemy...
+            else if (altKey == true && wKey == false && this.playerSeen == false && !this.disturbed) // If sneaking and the player has not yet been noticed by the enemy...
             {
-                this.rangeOfSight = baseSight * (13 / (14 + (player.getStealth() * 2))) + this.extraRange; // the enemy's sight is severely lowered.
+                this.rangeOfSight = baseSight * (13 / (14 + (player.getDexterity() * 2))) + this.extraRange; // the enemy's sight is severely lowered.
             }
             else if (this.playerSeen == false) //otherwise if the enemy had already noticed the player...
             {
@@ -32103,7 +32103,7 @@ function theLegend()
 
                         if (this.beastEntry != "none")
                         {
-                            if (player.getStealth() >= this.beastEntry.intReq)
+                            if (player.getSurvivalism() >= this.beastEntry.intReq)
                             {
                                 var addEntry = true;
                                 for (var i = 0; i < beastJournal.length; i++)
@@ -40578,7 +40578,7 @@ function theLegend()
                     this.rangeOfSightCalculator(300, "very");
                 }
                 //Milking Naaprid
-                if (this.alpha == false && player.getStealth() >= 10 && X - mouseX + 1/2 * CCC.width < this.X + this.sizeRadius && X - mouseX + 1/2 * CCC.width > this.X - this.sizeRadius && Y - mouseY + 1/2 * CCC.height < this.Y + this.sizeRadius && Y - mouseY + 1/2 * CCC.height > this.Y - this.sizeRadius)
+                if (this.alpha == false && player.getSurvivalism() >= 10 && X - mouseX + 1/2 * CCC.width < this.X + this.sizeRadius && X - mouseX + 1/2 * CCC.width > this.X - this.sizeRadius && Y - mouseY + 1/2 * CCC.height < this.Y + this.sizeRadius && Y - mouseY + 1/2 * CCC.height > this.Y - this.sizeRadius)
                 {
                     if (this.DTP() <= this.sizeRadius + 70 && dClick && new Date().getTime() > this.milkTime + 40000)
                     {
@@ -40645,7 +40645,7 @@ function theLegend()
                 {
                     if (this.alpha == true)
                     {
-                        if (this.disturbed || player.getStealth() < 10 || player.weaponEquipped != "none")
+                        if (this.disturbed || player.getSurvivalism() < 10 || player.weaponEquipped != "none")
                         {
                             this.Attack(7, 2);
                             this.callForNearbyHelpFromType(385, "Naaprid");
@@ -40658,7 +40658,7 @@ function theLegend()
                     }
                     else
                     {
-                        if (this.disturbed || player.getStealth() < 10|| player.weaponEquipped != "none")
+                        if (this.disturbed || player.getSurvivalism() < 10|| player.weaponEquipped != "none")
                         {
                             this.Attack(5, 1);
                             this.callForNearbyHelpFromType(350, "Naaprid");
@@ -40694,7 +40694,7 @@ function theLegend()
                     }
                     else
                     {
-                        if (this.disturbed == true && this.health > (this.healthMAX * (3/4)) || player.weaponEquipped == "none" && player.getStealth() >= 10 && this.disturbed == false)
+                        if (this.disturbed == true && this.health > (this.healthMAX * (3/4)) || player.weaponEquipped == "none" && player.getSurvivalism() >= 10 && this.disturbed == false)
                         {
                             if (this.target == player)
                             {
@@ -40717,7 +40717,7 @@ function theLegend()
                             }
                         }
                     }
-                    if (this.target == player && player.getStealth() < 10 || this.target == player && this.disturbed || this.target == player && player.weaponEquipped != "none")
+                    if (this.target == player && player.getSurvivalism() < 10 || this.target == player && this.disturbed || this.target == player && player.weaponEquipped != "none")
                     {
                         this.moveInRelationToPlayer();
                     }
@@ -40936,7 +40936,7 @@ function theLegend()
                     //Process
                     if (this.team != "player")
                     {
-                        if (this.DTP() <= 1/3 * this.rangeOfSight && shiftKey == true && wKey == true && player.getStealth() < 40 || this.alpha != true && this.DTP() <= 28 && this.attacking == false && altKey == false || this.alpha == true && this.DTP() <= 41 && this.attacking == false && altKey == false || this.DTU(this.target) <= 36 && this.target != player)
+                        if (this.DTP() <= 1/3 * this.rangeOfSight && shiftKey == true && wKey == true && player.getSurvivalism() < 40 || this.alpha != true && this.DTP() <= 28 && this.attacking == false && altKey == false || this.alpha == true && this.DTP() <= 41 && this.attacking == false && altKey == false || this.DTU(this.target) <= 36 && this.target != player)
                         {
                             this.disturbedTime = new Date().getTime();
                         }
@@ -41240,7 +41240,7 @@ function theLegend()
                     //Process
                     if (this.team != "player")
                     {
-                        if (this.DTP() <= 1/2 * this.rangeOfSight && wKey == true && player.getStealth() < 40 || this.DTU(this.target) <= 1/2 * this.rangeOfSight && this.target != player)
+                        if (this.DTP() <= 1/2 * this.rangeOfSight && wKey == true && player.getSurvivalism() < 40 || this.DTU(this.target) <= 1/2 * this.rangeOfSight && this.target != player)
                         {
                             this.disturbedTime = new Date().getTime();
                         }
@@ -47782,7 +47782,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -57771,7 +57771,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -57827,7 +57827,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -57883,7 +57883,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -57946,7 +57946,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -58012,7 +58012,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -58069,7 +58069,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -58126,8 +58126,8 @@ function theLegend()
                 this.rangedBonus = 2;
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
-                this.dexterityBonus = 2;
-                this.stealthBonus = 5;
+                this.dexterityBonus = 4;
+                this.survivalismBonus = 3;
                 //Extra Stat Bonuses
                 this.sleepBonus = 3;
                 this.hungerBonus = 0;
@@ -58185,7 +58185,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 3;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -58243,7 +58243,7 @@ function theLegend()
                 this.constitutionBonus = 1;
                 this.staminaBonus = 1;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -58301,7 +58301,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                     //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -58359,7 +58359,7 @@ function theLegend()
                 this.constitutionBonus = 6;
                 this.staminaBonus = -3;
                 this.dexterityBonus = -11;
-                this.stealthBonus = -11;
+                this.survivalismBonus = -11;
                 //Extra Stat Bonuses
                 this.sleepBonus = 6;
                 this.hungerBonus = 0;
@@ -58412,7 +58412,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 1;
+                this.survivalismBonus = 1;
                 //Extra Stat Bonuses
                 this.sleepBonus = 1;
                 this.hungerBonus = 1;
@@ -58470,7 +58470,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 1;
                 this.hungerBonus = 0;
@@ -58523,7 +58523,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 1;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 2;
                 this.hungerBonus = 0;
@@ -58576,7 +58576,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -58631,8 +58631,8 @@ function theLegend()
                 this.rangedBonus = -8;
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
-                this.dexterityBonus = -8;
-                this.stealthBonus = -22;
+                this.dexterityBonus = -22;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -58690,7 +58690,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = -1;
-                this.stealthBonus = -12;
+                this.survivalismBonus = -12;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -58747,8 +58747,8 @@ function theLegend()
                 this.rangedBonus = -20;
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
-                this.dexterityBonus = -50;
-                this.stealthBonus = -50;
+                this.dexterityBonus = -55;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -58805,8 +58805,8 @@ function theLegend()
                 this.rangedBonus = -2;
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
-                this.dexterityBonus = -4;
-                this.stealthBonus = -15;
+                this.dexterityBonus = -15;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -58864,7 +58864,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = -50;
-                this.stealthBonus = -50;
+                this.survivalismBonus = -50;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -58921,8 +58921,8 @@ function theLegend()
                 this.rangedBonus = -2;
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
-                this.dexterityBonus = -5;
-                this.stealthBonus = -20;
+                this.dexterityBonus = -20;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -58980,7 +58980,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -59044,8 +59044,8 @@ function theLegend()
                 this.rangedBonus = 0;
                 this.constitutionBonus = 0;
                 this.staminaBonus = -2;
-                this.dexterityBonus = -5;
-                this.stealthBonus = -5;
+                this.dexterityBonus = -10;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -59103,7 +59103,7 @@ function theLegend()
                 this.constitutionBonus = 1;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -59160,7 +59160,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -59217,7 +59217,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -59280,8 +59280,8 @@ function theLegend()
                 this.rangedBonus = 0;
                 this.constitutionBonus = 0;
                 this.staminaBonus = -2;
-                this.dexterityBonus = -5;
-                this.stealthBonus = -5;
+                this.dexterityBonus = -10;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -59338,7 +59338,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -59395,7 +59395,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -59459,7 +59459,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -59516,7 +59516,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 2;
+                this.survivalismBonus = 2;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -59573,7 +59573,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -59630,7 +59630,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 0;
-                this.stealthBonus = 0;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -59687,7 +59687,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 1;
-                this.stealthBonus = 1;
+                this.survivalismBonus = 1;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -59750,8 +59750,8 @@ function theLegend()
                 this.rangedBonus = 0;
                 this.constitutionBonus = 0;
                 this.staminaBonus = -2;
-                this.dexterityBonus = -5;
-                this.stealthBonus = -5;
+                this.dexterityBonus = -10;
+                this.survivalismBonus = 0;
                 //Extra Stat Bonuses
                 this.sleepBonus = 0;
                 this.hungerBonus = 0;
@@ -59815,8 +59815,8 @@ function theLegend()
                 this.rangedBonus = 0;
                 this.constitutionBonus = 0;
                 this.staminaBonus = -3;
-                this.dexterityBonus = -12;
-                this.stealthBonus = -14;
+                this.dexterityBonus = -24;
+                this.survivalismBonus = 2;
                 //Extra Stat Bonuses
                 this.sleepBonus = 2;
                 this.hungerBonus = 2;
@@ -59869,7 +59869,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 1;
-                this.stealthBonus = -1;
+                this.survivalismBonus = -1;
                 //Extra Stat Bonuses
                 this.sleepBonus = 1;
                 this.hungerBonus = 0;
@@ -59926,7 +59926,7 @@ function theLegend()
                 this.constitutionBonus = 0;
                 this.staminaBonus = 0;
                 this.dexterityBonus = 2;
-                this.stealthBonus = -2;
+                this.survivalismBonus = -2;
                 //Extra Stat Bonuses
                 this.sleepBonus = 1;
                 this.hungerBonus = 0;

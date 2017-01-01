@@ -3,8 +3,7 @@
  */
 
 //TODO LIST
-
-//todo fix summoned wolves so that they can damage enemies. a problem concerning teams they work if not on the team "player" also they are a "manual" style attacking creature.
+//todo add friches and maybe Avrak/avreks in the S3 Map.
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
 //todo revise the sleeping system... as of right now it is an absolute crazy juju ball made of sand candy!!! Which is a bad thing.
 //todo finish adding the beast journal.
@@ -69301,8 +69300,40 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-2500, -29938, "Mofu", "baby", "Jilin"));
                     ArtificialIntelligenceAccess.push(new Unit(-2176, -29434, "Mofu", true, "Loz"));
                     ArtificialIntelligenceAccess.push(new Unit(-2368, -29393, "Mofu", "baby", "Kleena"));
+                    ArtificialIntelligenceAccess.push(new Unit(5547, -29081, "Mofu", "baby", "Feath"));
+                    ArtificialIntelligenceAccess.push(new Unit(5332, -28842, "Mofu", true, "Fey"));
+                    ArtificialIntelligenceAccess.push(new Unit(5245, -29093, "Mofu", false, "Fea"));
+                    ArtificialIntelligenceAccess.push(new Unit(5417, -28940, "Mofu", false, "Fella"));
+                    ArtificialIntelligenceAccess.push(new Unit(5699, -29055, "Mofu", false, "Afetho"));
+                    ArtificialIntelligenceAccess.push(new Unit(5526, -29155, "Mofu", true, "Ley"));
+                    ArtificialIntelligenceAccess.push(new Unit(5040, -28965, "Mofu", true, "Fellont"));
+                    ArtificialIntelligenceAccess.push(new Unit(5550, -28918, "Mofu", false, "Feo"));
+                    ArtificialIntelligenceAccess.push(new Unit(5929, -28989, "Mofu", false, "Fennel"));
+                    ArtificialIntelligenceAccess.push(new Unit(5353, -29162, "Mofu", "baby", "Oregano"));
+                    ArtificialIntelligenceAccess.push(new Unit(5163, -28992, "Mofu", "baby", "Lavender"));
+                    ArtificialIntelligenceAccess.push(new Unit(5356, -29044, "Mofu", "baby", "Thyme"));
 
-                    //ArtificialIntelligenceAccess.push(new Unit(-2326, -30565, "Tunsk", true, "Gut"));
+                    ArtificialIntelligenceAccess.push(new Unit(3760, -25089, "Ardil", false, "Fluffi"));
+                    ArtificialIntelligenceAccess.push(new Unit(1475, -26274, "Ardil", true, "Flof"));
+                    ArtificialIntelligenceAccess.push(new Unit(2087, -24322, "Ardil", false, "Fluffor"));
+                    ArtificialIntelligenceAccess.push(new Unit(4695, -31293, "Ardil", false, "Fluffim"));
+
+                    ArtificialIntelligenceAccess.push(new Unit(5860, -25482, "Naaprid", true, "tabe"));
+                    ArtificialIntelligenceAccess.push(new Unit(5715, -25851, "Naaprid", false, "tebriela"));
+                    ArtificialIntelligenceAccess.push(new Unit(5209, -25700, "Naaprid", false, "tovree"));
+                    ArtificialIntelligenceAccess.push(new Unit(5292, -25813, "Naaprid", "baby", "tode"));
+                    ArtificialIntelligenceAccess.push(new Unit(4712, -25481, "Naaprid", true, "tebriel"));
+                    ArtificialIntelligenceAccess.push(new Unit(4984, -25920, "Naaprid", "baby", "tabii"));
+                    ArtificialIntelligenceAccess.push(new Unit(5131, -26117, "Naaprid", false, "tovrea"));
+                    ArtificialIntelligenceAccess.push(new Unit(5702, -26234, "Naaprid", false, "tabel"));
+                    ArtificialIntelligenceAccess.push(new Unit(5549, -26092, "Naaprid", "baby", "tebel"));
+                    ArtificialIntelligenceAccess.push(new Unit(6176, -26436, "Naaprid", true, "tebe"));
+                    ArtificialIntelligenceAccess.push(new Unit(4849, -26178, "Naaprid", true, "telb"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1573, -32540, "Naaprid", false, "thovrea"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1065, -32518, "Naaprid", false, "thabel"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1327, -32617, "Naaprid", "baby", "thebel"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1165, -32271, "Naaprid", true, "thebe"));
+
                     scenicList.push(new Scenery("tunskMound", -2326, -30565, 0, true)); //for mofu nests the last number determines its size multiplier.
                     scenicList.push(new Scenery("tunskMound", -660, -29920, -3, true)); //for mofu nests the last number determines its size multiplier.
                     scenicList.push(new Scenery("tunskMound", -1619, -25422, 5, true)); //for mofu nests the last number determines its size multiplier.
@@ -69329,6 +69360,12 @@ function theLegend()
                     scenicList.push(new Scenery("mofuNest", -2278, -29667, 1, 1)); //for mofu nests the last number determines its size multiplier.
                     scenicList.push(new Scenery("mofuNest", -2429, -29856, 0, 1.15)); //for mofu nests the last number determines its size multiplier.
                     scenicList.push(new Scenery("mofuNest", -2176, -29434, -2.245, 1.9)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("mofuNest", 5245, -29093, -6, 1.1)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("mofuNest", 5417, -28940, 1.9, 1.05)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("mofuNest", 5699, -29055, 0.65, 1.15)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("mofuNest", 5332, -28842, -3.845, 1.7)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("mofuNest", 5929, -28989, 4, 1.35)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("mofuNest", 5526, -29155, 5.45, 2.2)); //for mofu nests the last number determines its size multiplier.
 
                     change = "s3";
                 }

@@ -1862,6 +1862,10 @@ function theLegend()
                     testingUnitSizes = true;
                 }
             }
+            else if (cheatcode.toLowerCase() == "resetSurvivalism")
+            {
+                this.survivalism = 0;
+            }
             else if (cheatcode == "4444444444444444")
             {
                 if (player.eminence == 50 && player.knowledge == 50)
@@ -69300,6 +69304,25 @@ function theLegend()
 
                     //ArtificialIntelligenceAccess.push(new Unit(-2326, -30565, "Tunsk", true, "Gut"));
                     scenicList.push(new Scenery("tunskMound", -2326, -30565, 0, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", -660, -29920, -3, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", -1619, -25422, 5, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", -1234, -26529, -1.5, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", 219, -26761, 2.34, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", 1328, -27619, 4, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", 1089, -28642, -2, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", 5323, -28604, 6.44, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", 5837, -32383, 1, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", 2475, -32587, -4.2, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", 3009, -33697, 5.7, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", 1016, -32180, 3.3, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", 2800, -30129, -3.89, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", 3927, -25973, 3.9, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", 778, -25529, 4.5, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", 1433, -24726, -4.5, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", 2162, -28579, -5.3, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", -2110, -31828, -2.25, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", -1159, -33195, 3.5, true)); //for mofu nests the last number determines its size multiplier.
+                    scenicList.push(new Scenery("tunskMound", -2384, -33735, -1, true)); //for mofu nests the last number determines its size multiplier.
 
                     //Mofu Habitations
                     scenicList.push(new Scenery("mofuNest", -2089, -29849, -3, 1.2)); //for mofu nests the last number determines its size multiplier.

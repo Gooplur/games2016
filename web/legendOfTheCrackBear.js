@@ -3,7 +3,7 @@
  */
 
 //TODO LIST
-//todo add friches and maybe Avrak/avreks in the S3 Map.
+//todo add plants to the S3 Map.
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
 //todo revise the sleeping system... as of right now it is an absolute crazy juju ball made of sand candy!!! Which is a bad thing.
 //todo finish adding the beast journal.
@@ -572,6 +572,14 @@ function legendaryPrerequisites()
     var frozenEnv = new Image();
     frozenEnv.src = ("images/tundra.jpg");
     window.frozenEnv = frozenEnv;
+
+    var bogGrassEnv = new Image();
+    bogGrassEnv.src = ("images/bogGrass.jpeg");
+    window.bogGrassEnv = bogGrassEnv;
+
+    var bogMuckEnv = new Image();
+    bogMuckEnv.src = ("images/bogMuck.png");
+    window.bogMuckEnv = bogMuckEnv;
 
     var nordWoods = new Image();
     nordWoods.src = ("images/nordForest.png");
@@ -4485,8 +4493,8 @@ function theLegend()
             {
                 elevation = 1;
                 region = "n1";
-                outlineBuilder( 20, 83, "frost", -80, -40);
-                outlineBuilder( 80, 83, "snow", -80, -105);
+                outlineBuilder( 20, 83, "frost", -80, -40); //frost
+                outlineBuilder( 80, 83, "snow", -80, -105); //snow
             }
             //mapE2
             if (Y > -3919 && Y < 6870 && X < -12685 && X > -24362) //X1
@@ -25098,6 +25106,14 @@ function theLegend()
                         XXX.rect((j-1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                         XXX.fill();
                         XXX.stroke();
+                    }
+                    else if (terrain == "muckgrass")
+                    {
+                        XXX.drawImage(bogGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (terrain == "muck")
+                    {
+                        XXX.drawImage(bogMuckEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                     }
                     else if (terrain == "kellstone")
                     {
@@ -69333,6 +69349,20 @@ function theLegend()
                     ArtificialIntelligenceAccess.push(new Unit(-1065, -32518, "Naaprid", false, "thabel"));
                     ArtificialIntelligenceAccess.push(new Unit(-1327, -32617, "Naaprid", "baby", "thebel"));
                     ArtificialIntelligenceAccess.push(new Unit(-1165, -32271, "Naaprid", true, "thebe"));
+
+                    ArtificialIntelligenceAccess.push(new Unit(-1122, -25315, "Frich", true, "Ratter"));
+                    ArtificialIntelligenceAccess.push(new Unit(-875, -25470, "Frich", false, "Rata"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2099, -24804, "Frich", false, "Raton"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1799, -26221, "Frich", false, "Ratal"));
+                    ArtificialIntelligenceAccess.push(new Unit(-2069, -27769, "Frich", false, "Ratol"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1980, -27949, "Frich", false, "Ratyl"));
+                    ArtificialIntelligenceAccess.push(new Unit(1314, -32450, "Frich", true, "Rattalon"));
+                    ArtificialIntelligenceAccess.push(new Unit(5609, -27402, "Frich", false, "Ratil"));
+                    ArtificialIntelligenceAccess.push(new Unit(5797, -27298, "Frich", false, "Ratul"));
+                    ArtificialIntelligenceAccess.push(new Unit(2245, -27179, "Frich", false, "Ratin"));
+                    ArtificialIntelligenceAccess.push(new Unit(1895, -25407, "Frich", true, "Rattail"));
+
+                    ArtificialIntelligenceAccess.push(new Unit(1314, -32450, "Avrak", false, "Ava"));
 
                     scenicList.push(new Scenery("tunskMound", -2326, -30565, 0, true)); //for mofu nests the last number determines its size multiplier.
                     scenicList.push(new Scenery("tunskMound", -660, -29920, -3, true)); //for mofu nests the last number determines its size multiplier.

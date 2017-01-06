@@ -26399,6 +26399,330 @@ function theLegend()
                                 }
                             }
 
+                            if (this.ID == "Irene, Fenwik's Daughter" || conversationID[0] == "IreneDaughter")
+                            {
+                                lowBar = "dialogue";
+                                conversationID[0] = "IreneDaughter";
+
+                                if (clickReleased)
+                                {
+                                    self.RC();
+                                }
+
+                                //CONVERSATION
+                                if (conversationID[1] == 0)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["It is time to come back home lil one.", false, "b"]];
+                                        if (player.raceName == "Kel" && player.gender == "Female" && player.title != "Royalty")
+                                        {
+                                            player.dialogueOptions.unshift(["Irene, it's time to come back to the tribe, your father is worried about you.", false, "a"]);
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0b";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0a")
+                                {
+                                    irenePaWorries.play();
+                                    irenePaWorries.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        player.blindedTime = 2;
+                                        player.blindedStoreTime = new Date().getTime();
+                                        quests.lostGirlFound = true;
+                                        X = -1006;
+                                        Y = -31327;
+                                        quests.lostGirlCompletionStyle = "convince";
+
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0b")
+                                {
+                                    ireneNotReady.play();
+                                    ireneNotReady.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 1;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 1)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["What is the nature call?", false, "b"], ["Would you like me to help you find the nature call?", false, "c"]];
+                                        if (player.getStrength() >= 3)
+                                        {
+                                            if (player.class == "mage")
+                                            {
+                                                player.dialogueOptions.push(["(Carry her back to the tribe)", false, "a"]);
+                                            }
+                                            else
+                                            {
+                                                player.dialogueOptions.unshift(["(Carry her back to the tribe)", false, "a"]);
+                                            }
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = true;
+                                                    conversationID[1] = "1a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1c";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "1a")
+                                {
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    player.blindedTime = 3;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    quests.lostGirlFound = true;
+                                    X = -1006;
+                                    Y = -31327;
+                                    quests.lostGirlCompletionStyle = "carry";
+
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == "1b")
+                                {
+                                    ireneDontHear.play();
+                                    ireneDontHear.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 2;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "1c")
+                                {
+                                    ireneHaveTo.play();
+                                    ireneHaveTo.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 3;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 2)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["I don't.", false, "a"], ["Nope, not a sound.", false, "a"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "2a";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "2a")
+                                {
+                                    ireneMuf.play();
+                                    ireneMuf.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 1;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 3)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["What song?", false, "a"]];
+                                        if (player.getIntelligence >= 4)
+                                        {
+                                            player.dialogueOptions.unshift(["Would you please sing me the song, it may help me to help you find the source of the nature call?", false, "a"]);
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "3a";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "3a")
+                                {
+                                    irenePoem.play();
+                                    irenePoem.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 4;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 4)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["What a lovely poem you made!", false, "a"], ["How is making up silly songs going to help you find anything?", false, "a"], ["Wow, what an terrible poem!", false, "a"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "4a";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "4a")
+                                {
+                                    ireneFrom.play();
+                                    ireneFrom.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 5;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 5)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["The nature call must be near, we are at the edge of the forest already.", false, "a"]];
+                                        for (var i = 0; i < Inventory.length; i++)
+                                        {
+                                            if (Inventory[i][0].type == "natureCall")
+                                            {
+                                                player.dialogueOptions.unshift(["Is this it?", false, "b"]);
+                                            }
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "5a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "5b";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "5a")
+                                {
+                                    ireneSleepingStone.play();
+                                    ireneSleepingStone.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 5;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "5b")
+                                {
+                                    ireneExactly.play();
+                                    ireneExactly.onended = function()
+                                    {
+                                        for (var i = 0; i < Inventory.length; i++)
+                                        {
+                                            if (Inventory[i][0].type == "natureCall")
+                                            {
+                                                Inventory.splice(i, 1);
+                                                break;
+                                            }
+                                        }
+                                        player.blindedTime = 2;
+                                        player.blindedStoreTime = new Date().getTime();
+                                        quests.lostGirlFound = true;
+                                        X = -1006;
+                                        Y = -31327;
+                                        quests.lostGirlCompletionStyle = "natureCall";
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                            }
+
                             if (this.ID == "Fenwik the Smith" || conversationID[0] == "Fenwik")
                             {
                                 lowBar = "dialogue";
@@ -26415,6 +26739,10 @@ function theLegend()
                                     if (player.dialogueChoiceMade == false)
                                     {
                                         player.dialogueOptions = [["Good Day.", false, "a"], ["What are you working on?", false, "b"]];
+                                        if (quests.lostGirlFound && quests.lostGirlQuest == true)
+                                        {
+                                            player.dialogueOptions.unshift(["Here she is.", false, "e"]);
+                                        }
                                         if (quests.lostGirlQuest == false)
                                         {
                                             player.dialogueOptions.push(["Is everything going well?", false, "c"]);
@@ -26447,6 +26775,11 @@ function theLegend()
                                                 {
                                                     playersTurnToSpeak = false;
                                                     conversationID[1] = "0d";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "e")
+                                                {
+                                                    playersTurnToSpeak = true;
+                                                    conversationID[1] = "0e";
                                                 }
                                             }
                                         }
@@ -26518,7 +26851,6 @@ function theLegend()
                                     fenwikDaughterLost.play();
                                     fenwikDaughterLost.onended = function()
                                     {
-                                        alert("cut it the fuck out!!!");
                                         playersTurnToSpeak = true;
                                         player.dialoguePosition = 0;
                                         conversationID[1] = 2;
@@ -26549,6 +26881,13 @@ function theLegend()
                                             self.SC();
                                         }
                                     }
+                                }
+                                else if (conversationID[1] == "0e")
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 3;
+                                    self.SC();
                                 }
                                 else if (conversationID[1] == 1)
                                 {
@@ -26687,7 +27026,7 @@ function theLegend()
                                         quests.activeQuests.push({name: "Lost Girl", description: "Fenwik's young daughter has gotten herself lost, you offered to help find her."});
                                         playersTurnToSpeak = true;
                                         player.dialoguePosition = 0;
-                                        conversationID[1] = 3;
+                                        conversationID[1] = 0;
                                         self.SC();
                                     }
                                 }
@@ -26695,11 +27034,7 @@ function theLegend()
                                 {
                                     if (player.dialogueChoiceMade == false)
                                     {
-                                        player.dialogueOptions = [];
-                                        if (quests.lostGirlFound)
-                                        {
-                                            player.dialogueOptions.push(["Here she is.", false, "a"]);
-                                        }
+                                        player.dialogueOptions = [["...", false, "a"]];
                                     }
                                     else if (player.dialogueChoiceMade == true)
                                     {
@@ -38103,7 +38438,14 @@ function theLegend()
                         this.experience = (65 * ((player.getIntelligence() / 50) + 1)) / 10;
                     }
 
-                    this.drops = [];
+                    if (quests.lostGirlFound == false && quests.lostGirlQuest == true && this.ID == "Sleeping Stone")
+                    {
+                        this.drops = [[new Item("natureCall", this.X, this.Y), 1]];
+                    }
+                    else
+                    {
+                        this.drops = [];
+                    }
                 }
                 else
                 {
@@ -61999,7 +62341,7 @@ function theLegend()
             else if (this.type == "natureCall")
             {
                 XXX.beginPath();
-                XXX.drawImage(horde1, 529, 36, 88, 84, X - this.X + (1/2 * CCC.width) - (1/2 * 88 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 84 * 1), 88 * 1, 84 * 1);
+                XXX.drawImage(horde1, 529, 36, 88, 84, X - this.X + (1/2 * CCC.width) - (1/2 * 88 * 0.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 84 * 0.2), 88 * 0.2, 84 * 0.2);
             }
             else if (this.type == "berulnToothNecklace")
             {
@@ -63870,7 +64212,7 @@ function theLegend()
             else if (this.type == "natureCall")
             {
                 LXX.beginPath();
-                LXX.drawImage(horde1, 529, 36, 88, 84, this.invX - (1/2 * 88 * 1), this.invY - (1/2 * 84 * 1), 88 * 1, 84 * 1);
+                LXX.drawImage(horde1, 529, 36, 88, 84, this.invX - (1/2 * 88 * 0.2), this.invY - (1/2 * 84 * 0.2), 88 * 0.2, 84 * 0.2);
             }
             else if (this.type == "berulnToothNecklace")
             {
@@ -65651,7 +65993,7 @@ function theLegend()
             else if (this.type == "natureCall")
             {
                 XXX.beginPath();
-                XXX.drawImage(horde1, 529, 36, 88, 84, this.invX - (1/2 * 88 * 1), this.invY - (1/2 * 84 * 1), 88 * 1, 84 * 1);
+                XXX.drawImage(horde1, 529, 36, 88, 84, this.invX - (1/2 * 88 * 0.2), this.invY - (1/2 * 84 * 0.2), 88 * 0.2, 84 * 0.2);
             }
             else if (this.type == "berulnToothNecklace")
             {
@@ -69627,6 +69969,10 @@ function theLegend()
                         scenicList.push(new Scenery("grushweedPlant", -644, -19755, 0, 1));
                     }
 
+                    if (quests.lostGirlFound == false && quests.lostGirlQuest == true)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(4795, -18752, "StoneGolem", "baby", "Sleeping Stone"));
+                    }
                     if (uniqueChars.ireneLDS == true && quests.lostGirlFound == false && quests.lostGirlQuest == true)
                     {
                         var hits = 0;

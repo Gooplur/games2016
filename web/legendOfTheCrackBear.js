@@ -140,6 +140,44 @@ function legendaryPrerequisites()
     var togginChangeMind = new Audio("sounds/polySounds/togginChangeMind.mp3");
     window.togginChangeMind = togginChangeMind;
 
+    //FENWIK CHARACTER: voice acting
+
+    var fenwikGooday = new Audio("sounds/polySounds/fenwikGooday.mp3");
+    window.fenwikGooday = fenwikGooday;
+
+    var fenwikTwillBe = new Audio("sounds/polySounds/fenwikTwillBe.mp3");
+    window.fenwikTwillBe = fenwikTwillBe;
+
+    var fenwikGooday = new Audio("sounds/polySounds/fenwikGooday.mp3");
+    window.fenwikGooday = fenwikGooday;
+
+    var fenwikFocus = new Audio("sounds/polySounds/fenwikFocus.mp3");
+    window.fenwikFocus = fenwikFocus;
+
+    var fenwikSupplyingTribe = new Audio("sounds/polySounds/fenwikSupplyingTribe.mp3");
+    window.fenwikSupplyingTribe = fenwikSupplyingTribe;
+
+    var fenwikRightAway = new Audio("sounds/polySounds/fenwikRightAway.mp3");
+    window.fenwikRightAway = fenwikRightAway;
+
+    var fenwikBother = new Audio("sounds/polySounds/fenwikBother.mp3");
+    window.fenwikBother = fenwikBother;
+
+    var fenwikDaughterLost = new Audio("sounds/polySounds/fenwikDaughterLost.mp3");
+    window.fenwikDaughterLost = fenwikDaughterLost;
+
+    var fenwikSoMuch = new Audio("sounds/polySounds/fenwikSoMuch.mp3");
+    window.fenwikSoMuch = fenwikSoMuch;
+
+    var fenwikEverGrateful = new Audio("sounds/polySounds/fenwikEverGrateful.mp3");
+    window.fenwikEverGrateful = fenwikEverGrateful;
+
+    var fenwikPart = new Audio("sounds/polySounds/fenwikPart.mp3");
+    window.fenwikPart = fenwikPart;
+
+    var fenwikToChief = new Audio("sounds/polySounds/fenwikToChief.mp3");
+    window.fenwikToChief = fenwikToChief;
+
         //DROHFOR CHARACTER: voice acting
 
     var drohforGreet = new Audio("sounds/polySounds/drohforGreeting.mp3");
@@ -265,6 +303,44 @@ function legendaryPrerequisites()
 
     var maggyMostlyCleaning = new Audio("sounds/polySounds/maggyMostlyCleaning.mp3");
     window.maggyMostlyCleaning = maggyMostlyCleaning;
+
+    //IRENE CHARACTER: voice acting
+
+    var irenePaWorries = new Audio("sounds/polySounds/irenePaWorries.mp3");
+    window.irenePaWorries = irenePaWorries;
+
+    var ireneNotReady = new Audio("sounds/polySounds/ireneNotReady.mp3");
+    window.ireneNotReady = ireneNotReady;
+
+    var ireneDontHear = new Audio("sounds/polySounds/ireneDontHear.mp3");
+    window.ireneDontHear = ireneDontHear;
+
+    var ireneMuf = new Audio("sounds/polySounds/ireneMuf.mp3");
+    window.ireneMuf = ireneMuf;
+
+    var ireneHaveTo = new Audio("sounds/polySounds/ireneHaveTo.mp3");
+    window.ireneHaveTo = ireneHaveTo;
+
+    var irenePoem = new Audio("sounds/polySounds/irenePoem.mp3");
+    window.irenePoem = irenePoem;
+
+    var ireneFrom = new Audio("sounds/polySounds/ireneFrom.mp3");
+    window.ireneFrom = ireneFrom;
+
+    var ireneSleepingStone = new Audio("sounds/polySounds/ireneSleepingStone.mp3");
+    window.ireneSleepingStone = ireneSleepingStone;
+
+    var ireneExactly = new Audio("sounds/polySounds/ireneExactly.mp3");
+    window.ireneExactly = ireneExactly;
+
+    var ireneHi = new Audio("sounds/polySounds/ireneHi.mp3");
+    window.ireneHi = ireneHi;
+
+    var ireneChasing = new Audio("sounds/polySounds/ireneChasing.mp3");
+    window.ireneChasing = ireneChasing;
+
+    var ireneFluffyOne = new Audio("sounds/polySounds/ireneFluffyOne.mp3");
+    window.ireneFluffyOne = ireneFluffyOne;
 
     //KEDWIN CHARACTER: voice acting
 
@@ -845,6 +921,8 @@ function theLegend()
         teber: ["Teber", 0],
         drohfor: ["Drohfor", 0],
         maggy: ["Maggy", 0],
+        ireneDaughter: ["IreneDaughter", 0],
+        irene: ["Irene", 0],
         kedwin: ["Kedwin", 0],
         hilmund: ["Hilmund", 0],
         stendor: ["Stendor", 0],
@@ -948,6 +1026,7 @@ function theLegend()
         stendorLDS: true,
         neculaiLDS: true,
         roselinLDS: true,
+        ireneLDS: true,
         fenwikLDS: true,
         schuylarLDS: true
     };
@@ -966,13 +1045,20 @@ function theLegend()
         bobithNewWealth: 0,
         neculaiNewWealth: 0,
         hilmundNewWealth: 0,
+        fenwikEchlinArmed: 0,
+        fenwikShopStyle: "normal",
 
         //QUEST: Teshir North Road ---- given by Toggin
         teshirNorthRoadBandits: true,
         teshirNorthRoadKillCount: 0,
         teshirNorthRoadQuest: false,
 
-        //QUEST: Teshir North Road ---- given by Toggin
+        //QUEST: Lost Girl ---- given by Fenwik
+        lostGirlFound: false,
+        lostGirlCompletionStyle: false,
+        lostGirlQuest: false,
+
+        //QUEST: Lost Delivery ---- given by Svehn
         lostDeliveryDetailsTold: false,
         lostDeliveryPetsKilled: 0,
         lostDeliveryCompletionStyle: false,
@@ -25289,6 +25375,18 @@ function theLegend()
         this.mofuTargetFood = "none";
         this.mofuFood = 0;
         this.eggTimer = 0;
+        this.kidSize = 0.72;
+        this.kid = false;
+        if (typeof(this.ultra) != "undefined")
+        {
+            if (typeof(this.ultra.kid) != "undefined")
+            {
+                if (this.ultra.kid == true)
+                {
+                    this.kid = true;
+                }
+            }
+        }
         //Sound variables
         this.voicedSounds = [];
         this.voiceTime = new Date().getTime();
@@ -26300,6 +26398,364 @@ function theLegend()
                                     }
                                 }
                             }
+
+                            if (this.ID == "Fenwik the Smith" || conversationID[0] == "Fenwik")
+                            {
+                                lowBar = "dialogue";
+                                conversationID[0] = "Fenwik";
+
+                                if (clickReleased)
+                                {
+                                    self.RC();
+                                }
+
+                                //CONVERSATION
+                                if (conversationID[1] == 0)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["Good Day.", false, "a"], ["What are you working on?", false, "b"]];
+                                        if (quests.lostGirlQuest == false)
+                                        {
+                                            player.dialogueOptions.push(["Is everything going well?", false, "c"]);
+                                        }
+                                        player.dialogueOptions.push(["What can I do to help the Echlin Tribe?", false, "d"]);
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0c";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "d")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0d";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0a")
+                                {
+                                    if (player.raceName == "Thengar" && player.kelFaction < 50 && quests.lostGirlQuest != "complete" || player.kelFaction <= 0 || player.raceName == "Thengar" && uniqueChars.ireneLDS == true && player.kelFaction < 115)
+                                    {
+                                        fenwikTwillBe.play();
+                                        fenwikTwillBe.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        fenwikGooday.play();
+                                        fenwikGooday.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0b")
+                                {
+                                    if (player.raceName == "Kel" && player.title == "Nobility" && uniqueChars.schuylarLDS == false)
+                                    {
+                                        fenwikFocus.play();
+                                        fenwikFocus.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 1;
+                                            self.SC();
+                                        }
+                                    }
+                                    else if (player.raceName == "Kel" && player.title != "Royalty")
+                                    {
+                                        fenwikSupplyingTribe.play();
+                                        fenwikSupplyingTribe.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        fenwikBother.play();
+                                        fenwikBother.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0c")
+                                {
+                                    fenwikDaughterLost.play();
+                                    fenwikDaughterLost.onended = function()
+                                    {
+                                        alert("cut it the fuck out!!!");
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 2;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0d")
+                                {
+                                    if (player.raceName == "Kel" && player.title != "Royalty")
+                                    {
+                                        fenwikPart.play();
+                                        fenwikPart.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        fenwikToChief.play();
+                                        fenwikToChief.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == 1)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["I want you to focus on trading your goods domestically.", false, "a"], ["I want you to focus on trading your goods with foreigners to enhance the tribes economy.", false, "b"]];
+                                        for (var i = 0; i < Inventory.length; i++)
+                                        {
+                                            if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 1000)
+                                            {
+                                                if (quests.fenwikEchlinArmed == false)
+                                                {
+                                                    player.dialogueOptions.push(["I want you to forge fine blades for each of the tribe's warriors. (costs 1000 coins)", false, "c"]);
+                                                }
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "1c";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "1a")
+                                {
+                                    fenwikRightAway.play();
+                                    fenwikRightAway.onended = function()
+                                    {
+                                        quests.fenwikShopStyle = "normal";
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "1b")
+                                {
+                                    fenwikRightAway.play();
+                                    fenwikRightAway.onended = function()
+                                    {
+                                        quests.fenwikShopStyle = "cash";
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "1c")
+                                {
+                                    fenwikRightAway.play();
+                                    fenwikRightAway.onended = function()
+                                    {
+                                        for (var i = 0; i < Inventory.length; i++)
+                                        {
+                                            if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 1000)
+                                            {
+                                                if (Inventory[i][1] - 1000 < 1)
+                                                {
+                                                    Inventory.splice(i, 1);
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    Inventory[i][1] -= 1000;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        quests.fenwikEchlinArmed = true;
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 2)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["Oh, that's too bad.", false, "a"], ["I could help find her for you.", false, "b"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = true;
+                                                    conversationID[1] = "2a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "2b";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "2a")
+                                {
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == "2b")
+                                {
+                                    fenwikEverGrateful.play();
+                                    fenwikEverGrateful.onended = function()
+                                    {
+                                        quests.lostGirlQuest = true;
+                                        quests.activeQuests.push({name: "Lost Girl", description: "Fenwik's young daughter has gotten herself lost, you offered to help find her."});
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 3;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == 3)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [];
+                                        if (quests.lostGirlFound)
+                                        {
+                                            player.dialogueOptions.push(["Here she is.", false, "a"]);
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "3a";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "3a")
+                                {
+                                    fenwikSoMuch.play();
+                                    fenwikSoMuch.onended = function()
+                                    {
+                                        if (quests.lostGirlCompletionStyle == "carry")
+                                        {
+                                            quests.completeQuests.push({name: "Lost Girl", description: "You found Fenwik's daughter out by the woods and carried her back to her home."});
+                                            player.experience += 85;
+                                        }
+                                        else if (quests.lostGirlCompletionStyle == "convince")
+                                        {
+                                            quests.completeQuests.push({name: "Lost Girl", description: "Having looked after Irene before you were easily able to convince her to come back home to the tribe."});
+                                            player.experience += 55;
+                                        }
+                                        else if (quests.lostGirlCompletionStyle == "natureCall")
+                                        {
+                                            quests.completeQuests.push({name: "Lost Girl", description: "Fenwik's daughter was resistant to return home at first so you played along in what turned out to be a magical phenomenon."});
+                                            player.magicalExperience += 35;
+                                            if (player.class == "Mage")
+                                            {
+                                                player.magicalExperience += 65;
+                                            }
+                                            else
+                                            {
+                                                player.experience += 185;
+                                            }
+                                        }
+                                        quests.lostGirlQuest = "complete";
+                                        player.fame += 1;
+                                        player.kelFaction += 15;
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                            }
+
 
                             if (this.ID == "Svehn the Smith" || conversationID[0] == "Svehn")
                             {
@@ -31519,6 +31975,7 @@ function theLegend()
                 }
             }
 
+            XXX.save();
             var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
             //manual damaging
             if (this.weapon == "none")
@@ -32029,6 +32486,7 @@ function theLegend()
                     this.drawUnit(oldverse, 2744, 128, 66, 72, -51.5, -105, 99, 108, 1 / 2 * Math.PI);
                 }
             }
+            XXX.restore();
         };
 
         this.switchToRanged = function(weapon)
@@ -32277,6 +32735,10 @@ function theLegend()
             }
 
             XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+            if (this.kid)
+            {
+                XXX.scale(this.kidSize, this.kidSize);
+            }
             XXX.rotate(this.rotation + extraRot);
             XXX.beginPath();
             XXX.drawImage(img, cutX, cutY, width, length, positionX, positionY , skewW, skewL);
@@ -32287,6 +32749,10 @@ function theLegend()
         {
             XXX.save();
             XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+            if (this.kid)
+            {
+                XXX.scale(this.kidSize, this.kidSize);
+            }
             XXX.rotate(this.rotation);
             XXX.beginPath();
             if (this.ultra.race == "Freynor")
@@ -32336,6 +32802,7 @@ function theLegend()
             XXX.strokeStyle = "black";
             XXX.lineWidth = 0.5;
             XXX.stroke();
+
             XXX.restore();
         };
 
@@ -32348,72 +32815,120 @@ function theLegend()
                 if (outfit == "chainArmour")
                 {
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    if (this.kid)
+                    {
+                        XXX.scale(this.kidSize, this.kidSize);
+                    }
                     XXX.rotate(this.rotation + 1/2 * Math.PI);
                     XXX.drawImage(verse, 1915, 1, 31, 27, -(1 / 2 * 26) - 1.3, -(1 / 2 * 27) + 1.5, 27, 27);
                 }
                 else if (outfit == "walrusLeatherArmour")
                 {
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    if (this.kid)
+                    {
+                        XXX.scale(this.kidSize, this.kidSize);
+                    }
                     XXX.rotate(this.rotation);
                     XXX.drawImage(polyPNG, 804, 262, 35, 24, -(1 / 2 * 45.5) + 8, -(1 / 2 * 31.2) + 1.25, 42, 28.8);
                 }
                 else if (outfit == "winterWolfClothing")
                 {
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    if (this.kid)
+                    {
+                        XXX.scale(this.kidSize, this.kidSize);
+                    }
                     XXX.rotate(this.rotation + 1/2 * Math.PI);
                     XXX.drawImage(verse, 3185, 165, 33, 28, -(1 / 2 * 26.4) + 0, -(1 / 2 * 22.4) - 0.75, 29.7, 25.2);
                 }
                 else if (outfit == "hetmerArmour")
                 {
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    if (this.kid)
+                    {
+                        XXX.scale(this.kidSize, this.kidSize);
+                    }
                     XXX.rotate(this.rotation);
                     XXX.drawImage(polyPNG, 792, 308, 52, 48, -(1 / 2 * 62.4) + 0, -(1 / 2 * 57.6) - 2.5, 67.6, 62.4);
                 }
                 else if (outfit == "evrakLeatherArmour")
                 {
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    if (this.kid)
+                    {
+                        XXX.scale(this.kidSize, this.kidSize);
+                    }
                     XXX.rotate(this.rotation);
                     XXX.drawImage(mofu, 71, 2186, 53, 57, -(1 / 2 * 53 * 0.7) + 2, -(1 / 2 * 57 * 0.7) + 1, 53 * 0.7, 57 * 0.7);
                 }
                 else if (outfit == "frichFurClothing")
                 {
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    if (this.kid)
+                    {
+                        XXX.scale(this.kidSize, this.kidSize);
+                    }
                     XXX.rotate(this.rotation + 1/2 * Math.PI);
                     XXX.drawImage(verse, 2106, 5, 29, 24, -(1 / 2 * 29) + 1.75, -(1 / 2 * 24) - 0, 26, 26);
                 }
                 else if (outfit == "ardilFurClothing" || outfit == "ardilFurSkirt")
                 {
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    if (this.kid)
+                    {
+                        XXX.scale(this.kidSize, this.kidSize);
+                    }
                     XXX.rotate(this.rotation);
                     XXX.drawImage(polpol, 4, 234, 41, 22, -(1 / 2 * 41 * 1.7) - 4, -(1 / 2 * 22 * 1.7) - 0.2, 41 * 1.7, 22 * 1.7);
                 }
                 else if (outfit == "naapridLeatherArmour")
                 {
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    if (this.kid)
+                    {
+                        XXX.scale(this.kidSize, this.kidSize);
+                    }
                     XXX.rotate(this.rotation + 1/2 * Math.PI);
                     XXX.drawImage(verse, 3062, 1, 35, 22, -(1 / 2 * 49) + 0.5, -(1 / 2 * 30.8) + 2.25, 49, 30.8);
                 }
                 else if (outfit == "balgurMercArmour")
                 {
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    if (this.kid)
+                    {
+                        XXX.scale(this.kidSize, this.kidSize);
+                    }
                     XXX.rotate(this.rotation - 1/2 * Math.PI);
                     XXX.drawImage(poly, 48, 106, 40, 32, -(1 / 2 * 40 * 1.2) - 3.65, -(1 / 2 * 32 * 1.2) -18.25, 40 * 1.38, 32 * 1.73);
                 }
                 else if (outfit == "balgurCaptainArmour")
                 {
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    if (this.kid)
+                    {
+                        XXX.scale(this.kidSize, this.kidSize);
+                    }
                     XXX.rotate(this.rotation - 1/2 * Math.PI);
                     XXX.drawImage(poly, 50, 140, 36, 36, -(1 / 2 * 36 * 1.2) + 5, -(1 / 2 * 36 * 1.2) -9.5, 36 * 0.9, 36 * 1.45);
                 }
                 else if (outfit == "blackBearLeatherArmour")
                 {
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    if (this.kid)
+                    {
+                        XXX.scale(this.kidSize, this.kidSize);
+                    }
                     XXX.rotate(this.rotation);
                     XXX.drawImage(polypol, 622, 26, 23, 22, -(1 / 2 * 23 * 1.3) - 0, -(1 / 2 * 22 * 1.3) + 0, 23 * 1.3, 22 * 1.3);
                 }
                 else if (outfit == "skinAndBones")
                 {
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    if (this.kid)
+                    {
+                        XXX.scale(this.kidSize, this.kidSize);
+                    }
                     XXX.rotate(this.rotation);
                     //XXX.drawImage(polpol, 112, 139, 21, 26, -(1 / 2 * 21 * 1.6) - 2, -(1 / 2 * 26 * 1.6) + 2, 21 * 1.6, 26 * 1.6);
                     XXX.drawImage(polpol, 112, 139, 21, 26, -(1 / 2 * 21 * 2) - 2, -(1 / 2 * 26 * 2) + 2, 21 * 2, 26 * 2);
@@ -32421,6 +32936,10 @@ function theLegend()
                 else if (outfit == "blackBearFurClothing")
                 {
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    if (this.kid)
+                    {
+                        XXX.scale(this.kidSize, this.kidSize);
+                    }
                     XXX.rotate(this.rotation);
                     XXX.drawImage(polypol, 622, 3, 23, 22, -(1 / 2 * 23 * 1.4) - 0, -(1 / 2 * 22 * 1.4) + 0, 23 * 1.4, 22 * 1.4);
                 }
@@ -42809,8 +43328,8 @@ function theLegend()
                 {
                     if (player.title == "Royalty" && player.raceName == "Freynor")
                     {
-                        this.team = "player";
-                        this.baseTeam = "player"
+                        //this.team = "player";
+                        //this.baseTeam = "player"
                     }
                 }
 
@@ -43218,6 +43737,14 @@ function theLegend()
                             if (this.killNotByPlayer == false)
                             {
                                 player.kelFaction -= 10;
+                            }
+                        }
+                        else if (this.ID == "Irene")
+                        {
+                            uniqueChars.ireneLDS = false
+                            if (this.killNotByPlayer == false)
+                            {
+                                player.kelFaction -= 50;
                             }
                         }
                         else if (this.ID == "Roselin the Tailor")
@@ -53422,6 +53949,33 @@ function theLegend()
                 this.buyValue = 1; // at max, buy for 1.
                 this.sellValue = 1; // at max, sell for 1.
             }
+            else if (this.type == "natureCall")
+            {
+                //For All Items
+                this.identity = "Nature Totem";
+                this.weight = 10;
+                this.size = 10;
+                if (player.getKnowledge() >= 1 && player.getWillpower() >= 1)
+                {
+                    this.description = "This stone channels nature spirits, though the essence has chosen to commune only with Irene.";
+                }
+                else
+                {
+                    this.description = "This must be the source of the 'nature call'.";
+                }
+                this.intForDes = 35;
+                this.intDescription = "This totem was crafted centuries ago, most likely by an ancient nature worshipping Kellish tribe.";
+
+                //Define Utility
+                this.utility = "questItem";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 100; // at max, buy for 100.
+                this.sellValue = 100; // at max, sell for 100.
+            }
             else if (this.type == "svehnsShipment")
             {
                 //For All Items
@@ -61442,6 +61996,11 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(poly, 71, 48, 9, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 1.2), 9 * 1.2, 12 * 1.2);
             }
+            else if (this.type == "natureCall")
+            {
+                XXX.beginPath();
+                XXX.drawImage(horde1, 529, 36, 88, 84, X - this.X + (1/2 * CCC.width) - (1/2 * 88 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 84 * 1), 88 * 1, 84 * 1);
+            }
             else if (this.type == "berulnToothNecklace")
             {
                 XXX.beginPath();
@@ -63308,6 +63867,11 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(poly, 71, 48, 9, 12, this.invX - (1/2 * 9 * 1.4), this.invY - (1/2 * 12 * 1.4), 9 * 1.4, 12 * 1.4);
             }
+            else if (this.type == "natureCall")
+            {
+                LXX.beginPath();
+                LXX.drawImage(horde1, 529, 36, 88, 84, this.invX - (1/2 * 88 * 1), this.invY - (1/2 * 84 * 1), 88 * 1, 84 * 1);
+            }
             else if (this.type == "berulnToothNecklace")
             {
                 LXX.beginPath();
@@ -65083,6 +65647,11 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(poly, 71, 48, 9, 12, this.invX - (1/2 * 9 * 1.4), this.invY - (1/2 * 12 * 1.4), 9 * 1.4, 12 * 1.4);
+            }
+            else if (this.type == "natureCall")
+            {
+                XXX.beginPath();
+                XXX.drawImage(horde1, 529, 36, 88, 84, this.invX - (1/2 * 88 * 1), this.invY - (1/2 * 84 * 1), 88 * 1, 84 * 1);
             }
             else if (this.type == "berulnToothNecklace")
             {
@@ -69057,6 +69626,22 @@ function theLegend()
                         scenicList.push(new Scenery("grushweedPlant", 2258, -15590, -4.34, 0.92));
                         scenicList.push(new Scenery("grushweedPlant", -644, -19755, 0, 1));
                     }
+
+                    if (uniqueChars.ireneLDS == true && quests.lostGirlFound == false && quests.lostGirlQuest == true)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Irene, Fenwik's Daughter")
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(5697, -19390, "Person", false, "Irene, Fenwik's Daughter", {race: "Kel", faction: "Kel", personality: "scared", outfit: ["ardilFurClothing", 0], weapon: ["none", [0.1, 0.05], 0, 9, 0.9], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], kid: true, patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]]}));
+                        }
+                    }
                     //Avraks/Evraks of the plains
                     ArtificialIntelligenceAccess.push(new Unit(2991, -14637, "Evrak", false, "Telve"));
                     ArtificialIntelligenceAccess.push(new Unit(4922, -15301, "Avrak", false, "Akreve"));
@@ -69175,9 +69760,19 @@ function theLegend()
                     //Build AI Units
 
                     //citizens of Echlin village/tribe
-                    ArtificialIntelligenceAccess.push(new Unit(-1366, -30864, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 3, speed: 1.65, outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [10, 0], 8, 16, 1], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(-1348, -30360, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 2, speed: 1.80, outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [11, 0], 8, 16, 1], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 6, patrolLoop: true, route:[[-218, -30349], [-227, -31505], [-1706, -31503], [-1724, -30600], [-1366, -30601], [-1348, -30360]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(-295, -30422, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 1, speed: 1.95, outfit: ["naapridLeatherArmour", 4], weapon: ["longbow", [8, 0], 8, 16, 1], ranged: [true, "arrow", 7, 1500, 1, 3, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
+                    if (quests.fenwikEchlinArmed)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-1366, -30864, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 3, speed: 1.65, outfit: ["naapridLeatherArmour", 4], weapon: ["kellishClaymore", [24, 1], 0, 50, 2.06], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-1348, -30360, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 2, speed: 1.80, outfit: ["naapridLeatherArmour", 4], weapon: ["kellishClaymore", [23, 1], 0, 50, 2.15], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 6, patrolLoop: true, route:[[-218, -30349], [-227, -31505], [-1706, -31503], [-1724, -30600], [-1366, -30601], [-1348, -30360]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-295, -30422, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 1, speed: 1.95, outfit: ["naapridLeatherArmour", 4], weapon: ["kellishClaymore", [18, 1], 0, 50, 3], ranged: [false, "arrow", 7, 1500, 1, 3, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-1366, -30864, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 3, speed: 1.65, outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [10, 0], 8, 16, 1], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-1348, -30360, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 2, speed: 1.80, outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [11, 0], 8, 16, 1], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 6, patrolLoop: true, route:[[-218, -30349], [-227, -31505], [-1706, -31503], [-1724, -30600], [-1366, -30601], [-1348, -30360]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-295, -30422, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 1, speed: 1.95, outfit: ["naapridLeatherArmour", 4], weapon: ["longbow", [8, 0], 8, 16, 1], ranged: [true, "arrow", 7, 1500, 1, 3, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
+                    }
+
                     if (uniqueChars.teberLDS == true && quests.bountyTeberCompletionStyle != "royal pardon")
                     {
                         var teberName = "Teber the Artisan";
@@ -69196,7 +69791,15 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-631, -30389, "Person", false, teberName, {race: "Freynor", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 4], weapon: ["freydicSword", [6, 6], 0, 0, 1.45], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 62], [new Item("naapridFiber", false, false), 11], [new Item("ironRing", false, false), 6], [new Item("pintGlass", false, false), 18], [new Item("potionGlass", false, false), 16], [new Item("glassJar", false, false), 7]]}));
+                            if (quests.fenwikEchlinArmed)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(-631, -30389, "Person", false, teberName, {race: "Freynor", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 4], weapon: ["kellishClaymore", [19, 2], 0, 50, 2.45], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 62], [new Item("naapridFiber", false, false), 11], [new Item("ironRing", false, false), 6], [new Item("pintGlass", false, false), 18], [new Item("potionGlass", false, false), 16], [new Item("glassJar", false, false), 7]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(-631, -30389, "Person", false, teberName, {race: "Freynor", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 4], weapon: ["freydicSword", [6, 6], 0, 0, 1.45], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 62], [new Item("naapridFiber", false, false), 11], [new Item("ironRing", false, false), 6], [new Item("pintGlass", false, false), 18], [new Item("potionGlass", false, false), 16], [new Item("glassJar", false, false), 7]]}));
+                            }
+
                             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                             {
                                 if (ArtificialIntelligenceAccess[i].ID == teberName)
@@ -69236,7 +69839,29 @@ function theLegend()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-963, -31386, "Person", false, "Fenwik the Smith", {race: "Kel", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [8, 1], 8, 16, 1.4], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 43], [new Item("iron", false, false), 2], [new Item("kellishSawClub", false, false), 3], [new Item("warHammer", false, false), 4], [new Item("kellishClaymore", false, false), 1], [new Item("timberAxe", false, false), 2], [new Item("longbow", false, false), 1], [new Item("arrow", false, false), 9], [new Item("mace", false, false), 2], [new Item("hammer", false, false), 3]]}));
+                            if (quests.fenwikShopStyle == "normal")
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(-963, -31386, "Person", false, "Fenwik the Smith", {race: "Kel", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [8, 1], 8, 16, 1.4], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 43], [new Item("iron", false, false), 2], [new Item("kellishSawClub", false, false), 3], [new Item("warHammer", false, false), 4], [new Item("kellishClaymore", false, false), 1], [new Item("timberAxe", false, false), 2], [new Item("longbow", false, false), 1], [new Item("arrow", false, false), 9], [new Item("mace", false, false), 2], [new Item("hammer", false, false), 3]]}));
+                            }
+                            else if (quests.fenwikShopStyle == "cash")
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(-963, -31386, "Person", false, "Fenwik the Smith", {race: "Kel", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [8, 1], 8, 16, 1.4], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 145], [new Item("kellishSawClub", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("hammer", false, false), 1]]}));
+                            }
+                        }
+                    }
+                    if (uniqueChars.ireneLDS == true && quests.lostGirlFound == true)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Irene")
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-1076, -31514, "Person", false, "Irene", {race: "Kel", faction: "Kel", personality: "scared", outfit: ["ardilFurClothing", 0], weapon: ["none", [0.1, 0.05], 0, 9, 0.9], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], kid: true, patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]]}));
                         }
                     }
                     if (uniqueChars.schuylarLDS == true)

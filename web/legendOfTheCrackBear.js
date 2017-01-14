@@ -339,7 +339,7 @@ function legendaryPrerequisites()
     var ireneChasing = new Audio("sounds/polySounds/ireneChasing.mp3");
     window.ireneChasing = ireneChasing;
 
-    var ireneFluffyOne = new Audio("sounds/polySounds/ireneFluffyOne.mp3");
+    var ireneFluffyOne = new Audio("sounds/polySounds/ireneFuzzyOne.mp3");
     window.ireneFluffyOne = ireneFluffyOne;
 
     //KEDWIN CHARACTER: voice acting
@@ -1718,8 +1718,8 @@ function theLegend()
                 }
                 var equis = prompt("Set X value...");
                 var yGriega = prompt("Set Y value...");
-                ArtificialIntelligenceAccess.unshift(new Unit(equis, yGriega, creature, alpha, "syntheticMonster"));
-                console.log(ArtificialIntelligenceAccess);
+                var alliegenced = confirm("Click cancle and it will try to cancle you, clikc ok and it will be ok with you.")
+                magicList.push(new Magic({ID: "adminSummon"}, true, [equis, yGriega, creature, alpha, alliegenced]));
             }
             else if (cheatcode == "unitListChecker")
             {
@@ -10620,6 +10620,93 @@ function theLegend()
                         {
                             magicList.push(new Magic(player.spell, true, 1));
                         }
+                    }
+                    this.castingCooldown = new Date().getTime();
+                }
+                else if (Math.floor(this.stage) <= 6)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 174, 490, 37, 29, -1/2 * 37 * 1.25, -1/2 * 29 * 1.25, 37 * 1.25, 29 * 1.25);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 7)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 8)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 165, 450, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
+                    XXX.restore();
+                }
+            }
+
+            if (this.spell.ID == "SummonSingularLargeCreature")
+            {
+                this.stageEngine(7, 0.20, false);
+
+                //ATTACK
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 163, 367, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 165, 450, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 174, 490, 37, 29, -1/2 * 37 * 1.25, -1/2 * 29 * 1.25, 37 * 1.25, 29 * 1.25);
+                    XXX.restore();
+                    this.doMagic = true;
+                }
+                else if (Math.floor(this.stage) <= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 175, 570, 37, 29, -1/2 * 37 * 1.25, -1/2 * 29 * 1.25, 37 * 1.25, 29 * 1.25);
+                    XXX.restore();
+                    if (this.doMagic)
+                    {
+                        this.doMagic = false;
+                        this.magicalExperience += this.spell.EXP;
+                        magicList.push(new Magic(player.spell, true, 1));
                     }
                     this.castingCooldown = new Date().getTime();
                 }
@@ -23858,7 +23945,7 @@ function theLegend()
                 }
             }
                 //Summoning
-            if (this.spellType == "summonFrich" || this.spellType == "summonWolf")
+            if (this.spellType == "summonFrich" || this.spellType == "summonWolf" || this.spellType == "adminSummon")
             {
                 this.spin = ((Math.random() * 11) - 5) / 25;
                 var rdxn = Math.floor(Math.random() * 8);
@@ -23890,6 +23977,10 @@ function theLegend()
                 else if (instructions == 7)
                 {
                     this.orientToCaster(16 + rdxn, 4 / 6 * Math.PI );
+                }
+                else
+                {
+                    this.orientToCaster(19, 1 / 2 * Math.PI);
                 }
             }
                 //FLYING COLOURS
@@ -23954,7 +24045,7 @@ function theLegend()
                 }
 
                 //SUMMONING
-                if (this.spellType == "summonFrich" || this.spellType == "summonWolf")
+                if (this.spellType == "summonFrich" || this.spellType == "summonWolf" || this.spellType == "adminSummon")
                 {
                     this.turn += this.spin;
                     if (caster)
@@ -24031,6 +24122,28 @@ function theLegend()
                                 }
                             }
                         }
+                        else if (this.spellType == "adminSummon")
+                        {
+                            if (instructions[4] == true)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(instructions[0], instructions[1], instructions[2], instructions[3], "playerSummoned" + instructions[2]));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(instructions[0], instructions[1], instructions[2], instructions[3], "adminGenerated" + instructions[2]));
+                            }
+
+                            for (var i = 0; i < magicList.length; i++)
+                            {
+                                if (magicList[i] === this)
+                                {
+                                    magicList.splice(i, 1);
+                                    break;
+                                }
+                            }
+
+                        }
+
                         this.project(this.playerRotation + 1/2 * Math.PI, rang, 3.5 * ((50 + player.getConcentration()) / 50), "alert");
 
                     }
@@ -26400,6 +26513,164 @@ function theLegend()
                                 }
                             }
 
+                            if (this.ID == "Irene" && conversationID[0] != "Fenwik" || conversationID[0] == "Irene")
+                            {
+                                lowBar = "dialogue";
+                                conversationID[0] = "Irene";
+
+                                if (clickReleased)
+                                {
+                                    self.RC();
+                                }
+
+                                //CONVERSATION
+                                if (conversationID[1] == 0)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["Hi There!", false, "a"], ["Hello.", false, "a"],["Why are your clothes all muddy?", false, "b"], ["Can I buy one of those ardils?", false, "c"]];
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0b";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "c")
+                                                {
+                                                    playersTurnToSpeak = false;
+                                                    conversationID[1] = "0c";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "0a")
+                                {
+                                    ireneHi.play();
+                                    ireneHi.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0b")
+                                {
+                                    ireneChasing.play();
+                                    ireneChasing.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (conversationID[1] == "0c")
+                                {
+                                    ireneFluffyOne.play();
+                                    ireneFluffyOne.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 1;
+                                        self.SC();
+                                    }
+                                }
+                                if (conversationID[1] == 1)
+                                {
+                                    if (player.dialogueChoiceMade == false)
+                                    {
+                                        player.dialogueOptions = [["Nevermind.", false, "b"]];
+
+                                        var hits = -1;
+                                        for (var i = 0; i < Inventory.length; i++)
+                                        {
+                                            if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 10)
+                                            {
+                                                hits = i;
+                                                break;
+                                            }
+                                        }
+
+                                        if (hits > -1)
+                                        {
+                                            player.dialogueOptions.unshift(["Actually on second thought, I won't buy one.", false, "b"]);
+                                            player.dialogueOptions.unshift(["I promise. (pay 10 coins)", false, "a"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.unshift(["I don't have enough money...", false, "b"]);
+                                        }
+                                    }
+                                    else if (player.dialogueChoiceMade == true)
+                                    {
+                                        player.dialogueChoiceMade = false;
+                                        for (var i = 0; i < player.dialogueOptions.length; i++)
+                                        {
+                                            if (player.dialogueOptions[i][1] == true)
+                                            {
+                                                if (player.dialogueOptions[i][2] == "a")
+                                                {
+                                                    playersTurnToSpeak = true;
+                                                    conversationID[1] = "1a";
+                                                }
+                                                else if (player.dialogueOptions[i][2] == "b")
+                                                {
+                                                    playersTurnToSpeak = true;
+                                                    conversationID[1] = "1b";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (conversationID[1] == "1a")
+                                {
+                                    var hits = -1;
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 10)
+                                        {
+                                            hits = i;
+                                            break;
+                                        }
+                                    }
+                                    if (hits > -1)
+                                    {
+                                        if (Inventory[hits][1] <= 10)
+                                        {
+                                            Inventory.splice(hits, 1);
+                                        }
+                                        else
+                                        {
+                                            Inventory[hits][1] -= 10;
+                                        }
+                                        magicList.push(new Magic({ID: "adminSummon"}, true, [-1143, -31504, "Ardil", false, true]));
+                                    }
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else if (conversationID[1] == "1b")
+                                {
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+
                             if (this.ID == "Irene, Fenwik's Daughter" || conversationID[0] == "IreneDaughter")
                             {
                                 lowBar = "dialogue";
@@ -26724,7 +26995,7 @@ function theLegend()
                                 }
                             }
 
-                            if (this.ID == "Fenwik the Smith" || conversationID[0] == "Fenwik")
+                            if (this.ID == "Fenwik the Smith" && conversationID[0] != "Irene" || conversationID[0] == "Fenwik")
                             {
                                 lowBar = "dialogue";
                                 conversationID[0] = "Fenwik";
@@ -35546,6 +35817,14 @@ function theLegend()
             {
                 this.damageFrame = "manual";
                 this.team = "herd";
+                if (this.ID == "playerSummonedArdil")
+                {
+                    this.team = "player";
+                }
+                else if (this.ID == "Irene's Pet Ardil")
+                {
+                    this.team = "Kel";
+                }
                 this.baseTeam = this.team;
                 this.sex = "Young";
 
@@ -42121,7 +42400,14 @@ function theLegend()
                     //Process
                     if (this.team != "player")
                     {
-                        if (this.DTP() <= 1/2 * this.rangeOfSight && wKey == true && player.getSurvivalism() < 40 || this.DTU(this.target) <= 1/2 * this.rangeOfSight && this.target != player)
+                        if (this.DTP() <= 1/2 * this.rangeOfSight && wKey == true && player.getSurvivalism() < 40 || this.DTU(this.target) <= 1/2 * this.rangeOfSight && this.target != player && this.target.type != "Ardil")
+                        {
+                            this.disturbedTime = new Date().getTime();
+                        }
+                    }
+                    else
+                    {
+                        if (this.DTP() <= this.rangeOfSight || this.DTU(this.target) <= 1/2 * this.rangeOfSight && this.target != player && this.target.type != "Ardil")
                         {
                             this.disturbedTime = new Date().getTime();
                         }
@@ -42173,8 +42459,23 @@ function theLegend()
 
                         if (this.target == player)
                         {
-                            this.pointAwayFromPlayer();
-                            this.moveInRelationToPlayer();
+                            if (this.ID == "Irene's Pet Ardil")
+                            {
+                                if (wKey == true && shiftKey == false || wKey == false)
+                                {
+                                    this.pointTowardsPlayer();
+                                }
+                                else
+                                {
+                                    this.pointAwayFromPlayer();
+                                    this.moveInRelationToPlayer();
+                                }
+                            }
+                            else
+                            {
+                                this.pointAwayFromPlayer();
+                                this.moveInRelationToPlayer();
+                            }
                         }
                         else if (this.target != "none")
                         {
@@ -70196,8 +70497,10 @@ function theLegend()
                             }
                         }
                     }
-                    if (uniqueChars.ireneLDS == true && quests.lostGirlFound == true)
+                    if (uniqueChars.ireneLDS == true) //&& quests.lostGirlFound == true) //superbooble
                     {
+                        ArtificialIntelligenceAccess.push(new Unit(-1117, -31425, "Ardil", true, "Irene's Pet Ardil"));
+                        ArtificialIntelligenceAccess.push(new Unit(-1004, -31483, "Ardil", true, "Irene's Pet Ardil"));
                         var hits = 0;
                         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                         {

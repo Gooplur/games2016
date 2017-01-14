@@ -922,6 +922,7 @@ function theLegend()
         drohfor: ["Drohfor", 0],
         maggy: ["Maggy", 0],
         ireneDaughter: ["IreneDaughter", 0],
+        fenwik: ["Fenwik", 0],
         irene: ["Irene", 0],
         kedwin: ["Kedwin", 0],
         hilmund: ["Hilmund", 0],

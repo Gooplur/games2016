@@ -70497,7 +70497,7 @@ function theLegend()
                             }
                         }
                     }
-                    if (uniqueChars.ireneLDS == true) //&& quests.lostGirlFound == true) //superbooble
+                    if (uniqueChars.ireneLDS == true && quests.lostGirlFound == true)
                     {
                         ArtificialIntelligenceAccess.push(new Unit(-1117, -31425, "Ardil", true, "Irene's Pet Ardil"));
                         ArtificialIntelligenceAccess.push(new Unit(-1004, -31483, "Ardil", true, "Irene's Pet Ardil"));

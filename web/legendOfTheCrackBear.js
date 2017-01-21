@@ -3,6 +3,13 @@
  */
 
 //TODO LIST
+//todo design the proper engagment radius and size radius for Uts, add their drops as well, perhaps ajust them to attack centered.
+//todo add Brolle Worms, a form of parasite that lives in the kellish mud bog.
+//todo add Grewbles in the kellish mud bog and add Grewble eggs that can be destroyed looted, and which can hatch if left undisturbed.
+//todo add Lodotos, a sickness that one can get in the kellish mud bog.
+//todo add spitting mud flies -- a giant fly that lives in the kellish mud bog and that spits toxic transparent digestive excretion at you.
+//todo add Blil Plant a four leaved plant that opens up at night time and brightens the surrounding with its glowing stamen.
+//todo add Weg Root a bulbous bitter bog root that grows in the kellish mud bog.
 //todo add plants to the S3 Map.
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
 //todo revise the sleeping system... as of right now it is an absolute crazy juju ball made of sand candy!!! Which is a bad thing.
@@ -736,6 +743,18 @@ function comingUpToLastPreStage()
 
     polpol.onload = function()
     {
+        casiAlFin();
+    };
+}
+
+function casiAlFin()
+{
+    var lodo = new Image();
+    lodo.src = ("images/lodo.png");
+    window.lodo = lodo;
+
+    lodo.onload = function()
+    {
         somewhatToLastPreStage();
     };
 }
@@ -1370,6 +1389,7 @@ function theLegend()
     foods.push(new Item("ardilMeat", false));
     foods.push(new Item("boiledPalntRoot", false));
     foods.push(new Item("tilkMeat", false));
+    foods.push(new Item("utMeat", false));
     foods.push(new Item("tunskMeat", false));
 
         //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
@@ -1424,6 +1444,7 @@ function theLegend()
     alchemy.push(new Item("speedPotionI", false));
     alchemy.push(new Item("energilPotionI", false));
     alchemy.push(new Item("energilPotionII", false));
+    alchemy.push(new Item("mindPotionI", false));
     alchemy.push(new Item("fermentedNarthwarpMouth", false));
     alchemy.push(new Item("fermentedViperVenomGland", false));
     alchemy.push(new Item("driedCyrinthilimMushroom", false));
@@ -1432,6 +1453,8 @@ function theLegend()
     alchemy.push(new Item("ogardPerfume", false));
     alchemy.push(new Item("wyrExtract", false));
     alchemy.push(new Item("tenicPaste", false));
+    alchemy.push(new Item("utExtract", false));
+    alchemy.push(new Item("fermentedUtTentacle", false));
 
         //Brewing (alcohols, liquid fermentation, etc.)
     var brewing = [];
@@ -5488,6 +5511,9 @@ function theLegend()
         this.AdShockResist // this is extra armour given shock resist.
             //more skill adjusters
         this.dexBoost = 0; //this is stat adjustment by magic and potions.
+        this.intBoost = 0; //this is stat adjustment by magic and potions.
+        this.memBoost = 0; //this is stat adjustment by magic and potions.
+        this.wilBoost = 0; //this is stat adjustment by magic and potions.
         this.emiBoost = 0; //this is stat adjustment by magic and potions.
         //Magical Skills
         this.willpower = 50; //this is the amount of energy the caster has to cast magic with, like MP. (100 Maximum Willpower)
@@ -5734,6 +5760,27 @@ function theLegend()
         this.speedV = false;
         this.dexTime = 0; //this is the amount of time that helps determine how long dexterity is magically increased.
         this.speedBoost = false; //this is the flag that indicates whether the effect is active for the mini notice system.
+        this.intelligenceBoost = false;
+        this.intelligenceI = false;
+        this.intelligenceII = false;
+        this.intelligenceIII = false;
+        this.intelligenceIV = false;
+        this.intelligenceV = false;
+        this.intTime = 0; //this is the amount of time that helps determine how long intelligence is magically increased.
+        this.willpowerBoost = 0;
+        this.wilTime = 0; //this is the amount of time that helps determine how long willpower is magically increased.
+        this.willpowerI = false;
+        this.willpowerII = false;
+        this.willpowerIII = false;
+        this.willpowerIV = false;
+        this.willpowerV = false;
+        this.memBoost = 0;
+        this.memTime = 0; //this is the amount of time that helps determine how long memory is magically increased.
+        this.memoryI = false;
+        this.memoryII = false;
+        this.memoryIII = false;
+        this.memoryIV = false;
+        this.memoryV = false;
         this.timeSinceRawTrollBlood = 0; //this is the timer for troll poisoning
         this.trollPoisonActive = false; //this is the reset for troll poisonings magic resistance effect (resets the eminence boost to 0 when true)
         this.stunned = false; //this denotes whether or not the player is stunned and displays the mininotice icon if the player is.
@@ -7473,7 +7520,7 @@ function theLegend()
                 }
                 else
                 {
-                    this.dexBoost = false;
+                    this.dexBoost = 0;
                     if (developerRapidamente == false)
                     {
                         rapidamente = false;
@@ -7485,7 +7532,146 @@ function theLegend()
                     this.speedIV = false;
                     this.speedV = false;
                 }
+
+                //This is the flag setter for intelligence boosts.
+                if (this.intelligenceI || this.intelligenceII || this.intelligenceIII || this.intelligenceIV || this.intelligenceV)
+                {
+                    this.intelligenceBoost = true;
+                }
+                else
+                {
+                    if (this.intelligenceBoost == true)
+                    {
+                        this.intBoost = 0;
+                        this.intelligenceBoost = false;
+                    }
+                }
+
+                //This applies the boost.
+                if (this.intelligenceV == true && new Date().getTime() - this.intTime < 25000)
+                {
+                    this.intBoost = 60;
+                }
+                else if (this.intelligenceIV == true && new Date().getTime() - this.intTime < 25000)
+                {
+                    this.intBoost = 35;
+                }
+                else if (this.intelligenceIII == true && new Date().getTime() - this.intTime < 25000)
+                {
+                    this.intBoost = 20;
+                }
+                if (this.intelligenceII == true && new Date().getTime() - this.intTime < 25000)
+                {
+                    this.intBoost = 10;
+                }
+                else if (this.intelligenceI == true && new Date().getTime() - this.intTime < 25000)
+                {
+                    this.intBoost = 5;
+                }
+                else
+                {
+                    this.intBoost = 0;
+
+                    this.intelligenceI = false;
+                    this.intelligenceII = false;
+                    this.intelligenceIII = false;
+                    this.intelligenceIV = false;
+                    this.intelligenceV = false;
+                }
+
+                //This is the flag setter for willpower boosts.
+                if (this.willpowerI || this.willpowerII || this.willpowerIII || this.willpowerIV || this.willpowerV)
+                {
+                    this.willpowerBoost = true;
+                }
+                else
+                {
+                    if (this.willpowerBoost == true)
+                    {
+                        this.wilBoost = 0;
+                        this.willpowerBoost = false;
+                    }
+                }
+
+                //This applies the boost.
+                if (this.willpowerV == true && new Date().getTime() - this.wilTime < 25000)
+                {
+                    this.wilBoost = 50;
+                }
+                else if (this.intelligenceIV == true && new Date().getTime() - this.wilTime < 25000)
+                {
+                    this.wilBoost = 25;
+                }
+                else if (this.intelligenceIII == true && new Date().getTime() - this.wilTime < 25000)
+                {
+                    this.wilBoost = 10;
+                }
+                if (this.intelligenceII == true && new Date().getTime() - this.wilTime < 25000)
+                {
+                    this.wilBoost = 5;
+                }
+                else if (this.intelligenceI == true && new Date().getTime() - this.wilTime < 25000)
+                {
+                    this.wilBoost = 2;
+                }
+                else
+                {
+                    this.wilBoost = 0;
+
+                    this.willpowerI = false;
+                    this.willpowerII = false;
+                    this.willpowerIII = false;
+                    this.willpowerIV = false;
+                    this.willpowerV = false;
+                }
+
+                //This is the flag setter for memory boosts.
+                if (this.memoryI || this.memoryII || this.memoryIII || this.memoryIV || this.memoryV)
+                {
+                    this.memoryBoost = true;
+                }
+                else
+                {
+                    if (this.memoryBoost == true)
+                    {
+                        this.memBoost = 0;
+                        this.memoryBoost = false;
+                    }
+                }
+
+                //This applies the boost.
+                if (this.memoryV == true && new Date().getTime() - this.memTime < 25000)
+                {
+                    this.memBoost = 40;
+                }
+                else if (this.memoryIV == true && new Date().getTime() - this.memTime < 25000)
+                {
+                    this.memBoost = 25;
+                }
+                else if (this.memoryIII == true && new Date().getTime() - this.memTime < 25000)
+                {
+                    this.memBoost = 16;
+                }
+                if (this.memoryII == true && new Date().getTime() - this.memTime < 25000)
+                {
+                    this.memBoost = 9;
+                }
+                else if (this.memoryI == true && new Date().getTime() - this.memTime < 25000)
+                {
+                    this.memBoost = 4;
+                }
+                else
+                {
+                    this.memBoost = 0;
+
+                    this.memoryI = false;
+                    this.memoryII = false;
+                    this.memoryIII = false;
+                    this.memoryIV = false;
+                    this.memoryV = false;
+                }
             };
+
             this.sightSeeing = function()
             {
                 if (adminShowSight || this.getDexterity() >= 50 && this.movingType == 3)
@@ -7844,7 +8030,7 @@ function theLegend()
 
         this.getIntelligence = function()
         {
-            return (Math.max(0, this.intelligence + this.AdIntelligence));
+            return (Math.max(0, this.intelligence + this.AdIntelligence + this.intBoost));
         };
 
         this.getCharisma = function()
@@ -7854,7 +8040,7 @@ function theLegend()
 
         this.getWillpower = function()
         {
-            return (Math.max(0, this.willpower + this.AdWillpower));
+            return (Math.max(0, this.willpower + this.AdWillpower + this.wilBoost));
         };
 
         this.getConcentration = function()
@@ -7864,7 +8050,7 @@ function theLegend()
 
         this.getMemory = function()
         {
-            return (Math.max(0, this.memory + this.AdMemory));
+            return (Math.max(0, this.memory + this.AdMemory + this.memBoost));
         };
 
         this.getEminence = function()
@@ -8363,7 +8549,7 @@ function theLegend()
         };
 
         //SPEED BOOST Notice Function
-        this.speedBoostChecker = function ()
+        this.speedBoostChecker = function()
         {
             if (this.speedBoost == true)
             {
@@ -8384,6 +8570,81 @@ function theLegend()
             {
                 //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
                 this.removeNotice("Quickness");
+            }
+        };
+
+        //INTELLIGENCE BOOST Notice Function
+        this.intelligenceBoostChecker = function()
+        {
+            if (this.intelligenceBoost == true)
+            {
+                // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+                this.addNotice("Enhanced Thought");
+                //the background
+                XXX.beginPath();
+                XXX.lineWidth = 1;
+                XXX.strokeStyle = "black";
+                XXX.fillStyle = "white";
+                XXX.rect(this.arrangeNotices("Enhanced Thought"), 413, 20, 20);
+                XXX.fill();
+                XXX.stroke();
+                //the image
+                XXX.drawImage(freeverse, 530, 65, 12, 10, this.arrangeNotices("Enhanced Thought") -0.65, 413, 23, 20);
+            }
+            else
+            {
+                //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+                this.removeNotice("Enhanced Thought");
+            }
+        };
+
+        //WILLPOWER BOOST Notice Function
+        this.willpowerBoostChecker = function()
+        {
+            if (this.willpowerBoost == true)
+            {
+                // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+                this.addNotice("Will");
+                //the background
+                XXX.beginPath();
+                XXX.lineWidth = 1;
+                XXX.strokeStyle = "black";
+                XXX.fillStyle = "#B6AFC4";
+                XXX.rect(this.arrangeNotices("Will"), 413, 20, 20);
+                XXX.fill();
+                XXX.stroke();
+                //the image
+                XXX.drawImage(freeverse, 765, 101, 41, 50, this.arrangeNotices("Will"), 413, 20, 20);
+            }
+            else
+            {
+                //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+                this.removeNotice("Will");
+            }
+        };
+
+        //WILLPOWER BOOST Notice Function
+        this.memoryBoostChecker = function()
+        {
+            if (this.memoryBoost == true)
+            {
+                // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+                this.addNotice("Memorization");
+                //the background
+                XXX.beginPath();
+                XXX.lineWidth = 1;
+                XXX.strokeStyle = "black";
+                XXX.fillStyle = "#1F1F21";
+                XXX.rect(this.arrangeNotices("Memorization"), 413, 20, 20);
+                XXX.fill();
+                XXX.stroke();
+                //the image
+                XXX.drawImage(freeverse, 884, 103, 41, 50, this.arrangeNotices("Memorization"), 413, 20, 20);
+            }
+            else
+            {
+                //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+                this.removeNotice("Memorization");
             }
         };
 
@@ -8634,6 +8895,9 @@ function theLegend()
             this.trollPoisonChecker();
             this.energizedChecker();
             this.speedBoostChecker();
+            this.intelligenceBoostChecker();
+            this.willpowerBoostChecker();
+            this.memoryBoostChecker();
             this.starvationChecker();
             this.dehydrationChecker();
             this.quenchedChecker();
@@ -21126,6 +21390,51 @@ function theLegend()
                                     this.dexTime = new Date().getTime();
                                     this.speedV = true;
                                 }
+                                else if (Inventory[i][0].ability == "mindI") //This is for enhancing dexterity.
+                                {
+                                    this.intTime = new Date().getTime() + 35000;
+                                    this.intelligenceI = true;
+                                    this.memTime = new Date().getTime() + 35000;
+                                    this.memoryI = true;
+                                    this.wilTime = new Date().getTime() + 35000;
+                                    this.willpowerI = true;
+                                }
+                                else if (Inventory[i][0].ability == "mindII") //This is for enhancing dexterity.
+                                {
+                                    this.intTime = new Date().getTime() + 95000;
+                                    this.intelligenceII = true;
+                                    this.memTime = new Date().getTime() + 95000;
+                                    this.memoryII = true;
+                                    this.wilTime = new Date().getTime() + 95000;
+                                    this.willpowerII = true;
+                                }
+                                else if (Inventory[i][0].ability == "mindIII") //This is for enhancing dexterity.
+                                {
+                                    this.intTime = new Date().getTime() + 155000;
+                                    this.intelligenceIII = true;
+                                    this.memTime = new Date().getTime() + 155000;
+                                    this.memoryIII = true;
+                                    this.wilTime = new Date().getTime() + 155000;
+                                    this.willpowerIII = true;
+                                }
+                                else if (Inventory[i][0].ability == "mindIV") //This is for enhancing dexterity.
+                                {
+                                    this.intTime = new Date().getTime() + 215000;
+                                    this.intelligenceIV = true;
+                                    this.memTime = new Date().getTime() + 215000;
+                                    this.memoryIV = true;
+                                    this.wilTime = new Date().getTime() + 215000;
+                                    this.willpowerIV = true;
+                                }
+                                else if (Inventory[i][0].ability == "mindV") //This is for enhancing dexterity.
+                                {
+                                    this.intTime = new Date().getTime() + 275000;
+                                    this.intelligenceV = true;
+                                    this.memTime = new Date().getTime() + 275000;
+                                    this.memoryV = true;
+                                    this.wilTime = new Date().getTime() + 275000;
+                                    this.willpowerV = true;
+                                }
                                 else if (Inventory[i][0].ability == "gassiness") //This gives the player indigestion (bad gasses)
                                 {
                                         this.gassinessTime += 20;
@@ -21725,6 +22034,34 @@ function theLegend()
                                 if (canPlace == true)
                                 {
                                     scenicList.push(new Scenery("fertilizedMofuEgg", X, Y, (Math.random() * (2 * Math.PI)), false));
+
+                                    if (Inventory[i][1] - 1 <= 0)
+                                    {
+                                        Inventory.splice(i, 1);
+                                    }
+                                    else
+                                    {
+                                        Inventory[i][1] -= 1;
+                                    }
+                                    break;
+                                }
+                            }
+                            else if (Inventory[i][0].ability == "grewbleHatch")
+                            {
+                                var canPlace = true;
+                                var hits = 0;
+                                for (var j = 0; j < scenicList.length; j++)
+                                {
+                                    //5 is the radius of mofuEgg Scenery Object.
+                                    if (scenicList[j].X - 5 <= X + scenicList[j].radius && scenicList[j].X + 5 >= X - scenicList[j].radius && scenicList[j].Y - 5 <= Y + scenicList[j].radius && scenicList[j].Y + 5 >= Y - scenicList[j].radius)
+                                    {
+                                        canPlace = false;
+                                    }
+                                }
+
+                                if (canPlace == true)
+                                {
+                                    scenicList.push(new Scenery("grewbleEgg", X, Y, (Math.random() * (2 * Math.PI)), false));
 
                                     if (Inventory[i][1] - 1 <= 0)
                                     {
@@ -25489,6 +25826,7 @@ function theLegend()
         this.mofuTargetFood = "none";
         this.mofuFood = 0;
         this.eggTimer = 0;
+        this.loopTimer = new Date().getTime();
         this.kidSize = 0.72;
         this.kid = false;
         if (typeof(this.ultra) != "undefined")
@@ -32085,6 +32423,46 @@ function theLegend()
                                 {
                                     player.energy -= Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) / 1.5;
                                 }
+                                else if (this.effect == "fatigueI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.energilTime = 60;
+                                    player.fatigueI = true;
+                                }
+                                else if (this.effect == "fatigueII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.energilTime = 60;
+                                    player.fatigueII = true;
+                                }
+                                else if (this.effect == "fatigueIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.energilTime = 60;
+                                    player.fatigueIII = true;
+                                }
+                                else if (this.effect == "fatigueIV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.energilTime = 60;
+                                    player.fatigueIV = true;
+                                }
+                                else if (this.effect == "fatigueV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.energilTime = 60;
+                                    player.fatigueV = true;
+                                }
+                                else if (this.effect == "grewbleToxinI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.energilTime = 300;
+                                    player.fatigueI = true;
+                                }
+                                else if (this.effect == "grewbleToxinII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.energilTime = 300;
+                                    player.fatigueII = true;
+                                }
+                                else if (this.effect == "grewbleToxinIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.energilTime = 360;
+                                    player.fatigueIV = true;
+                                }
                                 else if (this.effect == "smashbackI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
@@ -35117,6 +35495,38 @@ function theLegend()
 
                 }
             }
+            else if (this.type == "BrolleWorms")
+            {
+                this.damageFrame = "automatic";
+                this.team = "wild";
+                this.baseTeam = this.team;
+                this.flying = true;
+                if (this.ID == "docile")
+                {
+                    this.team = "docile";
+                }
+
+                this.magicalResistance = 0;
+                this.heatResistance = 0;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = 1;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 0.8 + (Math.floor(Math.random() * 3) / 10);
+                this.rangeOfSight = 300; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.1;
+                this.engagementRadius = 6;
+                this.sizeRadius = 10;
+                this.negateArmour = 0;
+                this.attackWait = 0.05;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1.45; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 1; //was - 3.5
+                this.xAdjustment = 6; //was 6
+            }
             else if (this.type == "Varn")
             {
                 this.damageFrame = "automatic";
@@ -35174,6 +35584,194 @@ function theLegend()
                     this.yAdjustment = 0; //was -34
                     this.xAdjustment = 0; //was - 26
 
+                }
+            }
+            else if (this.type == "Ut") //utttttt
+            {
+                this.damageFrame = "automatic";
+                this.team = "wild";
+                this.baseTeam = this.team;
+                if (this.ID == "docile")
+                {
+                    this.team = "docile";
+                }
+
+                if (this.alpha == true)
+                {
+                    this.magicalResistance = 1;
+                    this.heatResistance = 6;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 26) + 140;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 2 + (Math.floor(Math.random() * 4) / 10);
+                    this.rangeOfSight = 700; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.05;
+                    this.engagementRadius = 36;
+                    this.sizeRadius = 19;
+                    this.negateArmour = 14;
+                    this.attackWait = 3.85;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 1.9; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else if (this.alpha == "baby")
+                {
+                    this.magicalResistance = 1;
+                    this.heatResistance = 6;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 5) + 14;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 1 + (Math.floor(Math.random() * 4) / 10);
+                    this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.05;
+                    this.engagementRadius = 26;
+                    this.sizeRadius = 16;
+                    this.negateArmour = 3;
+                    this.attackWait = 3.55;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 0.75; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else
+                {
+                    this.magicalResistance = 1;
+                    this.heatResistance = 6;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 12) + 49;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 1.5 + (Math.floor(Math.random() * 4) / 10);
+                    this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.05;
+                    this.engagementRadius = 30;
+                    this.sizeRadius = 19;
+                    this.negateArmour = 9;
+                    this.attackWait = 3.75;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 1.25; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+            }
+            else if (this.type == "Grewble")
+            {
+                this.damageFrame = "automatic";
+                this.resistances = ["stun"];
+                this.team = "wild";
+                this.baseTeam = this.team;
+                if (this.ID == "docile")
+                {
+                    this.team = "docile";
+                }
+
+                if (this.alpha == true)
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = 2;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 5) + 21;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 4 + (Math.floor(Math.random() * 5) / 10);
+                    this.rangeOfSight = 800; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1;
+                    this.effect = "grewbleToxinII";
+                    this.engagementRadius = 75;
+                    this.sizeRadius = 24;
+                    this.negateArmour = 11;
+                    this.attackWait = 3.25;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 3; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else if (this.alpha == "giant")
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = 2;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 16) + 35;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 8;
+                    this.rangeOfSight = 1000; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1;
+                    this.effect = "grewbleToxinIII";
+                    this.engagementRadius = 114;
+                    this.sizeRadius = 34;
+                    this.negateArmour = 90;
+                    this.attackWait = 9;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 4; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else if (this.alpha == "baby")
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = 2;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 2) + 3;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 3 + (Math.floor(Math.random() * 5) / 10);
+                    this.rangeOfSight = 800; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1;
+                    this.effect = "fatigueI";
+                    this.engagementRadius = 32;
+                    this.sizeRadius = 5;
+                    this.negateArmour = 2.5;
+                    this.attackWait = 1.25;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = 2;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 2) + 9;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 3.5 + (Math.floor(Math.random() * 5) / 10);
+                    this.rangeOfSight = 800; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1;
+                    this.effect = "grewbleToxinI";
+                    this.engagementRadius = 49;
+                    this.sizeRadius = 15;
+                    this.negateArmour = 14;
+                    this.attackWait = 2.25;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
                 }
             }
             else if (this.type == "Avrak")
@@ -40315,6 +40913,108 @@ function theLegend()
                 }
 
             }
+            //BROLLE WORMS
+            if (this.type == "BrolleWorms")
+            {
+                //Set Drops and experience
+
+                if (Math.max(0, 1 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 1 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (1 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [];
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                this.rangeOfSightCalculator(300, false);
+
+
+                //AI
+                if (this.alive == true)
+                {
+                    this.Attack(0, 0.15);
+                    this.callForNearbyHelpFromType(425, "BrolleWorms");
+
+                    //this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+                    this.friendDecider();
+                    this.targeting();
+                    //todo add a script to allow brolle worms to seek out dead bodies to feed upon and in doing so summoning more worms.
+
+
+                    if (this.target == player)
+                    {
+                        if (this.DTP() > this.rangeOfSight && typeof(this.ultra) != "undefined")
+                        {
+                            this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                        }
+                        else
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                    }
+                    else if (this.target != "none")
+                    {
+                        if (this.DTU(this.target) > this.baseSight && typeof(this.ultra) != "undefined")
+                        {
+                            this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                        }
+                        else
+                        {
+                            this.pointTowards(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
+                    }
+
+                }
+                else
+                {
+                    //do stuff when a tilk dies...
+                    if (this.doOnDeathOnce == true)
+                    {
+                        //track Deaths Of Certain Non-Unique Units During Certain Quests
+
+                        this.doOnDeathOnce = false;
+                    }
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(1, 0.1, false);
+                    }
+                    else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(1, 0.1, false);
+                        }
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0 || theCostume >= 0)
+                    {
+                        this.flashAnimate(250, this.rotation, 1, [{image: lodo, imgX: 7, imgY: 78, portionW: 28, portionH: 24, adjX: -1 / 2 * 28 * this.alphaSize - this.xAdjustment, adjY: -1 / 2 * 24 * this.alphaSize - this.yAdjustment, width: 28 * this.alphaSize, height: 24 * this.alphaSize}, {image: lodo, imgX: 7, imgY: 100, portionW: 28, portionH: 24, adjX: -1 / 2 * 28 * this.alphaSize - this.xAdjustment, adjY: -1 / 2 * 24 * this.alphaSize - this.yAdjustment, width: 28 * this.alphaSize, height: 24 * this.alphaSize}, {image: lodo, imgX: 8, imgY: 126, portionW: 28, portionH: 24, adjX: -1 / 2 * 28 * this.alphaSize - this.xAdjustment, adjY: -1 / 2 * 24 * this.alphaSize - this.yAdjustment, width: 28 * this.alphaSize, height: 24 * this.alphaSize}, {image: lodo, imgX: 7, imgY: 152, portionW: 28, portionH: 24, adjX: -1 / 2 * 28 * this.alphaSize - this.xAdjustment, adjY: -1 / 2 * 24 * this.alphaSize - this.yAdjustment, width: 28 * this.alphaSize, height: 24 * this.alphaSize}]);
+                    }
+
+                }
+                else
+                {
+                    this.drawUnit(lodo, 12, 128, 20, 19, -1/2 * 20 * this.alphaSize - this.xAdjustment, -1/2 * 19 * this.alphaSize - this.yAdjustment, 20 * this.alphaSize, 19 * this.alphaSize);
+                }
+
+            }
             //VARN
             if (this.type == "Varn")
             {
@@ -40445,6 +41145,435 @@ function theLegend()
                 else
                 {
                     this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+                }
+            }
+            //UT
+            if (this.type == "Ut") //uttttt
+            {
+                //Set Drops and experience
+                if (this.alpha == true)
+                {
+                    if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 129 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (129 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    this.drops = [[new Item("rawUtFlesh", this.X, this.Y), 5], [new Item("utTentacle", this.X, this.Y), 9]];
+                }
+                else if (this.alpha == "baby")
+                {
+                    if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 9 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (9 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    this.drops = [[new Item("rawUtFlesh", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 49 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = 49 * ((player.getIntelligence() / 50) + 1) / 10;
+                    }
+
+                    this.drops = [[new Item("rawUtFlesh", this.X, this.Y), 2], [new Item("utTentacle", this.X, this.Y), 2]];
+                }
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                if (this.alpha == true)
+                {
+                    this.rangeOfSightCalculator(700, true);
+                }
+                else if (this.alpha == "baby")
+                {
+                    this.rangeOfSightCalculator(500, true);
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(600, true);
+                }
+
+                //AI
+                if (this.alive == true)
+                {
+                    if (this.alpha == true)
+                    {
+                        this.Attack(22, 8);
+                        this.callForNearbyHelpFromType(800, "Ut");
+                    }
+                    else if (this.alpha == "baby")
+                    {
+                        this.Attack(4, 1);
+                        this.callForNearbyHelpFromType(1200, "Ut");
+                    }
+                    else
+                    {
+                        this.Attack(11, 4);
+                        this.callForNearbyHelpFromType(700, "Ut");
+                    }
+
+                    //Super Sticky Slime Trail
+                    if (this.moving && !this.attacking)
+                    {
+                        if (new Date().getTime() >= this.loopTimer + 625)
+                        {
+                            this.loopTimer = new Date().getTime();
+                            scenicList.push(new Scenery("utSlime", this.X , this.Y, this.rotation, this.alphaSize));
+                        }
+                    }
+
+                    //this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(6, 0.070, false);
+                    }
+                    else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(8, 0.110, true);
+                        }
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(freeverse, 681, 794, 99, 96, -1/2 * 99 * this.alphaSize - this.xAdjustment, -1/2 * 96 * this.alphaSize - this.yAdjustment, 99 * this.alphaSize, 96 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(freeverse, 520, 245, 99, 96, -1/2 * 99 * this.alphaSize - this.xAdjustment, -1/2 * 96 * this.alphaSize - this.yAdjustment, 99 * this.alphaSize, 96 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(freeverse, 797, 786, 93, 103, -1/2 * 93 * this.alphaSize - this.xAdjustment, -1/2 * 103 * this.alphaSize - this.yAdjustment, 93 * this.alphaSize, 103 * this.alphaSize);
+                            //this.drawUnit(freeverse, 794, 800, 91, 75, -1/2 * 91 * this.alphaSize - this.xAdjustment, -1/2 * 75 * this.alphaSize - this.yAdjustment, 91 * this.alphaSize, 95 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(freeverse, 616, 247, 99, 96, -1/2 * 99 * this.alphaSize - this.xAdjustment, -1/2 * 96 * this.alphaSize - this.yAdjustment, 99 * this.alphaSize, 96 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 2)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(freeverse, 901, 788, 99, 96, -1/2 * 99 * this.alphaSize - this.xAdjustment, -1/2 * 96 * this.alphaSize - this.yAdjustment, 99 * this.alphaSize, 96 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(freeverse, 707, 236, 99, 96, -1/2 * 99 * this.alphaSize - this.xAdjustment, -1/2 * 96 * this.alphaSize - this.yAdjustment, 99 * this.alphaSize, 96 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 3)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(freeverse, 676, 888, 99, 96, -1/2 * 99 * this.alphaSize - this.xAdjustment, -1/2 * 96 * this.alphaSize - this.yAdjustment, 99 * this.alphaSize, 96 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(freeverse, 681, 794, 99, 96, -1/2 * 99 * this.alphaSize - this.xAdjustment, -1/2 * 96 * this.alphaSize - this.yAdjustment, 99 * this.alphaSize, 96 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 4)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(freeverse, 783, 888, 99, 96, -1/2 * 99 * this.alphaSize - this.xAdjustment, -1/2 * 96 * this.alphaSize - this.yAdjustment, 99 * this.alphaSize, 96 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(freeverse, 797, 786, 93, 103, -1/2 * 93 * this.alphaSize - this.xAdjustment, -1/2 * 103 * this.alphaSize - this.yAdjustment, 93 * this.alphaSize, 103 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 5)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(freeverse, 876, 890, 99, 96, -1/2 * 99 * this.alphaSize - this.xAdjustment, -1/2 * 96 * this.alphaSize - this.yAdjustment, 99 * this.alphaSize, 96 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(freeverse, 901, 788, 99, 96, -1/2 * 99 * this.alphaSize - this.xAdjustment, -1/2 * 96 * this.alphaSize - this.yAdjustment, 99 * this.alphaSize, 96 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume >= 6)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(freeverse, 569, 911, 97, 84, -1/2 * 97 * this.alphaSize - this.xAdjustment, -1/2 * 84 * this.alphaSize - this.yAdjustment, 97 * this.alphaSize, 84 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(freeverse, 520, 245, 99, 96, -1/2 * 99 * this.alphaSize - this.xAdjustment, -1/2 * 96 * this.alphaSize - this.yAdjustment, 99 * this.alphaSize, 96 * this.alphaSize);
+                        }
+                    }
+                }
+                else
+                {
+                    this.drawUnit(freeverse, 400, 228, 97, 95, -1/2 * 97 * this.alphaSize - this.xAdjustment, -1/2 * 95 * this.alphaSize - this.yAdjustment, 97 * this.alphaSize, 95 * this.alphaSize);
+                }
+            }
+            //GREWBLE
+            if (this.type == "Grewble")
+            {
+                //Set Drops and experience
+                if (this.alpha == true)
+                {
+                    if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 129 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (129 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    this.drops = [[new Item("grewbleGuts", this.X, this.Y), 5]];
+                }
+                else if (this.alpha == "giant")
+                {
+                    if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 340 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (340 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    this.drops = [[new Item("grewbleGuts", this.X, this.Y), 9]];
+                }
+                else if (this.alpha == "baby")
+                {
+                    if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 9 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (9 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    this.drops = [[new Item("grewbleGuts", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 49 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = 49 * ((player.getIntelligence() / 50) + 1) / 10;
+                    }
+
+                    this.drops = [[new Item("grewbleGuts", this.X, this.Y), 3]];
+                }
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                if (this.alpha == true)
+                {
+                    this.rangeOfSightCalculator(650, true);
+                }
+                else if (this.alpha == "giant")
+                {
+                    this.rangeOfSightCalculator(1000, true);
+                }
+                else if (this.alpha == "baby")
+                {
+                    this.rangeOfSightCalculator(500, true);
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(500, true);
+                }
+
+                //AI
+                if (this.alive == true)
+                {
+                    if (this.alpha == true)
+                    {
+                        this.Attack(8, 10);
+                        this.callForNearbyHelpFromType(500, "Grewble");
+                    }
+                    else if (this.alpha == "giant")
+                    {
+                        this.Attack(16, 24);
+                        this.callForNearbyHelpFromType(500, "Grewble");
+                    }
+                    else if (this.alpha == "baby")
+                    {
+                        this.Attack(1, 1);
+                        this.callForNearbyHelpFromType(500, "Grewble");
+                    }
+                    else
+                    {
+                        this.Attack(2, 4);
+                        this.callForNearbyHelpFromType(500, "Grewble");
+                    }
+
+                    //this.deathChecker();
+                    this.disturbedTimer();
+                    this.visibleSight();
+                    this.friendDecider();
+                    this.targeting();
+
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+
+                }
+
+                //ANIMATIONS
+
+                if (this.alive == true)
+                {
+                    if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(5, 0.100, false);
+                    }
+                    else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(8, 0.110, true);
+                        }
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(lodo, 66, 1, 49, 34, -1/2 * 49 * this.alphaSize - this.xAdjustment, -1/2 * 34 * this.alphaSize - this.yAdjustment, 49 * this.alphaSize, 34 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(lodo, 66, 1, 49, 34, -1/2 * 49 * this.alphaSize - this.xAdjustment, -1/2 * 34 * this.alphaSize - this.yAdjustment, 49 * this.alphaSize, 34 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(lodo, 115, 1, 49, 34, -1/2 * 49 * this.alphaSize - this.xAdjustment, -1/2 * 34 * this.alphaSize - this.yAdjustment, 49 * this.alphaSize, 34 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(lodo, 64, 35, 49, 34, -1/2 * 49 * this.alphaSize - this.xAdjustment, -1/2 * 34 * this.alphaSize - this.yAdjustment, 49 * this.alphaSize, 34 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 2)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(lodo, 166, 2, 49, 34, -1/2 * 49 * this.alphaSize - this.xAdjustment, -1/2 * 34 * this.alphaSize - this.yAdjustment, 49 * this.alphaSize, 34 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(lodo, 66, 1, 49, 34, -1/2 * 49 * this.alphaSize - this.xAdjustment, -1/2 * 34 * this.alphaSize - this.yAdjustment, 49 * this.alphaSize, 34 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 3)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(lodo, 220, 2, 49, 34, -1/2 * 49 * this.alphaSize - this.xAdjustment, -1/2 * 34 * this.alphaSize - this.yAdjustment, 49 * this.alphaSize, 34 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(lodo, 63, 67, 49, 34, -1/2 * 49 * this.alphaSize - this.xAdjustment, -1/2 * 34 * this.alphaSize - this.yAdjustment, 49 * this.alphaSize, 34 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 4)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(lodo, 269, 1, 49, 34, -1/2 * 49 * this.alphaSize - this.xAdjustment, -1/2 * 34 * this.alphaSize - this.yAdjustment, 49 * this.alphaSize, 34 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(lodo, 62, 103, 49, 34, -1/2 * 49 * this.alphaSize - this.xAdjustment, -1/2 * 34 * this.alphaSize - this.yAdjustment, 49 * this.alphaSize, 34 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 5)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(lodo, 319, 1, 49, 34, -1/2 * 49 * this.alphaSize - this.xAdjustment, -1/2 * 34 * this.alphaSize - this.yAdjustment, 49 * this.alphaSize, 34 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(lodo, 66, 1, 49, 34, -1/2 * 49 * this.alphaSize - this.xAdjustment, -1/2 * 34 * this.alphaSize - this.yAdjustment, 49 * this.alphaSize, 34 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume >= 6)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(lodo, 315, 41, 60, 30, -1/2 * 60 * this.alphaSize - this.xAdjustment, -1/2 * 30 * this.alphaSize - this.yAdjustment, 60 * this.alphaSize, 30 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(lodo, 115, 1, 49, 34, -1/2 * 49 * this.alphaSize - this.xAdjustment, -1/2 * 34 * this.alphaSize - this.yAdjustment, 49 * this.alphaSize, 34 * this.alphaSize);
+                        }
+                    }
+                }
+                else
+                {
+                    this.drawUnit(lodo, 315, 82, 60, 30, -1/2 * 60 * this.alphaSize - this.xAdjustment, -1/2 * 30 * this.alphaSize - this.yAdjustment, 60 * this.alphaSize, 30 * this.alphaSize);
                 }
             }
             //NEEV
@@ -45164,6 +46293,7 @@ function theLegend()
         this.loopRate = 0;
         this.frameLoopComplete = false;
         this.runOneTime = true; //this will not be used in general functions, only for making sure each type of scenery can run something only once.
+        this.loopTimer = new Date().getTime();
         //Campfire variables
         this.lit = false;
         this.fireCostume = 0;
@@ -45893,6 +47023,115 @@ function theLegend()
                     }
                 }
             }
+            else if (this.type == "grewbleEgg")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 55;
+
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(lodo, 9, 29, 12, 12, -(1/2 * 12 * 2), -(1/2 * 12 * 2), 12 * 2, 12 * 2);
+                XXX.restore();
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 8;
+
+                //HATCHING
+                this.eggHatchTimer += 1 * (TTD / 16.75);
+                if (this.eggHatchTimer >= 6000)
+                {
+                    this.eggHatchTimer = -1000000;
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Grewble", "baby", "Generic Grewble"));
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                    worldItems.push([new Item("grewbleEgg", this.X, this.Y), 1]);
+
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+            }
+            else if (this.type == "grewbleEggPatch")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 55;
+
+                //DRAWSELF
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(lodo, 29, 23, 24, 23, -(1 / 2 * 24 * 2), -(1 / 2 * 23 * 2), 24 * 2, 23 * 2);
+                    XXX.restore();
+                }
+                else if (this.phase == "broken")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(lodo, 30, 50, 24, 23, -(1 / 2 * 24 * 2), -(1 / 2 * 23 * 2), 24 * 2, 23 * 2);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 12;
+
+                //HATCHING
+                this.eggHatchTimer += 1 * (TTD / 16.75);
+                if (this.eggHatchTimer >= 6000 && this.phase != "broken")
+                {
+                    this.eggHatchTimer = -1000000;
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Grewble", "baby", "Generic Grewble"));
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Grewble", "baby", "Generic Grewble"));
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Grewble", "baby", "Generic Grewble"));
+                    this.phase = "broken";
+                }
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                    if (this.phase != "broken" && player.getSurvivalism() >= 8)
+                    {
+                        worldItems.push([new Item("grewbleEgg", this.X, this.Y), 3]);
+
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i] === this)
+                            {
+                                scenicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.phase = "broken";
+                    }
+                }
+            }
             else if (this.type == "rubbledHome")
             {
                 //TRAITS
@@ -46222,6 +47461,57 @@ function theLegend()
 
                 //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
                 this.radius = 28 * this.size;
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                }
+            }
+            else if (this.type == "utSlime")
+            {
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 1;
+
+                if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+                {
+                    this.size = this.owned;
+                }
+                else
+                {
+                    this.size = 1.5;
+                }
+
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.globalAlpha = 0.4;
+                XXX.rotate(this.rotation);
+                XXX.drawImage(freeverse, 473, 921, 85, 66, -(1/2 * 85 * this.size), -(1/2 * 66 * this.size), 85 * this.size, 66 * this.size);
+                XXX.restore();
+
+                //Permanence
+                if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+                {
+                    if (new Date().getTime() >= this.loopTimer + 8400)
+                    {
+                        scenicList.splice(scenicList.indexOf(this), 1);
+                    }
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 35 * this.size;
+
+                //FUNCTIONALITY
+                if (player.stunnedI == false)
+                {
+                    if (Math.sqrt((X - this.X) * (X - this.X) + (Y - this.Y) * (Y - this.Y)) <= this.radius)
+                    {
+                        player.stunnedI = true;
+                        player.stunnedTime = 1;
+                    }
+                }
 
                 //INTERACTION
                 if (this.activate == true)
@@ -51073,6 +52363,47 @@ function theLegend()
                 this.buyValue = 5; // at max, buy for 10.
                 this.sellValue = 2 + Math.floor(player.getCharisma() / 15); // at max, sell for 5.
             }
+            else if (this.type == "utMeat")
+            {
+                //For All Items
+                this.identity = "Ut Meat";
+                this.weight = 3;
+                this.size = 12;
+                this.description = "The cooked flesh of an ut.";
+                this.intForDes = 0;
+                this.intDescription = "This meat is super flimsy, slimy, and slippery. Only those with a hardy gut can keep this food down.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 6; //satisfies hunger.
+                this.thirst = 1; //quenches thirst.
+                this.warmth = 1; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -2; //recoops lost energy.
+                this.replenish = -2; //restores will.
+
+                //ability
+                if (player.getToughness() < 10)
+                {
+                    this.ability = "potentialFoodPoisoning";
+                }
+                else
+                {
+                    this.ability = "none";
+                }
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 2;
+                this.ingredients = [["Raw Ut Flesh", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
             else if (this.type == "frichMeat")
             {
                 //For All Items
@@ -51106,6 +52437,84 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
                 this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+            }
+            else if (this.type == "utTentacle")
+            {
+                //For All Items
+                this.identity = "Ut Tentacle";
+                this.weight = 5;
+                this.size = 18;
+                this.description = "A slick and slimy tentacle from an ut.";
+                this.intForDes = 30;
+                this.intDescription = "Such tentacles are used in anti-magic elixers due to the strong magic resistance in the blood. This can also be fermented for other uses.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //Utility Focused
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 3; // at max, buy for 3.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+            }
+            else if (this.type == "fermentedUtTentacle")
+            {
+                //For All Items
+                this.identity = "Fermented Ut Tentacle";
+                this.weight = 6;
+                this.size = 18;
+                this.description = "A rank smelling slimy fermented tentacle originally from an ut.";
+                this.intForDes = 20;
+                this.intDescription = "The ut's blood chemically alters and becomes brownish when fermented. This substance can be extracted.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //Utility Focused
+
+                //ability
+                this.ability = "none";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 11;
+                this.ingredients = [["Ut Tentacle", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 5; // at max, buy for 5.
+                this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+            }
+            else if (this.type == "rawUtFlesh")
+            {
+                //For All Items
+                this.identity = "Raw Ut Flesh";
+                this.weight = 4;
+                this.size = 12;
+                this.description = "The raw flesh from an ut. It is gooey, slimy, limp, and coated in slick transparent slimyness.";
+                this.intForDes = 1;
+                this.intDescription = "Eating this is sure to make you lose the contents of your stomach... but why would you do something so gross?";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 2; //satisfies hunger.
+                this.thirst = 3; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -3; //recoops lost energy.
+                this.replenish = -5; //restores will.
+
+                //ability
+                this.ability = "foodPoisoning";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
             }
             else if (this.type == "rawFrichFlesh")
             {
@@ -51715,7 +53124,7 @@ function theLegend()
                 this.size = 6;
                 this.description = "One flower comprised of many small white flowers.";
                 this.intForDes = 20;
-                this.intDescription = "Although this is poisoness to eat, its poison can be neutralized when mixed with other certain alchemic ingredients.";
+                this.intDescription = "Although this is poisoness to eat, its poison can be neutralized when mixed with other certain alchemic ingredients. It serves as an amplifier.";
 
                 //Define Utility
                 this.utility = "food";
@@ -53082,7 +54491,7 @@ function theLegend()
                 this.buyValue = 22 - Math.floor(player.getCharisma() / 8); // at max, buy for 16.
                 this.sellValue = 8 + Math.floor(player.getCharisma() / 6); // at max, sell for 16.
             }
-            else if (this.type == "tylunFlower")
+            else if (this.type == "tylunFlower") //this is an enhancer making the effects more significant
             {
                 //For All Items
                 this.identity = "Tylun Flower";
@@ -53090,7 +54499,7 @@ function theLegend()
                 this.size = 7;
                 this.description = "A gorgeous pink flower with pointed petals and a velvety soft stem.";
                 this.intForDes = 5;
-                this.intDescription = "This rare flower can be used in many alchemy recipes.";
+                this.intDescription = "This rare flower can be used in many alchemy recipes. It serves as both an amplifier and a former.";
 
                 //Define Utility
                 this.utility = "material";
@@ -54384,7 +55793,7 @@ function theLegend()
             else if (this.type == "energilPotionII")
             {
                 //For All Items
-                this.identity = "Syrum of Tirelessness";
+                this.identity = "Syrum of Tirelessness II";
                 this.weight = 0.5;
                 this.size = 5;
                 this.description = "A thick and glistening pink liquid with a slight opaqueness to it.";
@@ -54453,6 +55862,78 @@ function theLegend()
                 this.buyValue = 225 - Math.floor(player.getCharisma() / 1); // at max, buy for 175.
                 this.sellValue = 95 + Math.floor(player.getCharisma() / 2); // at max, sell for 120.
             }
+            else if (this.type == "mindPotionI")
+            {
+                //For All Items
+                this.identity = "Mind Elixer";
+                this.weight = 0.5;
+                this.size = 5;
+                this.description = "The liquid seems almost to float within the glass, softly bubbling.";
+                this.intForDes = 0;
+                this.intDescription = "This potion magically enhances your intelligence as well as your willpower and memory.";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["potionGlass", 1]];
+
+                //Utility Focused
+                this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0; //satisfies hunger.
+                this.thirst = 6; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 6; //restores will.
+
+                //ability
+                this.ability = "mindI";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 40;
+                this.ingredients = [["Ut Extract", 1], ["Tylun Flower", 1], ["Honey", 1], ["Lizard Tail", 1], ["Sesre Stamen", 1], ["Palnt Flower", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1000 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 900.
+                this.sellValue = 700 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 900.
+            }
+            else if (this.type == "utExtract")
+            {
+                //For All Items
+                this.identity = "Ut Extract";
+                this.weight = 0.5;
+                this.size = 5;
+                this.description = "A yellowish brown viscous liquid that smells absolutely horrendous.";
+                this.intForDes = 20;
+                this.intDescription = "This extract serves as a base for some of the more peculiar and powerful potions.";
+
+                //Define Utility
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["potionGlass", 1]];
+
+                //Utility Focused
+                this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = -49; //satisfies hunger.
+                this.thirst = 1; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = -1/2 * player.healthMAX; //heals health.
+                this.generation = 0; //recoops lost energy.
+                this.replenish = 12; //restores will.
+
+                //ability
+                this.ability = "foodPoisoning";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 20;
+                this.ingredients = [["Fermented Ut Tentacle", 1]];
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 30 - Math.floor(player.getCharisma() / 12); // at max, buy for 26.
+                this.sellValue = 14 + Math.floor(player.getCharisma() / 4); // at max, sell for 26.
+            }
             else if (this.type == "etyrHide")
             {
                 //For All Items
@@ -54501,7 +55982,7 @@ function theLegend()
                 this.size = 5;
                 this.description = "The green scaled tail of a lizard.";
                 this.intForDes = 5;
-                this.intDescription = "Lizard tails can be used to make alchemic potions.";
+                this.intDescription = "Lizard tails can be used to make alchemic potions. They serve as minor amplifiers and also as formers.";
 
                 //Define Utility
                 this.utility = "material";
@@ -54532,6 +56013,26 @@ function theLegend()
                 //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
                 this.buyValue = 268 - Math.floor(player.getCharisma() / 0.35); // at max, buy for 126.
                 this.sellValue = 75 + Math.floor(player.getCharisma() / 1); // at max, sell for 125.
+            }
+            else if (this.type == "grewbleGuts")
+            {
+                //For All Items
+                this.identity = "Grewble Guts";
+                this.weight = 3;
+                this.size = 10;
+                this.description = "The putrid and gooey innards of a grewble.";
+                this.intForDes = 5;
+                this.intDescription = "It is possible to use this in alchemy, though it is hard to imagine ingesting anything that smells this awful. It serves as a former.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
             }
             else if (this.type == "frichPelt")
             {
@@ -55259,6 +56760,26 @@ function theLegend()
                 this.buyValue = 70 - Math.floor(player.getCharisma() / 3); // at max, buy for 55.
                 this.sellValue = 38 + Math.floor(player.getCharisma() / 3); // at max, sell for 53.
             }
+            else if (this.type == "grewbleEgg")
+            {
+                //For All Items
+                this.identity = "Grewble Egg";
+                this.weight = 2.5;
+                this.size = 5;
+                this.description = "One of many eggs laid by a grewble.";
+                this.intForDes = 2;
+                this.intDescription = "Leave it on the ground and it will hatch into a baby grewble.";
+
+                //Define Utility
+                this.utility = "material";
+
+                //ability
+                this.ability = "grewbleHatch";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 2; // at max, buy for 2.
+                this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            }
             else if (this.type == "mofuFeather")
             {
                 //For All Items
@@ -55307,7 +56828,7 @@ function theLegend()
                 this.size = 8;
                 this.description = "A hard rough bird foot from a mofu.";
                 this.intForDes = 7;
-                this.intDescription = "Mofu feet can be used in some alchemy recipes.";
+                this.intDescription = "Mofu feet can be used in some alchemy recipes. They serve as formers.";
 
                 //Define Utility
                 this.utility = "material";
@@ -62990,6 +64511,16 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(oldverse, 1700, 180, 12, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 12), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19), 12, 19);
             }
+            else if (this.type == "mindPotionI" || this.type == "mindPotionII" || this.type == "mindPotionIII" || this.type == "mindPotionIV" || this.type == "mindPotionV")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 431, 945, 10, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 10, 17);
+            }
+            else if (this.type == "utExtract")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 431, 972, 10, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 10, 17);
+            }
             else if (this.type == "potionGlass")
             {
                 XXX.beginPath();
@@ -63680,6 +65211,16 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(oldverse, 1, 157, 36, 63, X - this.X + (1/2 * CCC.width) - (1/2 * 36), Y - this.Y + (1/2 * CCC.height) - (1/2 * 63), 49.4, 90.6);
             }
+            else if (this.type == "grewbleEgg")
+            {
+                XXX.beginPath();
+                XXX.drawImage(lodo, 9, 29, 12, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 2), 12 * 2, 12 * 2);
+            }
+            else if (this.type == "grewbleGuts")
+            {
+                XXX.beginPath();
+                XXX.drawImage(lodo, 30, 1, 21, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 21), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 21, 16);
+            }
             else if (this.type == "frichPelt")
             {
                 XXX.beginPath();
@@ -63699,6 +65240,26 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(verse, 79, 227, 10, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 20), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24), 20, 24);
+            }
+            else if (this.type == "rawUtFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 233, 960, 29, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.25), 29 * 1.25, 24 * 1.25);
+            }
+            else if (this.type == "utMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 277, 962, 29, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.25), 29 * 1.25, 24 * 1.25);
+            }
+            else if (this.type == "fermentedUtTentacle")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 375, 950, 32, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 32 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1.25), 32 * 1.25, 36 * 1.25);
+            }
+            else if (this.type == "utTentacle")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 318, 958, 43, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1.25), 43 * 1.25, 23 * 1.25);
             }
             else if (this.type == "rawMountainFrichFlesh")
             {
@@ -64871,6 +66432,16 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(oldverse, 1700, 180, 12, 19, this.invX - (1/2 * 12), this.invY - (1/2 * 19), 12, 19);
             }
+            else if (this.type == "mindPotionI" || this.type == "mindPotionII" || this.type == "mindPotionIII" || this.type == "mindPotionIV" || this.type == "mindPotionV")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 431, 945, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
+            }
+            else if (this.type == "utExtract")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 431, 972, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
+            }
             else if (this.type == "potionGlass")
             {
                 LXX.beginPath();
@@ -65496,6 +67067,16 @@ function theLegend()
                 LXX.beginPath();
                 LXX.drawImage(oldverse, 1, 157, 36, 63, this.invX - (1/2 * 36) + 2, this.invY - (1/2 * 63), 28.4, 59.6);
             }
+            else if (this.type == "grewbleEgg")
+            {
+                LXX.beginPath();
+                LXX.drawImage(lodo, 9, 29, 12, 12, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 12 * 2), 12 * 2, 12 * 2);
+            }
+            else if (this.type == "grewbleGuts")
+            {
+                LXX.beginPath();
+                LXX.drawImage(lodo, 30, 1, 21, 16, this.invX - (1/2 * 21), this.invY - (1/2 * 16), 21, 16);
+            }
             else if (this.type == "frichPelt")
             {
                 LXX.beginPath();
@@ -65515,6 +67096,26 @@ function theLegend()
             {
                 LXX.beginPath();
                 LXX.drawImage(verse, 79, 227, 10, 12, this.invX - (1/2 * 20), this.invY - (1/2 * 24), 20, 24);
+            }
+            else if (this.type == "rawUtFlesh")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 233, 960, 29, 24, this.invX - (1/2 * 29 * 1.25), this.invY - (1/2 * 24 * 1.25), 29 * 1.25, 24 * 1.25);
+            }
+            else if (this.type == "utMeat")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 277, 962, 29, 24, this.invX - (1/2 * 29 * 1.25), this.invY - (1/2 * 24 * 1.25), 29 * 1.25, 24 * 1.25);
+            }
+            else if (this.type == "fermentedUtTentacle")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 375, 950, 32, 36, this.invX - (1/2 * 32 * 1.25), this.invY - (1/2 * 36 * 1.25), 32 * 1.25, 36 * 1.25);
+            }
+            else if (this.type == "utTentacle")
+            {
+                LXX.beginPath();
+                LXX.drawImage(freeverse, 318, 958, 43, 23, this.invX - (1/2 * 43 * 1.25), this.invY - (1/2 * 23 * 1.25), 43 * 1.25, 23 * 1.25);
             }
             else if (this.type == "rawMountainFrichFlesh")
             {
@@ -66652,6 +68253,16 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(oldverse, 1700, 180, 12, 19, this.invX - (1/2 * 12), this.invY - (1/2 * 19), 12, 19);
             }
+            else if (this.type == "mindPotionI" || this.type == "mindPotionII" || this.type == "mindPotionIII" || this.type == "mindPotionIV" || this.type == "mindPotionV")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 431, 945, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
+            }
+            else if (this.type == "utExtract")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 431, 972, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
+            }
             else if (this.type == "potionGlass")
             {
                 XXX.beginPath();
@@ -67273,6 +68884,16 @@ function theLegend()
                 XXX.beginPath();
                 XXX.drawImage(oldverse, 1, 157, 36, 63, this.invX - (1/2 * 36) + 2, this.invY - (1/2 * 63), 28.4, 59.6);
             }
+            else if (this.type == "grewbleEgg")
+            {
+                XXX.beginPath();
+                XXX.drawImage(lodo, 9, 29, 12, 12, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 12 * 2), 12 * 2, 12 * 2);
+            }
+            else if (this.type == "grewbleGuts")
+            {
+                XXX.beginPath();
+                XXX.drawImage(lodo, 30, 1, 21, 16, this.invX - (1/2 * 21), this.invY - (1/2 * 16), 21, 16);
+            }
             else if (this.type == "frichPelt")
             {
                 XXX.beginPath();
@@ -67292,6 +68913,26 @@ function theLegend()
             {
                 XXX.beginPath();
                 XXX.drawImage(verse, 79, 227, 10, 12, this.invX - (1/2 * 20), this.invY - (1/2 * 24), 20, 24);
+            }
+            else if (this.type == "rawUtFlesh")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 233, 960, 29, 24, this.invX - (1/2 * 29 * 1.25), this.invY - (1/2 * 24 * 1.25), 29 * 1.25, 24 * 1.25);
+            }
+            else if (this.type == "utMeat")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 277, 962, 29, 24, this.invX - (1/2 * 29 * 1.25), this.invY - (1/2 * 24 * 1.25), 29 * 1.25, 24 * 1.25);
+            }
+            else if (this.type == "fermentedUtTentacle")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 375, 950, 32, 36, this.invX - (1/2 * 32 * 1.25), this.invY - (1/2 * 36 * 1.25), 32 * 1.25, 36 * 1.25);
+            }
+            else if (this.type == "utTentacle")
+            {
+                XXX.beginPath();
+                XXX.drawImage(freeverse, 318, 958, 43, 23, this.invX - (1/2 * 43 * 1.25), this.invY - (1/2 * 23 * 1.25), 43 * 1.25, 23 * 1.25);
             }
             else if (this.type == "rawMountainFrichFlesh")
             {
@@ -67591,6 +69232,11 @@ function theLegend()
                     {
                         ArtificialIntelligenceAccess.push(new Unit(2100, 1050, "Neev", false, "Easter"));
                     }
+
+                    //ArtificialIntelligenceAccess.push(new Unit(2200, -1200, "Grewble", false, "Glud"));
+                    //ArtificialIntelligenceAccess.push(new Unit(2100, -800, "BrolleWorms", false, "Slickers"));
+                    //ArtificialIntelligenceAccess.push(new Unit(2000, -1000, "Ut", false, "Icky Icky"));
+                    //scenicList.push(new Scenery("grewbleEggPatch", 1900 , -1100, -Math.PI * 2.2, false));
 
                     //Friches in the plains
                     ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));

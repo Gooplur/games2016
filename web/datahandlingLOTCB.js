@@ -1,0 +1,380 @@
+/**
+ * Created by skyeguy on 1/22/17.
+ */
+
+var doAutosave = false;
+var singleAuto = false;
+function autosave()
+{
+    //Manual autosaving
+    if (tildKey == false)
+    {
+        doAutosave = true;
+    }
+    else if (tildKey == true && doAutosave == true && lowBar != "Save")
+    {
+        doAutosave = false;
+        saveType = "autosave";
+        save();
+        saveType = null;
+    }
+    //Automatic autosaving
+    if (autosaving == true)
+    {
+        if (Math.round(timePlayed % 180) == 0 && singleAuto == true && timePlayed >= 180)
+        {
+            singleAuto = false;
+            if (lowBar != "save" && doAutosave == true)
+            {
+                //alert("** Autosave **");
+                saveType = "autosave";
+                save();
+                saveType = null;
+            }
+        }
+        else if (Math.round(timePlayed % 180) != 0)
+        {
+            singleAuto = true;
+        }
+    }
+}
+
+function saveList(list, listName, complex) //complex is for a list that has lists in it like the inventory.
+{
+    var contents = [];
+
+    if (complex == true)
+    {
+        for (var i = 0; i < list.length; i++)
+        {
+            var elem = list[i][0]; //This variable is set equal to the class in the argument list.
+            var className = elem.constructor.name; //this stores the specific identity of the class like whether it is a Unit or an Item or a Projectile etc.
+            var classData = {}; //This is just like the data in the class in that it stores all of the keys and values that the focus class presently holds excluding the methods.
+            var amount = list[i][1];
+            for (var key in elem)
+            {
+                var value = elem[key]; //this finds and stores the value attached to the present key within the focus class.
+                if (typeof(value) != "function") // so if the key is anything other than a method it will be added to the object class data so that it can be saved.
+                {
+                    classData[key] = value;
+                }
+            }
+            contents.push([{type: className, data: classData}, amount]); //this adds a save object interpretation of the original class that has the original classes type and all of the original class's non-method data.
+        }
+    }
+    else
+    {
+        for (var i = 0; i < list.length; i++)
+        {
+            var elem = list[i]; //This variable is set equal to the class in the argument list.
+            var className = elem.constructor.name; //this stores the specific identity of the class like whether it is a Unit or an Item or a Projectile etc.
+            var classData = {}; //This is just like the data in the class in that it stores all of the keys and values that the focus class presently holds excluding the methods.
+            for (var key in elem)
+            {
+                var value = elem[key]; //this finds and stores the value attached to the present key within the focus class.
+                if (typeof(value) != "function") // so if the key is anything other than a method it will be added to the object class data so that it can be saved.
+                {
+                    classData[key] = value;
+                }
+            }
+            contents.push({type: className, data: classData}); //this adds a save object interpretation of the original class that has the original classes type and all of the original class's non-method data.
+        }
+    }
+
+    saveBrain[listName] = contents;
+}
+function save()
+{
+    //Set target to none for all Units before saving. //both dead and alive
+    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+    {
+        ArtificialIntelligenceAccess[i].target = "none";
+    }
+    for (var i = 0; i < deadAIList.length; i++)
+    {
+        deadAIList[i].target = "none";
+    }
+    //This is the stuff that will be saved to the local storage.
+    saveList(mainCharacterAccess, "mainCharacterAccess");
+    saveList(ArtificialIntelligenceAccess, "ArtificialIntelligenceAccess");
+    saveList(deadAIList, "deadAIList");
+    saveList(scenicList, "scenicList");
+    saveList(worldItems, "worldItems", true);
+    saveList(Inventory, "Inventory", true);
+    saveList(playerProjectiles, "playerProjectiles");
+    saveList(unitProjectiles, "unitProjectiles");
+    saveList(shopInventory, "shopInventory", true);
+    saveList(bankAccount, "bankAccount", true);
+    for (var n = 0; n < ArtificialIntelligenceAccess.length; n++)
+    {
+        var merchN = "merchandise" + JSON.stringify(n);
+        if (typeof(ArtificialIntelligenceAccess[n].ultra) != "undefined")
+        {
+            if (typeof(ArtificialIntelligenceAccess[n].ultra.merchandise) != "undefined")
+            {
+                saveList(ArtificialIntelligenceAccess[n].ultra.merchandise, merchN, true)
+            }
+        }
+    }
+    saveBrain["uniqueChars"] = uniqueChars;
+    saveBrain["quests"] = quests;
+    saveBrain["conversations"] = conversations;
+    saveBrain["timePlayed"] = timePlayed;
+    saveBrain["sleeperTime"] = sleeperTime;
+    saveBrain["elevation"] = elevation;
+    saveBrain["X"] = X;
+    saveBrain["Y"] = Y;
+    saveBrain["spawnX"] = spawnX;
+    saveBrain["spawnY"] = spawnY;
+    saveBrain["map"] = map;
+    saveBrain["region"] = region;
+    saveBrain["update"] = update;
+    saveBrain["change"] = change;
+    saveBrain["bankSlots"] = bankSlots;
+    saveBrain["primarySpells"] = primarySpells;
+    saveBrain["secondarySpells"] = secondarySpells;
+    saveBrain["tertiarySpells"] = tertiarySpells;
+    saveBrain["beastJournal"] = beastJournal;
+
+    var saveFile = JSON.stringify(saveBrain);
+    //based on what save type the player chooses the save will be stored in one of the four game slots.
+    if (saveType == 1)
+    {
+        localStorage.setItem("save1", saveFile);
+    }
+    else if (saveType == 2)
+    {
+        localStorage.setItem("save2", saveFile);
+    }
+    else if (saveType == 3)
+    {
+        localStorage.setItem("save3", saveFile);
+    }
+    else if (saveType == 4)
+    {
+        localStorage.setItem("save4", saveFile);
+    }
+    else if (saveType == 5)
+    {
+        localStorage.setItem("save5", saveFile);
+    }
+    else if (saveType == 6)
+    {
+        localStorage.setItem("save6", saveFile);
+    }
+    else if (saveType == 7)
+    {
+        localStorage.setItem("save7", saveFile);
+    }
+    else if (saveType == 8)
+    {
+        localStorage.setItem("save8", saveFile);
+    }
+    else if (saveType == "autosave")
+    {
+        localStorage.setItem("autosave", saveFile);
+    }
+
+
+}
+
+function load()
+{
+    retrieveSave();
+    mainCharacterAccess = loadList("mainCharacterAccess");
+    if (update == lastUpdate && typeof(lastUpdate) != "undefined")
+    {
+        ArtificialIntelligenceAccess = loadList("ArtificialIntelligenceAccess");
+        deadAIList = loadList("deadAIList");
+    }
+    playerProjectiles = loadList("playerProjectiles");
+    scenicList = loadList("scenicList");
+    unitProjectiles = loadList("unitProjectiles");
+    worldItems = loadList("worldItems", true);
+    Inventory = loadList("Inventory", true);
+    shopInventory = loadList("shopInventory", true);
+    bankAccount = loadList("bankAccount", true);
+    for (var n = 0; n < ArtificialIntelligenceAccess.length; n++)
+    {
+        //ArtificialIntelligenceAccess[n].ultra.merchandise = loadList("merchandise" + n, true);
+        var merchN = "merchandise" + JSON.stringify(n);
+        if (typeof(ArtificialIntelligenceAccess[n].ultra) != "undefined")
+        {
+            if (typeof(ArtificialIntelligenceAccess[n].ultra.merchandise) != "undefined")
+            {
+                ArtificialIntelligenceAccess[n].ultra.merchandise = loadList(merchN, true);
+                for (var m = 0; m < ArtificialIntelligenceAccess[n].ultra.merchandise.length; m++)
+                {
+                    ArtificialIntelligenceAccess[n].ultra.merchandise[m][0];
+                    //console.log(ArtificialIntelligenceAccess[n].ultra.merchandise[m][0].weight)
+                }
+            }
+        }
+    }
+    player = mainCharacterAccess[0];
+    itemPlacer();
+}
+
+function loadList(listName, complex)
+{
+    var load = retrieveSave(listName);
+    var contents = [];
+
+    if (complex == true)
+    {
+        for (var i = 0; i < load.length; i++)
+        {
+            var parts = load[i];
+            var elem = eval("new " + parts[0].type + "()");
+            var amount = load[i][1];
+            for (var key in parts[0].data)
+            {
+                elem[key] = parts[0].data[key];
+            }
+            contents.push([elem, amount]);
+        }
+    }
+    else
+    {
+        for (var i = 0; i < load.length; i++)
+        {
+            var parts = load[i];
+            var elem = eval("new " + parts.type + "()");
+            for (var key in parts.data)
+            {
+                elem[key] = parts.data[key];
+            }
+            contents.push(elem);
+        }
+    }
+
+    return contents;
+}
+
+function retrieveSave(listName)
+{
+    if (loadType == 1)
+    {
+        var restore = localStorage.getItem("save1");
+    }
+    else if (loadType == 2)
+    {
+        var restore = localStorage.getItem("save2");
+    }
+    else if (loadType == 3)
+    {
+        var restore = localStorage.getItem("save3");
+    }
+    else if (loadType == 4)
+    {
+        var restore = localStorage.getItem("save4");
+    }
+    else if (loadType == 5)
+    {
+        var restore = localStorage.getItem("save5");
+    }
+    else if (loadType == 6)
+    {
+        var restore = localStorage.getItem("save6");
+    }
+    else if (loadType == 7)
+    {
+        var restore = localStorage.getItem("save7");
+    }
+    else if (loadType == 8)
+    {
+        var restore = localStorage.getItem("save8");
+    }
+    else if (loadType == "autosave")
+    {
+        var restore = localStorage.getItem("autosave");
+    }
+
+    var parsed = JSON.parse(restore);
+
+    //The argument will determine which list it will return.
+    for (var n = 0; n < ArtificialIntelligenceAccess.length; n++)
+    {
+        var merchN = "merchandise" + JSON.stringify(n);
+        if (listName == merchN)
+        {
+            return parsed[merchN];
+        }
+    }
+
+    if (listName == "mainCharacterAccess")
+    {
+        return parsed.mainCharacterAccess;
+    }
+    else if (listName == "ArtificialIntelligenceAccess")
+    {
+        return parsed.ArtificialIntelligenceAccess;
+    }
+    else if (listName == "deadAIList")
+    {
+        return parsed.deadAIList;
+    }
+    else if (listName == "scenicList")
+    {
+        return parsed.scenicList;
+    }
+    else if (listName == "worldItems")
+    {
+        return parsed.worldItems;
+    }
+    else if (listName == "Inventory")
+    {
+        return parsed.Inventory;
+    }
+    else if (listName == "playerProjectiles")
+    {
+        return parsed.playerProjectiles;
+    }
+    else if (listName == "unitProjectiles")
+    {
+        return parsed.unitProjectiles;
+    }
+    else if (listName == "shopInventory")
+    {
+        return parsed.shopInventory;
+    }
+    else if (listName == "bankAccount")
+    {
+        return parsed.bankAccount;
+    }
+    else
+    {
+        if (update == parsed.update && typeof(parsed.update) != "undefined")
+        {
+            change = parsed.change;
+        }
+        lastUpdate = parsed.update;
+        map = parsed.map;
+        region = parsed.region;
+        timePlayed = parsed.timePlayed;
+        sleeperTime = parsed.sleeperTime;
+        elevation = parsed.elevation;
+        X = parsed.X;
+        Y = parsed.Y;
+        spawnX = parsed.spawnX;
+        spawnY = parsed.spawnY;
+        primarySpells = parsed.primarySpells;
+        secondarySpells = parsed.secondarySpells;
+        tertiarySpells = parsed.tertiarySpells;
+        beastJournal = parsed.beastJournal;
+
+        for (var key in parsed.uniqueChars)
+        {
+            uniqueChars[key] = parsed.uniqueChars[key];
+        }
+        for (var key in parsed.quests)
+        {
+            quests[key] = parsed.quests[key];
+        }
+        for (var key in parsed.conversations)
+        {
+            conversations[key] = parsed.conversations[key];
+        }
+        bankSlots = parsed.bankSlots;
+    }
+}

@@ -3008,6 +3008,105 @@ function Item(type, x, y)
             this.buyValue = 10; // at max, buy for 10.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 10); // at max, sell for 10.
         }
+        else if (this.type == "wegRoot")
+        {
+            //For All Items
+            this.identity = "Weg Root";
+            this.weight = 11;
+            this.size = 14;
+            this.description = "A hard dark root with little wirey root hairs.";
+            this.intForDes = 4;
+            this.intDescription = "Weg root is extremely bitter and fibrous raw, it is mostly used for curing certain sicknesses. It is also eaten as a food item by some kellish tribes.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -10; //recoops lost energy.
+            this.replenish = 0.25; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13 - Math.floor(player.getCharisma() / 15); // at max, buy for 10.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 10); // at max, sell for 10.
+        }
+        else if (this.type == "roastedWegRoot")
+        {
+            //For All Items
+            this.identity = "Roasted Weg Root";
+            this.weight = 10;
+            this.size = 14;
+            this.description = "A stringy grainy roasted root that has a strong bitter flavor.";
+            this.intForDes = 1;
+            this.intDescription = "This can be broken down into more appropriately sized pieces.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 15; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -6; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 8;
+            this.ingredients = [["Weg Root", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
+        else if (this.type == "roastedWegRootChunks")
+        {
+            //For All Items
+            this.identity = "Roasted Weg Root Chunks";
+            this.weight = 1.65;
+            this.size = 9;
+            this.description = "Reasonably sized hunks of stringy bitter root.";
+            this.intForDes = 4;
+            this.intDescription = "Nobody likes the taste, if someone says they do they are probably lying.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 6;
+            this.intForCraft = 5;
+            this.ingredients = [["Roasted Weg Root", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+        }
         else if (this.type == "palntFlower")
         {
             //For All Items
@@ -5926,6 +6025,66 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "sesreStamen")
+        {
+            //For All Items
+            this.identity = "Sesre Stamen";
+            this.weight = 2.5;
+            this.size = 11;
+            this.description = "The stamen of this type of plant glows during the night.";
+            this.intForDes = 13;
+            this.intDescription = "Small insects are attracted to the glow and get stuck in the plant's sticky pollen, they are then slowly dissolved into the plant.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 19 - Math.floor(player.getCharisma() / 10); // at max, buy for 14.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 10); // at max, sell for 14.
+        }
+        else if (this.type == "sesreLeaf")
+        {
+            //For All Items
+            this.identity = "Sesre Leaf";
+            this.weight = 1.5;
+            this.size = 10;
+            this.description = "The leaves are not hard nor soft, they feel smooth but also lumpy, and when squeezed their is a hint of elasticity.";
+            this.intForDes = 13;
+            this.intDescription = "The plant covers its self with its leaves during the day so it can save energy and digest.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
+        }
+        else if (this.type == "lorkWeed")
+        {
+            //For All Items
+            this.identity = "Lork Weed";
+            this.weight = 1;
+            this.size = 10;
+            this.description = "A prickly bush with numerous little leaves.";
+            this.intForDes = 18;
+            this.intDescription = "It is commonly found in bog-like environments, usually right beside a source of stagnant water.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+        }
         else if (this.type == "frichPelt")
         {
             //For All Items
@@ -7664,6 +7823,26 @@ function Item(type, x, y)
             this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
         }
+        else if (this.type == "clay")
+        {
+            //For All Items
+            this.identity = "Clay";
+            this.weight = 1.8;
+            this.size = 8;
+            this.description = "A hunk of clay.";
+            this.intForDes = 4;
+            this.intDescription = "Clay is used to make pottery of all sorts.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "iron")
         {
             //For All Items
@@ -8738,6 +8917,103 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 0; // at max, buy for 0.
             this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "rawMudflyFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Mudfly Flesh";
+            this.weight = 0.6;
+            this.size = 9;
+            this.description = "The horrible smelling green mush-sack like flesh of a mudfly.";
+            this.intForDes = 8;
+            this.intDescription = "Nobody who doesn't have to eat mudfly meat will, especially not raw.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.25; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "mudflyMeat")
+        {
+            //For All Items
+            this.identity = "Mudfly Meat";
+            this.weight = 0.5;
+            this.size = 9;
+            this.description = "A snot green meat that has the texture of lubricated, jello-soft, rubber.";
+            this.intForDes = 8;
+            this.intDescription = "This is almost certainly one of the most disgusting 'foods' ever.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 3;
+            this.ingredients = [["Raw Mudfly Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "mudflyMold")
+        {
+            //For All Items
+            this.identity = "White Mud Wrot";
+            this.weight = 0.5;
+            this.size = 9;
+            this.description = "This smells so terrible that you are tempted to pull the face off of your skull.";
+            this.intForDes = 8;
+            this.intDescription = "Mudfly flesh when kept properly can host a specific mold that is useful in alchemy and extremely deadly.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -(7/10 * player.health); //heals health.
+            this.generation = -55; //recoops lost energy.
+            this.replenish = 14; //restores will.
+
+            //ability
+            this.ability = "poisonIV";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 32;
+            this.ingredients = [["Raw Mudfly Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 43; // at max, buy for 43.
+            this.sellValue = 43; // at max, sell for 43.
         }
         else if (this.type == "rawTorperFlesh")
         {
@@ -13675,6 +13951,21 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polpol, 70, 389, 34, 52, X - this.X + (1/2 * CCC.width) - (1/2 * 34 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 52 * 2), 34 * 2, 52 * 2);
         }
+        else if (this.type == "wegRoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 255, 58, 14, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 2), 14 * 2, 19 * 2);
+        }
+        else if (this.type == "roastedWegRoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 280, 83, 14, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 2), 14 * 2, 19 * 2);
+        }
+        else if (this.type == "roastedWegRootChunks")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 278, 60, 17, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 2), 17 * 2, 12 * 2);
+        }
         else if (this.type == "palntRoot")
         {
             XXX.beginPath();
@@ -14317,6 +14608,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(freeverse, 477, 922, 72, 66, X - this.X + (1/2 * CCC.width) - (1/2 * 72 * 0.35), Y - this.Y + (1/2 * CCC.height) - (1/2 * 66 * 0.35), 72 * 0.35, 66 * 0.35);
+        }
+        else if (this.type == "clay")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 1, 4, 11, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 2), 11 * 2, 10 * 2);
         }
         else if (this.type == "kellishClayPot")
         {
@@ -15113,6 +15409,21 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(lodo, 30, 1, 21, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 21), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 21, 16);
         }
+        else if (this.type == "lorkWeed")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 106, 173, 20, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 2), 20 * 2, 17 * 2);
+        }
+        else if (this.type == "sesreStamen")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 263, 110, 10, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 2), 10 * 2, 16 * 2);
+        }
+        else if (this.type == "sesreLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 282, 113, 15, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 2), 15 * 2, 13 * 2);
+        }
         else if (this.type == "frichPelt")
         {
             XXX.beginPath();
@@ -15197,6 +15508,21 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(verse, 66, 9, 20, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 20), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20), 20, 20);
+        }
+        else if (this.type == "mudflyMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 209, 89, 14, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 14) * 2, Y - this.Y + (1/2 * CCC.height) - (1/2 * 12) * 2, 14 * 2, 12 * 2);
+        }
+        else if (this.type == "rawMudflyFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 209, 77, 14, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 14) * 2, Y - this.Y + (1/2 * CCC.height) - (1/2 * 12) * 2, 14 * 2, 12 * 2);
+        }
+        else if (this.type == "mudflyMold")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 209, 65, 14, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 14) * 2, Y - this.Y + (1/2 * CCC.height) - (1/2 * 12) * 2, 14 * 2, 12 * 2);
         }
         else if (this.type == "vomit")
         {
@@ -15576,6 +15902,21 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(theCrack, 982, 238, 27, 21, this.invX - (1/2 * 27 * 3), this.invY - (1/2 * 21 * 3), 27 * 3, 21 * 3);
+        }
+        else if (this.type == "wegRoot")
+        {
+            LXX.beginPath();
+            LXX.drawImage(lodo, 255, 58, 14, 19, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 19 * 2), 14 * 2, 19 * 2);
+        }
+        else if (this.type == "roastedWegRoot")
+        {
+            LXX.beginPath();
+            LXX.drawImage(lodo, 280, 83, 14, 19, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 19 * 2), 14 * 2, 19 * 2);
+        }
+        else if (this.type == "roastedWegRootChunks")
+        {
+            LXX.beginPath();
+            LXX.drawImage(lodo, 278, 60, 17, 12, this.invX - (1/2 * 17 * 2), this.invY - (1/2 * 12 * 2), 17 * 2, 12 * 2);
         }
         else if (this.type == "palntRoot")
         {
@@ -16238,6 +16579,11 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(freeverse, 477, 922, 72, 66, this.invX - (1/2 * 72 * 0.35), this.invY - (1/2 * 66 * 0.35), 72 * 0.35, 66 * 0.35);
+        }
+        else if (this.type == "clay")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mufmuf, 1, 4, 11, 10, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 10 * 2), 11 * 2, 10 * 2);
         }
         else if (this.type == "kellishClayPot")
         {
@@ -16969,6 +17315,21 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(lodo, 30, 1, 21, 16, this.invX - (1/2 * 21), this.invY - (1/2 * 16), 21, 16);
         }
+        else if (this.type == "lorkWeed")
+        {
+            LXX.beginPath();
+            LXX.drawImage(lodo, 106, 173, 20, 17, this.invX - (1/2 * 20 * 2), this.invY - (1/2 * 17 * 2), 20 * 2, 17 * 2);
+        }
+        else if (this.type == "sesreStamen")
+        {
+            LXX.beginPath();
+            LXX.drawImage(lodo, 263, 110, 10, 16, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 16 * 2), 10 * 2, 16 * 2);
+        }
+        else if (this.type == "sesreLeaf")
+        {
+            LXX.beginPath();
+            LXX.drawImage(lodo, 282, 113, 15, 13, this.invX - (1/2 * 15 * 2), this.invY - (1/2 * 13 * 2), 15 * 2, 13 * 2);
+        }
         else if (this.type == "frichPelt")
         {
             LXX.beginPath();
@@ -17053,6 +17414,21 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(verse, 66, 9, 20, 20, this.invX - (1/2 * 20), this.invY - (1/2 * 20), 20, 20);
+        }
+        else if (this.type == "mudflyMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(lodo, 209, 89, 14, 12, this.invX - (1/2 * 14) * 2, this.invY - (1/2 * 12) * 2, 14 * 2, 12 * 2);
+        }
+        else if (this.type == "rawMudflyFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(lodo, 209, 77, 14, 12, this.invX - (1/2 * 14) * 2, this.invY - (1/2 * 12) * 2, 14 * 2, 12 * 2);
+        }
+        else if (this.type == "mudflyMold")
+        {
+            LXX.beginPath();
+            LXX.drawImage(lodo, 209, 65, 14, 12, this.invX - (1 / 2 * 14) * 2, this.invY - (1 / 2 * 12) * 2, 14 * 2, 12 * 2);
         }
         else if (this.type == "vomit")
         {
@@ -17397,6 +17773,21 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(theCrack, 982, 238, 27, 21, this.invX - (1/2 * 27 * 3), this.invY - (1/2 * 21 * 3), 27 * 3, 21 * 3);
+        }
+        else if (this.type == "wegRoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 255, 58, 14, 19, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 19 * 2), 14 * 2, 19 * 2);
+        }
+        else if (this.type == "roastedWegRoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 280, 83, 14, 19, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 19 * 2), 14 * 2, 19 * 2);
+        }
+        else if (this.type == "roastedWegRootChunks")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 278, 60, 17, 12, this.invX - (1/2 * 17 * 2), this.invY - (1/2 * 12 * 2), 17 * 2, 12 * 2);
         }
         else if (this.type == "palntRoot")
         {
@@ -18059,6 +18450,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(freeverse, 477, 922, 72, 66, this.invX - (1/2 * 72 * 0.35), this.invY - (1/2 * 66 * 0.35), 72 * 0.35, 66 * 0.35);
+        }
+        else if (this.type == "clay")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 1, 4, 11, 10, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 10 * 2), 11 * 2, 10 * 2);
         }
         else if (this.type == "kellishClayPot")
         {
@@ -18786,6 +19182,21 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(lodo, 30, 1, 21, 16, this.invX - (1/2 * 21), this.invY - (1/2 * 16), 21, 16);
         }
+        else if (this.type == "lorkWeed")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 106, 173, 20, 17, this.invX - (1/2 * 20 * 2), this.invY - (1/2 * 17 * 2), 20 * 2, 17 * 2);
+        }
+        else if (this.type == "sesreStamen")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 263, 110, 10, 16, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 16 * 2), 10 * 2, 16 * 2);
+        }
+        else if (this.type == "sesreLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 282, 113, 15, 13, this.invX - (1/2 * 15 * 2), this.invY - (1/2 * 13 * 2), 15 * 2, 13 * 2);
+        }
         else if (this.type == "frichPelt")
         {
             XXX.beginPath();
@@ -18870,6 +19281,21 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(verse, 66, 9, 20, 20, this.invX - (1/2 * 20), this.invY - (1/2 * 20), 20, 20);
+        }
+        else if (this.type == "mudflyMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 209, 89, 14, 12, this.invX - (1/2 * 14) * 2, this.invY - (1/2 * 12) * 2, 14 * 2, 12 * 2);
+        }
+        else if (this.type == "rawMudflyFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 209, 77, 14, 12, this.invX - (1/2 * 14) * 2, this.invY - (1/2 * 12) * 2, 14 * 2, 12 * 2);
+        }
+        else if (this.type == "mudflyMold")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 209, 65, 14, 12, this.invX - (1/2 * 14) * 2, this.invY - (1/2 * 12) * 2, 14 * 2, 12 * 2);
         }
         else if (this.type == "vomit")
         {

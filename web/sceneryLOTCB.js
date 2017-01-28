@@ -213,6 +213,40 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         }
     };
 
+    this.flashFrame = 0;
+    this.flashFrameTime = new Date().getTime();
+    this.flashAnimate = function(framerate, rotation, transparency, list)
+    {
+        //use a list with coords for images: [{image:, imgX:, imgY:, portionW:, portionH:, adjX:, adjY:, width:, height:}, ... etc.]
+        if (this.flashFrame >= list.length)
+        {
+            this.flashFrame = 0;
+        }
+
+        if (rotation != false)
+        {
+            XXX.save();
+            XXX.globalAlpha = transparency;
+            XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+            XXX.rotate(rotation);
+            XXX.drawImage(list[this.flashFrame].image, list[this.flashFrame].imgX, list[this.flashFrame].imgY, list[this.flashFrame].portionW, list[this.flashFrame].portionH, list[this.flashFrame].adjX, list[this.flashFrame].adjY, list[this.flashFrame].width, list[this.flashFrame].height);
+            XXX.restore();
+        }
+        else
+        {
+            XXX.save();
+            XXX.globalAlpha = transparency;
+            XXX.drawImage(list[this.flashFrame].image, list[this.flashFrame].imgX, list[this.flashFrame].imgY, list[this.flashFrame].portionW, list[this.flashFrame].portionH, X - this.X + (1 / 2 * CCC.width) + list[this.flashFrame].adjX, Y - this.Y + (1 / 2 * CCC.height) + list[this.flashFrame].adjY, list[this.flashFrame].width, list[this.flashFrame].height);
+            XXX.restore();
+        }
+
+        if (new Date().getTime() - this.flashFrameTime >= framerate)
+        {
+            this.flashFrameTime = new Date().getTime();
+            this.flashFrame += 1;
+        }
+    };
+
     // []
     this.frameLoop = function(theLoop, loopLimit, loopingRate, endless)
     {
@@ -1199,6 +1233,59 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "clayDeposit")
+        {
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.phase = longevity;
+            }
+
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 50 + 9 * this.phase;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(mufmuf, 1, 4, 11, 10, -(1/2 * 11 * 2 * this.phase), -(1/2 * 10 * 2 * this.phase), 11 * 2 * this.phase, 10 * 2 * this.phase);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 9 * this.phase;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                this.phase -= 1;
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "clay")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("clay", false, false), 1]);
+                }
+
+                if (this.phase < 1)
+                {
+                    scenicList.splice(scenicList.indexOf(this), 1);
+                }
+            }
+        }
         else if (this.type == "utSlime")
         {
             //TRAITS
@@ -1273,6 +1360,65 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "brolleFeast")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            var distToPlayer = 1000;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.phase = "busy";
+                this.tiic = 0;
+                this.selTyp = Math.round(Math.random()); //selection type
+            }
+            //DRAWSELF
+            if (this.phase == "busy")
+            {
+                this.flashAnimate(150 + Math.random() * 250, this.rotation, 1, [{image: lodo, imgX: 330, imgY: 231, portionW: 22, portionH: 21, adjX: - (1/2 * 22 * 2), adjY: - (1/2 * 21 * 2), width: 22 * 2, height: 21 * 2}, {image: lodo, imgX: 357, imgY: 231, portionW: 22, portionH: 21, adjX: - (1/2 * 22 * 2), adjY: - (1/2 * 21 * 2), width: 22 * 2, height: 21 * 2}]);
+                distToPlayer = Math.sqrt((this.X - X) * (this.X - X) + (this.Y - Y) * (this.Y - Y));
+            }
+            else if (this.phase = "done")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(lodo, 305, 232, 22, 21, -(1/2 * 22 * 2), -(1/2 * 21 * 2), 22 * 2, 21 * 2);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            if (distToPlayer <= 250 && this.phase == "busy")
+            {
+                this.tiic += 1;
+                if (this.tiic >= 240)
+                {
+                    this.tiic = 0;
+                    this.phase = "done";
+
+                    if (this.selTyp == 1)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "BrolleWorms", true, "Hungry Brolles"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "BrolleWorms", true, "Hungry Brolles"));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "BrolleWorms", true, "Hungry Brolles"));
+                    }
+                }
+            }
 
             //INTERACTION
             if (this.activate == true)
@@ -2429,6 +2575,153 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "sesrePlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.solid = false;
+            this.interactionRange = 75;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                if (timeOfDay == "Day")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(lodo, 271, 174, 27, 25, -(1/2 * 27 * 2), -(1/2 * 25 * 2), 27 * 2, 25 * 2);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(lodo, 271, 140, 27, 25, -(1/2 * 27 * 2), -(1/2 * 25 * 2), 27 * 2, 25 * 2);
+                    XXX.restore();
+                    lights.push({X: this.X, Y: this.Y, size: 92, extraStops: true, GRD: 0.1, Alpha: 0.68, showMe: false});
+                }
+            }
+            else if (this.phase == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(lodo, 215, 174, 27, 25, -(1/2 * 27 * 2), -(1/2 * 25 * 2), 27 * 2, 25 * 2);
+                XXX.restore();
+                lights.push({X: this.X, Y: this.Y, size: 92, extraStops: true, GRD: 0.1, Alpha: 0.68, showMe: false});
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(lodo, 216, 141, 27, 25, -(1/2 * 27 * 2), -(1/2 * 25 * 2), 27 * 2, 25 * 2);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 15;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = 1;
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "sesreLeaf")
+                    {
+                        Inventory[i][1] += Math.floor(1 + Math.random() * 4);
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("sesreLeaf", false, false), Math.floor(1 + Math.random() * 4)]);
+                }
+            }
+            else if (this.activate == true && this.phase == 1)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "sesreStamen")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("sesreStamen", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "wegPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.solid = false;
+            this.interactionRange = 90;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(lodo, 345, 179, 25, 23, -(1/2 * 25 * 2), -(1/2 * 23 * 2), 25 * 2, 23 * 2);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(lodo, 330, 121, 46, 49, -(1/2 * 46 * 2) - 7.5, -(1/2 * 49 * 2), 46 * 2, 49 * 2);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 18;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "wegRoot")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("wegRoot", false, false), 1]);
+                }
+            }
+        }
         else if (this.type == "wightbloomPlant")
         {
             //TRAITS
@@ -2480,6 +2773,63 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (hits == Inventory.length)
                 {
                     Inventory.push([new Item("wightbloomBerries", false, false), Math.floor(1 + Math.random() * 3)]);
+                }
+            }
+        }
+        else if (this.type == "lorkweedPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.interactionRange = 65;
+            this.solid = false;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(lodo, 106, 173, 20, 17, -(1/2 * 20 * 2), -(1/2 * 17 * 2), 20 * 2, 17 * 2);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(lodo, 84, 174, 20, 17, -(1/2 * 20 * 2), -(1/2 * 17 * 2), 20 * 2, 17 * 2);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 10;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                if (player.glovesEquipped == "none")
+                {
+                    player.health -= 0.45;
+                    player.energy -= 0.25;
+                }
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "lorkWeed")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("lorkWeed", false, false), 1]);
                 }
             }
         }
@@ -3574,6 +3924,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //TRAITS
             this.solid = false;
             this.interactionRange = 1;
+            var distToPlayer = 1000;
 
             if (this.runOneTime)
             {
@@ -3593,6 +3944,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.rotate(this.rotation);
                 XXX.drawImage(mufmuf, 145, 3, 18, 17, -(1/2 * 18 * 2.4), -(1/2 * 17 * 2.4), 18 * 2.4, 17 * 2.4);
                 XXX.restore();
+
+                distToPlayer = Math.sqrt((this.X - X) * (this.X - X) + (this.Y - Y) * (this.Y - Y));
             }
             else if (this.phase == "break1")
             {
@@ -3632,8 +3985,6 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
 
             //A tunsk scurries out of its burrow when a player is near for too long.
-
-            var distToPlayer = Math.sqrt((this.X - X) * (this.X - X) + (this.Y - Y) * (this.Y - Y));
             if (distToPlayer <= 130 && this.phase == "sturdy")
             {
                 this.tiic += 1;

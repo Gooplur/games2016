@@ -3,13 +3,9 @@
  */
 
 //TODO LIST
-//todo design the proper engagment radius and size radius for Uts, add their drops as well, perhaps ajust them to attack centered.
-//todo add Brolle Worms, a form of parasite that lives in the kellish mud bog.
-//todo add Grewbles in the kellish mud bog and add Grewble eggs that can be destroyed looted, and which can hatch if left undisturbed.
+//todo add nechro-feeding/reproduction for Brolle Worms.
 //todo add Lodotos, a sickness that one can get in the kellish mud bog.
-//todo add spitting mud flies -- a giant fly that lives in the kellish mud bog and that spits toxic transparent digestive excretion at you.
-//todo add Blil Plant a four leaved plant that opens up at night time and brightens the surrounding with its glowing stamen.
-//todo add Weg Root a bulbous bitter bog root that grows in the kellish mud bog.
+//todo add Blil Plant, it can be whatever, just add it.
 //todo add plants to the S3 Map.
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
 //todo revise the sleeping system... as of right now it is an absolute crazy juju ball made of sand candy!!! Which is a bad thing.
@@ -2018,6 +2014,7 @@ function theLegend()
     foods.push(new Item("greyWolfMeat", false));
     foods.push(new Item("winterWolfMeat", false));
     foods.push(new Item("wolfLiver", false));
+    foods.push(new Item("mudflyMeat", false));
     foods.push(new Item("gulfreyMeat", false));
     foods.push(new Item("torperMeat", false));
     foods.push(new Item("varnMeat", false));
@@ -2050,6 +2047,7 @@ function theLegend()
     foods.push(new Item("tilkMeat", false));
     foods.push(new Item("utMeat", false));
     foods.push(new Item("tunskMeat", false));
+    foods.push(new Item("roastedWegRoot", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -2114,6 +2112,7 @@ function theLegend()
     alchemy.push(new Item("tenicPaste", false));
     alchemy.push(new Item("utExtract", false));
     alchemy.push(new Item("fermentedUtTentacle", false));
+    alchemy.push(new Item("mudflyMold", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];
@@ -2152,6 +2151,7 @@ function theLegend()
     handcrafted.push(new Item("pluttJuicePintGlass", false));
     handcrafted.push(new Item("pluttCiderPintGlass", false));
     handcrafted.push(new Item("pluttWine", false));
+    handcrafted.push(new Item("roastedWegRootChunks", false));
     handcrafted.push(new Item("driedPluttBerries", false));
     handcrafted.push(new Item("driedTechiLeaf", false));
     handcrafted.push(new Item("techiTea", false));

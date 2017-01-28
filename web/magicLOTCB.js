@@ -24,6 +24,10 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
         this.spellTime = new Date().getTime();
         this.distanceCovered = 0;
         this.playerRotation = player.rotation;
+        if (typeof(unitSelf) != "undefined" && typeof(unitSelf) != "boolean")
+        {
+            this.unitRotation = unitSelf.rotation;
+        }
         this.ticCount = 0;
         this.repeated = false;
         this.size = 0;
@@ -272,6 +276,24 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                         player.stunnedIII = true;
                         player.stunnedTime = 2;
                     }
+                    else if (whatDoIDo == "quarterAcid")
+                    {
+                        player.health -= Math.max(0, damage - Math.max(0, player.armourTotal - negate));
+                        if (damage + negate > player.armourTotal)
+                        {
+                            player.quarterAcid = true;
+                            player.acidTime = new Date().getTime() + 5000;
+                        }
+                    }
+                    else if (whatDoIDo == "acidI")
+                    {
+                        player.health -= Math.max(0, damage - Math.max(0, player.armourTotal - negate));
+                        if (damage + negate > player.armourTotal)
+                        {
+                            player.acidI = true;
+                            player.acidTime = new Date().getTime() + 5000;
+                        }
+                    }
                     else if (whatDoIDo == "electricity")
                     {
                         player.health -= Math.max(0, damage - ((player.totalShockResist * 3) + (19 * player.magicalResistanceTotal)));
@@ -318,6 +340,24 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, 3 + (1/50 * player.getConcentration()) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                             ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                        }
+                        else if (whatDoIDo == "quarterAcid")
+                        {
+                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                            if (damage + negate > ArtificialIntelligenceAccess[i].armour)
+                            {
+                                ArtificialIntelligenceAccess[i].quarterAcid = true;
+                                ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
+                            }
+                        }
+                        else if (whatDoIDo == "acidI")
+                        {
+                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                            if (damage + negate > ArtificialIntelligenceAccess[i].armour)
+                            {
+                                ArtificialIntelligenceAccess[i].acidI = true;
+                                ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
+                            }
                         }
                         else if (whatDoIDo == "electricity")
                         {
@@ -684,6 +724,28 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
             else if (unitSelf.alpha == "giant")
             {
                 this.orientToCaster(27 * 2.2, Math.PI);
+            }
+        }
+        //Mud Fly Spit
+        if (this.spellType == "flySpit")
+        {
+            this.speed = 9 + (2 * Math.random());
+
+            if (unitSelf.alpha == "baby")
+            {
+                this.orientToCaster(9, Math.PI);
+            }
+            else if (unitSelf.alpha == false)
+            {
+                this.orientToCaster(9, Math.PI);
+            }
+            else if (unitSelf.alpha == true)
+            {
+                this.orientToCaster(9, Math.PI);
+            }
+            else if (unitSelf.alpha == "giant")
+            {
+                this.orientToCaster(9, Math.PI);
             }
         }
         //EMBERS
@@ -1244,6 +1306,53 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 {
                     this.project(this.rotation + Math.PI, 3200, this.speed, "alert");
                 }
+
+            }
+
+            if (this.spellType == "flySpit")
+            {
+                if (unitSelf.target == player)
+                {
+                    if (unitSelf.alpha == "baby")
+                    {
+                        this.damageThenGoAway(4, "quarterAcid", 0, 2, true, false);
+                    }
+                    else if (unitSelf.alpha == false)
+                    {
+                        this.damageThenGoAway(6, "acidI", 0.5, 4.5, true, false);
+                    }
+                    else if (unitSelf.alpha == true)
+                    {
+                        this.damageThenGoAway(9, "acidI", 1.5, 5, true, false);
+                    }
+                    else if (unitSelf.alpha == "giant")
+                    {
+                        this.damageThenGoAway(17, "acidI", 10, 10, true, false);
+                    }
+                }
+                else
+                {
+                    if (unitSelf.alpha == "baby")
+                    {
+                        this.damageThenGoAway(4, "acidI", 0, 2, false, false);
+                    }
+                    else if (unitSelf.alpha == false)
+                    {
+                        this.damageThenGoAway(6, "acidI", 0.5, 4.5, false, false);
+                    }
+                    else if (unitSelf.alpha == true)
+                    {
+                        this.damageThenGoAway(9, "acidI", 1.5, 5, false, false);
+                    }
+                    else if (unitSelf.alpha == "giant")
+                    {
+                        this.damageThenGoAway(17, "acidI", 10, 10, false, false);
+                    }
+                }
+
+                this.size = 3/5 * unitSelf.alphaSize;
+                this.flashAnimate(90, this.unitRotation, 1, [{image: lodo, imgX: 46, imgY: 146, portionW: 16, portionH: 12, adjX: -1 / 2 * 16 * 2 * this.size, adjY: -1 / 2 * 12 * 2 * this.size, width: 16 * 2 * this.size, height: 12 * 2 * this.size}, {image: lodo, imgX: 65, imgY: 146, portionW: 16, portionH: 12, adjX: -1 / 2 * 16 * 2 * this.size, adjY: -1 / 2 * 12 * 2 * this.size, width: 16 * 2 * this.size, height: 12 * 2 * this.size}, {image: lodo, imgX: 83, imgY: 147, portionW: 16, portionH: 12, adjX: -1 / 2 * 16 * 2 * this.size, adjY: -1 / 2 * 12 * 2 * this.size, width: 16 * 2 * this.size, height: 12 * 2 * this.size}, {image: lodo, imgX: 104, imgY: 148, portionW: 16, portionH: 12, adjX: -1 / 2 * 16 * 2 * this.size, adjY: -1 / 2 * 12 * 2 * this.size, width: 16 * 2 * this.size, height: 12 * 2 * this.size}], true, false);
+                this.project(this.unitRotation - Math.PI, unitSelf.baseSight, this.speed, true);
 
             }
 

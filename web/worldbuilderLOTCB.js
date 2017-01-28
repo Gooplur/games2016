@@ -1,6 +1,273 @@
 /**
  * Created by skyeguy on 1/22/17.
  */
+function worldBuilder()
+{
+    // THIS IS THE BACKGROUND BUILDER (height, width, type, x, y) // The tile coords 0, 0 are at the bottom right corner of Teshir City.
+    //Different parts of the world load at different Y values. // maps are 34 by 34 tiles and for some reason the maps are -20 to the left. and + 14 down.
+    if (map == "world")
+    {
+        //Layer -3 (cold temperate region) //mapS3
+        if (Y > -34556 && Y < -23654 && X < 7687 && X > - 3901) //X0
+        {
+            elevation = -1;
+            region = "s3";
+            outlineBuilder( 34, 34, "greenGrass", -20, 82);
+            outlineBuilder( 34, 1, "stonePath", 3, 82);
+            outlineBuilder( 1, 1, "forest", 3, 82);
+            outlineBuilder( 4, 4, "kelltile", 4, 103);
+            outlineBuilder( 1, 1, "farmland", 8, 104);
+        }
+        //Layer -3 (cold temperate region) //mapS3 E1
+        if (Y > -34556 && Y < -23654 && X < - 2490 && X > -14114) //X1
+        {
+            elevation = -1;
+            region = "s3e1";
+            outlineBuilder( 4, 34, "greenGrass", 14, 82);
+            outlineBuilder( 30, 4, "muckgrass", 44, 86);
+            outlineBuilder( 30, 6, "greenGrass", 14, 86);
+            outlineBuilder( 4, 1, "greenGrass", 20, 93);
+            outlineBuilder( 2, 2, "greenGrass", 20, 97);
+            outlineBuilder( 34, 1, "forest", 14, 82);
+            outlineBuilder( 7, 3, "muckgrass", 20, 86);
+            outlineBuilder( 4, 2, "muckgrass", 21, 93);
+            outlineBuilder( 1, 11, "muckgrass", 22, 85);
+            outlineBuilder( 15, 3, "muckgrass", 20, 99);
+            outlineBuilder( 5, 1, "greenGrass", 20, 111);
+            outlineBuilder( 2, 28, "greenGrass", 20, 114);
+            outlineBuilder( 2, 26, "muckgrass", 22, 112);
+            outlineBuilder( 2, 8, "muckgrass", 23, 110);
+            outlineBuilder( 24, 21, "muck", 23, 86);
+            outlineBuilder( 1, 17, "muck", 28, 110);
+            outlineBuilder( 1, 14, "muck", 31, 111);
+            outlineBuilder( 2, 2, "muckgrass", 22, 97);
+            outlineBuilder( 1, 2, "muckgrass", 23, 99);
+            outlineBuilder( 2, 14, "muckgrass", 30, 86);
+            //outlineBuilder( 1, 1, "muckgrass", 8, 104);
+        }
+        //Layer -2 (cold temperate region)//mapS2
+        if (Y > -24704 && Y < -13476 && X < 7687 && X > - 3901) //X0
+        {
+            elevation = -1;
+            region = "s2";
+            outlineBuilder( 34, 34, "greenGrass", -20, 48);
+            outlineBuilder( 34, 1, "stonePath", 3, 48);
+            outlineBuilder( 1, 7, "stonePath", -4, 48);
+            outlineBuilder( 8, 10, "forest", -13, 62); //little patch of forest in the middle of the kellish northern plains
+            outlineBuilder( 1, 5, "forest", -13, 61); //^
+            outlineBuilder( 1, 3, "forest", -7, 61); //^
+            outlineBuilder( 1, 3, "forest", -12, 60); //^
+            outlineBuilder( 5, 1, "forest", -3, 64); //^
+            outlineBuilder( 3, 1, "forest", -14, 65); //^
+            outlineBuilder( 1, 6, "forest", -10, 70); //^
+        }
+        //Layer -1 (cold temperate region)//mapS1
+        if (Y > -14144 && Y < -3328 && X < 7687 && X > - 3901) //X0
+        {
+            elevation = -1;
+            region = "s1";
+            outlineBuilder( 34, 34, "greenGrass", -20, 14);
+            outlineBuilder( 34, 1, "stonePath", -4, 14);
+            //outlineBuilder( 1, 1, "forest", -4, 14);
+        }
+        //Layer 0 (cold region)//mapCentral
+        if (Y > -3919 && Y < 6870 && X < 7687 && X > - 3901) //X0
+        {
+            elevation = 0;
+            region = "central";
+            outlineBuilder( 14, 6, "greenGrass", -6, -20);
+            outlineBuilder( 14, 6, "greenGrass", -6, 0);
+            outlineBuilder( 34, 14, "greenGrass", -20, -20);
+            outlineBuilder( 34, 14, "greenGrass", 0, -20);
+            outlineBuilder( 6, 6, "stoneWork", -6, -6);
+            outlineBuilder( 17, 1, "stonePath", -3, -20);
+            outlineBuilder( 1, 20, "stonePath", -6, -3);
+            outlineBuilder( 16, 1, "stonePath", -4, -2);
+            outlineBuilder( 7, 1, "stonePath", -7, -7);
+            outlineBuilder( 1, 8, "stonePath", -7, 0);
+            outlineBuilder( 7, 1, "stonePath", -0, -7);
+            outlineBuilder( 1, 6, "stonePath", -6, -7);
+            outlineBuilder( 1, 13, "stonePath", -20, -7);
+            outlineBuilder( 2, 3, "farmland", -7, 1);
+        }
+        //mapS1 E1
+        if (Y > -14144 && Y < -3328 && X < - 2490 && X > -14114) //X1
+        {
+            elevation = -1;
+            region = "s1e1";
+            outlineBuilder( 34, 34, "outline", 14, 14);
+            outlineBuilder( 1, 22, "forest", 26, 14);
+            outlineBuilder( 1, 20, "forest", 28, 15);
+            outlineBuilder( 1, 13, "forest", 35, 16);
+            outlineBuilder( 1, 9, "forest", 39, 17);
+            outlineBuilder( 1, 7, "forest", 41, 18);
+            outlineBuilder( 1, 4, "forest", 44, 19);
+        }
+        //layer 1 (frosty region) anti warmth effects start here
+        if (Y > 6290 && Y < 32370) //this is the cold snowy environment //X0
+        {
+            elevation = 1;
+            region = "n1";
+            outlineBuilder( 20, 83, "frost", -80, -40); //frost
+            outlineBuilder( 80, 83, "snow", -80, -105); //snow
+        }
+        //mapE2
+        if (Y > -3919 && Y < 6870 && X < -12685 && X > -24362) //X1
+        {
+            elevation = 0;
+            region = "e2";
+            outlineBuilder( 34, 34, "forest", 48, -20);
+            outlineBuilder( 1, 34, "stonePath", 48, -3);
+        }
+        //mapE1
+        if (Y > -3919 && Y < 6870 && X < - 2490 && X > -14114) //X1
+        {
+            elevation = 0;
+            region = "e1";
+            outlineBuilder( 34, 22, "forest", 26, -20);
+            outlineBuilder( 7, 2, "greenGrass", 26, -18);
+            outlineBuilder( 4, 3, "greenGrass", 28, -17);
+            outlineBuilder( 1, 2, "greenGrass", 28, -13);
+            outlineBuilder( 2, 1, "greenGrass", 26, -20);
+            outlineBuilder( 34, 12, "greenGrass", 14, -20);
+            outlineBuilder( 7, 1, "greenGrass", 26, -7);
+            outlineBuilder( 6, 2, "greenGrass", 26, 3);
+            outlineBuilder( 3, 1, "greenGrass", 28, 5);
+            outlineBuilder( 4, 1, "greenGrass", 26, 9);
+            outlineBuilder( 1, 2, "greenGrass", 26, -4);
+            outlineBuilder( 1, 34, "stonePath", 14, -3);
+        }
+        //mapW1
+        if (Y > -3919 && Y < 6870 && X < 17891 && X > 6299) //X-1
+        {
+            elevation = 0;
+            region = "w1";
+            outlineBuilder( 14, 6, "crag", -40, -20);
+            outlineBuilder( 14, 6, "crag", -40, 0);
+            outlineBuilder( 34, 14, "crag", -54, -20);
+            outlineBuilder( 34, 14, "crag", -34, -20);
+            outlineBuilder( 6, 6, "crag", -40, -6);
+        }
+        //layer 2 (freezing region)
+        if (Y > 31750 && Y < 77360) //this is the freezing arctic environment //X0
+        {
+            elevation = 2;
+            region = "n2";
+            outlineBuilder( 150, 83, "snow", -80, -255);
+        }
+        //layer 3 (freezing region)
+        if (Y > 76780) //this is the north Pole... basically. //X0
+        {
+            elevation = 2;
+            region = "n3";
+            outlineBuilder( 150, 83, "snow", -80, -405);
+        }
+    }
+}
+
+// This is the template for building a map out of tiles.
+function outlineBuilder(width, length, terrain, extraX, extraY)
+{
+    for(var i = 0; i < width; i++)
+    {
+        for(var j = 0; j < length; j++)
+        {
+            if ((j - 1) * 300 + (extraX * 300) >= -X - 1 * CCC.width && (j - 1) * 300 + (extraX * 300) <= -X + 1 * CCC.width && (i - 1) * 300 + (extraY * 300) >= -Y - 1 * CCC.height && (i - 1) * 300 + (extraY * 300) <= -Y + 1 * CCC.height)
+            {
+                if (player.cyrinthilimTrip)
+                {
+                    XXX.save();
+                    XXX.globalAlpha = 0.4;
+                    XXX.scale(Math.random() * 6 + 1,Math.random() * 6 + 1)
+                    XXX.drawImage(blurDots, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    XXX.restore();
+                }
+                else if (terrain == "outline")
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "white";
+                    XXX.strokeStyle = "black";
+                    XXX.rect((j-1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    XXX.fill();
+                    XXX.stroke();
+                }
+                else if (terrain == "muckgrass")
+                {
+                    XXX.drawImage(bogGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "muck")
+                {
+                    XXX.drawImage(bogMuckEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "kellstone")
+                {
+                    XXX.drawImage(kellStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "kelltile")
+                {
+                    XXX.drawImage(kellsStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "farmland")
+                {
+                    XXX.drawImage(farmground, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "greenGrass")
+                {
+                    XXX.drawImage(lushGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "hotGrass")
+                {
+                    XXX.drawImage(greenGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "jungle")
+                {
+                    XXX.drawImage(forestEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "crag")
+                {
+                    XXX.drawImage(rockyFlatEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "desert")
+                {
+                    XXX.drawImage(sandyEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "frost")
+                {
+                    XXX.drawImage(snowyEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "stoneWork")
+                {
+                    XXX.drawImage(stoneWorkEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "molten")
+                {
+                    XXX.drawImage(volcanicEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "dryGrass")
+                {
+                    XXX.drawImage(dryGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "snow")
+                {
+                    XXX.drawImage(snowEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "stonePath")
+                {
+                    XXX.drawImage(stonePathEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "arctic")
+                {
+                    XXX.drawImage(frozenEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "forest")
+                {
+                    XXX.drawImage(nordWoods, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+            }
+        }
+
+    }
+}
 
 function buildMaster()
 {
@@ -40,11 +307,6 @@ function buildMaster()
                 {
                     ArtificialIntelligenceAccess.push(new Unit(2100, 1050, "Neev", false, "Easter"));
                 }
-
-                //ArtificialIntelligenceAccess.push(new Unit(2200, -1200, "Grewble", false, "Glud"));
-                //ArtificialIntelligenceAccess.push(new Unit(2100, -800, "BrolleWorms", false, "Slickers"));
-                //ArtificialIntelligenceAccess.push(new Unit(2000, -1000, "Ut", false, "Icky Icky"));
-                //scenicList.push(new Scenery("grewbleEggPatch", 1900 , -1100, -Math.PI * 2.2, false));
 
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));
@@ -3233,6 +3495,294 @@ function buildMaster()
 
 
                 change = "s1e1";
+            }
+        }
+        else if (region == "s3e1")
+        {
+            if (change != "s3e1")
+            {
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+                //todo when structures are created add their list's refresh sequence here.
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //Animals in the mud bog
+                //ArtificialIntelligenceAccess.push(new Unit(-6610, -32189, "Grewble", false, "Glud"));
+                //ArtificialIntelligenceAccess.push(new Unit(-7778, -32048, "BrolleWorms", false, "Slickers"));
+                //ArtificialIntelligenceAccess.push(new Unit(-6838, -31129, "Ut", false, "Icky Icky"));
+                //ArtificialIntelligenceAccess.push(new Unit(-9239, -31197, "SpittingMudFly", true, "Super Fly"));
+
+                //Build Scenery
+                scenicList.push(new Scenery("grewbleEggPatch", -7237 , -31546, -Math.PI * 2.2, false));
+                scenicList.push(new Scenery("grewbleEggPatch", -7611 , -29496, -Math.PI * 1.4, false));
+                scenicList.push(new Scenery("grewbleEggPatch", -8235 , -26971, -Math.PI * -6.1, false));
+                scenicList.push(new Scenery("grewbleEggPatch", -10523 , -27599, -Math.PI * 0, false));
+                scenicList.push(new Scenery("grewbleEggPatch", -10238 , -27403, -Math.PI * 5, false));
+                scenicList.push(new Scenery("grewbleEggPatch", -10235 , -27494, -Math.PI * 3.77, false));
+                scenicList.push(new Scenery("grewbleEggPatch", -10445 , -27153, -Math.PI * -2.4, false));
+                scenicList.push(new Scenery("grewbleEggPatch", -10578 , -26210, 1, false));
+                scenicList.push(new Scenery("grewbleEggPatch", -6830 , -31015, 2, false));
+                scenicList.push(new Scenery("brolleFeast", -10116 , -29425, -Math.PI * 0, false));
+                scenicList.push(new Scenery("brolleFeast", -7534 , -28197, -Math.PI * 4.2, false));
+                scenicList.push(new Scenery("brolleFeast", -10049 , -28561, -Math.PI * -2, false));
+                scenicList.push(new Scenery("brolleFeast", -9314 , -26816, -Math.PI * -Math.PI, false));
+
+
+                //Plants in the mud bog
+                scenicList.push(new Scenery("wegPlant", -8039 , -31917, 5, true));
+                scenicList.push(new Scenery("wegPlant", -6300 , -33078, 3, true));
+                scenicList.push(new Scenery("wegPlant", -8432 , -31226, 0, true));
+                scenicList.push(new Scenery("wegPlant", -8636 , -27421, -3.2, true));
+                scenicList.push(new Scenery("wegPlant", -7448 , -30705, -4, true));
+                scenicList.push(new Scenery("wegPlant", -5333 , -29560, -2, true));
+                scenicList.push(new Scenery("wegPlant", -9743 , -26443, 3.14159, true));
+                scenicList.push(new Scenery("wegPlant", -6928 , -26150, -1.1, true));
+                scenicList.push(new Scenery("wegPlant", -8484 , -25656, -6, true));
+                scenicList.push(new Scenery("wegPlant", -12774 , -29931, -2.23, true));
+                scenicList.push(new Scenery("wegPlant", -7536 , -31824, 4.3, true));
+                scenicList.push(new Scenery("sesrePlant", -9030 , -30602, 1, true));
+                scenicList.push(new Scenery("sesrePlant", -9324 , -31587, 2.42, true));
+                scenicList.push(new Scenery("sesrePlant", -6549 , -30150, -5.5, true));
+                scenicList.push(new Scenery("sesrePlant", -6796 , -27705, 3.6, true));
+                scenicList.push(new Scenery("sesrePlant", -10083 , -27886, -2.83, true));
+                scenicList.push(new Scenery("sesrePlant", -10853 , -28016, -4, true));
+                scenicList.push(new Scenery("sesrePlant", -10158 , -31303, 4.444, true));
+                scenicList.push(new Scenery("sesrePlant", -11527 , -32609, -1.131320096913069, true));
+                scenicList.push(new Scenery("lorkweedPlant", -7842 , -30440, -2.5, true));
+                scenicList.push(new Scenery("lorkweedPlant", -8435 , -32994, 6, true));
+                scenicList.push(new Scenery("lorkweedPlant", -9418 , -33194, 9, true));
+                scenicList.push(new Scenery("lorkweedPlant", -7043 , -30258, -1, true));
+                scenicList.push(new Scenery("lorkweedPlant", -6332 , -28978, 2, true));
+                scenicList.push(new Scenery("lorkweedPlant", -6183 , -28293, -1.5, true));
+                scenicList.push(new Scenery("lorkweedPlant", -5505 , -26480, 1.35, true));
+                scenicList.push(new Scenery("lorkweedPlant", -6410 , -26714, 5.5, true));
+                scenicList.push(new Scenery("lorkweedPlant", -8085 , -26216, -5, true));
+                scenicList.push(new Scenery("lorkweedPlant", -11399 , -25450, 4.5, true));
+                scenicList.push(new Scenery("lorkweedPlant", -11009 , -27171, -3.3, true));
+                scenicList.push(new Scenery("lorkweedPlant", -9248 , -26859, 1, true));
+                scenicList.push(new Scenery("lorkweedPlant", -6327 , -25252, -3.4444, true));
+                scenicList.push(new Scenery("lorkweedPlant", -10968 , -26032, 1.6, true));
+                scenicList.push(new Scenery("lorkweedPlant", -11345 , -32173, -3.4444, true));
+                scenicList.push(new Scenery("lorkweedPlant", -10617 , -30279, 5.56, true));
+                scenicList.push(new Scenery("lorkweedPlant", -8516 , -32417, 2, true));
+
+                var random = Math.floor(Math.random() * 13);
+
+                if (random >= 0 && random <= 7)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-10634, -27122, "Grewble", false, "Glod"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10582, -27338, "Grewble", false, "Gled"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10158, -27824, "Grewble", false, "Glid"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10296, -26454, "Grewble", false, "Glidr"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10738, -26060, "Grewble", false, "Glood"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11333, -28148, "Grewble", false, "Glewd"));
+
+                    ArtificialIntelligenceAccess.push(new Unit(-10125, -27563, "Grewble", "baby", "Glad"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11679, -26352, "Grewble", "baby", "Gliid"));
+
+                    ArtificialIntelligenceAccess.push(new Unit(-10065, -27223, "Grewble", true, "Glud"));
+                }
+                else if (random <= 11)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-10634, -27122, "Grewble", "baby", "Glod"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10582, -27338, "Grewble", false, "Gled"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10158, -27824, "Grewble", "baby", "Glid"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10296, -26454, "Grewble", false, "Glidr"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10738, -26060, "Grewble", false, "Glood"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11333, -28148, "Grewble", "baby", "Glewd"));
+
+                    ArtificialIntelligenceAccess.push(new Unit(-10125, -27563, "Grewble", false, "Glad"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11679, -26352, "Grewble", true, "Gliid"));
+
+                    ArtificialIntelligenceAccess.push(new Unit(-10065, -27223, "Grewble", false, "Glud"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-10634, -27122, "Grewble", false, "Glod"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10582, -27338, "Grewble", true, "Gled"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10158, -27824, "Grewble", false, "Glid"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10296, -26454, "Grewble", false, "Glidr"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10738, -26060, "Grewble", false, "Glood"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11333, -28148, "Grewble", true, "Glewd"));
+
+                    ArtificialIntelligenceAccess.push(new Unit(-10125, -27563, "Grewble", true, "Glad"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11679, -26352, "Grewble", false, "Gliid"));
+
+                    ArtificialIntelligenceAccess.push(new Unit(-10065, -27223, "Grewble", "giant", "Horgune the Mud King"));
+                }
+
+                random = Math.floor(Math.random() * 13);
+
+                if (random >= 8)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-6385, -29752, "Ut", "baby", "Icky"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6187, -30102, "SpittingMudFly", "baby", "Lil Fly"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6548, -30629, "Grewble", false, "Gluck"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7718, -29738, "Grewble", false, "Glick"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7313, -28682, "BrolleWorms", false, "Slipper"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6850, -28821, "BrolleWorms", false, "Zapatilla"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6843, -28150, "BrolleWorms", false, "Boot"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7282, -27862, "Ut", false, "Ick"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6706, -27347, "SpittingMudFly", true, "The Fly"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6002, -27849, "Grewble", false, "Glon"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6843, -28150, "BrolleWorms", false, "Bota"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8192, -28544, "SpittingMudFly", "baby", "La Mosca"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8341, -27860, "SpittingMudFly", false, "A Fly"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8271, -27163, "Grewble", "baby", "Glilk"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7761, -26946, "Grewble", false, "Glolk"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8552, -26284, "Ut", true, "Ickick"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7366, -26352, "Ut", "baby", "Ickuh"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6914, -26993, "Ut", "baby", "Ickor"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8791, -26838, "Ut", "baby", "Icklii"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7199, -25952, "BrolleWorms", false, "Zapato"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6452, -26153, "BrolleWorms", false, "Shoe"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6784, -25361, "BrolleWorms", false, "Sandal"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9461, -27794, "BrolleWorms", false, "Huarache"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9021, -29168, "SpittingMudFly", false, "Una Mosca"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9415, -29669, "SpittingMudFly", "baby", "Moscita"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9155, -30201, "BrolleWorms", false, "Sandalia"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8265, -30756, "Ut", false, "Ickle"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6741, -31899, "Grewble", false, "Gluyka"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8380, -32059, "Ut", false, "Ickler"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9083, -32672, "Ut", "baby", "Ickluh"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10275, -32356, "BrolleWorms", false, "Flip-Flop"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9882, -31837, "BrolleWorms", false, "Chancla"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9103, -32300, "BrolleWorms", false, "High-Heels"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9271, -31727, "BrolleWorms", false, "Zapato de Tacón"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8359, -32655, "BrolleWorms", false, "Tacón"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11368, -32751, "SpittingMudFly", true, "Mosca Mosca"));
+                    ArtificialIntelligenceAccess.push(new Unit(-12187, -32622, "SpittingMudFly", "baby", "Las Moscas"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11866, -32840, "Ut", false, "Icklem"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10470, -30354, "BrolleWorms", false, "99er"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11487, -29952, "Ut", false, "Icklek"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10967, -28766, "SpittingMudFly", "baby", "Fly Fly"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6372, -31461, "BrolleWorms", false, "666er"));
+                }
+                else if (random >= 3)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-6385, -29752, "Ut", false, "Icky"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6187, -30102, "SpittingMudFly", false, "Lil Fly"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6548, -30629, "Grewble", true, "Gluck"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7718, -29738, "Grewble", "baby", "Glick"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7313, -28682, "BrolleWorms", false, "Slipper"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6850, -28821, "BrolleWorms", false, "Zapatilla"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6843, -28150, "BrolleWorms", false, "Boot"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7282, -27862, "Ut", "baby", "Ick"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6706, -27347, "SpittingMudFly", "giant", "The Fly"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6002, -27849, "Grewble", false, "Glon"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6843, -28150, "BrolleWorms", false, "Bota"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8192, -28544, "SpittingMudFly", false, "La Mosca"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8341, -27860, "SpittingMudFly", "baby", "A Fly"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8271, -27163, "Grewble", false, "Glilk"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7761, -26946, "Grewble", false, "Glolk"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8552, -26284, "Ut", false, "Ickick"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7366, -26352, "Ut", "baby", "Ickuh"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6914, -26993, "BrolleWorms", false, "Ickor"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8791, -26838, "Ut", false, "Icklii"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7199, -25952, "BrolleWorms", false, "Zapato"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6452, -26153, "SpittingMudFly", "baby", "Shoe"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6784, -25361, "BrolleWorms", false, "Sandal"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9461, -27794, "BrolleWorms", false, "Huarache"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9021, -29168, "SpittingMudFly", true, "Una Mosca"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9415, -29669, "SpittingMudFly", "baby", "Moscita"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9155, -30201, "BrolleWorms", false, "Sandalia"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8265, -30756, "Ut", true, "Ickle"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6741, -31899, "Grewble", "baby", "Gluyka"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8380, -32059, "Ut", "baby", "Ickler"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9083, -32672, "Ut", false, "Ickluh"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10275, -32356, "BrolleWorms", false, "Flip-Flop"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9882, -31837, "BrolleWorms", false, "Chancla"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9103, -32300, "BrolleWorms", false, "High-Heels"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9271, -31727, "BrolleWorms", false, "Zapato de Tacón"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8359, -32655, "BrolleWorms", false, "Tacón"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11368, -32751, "SpittingMudFly", "baby", "Mosca Mosca"));
+                    ArtificialIntelligenceAccess.push(new Unit(-12187, -32622, "SpittingMudFly", false, "Las Moscas"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11866, -32840, "Ut", "baby", "Icklem"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10470, -30354, "SpittingMudFly", "baby", "99er"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11487, -29952, "Ut", false, "Icklek"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10967, -28766, "SpittingMudFly", false, "Fly Fly"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6372, -31461, "BrolleWorms", false, "999er"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-6385, -29752, "Ut", true, "Icky"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6187, -30102, "SpittingMudFly", "giant", "Lil Fly"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6548, -30629, "Grewble", false, "Gluck"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7718, -29738, "Grewble", true, "Glick"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7313, -28682, "BrolleWorms", false, "Slipper"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6850, -28821, "BrolleWorms", false, "Zapatilla"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6843, -28150, "BrolleWorms", false, "Boot"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7282, -27862, "Ut", false, "Ick"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6706, -27347, "SpittingMudFly", false, "The Fly"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6002, -27849, "Grewble", false, "Glon"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6843, -28150, "BrolleWorms", false, "Bota"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8192, -28544, "SpittingMudFly", true, "La Mosca"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8341, -27860, "SpittingMudFly", false, "A Fly"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8271, -27163, "Grewble", true, "Glilk"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7761, -26946, "Grewble", false, "Glolk"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8552, -26284, "Ut", "baby", "Ickick"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7366, -26352, "Ut", "baby", "Ickuh"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6914, -26993, "Ut", false, "Ickor"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8791, -26838, "Ut", "baby", "Icklii"));
+                    ArtificialIntelligenceAccess.push(new Unit(-7199, -25952, "BrolleWorms", false, "Zapato"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6452, -26153, "BrolleWorms", false, "Shoe"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6784, -25361, "BrolleWorms", false, "Sandal"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9461, -27794, "BrolleWorms", false, "Huarache"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9021, -29168, "SpittingMudFly", "giant", "Una Mosca"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9415, -29669, "SpittingMudFly", false, "Moscita"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9155, -30201, "BrolleWorms", false, "Sandalia"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8265, -30756, "Ut", true, "Ickle"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6741, -31899, "Grewble", false, "Gluyka"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8380, -32059, "Ut", false, "Ickler"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9083, -32672, "Ut", "baby", "Ickluh"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10275, -32356, "BrolleWorms", false, "Flip-Flop"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9882, -31837, "BrolleWorms", false, "Chancla"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9103, -32300, "BrolleWorms", false, "High-Heels"));
+                    ArtificialIntelligenceAccess.push(new Unit(-9271, -31727, "BrolleWorms", false, "Zapato de Tacón"));
+                    ArtificialIntelligenceAccess.push(new Unit(-8359, -32655, "BrolleWorms", false, "Tacón"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11368, -32751, "SpittingMudFly", true, "Mosca Mosca"));
+                    ArtificialIntelligenceAccess.push(new Unit(-12187, -32622, "SpittingMudFly", true, "Las Moscas"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11866, -32840, "Ut", false, "Icklem"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10470, -30354, "BrolleWorms", false, "777er"));
+                    ArtificialIntelligenceAccess.push(new Unit(-11487, -29952, "Ut", "baby", "Icklek"));
+                    ArtificialIntelligenceAccess.push(new Unit(-10967, -28766, "SpittingMudFly", "baby", "Fly Fly"));
+                    ArtificialIntelligenceAccess.push(new Unit(-6372, -31461, "BrolleWorms", false, "55er"));
+                }
+
+                //Clay Deposits
+                scenicList.push(new Scenery("clayDeposit", -7528, -27313, -5.2, 6));
+                scenicList.push(new Scenery("clayDeposit", -9444, -26065, 3.06, 4));
+                scenicList.push(new Scenery("clayDeposit", -9253, -28028, 0.25, 2));
+                scenicList.push(new Scenery("clayDeposit", -11376, -31332, 5.99, 2));
+                scenicList.push(new Scenery("clayDeposit", -7820, -30081, -2.4, 9));
+                scenicList.push(new Scenery("clayDeposit", -9852, -31025, 4, 5));
+                scenicList.push(new Scenery("clayDeposit", -10243, -32593, -1, 3));
+                scenicList.push(new Scenery("clayDeposit", -11861, -32456, 2.46, 7));
+                scenicList.push(new Scenery("clayDeposit", -6878, -25600, 3.5, 4));
+                scenicList.push(new Scenery("clayDeposit", -6966, -31909, 2.2, 3));
+
+                change = "s3e1";
             }
         }
         else if (region == "e2")

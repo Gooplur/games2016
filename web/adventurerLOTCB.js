@@ -110,6 +110,7 @@ function Adventurer()
     this.totalSleep = this.sleepMAX + this.extraSleep + this.AdSleep;
     this.shockResist = 0; //this is your resistance to electric shock based damage
     this.totalShockResist = this.shockResist + this.AdShockResist;
+    this.acidResistance = 0;
     //Non-SkillBased Stats
     this.armour = 0; //this is the armor that is gained from worn equipment.
     this.magicalResistance = 0; //this is the magical resistance that is gained from worn equipment.
@@ -380,6 +381,14 @@ function Adventurer()
     this.bandagedStoreTime = new Date().getTime();
     this.bandagedTime = 0; //time limit for bandages
     this.bandaged = false; //this flag is true when your character has applied bandages which are still in effect.
+    this.acidV = false;
+    this.acidIV = false;
+    this.acidIII = false;
+    this.acidII = false;
+    this.acidI = false;
+    this.halfAcid = false;
+    this.quarterAcid = false;
+    this.acidTime = new Date().getTime();
 
     //utility or extra variables
     this.AdAbility = []; //this is a list of all active abilities held by armours and equipped outfits
@@ -1717,6 +1726,51 @@ function Adventurer()
             }
         };
 
+        this.acidify = function ()
+        {
+            if (new Date().getTime() <= this.acidTime)
+            {
+                if (this.acidV == true)
+                {
+                    this.health -= Math.max(0, 0.05 * (TTD / 16.75) - (this.acidResistance / 1000));
+                }
+                else if (this.acidIV == true)
+                {
+                    this.health -= Math.max(0, 0.04 * (TTD / 16.75) - (this.acidResistance / 1000));
+                }
+                else if (this.acidIII == true)
+                {
+                    this.health -= Math.max(0, 0.03 * (TTD / 16.75) - (this.acidResistance / 1000));
+                }
+                else if (this.acidII == true)
+                {
+                    this.health -= Math.max(0, 0.02 * (TTD / 16.75) - (this.acidResistance / 1000));
+                }
+                else if (this.acidI == true)
+                {
+                    this.health -= Math.max(0, 0.01 * (TTD / 16.75) - (this.acidResistance / 1000));
+                }
+                else if (this.halfAcid == true)
+                {
+                    this.health -= Math.max(0, 0.005 * (TTD / 16.75) - (this.acidResistance / 1000));
+                }
+                else if (this.quarterAcid == true)
+                {
+                    this.health -= Math.max(0, 0.0025 * (TTD / 16.75) - (this.acidResistance / 1000));
+                }
+            }
+            else
+            {
+                this.acidV = false;
+                this.acidIV = false;
+                this.acidIII = false;
+                this.acidII = false;
+                this.acidI = false;
+                this.halfAcid = false;
+                this.quarterAcid = false;
+            }
+        };
+
         this.fleshMite = function()
         {
             if (this.fleshMites == true)
@@ -2373,6 +2427,7 @@ function Adventurer()
         this.alcoholManagement();
         this.bandagedTimer();
         this.stunnedTimer();
+        this.acidify();
         this.poison();
         this.recovery();
         this.skillBoost();
@@ -2817,7 +2872,7 @@ function Adventurer()
         }
     };
 
-    //Insomnia Notice Function
+    //Bandaged Notice Function
     this.bandagedChecker = function()
     {
         if (this.bandaged == true)
@@ -2838,6 +2893,30 @@ function Adventurer()
         {
             //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
             this.removeNotice("Bandaged");
+        }
+    };
+
+    //Acidic Notice Function
+    this.acidicChecker = function()
+    {
+        if (this.quarterAcid == true || this.halfAcid == true || this.acidI == true || this.acidII == true || this.acidIII == true || this.acidIV == true || this.acidV == true)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Acidic");
+            //red background
+            XXX.beginPath();
+            XXX.fillStyle = "lightGreen";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Acidic"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(lodo, 3, 4, 11, 9, this.arrangeNotices("Acidic"), 413.75, 19, 19);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Acidic");
         }
     };
 
@@ -3453,6 +3532,7 @@ function Adventurer()
         this.deprivationChecker();
         this.insomniaChecker();
         this.bandagedChecker();
+        this.acidicChecker();
     };
 
     //MOVEMENT ANIMATION

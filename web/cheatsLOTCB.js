@@ -83,6 +83,10 @@ function cheats()
                 player.baseHunger = 55;
             }
         }
+        else if (cheatcode == "pointMeInTheRightDirection")
+        {
+            player.skillPoints += 1;
+        }
         else if (cheatcode == "suberbian")
         {
             player.survivalism = 0;

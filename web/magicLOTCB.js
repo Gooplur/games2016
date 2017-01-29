@@ -359,6 +359,15 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                                 ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
                             }
                         }
+                        else if (whatDoIDo == "charm")
+                        {
+                            if (ArtificialIntelligenceAccess[i].magicalResistance < 3 + 1/10 * player.getConcentration() && ArtificialIntelligenceAccess[i].healthMAX <= 25 + 2 * player.getConcentration())
+                            {
+                                ArtificialIntelligenceAccess[i].charmedTeam = "player";
+                                ArtificialIntelligenceAccess[i].charmedTime = new Date().getTime() + 45000;
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
+                        }
                         else if (whatDoIDo == "electricity")
                         {
                             this.doDelete = false;
@@ -919,6 +928,13 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 this.orientToCaster(19, 1 / 2 * Math.PI);
             }
         }
+
+        //CHARMING
+        if (this.spellType == "charm")
+        {
+            this.spin = 1/5;
+            this.orientToCaster(19, 1 / 2 * Math.PI);
+        }
         //FLYING COLOURS
         if (this.spellType == "flyingColours")
         {
@@ -1086,6 +1102,41 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 else
                 {
                     //todo add summoning spell for AI
+                }
+            }
+
+            //CHARMING
+            if (this.spellType == "charm")
+            {
+                this.turn += this.spin;
+                if (caster)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.turn);
+                    XXX.drawImage(polpol, 120, 375, 23, 23, - (1/2 * 23), - (1/2 * 23), 23, 23);
+                    XXX.restore();
+
+
+                    if (this.alert)
+                    {
+                        for (var i = 0; i < magicList.length; i++)
+                        {
+                            if (magicList[i] === this)
+                            {
+                                magicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+
+                    this.damageThenGoAway(12, "charm", 0, 0, false, "alert");
+                    this.project(this.playerRotation + 1/2 * Math.PI, 100 + 3 * player.getConcentration(), 2 * ((50 + player.getConcentration()) / 50), "alert");
+
+                }
+                else
+                {
+                    //todo add charming spell for AI
                 }
             }
 

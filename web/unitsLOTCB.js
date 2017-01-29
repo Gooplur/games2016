@@ -104,6 +104,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.doOnDeathOnce = true; //this is for unique characters, upon their death they trigger a flag letting the game know never to respawn them.
     //Other variables
     this.other = false; //this is unique for every unit... do whith it what you will.
+    this.spin = 0; //this is the rotation aspect of flash animate.
     this.plantedX = this.X;
     this.plantedY = this.Y;
     this.mofuTargetFood = "none";
@@ -150,6 +151,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.halfAcid = false;
     this.quarterAcid = false;
     this.acidTime = new Date().getTime();
+    this.charmedTeam = false;
+    this.charmedTime = new Date().getTime();
 
     //Artificial Intelligence
 
@@ -7008,6 +7011,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         var stunResistance = false;
         var shockResistance = false;
         var acidResistance = false;
+        var charmResistance = false;
+
         //for loop to check for resistance
         for (var i = 0; i < resistancesList.length; i++)
         {
@@ -7034,6 +7039,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (resistancesList[i] == "acid")
             {
                 acidResistance = true;
+            }
+            else if (resistancesList[i] == "charm")
+            {
+                charmResistance = true;
             }
         }
 
@@ -7081,6 +7090,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             this.speed = this.freezeKeepSpeed / 4.5;
             this.hasBeenFrozen = true;
+        }
+
+        //Charmed Effect
+        if (charmResistance == false && this.team != "neutral" && new Date().getTime() < this.charmedTime)
+        {
+            this.spin += 1/30;
+            this.flashAnimate(90, this.spin, 0.86, [{image: polpol, imgX: 120, imgY: 375, portionW: 23, portionH: 23, adjX: -1 / 2 * ((23 * 1.5)/10) * this.sizeRadius, adjY: -1 / 2 * ((23 * 1.5)/10) * this.sizeRadius, width: ((23 * 1.5)/10) * this.sizeRadius, height: ((23 * 1.5)/10) * this.sizeRadius}]);
+            this.team = this.charmedTeam;
+        }
+        else
+        {
+            this.team = this.baseTeam;
         }
 
         //Acid Effect

@@ -14,7 +14,6 @@ function worldBuilder()
             region = "s3";
             outlineBuilder( 34, 34, "greenGrass", -20, 82);
             outlineBuilder( 34, 1, "stonePath", 3, 82);
-            outlineBuilder( 1, 1, "forest", 3, 82);
             outlineBuilder( 4, 4, "kelltile", 4, 103);
             outlineBuilder( 1, 1, "farmland", 8, 104);
         }
@@ -3387,6 +3386,37 @@ function buildMaster()
                 scenicList.push(new Scenery("mofuNest", 5332, -28842, -3.845, 1.7)); //for mofu nests the last number determines its size multiplier.
                 scenicList.push(new Scenery("mofuNest", 5929, -28989, 4, 1.35)); //for mofu nests the last number determines its size multiplier.
                 scenicList.push(new Scenery("mofuNest", 5526, -29155, 5.45, 2.2)); //for mofu nests the last number determines its size multiplier.
+
+                //Plantlife
+                scenicList.push(new Scenery("grushweedPlant", -1934, -27527, 5, 1.2));
+                scenicList.push(new Scenery("grushweedPlant", 5213, -32206, 2.3681, 1.15));
+                scenicList.push(new Scenery("grushweedPlant", 5027, -32290, 2.3681, 0.96));
+                scenicList.push(new Scenery("mufPlant", -1212, -25586, 2, true));
+                scenicList.push(new Scenery("mufPlant", -1625, -28741, -4, true));
+                scenicList.push(new Scenery("mufPlant", 3916, -26914, 3, true));
+                scenicList.push(new Scenery("mufPlant", 3791, -28886, -6, true));
+                scenicList.push(new Scenery("techiPlant", -2181, -30042, -3.5, true));
+                scenicList.push(new Scenery("techiPlant", -574, -27261, 1.65, true));
+                scenicList.push(new Scenery("techiPlant", 4316, -27563, -3.5, true));
+                scenicList.push(new Scenery("techiPlant", 5929, -32834, 4.98, true));
+                scenicList.push(new Scenery("techiPlant", 6297, -32969, -5.78, true));
+                scenicList.push(new Scenery("techiPlant", 5597, -25983, -6.13, true));
+                scenicList.push(new Scenery("techiPlant", 1211, -28938, 0, true));
+                scenicList.push(new Scenery("techiPlant", -1191, -29547, -1.55, true));
+                scenicList.push(new Scenery("luufPlant", -2190, -28265, 6, true));
+                scenicList.push(new Scenery("luufPlant", 4912, -33426, -4.66, true));
+                scenicList.push(new Scenery("itlinPlant", -2044, -26903, -5.9, true));
+                scenicList.push(new Scenery("itlinPlant", 1175, -25095, 4.3, true));
+                scenicList.push(new Scenery("itlinPlant", 3959, -31413, -3.3, true));
+                scenicList.push(new Scenery("itlinPlant", -1843, -25164, 5, true));
+                scenicList.push(new Scenery("tenicPlant", 5959, -27404, 2.7, true));
+                scenicList.push(new Scenery("butterMellowPlant", 4959, -25479, -1, true));
+                scenicList.push(new Scenery("butterMellowPlant", 3003, -32876, -2.2345, true));
+                scenicList.push(new Scenery("palntPlant", 3347, -25438, -2.3, true));
+                scenicList.push(new Scenery("palntPlant", 4799, -29996, 4.4, true));
+                scenicList.push(new Scenery("palntPlant", 3751, -33251, -3.6, true));
+                scenicList.push(new Scenery("palntPlant", 1771, -28054, -0.4, true));
+
 
                 change = "s3";
             }

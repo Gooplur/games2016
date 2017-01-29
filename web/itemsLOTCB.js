@@ -379,6 +379,51 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 4;
             this.spellRange = "Near-Medium";
         }
+        else if (this.type == "charm")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 10)
+            {
+                this.identity = "Scroll of Charming";
+                this.description = "Studying this scroll will allow you to temporarily manipulate the will of a being.";
+                this.intForDes = 0;
+                this.intDescription = "The more concentration the caster has the stronger the beings the spell will be effective on.";
+                this.buyValue = 790 - Math.floor(player.getCharisma() / 1); // at max, buy for 740.
+                this.sellValue = 690 + Math.floor(player.getCharisma() / 1); // at max, sell for 740.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 790 - Math.floor(player.getCharisma() / 1); // at max, buy for 740.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+
+            this.spellCost = Math.max(1, 2 + 6 / 50 * player.getConcentration() - (7 / 50) * player.getEminence());
+
+            this.spellGroup = "Form";
+            this.spellGenre = "Transmutation";
+            this.spellName = "Charm";
+            this.spellID = "charm";
+            this.spellEXP = 10 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(2, 14 + (16/50) * player.getConcentration() - (26/50) * player.getEminence());
+            this.spellDescription = "A charm that manipulates the target being's mind to the casters will.";
+            this.spellKnowledgeRequirement = 10;
+            this.spellRange = "Medium";
+        }
         else if (this.type == "chasingLights")
         {
             //For All Items
@@ -13331,6 +13376,50 @@ function Item(type, x, y)
             this.buyValue = 35 - Math.floor(player.getCharisma() / 10); // at max, buy for 30.
             this.sellValue = 14 + Math.floor(player.getCharisma() / 3); // at max, sell for 29.
         }
+        else if (this.type == "aldrekiiClaws")
+        {
+            //For All Items
+            this.identity = "Aldrekii Battle Claws";
+            this.weight = 2.8;
+            this.size = 32;
+            this.description = "Metal claws, made from ikrinium infused steel.";
+            this.intForDes = 1;
+            this.intDescription = "The swift claws are used to kill enemies before they even have time to draw their blades.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 0.5;
+            this.distance = 13 + (this.range * 7);
+            this.range = 2 + 4/7;
+            this.rate = Math.max(10, 50 - Math.floor(player.getDexterity() / 2));
+            if (player.getDexterity() >= 3 && player.getDexterity() < 10)
+            {
+                this.damage = (2.5 - this.damageHandicap) * (this.leveledDamageMultiple / 25);
+            }
+            else if (player.getDexterity() >= 10)
+            {
+                this.damage = (3.5 - this.damageHandicap) * (this.leveledDamageMultiple / 25);
+            }
+            else
+            {
+                this.damage = (2 - this.damageHandicap) * (this.leveledDamageMultiple / 25);
+            }
+            this.magicalDamage = 0;
+            this.negateArmour = 0.75;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 33;
+            this.ingredients = [["Ikrinium", 1], ["Steel", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 68 - Math.floor(player.getCharisma() / 5); // at max, buy for 58.
+            this.sellValue = 52 + Math.floor(player.getCharisma() / 8); // at max, sell for 58.
+        }
         else if (this.type == "freydicGreatSword")
         {
             //For All Items
@@ -14889,7 +14978,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1922, 4, 23, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 23), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32), 23, 32);
         }
-        else if (this.type == "vivification" || this.type == "freezingGrasp" || this.type == "shieldingV")
+        else if (this.type == "vivification" || this.type == "freezingGrasp" || this.type == "shieldingV" || this.type == "charm")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1928, 39, 40, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 40), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 40, 21);
@@ -15368,6 +15457,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 2057, 4, 20, 45, X - this.X + (1/2 * CCC.width) - (1/2 * 24), Y - this.Y + (1/2 * CCC.height) - (1/2 * 54), 24, 54);
+        }
+        else if (this.type == "aldrekiiClaws")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 268, 214, 22, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 2), 22 * 2, 23 * 2);
         }
         else if (this.type == "flail")
         {
@@ -16835,7 +16929,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -17274,6 +17368,11 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(oldverse, 2057, 4, 20, 45, this.invX - (1/2 * 24), this.invY - (1/2 * 54), 24, 54);
+        }
+        else if (this.type == "aldrekiiClaws")
+        {
+            LXX.beginPath();
+            LXX.drawImage(lodo, 268, 214, 22, 23, this.invX - (1/2 * 22 * 2), this.invY - (1/2 * 23 * 2), 22 * 2, 23 * 2);
         }
         else if (this.type == "flail")
         {
@@ -18706,7 +18805,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -19141,6 +19240,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 2057, 4, 20, 45, this.invX - (1/2 * 24), this.invY - (1/2 * 54), 24, 54);
+        }
+        else if (this.type == "aldrekiiClaws")
+        {
+            XXX.beginPath();
+            XXX.drawImage(lodo, 268, 214, 22, 23, this.invX - (1/2 * 22 * 2), this.invY - (1/2 * 23 * 2), 22 * 2, 23 * 2);
         }
         else if (this.type == "flail")
         {

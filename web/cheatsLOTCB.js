@@ -71,10 +71,21 @@ function cheats()
         {
             uniqueChars.medliaLDS = true;
         }
+        else if (cheatcode == "MedliaKit")
+        {
+            uniqueChars.medliaLDS = true;
+        }
         else if (cheatcode == "fixOrgell")
         {
-            player.baseThirst = 25;
-            player.baseHunger = 55;
+            if (player.raceName == "Orgell")
+            {
+                player.baseThirst = 25;
+                player.baseHunger = 55;
+            }
+        }
+        else if (cheatcode == "suberbian")
+        {
+            player.survivalism = 0;
         }
         else if (cheatcode == "showsize")
         {
@@ -206,6 +217,13 @@ function cheats()
             {
                 developerRapidamente = true;
                 rapidamente = true;
+            }
+        }
+        else if (cheatcode == "GOPLUR")
+        {
+            if (player.name == "Gooplur" && player.race == "#336600")
+            {
+                Inventory = allSpells;
             }
         }
         else if (cheatcode == "GP")

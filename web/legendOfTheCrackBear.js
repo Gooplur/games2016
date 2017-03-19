@@ -3,6 +3,8 @@
  */
 
 //TODO LIST
+//todo add Hyeling Armour, add Bare Hyelings, add Hyeling claws item, add Hyeling flesh and meat.
+//todo add warm norther thick clothing made with waanti.
 //todo figure out why aldrekii claws manual attack thing won't let it at twice or even early, while the same code lets the flail perform its attack early.
 //todo finish adding sickness system
 //todo add Lodotos, a sickness that one can get in the kellish mud bog.
@@ -615,6 +617,31 @@ function legendaryPrerequisites()
     var hilmundBuy = new Audio("sounds/polySounds/hilmundBuy.mp3");
     window.hilmundBuy = hilmundBuy;
 
+    //CREATURE SOUNDS
+
+    //Hyeling Sounds
+
+    var hyelingBattlecry1 = new Audio("sounds/polySounds/hyelingBattlecry1.mp3");
+    window.hyelingBattlecry1 = hyelingBattlecry1;
+
+    var hyelingBattlecry2 = new Audio("sounds/polySounds/hyelingBattlecry2.mp3");
+    window.hyelingBattlecry2 = hyelingBattlecry2;
+
+    var hyelingPaincry1 = new Audio("sounds/polySounds/hyelingPaincry1.mp3");
+    window.hyelingPaincry1 = hyelingPaincry1;
+
+    var hyelingPaincry2 = new Audio("sounds/polySounds/hyelingPaincry2.mp3");
+    window.hyelingPaincry2 = hyelingPaincry2;
+
+    var hyelingClick1 = new Audio("sounds/polySounds/hyelingClick1.mp3");
+    window.hyelingClick1 = hyelingClick1;
+
+    var hyelingClick2 = new Audio("sounds/polySounds/hyelingClick2.mp3");
+    window.hyelingClick2 = hyelingClick2;
+
+    var hyelingClick3 = new Audio("sounds/polySounds/hyelingClick3.mp3");
+    window.hyelingClick3 = hyelingClick3;
+
     //images
     var farmground = new Image();
     farmground.src = ("images/farmingland.png");
@@ -728,9 +755,22 @@ function secondToLastPreStage()
 
     theCrack.onload = function()
     {
+        notReallyJustKidding();
+    };
+}
+
+function notReallyJustKidding()
+{
+    var furr = new Image();
+    furr.src = ("images/furr.png");
+    window.furr = furr;
+
+    furr.onload = function()
+    {
         comingUpToLastPreStage();
     };
 }
+
 function comingUpToLastPreStage()
 {
     var polpol = new Image();
@@ -896,6 +936,7 @@ var secondarySpells;
 var tertiarySpells;
 var wellConversionList;
 var naapridConversionList;
+var waantiConversionList;
 var conversationID;
 var conversations;
 var beegin;
@@ -1587,6 +1628,7 @@ function theLegend()
     wellConversionList = [["pintGlass", "waterPintGlass"], ["walrusLeatherWaterskin", "walrusLeatherWaterskinFull"], ["bucket", "bucketOfWater"], ["potionGlass", "vialOfWater"], ["kellishClayPot", "kellishClayPotOfWater"], ["glassBottle", "glassBottleOfWater"]];
 //Milking/Juicing/Sapping Lists
     naapridConversionList = [["bucket", "bucketOfNaapridMilk"], ["kellishClayPot", "kellishClayPotOfNaapridMilk"]];
+    waantiConversionList = [["bucket", "bucketOfWaantiMilk"], ["kellishClayPot", "kellishClayPotOfWaantiMilk"]];
 //conversations and dialogue
     conversationID = ["none", 0]; //[Person conversing with, stage in conversation]
     conversations =
@@ -1880,6 +1922,7 @@ allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false
     allWeapons.push(new Item("theNorthernGem", false)); //51
     allWeapons.push(new Item("steelArrow", false)); //52
     allWeapons.push(new Item("aldrekiiClaws", false)); //53
+    allWeapons.push(new Item("hyelingCleaver", false)); //54
 
 //This list holds one of each type of worn item so that the player can access the worn item stats.
     allWorn = [];
@@ -1922,6 +1965,9 @@ allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false
     allWorn.push(new Item("anterShellArmour", false)); //36
     allWorn.push(new Item("theCorpseRing", false)); //37
     allWorn.push(new Item("ironRing", false)); //38
+    allWorn.push(new Item("fineFreydicOutfitF", false)); //39
+    allWorn.push(new Item("fineFreydicOutfitM", false)); //40
+    allWorn.push(new Item("hyelingArmour", false)); //41
 
     scenicList = [];
 
@@ -2001,6 +2047,8 @@ allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false
     smithing.push(new Item("thenganPlateArmour", false));
     smithing.push(new Item("swampWalkerArmour", false));
     smithing.push(new Item("vardanianClub", false));
+    smithing.push(new Item("hyelingCleaver", false));
+    smithing.push(new Item("hyelingArmour", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];
@@ -2051,6 +2099,8 @@ allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false
     foods.push(new Item("utMeat", false));
     foods.push(new Item("tunskMeat", false));
     foods.push(new Item("roastedWegRoot", false));
+    foods.push(new Item("waantiMeat", false));
+    foods.push(new Item("hyelingMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -2084,6 +2134,9 @@ allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false
     tailoring.push(new Item("ardilFurClothing", false));
     tailoring.push(new Item("ardilFurSkirt", false));
     tailoring.push(new Item("ardilFurGloves", false));
+    tailoring.push(new Item("fineFreydicOutfitF", false));
+    tailoring.push(new Item("fineFreydicOutfitM", false));
+    tailoring.push(new Item("waantiFurOutfit", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];

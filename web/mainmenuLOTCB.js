@@ -559,6 +559,17 @@ function applySelectionsButton()
                 }
                 Inventory.push([new Item("theNorthernGem", false, false), 1]);
             }
+            else if (player.title == "Nobility")
+            {
+                if (player.gender == "Female")
+                {
+                    Inventory.push([new Item("fineFreydicOutfitF", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("fineFreydicOutfitM", false, false), 1]);
+                }
+            }
         }
         else if (player.title == "Nobility" && player.raceName == "Aldrek" || player.title == "Royalty" && player.raceName == "Aldrek")
         {

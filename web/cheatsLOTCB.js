@@ -95,6 +95,10 @@ function cheats()
         {
             testingUnitSizes = true;
         }
+        else if (cheatcode == "showcenter")
+        {
+            testingUnitCenters = true;
+        }
         else if (cheatcode == "00567817")
         {
             player.concentration = 0;

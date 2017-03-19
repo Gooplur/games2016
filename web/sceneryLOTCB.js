@@ -3441,6 +3441,50 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "largeCeremonialRockCircle")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(furr, 15, 685, 164, 147, -(1/2 * 164 * 1.7), -(1/2 * 147 * 1.7), 164 * 1.7, 147 * 1.7);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 0;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "hyelingSkeleton")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(furr, 282, 707, 54, 45, -(1/2 * 54 * 1.6), -(1/2 * 45 * 1.6), 54 * 1.6, 45 * 1.6);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 0;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "tent")
         {
             //TRAITS
@@ -3478,6 +3522,30 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 {
                     sleep();
                 }
+            }
+        }
+        else if (this.type == "hyelingTent")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 130;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(furr, 188, 715, 64, 57, -(1/2 * 64 * 1.9), -(1/2 * 57 * 1.9), 64 * 1.9, 57 * 1.9);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 54;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                player.warmth += 50;
+                sleep();
             }
         }
         else if (this.type == "pineTree")

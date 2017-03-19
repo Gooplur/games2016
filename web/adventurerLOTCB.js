@@ -3963,6 +3963,18 @@ function Adventurer()
         {
             outfit = allWorn[36];
         }
+        else if (this.outfitEquipped == "fineFreydicOutfitF")
+        {
+            outfit = allWorn[39];
+        }
+        else if (this.outfitEquipped == "fineFreydicOutfitM")
+        {
+            outfit = allWorn[40];
+        }
+        else if (this.outfitEquipped == "hyelingArmour")
+        {
+            outfit = allWorn[41];
+        }
         else
         {
             outfit = allWorn[0];
@@ -4075,6 +4087,33 @@ function Adventurer()
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (1 / 2 * Math.PI));
             XXX.drawImage(oldverse, 44, 89, 51, 35, -(1 / 2 * 40.8) + 6.3, -(1 / 2 * 28) - 0.5, 45.9, 31.5);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "hyelingArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (Math.PI));
+            XXX.drawImage(furr, 197, 3, 16, 16, -(1 / 2 * 16 * 2.1) + 0, -(1 / 2 * 16 * 2.1) + 1, 16 * 2.1, 16 * 2.1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "fineFreydicOutfitF")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(furr, 289, 439, 40, 32, -(1 / 2 * 40) - 1.3, -(1 / 2 * 32) + 2, 40, 32);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "fineFreydicOutfitM")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(furr, 230, 555, 40, 32, -(1 / 2 * 40) + 2.9, -(1 / 2 * 32) + 4.5, 36, 28.8);
             XXX.restore();
         }
         else if (this.outfitEquipped == "jvostranPlateArmour")
@@ -4296,6 +4335,15 @@ function Adventurer()
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
             XXX.drawImage(verse, 2106, 5, 29, 24, -(1 / 2 * 29) + 1.75, -(1 / 2 * 24) - 0, 26, 26);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "waantiFurOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(furr, 289, 493, 29, 22, -(1 / 2 * 29 * 1.5) + 0, -(1 / 2 * 22 * 1.5) - 0.25, 29 * 1.5, 22 * 1.5);
             XXX.restore();
         }
         else if (this.outfitEquipped == "varnFurClothing" || this.outfitEquipped == "varnFurCloak")
@@ -8276,6 +8324,61 @@ function Adventurer()
                 XXX.restore();
             }
         }
+        //HYELING BATTLE CLEAVER
+        if (this.weaponEquipped == "hyelingCleaver")
+        {
+            this.stageEngine(7, 0.22, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(furr, 131, 302, 63, 50, -31.5 * 1.6, -25 * 1.6, 63 * 1.6, 50 * 1.6);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(furr, 130, 370, 63, 50, -31.5 * 1.6, -25 * 1.6, 63 * 1.6, 50 * 1.6);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(furr, 132, 434, 63, 50, -31.5 * 1.6, -25 * 1.6, 63 * 1.6, 50 * 1.6);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(furr, 133, 492, 63, 50, -31.5 * 1.6, -25 * 1.6, 63 * 1.6, 50 * 1.6);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(furr, 131, 547, 63, 50, -31.5 * 1.6, -25 * 1.6, 63 * 1.6, 50 * 1.6);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(furr, 128, 599, 63, 50, -31.5 * 1.6 - 1, -25 * 1.6 -10, 63 * 1.6, 50 * 1.6);
+                XXX.restore();
+            }
+        }
         //VARDANIAN BATTLE AXES
         if (this.weaponEquipped == "dualVardanianBattleAxe")
         {
@@ -9622,6 +9725,14 @@ function Adventurer()
             //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 13);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 13);
+        }
+        else if (this.weaponEquipped == "hyelingCleaver")
+        {
+            this.weapon = allWeapons[54];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.25/5 * Math.PI) * (this.mySize + 20);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.25/5 * Math.PI) * (this.mySize + 20);
         }
     };
 
@@ -11632,6 +11743,10 @@ function Adventurer()
                     else if (beastJournal[i].image[0] == "lodo")
                     {
                         picture = lodo;
+                    }
+                    else if (beastJournal[i].image[0] == "furr")
+                    {
+                        picture = furr;
                     }
                     //sourcing image from list: //this list is of all the beasts your character learns about in the world.
                     //beastJournal List -- each element in which is an object.

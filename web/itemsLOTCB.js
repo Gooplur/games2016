@@ -4748,6 +4748,37 @@ function Item(type, x, y)
             this.buyValue = 38 - Math.floor(player.getCharisma() / 4); // at max, buy for 26.
             this.sellValue = 18 + Math.floor(player.getCharisma() / 6); // at max, sell for 26.
         }
+        else if (this.type == "bucketOfWaantiMilk")
+        {
+            //For All Items
+            this.identity = "Bucket of Waanti Milk";
+            this.weight = 6;
+            this.size = 12;
+            this.description = "An iron bucket filled with the sour, gamey milk of a waanti.";
+            this.intForDes = 3;
+            this.intDescription = "Waanti are generally herded by the Freydic, and used for both milk and meat.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["bucket", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 28; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "quench";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 29 - Math.floor(player.getCharisma() / 10); // at max, buy for 24.
+            this.sellValue = 13 + Math.floor(player.getCharisma() / 5); // at max, sell for 23.
+        }
         else if (this.type == "bucketOfWater")
         {
             //For All Items
@@ -5356,6 +5387,41 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 85 - Math.floor(player.getCharisma() / 5); // at max, buy for 75.
             this.sellValue = 48 + Math.floor(player.getCharisma() / 2); // at max, sell for 73.
+        }
+        else if (this.type == "kellishClayPotOfWaantiMilk")
+        {
+            //For All Items
+            this.identity = "Kellish Clay Pot of Waanti Milk";
+            this.weight = 40;
+            this.size = 12;
+            this.description = "A kellish style of pot filled with the sour, gamey milk of a waanti.";
+            this.intForDes = 8;
+            if (player.raceName == "Kel")
+            {
+                this.intForDes = 0;
+            }
+            this.intDescription = "This type of pot is not traditionally used to hold such a milk.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["kellishClayPot", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 12; //satisfies hunger.
+            this.thirst = 45; //quenches thirst.
+            this.warmth = 1.7; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "quench";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 54 - Math.floor(player.getCharisma() / 5); // at max, buy for 44.
+            this.sellValue = 28 + Math.floor(player.getCharisma() / 3); // at max, sell for 43.
         }
         else if (this.type == "kellishClayPotOfMushroomStew")
         {
@@ -6169,6 +6235,91 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+        }
+        else if (this.type == "waantiPelt")
+        {
+            //For All Items
+            this.identity = "Waanti Pelt";
+            this.weight = 1.25;
+            this.size = 14;
+            this.description = "The soft long brown furred pelt of a waanti.";
+            this.intForDes = 5;
+            this.intDescription = "Waanti fur is a staple product when it comes to Freydic outfitting.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13 - Math.floor(player.getCharisma() / 12); // at max, buy for 9.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 10); // at max, sell for 9.
+        }
+        else if (this.type == "rawWaantiFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Waanti Flesh";
+            this.weight = 1.4;
+            this.size = 9;
+            this.description = "The raw flesh of a waanti.";
+            this.intForDes = 1;
+            this.intDescription = "Waanti meat is particularly gamey and often favored in the north for its fat marbled flesh, making it one of the few tender meats available. ";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 15); // at max, sell for 5.
+        }
+        else if (this.type == "waantiMeat")
+        {
+            //For All Items
+            this.identity = "Waanti Meat";
+            this.weight = 1.35;
+            this.size = 9;
+            this.description = "The tender, and strongly gamey tasting cooked meat of a waanti.";
+            this.intForDes = 2;
+            this.intDescription = "Waanti meat is one of the most sought after meats in the north for its enchanting wild flavor and its tenderness.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 12; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.5; //recoops lost energy.
+            this.replenish = 0.25; //restores will.
+
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 13;
+            this.ingredients = [["Raw Waanti Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 10); // at max, buy for 10.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 10); // at max, sell for 10.
         }
         else if (this.type == "neculaisEar")
         {
@@ -8045,6 +8196,109 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 0; // at max, buy for 0.
             this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "brokenHyelingCleaver")
+        {
+            //For All Items
+            this.identity = "Shattered Hyeling Cleaver";
+            this.weight = 1.5;
+            this.size = 10;
+            this.description = "A cleaver once made from hyeling claws now broken in several shards.";
+            this.intForDes = 1;
+            this.intDescription = "Clearly this cleaver was not of very high quality, if it was it wouldn't have broken...";
+
+            //Define Utility
+            this.utility = "junk";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "hyelingClaws")
+        {
+            //For All Items
+            this.identity = "Hyeling Claws";
+            this.weight = 0.3;
+            this.size = 5;
+            this.description = "The sharp light blue claws of a hyeling.";
+            this.intForDes = 3;
+            this.intDescription = "Hyelings shed their claws and often use them for forging weapons.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "rawHyelingFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Hyeling Flesh";
+            this.weight = 1.2;
+            this.size = 7;
+            this.description = "The raw flesh of a hyeling.";
+            this.intForDes = 29;
+            this.intDescription = "A substance in the blood seems to prevent any freezing of the flesh by cold weather conditions.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.25; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = -2; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 15); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "hyelingMeat")
+        {
+            //For All Items
+            this.identity = "Hyeling Meat";
+            this.weight = 1.15;
+            this.size = 18;
+            this.description = "The cooked meat of a Hyeling.";
+            this.intForDes = 6;
+            this.intDescription = "Cooked hyeling meat is completely safe to eat, but it doesn't taste particularly good.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 3;
+            this.ingredients = [["Raw Hyeling Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
         }
         else if (this.type == "suuliMelon")
         {
@@ -12021,6 +12275,127 @@ function Item(type, x, y)
             this.buyValue = 5500 - Math.floor(player.getCharisma() / 0.125); // at max, buy for 5100.
             this.sellValue = 4700 + Math.floor(player.getCharisma() / 0.125); // at max, sell for 5100.
         }
+        else if (this.type == "fineFreydicOutfitF")
+        {
+            //For All Items
+            this.identity = "Lady's Fine Freydic Outfit";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "Expertly tailored clothing suitable for the high class.";
+            this.intForDes = 1;
+            this.intDescription = "Sewn from waanti fur, delicately lined with cloth on the inside!";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.5;
+            this.thirstRetention = -1;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 15;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 15;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 41;
+            this.ingredients = [["Waanti Pelt", 2], ["Cloth", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 250 - Math.floor(player.getCharisma() / 3); // at max, buy for 250.
+            this.sellValue = 125 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 225.
+        }
+        else if (this.type == "fineFreydicOutfitM")
+        {
+            //For All Items
+            this.identity = "Gent's Fine Freydic Outfit";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "Expertly tailored clothing suitable for the high class.";
+            this.intForDes = 1;
+            this.intDescription = "Sewn from waanti fur, delicately lined with cloth on the inside!";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.5;
+            this.thirstRetention = -1;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 10;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 15;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 41;
+            this.ingredients = [["Waanti Pelt", 2], ["Cloth", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 250 - Math.floor(player.getCharisma() / 3); // at max, buy for 250.
+            this.sellValue = 125 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 225.
+        }
         else if (this.type == "freydicRoyalOutfit")
         {
             //For All Items
@@ -12077,6 +12452,63 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 8950 - Math.floor(player.getCharisma() / 0.0625); // at max, buy for 8150.
             this.sellValue = 6925 + Math.floor(player.getCharisma() / 0.0625); // at max, sell for 7725.
+        }
+        else if (this.type == "hyelingArmour")
+        {
+            //For All Items
+            this.identity = "Hyeling Battle Armour";
+            this.weight = 7;
+            this.size = 26;
+            this.description = "A wood and fur armour commonly worn by hyeling soldiers.";
+            this.intForDes = 2;
+            this.intDescription = "The armour actually has four eye slits becuase hyelings have four eyes but only two of them are emphasized on the mask.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 1.6 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.75;
+            this.thirstRetention = -0.5;
+            this.shockResist = -0.1;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 1;
+            this.rangedBonus = -1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -2;
+            this.survivalismBonus = 1;
+            //Extra Stat Bonuses
+            this.sleepBonus = 1;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 2;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 33;
+            this.ingredients = [["Wood", 3], ["Waanti Pelt", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 60 - Math.floor(player.getCharisma() / 5); // at max, buy for 50.
+            this.sellValue = 40 + Math.floor(player.getCharisma() / 5); // at max, sell for 50.
         }
         else if (this.type == "winterWolfOutfit")
         {
@@ -12226,7 +12658,7 @@ function Item(type, x, y)
             }
             else
             {
-                this.charismaBonus = 15;
+                this.charismaBonus = 7;
             }
             this.rangedBonus = 0;
             this.constitutionBonus = 0;
@@ -12547,6 +12979,63 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 38 - Math.floor(player.getCharisma() / 15); // at max, buy for 35.
             this.sellValue = 29 + Math.floor(player.getCharisma() / 8); // at max, sell for 35.
+        }
+        else if (this.type == "waantiFurOutfit")
+        {
+            //For All Items
+            this.identity = "Waanti Fur Outfit";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "Clothing sewn from the pelts of waanti.";
+            this.intForDes = 0;
+            this.intDescription = "Waanti fur is particularly good at holding in heat.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.1;
+            this.thirstRetention = -1;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 1;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 7;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 16;
+            this.ingredients = [["Waanti Pelt", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 22 - Math.floor(player.getCharisma() / 8); // at max, buy for 16.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 10); // at max, sell for 16.
         }
         else if (this.type == "varnFurClothing")
         {
@@ -13636,6 +14125,39 @@ function Item(type, x, y)
             this.buyValue = 25 - Math.floor(player.getCharisma() / 6); // at max, buy for 17.
             this.sellValue = 11 + Math.floor(player.getCharisma() / 8); // at max, sell for 17.
         }
+        else if (this.type == "hyelingCleaver")
+        {
+            //For All Items
+            this.identity = "Hyeling Battle Cleaver";
+            this.weight = 2;
+            this.size = 35;
+            this.description = "A blue cleaver crafted from a strange non-metal material.";
+            this.intForDes = 30;
+            this.intDescription = "Hyelings shed their claws and use them to forge weaponry.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 2.5;
+            this.distance = 20 + (this.range * 7);
+            this.range = 3 + 1/7;
+            this.rate = 90;
+            this.damage = (3 - (this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((2/50) * player.getStrength() + (3/50) * player.getDexterity());
+            this.magicalDamage = 0;
+            this.negateArmour = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 35;
+            this.ingredients = [["Hyeling Claws", 9]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 29 - Math.floor(player.getCharisma() / 10); // at max, buy for 24.
+            this.sellValue = 19 + Math.floor(player.getCharisma() / 10); // at max, sell for 24.
+        }
         else if (this.type == "vardanianCleaver")
         {
             //For All Items
@@ -14320,6 +14842,31 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(mofu, 1369, 10, 19, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * 1.65), 19 * 1.65, 37 * 1.65);
         }
+        else if (this.type == "brokenHyelingCleaver")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 223, 83, 31, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34 * 1.6), 31 * 1.6, 34 * 1.6);
+        }
+        else if (this.type == "hyelingClaws")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 98, 53, 22, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.6), 22 * 1.6, 19 * 1.6);
+        }
+        else if (this.type == "rawHyelingFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 223, 600, 14, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.6), 14 * 1.6, 18 * 1.6);
+        }
+        else if (this.type == "hyelingMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 241, 601, 14, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.6), 14 * 1.6, 18 * 1.6);
+        }
+        else if (this.type == "hyelingArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 197, 30, 17, 46, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 46 * 2), 17 * 2, 46 * 2);
+        }
         else if (this.type == "golgemoffFeelers")
         {
             XXX.beginPath();
@@ -14708,7 +15255,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 3036, 1, 22, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.7), 22 * 1.7, 19 * 1.7);
         }
-        else if (this.type == "kellishClayPotOfNaapridMilk")
+        else if (this.type == "kellishClayPotOfNaapridMilk" || this.type == "kellishClayPotOfWaantiMilk")
         {
             XXX.beginPath();
             XXX.drawImage(verse, 3017, 1, 20, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.7), 20 * 1.7, 18 * 1.7);
@@ -14828,7 +15375,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(poly, 2, 61, 17, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 2), 17 * 2, 17 * 2);
         }
-        else if (this.type == "bucketOfNaapridMilk")
+        else if (this.type == "bucketOfNaapridMilk" || this.type == "bucketOfWaantiMilk")
         {
             XXX.beginPath();
             XXX.drawImage(freeverse, 118, 27, 14, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 2), 14 * 2, 15 * 2);
@@ -15147,6 +15694,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 91, 380, 50, 61, X - this.X + (1/2 * CCC.width) - (1/2 * 80), Y - this.Y + (1/2 * CCC.height) - (1/2 * 95.6), 80, 95.6);
         }
+        else if (this.type == "waantiFurOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 216, 457, 43, 65, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 65 * 1.5), 43 * 1.5, 65 * 1.5);
+        }
         else if (this.type == "frichFurMittens")
         {
             XXX.beginPath();
@@ -15212,6 +15764,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(theCrack, 250, 359, 14, 54, X - this.X + (1/2 * CCC.width) - (1/2 * 17.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 67.5), 17.5, 67.5);
         }
+        else if (this.type == "hyelingCleaver")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 134, 3, 29, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 1.6), 29 * 1.6, 33 * 1.6);
+        }
         else if (this.type == "rawVarnFlesh")
         {
             XXX.beginPath();
@@ -15257,6 +15814,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(verse, 2959, 151, 41, 60, X - this.X + (1/2 * CCC.width) - (1/2 * 74.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 108), 74.2, 108);
+        }
+        else if (this.type == "fineFreydicOutfitF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 294, 298, 42, 65, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 65 * 1.6), 42 * 1.6, 65 * 1.6);
+        }
+        else if (this.type == "fineFreydicOutfitM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 286, 527, 41, 77, X - this.X + (1/2 * CCC.width) - (1/2 * 41 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 77 * 1.5), 41 * 1.5, 77 * 1.5);
         }
         else if (this.type == "naapridLeatherArmour")
         {
@@ -15537,6 +16104,21 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(verse, 79, 227, 10, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 20), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24), 20, 24);
+        }
+        else if (this.type == "waantiPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 155, 62, 20, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1.6), 20 * 1.6, 27 * 1.6);
+        }
+        else if (this.type == "rawWaantiFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 128, 95, 14, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.6), 14 * 1.6, 19 * 1.6);
+        }
+        else if (this.type == "waantiMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 109, 95, 14, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.6), 14 * 1.6, 19 * 1.6);
         }
         else if (this.type == "rawUtFlesh")
         {
@@ -16277,6 +16859,31 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(mofu, 1369, 10, 19, 37, this.invX - (1/2 * 19 * 1.65), this.invY - (1/2 * 37 * 1.65), 19 * 1.65, 37 * 1.65);
         }
+        else if (this.type == "brokenHyelingCleaver")
+        {
+            LXX.beginPath();
+            LXX.drawImage(furr, 223, 83, 31, 34, this.invX - (1/2 * 31 * 1.6), this.invY - (1/2 * 34 * 1.6), 31 * 1.6, 34 * 1.6);
+        }
+        else if (this.type == "hyelingClaws")
+        {
+            LXX.beginPath();
+            LXX.drawImage(furr, 98, 53, 22, 19, this.invX - (1/2 * 22 * 1.6), this.invY - (1/2 * 19 * 1.6), 22 * 1.6, 19 * 1.6);
+        }
+        else if (this.type == "rawHyelingFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(furr, 223, 600, 14, 18, this.invX - (1/2 * 14 * 1.6), this.invY - (1/2 * 18 * 1.6), 14 * 1.6, 18 * 1.6);
+        }
+        else if (this.type == "hyelingMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(furr, 241, 601, 14, 18, this.invX - (1/2 * 14 * 1.6), this.invY - (1/2 * 18 * 1.6), 14 * 1.6, 18 * 1.6);
+        }
+        else if (this.type == "hyelingArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(furr, 197, 30, 17, 46, this.invX - (1/2 * 17 * 1.6), this.invY - (1/2 * 46 * 1.6), 17 * 1.6, 46 * 1.6);
+        }
         else if (this.type == "golgemoffFeelers")
         {
             LXX.beginPath();
@@ -16684,7 +17291,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(verse, 3036, 1, 22, 19, this.invX - (1/2 * 22 * 1.7), this.invY - (1/2 * 19 * 1.7), 22 * 1.7, 19 * 1.7);
         }
-        else if (this.type == "kellishClayPotOfNaapridMilk")
+        else if (this.type == "kellishClayPotOfNaapridMilk" || this.type == "kellishClayPotOfWaantiMilk")
         {
             LXX.beginPath();
             LXX.drawImage(verse, 3017, 1, 20, 18, this.invX - (1/2 * 20 * 1.7), this.invY - (1/2 * 18 * 1.7), 20 * 1.7, 18 * 1.7);
@@ -16804,7 +17411,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(poly, 3, 36, 13, 20, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 20 * 2), 13 * 2, 20 * 2);
         }
-        else if (this.type == "bucketOfNaapridMilk")
+        else if (this.type == "bucketOfNaapridMilk" || this.type == "bucketOfWaantiMilk")
         {
             LXX.beginPath();
             LXX.drawImage(freeverse, 118, 1, 14, 21, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 21 * 2), 14 * 2, 21 * 2);
@@ -17058,6 +17665,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(verse, 91, 380, 50, 61, this.invX - (1/2 * 80  * 0.8), this.invY - (1/2 * 95.6 * 0.7), 80 * 0.8, 95.6 * 0.7);
         }
+        else if (this.type == "waantiFurOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(furr, 216, 457, 43, 65, this.invX - (1/2 * 43 * 1.2), this.invY - (1/2 * 65 * 1.2), 43 * 1.2, 65 * 1.2);
+        }
         else if (this.type == "frichFurMittens")
         {
             LXX.beginPath();
@@ -17123,6 +17735,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(theCrack, 250, 359, 14, 54, this.invX - (1/2 * 17.5), this.invY - (1/2 * 67.5), 17.5, 67.5);
         }
+        else if (this.type == "hyelingCleaver")
+        {
+            LXX.beginPath();
+            LXX.drawImage(furr, 134, 3, 29, 33, this.invX - (1/2 * 29 * 1.6), this.invY - (1/2 * 33 * 1.6), 29 * 1.6, 33 * 1.6);
+        }
         else if (this.type == "rawVarnFlesh")
         {
             LXX.beginPath();
@@ -17168,6 +17785,16 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(verse, 2959, 151, 41, 60, this.invX - (1/2 * 52.4), this.invY - (1/2 * 78), 52.4, 78);
+        }
+        else if (this.type == "fineFreydicOutfitF")
+        {
+            LXX.beginPath();
+            LXX.drawImage(furr, 294, 298, 42, 65, this.invX - (1/2 * 42 * 1.1), this.invY - (1/2 * 65 * 1.1), 42 * 1.1, 65 * 1.1);
+        }
+        else if (this.type == "fineFreydicOutfitM")
+        {
+            LXX.beginPath();
+            LXX.drawImage(furr, 286, 527, 41, 77, this.invX - (1/2 * 41 * 1), this.invY - (1/2 * 77 * 1), 41 * 1, 77 * 1);
         }
         else if (this.type == "naapridLeatherArmour")
         {
@@ -17448,6 +18075,21 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(verse, 79, 227, 10, 12, this.invX - (1/2 * 20), this.invY - (1/2 * 24), 20, 24);
+        }
+        else if (this.type == "waantiPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(furr, 155, 62, 20, 27, this.invX - (1/2 * 20 * 1.6), this.invY - (1/2 * 27 * 1.6), 20 * 1.6, 27 * 1.6);
+        }
+        else if (this.type == "rawWaantiFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(furr, 128, 95, 14, 19, this.invX - (1/2 * 14 * 1.6), this.invY - (1/2 * 19 * 1.6), 14 * 1.6, 19 * 1.6);
+        }
+        else if (this.type == "waantiMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(furr, 109, 95, 14, 19, this.invX - (1/2 * 14 * 1.6), this.invY - (1/2 * 19 * 1.6), 14 * 1.6, 19 * 1.6);
         }
         else if (this.type == "rawUtFlesh")
         {
@@ -18162,6 +18804,31 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(mofu, 1369, 10, 19, 37, this.invX - (1/2 * 19 * 1.65), this.invY - (1/2 * 37 * 1.65), 19 * 1.65, 37 * 1.65);
         }
+        else if (this.type == "brokenHyelingCleaver")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 223, 83, 31, 34, this.invX - (1/2 * 31 * 1.6), this.invY - (1/2 * 34 * 1.6), 31 * 1.6, 34 * 1.6);
+        }
+        else if (this.type == "hyelingClaws")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 98, 53, 22, 19, this.invX - (1/2 * 22 * 1.6), this.invY - (1/2 * 19 * 1.6), 22 * 1.6, 19 * 1.6);
+        }
+        else if (this.type == "rawHyelingFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 223, 600, 14, 18, this.invX - (1/2 * 14 * 1.6), this.invY - (1/2 * 18 * 1.6), 14 * 1.6, 18 * 1.6);
+        }
+        else if (this.type == "hyelingMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 241, 601, 14, 18, this.invX - (1/2 * 14 * 1.6), this.invY - (1/2 * 18 * 1.6), 14 * 1.6, 18 * 1.6);
+        }
+        else if (this.type == "hyelingArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 197, 30, 17, 46, this.invX - (1/2 * 17 * 1.6), this.invY - (1/2 * 46 * 1.6), 17 * 1.6, 46 * 1.6);
+        }
         else if (this.type == "golgemoffFeelers")
         {
             XXX.beginPath();
@@ -18560,7 +19227,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 3036, 1, 22, 19, this.invX - (1/2 * 22 * 1.7), this.invY - (1/2 * 19 * 1.7), 22 * 1.7, 19 * 1.7);
         }
-        else if (this.type == "kellishClayPotOfNaapridMilk")
+        else if (this.type == "kellishClayPotOfNaapridMilk" || this.type == "kellishClayPotOfWaantiMilk")
         {
             XXX.beginPath();
             XXX.drawImage(verse, 3017, 1, 20, 18, this.invX - (1/2 * 20 * 1.7), this.invY - (1/2 * 18 * 1.7), 20 * 1.7, 18 * 1.7);
@@ -18680,7 +19347,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(poly, 3, 36, 13, 20, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 20 * 2), 13 * 2, 20 * 2);
         }
-        else if (this.type == "bucketOfNaapridMilk")
+        else if (this.type == "bucketOfNaapridMilk" || this.type == "bucketOfWaantiMilk")
         {
             XXX.beginPath();
             XXX.drawImage(freeverse, 118, 1, 14, 21, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 21 * 2), 14 * 2, 21 * 2);
@@ -18930,6 +19597,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 91, 380, 50, 61, this.invX - (1/2 * 80  * 0.8), this.invY - (1/2 * 95.6 * 0.7), 80 * 0.8, 95.6 * 0.7);
         }
+        else if (this.type == "waantiFurOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 216, 457, 43, 65, this.invX - (1/2 * 43 * 1.2), this.invY - (1/2 * 65 * 1.2), 43 * 1.2, 65 * 1.2);
+        }
         else if (this.type == "frichFurMittens")
         {
             XXX.beginPath();
@@ -18995,6 +19667,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(theCrack, 250, 359, 14, 54, this.invX - (1/2 * 17.5), this.invY - (1/2 * 67.5), 17.5, 67.5);
         }
+        else if (this.type == "hyelingCleaver")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 134, 3, 29, 33, this.invX - (1/2 * 29 * 1.6), this.invY - (1/2 * 33 * 1.6), 29 * 1.6, 33 * 1.6);
+        }
         else if (this.type == "rawVarnFlesh")
         {
             XXX.beginPath();
@@ -19040,6 +19717,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(verse, 2959, 151, 41, 60, this.invX - (1/2 * 52.4), this.invY - (1/2 * 78), 52.4, 78);
+        }
+        else if (this.type == "fineFreydicOutfitF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 294, 298, 42, 65, this.invX - (1/2 * 42 * 1.1), this.invY - (1/2 * 65 * 1.1), 42 * 1.1, 65 * 1.1);
+        }
+        else if (this.type == "fineFreydicOutfitM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 286, 527, 41, 77, this.invX - (1/2 * 41 * 1), this.invY - (1/2 * 77 * 1), 41 * 1, 77 * 1);
         }
         else if (this.type == "naapridLeatherArmour")
         {
@@ -19320,6 +20007,21 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(verse, 79, 227, 10, 12, this.invX - (1/2 * 20), this.invY - (1/2 * 24), 20, 24);
+        }
+        else if (this.type == "waantiPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 155, 62, 20, 27, this.invX - (1/2 * 20 * 1.6), this.invY - (1/2 * 27 * 1.6), 20 * 1.6, 27 * 1.6);
+        }
+        else if (this.type == "rawWaantiFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 128, 95, 14, 19, this.invX - (1/2 * 14 * 1.6), this.invY - (1/2 * 19 * 1.6), 14 * 1.6, 19 * 1.6);
+        }
+        else if (this.type == "waantiMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 109, 95, 14, 19, this.invX - (1/2 * 14 * 1.6), this.invY - (1/2 * 19 * 1.6), 14 * 1.6, 19 * 1.6);
         }
         else if (this.type == "rawUtFlesh")
         {

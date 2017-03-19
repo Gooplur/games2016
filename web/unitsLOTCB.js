@@ -8095,12 +8095,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         //
         // and do the same thing for Y of course
 
+        var extraRot;
+        if (extraRotation != undefined)
+        {
+            extraRot = extraRotation;
+        }
+        else
+        {
+            extraRot = 0;
+        }
+
         XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
         if (this.kid)
         {
             XXX.scale(this.kidSize, this.kidSize);
         }
-        XXX.rotate(this.rotation + this.extraRot);
+        XXX.rotate(this.rotation + this.extraRot + extraRot);
         XXX.beginPath();
         XXX.drawImage(img, cutX, cutY, width, length, positionX, positionY , skewW, skewL);
         XXX.restore();

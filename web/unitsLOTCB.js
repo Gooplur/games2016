@@ -16226,7 +16226,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (player.health > this.health && player.weaponEquipped != "none" || player.armourTotal >= 6 && player.weaponEquipped != "none" || player.level > 15 || player.magicLevel > 1)
                         {
                             this.action = "fleeing";
-                            this.isSameTypeNearby(this.X, this.Y, 900, this.type);
+                            this.isSameTypeNearby(this.X, this.Y, 940, this.type);
                             if (this.numberOfSameTypeNearby >= 1 && player.armourTotal < 8 && player.level <= 15 && player.magicLevel <= 1)
                             {
                                 this.action = "charging";
@@ -16518,7 +16518,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (player.health > this.health && player.weaponEquipped != "none" || player.armourTotal >= 6 && player.weaponEquipped != "none" || player.level > 15 || player.magicLevel > 1)
                         {
                             this.action = "fleeing";
-                            this.isSameTypeNearby(this.X, this.Y, 900, this.type);
+                            this.isSameTypeNearby(this.X, this.Y, 940, this.type);
                             if (this.numberOfSameTypeNearby >= 2 && player.armourTotal < 8 && player.level <= 15 && player.magicLevel <= 1)
                             {
                                 this.action = "charging";

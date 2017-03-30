@@ -8039,6 +8039,226 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "stone")
+        {
+            //For All Items
+            this.identity = "Stone";
+            this.weight = 3;
+            this.size = 8;
+            this.description = "A chunk of rock.";
+            this.intForDes = 6;
+            this.intDescription = "Stone is used for either constructing or carving.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "coal")
+        {
+            //For All Items
+            this.identity = "Coal";
+            this.weight = 1.2;
+            this.size = 7;
+            this.description = "A chunk of coal.";
+            this.intForDes = 10;
+            this.intDescription = "Coal is used in the forging of steel, but it also has other uses as both a fuel source and an alchemic ingredient.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 15); // at max, buy for 5.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "rawSilver")
+        {
+            //For All Items
+            this.identity = "Raw Silver";
+            this.weight = 2;
+            this.size = 7;
+            this.description = "A piece of unrefined silver.";
+            this.intForDes = 3;
+            this.intDescription = "Silver is a highly valued mineral that is used in many fine creations as well as in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 82 - Math.floor(player.getCharisma() / 8); // at max, buy for 76.
+            this.sellValue = 61 + Math.floor(player.getCharisma() / 3); // at max, sell for 76.
+        }
+        else if (this.type == "silver")
+        {
+            //For All Items
+            this.identity = "Silver";
+            this.weight = 4;
+            this.size = 10;
+            this.description = "A forged bar of silver.";
+            this.intForDes = 2;
+            this.intDescription = "Silver is a highly valued mineral that is used in many fine creations as well as in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 21;
+            this.ingredients = [["Raw Silver", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 226 - Math.floor(player.getCharisma() / 8); // at max, buy for 220.
+            this.sellValue = 200 + Math.floor(player.getCharisma() / 2.5); // at max, sell for 220.
+        }
+        else if (this.type == "jvostranOre")
+        {
+            //For All Items
+            this.identity = "Jvostran Ore";
+            this.weight = 5;
+            this.size = 10;
+            this.description = "Jvostran diluted with other unimportant minerals.";
+            this.intForDes = 25;
+            this.intDescription = "Jvostran must be doubly purified in order to produce the famous metal it is commonly known for.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 150 - Math.floor(player.getCharisma() / 2); // at max, buy for 125.
+            this.sellValue = 100 + Math.floor(player.getCharisma() / 2); // at max, sell for 125.
+        }
+        else if (this.type == "pureJvostranOre")
+        {
+            //For All Items
+            this.identity = "Pure Jvostran Ore";
+            this.weight = 8;
+            this.size = 10;
+            this.description = "Purified jvostran ore.";
+            this.intForDes = 25;
+            this.intDescription = "At this stage the jvostran still needs to be purified once more to be ready for use.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 36;
+            this.ingredients = [["Jvostran Ore", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 325 - Math.floor(player.getCharisma() / 1); // at max, buy for 275.
+            this.sellValue = 250 + Math.floor(player.getCharisma() / 2); // at max, sell for 275.
+        }
+        else if (this.type == "jvostran")
+        {
+            //For All Items
+            this.identity = "Jvostran";
+            this.weight = 15;
+            this.size = 10;
+            this.description = "A forged jvostran bar.";
+            this.intForDes = 25;
+            this.intDescription = "Jvostran is the most powerful non-magical metalic substance in known existence.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 43;
+            this.ingredients = [["Pure Jvostran Ore", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 750 - Math.floor(player.getCharisma() / 1); // at max, buy for 700.
+            this.sellValue = 600 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 700.
+        }
+        else if (this.type == "rawGold")
+        {
+            //For All Items
+            this.identity = "Raw Gold";
+            this.weight = 12;
+            this.size = 7;
+            this.description = "A piece of unrefined gold.";
+            this.intForDes = 1;
+            this.intDescription = "Gold is one of the most prized minerals in the lands.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 250; // at max, buy for 250.
+            this.sellValue = 200 + Math.floor(player.getCharisma() / 1); // at max, sell for 250.
+        }
+        else if (this.type == "gold")
+        {
+            //For All Items
+            this.identity = "Gold";
+            this.weight = 25;
+            this.size = 10;
+            this.description = "A forged bar of gold.";
+            this.intForDes = 0;
+            this.intDescription = "Gold is one of the most prized minerals in the lands.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 23;
+            this.ingredients = [["Raw Gold", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 600; // at max, buy for 600.
+            this.sellValue = 550 + Math.floor(player.getCharisma() / 1); // at max, sell for 600.
+        }
+        else if (this.type == "ironOre")
+        {
+            //For All Items
+            this.identity = "Iron Ore";
+            this.weight = 2;
+            this.size = 10;
+            this.description = "Iron mixed with other less important minerals.";
+            this.intForDes = 2;
+            this.intDescription = "Iron is an important raw material used in the crafting of many different weapons and armours.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10 - Math.floor(player.getCharisma() / 15); // at max, buy for 7.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+        }
         else if (this.type == "iron")
         {
             //For All Items
@@ -8054,6 +8274,11 @@ function Item(type, x, y)
 
             //ability
             this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 11;
+            this.ingredients = [["Iron Ore", 2]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 10 - Math.floor(player.getCharisma() / 15); // at max, buy for 7.
@@ -8074,6 +8299,11 @@ function Item(type, x, y)
 
             //ability
             this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Iron", 1], ["Coal", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 30 - Math.floor(player.getCharisma() / 10); // at max, buy for 25.
@@ -14507,6 +14737,56 @@ function Item(type, x, y)
             XXX.arc(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
             XXX.fill();
         }
+        else if (this.type == "stone")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1698, 528, 29, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 29), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27), 29, 27);
+        }
+        else if (this.type == "coal")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1531, 529, 29, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 29), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27), 29, 27);
+        }
+        else if (this.type == "ironOre")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1761, 464, 38, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 38), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26), 38, 26);
+        }
+        else if (this.type == "rawSilver")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1471, 524, 27, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 27), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35), 27, 35);
+        }
+        else if (this.type == "rawGold")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1211, 522, 27, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 27), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35), 27, 35);
+        }
+        else if (this.type == "silver")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1359, 562, 29, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 29), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18), 29, 18);
+        }
+        else if (this.type == "gold")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1323, 562, 29, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 29), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18), 29, 18);
+        }
+        else if (this.type == "jvostranOre")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1623, 528, 29, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 29), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27), 29, 27);
+        }
+        else if (this.type == "pureJvostranOre")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1328, 524, 35, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 35 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 0.8), 35 * 0.8, 33 * 0.8);
+        }
+        else if (this.type == "jvostran")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1285, 563, 30, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 30), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 30, 17);
+        }
         else if (this.type == "twiceForgedSteel")
         {
             XXX.beginPath();
@@ -16463,6 +16743,56 @@ function Item(type, x, y)
             LXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             LXX.fill();
         }
+        else if (this.type == "stone")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1698, 528, 29, 27, this.invX - (1/2 * 29), this.invY - (1/2 * 27), 29, 27);
+        }
+        else if (this.type == "coal")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1531, 529, 29, 27, this.invX - (1/2 * 29), this.invY - (1/2 * 27), 29, 27);
+        }
+        else if (this.type == "ironOre")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1761, 464, 38, 26, this.invX - (1/2 * 38), this.invY - (1/2 * 26), 38, 26);
+        }
+        else if (this.type == "rawSilver")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1471, 524, 27, 35, this.invX - (1/2 * 27), this.invY - (1/2 * 35), 27, 35);
+        }
+        else if (this.type == "rawGold")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1211, 522, 27, 35, this.invX - (1/2 * 27), this.invY - (1/2 * 35), 27, 35);
+        }
+        else if (this.type == "silver")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1359, 562, 29, 18, this.invX - (1/2 * 29), this.invY - (1/2 * 18), 29, 18);
+        }
+        else if (this.type == "gold")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1323, 562, 29, 18, this.invX - (1/2 * 29), this.invY - (1/2 * 18), 29, 18);
+        }
+        else if (this.type == "jvostranOre")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1623, 528, 29, 27, this.invX - (1/2 * 29), this.invY - (1/2 * 27), 29, 27);
+        }
+        else if (this.type == "pureJvostranOre")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1328, 524, 35, 33, this.invX - (1/2 * 35 * 0.8), this.invY - (1/2 * 33 * 0.8), 35 * 0.8, 33 * 0.8);
+        }
+        else if (this.type == "jvostran")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1285, 563, 30, 17, this.invX - (1/2 * 30), this.invY - (1/2 * 17), 30, 17);
+        }
         else if (this.type == "twiceForgedSteel")
         {
             LXX.beginPath();
@@ -18398,6 +18728,56 @@ function Item(type, x, y)
             XXX.fillStyle = "turquoise";
             XXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             XXX.fill();
+        }
+        else if (this.type == "stone")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1698, 528, 29, 27, this.invX - (1/2 * 29), this.invY - (1/2 * 27), 29, 27);
+        }
+        else if (this.type == "coal")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1531, 529, 29, 27, this.invX - (1/2 * 29), this.invY - (1/2 * 27), 29, 27);
+        }
+        else if (this.type == "ironOre")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1761, 464, 38, 26, this.invX - (1/2 * 38), this.invY - (1/2 * 26), 38, 26);
+        }
+        else if (this.type == "rawSilver")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1471, 524, 27, 35, this.invX - (1/2 * 27), this.invY - (1/2 * 35), 27, 35);
+        }
+        else if (this.type == "rawGold")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1211, 522, 27, 35, this.invX - (1/2 * 27), this.invY - (1/2 * 35), 27, 35);
+        }
+        else if (this.type == "silver")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1359, 562, 29, 18, this.invX - (1/2 * 29), this.invY - (1/2 * 18), 29, 18);
+        }
+        else if (this.type == "gold")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1323, 562, 29, 18, this.invX - (1/2 * 29), this.invY - (1/2 * 18), 29, 18);
+        }
+        else if (this.type == "jvostranOre")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1623, 528, 29, 27, this.invX - (1/2 * 29), this.invY - (1/2 * 27), 29, 27);
+        }
+        else if (this.type == "pureJvostranOre")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1328, 524, 35, 33, this.invX - (1/2 * 35 * 0.8), this.invY - (1/2 * 33 * 0.8), 35 * 0.8, 33 * 0.8);
+        }
+        else if (this.type == "jvostran")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1285, 563, 30, 17, this.invX - (1/2 * 30), this.invY - (1/2 * 17), 30, 17);
         }
         else if (this.type == "twiceForgedSteel")
         {

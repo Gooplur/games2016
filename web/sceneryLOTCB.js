@@ -40,6 +40,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     //Tree Variables
     this.treePhase = 0;
     this.treeHealth = 120;
+    //Rock variables
+    this.rockLoad = [];
     //Destroyable Variables
     this.health = 1;
     //Bird variables
@@ -71,6 +73,29 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.dst = function(x, y) //finds the distance between this and input.
     {
         return Math.sqrt((this.X - x) * (this.X - x) + (this.Y - y) * (this.Y - y));
+    };
+
+    this.rockLoader = function(list)
+    {
+        var hits = 0;
+        var selection = list[Math.floor(Math.random() * list.length)];
+
+        for (var i = 0; i < Inventory.length; i ++)
+        {
+            if (Inventory[i][0].type == selection.type)
+            {
+                Inventory[i][1] += selection.quantity;
+                break;
+            }
+            else
+            {
+                hits += 1;
+            }
+        }
+        if (hits == Inventory.length)
+        {
+            Inventory.push([new Item(selection.type, false, false), selection.quantity]);
+        }
     };
 
     this.nearbyPlants = function(numberToList, excludeSubVariety)
@@ -3691,6 +3716,102 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     if (this.treeHealth <= 0)
                     {
                         this.treePhase = 1
+                    }
+                }
+            }
+        }
+        else if (this.type == "stone")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 1;
+
+            //Establish Rock Load
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.health = 10;
+                this.rockLoad = [];
+                for (var looop = 0; looop < 80; looop++)
+                {
+                    this.rockLoad.push({type: "stone", quantity: 1});
+                }
+                for (var looop = 0; looop < 8; looop++)
+                {
+                    this.rockLoad.push({type: "stone", quantity: 2});
+                }
+                for (var looop = 0; looop < 6 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "coal", quantity: 1});
+                }
+                for (var looop = 0; looop < 4 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "ironOre", quantity: 1});
+                }
+                for (var looop = 0; looop < 1 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "rawSilver", quantity: 1});
+                }
+                for (var looop = 0; looop < 1 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "rawGold", quantity: 1});
+                }
+            }
+
+            //DRAWSELF
+            if (information == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 956, 397, 49, 55, -(1/2 * 49 * this.owned), -(1/2 * 55 * this.owned), 49 * this.owned, 55 * this.owned);
+                XXX.restore();
+            }
+            else if (information == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 896, 398, 55, 41, -(1/2 * 55 * this.owned), -(1/2 * 41 * this.owned), 55 * this.owned, 41 * this.owned);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 864, 410, 31, 30, -(1/2 * 31 * this.owned * 1.5), -(1/2 * 30 * this.owned * 1.5), 31 * this.owned * 1.5, 30 * this.owned * 1.5);
+                XXX.restore();
+            }
+
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 10 * this.owned;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+
+
+            //console.log(player.finalAttackStage);
+            if (player.weaponEquipped == "pickaxe" && player.cutcut == true)
+            {
+                var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                console.log(distFromCutCut);
+                if (distFromCutCut <= player.weapon.range * 7 + 18)
+                {
+                    this.health -= 1;
+                    if (this.health <= 0)
+                    {
+                        this.health = 10;
+                        this.rockLoader(this.rockLoad);
+                        this.owned -= 0.25;
+                        if (this.owned <= 0)
+                        {
+                            scenicList.splice(scenicList.indexOf(this), 1);
+                        }
                     }
                 }
             }

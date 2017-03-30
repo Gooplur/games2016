@@ -239,6 +239,7 @@ function Adventurer()
     this.dialogueChoiceMade = false; //this is a variable that helps determine when the player has chosen what to say during dialogue, it will be reset after the recipient registers the players input.
     this.romance = []; //This is the list of individuals in game that are in a romantic relationship with you.
     //effects variables
+    this.miningLuck = 0;
     this.fedClock = 0; // this is the amount of time a player can avoid losing hunger after eating. This value is set elsewhere.
     this.fed = true; //When this is initiated the player will become satiated for a short duration of time.
     this.satiated = false; //This is an effect that means that the player is full and will not get hungry.
@@ -10394,6 +10395,7 @@ function Adventurer()
         //When the inventory button clicked the lowbar becomes the inventory.
         if (mouseX > 152 && mouseX < 172 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "inventory")
         {
+            clickReleased = false;
             lowBar = "inventory";
             player.inventoryPosition = 0;
             invScroll = 0;
@@ -10404,17 +10406,20 @@ function Adventurer()
         }
         else if (mouseX > 152 && mouseX < 172 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "inventory")
         {
+            clickReleased = false;
             lowBar = "information";
         }
 
         //When the character/skills button is clicked the entire screen transforms and becomes the character skills section.
         if (mouseX > 173 && mouseX < 193 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "skills")
         {
+            clickReleased = false;
             lowBar = "skills";
             gameState = "paused";
         }
         else if (mouseX > 173 && mouseX < 193 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "skills")
         {
+            clickReleased = false;
             lowBar = "information";
             gameState = "active";
         }
@@ -10422,11 +10427,13 @@ function Adventurer()
         //When the spellbook button is clicked the lowbar and screen shows the player the spellBook.
         if (mouseX > 194 && mouseX < 214 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "spellbook")
         {
+            clickReleased = false;
             lowBar = "spellbook";
             gameState = "paused";
         }
         else if (mouseX > 194 && mouseX < 214 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "spellbook")
         {
+            clickReleased = false;
             lowBar = "information";
             gameState = "active";
         }
@@ -10434,6 +10441,7 @@ function Adventurer()
         //When the crafting button is clicked it opens the handcrafting menu.
         if (mouseX > 215 && mouseX < 236 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "crafting" || mouseX > 215 && mouseX < 236 && mouseY < 549 && mouseY > 527 && clickReleased == true && crafting != "handcrafted")
         {
+            clickReleased = false;
             player.craftPosition = 0;
             craftScroll = 0;
             lowBar = "crafting";
@@ -10442,6 +10450,7 @@ function Adventurer()
         }
         else if (mouseX > 215 && mouseX < 236 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "crafting" && crafting == "handcrafted")
         {
+            clickReleased = false;
             lowBar = "information";
             gameState = "active";
         }
@@ -10449,6 +10458,7 @@ function Adventurer()
         //When the beastJournal button is clicked it shows the player information about creatures they have logged.
         if (mouseX > 236 && mouseX < 257 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "beastJournal")
         {
+            clickReleased = false;
             lowBar = "beastJournal";
             showBeastStat = -1;
             player.inventoryPosition = 0;
@@ -10457,6 +10467,7 @@ function Adventurer()
         }
         else if (mouseX > 236 && mouseX < 257 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "beastJournal")
         {
+            clickReleased = false;
             lowBar = "information";
             player.inventoryPosition = 0;
             invScroll = 0;
@@ -10466,11 +10477,13 @@ function Adventurer()
         //When the save button is clicked the lowbar shows the player the four saving slots to choose from.
         if (mouseX > 257 && mouseX < 278 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "questLog")
         {
+            clickReleased = false;
             lowBar = "questLog";
             gameState = "paused";
         }
         else if (mouseX > 257 && mouseX < 278 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "questLog")
         {
+            clickReleased = false;
             lowBar = "information";
             gameState = "active";
         }
@@ -10478,6 +10491,7 @@ function Adventurer()
         //When the save button is clicked the lowbar shows the player the four saving slots to choose from.
         if (mouseX > 278 && mouseX < 299 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "save")
         {
+            clickReleased = false;
             lowBar = "save";
             if (gameState == "paused")
             {
@@ -10486,6 +10500,7 @@ function Adventurer()
         }
         else if (mouseX > 278 && mouseX < 299 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "save")
         {
+            clickReleased = false;
             lowBar = "information";
             gameState = "active";
         }
@@ -10612,6 +10627,7 @@ function Adventurer()
                 LXX.fillText("Spells that require a physical motion to be performed.", 467 / 2, 45);
                 if (clickReleased)
                 {
+                    clickReleased = false;
                     magicMenu = "primary";
                     magicPos = 0;
                 }
@@ -10645,6 +10661,7 @@ function Adventurer()
                 LXX.fillText("Spells cast by speaking magical words.", 467 + 467 / 2, 45);
                 if (clickReleased)
                 {
+                    clickReleased = false;
                     magicMenu = "secondary";
                     magicPos = 0;
                 }
@@ -10678,6 +10695,7 @@ function Adventurer()
                 LXX.fillText("Passive spells cast directly from the soul.", 467 * 2 + 467 / 2, 45);
                 if (clickReleased)
                 {
+                    clickReleased = false;
                     magicMenu = "tertiary";
                     magicPos = 0;
                 }
@@ -11240,6 +11258,7 @@ function Adventurer()
                 //When the left inventory scroll is clicked scroll one to the left if there is one to the left otherwise don't.
                 if (this.craftPosition < craftMenu.length && mouseX > 1379.5 && mouseX < 1399.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true) //this (20.5, 0.5, 79, 79) is the position the first in the list will be in if the left scroll will not work.
                 {
+                    clickReleased = false;
                     craftScroll -= 79;
                     this.craftPosition += 1;
                 }
@@ -11247,6 +11266,7 @@ function Adventurer()
                 //When the right inventory scroll is clicked scroll one to the right if there is one to the right otherwise don't.
                 if (this.craftPosition > 0 && mouseX > 0.5 && mouseX < 20.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true)
                 {
+                    clickReleased = false;
                     craftScroll += 79;
                     this.craftPosition -= 1;
                 }
@@ -11281,6 +11301,7 @@ function Adventurer()
                     {
                         if (clickReleased == true && mouseX > listOfInvX1Coords[i] && mouseX < listOfInvX2Coords[i] && mouseY > invY1Coord && mouseY < invY2Coord && this.REQB == false)
                         {
+                            clickReleased = false;
                             var hits = 0;
                             for (var l = 0; l < craftMenu[i].ingredients.length; l++)
                             {
@@ -11814,6 +11835,7 @@ function Adventurer()
                         }
                         if (clickReleased == true && lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord && this.REQB == false) //When you click on a beast it shows you its information.
                         {
+                            clickReleased = false;
                             showBeastStat = i;
                         }
                     }
@@ -11936,6 +11958,7 @@ function Adventurer()
                 //When the left inventory scroll is clicked scroll one to the left if there is one to the left otherwise don't.
                 if (this.inventoryPosition < beastJournal.length && lMouseX > 1379.5 && lMouseX < 1399.5 && lMouseY > 0.5 && lMouseY < 80 && clickReleased == true) //this (20.5, 0.5, 79, 79) is the position the first in the list will be in if the left scroll will not work.
                 {
+                    clickReleased = false;
                     this.timeSinceLastScrolled = new Date().getTime();
                     invScroll -= 79;
                     this.inventoryPosition += 1;
@@ -11944,6 +11967,7 @@ function Adventurer()
                 //When the right inventory scroll is clicked scroll one to the right if there is one to the right otherwise don't.
                 if (this.inventoryPosition > 0 && lMouseX > 0.5 && lMouseX < 20.5 && lMouseY > 0.5 && lMouseY < 80 && clickReleased == true)
                 {
+                    clickReleased = false;
                     this.timeSinceLastScrolled = new Date().getTime();
                     invScroll += 79;
                     this.inventoryPosition -= 1;
@@ -12451,6 +12475,7 @@ function Adventurer()
                 //When the left inventory scroll is clicked scroll one to the left if there is one to the left otherwise don't.
                 if (this.bankPosition < bankSlots && mouseX > 1379.5 && mouseX < 1399.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true) //this (20.5, 0.5, 79, 79) is the position the first in the list will be in if the left scroll will not work.
                 {
+                    clickReleased = false;
                     bankScroll -= 79;
                     this.bankPosition += 1;
                 }
@@ -12458,6 +12483,7 @@ function Adventurer()
                 //When the right inventory scroll is clicked scroll one to the right if there is one to the right otherwise don't.
                 if (this.bankPosition > 0 && mouseX > 0.5 && mouseX < 20.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true)
                 {
+                    clickReleased = false;
                     bankScroll += 79;
                     this.bankPosition -= 1;
                 }
@@ -12492,6 +12518,7 @@ function Adventurer()
                     {
                         if (clickReleased == true && lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord && this.REQB == false) //When you click on an item you either access its utility or you equip it.
                         {
+                            clickReleased = false;
                             if (Inventory[i][0].equipped == false)
                             {
                                 var gotIn = false;
@@ -12690,6 +12717,7 @@ function Adventurer()
                     {
                         if (clickReleased == true && mouseX > listOfInvX1Coords[i] && mouseX < listOfInvX2Coords[i] && mouseY > invY1Coord && mouseY < invY2Coord && this.REQB == false)
                         {
+                            clickReleased = false;
                             var gotIn = false;
                             for (var j = Inventory.length - 1; j > -1; j--)
                             {
@@ -12865,6 +12893,7 @@ function Adventurer()
                 XXX.fillText(bankSlotCost + " Coins", 1/2 * CCC.width, 228);
                 if (clickReleased)
                 {
+                    clickReleased = false;
                     var paid = false;
                     for (var i = 0; i < Inventory.length; i++)
                     {
@@ -13740,6 +13769,7 @@ function Adventurer()
                     {
                         if (clickReleased == true && lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord && this.REQB == false) //When you click on an item you either access its utility or you equip it.
                         {
+                            clickReleased = false;
                             if (Inventory[i][1] - itemAmount >= 0 && Inventory[i][0].type != "coins" && Inventory[i][0].equipped == false)
                             {
                                 var badDeal = false;
@@ -14037,6 +14067,7 @@ function Adventurer()
                     {
                         if (clickReleased == true && mouseX > listOfInvX1Coords[i] && mouseX < listOfInvX2Coords[i] && mouseY > invY1Coord && mouseY < invY2Coord && this.REQB == false)
                         {
+                            clickReleased = false;
                             if (shopInventory[i][1] - itemAmount >= 0 && shopInventory[i][0].type != "coins")
                             {
                                 var shifted = 0;
@@ -14163,6 +14194,7 @@ function Adventurer()
                 //When the left inventory scroll is clicked scroll one to the left if there is one to the left otherwise don't.
                 if (this.merchPosition < shopInventory.length && mouseX > 1379.5 && mouseX < 1399.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true) //this (20.5, 0.5, 79, 79) is the position the first in the list will be in if the left scroll will not work.
                 {
+                    clickReleased = false;
                     this.timeSinceLastScrolled = new Date().getTime();
                     merchScroll -= 79;
                     this.merchPosition += 1;
@@ -14171,6 +14203,7 @@ function Adventurer()
                 //When the right inventory scroll is clicked scroll one to the right if there is one to the right otherwise don't.
                 if (this.merchPosition > 0 && mouseX > 0.5 && mouseX < 20.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true)
                 {
+                    clickReleased = false;
                     this.timeSinceLastScrolled = new Date().getTime();
                     merchScroll += 79;
                     this.merchPosition -= 1;
@@ -16060,6 +16093,7 @@ function Adventurer()
             {
                 if (shiftKey != true && lowBar == "inventory" && clickReleased == true && lMouseX > listOfInvX1Coords[i] + 64 && lMouseX < listOfInvX2Coords[i] && lMouseY > 3 && lMouseY < 20 && Inventory[i][0].equipped == false && this.REQB == false) //Drop item when the X button is pressed.
                 {
+                    clickReleased = false;
                     Inventory[i][1] -= 1;
                     if (Inventory[i][1] <= 0)
                     {
@@ -16076,11 +16110,13 @@ function Adventurer()
                 }
                 else if (shiftKey == true && lowBar == "inventory"  && clickReleased == true && lMouseX > listOfInvX1Coords[i] + 64 && lMouseX < listOfInvX2Coords[i] && lMouseY > 3 && lMouseY < 20 && Inventory[i][0].equipped == false && this.REQB == false) //Drop all items when the X button is pressed.
                 {
+                    clickReleased = false;
                     worldItems.push([new Item(Inventory[i][0].type, X, Y), Inventory[i][1] + cheatItem]);
                     Inventory.splice(i, 1);
                 }
                 else if (clickReleased == true && lowBar == "inventory" && lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord && this.REQB == false) //When you click on an item you either access its utility or you equip it.
                 {
+                    clickReleased = false;
                     //console.log(Inventory[i][0].equipped);
                     if (Inventory[i][0].utility == "food")
                     {
@@ -17428,6 +17464,7 @@ function Adventurer()
         //When the left inventory scroll is clicked scroll one to the left if there is one to the left otherwise don't.
         if (this.inventoryPosition < Inventory.length && lMouseX > 1379.5 && lMouseX < 1399.5 && lMouseY > 0.5 && lMouseY < 80 && clickReleased == true) //this (20.5, 0.5, 79, 79) is the position the first in the list will be in if the left scroll will not work.
         {
+            clickReleased = false;
             this.timeSinceLastScrolled = new Date().getTime();
             invScroll -= 79;
             this.inventoryPosition += 1;
@@ -17436,6 +17473,7 @@ function Adventurer()
         //When the right inventory scroll is clicked scroll one to the right if there is one to the right otherwise don't.
         if (this.inventoryPosition > 0 && lMouseX > 0.5 && lMouseX < 20.5 && lMouseY > 0.5 && lMouseY < 80 && clickReleased == true)
         {
+            clickReleased = false;
             this.timeSinceLastScrolled = new Date().getTime();
             invScroll += 79;
             this.inventoryPosition -= 1;

@@ -2177,6 +2177,14 @@ allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false
 
 //Forge
     forge = [];
+    forge.push(new Item("iron", false));
+    forge.push(new Item("steel", false));
+    forge.push(new Item("twiceForgedSteel", false));
+    forge.push(new Item("thriceForgedSteel", false));
+    forge.push(new Item("silver", false));
+    forge.push(new Item("gold", false));
+    forge.push(new Item("pureJvostranOre", false));
+    forge.push(new Item("jvostran", false));
     forge.push(new Item("kellishClayPot", false));
 
 //Handcrafted (things the player can do without a work station of some kind)

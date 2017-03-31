@@ -3816,6 +3816,106 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "darkStone")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 1;
+
+            //Establish Rock Load
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.health = 13;
+                this.rockLoad = [];
+                for (var looop = 0; looop < 64; looop++)
+                {
+                    this.rockLoad.push({type: "darkStone", quantity: 1});
+                }
+                for (var looop = 0; looop < 8; looop++)
+                {
+                    this.rockLoad.push({type: "darkStone", quantity: 2});
+                }
+                for (var looop = 0; looop < 15 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "coal", quantity: 1});
+                }
+                for (var looop = 0; looop < 10 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "ironOre", quantity: 1});
+                }
+                for (var looop = 0; looop < 1 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "ruby", quantity: 1});
+                }
+                for (var looop = 0; looop < 1 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "rawSilver", quantity: 1});
+                }
+                for (var looop = 0; looop < 1 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "rawGold", quantity: 1});
+                }
+            }
+
+            //DRAWSELF
+            if (information == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 780, 460, 45, 42, -(1/2 * 45 * this.owned), -(1/2 * 42 * this.owned), 45 * this.owned, 42 * this.owned);
+                XXX.restore();
+            }
+            else if (information == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 722, 461, 54, 42, -(1/2 * 54 * this.owned), -(1/2 * 42 * this.owned), 54 * this.owned, 42 * this.owned);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 691, 473, 25, 26, -(1/2 * 25 * this.owned * 1.5), -(1/2 * 26 * this.owned * 1.5), 25 * this.owned * 1.5, 26 * this.owned * 1.5);
+                XXX.restore();
+            }
+
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 10 * this.owned;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+
+
+            //console.log(player.finalAttackStage);
+            if (player.weaponEquipped == "pickaxe" && player.cutcut == true)
+            {
+                var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                console.log(distFromCutCut);
+                if (distFromCutCut <= player.weapon.range * 7 + 18)
+                {
+                    this.health -= 1;
+                    if (this.health <= 0)
+                    {
+                        this.health = 13;
+                        this.rockLoader(this.rockLoad);
+                        this.owned -= 0.25;
+                        if (this.owned <= 0)
+                        {
+                            scenicList.splice(scenicList.indexOf(this), 1);
+                        }
+                    }
+                }
+            }
+        }
         else if (this.type == "beeHive")
         {
             //TRAITS

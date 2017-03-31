@@ -1068,6 +1068,8 @@ function buildMaster()
                 scenicList.push(new Scenery("stone", 10458 , 8363, 0, 3, 1));
                 scenicList.push(new Scenery("stone", 10373 , 2310, -1, 2, 3));
                 scenicList.push(new Scenery("stone", 8895 , 5126, 5.213, 4, 2));
+                scenicList.push(new Scenery("darkStone", 11364 , 1651, 1.37, 2.5, 2));
+                scenicList.push(new Scenery("darkStone", 9581 , -1232, -3.4, 3.5, 3));
 
                 change = "w1";
             }

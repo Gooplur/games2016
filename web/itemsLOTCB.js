@@ -8059,6 +8059,26 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "darkStone")
+        {
+            //For All Items
+            this.identity = "Stone";
+            this.weight = 2.8;
+            this.size = 8;
+            this.description = "A chunk of rock.";
+            this.intForDes = 30;
+            this.intDescription = "This type of stone usually has a higher coal and iron content and sometimes but rarely also contains trace amounts of ruby.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "coal")
         {
             //For All Items
@@ -8078,6 +8098,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 8 - Math.floor(player.getCharisma() / 15); // at max, buy for 5.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "ruby")
+        {
+            //For All Items
+            this.identity = "Ruby";
+            this.weight = 2;
+            this.size = 7;
+            this.description = "A magnificent and rare gemstone shining a rich shade of blazing red.";
+            this.intForDes = 18;
+            this.intDescription = "Ruby is a red variety of the mineral corundum, it is highly valued and is believed to enable certain magics.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 390; // at max, buy for 390.
+            this.sellValue = 340 + Math.floor(player.getCharisma() / 1); // at max, sell for 390.
         }
         else if (this.type == "rawSilver")
         {
@@ -14742,6 +14782,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1698, 528, 29, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 29), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27), 29, 27);
         }
+        else if (this.type == "darkStone")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1666, 466, 25, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24), 25, 24);
+        }
+        else if (this.type == "ruby")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1440, 527, 25, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 0.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 0.3), 25 * 0.3, 26 * 0.3);
+        }
         else if (this.type == "coal")
         {
             XXX.beginPath();
@@ -16748,6 +16798,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1698, 528, 29, 27, this.invX - (1/2 * 29), this.invY - (1/2 * 27), 29, 27);
         }
+        else if (this.type == "darkStone")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1666, 466, 25, 24, this.invX - (1/2 * 25), this.invY - (1/2 * 24), 25, 24);
+        }
+        else if (this.type == "ruby")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1440, 527, 25, 26, this.invX - (1/2 * 25 * 0.3), this.invY - (1/2 * 26 * 0.3), 25 * 0.3, 26 * 0.3);
+        }
         else if (this.type == "coal")
         {
             LXX.beginPath();
@@ -18733,6 +18793,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1698, 528, 29, 27, this.invX - (1/2 * 29), this.invY - (1/2 * 27), 29, 27);
+        }
+        else if (this.type == "darkStone")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1666, 466, 25, 24, this.invX - (1/2 * 25), this.invY - (1/2 * 24), 25, 24);
+        }
+        else if (this.type == "ruby")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1440, 527, 25, 26, this.invX - (1/2 * 25 * 0.3), this.invY - (1/2 * 26 * 0.3), 25 * 0.3, 26 * 0.3);
         }
         else if (this.type == "coal")
         {

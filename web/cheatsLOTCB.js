@@ -83,6 +83,10 @@ function cheats()
                 player.baseHunger = 55;
             }
         }
+        else if (cheatcode == "rename")
+        {
+            player.name = prompt("You are apparently a total idiot who can not stick to their decisions: Please be my guest and pick a new name for your character, you'll be back again soon I'm sure.", "XXXbu113t5uckin6N00BXXX")
+        }
         else if (cheatcode == "pointMeInTheRightDirection")
         {
             player.skillPoints += 1;
@@ -402,6 +406,16 @@ function cheats()
                 bankSlots = 10;
             }
         }
+        else if (cheatcode.toLowerCase() == "qualdo")
+        {
+            console.log(allSpells.length);
+            Inventory = allSpells;
+            player.race = "#301934";
+            player.name = "Qualdo";
+            player.magicalSkillPoints = 250 + allSpells.length;
+            player.title = "Superhero";
+            player.gender = "Male";
+        }
         else if (cheatcode.toLowerCase() == "yoglithewarriornun")
         {
             if (player.name == "Yogli" && player.gender == "Female")
@@ -512,6 +526,7 @@ function cheats()
             player.endurance = 0;
             player.stamina = 0;
             player.charisma = 0;
+            player.constitution = 0;
         }
         else if (cheatcode.toLowerCase() == "lightningflashspeedyspeed")
         {
@@ -529,6 +544,10 @@ function cheats()
         else if (cheatcode == "over9000")
         {
             player.level = 9001;
+        }
+        else if (cheatcode == "masDeCincuenta")
+        {
+            player.level = 51;
         }
         else if (cheatcode.toLowerCase() == "thisgameismissingsomething")
         {

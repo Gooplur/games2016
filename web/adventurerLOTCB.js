@@ -4867,6 +4867,32 @@ function Adventurer()
                             this.secondaryCastingCooldown = new Date().getTime();
                         }
                     }
+                    //Sanctuary
+                    if (secondarySpells[i].ID == "sanctuary")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                        {
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+
+                            magicList.push(new Magic({ID: "sanctuary"}, true));
+
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+                    }
+                    //Repelling Ward
+                    if (secondarySpells[i].ID == "repellingWard")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                        {
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+
+                            magicList.push(new Magic({ID: "repellingWard"}, true));
+
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+                    }
                 }
             }
         }

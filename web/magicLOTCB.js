@@ -817,6 +817,19 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
         {
             this.orientToCaster(0, 1 / 2 * Math.PI);
         }
+        //SANCTUARY
+        if (this.spellType == "sanctuary")
+        {
+            this.orientToCaster(0, 1 / 2 * Math.PI);
+            this.spin = ((-Math.random() * 2) + 1) /200;
+        }
+        //WARD OF REPELLING
+        if (this.spellType == "repellingWard")
+        {
+            this.orientToCaster(0, 1 / 2 * Math.PI);
+            this.spin = ((-Math.random() * 2) + 1) /200;
+            this.size = 0.1;
+        }
         //FROST WIND
         if (this.spellType == "frostWind")
         {
@@ -1214,6 +1227,141 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 }
 
                 this.spellTimer(0.65);
+            }
+
+            //SANCTUARY
+            if (this.spellType == "sanctuary")
+            {
+                if (caster)
+                {
+                    if (this.repeated)
+                    {
+                        this.turn += this.spin;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.turn);
+                        XXX.drawImage(zapa, 253, 121, 74, 71, - (1/2 * 74 * 2), - (1/2 * 71 * 2), 74 * 2, 71 * 2);
+                        XXX.restore();
+                    }
+                    this.flashAnimate(165, false, 1, [{image: zapa, imgX: 347, imgY: 45, portionW: 30, portionH: 28, adjX: -1 / 2 * 30 * 2, adjY: -1 / 2 * 28 * 2, width: 30 * 2, height: 28 * 2}, {image: zapa, imgX: 387, imgY: 25, portionW: 74, portionH: 71, adjX: -1 / 2 * 74 * 2, adjY: -1 / 2 * 71 * 2, width: 74 * 2, height: 71 * 2}, {image: zapa, imgX: 474, imgY: 25, portionW: 74, portionH: 71, adjX: -1 / 2 * 74 * 2, adjY: -1 / 2 * 71 * 2, width: 74 * 2, height: 71 * 2}, {image: zapa, imgX: 564, imgY: 27, portionW: 74, portionH: 71, adjX: -1 / 2 * 74 * 2, adjY: -1 / 2 * 71 * 2, width: 74 * 2, height: 71 * 2}, {image: zapa, imgX: 349, imgY: 118, portionW: 74, portionH: 71, adjX: -1 / 2 * 74 * 2, adjY: -1 / 2 * 71 * 2, width: 74 * 2, height: 71 * 2}, {image: zapa, imgX: 445, imgY: 121, portionW: 74, portionH: 71, adjX: -1 / 2 * 74 * 2, adjY: -1 / 2 * 71 * 2, width: 74 * 2, height: 71 * 2}, {image: zapa, imgX: 542, imgY: 121, portionW: 74, portionH: 71, adjX: -1 / 2 * 74 * 2, adjY: -1 / 2 * 71 * 2, width: 74 * 2, height: 71 * 2}, {image: zapa, imgX: 253, imgY: 121, portionW: 74, portionH: 71, adjX: -1 / 2 * 74 * 2, adjY: -1 / 2 * 71 * 2, width: 74 * 2, height: 71 * 2}], false, false);
+                    lights.push({X: this.X, Y: this.Y, size: 78, extraStops: true, GRD: 0.86, Alpha: 0.9, showMe: false});
+
+                    //Heals player's minions
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].team == "player")
+                        {
+                            var distanceToAI = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
+                            if (distanceToAI <= 75)
+                            {
+                                if (player.getConcentration() >= 50)
+                                {
+                                    ArtificialIntelligenceAccess[i].health = Math.min(ArtificialIntelligenceAccess[i].healthMAX, ArtificialIntelligenceAccess[i].health + 0.06);
+                                }
+                                else if (player.getConcentration() >= 30)
+                                {
+                                    ArtificialIntelligenceAccess[i].health = Math.min(ArtificialIntelligenceAccess[i].healthMAX, ArtificialIntelligenceAccess[i].health + 0.055);
+                                }
+                                else if (player.getConcentration() >= 20)
+                                {
+                                    ArtificialIntelligenceAccess[i].health = Math.min(ArtificialIntelligenceAccess[i].healthMAX, ArtificialIntelligenceAccess[i].health + 0.05);
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess[i].health = Math.min(ArtificialIntelligenceAccess[i].healthMAX, ArtificialIntelligenceAccess[i].health + 0.025);
+                                }
+                            }
+                        }
+                    }
+
+                    //Restores player's energy and health
+                    var distanceToPlayer = Math.sqrt((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y));
+                    if (distanceToPlayer <= 75 + player.mySize)
+                    {
+                        if (player.getConcentration() >= 50)
+                        {
+                            player.energy += 0.04;
+                            player.health += 0.06;
+                        }
+                        else if (player.getConcentration() >= 30)
+                        {
+                            player.energy += 0.035;
+                            player.health += 0.055;
+                        }
+                        else if (player.getConcentration() >= 20)
+                        {
+                            player.energy += 0.03;
+                            player.health += 0.05;
+                        }
+                        else
+                        {
+                            player.energy += 0.015;
+                            player.health += 0.025;
+                        }
+                    }
+
+                    //Disintegrate non-magical projectiles
+                    for (var i = 0; i < unitProjectiles.length; i++)
+                    {
+                        var distanceToProjectile = Math.sqrt((unitProjectiles[i].X - this.X)*(unitProjectiles[i].X - this.X) + (unitProjectiles[i].Y - this.Y)*(unitProjectiles[i].Y - this.Y));
+                        if (distanceToProjectile <= 75)
+                        {
+                            unitProjectiles.splice(i, 1);
+                        }
+                    }
+                }
+
+                this.spellTimer(15 + player.getConcentration() * 4);
+            }
+
+            //WARD OF REPELLING
+            if (this.spellType == "repellingWard")
+            {
+                if (caster)
+                {
+                    if (this.size < 2.5)
+                    {
+                        this.size += 0.05;
+                        this.turn += this.spin;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.turn);
+                        XXX.drawImage(zapa, 3, 60, 61, 55, - (1/2 * 61 * this.size), - (1/2 * 55 * this.size), 61 * this.size, 55 * this.size);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        this.turn += this.spin;
+                        this.flashAnimate(90, this.turn, 1, [{image: zapa, imgX: 85, imgY: 63, portionW: 61, portionH: 55, adjX: -1 / 2 * 61 * this.size, adjY: -1 / 2 * 55 * this.size, width: 61 * this.size, height: 55 * this.size}, {image: zapa, imgX: 152, imgY: 64, portionW: 61, portionH: 55, adjX: -1 / 2 * 61 * this.size, adjY: -1 / 2 * 55 * this.size, width: 61 * this.size, height: 55 * this.size}, {image: zapa, imgX: 223, imgY: 61, portionW: 61, portionH: 55, adjX: -1 / 2 * 61 * this.size, adjY: -1 / 2 * 55 * this.size, width: 61 * this.size, height: 55 * this.size}], true, false);
+                        lights.push({X: this.X, Y: this.Y, size: 75, extraStops: true, GRD: 0.86, Alpha: 0.9, showMe: false});
+                    }
+
+                    //Pushes non player team units away
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].team != "player")
+                        {
+                            var distanceToAI = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
+                            if (distanceToAI <= 85)
+                            {
+                                ArtificialIntelligenceAccess[i].X -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.cos(Math.atan2(this.X - ArtificialIntelligenceAccess[i].X, this.Y - ArtificialIntelligenceAccess[i].Y) - 1 / 2 * Math.PI);
+                                ArtificialIntelligenceAccess[i].Y -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.sin(Math.atan2(this.X - ArtificialIntelligenceAccess[i].X, this.Y - ArtificialIntelligenceAccess[i].Y) - 1 / 2 * Math.PI);
+                            }
+                        }
+                    }
+
+                    //reflects non-magical projectiles
+                    for (var i = 0; i < unitProjectiles.length; i++)
+                    {
+                        var distanceToProjectile = Math.sqrt((unitProjectiles[i].X - this.X)*(unitProjectiles[i].X - this.X) + (unitProjectiles[i].Y - this.Y)*(unitProjectiles[i].Y - this.Y));
+                        if (distanceToProjectile <= 85)
+                        {
+                            unitProjectiles[i].rotation = Math.atan2(this.X - unitProjectiles[i].X, this.Y - unitProjectiles[i].Y) - Math.PI;
+                        }
+                    }
+                }
+
+                this.spellTimer(9 + (120 / 50) * player.getConcentration());
             }
 
             //SURGE

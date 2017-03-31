@@ -15,6 +15,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
     this.statsSet = false;
     this.zIndex = 4;
     this.team = team;
+    this.speed = speed;
 
     //random individual variables
     this.flameFrame = 0;
@@ -34,13 +35,13 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
             {
                 if (typeof(nonPlayer) == "undefined")
                 {
-                    this.X += (Math.cos(this.rotation + (1/2 * Math.PI)) * speed) * (TTD / 16.75);
-                    this.Y += (Math.sin(this.rotation + (1/2 * Math.PI)) * speed) * (TTD / 16.75);
+                    this.X += (Math.cos(this.rotation + (1/2 * Math.PI)) * this.speed) * (TTD / 16.75);
+                    this.Y += (Math.sin(this.rotation + (1/2 * Math.PI)) * this.speed) * (TTD / 16.75);
                 }
                 else
                 {
-                    this.X += (Math.cos(this.rotation - (1/2 * Math.PI)) * speed) * (TTD / 16.75);
-                    this.Y += (Math.sin(this.rotation - (1/2 * Math.PI)) * speed) * (TTD / 16.75);
+                    this.X += (Math.cos(this.rotation - (1/2 * Math.PI)) * this.speed) * (TTD / 16.75);
+                    this.Y += (Math.sin(this.rotation - (1/2 * Math.PI)) * this.speed) * (TTD / 16.75);
                 }
             }
             else
@@ -60,8 +61,8 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
             this.distanceFromStart = Math.sqrt((this.X - startX)*(this.X - startX)+(this.Y - startY)*(this.Y - startY));
             if (this.distanceFromStart < range)
             {
-                this.X += (Math.cos(this.rotation - (1/2 * Math.PI)) * speed) * (TTD / 16.75);
-                this.Y += (Math.sin(this.rotation - (1/2 * Math.PI)) * speed) * (TTD / 16.75);
+                this.X += (Math.cos(this.rotation - (1/2 * Math.PI)) * this.speed) * (TTD / 16.75);
+                this.Y += (Math.sin(this.rotation - (1/2 * Math.PI)) * this.speed) * (TTD / 16.75);
             }
             else
             {

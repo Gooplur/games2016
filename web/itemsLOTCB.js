@@ -500,7 +500,7 @@ function Item(type, x, y)
             //Utility Focused
             this.damages = true;
             this.spellDamage = 0.5 + 0.02 * player.getConcentration();
-            this.spellCost = Math.max(1, 1 + 2 * player.getConcentration() - 2 * player.getEminence());
+            this.spellCost = Math.max(1, 1 + (2/50) * player.getConcentration() - (2/50) * player.getEminence());
             this.spellGroup = "Incantation";
             this.spellGenre = "Cosmic";
             this.spellName = "Repel";
@@ -509,6 +509,94 @@ function Item(type, x, y)
             this.spellCooldown = Math.max(0.65, 1 + (2/50) * player.getConcentration() - (2/50) * player.getEminence());
             this.spellDescription = "A blast of cosmic force that repels all beings within range.";
             this.spellKnowledgeRequirement = 4;
+            this.spellRange = "Short";
+        }
+        else if (this.type == "sanctuary")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 15)
+            {
+                this.identity = "Scroll of Sanctuary";
+                this.description = "Studying this scroll will teach you how to form a magical sanctuary circle that will restore you and your allies health and energy, as well as disintegrate all incoming non-magical projectiles.";
+                this.intForDes = 0;
+                this.intDescription = "";
+                this.buyValue = 3200 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 3000.
+                this.sellValue = 2800 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 3000.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 4;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 3200 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 3000.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellDamage = 0;
+            this.spellCost = Math.max(3, 9 + (11/50) * player.getConcentration() - (17/50) * player.getEminence());
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Cosmic";
+            this.spellName = "Sanctuary";
+            this.spellID = "sanctuary";
+            this.spellEXP = 12 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(6, 60 + (180/50) * player.getConcentration() - (234/50) * player.getEminence());
+            this.spellDescription = "A circle of magical sigils that restore ally health and energy, and disentigrate non-magical projectiles.";
+            this.spellKnowledgeRequirement = 15;
+            this.spellRange = "Short";
+        }
+        else if (this.type == "repellingWard")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 18)
+            {
+                this.identity = "Scroll of Repelling Ward";
+                this.description = "Studying this scroll will teach you how to form a magical warding circle that will force all who are not you or your allies out of that area.";
+                this.intForDes = 0;
+                this.intDescription = "";
+                this.buyValue = 3900 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 3800.
+                this.sellValue = 3600 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 3800.
+            }
+            else
+            {
+                this.identity = "Demonic Scrawlings";
+                this.description = "The markings on this scroll are clearly the work of the devil, or some powerful demonic like creature similar to him!";
+                this.intForDes = 1;
+                this.intDescription = "Evidence: Do you need any?";
+                this.buyValue = 3900 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 3800.
+                this.sellValue = 5; // at max, sell for 5.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellDamage = 0;
+            this.spellCost = Math.max(1, 3 + (3/50) * player.getConcentration() - (5/50) * player.getEminence());
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Cosmic";
+            this.spellName = "Ward of Repelling";
+            this.spellID = "repellingWard";
+            this.spellEXP = 5 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(60, 60 + (180/50) * player.getConcentration() - (60/50) * player.getEminence());
+            this.spellDescription = "A circle of magical sigils that repel all but the caster and their minions from being in the encompassed area.";
+            this.spellKnowledgeRequirement = 18;
             this.spellRange = "Short";
         }
         else if (this.type == "frostWind")
@@ -936,7 +1024,7 @@ function Item(type, x, y)
                 this.identity = "Otherworldy Grocery List";
                 this.description = "The markings on this scroll are incomprehensible; except for one which looks like a coat.";
                 this.intForDes = 0;
-                this.intDescription = "This is clearly the grocery list of an otherworldly being... Don't question it it just is.";
+                this.intDescription = "This is clearly the grocery list of an otherworldly being... Don't question it, it just is.";
                 this.buyValue = 300 - Math.floor(player.getCharisma() / 1); // at max, buy for 250.
                 this.sellValue = 10 + Math.floor(player.getCharisma() / 1); // at max, sell for 60.
             }
@@ -15855,6 +15943,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1922, 4, 23, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 23), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32), 23, 32);
         }
+        else if (this.type == "repellingWard")
+        {
+            XXX.beginPath();
+            XXX.drawImage(zapa, 414, 461, 24, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.25), 24 * 1.25, 17 * 1.25);
+        }
+        else if (this.type == "sanctuary")
+        {
+            XXX.beginPath();
+            XXX.drawImage(zapa, 521, 447, 30, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.25), 30 * 1.25, 29 * 1.25);
+        }
         else if (this.type == "vivification" || this.type == "freezingGrasp" || this.type == "shieldingV" || this.type == "charm")
         {
             XXX.beginPath();
@@ -17926,7 +18024,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -19922,7 +20020,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);

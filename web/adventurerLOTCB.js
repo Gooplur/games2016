@@ -349,6 +349,8 @@ function Adventurer()
     this.timeSinceLastAlcoholCleanse = new Date().getTime();
     this.cyrinthilimTrip = false;
     this.cyrinthilimTime = 0;
+    this.haeflowerTrip = false;
+    this.haeflowerTime = 0;
     this.gassiness = false;
     this.gassyCha = 0;
     this.gassinessTime = 0;
@@ -2381,6 +2383,19 @@ function Adventurer()
             else
             {
                 this.cyrinthilimTrip = false;
+            }
+
+            //Haeflower Drug Trip
+            if (this.haeflowerTime > 0)
+            {
+                this.haeflowerTrip = true;
+                this.haeflowerTime -= 0.005 * (TTD / 16.75);
+                this.energy -= 0.00005 * (TTD / 16.75);
+                this.will -= 0.0001 * (TTD / 16.75);
+            }
+            else
+            {
+                this.haeflowerTrip = false;
             }
 
             //Food poisoning

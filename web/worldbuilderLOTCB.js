@@ -173,13 +173,26 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
         {
             if ((j - 1) * 300 + (extraX * 300) >= -X - 1 * CCC.width && (j - 1) * 300 + (extraX * 300) <= -X + 1 * CCC.width && (i - 1) * 300 + (extraY * 300) >= -Y - 1 * CCC.height && (i - 1) * 300 + (extraY * 300) <= -Y + 1 * CCC.height)
             {
-                if (player.cyrinthilimTrip)
+                if (player.cyrinthilimTrip || player.haeflowerTrip)
                 {
-                    XXX.save();
-                    XXX.globalAlpha = 0.4;
-                    XXX.scale(Math.random() * 6 + 1,Math.random() * 6 + 1)
-                    XXX.drawImage(blurDots, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                    XXX.restore();
+                    if (player.cyrinthilimTrip)
+                    {
+                        XXX.save();
+                        XXX.globalAlpha = 0.4;
+                        XXX.scale(Math.random() * 6 + 1,Math.random() * 6 + 1);
+                        XXX.drawImage(blurDots, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.restore();
+                    }
+                    else if (player.haeflowerTrip)
+                    {
+                        haeRotate += 0.22;
+                        XXX.beginPath();
+                        XXX.fillStyle = "pink";
+                        XXX.strokeStyle = "pink";
+                        XXX.rect((j-1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
                 }
                 else if (terrain == "outline")
                 {

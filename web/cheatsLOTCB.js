@@ -295,6 +295,10 @@ function cheats()
                 player.romance.push("hilmund");
             }
         }
+        else if (cheatcode.toLowerCase() == "haeyouthere")
+        {
+            player.haeflowerTime += 60;
+        }
         else if (cheatcode.toLowerCase() == "testunits")
         {
             if (testingUnitCenters == true)

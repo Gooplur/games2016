@@ -659,6 +659,18 @@ function legendaryPrerequisites()
     mushBlur.src = ("images/blurredGreenSwish.jpg");
     window.mushBlur = mushBlur;
 
+    var rainblur = new Image();
+    rainblur.src = ("images/rainbowBlur.jpg");
+    window.rainblur = rainblur;
+
+    var rainSpin = new Image();
+    rainSpin.src = ("images/rainbowSwirl.png");
+    window.rainSpin = rainSpin;
+
+    var rainSwirl = new Image();
+    rainSwirl.src = ("images/swirlTile.jpg");
+    window.rainSwirl = rainSwirl;
+
     var blurDots = new Image();
     blurDots.src = ("images/blurredDots.jpg");
     window.blurDots = blurDots;
@@ -1040,6 +1052,7 @@ var brewing;
 var forge;
 var handcrafted;
 var allSpells;
+var haeRotate = 0;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()

@@ -277,6 +277,9 @@ var mushBlurRot = 0;
 var mushStretch = [9, 9.5, 10, 11, 11.5, 12, 15];
 var mushStretchX = 9;
 var mushStretchY = 9;
+var mushBlurRot2 = 0;
+var mushStretchX2 = 9;
+var mushStretchY2 = 9;
 //Screen Covers (includes night and day cycle)
 function screenCover()
 {
@@ -358,11 +361,10 @@ function screenCover()
     //Cyrinthilim Mushroom Drug Trip
     if (player.cyrinthilimTrip)
     {
-        mushBlurRot += 1/360 * Math.PI
+        mushBlurRot += 1/360 * Math.PI;
         mushStretchX = mushStretch[Math.floor(Math.random() * 7)];
         mushStretchY = mushStretch[Math.floor(Math.random() * 7)];
 
-        //todo add this drug trip!
         XXX.beginPath();
         XXX.save();
         XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
@@ -371,8 +373,37 @@ function screenCover()
         XXX.globalAlpha = 0.4;
         XXX.drawImage(mushBlur, -1/2 * mushBlur.width, -1/2 * mushBlur.height);
         XXX.restore();
-
     }
+
+    if (player.haeflowerTrip)
+    {
+         mushBlurRot2 += 20/360 * Math.PI;
+         mushStretchX2 = 8 + Math.floor(Math.random() * 20);
+         mushStretchY2 = 8 + Math.floor(Math.random() * 20);
+
+         XXX.beginPath();
+         XXX.save();
+         XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+         XXX.scale(mushStretchX2, mushStretchY2);
+         XXX.rotate(mushBlurRot2);
+         XXX.globalAlpha = 0.4;
+         XXX.drawImage(rainSpin, -1/2 * rainSpin.width, -1/2 * rainSpin.height);
+         XXX.restore();
+
+        mushBlurRot -= 10/360 * Math.PI;
+        mushStretchX = 8 + Math.floor(Math.random() * 20);
+        mushStretchY = 8 + Math.floor(Math.random() * 20);
+
+        XXX.beginPath();
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        XXX.scale(mushStretchX, mushStretchY);
+        XXX.rotate(mushBlurRot);
+        XXX.globalAlpha = 0.4;
+        XXX.drawImage(rainblur, -1/2 * rainblur.width, -1/2 * rainblur.height);
+        XXX.restore();
+    }
+
 
     //Night and Day
     if (timeOfDay != "Day" && player.nightVision == false && gameState != "paused"|| player.underground && player.nightVision == false && gameState != "paused")

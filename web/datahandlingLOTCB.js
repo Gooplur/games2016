@@ -19,7 +19,7 @@ function autosave()
         saveType = null;
     }
     //Automatic autosaving
-    if (autosaving == true)
+    if (autosaving == true && player.health > (25/100) * player.healthMAX && player.inCombat == false)
     {
         if (Math.round(timePlayed % 180) == 0 && singleAuto == true && timePlayed >= 180)
         {

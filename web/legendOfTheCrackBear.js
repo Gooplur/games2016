@@ -43,6 +43,11 @@
 //todo Add haeflower... psycodelic, takes you to a drug trip world with a slowly flashing rainbow floor and a fog of disoriented colors plus in that world fight weird things like crack bears with a fish as your weapon.
 function legendaryPrerequisites()
 {
+    //songs
+
+    var theme = new Audio("sounds/polyLandTheme.wav");
+    window.theme = theme;
+
     //action sounds
     var crossbowGun = new Audio("sounds/basicGunSound.mp3");
     window.crossbowGun = crossbowGun;

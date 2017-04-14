@@ -3,14 +3,14 @@
  */
 
 //TODO LIST
-//todo add Hyeling Armour, add Bare Hyelings, add Hyeling claws item, add Hyeling flesh and meat.
+//todo add Dmitris art to the main menu areas. pay dmitri up to 25$ for these, 5$ for save menu, 10$ for the main title and character creation
+//todo make quicksaves and autosaves different.
 //todo add warm norther thick clothing made with waanti.
 //todo figure out why aldrekii claws manual attack thing won't let it at twice or even early, while the same code lets the flail perform its attack early.
 //todo finish adding sickness system
 //todo add Lodotos, a sickness that one can get in the kellish mud bog.
 //todo add Blil Plant, it can be whatever, just add it.
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
-//todo revise the sleeping system... as of right now it is an absolute crazy juju ball made of sand candy!!! Which is a bad thing.
 //todo finish adding the beast journal.
 //todo add brain flies.
 //todo integrate the sleep system to beds, add hangover, and soarness effects as well as mini notices.
@@ -22,25 +22,20 @@
 //todo add arrow mods such as poison, electric, wind, armour piercing...
 //todo add vines spell
 //todo add weaken spell
-//todo add charm spell
 //todo add tornado spell
-//todo add electric spear and mage boss who uses it as well as a magical shielding spell he uses.
-//todo add the tentacly beast that leaves an oozey slime trail behind it.
+//todo add mage boss who uses the electric spear as well as magical shielding spell he uses.
 //todo add bowls for the kellish soup
 //todo add throwing stars for the orgel
 //todo add houses/shops/buildings.
 //todo add sicknesses and symptons (dizziness, pox, fever, fatigue, etc.) ex: make dizziness spin the screen, make pox weaken players constitution etc., make fever decrease thirst.
 //todo add the rest of the alcohols and drinks.
-//todo add ores and smelting
-//todo make anthracite (coal) a requirement to make good steel.
 //todo make alpha Olkrin's death animation line up slightly more.
 //todo add options menu with button: it will allow you to toggle certain settings like mouse combat mode, game coordinates, and other such features.
 //todo Add harsh hot weather conditions: deserts cause faster dehydration.
 //todo It would be cool to add swimming, but it is not necessarily something that the game needs.
 //todo Add multi dimensional gameplay... meaning Dungeons, Caves, trapdoors, castles, cellars, buildings, etc.
-//todo Add lore, human characters, guards, and important figures. King Wolthgar perhaps... or not... we'll see!
 //todo Add beartraps and other traps that you can set Survivalism is also a trapping skill.
-//todo Add haeflower... psycodelic, takes you to a drug trip world with a slowly flashing rainbow floor and a fog of disoriented colors plus in that world fight weird things like crack bears with a fish as your weapon.
+//todo Add haeflower item to compliment its already designed drug effect.
 function legendaryPrerequisites()
 {
     //songs
@@ -844,9 +839,22 @@ function almostLastPreStage()
 
     polypol.onload = function()
     {
+        easterEggStage();
+    };
+}
+
+function easterEggStage()
+{
+    var zer0 = new Image();
+    zer0.src = ("images/zer0.png");
+    window.zer0 = zer0;
+
+    zer0.onload = function()
+    {
         somewhatNearToLastPreStage();
     };
 }
+
 function somewhatNearToLastPreStage()
 {
     var mofu = new Image();

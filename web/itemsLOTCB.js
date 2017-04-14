@@ -10324,6 +10324,35 @@ function Item(type, x, y)
             this.buyValue = 1200; // at max, buy for 1200.
             this.sellValue = 1000 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 1200.
         }
+        else if (this.type == "cero")
+        {
+            //For All Items
+            this.identity = "Cero";
+            this.weight = 0.5;
+            this.size = 12;
+            this.description = "A glowing blue blade that seems to hum and exude a certain radiance.";
+            this.intForDes = 16;
+            this.intDescription = "This blade is most likely either forged by a powerful mage or it is from out of this world.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 0;
+            this.distance = 23 + (this.range * 7);
+            this.range = 6 + 4/7;
+            this.rate = 40;
+            this.damage = 4 + (16/50) * player.getDexterity();
+            this.magicalDamage = 1;
+            this.negateArmour = 30;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16000; // at max, buy for 16000.
+            this.sellValue = 16000; // at max, sell for 16000.
+        }
         else if (this.type == "smashStick")
         {
             //For All Items
@@ -14945,6 +14974,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polpol, 95, 260, 51, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 1.4), 51 * 1.4, 42 * 1.4);
         }
+        else if (this.type == "cero")
+        {
+            XXX.beginPath();
+            XXX.drawImage(zer0, 344, 8, 20, 50, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 50 * 1.5), 20 * 1.5, 50 * 1.5);
+        }
         else if (this.type == "rawTunskFlesh")
         {
             XXX.beginPath();
@@ -16971,6 +17005,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polpol, 95, 260, 51, 42, this.invX - (1/2 * 51 * 1.4), this.invY - (1/2 * 42 * 1.4), 51 * 1.4, 42 * 1.4);
         }
+        else if (this.type == "cero")
+        {
+            LXX.beginPath();
+            LXX.drawImage(zer0, 344, 8, 20, 50, this.invX - (1/2 * 20 * 1.5 + 4), this.invY - (1/2 * 50 * 1.5), 20 * 1.5, 50 * 1.5);
+        }
         else if (this.type == "rawTunskFlesh")
         {
             LXX.beginPath();
@@ -18966,6 +19005,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(polpol, 95, 260, 51, 42, this.invX - (1/2 * 51 * 1.4), this.invY - (1/2 * 42 * 1.4), 51 * 1.4, 42 * 1.4);
+        }
+        else if (this.type == "cero")
+        {
+            XXX.beginPath();
+            XXX.drawImage(zer0, 344, 8, 20, 50, this.invX - (1/2 * 20 * 1.5 + 4), this.invY - (1/2 * 50 * 1.5), 20 * 1.5, 50 * 1.5);
         }
         else if (this.type == "rawTunskFlesh")
         {

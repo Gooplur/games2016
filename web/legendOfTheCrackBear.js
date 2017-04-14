@@ -1962,6 +1962,7 @@ function theLegend()
     allWeapons.push(new Item("steelArrow", false)); //52
     allWeapons.push(new Item("aldrekiiClaws", false)); //53
     allWeapons.push(new Item("hyelingCleaver", false)); //54
+    allWeapons.push(new Item("cero", false)); //55
 
 //This list holds one of each type of worn item so that the player can access the worn item stats.
     allWorn = [];

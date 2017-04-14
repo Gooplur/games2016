@@ -4635,7 +4635,7 @@ function Adventurer()
                     {
                         if (bothwaysBool == false) // if the animation is one way it ends here...
                         {
-                            if (this.weaponEquipped != "flail" && this.weaponEquipped != "aldrekiiClaws")
+                            if (this.weaponEquipped != "flail" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "cero")
                             {
                                 self.finalAttackStage = true;
                                 self.attackCooldown = new Date().getTime();
@@ -6420,6 +6420,124 @@ function Adventurer()
             else if (Math.floor(this.stage) >= 2)
             {
                 this.flashAnimate(90, this.rotation, 0.90, [{image: mofu, imgX: 329, imgY: 133, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 370.5, imgY: 134, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 409.5, imgY: 134, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}]);
+            }
+        }
+        //ZER0's BLADE
+        if (this.weaponEquipped == "cero")
+        {
+            this.stageEngine(13, 0.20, false); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zer0, 206, 16, 76, 75, -1/2 * 76 * 3 + 175, -1/2 * 75 * 3 + 141, -1/2 * 76 * 3, -1/2 * 75 * 3);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zer0, 211, 84, 76, 75, -1/2 * 76 * 3 + 175, -1/2 * 75 * 3 + 141, -1/2 * 76 * 3, -1/2 * 75 * 3);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zer0, 213, 157, 76, 75, -1/2 * 76 * 3 + 176, -1/2 * 75 * 3 + 141, -1/2 * 76 * 3, -1/2 * 75 * 3);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zer0, 218, 224, 76, 75, -1/2 * 76 * 3 + 178, -1/2 * 75 * 3 + 138, -1/2 * 76 * 3, -1/2 * 75 * 3);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zer0, 311, 77, 76, 75, -1/2 * 76 * 3 + 177, -1/2 * 75 * 3 + 137, -1/2 * 76 * 3, -1/2 * 75 * 3);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zer0, 318, 148, 76, 75, -1/2 * 76 * 3 + 177, -1/2 * 75 * 3 + 138, -1/2 * 76 * 3, -1/2 * 75 * 3);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 6)
+            {
+                this.attackManual = false;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zer0, 317, 223, 76, 75, -1/2 * 76 * 3 + 178, -1/2 * 75 * 3 + 138, -1/2 * 76 * 3, -1/2 * 75 * 3);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 7) //this is the same as 8
+            {
+                if (this.attackManual == false)
+                {
+                    this.attackManual = true;
+                    this.finalAttackStage = true;
+                    this.attackCooldown = new Date().getTime();
+                }
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zer0, 113, 149, 76, 75, -1/2 * 76 * 3 + 175, -1/2 * 75 * 3 + 136, -1/2 * 76 * 3, -1/2 * 75 * 3);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 8) //This is the same as 9
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zer0, 113, 149, 76, 75, -1/2 * 76 * 3 + 175, -1/2 * 75 * 3 + 136, -1/2 * 76 * 3, -1/2 * 75 * 3);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 9) //this is the same as 8
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zer0, 113, 149, 76, 75, -1/2 * 76 * 3 + 175, -1/2 * 75 * 3 + 136, -1/2 * 76 * 3, -1/2 * 75 * 3);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 10) //this is the same as 8 and 9
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zer0, 113, 149, 76, 75, -1/2 * 76 * 3 + 175, -1/2 * 75 * 3 + 136, -1/2 * 76 * 3, -1/2 * 75 * 3);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 11)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zer0, 116, 224, 76, 75, -1/2 * 76 * 3 + 175.5, -1/2 * 75 * 3 + 136, -1/2 * 76 * 3, -1/2 * 75 * 3);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 12)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zer0, 22, 151, 76, 75, -1/2 * 76 * 3 + 177, -1/2 * 75 * 3 + 133, -1/2 * 76 * 3, -1/2 * 75 * 3);
+                XXX.restore();
             }
         }
         //HEAVY SPIKED CLUB
@@ -9775,6 +9893,14 @@ function Adventurer()
             //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.25/5 * Math.PI) * (this.mySize + 20);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.25/5 * Math.PI) * (this.mySize + 20);
+        }
+        else if (this.weaponEquipped == "cero")
+        {
+            this.weapon = allWeapons[55];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.3/5 * Math.PI) * (this.mySize + 23);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.3/5 * Math.PI) * (this.mySize + 23);
         }
     };
 

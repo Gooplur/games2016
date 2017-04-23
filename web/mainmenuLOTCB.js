@@ -98,6 +98,7 @@ function mainMenuLoop()
 
                     if (clicked == true)
                     {
+                        theme.pause();
                         clicked = false;
                         loadType = loadNumber;
                         gameState = "active";
@@ -119,6 +120,7 @@ function mainMenuLoop()
 
                     if (clicked == true)
                     {
+                        theme.pause();
                         clicked = false;
                         loadType = "autosave";
                         gameState = "active";

@@ -102,6 +102,62 @@ function legendaryPrerequisites()
     var svehnCrook = new Audio("sounds/polySounds/svehnCrook.mp3");
     window.svehnCrook = svehnCrook;
 
+        //GARLD CHARACTER: voice acting
+
+    var garldCurse = new Audio("sounds/polySounds/garldCurse.mp3");
+    window.garldCurse = garldCurse;
+
+    var garldDemons = new Audio("sounds/polySounds/garldDemons.mp3");
+    window.garldDemons = garldDemons;
+
+    var garldFiend = new Audio("sounds/polySounds/garldFiend.mp3");
+    window.garldFiend = garldFiend;
+
+    var garldTwig = new Audio("sounds/polySounds/garldTwig.mp3");
+    window.garldTwig = garldTwig;
+
+    var garldMemories = new Audio("sounds/polySounds/garldMemories.mp3");
+    window.garldMemories = garldMemories;
+
+    var garldWord = new Audio("sounds/polySounds/garldWord.mp3");
+    window.garldWord = garldWord;
+
+    var garldTrip = new Audio("sounds/polySounds/garldTrip.mp3");
+    window.garldTrip = garldTrip;
+
+    var garldFingers = new Audio("sounds/polySounds/garldFingers.mp3");
+    window.garldFingers = garldFingers;
+
+    var garldMarkings = new Audio("sounds/polySounds/garldMarkings.mp3");
+    window.garldMarkings = garldMarkings;
+
+    var garldYouth = new Audio("sounds/polySounds/garldYouth.mp3");
+    window.garldYouth = garldYouth;
+
+    var garldYouDo = new Audio("sounds/polySounds/garldYouDo.mp3");
+    window.garldYouDo = garldYouDo;
+
+    var garldDoomed = new Audio("sounds/polySounds/garldDoomed.mp3");
+    window.garldDoomed = garldDoomed;
+
+    var garldToils = new Audio("sounds/polySounds/garldToils.mp3");
+    window.garldToils = garldToils;
+
+    var garldMedallion = new Audio("sounds/polySounds/garldMedallion.mp3");
+    window.garldMedallion = garldMedallion;
+
+    var garldBy = new Audio("sounds/polySounds/garldBy.mp3");
+    window.garldBy = garldBy;
+
+    var garldWickedness = new Audio("sounds/polySounds/garldWickedness.mp3");
+    window.garldWickedness = garldWickedness;
+
+    var garldWorthless = new Audio("sounds/polySounds/garldWorthless.mp3");
+    window.garldWorthless = garldWorthless;
+
+    var garldBearer = new Audio("sounds/polySounds/garldBearer.mp3");
+    window.garldBearer = garldBearer;
+
         //NELGREF CHARACTER: voice acting
 
     var nelgrefSkin = new Audio("sounds/polySounds/nelgrefSkin.mp3");
@@ -1684,7 +1740,8 @@ function theLegend()
         stendor: ["Stendor", 0],
         medlia: ["Medlia", 0],
         neculai: ["Neculai", 0],
-        kronheime: ["Kronheime", 0]
+        kronheime: ["Kronheime", 0],
+        garld: ["Garld", 0]
     };
 
 //time Tracker Variables
@@ -1803,6 +1860,7 @@ function theLegend()
         hilmundNewWealth: 0,
         fenwikEchlinArmed: 0,
         fenwikShopStyle: "normal",
+        garldCrazyScroll: false,
 
         //QUEST: Teshir North Road ---- given by Toggin
         teshirNorthRoadBandits: true,

@@ -1166,6 +1166,510 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             }
                         }
 
+                        if (this.ID == "Garld the Crazy Beggar" || conversationID[0] == "Garld")
+                        {
+                            lowBar = "dialogue";
+                            conversationID[0] = "Garld";
+
+
+                            if (clickReleased)
+                            {
+                                self.RC();
+                            }
+
+                            //CONVERSATION
+                            if (conversationID[1] == 0)
+                            {
+                                if (player.dialogueChoiceMade == false)
+                                {
+                                    player.dialogueOptions = [["Good Day.", false, "a"]];
+                                    if (quests.garldCrazyScroll == false)
+                                    {
+                                        player.dialogueOptions.push(["What's that parchment you have in your hand?", false, "b"]);
+                                    }
+                                    else if (quests.garldCrazyScroll == true)
+                                    {
+                                        player.dialogueOptions.push(["[try to obtain the parchment]", false, "c"]);
+                                    }
+                                }
+                                else if (player.dialogueChoiceMade == true)
+                                {
+                                    player.dialogueChoiceMade = false;
+                                    for (var i = 0; i < player.dialogueOptions.length; i++)
+                                    {
+                                        if (player.dialogueOptions[i][1] == true)
+                                        {
+                                            if (player.dialogueOptions[i][2] == "a")
+                                            {
+                                                playersTurnToSpeak = false;
+                                                conversationID[1] = "0a";
+                                                random = Math.floor(Math.random() * 4);
+                                            }
+                                            else if (player.dialogueOptions[i][2] == "b")
+                                            {
+                                                playersTurnToSpeak = false;
+                                                conversationID[1] = "0b";
+                                                random = Math.floor(Math.random() * 2);
+                                            }
+                                            else if (player.dialogueOptions[i][2] == "c")
+                                            {
+                                                playersTurnToSpeak = true;
+                                                conversationID[1] = "0c";
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else if (conversationID[1] == "0a")
+                            {
+                                if (random == 0)
+                                {
+                                    garldCurse.play();
+                                    garldCurse.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (random == 1)
+                                {
+                                    garldDemons.play();
+                                    garldDemons.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (random == 2)
+                                {
+                                    garldTwig.play();
+                                    garldTwig.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (random == 3)
+                                {
+                                    garldFiend.play();
+                                    garldFiend.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                            }
+                            else if (conversationID[1] == "0b")
+                            {
+                                if (random == 0)
+                                {
+                                    garldWord.play();
+                                    garldWord.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 1;
+                                        self.SC();
+                                    }
+                                }
+                                else if (random == 1)
+                                {
+                                    garldMemories.play();
+                                    garldMemories.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 1;
+                                        self.SC();
+                                    }
+                                }
+                            }
+                            else if (conversationID[1] == "0c")
+                            {
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 4;
+                                self.SC();
+                            }
+                            else if (conversationID[1] == 1)
+                            {
+                                if (player.dialogueChoiceMade == false)
+                                {
+                                    player.dialogueOptions = [["Tell me more...", false, "a"], ["Ahuh, good luck with that...", false, "b"], ["I've heard enough of your gibberish!", false, "b"]];
+                                }
+                                else if (player.dialogueChoiceMade == true)
+                                {
+                                    player.dialogueChoiceMade = false;
+                                    for (var i = 0; i < player.dialogueOptions.length; i++)
+                                    {
+                                        if (player.dialogueOptions[i][1] == true)
+                                        {
+                                            if (player.dialogueOptions[i][2] == "a")
+                                            {
+                                                playersTurnToSpeak = false;
+                                                conversationID[1] = "1a";
+                                                random = Math.floor(Math.random() * 2);
+                                            }
+                                            else if (player.dialogueOptions[i][2] == "b")
+                                            {
+                                                playersTurnToSpeak = true;
+                                                conversationID[1] = "1b";
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else if (conversationID[1] == "1a")
+                            {
+                                if (random == 0)
+                                {
+                                    garldTrip.play();
+                                    garldTrip.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 2;
+                                        self.SC();
+                                    }
+                                }
+                                else if (random == 1)
+                                {
+                                    garldFingers.play();
+                                    garldFingers.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 2;
+                                        self.SC();
+                                    }
+                                }
+                            }
+                            else if (conversationID[1] == "1b")
+                            {
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else if (conversationID[1] == 2)
+                            {
+                                if (player.dialogueChoiceMade == false)
+                                {
+                                    player.dialogueOptions = [["What does this have to do with the parchment in your hand?", false, "a"], ["Go on.", false, "a"]];
+                                }
+                                else if (player.dialogueChoiceMade == true)
+                                {
+                                    player.dialogueChoiceMade = false;
+                                    for (var i = 0; i < player.dialogueOptions.length; i++)
+                                    {
+                                        if (player.dialogueOptions[i][1] == true)
+                                        {
+                                            if (player.dialogueOptions[i][2] == "a")
+                                            {
+                                                playersTurnToSpeak = false;
+                                                conversationID[1] = "2a";
+                                                random = Math.floor(Math.random() * 2);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else if (conversationID[1] == "2a")
+                            {
+                                if (random == 0)
+                                {
+                                    garldMarkings.play();
+                                    garldMarkings.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 3;
+                                        self.SC();
+                                    }
+                                }
+                                else if (random == 1)
+                                {
+                                    garldYouth.play();
+                                    garldYouth.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 3;
+                                        self.SC();
+                                    }
+                                }
+                            }
+                            else if (conversationID[1] == 3)
+                            {
+                                if (player.dialogueChoiceMade == false)
+                                {
+                                    player.dialogueOptions = [["I understand now...", false, "a"], ["I get it now...", false, "a"], ["I want to join with you in the worship of the sky!", false, "a"]];
+                                }
+                                else if (player.dialogueChoiceMade == true)
+                                {
+                                    player.dialogueChoiceMade = false;
+                                    for (var i = 0; i < player.dialogueOptions.length; i++)
+                                    {
+                                        if (player.dialogueOptions[i][1] == true)
+                                        {
+                                            if (player.dialogueOptions[i][2] == "a")
+                                            {
+                                                playersTurnToSpeak = false;
+                                                conversationID[1] = "3a";
+                                                random = Math.floor(Math.random() * 3);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else if (conversationID[1] == "3a")
+                            {
+                                if (random == 0)
+                                {
+                                    garldYouDo.play();
+                                    garldYouDo.onended = function()
+                                    {
+                                        quests.garldCrazyScroll = true;
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (random == 1)
+                                {
+                                    garldDoomed.play();
+                                    garldDoomed.onended = function()
+                                    {
+                                        quests.garldCrazyScroll = true;
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else if (random == 2)
+                                {
+                                    garldToils.play();
+                                    garldToils.onended = function()
+                                    {
+                                        quests.garldCrazyScroll = true;
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                            }
+                            else if (conversationID[1] == 4)
+                            {
+                                if (player.dialogueChoiceMade == false)
+                                {
+                                    player.dialogueOptions = [];
+                                    var coiners = 0;
+                                    //find the players coins' quantity
+                                    for (var j = 0; j < Inventory.length; j++)
+                                    {
+                                        if (Inventory[j][0].type == "coins")
+                                        {
+                                            coiners = Inventory[j][1];
+                                        }
+                                    }
+                                    if (player.getCharisma() >= 4 && coiners >= 1)
+                                    {
+                                        player.dialogueOptions.push(["That paper is nothing compared to this shiny medallion of awesomeness!", false, "a"]);
+                                    }
+                                    if (player.getCharisma() >= 8)
+                                    {
+                                        player.dialogueOptions.push(["Ye' of little faith, I am the sky bearer cometh. By the sky's will thou shalt deliver the devine parchment unto me!", false, "b"]);
+                                        player.dialogueOptions.push(["I am the great one, um... the sky bearer... yeah that, it is time that I take what is truly mine.", false, "b"]);
+                                    }
+                                    if (coiners >= 100)
+                                    {
+                                        player.dialogueOptions.push(["I see the value of that parchment. Here, I will buy it from you.", false, "c"]);
+                                    }
+                                    player.dialogueOptions.push(["[don't try to obtain the parchment]", false, "d"]);
+                                }
+                                else if (player.dialogueChoiceMade == true)
+                                {
+                                    player.dialogueChoiceMade = false;
+                                    for (var i = 0; i < player.dialogueOptions.length; i++)
+                                    {
+                                        if (player.dialogueOptions[i][1] == true)
+                                        {
+                                            if (player.dialogueOptions[i][2] == "a")
+                                            {
+                                                playersTurnToSpeak = false;
+                                                conversationID[1] = "4a";
+                                            }
+                                            else if (player.dialogueOptions[i][2] == "b")
+                                            {
+                                                playersTurnToSpeak = false;
+                                                conversationID[1] = "4b";
+                                            }
+                                            else if (player.dialogueOptions[i][2] == "c")
+                                            {
+                                                playersTurnToSpeak = false;
+                                                conversationID[1] = "4c";
+                                            }
+                                            else if (player.dialogueOptions[i][2] == "d")
+                                            {
+                                                playersTurnToSpeak = true;
+                                                conversationID[1] = "4d";
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else if (conversationID[1] == "4a")
+                            {
+                                garldMedallion.play();
+                                garldMedallion.onended = function()
+                                {
+                                    for (var j = 0; j < Inventory.length; j++)
+                                    {
+                                        if (Inventory[j][0].type == "coins")
+                                        {
+                                            if (Inventory[j][1] > 1)
+                                            {
+                                                Inventory[j][1] -= 1
+                                            }
+                                            else
+                                            {
+                                                Inventory.splice(j, 1);
+                                            }
+                                            break;
+                                        }
+                                    }
+                                    Inventory.push([new Item("summonFrich", false, false), 1]);
+                                    quests.garldCrazyScroll = "obtained1";
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else if (conversationID[1] == "4b")
+                            {
+                                garldBearer.play();
+                                garldBearer.onended = function()
+                                {
+                                    Inventory.push([new Item("summonFrich", false, false), 1]);
+                                    quests.garldCrazyScroll = "obtained";
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else if (conversationID[1] == "4c")
+                            {
+                                garldBy.play();
+                                garldBy.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 5;
+                                    self.SC();
+                                }
+                            }
+                            else if (conversationID[1] == "4d")
+                            {
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else if (conversationID[1] == 5)
+                            {
+                                if (player.dialogueChoiceMade == false)
+                                {
+                                    player.dialogueOptions = [["No, I mean I will pay you for it... With coins.", false, "a"]];
+                                }
+                                else if (player.dialogueChoiceMade == true)
+                                {
+                                    player.dialogueChoiceMade = false;
+                                    for (var i = 0; i < player.dialogueOptions.length; i++)
+                                    {
+                                        if (player.dialogueOptions[i][1] == true)
+                                        {
+                                            if (player.dialogueOptions[i][2] == "a")
+                                            {
+                                                playersTurnToSpeak = false;
+                                                conversationID[1] = "5a";
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else if (conversationID[1] == "5a")
+                            {
+                                garldWickedness.play();
+                                garldWickedness.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 6;
+                                    self.SC();
+                                }
+                            }
+                            else if (conversationID[1] == 6)
+                            {
+                                if (player.dialogueChoiceMade == false)
+                                {
+                                    player.dialogueOptions = [["Come on that worthless piece of paper, you won't even trade it for 100 coins?", false, "a"], ["You should know that I would give you a vast sum, for I deeply desire to learn from the parchment.", false, "a"]];
+                                }
+                                else if (player.dialogueChoiceMade == true)
+                                {
+                                    player.dialogueChoiceMade = false;
+                                    for (var i = 0; i < player.dialogueOptions.length; i++)
+                                    {
+                                        if (player.dialogueOptions[i][1] == true)
+                                        {
+                                            if (player.dialogueOptions[i][2] == "a")
+                                            {
+                                                playersTurnToSpeak = false;
+                                                conversationID[1] = "6a";
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else if (conversationID[1] == "6a")
+                            {
+                                garldWorthless.play();
+                                garldWorthless.onended = function()
+                                {
+                                    for (var j = 0; j < Inventory.length; j++)
+                                    {
+                                        if (Inventory[j][0].type == "coins")
+                                        {
+                                            if (Inventory[j][1] > 100)
+                                            {
+                                                Inventory[j][1] -= 100
+                                            }
+                                            else
+                                            {
+                                                Inventory.splice(j, 1);
+                                            }
+                                            break;
+                                        }
+                                    }
+                                    Inventory.push([new Item("summonFrich", false, false), 1]);
+                                    quests.garldCrazyScroll = "obtained100";
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                        }
+
                         if (this.ID == "Irene" && conversationID[0] != "Fenwik" || conversationID[0] == "Irene")
                         {
                             lowBar = "dialogue";
@@ -20954,7 +21458,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.ID == "Garld the Crazy Beggar" || this.ID == "Garld, Sage of Gemith")
             {
-                this.drops = [[new Item("coins", this.X, this.Y), 10], [new Item("summonFrich", this.X, this.Y), 1]];
+                if (quests.garldCrazyScroll == "obtained")
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 10]];
+                }
+                else if (quests.garldCrazyScroll == "obtained1")
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 11]];
+                }
+                else if (quests.garldCrazyScroll == "obtained100")
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 110]];
+                }
+                else
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 10], [new Item("summonFrich", this.X, this.Y), 1]];
+                }
             }
             else if (this.ID == "Drohfor")
             {

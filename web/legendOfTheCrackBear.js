@@ -699,6 +699,11 @@ function legendaryPrerequisites()
     window.hyelingClick3 = hyelingClick3;
 
     //images
+
+    var themeIMG = new Image();
+    themeIMG.src = ("images/aKnightsDestiny.png");
+    window.themeIMG = themeIMG;
+
     var farmground = new Image();
     farmground.src = ("images/farmingland.png");
     window.farmground = farmground;

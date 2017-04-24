@@ -26,6 +26,10 @@ function mainMenuLoop()
         XXX.beginPath();
         XXX.fillStyle = "white";
         XXX.fillRect(0, 0, 1400, 550);
+
+        //Draw the background image
+        XXX.drawImage(themeIMG, 0, 0);
+
         //set background for lower canvas
         LXX.beginPath();
         LXX.fillStyle = "white";

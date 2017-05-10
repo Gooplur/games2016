@@ -79,6 +79,7 @@ function Adventurer()
     this.raceName = "Faelan";
     this.race = "pink"; //your players race will be determined by this trait. [races in poly land are much different than in real life]
     this.class = "Politician"; //Your character's class will start your character out with a weapon appropriate to your favoured combat style.
+    this.gamemode = "standard";
     //Achieved Traits
     this.Status = []; //this is a list to be filled with all of the titles that the player earns or achieves.
     this.fame = 0; //this is how popular you are with the public, if it is positive it means that they like and honor you, and if it is negative it means that they hate and despise you. [fame is gained through quests and the slayings of certain dangerous beasts, whereas infamy is gained through crime and murder]

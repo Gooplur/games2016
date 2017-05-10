@@ -64,6 +64,7 @@ function mainMenuLoop()
         selectorList[1].operations(); //gender
         selectorList[2].operations(); //title
         selectorList[3].operations(); //combat style
+        selectorList[4].operations(); //game mode
         //begin game button
         applySelectionsButton();
         //character naming button.
@@ -519,7 +520,7 @@ function applySelectionsButton()
 {
 
     //DRAW SELF
-    if (mouseX > (1/2 * CCC.width) - (1/2 * 300) && mouseX < ((1/2 * CCC.width) - (1/2 * 300)) + 300 && mouseY > 450 && mouseY < 450 + 80)
+    if (mouseX > (1/2 * CCC.width) - (1/2 * 300) && mouseX < ((1/2 * CCC.width) - (1/2 * 300)) + 300 && mouseY > 465 && mouseY < 490 + 80)
     {
         this.hoveredOver = true;
     }
@@ -534,7 +535,7 @@ function applySelectionsButton()
         XXX.fillStyle = "gold";
         XXX.lineWidth = 5;
         XXX.strokeStyle = "black";
-        XXX.rect((1/2 * CCC.width) - (1/2 * 300), 450, 300, 80);
+        XXX.rect((1/2 * CCC.width) - (1/2 * 300), 465, 300, 80);
         XXX.fill();
         XXX.stroke();
     }
@@ -544,14 +545,14 @@ function applySelectionsButton()
         XXX.fillStyle = "lightGrey";
         XXX.lineWidth = 5;
         XXX.strokeStyle = "black";
-        XXX.rect((1/2 * CCC.width) - (1/2 * 300), 450, 300, 80);
+        XXX.rect((1/2 * CCC.width) - (1/2 * 300), 465, 300, 80);
         XXX.fill();
         XXX.stroke();
     }
     //draw text in button
     XXX.fillStyle = "black";
     XXX.font = "40px Impact";
-    XXX.fillText("Begin", (1/2 * CCC.width), 505);
+    XXX.fillText("Begin", (1/2 * CCC.width), 520);
 
     if (this.hoveredOver == true && clicked == true)
     {
@@ -910,6 +911,42 @@ function applySelectionsButton()
                     Inventory.push([new Item("shieldingI", false, false), 1]);
                 }
             }
+
+            if (player.gamemode == "veteran" || player.gamemode == "protagonist")
+            {
+                Inventory.push([new Item("shieldingII", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("summonWolf", false, false), 1]);
+                if (player.gamemode == "protagonist")
+                {
+                    Inventory.push([new Item("sanctuary", false, false), 1]);
+                    player.magicLevel += 14;
+                    player.magicalSkillPoints += 28;
+                    player.totalMagicPoints += 28;
+                }
+                else
+                {
+                    player.magicLevel += 8;
+                    player.magicalSkillPoints += 16;
+                    player.totalMagicPoints += 16;
+                }
+            }
+        }
+        else
+        {
+            if (player.gamemode == "veteran" || player.gamemode == "protagonist")
+            {
+                if (player.gamemode == "protagonist")
+                {
+                    player.level += 14;
+                    player.skillPoints += 56;
+                    player.totalSkillPoints += 56;
+                }
+                else
+                {
+                    player.level += 9;
+                    player.skillPoints += 36;
+                    player.totalSkillPoints += 36;
+                }
+            }
         }
 
         //Special bonuses for some races
@@ -930,6 +967,20 @@ function applySelectionsButton()
         {
             player.baseHunger = 60;
         }
+        else if (player.raceName == "Vardan")
+        {
+            player.sleepMAX = 48;
+        }
+
+        //Base survival stats significantly boosted for protagonist mode
+        if (player.gamemode == "protagonist")
+        {
+            player.baseThirst = player.baseThirst * 4;
+            player.baseHunger = player.baseHunger * 4;
+            player.baseWarmth = player.baseWarmth * 4;
+            player.sleepMAX = player.sleepMAX * 4;
+        }
+
         //reset stats.
         player.setBaseStats();
         player.energy = player.energyMAX;
@@ -937,6 +988,10 @@ function applySelectionsButton()
         player.will = player.willMAX;
         player.warmth = player.warmthMAX;
         player.thirst = player.thirstMAX;
+        if (player.gamemode == "protagonist")
+        {
+            player.hunger = player.hungerMAX;
+        }
 
         //set starting areas
         //Freynor starting area is the default
@@ -2274,6 +2329,39 @@ function Selector(bX, bY, type, selNumMAX)
                     LXX.textAlign = "left";
                     LXX.fillText("The ghastly and pale outlanders are not of this land and are generally rejected by all of the kingdoms, the only exception to that is the Cephrians who do not easily develop superstitions, and are interested in the rare occurence of an outlander.", 5, (LCC.height / 2) + 4);
                 }
+            }
+        }
+        else if (type == "mode")
+        {
+            if (selectNumber == 0)
+            {
+                //leaves all the same as far as special game modes
+                XXX.fillStyle = "black";
+                XXX.font = "20px Impact";
+                XXX.textAlign = "center";
+                XXX.fillText("Standard (Hard)", bX + 105, bY + 23);
+
+                player.gamemode = "standard";
+            }
+            else if (selectNumber == 1)
+            {
+                //leaves all the same as far as special game modes
+                XXX.fillStyle = "black";
+                XXX.font = "20px Impact";
+                XXX.textAlign = "center";
+                XXX.fillText("Veteran (Easy)", bX + 105, bY + 23);
+
+                player.gamemode = "veteran";
+            }
+            else if (selectNumber == 2)
+            {
+                //leaves all the same as far as special game modes
+                XXX.fillStyle = "black";
+                XXX.font = "20px Impact";
+                XXX.textAlign = "center";
+                XXX.fillText("Protagonist (Kid's Mode)", bX + 105, bY + 23);
+
+                player.gamemode = "protagonist";
             }
         }
     };

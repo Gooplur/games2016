@@ -1937,6 +1937,7 @@ function theLegend()
     selectorList.push(new Selector(1/2 * CCC.width - 105, 300, "gender", 2)); // 1 == gender selector
     selectorList.push(new Selector(1/2 * CCC.width - 105, 340, "class", 6)); // 2 == wealth and social class selector
     selectorList.push(new Selector(1/2 * CCC.width - 105, 380, "style", 2)); // 3 == combat style selector
+    selectorList.push(new Selector(1/2 * CCC.width - 105, 420, "mode", 2)); // 4 == game mode selector
 
 //this list is of all the beast your character learns about in the world.
 //this is an example beast entry:

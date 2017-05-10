@@ -3,23 +3,24 @@
  */
 
 var doAutosave = false;
+var doQuicksave = false;
 var singleAuto = false;
 function autosave()
 {
-    //Manual autosaving
+    //Quicksave
     if (tildKey == false)
     {
-        doAutosave = true;
+        doQuicksave = true;
     }
-    else if (tildKey == true && doAutosave == true && lowBar != "Save")
+    else if (tildKey == true && doQuicksave == true)
     {
-        doAutosave = false;
-        saveType = "autosave";
+        doQuicksave = false;
+        saveType = "quicksave";
         save();
         saveType = null;
     }
     //Automatic autosaving
-    if (autosaving == true && player.health > (25/100) * player.healthMAX && player.inCombat == false)
+    if (autosaving == true && player.health > (25/100) * player.healthMAX && player.inCombat == false && player.thirst > 5 && player.hunger > 10 && player.warmth < (7/10 * player.warmthMAX))
     {
         if (Math.round(timePlayed % 180) == 0 && singleAuto == true && timePlayed >= 180)
         {
@@ -30,6 +31,7 @@ function autosave()
                 saveType = "autosave";
                 save();
                 saveType = null;
+                //TODO a little autosave animation should be triggered by this.
             }
         }
         else if (Math.round(timePlayed % 180) != 0)
@@ -174,6 +176,10 @@ function save()
     {
         localStorage.setItem("autosave", saveFile);
     }
+    else if (saveType == "quicksave")
+    {
+        localStorage.setItem("quicksave", saveFile);
+    }
 
 
 }
@@ -288,6 +294,10 @@ function retrieveSave(listName)
     else if (loadType == "autosave")
     {
         var restore = localStorage.getItem("autosave");
+    }
+    else if (loadType == "quicksave")
+    {
+        var restore = localStorage.getItem("quicksave");
     }
 
     var parsed = JSON.parse(restore);

@@ -87,9 +87,9 @@ function mainMenuLoop()
         XXX.fillText("Select a Game to Load", 330, 90);
 
         //load the game functions
-        this.loadClickability = function(x, y, w, h, loadNumber, auto)
+        this.loadClickability = function(x, y, w, h, loadNumber, lowerBar)
         {
-            if (auto != true)
+            if (lowerBar != true)
             {
                 if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h)
                 {
@@ -99,6 +99,67 @@ function mainMenuLoop()
                     XXX.rect(x, y, w, h);
                     XXX.fill();
                     XXX.stroke();
+                    //Player Information
+                    var getMenuSaveData = localStorage.getItem("save" + loadNumber);
+                    var getMenuData = null;
+                    if (typeof(getMenuSaveData) != "undefined")
+                    {
+                        getMenuData = JSON.parse(getMenuSaveData);
+                        if (getMenuData != null)
+                        {
+                            loadType = loadNumber;
+                            load();
+                            //name
+                            XXX.textAlign = "center";
+                            XXX.fillStyle = "black";
+                            XXX.font = "bold 12px Book Antiqua";
+                            XXX.fillText(player.name, (170 * (loadNumber - 1)) + 27.5 + 75, 250);
+                            //level
+                            XXX.textAlign = "center";
+                            XXX.fillStyle = "black";
+                            XXX.font = "bold 12px Book Antiqua";
+                            XXX.fillText("LV: " + player.level, (170 * (loadNumber - 1)) + 27.5 + 75, 270);
+                            XXX.fillText("XP: " + Math.floor(player.experience) + " / " + player.experienceRequiredToLevel, (170 * (loadNumber - 1)) + 27.5 + 75, 290);
+                            XXX.fillText("SP: " + player.skillPoints, (170 * (loadNumber - 1)) + 27.5 + 75, 310);
+                            XXX.fillText("MLV: " + player.magicLevel, (170 * (loadNumber - 1)) + 27.5 + 75, 330);
+                            XXX.fillText("MXP: " + Math.floor(player.magicalExperience) + " / " + player.magicalExperienceRequiredToLevel, (170 * (loadNumber - 1)) + 27.5 + 75, 350);
+                            XXX.fillText("MSP: " + player.magicalSkillPoints, (170 * (loadNumber - 1)) + 27.5 + 75, 370);
+                            XXX.fillText("Fame: " + player.fame, (170 * (loadNumber - 1)) + 27.5 + 75, 390);
+                            XXX.fillText("Time Played", (170 * (loadNumber - 1)) + 27.5 + 75, 430);
+                            XXX.fillText(Math.floor(timePlayed / 3600) + ":" + Math.floor(timePlayed % 3600 / 60) + " (" + Math.floor(timePlayed % 60) + ")", (170 * (loadNumber - 1)) + 27.5 + 75, 445);
+
+                            //Click to load into the game
+                            if (clicked == true)
+                            {
+                                theme.pause();
+                                clicked = false;
+                                //loadType = loadNumber;
+                                gameState = "active";
+                                //load();
+                                requestAnimationFrame(gameloopOfDestiny, CCC);
+                            }
+                        }
+                        else
+                        {
+                            XXX.textAlign = "center";
+                            XXX.fillStyle = "black";
+                            XXX.font = "bold 40px Book Antiqua";
+                            XXX.fillText("Empty", (170 * (loadNumber - 1)) + 27.5 + 75, y + 1/2 * h);
+                        }
+                    }
+
+                }
+            }
+            else
+            {
+                if (lMouseX > x && lMouseX < x + w && lMouseY > y && lMouseY < y + h)
+                {
+                    LXX.beginPath();
+                    LXX.fillStyle = "rgba(255,215,0, 0.35)";
+                    LXX.lineWidth = "1";
+                    LXX.rect(x, y, w, h);
+                    LXX.fill();
+                    LXX.stroke();
 
                     if (clicked == true)
                     {
@@ -111,41 +172,31 @@ function mainMenuLoop()
                     }
                 }
             }
-            else
-            {
-                if (lMouseX > 0 && lMouseX < LCC.width && lMouseY > 0 && lMouseY < LCC.height)
-                {
-                    LXX.beginPath();
-                    LXX.fillStyle = "rgba(255,215,0, 0.35)";
-                    LXX.lineWidth = "1";
-                    LXX.rect(0, 0, LCC.width, LCC.height);
-                    LXX.fill();
-                    LXX.stroke();
-
-                    if (clicked == true)
-                    {
-                        theme.pause();
-                        clicked = false;
-                        loadType = "autosave";
-                        gameState = "active";
-                        load();
-                        requestAnimationFrame(gameloopOfDestiny, CCC);
-                    }
-                }
-            }
         };
         //autosave
         LXX.beginPath();
         LXX.fillStyle = "lightGrey";
         LXX.lineWidth = "1";
-        LXX.rect(0, 0, LCC.width, LCC.height);
+        LXX.rect(0, 0, LCC.width / 2, LCC.height);
         LXX.fill();
         LXX.stroke();
-        this.loadClickability(0, 0, 0, 0, 0, true);
+        this.loadClickability(0, 0, 699, LCC.height, "autosave", true);
         LXX.textAlign = "center";
         LXX.fillStyle = "black";
         LXX.font = "bold 65px Book Antiqua";
-        LXX.fillText("Autosave", LCC.width / 2, LCC.height * 2 / 3 + 5);
+        LXX.fillText("Autosave", LCC.width / 4, LCC.height * 2 / 3 + 5);
+        //quicksave
+        LXX.beginPath();
+        LXX.fillStyle = "lightGrey";
+        LXX.lineWidth = "1";
+        LXX.rect(700, 0, LCC.width/2, LCC.height);
+        LXX.fill();
+        LXX.stroke();
+        this.loadClickability(701, 0, 699, LCC.height, "quicksave", true);
+        LXX.textAlign = "center";
+        LXX.fillStyle = "black";
+        LXX.font = "bold 65px Book Antiqua";
+        LXX.fillText("Quicksave", LCC.width * 3/ 4, LCC.height * 2 / 3 + 5);
         //load buttons 1-8
         //load save 1;
         //box

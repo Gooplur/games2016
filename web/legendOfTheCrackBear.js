@@ -2273,6 +2273,7 @@ function theLegend()
     alchemy.push(new Item("utExtract", false));
     alchemy.push(new Item("fermentedUtTentacle", false));
     alchemy.push(new Item("mudflyMold", false));
+    alchemy.push(new Item("haeflowerPollen", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

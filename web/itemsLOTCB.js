@@ -8873,6 +8873,69 @@ function Item(type, x, y)
             this.buyValue = 98 - Math.floor(player.getCharisma() / 1); // at max, buy for 48.
             this.sellValue = 13 + Math.floor(player.getCharisma() / 2); // at max, sell for 38.
         }
+        else if (this.type == "haeflower")
+        {
+            //For All Items
+            this.identity = "Haeflower";
+            this.weight = 0.16;
+            this.size = 8;
+            this.description = "A pointed-petaled blue flower with yellow pollen; it is found in cold mountainous landscapes.";
+            this.intForDes = 30;
+            this.intDescription = "It produces a toxin that leads to a psychodelic death upon its consumption.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 130; //recoops lost energy.
+            this.replenish = 13; //restores will.
+
+            //ability
+            this.ability = "haeDeath";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 15); // at max, buy for 17.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 3); // at max, sell for 17.
+        }
+        else if (this.type == "haeflowerPollen")
+        {
+            //For All Items
+            this.identity = "Haeflower Pollen";
+            this.weight = 0.001;
+            this.size = 3;
+            this.description = "The pollen of a haeflower.";
+            this.intForDes = 9;
+            this.intDescription = "The inhalation of this pollen will result in a energizing, body-numbing, mind-expanding psychodelic experience.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 100; //recoops lost energy.
+            this.replenish = 10; //restores will.
+
+            //ability
+            this.ability = "haeflower";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Haeflower", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 8); // at max, buy for 10.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 6); // at max, sell for 10.
+        }
         else if (this.type == "tepprekliaFungus")
         {
             //For All Items
@@ -14894,6 +14957,16 @@ function Item(type, x, y)
             XXX.arc(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
             XXX.fill();
         }
+        else if (this.type == "haeflower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(zapa, 19, 274, 32, 46, X - this.X + (1/2 * CCC.width) - (1/2 * 32 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 46 * 0.9), 32 * 0.9, 46 * 0.9);
+        }
+        else if (this.type == "haeflowerPollen")
+        {
+            XXX.beginPath();
+            XXX.drawImage(zapa, 275, 215, 29, 25, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 0.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 25 * 0.4), 29 * 0.4, 25 * 0.4);
+        }
         else if (this.type == "stone")
         {
             XXX.beginPath();
@@ -16925,6 +16998,16 @@ function Item(type, x, y)
             LXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             LXX.fill();
         }
+        else if (this.type == "haeflower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(zapa, 19, 274, 32, 46, this.invX - (1/2 * 32 * 0.9), this.invY - (1/2 * 46 * 0.9), 32 * 0.9, 46 * 0.9);
+        }
+        else if (this.type == "haeflowerPollen")
+        {
+            LXX.beginPath();
+            LXX.drawImage(zapa, 275, 215, 29, 25, this.invX - (1/2 * 29 * 0.4), this.invY - (1/2 * 25 * 0.4), 29 * 0.4, 25 * 0.4);
+        }
         else if (this.type == "stone")
         {
             LXX.beginPath();
@@ -18925,6 +19008,16 @@ function Item(type, x, y)
             XXX.fillStyle = "turquoise";
             XXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             XXX.fill();
+        }
+        else if (this.type == "haeflower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(zapa, 19, 274, 32, 46, this.invX - (1/2 * 32 * 0.9), this.invY - (1/2 * 46 * 0.9), 32 * 0.9, 46 * 0.9);
+        }
+        else if (this.type == "haeflowerPollen")
+        {
+            XXX.beginPath();
+            XXX.drawImage(zapa, 275, 215, 29, 25, this.invX - (1/2 * 29 * 0.4), this.invY - (1/2 * 25 * 0.4), 29 * 0.4, 25 * 0.4);
         }
         else if (this.type == "stone")
         {

@@ -16340,6 +16340,37 @@ function Adventurer()
                                 this.gojiiTimer = new Date().getTime();
                                 this.gojiiVomit = true;
                             }
+                            else if (Inventory[i][0].ability == "haeflower") //haeflower pollen
+                            {
+                                this.energilTime = 900;
+                                this.fatigueIII = true;
+                                this.memTime = new Date().getTime() + 900;
+                                this.memoryV = true;
+                                this.haeflowerTime = 900;
+                            }
+                            else if (Inventory[i][0].ability == "haeDeath") //haeflower toxin
+                            {
+                                this.poisonIV = true;
+                                this.energilTime = 2000;
+                                this.fatigueIV = true;
+                                this.memTime = new Date().getTime() + 2000;
+                                this.memoryV = true;
+                                this.haeflowerTime = 2000;
+
+                                //causing vomiting
+                                if (this.timeSinceBadFoodEaten == 0)
+                                {
+                                    this.timeSinceBadFoodEaten = new Date().getTime();
+                                }
+                                else if (new Date().getTime() - this.timeSinceBadFoodEaten < 33000 - 11500)
+                                {
+                                    this.timeSinceBadFoodEaten -= 11000
+                                }
+                                else if (new Date().getTime() - this.timeSinceBadFoodEaten < 33000 - 4500)
+                                {
+                                    this.timeSinceBadFoodEaten -= 4000
+                                }
+                            }
                             else if (Inventory[i][0].ability == "rawwyr") //wyr leaf extract effects...
                             {
                                 //food poison and reduced hunger.
@@ -16626,6 +16657,10 @@ function Adventurer()
                                     this.poisonV = false;
                                     this.poisonI = true;
                                 }
+                                this.fungalFever = false;
+                                this.cyrinthilimTime = 0;
+                                this.haeflowerTime = 0;
+                                this.inebriation = 0;
                                 this.fleshMites = false;
                                 this.gutWorms = false;
                                 this.brainMaggots = false;
@@ -16634,7 +16669,12 @@ function Adventurer()
                                 this.insomniaTime = 0;
                                 this.insomniaStoreTime = 0;
                                 this.insomniated = false; //this is a flag that lets thing give the player permanent insomnia until this is switched off by something.
-
+                                this.swollenV = false;
+                                this.swollenIV = false;
+                                this.swollenIII = false;
+                                this.swollenII = false;
+                                this.swollenI = false;
+                                this.swollenTime = 0;
 
                                 //food poison and reduced hunger.
                                 if (this.timeSinceBadFoodEaten == 0)

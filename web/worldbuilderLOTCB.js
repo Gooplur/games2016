@@ -1084,6 +1084,9 @@ function buildMaster()
                 scenicList.push(new Scenery("darkStone", 11364 , 1651, 1.37, 2.5, 2));
                 scenicList.push(new Scenery("darkStone", 9581 , -1232, -3.4, 3.5, 3));
 
+                //Plants
+                scenicList.push(new Scenery("haeflowerPlant", 11256 , 2707, 4, true));
+
                 change = "w1";
             }
         }

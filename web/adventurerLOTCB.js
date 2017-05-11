@@ -2306,22 +2306,22 @@ function Adventurer()
             {
                 if (this.getDexterity() >= 40)
                 {
-                    stlthIncrement = 49 + this.superStealthBonus;
+                    stlthIncrement = 39 + this.superStealthBonus;
                     this.superStealthCooldown = Math.max(7, (12 - this.superStealthCooldownReduction));
                 }
                 else if (this.getDexterity() >= 35)
                 {
-                    stlthIncrement = 44 + this.superStealthBonus;
+                    stlthIncrement = 34 + this.superStealthBonus;
                     this.superStealthCooldown = Math.max(7, (16 - this.superStealthCooldownReduction));
                 }
                 else if (this.getDexterity() >= 30)
                 {
-                    stlthIncrement = 39 + this.superStealthBonus;
+                    stlthIncrement = 29 + this.superStealthBonus;
                     this.superStealthCooldown = Math.max(7, (20 - this.superStealthCooldownReduction));
                 }
                 else
                 {
-                    stlthIncrement = 34 + this.superStealthBonus;
+                    stlthIncrement = 24 + this.superStealthBonus;
                     this.superStealthCooldown = Math.max(7, (24 - this.superStealthCooldownReduction));
                 }
 

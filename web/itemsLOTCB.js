@@ -94,6 +94,18 @@ function Item(type, x, y)
             this.damageHandicapII = 5;
         }
 
+        this.superStealthNum = function(multiplyerOrAddend)
+        {
+            if (player.superStealth)
+            {
+                return multiplyerOrAddend;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         //INDIVIDUAL ITEM DETAILS
 
 
@@ -10296,9 +10308,9 @@ function Item(type, x, y)
             this.distance = 25 + (this.range * 7);
             this.range = 3 + 3/7;
             this.rate = 125 - (35 * player.getDexterity() / 50);
-            this.damage = (3.5) * (this.leveledDamageMultiple / 25) + ((6/50) * player.getStrength()) + ((2/50) * player.getDexterity());
+            this.damage = ((3.5) * (this.leveledDamageMultiple / 25) + ((6/50) * player.getStrength()) + ((2/50) * player.getDexterity())) * (1 + 0.2 * this.superStealthNum(1));
             this.magicalDamage = 0;
-            this.negateArmour = 0;
+            this.negateArmour = 0 + this.superStealthNum(3);
 
             //ability
             this.ability = "none";
@@ -10405,9 +10417,9 @@ function Item(type, x, y)
             this.distance = 23 + (this.range * 7);
             this.range = 6 + 4/7;
             this.rate = 40;
-            this.damage = 4 + (16/50) * player.getDexterity();
+            this.damage = (4 + (16/50) * player.getDexterity()) * (1 + this.superStealthNum(1)) ;
             this.magicalDamage = 1;
-            this.negateArmour = 30;
+            this.negateArmour = 30 + this.superStealthNum(10);
 
             //ability
             this.ability = "none";
@@ -14291,18 +14303,18 @@ function Item(type, x, y)
             this.rate = 70 - Math.floor(player.getEndurance() / 5);
             if (player.getDexterity() >= 3 && player.getDexterity() < 10)
             {
-                this.damage = (4 - this.damageHandicap) * (this.leveledDamageMultiple / 25);
+                this.damage = ((4 - this.damageHandicap) * (this.leveledDamageMultiple / 25)) * (1 + 0.2 * this.superStealthNum(1));
             }
             else if (player.getDexterity() >= 10)
             {
-                this.damage = (5 - this.damageHandicap) * (this.leveledDamageMultiple / 25);
+                this.damage = ((5 - this.damageHandicap) * (this.leveledDamageMultiple / 25)) * (1 + 0.2 * this.superStealthNum(1));
             }
             else
             {
-                this.damage = (3 - this.damageHandicap) * (this.leveledDamageMultiple / 25);
+                this.damage = ((3 - this.damageHandicap) * (this.leveledDamageMultiple / 25)) * (1 + 0.2 * this.superStealthNum(1));
             }
             this.magicalDamage = 0;
-            this.negateArmour = 0;
+            this.negateArmour = 0 + this.superStealthNum(1);
 
             //ability
             this.ability = "none";
@@ -14335,18 +14347,18 @@ function Item(type, x, y)
             this.rate = Math.max(10, 50 - Math.floor(player.getDexterity() / 2));
             if (player.getDexterity() >= 3 && player.getDexterity() < 10)
             {
-                this.damage = (2.5 - this.damageHandicap) * (this.leveledDamageMultiple / 25);
+                this.damage = ((2.5 - this.damageHandicap) * (this.leveledDamageMultiple / 25)) * (1 + this.superStealthNum(1));
             }
             else if (player.getDexterity() >= 10)
             {
-                this.damage = (3.5 - this.damageHandicap) * (this.leveledDamageMultiple / 25);
+                this.damage = ((3.5 - this.damageHandicap) * (this.leveledDamageMultiple / 25)) * (1 + this.superStealthNum(1));
             }
             else
             {
-                this.damage = (2 - this.damageHandicap) * (this.leveledDamageMultiple / 25);
+                this.damage = ((2 - this.damageHandicap) * (this.leveledDamageMultiple / 25)) * (1 + this.superStealthNum(1));
             }
             this.magicalDamage = 0;
-            this.negateArmour = 0.75;
+            this.negateArmour = 0.75 + this.superStealthNum(4.25);
 
             //ability
             this.ability = "none";
@@ -14730,9 +14742,9 @@ function Item(type, x, y)
             {
                 this.rate = 55;
             }
-            this.damage = (5 - (this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((10/50) * player.getDexterity());
+            this.damage = ((5 - (this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((10/50) * player.getDexterity())) * (1 + this.superStealthNum(1));
             this.magicalDamage = 0;
-            this.negateArmour = 0;
+            this.negateArmour = 0 + this.superStealthNum(16);
 
             //ability
             this.ability = "none";
@@ -14781,9 +14793,9 @@ function Item(type, x, y)
             {
                 this.rate = 45;
             }
-            this.damage = (4.5 - (1.5 * this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getDexterity());
+            this.damage = ((4.5 - (1.5 * this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getDexterity())) * (1 + this.superStealthNum(1));
             this.magicalDamage = 0;
-            this.negateArmour = 0;
+            this.negateArmour = 0 + this.superStealthNum(12);
 
             //ability
             this.ability = "none";
@@ -14832,9 +14844,9 @@ function Item(type, x, y)
             {
                 this.rate = 45;
             }
-            this.damage = (2 - (1/2 * this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((1/16) * player.getDexterity());
+            this.damage = ((2 - (1/2 * this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((1/16) * player.getDexterity())) * (1 + this.superStealthNum(1));
             this.magicalDamage = 0;
-            this.negateArmour = 0;
+            this.negateArmour = 0 + this.superStealthNum(10);
 
             //ability
             this.ability = "none";

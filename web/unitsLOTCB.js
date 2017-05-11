@@ -6907,53 +6907,123 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.extraRange = 0;
         }
-        //rangeOfSight When player is sneaking.
-        if (this.disturbed == true)
+
+        if (this.target == player)
         {
-            this.rangeOfSight = baseSight * 4 + this.extraRange;
-        }
-        else if (wKey == true && shiftKey == true && this.playerSeen == false)
-        {
-            if (hostile == false)
+            if (wKey == true && shiftKey == true && this.playerSeen == false)
             {
-                this.rangeOfSight = baseSight * 1.1 + this.extraRange;
+                if (hostile == false)
+                {
+                    this.rangeOfSight = baseSight * 1.1 + this.extraRange;
+                }
+                else
+                {
+                    this.rangeOfSight = baseSight * 1.35 + this.extraRange;
+                }
+            }
+            else if (altKey == true && wKey == false && this.playerSeen == false && !this.disturbed) // If sneaking and the player has not yet been noticed by the enemy...
+            {
+                this.rangeOfSight = baseSight * (13 / (14 + (player.getDexterity() * 2))) + this.extraRange; // the enemy's sight is severely lowered.
+            }
+            else if (this.playerSeen == false) //otherwise if the enemy had already noticed the player...
+            {
+                this.rangeOfSight = baseSight + this.extraRange; //the enemy will retain its rangeOfSight.
+            }
+            else if (this.playerSeen == true && hostile == false || this.disturbed == true && hostile == false)
+            {
+                this.rangeOfSight = baseSight * 1.2 + this.extraRange;
+            }
+            else if (this.playerSeen == true && hostile == "mildly" || this.disturbed == true && hostile == "mildly")
+            {
+                this.rangeOfSight = baseSight * 1.45 + this.extraRange;
+            }
+            else if (this.playerSeen == true && hostile == true || this.disturbed == true && hostile == true)
+            {
+                this.rangeOfSight = baseSight * 1.7 + this.extraRange;
+            }
+            else if (this.playerSeen == true && hostile == "very" || this.disturbed == true && hostile == "very")
+            {
+                this.rangeOfSight = baseSight * 2 + this.extraRange;
+            }
+            else if (this.playerSeen == true && hostile == "extremely" || this.disturbed == true && hostile == "extremely")
+            {
+                this.rangeOfSight = baseSight * 2.5 + this.extraRange;
+            }
+            else if (this.playerSeen == true && hostile == "unrelenting" || this.disturbed == true && hostile == "unrelenting")
+            {
+                this.rangeOfSight = baseSight * 3 + this.extraRange;
+            }
+
+            if (this.disturbed == true)
+            {
+                this.rangeOfSight = baseSight * 4 + this.extraRange;
+            }
+
+            //If superstealth is active and the player is not yet seen then the the unit fails to notice the player.
+            if (this.playerSeen == false && player.superStealth && this.resistances.indexOf("stealth") == -1)
+            {
+                this.rangeOfSight = 0;
+            }
+        }
+        else if (this.target != "none")
+        {
+            if (this.target.flying != true && this.target.speed >= 4)
+            {
+                if (hostile == false)
+                {
+                    this.rangeOfSight = baseSight * 1.1 + this.extraRange;
+                }
+                else
+                {
+                    this.rangeOfSight = baseSight * 1.35 + this.extraRange;
+                }
+            }
+            else if (this.target.flying && !this.disturbed || this.target.speed <= 1 && !this.disturbed) // slow and flying enemies are harder to track.
+            {
+                this.rangeOfSight = baseSight * 0.85 + this.extraRange; // the enemy's sight is a bit lowered.
+            }
+            else if (hostile == false || this.disturbed == true && hostile == false)
+            {
+                this.rangeOfSight = baseSight * 1.2 + this.extraRange;
+            }
+            else if (hostile == "mildly" || this.disturbed == true && hostile == "mildly")
+            {
+                this.rangeOfSight = baseSight * 1.45 + this.extraRange;
+            }
+            else if (hostile == true || this.disturbed == true && hostile == true)
+            {
+                this.rangeOfSight = baseSight * 1.7 + this.extraRange;
+            }
+            else if (hostile == "very" || this.disturbed == true && hostile == "very")
+            {
+                this.rangeOfSight = baseSight * 2 + this.extraRange;
+            }
+            else if (hostile == "extremely" || this.disturbed == true && hostile == "extremely")
+            {
+                this.rangeOfSight = baseSight * 2.5 + this.extraRange;
+            }
+            else if (hostile == "unrelenting" || this.disturbed == true && hostile == "unrelenting")
+            {
+                this.rangeOfSight = baseSight * 3 + this.extraRange;
             }
             else
             {
-                this.rangeOfSight = baseSight * 1.35 + this.extraRange;
+                this.rangeOfSight = baseSight + this.extraRange; //the enemy will retain its rangeOfSight.
+            }
+
+            if (this.disturbed == true)
+            {
+                this.rangeOfSight = baseSight * 4 + this.extraRange;
+            }
+
+            if (this.target.superStealth && this.resistances.indexOf("stealth") == -1)
+            {
+                this.rangeOfSight = 0;
             }
         }
-        else if (altKey == true && wKey == false && this.playerSeen == false && !this.disturbed) // If sneaking and the player has not yet been noticed by the enemy...
+        else
         {
-            this.rangeOfSight = baseSight * (13 / (14 + (player.getDexterity() * 2))) + this.extraRange; // the enemy's sight is severely lowered.
-        }
-        else if (this.playerSeen == false) //otherwise if the enemy had already noticed the player...
-        {
-            this.rangeOfSight = baseSight + this.extraRange; //the enemy will retain its rangeOfSight.
-        }
-        else if (this.playerSeen == true && hostile == false || this.disturbed == true && hostile == false)
-        {
-            this.rangeOfSight = baseSight * 1.2 + this.extraRange;
-        }
-        else if (this.playerSeen == true && hostile == "mildly" || this.disturbed == true && hostile == "mildly")
-        {
-            this.rangeOfSight = baseSight * 1.45 + this.extraRange;
-        }
-        else if (this.playerSeen == true && hostile == true || this.disturbed == true && hostile == true)
-        {
-            this.rangeOfSight = baseSight * 1.7 + this.extraRange;
-        }
-        else if (this.playerSeen == true && hostile == "very" || this.disturbed == true && hostile == "very")
-        {
-            this.rangeOfSight = baseSight * 2 + this.extraRange;
-        }
-        else if (this.playerSeen == true && hostile == "extremely" || this.disturbed == true && hostile == "extremely")
-        {
-            this.rangeOfSight = baseSight * 2.5 + this.extraRange;
-        }
-        else if (this.playerSeen == true && hostile == "unrelenting" || this.disturbed == true && hostile == "unrelenting")
-        {
-            this.rangeOfSight = baseSight * 3 + this.extraRange;
+            this.rangeOfSight = baseSight + this.extraRange;
         }
     };
 

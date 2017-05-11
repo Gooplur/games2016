@@ -1059,6 +1059,8 @@ var key7;
 var key8;
 var key9;
 var key0;
+var fKey;
+var ctrlKey;
 var tildKey;
 var rKey;
 var tellCoords;
@@ -1423,6 +1425,11 @@ function keyReleased(event)
         eKey = false;
     }
 
+    if (key == 70)
+    {
+        fKey = false;
+    }
+
     if (key == 32)
     {
         spaceKey = false;
@@ -1431,6 +1438,11 @@ function keyReleased(event)
     if (key == 16)
     {
         shiftKey = false;
+    }
+
+    if (key == 17)
+    {
+        ctrlKey = false;
     }
 
     if (key == 18)
@@ -1523,6 +1535,11 @@ function keyHeld(event)
         eKey = true;
     }
 
+    if (key == 70)
+    {
+        fKey = true;
+    }
+
     if (key == 32)
     {
         spaceKey = true;
@@ -1531,6 +1548,11 @@ function keyHeld(event)
     if (key == 16)
     {
         shiftKey = true;
+    }
+
+    if (key == 17)
+    {
+        ctrlKey = true;
     }
 
     if (key == 18)
@@ -1603,8 +1625,6 @@ function lowerCanvasMouseCoordsReset()
 
 function mainCanvasMouseCoordsReset()
 {
-
-
     mouseX = Math.cos(player.rotation - 1/2 * Math.PI) * 500000;
     mouseY = Math.sin(player.rotation - 1/2 * Math.PI) * 500000;
 }

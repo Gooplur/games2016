@@ -393,6 +393,15 @@ function Adventurer()
     this.halfAcid = false;
     this.quarterAcid = false;
     this.acidTime = new Date().getTime();
+    this.keepSuperStealth = new Date().getTime();
+    this.superStealth = false; //this flag is used to check if the player is in superstealth.
+    this.superStealthTime = 0.5; //this number is what actually activates superstealth.
+    this.superStealthCooldown = 20; //this is the cooldown for superstealth.
+    this.superStealthCooldownKeeper = new Date().getTime();
+    this.superStealthBonus = 0; //this is the bonus to superstealth.
+    this.superStealthCooldownReduction = 0; //this is the reduction of superstealth's cooldown.
+
+
 
     //utility or extra variables
     this.AdAbility = []; //this is a list of all active abilities held by armours and equipped outfits
@@ -2288,6 +2297,56 @@ function Adventurer()
             }
         };
 
+        this.superStealthness = function()
+        {
+            var stlthIncrement;
+
+            //activate with control while stealthing
+            if (fKey && altKey && this.getDexterity() >= 25)
+            {
+                if (this.getDexterity() >= 40)
+                {
+                    stlthIncrement = 49 + this.superStealthBonus;
+                    this.superStealthCooldown = Math.max(7, (12 - this.superStealthCooldownReduction));
+                }
+                else if (this.getDexterity() >= 35)
+                {
+                    stlthIncrement = 44 + this.superStealthBonus;
+                    this.superStealthCooldown = Math.max(7, (16 - this.superStealthCooldownReduction));
+                }
+                else if (this.getDexterity() >= 30)
+                {
+                    stlthIncrement = 39 + this.superStealthBonus;
+                    this.superStealthCooldown = Math.max(7, (20 - this.superStealthCooldownReduction));
+                }
+                else
+                {
+                    stlthIncrement = 34 + this.superStealthBonus;
+                    this.superStealthCooldown = Math.max(7, (24 - this.superStealthCooldownReduction));
+                }
+
+                if (new Date().getTime() - this.superStealthCooldownKeeper > this.superStealthCooldown * 1000)
+                {
+                    this.superStealthTime = stlthIncrement;
+                }
+            }
+            if (this.superStealthTime > 0)
+            {
+                if (new Date().getTime() - this.keepSuperStealth > 100) //time is kept in tenths of a second.
+                {
+                    this.keepSuperStealth = new Date().getTime();
+                    this.superStealthTime -= 1;
+                }
+                this.superStealthCooldownKeeper = new Date().getTime(); //prepares the cooldown.
+                this.superStealth = true;
+            }
+            else
+            {
+                this.keepSuperStealth = new Date().getTime();
+                this.superStealth = false;
+            }
+        };
+
         this.poison = function ()
         {
             //This enables the poisoned mini notice if any type of any category of poison is in effect.
@@ -2451,6 +2510,7 @@ function Adventurer()
         this.light();
         this.sleepCalculator();
         this.blinder();
+        this.superStealthness();
     };
 
     //operations for the stat/variables regarding the characters skills and leveling
@@ -3516,11 +3576,36 @@ function Adventurer()
         }
     };
 
+    //Super Stealth notice Function (super stealth active)
+    this.superStealthed = function ()
+    {
+        if (this.superStealth == true)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+
+            this.addNotice("Super-Stealth");
+            XXX.beginPath();
+            XXX.fillStyle = "black";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Super-Stealth"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(polyPNG, 28, 8, 52, 14, this.arrangeNotices("Super-Stealth"), 420, 27 * 0.7, 7 * 0.7); // main Y + 7 :: main X + 0
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Super-Stealth");
+        }
+    };
+
     //Mini Notice Operations Function
     this.miniNotices = function ()
     {
         this.arrangeNotices();
         this.noticedChecker();
+        this.superStealthed();
         this.perfumedChecker();
         this.fungalFeverChecker();
         this.swollenChecker();

@@ -326,6 +326,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.offended = false;
             this.attacking = false;
         }
+
+        if (fKey)
+        {
+            if (this.allys.indexOf("player") != -1)
+            {
+                this.target = player;
+                this.targetDistance = this.DTP();
+            }
+        }
     };
 
     this.friendDecider = function()

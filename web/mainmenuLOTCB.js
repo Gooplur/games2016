@@ -939,12 +939,22 @@ function applySelectionsButton()
                     player.level += 14;
                     player.skillPoints += 56;
                     player.totalSkillPoints += 56;
+
+                    if (player.class == "Ranger")
+                    {
+                        Inventory.push([new Item("longbow", false, false), 1], [new Item("steelArrow", false, false), 200]);
+                    }
                 }
                 else
                 {
                     player.level += 9;
                     player.skillPoints += 36;
                     player.totalSkillPoints += 36;
+
+                    if (player.class == "Ranger")
+                    {
+                        Inventory.push([new Item("longbow", false, false), 1], [new Item("arrow", false, false), 100]);
+                    }
                 }
             }
         }

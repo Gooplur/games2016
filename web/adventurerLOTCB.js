@@ -2302,7 +2302,7 @@ function Adventurer()
             var stlthIncrement;
 
             //activate with control while stealthing
-            if (fKey && altKey && this.getDexterity() >= 25)
+            if (shiftKey && altKey && this.getDexterity() >= 25)
             {
                 if (this.getDexterity() >= 40)
                 {
@@ -3780,7 +3780,7 @@ function Adventurer()
         //SNEAKING
         if (this.movingType == 3)
         {
-            if (shiftKey)
+            if (wKey)
             {
                 // the right leg goes back 25 pixles and the left goes forward 25.
                 if (this.lLegY < 15 && this.legSwitch == 0)
@@ -10296,7 +10296,7 @@ function Adventurer()
             this.movingType = 0;
         }
         //WALKING
-        if (wKey == true && shiftKey != true && !this.jumpingBack && this.mounted == false)
+        if (wKey == true && shiftKey != true && !altKey && !this.jumpingBack && this.mounted == false)
         {
             this.movingType = 1;
 
@@ -10320,7 +10320,7 @@ function Adventurer()
         }
         //RUNNING
         // if you run out of energy while running you regress into a walk.
-        if (this.energy <= 0 && wKey == true && shiftKey == true && !this.jumpingBack && this.mounted == false)
+        if (this.energy <= 0 && wKey == true && shiftKey == true && !altKey && !this.jumpingBack && this.mounted == false)
         {
             this.movingType = 1;
 
@@ -10342,7 +10342,7 @@ function Adventurer()
             }
         }
 
-        if (wKey == true && shiftKey == true && this.energy > 0 && !this.jumpingBack && this.mounted == false)
+        if (wKey == true && shiftKey == true && !altKey && this.energy > 0 && !this.jumpingBack && this.mounted == false)
         {
             this.movingType = 2;
 
@@ -10364,10 +10364,10 @@ function Adventurer()
             }
         }
         //SNEAKING
-        if (altKey == true && wKey == false && !this.jumpingBack && this.mounted == false)
+        if (altKey == true && !this.jumpingBack && this.mounted == false)
         {
             this.movingType = 3;
-            if (shiftKey)
+            if (wKey)
             {
                 // If the place where the player would move next under the same instruction is blocked then the player will not move.
                 if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
@@ -16863,25 +16863,52 @@ function Adventurer()
                     }
                     else if (Inventory[i][0].utility == "weapon")
                     {
-                        //equpping a weapon
-                        if (this.isWeaponEquipped == false)
-                        {
-                            Inventory[i][0].equipped = true;
-                            this.isWeaponEquipped = true;
-                            this.weaponEquipped = Inventory[i][0].type;
-                            this.weaponIsRanged = false;
-                        }
-                        else
+                        if (player.getDexterity() >= 15)
                         {
                             //unequipping a weapon
                             if (Inventory[i][0].equipped == true)
                             {
-                                this.isWeaponEquipped = false;
                                 Inventory[i][0].equipped = false;
                                 this.weaponEquipped = "none";
                                 this.weaponIsRanged = false;
                             }
+                            else
+                            {
+                                //equipping a weapon
+                                for (var j = 0; j < Inventory.length; j++)
+                                {
+                                    if (Inventory[j][0].utility == "weapon" || Inventory[j][0].utility == "ranged")
+                                    {
+                                        Inventory[j][0].equipped = false;
+                                    }
+                                }
+                                Inventory[i][0].equipped = true;
+                                this.weaponEquipped = Inventory[i][0].type;
+                                this.weaponIsRanged = false;
+                            }
+                        }
+                        else
+                        {
+                            //equipping a weapon
+                            if (this.isWeaponEquipped == false)
+                            {
+                                Inventory[i][0].equipped = true;
+                                this.isWeaponEquipped = true;
+                                this.weaponEquipped = Inventory[i][0].type;
+                                this.weaponIsRanged = false;
+                            }
+                            else
+                            {
+                                //unequipping a weapon
+                                if (Inventory[i][0].equipped == true)
+                                {
+                                    this.isWeaponEquipped = false;
+                                    Inventory[i][0].equipped = false;
+                                    this.weaponEquipped = "none";
+                                    this.weaponIsRanged = false;
+                                }
 
+                            }
                         }
                     }
                     else if (Inventory[i][0].utility == "package") //store is a list of which items you get from the container.
@@ -16989,34 +17016,73 @@ function Adventurer()
                     }
                     else if (Inventory[i][0].utility == "ranged")
                     {
-                        //equpping a ranged weapon
-                        if (this.isWeaponEquipped == false)
-                        {
-                            Inventory[i][0].equipped = true;
-                            this.isWeaponEquipped = true;
-                            this.weaponEquipped = Inventory[i][0].type;
-                            this.rangedWeaponType = Inventory[i][0].subUtility;
-                            this.weaponIsRanged = true;
-
-                            if (Inventory[i][0].subUtility == "bow")
-                            {
-                                this.projectileReleased = true;
-                            }
-                            else if (Inventory[i][0].subUtility == "bow")
-                            {
-                                this.projectileReleased = false;
-                            }
-                        }
-                        else
+                        if (player.getDexterity() >= 15)
                         {
                             //unequipping a ranged weapon
                             if (Inventory[i][0].equipped == true)
                             {
                                 Inventory[i][0].equipped = false;
-                                this.isWeaponEquipped = false;
                                 this.rangedWeaponType = "none";
                                 this.weaponEquipped = "none";
                                 this.weaponIsRanged = false;
+                            }
+                            else
+                            {
+                                //equipping a ranged weapon
+                                for (var j = 0; j < Inventory.length; j++)
+                                {
+                                    if (Inventory[j][0].utility == "weapon" || Inventory[j][0].utility == "ranged")
+                                    {
+                                        Inventory[j][0].equipped = false;
+                                    }
+                                }
+
+                                Inventory[i][0].equipped = true;
+                                this.weaponEquipped = Inventory[i][0].type;
+                                this.rangedWeaponType = Inventory[i][0].subUtility;
+                                this.weaponIsRanged = true;
+
+                                if (Inventory[i][0].subUtility == "bow")
+                                {
+                                    this.projectileReleased = true;
+                                }
+                                else if (Inventory[i][0].subUtility == "bow")
+                                {
+                                    this.projectileReleased = false;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //equipping a ranged weapon
+                            if (this.isWeaponEquipped == false)
+                            {
+                                Inventory[i][0].equipped = true;
+                                this.isWeaponEquipped = true;
+                                this.weaponEquipped = Inventory[i][0].type;
+                                this.rangedWeaponType = Inventory[i][0].subUtility;
+                                this.weaponIsRanged = true;
+
+                                if (Inventory[i][0].subUtility == "bow")
+                                {
+                                    this.projectileReleased = true;
+                                }
+                                else if (Inventory[i][0].subUtility == "bow")
+                                {
+                                    this.projectileReleased = false;
+                                }
+                            }
+                            else
+                            {
+                                //unequipping a ranged weapon
+                                if (Inventory[i][0].equipped == true)
+                                {
+                                    Inventory[i][0].equipped = false;
+                                    this.isWeaponEquipped = false;
+                                    this.rangedWeaponType = "none";
+                                    this.weaponEquipped = "none";
+                                    this.weaponIsRanged = false;
+                                }
                             }
                         }
                     }

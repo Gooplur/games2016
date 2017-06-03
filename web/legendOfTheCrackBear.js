@@ -2092,6 +2092,7 @@ function theLegend()
     allWorn.push(new Item("fineFreydicOutfitF", false)); //39
     allWorn.push(new Item("fineFreydicOutfitM", false)); //40
     allWorn.push(new Item("hyelingArmour", false)); //41
+    allWorn.push(new Item("wizardGown", false)); //42
 
     scenicList = [];
 

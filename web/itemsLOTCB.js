@@ -8179,6 +8179,26 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "ashStone")
+        {
+            //For All Items
+            this.identity = "Stone";
+            this.weight = 2.2;
+            this.size = 8;
+            this.description = "A chunk of rock.";
+            this.intForDes = 30;
+            this.intDescription = "This type of stone is particularly weak. It often contains large amounts of cole, as well as metaphorphosed ash.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "coal")
         {
             //For All Items
@@ -8199,6 +8219,26 @@ function Item(type, x, y)
             this.buyValue = 8 - Math.floor(player.getCharisma() / 15); // at max, buy for 5.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
         }
+        else if (this.type == "emerald")
+        {
+            //For All Items
+            this.identity = "Emerald";
+            this.weight = 1;
+            this.size = 7;
+            this.description = "A greatly valued grandiose green gem stone.";
+            this.intForDes = 18;
+            this.intDescription = "Emerald is an an imperfection in the mineral beryl that is extremely rare; emeralds are though to bring insight and clarity to the beholder.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 500; // at max, buy for 500.
+            this.sellValue = 400 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 500.
+        }
         else if (this.type == "ruby")
         {
             //For All Items
@@ -8218,6 +8258,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 390; // at max, buy for 390.
             this.sellValue = 340 + Math.floor(player.getCharisma() / 1); // at max, sell for 390.
+        }
+        else if (this.type == "sapphire")
+        {
+            //For All Items
+            this.identity = "Sapphire";
+            this.weight = 2;
+            this.size = 7;
+            this.description = "A magnificent and rare gemstone that gleems a deep shade of blue.";
+            this.intForDes = 18;
+            this.intDescription = "Sapphire is a non-red variety of the mineral corundum, it is highly valued and is believed to enable certain magics.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 210; // at max, buy for 210.
+            this.sellValue = 160 + Math.floor(player.getCharisma() / 1); // at max, sell for 210.
         }
         else if (this.type == "rawSilver")
         {
@@ -13499,6 +13559,80 @@ function Item(type, x, y)
             this.buyValue = 22 - Math.floor(player.getCharisma() / 8); // at max, buy for 16.
             this.sellValue = 11 + Math.floor(player.getCharisma() / 10); // at max, sell for 16.
         }
+        else if (this.type == "wizardGown")
+        {
+            //For All Items
+            if (player.gender == "Male")
+            {
+                this.identity = "Wizard Gown";
+            }
+            else
+            {
+                this.identity = "Wizardess Gown";
+            }
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A blue robe usually worn by a wizard or a wizardess.";
+            this.intForDes = 1;
+            this.intDescription = "The robe enhances the emanation of a magician's magical essence.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 1;
+            this.magicalProtection = 0.1;
+            this.warmthRetention = -0.15;
+            this.thirstRetention = 0.25;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 2;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -6;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            if (player.eminence >= 1)
+            {
+                this.eminenceBonus = 1;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 1;
+            }
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 2;
+            if (player.eminence >= 5)
+            {
+                this.intForCraft = 12;
+            }
+            else
+            {
+                this.intForCraft = 100;
+            }
+            this.ingredients = [["Cloth", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 25 - Math.floor(player.getCharisma() / 10); // at max, buy for 20.
+            this.sellValue = 17 + Math.floor(player.getCharisma() / 15); // at max, sell for 20.
+        }
         else if (this.type == "varnFurClothing")
         {
             //For All Items
@@ -14989,10 +15123,25 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1666, 466, 25, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24), 25, 24);
         }
+        else if (this.type == "ashStone")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1561, 529, 25, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24), 25, 24);
+        }
         else if (this.type == "ruby")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1440, 527, 25, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 0.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 0.3), 25 * 0.3, 26 * 0.3);
+        }
+        else if (this.type == "emerald")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1407, 523, 23, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 23 * 0.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 0.3), 23 * 0.3, 35 * 0.3);
+        }
+        else if (this.type == "sapphire")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1328, 524, 36, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 0.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 0.3), 36 * 0.3, 33 * 0.3);
         }
         else if (this.type == "coal")
         {
@@ -16256,6 +16405,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 258, 316, 37, 60, X - this.X + (1/2 * CCC.width) - (1/2 * 59.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 96), 59.2, 96);
         }
+        else if (this.type == "wizardGown")
+        {
+            XXX.beginPath();
+            XXX.drawImage(zer0, 67, 254, 18, 41, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 2.85), Y - this.Y + (1/2 * CCC.height) - (1/2 * 41 * 2.85), 18 * 2.85, 41 * 2.85);
+        }
         else if (this.type == "hetmerArmour")
         {
             XXX.beginPath();
@@ -17030,10 +17184,25 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1666, 466, 25, 24, this.invX - (1/2 * 25), this.invY - (1/2 * 24), 25, 24);
         }
+        else if (this.type == "ashStone")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1561, 529, 25, 24, this.invX - (1/2 * 25), this.invY - (1/2 * 24), 25, 24);
+        }
         else if (this.type == "ruby")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1440, 527, 25, 26, this.invX - (1/2 * 25 * 0.3), this.invY - (1/2 * 26 * 0.3), 25 * 0.3, 26 * 0.3);
+        }
+        else if (this.type == "emerald")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1407, 523, 23, 35, this.invX - (1/2 * 23 * 0.3), this.invY - (1/2 * 35 * 0.3), 23 * 0.3, 35 * 0.3);
+        }
+        else if (this.type == "sapphire")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1328, 524, 36, 33, this,invX - (1/2 * 36 * 0.3), this.invY - (1/2 * 33 * 0.3), 36 * 0.3, 33 * 0.3);
         }
         else if (this.type == "coal")
         {
@@ -18302,6 +18471,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(verse, 258, 316, 37, 60, this.invX - (1/2 * 44.4), this.invY - (1/2 * 72), 44.4, 72);
         }
+        else if (this.type == "wizardGown")
+        {
+            LXX.beginPath();
+            LXX.drawImage(zer0, 67, 254, 18, 41, this.invX - (1/2 * 18 * 2.05), this.invY - (1/2 * 41 * 2.05), 18 * 2.05, 41 * 2.05);
+        }
         else if (this.type == "hetmerArmour")
         {
             LXX.beginPath();
@@ -19041,10 +19215,25 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1666, 466, 25, 24, this.invX - (1/2 * 25), this.invY - (1/2 * 24), 25, 24);
         }
+        else if (this.type == "ashStone")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1561, 529, 25, 24, this.invX - (1/2 * 25), this.invY - (1/2 * 24), 25, 24);
+        }
         else if (this.type == "ruby")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1440, 527, 25, 26, this.invX - (1/2 * 25 * 0.3), this.invY - (1/2 * 26 * 0.3), 25 * 0.3, 26 * 0.3);
+        }
+        else if (this.type == "emerald")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1407, 523, 23, 35, this.invX - (1/2 * 23 * 0.3), this.invY - (1/2 * 35 * 0.3), 23 * 0.3, 35 * 0.3);
+        }
+        else if (this.type == "sapphire")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1328, 524, 36, 33, this,invX - (1/2 * 36 * 0.3), this.invY - (1/2 * 33 * 0.3), 36 * 0.3, 33 * 0.3);
         }
         else if (this.type == "coal")
         {
@@ -20308,6 +20497,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(verse, 258, 316, 37, 60, this.invX - (1/2 * 44.4), this.invY - (1/2 * 72), 44.4, 72);
+        }
+        else if (this.type == "wizardGown")
+        {
+            XXX.beginPath();
+            XXX.drawImage(zer0, 67, 254, 18, 41, this.invX - (1/2 * 18 * 2.05), this.invY - (1/2 * 41 * 2.05), 18 * 2.05, 41 * 2.05);
         }
         else if (this.type == "hetmerArmour")
         {

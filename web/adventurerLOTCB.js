@@ -4077,6 +4077,10 @@ function Adventurer()
         {
             outfit = allWorn[41];
         }
+        else if (this.outfitEquipped == "wizardGown")
+        {
+            outfit = allWorn[42];
+        }
         else
         {
             outfit = allWorn[0];
@@ -4163,6 +4167,7 @@ function Adventurer()
 
         this.AdAbility = [outfit.ability, gloves.ability, necklace.ability, ring.ability];
 
+
         if (this.getToughness() < outfit.toughnessRequirement)
         {
             this.unskilledUse = true;
@@ -4189,6 +4194,15 @@ function Adventurer()
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (1 / 2 * Math.PI));
             XXX.drawImage(oldverse, 44, 89, 51, 35, -(1 / 2 * 40.8) + 6.3, -(1 / 2 * 28) - 0.5, 45.9, 31.5);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "wizardGown")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(zer0, 63, 232, 19, 19, - 1/2 * 19 * 2, - 1/2 * 19 * 2 + 1.2, 19 * 2, 19 * 2);
             XXX.restore();
         }
         else if (this.outfitEquipped == "hyelingArmour")

@@ -454,7 +454,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(2072, 1535, "Person", false, "Kedwin", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.5, 1], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[2072, 1535], [1939, 1509], [2033, 1499]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(2317, 2074, "Person", false, "Kedwin", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.5, 1], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[2212, 2071], [2317, 2074], [2244, 2063]]}));
                         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                         {
                             if (ArtificialIntelligenceAccess[i].ID == "Kedwin")
@@ -545,7 +545,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(2164, 1656, "Person", false, "Hilmund the Innkeeper", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.3, 0.7], 0, 0, 0.8], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2164, 1656]], merchant: true, merchandise: [[new Item("coins", false, false), 86 + quests.hilmundNewWealth], [new Item("harstAle", false, false), 64], [new Item("pluttWine", false, false), 19], [new Item("glassBottleOfPluttWine", false, false), 6], [new Item("pluttCiderPintGlass", false, false), 7], [new Item("waterPintGlass", false, false), 9], [new Item("bucketOfWater", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 11], [new Item("walrusMeat", false, false), 8], [new Item("bearMeat", false, false), 3], [new Item("winterWolfMeat", false, false), 5], [new Item("frichMeat", false, false), 17], [new Item("wolfLiver", false, false), 6], [new Item("harstBread", false, false), 1], [new Item("suuliMelonSlice", false, false), 14]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(2346, 1756, "Person", false, "Hilmund the Innkeeper", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.3, 0.7], 0, 0, 0.8], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2164, 1656]], merchant: true, merchandise: [[new Item("coins", false, false), 86 + quests.hilmundNewWealth], [new Item("harstAle", false, false), 64], [new Item("pluttWine", false, false), 19], [new Item("glassBottleOfPluttWine", false, false), 6], [new Item("pluttCiderPintGlass", false, false), 7], [new Item("waterPintGlass", false, false), 9], [new Item("bucketOfWater", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 11], [new Item("walrusMeat", false, false), 8], [new Item("bearMeat", false, false), 3], [new Item("winterWolfMeat", false, false), 5], [new Item("frichMeat", false, false), 17], [new Item("wolfLiver", false, false), 6], [new Item("harstBread", false, false), 1], [new Item("suuliMelonSlice", false, false), 14]]}));
                     }
                 }
                 if (uniqueChars.bobithLDS == true)
@@ -760,6 +760,9 @@ function buildMaster()
                 }
 
                 //Scenery
+                //buildings in the city
+                scenicList.push(new Scenery("freydicBuilding1", 2142, 1900, 0, true));
+                //scenicList.push(new Scenery("freydicRoof1", 2142, 1900, 0, true));
                 //bandit Camp in the north east
                 //tents
                 scenicList.push(new Scenery("tent", 74 - 750, 5672, (0.5/5 * 2 * Math.PI), true));
@@ -776,11 +779,11 @@ function buildMaster()
                 scenicList.push(new Scenery("lab", 1217, 728, 0, true));
                 if (quests.theBrokenWellFixed)
                 {
-                    scenicList.push(new Scenery("well", 2394, 1618, 0, true));
+                    scenicList.push(new Scenery("well", 2036, 1565, 0, true));
                 }
                 else
                 {
-                    scenicList.push(new Scenery("brokenWell", 2394, 1618, 0, true));
+                    scenicList.push(new Scenery("brokenWell", 2036, 1565, 0, true));
                 }
 
                 //The lonely farm house
@@ -1083,6 +1086,7 @@ function buildMaster()
                 scenicList.push(new Scenery("stone", 8895 , 5126, 5.213, 4, 2));
                 scenicList.push(new Scenery("darkStone", 11364 , 1651, 1.37, 2.5, 2));
                 scenicList.push(new Scenery("darkStone", 9581 , -1232, -3.4, 3.5, 3));
+                scenicList.push(new Scenery("ashStone", 11682 , 4722, 2.345678910, 4, 1));
 
                 //Plants
                 scenicList.push(new Scenery("haeflowerPlant", 11256 , 2707, 4, true));

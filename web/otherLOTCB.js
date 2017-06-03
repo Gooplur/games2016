@@ -611,3 +611,15 @@ function inGamePopUp(type, message, unique)
 
     }
 }
+
+function logRotatedCoords(cx, cy, x, y, angle)
+{
+    var nnx;
+    var nny;
+    var radians = (Math.PI / 180) * angle,
+    cos = Math.cos(radians),
+    sin = Math.sin(radians),
+    nnx = (cos * (x - cx)) + (sin * (y - cy)) + cx;
+    nny = (cos * (y - cy)) - (sin * (x - cx)) + cy;
+    return [nnx, nny];
+}

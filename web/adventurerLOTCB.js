@@ -5485,6 +5485,86 @@ function Adventurer()
             }
         }
 
+        //Iceberg Form
+        if (this.spell.ID == "iceberg")
+        {
+            this.stageEngine(6, 0.20, true);
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zapa, 549, 241, 44, 41, -1/2 * 44 * 1.3, -1/2 * 41 * 1.3 - 2, 44 * 1.3, 41 * 1.3);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zapa, 551, 407, 44, 41, -1/2 * 44 * 1.3, -1/2 * 41 * 1.3 - 2, 44 * 1.3, 41 * 1.3);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zapa, 549, 241, 44, 41, -1/2 * 44 * 1.3, -1/2 * 41 * 1.3 - 2, 44 * 1.3, 41 * 1.3);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zapa, 550, 284, 44, 41, -1/2 * 44 * 1.3 -0.5, -1/2 * 41 * 1.3 - 2.25, 44 * 1.3, 41 * 1.3);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zapa, 550, 324, 44, 41, -1/2 * 44 * 1.3, -1/2 * 41 * 1.3 - 4.75, 44 * 1.3, 41 * 1.3);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zapa, 551, 364, 44, 41, -1/2 * 44 * 1.3, -1/2 * 41 * 1.3 - 4.7, 44 * 1.3, 41 * 1.3);
+                XXX.restore();
+                if (this.doMagic)
+                {
+                    this.doMagic = false;
+                    this.magicalExperience += this.spell.EXP;
+                    magicList.push(new Magic(player.spell, true));
+                }
+                this.castingCooldown = new Date().getTime();
+            }
+            else if (Math.floor(this.stage) <= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zapa, 551, 407, 44, 41, -1/2 * 44 * 1.3, -1/2 * 41 * 1.3 - 2, 44 * 1.3, 41 * 1.3);
+                XXX.restore();
+            }
+            if (Math.floor(this.stage) >= 7)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(zapa, 549, 241, 44, 41, -1/2 * 44 * 1.3, -1/2 * 41 * 1.3 - 2, 44 * 1.3, 41 * 1.3);
+                XXX.restore();
+            }
+        }
+
         //Ice Spikes Form
         if (this.spell.ID == "iceSpikes")
         {

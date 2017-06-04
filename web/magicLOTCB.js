@@ -796,6 +796,41 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 this.drawWithRotation(mofu, 454, 46, 19, 32, 29, 26, player.rotation, -1 / 2 * 19, -1 / 2 * 32);
             }
         }
+        //ICEBERG
+        if (this.spellType == "iceberg")
+        {
+            this.explosion = false;
+            this.shardTime = 0;
+            if (instructions == "iceShard")
+            {
+                this.size = 0.35;
+            }
+            else
+            {
+                this.size = 0.1;
+            }
+            this.keepSizeTime = new Date().getTime();
+            if (caster)
+            {
+                if (instructions != "iceShard")
+                {
+                    this.rotation = player.rotation + 1/2 * Math.PI;
+                    this.orientToCaster(25, 2.5 / 5 * Math.PI);
+                    this.drawWithRotation(zapa, 392, 345, 22, 21, -11, -10.5, player.rotation, -1 / 2 * 22, -1 / 2 * 21);
+                }
+                else
+                {
+                    this.X = unitSelf[1];
+                    this.Y = unitSelf[2];
+                }
+            }
+            else
+            {
+                this.rotation = unitSelf.rotation;
+                this.orientToCaster(32, 2.5 / 5 * Math.PI);
+                this.drawWithRotation(zapa, 392, 345, 22, 21, -11, -10.5, unitSelf.rotation, -1 / 2 * 22, -1 / 2 * 21);
+            }
+        }
         //Draining I
         if (this.spellType == "drainingI")
         {
@@ -1553,6 +1588,148 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 this.flashAnimate(90, this.unitRotation, 1, [{image: lodo, imgX: 46, imgY: 146, portionW: 16, portionH: 12, adjX: -1 / 2 * 16 * 2 * this.size, adjY: -1 / 2 * 12 * 2 * this.size, width: 16 * 2 * this.size, height: 12 * 2 * this.size}, {image: lodo, imgX: 65, imgY: 146, portionW: 16, portionH: 12, adjX: -1 / 2 * 16 * 2 * this.size, adjY: -1 / 2 * 12 * 2 * this.size, width: 16 * 2 * this.size, height: 12 * 2 * this.size}, {image: lodo, imgX: 83, imgY: 147, portionW: 16, portionH: 12, adjX: -1 / 2 * 16 * 2 * this.size, adjY: -1 / 2 * 12 * 2 * this.size, width: 16 * 2 * this.size, height: 12 * 2 * this.size}, {image: lodo, imgX: 104, imgY: 148, portionW: 16, portionH: 12, adjX: -1 / 2 * 16 * 2 * this.size, adjY: -1 / 2 * 12 * 2 * this.size, width: 16 * 2 * this.size, height: 12 * 2 * this.size}], true, false);
                 this.project(this.unitRotation - Math.PI, unitSelf.baseSight, this.speed, true);
 
+            }
+
+            if (this.spellType == "iceberg")
+            {
+
+                if (new Date().getTime() - this.keepSizeTime > 100)
+                {
+                    this.keepSizeTime = new Date().getTime();
+                    if (instructions != "iceShard")
+                    {
+                        if (player.getConcentration() >= 50)
+                        {
+                            if (this.size < 1.3)
+                            {
+                                this.size += 0.05
+                            }
+                        }
+                        else
+                        {
+                            if (this.size < 1.1)
+                            {
+                                this.size += 0.05
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.shardTime += 1;
+                    }
+                }
+
+                if (instructions != "iceShard")
+                {
+                    if (player.getConcentration() == 50)
+                    {
+                        if (this.size > 1.25)
+                        {
+                            this.explosion = true;
+                        }
+                    }
+                    else
+                    {
+                        if (this.size > 1.05)
+                        {
+                            this.explosion = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.shardTime > 24)
+                    {
+                        magicList.splice(magicList.indexOf(this), 1);
+                    }
+                }
+
+                if (caster)
+                {
+                    this.damageThenGoAway(20 * this.size, "physicalDamage", ((25 + (10 / 50) * player.getConcentration()) * this.size), (5 + (10 / 50) * player.getConcentration()) * this.size, false, false);
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (instructions != "iceShard")
+                    {
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    }
+                    else
+                    {
+                        XXX.rotate(unitSelf[0]);
+                    }
+                    XXX.drawImage(zapa, 461, 204, 48, 60, - (1/2 * 48 * this.size), - (1/2 * 60 * this.size), 48 * this.size, 60 * this.size);
+                    XXX.restore();
+                    if (instructions != "iceShard")
+                    {
+                        this.project(this.rotation, 10000, 2, false);
+                    }
+                    else
+                    {
+                        this.project(unitSelf[0] + 1/2 * Math.PI, 10000, 5, false);
+                    }
+
+                    if (this.explosion == true)
+                    {
+                        this.explosion = false;
+                        if (player.getConcentration() >= 50)
+                        {
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                        }
+                        else if (player.getConcentration() >= 40)
+                        {
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                        }
+                        else if (player.getConcentration() >= 30)
+                        {
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                        }
+                        else if (player.getConcentration() >= 20)
+                        {
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                        }
+                        else if (player.getConcentration() >= 10)
+                        {
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                        }
+                        else
+                        {
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                        }
+
+                        magicList.splice(magicList.indexOf(this), 1);
+                    }
+                }
+                else
+                {
+                    //Todo add the Ai part of this spell...
+                }
             }
 
             if (this.spellType == "electricBolt")

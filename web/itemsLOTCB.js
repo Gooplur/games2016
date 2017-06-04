@@ -688,7 +688,7 @@ function Item(type, x, y)
             //Utility Focused
             this.damages = false;
             //this.spellDamage = 0.5 + (4.5/50 * player.getConcentration());
-            this.spellCost = Math.max(5, 10 + (20 / 50 * player.getConcentration()) - (25 / 50) * player.getEminence());
+            this.spellCost = Math.max(5, 7 + (20 / 50 * player.getConcentration()) - (22 / 50) * player.getEminence());
             this.spellGroup = "Form";
             this.spellGenre = "Ice";
             this.spellName = "Iceberg";
@@ -697,7 +697,7 @@ function Item(type, x, y)
             this.spellEXP = 20 * ((50 + player.getMemory()) / 50);
             this.spellCooldown = Math.max(6, 12 + (10/50) * player.getConcentration() - (16/10) * player.getEminence());
             this.spellKnowledgeRequirement = 10;
-            this.spellRange = "Medium";
+            this.spellRange = "Medium-Short";
         }
         else if (this.type == "iceSpikes")
         {

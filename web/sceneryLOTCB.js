@@ -51,6 +51,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     //light source variables
     this.lightGetTime = new Date().getTime();
     this.lightTime = 0;
+    //trap variables
+    this.snapShut = false;
     //Hive Variables
     this.hiveID = Math.random();
     this.minions = 0; //the current amount of soldiers the hive has.
@@ -95,6 +97,23 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         if (hits == Inventory.length)
         {
             Inventory.push([new Item(selection.type, false, false), selection.quantity]);
+        }
+    };
+
+    this.damagePlayer = function(damage, negate, effect)
+    {
+        if (player.mageShield > 0)
+        {
+            player.mageShield -= damage;
+        }
+        else
+        {
+            player.health += player.mageShield;
+            //player.decreaseInHealth -= player.mageShield;
+            player.mageShield = 0;
+
+            player.health -= Math.max(0, damage - Math.max(0, player.armourTotal - negate));
+            player.decreaseInHealth += Math.max(0, damage - Math.max(0, player.armourTotal - negate));
         }
     };
 
@@ -753,6 +772,120 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     {
                         worldItems.push([new Item("oilLanternEmpty", this.X, this.Y), 1])
                     }
+
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this.type == "bearTrap")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 50;
+
+            if (this.runOneTime)
+            {
+                this.stage = 1;
+                this.runOneTime = false;
+                this.tiic = 0;
+            }
+
+            //DRAWSELF
+            if (this.stage == 0)
+            {
+                this.snapShut = false;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mofu, 83, 8, 10, 9, -(1/2 * 10 * 1.5), -(1/2 * 9 * 1.5), 10 * 1.5, 9 * 1.5);
+                XXX.restore();
+            }
+            else if (this.stage == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mofu, 62, 8, 10, 9, -(1/2 * 10 * 1.5), -(1/2 * 9 * 1.5), 10 * 1.5, 9 * 1.5);
+                XXX.restore();
+            }
+            else if (this.stage == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mofu, 75, 8, 10, 9, -(1/2 * 10 * 1.5), -(1/2 * 9 * 1.5), 10 * 1.5, 9 * 1.5);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 13.5;
+
+            //spring trap
+            if (this.dst(X, Y) <= this.radius && this.stage == 1)
+            {
+                if (longevity == false)
+                {
+                    this.damagePlayer(9 + 25/50 * player.getSurvivalism(), 1)
+                }
+                else
+                {
+                    this.damagePlayer(20, 1)
+                }
+                this.stage = 2;
+                this.snapShut = true;
+            }
+            if (this.stage == 1)
+            {
+                for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                {
+                    if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius)
+                    {
+                        if (longevity == false)
+                        {
+                            ArtificialIntelligenceAccess[j].health -= Math.max(0, (5 + 30/50 * player.getSurvivalism()) - ArtificialIntelligenceAccess[j].armour);
+                            player.experience += 8 * (player.getIntelligence() + 50 / 50); //the player gets experience for successful trapping.
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess[j].health -= Math.max(0, 10 - ArtificialIntelligenceAccess[j].armour);
+                        }
+                        this.stage = 2;
+                        this.snapShut = true;
+                    }
+                }
+            }
+
+            if (this.snapShut && this.stage == 2)
+            {
+                this.tiic += 1;
+                trapclap.play();
+                if (this.tiic >= 10)
+                {
+                    this.tiic = 0;
+                    this.stage = 0;
+                }
+            }
+
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (this.stage == 1)
+                {
+                    this.snapShut = true;
+                    this.stage = 2;
+                }
+                if (longevity == false && this.stage == 0)
+                {
+                    worldItems.push([new Item("beartrap", this.X, this.Y), 1]);
 
                     for (var i = 0; i < scenicList.length; i++)
                     {

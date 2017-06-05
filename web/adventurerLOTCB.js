@@ -17592,6 +17592,36 @@ function Adventurer()
                                 break;
                             }
                         }
+                        else if (Inventory[i][0].subUtility == "beartrap" && player.getSurvivalism() >= 1)
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            var inFrontY = Y + Math.sin(this.rotation + 1/2 * Math.PI) * 19;
+                            var inFrontX = X + Math.cos(this.rotation + 1/2 * Math.PI) * 19;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //42 is the radius of tent Scenery Object.
+                                if (scenicList[j].X - 12 <= inFrontX + scenicList[j].radius && scenicList[j].X + 12 >= inFrontX - scenicList[j].radius && scenicList[j].Y - 12 <= inFrontY + scenicList[j].radius && scenicList[j].Y + 12 >= inFrontY - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("bearTrap", inFrontX, inFrontY, (this.rotation), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
                         else if (Inventory[i][0].subUtility == "bandage")
                         {
                             if (Inventory[i][0].ability == "bandageI")
@@ -17801,12 +17831,26 @@ function Adventurer()
                         XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
                         XXX.fillText("      Utility", 157, 514);
                     }
+                    else if (Inventory[i][0].utility == "trap")
+                    {
+                        XXX.font="14px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("      Trap", 157, 514);
+                    }
                     else if (Inventory[i][0].utility == "book")
                     {
                         XXX.font="14px Book Antiqua";
                         XXX.fillStyle = "black";
                         XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
                         XXX.fillText("      Book", 157, 514);
+                    }
+                    else if (Inventory[i][0].utility == "audiolog")
+                    {
+                        XXX.font="14px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("      Audiolog", 157, 514);
                     }
                     else if (Inventory[i][0].utility == "recipe")
                     {

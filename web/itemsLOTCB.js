@@ -8141,6 +8141,33 @@ function Item(type, x, y)
             this.buyValue = 55 - Math.floor(player.getCharisma() / 2); // at max, buy for 30.
             this.sellValue = 25 + Math.floor(player.getCharisma() / 10); // at max, sell for 30.
         }
+        else if (this.type == "beartrap")
+        {
+            //For All Items
+            this.identity = "Bear-Trap";
+            this.weight = 1;
+            this.size = 10;
+            this.description = "A sharp toothed metal trap the clamps shut when pressure is put on its center.";
+            this.intForDes = 0;
+            this.intDescription = "1 survivalism point is required to set this type of trap. Advice: Don't spring your own trap!";
+
+            //Define Utility
+            this.utility = "trap";
+            //subUtility
+            this.subUtility = "beartrap";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 27;
+            this.ingredients = [["Iron", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 30 - Math.floor(player.getCharisma() / 10); // at max, buy for 25.
+            this.sellValue = 20 + Math.floor(player.getCharisma() / 10); // at max, sell for 25.
+        }
         else if (this.type == "wood")
         {
             //For All Items
@@ -16534,6 +16561,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 2994, 291, 27, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 40.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22.5), 40.5, 22.5);
         }
+        else if (this.type == "beartrap")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mofu, 83, 8, 10, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.5), 10 * 1.5, 9 * 1.5);
+        }
         else if (this.type == "fireStarter")
         {
             XXX.beginPath();
@@ -18600,6 +18632,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(verse, 2994, 291, 27, 15, this.invX - (1/2 * 40.5), this.invY - (1/2 * 22.5), 40.5, 22.5);
         }
+        else if (this.type == "beartrap")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mofu, 62, 8, 10, 9, this.invX - (1/2 * 10 * 1.5), this.invY - (1/2 * 9 * 1.5), 10 * 1.5, 9 * 1.5);
+        }
         else if (this.type == "fireStarter")
         {
             LXX.beginPath();
@@ -20626,6 +20663,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(verse, 2994, 291, 27, 15, this.invX - (1/2 * 40.5), this.invY - (1/2 * 22.5), 40.5, 22.5);
+        }
+        else if (this.type == "beartrap")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mofu, 62, 8, 10, 9, this.invX - (1/2 * 10 * 1.5), this.invY - (1/2 * 9 * 1.5), 10 * 1.5, 9 * 1.5);
         }
         else if (this.type == "fireStarter")
         {

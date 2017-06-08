@@ -867,6 +867,18 @@ function casiAlFin()
 
     lodo.onload = function()
     {
+        noRealmenteTanCerca();
+    };
+}
+
+function noRealmenteTanCerca()
+{
+    var dolls = new Image();
+    dolls.src = ("images/dolls.png");
+    window.dolls = dolls;
+
+    dolls.onload = function()
+    {
         somewhatToLastPreStage();
     };
 }
@@ -2180,6 +2192,9 @@ function theLegend()
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];
+    foods.push(new Item("bowlOfBoiledHarst", false));
+    foods.push(new Item("bowlOfCreamyHarst", false));
+    foods.push(new Item("bowlOfSanthPorridge", false));
     foods.push(new Item("cookedPotato", false));
     foods.push(new Item("etyrMeat", false));
     foods.push(new Item("olkrinMeat", false));
@@ -2315,6 +2330,7 @@ function theLegend()
     forge.push(new Item("pureJvostranOre", false));
     forge.push(new Item("jvostran", false));
     forge.push(new Item("kellishClayPot", false));
+    forge.push(new Item("clayBowl", false));
 
 //Handcrafted (things the player can do without a work station of some kind)
     handcrafted = [];
@@ -2351,6 +2367,7 @@ function theLegend()
     handcrafted.push(new Item("dualVardanianBattleAxe", false));
     handcrafted.push(new Item("dyedMufCloth", false));
     handcrafted.push(new Item("culprisBandage", false));
+    handcrafted.push(new Item("bowlOfMushroomStew", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

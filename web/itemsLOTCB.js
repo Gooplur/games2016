@@ -5497,6 +5497,179 @@ function Item(type, x, y)
             this.buyValue = 2; // at max, buy for 2.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "clayBowl")
+        {
+            //For All Items
+            this.identity = "Clay Bowl";
+            this.weight = 0.5;
+            this.size = 6;
+            this.description = "A bowl made of clay.";
+            this.intForDes = 1;
+            this.intDescription = "You can eat things out of it!";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Clay", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "bowlOfMushroomStew")
+        {
+            //For All Items
+            this.identity = "Bowl of Mushroom Stew";
+            this.weight = 3;
+            this.size = 6;
+            this.description = "A bowl of brothy stew made with mushrooms, potatoes, and harst grain.";
+            this.intForDes = 0;
+            this.intDescription = "A flavourful and hearty stew that warms the soul.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["clayBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 5; //satisfies hunger.
+            this.thirst = 5; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0.2; //restores will.
+
+            //ability
+            this.ability = "sensational";
+
+            //Crafting
+            this.yield = 12;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("kellishClayPot", false), 1]];
+            this.ingredients = [["Kellish Clay Pot of Mushroom Stew", 1], ["Clay Bowl", 12]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 15); // at max, buy for 12.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 25); // at max, sell for 12.
+        }
+        else if (this.type == "bowlOfCreamyHarst")
+        {
+            //For All Items
+            this.identity = "Bowl of Creamy Harst";
+            this.weight = 2.5;
+            this.size = 6;
+            this.description = "A bowl of boiled harst grain cooked in boiled cream.";
+            this.intForDes = 0;
+            this.intDescription = "A creamy and chewy grain experience!";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["clayBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 10;
+            this.intForCraft = 1;
+            this.biproducts = [[new Item("bucket", false), 1]];
+            this.ingredients = [["Bucket of Naaprid Milk", 1], ["Clay Bowl", 10], ["Harst Grain", 10]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7; // at max, buy for 7.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+        }
+        else if (this.type == "bowlOfSanthPorridge")
+        {
+            //For All Items
+            this.identity = "Bowl of Santh Porridge";
+            this.weight = 3;
+            this.size = 6;
+            this.description = "A bowl of boiled santh grain cooked in boiled cream and mixed with honey and butter.";
+            this.intForDes = 0;
+            this.intDescription = "A creamy and chewy grain experience!";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["clayBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 10; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.3; //recoops lost energy.
+            this.replenish = 0.2; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 14;
+            this.intForCraft = 8;
+            this.biproducts = [[new Item("bucket", false), 1]];
+            this.ingredients = [["Bucket of Naaprid Milk", 1], ["Clay Bowl", 14], ["Santh Grain", 14], ["Honey", 1], ["Naaprid Butter", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 17; // at max, buy for 17.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 15); // at max, sell for 17.
+        }
+        else if (this.type == "bowlOfBoiledHarst")
+        {
+            //For All Items
+            this.identity = "Bowl of Boiled Harst";
+            this.weight = 2.5;
+            this.size = 6;
+            this.description = "A bowl of boiled harst grain.";
+            this.intForDes = 0;
+            this.intDescription = "A bland and chewy, but affordable, breakfast.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["clayBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 6;
+            this.intForCraft = 1;
+            this.biproducts = [[new Item("bucket", false), 1]];
+            this.ingredients = [["Bucket of Water", 1], ["Clay Bowl", 6], ["Harst Grain", 6]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
         else if (this.type == "kellishClayPotOfNaapridMilk")
         {
             //For All Items
@@ -15174,6 +15347,26 @@ function Item(type, x, y)
             XXX.arc(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
             XXX.fill();
         }
+        else if (this.type == "clayBowl")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mofu, 5, 15, 12, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.6), 12 * 1.6, 10 * 1.6);
+        }
+        else if (this.type == "bowlOfMushroomStew")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mofu, 19, 15, 12, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.6), 12 * 1.6, 10 * 1.6);
+        }
+        else if (this.type == "bowlOfSanthPorridge")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mofu, 36, 16, 12, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.6), 12 * 1.6, 10 * 1.6);
+        }
+        else if (this.type == "bowlOfBoiledHarst" || this.type == "bowlOfCreamyHarst")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mofu, 5, 38, 12, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.6), 12 * 1.6, 10 * 1.6);
+        }
         else if (this.type == "haeflower")
         {
             XXX.beginPath();
@@ -17245,6 +17438,26 @@ function Item(type, x, y)
             LXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             LXX.fill();
         }
+        else if (this.type == "clayBowl")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mofu, 2, 3, 18, 12, this.invX - (1/2 * 18 * 1.6), this.invY - (1/2 * 12 * 1.6), 18 * 1.6, 12 * 1.6);
+        }
+        else if (this.type == "bowlOfMushroomStew")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mofu, 19, 5, 14, 9, this.invX - (1/2 * 18 * 1.6), this.invY - (1/2 * 12 * 1.6), 18 * 1.6, 12 * 1.6);
+        }
+        else if (this.type == "bowlOfSanthPorridge")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mofu, 34, 3, 18, 12, this.invX - (1/2 * 18 * 1.6), this.invY - (1/2 * 12 * 1.6), 18 * 1.6, 12 * 1.6);
+        }
+        else if (this.type == "bowlOfBoiledHarst" || this.type == "bowlOfCreamyHarst")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mofu, 3, 26, 18, 12, this.invX - (1/2 * 18 * 1.6), this.invY - (1/2 * 12 * 1.6), 18 * 1.6, 12 * 1.6);
+        }
         else if (this.type == "haeflower")
         {
             LXX.beginPath();
@@ -19280,6 +19493,26 @@ function Item(type, x, y)
             XXX.fillStyle = "turquoise";
             XXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             XXX.fill();
+        }
+        else if (this.type == "clayBowl")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mofu, 2, 3, 18, 12, this.invX - (1/2 * 18 * 1.6), this.invY - (1/2 * 12 * 1.6), 18 * 1.6, 12 * 1.6);
+        }
+        else if (this.type == "bowlOfMushroomStew")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mofu, 19, 5, 14, 9, this.invX - (1/2 * 18 * 1.6), this.invY - (1/2 * 12 * 1.6), 18 * 1.6, 12 * 1.6);
+        }
+        else if (this.type == "bowlOfSanthPorridge")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mofu, 34, 3, 18, 12, this.invX - (1/2 * 18 * 1.6), this.invY - (1/2 * 12 * 1.6), 18 * 1.6, 12 * 1.6);
+        }
+        else if (this.type == "bowlOfBoiledHarst" || this.type == "bowlOfCreamyHarst")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mofu, 3, 26, 18, 12, this.invX - (1/2 * 18 * 1.6), this.invY - (1/2 * 12 * 1.6), 18 * 1.6, 12 * 1.6);
         }
         else if (this.type == "haeflower")
         {

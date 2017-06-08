@@ -16468,13 +16468,23 @@ function Adventurer()
                     if (Inventory[i][0].utility == "food")
                     {
                         //Eating/Drinking
-                        this.hunger = Math.min(this.hungerMAX, this.hunger + Inventory[i][0].hunger);
+                        if (this.gameMode == "protagonist")
+                        {
+                            this.hunger = Math.min(this.hungerMAX, this.hunger + Inventory[i][0].hunger * 4);
+                            this.thirst = Math.min(this.thirstMAX, this.thirst + Inventory[i][0].thirst * 4);
+                            this.sleep = Math.min(this.sleepMAX, this.sleep + Inventory[i][0].wake * 4);
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + Inventory[i][0].warmth * 4);
+                        }
+                        else
+                        {
+                            this.hunger = Math.min(this.hungerMAX, this.hunger + Inventory[i][0].hunger);
+                            this.thirst = Math.min(this.thirstMAX, this.thirst + Inventory[i][0].thirst);
+                            this.sleep = Math.min(this.sleepMAX, this.sleep + Inventory[i][0].wake);
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + Inventory[i][0].warmth);
+                        }
                         this.energy = Math.min(this.energyMAX, this.energy + Inventory[i][0].generation);
                         this.health = Math.min(this.healthMAX, this.health + Inventory[i][0].heal);
                         this.will = Math.min(this.willMAX, this.will + Inventory[i][0].replenish);
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + Inventory[i][0].warmth);
-                        this.thirst = Math.min(this.thirstMAX, this.thirst + Inventory[i][0].thirst);
-                        this.sleep = Math.min(this.sleepMAX, this.sleep + Inventory[i][0].wake);
                         this.inebriation += Inventory[i][0].alcohol;
 
                         //some items when used will give you an item when they are used.
@@ -18255,11 +18265,11 @@ function Adventurer()
     //Health
     this.healthRegeneration = function()
     {
-        if (this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/2) && this.energy >= this.energyMAX && this.hunger >= (8/10 * this.hungerMAX) && this.thirst >= (8/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: A bandage must be used.
+        if (this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/4) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (4/10 * this.hungerMAX) && this.thirst >= (4/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: A bandage must be used.
         {
             this.health += 5 * (TTD / (45000 - 420 * Math.min(58.333, this.getEndurance()) * 2));
         }
-        else if (this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 3/5) && this.energy >= this.energyMAX && this.hunger >= (9/10 * this.hungerMAX) && this.thirst >= (9/10 * this.thirstMAX) && this.fleshMites == false && this.getEndurance() >= 10) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: If level 10 endurance is achieved.
+        else if (this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 3/5) && this.energy >= 1/2 * this.energyMAX && this.hunger >= (5/10 * this.hungerMAX) && this.thirst >= (5/10 * this.thirstMAX) && this.fleshMites == false && this.getEndurance() >= 10) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: If level 10 endurance is achieved.
         {
             this.health += 2 * (TTD / (45000 - 420 * Math.min(58.333, this.getEndurance()) * 2));
         }

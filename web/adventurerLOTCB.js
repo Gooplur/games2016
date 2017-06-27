@@ -4583,14 +4583,34 @@ function Adventurer()
         //ATTACK INITIATOR [this triggers the attack when the player presses the space key]
         if (spaceKey == true)
         {
-            if (this.weaponIsRanged == false && (this.weapon.energyCost * energil <= this.energy) && new Date().getTime() - this.attackCooldown >= 10 * this.weapon.rate && this.spell == "none")
+            if (this.weaponIsRanged == false && new Date().getTime() - this.attackCooldown >= 10 * this.weapon.rate && this.spell == "none")
             {
-                if (this.attacking == false && this.blocking == false && qKey == false && eKey == false && this.mounted == false)
+                if (player.getEndurance() >= 10 && this.weapon.energyCost * energil > this.energy && this.energy >= -4) //Special: the player can hit only minimal damage when out of energy.
                 {
-                    this.energy -= this.weapon.energyCost * energil;
-                    this.powerAttack = false;
-                    this.strike = true;
-                    this.cutcut = true; //for an sort of attacking of scenery this allows you to signal that an attack has happened.
+                    if (this.attacking == false && this.blocking == false && qKey == false && eKey == false && this.mounted == false)
+                    {
+                        this.energy = -5;
+                        if (player.getEndurance() >= 15)
+                        {
+                            this.powerAttack = "weakened";
+                        }
+                        else
+                        {
+                            this.powerAttack = "weak";
+                        }
+                        this.strike = true;
+                        this.cutcut = true; //for an sort of attacking of scenery this allows you to signal that an attack has happened.
+                    }
+                }
+                else if (this.weapon.energyCost * energil <= this.energy) //Normal: the player can not attack when out of energy.
+                {
+                    if (this.attacking == false && this.blocking == false && qKey == false && eKey == false && this.mounted == false)
+                    {
+                        this.energy -= this.weapon.energyCost * energil;
+                        this.powerAttack = false;
+                        this.strike = true;
+                        this.cutcut = true; //for an sort of attacking of scenery this allows you to signal that an attack has happened.
+                    }
                 }
             }
             else if (this.weaponIsRanged == true && this.spell == "none" && this.mounted == false)
@@ -4694,14 +4714,30 @@ function Adventurer()
         //POWER ATTACK INITIATOR
         if (eKey == true)
         {
-            if (this.weaponIsRanged == false && (this.weapon.energyCost * 2.5 * energil <= this.energy) && new Date().getTime() - this.attackCooldown >= 25 * this.weapon.rate && this.getStrength() >= 10 && this.spell == "none" && this.mounted == false)
+            if (player.getStrength() >= 20)
             {
-                if (this.attacking == false && this.blocking == false && qKey == false && spaceKey == false)
+                if (this.weaponIsRanged == false && (this.weapon.energyCost * 2 * energil <= this.energy) && new Date().getTime() - this.attackCooldown >= 18 * this.weapon.rate && this.spell == "none" && this.mounted == false)
                 {
-                    this.energy -= (this.weapon.energyCost * 2.5 * energil);
-                    this.powerAttack = true;
-                    this.strike = true;
-                    this.cutcut = true; //for an sort of attacking of scenery this allows you to signal that an attack has happened.
+                    if (this.attacking == false && this.blocking == false && qKey == false && spaceKey == false)
+                    {
+                        this.energy -= (this.weapon.energyCost * 2 * energil);
+                        this.powerAttack = true;
+                        this.strike = true;
+                        this.cutcut = true; //for an sort of attacking of scenery this allows you to signal that an attack has happened.
+                    }
+                }
+            }
+            else
+            {
+                if (this.weaponIsRanged == false && (this.weapon.energyCost * 2.5 * energil <= this.energy) && new Date().getTime() - this.attackCooldown >= 25 * this.weapon.rate && this.getStrength() >= 10 && this.spell == "none" && this.mounted == false)
+                {
+                    if (this.attacking == false && this.blocking == false && qKey == false && spaceKey == false)
+                    {
+                        this.energy -= (this.weapon.energyCost * 2.5 * energil);
+                        this.powerAttack = true;
+                        this.strike = true;
+                        this.cutcut = true; //for an sort of attacking of scenery this allows you to signal that an attack has happened.
+                    }
                 }
             }
         }
@@ -10127,6 +10163,16 @@ function Adventurer()
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                             console.log("You Dealt " + (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
+                        }
+                        else if (this.powerAttack == "weak")
+                        {
+                            ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(3,(this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            console.log("Weak Attack: " + Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) + " Damage!");
+                        }
+                        else if (this.powerAttack == "weakened")
+                        {
+                            ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(5,(this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            console.log("Weakened Attack: " + Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) + " Damage!");
                         }
                         else
                         {

@@ -10669,6 +10669,47 @@ function Item(type, x, y)
             this.buyValue = 18 - Math.floor(player.getCharisma() / 6); // at max, buy for 12.
             this.sellValue = 7 + Math.floor(player.getCharisma() / 10); // at max, sell for 12.
         }
+        else if (this.type == "staff")
+        {
+            //For All Items
+            this.identity = "Staff";
+            this.weight = 1.5;
+            this.size = 22;
+            this.description = "An average sized wooden staff.";
+            this.intForDes = 0;
+            this.intDescription = "Smacking things with a long stick can be fun...";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 1.5;
+            this.distance = 22 + (this.range * 7);
+            this.range = 3 + 2/7;
+            this.rate = 120;
+            this.damage = (1.5 - (this.damageHandicap * 0.5)) * (this.leveledDamageMultiple / 25) + ((0.5/50) * player.getStrength()) + ((0.5/50) * player.getDexterity());
+            this.magicalDamage = 0;
+            this.negateArmour = 1.5;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            if (player.getIntelligence() < 12)
+            {
+                this.yield = 1;
+            }
+            else
+            {
+                this.yield = 2;
+            }
+            this.intForCraft = 3;
+            this.ingredients = [["Wood", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
         else if (this.type == "lightningCorseque")
         {
             //For All Items
@@ -15237,6 +15278,61 @@ function Item(type, x, y)
             this.buyValue = 12 - Math.floor(player.getCharisma() / 15); // at max, buy for 9.
             this.sellValue = 6 + Math.floor(player.getCharisma() / 15); // at max, sell for 9.
         }
+        else if (this.type == "thenganDagger")
+        {
+            //For All Items
+            this.identity = "Thengan Dagger";
+            this.weight = 1.65;
+            this.size = 15;
+            this.description = "A heavy and rather sharp short blade designed in a Thengan fashion.";
+            this.intForDes = 2;
+            this.intDescription = "The design is rather crude, but it gets the job done.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            if (player.getEndurance() < 9)
+            {
+                this.energyCost = 2.5;
+            }
+            else if (player.getEndurance() < 12)
+            {
+                this.energyCost = 2;
+            }
+            else
+            {
+                this.energyCost = 1.5;
+            }
+            this.distance = 29 + (this.range * 7);
+            this.range = (1 + 4/7);
+            if (player.getDexterity() < 9)
+            {
+                this.rate = 95;
+            }
+            else if (player.getDexterity() < 12)
+            {
+                this.rate = 85;
+            }
+            else
+            {
+                this.rate = 75;
+            }
+            this.damage = ((2.75 - (0.75 * this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((1.25/50) * player.getDexterity()) + ((1.25/50) * player.getStrength())) * (1 + this.superStealthNum(0.75));
+            this.magicalDamage = 0;
+            this.negateArmour = 3.5 + this.superStealthNum(6.5);
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 8;
+            this.ingredients = [["Iron", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10 - Math.floor(player.getCharisma() / 15); // at max, buy for 7.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 15); // at max, sell for 7.
+        }
         else if (this.type == "unitMarker")
         {
             //For All Items
@@ -17361,6 +17457,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polyPNG, 554, 10, 61, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 61), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36), 61, 36);
         }
+        else if (this.type == "staff")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 211, 111, 77, 5, X - this.X + (1/2 * CCC.width) - (1/2 * 77 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 5 * 1), 77 * 1, 5 * 1);
+        }
+        else if (this.type == "thenganDagger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 86, 5, 17, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * 1), 17 * 1, 37 * 1);
+        }
         else if (this.type == "lightningCorseque")
         {
             XXX.beginPath();
@@ -19422,6 +19528,20 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polyPNG, 554, 10, 61, 36, this.invX - (1/2 * 61), this.invY - (1/2 * 38), 61, 36);
         }
+        else if (this.type == "staff")
+        {
+            LXX.beginPath();
+            LXX.save();
+            LXX.translate(this.invX, this.invY);
+            LXX.rotate(7.5/8 * 2 * Math.PI);
+            LXX.drawImage(dolls, 211, 111, 77, 5, - (1/2 * 77 * 1), - (1/2 * 5 * 1), 77 * 1, 5 * 1);
+            LXX.restore();
+        }
+        else if (this.type == "thenganDagger")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 86, 5, 17, 37, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 37 * 1), 17 * 1, 37 * 1);
+        }
         else if (this.type == "lightningCorseque")
         {
             LXX.beginPath();
@@ -21473,6 +21593,20 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(polyPNG, 554, 10, 61, 36, this.invX - (1/2 * 61), this.invY - (1/2 * 38), 61, 36);
+        }
+        else if (this.type == "staff")
+        {
+            XXX.beginPath();
+            XXX.save();
+            XXX.translate(this.invX, this.invY);
+            XXX.rotate(7.5/8 * 2 * Math.PI);
+            XXX.drawImage(dolls, 211, 111, 77, 5, - (1/2 * 77 * 1), - (1/2 * 5 * 1), 77 * 1, 5 * 1);
+            XXX.restore();
+        }
+        else if (this.type == "thenganDagger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 86, 5, 17, 37, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 37 * 1), 17 * 1, 37 * 1);
         }
         else if (this.type == "lightningCorseque")
         {

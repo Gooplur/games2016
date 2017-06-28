@@ -6556,6 +6556,132 @@ function Adventurer()
                 XXX.restore();
             }
         }
+        //THENGAN DAGGER
+        if (this.weaponEquipped == "thenganDagger")
+        {
+            this.stageEngine(6, 0.22, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(dolls, 7, 153, 80, 95, -1/2 * 80 + 3.4, -1/2 * 95 + -0.5, 80, 95);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(dolls, 4, 68, 80, 95, -1/2 * 80 + 2.4, -1/2 * 95 + -0.5, 80, 95);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2) //same as 0
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(dolls, 7, 153, 80, 95, -1/2 * 80 + 3.4, -1/2 * 95 + -0.5, 80, 95);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(dolls, 9, 242, 80, 95, -1/2 * 80 + 3.9, -1/2 * 95 + -1.5, 80, 95);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(dolls, 16, 341, 80, 95, -1/2 * 80 + 4.7, -1/2 * 95 + -1.6, 80, 95);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(dolls, 21, 453, 80, 95, -1/2 * 80 + 5.6, -1/2 * 95 + -5, 80, 95);
+                XXX.restore();
+            }
+        }
+        //STAFF
+        if (this.weaponEquipped == "staff")
+        {
+            this.stageEngine(9, 0.20, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(dolls, 132, 183, 108, 113, -1/2 * 108 + -1, -1/2 * 113 + 0, 108, 113);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(dolls, 131, 283, 108, 113, -1/2 * 108 + 0, -1/2 * 113 + 0, 108, 113);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(dolls, 133, 380, 108, 113, -1/2 * 108 + 0, -1/2 * 113 + 0, 108, 113);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(dolls, 133, 470, 108, 113, -1/2 * 108 + 0, -1/2 * 113 - 1, 108, 113);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(dolls, 270, 168, 108, 113, -1/2 * 108 + 1, -1/2 * 113 - 23, 108, 113);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(dolls, 268, 256, 108, 113, -1/2 * 108 + 2.5, -1/2 * 113 - 19, 108, 113);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(dolls, 265, 355, 108, 113, -1/2 * 108 + 3.5, -1/2 * 113 - 18.5, 108, 113);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 7)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(dolls, 266, 467, 108, 113, -1/2 * 108 + 3, -1/2 * 113 + 3, 108, 113);
+                XXX.restore();
+            }
+        }
         //KELLISH SWORD
         if (this.weaponEquipped == "kellishSword")
         {
@@ -10117,6 +10243,22 @@ function Adventurer()
             //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.3/5 * Math.PI) * (this.mySize + 23);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.3/5 * Math.PI) * (this.mySize + 23);
+        }
+        else if (this.weaponEquipped == "thenganDagger")
+        {
+            this.weapon = allWeapons[56];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.1/5 * Math.PI) * (this.mySize + 29);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.1/5 * Math.PI) * (this.mySize + 29);
+        }
+        else if (this.weaponEquipped == "staff")
+        {
+            this.weapon = allWeapons[57];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.4/5 * Math.PI) * (this.mySize + 22);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.4/5 * Math.PI) * (this.mySize + 22);
         }
     };
 
@@ -18680,7 +18822,7 @@ function Adventurer()
                 }
 
                 //this is rare, but some weapons draw below the body layer.
-                if (this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque") //add more cases for more overhead weapons.
+                if (this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }
@@ -18866,7 +19008,7 @@ function Adventurer()
                 this.drawBody();
 
                 //most weapons draw beneath the armour layer.
-                if (this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque") //add more cases for more overhead weapons.
+                if (this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }

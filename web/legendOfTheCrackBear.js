@@ -2062,6 +2062,8 @@ function theLegend()
     allWeapons.push(new Item("aldrekiiClaws", false)); //53
     allWeapons.push(new Item("hyelingCleaver", false)); //54
     allWeapons.push(new Item("cero", false)); //55
+    allWeapons.push(new Item("thenganDagger", false)); //56
+    allWeapons.push(new Item("staff", false)); //57
 
 //This list holds one of each type of worn item so that the player can access the worn item stats.
     allWorn = [];
@@ -2189,6 +2191,8 @@ function theLegend()
     smithing.push(new Item("vardanianClub", false));
     smithing.push(new Item("hyelingCleaver", false));
     smithing.push(new Item("hyelingArmour", false));
+    smithing.push(new Item("staff", false));
+    smithing.push(new Item("thenganDagger", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];
@@ -2368,6 +2372,7 @@ function theLegend()
     handcrafted.push(new Item("dyedMufCloth", false));
     handcrafted.push(new Item("culprisBandage", false));
     handcrafted.push(new Item("bowlOfMushroomStew", false));
+    handcrafted.push(new Item("staff", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

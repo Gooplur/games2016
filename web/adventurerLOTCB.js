@@ -11645,6 +11645,7 @@ function Adventurer()
                     clicked = false;
                     lowBar = "information";
                     gameState = "active";
+                    reading = [];
                 }
             }
             else
@@ -11663,6 +11664,7 @@ function Adventurer()
             XXX.textAlign = "center";
             XXX.fillText("Stop Reading", 75, 543);
 
+            var rPronoun = "heHimHisSheHerHersItItIts";
             var rLine = 0;
             var rFontCl = "black";
             var rFontSz = 16;
@@ -11670,11 +11672,7 @@ function Adventurer()
             var rLastLetter = " ";
             var rFillLine = 0;
             var readerX = 0;
-            reading = [["^^^^O****nce upon a time there lived a family of rabbits. There was a mother rabbit, a father rabbit and three child rabbits that were each one year apart in age. Finally one day the eldest of the rabbit children decided to leave home to make his fortune." +
-            "After departing from the familiar burrows he found himself confronted by a peculiar choice. <<Should I seek my fortune?>> he thought to himself, <<or should I eat carrots and laze around all day?>> He decided on the second one, as making one's fortune was tough work and" +
-            " carrots were bountiful anyway. The second child decided to eat carrots too because he was a %gluttonous fiend% like his brother. but the youngest of the three child rabbits instead chose the path of righteousness and made his fortune. When his brothers had run out of " +
-            "carrots to eat they came %groveling% to him. <<Oh kind brother `share with us` your great wealth!>> they pleaded patheticly. The youngest of them had taken the right path and was not going to fall to the ways of wickedness now after all of his hard work and awesomeness. He" +
-            " spat on his brothers' open hands and gave them nothing but dirt to eat. |||@@@^^The Moral of the story is that laziness should be spat upon!"], ["^^^^^stuff1"], ["*****thing4"], ["yet more yet to be yet told yet okay?"]];
+            var rFont = "Book Antiqua";
 
             //Page Number displayed on Low bar
             LXX.font = "bold 40px Book Antiqua";
@@ -11727,9 +11725,9 @@ function Adventurer()
             //writing per page
             for (var lector = 0; lector < reading[page][0].length; lector ++)
             {
-                if (reading[page][0][lector] != "`" && reading[page][0][lector] != "@" && reading[page][0][lector] != "$" && reading[page][0][lector] != "%" && reading[page][0][lector] != "#" && reading[page][0][lector] != "^" && reading[page][0][lector] != "*" && reading[page][0][lector] != "|")
+                if (reading[page][0][lector] != "`" && reading[page][0][lector] != "@" && reading[page][0][lector] != "$" && reading[page][0][lector] != "%" && reading[page][0][lector] != "#" && reading[page][0][lector] != "^" && reading[page][0][lector] != "*" && reading[page][0][lector] != "|" && reading[page][0][lector] != "{" && reading[page][0][lector] != "}" && reading[page][0][lector] != "~" && reading[page][0][lector] != "&")
                 {
-                    XXX.font = rFontTp + " " + JSON.stringify(rFontSz) + "px Book Antiqua"; //eval() ?
+                    XXX.font = rFontTp + " " + JSON.stringify(rFontSz) + "px " + rFont; //eval() ?
                     XXX.fillStyle = rFontCl;
                     XXX.textAlign = "left";
                     readerX = 20 + rFillLine;
@@ -11738,7 +11736,7 @@ function Adventurer()
                         rFillLine = 0;
                         rLine += 1;
                         readerX = 20 + rFillLine;
-                        if (reading[page][0][lector] != " " && rLastLetter != " " && rLastLetter != "`" && rLastLetter != "@" && rLastLetter != "$" && rLastLetter != "%" && rLastLetter != "#" && rLastLetter != "^" && rLastLetter != "*" && rLastLetter != "|")
+                        if (reading[page][0][lector] != " " && rLastLetter != " " && rLastLetter != "`" && rLastLetter != "@" && rLastLetter != "$" && rLastLetter != "%" && rLastLetter != "#" && rLastLetter != "^" && rLastLetter != "*" && rLastLetter != "|" && rLastLetter != "{" && rLastLetter != "}" && rLastLetter != "~" && rLastLetter != "&")
                         {
                             XXX.fillText("-", readerX,  40 + (rLine * (20 / 14 * rFontSz)));
                             rFillLine += XXX.measureText("-").width;
@@ -11770,6 +11768,17 @@ function Adventurer()
                         rFontCl = "black";
                     }
                 }
+                else if (reading[page][0][lector] == "$")
+                {
+                    if (rFont != "Impact")
+                    {
+                        rFont = "Impact";
+                    }
+                    else
+                    {
+                        rFont = "Book Antiqua";
+                    }
+                }
                 else if (reading[page][0][lector] == "|")
                 {
                     rLine += 1;
@@ -11799,10 +11808,267 @@ function Adventurer()
                     XXX.fillText("            ", readerX, 40 + (rLine * (20 / 14 * rFontSz)));
                     rFillLine += (XXX.measureText(" ").width * 12);
                 }
+                else if (reading[page][0][lector] == "#")
+                {
+                    for (var rHashtag = 0; rHashtag < player.name.length; rHashtag++)
+                    {
+                        XXX.font = rFontTp + " " + JSON.stringify(rFontSz) + "px " + rFont;
+                        XXX.fillStyle = rFontCl;
+                        XXX.textAlign = "left";
+                        readerX = 20 + rFillLine;
+                        if (readerX > 1367)
+                        {
+                            rFillLine = 0;
+                            rLine += 1;
+                            readerX = 20 + rFillLine;
+                            if (player.name[rHashtag] != " " && rLastLetter != " " && rLastLetter != "`" && rLastLetter != "@" && rLastLetter != "$" && rLastLetter != "%" && rLastLetter != "#" && rLastLetter != "^" && rLastLetter != "*" && rLastLetter != "|" && rLastLetter != "{" && rLastLetter != "}" && rLastLetter != "~" && rLastLetter != "&")
+                            {
+                                XXX.fillText("-", readerX,  40 + (rLine * (20 / 14 * rFontSz)));
+                                rFillLine += XXX.measureText("-").width;
+                                readerX = 20 + rFillLine;
+                            }
+                        }
+                        XXX.fillText(player.name[rHashtag], readerX, 40 + (rLine * (20 / 14 * rFontSz)));
+                        rFillLine += XXX.measureText(player.name[rHashtag]).width;
+                        rLastLetter = player.name[rHashtag];
+                    }
+                }
+                else if (reading[page][0][lector] == "{")
+                {
+                    if (player.gender == "Female")
+                    {
+                        if (reading[page][0][lector - 2] == ".")
+                        {
+                            rPronoun = "She"
+                        }
+                        else
+                        {
+                            rPronoun = "she"
+                        }
+                    }
+                    else if (player.gender == "Male")
+                    {
+                        if (reading[page][0][lector - 2] == ".")
+                        {
+                            rPronoun = "He"
+                        }
+                        else
+                        {
+                            rPronoun = "he"
+                        }
+                    }
+                    else
+                    {
+                        if (reading[page][0][lector - 2] == ".")
+                        {
+                            rPronoun = "It"
+                        }
+                        else
+                        {
+                            rPronoun = "it"
+                        }
+                    }
+                    for (var rHashtag = 0; rHashtag < rPronoun.length; rHashtag++)
+                    {
+                        XXX.font = rFontTp + " " + JSON.stringify(rFontSz) + "px " + rFont;
+                        XXX.fillStyle = rFontCl;
+                        XXX.textAlign = "left";
+                        readerX = 20 + rFillLine;
+                        if (readerX > 1367)
+                        {
+                            rFillLine = 0;
+                            rLine += 1;
+                            readerX = 20 + rFillLine;
+                            if (rPronoun[rHashtag] != " " && rLastLetter != " " && rLastLetter != "`" && rLastLetter != "@" && rLastLetter != "$" && rLastLetter != "%" && rLastLetter != "#" && rLastLetter != "^" && rLastLetter != "*" && rLastLetter != "|" && rLastLetter != "{" && rLastLetter != "}" && rLastLetter != "~" && rLastLetter != "&")
+                            {
+                                XXX.fillText("-", readerX,  40 + (rLine * (20 / 14 * rFontSz)));
+                                rFillLine += XXX.measureText("-").width;
+                                readerX = 20 + rFillLine;
+                            }
+                        }
+                        XXX.fillText(rPronoun[rHashtag], readerX, 40 + (rLine * (20 / 14 * rFontSz)));
+                        rFillLine += XXX.measureText(rPronoun[rHashtag]).width;
+                        rLastLetter = rPronoun[rHashtag];
+                    }
+                }
+                else if (reading[page][0][lector] == "}")
+                {
+                    if (player.gender == "Female")
+                    {
+                        if (reading[page][0][lector - 2] == ".")
+                        {
+                            rPronoun = "Her"
+                        }
+                        else
+                        {
+                            rPronoun = "her"
+                        }
+                    }
+                    else if (player.gender == "Male")
+                    {
+                        if (reading[page][0][lector - 2] == ".")
+                        {
+                            rPronoun = "Him"
+                        }
+                        else
+                        {
+                            rPronoun = "him"
+                        }
+                    }
+                    else
+                    {
+                        if (reading[page][0][lector - 2] == ".")
+                        {
+                            rPronoun = "It"
+                        }
+                        else
+                        {
+                            rPronoun = "it"
+                        }
+                    }
+                    for (var rHashtag = 0; rHashtag < rPronoun.length; rHashtag++)
+                    {
+                        XXX.font = rFontTp + " " + JSON.stringify(rFontSz) + "px " + rFont;
+                        XXX.fillStyle = rFontCl;
+                        XXX.textAlign = "left";
+                        readerX = 20 + rFillLine;
+                        if (readerX > 1367)
+                        {
+                            rFillLine = 0;
+                            rLine += 1;
+                            readerX = 20 + rFillLine;
+                            if (rPronoun[rHashtag] != " " && rLastLetter != " " && rLastLetter != "`" && rLastLetter != "@" && rLastLetter != "$" && rLastLetter != "%" && rLastLetter != "#" && rLastLetter != "^" && rLastLetter != "*" && rLastLetter != "|" && rLastLetter != "{" && rLastLetter != "}" && rLastLetter != "~" && rLastLetter != "&")
+                            {
+                                XXX.fillText("-", readerX,  40 + (rLine * (20 / 14 * rFontSz)));
+                                rFillLine += XXX.measureText("-").width;
+                                readerX = 20 + rFillLine;
+                            }
+                        }
+                        XXX.fillText(rPronoun[rHashtag], readerX, 40 + (rLine * (20 / 14 * rFontSz)));
+                        rFillLine += XXX.measureText(rPronoun[rHashtag]).width;
+                        rLastLetter = rPronoun[rHashtag];
+                    }
+                }
+                else if (reading[page][0][lector] == "&")
+                {
+                    if (player.gender == "Female")
+                    {
+                        if (reading[page][0][lector - 2] == ".")
+                        {
+                            rPronoun = "Hers"
+                        }
+                        else
+                        {
+                            rPronoun = "hers"
+                        }
+                    }
+                    else if (player.gender == "Male")
+                    {
+                        if (reading[page][0][lector - 2] == ".")
+                        {
+                            rPronoun = "His"
+                        }
+                        else
+                        {
+                            rPronoun = "his"
+                        }
+                    }
+                    else
+                    {
+                        if (reading[page][0][lector - 2] == ".")
+                        {
+                            rPronoun = "Its"
+                        }
+                        else
+                        {
+                            rPronoun = "its"
+                        }
+                    }
+                    for (var rHashtag = 0; rHashtag < rPronoun.length; rHashtag++)
+                    {
+                        XXX.font = rFontTp + " " + JSON.stringify(rFontSz) + "px " + rFont;
+                        XXX.fillStyle = rFontCl;
+                        XXX.textAlign = "left";
+                        readerX = 20 + rFillLine;
+                        if (readerX > 1367)
+                        {
+                            rFillLine = 0;
+                            rLine += 1;
+                            readerX = 20 + rFillLine;
+                            if (rPronoun[rHashtag] != " " && rLastLetter != " " && rLastLetter != "`" && rLastLetter != "@" && rLastLetter != "$" && rLastLetter != "%" && rLastLetter != "#" && rLastLetter != "^" && rLastLetter != "*" && rLastLetter != "|" && rLastLetter != "{" && rLastLetter != "}" && rLastLetter != "~" && rLastLetter != "&")
+                            {
+                                XXX.fillText("-", readerX,  40 + (rLine * (20 / 14 * rFontSz)));
+                                rFillLine += XXX.measureText("-").width;
+                                readerX = 20 + rFillLine;
+                            }
+                        }
+                        XXX.fillText(rPronoun[rHashtag], readerX, 40 + (rLine * (20 / 14 * rFontSz)));
+                        rFillLine += XXX.measureText(rPronoun[rHashtag]).width;
+                        rLastLetter = rPronoun[rHashtag];
+                    }
+                }
+                else if (reading[page][0][lector] == "~")
+                {
+                    if (player.gender == "Female")
+                    {
+                        if (reading[page][0][lector - 2] == ".")
+                        {
+                            rPronoun = "Her"
+                        }
+                        else
+                        {
+                            rPronoun = "her"
+                        }
+                    }
+                    else if (player.gender == "Male")
+                    {
+                        if (reading[page][0][lector - 2] == ".")
+                        {
+                            rPronoun = "His"
+                        }
+                        else
+                        {
+                            rPronoun = "his"
+                        }
+                    }
+                    else
+                    {
+                        if (reading[page][0][lector - 2] == ".")
+                        {
+                            rPronoun = "Its"
+                        }
+                        else
+                        {
+                            rPronoun = "its"
+                        }
+                    }
+                    for (var rHashtag = 0; rHashtag < rPronoun.length; rHashtag++)
+                    {
+                        XXX.font = rFontTp + " " + JSON.stringify(rFontSz) + "px " + rFont;
+                        XXX.fillStyle = rFontCl;
+                        XXX.textAlign = "left";
+                        readerX = 20 + rFillLine;
+                        if (readerX > 1367)
+                        {
+                            rFillLine = 0;
+                            rLine += 1;
+                            readerX = 20 + rFillLine;
+                            if (rPronoun[rHashtag] != " " && rLastLetter != " " && rLastLetter != "`" && rLastLetter != "@" && rLastLetter != "$" && rLastLetter != "%" && rLastLetter != "#" && rLastLetter != "^" && rLastLetter != "*" && rLastLetter != "|" && rLastLetter != "{" && rLastLetter != "}" && rLastLetter != "~" && rLastLetter != "&")
+                            {
+                                XXX.fillText("-", readerX,  40 + (rLine * (20 / 14 * rFontSz)));
+                                rFillLine += XXX.measureText("-").width;
+                                readerX = 20 + rFillLine;
+                            }
+                        }
+                        XXX.fillText(rPronoun[rHashtag], readerX, 40 + (rLine * (20 / 14 * rFontSz)));
+                        rFillLine += XXX.measureText(rPronoun[rHashtag]).width;
+                        rLastLetter = rPronoun[rHashtag];
+                    }
+                }
                 rLastLetter = reading[page][0][lector];
             }
         }
-        lowBar = "reading";
+        //lowBar = "reading";
     };
 
     //CRAFTING

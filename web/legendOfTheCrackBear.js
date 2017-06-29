@@ -62,6 +62,9 @@ function legendaryPrerequisites()
     var impaction = new Audio("sounds/impact.mp3");
     window.impaction = impaction;
 
+    var pageTurn = new Audio("sounds/polySounds/pageTurn.wav");
+    window.pageTurn = pageTurn;
+
     var trapclap = new Audio("sounds/polySounds/trapclap.wav");
     window.trapclap = trapclap;
 
@@ -783,6 +786,10 @@ function legendaryPrerequisites()
     stoneWorkEnv.src = ("images/fancyStones.jpg");
     window.stoneWorkEnv = stoneWorkEnv;
 
+    var oldPaper = new Image();
+    oldPaper.src = ("images/oldPaper.jpg");
+    window.oldPaper = oldPaper;
+
     var stonePathEnv = new Image();
     stonePathEnv.src = ("images/stonePath.png");
     window.stonePathEnv = stonePathEnv;
@@ -1143,6 +1150,8 @@ var brewing;
 var forge;
 var handcrafted;
 var allSpells;
+var page = 0;
+var reading = [];
 var haeRotate = 0;
 
 //This sets the items that are in shops.

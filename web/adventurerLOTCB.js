@@ -10833,7 +10833,7 @@ function Adventurer()
     this.buildUIBar = function ()
     {
         XXX.beginPath();
-        if (mouseY < 526 && lowBar != "skills" && lowBar != "shop" && lowBar != "bank" && lowBar != "crafting" && lowBar != "spellbook" && lowBar != "beastJournal" && lowBar != "questLog")
+        if (mouseY < 526 && lowBar != "skills" && lowBar != "shop" && lowBar != "bank" && lowBar != "crafting" && lowBar != "spellbook" && lowBar != "beastJournal" && lowBar != "questLog" && lowBar != "reading")
         {
             XXX.fillStyle = "rgba(211, 211, 211, 0.1)";
             XXX.strokeStyle = "rgba(211, 211, 211, 0.1)"
@@ -10850,7 +10850,7 @@ function Adventurer()
     //UI Buttons
     this.uiButton = function ()
     {
-        if (mouseY > 526 || lowBar == "skills" || lowBar == "shop" || lowBar == "bank" || lowBar == "crafting" || lowBar == "spellbook" || lowBar == "beastJournal" || lowBar == "questLog")
+        if (mouseY > 526 || lowBar == "skills" || lowBar == "shop" || lowBar == "bank" || lowBar == "crafting" || lowBar == "spellbook" || lowBar == "beastJournal" || lowBar == "questLog" || lowBar == "reading")
         {
             //inventory button
             XXX.beginPath();
@@ -11616,6 +11616,193 @@ function Adventurer()
             //operations
             this.dialogueScrolling();
         }
+    };
+
+    //READING
+    this.displayReading = function()
+    {
+        if (lowBar == "reading")
+        {
+            gameState = "paused";
+
+            //MAIN BACKGROUND
+            XXX.drawImage(oldPaper, 0, -24);
+
+            //Exit bank Button
+            //the button part
+            if (mouseX > 2 && mouseX < 2 + 148 && mouseY > 529 && mouseY < 529 + 20)
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "gold";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 3;
+                XXX.rect(2, 529, 148, 20);
+                XXX.fill();
+                XXX.stroke();
+
+                if (clicked == true)
+                {
+                    clicked = false;
+                    lowBar = "information";
+                    gameState = "active";
+                }
+            }
+            else
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "lightGrey";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 3;
+                XXX.rect(2, 529, 148, 20);
+                XXX.fill();
+                XXX.stroke();
+            }
+            //the text part
+            XXX.font = "bold 14px Book Antiqua";
+            XXX.fillStyle = "black";
+            XXX.textAlign = "center";
+            XXX.fillText("Stop Reading", 75, 543);
+
+            var rLine = 0;
+            var rFontCl = "black";
+            var rFontSz = 16;
+            var rFontTp = "bold";
+            var rLastLetter = " ";
+            var rFillLine = 0;
+            var readerX = 0;
+            reading = [["^^^^O****nce upon a time there lived a family of rabbits. There was a mother rabbit, a father rabbit and three child rabbits that were each one year apart in age. Finally one day the eldest of the rabbit children decided to leave home to make his fortune." +
+            "After departing from the familiar burrows he found himself confronted by a peculiar choice. <<Should I seek my fortune?>> he thought to himself, <<or should I eat carrots and laze around all day?>> He decided on the second one, as making one's fortune was tough work and" +
+            " carrots were bountiful anyway. The second child decided to eat carrots too because he was a %gluttonous fiend% like his brother. but the youngest of the three child rabbits instead chose the path of righteousness and made his fortune. When his brothers had run out of " +
+            "carrots to eat they came %groveling% to him. <<Oh kind brother `share with us` your great wealth!>> they pleaded patheticly. The youngest of them had taken the right path and was not going to fall to the ways of wickedness now after all of his hard work and awesomeness. He" +
+            " spat on his brothers' open hands and gave them nothing but dirt to eat. |||@@@^^The Moral of the story is that laziness should be spat upon!"], ["^^^^^stuff1"], ["*****thing4"], ["yet more yet to be yet told yet okay?"]];
+
+            //Page Number displayed on Low bar
+            LXX.font = "bold 40px Book Antiqua";
+            LXX.fillStyle = "black";
+            LXX.textAlign = "center";
+            LXX.fillText("Page " + (page + 1), 700, 50);
+
+            //Scroll Arrows
+                //left scroll arrow
+            LXX.beginPath();
+            LXX.lineWidth = 1;
+            LXX.fillStyle ="darkGrey";
+            LXX.strokeStyle ="black";
+            LXX.rect(0.5, 0.5, 20, 79);
+            LXX.fill();
+            LXX.stroke();
+            LXX.drawImage(polyPNG, 1, 735, 11, 30, 4, 8, 12, 64);
+                //right scroll arrow
+            LXX.beginPath();
+            LXX.lineWidth=1;
+            LXX.fillStyle ="darkGrey";
+            LXX.strokeStyle ="black";
+            LXX.rect(1379.5, 0.5, 20, 79);
+            LXX.fill();
+            LXX.stroke();
+            LXX.drawImage(polyPNG, 11, 735, 11, 30, 1384, 8, 12, 64);
+                //left scroll click
+            if (lMouseX > 0 && lMouseX < 20 && lMouseY > 0.5 && lMouseY < 80 && clickReleased == true) //this (20.5, 0.5, 79, 79) is the position the first in the list will be in if the left scroll will not work.
+            {
+                clickReleased = false;
+                if (page > 0)
+                {
+                    pageTurn.currentTime = 0;
+                    page -= 1;
+                    pageTurn.play();
+                }
+            }
+                //right scroll click
+            if (lMouseX > 1379.5 && lMouseX < 1399.5 && lMouseY > 0.5 && lMouseY < 80 && clickReleased == true) //this (20.5, 0.5, 79, 79) is the position the first in the list will be in if the left scroll will not work.
+            {
+                clickReleased = false;
+                if (page < (reading.length - 1))
+                {
+                    pageTurn.currentTime = 0;
+                    page += 1;
+                    pageTurn.play();
+                }
+            }
+
+            //writing per page
+            for (var lector = 0; lector < reading[page][0].length; lector ++)
+            {
+                if (reading[page][0][lector] != "`" && reading[page][0][lector] != "@" && reading[page][0][lector] != "$" && reading[page][0][lector] != "%" && reading[page][0][lector] != "#" && reading[page][0][lector] != "^" && reading[page][0][lector] != "*" && reading[page][0][lector] != "|")
+                {
+                    XXX.font = rFontTp + " " + JSON.stringify(rFontSz) + "px Book Antiqua"; //eval() ?
+                    XXX.fillStyle = rFontCl;
+                    XXX.textAlign = "left";
+                    readerX = 20 + rFillLine;
+                    if (readerX > 1367)
+                    {
+                        rFillLine = 0;
+                        rLine += 1;
+                        readerX = 20 + rFillLine;
+                        if (reading[page][0][lector] != " " && rLastLetter != " " && rLastLetter != "`" && rLastLetter != "@" && rLastLetter != "$" && rLastLetter != "%" && rLastLetter != "#" && rLastLetter != "^" && rLastLetter != "*" && rLastLetter != "|")
+                        {
+                            XXX.fillText("-", readerX,  40 + (rLine * (20 / 14 * rFontSz)));
+                            rFillLine += XXX.measureText("-").width;
+                            readerX = 20 + rFillLine;
+                        }
+                    }
+                    XXX.fillText(reading[page][0][lector], readerX, 40 + (rLine * (20 / 14 * rFontSz)));
+                    rFillLine += XXX.measureText(reading[page][0][lector]).width;
+                }
+                else if (reading[page][0][lector] == "`")
+                {
+                    if (rFontTp != "italic")
+                    {
+                        rFontTp = "italic";
+                    }
+                    else
+                    {
+                        rFontTp = "bold";
+                    }
+                }
+                else if (reading[page][0][lector] == "%")
+                {
+                    if (rFontCl != "red")
+                    {
+                        rFontCl = "red";
+                    }
+                    else
+                    {
+                        rFontCl = "black";
+                    }
+                }
+                else if (reading[page][0][lector] == "|")
+                {
+                    rLine += 1;
+                    rFillLine = 0;
+                    readerX = 20 + rFillLine;
+                }
+                else if (reading[page][0][lector] == "^")
+                {
+                    rFontSz += 6;
+                }
+                else if (reading[page][0][lector] == "*")
+                {
+                    rFontSz -= 6;
+                }
+                else if (reading[page][0][lector] == "@")
+                {
+                    XXX.font = rFontTp + " " + JSON.stringify(rFontSz) + "px Book Antiqua";
+                    XXX.fillStyle = "rFontCl";
+                    XXX.textAlign = "left";
+                    readerX = 20 + rFillLine;
+                    if (readerX > 1367)
+                    {
+                        rFillLine = 0;
+                        rLine += 1;
+                    }
+                    readerX = 20 + rFillLine;
+                    XXX.fillText("            ", readerX, 40 + (rLine * (20 / 14 * rFontSz)));
+                    rFillLine += (XXX.measureText(" ").width * 12);
+                }
+                rLastLetter = reading[page][0][lector];
+            }
+        }
+        lowBar = "reading";
     };
 
     //CRAFTING
@@ -18408,6 +18595,9 @@ function Adventurer()
             this.drawMageShieldBar();
         }
         this.drawAntiVenomBar(); //#Stat Bar //this is a developer stat bar only and it also is used to take the fall for an animation glitch that only affects the last stat bar drawn.
+
+        //Reading
+        this.displayReading(); //#Reading #Books #Literature
 
         //Dialogue
         this.displayDialogue(); //#Dialogue

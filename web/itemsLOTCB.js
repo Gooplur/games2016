@@ -8467,7 +8467,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Emerald";
-            this.weight = 1;
+            this.weight = 0.3;
             this.size = 7;
             this.description = "A greatly valued grandiose green gem stone.";
             this.intForDes = 18;
@@ -8483,15 +8483,63 @@ function Item(type, x, y)
             this.buyValue = 500; // at max, buy for 500.
             this.sellValue = 400 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 500.
         }
+        else if (this.type == "turquoise")
+        {
+            //For All Items
+            this.identity = "Turquoise";
+            this.weight = 1;
+            this.size = 7;
+            this.description = "A beautiful waxy blue mineral.";
+            this.intForDes = 6;
+
+            if (player.getIntelligence() >= 18)
+            {
+                this.intDescription = "Turquoise is used to make jewelry, particularly in Freydic culture. It is also said to offer protection from evil spirits.";
+            }
+            else
+            {
+                this.intDescription = "Turquoise is used to make jewelry, particularly in Freydic culture.";
+            }
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 18 - Math.floor(player.getCharisma() / 8); // at max, buy for 12.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 25); // at max, sell for 12.
+        }
+        else if (this.type == "aquamarine")
+        {
+            //For All Items
+            this.identity = "Aquamarine";
+            this.weight = 0.25;
+            this.size = 7;
+            this.description = "The extravagant blues of the ocean trapped in a vibrant gem stone.";
+            this.intForDes = 18;
+            this.intDescription = "Aquamarine is a blue form of the mineral beryl. It is thought to purify, cleanse and bring about a state of tranquility in its bearer.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 400; // at max, buy for 400.
+            this.sellValue = 350 + Math.floor(player.getCharisma() / 1); // at max, sell for 400.
+        }
         else if (this.type == "ruby")
         {
             //For All Items
             this.identity = "Ruby";
-            this.weight = 2;
+            this.weight = 0.55;
             this.size = 7;
             this.description = "A magnificent and rare gemstone shining a rich shade of blazing red.";
             this.intForDes = 18;
-            this.intDescription = "Ruby is a red variety of the mineral corundum, it is highly valued and is believed to enable certain magics.";
+            this.intDescription = "Ruby is a red variety of the mineral corundum, it is highly valued and is believed to enhance the effects of magics.";
 
             //Define Utility
             this.utility = "material";
@@ -15333,6 +15381,46 @@ function Item(type, x, y)
             this.buyValue = 10 - Math.floor(player.getCharisma() / 15); // at max, buy for 7.
             this.sellValue = 4 + Math.floor(player.getCharisma() / 15); // at max, sell for 7.
         }
+        else if (this.type == "freydicFolkTales")
+        {
+            //For All Items
+            this.identity = "Freydic Folk Tales";
+            this.weight = 0.5;
+            this.size = 12;
+            this.description = "A book of Freydic old freydic tales.";
+            this.intForDes = 14;
+            this.intDescription = "Many of the Freydic still believe in the reality of these stories.";
+
+            //Define Utility
+            this.utility = "book";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "madmanNote")
+        {
+            //For All Items
+            this.identity = "Note of a Madman";
+            this.weight = 0.001;
+            this.size = 12;
+            this.description = "A hastily written note stained with blood, found on a corpse in the Wuncwer Woods";
+            this.intForDes = 9;
+            this.intDescription = "Mabye he is not mad, legends tell of ghosts that do as the note describes...";
+
+            //Define Utility
+            this.utility = "note";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "unitMarker")
         {
             //For All Items
@@ -15443,6 +15531,16 @@ function Item(type, x, y)
             XXX.arc(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
             XXX.fill();
         }
+        else if (this.type == "freydicFolkTales")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1979, 12, 17, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 17 * 1, 20 * 1);
+        }
+        else if (this.type == "madmanNote")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
         else if (this.type == "clayBowl")
         {
             XXX.beginPath();
@@ -15487,6 +15585,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1561, 529, 25, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24), 25, 24);
+        }
+        else if (this.type == "turquoise")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1368, 526, 31, 25, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 0.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 25 * 0.3), 31 * 0.3, 25 * 0.3);
+        }
+        else if (this.type == "aquamarine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1248, 526, 21, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 0.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 0.3), 21 * 0.3, 28 * 0.3);
         }
         else if (this.type == "ruby")
         {
@@ -17544,6 +17652,16 @@ function Item(type, x, y)
             LXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             LXX.fill();
         }
+        else if (this.type == "freydicFolkTales")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
+        }
+        else if (this.type == "madmanNote")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
         else if (this.type == "clayBowl")
         {
             LXX.beginPath();
@@ -17588,6 +17706,16 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1561, 529, 25, 24, this.invX - (1/2 * 25), this.invY - (1/2 * 24), 25, 24);
+        }
+        else if (this.type == "turquoise")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1368, 526, 31, 25, this.invX - (1/2 * 31 * 0.3), this.invY - (1/2 * 25 * 0.3), 31 * 0.3, 25 * 0.3);
+        }
+        else if (this.type == "aquamarine")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1248, 526, 21, 28, this.invX - (1/2 * 21 * 0.3), this.invY - (1/2 * 28 * 0.3), 21 * 0.3, 28 * 0.3);
         }
         else if (this.type == "ruby")
         {
@@ -19614,6 +19742,16 @@ function Item(type, x, y)
             XXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             XXX.fill();
         }
+        else if (this.type == "freydicFolkTales")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
+        }
+        else if (this.type == "madmanNote")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
         else if (this.type == "clayBowl")
         {
             XXX.beginPath();
@@ -19658,6 +19796,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1561, 529, 25, 24, this.invX - (1/2 * 25), this.invY - (1/2 * 24), 25, 24);
+        }
+        else if (this.type == "turquoise")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1368, 526, 31, 25, this.invX - (1/2 * 31 * 0.3), this.invY - (1/2 * 25 * 0.3), 31 * 0.3, 25 * 0.3);
+        }
+        else if (this.type == "aquamarine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1248, 526, 21, 28, this.invX - (1/2 * 21 * 0.3), this.invY - (1/2 * 28 * 0.3), 21 * 0.3, 28 * 0.3);
         }
         else if (this.type == "ruby")
         {

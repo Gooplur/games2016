@@ -11623,46 +11623,8 @@ function Adventurer()
     {
         if (lowBar == "reading")
         {
-            gameState = "paused";
-
             //MAIN BACKGROUND
             XXX.drawImage(oldPaper, 0, -24);
-
-            //Exit bank Button
-            //the button part
-            if (mouseX > 2 && mouseX < 2 + 148 && mouseY > 529 && mouseY < 529 + 20)
-            {
-                XXX.beginPath();
-                XXX.fillStyle = "gold";
-                XXX.strokeStyle = "black";
-                XXX.lineWidth = 3;
-                XXX.rect(2, 529, 148, 20);
-                XXX.fill();
-                XXX.stroke();
-
-                if (clicked == true)
-                {
-                    clicked = false;
-                    lowBar = "information";
-                    gameState = "active";
-                    reading = [];
-                }
-            }
-            else
-            {
-                XXX.beginPath();
-                XXX.fillStyle = "lightGrey";
-                XXX.strokeStyle = "black";
-                XXX.lineWidth = 3;
-                XXX.rect(2, 529, 148, 20);
-                XXX.fill();
-                XXX.stroke();
-            }
-            //the text part
-            XXX.font = "bold 14px Book Antiqua";
-            XXX.fillStyle = "black";
-            XXX.textAlign = "center";
-            XXX.fillText("Stop Reading", 75, 543);
 
             var rPronoun = "heHimHisSheHerHersItItIts";
             var rLine = 0;
@@ -12067,8 +12029,43 @@ function Adventurer()
                 }
                 rLastLetter = reading[page][0][lector];
             }
+
+            //Exit bank Button
+            //the button part
+            if (mouseX > 2 && mouseX < 2 + 148 && mouseY > 529 && mouseY < 529 + 20)
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "gold";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 3;
+                XXX.rect(2, 529, 148, 20);
+                XXX.fill();
+                XXX.stroke();
+
+                if (clicked == true)
+                {
+                    clicked = false;
+                    lowBar = "information";
+                    gameState = "active";
+                    reading = [];
+                }
+            }
+            else
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "lightGrey";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 3;
+                XXX.rect(2, 529, 148, 20);
+                XXX.fill();
+                XXX.stroke();
+            }
+            //the text part
+            XXX.font = "bold 14px Book Antiqua";
+            XXX.fillStyle = "black";
+            XXX.textAlign = "center";
+            XXX.fillText("Stop Reading", 75, 543);
         }
-        //lowBar = "reading";
     };
 
     //CRAFTING
@@ -17954,6 +17951,13 @@ function Adventurer()
                             }
                         }
                     }
+                    else if (Inventory[i][0].utility == "book" || Inventory[i][0].utility == "note")
+                    {
+                        gameState = "paused";
+                        lowBar = "reading";
+                        page = 0;
+                        findLiterature(Inventory[i][0].type);
+                    }
                     else
                     {
                         if (Inventory[i][0].ability == "lighter")
@@ -18495,6 +18499,13 @@ function Adventurer()
                         XXX.fillStyle = "black";
                         XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
                         XXX.fillText("      Book", 157, 514);
+                    }
+                    else if (Inventory[i][0].utility == "note")
+                    {
+                        XXX.font="14px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("      Note", 157, 514);
                     }
                     else if (Inventory[i][0].utility == "audiolog")
                     {

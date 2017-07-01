@@ -4257,6 +4257,98 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "jvostran")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 1;
+
+            //Establish Rock Load
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.health = 70;
+                this.rockLoad = [];
+                for (var looop = 0; looop < 76; looop++)
+                {
+                    this.rockLoad.push({type: "jvostranOre", quantity: 1});
+                }
+                for (var looop = 0; looop < 2 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "aquamarine", quantity: 1});
+                }
+                for (var looop = 0; looop < 1 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "silverOre", quantity: 1});
+                }
+                for (var looop = 0; looop < 1 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "sapphire", quantity: 1});
+                }
+                for (var looop = 0; looop < 20 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "turquoise", quantity: 1});
+                }
+            }
+
+            //DRAWSELF
+            if (information == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 1424, 458, 35, 44, -(1/2 * 35 * this.owned * 1.5), -(1/2 * 44 * this.owned * 1.5), 35 * this.owned * 1.5, 44 * this.owned * 1.5);
+                XXX.restore();
+            }
+            else if (information == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 1471, 460, 73, 39, -(1/2 * 73 * this.owned), -(1/2 * 39 * this.owned), 73 * this.owned, 39 * this.owned);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 1561, 454, 56, 55, -(1/2 * 56 * this.owned), -(1/2 * 55 * this.owned), 56 * this.owned, 55 * this.owned);
+                XXX.restore();
+            }
+
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 10 * this.owned;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+
+
+            //console.log(player.finalAttackStage);
+            if (player.weaponEquipped == "pickaxe" && player.cutcut == true)
+            {
+                var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                console.log(distFromCutCut);
+                if (distFromCutCut <= player.weapon.range * 7 + 18)
+                {
+                    this.health -= 1;
+                    if (this.health <= 0)
+                    {
+                        this.health = 70;
+                        this.rockLoader(this.rockLoad);
+                        this.owned -= 0.25;
+                        if (this.owned <= 0)
+                        {
+                            scenicList.splice(scenicList.indexOf(this), 1);
+                        }
+                    }
+                }
+            }
+        }
         else if (this.type == "beeHive")
         {
             //TRAITS

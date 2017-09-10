@@ -41,7 +41,7 @@ function commence()
     var oneSwitchAtATime = 0;
 
     // fun stuff
-    var mathScore = 100;
+    var mathScore = 0;
 
     function mathLoop(time)
     {

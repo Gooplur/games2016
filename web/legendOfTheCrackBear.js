@@ -794,6 +794,10 @@ function legendaryPrerequisites()
     stonePathEnv.src = ("images/stonePath.png");
     window.stonePathEnv = stonePathEnv;
 
+    var brokenStonePathEnv = new Image();
+    brokenStonePathEnv.src = ("images/brokenStonePath.png");
+    window.brokenStonePathEnv = brokenStonePathEnv;
+
     var rockyFlatEnv = new Image();
     rockyFlatEnv.src = ("images/dryLand.png");
     window.rockyFlatEnv = rockyFlatEnv;

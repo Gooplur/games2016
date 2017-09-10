@@ -267,6 +267,10 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 {
                     XXX.drawImage(stonePathEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
+                else if (terrain == "brokenStonePath")
+                {
+                    XXX.drawImage(brokenStonePathEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
                 else if (terrain == "arctic")
                 {
                     XXX.drawImage(frozenEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
@@ -1087,6 +1091,7 @@ function buildMaster()
                 scenicList.push(new Scenery("darkStone", 11364 , 1651, 1.37, 2.5, 2));
                 scenicList.push(new Scenery("darkStone", 9581 , -1232, -3.4, 3.5, 3));
                 scenicList.push(new Scenery("ashStone", 11682 , 4722, 2.345678910, 4, 1));
+                scenicList.push(new Scenery("jvostran", 12500 , 2000, 7, 3, 2));
 
                 //Plants
                 scenicList.push(new Scenery("haeflowerPlant", 11256 , 2707, 4, true));

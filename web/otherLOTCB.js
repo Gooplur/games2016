@@ -2,7 +2,16 @@
  * Created by skyeguy on 1/22/17.
  */
 
-//THIS MODULE IS FOR IMPORTANT FUNCTIONS THAT DO NOT FIT A MAJOR CATEGORY.
+//THIS FUNCTION IS FUNCTIONALLY THE BACK BUTTON TO THE MAIN MENU
+function goToMain()
+{
+    if (gameState != "mainMenu" && gameState != "characterBuilder")
+    {
+        theme.play();
+        gameState = "mainMenu";
+        requestAnimationFrame(mainMenuLoop, CCC);
+    }
+}
 
 //sleep function
 function sleep(safe)

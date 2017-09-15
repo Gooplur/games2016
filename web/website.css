@@ -4,14 +4,14 @@
     border-radius: 52px;
     text-decoration: none;
     font-size: 26px;
-    color: #FF4F00;
+    color: #310038;
     text-align: center;
-    border: 2px solid black;
+    border: 2px solid #310038;
     padding: 1px;
     margin: 3px;
     width: 158px;
     display: inline-block;
-    background-color: #310038;
+    background-color: darkgreen;
 }
 
 .intralink:hover
@@ -19,14 +19,14 @@
     border-radius: 52px;
     text-decoration: none;
     font-size: 26px;
-    color: crimson;
+    color: blueviolet;
     text-align: center;
-    border: 2px solid yellow;
+    border: 2px solid lightGreen;
     padding: 1px;
     margin: 3px;
     width: 158px;
     display: inline-block;
-    background-color: #d47c38;
+    background-color: forestgreen;
 }
 
 .backlink

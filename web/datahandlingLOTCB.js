@@ -5,8 +5,21 @@
 var doAutosave = false;
 var doQuicksave = false;
 var singleAuto = false;
+var doBARSave = false;
 function autosave()
 {
+    //Downloadsave
+    if (keyBAR == true)
+    {
+        doBARSave = true;
+    }
+    else if (keyBAR == false && doBARSave == true)
+    {
+        doBARSave = false;
+        saveType = "download";
+        save();
+        saveType = null;
+    }
     //Quicksave
     if (tildKey == false)
     {
@@ -180,6 +193,27 @@ function save()
     {
         localStorage.setItem("quicksave", saveFile);
     }
+    else if (saveType == "download")
+    {
+        //Code that I took off the Internet in order to download a string as a file
+        var csvString = saveFile;
+        var fileName = player.name;
+
+        if (window.navigator.msSaveOrOpenBlob)
+        {
+            var blob = new Blob([csvString]);
+            window.navigator.msSaveOrOpenBlob(blob, fileName + ".txt");
+        }
+        else
+        {
+            var a = document.createElement('a');
+            a.href = 'data:attachment/txt,' +  encodeURIComponent(csvString);
+            a.target = '_blank';
+            a.download = fileName + ".txt"; //csv
+            document.body.appendChild(a);
+            a.click();
+        }
+    }
 
 
 }
@@ -298,6 +332,10 @@ function retrieveSave(listName)
     else if (loadType == "quicksave")
     {
         var restore = localStorage.getItem("quicksave");
+    }
+    else if (loadType == "upload")
+    {
+        var restore = keyString;
     }
 
     var parsed = JSON.parse(restore);

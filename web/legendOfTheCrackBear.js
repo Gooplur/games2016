@@ -3,8 +3,8 @@
  */
 
 //TODO LIST
+//todo add drag and drop save system that includes the ability to download saves to the desktop.
 //todo add Dmitris art to the main menu areas. pay dmitri up to 25$ for these, 5$ for save menu, 10$ for the main title and character creation
-//todo make quicksaves and autosaves different.
 //todo add warm norther thick clothing made with waanti.
 //todo figure out why aldrekii claws manual attack thing won't let it at twice or even early, while the same code lets the flail perform its attack early.
 //todo finish adding sickness system
@@ -1028,6 +1028,7 @@ var saveType;
 var loadType;
 var saveBrain;
 var autosaving;
+var keyString;
 var mouseX;
 var mouseY;
 var lMouseX;
@@ -1089,6 +1090,7 @@ var fKey;
 var ctrlKey;
 var tildKey;
 var rKey;
+var keyBAR;
 var tellCoords;
 var showSight;
 var adminShowSight;
@@ -1532,6 +1534,11 @@ function keyReleased(event)
     {
         key0 = false;
     }
+
+    if (key == 220)
+    {
+        keyBAR = false;
+    }
 }
 //when a key is held down
 function keyHeld(event)
@@ -1641,6 +1648,11 @@ function keyHeld(event)
     if (key == 48)
     {
         key0 = true;
+    }
+
+    if (key == 220)
+    {
+        keyBAR = true;
     }
 }
 

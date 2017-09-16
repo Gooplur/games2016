@@ -961,6 +961,17 @@ function comingCloseToLastPreStage()
 
     oldverse.onload = function()
     {
+        yaLlegamosAlUltimoPreStage()
+    };
+}
+function yaLlegamosAlUltimoPreStage()
+{
+    var nognog = new Image();
+    nognog.src = ("images/nognog.png");
+    window.nognog = nognog;
+
+    nognog.onload = function()
+    {
         nearlyToTheLastPreStage()
     };
 }

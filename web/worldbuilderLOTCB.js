@@ -323,7 +323,6 @@ function buildMaster()
                 {
                     ArtificialIntelligenceAccess.push(new Unit(2100, 1050, "Neev", false, "Easter"));
                 }
-
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));
                 ArtificialIntelligenceAccess.push(new Unit(2683, -1204, "Frich", false, "Ruby Soho"));

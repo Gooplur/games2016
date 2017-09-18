@@ -10659,6 +10659,63 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             }
         }
+        else if (this.type == "Nog")
+        {
+            this.damageFrame = "automatic";
+            this.team = "wild";
+            this.baseTeam = this.team;
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+
+            if (this.alpha == true)
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = 1.1;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 4) + 2.5;
+                this.health = this.healthMAX;
+                this.armour = 0.5;
+                this.speed = 4 + (Math.floor(Math.random() * 4) / 10);
+                this.rangeOfSight = 525; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.2;
+                this.engagementRadius = 34;
+                this.sizeRadius = 12.5;
+                this.negateArmour = 0.25;
+                this.attackWait = 1;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1.25; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = 1;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 3) + 1;
+                this.health = this.healthMAX;
+                this.armour = 0.4;
+                this.speed = 3.8 + (Math.floor(Math.random() * 4) / 10);
+                this.rangeOfSight = 375; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.2;
+                this.engagementRadius = 24.85;
+                this.sizeRadius = 10;
+                this.negateArmour = 0.2;
+                this.attackWait = 1;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+        }
         else if (this.type == "HyelingSoldier")
         {
             this.damageFrame = "automatic";
@@ -16668,6 +16725,160 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+            }
+        }
+        //NOG
+        if (this.type == "Nog")
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 10 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (10 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("nogSkin", this.X, this.Y), 1], [new Item("rawNogFlesh", this.X, this.Y), 1]];
+            }
+            else
+            {
+                if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 6 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 6 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [[new Item("nogSkin", this.X, this.Y), 1], [new Item("rawNogFlesh", this.X, this.Y), 1]];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(525, true);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(375, true);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.alpha == true)
+                {
+                    this.Attack(3, 1.5);
+                    this.callForNearbyHelpFromType(350, "Varn");
+                }
+                else
+                {
+                    this.Attack(2, 1);
+                    this.callForNearbyHelpFromType(275, "Varn");
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                if (this.target == player)
+                {
+                    this.pointTowardsPlayer();
+                    this.moveInRelationToPlayer();
+                }
+                else if (this.target != "none")
+                {
+                    this.pointTowards(this.target);
+                    this.moveInRelationToThing(this.target);
+                }
+
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(3, 0.085, false);
+                }
+                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                    {
+                        this.costumeEngine(3, 0.110, true);
+                    }
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(nognog, 386, 296, 56, 39, -1/2 * 56 - this.xAdjustment, -1/2 * 39 - this.yAdjustment, 56 * this.alphaSize, 39 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(nognog, 222, 297, 56, 39, -1/2 * 56 - this.xAdjustment, -1/2 * 39 - this.yAdjustment, 56 * this.alphaSize, 39 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(nognog, 457, 296, 56, 39, -1/2 * 56 - this.xAdjustment, -1/2 * 39 - this.yAdjustment, 56 * this.alphaSize, 39 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(nognog, 304, 297, 56, 39, -1/2 * 56 - this.xAdjustment, -1/2 * 39 - this.yAdjustment, 56 * this.alphaSize, 39 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(nognog, 536, 296, 56, 39, -1/2 * 56 - this.xAdjustment, -1/2 * 39 - this.yAdjustment, 56 * this.alphaSize, 39 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(nognog, 304, 297, 56, 39, -1/2 * 56 - this.xAdjustment, -1/2 * 39 - this.yAdjustment, 56 * this.alphaSize, 39 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 3)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(nognog, 610, 297, 56, 39, -1/2 * 56 - this.xAdjustment, -1/2 * 39 - this.yAdjustment, 56 * this.alphaSize, 39 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(nognog, 304, 297, 56, 39, -1/2 * 56 - this.xAdjustment, -1/2 * 39 - this.yAdjustment, 56 * this.alphaSize, 39 * this.alphaSize);
+                    }
+                }
+                else if (theCostume >= 4)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(nognog, 688, 297, 56, 39, -1/2 * 56 - this.xAdjustment, -1/2 * 39 - this.yAdjustment, 56 * this.alphaSize, 39 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(nognog, 304, 297, 56, 39, -1/2 * 56 - this.xAdjustment, -1/2 * 39 - this.yAdjustment, 56 * this.alphaSize, 39 * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(nognog, 792, 764, 56, 39, -1/2 * 56 - this.xAdjustment, -1/2 * 39 - this.yAdjustment, 56 * this.alphaSize, 39 * this.alphaSize);
             }
         }
         //Hyeling Soldier

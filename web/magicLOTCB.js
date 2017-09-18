@@ -32,6 +32,10 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
         this.repeated = false;
         this.size = 0;
         this.claim = "none"; //this is used as part of the claim and chase movement method.
+        this.lockOn = "none"; //this is used as part of the missile method.
+        this.missileTime = 0; //this is used as part of the missile method.
+        this.missileLaunched = false; //this is used as part of the missile method.
+        this.missileDirection = this.playerRotation;
         this.doOnce = true; //this is not to be used for a function.
         this.alert = false; //this is flicked on when the spell would otherwise have been destroyed to let the custom code know to get rid of the spell in its own way.
         this.doDelete = true; //this is a touch and die function variable that determines if it deletes or not for very special cases.
@@ -148,6 +152,76 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                             break;
                         }
                     }
+                }
+            }
+        };
+
+        var checkLockOn;
+        var closestLockOn = "none";
+        var closestLockOnDist = "none";
+        this.missile = function(targetingType, rotation, time, speed, alert)
+        {
+            if (targetingType == "nearby")
+            {
+                if (this.lockOn == "none")
+                {
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        checkLockOn = Math.sqrt((this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X) + (this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y));
+                        if (closestLockOnDist == "none")
+                        {
+                            closestLockOnDist = checkLockOn;
+                            closestLockOn = ArtificialIntelligenceAccess[i];
+                        }
+                        else if (checkLockOn < closestLockOnDist)
+                        {
+                            closestLockOnDist = checkLockOn;
+                            closestLockOn = ArtificialIntelligenceAccess[i];
+                        }
+
+                    }
+
+                    //console.log(closestLockOn);
+                    if (closestLockOn == "none")
+                    {
+                        for (var i = 0; i < magicList.length; i++)
+                        {
+                            if (this === magicList[i])
+                            {
+                                magicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.lockOn = closestLockOn;
+                    }
+                }
+            }
+            if (this.missileLaunched == false)
+            {
+                this.missileLaunched = true;
+                this.missileTime = new Date().getTime();
+            }
+
+            if (new Date().getTime() - this.missileTime < (time * 1000))
+            {
+                this.missileDirection = rotation;
+                this.X += (Math.cos(rotation) * speed) * (TTD / 16.75);
+                this.Y += (Math.sin(rotation) * speed) * (TTD / 16.75);
+            }
+            else
+            {
+                if (alert)
+                {
+                    this.alert = true;
+                }
+                else
+                {
+                    this.missileDirection = Math.atan2(this.lockOn.Y - this.Y, this.lockOn.X - this.X);
+                    this.X += (Math.cos(Math.atan2(this.lockOn.Y - this.Y, this.lockOn.X - this.X)) * speed) * (TTD / 16.75);
+                    this.Y += (Math.sin(Math.atan2(this.lockOn.Y - this.Y, this.lockOn.X - this.X)) * speed) * (TTD / 16.75);
                 }
             }
         };
@@ -332,6 +406,12 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                         if (whatDoIDo == "physicalDamage")
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                        }
+                        else if (whatDoIDo == "magicalDamage")
+                        {
+                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance));
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                             ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                         }
@@ -768,6 +848,11 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
         {
             this.orientToCaster(0, 1 / 2 * Math.PI);
         }
+        //MINOR VORTEX
+        if (this.spellType == "minorVortex")
+        {
+            this.orientToCaster(0, 1 / 2 * Math.PI);
+        }
         //FIREBALL I
         if (this.spellType == "fireballI")
         {
@@ -937,6 +1022,11 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 this.orientToCaster(16 + rdxn, 4 / 6 * Math.PI );
             }
         }
+        //Magic Missiles
+        if (this.spellType == "magicMissiles")
+        {
+            this.orientToCaster(19, 1 / 2 * Math.PI);
+        }
         //Summoning
         if (this.spellType == "summonFrich" || this.spellType == "summonWolf" || this.spellType == "adminSummon")
         {
@@ -1041,6 +1131,63 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 else
                 {
                     this.spellTimer(0.45);
+                }
+            }
+
+            //Magic Missiles
+            if (this.spellType == "magicMissiles")
+            {
+                if (caster)
+                {
+                    this.flashAnimate(90, this.missileDirection - Math.PI, 0.92, [{image: nognog, imgX: 739, imgY: 116, portionW: 36, portionH: 20, adjX: -1 / 2 * 36 * 1.5, adjY: -1 / 2 * 20 * 1.5, width: 36 * 1.5, height: 20 * 1.5}, {image: nognog, imgX: 740, imgY: 94, portionW: 36, portionH: 20, adjX: -1 / 2 * 36 * 1.5, adjY: -1 / 2 * 20 * 1.5, width: 36 * 1.5, height: 20 * 1.5}, {image: nognog, imgX: 693, imgY: 95, portionW: 36, portionH: 20, adjX: -1 / 2 * 36 * 1.5, adjY: -1 / 2 * 20 * 1.5, width: 36 * 1.5, height: 20 * 1.5}, {image: nognog, imgX: 693, imgY: 114, portionW: 36, portionH: 20, adjX: -1 / 2 * 36 * 1.5, adjY: -1 / 2 * 20 * 1.5, width: 36 * 1.5, height: 20 * 1.5}]);
+
+                    this.damageThenGoAway(7, "magicalDamage", 4 + 0.2 * player.getConcentration(), 0, false);
+                    //this.project(this.playerRotation + 1/2 * Math.PI, 166 * ((50 + 3 * player.getConcentration()) / 50), 5 * ((50 + player.getConcentration()) / 50), true);
+                    if (instructions == 1)
+                    {
+                        this.missile("nearby", this.playerRotation + 5/10 * Math.PI, 0.35, 3.5, false);
+                    }
+                    else if (instructions == 2)
+                    {
+                        this.missile("nearby", this.playerRotation + 3/10 * Math.PI, 0.35, 3.5, false);
+                    }
+                    else if (instructions == 3)
+                    {
+                        this.missile("nearby", this.playerRotation + 7/10 * Math.PI, 0.35, 3.5, false);
+                    }
+                    else if (instructions == 4)
+                    {
+                        this.missile("nearby", this.playerRotation + 1/10 * Math.PI, 0.35, 3.5, false);
+                    }
+                    else if (instructions == 5)
+                    {
+                        this.missile("nearby", this.playerRotation + 9/10 * Math.PI, 0.35, 3.5, false);
+                    }
+                    else if (instructions == 6)
+                    {
+                        this.missile("nearby", this.playerRotation + 4/10 * Math.PI, 0.35, 3.5, false);
+                    }
+                    else if (instructions == 7)
+                    {
+                        this.missile("nearby", this.playerRotation + 6/10 * Math.PI, 0.35, 3.5, false);
+                    }
+                }
+                else
+                {
+                    //todo add magicMissiles spell for AI
+                }
+
+                if (player.getConcentration() >= 50 && caster)
+                {
+                    this.spellTimer(3);
+                }
+                else if (player.getConcentration() >= 40 && caster)
+                {
+                    this.spellTimer(2.5);
+                }
+                else
+                {
+                    this.spellTimer(2.2);
                 }
             }
 
@@ -1426,6 +1573,63 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 }
 
                 this.spellTimer(0.5);
+            }
+
+            //MINOR VORTEX
+            if (this.spellType == "minorVortex")
+            {
+
+                var activeMe = false;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (Math.sqrt((this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X) + (this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y)) <= 100)
+                    {
+                        if (ArtificialIntelligenceAccess[i].healthMAX <= 4 || ArtificialIntelligenceAccess[i].health <= 2)
+                        {
+                            if (ArtificialIntelligenceAccess[i].magicalResistance < 1)
+                            {
+                                ArtificialIntelligenceAccess[i].X = this.X;
+                                ArtificialIntelligenceAccess[i].Y = this.Y;
+                                activeMe = true;
+                            }
+                        }
+                    }
+                }
+                if (Math.sqrt((this.X - X)*(this.X - X) + (this.Y - Y)*(this.Y - Y)) <= 100)
+                {
+                    if (player.healthMAX <= 4 || player.health <= 2)
+                    {
+                        if (player.magicalResistanceTotal < 1)
+                        {
+                            X = this.X;
+                            Y = this.Y;
+                            activeMe = true;
+                        }
+                    }
+                }
+
+                if (activeMe)
+                {
+                    this.size = 1.5;
+                    this.spin += 0.04;
+                    this.turn += this.spin;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.turn);
+                    XXX.drawImage(nognog, 792, 100, 20, 18, - (1/2 * 20 * this.size), - (1/2 * 18 * this.size), 20 * this.size, 18 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.size = 1.5;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.turn);
+                    XXX.drawImage(nognog, 798, 122, 7, 7, - (1/2 * 7 * this.size), - (1/2 * 7 * this.size), 7 * this.size, 7 * this.size);
+                    XXX.restore();
+                }
+
+                this.spellTimer(15 + player.getConcentration());
             }
 
             //EMBERS

@@ -479,6 +479,93 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 8;
             this.spellRange = "Medium-Long";
         }
+        else if (this.type == "magicMissiles")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 3)
+            {
+                this.identity = "Scroll of Magic Missiles";
+                this.description = "Studying this scroll will teach you how to launch blasts of magical energy at your foes.";
+                this.intForDes = 0;
+                this.intDescription = "The missiles target whomever is closest to you and not considered an ally.";
+                this.buyValue = 1087 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 887.
+                this.sellValue = 671 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 871.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 4;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 1087 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 887.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = true;
+            this.spellDamage = 5 + 0.2 * player.getConcentration();
+            this.spellCost = Math.max(1, 2 + (28/50) * player.getConcentration() - (21/50) * player.getEminence());
+            this.spellGroup = "Form";
+            this.spellGenre = "Cosmic";
+            this.spellName = "Magic Missiles";
+            this.spellID = "magicMissiles";
+            this.spellEXP = 5 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(1, 3 + (12/50) * player.getConcentration() - (14/50) * player.getEminence());
+            this.spellDescription = "Missiles of concentrated magical energy that home in on their target.";
+            this.spellKnowledgeRequirement = 3;
+            this.spellRange = "Medium";
+        }
+        else if (this.type == "minorVortex")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 1)
+            {
+                this.identity = "Scroll of Minor Vortex";
+                this.description = "Studying this scroll will teach you how to conjure a small vortex made of magical energy.";
+                this.intForDes = 0;
+                this.intDescription = "The vortex will temporarily trap weak creatures.";
+                this.buyValue = 700 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 500.
+                this.sellValue = 300 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 500.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 4;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 700 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 500.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellCost = Math.max(1, 1 + (4/50) * player.getConcentration() - (4/50) * player.getEminence());
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Cosmic";
+            this.spellName = "Minor Vortex";
+            this.spellID = "minorVortex";
+            this.spellEXP = 1 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(15, 15 + (50/50) * player.getConcentration() - (50/50) * player.getEminence());
+            this.spellDescription = "A small vortex of cosmic energy that traps weak beings.";
+            this.spellKnowledgeRequirement = 1;
+            this.spellRange = "Short";
+        }
         else if (this.type == "repel")
         {
             //For All Items
@@ -2688,6 +2775,69 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 3; // at max, buy for 3.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "rawNogFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Nog Flesh";
+            this.weight = 2;
+            this.size = 16;
+            this.description = "The slimy reaking flesh of a nog.";
+            this.intForDes = 0;
+            this.intDescription = "The smell alone makes you want to gag, eating this is out of the question.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "nogMeat")
+        {
+            //For All Items
+            this.identity = "Nog Meat";
+            this.weight = 2;
+            this.size = 16;
+            this.description = "A Mushy, fluid gushing, food-like substance.";
+            this.intForDes = 0;
+            this.intDescription = "Only the brave would dare to eat such a horrific 'food'.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "potentialFoodPoisoning";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.ingredients = [["Raw Nog Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
         }
         else if (this.type == "rawYoungNaapridFlesh")
         {
@@ -6512,6 +6662,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+        }
+        else if (this.type == "nogSkin")
+        {
+            //For All Items
+            this.identity = "Nog Skin";
+            this.weight = 0.5;
+            this.size = 10;
+            this.description = "The thick leathery green skin of a nog.";
+            this.intForDes = 4;
+            this.intDescription = "This hide has fire-resistant qualities.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
         }
         else if (this.type == "frichPelt")
         {
@@ -16674,10 +16844,15 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1967, 67, 33, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 33), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26), 33, 26);
         }
-        else if (this.type == "repel" || this.type == "lifeTap" || this.type == "electricBolt" || this.type == "chargedTouch" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "summonFrich")
+        else if (this.type == "repel" || this.type == "minorVortex" || this.type == "lifeTap" || this.type == "electricBolt" || this.type == "chargedTouch" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "summonFrich")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1922, 4, 23, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 23), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32), 23, 32);
+        }
+        else if (this.type == "magicMissiles")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1804, 36, 26, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 26), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23), 26, 23);
         }
         else if (this.type == "iceberg")
         {
@@ -17298,6 +17473,21 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(furr, 109, 95, 14, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.6), 14 * 1.6, 19 * 1.6);
+        }
+        else if (this.type == "nogSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 692, 143, 25, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 25, 21);
+        }
+        else if (this.type == "rawNogFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 724, 145, 16, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 16), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 16, 17);
+        }
+        else if (this.type == "nogMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 740, 146, 16, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 16), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 16, 17);
         }
         else if (this.type == "rawUtFlesh")
         {
@@ -18855,7 +19045,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -20945,7 +21135,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);

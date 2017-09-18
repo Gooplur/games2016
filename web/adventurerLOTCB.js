@@ -5018,6 +5018,19 @@ function Adventurer()
                             this.secondaryCastingCooldown = new Date().getTime();
                         }
                     }
+                    //Minor Vortex
+                    if (secondarySpells[i].ID == "minorVortex")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                        {
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+
+                            magicList.push(new Magic({ID: "minorVortex"}, true));
+
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+                    }
                     //Sanctuary
                     if (secondarySpells[i].ID == "sanctuary")
                     {
@@ -5710,6 +5723,124 @@ function Adventurer()
                     }
                     else
                     {
+                        magicList.push(new Magic(player.spell, true, 1));
+                    }
+
+                }
+                this.castingCooldown = new Date().getTime();
+            }
+        }
+
+        //Magic Missiles Form
+        if (this.spell.ID == "magicMissiles")
+        {
+            this.stageEngine(10, 0.20, true);
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 1573, 33, 50, 34, -28, -25, 50 * 1.1, 34 * 1.1);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 1636, 236, 50, 34, -29, -23, 50 * 1.15, 34 * 1.15);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 1860, 138, 50, 34, -29, -23, 50 * 1.15, 34 * 1.15);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 1927, 106, 50, 34, -28.5, -23, 50 * 1.1, 34 * 1.1);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 1633, 90, 50, 34, -29, -26, 50 * 1.17, 34 * 1.17);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 1633, 62, 50, 34, -29, -26, 50 * 1.15, 34 * 1.15);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) >= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 1573, 232, 50, 34, -29, -24.5, 50 * 1.15, 34 * 1.15);
+                XXX.restore();
+                if (this.doMagic)
+                {
+                    this.doMagic = false;
+                    this.magicalExperience += this.spell.EXP;
+
+                    if (player.getConcentration() >= 45)
+                    {
+                        magicList.push(new Magic(player.spell, true, 1));
+                        magicList.push(new Magic(player.spell, true, 2));
+                        magicList.push(new Magic(player.spell, true, 3));
+                        magicList.push(new Magic(player.spell, true, 4));
+                        magicList.push(new Magic(player.spell, true, 5));
+                        magicList.push(new Magic(player.spell, true, 6));
+                        magicList.push(new Magic(player.spell, true, 7));
+                    }
+                    else if (player.getConcentration() >= 36)
+                    {
+                        magicList.push(new Magic(player.spell, true, 1));
+                        magicList.push(new Magic(player.spell, true, 2));
+                        magicList.push(new Magic(player.spell, true, 3));
+                        magicList.push(new Magic(player.spell, true, 4));
+                        magicList.push(new Magic(player.spell, true, 5));
+                        magicList.push(new Magic(player.spell, true, 6));
+                    }
+                    else if (player.getConcentration() >= 29)
+                    {
+                        magicList.push(new Magic(player.spell, true, 1));
+                        magicList.push(new Magic(player.spell, true, 2));
+                        magicList.push(new Magic(player.spell, true, 3));
+                        magicList.push(new Magic(player.spell, true, 4));
+                        magicList.push(new Magic(player.spell, true, 5));
+                    }
+                    else if (player.getConcentration() >= 18)
+                    {
+                        magicList.push(new Magic(player.spell, true, 1));
+                        magicList.push(new Magic(player.spell, true, 2));
+                        magicList.push(new Magic(player.spell, true, 3));
+                        magicList.push(new Magic(player.spell, true, 4));
+                    }
+                    else if (player.getConcentration() >= 6)
+                    {
+                        magicList.push(new Magic(player.spell, true, 1));
+                        magicList.push(new Magic(player.spell, true, 2));
+                        magicList.push(new Magic(player.spell, true, 3));
+                    }
+                    else
+                    {
+                        magicList.push(new Magic(player.spell, true, 2));
                         magicList.push(new Magic(player.spell, true, 1));
                     }
 

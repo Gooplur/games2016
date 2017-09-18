@@ -19610,6 +19610,21 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(furr, 109, 95, 14, 19, this.invX - (1/2 * 14 * 1.6), this.invY - (1/2 * 19 * 1.6), 14 * 1.6, 19 * 1.6);
         }
+        else if (this.type == "nogSkin")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 692, 143, 25, 21, this.invX - (1/2 * 25), this.invY - (1/2 * 21), 25, 21);
+        }
+        else if (this.type == "rawNogFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 724, 145, 16, 17, this.invX - (1/2 * 16), this.invY - (1/2 * 17), 16, 17);
+        }
+        else if (this.type == "nogMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 740, 146, 16, 17, this.invX - (1/2 * 16), this.invY - (1/2 * 17), 16, 17);
+        }
         else if (this.type == "rawUtFlesh")
         {
             LXX.beginPath();
@@ -21695,6 +21710,21 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(furr, 109, 95, 14, 19, this.invX - (1/2 * 14 * 1.6), this.invY - (1/2 * 19 * 1.6), 14 * 1.6, 19 * 1.6);
+        }
+        else if (this.type == "nogSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 692, 143, 25, 21, this.invX - (1/2 * 25), this.invY - (1/2 * 21), 25, 21);
+        }
+        else if (this.type == "rawNogFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 724, 145, 16, 17, this.invX - (1/2 * 16), this.invY - (1/2 * 17), 16, 17);
+        }
+        else if (this.type == "nogMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 740, 146, 16, 17, this.invX - (1/2 * 16), this.invY - (1/2 * 17), 16, 17);
         }
         else if (this.type == "rawUtFlesh")
         {

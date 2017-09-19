@@ -146,6 +146,8 @@ function worldBuilder()
             outlineBuilder( 34, 14, "crag", -54, -20);
             outlineBuilder( 34, 14, "crag", -34, -20);
             outlineBuilder( 6, 6, "crag", -40, -6);
+            outlineBuilder( 1, 14, "stonePath", -34, -7);
+            outlineBuilder( 1, 1, "brokenStonePath", -35, -7);
         }
         //layer 2 (freezing region)
         if (Y > 31750 && Y < 77360) //this is the freezing arctic environment //X0

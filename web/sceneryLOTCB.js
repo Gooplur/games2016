@@ -25,6 +25,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.frameLoopComplete = false;
     this.runOneTime = true; //this will not be used in general functions, only for making sure each type of scenery can run something only once.
     this.loopTimer = new Date().getTime();
+    this.unpassable = false; //certain creatures with the haste ability (like berulns) can pass over almost any obstacle, but not if the obstacle has this property set to true.
     //Campfire variables
     this.lit = false;
     this.fireCostume = 0;

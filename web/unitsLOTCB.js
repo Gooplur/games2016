@@ -7,6 +7,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 {
     //TODO add a respawn function, and a respawn rate stat, and possibly respawn coords based roughly on their set coords.
     //Priority Variables
+    this.mobile = true;
     this.stackDominance = Math.random();
     this.ID = ID; //This is gives this unit an identity so that they can be identified if a problem comes up.
     this.X = unitX; // this is the units X position in the world
@@ -92,6 +93,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //movement specific variables
     this.fleeing = false;
     this.flying = false;
+    this.haste = false;
     //game pause related variables
     this.timeResistance = false;
     //death variables
@@ -105,6 +107,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.doOnDeathOnce = true; //this is for unique characters, upon their death they trigger a flag letting the game know never to respawn them.
     //Other variables
     this.other = false; //this is unique for every unit... do whith it what you will.
+    this.creatureBiz = false; //reference evadeObstructions to see purpose
+    this.suspendConflictingPointSystems = false; //reference evadeObstructions to see purpose
     this.spin = 0; //this is the rotation aspect of flash animate.
     this.plantedX = this.X;
     this.plantedY = this.Y;
@@ -172,15 +176,42 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
         }
     };
-    var initOrientation = Math.round(Math.random());
-    if (initOrientation)
+
+    this.evadeObstruction = function()
     {
-        this.intendedDirection == "left";
-    }
-    else
-    {
-        this.intendedDirection == "right";
-    }
+        if (this.creatureBiz)
+        {
+            this.creatureBiz = false;
+        }
+        else
+        {
+            if (!this.attacking)
+            {
+                var testMovX;
+                var testMovY;
+                var testMovPass = 0;
+                this.suspendConflictingPointSystems = true;
+                for (var i = 0; i < 8; i++)
+                {
+                    testMovX = this.X + Math.cos(this.rotation + (15 / 360 * Math.PI)) * ((TTD / 16.75) * this.speed * i);
+                    testMovY = this.Y + Math.sin(this.rotation + (15 / 360 * Math.PI)) * ((TTD / 16.75) * this.speed * i);
+                    if (!this.isObstructed(testMovX, testMovY))
+                    {
+                        testMovPass += 1;
+                    }
+                }
+                if (testMovPass >= 8)
+                {
+                    this.newRotation = this.rotation + (15 / 360 * Math.PI);
+                }
+                else
+                {
+                    this.newRotation = this.rotation + (15 / 360 * Math.PI);
+                    //this.evadeObstruction();
+                }
+            }
+        }
+    };
 
     this.stackSorter();
 
@@ -199,56 +230,38 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             if (gameLoopNumber % 5 == 0 && ArtificialIntelligenceAccess[i] !== this) //todo whilst this is set to == 0 it will not truly ever work but it think i prefer it not working.
             {
-                if (unitSurround)
+                var upcX = this.X - Math.cos(this.rotation) * (TTD / 16.75) * this.speed;
+                var upcY = this.Y - Math.sin(this.rotation) * (TTD / 16.75) * this.speed;
+
+                var obstrDist = Math.sqrt((ArtificialIntelligenceAccess[i].X - upcX) * (ArtificialIntelligenceAccess[i].X - upcX) + (ArtificialIntelligenceAccess[i].Y - upcY) * (ArtificialIntelligenceAccess[i].Y - upcY));
+
+                if (obstrDist <= this.sizeRadius + ArtificialIntelligenceAccess[i].sizeRadius && this.attacking == false)
                 {
-                    //If another thing is in the way move until it is not in the way.
-                    /*if (this.selfPosition(ArtificialIntelligenceAccess[i], this.X - Math.cos(this.rotation) * (TTD / 16.75) * this.speed, this.Y - Math.sin(this.rotation) * (TTD / 16.75) * this.speed))
-                     {
-                     if (this.selfPosition(ArtificialIntelligenceAccess[i], this.X + (this.speed) * Math.cos(Math.atan(X - this.X, Y - this.Y)), this.Y + (this.speed) * Math.sin(Math.atan(X - this.X, Y - this.Y))))
-                     {
-                     this.X += (this.speed) * Math.cos(Math.atan(X - this.X, Y - this.Y));
-                     this.Y += (this.speed) * Math.sin(Math.atan(X - this.X, Y - this.Y));
-                     }
-                     }*/
-
-                    /*if (this.stackDominance < ArtificialIntelligenceAccess[i].stackDominance)
-                     {
-                     //move if overlapping
-                     var dFUTU = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
-                     if (dFUTU <= this.sizeRadius + ArtificialIntelligenceAccess[i].sizeRadius)
-                     {
-                     this.X += (this.speed) * Math.cos(Math.atan(X - ArtificialIntelligenceAccess[i].X, Y - ArtificialIntelligenceAccess[i].Y));
-                     this.Y += (this.speed) * Math.sin(Math.atan(X - ArtificialIntelligenceAccess[i].X, Y - ArtificialIntelligenceAccess[i].Y));
-                     }
-                     }*/
-
-                    var upcomingX = this.X - Math.cos(this.rotation) * (TTD / 16.75) * this.speed;
-                    var upcomingY = this.Y - Math.sin(this.rotation) * (TTD / 16.75) * this.speed;
-
-                    var obstructorDist = Math.sqrt((ArtificialIntelligenceAccess[i].X - upcomingX) * (ArtificialIntelligenceAccess[i].X - upcomingX) + (ArtificialIntelligenceAccess[i].Y - upcomingY) * (ArtificialIntelligenceAccess[i].Y - upcomingY));
-                    if (obstructorDist <= this.sizeRadius + ArtificialIntelligenceAccess[i].sizeRadius && this.attacking == false)
+                    if (this.mobile)
                     {
-                        if (ArtificialIntelligenceAccess[i].stackDominance > this.stackDominance || ArtificialIntelligenceAccess[i].attacking == true)
+                        if (this.target == player)
                         {
-                            //console.log(Math.atan(X - this.X, Y - this.Y));
-                            this.X += (this.speed) * Math.cos(Math.atan(X - this.X, Y - this.Y));
-                            this.Y += (this.speed) * Math.sin(Math.atan(X - this.X, Y - this.Y));
-
-                            //todo creature overlap with eachother... which is gross.
-                            //todo all the creatures get stuck at a certain degree point, I need to figure out how to work around that here.
+                            if (this.stackDominance < ArtificialIntelligenceAccess[i].stackDominance || ArtificialIntelligenceAccess[i].attacking)
+                            {
+                                this.X += (this.speed * (1.25 + Math.random())) * Math.cos(Math.atan2(Y - this.Y, X - this.X) + Math.PI / 2);
+                                this.Y += (this.speed * (1.25 + Math.random())) * Math.sin(Math.atan2(Y - this.Y, X - this.X) + Math.PI / 2);
+                            }
                         }
-                    }
-                }
-                else
-                {
-                    if (this.stackDominance < ArtificialIntelligenceAccess[i].stackDominance)
-                    {
-                        //move if overlapping
-                        var dFUTU = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
-                        if (dFUTU <= this.sizeRadius + ArtificialIntelligenceAccess[i].sizeRadius)
+                        else if (this.target != "none")
                         {
-                            this.X += (this.speed) * Math.cos(Math.atan(X - ArtificialIntelligenceAccess[i].X, Y - ArtificialIntelligenceAccess[i].Y));
-                            this.Y += (this.speed) * Math.sin(Math.atan(X - ArtificialIntelligenceAccess[i].X, Y - ArtificialIntelligenceAccess[i].Y));
+                            if (this.stackDominance < ArtificialIntelligenceAccess[i].stackDominance || ArtificialIntelligenceAccess[i].attacking)
+                            {
+                                this.X += (this.speed * (1.25 + Math.random())) * Math.cos(Math.atan2(this.target.Y - this.Y, this.target.X - this.X) + Math.PI / 2);
+                                this.Y += (this.speed * (1.25 + Math.random())) * Math.sin(Math.atan2(this.target.Y - this.Y, this.target.X - this.X) + Math.PI / 2);
+                            }
+                        }
+                        else
+                        {
+                            if (this.stackDominance < ArtificialIntelligenceAccess[i].stackDominance)
+                            {
+                                this.X += (this.speed * (1.25 + Math.random())) * Math.cos(Math.atan2(Y - this.Y, X - this.X) + Math.PI / 2);
+                                this.Y += (this.speed * (1.25 + Math.random())) * Math.sin(Math.atan2(Y - this.Y, X - this.X) + Math.PI / 2);
+                            }
                         }
                     }
                 }
@@ -6424,48 +6437,51 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //this points the unit toward the main character.
     this.pointTowardsPlayer = function()
     {
-        var dtp = this.DTP();
-        if (dtp < this.rangeOfSight && this.blinded == false) //if the player is close enough to the unit the unit will rotate toward him/her.
+        if (!this.suspendConflictingPointSystems)
         {
-            this.playerSeen = true;
-            if (this.team != "player")
+            var dtp = this.DTP();
+            if (dtp < this.rangeOfSight && this.blinded == false) //if the player is close enough to the unit the unit will rotate toward him/her.
             {
-                this.newRotation = Math.atan2(Y - this.Y, X - this.X) + Math.PI;
-                //console.log(this.rotation + " | " + this.newRotation);
-            }
-            else
-            {
-                if (rKey)
+                this.playerSeen = true;
+                if (this.team != "player")
                 {
-                    this.fleeing = true;
-                    this.newRotation = Math.atan2(Y - this.Y, X - this.X); //The player sends their minions away from them with the tild key
+                    this.newRotation = Math.atan2(Y - this.Y, X - this.X) + Math.PI;
+                    //console.log(this.rotation + " | " + this.newRotation);
                 }
                 else
                 {
-                    this.newRotation = Math.atan2(Y - this.Y, X - this.X) + Math.PI; //the player's minions return to their master if the master is in sight
+                    if (rKey)
+                    {
+                        this.fleeing = true;
+                        this.newRotation = Math.atan2(Y - this.Y, X - this.X); //The player sends their minions away from them with the tild key
+                    }
+                    else
+                    {
+                        this.newRotation = Math.atan2(Y - this.Y, X - this.X) + Math.PI; //the player's minions return to their master if the master is in sight
+                    }
                 }
             }
-        }
-        else if (this.blinded == true)
-        {
-            this.playerSeen = false;
-            var rndmz = Math.floor(Math.random() * 13);
-            if (rndmz <= 3)
+            else if (this.blinded == true)
             {
-                this.newRotation += 1 * Math.PI;
+                this.playerSeen = false;
+                var rndmz = Math.floor(Math.random() * 13);
+                if (rndmz <= 3)
+                {
+                    this.newRotation += 1 * Math.PI;
+                }
+                else if (rndmz > 3 && rndmz <= 7)
+                {
+                    this.newRotation -= 1/2 * Math.PI;
+                }
+                else if (rndmz > 7 && rndmz <= 9)
+                {
+                    this.newRotation = Math.atan2(Y - this.Y, X - this.X) + Math.PI;
+                }
             }
-            else if (rndmz > 3 && rndmz <= 7)
+            else
             {
-                this.newRotation -= 1/2 * Math.PI;
+                this.playerSeen = false;
             }
-            else if (rndmz > 7 && rndmz <= 9)
-            {
-                this.newRotation = Math.atan2(Y - this.Y, X - this.X) + Math.PI;
-            }
-        }
-        else
-        {
-            this.playerSeen = false;
         }
     };
 
@@ -6484,24 +6500,27 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
     this.pointAway = function(thing)
     {
-        if (this.blinded == false)
+        if (!this.suspendConflictingPointSystems)
         {
-            this.newRotation = Math.atan2(thing.Y - this.Y, thing.X - this.X);
-        }
-        else if (this.blinded == true)
-        {
-            var rndmz = Math.floor(Math.random() * 13);
-            if (rndmz <= 3)
-            {
-                this.newRotation += 1 * Math.PI;
-            }
-            else if (rndmz > 3 && rndmz <= 7)
-            {
-                this.newRotation -= 1/2 * Math.PI;
-            }
-            else if (rndmz > 7 && rndmz <= 9)
+            if (this.blinded == false)
             {
                 this.newRotation = Math.atan2(thing.Y - this.Y, thing.X - this.X);
+            }
+            else if (this.blinded == true)
+            {
+                var rndmz = Math.floor(Math.random() * 13);
+                if (rndmz <= 3)
+                {
+                    this.newRotation += 1 * Math.PI;
+                }
+                else if (rndmz > 3 && rndmz <= 7)
+                {
+                    this.newRotation -= 1/2 * Math.PI;
+                }
+                else if (rndmz > 7 && rndmz <= 9)
+                {
+                    this.newRotation = Math.atan2(thing.Y - this.Y, thing.X - this.X);
+                }
             }
         }
     };
@@ -6509,50 +6528,53 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //this points away from the player.
     this.pointAwayFromPlayer = function()
     {
-        var dtp = this.DTP();
-        if (dtp < this.rangeOfSight && this.blinded == false) //if the player is close enough to the unit the unit will rotate toward him/her.
+        if (!this.suspendConflictingPointSystems)
         {
-            this.playerSeen = true;
-            if (this.team != "player")
+            var dtp = this.DTP();
+            if (dtp < this.rangeOfSight && this.blinded == false) //if the player is close enough to the unit the unit will rotate toward him/her.
             {
-                this.fleeing = true;
-                this.newRotation = Math.atan2(Y - this.Y, X - this.X);
-                //console.log(this.rotation + " | " + this.newRotation);
-            }
-            else
-            {
-                if (rKey)
+                this.playerSeen = true;
+                if (this.team != "player")
                 {
                     this.fleeing = true;
-                    this.newRotation = Math.atan2(Y - this.Y, X - this.X); //The player sends their minions away from them with the tild key
+                    this.newRotation = Math.atan2(Y - this.Y, X - this.X);
+                    //console.log(this.rotation + " | " + this.newRotation);
                 }
                 else
                 {
-                    this.newRotation = Math.atan2(Y - this.Y, X - this.X) + Math.PI; //the player's minions return to their master if the master is in sight
+                    if (rKey)
+                    {
+                        this.fleeing = true;
+                        this.newRotation = Math.atan2(Y - this.Y, X - this.X); //The player sends their minions away from them with the tild key
+                    }
+                    else
+                    {
+                        this.newRotation = Math.atan2(Y - this.Y, X - this.X) + Math.PI; //the player's minions return to their master if the master is in sight
+                    }
                 }
             }
-        }
-        else if (this.blinded == true)
-        {
-            this.playerSeen = false;
-            var rndmz = Math.floor(Math.random() * 14);
-            if (rndmz <= 3)
+            else if (this.blinded == true)
             {
-                this.newRotation -= 1 * Math.PI;
+                this.playerSeen = false;
+                var rndmz = Math.floor(Math.random() * 14);
+                if (rndmz <= 3)
+                {
+                    this.newRotation -= 1 * Math.PI;
+                }
+                else if (rndmz > 3 && rndmz <= 7)
+                {
+                    this.newRotation += 1 / 2 * Math.PI;
+                }
+                else if (rndmz > 7 && rndmz <= 9)
+                {
+                    this.newRotation = Math.atan2(Y - this.Y, X - this.X);
+                }
             }
-            else if (rndmz > 3 && rndmz <= 7)
+            else
             {
-                this.newRotation += 1 / 2 * Math.PI;
+                this.fleeing = false;
+                this.playerSeen = false;
             }
-            else if (rndmz > 7 && rndmz <= 9)
-            {
-                this.newRotation = Math.atan2(Y - this.Y, X - this.X);
-            }
-        }
-        else
-        {
-            this.fleeing = false;
-            this.playerSeen = false;
         }
     };
 
@@ -6869,6 +6891,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.Y = nextY;
                     this.moving = true;
                 }
+                else
+                {
+                    this.evadeObstruction();
+                }
             }
             else
             {
@@ -7094,18 +7120,38 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //This moves the unit forwards either away from or toward the player.
     this.moveInRelationToPlayer = function() //the fraction of PI is the amount of angle-adjustment for the specific type of unit.
     {
-        var dtp = this.DTP();
-        if (dtp > this.engagementRadius && dtp < this.rangeOfSight || this.fleeing == true && dtp < this.rangeOfSight) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
+        if (!this.suspendConflictingPointSystems)
         {
-
-            var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
-            var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
-
-            if (! this.isObstructed( nextX, nextY ) || this.flying == true)
+            var dtp = this.DTP();
+            if (dtp > this.engagementRadius && dtp < this.rangeOfSight || this.fleeing == true && dtp < this.rangeOfSight) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
             {
-                this.X = nextX;
-                this.Y = nextY;
-                this.moving = true;
+
+                var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
+                var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
+
+                if (! this.isObstructed( nextX, nextY ) || this.flying == true)
+                {
+                    this.X = nextX;
+                    this.Y = nextY;
+                    this.moving = true;
+                }
+                else
+                {
+                    this.evadeObstruction();
+                }
+                /*else
+                 {
+                 if (this.moving && this.attacking == false)
+                 {
+                 this.timeStoppedMoving = new Date().getTime();
+                 }
+                 this.moving = false;
+
+                 if (new Date().getTime() - this.timeStoppedMoving > 500 && this.attacking == false)
+                 {
+                 this.costume = 0;
+                 }
+                 }*/
             }
             else
             {
@@ -7119,19 +7165,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     this.costume = 0;
                 }
-            }
-        }
-        else
-        {
-            if (this.moving && this.attacking == false)
-            {
-                this.timeStoppedMoving = new Date().getTime();
-            }
-            this.moving = false;
-
-            if (new Date().getTime() - this.timeStoppedMoving > 500 && this.attacking == false)
-            {
-                this.costume = 0;
             }
         }
     };
@@ -7143,46 +7176,69 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
     this.pointTowards = function(thing)
     {
-        if (this.blinded == false)
+        if (!this.suspendConflictingPointSystems)
         {
-            this.newRotation = Math.atan2(thing.Y - this.Y, thing.X - this.X) + Math.PI;
-        }
-        else if (this.blinded == true)
-        {
-            var rndmz = Math.floor(Math.random() * 13);
-            if (rndmz <= 3)
-            {
-                this.newRotation += 1 * Math.PI;
-            }
-            else if (rndmz > 3 && rndmz <= 7)
-            {
-                this.newRotation -= 1/2 * Math.PI;
-            }
-            else if (rndmz > 7 && rndmz <= 9)
+            if (this.blinded == false)
             {
                 this.newRotation = Math.atan2(thing.Y - this.Y, thing.X - this.X) + Math.PI;
+            }
+            else if (this.blinded == true)
+            {
+                var rndmz = Math.floor(Math.random() * 13);
+                if (rndmz <= 3)
+                {
+                    this.newRotation += 1 * Math.PI;
+                }
+                else if (rndmz > 3 && rndmz <= 7)
+                {
+                    this.newRotation -= 1/2 * Math.PI;
+                }
+                else if (rndmz > 7 && rndmz <= 9)
+                {
+                    this.newRotation = Math.atan2(thing.Y - this.Y, thing.X - this.X) + Math.PI;
+                }
             }
         }
     };
 
     this.moveInRelationToThing = function(thing, extraSight) //move towards target thing.
     {
-        var extraS = extraSight;
-        if (typeof(extraS) == "undefined")
+        if (!this.suspendConflictingPointSystems)
         {
-            extraS = 0;
-        }
-        var dTo = this.distanceFinder(this, thing);
-        if (dTo > this.engagementRadius && dTo < (this.rangeOfSight + extraS) || this.fleeing == true && dTo < (this.rangeOfSight + extraS)) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
-        {
-            var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
-            var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
-
-            if (! this.isObstructed( nextX, nextY ) || this.flying == true)
+            var extraS = extraSight;
+            if (typeof(extraS) == "undefined")
             {
-                this.X = nextX;
-                this.Y = nextY;
-                this.moving = true;
+                extraS = 0;
+            }
+            var dTo = this.distanceFinder(this, thing);
+            if (dTo > this.engagementRadius && dTo < (this.rangeOfSight + extraS) || this.fleeing == true && dTo < (this.rangeOfSight + extraS)) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
+            {
+                var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
+                var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
+
+                if (! this.isObstructed( nextX, nextY ) || this.flying == true)
+                {
+                    this.X = nextX;
+                    this.Y = nextY;
+                    this.moving = true;
+                }
+                else
+                {
+                    this.evadeObstruction();
+                }
+                /*else
+                 {
+                 if (this.moving && this.attacking == false)
+                 {
+                 this.timeStoppedMoving = new Date().getTime();
+                 }
+                 this.moving = false;
+
+                 if (new Date().getTime() - this.timeStoppedMoving > 500 && this.attacking == false)
+                 {
+                 this.costume = 0;
+                 }
+                 }*/
             }
             else
             {
@@ -7196,19 +7252,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     this.costume = 0;
                 }
-            }
-        }
-        else
-        {
-            if (this.moving && this.attacking == false)
-            {
-                this.timeStoppedMoving = new Date().getTime();
-            }
-            this.moving = false;
-
-            if (new Date().getTime() - this.timeStoppedMoving > 500 && this.attacking == false)
-            {
-                this.costume = 0;
             }
         }
     };
@@ -7854,7 +7897,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     {
         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
         {
-            if (ArtificialIntelligenceAccess[i] !== this)
+            if (ArtificialIntelligenceAccess[i] !== this && !ArtificialIntelligenceAccess[i].flying)
             {
                 var focusUnit = ArtificialIntelligenceAccess[i]; //This is the current unit focused on other than this unit.
                 var x1 = focusUnit.X; //the focus unit's X position.
@@ -7862,6 +7905,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 var d = Math.sqrt( (x-x1)*(x-x1) + (y-y1)*(y-y1) ); //This is the distance between this unit and the focus unit.
                 if (d < this.sizeRadius + focusUnit.sizeRadius && focusUnit.alive == true) // if the total distance between this unit and the focus unit is less than the size of the two radiuses then it returns true to the movement function which calls it.
                 {
+                    this.creatureBiz = true; // this lets the creatures sort out there own stuff by suspending the normal processes (evadeObstruction) that would happen upon getting stuck.
                     return true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
                 }
             }
@@ -7874,9 +7918,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 var x1 = focusObject.X; //the focus unit's X position.
                 var y1 = focusObject.Y; //the focus unit's Y position.
                 var d = Math.sqrt( (x-x1)*(x-x1) + (y-y1)*(y-y1) ); //This is the distance between this unit and the focus unit.
-                if (d < this.sizeRadius + focusObject.radius) // if the total distance between this unit and the focus unit is less than the size of the two radiuses then it returns true to the movement function which calls it.
+                if (!this.haste || focusObject.unpassable)
                 {
-                    return true;
+                    if (d < this.sizeRadius + focusObject.radius) // if the total distance between this unit and the focus unit is less than the size of the two radiuses then it returns true to the movement function which calls it.
+                    {
+                        return true;
+                    }
                 }
             }
         }
@@ -8651,6 +8698,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.turnToDestination = function()
     {
         var quickestRotation = this.angleDelta(this.rotation, this.newRotation); //This is a number that represents the quickest rotation possible.
+        if (this.suspendConflictingPointSystems && Math.abs(quickestRotation) < this.rotationSpeed)
+        {
+            this.suspendConflictingPointSystems = false;
+        }
+
         if (Math.abs(quickestRotation) > this.rotationSpeed)
         {
             if (quickestRotation < 0 - this.rotationSpeed) // if the rotation would bring the unit to a rotation that is less than zero then
@@ -9293,6 +9345,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.team = "docile";
             }
+            this.haste = true;
             this.baseTeam = this.team;
 
             if (this.alpha == true)
@@ -10467,7 +10520,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "Ulgoy")
         {
-            this.stackDominance -= 100;
+            this.mobile = false;
+            this.stackDominance = 1000;
             this.damageFrame = "automatic";
             this.team = "ulgoyia";
             this.baseTeam = this.team;
@@ -10573,7 +10627,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "automatic";
             this.team = "wild";
             this.baseTeam = this.team;
-            this.flying = true;
+            this.haste = true;
             if (this.ID == "docile")
             {
                 this.team = "docile";
@@ -22531,7 +22585,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
                         }
-                        this.flying = true;
+                        this.haste = true;
                         this.voiceFrequency = 8;
 
                         if (player.gender == "Male" && this.playerSeen)

@@ -324,17 +324,6 @@ function cheats()
                 player.thirst = player.thirstMAX;
             }
         }
-        else if (cheatcode.toLowerCase() == "lineuptodie")
-        {
-            if (unitSurround == true)
-            {
-                unitSurround = false;
-            }
-            else
-            {
-                unitSurround = true;
-            }
-        }
         else if (cheatcode.toLowerCase() == "tellme")
         {
 

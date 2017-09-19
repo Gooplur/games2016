@@ -7895,6 +7895,9 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
     this.isObstructed = function(x, y)
     {
+        creaturesO = false;
+        sceneryO = false;
+
         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
         {
             if (ArtificialIntelligenceAccess[i] !== this && !ArtificialIntelligenceAccess[i].flying)
@@ -7906,7 +7909,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 if (d < this.sizeRadius + focusUnit.sizeRadius && focusUnit.alive == true) // if the total distance between this unit and the focus unit is less than the size of the two radiuses then it returns true to the movement function which calls it.
                 {
                     this.creatureBiz = true; // this lets the creatures sort out there own stuff by suspending the normal processes (evadeObstruction) that would happen upon getting stuck.
-                    return true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                    creaturesO = true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
                 }
             }
         }
@@ -7922,10 +7925,20 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (d < this.sizeRadius + focusObject.radius) // if the total distance between this unit and the focus unit is less than the size of the two radiuses then it returns true to the movement function which calls it.
                     {
-                        return true;
+                        this.creatureBiz = false; //if the creatures are stuck on an obstacle it is more important to get unstuck than to attempt to encircle the player.
+                        sceneryO = true;
                     }
                 }
             }
+        }
+
+        if (creaturesO || sceneryO)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     };
 

@@ -3,7 +3,9 @@
  */
 
 //TODO LIST
-//todo add drag and drop save system that includes the ability to download saves to the desktop.
+//todo add a system that shows the player the names of each region that they enter upon entering it.
+//todo add Maps W1 (partially plains/mostly rock lands), W2 (rock lands), W3 (rock lands), W3S1 (rock lands), W4S1 (rocklands, mudplains, plains, forest)(Lethik - a medium sized village on the fronteir of Thengaria)
+//todo add Barrier class - it is invisible and deletes stray projectiles (or makes them back into their item form) it should also prevent player and unit movement.
 //todo add Dmitris art to the main menu areas. pay dmitri up to 25$ for these, 5$ for save menu, 10$ for the main title and character creation
 //todo add warm norther thick clothing made with waanti.
 //todo figure out why aldrekii claws manual attack thing won't let it at twice or even early, while the same code lets the flail perform its attack early.
@@ -24,7 +26,6 @@
 //todo add weaken spell
 //todo add tornado spell
 //todo add mage boss who uses the electric spear as well as magical shielding spell he uses.
-//todo add bowls for the kellish soup
 //todo add throwing stars for the orgel
 //todo add houses/shops/buildings.
 //todo add sicknesses and symptons (dizziness, pox, fever, fatigue, etc.) ex: make dizziness spin the screen, make pox weaken players constitution etc., make fever decrease thirst.
@@ -34,8 +35,8 @@
 //todo Add harsh hot weather conditions: deserts cause faster dehydration.
 //todo It would be cool to add swimming, but it is not necessarily something that the game needs.
 //todo Add multi dimensional gameplay... meaning Dungeons, Caves, trapdoors, castles, cellars, buildings, etc.
-//todo Add beartraps and other traps that you can set Survivalism is also a trapping skill.
-//todo Add haeflower item to compliment its already designed drug effect.
+//todo Add more traps to further advance the utility of the Survivalism (trapping) skill.
+
 function legendaryPrerequisites()
 {
     //songs
@@ -1937,6 +1938,8 @@ function theLegend()
         fenwikEchlinArmed: 0,
         fenwikShopStyle: "normal",
         garldCrazyScroll: false,
+        //ITEM STASH VARIABLES (non quest)
+        lonerGuyStash: true,
 
         //QUEST: Teshir North Road ---- given by Toggin
         teshirNorthRoadBandits: true,

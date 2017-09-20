@@ -43,13 +43,17 @@ function sleep(safe)
 
                 //Give the player rest -- if you sleep for a reasonable amount of time your get more rest
                 var sleepChange;
-                if (dOS >= 8)
+                if (dOS > 10)
                 {
-                    sleepChange = dOS * 3;
+                    player.sleep = player.sleepMAX;
+                }
+                else if (dOS >= 9)
+                {
+                    sleepChange = dOS * 7;
                 }
                 else if (dOS >= 6)
                 {
-                    sleepChange = dOS * 2.5;
+                    sleepChange = dOS * 3;
                 }
                 else
                 {

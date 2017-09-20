@@ -7908,7 +7908,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 var d = Math.sqrt( (x-x1)*(x-x1) + (y-y1)*(y-y1) ); //This is the distance between this unit and the focus unit.
                 if (d < this.sizeRadius + focusUnit.sizeRadius && focusUnit.alive == true) // if the total distance between this unit and the focus unit is less than the size of the two radiuses then it returns true to the movement function which calls it.
                 {
-                    this.creatureBiz = true; // this lets the creatures sort out there own stuff by suspending the normal processes (evadeObstruction) that would happen upon getting stuck.
+                    if (ArtificialIntelligenceAccess[i].mobile)
+                    {
+                        this.creatureBiz = true; // this lets the creatures sort out there own stuff by suspending the normal processes (evadeObstruction) that would happen upon getting stuck.
+                    }
                     creaturesO = true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
                 }
             }
@@ -15049,6 +15052,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.callForNearbyHelpFromType(1000, "StoneGolem");
                         this.pointTowardsPlayer();
                     }
+                }
+
+                if (this.state == "resting")
+                {
+                    this.mobile = true;
+                }
+                else
+                {
+                    this.mobile = false;
                 }
 
                 //this.deathChecker();

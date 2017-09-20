@@ -19125,7 +19125,7 @@ function Adventurer()
                 //increased regeneration speed when not in combat and not moving and when you are not at lower than two thirds of your maximum energy.
                 if (this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false) //Restore energy faster if not in combat and not moving.
                 {
-                    if (this.energy >= (2/3 * this.energyMAX))
+                    if (this.energy > (1/4 * this.energyMAX))
                     {
                         this.energy += 1 * (TTD / (2000 - 10 * Math.min(52, this.getEndurance()) * 2));
                     }

@@ -15571,6 +15571,26 @@ function Item(type, x, y)
             this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
             this.sellValue = 2; // at max, sell for 2.
         }
+        else if (this.type == "lonersJournal")
+        {
+            //For All Items
+            this.identity = "Adventurer's Log";
+            this.weight = 0.5;
+            this.size = 12;
+            this.description = "A journal that was written by an ill fated traveler.";
+            this.intForDes = 10;
+            this.intDescription = "There are tooth sized holes throughout the man's crushed skull, an animal attack was likely.";
+
+            //Define Utility
+            this.utility = "book";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "madmanNote")
         {
             //For All Items
@@ -15701,7 +15721,7 @@ function Item(type, x, y)
             XXX.arc(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
             XXX.fill();
         }
-        else if (this.type == "freydicFolkTales")
+        else if (this.type == "freydicFolkTales" || this.type == "lonersJournal")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 17 * 1, 20 * 1);
@@ -17842,7 +17862,7 @@ function Item(type, x, y)
             LXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             LXX.fill();
         }
-        else if (this.type == "freydicFolkTales")
+        else if (this.type == "freydicFolkTales" || this.type == "lonersJournal")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
@@ -19947,7 +19967,7 @@ function Item(type, x, y)
             XXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             XXX.fill();
         }
-        else if (this.type == "freydicFolkTales")
+        else if (this.type == "freydicFolkTales" || this.type == "lonersJournal")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);

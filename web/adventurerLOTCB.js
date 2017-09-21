@@ -17517,6 +17517,31 @@ function Adventurer()
                                 this.perfumeTime = 540;
                                 this.perfumeStoreTime = new Date().getTime();
                             }
+                            else if (Inventory[i][0].ability == "rawThuegTripe") //this effect makes the player vomit and lose 22 hunger.
+                            {
+                                if (this.timeSinceBadFoodEaten == 0)
+                                {
+                                    this.timeSinceBadFoodEaten = new Date().getTime();
+                                }
+                                else if (new Date().getTime() - this.timeSinceBadFoodEaten < 33000 - 11500)
+                                {
+                                    this.timeSinceBadFoodEaten -= 11000
+                                }
+                                else if (new Date().getTime() - this.timeSinceBadFoodEaten < 33000 - 4500)
+                                {
+                                    this.timeSinceBadFoodEaten -= 4000
+                                }
+
+                                this.energilTime = 350;
+                                this.fatigueIII = true;
+                                this.experience += 100;
+                            }
+                            else if (Inventory[i][0].ability == "thuegTripe") //this effect makes the player vomit and lose 22 hunger.
+                            {
+                                this.energilTime = 250;
+                                this.fatigueII = true;
+                                this.experience += 40;
+                            }
                             else if (Inventory[i][0].ability == "speedI") //This is for enhancing dexterity.
                             {
                                 this.dexTime = new Date().getTime();

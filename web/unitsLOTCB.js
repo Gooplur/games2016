@@ -81,6 +81,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.timeBetweenAttacks = new Date().getTime(); //this is a variable that regulates the wait timer for attacking.
     this.grudge = 0; //this is how long the unit will hold a grudge against the player for attacking them. 20 seconds is what it starts at so a grudge 0 seconds long would be - 20.
     this.combatMode = 0; //Some Units can switch between different styles of attacks or enter a beserker mode etc.
+    this.attackType = false; //for units that have multiple attacks this variable stores which of their attacks is currently being used.
     //special attacking variables
     this.storeChargeTime = new Date().getTime();
     this.charge = false;
@@ -9113,7 +9114,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 10;
                 this.attackWait = 2;
                 this.effect = "stunII";
-                this.beastEntry = {intReq: 20, name: "Shehid", health: "26 - 42", armour: "0 - 56", damage: "6 - 20", negate: "10", ability: "StunII", fireProof: "1 - 56", habitat: "Northern / Temperate Forests", sight: "65 - 285", alpha: "Alpha", magicProof: 5, size: 25, speed: 1.65, rotation: 0.085, rate: 2, experience: 77, description: ["Shehids are a form of living ooze creature that has a biologically formed shell and insectoid legs. The shehid's ooze is highly toxic to the", "extent of paralasis and it is used to melt and absorb its prey. Shehids normally rest in their shell which is colored to look like a mossy", "rock so that they can ooze out and devour unsuspecting creatures that happen to wander by."], image: ["polypol", 1170, 11, 43, 40, 0, 0, 43 * 2 / 3, 40 * 2 / 3]};
+                this.beastEntry = {intReq: 20, name: "Shehid", health: "26 - 42", armour: "0 - 56", damage: "6 - 20", negate: "10", ability: "StunII", fireProof: "0 - 56", habitat: "Northern / Temperate Forests", sight: "65 - 285", alpha: "Alpha", magicProof: 5, size: 25, speed: 1.65, rotation: 0.085, rate: 2, experience: 77, description: ["Shehids are a form of living ooze creature that has a biologically formed shell and insectoid legs. The shehid's ooze is highly toxic to the", "extent of paralasis and it is used to melt and absorb its prey. Shehids normally rest in their shell which is colored to look like a mossy", "rock so that they can ooze out and devour unsuspecting creatures that happen to wander by."], image: ["polypol", 1170, 11, 43, 40, 0, 0, 43 * 2 / 3, 40 * 2 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -9139,7 +9140,97 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 10;
                 this.attackWait = 1.25;
                 this.effect = "stunI";
-                this.beastEntry = {intReq: 14, name: "Shehid", health: "12 - 20", armour: "0 - 30", damage: "3 - 10", negate: "10", ability: "StunI", fireProof: "1 - 30", habitat: "Northern / Temperate Forests", sight: "65 - 185", alpha: "Normal", magicProof: 2, size: 14, speed: 1.35, rotation: 0.085, rate: 1.25, experience: 38, description: ["Shehids are a form of living ooze creature that has a biologically formed shell and insectoid legs. The shehid's ooze is highly toxic to the", "extent of paralysis and it is used to melt and absorb its prey. Shehids normally rest in their shell which is colored to look like a mossy", "rock so that they can ooze out and devour unsuspecting creatures that happen to wander by."], image: ["polypol", 1170, 11, 43, 40, 0, 0, 43 / 3, 40 / 3]};
+                this.beastEntry = {intReq: 10, name: "Shehid", health: "12 - 20", armour: "0 - 30", damage: "3 - 10", negate: "10", ability: "StunI", fireProof: "1 - 30", habitat: "Northern / Temperate Forests", sight: "65 - 185", alpha: "Normal", magicProof: 2, size: 14, speed: 1.35, rotation: 0.085, rate: 1.25, experience: 38, description: ["Shehids are a form of living ooze creature that has a biologically formed shell and insectoid legs. The shehid's ooze is highly toxic to the", "extent of paralysis and it is used to melt and absorb its prey. Shehids normally rest in their shell which is colored to look like a mossy", "rock so that they can ooze out and devour unsuspecting creatures that happen to wander by."], image: ["polypol", 1170, 11, 43, 40, 0, 0, 43 / 3, 40 / 3]};
+
+                //this multiplies the draw image skew numbers by 1 so that it stays the same
+                this.alphaSize = 1;
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+
+            }
+        }
+        else if (this.type == "Thueg")
+        {
+            this.damageFrame = "automatic";
+            this.awake = Math.round(Math.random());
+            this.formChange = false; //this is for transforming from awake to asleep or sleep to awake... it signals that a change has been made so that an animation can play.
+            this.resistances = ["burning"]; //this is only a resistance while in sleeping form.
+            this.team = "wild";
+            this.baseTeam = this.team;
+            this.attackListo = "start"; //this activates the feature that randomizes the attack of the unit (for this unit)
+
+            if (this.alpha == true)
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = 2;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 9) + 22;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 4.6;
+                this.rangeOfSight = 250; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.085;
+                this.engagementRadius = 50;
+                this.sizeRadius = 26;
+                this.negateArmour = 5;
+                this.attackWait = 1.80;
+                this.effect = "none";
+                this.beastEntry = {intReq: 22, name: "Thueg", health: "22 - 30", armour: "0 - 25", damage: "8 - 18", negate: "5", ability: "none", fireProof: "0 - 30", habitat: "Northern Plains / Mud Plains", sight: "250 - 1000", alpha: "Alpha", magicProof: 0, size: 26, speed: 4.6, rotation: 0.05, rate: 1.8, experience: 92, description: ["Thueg lie around all day sleeping in the shelter of their protective shell. Other plains creatures sometimes seek shade by them and meet their untimely demise.", "Thueg may rest a lot, but they are not lazy beasts. They can run quickly and wil persue their prey for long distances to catch it. Thueg are blind and use echolocation and smell to hunt."], image: ["nognog", 283, 47, 47, 37, 0, 0, 47 * 3 / 3, 37 * 3 / 3]};
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1.4; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0; // was 0
+            }
+            else if (this.alpha == "baby")
+            {
+                //STATS (non-variable)
+                this.magicalResistance = 0;
+                this.heatResistance = 2;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = 3;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 3.5;
+                this.rangeOfSight = 250; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                this.engagementRadius = 30;
+                this.sizeRadius = 12;
+                this.negateArmour = 0.5;
+                this.attackWait = 1.80;
+                this.effect = "none";
+                this.beastEntry = {intReq: 10, name: "Thueg", health: "3", armour: "0 - 5", damage: "1.5 - 2.5", negate: "0.5", ability: "none", fireProof: "0 - 10", habitat: "Northern Plains / Mud Plains", sight: "100 - 360", alpha: "Baby", magicProof: 0, size: 12, speed: 3.5, rotation: 0.05, rate: 1.8, experience: 2, description: ["While still being completely ravenous and vile, baby thueg are notably less so than the older of their species. Thueg are blind and use echolocation and smell to hunt."], image: ["nognog", 283, 47, 47, 37, 0, 0, 47 * 1 / 3, 37 * 1 / 3]};
+
+                //this multiplies the draw image skew numbers by 1 so that it stays the same
+                this.alphaSize = 0.65;
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+
+            }
+            else
+            {
+                //STATS (non-variable)
+                this.magicalResistance = 0;
+                this.heatResistance = 2;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 5) + 7;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 4.3;
+                this.rangeOfSight = 250; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                this.engagementRadius = 41; //was 49
+                this.sizeRadius = 18;
+                this.negateArmour = 1.5;
+                this.attackWait = 1.80;
+                this.effect = "none";
+                this.beastEntry = {intReq: 16, name: "Thueg", health: "7 - 11", armour: "0 - 15", damage: "4 - 10", negate: "1.5", ability: "none", fireProof: "0 - 20", habitat: "Northern Plains / Mud Plains", sight: "250 - 1000", alpha: "Normal", magicProof: 0, size: 18, speed: 4.3, rotation: 0.05, rate: 1.8, experience: 23, description: ["Thueg lie around all day sleeping in the shelter of their protective shell. Other plains creatures sometimes seek shade by them and meet their untimely demise.", "Thueg may rest a lot, but they are not lazy beasts. They can run quickly and wil persue their prey for long distances to catch it. Thueg are blind and use echolocation and smell to hunt."], image: ["nognog", 283, 47, 47, 37, 0, 0, 47 * 2 / 3, 37 * 2 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1;
@@ -16150,6 +16241,573 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(polypol, 1390, 12, 43, 40, -20 - this.xAdjustment, -22 - this.yAdjustment, 43 * this.alphaSize, 40 * this.alphaSize);
+            }
+
+        }
+        //THUEG
+        if (this.type == "Thueg")
+        {
+            if (this.alive)
+            {
+                this.friendDecider();
+                this.targeting();
+            }
+            //If it is attacked it will wake up.
+
+            if (this.target != "none" && this.target != player)
+            {
+                this.dtu = this.DTU(this.target);
+
+                if (this.disturbed == true && this.disturbedPrereq == true || this.dtu <= this.baseSight)
+                {
+                    if (this.awake == 0 || this.formChange == "wake")
+                    {
+                        this.formChange = "wake";
+                    }
+                    else
+                    {
+                        this.formChange = false;
+                    }
+
+                    this.awake = 1;
+                    this.disturbedPrereq = false;
+                }
+
+                //If the player is no longer being persued it will go to sleep (this is primarily my way of making it good against archers)
+                if (this.dtu > this.baseSight)
+                {
+                    if (this.awake == 1 || this.formChange == "sleep")
+                    {
+                        this.formChange = "sleep";
+                    }
+                    else
+                    {
+                        this.formChange = false;
+                    }
+                    this.attacking = false; // just in case...
+                    this.disturbed = false;
+                    this.awake = 0;
+                }
+                //Armour is much greater while asleep
+                if (this.awake == 0)
+                {
+                    this.attacking = false; // just in case...
+                    this.disturbed = false;
+                    this.disturbedPrereq = true;
+
+                    this.resistances = ["burning", "blinded"];
+                    if (this.alpha == true)
+                    {
+                        this.armour = 25;
+                        this.heatResistance = 30;
+                    }
+                    else if (this.alpha == "baby")
+                    {
+                        this.armour = 5;
+                        this.heatResistance = 10;
+                    }
+                    else
+                    {
+                        this.armour = 15;
+                        this.heatResistance = 20;
+                    }
+                }
+            }
+            else
+            {
+                this.dtp = this.DTP();
+
+                if (this.disturbed == true && this.disturbedPrereq == true|| this.dtp <= this.rangeOfSight)
+                {
+                    if (this.awake == 0 || this.formChange == "wake")
+                    {
+                        this.formChange = "wake";
+                    }
+                    else
+                    {
+                        this.formChange = false;
+                    }
+
+                    this.awake = 1;
+                    this.disturbedPrereq = false;
+                }
+
+                //If the player is no longer being persued it will go to sleep (this is primarily my way of making it good against archers)
+                if (this.dtp > this.rangeOfSight)
+                {
+                    if (this.awake == 1 || this.formChange == "sleep")
+                    {
+                        this.formChange = "sleep";
+                    }
+                    else
+                    {
+                        this.formChange = false;
+                    }
+                    this.attacking = false; // just in case...
+                    this.disturbed = false;
+                    this.awake = 0;
+                }
+                //Armour is much greater while asleep
+                if (this.awake == 0)
+                {
+                    this.attacking = false; // just in case...
+                    this.disturbed = false;
+                    this.disturbedPrereq = true;
+
+                    this.resistances = ["burning", "blinded"];
+                    if (this.alpha == true)
+                    {
+                        this.armour = 25;
+                        this.heatResistance = 30;
+                    }
+                    else if (this.alpha == "baby")
+                    {
+                        this.armour = 5;
+                        this.heatResistance = 10;
+                    }
+                    else
+                    {
+                        this.armour = 15;
+                        this.heatResistance = 20;
+                    }
+                }
+            }
+
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 20 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 92 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (92 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                if (player.getIntelligence() >= 25)
+                {
+                    this.drops = [[new Item("rawThuegTripe", this.X, this.Y), 2]];
+                }
+                else
+                {
+                    this.drops = [];
+                }
+            }
+            else if (this.alpha == "baby")
+            {
+                if (Math.max(0, 20 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 2 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (2 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [];
+            }
+            else
+            {
+                if (Math.max(0, 10 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 23 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 23 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                if (player.getIntelligence() >= 25)
+                {
+                    this.drops = [[new Item("rawThuegTripe", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.drops = [];
+                }
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                if (this.awake == 0)
+                {
+                    this.rangeOfSightCalculator(250, false);
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(1000, "very");
+                }
+            }
+            else if (this.alpha == "baby")
+            {
+                if (this.awake == 0)
+                {
+                    this.rangeOfSightCalculator(100, false);
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(360, false);
+                }
+            }
+            else
+            {
+                if (this.awake == 0)
+                {
+                    this.rangeOfSightCalculator(175, false);
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(800, true);
+                }
+            }
+
+            //AI
+            if (this.alive == true && this.awake == 1 && this.formChange == false)
+            {
+                var rndATK;
+                //Determine which attack will take place when the timing is appropriate to do so.
+                if (this.attackListo == "finished" || this.attackListo == "start")
+                {
+                    this.attackListo = "standby";
+                    rndATK = Math.round(Math.random());
+                    if (rndATK)
+                    {
+                        this.attackType = "bite";
+                    }
+                    else
+                    {
+                        this.attackType = "slash";
+                    }
+                }
+
+                if (this.attackType == "bite")
+                {
+                    if (this.alpha == true)
+                    {
+                        this.negateArmour = 5;
+                        this.attackWait = 1.80;
+                        this.Attack(10, 8);
+                        this.callForNearbyHelpFromType(600, "Thueg");
+                    }
+                    else if (this.alpha == "baby")
+                    {
+                        this.negateArmour = 0.5;
+                        this.attackWait = 1.80;
+                        this.Attack(1, 1.5);
+                        this.callForNearbyHelpFromType(600, "Thueg");
+                    }
+                    else
+                    {
+                        this.negateArmour = 1.5;
+                        this.attackWait = 1.80;
+                        this.Attack(6, 4);
+                        this.callForNearbyHelpFromType(600, "Thueg");
+                    }
+                }
+                else
+                {
+                    if (this.alpha == true)
+                    {
+                        this.negateArmour = 3;
+                        this.attackWait = 0.5;
+                        this.Attack(3, 3);
+                        this.callForNearbyHelpFromType(600, "Thueg");
+                    }
+                    else if (this.alpha == "baby")
+                    {
+                        this.negateArmour = 0;
+                        this.attackWait = 0.5;
+                        this.Attack(1, 1.25);
+                        this.callForNearbyHelpFromType(600, "Thueg");
+                    }
+                    else
+                    {
+                        this.negateArmour = 0.5;
+                        this.attackWait = 0.5;
+                        this.Attack(2, 1.5);
+                        this.callForNearbyHelpFromType(600, "Thueg");
+                    }
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+
+                if (this.target == player)
+                {
+                    this.pointTowardsPlayer();
+                    this.moveInRelationToPlayer();
+                }
+                else if (this.target != "none")
+                {
+                    this.pointTowards(this.target);
+                    this.moveInRelationToThing(this.target);
+                }
+
+            }
+
+            //ANIMATIONS
+            var  szr = 2;
+            if (this.alive == true)
+            {
+                if (this.awake == 1)
+                {
+                    if (this.formChange == "wake")
+                    {
+                        this.costumeEngine(5, 0.025, false);
+                    }
+                    else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if (this.attackType == "bite")
+                        {
+                            if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                            {
+                                this.costumeEngine(6, 0.20, false);
+                            }
+                        }
+                        else if (this.attackType == "slash")
+                        {
+                            if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                            {
+                                this.costumeEngine(6, 0.15, true);
+                            }
+                        }
+                    }
+                    else if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(4, 0.075, false);
+                    }
+                    else //awake derp frame
+                    {
+                        this.drawUnit(nognog, 279, 48, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //out of shell
+                    }
+                }
+                else
+                {
+                    if (this.formChange == "sleep")
+                    {
+                        this.costumeEngine(5, 0.025, false);
+                    }
+                    else //sleeping frame
+                    {
+                        this.drawUnit(nognog, 0, 49, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //fully in shell
+                    }
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (this.awake == 1)
+                    {
+                        if (this.formChange == "wake")
+                        {
+                            if (this.formReset == true)
+                            {
+                                this.formChange = false;
+                                this.formReset = false;
+                            }
+                            this.drawUnit(nognog, 0, 49, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //fully in shell
+                        }
+                        else if (this.attacking)
+                        {
+                            if (this.attackType == "bite")
+                            {
+                                this.drawUnit(nognog, 279, 48, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //out of shell
+                            }
+                            else if (this.attackType == "slash")
+                            {
+                                if (this.attackListo == "reverse")
+                                {
+                                    this.attackListo = "finished"; //this allows the random attack picking feature to select a new random attack type.
+                                }
+                                this.drawUnit(nognog, 279, 48, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //out of shell
+                            }
+                        }
+                        else
+                        {
+                            this.drawUnit(nognog, 0, 96, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr);
+                        }
+                    }
+                    else
+                    {
+                        if (this.formReset == true)
+                        {
+                            this.formChange = false;
+                            this.formReset = false;
+                        }
+                        if (this.formChange == "sleep")
+                        {
+                            this.drawUnit(nognog, 279, 48, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //out of shell
+                        }
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.awake == 1)
+                    {
+                        if (this.formChange == "wake")
+                        {
+                            this.drawUnit(nognog, 55, 48, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //#1
+                        }
+                        else if (this.attacking)
+                        {
+                            if (this.attackType == "bite")
+                            {
+                                this.drawUnit(nognog, 193, 49, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr);
+                            }
+                            else if (this.attackType == "slash")
+                            {
+                                this.drawUnit(nognog, 193, 49, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr);
+                            }
+                        }
+                        else
+                        {
+                            this.drawUnit(nognog, 79, 95, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr);
+                        }
+                    }
+                    else
+                    {
+                        if (this.formChange == "sleep")
+                        {
+                            this.drawUnit(nognog, 381, 48, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //#3
+                        }
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.awake == 1)
+                    {
+                        if (this.formChange == "wake")
+                        {
+                            this.drawUnit(nognog, 123, 49, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //#2
+                        }
+                        else if (this.attacking)
+                        {
+                            if (this.attackType == "bite")
+                            {
+                                this.drawUnit(nognog, 580, 49, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr);
+                            }
+                            else if (this.attackType == "slash")
+                            {
+                                this.drawUnit(nognog, 279, 48, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //out of shell
+                            }
+                        }
+                        else
+                        {
+                            this.drawUnit(nognog, 170, 95, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr);
+                        }
+                    }
+                    else
+                    {
+                        if (this.formChange == "sleep")
+                        {
+                            this.drawUnit(nognog, 123, 49, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //#2
+                        }
+                    }
+                }
+                else if (theCostume <= 3)
+                {
+                    if (this.awake == 1)
+                    {
+                        if (this.formChange == "wake")
+                        {
+                            this.drawUnit(nognog, 381, 48, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //#3
+                        }
+                        else if (this.attacking)
+                        {
+                            if (this.attackType == "bite")
+                            {
+                                this.drawUnit(nognog, 662, 51, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr);
+                            }
+                            else if (this.attackType == "slash")
+                            {
+                                this.drawUnit(nognog, 381, 48, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //#3
+                            }
+                        }
+                        else
+                        {
+                            this.drawUnit(nognog, 263, 94, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr);
+                        }
+                    }
+                    else
+                    {
+                        if (this.formChange == "sleep")
+                        {
+                            this.drawUnit(nognog, 55, 48, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //#1
+                        }
+                    }
+                }
+                else if (theCostume <= 4)
+                {
+                    if (this.awake == 1)
+                    {
+                        if (this.formChange == "wake")
+                        {
+                            this.drawUnit(nognog, 279, 48, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //out of shell
+                            this.formReset = true;
+                            this.armour = 0;
+                            this.heatResistance = 0;
+                            this.resistances = ["blinded"];
+                        }
+                        else if (this.attacking)
+                        {
+                            if (this.attackType == "bite")
+                            {
+                                this.drawUnit(nognog, 662, 51, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr);
+                            }
+                            else if (this.attackType == "slash") //last frame for slash attack
+                            {
+                                this.drawUnit(nognog, 480, 49, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (this.formChange == "sleep")
+                        {
+                            this.drawUnit(nognog, 0, 49, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //fully in shell
+                            this.formReset = true;
+                        }
+                    }
+                }
+                else if (theCostume >= 5)
+                {
+                    if (this.awake == 1)
+                    {
+                        if (this.formChange == "wake") //just in case it goes over
+                        {
+                            this.drawUnit(nognog, 279, 48, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //out of shell
+                        }
+                        else if (this.attacking)
+                        {
+                            if (this.attackType == "bite")
+                            {
+                                this.attackListo = "finished";
+                                this.drawUnit(nognog, 751, 54, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr);
+                            }
+                            else if (this.attackType == "slash")
+                            {
+                                this.attackListo = "reverse"; //this means that when the animator loops back it will trigger the state "finished".
+                                this.drawUnit(nognog, 480, 49, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (this.formChange == "sleep") //just in case it goes over
+                        {
+                            this.drawUnit(nognog, 0, 49, 56, 37, -1/2 * 56 * szr * this.alphaSize - this.xAdjustment, -1/2 * 37 * szr * this.alphaSize - this.yAdjustment, 56 * this.alphaSize * szr, 37 * this.alphaSize * szr); //fully in shell
+                        }
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(nognog, 332, 93, 66, 50, -1/2 * 66 * szr * this.alphaSize - this.xAdjustment, -1/2 * 50 * szr * this.alphaSize - this.yAdjustment, 66 * this.alphaSize * szr, 50 * this.alphaSize * szr);
             }
 
         }

@@ -2684,6 +2684,69 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "rawThuegTripe")
+        {
+            //For All Items
+            this.identity = "Raw Thueg Tripe";
+            this.weight = 1;
+            this.size = 12;
+            this.description = "The stomach-lining of a thueg.";
+            this.intForDes = 8;
+            this.intDescription = "This is incredibly good for the health of the one consuming it, but it is not at all appetizing. It can also be used in alchemy.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -6; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "rawThuegTripe";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 34 - Math.floor(player.getCharisma() / 12); // at max, buy for 30.
+            this.sellValue = 25 + Math.floor(player.getCharisma() / 10); // at max, sell for 30.
+        }
+        else if (this.type == "thuegTripe")
+        {
+            //For All Items
+            this.identity = "Thueg Tripe";
+            this.weight = 1;
+            this.size = 12;
+            this.description = "The cooked stomach-lining of a thueg.";
+            this.intForDes = 8;
+            this.intDescription = "This is incredibly good for the health of the one consuming it, but it is not at all appetizing. It can also be used in alchemy.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "thuegTripe";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Raw Thueg Tripe", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 50); // at max, buy for 19.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 10); // at max, sell for 19.
+        }
         else if (this.type == "rawFrichFlesh")
         {
             //For All Items
@@ -11007,11 +11070,11 @@ function Item(type, x, y)
             //Utility Focused
             if (player.getStrength() >= 20)
             {
-                this.energyCost = 8;
+                this.energyCost = 10;
             }
             else
             {
-                this.energyCost = 10;
+                this.energyCost = 12;
             }
             this.distance = 24 + (this.range * 7);
             this.range = 4;
@@ -14857,13 +14920,13 @@ function Item(type, x, y)
             this.utility = "weapon";
 
             //Utility Focused
-            this.energyCost = 25;
+            this.energyCost = 20;
             this.distance = 40 + (this.range * 7);
             this.range = 6;
             this.rate = 250;
-            this.damage = (18 - this.damageHandicap - this.damageHandicapII) * (this.leveledDamageMultiple / 25) + ((1/12.5) * player.getStrength());
+            this.damage = (19 - this.damageHandicap - this.damageHandicapII) * (this.leveledDamageMultiple / 25) + ((1/12.5) * player.getStrength());
             this.magicalDamage = 0;
-            this.negateArmour = 11;
+            this.negateArmour = 17;
 
             //ability
             this.ability = "none";
@@ -17479,6 +17542,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 79, 227, 10, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 20), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24), 20, 24);
         }
+        else if (this.type == "rawThuegTripe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 415, 96, 22, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1.5), 22 * 1.5, 15 * 1.5);
+        }
+        else if (this.type == "thuegTripe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 415, 116, 22, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1.5), 22 * 1.5, 15 * 1.5);
+        }
         else if (this.type == "waantiPelt")
         {
             XXX.beginPath();
@@ -19615,6 +19688,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(verse, 79, 227, 10, 12, this.invX - (1/2 * 20), this.invY - (1/2 * 24), 20, 24);
         }
+        else if (this.type == "rawThuegTripe")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 415, 96, 22, 15, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 15 * 1.5), 22 * 1.5, 15 * 1.5);
+        }
+        else if (this.type == "thuegTripe")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 415, 116, 22, 15, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 15 * 1.5), 22 * 1.5, 15 * 1.5);
+        }
         else if (this.type == "waantiPelt")
         {
             LXX.beginPath();
@@ -21715,6 +21798,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(verse, 79, 227, 10, 12, this.invX - (1/2 * 20), this.invY - (1/2 * 24), 20, 24);
+        }
+        else if (this.type == "rawThuegTripe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 415, 96, 22, 15, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 15 * 1.5), 22 * 1.5, 15 * 1.5);
+        }
+        else if (this.type == "thuegTripe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 415, 116, 22, 15, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 15 * 1.5), 22 * 1.5, 15 * 1.5);
         }
         else if (this.type == "waantiPelt")
         {

@@ -71,6 +71,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.healthShownTime = 0;
     this.hostile = true;
     //attacking variables (excluding the attacking flag)
+    this.stopAttacking = false; // for units that use followThrough this manually ends the attack at the right time if the attack is more complex and is not able to be manually ended at the last frame.
+    this.followThrough = false; //this variable determines if a unit finishes an attack even if the target isn't there to be hit by it.
     this.damageFrame = "automatic"; //When this is set to automatic it makes the last attack frame deal the damage to the target. If it is anything else the final attack frame needs to be triggered from within the front end of the animation.
     this.finalAttackCostume = false; //When this flag is triggered the Unit deals its damage to the player.
     this.damageDealt = false; //for manual Unit damage dealing (meaning damage dealt on a frame picked inside of the Units animation rather than automatically the final frame)
@@ -95,6 +97,9 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.fleeing = false;
     this.flying = false;
     this.haste = false;
+    this.charger = false; //A charger is a unit that keeps moving even after it passes through the engagement radius.
+    this.chargeDist = 150; //the distance past the target the creature will run before turning around.
+    this.doCharge = false; //if active the creature will no longer point to its target (as it is running past its target)
     //game pause related variables
     this.timeResistance = false;
     //death variables
@@ -174,6 +179,46 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.stackSorter();
                 break;
+            }
+        }
+    };
+
+    this.attackBubble = function(bubbleConstructorList) // [[radius, this.rotation, relativeAngle, distance], ["", "", ""] etc. //relative angle is angle plus the units current angle.
+    {
+        var dfbtt;
+        //if the player is in one of the proper attack bubbles return true.
+        if (this.target == player)
+        {
+            for (var i = 0; i < bubbleConstructorList.length; i++)
+            {
+                dfbtt = Math.sqrt(((this.X + Math.cos(bubbleConstructorList[i][1] + bubbleConstructorList[i][2]) * (-bubbleConstructorList[i][3]))- X)*((this.X + Math.cos(bubbleConstructorList[i][1] + bubbleConstructorList[i][2]) * (-bubbleConstructorList[i][3])) - X) + ((this.Y + Math.sin(bubbleConstructorList[i][1] + bubbleConstructorList[i][2]) * (-bubbleConstructorList[i][3])) - Y)*((this.Y + Math.sin(bubbleConstructorList[i][1] + bubbleConstructorList[i][2]) * (-bubbleConstructorList[i][3])) - Y));
+                if (dfbtt <= bubbleConstructorList[i][0])
+                {
+                    return true;
+                }
+            }
+        }
+        else if (this.target != "none" && typeof(this.target) != "undefined")
+        {
+            for (var i = 0; i < bubbleConstructorList.length; i++)
+            {
+                dfbtt = Math.sqrt(((this.X + Math.cos(bubbleConstructorList[i][1] + bubbleConstructorList[i][2]) * (-bubbleConstructorList[i][3]))- this.target.X)*((this.X + Math.cos(bubbleConstructorList[i][1] + bubbleConstructorList[i][2]) * (-bubbleConstructorList[i][3])) - this.target.X) + ((this.Y + Math.sin(bubbleConstructorList[i][1] + bubbleConstructorList[i][2]) * (-bubbleConstructorList[i][3])) - this.target.Y)*((this.Y + Math.sin(bubbleConstructorList[i][1] + bubbleConstructorList[i][2]) * (-bubbleConstructorList[i][3])) - this.target.Y));
+                if (dfbtt <= bubbleConstructorList[i][0])
+                {
+                    return true;
+                }
+            }
+        }
+        //draw all of the attack bubbles.
+        if (showUnitAttackBubble)
+        {
+            for (var i = 0; i < bubbleConstructorList.length; i++)
+            {
+                XXX.beginPath();
+                XXX.lineWidth = 2;
+                XXX.strokeStyle = "blue";
+                XXX.arc(X - (this.X + Math.cos(bubbleConstructorList[i][1] + bubbleConstructorList[i][2]) * (-bubbleConstructorList[i][3])) + 1/2 * CCC.width, Y - (this.Y + Math.sin(bubbleConstructorList[i][1] + bubbleConstructorList[i][2]) * (-bubbleConstructorList[i][3])) + 1/2 * CCC.height, bubbleConstructorList[i][0], 0, 2 * Math.PI);
+                XXX.stroke();
             }
         }
     };
@@ -6579,6 +6624,21 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
     };
 
+    this.isChargeBlocked = function() //if a charger is blocked from getting to its target it cannot exploit its unnaturally long range to attack the target from afar.
+    {
+        var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed);
+        var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed);
+
+        if (!this.isObstructed(nextX, nextY) || this.flying == true)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    };
+
     //Patrol -- move between set locations on the map.
     this.patrolStart = true;
 
@@ -7124,13 +7184,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         if (!this.suspendConflictingPointSystems)
         {
             var dtp = this.DTP();
-            if (dtp > this.engagementRadius && dtp < this.rangeOfSight || this.fleeing == true && dtp < this.rangeOfSight) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
+            if (dtp > this.engagementRadius && dtp < this.rangeOfSight || this.fleeing == true && dtp < this.rangeOfSight || this.charger == true && dtp <= this.rangeOfSight) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
             {
 
                 var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
                 var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
 
-                if (! this.isObstructed( nextX, nextY ) || this.flying == true)
+                if (!this.isObstructed( nextX, nextY ) || this.flying == true)
                 {
                     this.X = nextX;
                     this.Y = nextY;
@@ -7212,12 +7272,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 extraS = 0;
             }
             var dTo = this.distanceFinder(this, thing);
-            if (dTo > this.engagementRadius && dTo < (this.rangeOfSight + extraS) || this.fleeing == true && dTo < (this.rangeOfSight + extraS)) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
+            if (dTo > this.engagementRadius && dTo < (this.rangeOfSight + extraS) || this.fleeing == true && dTo < (this.rangeOfSight + extraS) || this.charger == true && dTo <= this.rangeOfSight) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
             {
                 var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
                 var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
 
-                if (! this.isObstructed( nextX, nextY ) || this.flying == true)
+                if (!this.isObstructed( nextX, nextY ) || this.flying == true)
                 {
                     this.X = nextX;
                     this.Y = nextY;
@@ -7267,7 +7327,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.attacking = true;
             }
-            else
+            else if (this.followThrough == false)
             {
                 this.attacking = false;
             }
@@ -7913,7 +7973,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         this.creatureBiz = true; // this lets the creatures sort out there own stuff by suspending the normal processes (evadeObstruction) that would happen upon getting stuck.
                     }
-                    creaturesO = true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                    if (this.target != ArtificialIntelligenceAccess[i] || !this.charger) //this is so that a chargers attack is not hindered upon contact with its own target.
+                    {
+                        creaturesO = true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                    }
                 }
             }
         }
@@ -10817,6 +10880,69 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 // this is the adjustment the alpha type of Etyr needs to be centered.
                 this.yAdjustment = 0; //was -34
                 this.xAdjustment = 0; //was - 26
+
+            }
+        }
+        else if (this.type == "Boulchom")
+        {
+            this.followThrough = true; //this unit follows through with its attacks even if the player moves out of range.
+            this.charger = true; //this unit charges through and past the enemy.
+            this.damageFrame = "manual"; //it is necessary to set this to "manual" so that the attackBubble function can determine the damaging.
+            this.team = "wild";
+            this.baseTeam = this.team;
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+
+            if (this.alpha == true)
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = -1.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 10) + 20;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 6 + (Math.floor(Math.random() * 5) / 10);
+                this.rangeOfSight = 1000; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.1;
+                this.engagementRadius = 247;
+                this.sizeRadius = 28;
+                this.negateArmour = 4;
+                this.attackWait = 2.5;
+                this.chargeDist = this.engagementRadius * 1.7;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1.8; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else
+            {
+                //STATS (non-variable)
+                this.magicalResistance = 0;
+                this.heatResistance = -1.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 7) + 11;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 5 + (Math.floor(Math.random() * 6) / 10);
+                this.rangeOfSight = 900; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.1;
+                this.engagementRadius = 210;
+                this.sizeRadius = 19;
+                this.negateArmour = 2;
+                this.attackWait = 2.5;
+                this.chargeDist = this.engagementRadius * 1.5;
+
+                //this multiplies the draw image skew numbers by 1 so that it stays the same
+                this.alphaSize = 1.25;
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
 
             }
         }
@@ -17462,6 +17588,352 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+            }
+        }
+        //BOULCHOM
+        if (this.type == "Boulchom")
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 110 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (67 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("varnPelt", this.X, this.Y), 2], [new Item("rawVarnFlesh", this.X, this.Y), 1]];
+            }
+            else
+            {
+                if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 17 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 17 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [[new Item("varnPelt", this.X, this.Y), 1], [new Item("rawVarnFlesh", this.X, this.Y), 1]];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(1000, false);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(900, false);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (showUnitAttackBubble)
+                {
+                    if (this.alpha)
+                    {
+                        this.attackBubble([[35, this.rotation, 0, this.sizeRadius + 31]]); //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                    }
+                    else
+                    {
+                       this.attackBubble([[26, this.rotation, 0, this.sizeRadius + 23]]); //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                    }
+                }
+
+                if (this.alpha == true)
+                {
+                    this.Attack(23, 12);
+                    this.callForNearbyHelpFromType(900, "Boulchom");
+                }
+                else
+                {
+                    this.Attack(12, 5);
+                    this.callForNearbyHelpFromType(800, "Boulchom");
+                }
+
+                //if the charging creature becomes stuck on an obstacle it alters its engagement radius such that it thinks to unstick itself and it points towards its target again.
+                if (!this.isChargeBlocked()) //if not trapped on a non-unit obstacle
+                {
+                    if (this.alpha)
+                    {
+                        this.engagementRadius = 247;
+                    }
+                    else
+                    {
+                        this.engagementRadius = 210;
+                    }
+                }
+                else //if trapped on a non-unit obstacle
+                {
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                    }
+                    else if (this.target != "none" && typeof(this.target) != "undefined")
+                    {
+                        this.pointTowards(this.target);
+                    }
+
+                    if (this.alpha)
+                    {
+                        this.engagementRadius = this.sizeRadius + 13;
+                    }
+                    else
+                    {
+                        this.engagementRadius = this.sizeRadius + 8;
+                    }
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                if (this.target == player)
+                {
+                    this.dtp = this.DTP();
+
+                    if (this.dtp > this.engagementRadius && !this.doCharge)
+                    {
+                        this.attackWait = 0;
+                        this.pointTowardsPlayer();
+                    }
+                    else if (this.dtp <= this.engagementRadius)
+                    {
+                        this.attackWait = 2.5;
+                        this.doCharge = true;
+                    }
+
+                    if (this.doCharge && this.dtp >= this.chargeDist)
+                    {
+                        this.doCharge = false;
+                    }
+                    this.moveInRelationToPlayer();
+                }
+                else if (this.target != "none" && typeof(this.target) != "undefined")
+                {
+                    this.dtu = this.DTU(this.target);
+
+                    if (this.dtu > this.engagementRadius && !this.doCharge)
+                    {
+                        this.attackWait = 0;
+                        this.pointTowards(this.target);
+                    }
+                    else if (this.dtu <= this.engagementRadius)
+                    {
+                        this.attackWait = 2.5;
+                        this.doCharge = true;
+                    }
+
+                    if (this.doCharge && this.dtu >= this.chargeDist)
+                    {
+                        this.doCharge = false;
+                    }
+                    this.moveInRelationToThing(this.target);
+                }
+            }
+
+            //ANIMATIONS
+            var szr = 1.5;
+            if (this.alive == true)
+            {
+                if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                    {
+                        this.costumeEngine(4, 0.125, true);
+                    }
+                }
+                else if (this.moving) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(4, 0.085, false);
+                }
+                else
+                {
+                    this.drawUnit(nognog, 159, 194, 46, 42, -1/2 * 46 * this.alphaSize * szr - this.xAdjustment, -1/2 * 42 * this.alphaSize * szr - this.yAdjustment, 46 * this.alphaSize * szr, 42 * this.alphaSize * szr);
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (this.attacking)
+                    {
+                        if (this.stopAttacking)
+                        {
+                            this.attacking = false;
+                        }
+
+                        if (this.damageDealt == false) // if the Unit has not yet dealt damage to its target then...
+                        {
+                            this.finalAttackCostume = true; //deal the damage!
+                            this.damageDealt = true; //tell the loop that the Unit has already dealt the damage for this attack.
+                        }
+
+                        this.drawUnit(nognog, 159, 194, 46, 42, -1/2 * 46 * this.alphaSize * szr - this.xAdjustment, -1/2 * 42 * this.alphaSize * szr - this.yAdjustment, 46 * this.alphaSize * szr, 42 * this.alphaSize * szr);
+                    }
+                    else if (this.moving)
+                    {
+                        this.drawUnit(nognog, 15, 193, 46, 42, -1/2 * 46 * this.alphaSize * szr - this.xAdjustment, -1/2 * 42 * this.alphaSize * szr - this.yAdjustment, 46 * this.alphaSize * szr, 42 * this.alphaSize * szr);
+                    }
+                    else
+                    {
+                        this.drawUnit(nognog, 159, 194, 46, 42, -1/2 * 46 * this.alphaSize * szr - this.xAdjustment, -1/2 * 42 * this.alphaSize * szr - this.yAdjustment, 46 * this.alphaSize * szr, 42 * this.alphaSize * szr);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking)
+                    {
+                        if (!this.isChargeBlocked())
+                        {
+                            if (this.alpha)
+                            {
+                                if (this.attackBubble([[35, this.rotation, 0, this.sizeRadius + 31]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                                {
+                                    this.damageDealt = false;
+                                }
+                            }
+                            else
+                            {
+                                if (this.attackBubble([[26, this.rotation, 0, this.sizeRadius + 23]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                                {
+                                    this.damageDealt = false;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (this.alpha)
+                            {
+                                if (this.attackBubble([[21, this.rotation, 0, this.sizeRadius + 19]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                                {
+                                    this.damageDealt = false;
+                                }
+                            }
+                            else
+                            {
+                                if (this.attackBubble([[16, this.rotation, 0, this.sizeRadius + 14]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                                {
+                                    this.damageDealt = false;
+                                }
+                            }
+                        }
+                        this.stopAttacking = true;
+
+                        this.drawUnit(nognog, 229, 195, 46, 42, -1/2 * 46 * this.alphaSize * szr - this.xAdjustment, -1/2 * 42 * this.alphaSize * szr - this.yAdjustment, 46 * this.alphaSize * szr, 42 * this.alphaSize * szr);
+                    }
+                    else
+                    {
+                        this.drawUnit(nognog, 93, 194, 46, 42, -1/2 * 46 * this.alphaSize * szr - this.xAdjustment, -1/2 * 42 * this.alphaSize * szr - this.yAdjustment, 46 * this.alphaSize * szr, 42 * this.alphaSize * szr);
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.attacking)
+                    {
+                        if (!this.isChargeBlocked())
+                        {
+                            if (this.alpha)
+                            {
+                                if (this.attackBubble([[35, this.rotation, 0, this.sizeRadius + 31]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                                {
+                                    this.damageDealt = false;
+                                }
+                            }
+                            else
+                            {
+                                if (this.attackBubble([[26, this.rotation, 0, this.sizeRadius + 23]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                                {
+                                    this.damageDealt = false;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (this.alpha)
+                            {
+                                if (this.attackBubble([[21, this.rotation, 0, this.sizeRadius + 19]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                                {
+                                    this.damageDealt = false;
+                                }
+                            }
+                            else
+                            {
+                                if (this.attackBubble([[16, this.rotation, 0, this.sizeRadius + 14]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                                {
+                                    this.damageDealt = false;
+                                }
+                            }
+                        }
+                        this.stopAttacking = true;
+
+                        this.drawUnit(nognog, 321, 227, 46, 42, -1/2 * 46 * this.alphaSize * szr - this.xAdjustment, -1/2 * 42 * this.alphaSize * szr - this.yAdjustment, 46 * this.alphaSize * szr, 42 * this.alphaSize * szr);
+                    }
+                    else
+                    {
+                        this.drawUnit(nognog, 15, 193, 46, 42, -1/2 * 46 * this.alphaSize * szr - this.xAdjustment, -1/2 * 42 * this.alphaSize * szr - this.yAdjustment, 46 * this.alphaSize * szr, 42 * this.alphaSize * szr);
+                    }
+                }
+                else if (theCostume >= 3)
+                {
+                    if (this.attacking)
+                    {
+                        if (!this.isChargeBlocked())
+                        {
+                            if (this.alpha)
+                            {
+                                if (this.attackBubble([[35, this.rotation, 0, this.sizeRadius + 31]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                                {
+                                    this.damageDealt = false;
+                                }
+                            }
+                            else
+                            {
+                                if (this.attackBubble([[26, this.rotation, 0, this.sizeRadius + 23]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                                {
+                                    this.damageDealt = false;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (this.alpha)
+                            {
+                                if (this.attackBubble([[21, this.rotation, 0, this.sizeRadius + 19]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                                {
+                                    this.damageDealt = false;
+                                }
+                            }
+                            else
+                            {
+                                if (this.attackBubble([[16, this.rotation, 0, this.sizeRadius + 14]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                                {
+                                    this.damageDealt = false;
+                                }
+                            }
+                        }
+                        this.stopAttacking = true;
+
+                        this.drawUnit(nognog, 391, 229, 46, 42, -1/2 * 46 * this.alphaSize * szr - this.xAdjustment, -1/2 * 42 * this.alphaSize * szr - this.yAdjustment, 46 * this.alphaSize * szr, 42 * this.alphaSize * szr);
+                    }
+                    else
+                    {
+                        this.drawUnit(nognog, 93, 194, 46, 42, -1/2 * 46 * this.alphaSize * szr - this.xAdjustment, -1/2 * 42 * this.alphaSize * szr - this.yAdjustment, 46 * this.alphaSize * szr, 42 * this.alphaSize * szr);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(nognog, 475, 229, 46, 42, -1/2 * 46 * this.alphaSize * szr - this.xAdjustment, -1/2 * 42 * this.alphaSize * szr - this.yAdjustment, 46 * this.alphaSize * szr, 42 * this.alphaSize * szr);
             }
         }
         //NOG

@@ -1171,6 +1171,8 @@ var allSpells;
 var page = 0;
 var reading = [];
 var haeRotate = 0;
+var showUnitAttackBubble;
+var justEnteredGame;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -1738,7 +1740,7 @@ function theLegend()
     timeOfDay = "Day";
     darkestDark = 0;
     nightDarkness = 0;
-
+    justEnteredGame = true;
 
 //Game Pausing, Moderation, and Control
     gameState = "mainMenu"; //set to "active" for ingame play, and set to "mainMenu" for the main menu.
@@ -1859,6 +1861,7 @@ function theLegend()
     testingUnitCenters = false; //This displays the center point of all AI UNITS.
     testingUnitSizes = false; //This displays the AI Units' sizes as a faded white circle.
     unitSurround = true;
+    showUnitAttackBubble = false;
 //manipulation
     wallPhase = false;
 //Player Stat Focused

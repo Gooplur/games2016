@@ -7,6 +7,7 @@ function Adventurer()
 {
     //Character related variables (non-code focused)
     this.name = "Name";
+    this.totalTimePlayed = timePlayed;
     //Leveling
     this.level = 1;
     this.experience = 0;
@@ -873,21 +874,13 @@ function Adventurer()
 
             if (this.tireless != true)
             {
-                if (gameTime - this.storeGameTimeForSleep >= 60)
+                var changeSleep = (gameTime - this.storeGameTimeForSleep);
+
+                if (gameTime - this.storeGameTimeForSleep >= 60) //1 minute logged at a time
                 {
-                    if (fairSleep)
-                    {
-                        this.storeGameTimeForSleep = gameTime;
-                        this.storeSleeperTime = sleeperTime;
-                        fairSleep = false;
-                    }
-                    if (gameTime > this.storeGameTimeForSleep)
-                    {
-                        console.log(((gameTime - this.storeGameTimeForSleep)/(60 * 60)));
-                        this.sleep -= ((gameTime - (this.storeGameTimeForSleep + (sleeperTime - this.storeSleeperTime)))/(60 * 60));
-                        this.storeGameTimeForSleep = gameTime;
-                        this.storeSleeperTime = sleeperTime;
-                    }
+                    //console.log(changeSleep);
+                    this.sleep -= changeSleep /(60 * 60);
+                    this.storeGameTimeForSleep = gameTime;
                 }
             }
             else
@@ -10834,44 +10827,44 @@ function Adventurer()
                             {
                                 if (this.freeze > 1)
                                 {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 750;
+                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1250;
                                 }
                                 else
                                 {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1500;
+                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 2200;
                                 }
                             }
                             else if (player.getDexterity() >= 20)
                             {
                                 if (this.freeze > 1)
                                 {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 650;
+                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1150;
                                 }
                                 else
                                 {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1300;
+                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 2000;
                                 }
                             }
                             else if (player.getDexterity() >= 15)
                             {
                                 if (this.freeze > 1)
                                 {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 550;
+                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1050;
                                 }
                                 else
                                 {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1100;
+                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1800;
                                 }
                             }
                             else
                             {
                                 if (this.freeze > 1)
                                 {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 450;
+                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 950;
                                 }
                                 else
                                 {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 900;
+                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1600;
                                 }
                             }
                         }

@@ -158,10 +158,17 @@ function itemPlacer() //places items on the map once each game start given each 
 
 function gameTimeKeeper()
 {
+    if (justEnteredGame)
+    {
+        justEnteredGame = false;
+        timePlayed = player.totalTimePlayed;
+    }
+
     if (new Date().getTime() - timeRegulator >= 100)
     {
         timeRegulator = new Date().getTime();
         timePlayed += 0.1;
+        player.totalTimePlayed = timePlayed;
     }
     gameTime = (timePlayed / 0.0625) + sleeperTime;
 

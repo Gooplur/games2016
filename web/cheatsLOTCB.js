@@ -305,11 +305,13 @@ function cheats()
             {
                 testingUnitCenters = false;
                 testingUnitSizes = false;
+                showUnitAttackBubble = false;
             }
             else
             {
                 testingUnitCenters = true;
                 testingUnitSizes = true;
+                showUnitAttackBubble = true;
             }
         }
         else if (cheatcode.toLowerCase() == "resetSurvivalism")

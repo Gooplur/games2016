@@ -2780,11 +2780,11 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Boulchom Lung";
-            this.weight = 1;
-            this.size = 12;
+            this.weight = 1.75;
+            this.size = 14;
             this.description = "The slimy fleshy lung of a boulchom.";
             this.intForDes = 30;
-            this.intDescription = "This is used as a '' in alchemy.";
+            this.intDescription = "This is used as a changer in alchemy.";
 
             //Define Utility
             this.utility = "food";
@@ -2809,8 +2809,8 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Raw Boulchom Flesh";
-            this.weight = 1;
-            this.size = 12;
+            this.weight = 2;
+            this.size = 15;
             this.description = "The raw flesh from a boulchom.";
             this.intForDes = 5;
             this.intDescription = "This is not safe to eat raw.";
@@ -2838,8 +2838,8 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Boulchom Meat";
-            this.weight = 1;
-            this.size = 12;
+            this.weight = 2;
+            this.size = 15;
             this.description = "The cooked meat of a boulchom.";
             this.intForDes = 0;
             this.intDescription = "It is particularly tough and gamey meat, the hint of redeeming flavor that the gameyness provides is squandered by the stringy texture.";
@@ -6862,8 +6862,8 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Boulchom Pelt";
-            this.weight = 1;
-            this.size = 12;
+            this.weight = 3;
+            this.size = 18;
             this.description = "The sleek dark brown furred pelt of a boulchom.";
             this.intForDes = 3;
             this.intDescription = "This material is prized for the high quality clothing that can be made from it.";
@@ -15909,22 +15909,22 @@ function Item(type, x, y)
         else if (this.type == "rawBoulchomFlesh")
         {
             XXX.beginPath();
-            XXX.drawImage(nognog, 61, 238, 15, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.7), 15 * 1.7, 14 * 1.7);
+            XXX.drawImage(nognog, 61, 238, 15, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 2.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 2.3), 15 * 2.3, 14 * 2.3);
         }
         else if (this.type == "boulchomMeat")
         {
             XXX.beginPath();
-            XXX.drawImage(nognog, 80, 238, 15, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.7), 15 * 1.7, 14 * 1.7);
+            XXX.drawImage(nognog, 80, 238, 15, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 2.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 2.3), 15 * 2.3, 14 * 2.3);
         }
         else if (this.type == "boulchomLung")
         {
             XXX.beginPath();
-            XXX.drawImage(nognog, 44, 238, 15, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.7), 15 * 1.7, 14 * 1.7);
+            XXX.drawImage(nognog, 44, 238, 15, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 2.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 2.3), 15 * 2.3, 14 * 2.3);
         }
         else if (this.type == "boulchomPelt")
         {
             XXX.beginPath();
-            XXX.drawImage(nognog, 12, 238, 26, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1.7), 26 * 1.7, 15 * 1.7);
+            XXX.drawImage(nognog, 12, 238, 26, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 2.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 2.3), 26 * 2.3, 15 * 2.3);
         }
         else if (this.type == "clayBowl")
         {

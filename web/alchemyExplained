@@ -1,4 +1,5 @@
 In Poly Land's alchemy system there are several categories for alchemical ingredients
-* Former: A substance that determines the dominant trait of the potion, slave or mixture. Combining formers can at times but is not in every case guaranteed to create completely new effects
+* Former: A substance that determines the dominant trait of the potion, slave or mixture. Some formers can be used like changers, but no changer can act as a former.
 * Amplifier: A substance that increases the effects of certain Formers but may not work to enhance the effects of others.
+* Changer: A substance that on its own has no significance alchemically but is used because it can alter the affects of a Former.
 * Base (medium): The substance in which all of the ingredients are combined. Weaker bases cannot support the mixture of higher potency Formers or Amplifiers and thus stronger bases must be used for stronger alchemical creations.

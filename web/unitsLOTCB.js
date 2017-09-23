@@ -17605,7 +17605,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.experience = (67 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
-                this.drops = [[new Item("varnPelt", this.X, this.Y), 2], [new Item("rawVarnFlesh", this.X, this.Y), 1]];
+                this.drops = [[new Item("boulchomPelt", this.X, this.Y), 1], [new Item("rawboulchomFlesh", this.X, this.Y), 2]];
+                if (player.getIntelligence() >= 30)
+                {
+                    this.drops.push([new Item("boulchomLung", this.X, this.Y), 1]);
+                }
             }
             else
             {
@@ -17618,7 +17622,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.experience = 17 * ((player.getIntelligence() / 50) + 1) / 10;
                 }
 
-                this.drops = [[new Item("varnPelt", this.X, this.Y), 1], [new Item("rawVarnFlesh", this.X, this.Y), 1]];
+                this.drops = [[new Item("boulchomPelt", this.X, this.Y), 1], [new Item("rawboulchomFlesh", this.X, this.Y), 1]];
+                if (player.getIntelligence() >= 30)
+                {
+                    this.drops.push([new Item("boulchomLung", this.X, this.Y), 1]);
+                }
             }
 
             //RANGE OF SIGHT (anything related to range of sight)

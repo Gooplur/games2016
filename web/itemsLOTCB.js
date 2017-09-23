@@ -2776,6 +2776,98 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "boulchomLung")
+        {
+            //For All Items
+            this.identity = "Boulchom Lung";
+            this.weight = 1;
+            this.size = 12;
+            this.description = "The slimy fleshy lung of a boulchom.";
+            this.intForDes = 30;
+            this.intDescription = "This is used as a '' in alchemy.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.75; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 22; // at max, buy for 22.
+            this.sellValue = 19; // at max, sell for 19.
+        }
+        else if (this.type == "rawBoulchomFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Boulchom Flesh";
+            this.weight = 1;
+            this.size = 12;
+            this.description = "The raw flesh from a boulchom.";
+            this.intForDes = 5;
+            this.intDescription = "This is not safe to eat raw.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -3; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshMites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "boulchomMeat")
+        {
+            //For All Items
+            this.identity = "Boulchom Meat";
+            this.weight = 1;
+            this.size = 12;
+            this.description = "The cooked meat of a boulchom.";
+            this.intForDes = 0;
+            this.intDescription = "It is particularly tough and gamey meat, the hint of redeeming flavor that the gameyness provides is squandered by the stringy texture.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = -0.2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 5;
+            this.ingredients = [["Raw Boulchom Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 4; // at max, sell for 4.
+        }
         else if (this.type == "mountainFrichMeat")
         {
             //For All Items
@@ -6765,6 +6857,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 15); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "boulchomPelt")
+        {
+            //For All Items
+            this.identity = "Boulchom Pelt";
+            this.weight = 1;
+            this.size = 12;
+            this.description = "The sleek dark brown furred pelt of a boulchom.";
+            this.intForDes = 3;
+            this.intDescription = "This material is prized for the high quality clothing that can be made from it.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 15); // at max, buy for 13.
+            this.sellValue = 8 + Math.floor(player.getCharisma() / 12); // at max, sell for 12.
         }
         else if (this.type == "mountainFrichPelt")
         {
@@ -15794,6 +15906,26 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "rawBoulchomFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 61, 238, 15, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.7), 15 * 1.7, 14 * 1.7);
+        }
+        else if (this.type == "boulchomMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 80, 238, 15, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.7), 15 * 1.7, 14 * 1.7);
+        }
+        else if (this.type == "boulchomLung")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 44, 238, 15, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.7), 15 * 1.7, 14 * 1.7);
+        }
+        else if (this.type == "boulchomPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 12, 238, 26, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1.7), 26 * 1.7, 15 * 1.7);
+        }
         else if (this.type == "clayBowl")
         {
             XXX.beginPath();
@@ -17945,6 +18077,26 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "rawBoulchomFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 61, 238, 15, 14, this.invX - (1/2 * 15 * 1.7), this.invY - (1/2 * 14 * 1.7), 15 * 1.7, 14 * 1.7);
+        }
+        else if (this.type == "boulchomMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 80, 238, 15, 14, this.invX - (1/2 * 15 * 1.7), this.invY - (1/2 * 14 * 1.7), 15 * 1.7, 14 * 1.7);
+        }
+        else if (this.type == "boulchomLung")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 44, 238, 15, 14, this.invX - (1/2 * 15 * 1.7), this.invY - (1/2 * 14 * 1.7), 15 * 1.7, 14 * 1.7);
+        }
+        else if (this.type == "boulchomPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 12, 238, 26, 15, this.invX - (1/2 * 26 * 1.7), this.invY - (1/2 * 15 * 1.7), 26 * 1.7, 15 * 1.7);
+        }
         else if (this.type == "clayBowl")
         {
             LXX.beginPath();
@@ -20059,6 +20211,26 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "rawBoulchomFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 61, 238, 15, 14, this.invX - (1/2 * 15 * 1.7), this.invY - (1/2 * 14 * 1.7), 15 * 1.7, 14 * 1.7);
+        }
+        else if (this.type == "boulchomMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 80, 238, 15, 14, this.invX - (1/2 * 15 * 1.7), this.invY - (1/2 * 14 * 1.7), 15 * 1.7, 14 * 1.7);
+        }
+        else if (this.type == "boulchomLung")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 44, 238, 15, 14, this.invX - (1/2 * 15 * 1.7), this.invY - (1/2 * 14 * 1.7), 15 * 1.7, 14 * 1.7);
+        }
+        else if (this.type == "boulchomPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 12, 238, 26, 15, this.invX - (1/2 * 26 * 1.7), this.invY - (1/2 * 15 * 1.7), 26 * 1.7, 15 * 1.7);
         }
         else if (this.type == "clayBowl")
         {

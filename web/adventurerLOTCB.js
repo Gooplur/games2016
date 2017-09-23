@@ -7,7 +7,6 @@ function Adventurer()
 {
     //Character related variables (non-code focused)
     this.name = "Name";
-    this.totalTimePlayed = timePlayed;
     //Leveling
     this.level = 1;
     this.experience = 0;
@@ -362,7 +361,7 @@ function Adventurer()
     this.timeSinceLightSourceFuelUsed = 0;
     this.lightSourceDuration = 0;
     this.lightSource = "none";
-    this.storeGameTimeForSleep = gameTime;
+    this.storeGameTimeForSleep = gameTime;//timePlayed;
     this.tireless = false; //if activated sleep does not go down or affect you. (this is like satiate or quench for sleep)
     this.tirelessTime = 15; //this is the timer in seconds that tireless endures.
     this.tirelessStoreTime = 0; //this needs to be set to new Date().getTime() in order for tireless to be activated.
@@ -878,7 +877,11 @@ function Adventurer()
 
                 if (gameTime - this.storeGameTimeForSleep >= 60) //1 minute logged at a time
                 {
-                    //console.log(changeSleep);
+                    /*console.log("changeInSleep: " + changeSleep);
+                    console.log("timePlayed: " + timePlayed);
+                    console.log("gameTime: " + gameTime);
+                    console.log("player.storeGameTimeForSleep: " + this.storeGameTimeForSleep);
+                    console.log("sleep: " + this.sleep + " sleepMAX: " + this.sleepMAX);*/
                     this.sleep -= changeSleep /(60 * 60);
                     this.storeGameTimeForSleep = gameTime;
                 }

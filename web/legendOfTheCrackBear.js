@@ -1172,7 +1172,6 @@ var page = 0;
 var reading = [];
 var haeRotate = 0;
 var showUnitAttackBubble;
-var justEnteredGame;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -1740,7 +1739,6 @@ function theLegend()
     timeOfDay = "Day";
     darkestDark = 0;
     nightDarkness = 0;
-    justEnteredGame = true;
 
 //Game Pausing, Moderation, and Control
     gameState = "mainMenu"; //set to "active" for ingame play, and set to "mainMenu" for the main menu.

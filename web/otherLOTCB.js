@@ -19,7 +19,7 @@ function sleep(safe)
     if (player.insomnia == false)
     {
         var durationOfSleep = prompt("For how many hours would you like to sleep?");
-        var dOS = JSON.parse(durationOfSleep);
+        var dOS = Number(durationOfSleep);
 
         if (typeof dOS == "number")
         {
@@ -42,26 +42,28 @@ function sleep(safe)
                 //todo decrease other drug effect's time as well.
 
                 //Give the player rest -- if you sleep for a reasonable amount of time your get more rest
-                var sleepChange;
                 if (dOS > 10)
                 {
                     player.sleep = player.sleepMAX;
                 }
-                else if (dOS >= 9)
-                {
-                    sleepChange = dOS * 7;
-                }
-                else if (dOS >= 6)
-                {
-                    sleepChange = dOS * 3;
-                }
                 else
                 {
-                    sleepChange = dOS * 2;
+                    var sleepChange;
+                    if (dOS >= 9)
+                    {
+                        sleepChange = dOS * 7;
+                    }
+                    else if (dOS >= 6)
+                    {
+                        sleepChange = dOS * 3;
+                    }
+                    else
+                    {
+                        sleepChange = dOS * 2;
+                    }
+                    player.sleep += sleepChange;
+                    console.log(player.sleep + " + " + sleepChange + " = " + (player.sleep + sleepChange));
                 }
-                //console.log(player.sleep + " + " + sleepChange + " = " + (player.sleep + sleepChange));
-
-                player.sleep += sleepChange;
 
                 //this is where if you are sleeping in an untraditional way you could be ambushed and will certainly be "sore" in the morning.
                 if (safe == false)
@@ -158,12 +160,6 @@ function itemPlacer() //places items on the map once each game start given each 
 
 function gameTimeKeeper()
 {
-    if (justEnteredGame)
-    {
-        justEnteredGame = false;
-        timePlayed = player.totalTimePlayed;
-    }
-
     if (new Date().getTime() - timeRegulator >= 100)
     {
         timeRegulator = new Date().getTime();

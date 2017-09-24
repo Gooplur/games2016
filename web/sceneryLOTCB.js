@@ -10,6 +10,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.X = x;
     this.Y = y;
     this.radius = 1;
+    this.information = information;
     this.rotation = rotation;
     this.temporary = longevity; //This is whether or not it will stay permanently or is subject to despawning after time.
     this.owned = longevity; //if an items longevity is unimportant or is obvious that can be used to define its ownership.
@@ -1056,6 +1057,56 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "bed")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(candlewic, 2, 41, 23, 54, -(1/2 * 23 * 1.8), -(1/2 * 54 * 1.8), 23 * 1.8, 54 * 1.8);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                if (this.temporary == true)
+                {
+                    sleep();
+                }
+                this.activate = false;
+            }
+        }
+        else if (this.type == "walrusHideRug")
+        {
+            //TRAITS
+            this.zIndex = 1;
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(polyPNG, 282, 0, 50, 26, -(1/2 * 50 * 2 * this.temporary), -(1/2 * 26 * 2 * this.temporary * 1.5), 50 * 2 * this.temporary, 26 * 2 * this.temporary * 1.5);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
         else if (this.type == "rubbledHome")
         {
             //TRAITS
@@ -1080,18 +1131,111 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
-        else if (this.type == "freydicBuilding1")
+        else if (this.type == "woodenGate")
         {
             //TRAITS
+            this.zIndex = 4;
             this.solid = false;
-            this.interactionRange = 135;
+            this.interactionRange = 120;
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.tic = 0;
+                this.phase = 0;
+                this.doTic = false;
+            }
 
             //DRAWSELF
-            XXX.save();
-            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
-            XXX.rotate(0);
-            XXX.drawImage(freeverse, 532, 363, 199, 201, -(1/2 * 199 * 2.5), -(1/2 * 201 * 2.5), 199 * 2.5, 201 * 2.5);
-            XXX.restore();
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(26 * Math.PI / 360);
+                XXX.drawImage(freeverse, 306, 487, 28, 13, (-1/2 * 28 * 8) + 87, (-1/2 * 13 * 5) - 13, 28 * 8.25, 13 * 5);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(26 * Math.PI / 360);
+                XXX.drawImage(freeverse, 306, 487, 28, 13, (-1/2 * 28 * 8) - 68, (-1/2 * 13 * 5) + 20, 28 * 8.25, 13 * 5);
+                XXX.restore();
+
+                //barriers
+                barrierList.push(new Barrier((this.X - 158), (this.Y - 26), 30, 310, false)); //gate closed
+            }
+            else if (this.phase == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(52 * Math.PI / 360);
+                XXX.drawImage(freeverse, 306, 487, 28, 13, (-1/2 * 28 * 8) + 70, (-1/2 * 13 * 5) - 40, 28 * 8.25, 13 * 5);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0 * Math.PI / 360);
+                XXX.drawImage(freeverse, 306, 487, 28, 13, (-1/2 * 28 * 8) - 80, (-1/2 * 13 * 5) - 5, 28 * 8.25, 13 * 5);
+                XXX.restore();
+            }
+            else if (this.phase == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(77 * Math.PI / 360);
+                XXX.drawImage(freeverse, 306, 487, 28, 13, (-1/2 * 28 * 8) + 60, (-1/2 * 13 * 5) - 79, 28 * 8.25, 13 * 5);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate((360 - 25) * Math.PI / 360);
+                XXX.drawImage(freeverse, 306, 487, 28, 13, (-1/2 * 28 * 8) + 87, (-1/2 * 13 * 5) + 29, 28 * 8.25, 13 * 5);
+                XXX.restore();
+            }
+            else if (this.phase == 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(112 * Math.PI / 360);
+                XXX.drawImage(freeverse, 306, 487, 28, 13, (-1/2 * 28 * 8) + 28, (-1/2 * 13 * 5) - 110, 28 * 8.25, 13 * 5);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate((360 - 60) * Math.PI / 360);
+                XXX.drawImage(freeverse, 306, 487, 28, 13, (-1/2 * 28 * 8) + 59, (-1/2 * 13 * 5) + 78, 28 * 8.25, 13 * 5);
+                XXX.restore();
+            }
+            else if (this.phase == 4)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(152 * Math.PI / 360);
+                XXX.drawImage(freeverse, 306, 487, 28, 13, (-1/2 * 28 * 8) - 20, (-1/2 * 13 * 5) - 138, 28 * 8.25, 13 * 5);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate((360 - 100) * Math.PI / 360);
+                XXX.drawImage(freeverse, 306, 487, 28, 13, (-1/2 * 28 * 8) + 45, (-1/2 * 13 * 5) + 112, 28 * 8.25, 13 * 5);
+                XXX.restore();
+            }
+            else if (this.phase == 5)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(207 * Math.PI / 360);
+                XXX.drawImage(freeverse, 306, 487, 28, 13, (-1/2 * 28 * 8) - 103, (-1/2 * 13 * 5) - 140, 28 * 8.25, 13 * 5);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate((360 - 155) * Math.PI / 360);
+                XXX.drawImage(freeverse, 306, 487, 28, 13, (-1/2 * 28 * 8) - 33, (-1/2 * 13 * 5) + 153, 28 * 8.25, 13 * 5);
+                XXX.restore();
+                barrierList.push(new Barrier((this.X - 173), (this.Y - 8), 155, 30, false)); //gate open right
+                barrierList.push(new Barrier((this.X + 131), (this.Y - 8), 155, 30, false)); //gate open left
+            }
+
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 90;
@@ -1099,24 +1243,99 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //INTERACTION
             if (this.activate == true)
             {
-                this.activate = false;
+                //CONDITIONS TO ACTIVATE
+                if (this.phase == 0 && this.doTic == false)
+                {
+                    this.doTic = "open";
+                    this.tic = 0;
+                }
+                else if (this.phase == 5 && this.doTic == false)
+                {
+                    this.doTic = "close";
+                    this.tic = 0;
+                }
+
+                if (this.doTic == "open" || this.doTic == "close")
+                {
+                    this.tic += 1;
+                }
+
+                //OPEN
+                if (this.doTic == "open")
+                {
+                    if (this.tic < 10)
+                    {
+                        this.phase = 0;
+                    }
+                    else if (this.tic < 20)
+                    {
+                        this.phase = 1;
+                    }
+                    else if (this.tic < 30)
+                    {
+                        this.phase = 2;
+                    }
+                    else if (this.tic < 40)
+                    {
+                        this.phase = 3;
+                    }
+                    else if (this.tic < 50)
+                    {
+                        this.phase = 4;
+                    }
+                    else
+                    {
+                        this.phase = 5;
+                        this.doTic = false;
+                        this.activate = false;
+                    }
+                }
+                else if (this.doTic == "close")
+                {
+                    if (this.tic < 10)
+                    {
+                        this.phase = 5;
+                    }
+                    else if (this.tic < 20)
+                    {
+                        this.phase = 4;
+                    }
+                    else if (this.tic < 30)
+                    {
+                        this.phase = 3;
+                    }
+                    else if (this.tic < 40)
+                    {
+                        this.phase = 2;
+                    }
+                    else if (this.tic < 50)
+                    {
+                        this.phase = 1;
+                    }
+                    else
+                    {
+                        this.phase = 0;
+                        this.doTic = false;
+                        this.activate = false;
+                    }
+                }
+
             }
         }
-        else if (this.type == "freydicRoof1")
+        else if (this.type == "freydicBuilding1")
         {
             //TRAITS
             this.solid = false;
             this.interactionRange = 135;
 
             //DRAWSELF
-            if (X > (-1/2 * 199 * 2.5) + this.X && X < (-1/2 * 199 * 2.5) + 100 + this.X && Y > (-1/2 * 199 * 2.5) + this.Y && Y < (-1/2 * 199 * 2.5) + 100 + this.Y)
+            if (X > (this.X - 230) && X < (this.X - 230) + 450 && Y > (this.Y - 245) && Y < (this.Y - 245) + 470)
             {
-                this.zIndex = 5;
+                this.zIndex = 1;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
-                XXX.globalAlpha = 0.05;
                 XXX.rotate(0);
-                XXX.drawImage(freeverse, 528, 569, 199, 201, -(1/2 * 199 * 2.5) - 5, -(1/2 * 201 * 2.5) + 5, 199 * 2.5, 201 * 2.5);
+                XXX.drawImage(freeverse, 532, 363, 199, 201, -(1/2 * 199 * 2.5), -(1/2 * 201 * 2.5), 199 * 2.5, 201 * 2.5);
                 XXX.restore();
             }
             else
@@ -1125,9 +1344,30 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(0);
+                XXX.drawImage(freeverse, 532, 363, 199, 201, -(1/2 * 199 * 2.5), -(1/2 * 201 * 2.5), 199 * 2.5, 201 * 2.5);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                //XXX.globalAlpha = 0.05;
+                XXX.rotate(0);
                 XXX.drawImage(freeverse, 528, 569, 199, 201, -(1/2 * 199 * 2.5) - 5, -(1/2 * 201 * 2.5) + 5, 199 * 2.5, 201 * 2.5);
                 XXX.restore();
             }
+
+
+            //barrierList.push(new Barrier(this.X - 230, this.Y - 245, 470, 495, false)); // a square that covers the entire building
+
+            //BARRIERS
+            barrierList.push(new Barrier((this.X - 230), (this.Y - 225), 454, 19, false)); //right wall
+            barrierList.push(new Barrier((this.X + 222), (this.Y - 242), 472, 19, false)); //left wall
+            barrierList.push(new Barrier((this.X - 230), (this.Y - 28), 19, 250, false)); //mid section horizontal
+            barrierList.push(new Barrier((this.X - 225), (this.Y + 214), 19, 462, false)); //upper wall
+            barrierList.push(new Barrier((this.X + 20), (this.Y + 114), 100, 19, false)); //upper mid section vertical
+            barrierList.push(new Barrier((this.X + 18), (this.Y - 93), 150, 19, false)); //mid section vertical
+            barrierList.push(new Barrier((this.X + 20), (this.Y - 225), 79, 19, false)); //lower mid section vertical
+            barrierList.push(new Barrier((this.X + 130), (this.Y - 242), 19, 96, false)); //left bottom horizontal
+            barrierList.push(new Barrier((this.X - 230), (this.Y - 242), 19, 306, false)); //right bottom horizontal
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 90;
@@ -1135,6 +1375,318 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //INTERACTION
             if (this.activate == true)
             {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "freydicBuilding2")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (this.playerer <= 90)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-2/3 * Math.PI);
+                XXX.drawImage(freeverse, 273, 416, 64, 71, -(1/2 * 64 * 2.5), -(1/2 * 71 * 2.5), 64 * 2.5, 71 * 2.5);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 5;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-2/3 * Math.PI);
+                XXX.drawImage(freeverse, 273, 416, 64, 71, -(1/2 * 64 * 2.5), -(1/2 * 71 * 2.5), 64 * 2.5, 71 * 2.5);
+                //XXX.drawImage(freeverse, 306, 487, 28, 13, -(8.5 * 2.5), (19 * 2.5), 28 * 2.5, 13 * 2.5);
+                XXX.drawImage(freeverse, 363, 411, 64, 71, -(1/2 * 64 * 2.5), -(1/2 * 71 * 2.5), 64 * 2.5, 71 * 2.5);
+                XXX.restore();
+            }
+
+            //barrierList.push(new Barrier((this.X - 85), (this.Y - 80), 160, 150, false));
+
+            //BARRIERS
+            barrierList.push(new Barrier((this.X - 18), (this.Y + 60), 18, 36, false)); //top
+            barrierList.push(new Barrier((this.X + 20), (this.Y + 24), 39, 18, false));
+            barrierList.push(new Barrier((this.X + 39), (this.Y + -13), 38, 18, false));
+            barrierList.push(new Barrier((this.X + 50), (this.Y + -50), 37, 18, false));
+            barrierList.push(new Barrier((this.X + 26), (this.Y - 63), 18, 25, false));
+            barrierList.push(new Barrier((this.X - 18), (this.Y - 81), 18, 44, false)); //bottom
+            barrierList.push(new Barrier((this.X - 45), (this.Y - 63), 18, 28, false));
+            barrierList.push(new Barrier((this.X - 66), (this.Y - 35), 20, 21, false));
+            barrierList.push(new Barrier((this.X - 80), (this.Y - 17), 42, 18, false));
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "freydicBuilding3")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X - 135) && X < (this.X - 135) + 260 && Y > (this.Y - 125) && Y < (this.Y - 125) + 251)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(freeverse, 235, 636, 117, 113, -(1/2 * 117 * 2.5), -(1/2 * 113 * 2.5), 117 * 2.5, 113 * 2.5);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 5;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(freeverse, 235, 636, 117, 113, -(1/2 * 117 * 2.5), -(1/2 * 113 * 2.5), 117 * 2.5, 113 * 2.5);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(freeverse, 368, 636, 117, 113, -(1/2 * 117 * 2.5) - 10, -(1/2 * 113 * 2.5), 117 * 2.5, 113 * 2.5);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X - 135, this.Y - 125, 251, 260, false)); // a square that covers the entire building
+
+            //BARRIERS
+            barrierList.push(new Barrier((this.X + 114), (this.Y + 20), 105, 19, false)); //upper left vertical
+            barrierList.push(new Barrier((this.X + 114), (this.Y -125), 98, 19, false)); //lower left vertical
+            barrierList.push(new Barrier((this.X - 135), (this.Y -125), 251, 19, false)); //right wall
+            barrierList.push(new Barrier((this.X - 135), (this.Y -125), 19, 251, false)); //lower wall
+            barrierList.push(new Barrier((this.X - 135), (this.Y + 108), 19, 251, false)); //lower wall
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "freydicBuilding4")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X - 235) && X < (this.X - 235) + 450 && Y > (this.Y - 125) && Y < (this.Y - 125) + 251)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(freeverse, 253, 796, 198, 110, -(1/2 * 198 * 2.5), -(1/2 * 110 * 2.5), 198 * 2.5, 110 * 2.5);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 5;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(freeverse, 253, 796, 198, 110, -(1/2 * 198 * 2.5), -(1/2 * 110 * 2.5), 198 * 2.5, 110 * 2.5);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(freeverse, 462, 793, 198, 110, -(1/2 * 198 * 2.4), -(1/2 * 110 * 2.4) - 10, 198 * 2.4, 110 * 2.4);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X - 235, this.Y - 125, 251, 450, false)); // a square that covers the entire building
+
+            //BARRIERS
+            barrierList.push(new Barrier((this.X - 235), (this.Y + 107), 20, 450, false)); //upper wall
+            barrierList.push(new Barrier((this.X + 214), (this.Y -125), 251, 20, false)); //left wall
+            barrierList.push(new Barrier((this.X - 235), (this.Y -125), 20, 308, false)); //lower right horizontal
+            barrierList.push(new Barrier((this.X + 128), (this.Y -125), 20, 86, false)); //lower left horizontal
+            barrierList.push(new Barrier((this.X -235), (this.Y -125), 251, 20, false)); //left wall
+
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "freydicBuilding5")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (this.playerer <= 90)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI * 1/3);
+                XXX.drawImage(freeverse, 273, 416, 64, 71, -(1/2 * 64 * 2.5), -(1/2 * 71 * 2.5), 64 * 2.5, 71 * 2.5);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 5;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI * 1/3);
+                XXX.drawImage(freeverse, 273, 416, 64, 71, -(1/2 * 64 * 2.5), -(1/2 * 71 * 2.5), 64 * 2.5, 71 * 2.5);
+                //XXX.drawImage(freeverse, 306, 487, 28, 13, -(8.5 * 2.5), (19 * 2.5), 28 * 2.5, 13 * 2.5);
+                XXX.drawImage(freeverse, 363, 411, 64, 71, -(1/2 * 64 * 2.5), -(1/2 * 71 * 2.5), 64 * 2.5, 71 * 2.5);
+                XXX.restore();
+            }
+
+            //BARRIERS
+            barrierList.push(new Barrier((this.X - 30), (this.Y + 65), 18, 44, false)); //top
+            barrierList.push(new Barrier((this.X + 7), (this.Y + 48), 18, 38, false));
+            barrierList.push(new Barrier((this.X + 25), (this.Y + 30), 18, 38, false));
+            barrierList.push(new Barrier((this.X - 55), (this.Y + 48), 18, 25, false));
+            barrierList.push(new Barrier((this.X - 70), (this.Y + 30), 18, 22, false));
+            barrierList.push(new Barrier((this.X + 63), (this.Y - 27), 62, 18, false));
+            barrierList.push(new Barrier((this.X -52), (this.Y - 43), 36, 18, false));
+            barrierList.push(new Barrier((this.X -67), (this.Y - 7), 42, 18, false));
+            barrierList.push(new Barrier((this.X -44), (this.Y - 53), 25, 18, false));
+            barrierList.push(new Barrier((this.X - 30), (this.Y - 72), 18, 61, false)); //bottom
+
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "freydicBuilding6")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X - 135) && X < (this.X - 135) + 260 && Y > (this.Y - 125) && Y < (this.Y - 125) + 251)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(freeverse, 235, 636, 117, 113, -(1/2 * 117 * 2.5), -(1/2 * 113 * 2.5), 117 * 2.5, 113 * 2.5);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 5;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(freeverse, 235, 636, 117, 113, -(1/2 * 117 * 2.5), -(1/2 * 113 * 2.5), 117 * 2.5, 113 * 2.5);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(freeverse, 368, 636, 117, 113, -(1/2 * 117 * 2.5) - 10, -(1/2 * 113 * 2.5), 117 * 2.5, 113 * 2.5);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X - 135, this.Y - 125, 251, 260, false)); // a square that covers the entire building
+
+            //BARRIERS
+            barrierList.push(new Barrier((this.X + 114), (this.Y -125), 251, 19, false)); //left wall
+            barrierList.push(new Barrier((this.X - 135), (this.Y + 20), 105, 19, false)); //upper left vertical
+            barrierList.push(new Barrier((this.X - 135), (this.Y -125), 98, 19, false)); //lower left vertical
+            barrierList.push(new Barrier((this.X - 135), (this.Y -125), 19, 251, false)); //lower wall
+            barrierList.push(new Barrier((this.X - 135), (this.Y + 108), 19, 251, false)); //lower wall
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "freydicBuilding7")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X - 230) && X < (this.X - 230) + 450 && Y > (this.Y - 245) && Y < (this.Y - 245) + 470)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(freeverse, 741, 563, 198, 204, -(1/2 * 198 * 2.5), -(1/2 * 204 * 2.5), 198 * 2.5, 204 * 2.5);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 5;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(freeverse, 741, 563, 198, 204, -(1/2 * 198 * 2.5), -(1/2 * 204 * 2.5), 198 * 2.5, 204 * 2.5);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(freeverse, 529, 566, 198, 204, -(1/2 * 198 * 2.5), -(1/2 * 204 * 2.5), 198 * 2.5, 204 * 2.5);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X - 135, this.Y - 125, 251, 260, false)); // a square that covers the entire building
+
+            //BARRIERS
+            barrierList.push(new Barrier((this.X - 230), (this.Y - 225), 454, 19, false)); //right wall
+            barrierList.push(new Barrier((this.X + 222), (this.Y - 242), 472, 19, false)); //left wall
+            barrierList.push(new Barrier((this.X - 75), (this.Y + 214), 19, 302, false)); //left bottom horizontal
+            barrierList.push(new Barrier((this.X - 225), (this.Y + 214), 19, 96, false)); //right bottom horizontal
+            barrierList.push(new Barrier((this.X - 230), (this.Y - 242), 19, 462, false)); //right bottom horizontal
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
                 this.activate = false;
             }
         }
@@ -2347,6 +2899,26 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 this.activate = false;
                 this.phase = "picked";
+
+                //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        if (this.information == "theGreatFlowerOfTheJarlOfTeshir")
+                        {
+                            if (player.title != "nobility" && player.title != "royalty")
+                            {
+                                this.changeFactionRelation(-200);
+                            }
+                        }
+                        else
+                        {
+                            this.changeFactionRelation(-19);
+                        }
+                    }
+                }
+
                 var hits = 0;
                 for (var i = 0; i < Inventory.length; i ++)
                 {
@@ -3731,6 +4303,30 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //INTERACTION
             if (this.activate == true)
             {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "smallRockCircle")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(furr, 15, 685, 164, 147, -(1/2 * 164 * 0.4), -(1/2 * 147 * 0.4), 164 * 0.4, 147 * 0.4);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 0;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
                 this.activate = false;
             }
         }

@@ -1151,6 +1151,7 @@ var Inventory;
 var allWeapons;
 var allWorn;
 var scenicList;
+var barrierList = [];
 var playerProjectiles;
 var unitProjectiles;
 var magicList;
@@ -1172,6 +1173,7 @@ var page = 0;
 var reading = [];
 var haeRotate = 0;
 var showUnitAttackBubble;
+var testBarriers;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -1328,6 +1330,14 @@ function deadAIOperationsManagement()
     for (var i = 0; i < deadAIList.length; i++)
     {
         deadAIList[i].operation();
+    }
+}
+//This function runs through the list of Invisible Game Barriers and activates their operation functions.
+function barrierOperationsManager()
+{
+    for (var i = 0; i < barrierList.length; i++)
+    {
+        barrierList[i].operations();
     }
 }
 //This function runs through the list of scenery and activates their operation functions.
@@ -1862,6 +1872,8 @@ function theLegend()
     showUnitAttackBubble = false;
 //manipulation
     wallPhase = false;
+//environmental
+    testBarriers = false;
 //Player Stat Focused
     extraSkillPoints = 0;
     energyDrink = false; //This makes energy regenerate at its absolute fastest point but it slowly deteriorates the players health by 1 for every couple of seconds.
@@ -1919,7 +1931,8 @@ function theLegend()
         roselinLDS: true,
         ireneLDS: true,
         fenwikLDS: true,
-        schuylarLDS: true
+        schuylarLDS: true,
+        OrjovTorLDS: true
     };
 //QUESTS
     quests =

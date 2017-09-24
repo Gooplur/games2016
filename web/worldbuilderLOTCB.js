@@ -88,6 +88,10 @@ function worldBuilder()
             outlineBuilder( 1, 6, "stonePath", -6, -7);
             outlineBuilder( 1, 13, "stonePath", -20, -7);
             outlineBuilder( 2, 3, "farmland", -7, 1);
+            outlineBuilder( 1, 2, "stonePath", -5, -4);
+            outlineBuilder( 1, 1, "stonePath", -3, -2);
+            outlineBuilder( 3, 1, "stonePath", 4, -3);
+            outlineBuilder( 1, 1, "stoneWork", 4, 0);
         }
         //mapS1 E1
         if (Y > -14144 && Y < -3328 && X < - 2490 && X > -14114) //X1
@@ -417,13 +421,18 @@ function buildMaster()
 
                 //Projectile(TYPE ultra.ranged[1],startX, startY, startAngle, SPEED ultra.ranged[2], RANGE ultra.ranged[3], NEGATION ultra.ranged[4], list, DAMAGE ultra.ranged[5], MAGIC DAMAGE ultra.ranged[6], ABILITY ultra.ranged[7])
 
-                ArtificialIntelligenceAccess.push(new Unit(1661, 2311, "Soldier", false, "Torg Captain", {race: "Freynor", faction: "Freynor", con: 9, speed: 1.15, outfit: ["chainArmour", 10], weapon: ["freydicGreatSword", [25, 14], 0, 35, 2.25], ranged: [false, "arrow", 7, 1800, 1, 6, 0, "stunI", 2.4], patrolStops: 4, patrolLoop: true, route:[[1654, 1507], [1661, 2311], [1864, 2315], [1852, 1499]]}));
-                ArtificialIntelligenceAccess.push(new Unit(2254, 311, "Soldier", false, "Torg Soldier", {race: "Freynor", faction: "Freynor", con: 5, speed: 1.50, outfit: ["chainArmour", 7], weapon: ["freydicSword", [9, 7], 0, 16, 1], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 3, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
-                ArtificialIntelligenceAccess.push(new Unit(2741, 1421, "Soldier", false, "Torg Soldier", {race: "Freynor", faction: "Freynor", con: 4, speed: 1.25, outfit: ["chainArmour", 9], weapon: ["freydicSword", [8, 6], 0, 16, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[1833, 1424], [1848, 2413], [3046, 2407], [2741, 1421]]}));
-                ArtificialIntelligenceAccess.push(new Unit(1247, 1210, "Soldier", false, "Torg Soldier", {race: "Freynor", faction: "Freynor", con: 6, speed: 1.40, outfit: ["chainArmour", 8], weapon: ["freydicSword", [8, 9], 0, 16, 1], ranged: [false, "arrow", 6, 1950, 1, 4, 0, "none", 1.35], patrolStops: 6, patrolLoop: true, route:[[901, 1195], [969, 527], [1932, 549], [1941, 814], [1932, 549], [969, 527]]}));
-                ArtificialIntelligenceAccess.push(new Unit(2584, 1385, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 5, patrolLoop: true, route:[[2523, 2061], [2041, 2046], [2036, 2118], [2594, 2169], [2584, 1385]]}));
-                ArtificialIntelligenceAccess.push(new Unit(2338, 1205, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[1622, 1196], [1655, 1300], [2518, 1366], [2338, 1205]]}));
-                ArtificialIntelligenceAccess.push(new Unit(2335, 924, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 5, patrolLoop: true, route:[[1355, 935], [1402, 1962], [1402, 1962], [1461, 902], [2335, 924]]}));
+                ArtificialIntelligenceAccess.push(new Unit(1661, 2311, "Soldier", false, "Tor Captain", {race: "Freynor", faction: "Freynor", con: 9, speed: 1.15, outfit: ["chainArmour", 10], weapon: ["freydicGreatSword", [25, 14], 0, 35, 2.25], ranged: [false, "arrow", 7, 1800, 1, 6, 0, "stunI", 2.4], patrolStops: 4, patrolLoop: true, route:[[1654, 1507], [1661, 2311], [1864, 2315], [1852, 1499]]}));
+                ArtificialIntelligenceAccess.push(new Unit(2254, 311, "Soldier", false, "Tor Soldier", {race: "Freynor", faction: "Freynor", con: 5, speed: 1.50, outfit: ["chainArmour", 7], weapon: ["freydicSword", [9, 7], 0, 16, 1], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 3, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
+                ArtificialIntelligenceAccess.push(new Unit(2741, 1421, "Soldier", false, "Tor Soldier", {race: "Freynor", faction: "Freynor", con: 4, speed: 1.25, outfit: ["chainArmour", 9], weapon: ["freydicSword", [8, 6], 0, 16, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[1833, 1424], [1848, 2413], [3046, 2407], [2741, 1421]]}));
+                ArtificialIntelligenceAccess.push(new Unit(1247, 1210, "Soldier", false, "Tor Soldier", {race: "Freynor", faction: "Freynor", con: 6, speed: 1.40, outfit: ["chainArmour", 8], weapon: ["freydicSword", [8, 9], 0, 16, 1], ranged: [false, "arrow", 6, 1950, 1, 4, 0, "none", 1.35], patrolStops: 6, patrolLoop: true, route:[[901, 1195], [969, 527], [1932, 549], [1941, 814], [1932, 549], [969, 527]]}));
+
+                ArtificialIntelligenceAccess.push(new Unit(2360, 2341, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 10, patrolLoop: true, route:[[2284, 2430], [1677, 2425], [1712, 1410], [1405, 1459], [1405, 1637], [1237, 1637], [1405, 1637], [1405, 1459], [1699, 1434], [1692, 2500]]}));
+                ArtificialIntelligenceAccess.push(new Unit(2249, 754, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 9, patrolLoop: true, route:[[2144, 751], [2154, 504], [2942, 536], [2884, 2455], [1655, 2430], [1663, 1165], [2152, 1141], [2181, 795], [2249, 754]]}));
+                ArtificialIntelligenceAccess.push(new Unit(1807, 645, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 7, patrolLoop: true, route:[[1793, 314], [761, 337], [749, 1431], [1663, 1439], [2138, 1272], [2165, 697], [1807, 645]]}));
+
+                //The Jarl's Guards
+                ArtificialIntelligenceAccess.push(new Unit(-95, 645, "Soldier", false, "Tor House Guard", {race: "Freynor", faction: "Freynor", con: 16, speed: 1.55, outfit: ["chainArmour", 12], weapon: ["freydicSword", [11, 9], 0, 17, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: false, route:[[1833, 1424], [1848, 2413], [3046, 2407], [2741, 1421]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-620, 645, "Soldier", false, "Tor House Guard", {race: "Freynor", faction: "Freynor", con: 16, speed: 1.55, outfit: ["chainArmour", 12], weapon: ["freydicSword", [11, 9], 0, 17, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: false, route:[[1833, 1424], [1848, 2413], [3046, 2407], [2741, 1421]]}));
 
                 if (uniqueChars.drohforLDS == true)
                 {
@@ -437,7 +446,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(2583, 818, "Person", false, "Drohfor", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["walrusLeatherArmour", 5], weapon: ["longbow", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [true, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 6, patrolLoop: true, route:[[2001, 658], [2252, -509], [2423, -588], [2032, 440], [2030, 770], [2583, 818]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(2760, 601, "Person", false, "Drohfor", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["walrusLeatherArmour", 5], weapon: ["longbow", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [true, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 7, patrolLoop: true, route:[[2847, 502], [2076, 507], [2167, -451], [2871, -564], [4026, -9], [3119, 622], [2774, 590]]}));
                     }
                 }
                 if (quests.teshirNorthRoadQuest != "complete")
@@ -454,7 +463,7 @@ function buildMaster()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(739, 1830, "Person", false, "Toggin", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["blackBearFurClothing", 0], weapon: ["timberAxe", [10, 4], 1.5, 12, 1.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[739, 1830], [756, 1635], [840, 1603]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(1830, 2767, "Person", false, "Toggin", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["blackBearFurClothing", 0], weapon: ["timberAxe", [10, 4], 1.5, 12, 1.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[1771, 2698], [1675, 2861], [1830, 2767]]}));
                         }
                     }
                 }
@@ -470,7 +479,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(2317, 2074, "Person", false, "Kedwin", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.5, 1], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[2212, 2071], [2317, 2074], [2244, 2063]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(2287, 2065, "Person", false, "Kedwin", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.5, 1], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[2287, 2065]]}));
                         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                         {
                             if (ArtificialIntelligenceAccess[i].ID == "Kedwin")
@@ -493,7 +502,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(1282, 1622, "Person", false, "Garld the Crazy Beggar", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.5, 1], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[2072, 1535], [1939, 1509], [2033, 1499]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(2523, 1489, "Person", false, "Garld the Crazy Beggar", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.5, 1], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[2072, 1535], [1939, 1509], [2033, 1499]]}));
                         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                         {
                             if (ArtificialIntelligenceAccess[i].ID == "Garld the Crazy Beggar" || ArtificialIntelligenceAccess[i].ID == "Garld, Sage of Gemith")
@@ -516,7 +525,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(2232, 1142, "Person", false, "Odee the Banker", {race: "Orgell", faction: "Freynor", personality: "calculated", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.85], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 0, patrolLoop: false, route:[[2200, 1460]], banker: true}));
+                        ArtificialIntelligenceAccess.push(new Unit(1205, 1635, "Person", false, "Odee the Banker", {race: "Orgell", faction: "Freynor", personality: "calculated", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.85], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 0, patrolLoop: false, route:[[2200, 1460]], banker: true}));
                     }
                 }
                 if (uniqueChars.stendorLDS == true)
@@ -524,14 +533,29 @@ function buildMaster()
                     var hits = 0;
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
-                        if (ArtificialIntelligenceAccess[i].ID == "Torg Commissioner Stendor")
+                        if (ArtificialIntelligenceAccess[i].ID == "Tor Commissioner Stendor")
                         {
                             hits += 1;
                         }
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(1949, 2282, "Soldier", false, "Torg Commissioner Stendor", {race: "Freynor", faction: "Freynor", con: 12, speed: 1.32, outfit: ["chainArmour", 10], weapon: ["freydicGreatSword", [25, 14], 0, 35, 2.25], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], patrolStops: 0, patrolLoop: true, route:[[1654, 1507], [1661, 2311], [1864, 2315], [1852, 1499]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(1949, 2282, "Soldier", false, "Tor Commissioner Stendor", {race: "Freynor", faction: "Freynor", con: 12, speed: 1.32, outfit: ["chainArmour", 10], weapon: ["freydicGreatSword", [25, 14], 0, 35, 2.25], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], patrolStops: 0, patrolLoop: true, route:[[1654, 1507], [1661, 2311], [1864, 2315], [1852, 1499]]}));
+                    }
+                }
+                if (uniqueChars.OrjovTorLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Jarl Orjov Tor")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-339, 72, "Soldier", false, "Jarl Orjov Tor", {race: "Freynor", faction: "Freynor", con: 40, speed: 0.6, outfit: ["jvostranPlateArmour", 42], weapon: ["freydicGreatSword", [37, 20], 0, 37, 5], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: false, route:[[1654, 1507], [1661, 2311], [1864, 2315], [1852, 1499]]}));
                     }
                 }
                 if (uniqueChars.laandegLDS == true)
@@ -546,7 +570,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(1171, 699, "Person", false, "Laandeg the Alchemist", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[744, 1133], [801, 1156], [840, 373], [744, 1545]], merchant: true, merchandise: [[new Item("coins", false, false), 29], [new Item("culprisBandage", false, false), 2], [new Item("healingSalve", false, false), 4], [new Item("trollsBlood", false, false), 1], [new Item("rawTrollsBlood", false, false), 1], [new Item("cleansingPotion", false, false), 1], [new Item("energyPotionI", false, false), 3], [new Item("speedPotionI", false, false), 2], [new Item("energilPotionI", false, false), 2], [new Item("energilPotionII", false, false), 1], [new Item("potionGlass", false, false), 18], [new Item("glassJar", false, false), 14], [new Item("rawWolfLiver", false, false), 4]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(1193, 777, "Person", false, "Laandeg the Alchemist", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[1193, 777]], merchant: true, merchandise: [[new Item("coins", false, false), 29], [new Item("culprisBandage", false, false), 2], [new Item("healingSalve", false, false), 4], [new Item("trollsBlood", false, false), 1], [new Item("rawTrollsBlood", false, false), 1], [new Item("cleansingPotion", false, false), 1], [new Item("energyPotionI", false, false), 3], [new Item("speedPotionI", false, false), 2], [new Item("energilPotionI", false, false), 2], [new Item("energilPotionII", false, false), 1], [new Item("potionGlass", false, false), 18], [new Item("glassJar", false, false), 14], [new Item("rawWolfLiver", false, false), 4]]}));
                     }
                 }
                 if (uniqueChars.hilmundLDS == true)
@@ -598,7 +622,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(1930, 1793, "Person", false, "Medlia the Merchant", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 3, patrolLoop: true, route:[[1710, 1717], [1812, 1835], [1713, 1882], [1930, 1793]], merchant: true, merchandise: [[new Item("coins", false, false), 179 + quests.medliaNewWealth], [new Item("wood", false, false), 48], [new Item("tent", false, false), 2], [new Item("fireStarter", false, false), 3], [new Item("jarOfOil", false, false), 1], [new Item("rawWalrusFlesh", false, false), 8], [new Item("walrusHide", false, false), 1], [new Item("walrusTusks", false, false), 1], [new Item("oilLampEmpty", false, false), 2], [new Item("oilLanternEmpty", false, false), 5], [new Item("candle", false, false), 12], [new Item("beesWax", false, false), 9], [new Item("ogardPerfume", false, false), 2], [new Item("frichPelt", false, false), 3], [new Item("rawFrichFlesh", false, false), 22], [new Item("winterWolfPelt", false, false), 3], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("rawWolfLiver", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 2], [new Item("harstGrain", false, false), 29], [new Item("potato", false, false), 8], [new Item("carrot", false, false), 13], [new Item("suuliMelon", false, false), 5], [new Item("driedTechiLeaf", false, false), 14], [new Item("ogard", false, false), 1], [new Item("freydicFolkTales", false, false), 1]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(1406, 1941, "Person", false, "Medlia the Merchant", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[1425, 1941]], merchant: true, merchandise: [[new Item("coins", false, false), 179 + quests.medliaNewWealth], [new Item("wood", false, false), 48], [new Item("tent", false, false), 2], [new Item("fireStarter", false, false), 3], [new Item("jarOfOil", false, false), 1], [new Item("rawWalrusFlesh", false, false), 8], [new Item("walrusHide", false, false), 1], [new Item("walrusTusks", false, false), 1], [new Item("oilLampEmpty", false, false), 2], [new Item("oilLanternEmpty", false, false), 5], [new Item("candle", false, false), 12], [new Item("beesWax", false, false), 9], [new Item("ogardPerfume", false, false), 2], [new Item("frichPelt", false, false), 3], [new Item("rawFrichFlesh", false, false), 22], [new Item("winterWolfPelt", false, false), 3], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("rawWolfLiver", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 2], [new Item("harstGrain", false, false), 29], [new Item("potato", false, false), 8], [new Item("carrot", false, false), 13], [new Item("suuliMelon", false, false), 5], [new Item("driedTechiLeaf", false, false), 14], [new Item("ogard", false, false), 1], [new Item("freydicFolkTales", false, false), 1]]}));
                     }
                 }
                 if (uniqueChars.teberLDS == true && quests.bountyTeberCompletionStyle == "royal pardon")
@@ -613,7 +637,18 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-631, -30389, "Person", false, "Teber the Artisan", {race: "Freynor", faction: "Kel", personality: "scared", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.4, 0.6], 0, 0, 1.15], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 75], [new Item("naapridFiber", false, false), 7], [new Item("pintGlass", false, false), 19], [new Item("potionGlass", false, false), 18], [new Item("glassJar", false, false), 10]]}));
+                        if (quests.bankruptNeculai)
+                        {
+                            var xx = 2644;
+                            var yy = 2006;
+                        }
+                        else
+                        {
+                            var xx = 1999;
+                            var yy = 1604;
+                        }
+
+                        ArtificialIntelligenceAccess.push(new Unit(xx, yy, "Person", false, "Teber the Artisan", {race: "Freynor", faction: "Kel", personality: "scared", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.4, 0.6], 0, 0, 1.15], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 75], [new Item("naapridFiber", false, false), 7], [new Item("pintGlass", false, false), 19], [new Item("potionGlass", false, false), 18], [new Item("glassJar", false, false), 10]]}));
                         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                         {
                             if (ArtificialIntelligenceAccess[i].ID == "Teber the Artisan")
@@ -661,16 +696,16 @@ function buildMaster()
                             {
                                 if (quests.theBalgurMercenariesCompletionStyle == "killedMercs" && quests.theBalgurMercenariesQuest == "complete" || quests.theBalgurMercenariesCompletionStyle == "royalProtection" && quests.theBalgurMercenariesQuest == "complete"|| quests.theBalgurMercenariesCompletionStyle == "threaten" && quests.theBalgurMercenariesQuest == "complete" || quests.theBalgurMercenariesCompletionStyle == "paidMercs" && quests.theBalgurMercenariesQuest == "complete") //if you beat neculai's quest in a way positive for neculai he likes you enough to sell his swamp walker armour.
                                 {
-                                    ArtificialIntelligenceAccess.push(new Unit(2365, 1059, "Person", false, "Neculai the Merchant", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("frichFurClothing", false, false), 3], [new Item("mace", false, false), 1], [new Item("vardanianAxe", false, false), 3], [new Item("vardanianAxeDual", false, false), 2], [new Item("vardanianCleaver", false, false), 1], [new Item("vardanianClub", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("rawWolfLiver", false, false), 4], [new Item("blackChainArmour", false, false), 2], [new Item("trollFlesh", false, false), 2], [new Item("wood", false, false), 14], [new Item("freydicSword", false, false), 1], [new Item("frichPelt", false, false), 6], [new Item("rawWalrusFlesh", false, false), 5], [new Item("walrusMeat", false, false), 1], [new Item("swampWalkerArmour", false, false), 1]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(2644, 2006, "Person", false, "Neculai the Merchant", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("frichFurClothing", false, false), 3], [new Item("mace", false, false), 1], [new Item("vardanianAxe", false, false), 3], [new Item("vardanianAxeDual", false, false), 2], [new Item("vardanianCleaver", false, false), 1], [new Item("vardanianClub", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("rawWolfLiver", false, false), 4], [new Item("blackChainArmour", false, false), 2], [new Item("trollFlesh", false, false), 2], [new Item("wood", false, false), 14], [new Item("freydicSword", false, false), 1], [new Item("frichPelt", false, false), 6], [new Item("rawWalrusFlesh", false, false), 5], [new Item("walrusMeat", false, false), 1], [new Item("swampWalkerArmour", false, false), 1]]}));
                                 }
                                 else
                                 {
-                                    ArtificialIntelligenceAccess.push(new Unit(2365, 1059, "Person", false, "Neculai the Merchant", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("frichFurClothing", false, false), 3], [new Item("mace", false, false), 1], [new Item("vardanianAxe", false, false), 3], [new Item("vardanianAxeDual", false, false), 2], [new Item("vardanianCleaver", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("rawWolfLiver", false, false), 4], [new Item("blackChainArmour", false, false), 2], [new Item("trollFlesh", false, false), 2], [new Item("wood", false, false), 14], [new Item("freydicSword", false, false), 1], [new Item("frichPelt", false, false), 6], [new Item("rawWalrusFlesh", false, false), 5], [new Item("walrusMeat", false, false), 1]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(2644, 2006, "Person", false, "Neculai the Merchant", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("frichFurClothing", false, false), 3], [new Item("mace", false, false), 1], [new Item("vardanianAxe", false, false), 3], [new Item("vardanianAxeDual", false, false), 2], [new Item("vardanianCleaver", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("rawWolfLiver", false, false), 4], [new Item("blackChainArmour", false, false), 2], [new Item("trollFlesh", false, false), 2], [new Item("wood", false, false), 14], [new Item("freydicSword", false, false), 1], [new Item("frichPelt", false, false), 6], [new Item("rawWalrusFlesh", false, false), 5], [new Item("walrusMeat", false, false), 1]]}));
                                 }
                             }
                             else
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(2365, 1059, "Person", false, "Neculai the Beggar", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[]}));
+                                ArtificialIntelligenceAccess.push(new Unit(2756, 1815, "Person", false, "Neculai the Beggar", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[]}));
                             }
 
                         }
@@ -710,7 +745,7 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(-1257, -6310, "Varn", false, "Racho"));
                 ArtificialIntelligenceAccess.push(new Unit(-1910, 4940, "Varn", false, "Ferra"));
                 ArtificialIntelligenceAccess.push(new Unit(-1549, -5102, "Varn", false, "Juanito"));
-                ArtificialIntelligenceAccess.push(new Unit(-937, 708, "Varn", false, "Domingo"));
+                ArtificialIntelligenceAccess.push(new Unit(-905, 2130, "Varn", false, "Domingo"));
                 ArtificialIntelligenceAccess.push(new Unit(3918, -2387, "Varn", false, "Wyhay"));
                 ArtificialIntelligenceAccess.push(new Unit(-2340, -2853, "Varn", true, "Wandigo"));
                 ArtificialIntelligenceAccess.push(new Unit(-2357, -3126, "Varn", false, "Wandago"));
@@ -778,7 +813,47 @@ function buildMaster()
                 //Scenery
                 //buildings in the city
                 scenicList.push(new Scenery("freydicBuilding1", 2142, 1900, 0, true));
-                //scenicList.push(new Scenery("freydicRoof1", 2142, 1900, 0, true));
+                scenicList.push(new Scenery("freydicBuilding2", 2111, 2268, 0, true));
+                scenicList.push(new Scenery("freydicBuilding2", 2430, 2268, 0, true));
+                scenicList.push(new Scenery("freydicBuilding2", 2698, 2268, 0, true));
+                scenicList.push(new Scenery("freydicBuilding2", 2319, 876, 0, true));
+                scenicList.push(new Scenery("freydicBuilding2", 2319, 683, 0, true));
+                scenicList.push(new Scenery("freydicBuilding2", 2319, 1064, 0, true));
+                scenicList.push(new Scenery("freydicBuilding2", 1149, 1043, 0, true));
+                scenicList.push(new Scenery("freydicBuilding2", 1149, 2256, 0, true));
+                scenicList.push(new Scenery("freydicBuilding2", 1149, 2078, 0, true));
+                scenicList.push(new Scenery("freydicBuilding2", 1149, 1900, 0, true));
+                scenicList.push(new Scenery("freydicBuilding3", 2654, 2000, 0, true));
+                scenicList.push(new Scenery("freydicBuilding3", 2654, 1644, 0, true));
+                scenicList.push(new Scenery("freydicBuilding3", 1430, 1051, 0, true));
+                scenicList.push(new Scenery("freydicBuilding3", 1450, 2240, 0, true));
+                scenicList.push(new Scenery("freydicBuilding3", 1450, 1943, 0, true));
+                scenicList.push(new Scenery("freydicBuilding4", 1260, 734, 0, true));
+                scenicList.push(new Scenery("freydicBuilding4", 1306, 1643, 0, true));
+                scenicList.push(new Scenery("freydicBuilding5", 1735, 715, 0, true));
+                scenicList.push(new Scenery("freydicBuilding5", 2678, 1064, 0, true));
+                scenicList.push(new Scenery("freydicBuilding5", 2678, 876, 0, true));
+                scenicList.push(new Scenery("freydicBuilding5", 2678, 683, 0, true));
+
+                //The Jarl's Estate
+                scenicList.push(new Scenery("freydicBuilding6", -102, 474, 0, true));
+                scenicList.push(new Scenery("freydicBuilding7", -338, 127, 0, true));
+                scenicList.push(new Scenery("freydicBuilding3", -603, 474, 0, true));
+                scenicList.push(new Scenery("woodenGate", -348, 597, 0, true));
+                scenicList.push(new Scenery("smallRockCircle", -348 , 464, 4, true));
+                scenicList.push(new Scenery("smallRockCircle", -348 , 464, 4 * 1/2 * Math.PI, true));
+                scenicList.push(new Scenery("smallRockCircle", -348 , 464, 4 * -1/4 * Math.PI, true));
+                scenicList.push(new Scenery("tylunPlant", -348 , 464, 4, "freynor", "theGreatFlowerOfTheJarlOfTeshir"));
+                    //The noble player's room
+                scenicList.push(new Scenery("walrusHideRug", -90, 466, 0, 2));
+                scenicList.push(new Scenery("bed", -50, 563, -1/2 * Math.PI, true));
+                if (player.gender == "Female" && player.title == "Nobility")
+                {
+                    scenicList.push(new Scenery("loom", -183, 392, 3/4 * Math.PI, true));
+                }
+                    //The Jarls Chamber
+                scenicList.push(new Scenery("walrusHideRug", -331, 141, -1/2 * Math.PI, 2.5));
+
                 //bandit Camp in the north east
                 //tents
                 scenicList.push(new Scenery("tent", 74 - 750, 5672, (0.5/5 * 2 * Math.PI), true));
@@ -792,14 +867,14 @@ function buildMaster()
                 scenicList.push(new Scenery("anvil", 1751, 948, Math.PI * 3.45/4, true));
                 scenicList.push(new Scenery("forge", 1770, 1086, Math.PI, true));
                 scenicList.push(new Scenery("loom", 2625, 1569, 1/2 * Math.PI, true));
-                scenicList.push(new Scenery("lab", 1217, 728, 0, true));
+                scenicList.push(new Scenery("lab", 1199, 824, 0, true));
                 if (quests.theBrokenWellFixed)
                 {
-                    scenicList.push(new Scenery("well", 2036, 1565, 0, true));
+                    scenicList.push(new Scenery("well", 2446, 1712, 0, true));
                 }
                 else
                 {
-                    scenicList.push(new Scenery("brokenWell", 2036, 1565, 0, true));
+                    scenicList.push(new Scenery("brokenWell", 2446, 1712, 0, true));
                 }
 
                 //The lonely farm house

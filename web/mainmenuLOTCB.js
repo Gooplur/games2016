@@ -878,6 +878,33 @@ function applySelectionsButton()
                 Inventory.push([new Item("blunderbuss", false, false), 1], [new Item("musket", false, false), 1], [new Item("blackPowder", false, false), 300], [new Item("bullet", false, false), 1100]);
             }
         }
+        else if (player.class == "Ranger")//This is the general one for all that don't meet a specific exception.
+        {
+            if (player.title == "Vagabond")
+            {
+                Inventory.push([new Item("longbow", false, false), 1], [new Item("arrow", false, false), 18]);
+            }
+            else if (player.title == "Peasant")
+            {
+                Inventory.push([new Item("longbow", false, false), 1], [new Item("arrow", false, false), 22]);
+            }
+            else if (player.title == "Commoner")
+            {
+                Inventory.push([new Item("longbow", false, false), 1], [new Item("arrow", false, false), 25]);
+            }
+            else if (player.title == "Tradefolk")
+            {
+                Inventory.push([new Item("longbow", false, false), 1], [new Item("arrow", false, false), 30]);
+            }
+            else if (player.title == "Highfolk")
+            {
+                Inventory.push([new Item("longbow", false, false), 1], [new Item("steelArrow", false, false), 35]);
+            }
+            else
+            {
+                Inventory.push([new Item("longbow", false, false), 1], [new Item("steelArrow", false, false), 60]);
+            }
+        }
         //MAGE starting weapon kit
         //TODO start mages off with a basic level combat magic scroll.
         if (player.class == "Mage")//This is the general one for all that don't meet a specific exception.
@@ -1004,7 +1031,15 @@ function applySelectionsButton()
         }
 
         //set starting areas
-        //Freynor starting area is the default
+        if (player.raceName == "Freynor")
+        {
+            //Freynor starting area is the default
+            if (player.title == "Nobility")
+            {
+                X = -90;
+                Y = 467;
+            }
+        }
         if (player.raceName == "Kel")
         {
             X = -1297;

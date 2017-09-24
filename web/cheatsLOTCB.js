@@ -314,6 +314,17 @@ function cheats()
                 showUnitAttackBubble = true;
             }
         }
+        else if (cheatcode.toLowerCase() == "showbarriers" || cheatcode.toLowerCase() == "testbarriers")
+        {
+            if (!testBarriers)
+            {
+                testBarriers = true;
+            }
+            else
+            {
+                testBarriers = false;
+            }
+        }
         else if (cheatcode.toLowerCase() == "resetSurvivalism")
         {
             this.survivalism = 0;

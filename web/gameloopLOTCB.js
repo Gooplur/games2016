@@ -60,15 +60,17 @@ function gameloopOfDestiny(time)
     //MASTER BUILDER
     buildMaster();
 
-    //DEAD BODIES
-    deadAIOperationsManagement();
-
     //Layering, Drawing and World Life
     for (var z = 1; z <= 6; z++)
     {
         //STRUCTURES AND SCENERY
         sceneryOperationsManager(z);
-        //TODO build structures
+
+        if (z == 1)
+        {
+            //DEAD BODIES
+            deadAIOperationsManagement();
+        }
 
         //ITEMS
         ItemOperationsManager(z); //This draws items to the world;
@@ -81,6 +83,22 @@ function gameloopOfDestiny(time)
         //PROJECTILES
         projectileOperationsManagement(z);
         magicOperationsManagement(z);
+    }
+
+    //invisible game barriers (they block player and creature movement and they delete magic and projectiles)
+    barrierOperationsManager();
+    var barriersToBeDeleted = [];
+        //Delete all non-Dev barriers (dev barriers are the ones that are manually placed on each map, while non-dev variables are called into existence each loop by other objects)
+    for (var k = 0; k < barrierList.length; k++)
+    {
+        if (!barrierList[k].dev)
+        {
+            barriersToBeDeleted.push(k);
+        }
+    }
+    for (var kk = 0; kk < barriersToBeDeleted.length; kk++)
+    {
+        barrierList.splice(barriersToBeDeleted[kk], 1);
     }
     //set certain player variables. (FINAL PLAYER RESET)
     function wornAbilities()

@@ -113,6 +113,7 @@ function save()
     saveList(mainCharacterAccess, "mainCharacterAccess");
     saveList(ArtificialIntelligenceAccess, "ArtificialIntelligenceAccess");
     saveList(deadAIList, "deadAIList");
+    saveList(barrierList, "barrierList");
     saveList(scenicList, "scenicList");
     saveList(worldItems, "worldItems", true);
     saveList(Inventory, "Inventory", true);
@@ -228,6 +229,7 @@ function load()
         deadAIList = loadList("deadAIList");
     }
     playerProjectiles = loadList("playerProjectiles");
+    //barrierList = loadList("barrierList");
     scenicList = loadList("scenicList");
     unitProjectiles = loadList("unitProjectiles");
     worldItems = loadList("worldItems", true);
@@ -361,6 +363,10 @@ function retrieveSave(listName)
     else if (listName == "deadAIList")
     {
         return parsed.deadAIList;
+    }
+    else if (listName == "barrierList")
+    {
+        return parsed.barrierList;
     }
     else if (listName == "scenicList")
     {

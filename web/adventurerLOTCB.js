@@ -10638,8 +10638,8 @@ function Adventurer()
     {
         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
         {
-            if (ArtificialIntelligenceAccess[i])
-            {
+            //if (ArtificialIntelligenceAccess[i])
+            //{
                 var focusUnit = ArtificialIntelligenceAccess[i]; //This is the current unit focused on other than this unit.
                 var x1 = focusUnit.X; //the focus unit's X position.
                 var y1 = focusUnit.Y; //the focus unit's Y position.
@@ -10648,7 +10648,7 @@ function Adventurer()
                 {
                     return true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
                 }
-            }
+            //}
         }
         for (var i = 0; i < scenicList.length; i++)
         {
@@ -10664,7 +10664,17 @@ function Adventurer()
                 }
             }
         }
-        //TODO add a similar routine for the structure list when it is added...
+        for (var i = 0; i < barrierList.length; i++)
+        {
+            var focusObject = barrierList[i]; //This is the current unit focused on other than this unit.
+            var x1 = focusObject.X; //the focus unit's X position.
+            var y1 = focusObject.Y; //the focus unit's Y position.
+            console.log("X: " + X + " Y: " + Y + " barrierX: " + focusObject.X + " barrierY: " + focusObject.Y);
+            if ((x - this.mySize) < (x1 + focusObject.width) && (x + this.mySize) > x1 && (y - this.mySize) < (y1 + focusObject.height) && (y + this.mySize) > y1)
+            {
+                return true;
+            }
+        }
 
         //When an AI Unit is speaking you are forced to be polite and not move while you listen to them.
         if (this.speechMovementInhibitor == true && playersTurnToMove == false)

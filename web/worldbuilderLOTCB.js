@@ -836,6 +836,13 @@ function buildMaster()
                 scenicList.push(new Scenery("freydicBuilding5", 2678, 876, 0, true));
                 scenicList.push(new Scenery("freydicBuilding5", 2678, 683, 0, true));
 
+                //Signs
+                scenicList.push(new Scenery("sign", 1570, 1115, 1/2 * Math.PI, 3, "Svehn's Smithy"));
+                scenicList.push(new Scenery("sign", 2792, 1706, 1/2 * Math.PI, 3, "Custom Tailoring"));
+                scenicList.push(new Scenery("sign", 2792, 2056, 1/2 * Math.PI, 3, "For Sale - 5000 coins"));
+                scenicList.push(new Scenery("sign", 1583, 2026, 1/2 * Math.PI, 3, "Teshir General Goods"));
+                scenicList.push(new Scenery("sign", 1583, 2316, 1/2 * Math.PI, 3, "Teshir City Barracks"));
+
                 //The Jarl's Estate
                 scenicList.push(new Scenery("freydicBuilding6", -102, 474, 0, true));
                 scenicList.push(new Scenery("freydicBuilding7", -338, 127, 0, true));

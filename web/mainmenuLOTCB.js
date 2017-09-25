@@ -52,6 +52,9 @@ function mainMenuLoop()
         LXX.beginPath();
         LXX.fillStyle = "white";
         LXX.fillRect(0, 0, 1400, 80);
+
+        //Draw the background image
+        XXX.drawImage(charCreaIMG, 0, 0);//, 1080, 608, 0, 0,  1400 / 180, 550 / 608);
         //Title
         XXX.textAlign = "left";
         XXX.fillStyle = "black";
@@ -81,9 +84,11 @@ function mainMenuLoop()
         LXX.beginPath();
         LXX.fillStyle = "white";
         LXX.fillRect(0, 0, 1400, 80);
+        //Draw the background image
+        XXX.drawImage(loadGameIMG, 0, 0);
         //Title
         XXX.textAlign = "left";
-        XXX.fillStyle = "black";
+        XXX.fillStyle = "white"; //"black"
         XXX.font = "90px Impact";
         XXX.fillText("Select a Game to Load", 330, 90);
 

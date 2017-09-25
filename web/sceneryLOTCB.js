@@ -1061,7 +1061,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             //TRAITS
             this.solid = true;
-            this.interactionRange = 100;
+            this.interactionRange = 20;
 
             //DRAWSELF
             XXX.save();
@@ -1080,6 +1080,57 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 {
                     sleep();
                 }
+                this.activate = false;
+            }
+        }
+        else if (this.type == "sign")
+        {
+            //TRAITS
+            this.zIndex = 5;
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.temporary == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(freeverse, 440, 542, 37, 16, -(1/2 * 37 * 2), -(1/2 * 16 * 2), 37 * 2, 16 * 2);
+                XXX.restore();
+            }
+            else if (this.temporary == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(freeverse, 449, 515, 37, 16, -(1/2 * 37 * 2), -(1/2 * 16 * 2), 37 * 2, 16 * 2);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(freeverse, 448, 487, 27, 14, -(1/2 * 27 * 2), -(1/2 * 14 * 2), 27 * 2, 14 * 2);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 12;
+
+            //INTERACTION
+            if (this.mouser <= this.radius && this.playerer <= 110)
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "gold";
+                XXX.font="25px Book Antiqua";
+                XXX.textAlign="center";
+                XXX.fillText(this.information, X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            }
+
+            if (this.activate == true)
+            {
                 this.activate = false;
             }
         }

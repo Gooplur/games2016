@@ -440,7 +440,7 @@ function cheats()
         {
             console.log(Inventory);
         }
-        else if (cheatcode.toLowerCase() == "buensiesta")
+        else if (cheatcode.toLowerCase() == "buenasiesta")
         {
             sleep();
         }

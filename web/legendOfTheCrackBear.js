@@ -715,12 +715,8 @@ function legendaryPrerequisites()
     charCreaIMG.src = ("images/ratInValley.png");
     window.charCreaIMG = charCreaIMG;
 
-    //var charCreaIMG = new Image();
-    //charCreaIMG.src = ("images/intoTheAbyss.png");
-    //window.charCreaIMG = charCreaIMG;
-
     var loadGameIMG = new Image();
-    loadGameIMG.src = ("images/flyingData.png");
+    loadGameIMG.src = ("images/wolfPack.png");
     window.loadGameIMG = loadGameIMG;
 
     var farmground = new Image();

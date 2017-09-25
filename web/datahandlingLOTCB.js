@@ -229,7 +229,7 @@ function load()
         deadAIList = loadList("deadAIList");
     }
     playerProjectiles = loadList("playerProjectiles");
-    //barrierList = loadList("barrierList");
+    barrierList = loadList("barrierList");
     scenicList = loadList("scenicList");
     unitProjectiles = loadList("unitProjectiles");
     worldItems = loadList("worldItems", true);

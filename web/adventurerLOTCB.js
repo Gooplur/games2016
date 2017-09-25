@@ -10669,7 +10669,7 @@ function Adventurer()
             var focusObject = barrierList[i]; //This is the current unit focused on other than this unit.
             var x1 = focusObject.X; //the focus unit's X position.
             var y1 = focusObject.Y; //the focus unit's Y position.
-            console.log("X: " + X + " Y: " + Y + " barrierX: " + focusObject.X + " barrierY: " + focusObject.Y);
+            //console.log("X: " + X + " Y: " + Y + " barrierX: " + focusObject.X + " barrierY: " + focusObject.Y);
             if ((x - this.mySize) < (x1 + focusObject.width) && (x + this.mySize) > x1 && (y - this.mySize) < (y1 + focusObject.height) && (y + this.mySize) > y1)
             {
                 return true;

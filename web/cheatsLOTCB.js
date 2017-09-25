@@ -341,6 +341,73 @@ function cheats()
                 player.thirst = player.thirstMAX;
             }
         }
+        else if (cheatcode.toLowerCase() == "peter")
+        {
+            var crrPrompt;
+            var crPrompt = prompt("Hello user, my name is Peter. I am your informational asistant, here to help you find out more about your character.", "cold, sleep, team, tutorial")
+            if (crPrompt == "cold")
+            {
+                alert("Cold is what happens when the tempurature in a particular region of the game world is meant to simulate a low-temperature environment from real life. Your cold stat is so -- Warmth: " + player.warmth + " / " + "Full Warmth: " + player.warmthMAX);
+            }
+            else if (crPrompt == "sleep")
+            {
+                alert("Sleep is a stat that decreases over time and must be replenished by sleeping, and if it isn't then the player character will suffer negative effects from sleep deprivation. Your sleep stat is so -- Sleep: " + (Math.round((player.sleep * 100)) / 100) + " / " + "Full Sleep: " + player.sleepMAX);
+            }
+            else if (crPrompt == "tutorial")
+            {
+                alert("If you need a tutorial to play this absurdly complex game you are clearly not one of the few people this game was intended to be played by. Consider putting in the effort to learn the games rules or finding something else to do with your time. Thank you for using Peter, your personal Q and A assistant!");
+            }
+            else if (crPrompt == "team")
+            {
+                crrPrompt = prompt("Almost all beings in the game have a team/faction, the player is the exception. The player has stored relation with each faction. Which faction would you like to know your value in?", "freynor, thengar, kel, aldrek, orgell, vardan, cephrite, nirwaden");
+            }
+
+            if (crrPrompt == "kel")
+            {
+                alert("Your relation with this faction is: " + player.kelFaction);
+            }
+            else if (crrPrompt == "freynor")
+            {
+                alert("Your relation with this faction is: " + player.freynorFaction);
+            }
+            else if (crrPrompt == "thengar")
+            {
+                alert("Your relation with this faction is: " + player.thengarFaction);
+            }
+            else if (crrPrompt == "aldrek")
+            {
+                alert("Your relation with this faction is: " + player.aldrekFaction);
+            }
+            else if (crrPrompt == "orgell")
+            {
+                alert("Your relation with this faction is: " + player.orgellFaction);
+            }
+            else if (crrPrompt == "vardan")
+            {
+                alert("Your relation with this faction is: " + player.vardanFaction);
+            }
+            else if (crrPrompt == "cephrite")
+            {
+                alert("Your relation with this faction is: " + player.cephriteFaction);
+            }
+            else if (crrPrompt == "nirwaden")
+            {
+                alert("Your relation with this faction is: " + player.nirwadenFaction);
+            }
+
+            if (typeof(crPrompt) != null)
+            {
+                alert("Thank you for letting me help you to know more!")
+            }
+            else
+            {
+                alert("Interaction Terminated")
+            }
+        }
+        else if (cheatcode.toLowerCase() == "overview")
+        {
+            console.log(player);
+        }
         else if (cheatcode.toLowerCase() == "tellme")
         {
 
@@ -537,6 +604,17 @@ function cheats()
             player.stamina = 0;
             player.charisma = 0;
             player.constitution = 0;
+        }
+        else if (cheatcode.toLowerCase() == "kalbus")
+        {
+            if (player.name == "Kalbus")
+            {
+                player.willpower = 10;
+                player.memory = 10;
+                player.eminence = 0;
+                player.knowledge = 10;
+                Inventory.push([new Item("wizardGown", X, Y), 1], [new Item("frostWind", X, Y), 1]);
+            }
         }
         else if (cheatcode.toLowerCase() == "lightningflashspeedyspeed")
         {

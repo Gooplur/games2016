@@ -9896,7 +9896,7 @@ function Item(type, x, y)
             this.size = 3;
             this.description = "A strip of cloth rubbed with culpris.";
             this.intForDes = 5;
-            this.intDescription = "Bandages can only be used effectively when you are above 1/2 health (50%), your energy is full (100%), and you have been thouroughly watered and fed (80%).";
+            this.intDescription = "Bandages can only be used effectively when you are above 1/5 health (20%), your energy is above (33%), and you have basic water and food needs met (33%).";
 
             //Define Utility
             this.utility = "tool";

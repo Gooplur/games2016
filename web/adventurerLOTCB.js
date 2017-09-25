@@ -19082,9 +19082,9 @@ function Adventurer()
     //Health
     this.healthRegeneration = function()
     {
-        if (this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/4) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (4/10 * this.hungerMAX) && this.thirst >= (4/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: A bandage must be used.
+        if (this.movingType == 4 && this.movingType == 1 && this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: A bandage must be used.
         {
-            this.health += 5 * (TTD / (45000 - 420 * Math.min(58.333, this.getEndurance()) * 2));
+            this.health += 6 * (TTD / (45000 - 420 * Math.min(58.333, this.getEndurance()) * 2));
         }
         else if (this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 3/5) && this.energy >= 1/2 * this.energyMAX && this.hunger >= (5/10 * this.hungerMAX) && this.thirst >= (5/10 * this.thirstMAX) && this.fleshMites == false && this.getEndurance() >= 10) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: If level 10 endurance is achieved.
         {

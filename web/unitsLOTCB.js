@@ -24050,7 +24050,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                         this.switchToRanged("longbow");
                     }
-                    else if (this.ID == "Tor House Guard" || this.ID == "Jarl Orjov Tor") //no ranged attack
+                    else if (this.ID == "Tor Húskarl" || this.ID == "Jarl Orjov Tor") //no ranged attack
                     {
                         //RANGE OF SIGHT (anything related to range of sight)
                         this.rangeOfSightCalculator(950, false);

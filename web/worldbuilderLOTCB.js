@@ -424,6 +424,7 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(1661, 2311, "Soldier", false, "Tor Captain", {race: "Freynor", faction: "Freynor", con: 9, speed: 1.15, outfit: ["chainArmour", 10], weapon: ["freydicGreatSword", [25, 14], 0, 35, 2.25], ranged: [false, "arrow", 7, 1800, 1, 6, 0, "stunI", 2.4], patrolStops: 4, patrolLoop: true, route:[[1654, 1507], [1661, 2311], [1864, 2315], [1852, 1499]]}));
                 ArtificialIntelligenceAccess.push(new Unit(2254, 311, "Soldier", false, "Tor Soldier", {race: "Freynor", faction: "Freynor", con: 5, speed: 1.50, outfit: ["chainArmour", 7], weapon: ["freydicSword", [9, 7], 0, 16, 1], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 3, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
                 ArtificialIntelligenceAccess.push(new Unit(2741, 1421, "Soldier", false, "Tor Soldier", {race: "Freynor", faction: "Freynor", con: 4, speed: 1.25, outfit: ["chainArmour", 9], weapon: ["freydicSword", [8, 6], 0, 16, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[1833, 1424], [1848, 2413], [3046, 2407], [2741, 1421]]}));
+                ArtificialIntelligenceAccess.push(new Unit(1430, 2238, "Soldier", false, "Tor Soldier", {race: "Freynor", faction: "Freynor", con: 8, speed: 1.1, outfit: ["chainArmour", 9], weapon: ["freydicSword", [7, 9], 0, 16, 1], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[]}));
                 ArtificialIntelligenceAccess.push(new Unit(1247, 1210, "Soldier", false, "Tor Soldier", {race: "Freynor", faction: "Freynor", con: 6, speed: 1.40, outfit: ["chainArmour", 8], weapon: ["freydicSword", [8, 9], 0, 16, 1], ranged: [false, "arrow", 6, 1950, 1, 4, 0, "none", 1.35], patrolStops: 6, patrolLoop: true, route:[[901, 1195], [969, 527], [1932, 549], [1941, 814], [1932, 549], [969, 527]]}));
 
                 ArtificialIntelligenceAccess.push(new Unit(2360, 2341, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 10, patrolLoop: true, route:[[2284, 2430], [1677, 2425], [1712, 1410], [1405, 1459], [1405, 1637], [1237, 1637], [1405, 1637], [1405, 1459], [1699, 1434], [1692, 2500]]}));
@@ -431,8 +432,8 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(1807, 645, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 7, patrolLoop: true, route:[[1793, 314], [761, 337], [749, 1431], [1663, 1439], [2138, 1272], [2165, 697], [1807, 645]]}));
 
                 //The Jarl's Guards
-                ArtificialIntelligenceAccess.push(new Unit(-95, 645, "Soldier", false, "Tor House Guard", {race: "Freynor", faction: "Freynor", con: 16, speed: 1.55, outfit: ["chainArmour", 12], weapon: ["freydicSword", [11, 9], 0, 17, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: false, route:[[1833, 1424], [1848, 2413], [3046, 2407], [2741, 1421]]}));
-                ArtificialIntelligenceAccess.push(new Unit(-620, 645, "Soldier", false, "Tor House Guard", {race: "Freynor", faction: "Freynor", con: 16, speed: 1.55, outfit: ["chainArmour", 12], weapon: ["freydicSword", [11, 9], 0, 17, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: false, route:[[1833, 1424], [1848, 2413], [3046, 2407], [2741, 1421]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-95, 645, "Soldier", false, "Tor Húskarl", {race: "Freynor", faction: "Freynor", con: 16, speed: 1.55, outfit: ["chainArmour", 12], weapon: ["freydicSword", [11, 9], 0, 17, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], rot: -1/2*Math.PI, patrolStops: 2, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-620, 645, "Soldier", false, "Tor Húskarl", {race: "Freynor", faction: "Freynor", con: 16, speed: 1.55, outfit: ["chainArmour", 12], weapon: ["freydicSword", [11, 9], 0, 17, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], rot: -1/2*Math.PI, patrolStops: 2, patrolLoop: true, route:[[-620, 645], [-620, 645]]}));
 
                 if (uniqueChars.drohforLDS == true)
                 {
@@ -555,7 +556,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-339, 72, "Soldier", false, "Jarl Orjov Tor", {race: "Freynor", faction: "Freynor", con: 40, speed: 0.6, outfit: ["jvostranPlateArmour", 42], weapon: ["freydicGreatSword", [37, 20], 0, 37, 5], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: false, route:[[1654, 1507], [1661, 2311], [1864, 2315], [1852, 1499]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-339, 72, "Soldier", false, "Jarl Orjov Tor", {race: "Freynor", faction: "Freynor", con: 40, speed: 0.6, outfit: ["jvostranPlateArmour", 42], weapon: ["freydicGreatSword", [37, 20], 0, 37, 5], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 2, patrolLoop: true, route:[[-339, 72], [-339, 72]]}));
                     }
                 }
                 if (uniqueChars.laandegLDS == true)
@@ -846,7 +847,14 @@ function buildMaster()
                 scenicList.push(new Scenery("tylunPlant", -348 , 464, 4, "freynor", "theGreatFlowerOfTheJarlOfTeshir"));
                     //The noble player's room
                 scenicList.push(new Scenery("walrusHideRug", -90, 466, 0, 2));
-                scenicList.push(new Scenery("bed", -50, 563, -1/2 * Math.PI, true));
+                if (player.title == "Nobility" && player.faction == "Freynor" || player.title == "Royalty" && player.faction == "Freynor")
+                {
+                    scenicList.push(new Scenery("bed", -50, 563, -1/2 * Math.PI, true));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("bed", -50, 563, -1/2 * Math.PI, false));
+                }
                 if (player.gender == "Female" && player.title == "Nobility")
                 {
                     scenicList.push(new Scenery("loom", -183, 392, 3/4 * Math.PI, true));

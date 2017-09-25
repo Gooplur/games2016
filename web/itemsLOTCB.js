@@ -14284,13 +14284,21 @@ function Item(type, x, y)
             this.thirstBonus = 0;
             this.warmthBonus = 0;
             //Magical Stat Bonuses
-            if (player.eminence >= 1)
+            if (player.getEminence() >= 1)
             {
                 this.eminenceBonus = 1;
                 this.willpowerBonus = 0;
                 this.knowledgeBonus = 0;
                 this.concentrationBonus = 0;
-                this.memoryBonus = 1;
+                this.memoryBonus = 2;
+            }
+            else
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
             }
 
             //ability

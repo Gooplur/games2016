@@ -299,6 +299,10 @@ function cheats()
         {
             player.haeflowerTime += 60;
         }
+        else if (cheatcode.toLowerCase() == "iwill")
+        {
+            player.will = 0;
+        }
         else if (cheatcode.toLowerCase() == "testunits")
         {
             if (testingUnitCenters == true)

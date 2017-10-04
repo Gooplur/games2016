@@ -2684,6 +2684,53 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "lombrisFlesh")
+        {
+            //For All Items
+            if (player.getIntelligence() >= 18)
+            {
+                this.identity = "Slice of Lombris Flesh";
+            }
+            else
+            {
+                if (player.raceName == "Thengan" && player.title == "Vagabond" || player.raceName == "Thengan" && player.title == "Peasant" || player.raceName == "Thengan" && player.title == "Commoner")
+                {
+                    this.identity = "Slice of Bris Flesh";
+                }
+                else if (player.raceName == "Freynor" && player.title == "Vagabond" || player.raceName == "Freynor" && player.title == "Peasant" || player.raceName == "Freynor" && player.title == "Commoner")
+                {
+                    this.identity = "Slice of Lomb Flesh";
+                }
+                else
+                {
+                    this.identity = "Slice of Lombris Flesh";
+                }
+            }
+            this.weight = 1.5;
+            this.size = 11;
+            this.description = "A slimy, gummy and tender substance.";
+            this.intForDes = 18;
+            this.intDescription = "The Thengans call the beasts 'Bris' while the Freynor call them 'Lombs', though the full name is actually Lombris which means 'longest' in Old Thengan.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = -40; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -20; //heals health.
+            this.generation = -20; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fatigueIV";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 18; // at max, buy for 18.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 3); // at max, sell for 18.
+        }
         else if (this.type == "rawThuegTripe")
         {
             //For All Items
@@ -14757,11 +14804,11 @@ function Item(type, x, y)
             //Utility Focused
             if (player.getEndurance() >= 10)
             {
-                this.energyCost = 13;
+                this.energyCost = 11;
             }
             else
             {
-                this.energyCost = 15;
+                this.energyCost = 13;
             }
             this.distance = 23 + (this.range * 7);
             this.range = 5.4;
@@ -15245,10 +15292,10 @@ function Item(type, x, y)
             this.utility = "weapon";
 
             //Utility Focused
-            this.energyCost = 20;
+            this.energyCost = 14;
             this.distance = 50 + (this.range * 7);
             this.range = 6 + 6/7;
-            this.rate = 220;
+            this.rate = 200;
             if (player.getStrength() < 22)
             {
                 this.damage = (15 - (this.damageHandicap * 3)) * (this.leveledDamageMultiple / 25);
@@ -17682,6 +17729,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 79, 227, 10, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 20), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24), 20, 24);
         }
+        else if (this.type == "lombrisFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 865, 234, 19, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.5), 19 * 1.5, 17 * 1.5);
+        }
         else if (this.type == "rawThuegTripe")
         {
             XXX.beginPath();
@@ -19848,6 +19900,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(verse, 79, 227, 10, 12, this.invX - (1/2 * 20), this.invY - (1/2 * 24), 20, 24);
         }
+        else if (this.type == "lombrisFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 865, 234, 19, 17, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 17 * 1.5), 19 * 1.5, 17 * 1.5);
+        }
         else if (this.type == "rawThuegTripe")
         {
             LXX.beginPath();
@@ -21978,6 +22035,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(verse, 79, 227, 10, 12, this.invX - (1/2 * 20), this.invY - (1/2 * 24), 20, 24);
+        }
+        else if (this.type == "lombrisFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 865, 234, 19, 17, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 17 * 1.5), 19 * 1.5, 17 * 1.5);
         }
         else if (this.type == "rawThuegTripe")
         {

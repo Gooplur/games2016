@@ -883,7 +883,7 @@ function Adventurer()
 
             if (this.tireless != true)
             {
-                var changeSleep = (gameTime - this.storeGameTimeForSleep);
+                var changeSleep = (gameTime - this.storeGameTimeForSleep) / (60 * 60);
 
                 if (gameTime - this.storeGameTimeForSleep >= 60) //1 minute logged at a time
                 {
@@ -892,7 +892,10 @@ function Adventurer()
                     console.log("gameTime: " + gameTime);
                     console.log("player.storeGameTimeForSleep: " + this.storeGameTimeForSleep);
                     console.log("sleep: " + this.sleep + " sleepMAX: " + this.sleepMAX);*/
-                    this.sleep -= changeSleep /(60 * 60);
+                    if (changeSleep < 0.5)
+                    {
+                        this.sleep -= changeSleep;
+                    }
                     this.storeGameTimeForSleep = gameTime;
                 }
             }
@@ -905,7 +908,9 @@ function Adventurer()
 
             if (this.sleep > this.totalSleep) //total sleep == sleepMAX extraSleep and AdSleep
             {
+                //console.log("|" + this.sleep + " / " + this.totalSleep);
                 this.sleep = this.totalSleep;
+                //console.log("||" + this.sleep + " / " + this.totalSleep);
             }
 
             //da la (player) efectos negativos por no haber dormido por mucho tiempo.
@@ -17882,7 +17887,7 @@ function Adventurer()
                     if (Inventory[i][0].utility == "food")
                     {
                         //Eating/Drinking
-                        if (this.gameMode == "protagonist")
+                        if (this.gamemode == "protagonist")
                         {
                             this.hunger = Math.min(this.hungerMAX, this.hunger + Inventory[i][0].hunger * 4);
                             this.thirst = Math.min(this.thirstMAX, this.thirst + Inventory[i][0].thirst * 4);

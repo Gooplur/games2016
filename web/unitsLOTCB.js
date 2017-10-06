@@ -53,6 +53,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.alphaSize = 1;
     this.beastEntry = "none";
     this.killNotByPlayer = false;
+    this.killByPlayerTeam = true; //if killed by a player controlled unit.
     //AI and sensing variables
     this.closestDistance; //this is the distance away from this unit that the closest other unit is.
     this.closestUnit; // this is the exact unit that is the closest at the moment.
@@ -95,6 +96,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.flashFrameTime = new Date().getTime();
     //movement specific variables
     this.fleeing = false;
+    this.underground = false;
     this.flying = false;
     this.haste = false;
     this.charger = false; //A charger is a unit that keeps moving even after it passes through the engagement radius.
@@ -359,7 +361,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                 }
 
-                if (!swtchTrgt && ArtificialIntelligenceAccess[i] != this)
+                if (!swtchTrgt && ArtificialIntelligenceAccess[i] != this && !ArtificialIntelligenceAccess[i].underground || !swtchTrgt && ArtificialIntelligenceAccess[i] != this && this.underground)
                 {
                     var storeDTU = this.DTU(ArtificialIntelligenceAccess[i]);
                     if (this.targetDistance > storeDTU)
@@ -402,18 +404,110 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     {
         this.allys = [this.team, "neutral"];
 
+        if (this.team == "player")
+        {
+            if (player.kelPeace)
+            {
+                this.allys.push("Kel");
+            }
+            if (player.thengarPeace)
+            {
+                this.allys.push("Thengar");
+            }
+            if (player.freynorPeace)
+            {
+                this.allys.push("Freynor");
+            }
+            if (player.aldrekPeace)
+            {
+                this.allys.push("Aldrek");
+            }
+            if (player.orgellPeace)
+            {
+                this.allys.push("Orgell");
+            }
+            if (player.vardanPeace)
+            {
+                this.allys.push("Vardan");
+            }
+            if (player.cephritePeace)
+            {
+                this.allys.push("Cephrite");
+            }
+            if (player.nirwadenPeace)
+            {
+                this.allys.push("Nirwaden");
+            }
+            if (player.theBalgurMercenariesPeace)
+            {
+                this.allys.push("theBalgurMercenaries");
+            }
+        }
         if (this.team == "Freynor")
         {
+            if (player.freynorPeace && player.freynorFaction > -50)
+            {
+                this.allys.push("player");
+            }
             this.allys.push("theBalgurMercenaries"); //temporarily so that the guards will not slay the mercs. //booble
             this.allys.push("Vardan"); //temporarily so that the guards will not slay neculai. //booble
         }
         if (this.team == "Vardan")
         {
+            if (player.vardanPeace && player.vardanFaction > -50)
+            {
+                this.allys.push("player");
+            }
             this.allys.push("Freynor"); //temporarily so that neculai will not slay the villagers. //booble
         }
         if (this.team == "Kel")
         {
-
+            if (player.kelPeace && player.kelFaction > -50)
+            {
+                this.allys.push("player");
+            }
+        }
+        if (this.team == "Thengar")
+        {
+            if (player.thengarPeace && player.thengarFaction > -50)
+            {
+                this.allys.push("player");
+            }
+        }
+        if (this.team == "Aldrek")
+        {
+            if (player.aldrekPeace && player.aldrekFaction > -50)
+            {
+                this.allys.push("player");
+            }
+        }
+        if (this.team == "Orgell")
+        {
+            if (player.orgellPeace && player.orgellFaction > -50)
+            {
+                this.allys.push("player");
+            }
+        }
+        if (this.team == "Cephrite")
+        {
+            if (player.cephritePeace && player.cephriteFaction > -50)
+            {
+                this.allys.push("player");
+            }
+        }
+        if (this.team == "Nirwaden")
+        {
+            if (player.nirwadenPeace && player.nirwadenFaction > -50)
+            {
+                this.allys.push("player");
+            }
+        }
+        if (this.team == "theBalgurMercenaries")
+        {
+            if (player.theBalgurMercenariesPeace && player.theBalgurMercenariesFaction > -50)
+            {
+                this.allys.push("player");
+            }
         }
         if (this.team == "wild")
         {
@@ -6639,7 +6733,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed);
         var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed);
 
-        if (!this.isObstructed(nextX, nextY) || this.flying == true)
+        if (!this.isObstructed(nextX, nextY) || this.flying == true || this.underground == true)
         {
             return false;
         }
@@ -7341,7 +7435,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed);
                 var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed);
 
-                if (!this.isObstructed(nextX, nextY) || this.flying == true)
+                if (!this.isObstructed(nextX, nextY) || this.flying == true || this.underground == true)
                 {
                     this.X = nextX;
                     this.Y = nextY;
@@ -7605,7 +7699,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
                 var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
 
-                if (!this.isObstructed( nextX, nextY ) || this.flying == true)
+                if (!this.isObstructed( nextX, nextY ) || this.flying == true || this.underground == true)
                 {
                     this.X = nextX;
                     this.Y = nextY;
@@ -7692,7 +7786,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
                 var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
 
-                if (!this.isObstructed( nextX, nextY ) || this.flying == true)
+                if (!this.isObstructed( nextX, nextY ) || this.flying == true || this.underground == true)
                 {
                     this.X = nextX;
                     this.Y = nextY;
@@ -7981,11 +8075,23 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.target.offended = true;
                         if (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour) > 0))
                         {
+                            if (this.team == "player")
+                            {
+                                this.target.disturbedTime = new Date().getTime();
+                            }
                             this.target.healthShownTime = new Date().getTime();
                         }
                         if (this.target.health <= 0)
                         {
-                            this.target.killNotByPlayer = true;
+                            if (this.team == "player")
+                            {
+                                this.target.killByPlayerTeam = true;
+                                this.target.killNotByPlayer = true;
+                            }
+                            else
+                            {
+                                this.target.killNotByPlayer = true;
+                            }
                         }
                         this.justAttacked = true;
 
@@ -18511,17 +18617,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (!this.attacking)
                 {
-                    this.flying = true;
-                    this.heatResistance = 1000000;
-                    this.magicalResistance = 1000000;
-                    this.armour = 1000000;
+                    this.underground = true;
                     this.resistances = ["blinded", "burning"];
                 }
                 else
                 {
-                    this.heatResistance = 0;
-                    this.magicalResistance = 0;
-                    this.armour = 0;
                     this.resistances = ["blinded"];
                 }
 
@@ -18551,12 +18651,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                     else if (!this.attackBusy)
                     {
-                        this.flying = true;
+                        this.underground = true;
                         this.pointTowardsPlayer();
                     }
                     else
                     {
-                        this.flying = false;
+                        this.underground = false;
                     }
                 }
                 else if (this.target != "none" && typeof(this.target) != "undefined")
@@ -18568,12 +18668,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                     else if (!this.attackBusy)
                     {
-                        this.flying = true;
+                        this.underground = true;
                         this.pointTowards(this.target);
                     }
                     else
                     {
-                        this.flying = false;
+                        this.underground = false;
                     }
                 }
             }
@@ -24053,7 +24153,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 if (this.doOnDeathOnce == true)
                 {
                     //Faction relation decreases
-                    if (this.ultra.faction == "Freynor" && this.killNotByPlayer == false)
+                    if (this.ultra.faction == "Freynor" && this.killNotByPlayer == false || this.ultra.faction == "Freynor" && this.killByPlayerTeam)
                     {
                         player.freynorFaction -= 25;
                         if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
@@ -24061,7 +24161,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.callForNearbyHelpFromType(1850, "Soldier");
                         }
                     }
-                    else if (this.ultra.faction == "Orgell" && this.killNotByPlayer == false)
+                    else if (this.ultra.faction == "Orgell" && this.killNotByPlayer == false || this.ultra.faction == "Orgell" && this.killByPlayerTeam)
                     {
                         player.orgellFaction -= 25;
                         if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
@@ -24069,9 +24169,43 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.callForNearbyHelpFromType(1850, "Soldier");
                         }
                     }
-                    else if (this.ultra.faction == "Vardan" && this.killNotByPlayer == false)
+                    else if (this.ultra.faction == "Vardan" && this.killNotByPlayer == false || this.ultra.faction == "Vardan" && this.killByPlayerTeam)
                     {
                         player.vardanFaction -= 25;
+                        if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
+                        {
+                            this.callForNearbyHelpFromType(1850, "Soldier");
+                        }
+                    }
+                    else if (this.ultra.faction == "Kel" && this.killNotByPlayer == false || this.ultra.faction == "Kel" && this.killByPlayerTeam)
+                    {
+                        player.kelFaction -= 25;
+                        this.callForNearbyHelpFromType(1850, "Soldier");
+                    }
+                    else if (this.ultra.faction == "Thengar" && this.killNotByPlayer == false || this.ultra.faction == "Thengar" && this.killByPlayerTeam)
+                    {
+                        player.thengarFaction -= 25;
+                        if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
+                        {
+                            this.callForNearbyHelpFromType(1850, "Soldier");
+                        }
+                    }
+                    else if (this.ultra.faction == "Aldrek" && this.killNotByPlayer == false || this.ultra.faction == "Aldrek" && this.killByPlayerTeam)
+                    {
+                        player.aldrekFaction -= 25;
+                        if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
+                        {
+                            this.callForNearbyHelpFromType(1850, "Soldier");
+                        }
+                    }
+                    else if (this.ultra.faction == "Cephrite" && this.killNotByPlayer == false || this.ultra.faction == "Cephrite" && this.killByPlayerTeam)
+                    {
+                        player.cephriteFaction -= 25;
+                        this.callForNearbyHelpFromType(1850, "Soldier");
+                    }
+                    else if (this.ultra.faction == "Nirwaden" && this.killNotByPlayer == false || this.ultra.faction == "Nirwaden" && this.killByPlayerTeam)
+                    {
+                        player.nirwadenFaction -= 25;
                         if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
                         {
                             this.callForNearbyHelpFromType(1850, "Soldier");
@@ -24082,17 +24216,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     if (this.ID == "Laandeg the Alchemist")
                     {
                         uniqueChars.laandegLDS = false;
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 6;
                         }
                     }
-                    if (this.ID == "Garld the Crazy Beggar" || this.ID == "Garld, Sage of Gemith")
+                    if (this.ID == "Garld the Crazy Beggar" || this.ID == "Garld, Sage of Gemeth")
                     {
                         uniqueChars.garldLDS = false;
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
-                            if (this.ID == "Garld, Sage of Gemith")
+                            if (this.ID == "Garld, Sage of Gemeth")
                             {
                                 player.freynorFaction -= 17;
                             }
@@ -24106,7 +24240,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     if (this.ID == "Svehn the Smith")
                     {
                         uniqueChars.bobithLDS = false;
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 9;
                         }
@@ -24114,7 +24248,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "Medlia the Merchant")
                     {
                         uniqueChars.medliaLDS = false;
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 12;
                         }
@@ -24122,7 +24256,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "Kedwin")
                     {
                         uniqueChars.kedwinLDS = false;
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 7;
                         }
@@ -24134,7 +24268,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "Hilmund the Innkeeper")
                     {
                         uniqueChars.hilmundLDS = false;
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 15;
                         }
@@ -24142,7 +24276,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "Drohfor")
                     {
                         uniqueChars.drohforLDS = false;
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 2;
                         }
@@ -24150,7 +24284,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "Maggy the Tailor")
                     {
                         uniqueChars.maggyLDS = false;
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 14;
                         }
@@ -24158,7 +24292,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "Odee the Banker")
                     {
                         uniqueChars.odeeLDS = false;
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 11;
                         }
@@ -24166,7 +24300,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "Toggin")
                     {
                         uniqueChars.togginLDS = false;
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 6;
                         }
@@ -24178,7 +24312,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "Fenwik the Smith")
                     {
                         uniqueChars.fenwikLDS = false;
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.kelFaction -= 10;
                         }
@@ -24186,7 +24320,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "Irene")
                     {
                         uniqueChars.ireneLDS = false
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.kelFaction -= 50;
                         }
@@ -24194,7 +24328,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "Roselin the Tailor")
                     {
                         uniqueChars.roselinLDS = false;
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.kelFaction -= 12;
                         }
@@ -24202,7 +24336,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "Chieftan Schuylar")
                     {
                         uniqueChars.schuylarLDS = false;
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.kelFaction -= 100;
                         }
@@ -24714,7 +24848,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.ultra.faction == "hostile")
                     {
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             if (this.ID == "Northern Bandit" || this.ID == "Hetmer The Bandit Chief" || this.ID == "Nelgref's Pet Bandit" || this.ID == "Nelgref the Flayer")
                             {
@@ -24724,7 +24858,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                     else if (player.title != "Royalty" || player.raceName != this.ultra.faction)
                     {
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             this.callForNearbyHelpFromType(2000, "Soldier");
                         }
@@ -24732,9 +24866,58 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     //Faction relation decreases
                     if (this.ultra.faction == "Freynor")
                     {
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 50;
+                        }
+                    }
+                    else if (this.ultra.faction == "Kel")
+                    {
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.kelFaction -= 50;
+                        }
+                    }
+                    else if (this.ultra.faction == "Thengar")
+                    {
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.thengarFaction -= 50;
+                        }
+                    }
+                    else if (this.ultra.faction == "Aldrek")
+                    {
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.aldrekFaction -= 50;
+                        }
+                    }
+                    else if (this.ultra.faction == "Orgell")
+                    {
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.orgellFaction -= 50;
+                        }
+                    }
+                    else if (this.ultra.faction == "Vardan")
+                    {
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.vardanFaction -= 50;
+                        }
+                    }
+                    else if (this.ultra.faction == "Cephrite")
+                    {
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.cephriteFaction -= 50;
+                        }
+                    }
+                    else if (this.ultra.faction == "Nirwaden")
+                    {
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 50;
                         }
                     }
                     //Unique Characters Permanent Death
@@ -24745,7 +24928,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "Mercenary Captain Kronheime")
                     {
                         uniqueChars.kronheimeLDS = false;
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.theBalgurMercenariesFaction -= 75;
                         }
@@ -24753,7 +24936,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "Tor Commissioner Stendor")
                     {
                         uniqueChars.stendorLDS = false;
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 80;
                         }
@@ -24761,7 +24944,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "Jarl Orjov Tor")
                     {
                         uniqueChars.OrjovTorLDS = false;
-                        if (this.killNotByPlayer == false)
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             if (player.title == "Royalty" && player.faction == "Freynor")
                             {
@@ -24797,7 +24980,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.ID == "Balgur Mercenary")
                         {
                             quests.theBalgurMercenariesMercsKilled += 1;
-                            if (this.killNotByPlayer == false)
+                            if (this.killNotByPlayer == false || this.killByPlayerTeam)
                             {
                                 player.theBalgurMercenariesFaction -= 50;
                             }
@@ -24962,7 +25145,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
         if (this.alive == true || new Date().getTime() - this.timeSinceDead < 1000)
         {
-            this.showHealthWhenHurt();
+            if (!this.underground)
+            {
+                this.showHealthWhenHurt();
+            }
         }
         else if (new Date().getTime() - this.timeSinceDead > 90000)
         {

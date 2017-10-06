@@ -847,7 +847,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
                 {
-                    if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius)
+                    if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius && !ArtificialIntelligenceAccess[j].underground)
                     {
                         if (longevity == false)
                         {

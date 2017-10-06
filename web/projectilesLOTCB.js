@@ -135,7 +135,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
             {
                 var distanceFromUnit = Math.sqrt((this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X)+(this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y));
 
-                if (distanceFromUnit < ArtificialIntelligenceAccess[i].sizeRadius)
+                if (distanceFromUnit < ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground)
                 {
                     //bullets do half damage against large enough non-human creatures. All others damage always remains the same.
                     if (ArtificialIntelligenceAccess[i].team != this.team)

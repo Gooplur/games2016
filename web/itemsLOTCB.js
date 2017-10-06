@@ -2693,7 +2693,7 @@ function Item(type, x, y)
             }
             else
             {
-                if (player.raceName == "Thengan" && player.title == "Vagabond" || player.raceName == "Thengan" && player.title == "Peasant" || player.raceName == "Thengan" && player.title == "Commoner")
+                if (player.raceName == "Thengar" && player.title == "Vagabond" || player.raceName == "Thengar" && player.title == "Peasant" || player.raceName == "Thengar" && player.title == "Commoner")
                 {
                     this.identity = "Slice of Bris Flesh";
                 }

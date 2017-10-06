@@ -167,18 +167,20 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 {
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
-                        checkLockOn = Math.sqrt((this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X) + (this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y));
-                        if (closestLockOnDist == "none")
+                        if (!ArtificialIntelligenceAccess[i].underground)
                         {
-                            closestLockOnDist = checkLockOn;
-                            closestLockOn = ArtificialIntelligenceAccess[i];
+                            checkLockOn = Math.sqrt((this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X) + (this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y));
+                            if (closestLockOnDist == "none")
+                            {
+                                closestLockOnDist = checkLockOn;
+                                closestLockOn = ArtificialIntelligenceAccess[i];
+                            }
+                            else if (checkLockOn < closestLockOnDist)
+                            {
+                                closestLockOnDist = checkLockOn;
+                                closestLockOn = ArtificialIntelligenceAccess[i];
+                            }
                         }
-                        else if (checkLockOn < closestLockOnDist)
-                        {
-                            closestLockOnDist = checkLockOn;
-                            closestLockOn = ArtificialIntelligenceAccess[i];
-                        }
-
                     }
 
                     //console.log(closestLockOn);
@@ -256,12 +258,12 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     var claimHitz = 0;
                     for (var j = 0; j < otherClaims.length; j++)
                     {
-                        if (ArtificialIntelligenceAccess[i] !== otherClaims[j])
+                        if (ArtificialIntelligenceAccess[i] !== otherClaims[j] && !ArtificialIntelligenceAccess[i].underground)
                         {
                             claimHitz += 1;
                         }
                     }
-                    if (claimHitz >= otherClaims.length)
+                    if (claimHitz >= otherClaims.length && !ArtificialIntelligenceAccess[i].underground)
                     {
                         checkClosestClaimDist = Math.sqrt((this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X) + (this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y));
                         if (range == true || checkClosestClaimDist <= range)
@@ -401,7 +403,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 {
                     var distanceToEnemy = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y));
 
-                    if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius)
+                    if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && !ArtificialIntelligenceAccess[i].flying || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && ArtificialIntelligenceAccess[i].flying && whatDoIDo != "earthDamage" && whatDoIDo != "magicalEarthDamage" || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && whatDoIDo == "earthDamage" && ArtificialIntelligenceAccess[i].underground || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && whatDoIDo == "magicalEarthDamage" && ArtificialIntelligenceAccess[i].underground)
                     {
                         if (whatDoIDo == "physicalDamage")
                         {
@@ -409,7 +411,19 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                             ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                         }
+                        if (whatDoIDo == "earthDamage" && !ArtificialIntelligenceAccess[i].flying)
+                        {
+                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                        }
                         else if (whatDoIDo == "magicalDamage")
+                        {
+                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance));
+                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                        }
+                        else if (whatDoIDo == "magicalEarthDamage" && !ArtificialIntelligenceAccess[i].flying)
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance));
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
@@ -579,7 +593,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     {
                         var distanceToEnemy = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
 
-                        if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius)
+                        if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground)
                         {
                             if (kind == "fire")
                             {
@@ -684,7 +698,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                         {
                             var distanceToEnemy = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
 
-                            if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius)
+                            if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground)
                             {
                                 if (kind == "fire")
                                 {

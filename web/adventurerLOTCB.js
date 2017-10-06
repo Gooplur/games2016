@@ -401,7 +401,17 @@ function Adventurer()
     this.superStealthBonus = 0; //this is the bonus to superstealth.
     this.superStealthCooldownReduction = 0; //this is the reduction of superstealth's cooldown.
 
-
+    //faction variables
+    this.factionToggle = false;
+    this.kelPeace = true;
+    this.thengarPeace = true;
+    this.freynorPeace = true;
+    this.aldrekPeace = true;
+    this.orgellPeace = true;
+    this.vardanPeace = true;
+    this.cephritePeace = true;
+    this.nirwadenPeace = true;
+    this.theBalgurMercenariesPeace = true;
 
     //utility or extra variables
     this.AdAbility = []; //this is a list of all active abilities held by armours and equipped outfits
@@ -10426,7 +10436,7 @@ function Adventurer()
                 {
                     var dfu = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.bubbleOfDamageX) * (ArtificialIntelligenceAccess[i].X - this.bubbleOfDamageX) + (ArtificialIntelligenceAccess[i].Y - this.bubbleOfDamageY) * (ArtificialIntelligenceAccess[i].Y - this.bubbleOfDamageY)) - ArtificialIntelligenceAccess[i].sizeRadius; //This is the distance from the center of the players attack/damaging bubble to the AI Unit.
 
-                    if (dfu <= this.weapon.range * 7 && this.finalAttackStage == true)
+                    if (dfu <= this.weapon.range * 7 && this.finalAttackStage == true && !ArtificialIntelligenceAccess[i].underground)
                     {
                         if (this.powerAttack == false)
                         {
@@ -10644,7 +10654,7 @@ function Adventurer()
                 var x1 = focusUnit.X; //the focus unit's X position.
                 var y1 = focusUnit.Y; //the focus unit's Y position.
                 var d = Math.sqrt((x - x1) * (x - x1) + (y - y1) * (y - y1)); //This is the distance between this unit and the focus unit.
-                if (d < this.mySize + focusUnit.sizeRadius && focusUnit.alive == true && focusUnit.flying != true) // if the total distance between this unit and the focus unit is less than the size of the two radiuses then it returns true to the movement function which calls it.
+                if (d < this.mySize + focusUnit.sizeRadius && focusUnit.alive == true && focusUnit.flying != true && focusUnit.underground != true) // if the total distance between this unit and the focus unit is less than the size of the two radiuses then it returns true to the movement function which calls it.
                 {
                     return true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
                 }
@@ -10970,7 +10980,7 @@ function Adventurer()
     this.buildUIBar = function ()
     {
         XXX.beginPath();
-        if (mouseY < 526 && lowBar != "skills" && lowBar != "shop" && lowBar != "bank" && lowBar != "crafting" && lowBar != "spellbook" && lowBar != "beastJournal" && lowBar != "questLog" && lowBar != "reading")
+        if (mouseY < 526 && lowBar != "skills" && lowBar != "shop" && lowBar != "bank" && lowBar != "crafting" && lowBar != "spellbook" && lowBar != "beastJournal" && lowBar != "questLog" && lowBar != "reading" && lowBar != "factionMenu")
         {
             XXX.fillStyle = "rgba(211, 211, 211, 0.1)";
             XXX.strokeStyle = "rgba(211, 211, 211, 0.1)"
@@ -10987,7 +10997,7 @@ function Adventurer()
     //UI Buttons
     this.uiButton = function ()
     {
-        if (mouseY > 526 || lowBar == "skills" || lowBar == "shop" || lowBar == "bank" || lowBar == "crafting" || lowBar == "spellbook" || lowBar == "beastJournal" || lowBar == "questLog" || lowBar == "reading")
+        if (mouseY > 526 || lowBar == "skills" || lowBar == "shop" || lowBar == "bank" || lowBar == "crafting" || lowBar == "spellbook" || lowBar == "beastJournal" || lowBar == "questLog" || lowBar == "reading" || lowBar == "factionMenu")
         {
             //inventory button
             XXX.beginPath();
@@ -11049,15 +11059,25 @@ function Adventurer()
             XXX.stroke();
             XXX.drawImage(horde1, 364, 53, 119, 92, 258, 528, 20, 20);
 
-            //saving menu button
+            //Faction Menu menu button
+            XXX.beginPath();
+            XXX.strokeStyle = "black";
+            XXX.lineWidth = 1;
+            XXX.fillStyle = "darkgrey";
+            XXX.rect(278, 527, 20, 22);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(dolls, 132, 86, 24, 14, 278, 532, 20, 11.6);
+
+            //Saving menu button
             XXX.beginPath();
             XXX.strokeStyle = "black";
             XXX.lineWidth = 1;
             XXX.fillStyle = "white";
-            XXX.rect(278, 527, 20, 22);
+            XXX.rect(299, 527, 20, 22);
             XXX.fill();
             XXX.stroke();
-            XXX.drawImage(polyPNG, 663, 1, 31, 24, 277, 530, 21, 15.6);
+            XXX.drawImage(polyPNG, 663, 1, 31, 24, 299, 530, 21, 15.6);
         }
     };
 
@@ -11146,7 +11166,7 @@ function Adventurer()
             gameState = "active";
         }
 
-        //When the save button is clicked the lowbar shows the player the four saving slots to choose from.
+        //When the questLog button is clicked the lowbar shows the player the quests they have yet to complete and those they have already completed.
         if (mouseX > 257 && mouseX < 278 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "questLog")
         {
             clickReleased = false;
@@ -11160,8 +11180,23 @@ function Adventurer()
             gameState = "active";
         }
 
-        //When the save button is clicked the lowbar shows the player the four saving slots to choose from.
-        if (mouseX > 278 && mouseX < 299 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "save")
+        //When the factionMenu button is clicked the lowbar shows the player the different factions relations with them.
+        if (mouseX > 278 && mouseX < 299 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "factionMenu")
+        {
+            clickReleased = false;
+            lowBar = "factionMenu";
+            gameState = "paused";
+
+        }
+        else if (mouseX > 278 && mouseX < 299 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "factionMenu")
+        {
+            clickReleased = false;
+            lowBar = "information";
+            gameState = "active";
+        }
+
+        //When the save button is clicked the lowbar shows the player the eight saving slots to choose from.
+        if (mouseX > 299 && mouseX < 320 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "save")
         {
             clickReleased = false;
             lowBar = "save";
@@ -11170,7 +11205,7 @@ function Adventurer()
                 gameState = "active";
             }
         }
-        else if (mouseX > 278 && mouseX < 299 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "save")
+        else if (mouseX > 299 && mouseX < 320 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "save")
         {
             clickReleased = false;
             lowBar = "information";
@@ -11217,11 +11252,17 @@ function Adventurer()
             XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
             XXX.fillRect(257, 527, 20, 23);
         }
-        else if (lowBar == "save")
+        else if (lowBar == "factionMenu")
         {
             XXX.beginPath();
             XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
             XXX.fillRect(278, 527, 20, 23);
+        }
+        else if (lowBar == "save")
+        {
+            XXX.beginPath();
+            XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
+            XXX.fillRect(299, 527, 20, 23);
         }
     };
 
@@ -13099,6 +13140,604 @@ function Adventurer()
             this.beastBarScrolling();
             this.showBeastBar();
             this.showBeastStats();
+        }
+    };
+
+    //FACTION MENU
+    this.displayFactionMenu = function()
+    {
+        if (lowBar == "factionMenu")
+        {
+            //MAIN BACKGROUND
+            XXX.beginPath();
+            XXX.fillStyle = "lightGrey";
+            XXX.strokeStyle = "black";
+            XXX.lineWidth = 1;
+            XXX.rect(1, 1, 1398, 526);
+            XXX.fill();
+            XXX.stroke();
+
+            //LOWER LEFT BOX
+            if (mouseX > 2 && mouseX < 2 + 148 && mouseY > 529 && mouseY < 529 + 20 && !this.factionToggle)
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "gold";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 3;
+                XXX.rect(2, 529, 148, 20);
+                XXX.fill();
+                XXX.stroke();
+
+                //the text part
+                XXX.font = "bold 14px Book Antiqua";
+                XXX.fillStyle = "black";
+                XXX.textAlign = "center";
+                XXX.fillText("Major Factions", 75, 543);
+
+                if (clicked)
+                {
+                    clicked = false;
+                    this.factionToggle = true;
+                }
+            }
+            else if (!this.factionToggle)
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "lightGrey";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 3;
+                XXX.rect(2, 529, 148, 20);
+                XXX.fill();
+                XXX.stroke();
+
+                //the text part
+                XXX.font = "bold 14px Book Antiqua";
+                XXX.fillStyle = "black";
+                XXX.textAlign = "center";
+                XXX.fillText("Major Factions", 75, 543);
+            }
+            else if (mouseX > 2 && mouseX < 2 + 148 && mouseY > 529 && mouseY < 529 + 20 && this.factionToggle)
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "gold";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 3;
+                XXX.rect(2, 529, 148, 20);
+                XXX.fill();
+                XXX.stroke();
+
+                //the text part
+                XXX.font = "bold 14px Book Antiqua";
+                XXX.fillStyle = "black";
+                XXX.textAlign = "center";
+                XXX.fillText("Minor Factions", 75, 543);
+
+                if (clicked)
+                {
+                    clicked = false;
+                    this.factionToggle = false;
+                }
+            }
+            else if (this.factionToggle)
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "lightGrey";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 3;
+                XXX.rect(2, 529, 148, 20);
+                XXX.fill();
+                XXX.stroke();
+
+                //the text part
+                XXX.font = "bold 14px Book Antiqua";
+                XXX.fillStyle = "black";
+                XXX.textAlign = "center";
+                XXX.fillText("Minor Factions", 75, 543);
+            }
+
+            this.drawFactionRelations = function()
+            {
+                if (!this.factionToggle) //major factions
+                {
+                    //KEL
+                        //box
+                    if (this.kelPeace)
+                    {
+                        XXX.beginPath();
+                        if (this.kelFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "lightGreen";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50, 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    else
+                    {
+                        XXX.beginPath();
+                        if (this.kelFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "red";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50, 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                        //faction name
+                    XXX.font = "bold 20px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Kel: " + this.kelFaction, 700, 72);
+                        //clickability
+                    if (mouseX > 425 && mouseX < 975 && mouseY > 50 && mouseY < 80 && clicked)
+                    {
+                        clicked = false;
+                        if (this.kelPeace)
+                        {
+                            this.kelPeace = false;
+                        }
+                        else
+                        {
+                            this.kelPeace = true;
+                        }
+                    }
+
+                    //THENGAR
+                        //box
+                    if (this.thengarPeace)
+                    {
+                        XXX.beginPath();
+                        if (this.thengarFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "lightGreen";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + 55, 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    else
+                    {
+                        XXX.beginPath();
+                        if (this.thengarFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "red";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + 55, 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                        //faction name
+                    XXX.font = "bold 20px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Thengar: " + this.thengarFaction, 700, 72 + 55);
+                        //clickability
+                    if (mouseX > 425 && mouseX < 975 && mouseY > 50 + 55 && mouseY < 80 + 55 && clicked)
+                    {
+                        clicked = false;
+                        if (this.thengarPeace)
+                        {
+                            this.thengarPeace = false;
+                        }
+                        else
+                        {
+                            this.thengarPeace = true;
+                        }
+                    }
+
+                    //FREYNOR
+                        //box
+                    if (this.freynorPeace)
+                    {
+                        XXX.beginPath();
+                        if (this.freynorFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "lightGreen";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 2), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    else
+                    {
+                        XXX.beginPath();
+                        if (this.freynorFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "red";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 2), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    //faction name
+                    XXX.font = "bold 20px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Freynor: " + this.freynorFaction, 700, 72 + (55 * 2));
+                    //clickability
+                    if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 2) && mouseY < 80 + (55 * 2) && clicked)
+                    {
+                        clicked = false;
+                        if (this.freynorPeace)
+                        {
+                            this.freynorPeace = false;
+                        }
+                        else
+                        {
+                            this.freynorPeace = true;
+                        }
+                    }
+
+                    //ALDREK
+                        //box
+                    if (this.aldrekPeace)
+                    {
+                        XXX.beginPath();
+                        if (this.aldrekFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "lightGreen";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 3), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    else
+                    {
+                        XXX.beginPath();
+                        if (this.aldrekFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "red";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 3), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                        //faction name
+                    XXX.font = "bold 20px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Aldrek: " + this.aldrekFaction, 700, 72 + (55 * 3));
+                        //clickability
+                    if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 3) && mouseY < 80 + (55 * 3) && clicked)
+                    {
+                        clicked = false;
+                        if (this.aldrekPeace)
+                        {
+                            this.aldrekPeace = false;
+                        }
+                        else
+                        {
+                            this.aldrekPeace = true;
+                        }
+                    }
+
+                    //ORGELL
+                    //box
+                    if (this.orgellPeace)
+                    {
+                        XXX.beginPath();
+                        if (this.orgellFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "lightGreen";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 4), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    else
+                    {
+                        XXX.beginPath();
+                        if (this.orgellFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "red";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 4), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    //faction name
+                    XXX.font = "bold 20px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Orgell: " + this.orgellFaction, 700, 72 + (55 * 4));
+                    //clickability
+                    if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 4) && mouseY < 80 + (55 * 4) && clicked)
+                    {
+                        clicked = false;
+                        if (this.orgellPeace)
+                        {
+                            this.orgellPeace = false;
+                        }
+                        else
+                        {
+                            this.orgellPeace = true;
+                        }
+                    }
+
+                    //VARDAN
+                        //box
+                    if (this.vardanPeace)
+                    {
+                        XXX.beginPath();
+                        if (this.vardanFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "lightGreen";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 5), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    else
+                    {
+                        XXX.beginPath();
+                        if (this.vardanFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "red";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 5), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                        //faction name
+                    XXX.font = "bold 20px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Vardan: " + this.vardanFaction, 700, 72 + (55 * 5));
+                        //clickability
+                    if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 5) && mouseY < 80 + (55 * 5) && clicked)
+                    {
+                        clicked = false;
+                        if (this.vardanPeace)
+                        {
+                            this.vardanPeace = false;
+                        }
+                        else
+                        {
+                            this.vardanPeace = true;
+                        }
+                    }
+
+                    //CEPHRITE
+                        //box
+                    if (this.cephritePeace)
+                    {
+                        XXX.beginPath();
+                        if (this.cephriteFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "lightGreen";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 6), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    else
+                    {
+                        XXX.beginPath();
+                        if (this.cephriteFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "red";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 6), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                        //faction name
+                    XXX.font = "bold 20px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Cephrite: " + this.cephriteFaction, 700, 72 + (55 * 6));
+                        //clickability
+                    if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 6) && mouseY < 80 + (55 * 6) && clicked)
+                    {
+                        clicked = false;
+                        if (this.cephritePeace)
+                        {
+                            this.cephritePeace = false;
+                        }
+                        else
+                        {
+                            this.cephritePeace = true;
+                        }
+                    }
+
+                    //NIRWADEN
+                    //box
+                    if (this.nirwadenPeace)
+                    {
+                        XXX.beginPath();
+                        if (this.nirwadenFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "lightGreen";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 7), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    else
+                    {
+                        XXX.beginPath();
+                        if (this.nirwadenFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "red";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 7), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    //faction name
+                    XXX.font = "bold 20px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Nirwaden: " + this.nirwadenFaction, 700, 72 + (55 * 7));
+                    //clickability
+                    if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 7) && mouseY < 80 + (55 * 7) && clicked)
+                    {
+                        clicked = false;
+                        if (this.nirwadenPeace)
+                        {
+                            this.nirwadenPeace = false;
+                        }
+                        else
+                        {
+                            this.nirwadenPeace = true;
+                        }
+                    }
+                }
+                else //minor factions
+                {
+                    //THE BALGUR MERCENARIES
+                    //box
+                    if (this.theBalgurMercenariesPeace)
+                    {
+                        XXX.beginPath();
+                        if (this.theBalgurMercenariesFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "lightGreen";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50+ (55 * 0), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    else
+                    {
+                        XXX.beginPath();
+                        if (this.theBalgurMercenariesFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "red";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 0), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    //faction name
+                    XXX.font = "bold 20px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center";
+                    XXX.fillText("The Balgur Mercenaries: " + this.theBalgurMercenariesFaction, 700, 72 + (55 * 0));
+                    //clickability
+                    if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 0) && mouseY < 80 + (55 * 0) && clicked)
+                    {
+                        clicked = false;
+                        if (this.theBalgurMercenariesPeace)
+                        {
+                            this.theBalgurMercenariesPeace = false;
+                        }
+                        else
+                        {
+                            this.theBalgurMercenariesPeace = true;
+                        }
+                    }
+                }
+            };
+            this.drawFactionRelations();
         }
     };
 
@@ -19059,6 +19698,9 @@ function Adventurer()
         //Quest Log
         this.displayQuestLog(); //#QuestLog
 
+        //Faction Menu
+        this.displayFactionMenu(); //#FactionMenu
+
         //Skills
         this.displayCharacterInfo(); //#Skills
 
@@ -19069,7 +19711,7 @@ function Adventurer()
         this.displaySaves(); //#Saves
 
         //Inventory
-        if (lowBar != "beastJournal")
+        if (lowBar != "beastJournal" && lowBar != "factionMenu")
         {
             this.inventoryScrolling(); //#Inventory
         }

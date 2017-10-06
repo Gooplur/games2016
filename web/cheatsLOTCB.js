@@ -351,7 +351,7 @@ function cheats()
             }
             else if (crPrompt == "sleep")
             {
-                alert("Sleep is a stat that decreases over time and must be replenished by sleeping, and if it isn't then the player character will suffer negative effects from sleep deprivation. Your sleep stat is so -- Sleep: " + (Math.round((player.sleep * 100)) / 100) + " / " + "Full Sleep: " + player.sleepMAX);
+                alert("Sleep is a stat that decreases over time and must be replenished by sleeping, and if it isn't then the player character will suffer negative effects from sleep deprivation. Your sleep stat is so -- Sleep: " + (Math.round((player.sleep * 100)) / 100) + " / " + "Full Sleep: " + player.totalSleep);
             }
             else if (crPrompt == "tutorial")
             {

@@ -44,7 +44,8 @@ function sleep(safe)
                 //Give the player rest -- if you sleep for a reasonable amount of time your get more rest
                 if (dOS > 10)
                 {
-                    player.sleep = player.sleepMAX;
+                    //player.sleep = player.totalSleep;
+                    player.sleep += 1000000000;
                 }
                 else
                 {

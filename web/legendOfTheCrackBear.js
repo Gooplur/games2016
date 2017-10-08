@@ -3,6 +3,7 @@
  */
 
 //TODO LIST
+//todo add the keepSpeed variable in place of speed throughout the Unit Module (where it makes sense to do so).
 //todo add a system that shows the player the names of each region that they enter upon entering it.
 //todo add Maps W1 (partially plains/mostly rock lands), W2 (rock lands), W3 (rock lands), W3S1 (rock lands), W4S1 (rocklands, mudplains, plains, forest)(Lethik - a medium sized village on the fronteir of Thengaria)
 //todo add Barrier class - it is invisible and deletes stray projectiles (or makes them back into their item form) it should also prevent player and unit movement.
@@ -718,6 +719,10 @@ function legendaryPrerequisites()
     var loadGameIMG = new Image();
     loadGameIMG.src = ("images/wolfPack.png");
     window.loadGameIMG = loadGameIMG;
+
+    var etnaDistortion = new Image();
+    etnaDistortion.src = ("images/etnaDistortion.png");
+    window.etnaDistortion = etnaDistortion;
 
     var farmground = new Image();
     farmground.src = ("images/farmingland.png");

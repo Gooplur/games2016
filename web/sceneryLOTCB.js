@@ -42,6 +42,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     //Tree Variables
     this.treePhase = 0;
     this.treeHealth = 120;
+    //web variables
+    this.webbed = [];
     //Rock variables
     this.rockLoad = [];
     //Destroyable Variables
@@ -50,6 +52,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.eggHatchTimer = 0;
     //Plant Variables
     this.phase = 0;
+    this.nectarNum = 0;
+    this.nectarFlag = false;
     //light source variables
     this.lightGetTime = new Date().getTime();
     this.lightTime = 0;
@@ -61,6 +65,15 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.minionsMAX = 3; //total amount of soldiers the hive can have.
     this.summonRate = 32; //how long in seconds it takes to summon a new minion.
     this.summonTime = new Date().getTime();
+
+    this.nectar = function(num)
+    {
+        if (this.nectarFlag == false)
+        {
+            this.nectarFlag = true;
+            this.nectarNum = num;
+        }
+    };
 
     this.minionCount = function()
     {
@@ -124,7 +137,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         var nearPlants = [];
         var checkedAlready = [];
         var nearestDistance = false;
-        var closest = false;
+        var closest = -1;
         var skip = false;
         var dist = false;
 
@@ -187,7 +200,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     }
                 }
             }
-            if (this.closest != false)
+            if (closest != -1)
             {
                 nearPlants.push(scenicList[closest]);
                 checkedAlready.push(closest);
@@ -375,6 +388,40 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 17;
 
+        }
+        else if (this.type == "web")
+        {
+            //TRAITS
+            this.solid = false;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(nognog, 739, 351, 70, 62, -(1/2 * 70 * 1.6 * longevity), -(1/2 * 62 * 1.6 * longevity), 70 * 1.6 * longevity, 62 * 1.6 * longevity);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 45 * longevity;
+
+            //stick player and units in the web then store the data for spiders to access.
+            this.webbed = [];
+            if (this.playerer <= this.radius)
+            {
+                player.webbedNum = 3;
+                player.webbedTime = new Date().getTime();;
+                this.webbed.push(player);
+            }
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                var unitDist = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y));
+                if (unitDist <= this.radius)
+                {
+                    ArtificialIntelligenceAccess[i].webbedNum = 3;
+                    ArtificialIntelligenceAccess[i].webbedTime = new Date().getTime();
+                    this.webbed.push(ArtificialIntelligenceAccess[i]);
+                }
+            }
         }
         else if (this.type == "mofuNest")
         {
@@ -937,6 +984,63 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 this.activate = false;
                 worldItems.push([new Item("mofuEgg", this.X, this.Y), 1]);
+
+                for (var i = 0; i < scenicList.length; i++)
+                {
+                    if (scenicList[i] === this)
+                    {
+                        scenicList.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+        }
+        else if (this.type == "etnaEggSack")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 75;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(nognog, 834, 374, 10, 10, -(1/2 * 10 * 3.7), -(1/2 * 10 * 3.7), 10 * 3.7, 10 * 3.7);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 26;
+
+            //HATCHING
+            this.eggHatchTimer += 1 * (TTD / 16.75);
+            if (this.eggHatchTimer >= 12250)
+            {
+                this.eggHatchTimer = -1000000;
+                //spawn 8 baby etnas
+                ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Etna", "baby", "Generic Etna"));
+                ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Etna", "baby", "Generic Etna"));
+                ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Etna", "baby", "Generic Etna"));
+                ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Etna", "baby", "Generic Etna"));
+                ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Etna", "baby", "Generic Etna"));
+                ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Etna", "baby", "Generic Etna"));
+                ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Etna", "baby", "Generic Etna"));
+                ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Etna", "baby", "Generic Etna"));
+
+                for (var i = 0; i < scenicList.length; i++)
+                {
+                    if (scenicList[i] === this)
+                    {
+                        scenicList.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                worldItems.push([new Item("etnaEggSack", this.X, this.Y), 1]);
 
                 for (var i = 0; i < scenicList.length; i++)
                 {
@@ -2267,6 +2371,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             //TRAITS
             this.variety = "plant";
+            this.nectar(4);
             this.solid = false;
             this.interactionRange = 100;
 
@@ -2921,6 +3026,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             //TRAITS
             this.variety = "plant";
+            this.nectar(1);
             this.solid = false;
             this.interactionRange = 60;
 
@@ -2995,6 +3101,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.variety = "plant";
             this.solid = false;
             this.interactionRange = 50 * this.owned;
+            this.nectar(50);
 
             //DRAWSELF
             if (this.phase == 0)
@@ -3098,6 +3205,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             //TRAITS
             this.variety = "plant";
+            this.nectar(3);
             this.solid = true;
             this.interactionRange = 95;
 
@@ -3150,6 +3258,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             //TRAITS
             this.variety = "plant";
+            this.nectar(2);
             this.solid = false;
             this.interactionRange = 80;
 
@@ -3257,6 +3366,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             //TRAITS
             this.variety = "plant";
+            this.nectar(10);
             this.solid = false;
             this.interactionRange = 50;
 
@@ -3473,6 +3583,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             //TRAITS
             this.variety = "plant";
+            this.nectar(3);
             this.solid = false;
             this.interactionRange = 75;
 
@@ -3508,6 +3619,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else if (this.phase == "picked")
             {
+                this.nectar = 0;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
@@ -3620,6 +3732,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             //TRAITS
             this.variety = "plant";
+            this.nectar(1);
             this.solid = false;
             this.interactionRange = 100;
 
@@ -3837,6 +3950,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             //TRAITS
             this.variety = "plant";
+            this.nectar(1);
             this.interactionRange = 50;
             this.solid = false;
 
@@ -3941,6 +4055,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             //TRAITS
             this.variety = "plant";
+            this.nectar(3);
             this.solid = false;
             this.interactionRange = 90;
 
@@ -4045,6 +4160,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             //TRAITS
             this.variety = "plant";
+            this.nectar(1);
             this.solid = true;
             this.interactionRange = 80;
 
@@ -4131,6 +4247,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             //TRAITS
             this.variety = "plant";
+            this.nectar(7);
             this.solid = true;
             this.interactionRange = 95;
 
@@ -4183,6 +4300,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             //TRAITS
             this.variety = "plant";
+            this.nectar(1);
             this.solid = false;
             this.interactionRange = 90;
 
@@ -4287,6 +4405,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             //TRAITS
             this.variety = "plant";
+            this.nectar(5);
             this.solid = false;
             this.interactionRange = 85;
 

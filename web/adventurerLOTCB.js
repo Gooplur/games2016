@@ -400,6 +400,11 @@ function Adventurer()
     this.superStealthCooldownKeeper = new Date().getTime();
     this.superStealthBonus = 0; //this is the bonus to superstealth.
     this.superStealthCooldownReduction = 0; //this is the reduction of superstealth's cooldown.
+    this.webbedNum = 0;
+    this.webbedTime = 0;
+    this.webbed = true;
+    this.etnaVenom = false;
+    this.etnaVenTime = 0;
 
     //faction variables
     this.factionToggle = false;
@@ -502,6 +507,19 @@ function Adventurer()
             }
         }
 
+        //web
+        this.onWeb = function()
+        {
+            if (this.webbed)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                //XXX.globalAlpha = 0.9;
+                XXX.drawImage(nognog, 739, 351, 70, 62, - 1/2 * ((70 * 1.2) / 23 * this.mySize), - 1/2 * ((62 * 1.2) / 23 * this.mySize), (70 * 1.2) / 23 * this.mySize, (62 * 1.2) / 23 * this.mySize);
+                XXX.restore();
+            }
+        }
+        this.onWeb();
         //electricity on the highest layer possible;
         this.onElectric = function()
         {
@@ -1672,14 +1690,14 @@ function Adventurer()
                 this.stunned = false;
             }
 
-            if (this.hinderance == true || this.stunned == true) //If the player is carrying too much then they are slowed down depending on how much above the maximum they are carrying.
+            if (this.hinderance == true || this.stunned == true || this.webbed) //If the player is carrying too much then they are slowed down depending on how much above the maximum they are carrying.
             {
                 //slowness for using armour that is beyond your toughness level.
                 if (this.unskilledUse == true)
                 {
                     this.freeze = Math.max(this.freeze, 22);
                 }
-                else if (this.stunnedIII == true)
+                else if (this.stunnedIII == true || this.webbed)
                 {
                     this.freeze = Math.max(this.freeze, 21);
                 }
@@ -1866,6 +1884,24 @@ function Adventurer()
                 this.stunnedI = false;
                 this.stunnedII = false;
                 this.stunnedIII = false;
+            }
+        };
+
+        this.webbedTimer = function()
+        {
+            //Web Effect
+            if (this.webbedNum > 0)
+            {
+                if (new Date().getTime() < this.webbedTime + 1000)
+                {
+                    this.webbedTime = new Date().getTime();
+                    this.webbedNum -= 1;
+                }
+                this.webbed = true;
+            }
+            else
+            {
+                this.webbed = false;
             }
         };
 
@@ -2493,6 +2529,21 @@ function Adventurer()
                 }
             }
 
+            //Etna Venom
+            if (new Date().getTime() - this.etnaVenTime < 17000)
+            {
+                this.etnaVenom = true;
+                this.timeSinceBadFoodEaten = new Date().getTime();
+                this.health -= 0.077;
+                this.stunnedIII = true;
+                this.stunnedTime = 2;
+                this.energilTime = 20;
+                this.fatigueIII = true;
+            }
+            else
+            {
+                this.etnaVenom = false;
+            }
             //TODO different types of poisons will get their own seperate categories!
         };
 
@@ -2514,6 +2565,7 @@ function Adventurer()
         this.alcoholManagement();
         this.bandagedTimer();
         this.stunnedTimer();
+        this.webbedTimer();
         this.acidify();
         this.poison();
         this.recovery();
@@ -3105,6 +3157,31 @@ function Adventurer()
         }
     };
 
+    //Stunned Notice Function
+    this.webbedChecker = function()
+    {
+        if (this.webbed == true)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+
+            this.addNotice("Webbed");
+            //near black background
+            XXX.beginPath();
+            XXX.fillStyle = "#91a188";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Webbed"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(nognog, 739, 351, 70, 62, this.arrangeNotices("Webbed"), 413.5, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Webbed");
+        }
+    };
+
     //fleshMites Notice Function
     this.fleshMights = function()
     {
@@ -3624,6 +3701,7 @@ function Adventurer()
         this.satiationChecker();
         this.freezingChecker();
         this.hinderanceChecker();
+        this.webbedChecker();
         this.stunnedChecker();
         this.gutWormsChecker();
         this.sicknessChecker();
@@ -18351,6 +18429,10 @@ function Adventurer()
                                     this.timeSinceBadFoodEaten -= 4000
                                 }
                             }
+                            else if (Inventory[i][0].ability == "etnaPoison") //trollPoison
+                            {
+                                this.etnaVenTime = new Date().getTime() - 19500;
+                            }
                             else if (Inventory[i][0].ability == "trollPoison") //trollPoison
                             {
                                 this.poisonI = true;
@@ -18971,6 +19053,34 @@ function Adventurer()
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("grewbleEgg", X, Y, (Math.random() * (2 * Math.PI)), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
+                        else if (Inventory[i][0].ability == "etnaHatch")
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //5 is the radius of mofuEgg Scenery Object.
+                                if (scenicList[j].X - 19 <= X + scenicList[j].radius && scenicList[j].X + 19 >= X - scenicList[j].radius && scenicList[j].Y - 19 <= Y + scenicList[j].radius && scenicList[j].Y + 19 >= Y - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("etnaEggSack", X, Y, (Math.random() * (2 * Math.PI)), false));
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {

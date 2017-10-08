@@ -421,6 +421,35 @@ function screenCover()
         XXX.restore();
     }
 
+    if (player.etnaVenom)
+    {
+        mushStretchX2 = 9 + Math.floor(Math.random() * 20);
+        mushStretchY2 = 9 + Math.floor(Math.random() * 20);
+        mushBlurRot2 = (Math.random() * 2*Math.PI);
+
+        XXX.beginPath();
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        XXX.scale(mushStretchX2, mushStretchY2);
+        XXX.rotate(mushBlurRot2);
+        XXX.globalAlpha = 0.2;
+        XXX.drawImage(etnaDistortion, -1/2 * etnaDistortion.width, -1/2 * etnaDistortion.height);
+        XXX.restore();
+
+        mushBlurRot = -(Math.random() * 2*Math.PI);
+        mushStretchX = 10 + Math.floor(Math.random() * 20);
+        mushStretchY = 10 + Math.floor(Math.random() * 20);
+
+        XXX.beginPath();
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        XXX.scale(mushStretchX, mushStretchY);
+        XXX.rotate(mushBlurRot);
+        XXX.globalAlpha = 0.2;
+        XXX.drawImage(etnaDistortion, -1/2 * etnaDistortion.width, -1/2 * etnaDistortion.height);
+        XXX.restore();
+    }
+
 
     //Night and Day
     if (timeOfDay != "Day" && player.nightVision == false && gameState != "paused"|| player.underground && player.nightVision == false && gameState != "paused")

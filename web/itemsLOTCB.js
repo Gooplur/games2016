@@ -2684,6 +2684,55 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "etnaEggSack")
+        {
+            //For All Items
+            this.identity = "Etna Egg Sack";
+            this.weight = 40;
+            this.size = 15;
+            this.description = "An egg sack full of developing baby etnas.";
+            this.intForDes = 2;
+            this.intDescription = "Leave it on the ground and in time a swarm of baby etnas will crawl out of it.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "etnaHatch";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 29; // at max, buy for 29.
+            this.sellValue = 29; // at max, sell for 29.
+        }
+        else if (this.type == "etnaVenomSack")
+        {
+            //For All Items
+            this.identity = "Etna Venom Sack";
+            this.weight = 0.6;
+            this.size = 5;
+            this.description = "The organ in which etnas store their venom.";
+            this.intForDes = 1;
+            this.intDescription = "This can be used in alchemy as a changer.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "etnaPoison";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 19 - Math.floor(player.getCharisma() / 15); // at max, buy for 16.
+            this.sellValue = 8 + Math.floor(player.getCharisma() / 6); // at max, sell for 16.
+        }
         else if (this.type == "lombrisFlesh")
         {
             //For All Items
@@ -10867,6 +10916,26 @@ function Item(type, x, y)
             this.buyValue = 55 - Math.floor(player.getCharisma() / 10); // at max, buy for 50.
             this.sellValue = 40 + Math.floor(player.getCharisma() / 5); // at max, sell for 50.
         }
+        else if (this.type == "pelcridOozeRemains")
+        {
+            //For All Items
+            this.identity = "Pelcrid Ooze Remains";
+            this.weight = 3.5;
+            this.size = 17;
+            this.description = "The discoloured and deformed remains of a pelcrid.";
+            this.intForDes = 17;
+            this.intDescription = "The energy in the living ooze affects its state, when it dies it changes into a completely different substance.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 10); // at max, buy for 15.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 15); // at max, sell for 15.
+        }
         else if (this.type == "smlOolidOozeRemains")
         {
             //For All Items
@@ -15961,6 +16030,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "etnaEggSack")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 834, 374, 10, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 3.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 3.7), 10 * 3.7, 10 * 3.7);
+        }
+        else if (this.type == "etnaVenomSack")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 831, 359, 12, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.7), 12 * 1.7, 10 * 1.7);
+        }
         else if (this.type == "rawBoulchomFlesh")
         {
             XXX.beginPath();
@@ -17228,6 +17307,11 @@ function Item(type, x, y)
                 this.flashAnimate(100 + 100 * Math.random(), 0, 1, [{image: theCrack, imgX: 313, imgY: 268, portionW: 40, portionH: 37, adjX: - (1/2 * 40 * sizeMult), adjY: - (1/2 * 37 * sizeMult), width: 40 * sizeMult, height: 37 * sizeMult}, {image: theCrack, imgX: 250, imgY: 266, portionW: 40, portionH: 37, adjX: - (1/2 * 40 * sizeMult), adjY: - (1/2 * 37 * sizeMult), width: 40 * sizeMult, height: 37 * sizeMult}, {image: theCrack, imgX: 187, imgY: 270, portionW: 40, portionH: 37, adjX: - (1/2 * 40 * sizeMult), adjY: - (1/2 * 37 * sizeMult), width: 40 * sizeMult, height: 37 * sizeMult}, {image: theCrack, imgX: 123, imgY: 268, portionW: 40, portionH: 37, adjX: - (1/2 * 40 * sizeMult), adjY: - (1/2 * 37 * sizeMult), width: 40 * sizeMult, height: 37 * sizeMult}]);
             }
         }
+        else if (this.type == "pelcridOozeRemains")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 650, 95, 32, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 32 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 1.7), 32 * 1.7, 22 * 1.7);
+        }
         else if (this.type == "smlOolidOozeRemains")
         {
             XXX.beginPath();
@@ -18137,6 +18221,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "etnaEggSack")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 834, 374, 10, 10, this.invX - (1/2 * 10 * 3.7), this.invY - (1/2 * 10 * 3.7), 10 * 3.7, 10 * 3.7);
+        }
+        else if (this.type == "etnaVenomSack")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 831, 359, 12, 10, this.invX - (1/2 * 12 * 1.7), this.invY - (1/2 * 10 * 1.7), 12 * 1.7, 10 * 1.7);
+        }
         else if (this.type == "rawBoulchomFlesh")
         {
             LXX.beginPath();
@@ -18352,6 +18446,11 @@ function Item(type, x, y)
 
             LXX.beginPath();
             LXX.drawImage(theCrack, 313, 268, 40, 37, this.invX - (1/2 * 40 * sizeMult), this.invY - (1/2 * 37 * sizeMult), 40 * sizeMult, 37 * sizeMult);
+        }
+        else if (this.type == "pelcridOozeRemains")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 650, 95, 32, 22, this.invX - (1/2 * 32 * 1.7), this.invY - (1/2 * 22 * 1.7), 32 * 1.7, 22 * 1.7);
         }
         else if (this.type == "smlOolidOozeRemains")
         {
@@ -20277,6 +20376,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "etnaEggSack")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 834, 374, 10, 10, this.invX - (1/2 * 10 * 3.7), this.invY - (1/2 * 10 * 3.7), 10 * 3.7, 10 * 3.7);
+        }
+        else if (this.type == "etnaVenomSack")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 831, 359, 12, 10, this.invX - (1/2 * 12 * 1.7), this.invY - (1/2 * 10 * 1.7), 12 * 1.7, 10 * 1.7);
+        }
         else if (this.type == "rawBoulchomFlesh")
         {
             XXX.beginPath();
@@ -20492,6 +20601,11 @@ function Item(type, x, y)
 
             XXX.beginPath();
             XXX.drawImage(theCrack, 313, 268, 40, 37, this.invX - (1/2 * 40 * sizeMult), this.invY - (1/2 * 37 * sizeMult), 40 * sizeMult, 37 * sizeMult);
+        }
+        else if (this.type == "pelcridOozeRemains")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 650, 95, 32, 22, this.invX - (1/2 * 32 * 1.7), this.invY - (1/2 * 22 * 1.7), 32 * 1.7, 22 * 1.7);
         }
         else if (this.type == "smlOolidOozeRemains")
         {

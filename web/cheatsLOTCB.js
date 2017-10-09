@@ -30,6 +30,12 @@ function cheats()
         {
 
         }
+        else if (cheatcode == "peterization")
+        {
+            player.name = "Peter";
+            player.race = "#fc9462";
+            alert("You are become Peter. You can now use the 'HACK' command in the console menu.")
+        }
         else if (cheatcode == "monsterMaker")
         {
             var creature = prompt("Pick creature type...");
@@ -85,7 +91,17 @@ function cheats()
         }
         else if (cheatcode == "rename")
         {
-            player.name = prompt("You are apparently a total idiot who can not stick to their decisions: Please be my guest and pick a new name for your character, you'll be back again soon I'm sure.", "XXXbu113t5uckin6N00BXXX")
+            if (player.name != "Peter" || player.race != "#fc9462")
+            {
+                if (player.name != "Gooplur" && player.name != "Qualdo")
+                {
+                    player.name = prompt("You are apparently a total idiot who can not stick to their decisions: Please be my guest and pick a new name for your character, you'll be back again soon I'm sure.", "XXXbu113t5uckin6N00BXXX")
+                }
+            }
+            else
+            {
+                alert("WARNING: Peter is a perfect name; you do not have the required permissions to change it.");
+            }
         }
         else if (cheatcode == "pointMeInTheRightDirection")
         {
@@ -252,6 +268,31 @@ function cheats()
                 var chtItem = prompt("Enter the name of the item you would like.");
                 var chtAmnt = JSON.parse(prompt("Enter the amount of " + chtItem + " you would like."));
                 worldItems.push([new Item(chtItem, X, Y), chtAmnt]);
+            }
+        }
+        else if (cheatcode == "HACK")
+        {
+            if (player.name == "Peter" && player.race == "#fc9462")
+            {
+                alert("Welcome to your exclusive life manipulation informational center. Here are the commands that you can use: \ getItem \ setCoords")
+            }
+        }
+        else if (cheatcode == "getItem")
+        {
+            if (player.name == "Peter" && player.race == "#fc9462")
+            {
+                var chtItem = prompt("Poly-Land-Server:~ Administrative-User$ getItem =");
+                var chtAmnt = JSON.parse(prompt("Poly-Land-Server:~ Administrative-User$ setAmount ="));
+                worldItems.push([new Item(chtItem, X, Y), chtAmnt]);
+            }
+        }
+        else if (cheatcode == "setCoords")
+        {
+            if (player.name == "Peter" && player.race == "#fc9462")
+            {
+                X = Number(prompt("Poly-Land-Server:~ Administrative-User$ setXCoord ="));
+                Y = Number(prompt("Poly-Land-Server:~ Administrative-User$ setYCoord ="));
+
             }
         }
         else if (cheatcode == "thereallyverysuperspecialcorner")
@@ -531,11 +572,17 @@ function cheats()
         }
         else if (cheatcode.toLowerCase() == "racepickeradvanced")
         {
-            player.raceName = prompt("Welcome to the all new race picker advanced edition, Enter your desired racial preload:");
+            if (player.name != "Peter")
+            {
+                player.raceName = prompt("Welcome to the all new race picker advanced edition, Enter your desired racial preload:");
+            }
         }
         else if (cheatcode.toLowerCase() == "selfproclaimedtitle")
         {
-            player.title = prompt("Proclaim your new title then...");
+            if (player.name != "Peter")
+            {
+                player.title = prompt("Proclaim your new title then...");
+            }
         }
         else if (cheatcode.toLowerCase() == "unstuckme")
         {

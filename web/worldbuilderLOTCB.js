@@ -340,6 +340,13 @@ function buildMaster()
                     ArtificialIntelligenceAccess.push(new Unit(2100, 1050, "Neev", false, "Easter"));
                 }
 
+                //ArtificialIntelligenceAccess.push(new Unit(4000, 1200, "Hoffalgre", true, "Female")); //TEST
+                //ArtificialIntelligenceAccess.push(new Unit(4000, 800, "Hoffalgre", "baby", "Fuglit"));
+                //ArtificialIntelligenceAccess.push(new Unit(4000, 1000, "Hoffalgre", true, "Male"));
+                //scenicList.push(new Scenery("santhPlant", 4500 , 1000, Math.PI * 0.44, "freynor"));
+                //scenicList.push(new Scenery("santhPlant", 3500 , 1100, Math.PI * 0.14, "freynor"));
+                //scenicList.push(new Scenery("santhPlant", 3100 , 900, -Math.PI * 0.44, "freynor")); //TEST
+
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));
                 ArtificialIntelligenceAccess.push(new Unit(2683, -1204, "Frich", false, "Ruby Soho"));

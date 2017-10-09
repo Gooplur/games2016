@@ -13014,6 +13014,136 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.xAdjustment = 0;
             }
         }
+        else if (this.type == "Hoffalgre")
+        {
+            this.damageFrame = "manual";
+            this.team = "herd";
+            this.baseTeam = this.team;
+            this.sex = "Young";
+
+            if (this.alpha == true)
+            {
+                if (Math.round(Math.random()))
+                {
+                    this.sex = "Female";
+                    this.magicalResistance = 0;
+                    this.heatResistance = -2.5;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 6) + 12;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 1.4;
+                    this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 33;
+                    this.sizeRadius = 20;
+                    this.negateArmour = 0;
+                    this.attackWait = 3;
+                    this.horniness = 0;
+                    this.hungerMAX = 55;
+                    this.hunger = 55;
+                    this.sustenance = 0;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 1.35; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else
+                {
+                    this.sex = "Male";
+                    this.magicalResistance = 0;
+                    this.heatResistance = -2.5;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 8) + 15;
+                    this.health = this.healthMAX;
+                    this.armour = 0;
+                    this.speed = 2.4;
+                    this.rangeOfSight = 640; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                    this.engagementRadius = 37;
+                    this.sizeRadius = 23.5;
+                    this.negateArmour = 0;
+                    this.attackWait = 3;
+                    this.horniness = 0;
+                    this.hungerMAX = 25;
+                    this.hunger = 25;
+                    this.sustenance = 0;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 1.55; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                //manual sex deciding
+                if (this.ID == "Female")
+                {
+                    this.sex = "Female";
+                }
+                else if (this.ID == "Male")
+                {
+                    this.sex = "Male";
+                }
+            }
+            else if (this.alpha == "baby")
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = -2.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 2) + 1;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 1.5;
+                this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                this.engagementRadius = 19;
+                this.sizeRadius = 12;
+                this.negateArmour = 0;
+                this.attackWait = 3;
+                this.horniness = 0;
+                this.hungerMAX = 10;
+                this.hunger = 10;
+                this.sustenance = 0;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 0.65; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = -2.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 5) + 7;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 2;
+                this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                this.engagementRadius = 25;
+                this.sizeRadius = 16.5;
+                this.negateArmour = 0;
+                this.attackWait = 3;
+                this.horniness = 0;
+                this.hungerMAX = 20;
+                this.hunger = 20;
+                this.sustenance = 0;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+        }
         else if (this.type == "Fletter")
         {
             this.damageFrame = "manual";
@@ -23078,7 +23208,410 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
 
         }
-        //Ardil
+
+        //HOFFALGRE
+        if (this.type == "Hoffalgre")
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                this.experience = (25 * ((player.getIntelligence() / 50) + 1));
+                this.drops = [[new Item("rawArdilFlesh", this.X, this.Y), 2]];
+            }
+            else if (this.alpha == "baby")
+            {
+                this.experience = (3 * ((player.getIntelligence() / 50) + 1));
+            }
+            else
+            {
+                this.experience = (15 * ((player.getIntelligence() / 50) + 1));
+                this.drops = [[new Item("rawArdilFlesh", this.X, this.Y), 1]];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(600, false);
+            }
+            else if (this.alpha == "baby")
+            {
+                this.rangeOfSightCalculator(500, false);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(600, false);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                //Growth by food (leveling/evolution)
+                if (this.alpha == "baby")
+                {
+                    if (this.sustenance >= 10)
+                    {
+                        this.alpha = false;
+
+                        //new stats below:
+                        //----------------
+                        this.alphaSize = 1;
+
+                        this.magicalResistance = 0;
+                        this.heatResistance = -2.5;
+                        this.attackStyle = "chunked";
+                        this.attackRate = 0;  //this is for rapid style combat only.
+                        this.healthMAX = Math.floor(Math.random() * 5) + 7;
+                        this.health = this.healthMAX;
+                        this.armour = 0;
+                        this.speed = 1.9;
+                        this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
+                        this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                        this.engagementRadius = 25;
+                        this.sizeRadius = 16.5;
+                        this.negateArmour = 0;
+                        this.attackWait = 3;
+                        this.horniness = 0;
+                        this.hungerMAX = 20;
+                        this.hunger = 20;
+                        this.sustenance = 0;
+                    }
+                }
+                else if (this.alpha == false)
+                {
+                    if (this.sustenance >= 35)
+                    {
+                        this.alpha = true;
+
+                        //new stats below:
+                        //----------------
+
+                        if (Math.round(Math.random()))
+                        {
+                            this.sex = "Female";
+                            this.magicalResistance = 0;
+                            this.heatResistance = -2.5;
+                            this.attackStyle = "chunked";
+                            this.attackRate = 0;  //this is for rapid style combat only.
+                            this.healthMAX = Math.floor(Math.random() * 6) + 12;
+                            this.health = this.healthMAX;
+                            this.armour = 0;
+                            this.speed = 2.1;
+                            this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
+                            this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                            this.engagementRadius = 33;
+                            this.sizeRadius = 20;
+                            this.negateArmour = 0;
+                            this.attackWait = 3;
+                            this.horniness = 0;
+                            this.hungerMAX = 35;
+                            this.hunger = 35;
+                            this.sustenance = -1000000;
+                        }
+                        else
+                        {
+                            this.sex = "Male";
+                            this.magicalResistance = 0;
+                            this.heatResistance = -2.5;
+                            this.attackStyle = "chunked";
+                            this.attackRate = 0;  //this is for rapid style combat only.
+                            this.healthMAX = Math.floor(Math.random() * 8) + 15;
+                            this.health = this.healthMAX;
+                            this.armour = 0;
+                            this.speed = 2.4;
+                            this.rangeOfSight = 640; //This is just to set the variable initially. The rest is variable.
+                            this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                            this.engagementRadius = 37;
+                            this.sizeRadius = 23.5;
+                            this.negateArmour = 0;
+                            this.attackWait = 3;
+                            this.horniness = 0;
+                            this.hungerMAX = 25;
+                            this.hunger = 25;
+                            this.sustenance = -1000000;
+                        }
+                    }
+                }
+
+                if (this.sex == "Female" && this.horniness == 100)
+                {
+                    this.horniness = 0;
+                    //egg laying
+                    this.eggTimer += 1 * (TTD / 16.75);
+                    if (this.eggTimer >= 4000)
+                    {
+                        this.eggTimer = 0;
+                        var babyAmt = Math.floor(Math.random() * 3) + 1;
+                        for (var i = 0; i < babyAmt; i++)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Hoffalgre", "baby", "Unit Generated Hoffalgre"));
+                        }
+                        this.hunger = Math.max(0, this.hunger - 15);
+                    }
+                }
+
+                //Hoffalgre Brain
+                var mate = {horniness: 0};
+                var mother = "none";
+                if (this.alpha == "baby")
+                {
+                    console.log(this.stustenance);
+                    var closestMother = 1000000;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].type == "Hoffalgre")
+                        {
+                            if (ArtificialIntelligenceAccess[i].sex == "Female")
+                            {
+                                if (this.DTU(ArtificialIntelligenceAccess[i]) < closestMother)
+                                {
+                                    mother = ArtificialIntelligenceAccess[i];
+                                }
+                            }
+                        }
+                    }
+                }
+
+                //hunger and tittling
+                if (mother != "none")
+                {
+                    if (this.alpha != "baby" || this.DTU(mother) > this.engagementRadius * 2 || mother.hunger < 10)
+                    {
+                        this.hunger -= 0.0002 * (TTD / 16.75);
+                        if (this.hunger < 0)
+                        {
+                            this.health -= 0.0005 * (TTD / 16.75);
+                        }
+                    }
+                    else if (this.alpha == "baby" && this.DTU(mother) < this.engagementRadius * 2 && mother.hunger >= 10 && this.hunger < 9.75)
+                    {
+                        mother.hunger -= 0.25;
+                        this.hunger += 0.25;
+                        this.sustenance = 0.25;
+                    }
+                }
+                else
+                {
+                    this.hunger -= 0.0002 * (TTD / 16.75);
+                    if (this.hunger < 0)
+                    {
+                        this.health -= 0.0005 * (TTD / 16.75);
+                    }
+                }
+
+                //male sex drive
+                if (this.sex == "Male")
+                {
+                    this.horniness += 0.001 * (TTD / 16.75);
+                    if (this.hunger > 10)
+                    {
+                        this.health -= 0.0005 * (TTD / 16.75);
+                    }
+                }
+
+                //eat from plants (non-fungi)
+                var plantsToTarget = this.nearbyPlants(1, "fungi", false, true);
+                var plantTarget = "none";
+                if (plantsToTarget.length >= 1)
+                {
+                    plantTarget = plantsToTarget[0];
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                if (this.target == player)
+                {
+                    if (this.DTP() < 250)
+                    {
+                        this.pointAwayFromPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.alpha == "baby")
+                    {
+                        if (mother != "none")
+                        {
+                            if (this.DTU(mother) > this.engagementRadius * 2)
+                            {
+                                this.pointTowards(mother);
+                                this.moveInRelationToThing(mother);
+                                this.suckling = true;
+                            }
+                            else
+                            {
+                                this.suckling = true;
+                            }
+                        }
+                        else
+                        {
+                            this.suckling = true;
+                        }
+                    }
+                    else if (this.horniness > 10 && this.sex == "Male")
+                    {
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].type == "Hoffalgre")
+                            {
+                                if (ArtificialIntelligenceAccess[i].sex == "Female" && ArtificialIntelligenceAccess[i].horniness == 0)
+                                {
+                                    mate = ArtificialIntelligenceAccess[i];
+                                    break;
+                                }
+                            }
+                        }
+                        this.pointTowards(mate);
+                        this.moveInRelationToThing(mate);
+                        if (this.DTU(mate) <= this.engagementRadius * 1.5)
+                        {
+                            this.sexing = true;
+                        }
+                    }
+                    else if (this.hunger <= this.hungerMAX - 5)
+                    {
+                        if (plantTarget != "none")
+                        {
+                            this.pointTowards(plantTarget);
+                            this.moveInRelationToThing(plantTarget);
+                            if (this.DTU(plantTarget) <= this.engagementRadius && plantTarget.phase != "picked")
+                            {
+                                this.attacking = true;
+                            }
+                            else
+                            {
+                                this.attacking = false;
+                            }
+                        }
+                    }
+                }
+                else if (this.target != "none")
+                {
+                    if (this.DTU(this.target) < this.rangeOfSight)
+                    {
+                        this.pointAway(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                    else if (this.alpha == "baby")
+                    {
+                        if (mother != "none")
+                        {
+                            if (this.DTU(mother) > this.engagementRadius * 2)
+                            {
+                                this.pointTowards(mother);
+                                this.moveInRelationToThing(mother);
+                                this.suckling = true;
+                            }
+                            else
+                            {
+                                this.suckling = true;
+                            }
+                        }
+                        else
+                        {
+                            this.suckling = true;
+                        }
+                    }
+                    else if (this.horniness > 10 && this.sex == "Male")
+                    {
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].type == "Hoffalgre")
+                            {
+                                if (ArtificialIntelligenceAccess[i].sex == "Female" && ArtificialIntelligenceAccess[i].horniness == 0)
+                                {
+                                    mate = ArtificialIntelligenceAccess[i];
+                                    break;
+                                }
+                            }
+                        }
+                        this.pointTowards(mate);
+                        this.moveInRelationToThing(mate);
+                        if (this.DTU(mate) <= this.engagementRadius * 1.5)
+                        {
+                            this.sexing = true;
+                        }
+                    }
+                    else if (this.hunger <= this.hungerMAX - 5)
+                    {
+                        if (plantTarget != "none")
+                        {
+                            this.pointTowards(plantTarget);
+                            this.moveInRelationToThing(plantTarget);
+                            if (this.DTU(plantTarget) <= this.engagementRadius && plantTarget.phase != "picked")
+                            {
+                                this.attacking = true;
+                            }
+                            else
+                            {
+                                this.attacking = false;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //ANIMATIONS
+            var szx = 1.6;
+            if (this.alive == true)
+            {
+                if (this.attacking || this.sexing || this.suckling)
+                {
+                    this.costumeEngine(4, 0.5, false);
+                }
+                else if (this.moving)
+                {
+                    this.costumeEngine(4, 0.5, false);
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                //manual damaging
+                if (theCostume <= 0)
+                {
+                    this.other = true;
+                    this.drawUnit(nognog, 774, 135, 28, 28, -1/2 * 28 * this.alphaSize * szx - this.xAdjustment, -1/2 * 28 * this.alphaSize * szx - this.yAdjustment, 28 * this.alphaSize * szx, 28 * this.alphaSize * szx);
+                }
+                else if (theCostume <= 1)
+                {
+                    this.drawUnit(nognog, 812, 135, 28, 28, -1/2 * 28 * this.alphaSize * szx - this.xAdjustment, -1/2 * 28 * this.alphaSize * szx - this.yAdjustment, 28 * this.alphaSize * szx, 28 * this.alphaSize * szx);
+                }
+                else if (theCostume <= 2)
+                {
+                    this.drawUnit(nognog, 849, 135, 28, 28, -1/2 * 28 * this.alphaSize * szx - this.xAdjustment, -1/2 * 28 * this.alphaSize * szx - this.yAdjustment, 28 * this.alphaSize * szx, 28 * this.alphaSize * szx);
+                }
+                else if (theCostume >= 3)
+                {
+                    if (this.sexing)
+                    {
+                        this.sexing = false;
+                        mate.horniness = 100;
+                        this.horniness = 0;
+                    }
+
+                    if (this.attacking)
+                    {
+                        if (this.other)
+                        {
+                            this.attacking = false;
+                            this.other = false;
+                            plantTarget.phase = "picked";
+                            this.hunger = Math.min(this.hungerMAX, this.hunger + 5);
+                            this.sustenance += 5;
+                        }
+                    }
+                    this.drawUnit(nognog, 812, 135, 28, 28, -1/2 * 28 * this.alphaSize * szx - this.xAdjustment, -1/2 * 28 * this.alphaSize * szx - this.yAdjustment, 28 * this.alphaSize * szx, 28 * this.alphaSize * szx);
+                }
+            }
+            else
+            {
+                this.drawUnit(nognog, 838, 103, 28, 28, -1/2 * 28 * this.alphaSize * szx - this.xAdjustment, -1/2 * 28 * this.alphaSize * szx - this.yAdjustment, 28 * this.alphaSize * szx, 28 * this.alphaSize * szx);
+            }
+        }
+
+        //ARDIL
         if (this.type == "Ardil")
         {
             //Set Drops and experience

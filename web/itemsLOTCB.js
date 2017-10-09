@@ -4636,6 +4636,35 @@ function Item(type, x, y)
             this.buyValue = 11 - Math.floor(player.getCharisma() / 25); // at max, buy for 9.
             this.sellValue = 7 + Math.floor(player.getCharisma() / 25); // at max, sell for 9.
         }
+        else if (this.type == "vel")
+        {
+            //For All Items
+            this.identity = "Vel";
+            this.weight = 0.9;
+            this.size = 5;
+            this.description = "Creamy sweet thick partially digested nectar from a fletter.";
+            this.intForDes = 5;
+            this.intDescription = "The enzymes released when a fletter's body breaks down the nectar that it eats forms this substance.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0.2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0.2; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 30 - Math.floor(player.getCharisma() / 10); // at max, buy for 25.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 3); // at max, sell for 25.
+        }
         else if (this.type == "honey")
         {
             //For All Items
@@ -10856,6 +10885,26 @@ function Item(type, x, y)
             this.buyValue = 90 - Math.floor(player.getCharisma() / 1.63); // at max, buy for 60.
             this.sellValue = 30 + Math.floor(player.getCharisma() / 1.63); // at max, sell for 60.
         }
+        else if (this.type == "fletterWing")
+        {
+            //For All Items
+            this.identity = "Fletter Wing";
+            this.weight = 0.2;
+            this.size = 9;
+            this.description = "The sleek partially transparent wing of a fletter.";
+            this.intForDes = 2;
+            this.intDescription = "Fletters have four wings; this can be used as an amplifier in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
+        }
         else if (this.type == "smlGlutidOoze")
         {
             //For All Items
@@ -16030,6 +16079,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "vel")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 756, 167, 12, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 1.6), 12 * 1.6, 11 * 1.6);
+        }
+        else if (this.type == "fletterWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 742, 165, 8, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 8 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.6), 8 * 1.6, 14 * 1.6);
+        }
         else if (this.type == "etnaEggSack")
         {
             XXX.beginPath();
@@ -18221,6 +18280,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "vel")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 756, 167, 12, 11, this.invX - (1/2 * 12 * 1.6), this.invY - (1/2 * 11 * 1.6), 12 * 1.6, 11 * 1.6);
+        }
+        else if (this.type == "fletterWing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 742, 165, 8, 14, this.invX - (1/2 * 8 * 1.6), this.invY - (1/2 * 14 * 1.6), 8 * 1.6, 14 * 1.6);
+        }
         else if (this.type == "etnaEggSack")
         {
             LXX.beginPath();
@@ -20375,6 +20444,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "vel")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 756, 167, 12, 11, this.invX - (1/2 * 12 * 1.6), this.invY - (1/2 * 11 * 1.6), 12 * 1.6, 11 * 1.6);
+        }
+        else if (this.type == "fletterWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 742, 165, 8, 14, this.invX - (1/2 * 8 * 1.6), this.invY - (1/2 * 14 * 1.6), 8 * 1.6, 14 * 1.6);
         }
         else if (this.type == "etnaEggSack")
         {

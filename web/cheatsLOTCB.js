@@ -604,6 +604,7 @@ function cheats()
             player.stamina = 0;
             player.charisma = 0;
             player.constitution = 0;
+            player.strength = 0;
         }
         else if (cheatcode.toLowerCase() == "kalbus")
         {

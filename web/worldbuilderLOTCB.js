@@ -432,8 +432,8 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(1807, 645, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 7, patrolLoop: true, route:[[1793, 314], [761, 337], [749, 1431], [1663, 1439], [2138, 1272], [2165, 697], [1807, 645]]}));
 
                 //The Jarl's Guards
-                ArtificialIntelligenceAccess.push(new Unit(-95, 645, "Soldier", false, "Tor Húskarl", {race: "Freynor", faction: "Freynor", con: 16, speed: 1.55, outfit: ["chainArmour", 12], weapon: ["freydicSword", [11, 9], 0, 17, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], rot: -1/2*Math.PI, patrolStops: 2, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
-                ArtificialIntelligenceAccess.push(new Unit(-620, 645, "Soldier", false, "Tor Húskarl", {race: "Freynor", faction: "Freynor", con: 16, speed: 1.55, outfit: ["chainArmour", 12], weapon: ["freydicSword", [11, 9], 0, 17, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], rot: -1/2*Math.PI, patrolStops: 2, patrolLoop: true, route:[[-620, 645], [-620, 645]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-95, 645, "Soldier", false, "Tor Huskarl", {race: "Freynor", faction: "Freynor", con: 16, speed: 1.55, outfit: ["chainArmour", 12], weapon: ["freydicSword", [11, 9], 0, 17, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], rot: -1/2*Math.PI, patrolStops: 2, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-620, 645, "Soldier", false, "Tor Huskarl", {race: "Freynor", faction: "Freynor", con: 16, speed: 1.55, outfit: ["chainArmour", 12], weapon: ["freydicSword", [11, 9], 0, 17, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], rot: -1/2*Math.PI, patrolStops: 2, patrolLoop: true, route:[[-620, 645], [-620, 645]]}));
 
                 if (uniqueChars.drohforLDS == true)
                 {

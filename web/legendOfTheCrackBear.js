@@ -820,6 +820,14 @@ function legendaryPrerequisites()
     greenGrassEnv.src = ("images/grass.jpg");
     window.greenGrassEnv = greenGrassEnv;
 
+    var verdantGrassEnv = new Image();
+    verdantGrassEnv.src = ("images/simpleGrass.jpg");
+    window.verdantGrassEnv = verdantGrassEnv;
+
+    var dirtEnv = new Image();
+    dirtEnv.src = ("images/dirtBasic.jpg");
+    window.dirtEnv = dirtEnv;
+
     var forestEnv = new Image();
     forestEnv.src = ("images/mBank.jpg");
     window.forestEnv = forestEnv;
@@ -2176,6 +2184,7 @@ function theLegend()
     allWorn.push(new Item("fineFreydicOutfitM", false)); //40
     allWorn.push(new Item("hyelingArmour", false)); //41
     allWorn.push(new Item("wizardGown", false)); //42
+    allWorn.push(new Item("hoffalgreFurCloak", false)); //43
 
     scenicList = [];
 
@@ -2317,6 +2326,7 @@ function theLegend()
     foods.push(new Item("nogMeat", false));
     foods.push(new Item("boulchomMeat", false));
     foods.push(new Item("thuegTripe", false));
+    foods.push(new Item("hoffalgreMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -2377,6 +2387,7 @@ function theLegend()
     alchemy.push(new Item("fermentedNarthwarpMouth", false));
     alchemy.push(new Item("fermentedViperVenomGland", false));
     alchemy.push(new Item("driedCyrinthilimMushroom", false));
+    alchemy.push(new Item("agedHoffalgreTendrils", false));
     alchemy.push(new Item("fermentedMofuEgg", false));
     alchemy.push(new Item("groundOgard", false));
     alchemy.push(new Item("ogardPerfume", false));

@@ -60,40 +60,8 @@ function worldBuilder()
             outlineBuilder( 3, 1, "forest", -14, 65); //^
             outlineBuilder( 1, 6, "forest", -10, 70); //^
         }
-        //Layer -1 (cold temperate region)//mapS1
-        if (Y > -14144 && Y < -3328 && X < 7687 && X > - 3901) //X0
-        {
-            elevation = -1;
-            region = "s1";
-            outlineBuilder( 34, 34, "greenGrass", -20, 14);
-            outlineBuilder( 34, 1, "stonePath", -4, 14);
-            //outlineBuilder( 1, 1, "forest", -4, 14);
-        }
-        //Layer 0 (cold region)//mapCentral
-        if (Y > -3919 && Y < 6870 && X < 7687 && X > - 3901) //X0
-        {
-            elevation = 0;
-            region = "central";
-            outlineBuilder( 14, 6, "greenGrass", -6, -20);
-            outlineBuilder( 14, 6, "greenGrass", -6, 0);
-            outlineBuilder( 34, 14, "greenGrass", -20, -20);
-            outlineBuilder( 34, 14, "greenGrass", 0, -20);
-            outlineBuilder( 6, 6, "stoneWork", -6, -6);
-            outlineBuilder( 17, 1, "stonePath", -3, -20);
-            outlineBuilder( 1, 20, "stonePath", -6, -3);
-            outlineBuilder( 16, 1, "stonePath", -4, -2);
-            outlineBuilder( 7, 1, "stonePath", -7, -7);
-            outlineBuilder( 1, 8, "stonePath", -7, 0);
-            outlineBuilder( 7, 1, "stonePath", -0, -7);
-            outlineBuilder( 1, 6, "stonePath", -6, -7);
-            outlineBuilder( 1, 13, "stonePath", -20, -7);
-            outlineBuilder( 2, 3, "farmland", -7, 1);
-            outlineBuilder( 1, 2, "stonePath", -5, -4);
-            outlineBuilder( 1, 1, "stonePath", -3, -2);
-            outlineBuilder( 3, 1, "stonePath", 4, -3);
-            outlineBuilder( 1, 1, "stoneWork", 4, 0);
-        }
-        //mapS1 E1
+        //Layer -1 (cold temperate region)
+        //mapS1E1 //TODO make the map
         if (Y > -14144 && Y < -3328 && X < - 2490 && X > -14114) //X1
         {
             elevation = -1;
@@ -106,16 +74,36 @@ function worldBuilder()
             outlineBuilder( 1, 7, "forest", 41, 18);
             outlineBuilder( 1, 4, "forest", 44, 19);
         }
-        //layer 1 (frosty region) anti warmth effects start here
-        if (Y > 6290 && Y < 32370) //this is the cold snowy environment //X0
+        // mapS1
+        if (Y > -14144 && Y < -3328 && X < 7687 && X > - 3901) //X0
         {
-            elevation = 1;
-            region = "n1";
-            outlineBuilder( 20, 83, "frost", -80, -40); //frost
-            outlineBuilder( 80, 83, "snow", -80, -105); //snow
+            elevation = -1;
+            region = "s1";
+            outlineBuilder( 34, 34, "greenGrass", -20, 14);
+            outlineBuilder( 34, 1, "stonePath", -4, 14);
+            //outlineBuilder( 1, 1, "forest", -4, 14);
         }
+        //mapS1W4 //TODO make the map
+        if (Y > -14144 && Y < -3328 && X < 48510 && X > 36883) //X-4
+        {
+            elevation = -1;
+            region = "s1w4";
+            outlineBuilder( 34, 34, "crag", -156, 14);
+            outlineBuilder( 1, 34, "greenGrass", -156, 14);
+        }
+        //mapS1W5 //TODO make the map (Lethik City)
+        if (Y > -14144 && Y < -3328 && X < 58680 && X > 47082) //X-5
+        {
+            elevation = 0;
+            region = "s1w5";
+
+            outlineBuilder( 34, 34, "hotGrass", -190, 14);
+            outlineBuilder( 1, 34, "greenGrass", -190, 14);
+
+        }
+        //Layer 0 (cold region)
         //mapE2
-        if (Y > -3919 && Y < 6870 && X < -12685 && X > -24362) //X1
+        if (Y > -3919 && Y < 6870 && X < -12685 && X > -24362) //X2
         {
             elevation = 0;
             region = "e2";
@@ -140,6 +128,30 @@ function worldBuilder()
             outlineBuilder( 1, 2, "greenGrass", 26, -4);
             outlineBuilder( 1, 34, "stonePath", 14, -3);
         }
+        // mapCentral
+        if (Y > -3919 && Y < 6870 && X < 7687 && X > - 3901) //X0
+        {
+            elevation = 0;
+            region = "central";
+            outlineBuilder( 14, 6, "greenGrass", -6, -20);
+            outlineBuilder( 14, 6, "greenGrass", -6, 0);
+            outlineBuilder( 34, 14, "greenGrass", -20, -20);
+            outlineBuilder( 34, 14, "greenGrass", 0, -20);
+            outlineBuilder( 6, 6, "stoneWork", -6, -6);
+            outlineBuilder( 17, 1, "stonePath", -3, -20);
+            outlineBuilder( 1, 20, "stonePath", -6, -3);
+            outlineBuilder( 16, 1, "stonePath", -4, -2);
+            outlineBuilder( 7, 1, "stonePath", -7, -7);
+            outlineBuilder( 1, 8, "stonePath", -7, 0);
+            outlineBuilder( 7, 1, "stonePath", -0, -7);
+            outlineBuilder( 1, 6, "stonePath", -6, -7);
+            outlineBuilder( 1, 13, "stonePath", -20, -7);
+            outlineBuilder( 2, 3, "farmland", -7, 1);
+            outlineBuilder( 1, 2, "stonePath", -5, -4);
+            outlineBuilder( 1, 1, "stonePath", -3, -2);
+            outlineBuilder( 3, 1, "stonePath", 4, -3);
+            outlineBuilder( 1, 1, "stoneWork", 4, 0);
+        }
         //mapW1
         if (Y > -3919 && Y < 6870 && X < 17891 && X > 6299) //X-1
         {
@@ -163,7 +175,57 @@ function worldBuilder()
             outlineBuilder( 4, 1, "greenGrass", -21, -17);
 
         }
+        //mapW2 //TODO make the map
+        if (Y > -3919 && Y < 6870 && X < 28129 && X > 16474) //X-2
+        {
+            elevation = 0;
+            region = "w2";
+
+            outlineBuilder( 34, 34, "crag", -88, -20);
+            outlineBuilder( 34, 1, "greenGrass", -55, -20);
+
+        }
+        //mapW3 //TODO make the map
+        if (Y > -3919 && Y < 6870 && X < 38616 && X > 26689) //X-3
+        {
+            elevation = 0;
+            region = "w3";
+
+            outlineBuilder( 34, 34, "crag", -122, -20);
+            outlineBuilder( 34, 1, "greenGrass", -89, -20);
+
+        }
+        //mapW4 //TODO make the map
+        if (Y > -3919 && Y < 6870 && X < 48510 && X > 36883) //X-4
+        {
+            elevation = 0;
+            region = "w4";
+
+            outlineBuilder( 34, 34, "crag", -156, -20);
+            outlineBuilder( 34, 1, "greenGrass", -123, -20);
+
+        }
+        //mapW5 //TODO make the map (Mud Flats)
+        if (Y > -3919 && Y < 6870 && X < 58680 && X > 47082) //X-5
+        {
+            elevation = 0;
+            region = "w5";
+
+            outlineBuilder( 34, 34, "dirt", -190, -20);
+            outlineBuilder( 34, 1, "greenGrass", -157, -20);
+
+        }
+        //layer 1 (frosty region) anti warmth effects start here
+        //mapN1 //TODO remake this map
+        if (Y > 6290 && Y < 32370) //X0
+        {
+            elevation = 1;
+            region = "n1";
+            outlineBuilder( 20, 83, "frost", -80, -40); //frost
+            outlineBuilder( 80, 83, "snow", -80, -105); //snow
+        }
         //layer 2 (freezing region)
+        //mapN2 //TODO remake this map
         if (Y > 31750 && Y < 77360) //this is the freezing arctic environment //X0
         {
             elevation = 2;
@@ -171,6 +233,7 @@ function worldBuilder()
             outlineBuilder( 150, 83, "snow", -80, -255);
         }
         //layer 3 (freezing region)
+        //mapN3 //TODO remake this map
         if (Y > 76780) //this is the north Pole... basically. //X0
         {
             elevation = 2;
@@ -243,6 +306,10 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 {
                     XXX.drawImage(lushGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
+                else if (terrain == "brightGrass")
+                {
+                    XXX.drawImage(verdantGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
                 else if (terrain == "hotGrass")
                 {
                     XXX.drawImage(greenGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
@@ -254,6 +321,10 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 else if (terrain == "crag")
                 {
                     XXX.drawImage(rockyFlatEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "dirt")
+                {
+                    XXX.drawImage(dirtEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
                 else if (terrain == "desert")
                 {
@@ -339,13 +410,6 @@ function buildMaster()
                 {
                     ArtificialIntelligenceAccess.push(new Unit(2100, 1050, "Neev", false, "Easter"));
                 }
-
-                //ArtificialIntelligenceAccess.push(new Unit(4000, 1200, "Hoffalgre", true, "Female")); //TEST
-                //ArtificialIntelligenceAccess.push(new Unit(4000, 800, "Hoffalgre", "baby", "Fuglit"));
-                //ArtificialIntelligenceAccess.push(new Unit(4000, 1000, "Hoffalgre", true, "Male"));
-                //scenicList.push(new Scenery("santhPlant", 4500 , 1000, Math.PI * 0.44, "freynor"));
-                //scenicList.push(new Scenery("santhPlant", 3500 , 1100, Math.PI * 0.14, "freynor"));
-                //scenicList.push(new Scenery("santhPlant", 3100 , 900, -Math.PI * 0.44, "freynor")); //TEST
 
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));
@@ -1284,6 +1348,322 @@ function buildMaster()
                 scenicList.push(new Scenery("darkStoneOver", 14542, 3815, 15.4, 1.5, 3));
 
                 change = "w1";
+            }
+        }
+        else if (region == "w2")
+        {
+            if (change != "w2")
+            {
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+                //todo when structures are created add their list's refresh sequence here.
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //High-Hill Howlers
+                //ArtificialIntelligenceAccess.push(new Unit(15517, 5728, "GreyWolf", false, "Clawder"));
+
+                //Nogs (a dumb variety of goblins)
+                //ArtificialIntelligenceAccess.push(new Unit(10988, -2291, "Nog", false, "Buckle-Snorp"));
+
+                //The friches of the rocky west
+                //ArtificialIntelligenceAccess.push(new Unit(8307, 4918, "MountainFrich", "massive", "Fruyuk"));
+
+                //berulns in the west
+                //ArtificialIntelligenceAccess.push(new Unit(15918, -1709, "Beruln", false, "Kagim"));
+
+                //olkrin of the rocklands
+                //ArtificialIntelligenceAccess.push(new Unit(8199, 2310, "Olkrin", false, "Efaldor"));
+
+                //Rocky Rock Monsters of the Rocky Rock West
+                //ArtificialIntelligenceAccess.push(new Unit(10752, 4668, "StoneGolem", false, "Orefal"));
+
+                //Ores
+                //scenicList.push(new Scenery("jvostran", 11408 , -2348, 14.64, 1, 3));
+                //scenicList.push(new Scenery("darkStone", 13060 , -1400, -11, 2.5, 2));
+                //scenicList.push(new Scenery("ashStone", 11234 , 1726, -4.45, 0.5, 1));
+                //scenicList.push(new Scenery("stone", 13224 , 2702, 0.12, 1, 2));
+
+                //Plants
+                //scenicList.push(new Scenery("haeflowerPlant", 15185, 4442, 4, true));
+
+                change = "w2";
+            }
+        }
+        else if (region == "w3")
+        {
+            if (change != "w3")
+            {
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+                //todo when structures are created add their list's refresh sequence here.
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //High-Hill Howlers
+                //ArtificialIntelligenceAccess.push(new Unit(15517, 5728, "GreyWolf", false, "Clawder"));
+
+                //Nogs (a dumb variety of goblins)
+                //ArtificialIntelligenceAccess.push(new Unit(10988, -2291, "Nog", false, "Buckle-Snorp"));
+
+                //The friches of the rocky west
+                //ArtificialIntelligenceAccess.push(new Unit(8307, 4918, "MountainFrich", "massive", "Fruyuk"));
+
+                //berulns in the west
+                //ArtificialIntelligenceAccess.push(new Unit(15918, -1709, "Beruln", false, "Kagim"));
+
+                //olkrin of the rocklands
+                //ArtificialIntelligenceAccess.push(new Unit(8199, 2310, "Olkrin", false, "Efaldor"));
+
+                //Rocky Rock Monsters of the Rocky Rock West
+                //ArtificialIntelligenceAccess.push(new Unit(10752, 4668, "StoneGolem", false, "Orefal"));
+
+                //Ores
+                //scenicList.push(new Scenery("jvostran", 11408 , -2348, 14.64, 1, 3));
+                //scenicList.push(new Scenery("darkStone", 13060 , -1400, -11, 2.5, 2));
+                //scenicList.push(new Scenery("ashStone", 11234 , 1726, -4.45, 0.5, 1));
+                //scenicList.push(new Scenery("stone", 13224 , 2702, 0.12, 1, 2));
+
+                //Plants
+                //scenicList.push(new Scenery("haeflowerPlant", 15185, 4442, 4, true));
+
+                change = "w3";
+            }
+        }
+        else if (region == "w4")
+        {
+            if (change != "w4")
+            {
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+                //todo when structures are created add their list's refresh sequence here.
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //High-Hill Howlers
+                //ArtificialIntelligenceAccess.push(new Unit(15517, 5728, "GreyWolf", false, "Clawder"));
+
+                //Nogs (a dumb variety of goblins)
+                //ArtificialIntelligenceAccess.push(new Unit(10988, -2291, "Nog", false, "Buckle-Snorp"));
+
+                //The friches of the rocky west
+                //ArtificialIntelligenceAccess.push(new Unit(8307, 4918, "MountainFrich", "massive", "Fruyuk"));
+
+                //berulns in the west
+                //ArtificialIntelligenceAccess.push(new Unit(15918, -1709, "Beruln", false, "Kagim"));
+
+                //olkrin of the rocklands
+                //ArtificialIntelligenceAccess.push(new Unit(8199, 2310, "Olkrin", false, "Efaldor"));
+
+                //Rocky Rock Monsters of the Rocky Rock West
+                //ArtificialIntelligenceAccess.push(new Unit(10752, 4668, "StoneGolem", false, "Orefal"));
+
+                //Ores
+                //scenicList.push(new Scenery("jvostran", 11408 , -2348, 14.64, 1, 3));
+                //scenicList.push(new Scenery("darkStone", 13060 , -1400, -11, 2.5, 2));
+                //scenicList.push(new Scenery("ashStone", 11234 , 1726, -4.45, 0.5, 1));
+                //scenicList.push(new Scenery("stone", 13224 , 2702, 0.12, 1, 2));
+
+                //Plants
+                //scenicList.push(new Scenery("haeflowerPlant", 15185, 4442, 4, true));
+
+                change = "w4";
+            }
+        }
+        else if (region == "s1w4")
+        {
+            if (change != "s1w4")
+            {
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+                //todo when structures are created add their list's refresh sequence here.
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //High-Hill Howlers
+                //ArtificialIntelligenceAccess.push(new Unit(15517, 5728, "GreyWolf", false, "Clawder"));
+
+                //Nogs (a dumb variety of goblins)
+                //ArtificialIntelligenceAccess.push(new Unit(10988, -2291, "Nog", false, "Buckle-Snorp"));
+
+                //The friches of the rocky west
+                //ArtificialIntelligenceAccess.push(new Unit(8307, 4918, "MountainFrich", "massive", "Fruyuk"));
+
+                //berulns in the west
+                //ArtificialIntelligenceAccess.push(new Unit(15918, -1709, "Beruln", false, "Kagim"));
+
+                //olkrin of the rocklands
+                //ArtificialIntelligenceAccess.push(new Unit(8199, 2310, "Olkrin", false, "Efaldor"));
+
+                //Rocky Rock Monsters of the Rocky Rock West
+                //ArtificialIntelligenceAccess.push(new Unit(10752, 4668, "StoneGolem", false, "Orefal"));
+
+                //Ores
+                //scenicList.push(new Scenery("jvostran", 11408 , -2348, 14.64, 1, 3));
+                //scenicList.push(new Scenery("darkStone", 13060 , -1400, -11, 2.5, 2));
+                //scenicList.push(new Scenery("ashStone", 11234 , 1726, -4.45, 0.5, 1));
+                //scenicList.push(new Scenery("stone", 13224 , 2702, 0.12, 1, 2));
+
+                //Plants
+                //scenicList.push(new Scenery("haeflowerPlant", 15185, 4442, 4, true));
+
+                change = "s1w4";
+            }
+        }
+        else if (region == "s1w5")
+        {
+            if (change != "s1w5")
+            {
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+                //todo when structures are created add their list's refresh sequence here.
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //REGION CREATION
+
+                //Creatures
+                //ArtificialIntelligenceAccess.push(new Unit(10988, -2291, "Nog", false, "Buckle-Snorp"));
+
+                //Plants
+                //scenicList.push(new Scenery("haeflowerPlant", 15185, 4442, 4, true));
+
+                change = "s1w5";
+            }
+        }
+        else if (region == "w5")
+        {
+            if (change != "w5")
+            {
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+                //todo when structures are created add their list's refresh sequence here.
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //REGION CREATION
+
+                //Creatures
+                //ArtificialIntelligenceAccess.push(new Unit(10988, -2291, "Nog", false, "Buckle-Snorp"));
+
+                //Plants
+                //scenicList.push(new Scenery("haeflowerPlant", 15185, 4442, 4, true));
+
+                change = "w5";
             }
         }
         else if (region == "e1") //Y > 6290 && Y < 32370

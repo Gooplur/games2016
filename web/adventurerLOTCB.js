@@ -4170,6 +4170,10 @@ function Adventurer()
         {
             outfit = allWorn[42];
         }
+        else if (this.outfitEquipped == "hoffalgreFurCloak")
+        {
+            outfit = allWorn[43];
+        }
         else
         {
             outfit = allWorn[0];
@@ -4531,6 +4535,15 @@ function Adventurer()
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (1 / 2 * Math.PI));
             XXX.drawImage(polyPNG, 792, 308, 52, 48, -(1 / 2 * 62.4) + 0, -(1 / 2 * 57.6) - 2.5, 67.6, 62.4);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "hoffalgreFurCloak")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - Math.PI);
+            XXX.drawImage(nognog, 669, 12, 17, 14, -(1 / 2 * 17 * 1.64) + 0, -(1 / 2 * 14 * 1.6) - 1, 17 * 1.64, 14 * 1.6);
             XXX.restore();
         }
         else if (this.outfitEquipped == "frichFurClothing")
@@ -20330,7 +20343,64 @@ function Adventurer()
                         }
                     }
                 }
+                else if (this.outfitEquipped == "hoffalgreFurCloak")
+                {
+                    if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
+                    {
+                        this.wasCapeFlapping = true; //this lets the cape know it was showing so when the player slows down or stops moving the cape will ease back.
+                        this.capeFlappiness += 1; //this is a variable that determines what costume the cape will be.
+                        if (this.capeFlappiness > 100)
+                        {
+                            this.capeFlappiness = 0;
+                        }
 
+                        if (this.capeFlappiness <= 12.5 || this.capeFlappiness > 25 && this.capeFlappiness <= 37.5 || this.capeFlappiness > 50 && this.capeFlappiness <= 62.5 || this.capeFlappiness > 75 && this.capeFlappiness <= 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(nognog, 698, 6, 13, 20, -(1 / 2 * 13 * 1.95) + 0.5, -(1 / 2 * 20 * 1.8) + 22, 13 * 1.95, 20 * 1.8);
+                            XXX.restore();
+                        }
+                        else if (this.capeFlappiness > 12.5 && this.capeFlappiness <= 25 || this.capeFlappiness > 37.5 && this.capeFlappiness <= 50 || this.capeFlappiness > 62.5 && this.capeFlappiness <= 75 || this.capeFlappiness > 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation + (Math.PI * 0.025 * (Math.random() - 0.5)));
+                            XXX.drawImage(nognog, 698, 6, 13, 20, -(1 / 2 * 13 * 2.1) + 0.5, -(1 / 2 * 20 * 1.8) + 22, 13 * 2.1, 20 * 1.8);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.wasCapeFlapping == true)
+                    {
+                        this.capeFlappiness = 20 * 1.8;
+                        this.wasCapeFlapping = "gooblebunches";
+                        //display the cape while codey stuff happens...
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(nognog, 698, 6, 13, 20, -(1 / 2 * 13 * 1.95) + 0.5, -(1 / 2 * 20 * 1.8) + 22, 13 * 1.95, 20 * 1.8);
+                        XXX.restore();
+                    }
+                    else if (this.wasCapeFlapping == "gooblebunches")
+                    {
+                        this.capeFlappiness -= 1; //this time cape flappiness referrs to the cape flapping down on its way out of being displayed.
+                        if (this.capeFlappiness < 1)
+                        {
+                            this.capeFlappiness = 0;
+                            this.wasCapeFlapping = false;
+                        }
+
+                        if (this.capeFlappiness > 0)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(nognog, 698, 6, 13, 20, -(1 / 2 * 13 * 1.95) + 0.5, -(1 / 2 * 20 * 1.8) + 22, 13 * 1.95, this.capeFlappiness);
+                            XXX.restore();
+                        }
+                    }
+                }
                 else if (this.outfitEquipped == "mofuRunnerOutfit")
                 {
                     if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)

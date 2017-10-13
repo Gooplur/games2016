@@ -6963,6 +6963,134 @@ function Item(type, x, y)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "hoffalgreTendrils")
+        {
+            //For All Items
+            this.identity = "Hoffalgre Tendrils";
+            this.weight = 0.2;
+            this.size = 6;
+            this.description = "The gelatinous worm-like mouth feelers of a hoffalgre.";
+            this.intForDes = 6;
+            this.intDescription = "The tendrils are used to pull food into its mouth, to sense things kinostetically, and for males they are the sex organ.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "agedHoffalgreTendrils")
+        {
+            //For All Items
+            this.identity = "Aged Hoffalgre Tendrils";
+            this.weight = 0.2;
+            this.size = 6;
+            this.description = "The mushy discoulored mouth feelers of a hoffalgre.";
+            this.intForDes = 6;
+            this.intDescription = "This is the main ingredient and former in a certain potion known to be an aphrodisiac.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Hoffalgre Tendrils", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 25); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "hoffalgrePelt")
+        {
+            //For All Items
+            this.identity = "Hoffalgre Pelt";
+            this.weight = 1;
+            this.size = 12;
+            this.description = "The tan and black striped pelt of a hoffalgre.";
+            this.intForDes = 6;
+            this.intDescription = "This can be made into lower-middle socioeconomic status clothing.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 12); // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
+        else if (this.type == "rawHoffalgreFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Hoffalgre Flesh";
+            this.weight = 1;
+            this.size = 12;
+            this.description = "The raw flesh of a Hoffalgre.";
+            this.intForDes = 6;
+            this.intDescription = "A commonly eaten type of meat in the lands of Thengaria.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0.4; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 12); // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
+        else if (this.type == "hoffalgreMeat")
+        {
+            //For All Items
+            this.identity = "Hoffalgre Meat";
+            this.weight = 1.1;
+            this.size = 8;
+            this.description = "A tender and juicy but rather simple tasting meat.";
+            this.intForDes = 6;
+            this.intDescription = "A commonly eaten type of meat in the lands of Thengaria.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 9; //satisfies hunger.
+            this.thirst = 0.15; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 8;
+            this.ingredients = [["Raw Hoffalgre Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 14 - Math.floor(player.getCharisma() / 8); // at max, buy for 8.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 15); // at max, sell for 8.
+        }
         else if (this.type == "frichPelt")
         {
             //For All Items
@@ -14231,6 +14359,63 @@ function Item(type, x, y)
             this.buyValue = 43 - Math.floor(player.getCharisma() / 12); // at max, buy for 39.
             this.sellValue = 33 + Math.floor(player.getCharisma() / 8); // at max, sell for 39.
         }
+        else if (this.type == "hoffalgreFurCloak")
+        {
+            //For All Items
+            this.identity = "Hoffalgre Fur Cloak";
+            this.weight = 1;
+            this.size = 25;
+            this.description = "A cloak sewn from the pelts of hoffalgres.";
+            this.intForDes = 1;
+            this.intDescription = "A peculiar style of clothing worn by some thengan trappers.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.45;
+            this.thirstRetention = -0.2;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 1;
+            //Extra Stat Bonuses
+            this.sleepBonus = 1;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 11;
+            this.ingredients = [["Hoffalgre Pelt", 5]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 26 - Math.floor(player.getCharisma() / 12); // at max, buy for 22.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 5); // at max, sell for 22.
+        }
         else if (this.type == "grushFurClothing")
         {
             //For All Items
@@ -17852,6 +18037,36 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(lodo, 282, 113, 15, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 2), 15 * 2, 13 * 2);
         }
+        else if (this.type == "hoffalgreFurCloak")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 730, 2, 24, 40, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 2.585), Y - this.Y + (1/2 * CCC.height) - (1/2 * 40 * 2.585), 24 * 2.585, 40 * 2.585);
+        }
+        else if (this.type == "hoffalgrePelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 5, 6, 24, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 2.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 2.2), 24 * 2.2, 9 * 2.2);
+        }
+        else if (this.type == "rawHoffalgreFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 5, 18, 14, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 2.2), 14 * 2.2, 10 * 2.2);
+        }
+        else if (this.type == "hoffalgreMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 21, 18, 14, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 2.2), 14 * 2.2, 10 * 2.2);
+        }
+        else if (this.type == "hoffalgreTendrils")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 33, 6, 14, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 2.2), 14 * 2.2, 10 * 2.2);
+        }
+        else if (this.type == "agedHoffalgreTendrils")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 34, 16, 14, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 2.2), 14 * 1.6, 10 * 2.2);
+        }
         else if (this.type == "frichPelt")
         {
             XXX.beginPath();
@@ -20048,6 +20263,36 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(lodo, 282, 113, 15, 13, this.invX - (1/2 * 15 * 2), this.invY - (1/2 * 13 * 2), 15 * 2, 13 * 2);
         }
+        else if (this.type == "hoffalgreFurCloak")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 730, 2, 24, 40, this.invX - (1/2 * 24 * 2.2), this.invY - (1/2 * 40 * 2.2), 24 * 2.2, 40 * 2.2);
+        }
+        else if (this.type == "hoffalgrePelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 5, 6, 24, 9, this.invX - (1/2 * 24 * 2.2), this.invY - (1/2 * 9 * 2.2), 24 * 2.2, 9 * 2.2);
+        }
+        else if (this.type == "rawHoffalgreFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 5, 18, 14, 10, this.invX - (1/2 * 14 * 2.2), this.invY - (1/2 * 10 * 2.2), 14 * 2.2, 10 * 2.2);
+        }
+        else if (this.type == "hoffalgreMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 21, 18, 14, 10, this.invX - (1/2 * 14 * 2.2), this.invY - (1/2 * 10 * 2.2), 14 * 2.2, 10 * 2.2);
+        }
+        else if (this.type == "hoffalgreTendrils")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 33, 6, 14, 10, this.invX - (1/2 * 14 * 2.2), this.invY - (1/2 * 10 * 2.2), 14 * 2.2, 10 * 2.2);
+        }
+        else if (this.type == "agedHoffalgreTendrils")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 34, 16, 14, 10, this.invX - (1/2 * 14 * 2.2), this.invY - (1/2 * 10 * 2.2), 14 * 1.6, 10 * 2.2);
+        }
         else if (this.type == "frichPelt")
         {
             LXX.beginPath();
@@ -22208,6 +22453,36 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(lodo, 282, 113, 15, 13, this.invX - (1/2 * 15 * 2), this.invY - (1/2 * 13 * 2), 15 * 2, 13 * 2);
+        }
+        else if (this.type == "hoffalgreFurCloak")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 730, 2, 24, 40, this.invX - (1/2 * 24 * 2.2), this.invY - (1/2 * 40 * 2.2), 24 * 2.2, 40 * 2.2);
+        }
+        else if (this.type == "hoffalgrePelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 5, 6, 24, 9, this.invX - (1/2 * 24 * 2.2), this.invY - (1/2 * 9 * 2.2), 24 * 2.2, 9 * 2.2);
+        }
+        else if (this.type == "rawHoffalgreFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 5, 18, 14, 10, this.invX - (1/2 * 14 * 2.2), this.invY - (1/2 * 10 * 2.2), 14 * 2.2, 10 * 2.2);
+        }
+        else if (this.type == "hoffalgreMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 21, 18, 14, 10, this.invX - (1/2 * 14 * 2.2), this.invY - (1/2 * 10 * 2.2), 14 * 2.2, 10 * 2.2);
+        }
+        else if (this.type == "hoffalgreTendrils")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 33, 6, 14, 10, this.invX - (1/2 * 14 * 2.2), this.invY - (1/2 * 10 * 2.2), 14 * 2.2, 10 * 2.2);
+        }
+        else if (this.type == "agedHoffalgreTendrils")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 34, 16, 14, 10, this.invX - (1/2 * 14 * 2.2), this.invY - (1/2 * 10 * 2.2), 14 * 1.6, 10 * 2.2);
         }
         else if (this.type == "frichPelt")
         {

@@ -19,6 +19,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.target = "none";
     this.targetDistance = "none";
     this.extraRot = 0;
+    this.traverse = true; //the ability to walk over other units but nothing else.
 
     //variables concerning code functionality
     this.ultra = ultra;
@@ -8711,9 +8712,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         this.creatureBiz = true; // this lets the creatures sort out there own stuff by suspending the normal processes (evadeObstruction) that would happen upon getting stuck.
                     }
+
                     if (this.target != ArtificialIntelligenceAccess[i] || !this.charger) //this is so that a chargers attack is not hindered upon contact with its own target.
                     {
-                        creaturesO = true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                        if (!this.traverse)
+                        {
+                            creaturesO = true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                        }
                     }
                 }
             }
@@ -13020,11 +13025,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.team = "herd";
             this.baseTeam = this.team;
             this.sex = "Young";
+            this.traverse = true;
 
             if (this.alpha == true)
             {
                 if (Math.round(Math.random()))
                 {
+                    this.bounce = false;
                     this.sex = "Female";
                     this.magicalResistance = 0;
                     this.heatResistance = -2.5;
@@ -13036,14 +13043,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.speed = 1.4;
                     this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
                     this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
-                    this.engagementRadius = 33;
-                    this.sizeRadius = 20;
+                    this.engagementRadius = 39;
+                    this.sizeRadius = 15.5;
                     this.negateArmour = 0;
-                    this.attackWait = 3;
+                    this.attackWait = 1.5;
                     this.horniness = 0;
                     this.hungerMAX = 55;
                     this.hunger = 55;
                     this.sustenance = 0;
+                    this.suckling = false;
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 1.35; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -13064,29 +13072,21 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.speed = 2.4;
                     this.rangeOfSight = 640; //This is just to set the variable initially. The rest is variable.
                     this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
-                    this.engagementRadius = 37;
-                    this.sizeRadius = 23.5;
+                    this.engagementRadius = 44;
+                    this.sizeRadius = 17;
                     this.negateArmour = 0;
-                    this.attackWait = 3;
+                    this.attackWait = 1.5;
                     this.horniness = 0;
                     this.hungerMAX = 25;
                     this.hunger = 25;
                     this.sustenance = 0;
+                    this.suckling = false;
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 1.55; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
                     // this is the adjustment the alpha type of Etyr needs to be centered.
                     this.yAdjustment = 0;
                     this.xAdjustment = 0;
-                }
-                //manual sex deciding
-                if (this.ID == "Female")
-                {
-                    this.sex = "Female";
-                }
-                else if (this.ID == "Male")
-                {
-                    this.sex = "Male";
                 }
             }
             else if (this.alpha == "baby")
@@ -13101,10 +13101,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.speed = 1.5;
                 this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
                 this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
-                this.engagementRadius = 19;
-                this.sizeRadius = 12;
+                this.engagementRadius = 10;
+                this.sizeRadius = 9;
                 this.negateArmour = 0;
-                this.attackWait = 3;
+                this.attackWait = 0.5;
                 this.horniness = 0;
                 this.hungerMAX = 10;
                 this.hunger = 10;
@@ -13129,13 +13129,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
                 this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
                 this.engagementRadius = 25;
-                this.sizeRadius = 16.5;
+                this.sizeRadius = 13.75;
                 this.negateArmour = 0;
-                this.attackWait = 3;
+                this.attackWait = 1.5;
                 this.horniness = 0;
                 this.hungerMAX = 20;
                 this.hunger = 20;
                 this.sustenance = 0;
+                this.suckling = false;
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -23216,30 +23217,51 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             if (this.alpha == true)
             {
                 this.experience = (25 * ((player.getIntelligence() / 50) + 1));
-                this.drops = [[new Item("rawArdilFlesh", this.X, this.Y), 2]];
+                if (this.hunger > 0)
+                {
+                    if (this.sex == "Male")
+                    {
+                        this.drops = [[new Item("hoffalgrePelt", this.X, this.Y), 2], [new Item("rawHoffalgreFlesh", this.X, this.Y), 2], [new Item("hoffalgreTendrils", this.X, this.Y), 1]];
+                    }
+                    else if (this.horniness == 100)
+                    {
+                        this.drops = [[new Item("hoffalgrePelt", this.X, this.Y), 1], [new Item("rawHoffalgreFlesh", this.X, this.Y), 2], [new Item("hoffalgreTendrils", this.X, this.Y), 2]];
+                    }
+                    else
+                    {
+                        this.drops = [[new Item("hoffalgrePelt", this.X, this.Y), 1], [new Item("rawHoffalgreFlesh", this.X, this.Y), 1], [new Item("hoffalgreTendrils", this.X, this.Y), 2]];
+                    }
+                }
             }
             else if (this.alpha == "baby")
             {
                 this.experience = (3 * ((player.getIntelligence() / 50) + 1));
+                if (this.hunger > 0)
+                {
+                    this.drops = [[new Item("rawHoffalgreFlesh", this.X, this.Y), 1]];
+                }
             }
             else
             {
                 this.experience = (15 * ((player.getIntelligence() / 50) + 1));
-                this.drops = [[new Item("rawArdilFlesh", this.X, this.Y), 1]];
+                if (this.hunger > 0)
+                {
+                    this.drops = [[new Item("hoffalgrePelt", this.X, this.Y), 1], [new Item("rawHoffalgreFlesh", this.X, this.Y), 1], [new Item("hoffalgreTendrils", this.X, this.Y), 1]];
+                }
             }
 
             //RANGE OF SIGHT (anything related to range of sight)
             if (this.alpha == true)
             {
-                this.rangeOfSightCalculator(600, false);
+                this.rangeOfSightCalculator(250, false);
             }
             else if (this.alpha == "baby")
             {
-                this.rangeOfSightCalculator(500, false);
+                this.rangeOfSightCalculator(200, false);
             }
             else
             {
-                this.rangeOfSightCalculator(600, false);
+                this.rangeOfSightCalculator(250, false);
             }
 
             //AI
@@ -23267,9 +23289,9 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
                         this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
                         this.engagementRadius = 25;
-                        this.sizeRadius = 16.5;
+                        this.sizeRadius = 13.75;
                         this.negateArmour = 0;
-                        this.attackWait = 3;
+                        this.attackWait = 1.5;
                         this.horniness = 0;
                         this.hungerMAX = 20;
                         this.hunger = 20;
@@ -23298,13 +23320,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.speed = 2.1;
                             this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
                             this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
-                            this.engagementRadius = 33;
-                            this.sizeRadius = 20;
+                            this.engagementRadius = 39;
+                            this.sizeRadius = 15.5;
                             this.negateArmour = 0;
-                            this.attackWait = 3;
+                            this.attackWait = 1.5;
                             this.horniness = 0;
-                            this.hungerMAX = 35;
-                            this.hunger = 35;
+                            this.hungerMAX = 55;
+                            this.hunger = 55;
                             this.sustenance = -1000000;
                         }
                         else
@@ -23320,10 +23342,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.speed = 2.4;
                             this.rangeOfSight = 640; //This is just to set the variable initially. The rest is variable.
                             this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
-                            this.engagementRadius = 37;
-                            this.sizeRadius = 23.5;
+                            this.engagementRadius = 44;
+                            this.sizeRadius = 17;
                             this.negateArmour = 0;
-                            this.attackWait = 3;
+                            this.attackWait = 1.5;
                             this.horniness = 0;
                             this.hungerMAX = 25;
                             this.hunger = 25;
@@ -23334,13 +23356,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.sex == "Female" && this.horniness == 100)
                 {
-                    this.horniness = 0;
                     //egg laying
                     this.eggTimer += 1 * (TTD / 16.75);
                     if (this.eggTimer >= 4000)
                     {
+                        this.horniness = 0;
                         this.eggTimer = 0;
-                        var babyAmt = Math.floor(Math.random() * 3) + 1;
+                        var babyAmt = Math.floor(Math.random() * 2) + 1;
                         for (var i = 0; i < babyAmt; i++)
                         {
                             ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Hoffalgre", "baby", "Unit Generated Hoffalgre"));
@@ -23354,7 +23376,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 var mother = "none";
                 if (this.alpha == "baby")
                 {
-                    console.log(this.stustenance);
                     var closestMother = 1000000;
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
@@ -23374,19 +23395,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 //hunger and tittling
                 if (mother != "none")
                 {
-                    if (this.alpha != "baby" || this.DTU(mother) > this.engagementRadius * 2 || mother.hunger < 10)
+                    if (this.DTU(mother) > (this.engagementRadius + this.sizeRadius + mother.sizeRadius) || mother.hunger < 10 || this.hunger > 9.75)
                     {
                         this.hunger -= 0.0002 * (TTD / 16.75);
                         if (this.hunger < 0)
                         {
                             this.health -= 0.0005 * (TTD / 16.75);
                         }
+                        this.suckling = false;
                     }
-                    else if (this.alpha == "baby" && this.DTU(mother) < this.engagementRadius * 2 && mother.hunger >= 10 && this.hunger < 9.75)
+                    else
                     {
-                        mother.hunger -= 0.25;
-                        this.hunger += 0.25;
-                        this.sustenance = 0.25;
+                        this.suckling = true;
                     }
                 }
                 else
@@ -23424,29 +23444,30 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.target == player)
                 {
-                    if (this.DTP() < 250)
+                    if (this.DTP() < this.rangeOfSight)
                     {
                         this.pointAwayFromPlayer();
                         this.moveInRelationToPlayer();
+                        this.suckling = false;
                     }
                     else if (this.alpha == "baby")
                     {
                         if (mother != "none")
                         {
-                            if (this.DTU(mother) > this.engagementRadius * 2)
+                            if (this.DTU(mother) > this.engagementRadius + this.sizeRadius + mother.sizeRadius)
                             {
                                 this.pointTowards(mother);
                                 this.moveInRelationToThing(mother);
-                                this.suckling = true;
                             }
                             else
                             {
-                                this.suckling = true;
+                                this.pointTowards(mother);
+                                this.moving = false;
                             }
                         }
                         else
                         {
-                            this.suckling = true;
+                            this.suckling = false;
                         }
                     }
                     else if (this.horniness > 10 && this.sex == "Male")
@@ -23464,7 +23485,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         }
                         this.pointTowards(mate);
                         this.moveInRelationToThing(mate);
-                        if (this.DTU(mate) <= this.engagementRadius * 1.5)
+                        if (this.DTU(mate) <= this.engagementRadius)
                         {
                             this.sexing = true;
                         }
@@ -23484,6 +23505,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 this.attacking = false;
                             }
                         }
+                    }
+                    else
+                    {
+                        this.moving = false;
                     }
                 }
                 else if (this.target != "none")
@@ -23492,25 +23517,26 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         this.pointAway(this.target);
                         this.moveInRelationToThing(this.target);
+                        this.suckling = false;
                     }
                     else if (this.alpha == "baby")
                     {
                         if (mother != "none")
                         {
-                            if (this.DTU(mother) > this.engagementRadius * 2)
+                            if (this.DTU(mother) > this.engagementRadius + this.sizeRadius + mother.sizeRadius)
                             {
                                 this.pointTowards(mother);
                                 this.moveInRelationToThing(mother);
-                                this.suckling = true;
                             }
                             else
                             {
-                                this.suckling = true;
+                                this.moving = false;
+                                this.pointTowards(mother);
                             }
                         }
                         else
                         {
-                            this.suckling = true;
+                            this.suckling = false;
                         }
                     }
                     else if (this.horniness > 10 && this.sex == "Male")
@@ -23548,6 +23574,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 this.attacking = false;
                             }
                         }
+                    }
+                    else
+                    {
+                        this.moving = false;
                     }
                 }
             }
@@ -23558,11 +23588,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (this.attacking || this.sexing || this.suckling)
                 {
-                    this.costumeEngine(4, 0.5, false);
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                    {
+                        this.costumeEngine(7, 0.20, true);
+                    }
                 }
-                else if (this.moving)
+                else if (this.moving && !this.attacking)
                 {
-                    this.costumeEngine(4, 0.5, false);
+                    this.costumeEngine(4, 0.15, false);
+                }
+                else
+                {
+                    this.costume = 0;
                 }
 
                 // the frames/stages/costumes of the animation.
@@ -23572,23 +23609,102 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 if (theCostume <= 0)
                 {
                     this.other = true;
-                    this.drawUnit(nognog, 774, 135, 28, 28, -1/2 * 28 * this.alphaSize * szx - this.xAdjustment, -1/2 * 28 * this.alphaSize * szx - this.yAdjustment, 28 * this.alphaSize * szx, 28 * this.alphaSize * szx);
+                    if (this.attacking || this.sexing || this.suckling)
+                    {
+                        this.drawUnit(nognog, 49, 9, 56, 19, -1/2 * 56 * this.alphaSize * szx - this.xAdjustment, -1/2 * 19 * this.alphaSize * szx - this.yAdjustment, 56 * this.alphaSize * szx, 19 * this.alphaSize * szx);
+                    }
+                    else if (this.moving)
+                    {
+                        this.drawUnit(nognog, 532, 9, 58, 23, -1/2 * 58 * this.alphaSize * szx - this.xAdjustment, -1/2 * 23 * this.alphaSize * szx - this.yAdjustment, 58 * this.alphaSize * szx, 23 * this.alphaSize * szx);
+                    }
+                    else
+                    {
+                        this.drawUnit(nognog, 49, 9, 56, 19, -1/2 * 56 * this.alphaSize * szx - this.xAdjustment, -1/2 * 19 * this.alphaSize * szx - this.yAdjustment, 56 * this.alphaSize * szx, 19 * this.alphaSize * szx);
+                    }
                 }
                 else if (theCostume <= 1)
                 {
-                    this.drawUnit(nognog, 812, 135, 28, 28, -1/2 * 28 * this.alphaSize * szx - this.xAdjustment, -1/2 * 28 * this.alphaSize * szx - this.yAdjustment, 28 * this.alphaSize * szx, 28 * this.alphaSize * szx);
+                    if (this.attacking || this.sexing || this.suckling)
+                    {
+                        this.drawUnit(nognog, 91, 9, 56, 19, -1/2 * 56 * this.alphaSize * szx - this.xAdjustment, -1/2 * 19 * this.alphaSize * szx - this.yAdjustment, 56 * this.alphaSize * szx, 19 * this.alphaSize * szx);
+                    }
+                    else if (this.moving)
+                    {
+                        this.drawUnit(nognog, 582, 9, 58, 23, -1/2 * 58 * this.alphaSize * szx - this.xAdjustment, -1/2 * 23 * this.alphaSize * szx - this.yAdjustment, 58 * this.alphaSize * szx, 23 * this.alphaSize * szx);
+                    }
                 }
                 else if (theCostume <= 2)
                 {
-                    this.drawUnit(nognog, 849, 135, 28, 28, -1/2 * 28 * this.alphaSize * szx - this.xAdjustment, -1/2 * 28 * this.alphaSize * szx - this.yAdjustment, 28 * this.alphaSize * szx, 28 * this.alphaSize * szx);
+                    if (this.attacking || this.sexing || this.suckling)
+                    {
+                        this.drawUnit(nognog, 138, 10, 56, 19, -1/2 * 56 * this.alphaSize * szx - this.xAdjustment, -1/2 * 19 * this.alphaSize * szx - this.yAdjustment, 56 * this.alphaSize * szx, 19 * this.alphaSize * szx);
+                    }
+                    else if (this.moving)
+                    {
+                        this.drawUnit(nognog, 421, 10, 58, 23, -1/2 * 58 * this.alphaSize * szx - this.xAdjustment, -1/2 * 23 * this.alphaSize * szx - this.yAdjustment, 58 * this.alphaSize * szx, 23 * this.alphaSize * szx);
+                    }
                 }
-                else if (theCostume >= 3)
+                else if (theCostume <= 3)
                 {
+                    if (this.attacking || this.sexing || this.suckling)
+                    {
+                        this.drawUnit(nognog, 191, 10, 51, 19, -1/2 * 51 * this.alphaSize * szx - this.xAdjustment, -1/2 * 19 * this.alphaSize * szx - this.yAdjustment, 51 * this.alphaSize * szx, 19 * this.alphaSize * szx);
+                    }
+                    else if (this.moving)
+                    {
+                        this.drawUnit(nognog, 469, 10, 58, 23, -1/2 * 58 * this.alphaSize * szx - this.xAdjustment, -1/2 * 23 * this.alphaSize * szx - this.yAdjustment, 58 * this.alphaSize * szx, 23 * this.alphaSize * szx);
+                    }
+                }
+                else if (theCostume <= 4)
+                {
+                    if (this.attacking || this.sexing || this.suckling)
+                    {
+                        this.drawUnit(nognog, 241, 10, 55, 19, -1/2 * 55 * this.alphaSize * szx - this.xAdjustment, -1/2 * 19 * this.alphaSize * szx - this.yAdjustment, 55 * this.alphaSize * szx, 19 * this.alphaSize * szx);
+                    }
+                    else if (this.moving)
+                    {
+                        this.drawUnit(nognog, 532, 9, 58, 23, -1/2 * 58 * this.alphaSize * szx - this.xAdjustment, -1/2 * 23 * this.alphaSize * szx - this.yAdjustment, 58 * this.alphaSize * szx, 23 * this.alphaSize * szx);
+                    }
+                }
+                else if (theCostume <= 5)
+                {
+                    if (this.attacking || this.sexing || this.suckling)
+                    {
+                        this.drawUnit(nognog, 302, 10, 62, 21, -1/2 * 62 * this.alphaSize * szx - this.xAdjustment, -1/2 * 21 * this.alphaSize * szx - this.yAdjustment, 62 * this.alphaSize * szx, 21 * this.alphaSize * szx);
+                    }
+                    else if (this.moving)
+                    {
+                        this.drawUnit(nognog, 582, 9, 58, 23, -1/2 * 58 * this.alphaSize * szx - this.xAdjustment, -1/2 * 23 * this.alphaSize * szx - this.yAdjustment, 58 * this.alphaSize * szx, 23 * this.alphaSize * szx);
+                    }
+                }
+                else if (theCostume >= 6)
+                {
+                    if (this.attacking || this.sexing || this.suckling)
+                    {
+                        this.drawUnit(nognog, 362, 9, 58, 23, -1/2 * 58 * this.alphaSize * szx - this.xAdjustment, -1/2 * 23 * this.alphaSize * szx - this.yAdjustment, 58 * this.alphaSize * szx, 23 * this.alphaSize * szx);
+                    }
+                    else if (this.moving)
+                    {
+                        this.drawUnit(nognog, 421, 10, 58, 23, -1/2 * 58 * this.alphaSize * szx - this.xAdjustment, -1/2 * 23 * this.alphaSize * szx - this.yAdjustment, 58 * this.alphaSize * szx, 23 * this.alphaSize * szx);
+                    }
+
                     if (this.sexing)
                     {
                         this.sexing = false;
                         mate.horniness = 100;
                         this.horniness = 0;
+                    }
+
+                    if (this.suckling && this.hunger <= 9.75 && this.alpha == "baby")
+                    {
+                        if (this.other)
+                        {
+                            this.other = false;
+                            mother.hunger -= 0.25;
+                            this.hunger += 0.25;
+                            this.sustenance += 0.25;
+                            this.suckling = false;
+                        }
                     }
 
                     if (this.attacking)
@@ -23602,12 +23718,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.sustenance += 5;
                         }
                     }
-                    this.drawUnit(nognog, 812, 135, 28, 28, -1/2 * 28 * this.alphaSize * szx - this.xAdjustment, -1/2 * 28 * this.alphaSize * szx - this.yAdjustment, 28 * this.alphaSize * szx, 28 * this.alphaSize * szx);
                 }
             }
             else
             {
-                this.drawUnit(nognog, 838, 103, 28, 28, -1/2 * 28 * this.alphaSize * szx - this.xAdjustment, -1/2 * 28 * this.alphaSize * szx - this.yAdjustment, 28 * this.alphaSize * szx, 28 * this.alphaSize * szx);
+                this.drawUnit(nognog, 798, 7, 58, 23, -1/2 * 58 * this.alphaSize * szx - this.xAdjustment, -1/2 * 23 * this.alphaSize * szx - this.yAdjustment, 58 * this.alphaSize * szx, 23 * this.alphaSize * szx);
             }
         }
 

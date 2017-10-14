@@ -14534,7 +14534,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Waanti Fur Outfit";
-            this.weight = 1;
+            this.weight = 2.5;
             this.size = 26;
             this.description = "Clothing sewn from the pelts of waanti.";
             this.intForDes = 0;

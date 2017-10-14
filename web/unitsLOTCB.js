@@ -7576,7 +7576,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
         if (this.target == player)
         {
-            if (wKey == true && shiftKey == true && this.playerSeen == false)
+            if (wKey == true && shiftKey == true && this.playerSeen == false && !altKey)
             {
                 if (hostile == false)
                 {
@@ -7587,7 +7587,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.rangeOfSight = baseSight * 1.35 + this.extraRange;
                 }
             }
-            else if (altKey == true && wKey == false && this.playerSeen == false && !this.disturbed) // If sneaking and the player has not yet been noticed by the enemy...
+            else if (altKey == true && this.playerSeen == false && !this.disturbed) // If sneaking and the player has not yet been noticed by the enemy...
             {
                 this.rangeOfSight = baseSight * (13 / (14 + (player.getDexterity() * 2))) + this.extraRange; // the enemy's sight is severely lowered.
             }
@@ -10337,6 +10337,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "manual";
             this.team = "olkrinia";
             this.baseTeam = this.team;
+            this.haste = true;
 
             if (this.alpha == true)
             {
@@ -10418,6 +10419,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.justAttacked = true;
             this.team = "trollia";
             this.baseTeam = this.team;
+            this.haste = true;
 
             if (this.alpha == true)
             {

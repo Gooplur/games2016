@@ -3,12 +3,14 @@
  */
 
 //TODO LIST
-//todo add the keepSpeed variable in place of speed throughout the Unit Module (where it makes sense to do so).
-//todo add a system that shows the player the names of each region that they enter upon entering it.
-//todo add Maps W1 (partially plains/mostly rock lands), W2 (rock lands), W3 (rock lands), W3S1 (rock lands), W4S1 (rocklands, mudplains, plains, forest)(Lethik - a medium sized village on the fronteir of Thengaria)
-//todo add Barrier class - it is invisible and deletes stray projectiles (or makes them back into their item form) it should also prevent player and unit movement.
-//todo add Dmitris art to the main menu areas. pay dmitri up to 25$ for these, 5$ for save menu, 10$ for the main title and character creation
-//todo add warm norther thick clothing made with waanti.
+//todo add dialogue to the Jarl: Quests/Purchasable Property/etc.
+//todo add Ser Olis Pynske to the jarls estate.
+//todo Add world switch gameplay... -> Dungeons, Caves, trapdoors/ladders, cellars, etc.
+//todo add row boats and swimming
+//todo add the second Freydic City (make it a dock town) [the Freynor kingdom will span over several northern isles and the mainland]
+//todo add containers that operate like miniature banks with fixed numbers of slots.
+//todo add Maps W2 (rock lands), W3 (rock lands), W3 (rock lands), W4 (rock lands),W4S1 (rocklands), W5 (plains/mudflats), W5S1 (Lethik - a medium sized village on the fronteir of Thengaria)
+//todo add warm northern thick clothing made with waanti. //at this point there is only an outfit and not a clothing.
 //todo figure out why aldrekii claws manual attack thing won't let it at twice or even early, while the same code lets the flail perform its attack early.
 //todo finish adding sickness system
 //todo add Lodotos, a sickness that one can get in the kellish mud bog.
@@ -16,10 +18,8 @@
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
 //todo finish adding the beast journal.
 //todo add brain flies.
-//todo integrate the sleep system to beds, add hangover, and soarness effects as well as mini notices.
-//todo add a rest without bed button on the UI that uses a homemade confirm popup to ask if you are sure you want to sleep.
-//todo add beds all the way
-//todo add the nappy closed eye for the sleepButton. (it's on poly)
+//todo add hangover, and soarness effects as well as their mini notices.
+//todo add a rest without bed button on the UI that uses a homemade confirm popup to ask if you are sure you want to sleep. Add the nappy closed eye for the sleepButton. (it's on poly)
 //todo add items: dried plutt with honey
 //todo add the dexterity system: lv 20 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
 //todo add arrow mods such as poison, electric, wind, armour piercing...
@@ -28,15 +28,13 @@
 //todo add tornado spell
 //todo add mage boss who uses the electric spear as well as magical shielding spell he uses.
 //todo add throwing stars for the orgel
-//todo add houses/shops/buildings.
 //todo add sicknesses and symptons (dizziness, pox, fever, fatigue, etc.) ex: make dizziness spin the screen, make pox weaken players constitution etc., make fever decrease thirst.
 //todo add the rest of the alcohols and drinks.
 //todo make alpha Olkrin's death animation line up slightly more.
 //todo add options menu with button: it will allow you to toggle certain settings like mouse combat mode, game coordinates, and other such features.
-//todo Add harsh hot weather conditions: deserts cause faster dehydration.
-//todo It would be cool to add swimming, but it is not necessarily something that the game needs.
-//todo Add multi dimensional gameplay... meaning Dungeons, Caves, trapdoors, castles, cellars, buildings, etc.
+//todo Add harsh hot weather conditions: deserts cause faster dehydration. (base the effect on elevation variable)
 //todo Add more traps to further advance the utility of the Survivalism (trapping) skill.
+//todo add a system that shows the player the names of each region that they enter upon entering it.
 
 function legendaryPrerequisites()
 {

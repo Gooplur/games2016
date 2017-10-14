@@ -4392,7 +4392,7 @@ function Adventurer()
         else if (this.outfitEquipped == "freydicRoyalDress")
         {
             this.outfitZ = false;
-            if (this.movingType == 0 || this.movingType == 4)
+            if (this.movingType == 0 || this.movingType == 4 || this.movingType == 3)
             {
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
@@ -4412,7 +4412,7 @@ function Adventurer()
         else if (this.outfitEquipped == "winterWolfDress")
         {
             this.outfitZ = false;
-            if (this.movingType == 0 || this.movingType == 4)
+            if (this.movingType == 0 || this.movingType == 4 || this.movingType == 3)
             {
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
@@ -4576,7 +4576,7 @@ function Adventurer()
         else if (this.outfitEquipped == "varnFurDress")
         {
             this.outfitZ = false;
-            if (this.movingType == 0 || this.movingType == 4)
+            if (this.movingType == 0 || this.movingType == 4 || this.movingType == 3)
             {
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
@@ -4596,7 +4596,7 @@ function Adventurer()
         else if (this.outfitEquipped == "mofuMatriarchHeaddress")
         {
             this.outfitZ = false;
-            if (this.movingType == 0 || this.movingType == 4)
+            if (this.movingType == 0 || this.movingType == 4 || this.movingType == 3)
             {
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
@@ -4634,7 +4634,7 @@ function Adventurer()
         else if (this.outfitEquipped == "ardilFurClothing" || this.outfitEquipped == "ardilFurSkirt")
         {
             this.outfitZ = true;
-            if (this.movingType == 0 || this.movingType == 1 || this.movingType == 4 || this.freeze > 1.5)
+            if (this.movingType == 0 || this.movingType == 1 || this.movingType == 4 || this.freeze > 1.5 || this.movingType == 3)
             {
                 if (this.outfitState == 1)
                 {

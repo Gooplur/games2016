@@ -16568,11 +16568,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.state == "resting")
                 {
-                    this.mobile = true;
+                    this.mobile = false;
                 }
                 else
                 {
-                    this.mobile = false;
+                    this.mobile = true;
                 }
 
                 //this.deathChecker();

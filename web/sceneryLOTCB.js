@@ -3619,7 +3619,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else if (this.phase == "picked")
             {
-                this.nectar = 0;
+                this.nectarNum = 0;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);

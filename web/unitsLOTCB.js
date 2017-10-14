@@ -19,7 +19,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.target = "none";
     this.targetDistance = "none";
     this.extraRot = 0;
-    this.traverse = true; //the ability to walk over other units but nothing else.
+    this.traverse = false; //the ability to walk over other units but nothing else.
 
     //variables concerning code functionality
     this.ultra = ultra;

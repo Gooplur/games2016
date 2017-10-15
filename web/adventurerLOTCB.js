@@ -782,6 +782,7 @@ function Adventurer()
             var resistDiseaseFlag = false;
             var drainPlayerFlag = false;
             var drainCorpseFlag = false;
+            var luckFlag = false;
 
             //search worn ability list for abilities
             for (var i = 0; i < this.AdAbility.length; i++)
@@ -797,6 +798,10 @@ function Adventurer()
                 if (this.AdAbility[i] == "drainCorpse")
                 {
                     drainCorpseFlag = true;
+                }
+                if (this.AdAbility[i] == "luck")
+                {
+                    luckFlag = true;
                 }
             }
 
@@ -832,6 +837,11 @@ function Adventurer()
                         deadAIList.splice(i, 1);
                     }
                 }
+            }
+
+            if (luckFlag)
+            {
+                this.miningLuck = 4;
             }
         };
 
@@ -4204,6 +4214,10 @@ function Adventurer()
         {
             necklace = allWorn[26];
         }
+        else if (this.necklaceEquipped == "rabbitFootNecklace")
+        {
+            necklace = allWorn[44];
+        }
         else
         {
             necklace = allWorn[0];
@@ -6167,6 +6181,94 @@ function Adventurer()
 
         //Charm Form
         if (this.spell.ID == "charm")
+        {
+            this.stageEngine(7, 0.20, false);
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.4, -1/2 * 41 * 1.4, 57 * 1.4, 37 * 1.4);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polpol, 163, 367, 57, 37, -1/2 * 57 * 1.35, -1/2 * 39 * 1.35, 57 * 1.35, 37 * 1.35);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.35, -1/2 * 39 * 1.35, 57 * 1.35, 37 * 1.35);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polpol, 165, 450, 57, 37, -1/2 * 57 * 1.3, -1/2 * 39 * 1.3, 57 * 1.3, 37 * 1.3);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polpol, 174, 490, 37, 29, -1/2 * 37 * 1.3, -1/2 * 29 * 1.3, 37 * 1.3, 29 * 1.3);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polpol, 174, 516, 38, 31, -1/2 * 38 * 1.3, -1/2 * 31 * 1.3, 38 * 1.3, 31 * 1.3);
+                XXX.restore();
+                if (this.doMagic)
+                {
+                    this.doMagic = false;
+                    this.magicalExperience += this.spell.EXP;
+                    magicList.push(new Magic(player.spell, true, 1));
+                }
+                this.castingCooldown = new Date().getTime();
+            }
+            else if (Math.floor(this.stage) <= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polpol, 174, 490, 37, 29, -1/2 * 37 * 1.25, -1/2 * 29 * 1.25, 37 * 1.25, 29 * 1.25);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 7)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 8)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polpol, 165, 450, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
+                XXX.restore();
+            }
+        }
+
+        //Mark Form
+        if (this.spell.ID == "mark")
         {
             this.stageEngine(7, 0.20, false);
 

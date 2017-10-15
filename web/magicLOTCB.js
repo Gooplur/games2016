@@ -455,10 +455,20 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                         }
                         else if (whatDoIDo == "charm")
                         {
-                            if (ArtificialIntelligenceAccess[i].magicalResistance < 3 + 1/10 * player.getConcentration() && ArtificialIntelligenceAccess[i].healthMAX <= 25 + 2 * player.getConcentration())
+                            if (ArtificialIntelligenceAccess[i].magicalResistance < 3 + 1/10 * player.getConcentration() && ArtificialIntelligenceAccess[i].healthMAX <= 25 + 2 * player.getConcentration() && !ArtificialIntelligenceAccess[i].marked)
                             {
                                 ArtificialIntelligenceAccess[i].charmedTeam = "player";
                                 ArtificialIntelligenceAccess[i].charmedTime = new Date().getTime() + 45000;
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
+                        }
+                        else if (whatDoIDo == "mark")
+                        {
+                            if (ArtificialIntelligenceAccess[i].magicalResistance < 3 + 1/10 * player.getConcentration() && ArtificialIntelligenceAccess[i].healthMAX <= 25 + 2 * player.getConcentration())
+                            {
+                                ArtificialIntelligenceAccess[i].charmedTeam = (Math.random() * 1.7888888889);
+                                ArtificialIntelligenceAccess[i].charmedTime = new Date().getTime() + 25000;
+                                ArtificialIntelligenceAccess[i].marked = true;
                                 ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                             }
                         }
@@ -1087,6 +1097,11 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
             this.spin = 1/5;
             this.orientToCaster(19, 1 / 2 * Math.PI);
         }
+        //MARK
+        if (this.spellType == "mark")
+        {
+            this.orientToCaster(19, 1 / 2 * Math.PI);
+        }
         //FLYING COLOURS
         if (this.spellType == "flyingColours")
         {
@@ -1346,6 +1361,41 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 else
                 {
                     //todo add charming spell for AI
+                }
+            }
+
+            //MARK
+            if (this.spellType == "mark")
+            {
+                if (caster)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.playerRotation);
+                    XXX.globalAlpha = 0.65;
+                    XXX.drawImage(zapa, 308, 42, 18, 31, - (1/2 * 18 * 1.7), - (1/2 * 31 * 1.7), 18 * 1.7, 31 * 1.7);
+                    XXX.restore();
+
+
+                    if (this.alert)
+                    {
+                        for (var i = 0; i < magicList.length; i++)
+                        {
+                            if (magicList[i] === this)
+                            {
+                                magicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+
+                    this.damageThenGoAway(12, "mark", 0, 0, false, "alert");
+                    this.project(this.playerRotation + 1/2 * Math.PI, 150 + 3 * player.getConcentration(), 1 + 2 * ((50 + player.getConcentration()) / 50), "alert");
+
+                }
+                else
+                {
+                    //todo add mark spell for AI
                 }
             }
 

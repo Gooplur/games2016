@@ -1121,6 +1121,9 @@ var fKey;
 var ctrlKey;
 var tildKey;
 var rKey;
+var vKey;
+var tKey;
+var cKey;
 var keyBAR;
 var tellCoords;
 var showSight;
@@ -1487,6 +1490,21 @@ function keyReleased(event)
         rKey = false;
     }
 
+    if (key == 86)
+    {
+        vKey = false;
+    }
+
+    if (key == 84)
+    {
+        tKey = false;
+    }
+
+    if (key == 67)
+    {
+        cKey = false;
+    }
+
     if (key == 83)
     {
         sKey = false;
@@ -1600,6 +1618,21 @@ function keyHeld(event)
     if (key == 82)
     {
         rKey = true;
+    }
+
+    if (key == 86)
+    {
+        vKey = true;
+    }
+
+    if (key == 84)
+    {
+        tKey = true;
+    }
+
+    if (key == 67)
+    {
+        cKey = true;
     }
 
     if (key == 83)
@@ -2070,7 +2103,7 @@ function theLegend()
 //Inventory = [[new Item("kellishSword", false, false), 1], [new Item("lightningCorseque", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("burningSmashStick", false, false), 1], [new Item("bullet", false, false), 200], [new Item("blackPowder", false, false), 200], [new Item("musket", false, false), 1], [new Item("blunderbuss", false, false), 1], [new Item("cutlass", false, false), 1], [new Item("avrakLeatherArmour", false, false), 1], [new Item("balgurCaptainArmour", false, false), 1], [new Item("balgurMercArmour", false, false), 1], [new Item("longSpikedMorningStar", false, false), 1], [new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
 
     //All of the spells in the game
-    allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1], [new Item("summonFrich", false, false), 1], [new Item("summonWolf", false, false), 1], [new Item("charm", false, false), 1], [new Item("sanctuary", false, false), 1], [new Item("repellingWard", false, false), 1], [new Item("iceberg", false, false), 1], [new Item("magicMissiles", false, false), 1], [new Item("minorVortex", false, false), 1]];
+    allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1], [new Item("summonFrich", false, false), 1], [new Item("summonWolf", false, false), 1], [new Item("charm", false, false), 1], [new Item("sanctuary", false, false), 1], [new Item("repellingWard", false, false), 1], [new Item("iceberg", false, false), 1], [new Item("magicMissiles", false, false), 1], [new Item("minorVortex", false, false), 1], [new Item("mark", false, false), 1]];
 //Test Spells
     primarySpells = [];
     secondarySpells = [];
@@ -2183,6 +2216,7 @@ function theLegend()
     allWorn.push(new Item("hyelingArmour", false)); //41
     allWorn.push(new Item("wizardGown", false)); //42
     allWorn.push(new Item("hoffalgreFurCloak", false)); //43
+    allWorn.push(new Item("rabbitFootNecklace", false)); //44
 
     scenicList = [];
 
@@ -2269,6 +2303,7 @@ function theLegend()
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];
+    foods.push(new Item("rabbitMeat", false));
     foods.push(new Item("bowlOfBoiledHarst", false));
     foods.push(new Item("bowlOfCreamyHarst", false));
     foods.push(new Item("bowlOfSanthPorridge", false));
@@ -2361,6 +2396,7 @@ function theLegend()
     tailoring.push(new Item("fineFreydicOutfitF", false));
     tailoring.push(new Item("fineFreydicOutfitM", false));
     tailoring.push(new Item("waantiFurOutfit", false));
+    tailoring.push(new Item("hoffalgreFurCloak", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];
@@ -2371,6 +2407,7 @@ function theLegend()
     jewelry.push(new Item("fireStarter", false));
     jewelry.push(new Item("berulnToothNecklace", false));
     jewelry.push(new Item("mofuFive", false));
+    jewelry.push(new Item("rabbitFootNecklace", false));
 
 //Alchemy (Potions and mixtures crafted at an alchemy lab station)
     alchemy = [];

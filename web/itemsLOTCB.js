@@ -436,6 +436,51 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 10;
             this.spellRange = "Medium";
         }
+        else if (this.type == "mark")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 8)
+            {
+                this.identity = "Scroll of Marking";
+                this.description = "Studying this scroll will allow you to make a being temporarily go mad.";
+                this.intForDes = 0;
+                this.intDescription = "The more concentration the caster has the stronger the beings the spell will be effective on.";
+                this.buyValue = 900 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 800.
+                this.sellValue = 750 + Math.floor(player.getCharisma() / 1); // at max, sell for 800.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 900 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 800.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+
+            this.spellCost = Math.max(1, 2 + 6 / 50 * player.getConcentration() - (7 / 50) * player.getEminence());
+
+            this.spellGroup = "Form";
+            this.spellGenre = "Transmutation";
+            this.spellName = "Mark";
+            this.spellID = "mark";
+            this.spellEXP = 6 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(2, 14 + (16/50) * player.getConcentration() - (26/50) * player.getEminence());
+            this.spellDescription = "A charm that manipulates the target being's mind to think that all other beings are its enemies.";
+            this.spellKnowledgeRequirement = 8;
+            this.spellRange = "Medium";
+        }
         else if (this.type == "chasingLights")
         {
             //For All Items
@@ -8629,6 +8674,110 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "rabbitPelt")
+        {
+            //For All Items
+            this.identity = "Rabbit Pelt";
+            this.weight = 0.5;
+            this.size = 9;
+            this.description = "The pelt of a rabbit.";
+            this.intForDes = 2;
+            this.intDescription = "Rabbit fur can be used to make clothing.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "rabbitFoot")
+        {
+            //For All Items
+            this.identity = "Rabbit Foot";
+            this.weight = 0.125;
+            this.size = 3;
+            this.description = "The bloody severed foot of a rabbit.";
+            this.intForDes = 1;
+            this.intDescription = "Rabbit feet bring good luck or something like that.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "rawRabbitFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Rabbit Flesh";
+            this.weight = 1;
+            this.size = 9;
+            this.description = "The raw flesh of a Rabbit.";
+            this.intForDes = 1;
+            this.intDescription = "Rabbit meat is not very filling, it has very little fat overall.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "rabbitMeat")
+        {
+            //For All Items
+            this.identity = "Rabbit Meat";
+            this.weight = 1;
+            this.size = 9;
+            this.description = "The cooked meat of a Rabbit.";
+            this.intForDes = 0;
+            this.intDescription = "The meat has an inherent peppery aftertaste and is overall fairly gamey.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.25; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Raw Rabbit Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 25); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
         else if (this.type == "rawTunskFlesh")
         {
             //For All Items
@@ -12605,6 +12754,71 @@ function Item(type, x, y)
             this.buyValue = 16 - Math.floor(player.getCharisma() / 6); // at max, buy for 8.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
         }
+        else if (this.type == "rabbitFootNecklace")
+        {
+            //For All Items
+            this.identity = "Rabbit Foot Necklace";
+            this.weight = 0.2;
+            this.size = 11;
+            this.description = "A necklace with a rabbit's severed foot as the centerpiece.";
+            this.intForDes = 1;
+            this.intDescription = "Everyone knows that wearing rabbit feet makes you lucky, why would anyone question that?";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "necklace";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.eminenceRequirement = 10;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = -1;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+            if (player.getEminence() >= 10)
+            {
+                this.ability = "luck";
+                this.rangedBonus = 1;
+                this.staminaBonus = 1;
+                this.dexterityBonus = 1;
+                this.survivalismBonus = 1;
+                this.hungerBonus = 1;
+            }
+
+            this.yield = 7;
+            this.intForCraft = 2;
+            this.ingredients = [["Fiber", 1], ["Rabbit Foot", 7]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 15); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
         else if (this.type == "theCorpseRing")
         {
             //For All Items
@@ -12629,7 +12843,7 @@ function Item(type, x, y)
             //Utility Focused
             //protections
             this.protection = 0 * ((player.toughness / 100) + 1);
-            this.eminenceRequirement = 0;
+            this.eminenceRequirement = 5;
             this.magicalProtection = 0;
             this.warmthRetention = 0;
             this.thirstRetention = 0;
@@ -16264,6 +16478,31 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "rawRabbitFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 664, 172, 19, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1.5), 19 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "rabbitMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 687, 171, 19, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1.5), 19 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "rabbitPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 593, 174, 19, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1.5), 19 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "rabbitFoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 618, 176, 8, 7, X - this.X + (1/2 * CCC.width) - (1/2 * 8 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 7 * 1.4), 8 * 1.4, 7 * 1.4);
+        }
+        else if (this.type == "rabbitFootNecklace")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 635, 166, 19, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.4), 19 * 1.4, 21 * 1.4);
+        }
         else if (this.type == "vel")
         {
             XXX.beginPath();
@@ -17457,7 +17696,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(zapa, 414, 461, 24, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.25), 24 * 1.25, 17 * 1.25);
         }
-        else if (this.type == "sanctuary")
+        else if (this.type == "sanctuary" || this.type == "mark")
         {
             XXX.beginPath();
             XXX.drawImage(zapa, 521, 447, 30, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.25), 30 * 1.25, 29 * 1.25);
@@ -18494,6 +18733,31 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "rawRabbitFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 664, 172, 19, 13, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 13 * 1.5), 19 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "rabbitMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 687, 171, 19, 13, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 13 * 1.5), 19 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "rabbitPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 593, 174, 19, 13, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 13 * 1.5), 19 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "rabbitFoot")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 618, 176, 8, 7, this.invX - (1/2 * 8 * 1.7), this.invY - (1/2 * 7 * 1.7), 8 * 1.7, 7 * 1.7);
+        }
+        else if (this.type == "rabbitFootNecklace")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 635, 166, 19, 21, this.invX - (1/2 * 19 * 1.4), this.invY - (1/2 * 21 * 1.4), 19 * 1.4, 21 * 1.4);
         }
         else if (this.type == "vel")
         {
@@ -19733,7 +19997,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -20266,7 +20530,7 @@ function Item(type, x, y)
         else if (this.type == "hoffalgreFurCloak")
         {
             LXX.beginPath();
-            LXX.drawImage(nognog, 730, 2, 24, 40, this.invX - (1/2 * 24 * 2.2), this.invY - (1/2 * 40 * 2.2), 24 * 2.2, 40 * 2.2);
+            LXX.drawImage(nognog, 730, 2, 24, 40, this.invX - (1/2 * 24 * 1.8), this.invY - (1/2 * 40 * 1.8), 24 * 1.8, 40 * 1.8);
         }
         else if (this.type == "hoffalgrePelt")
         {
@@ -20689,6 +20953,31 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "rawRabbitFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 664, 172, 19, 13, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 13 * 1.5), 19 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "rabbitMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 687, 171, 19, 13, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 13 * 1.5), 19 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "rabbitPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 593, 174, 19, 13, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 13 * 1.5), 19 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "rabbitFoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 618, 176, 8, 7, this.invX - (1/2 * 8 * 1.7), this.invY - (1/2 * 7 * 1.7), 8 * 1.7, 7 * 1.7);
+        }
+        else if (this.type == "rabbitFootNecklace")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 635, 166, 19, 21, this.invX - (1/2 * 19 * 1.4), this.invY - (1/2 * 21 * 1.4), 19 * 1.4, 21 * 1.4);
         }
         else if (this.type == "vel")
         {
@@ -21928,7 +22217,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -22457,7 +22746,7 @@ function Item(type, x, y)
         else if (this.type == "hoffalgreFurCloak")
         {
             XXX.beginPath();
-            XXX.drawImage(nognog, 730, 2, 24, 40, this.invX - (1/2 * 24 * 2.2), this.invY - (1/2 * 40 * 2.2), 24 * 2.2, 40 * 2.2);
+            XXX.drawImage(nognog, 730, 2, 24, 40, this.invX - (1/2 * 24 * 1.8), this.invY - (1/2 * 40 * 1.8), 24 * 1.8, 40 * 1.8);
         }
         else if (this.type == "hoffalgrePelt")
         {

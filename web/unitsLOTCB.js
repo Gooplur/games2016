@@ -523,6 +523,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
         if (fKey || tKey)
         {
+            this.extraRange = this.DTP(); //this allows the units under the player character's control to see the player at any distance.
             if (this.allys.indexOf("player") != -1)
             {
                 this.target = player;
@@ -6709,6 +6710,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             shopInventory = this.ultra.merchandise;
                             shopID = this.ID;
+                            shopkeeper = this;
                             player.merchPosition = 0;
                             merchScroll = 0;
                             lowBar = "shop";
@@ -24365,7 +24367,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.target == player)
                 {
-                    if (this.DTP() <= this.rangeOfSight)
+                    if (this.DTP() <= this.rangeOfSight && this.disturbed)
                     {
                         this.pointAwayFromPlayer();
                         this.moveInRelationToPlayer();

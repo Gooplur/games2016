@@ -3614,6 +3614,64 @@ function Item(type, x, y)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "callopBerries")
+        {
+            //For All Items
+            this.identity = "Callop Berries";
+            this.weight = 0.5;
+            this.size = 7;
+            this.description = "Scrumptious peachy berries with a strong sweet flavor and a disturbingly persistent aftertaste!";
+            this.intForDes = 3;
+            this.intDescription = "These berries are commonly found in the temperate woodlands of Thengaria.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "darbBerries")
+        {
+            //For All Items
+            this.identity = "Darb Berries";
+            this.weight = 0.6;
+            this.size = 7;
+            this.description = "Berries that have a thick gleaming transparent skin, they appear to be translucent orbs of orange fluid.";
+            this.intForDes = 15;
+            this.intDescription = "These berries are highly toxic, but certain alchemical combinations can render benefit from them.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 5; //warms player.
+            this.heal = -1; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = -5; //restores will.
+
+            //ability
+            this.ability = "poisonIII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 3.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 12); // at max, sell for 4.
+        }
         else if (this.type == "bequonFruit")
         {
             //For All Items
@@ -4018,8 +4076,248 @@ function Item(type, x, y)
             this.ability = "foodPoisoning";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 7 - Math.floor(player.getCharisma() / 50);; // at max, buy for 6.
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 50); // at max, buy for 6.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
+        }
+        else if (this.type == "galloshFlower")
+        {
+            //For All Items
+            this.identity = "Gallosh Flower";
+            this.weight = 0.03;
+            this.size = 4;
+            this.description = "An attractive pink flower with pointed petals.";
+            this.intForDes = 0;
+            this.intDescription = "This might make a good gift for a romantic partner.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "brightbloomFlower")
+        {
+            //For All Items
+            this.identity = "Brightbloom Flower";
+            this.weight = 1.2;
+            this.size = 10;
+            this.description = "A glorious sleek white flower with a large extending stamen.";
+            this.intForDes = 0;
+            this.intDescription = "This is truely a flower fit for those of high birth. This acts as a former in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 60 - Math.floor(player.getCharisma() / 5); // at max, buy for 50.
+            this.sellValue = 15 + Math.floor(player.getCharisma() / 1.42); // at max, sell for 50.
+        }
+        else if (this.type == "vorlymFlower")
+        {
+            //For All Items
+            this.identity = "Vorlym Flower";
+            this.weight = 0.03;
+            this.size = 8;
+            this.description = "A voluptuous violet two-petaled flower with a softness like that of velvet.";
+            this.intForDes = 20;
+            this.intDescription = "These flowers are common in thengaria but are highly sought after in many other regions.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.raceName != "Thengar")
+                {
+                    this.buyValue = 13 - Math.floor(player.getCharisma() / 8); // at max, buy for 7.
+                    this.sellValue = 3 + Math.floor(player.getCharisma() / 12); // at max, sell for 7.
+                }
+                else
+                {
+                    this.buyValue = 1; // at max, buy for 1.
+                    this.sellValue = 0; // at max, sell for 0.
+                }
+            }
+            else
+            {
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 0; // at max, sell for 0.
+            }
+        }
+        else if (this.type == "steugiurneFlower")
+        {
+            //For All Items
+            this.identity = "Steugiurne Flower";
+            this.weight = 0.35;
+            this.size = 4;
+            this.description = "The yellow flower of a steugiurne plant.";
+            this.intForDes = 11;
+            this.intDescription = "This has use in alchemy as an amplifier.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "steugiurneFrond")
+        {
+            //For All Items
+            this.identity = "Steugiurne Frond";
+            this.weight = 2;
+            this.size = 4;
+            this.description = "The large and weighty frond of a steugiurne plant.";
+            this.intForDes = 3;
+            this.intDescription = "The plant's name is pronounced (ST | EW | G | YERN).";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "thalisLeaf")
+        {
+            //For All Items
+            this.identity = "Thalis Leaf";
+            this.weight = 0.4;
+            this.size = 6;
+            this.description = "A thick twisted leaf with a slimy viscous liquid inside.";
+            this.intForDes = 20;
+            this.intDescription = "Thalis is often used to make a salve that works to prevent the body from dehydrating.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0.3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 12); // at max, buy for 5.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "hydroraSalve")
+        {
+            //For All Items
+            this.identity = "Hydrora Salve";
+            this.weight = 0.4;
+            this.size = 6;
+            this.description = "A green herbal salve stored in a glass jar.";
+            this.intForDes = 4;
+            this.intDescription = "This temporarily counters natural dehydration.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["glassJar", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0.2; //restores will.
+
+            //ability
+            this.ability = "superQuench";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 12;
+            this.ingredients = [["Glass Jar", 1], ["Thalis Leaf", 3], ["Kofke Leaves", 1], ["Blubber", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 29 - Math.floor(player.getCharisma() / 10); // at max, buy for 24.
+            this.sellValue = 19 + Math.floor(player.getCharisma() / 10); // at max, sell for 24.
+        }
+        else if (this.type == "kofkeLeaves")
+        {
+            //For All Items
+            this.identity = "Kofke Leaves";
+            this.weight = 0.3;
+            this.size = 7;
+            this.description = "A bunch of pointed leaves from a kofke plant.";
+            this.intForDes = 20;
+            this.intDescription = "Used as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0.1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "blilArm")
+        {
+            //For All Items
+            this.identity = "Blil Arm";
+            this.weight = 0.8;
+            this.size = 8;
+            this.description = "One of the six turquoise coloured tubular segments of a blil plant. It is extremely bitter.";
+            this.intForDes = 14;
+            this.intDescription = "Consumption and/or absorption through the skin cause sleepiness.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            this.wake = -9;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 12); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
         else if (this.type == "culprisLeaf")
         {
@@ -16478,6 +16776,51 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "steugiurneFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 73, 348, 12, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 3), 12 * 3, 13 * 3);
+        }
+        else if (this.type == "steugiurneFrond")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 32, 348, 27, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 3), 27 * 3, 13 * 3);
+        }
+        else if (this.type == "vorlymFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 139, 356, 13, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 2.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 2.5), 13 * 2.5, 18 * 2.5);
+        }
+        else if (this.type == "brightbloomFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 872, 330, 22, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 2.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 2.5), 22 * 2.5, 21 * 2.5);
+        }
+        else if (this.type == "galloshFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 10, 342, 10, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 2), 10 * 2, 11 * 2);
+        }
+        else if (this.type == "hydroraSalve")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 833, 402, 10, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1.5), 10 * 1.5, 15 * 1.5);
+        }
+        else if (this.type == "thalisLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 78, 321, 10, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 2), 10 * 2, 11 * 2);
+        }
+        else if (this.type == "kofkeLeaves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 76, 296, 17, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 2), 17 * 2, 16 * 2);
+        }
+        else if (this.type == "blilArm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 20, 269, 14, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 2), 14 * 2, 15 * 2);
+        }
         else if (this.type == "rawRabbitFlesh")
         {
             XXX.beginPath();
@@ -17600,6 +17943,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(verse, 2170, 20, 22, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 22), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19), 22, 19);
+        }
+        else if (this.type == "callopBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 76, 367, 10, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 2), 10 * 2, 10 * 2);
+        }
+        else if (this.type == "darbBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 64, 386, 10, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 2), 10 * 2, 10 * 2);
         }
         else if (this.type == "bequonFruit")
         {
@@ -18733,6 +19086,51 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "steugiurneFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 73, 348, 12, 13, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 13 * 2), 12 * 2, 13 * 2);
+        }
+        else if (this.type == "steugiurneFrond")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 32, 348, 27, 13, this.invX - (1/2 * 27 * 2), this.invY - (1/2 * 13 * 2), 27 * 2, 13 * 2);
+        }
+        else if (this.type == "vorlymFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 139, 356, 13, 18, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 18 * 2), 13 * 2, 18 * 2);
+        }
+        else if (this.type == "brightbloomFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 872, 330, 22, 21, this.invX - (1/2 * 22 * 2.5), this.invY - (1/2 * 21 * 2.5), 22 * 2.5, 21 * 2.5);
+        }
+        else if (this.type == "galloshFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 10, 342, 10, 11, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 11 * 2), 10 * 2, 11 * 2);
+        }
+        else if (this.type == "hydroraSalve")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 833, 402, 10, 15, this.invX - (1/2 * 10 * 1.5), this.invY - (1/2 * 15 * 1.5), 10 * 1.5, 15 * 1.5);
+        }
+        else if (this.type == "thalisLeaf")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 78, 321, 10, 11, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 11 * 2), 10 * 2, 11 * 2);
+        }
+        else if (this.type == "kofkeLeaves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 76, 296, 17, 16, this.invX - (1/2 * 17 * 2), this.invY - (1/2 * 16 * 2), 17 * 2, 16 * 2);
+        }
+        else if (this.type == "blilArm")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 20, 269, 14, 15, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 15 * 2), 14 * 2, 15 * 2);
         }
         else if (this.type == "rawRabbitFlesh")
         {
@@ -19942,6 +20340,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(verse, 2170, 20, 22, 19, this.invX - (1/2 * 22), this.invY - (1/2 * 19), 22, 19);
         }
+        else if (this.type == "callopBerries")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 76, 367, 10, 10, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 10 * 2), 10 * 2, 10 * 2);
+        }
+        else if (this.type == "darbBerries")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 64, 386, 10, 10, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 10 * 2), 10 * 2, 10 * 2);
+        }
         else if (this.type == "bequonFruit")
         {
             LXX.beginPath();
@@ -20953,6 +21361,51 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "steugiurneFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 73, 348, 12, 13, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 13 * 2), 12 * 2, 13 * 2);
+        }
+        else if (this.type == "steugiurneFrond")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 32, 348, 27, 13, this.invX - (1/2 * 27 * 2), this.invY - (1/2 * 13 * 2), 27 * 2, 13 * 2);
+        }
+        else if (this.type == "vorlymFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 139, 356, 13, 18, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 18 * 2), 13 * 2, 18 * 2);
+        }
+        else if (this.type == "brightbloomFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 872, 330, 22, 21, this.invX - (1/2 * 22 * 2.5), this.invY - (1/2 * 21 * 2.5), 22 * 2.5, 21 * 2.5);
+        }
+        else if (this.type == "galloshFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 10, 342, 10, 11, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 11 * 2), 10 * 2, 11 * 2);
+        }
+        else if (this.type == "hydroraSalve")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 833, 402, 10, 15, this.invX - (1/2 * 10 * 1.5), this.invY - (1/2 * 15 * 1.5), 10 * 1.5, 15 * 1.5);
+        }
+        else if (this.type == "thalisLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 78, 321, 10, 11, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 11 * 2), 10 * 2, 11 * 2);
+        }
+        else if (this.type == "kofkeLeaves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 76, 296, 17, 16, this.invX - (1/2 * 17 * 2), this.invY - (1/2 * 16 * 2), 17 * 2, 16 * 2);
+        }
+        else if (this.type == "blilArm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 20, 269, 14, 15, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 15 * 2), 14 * 2, 15 * 2);
         }
         else if (this.type == "rawRabbitFlesh")
         {
@@ -22161,6 +22614,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(verse, 2170, 20, 22, 19, this.invX - (1/2 * 22), this.invY - (1/2 * 19), 22, 19);
+        }
+        else if (this.type == "callopBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 76, 367, 10, 10, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 10 * 2), 10 * 2, 10 * 2);
+        }
+        else if (this.type == "darbBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 64, 386, 10, 10, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 10 * 2), 10 * 2, 10 * 2);
         }
         else if (this.type == "bequonFruit")
         {

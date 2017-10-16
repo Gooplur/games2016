@@ -18247,6 +18247,10 @@ function Adventurer()
                             {
                                 this.watered = true;
                             }
+                            else if (Inventory[i][0].ability == "superQuench") //Food with this effect will keep you quenched for a little bit.
+                            {
+                                this.wateredClock = 200 + this.getEndurance() * 2;
+                            }
                             else if (Inventory[i][0].ability == "sensational") //Food with this effect will keep you fed and quenched for a little bit.
                             {
                                 this.watered = true;

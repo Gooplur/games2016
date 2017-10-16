@@ -15,6 +15,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
     this.statsSet = false;
     this.zIndex = 4;
     this.team = team;
+    this.isPlayerProjectile = false;
     this.speed = speed;
 
     //random individual variables
@@ -126,11 +127,6 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
     {
         if (list == playerProjectiles)
         {
-            if (typeof(this.team) == "undefined")
-            {
-                this.team = "player";
-            }
-
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
                 var distanceFromUnit = Math.sqrt((this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X)+(this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y));
@@ -312,9 +308,16 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
     //This function determines what the projectile will do and how it will draw when it is called based on its type.
     this.projectileBuilder = function()
     {
+        //If the player is the source of this projectile then the projectile lets the players shots avaoid hitting the players allies while also informing the class that it is the player's projectile.
+        if (typeof(this.team) == "undefined")
+        {
+            this.team = "player";
+            this.isPlayerProjectile = true;
+        }
+
         if (type == "arrow")
         {
-            if (list == playerProjectiles)
+            if (list == playerProjectiles && this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -330,7 +333,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.drawImage(polyPNG, 432, 554, 20, 8, 0, 0, 30, 12);
                 XXX.restore();
             }
-            else if (list == unitProjectiles)
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -349,7 +352,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
         }
         else if (type == "steelArrow")
         {
-            if (list == playerProjectiles)
+            if (list == playerProjectiles && this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -365,7 +368,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.drawImage(poly, 182, 104, 23, 9, 0, 0, 34.5, 13.5);
                 XXX.restore();
             }
-            else if (list == unitProjectiles)
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -384,7 +387,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
         }
         else if (type == "freezingArrow")
         {
-            if (list == playerProjectiles)
+            if (list == playerProjectiles && this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -400,7 +403,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.drawImage(mofu, 66, 73, 22, 9, 0, 0, 33, 13.5);
                 XXX.restore();
             }
-            else if (list == unitProjectiles)
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -419,7 +422,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
         }
         else if (type == "fireArrow")
         {
-            if (list == playerProjectiles)
+            if (list == playerProjectiles && this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -435,7 +438,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.drawImage(mofu, 66, 80, 22, 9, 0, 0, 33, 13.5);
                 XXX.restore();
             }
-            else if (list == unitProjectiles)
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -454,7 +457,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
         }
         else if (type == "lifeLeachArrow")
         {
-            if (list == playerProjectiles)
+            if (list == playerProjectiles && this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -470,7 +473,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.drawImage(mofu, 65, 88, 22, 9, 0, 0, 33, 13.5);
                 XXX.restore();
             }
-            else if (list == unitProjectiles)
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
             {
                 //todo add the complicated life drain spell equivelent for the AI in the Leach ability section.
                 //WHAT IT WILL DO...
@@ -490,7 +493,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
         }
         else if (type == "oiledArrow")
         {
-            if (list == playerProjectiles)
+            if (list == playerProjectiles && this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -538,7 +541,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 }
                 XXX.restore();
             }
-            else if (list == unitProjectiles)
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -579,7 +582,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
         }
         else if (type == "shehidToxinArrow")
         {
-            if (list == playerProjectiles)
+            if (list == playerProjectiles && this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -595,7 +598,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.drawImage(mofu, 66, 21, 22, 9, 0, 0, 33, 13.5);
                 XXX.restore();
             }
-            else if (list == unitProjectiles)
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -614,7 +617,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
         }
         else if (type == "steelBolt")
         {
-            if (list == playerProjectiles)
+            if (list == playerProjectiles && this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -630,7 +633,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.drawImage(verse, 3173, 1, 25, 9, 0, 0, 30, 10.8);
                 XXX.restore();
             }
-            else if (list == unitProjectiles)
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -649,7 +652,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
         }
         else if (type == "cheatMachineGunBullet")
         {
-            if (list == playerProjectiles)
+            if (list == playerProjectiles && this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -670,7 +673,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
         }
         else if (type == "aldrekiiArrow")
         {
-            if (list == playerProjectiles)
+            if (list == playerProjectiles && this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -686,7 +689,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.drawImage(verse, 2832, 3, 41, 12, 0, 0, 32, 12);
                 XXX.restore();
             }
-            else if (list == unitProjectiles)
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -705,7 +708,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
         }
         else if (type == "bullet")
         {
-            if (list == playerProjectiles)
+            if (list == playerProjectiles && this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;
@@ -726,7 +729,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.drawImage(mofu, 1321, 16, 5, 5, 4, 4, 8, 8);
                 XXX.restore();
             }
-            else if (list == unitProjectiles)
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
             {
                 //WHAT IT WILL DO...
                 player.projYAd = 0;

@@ -3,6 +3,7 @@
  */
 
 //TODO LIST
+//todo fix the magic system to draw upon a concentration set by the scroll rather than automatically linking to the players current amount.
 //todo add dialogue to the Jarl: Quests/Purchasable Property/etc.
 //todo add Ser Olis Pynske to the jarls estate.
 //todo Add world switch gameplay... -> Dungeons, Caves, trapdoors/ladders, cellars, etc.
@@ -14,7 +15,6 @@
 //todo figure out why aldrekii claws manual attack thing won't let it at twice or even early, while the same code lets the flail perform its attack early.
 //todo finish adding sickness system
 //todo add Lodotos, a sickness that one can get in the kellish mud bog.
-//todo add Blil Plant, it can be whatever, just add it.
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
 //todo finish adding the beast journal.
 //todo add brain flies.
@@ -1180,6 +1180,7 @@ var unitProjectiles;
 var magicList;
 var bindedWillList;
 var shopID;
+var shopkeeper;
 var shopInventory;
 var initialShopItemSet;
 var initialBankItemSet;
@@ -2246,6 +2247,7 @@ function theLegend()
 //this is the list of the current shops wares.
     shopID = "none";
     shopInventory = [];
+    shopkeeper = "none";
     initialShopItemSet = false;
     initialBankItemSet = false;
 
@@ -2424,6 +2426,7 @@ function theLegend()
     alchemy = [];
     alchemy.push(new Item("cleansingPotion", false));
     alchemy.push(new Item("healingSalve", false));
+    alchemy.push(new Item("hydroraSalve", false));
     alchemy.push(new Item("rawTrollsBlood", false));
     alchemy.push(new Item("energyPotionI", false));
     alchemy.push(new Item("speedPotionI", false));

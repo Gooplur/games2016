@@ -4289,7 +4289,7 @@ function buildMaster()
                 scenicList.push(new Scenery("grewbleEggPatch", -10445 , -27153, -Math.PI * -2.4, false));
                 scenicList.push(new Scenery("grewbleEggPatch", -10578 , -26210, 1, false));
                 scenicList.push(new Scenery("grewbleEggPatch", -6830 , -31015, 2, false));
-                scenicList.push(new Scenery("brolleFeast", -10116 , -29425, -Math.PI * 0, false));
+                scenicList.push(new Scenery("brolleFeast", -10116 , -29425, 0, false));
                 scenicList.push(new Scenery("brolleFeast", -7534 , -28197, -Math.PI * 4.2, false));
                 scenicList.push(new Scenery("brolleFeast", -10049 , -28561, -Math.PI * -2, false));
                 scenicList.push(new Scenery("brolleFeast", -9314 , -26816, -Math.PI * -Math.PI, false));

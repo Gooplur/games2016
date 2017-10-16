@@ -1124,6 +1124,7 @@ var rKey;
 var vKey;
 var tKey;
 var cKey;
+var gKey;
 var keyBAR;
 var tellCoords;
 var showSight;
@@ -1495,6 +1496,11 @@ function keyReleased(event)
         vKey = false;
     }
 
+    if (key == 71)
+    {
+        gKey = false;
+    }
+
     if (key == 84)
     {
         tKey = false;
@@ -1623,6 +1629,11 @@ function keyHeld(event)
     if (key == 86)
     {
         vKey = true;
+    }
+
+    if (key == 71)
+    {
+        gKey = true;
     }
 
     if (key == 84)

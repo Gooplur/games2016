@@ -386,7 +386,7 @@ function buildMaster()
                 //Delete All Non-native AI Units
                 for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
-                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                         console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
@@ -1129,7 +1129,7 @@ function buildMaster()
                 //Delete All Non-native AI Units
                 for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
-                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                         console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
@@ -1218,7 +1218,7 @@ function buildMaster()
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
-                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                         console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
@@ -1360,7 +1360,7 @@ function buildMaster()
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
-                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                         console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
@@ -1510,7 +1510,7 @@ function buildMaster()
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
-                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                         console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
@@ -1570,7 +1570,7 @@ function buildMaster()
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
-                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                         console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
@@ -1630,7 +1630,7 @@ function buildMaster()
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
-                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                         console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
@@ -1690,7 +1690,7 @@ function buildMaster()
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
-                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                         console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
@@ -1728,7 +1728,7 @@ function buildMaster()
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
-                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                         console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
@@ -1766,7 +1766,7 @@ function buildMaster()
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
-                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                         console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
@@ -2457,7 +2457,7 @@ function buildMaster()
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
-                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                         console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
@@ -2805,7 +2805,7 @@ function buildMaster()
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
-                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                         console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
@@ -3815,7 +3815,7 @@ function buildMaster()
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
-                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                         console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
@@ -4144,7 +4144,7 @@ function buildMaster()
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
-                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                         console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
@@ -4250,7 +4250,7 @@ function buildMaster()
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
-                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                         console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
@@ -4538,7 +4538,7 @@ function buildMaster()
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
-                    if (ArtificialIntelligenceAccess[i].playerSeen == false)
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                         console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);

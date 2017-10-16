@@ -71,7 +71,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.moving = false; //This flag is active while this unit is moving so that the game knows when this unit is moving.
     this.timeStoppedMoving = new Date().getTime(); //This variable is used to measure how long a unit has not been moving so that the unit can switch back to a stationary costume after an appropriate amount of time.
     //lesser animation variables
-    this.healthShownTime = 0;
+    this.healthShownTime = 0; //this is for showing health after being damaged in combat.
+    this.showHealthTime = 0; //this is for showing health under any other circumstance.
     this.hostile = true;
     //attacking variables (excluding the attacking flag)
     this.stopAttacking = false; // for units that use followThrough this manually ends the attack at the right time if the attack is more complex and is not able to be manually ended at the last frame.
@@ -178,6 +179,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.webbedNum = 0;
     this.stayTime = new Date().getTime();
     this.stay = false;
+    this.guaranteeTime = new Date().getTime();
+    this.guarantee = false;
 
     //Artificial Intelligence
 
@@ -187,7 +190,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         if (this.team == "player")
         {
             //STAY
-            if (vKey && this.DTP() < 140 && !this.stay && this.stayTime <= new Date().getTime()) //makes minions who are in direct proximity to the player stay put
+            if (!shiftKey && vKey && this.DTP() < 140 && !this.stay && this.stayTime <= new Date().getTime()) //makes minions who are in direct proximity to the player stay put
             {
                 this.stay = true;
                 if (this.keepSpeed < this.speed)
@@ -202,7 +205,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.speed = 0;
                 this.stayTime = new Date().getTime() + 900;
             }
-            else if (vKey && this.stay && this.DTP() < 140 && this.stayTime <= new Date().getTime()) //un-stays minions in direct proximity to the player
+            else if (!shiftKey && vKey && this.stay && this.DTP() < 140 && this.stayTime <= new Date().getTime()) //un-stays minions in direct proximity to the player
             {
                 this.stay = false;
                 this.speed = this.staySpeed;
@@ -214,6 +217,28 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.speed = this.staySpeed;
                 this.stayTime = new Date().getTime() + 900;
             }
+            //GUARANTEE (toggles a creature between being a preserved companion and being an expendable follower)
+            if (!shiftKey && gKey && !this.guarantee && this.guaranteeTime <= new Date().getTime() && this.DTP() < 140 && player.companions.length < player.companionLimit)
+            {
+                this.showHealthTime = new Date().getTime();
+                this.guarantee = true;
+                this.guaranteeTime = new Date().getTime() + 3000;
+                player.companions.push(this);
+            }
+            else if (!shiftKey && gKey && this.guarantee && this.guaranteeTime <= new Date().getTime() && this.DTP() < 140)
+            {
+                this.showHealthTime = new Date().getTime();
+                this.guarantee = false;
+                player.companions.splice(player.companions.indexOf(this), 1);
+                this.guaranteeTime = new Date().getTime() + 3000;
+            }
+            else if (shiftKey && gKey && this.guarantee && this.guaranteeTime <= new Date().getTime())
+            {
+                this.showHealthTime = new Date().getTime();
+                this.guarantee = false;
+                player.companions.splice(player.companions.indexOf(this), 1);
+                this.guaranteeTime = new Date().getTime() + 3000;
+            }
         }
         else
         {
@@ -221,6 +246,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.stay = false;
                 this.speed = this.staySpeed;
+            }
+
+            if (this.guarantee)
+            {
+                this.guarantee = false;
+                player.companions.splice(player.companions.indexOf(this), 1);
             }
         }
     };
@@ -9616,7 +9647,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //if damaged a mini health bar will be displayed.
     this.showHealthWhenHurt = function()
     {
-        if (this.health < this.healthMAX && (new Date().getTime() - this.healthShownTime) < 5000)
+        if (this.health < this.healthMAX && (new Date().getTime() - this.healthShownTime) < 5000 || (new Date().getTime() - this.showHealthTime) < 3000)
         {
             XXX.beginPath();
             XXX.fillStyle ="red";

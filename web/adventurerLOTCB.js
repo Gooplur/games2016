@@ -448,6 +448,9 @@ function Adventurer()
     this.mountType = "none"; //What type of mount is it?
     this.mountSpeed = 0; //The official speed of your mount
     this.mountMove = 0; //how fast your mount moves.
+    //companion variables
+    this.companions = [];
+    this.companionLimit = 8;
 
     //a function for all of the small functions to fix tiny obscure yet sometimes important details...
     this.quickFixes = function()

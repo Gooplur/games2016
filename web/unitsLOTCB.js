@@ -523,7 +523,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
         if (fKey || tKey)
         {
-            this.extraRange = this.DTP(); //this allows the units under the player character's control to see the player at any distance.
             if (this.allys.indexOf("player") != -1)
             {
                 this.target = player;
@@ -7744,6 +7743,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         if (new Date().getTime() - this.extraRangeTime > 4000)
         {
             this.extraRange = 0;
+        }
+        if (this.team == "player" && this.target == player) //this allows the units under the player character's control to see the player at any distance.
+        {
+            if (fKey || tKey)
+            {
+                this.extraRange = this.DTP();
+            }
         }
 
         if (this.target == player)

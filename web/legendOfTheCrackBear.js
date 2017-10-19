@@ -758,6 +758,10 @@ function legendaryPrerequisites()
     volcanicEnv.src = ("images/molten.jpg");
     window.volcanicEnv = volcanicEnv;
 
+    var thenganBrickEnv = new Image();
+    thenganBrickEnv.src = ("images/thenganBrick.png");
+    window.thenganBrickEnv = thenganBrickEnv;
+
     var snowyEnv = new Image();
     snowyEnv.src = ("images/permaFrost.jpg");
     window.snowyEnv = snowyEnv;
@@ -897,6 +901,18 @@ function casiAlFin()
     window.lodo = lodo;
 
     lodo.onload = function()
+    {
+        yaEstamosAlla();
+    };
+}
+
+function yaEstamosAlla()
+{
+    var theng = new Image();
+    theng.src = ("images/theng.png");
+    window.theng = theng;
+
+    theng.onload = function()
     {
         noRealmenteTanCerca();
     };

@@ -137,6 +137,7 @@ function Adventurer()
     this.stage = 0; //Stage represents which frame in a combat animation the character is on, and it is used to create weapon animations.
     this.attacking = false; //This variable is triggered by the attack button, when triggered and true it initiates an attack and it will not turn false again until that attack is carried out.
     this.resetFrameOrder = true; //This unlocks the animation for attacking when true, and locks it when false so that internal attack processes can finish up.
+    this.wepLayer = false;
     //variables for walking and running related functions
     this.lLegY = 0; // this changes the length of the player's left leg
     this.rLegY = 0; // this changes the length of the player's right leg
@@ -7665,6 +7666,67 @@ function Adventurer()
                 XXX.restore();
             }
         }
+        //THENGAN WARHAMMER
+        if (this.weaponEquipped == "thenganWarhammer")
+        {
+            this.stageEngine(7, 0.15, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                this.wepLayer = "over";
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 44, 1406, 62, 139, -29.35, -85.5, 62 * 1.05, 139 * 1.05);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                this.wepLayer = "over";
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 143, 1411, 62, 138, -28.86, -80, 62 * 1.05, 139 * 1.05);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                this.wepLayer = "over";
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 237, 1411, 62, 138, -28.86, -80, 62 * 1.05, 139 * 1.05);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                this.wepLayer = "over";
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 310, 1416, 62, 138, -28.86, -77.5, 62 * 1.05, 139 * 1.05);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                this.wepLayer = "standard";
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 381, 1417, 62, 138, -28.86, -77.5, 62 * 1.05, 139 * 1.05);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 5)
+            {
+                this.wepLayer = "standard";
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 450, 1417, 62, 138, -27.8, -77.5, 62 * 1.05, 139 * 1.05);
+                XXX.restore();
+            }
+        }
         //RUHNKOR-GREN (ancient freydic greatsword)
         if (this.weaponEquipped == "blueBlade")
         {
@@ -10598,6 +10660,14 @@ function Adventurer()
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.4/5 * Math.PI) * (this.mySize + 22);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.4/5 * Math.PI) * (this.mySize + 22);
         }
+        else if (this.weaponEquipped == "thenganWarhammer")
+        {
+            this.weapon = allWeapons[58];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 44);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 44);
+        }
     };
 
     //BLOCKING FUNCTION
@@ -10639,25 +10709,30 @@ function Adventurer()
 
                     if (dfu <= this.weapon.range * 7 && this.finalAttackStage == true && !ArtificialIntelligenceAccess[i].underground)
                     {
+                        var justDealt = 0; //this stores the damage that was just dealt
                         if (this.powerAttack == false)
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                             console.log("You Dealt " + (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
+                            justDealt = Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                         }
                         else if (this.powerAttack == "weak")
                         {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(3,(this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(3, (this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                             console.log("Weak Attack: " + Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) + " Damage!");
+                            justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                         }
                         else if (this.powerAttack == "weakened")
                         {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(5,(this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(5, (this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                             console.log("Weakened Attack: " + Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) + " Damage!");
+                            justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                         }
                         else
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, ((this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5)))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                             console.log("Power Attack: " + Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) + " Damage!");
+                            justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                         }
 
                         //console.log(this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
@@ -10682,7 +10757,7 @@ function Adventurer()
                                 var counterOrbCount = 0;
                                 if (ArtificialIntelligenceAccess[i].health < 0)
                                 {
-                                    counterOrbCount = Math.round(- ArtificialIntelligenceAccess[i].health);
+                                    counterOrbCount = Math.round(-ArtificialIntelligenceAccess[i].health);
                                 }
                                 var orbsAllowed = Math.max(0, dmgDealt - ArtificialIntelligenceAccess[i].magicalResistance - counterOrbCount);
                                 for (var j = 0; j < orbsAllowed; j++)
@@ -10697,6 +10772,51 @@ function Adventurer()
                             ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
                             ArtificialIntelligenceAccess[i].stunTimer = 5;
                             ArtificialIntelligenceAccess[i].stunIV = true;
+                        }
+                        else if (this.weapon.ability == "knockbackII" && justDealt > 0)
+                        {
+                            var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
+                            ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 50;
+                            ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 50;
+                            ArtificialIntelligenceAccess[i].stunIII = true;
+                            ArtificialIntelligenceAccess[i].stunTimer = 3;
+                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                        }
+                        else if (this.weapon.ability == "knockbackII" && justDealt > 0)
+                        {
+                            var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
+                            ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 100;
+                            ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 100;
+                            ArtificialIntelligenceAccess[i].stunIII = true;
+                            ArtificialIntelligenceAccess[i].stunTimer = 4;
+                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                        }
+                        else if (this.weapon.ability == "knockbackIII" && justDealt > 0)
+                        {
+                            var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
+                            ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 150;
+                            ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 150;
+                            ArtificialIntelligenceAccess[i].stunIII = true;
+                            ArtificialIntelligenceAccess[i].stunTimer = 4;
+                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                        }
+                        else if (this.weapon.ability == "knockbackIV" && justDealt > 0)
+                        {
+                            var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
+                            ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 150;
+                            ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 150;
+                            ArtificialIntelligenceAccess[i].stunIV = true;
+                            ArtificialIntelligenceAccess[i].stunTimer = 4;
+                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                        }
+                        else if (this.weapon.ability == "knockbackV" && justDealt > 0)
+                        {
+                            var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
+                            ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 160;
+                            ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 160;
+                            ArtificialIntelligenceAccess[i].stunIV = true;
+                            ArtificialIntelligenceAccess[i].stunTimer = 5;
+                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
                         }
                         else if (this.weapon.ability == "shock")
                         {
@@ -18615,6 +18735,7 @@ function Adventurer()
                     }
                     else if (Inventory[i][0].utility == "weapon")
                     {
+                        this.wepLayer = false; //resets weapon layer variable so that weapons that do not use this variable will not be affected.
                         if (player.getDexterity() >= 15)
                         {
                             //unequipping a weapon
@@ -20330,7 +20451,7 @@ function Adventurer()
                 }
 
                 //this is rare, but some weapons draw below the body layer.
-                if (this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff") //add more cases for more overhead weapons.
+                if (this.wepLayer == "under" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }
@@ -20573,7 +20694,7 @@ function Adventurer()
                 this.drawBody();
 
                 //most weapons draw beneath the armour layer.
-                if (this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff") //add more cases for more overhead weapons.
+                if (this.wepLayer == "standard" || this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }
@@ -20619,7 +20740,7 @@ function Adventurer()
                 }
 
                 //certain weapons draw over the armour layer
-                if (this.weaponEquipped == "nirineseSabre" || this.weaponEquipped == "longSpikedMorningStar") //add more cases for more overhead weapons.
+                if (this.wepLayer == "over" || this.weaponEquipped == "nirineseSabre" || this.weaponEquipped == "longSpikedMorningStar") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }

@@ -2197,6 +2197,7 @@ function theLegend()
     allWeapons.push(new Item("cero", false)); //55
     allWeapons.push(new Item("thenganDagger", false)); //56
     allWeapons.push(new Item("staff", false)); //57
+    allWeapons.push(new Item("thenganWarhammer", false)); //58
 
 //This list holds one of each type of worn item so that the player can access the worn item stats.
     allWorn = [];
@@ -2329,6 +2330,7 @@ function theLegend()
     smithing.push(new Item("hyelingArmour", false));
     smithing.push(new Item("staff", false));
     smithing.push(new Item("thenganDagger", false));
+    smithing.push(new Item("thenganWarhammer", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];

@@ -94,6 +94,24 @@ function Item(type, x, y)
             this.damageHandicapII = 5;
         }
 
+        this.alter = function(input, upDown, level, alteration) //INPUT is something like player.getStrength() for example //UP Down determines if it is a less than or greater than equation //level = the level at which the change takes place //alteration = the number which the skill goes down by
+        {
+            if (upDown)
+            {
+                if (input >= level)
+                {
+                    return alteration;
+                }
+            }
+            else
+            {
+                if (input <= level)
+                {
+                    return alteration;
+                }
+            }
+        };
+
         this.superStealthNum = function(multiplyerOrAddend)
         {
             if (player.superStealth)
@@ -15921,6 +15939,39 @@ function Item(type, x, y)
             this.buyValue = 435 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 235.
             this.sellValue = 195 + Math.floor(player.getCharisma() / 2); // at max, sell for 220.
         }
+        else if (this.type == "thenganWarhammer")
+        {
+            //For All Items
+            this.identity = "Thengan Warhammer";
+            this.weight = 20;
+            this.size = 25;
+            this.description = "A massive steel hammer made for use on the battlefield.";
+            this.intForDes = 1;
+            this.intDescription = "The force of this weapon causes enemies to be knocked back.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 16;
+            this.distance = 44 + (this.range * 7);
+            this.range = 2;
+            this.rate = 600;
+            this.damage = (14 - this.damageHandicap * 4) * (this.leveledDamageMultiple / 25) + ((1/12.5) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 19;
+
+            //ability
+            this.ability = "knockbackIV";
+
+            this.yield = 1;
+            this.intForCraft = 48;
+            this.ingredients = [["Steel", 5]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1000 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 800.
+            this.sellValue = 400 + Math.floor(player.getCharisma() / 0.125); // at max, sell for 800.
+        }
         else if (this.type == "aldrekiiBardiche")
         {
             //For All Items
@@ -17998,6 +18049,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 512, 514, 36, 49, X - this.X + (1/2 * CCC.width) - (1/2 * 36 / 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 49 / 1.3), 36 / 1.3, 49 / 1.3);
+        }
+        else if (this.type == "thenganWarhammer")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 2, 120, 32, 62, X - this.X + (1/2 * CCC.width) - (1/2 * 32 * 1.15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 62 * 1.15), 32 * 1.15, 62 * 1.15);
         }
         else if (this.type == "warHammer")
         {
@@ -20395,6 +20451,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 512, 514, 36, 49, this.invX - (1/2 * 36 / 1.3), this.invY - (1/2 * 49 / 1.3), 36 / 1.3, 49 / 1.3);
         }
+        else if (this.type == "thenganWarhammer")
+        {
+            LXX.beginPath();
+            LXX.drawImage(theng, 2, 120, 32, 62, this.invX - (1/2 * 32 * 1.15), this.invY - (1/2 * 62 * 1.15), 32 * 1.15, 62 * 1.15);
+        }
         else if (this.type == "warHammer")
         {
             LXX.beginPath();
@@ -22669,6 +22730,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 512, 514, 36, 49, this.invX - (1/2 * 36 / 1.3), this.invY - (1/2 * 49 / 1.3), 36 / 1.3, 49 / 1.3);
+        }
+        else if (this.type == "thenganWarhammer")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 2, 120, 32, 62, this.invX - (1/2 * 32 * 1.15), this.invY - (1/2 * 62 * 1.15), 32 * 1.15, 62 * 1.15);
         }
         else if (this.type == "warHammer")
         {

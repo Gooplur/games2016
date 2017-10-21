@@ -179,7 +179,7 @@ function Adventurer()
     this.projectileY = 0;
     this.projYAd = 0;
     //Bind Spell variables
-    this.fistMagicalDamage = 0; //This is the magical damage the player does with his/her fists.
+        //this.fistMagicalDamage = 0; //This is the magical damage the player does with his/her fists.
     //getOnTouchSpellResources
     this.fireHands = false;
     this.shockHands = false;
@@ -241,6 +241,7 @@ function Adventurer()
     this.dialogueChoiceMade = false; //this is a variable that helps determine when the player has chosen what to say during dialogue, it will be reset after the recipient registers the players input.
     this.romance = []; //This is the list of individuals in game that are in a romantic relationship with you.
     //effects variables
+    this.spikedHandsBonus = 0;
     this.miningLuck = 0;
     this.fedClock = 0; // this is the amount of time a player can avoid losing hunger after eating. This value is set elsewhere.
     this.fed = true; //When this is initiated the player will become satiated for a short duration of time.
@@ -781,12 +782,15 @@ function Adventurer()
     {
         this.outfitEffects = function()
         {
+            //extra variables
+            var spikedHandsType = "none";
             //CHECK FOR EFFECTS
             //set flags
             var resistDiseaseFlag = false;
             var drainPlayerFlag = false;
             var drainCorpseFlag = false;
             var luckFlag = false;
+            var spikedHandsFlag = false;
 
             //search worn ability list for abilities
             for (var i = 0; i < this.AdAbility.length; i++)
@@ -807,6 +811,11 @@ function Adventurer()
                 {
                     luckFlag = true;
                 }
+                if (this.AdAbility[i] == "spikedHandsI" || this.AdAbility[i] == "spikedHandsII" || this.AdAbility[i] == "spikedHandsIII")
+                {
+                    spikedHandsType = this.AdAbility[i];
+                    spikedHandsFlag = true;
+                }
             }
 
             //EXECUTE EFFECTS
@@ -819,6 +828,30 @@ function Adventurer()
             else
             {
                 this.resistDisease = false;
+            }
+
+            if (spikedHandsFlag)
+            {
+                if (spikedHandsType == "spikedHandsI")
+                {
+                    this.spikedHandsBonus = 1.5;
+                }
+                else if (spikedHandsType == "spikedHandsII")
+                {
+                    this.spikedHandsBonus = 3;
+                }
+                else if (spikedHandsType == "spikedHandsIII")
+                {
+                    this.spikedHandsBonus = 5;
+                }
+                else
+                {
+                    this.spikedHandsBonus = 0;
+                }
+            }
+            else
+            {
+                this.spikedHandsBonus = 0;
             }
 
             if (drainPlayerFlag)
@@ -2652,7 +2685,13 @@ function Adventurer()
             this.mageShieldSize = 0;
             this.mageShieldColour = "skyblue";
         }
-    }
+    };
+
+    this.getFistDamage = function()
+    {
+        return (this.fistDamage + this.spikedHandsBonus);
+    };
+
     this.getMagicHands = function(sort)
     {
         if (sort == "damage")
@@ -4188,6 +4227,10 @@ function Adventurer()
         {
             outfit = allWorn[43];
         }
+        else if (this.outfitEquipped == "skolLeatherArmour")
+        {
+            outfit = allWorn[47];
+        }
         else
         {
             outfit = allWorn[0];
@@ -4203,9 +4246,24 @@ function Adventurer()
         {
             gloves = allWorn[32];
         }
+        else if (this.glovesEquipped == "skolLeatherGloves")
+        {
+            gloves = allWorn[46];
+        }
         else
         {
             gloves = allWorn[0];
+        }
+
+        var boots;
+
+        if (this.bootsEquipped == "skolLeatherBoots")
+        {
+            boots = allWorn[45]
+        }
+        else
+        {
+            boots = allWorn[0];
         }
 
         var necklace;
@@ -4244,39 +4302,40 @@ function Adventurer()
 
         this.outfitType = outfit;
         this.glovesType = gloves;
+        this.bootsType = boots;
         this.necklaceType = necklace;
         this.ringType = ring;
         //TODO add boots.
 
-        this.armour = outfit.protection + gloves.protection + necklace.protection + ring.protection; //TODO add boot's stats to all of the stats as well.
-        this.magicalResistance = outfit.magicalProtection + gloves.magicalProtection + necklace.magicalProtection + ring.magicalProtection;
-        this.warmthProtection = outfit.warmthRetention + gloves.warmthRetention + necklace.warmthRetention + ring.warmthRetention;
-        this.heatResistance = outfit.thirstRetention + gloves.thirstRetention + necklace.thirstRetention + ring.thirstRetention;
-        this.AdShockResist = outfit.shockResist + gloves.shockResist + necklace.shockResist + ring.shockResist;
+        this.armour = outfit.protection + gloves.protection + necklace.protection + ring.protection + boots.protection;
+        this.magicalResistance = outfit.magicalProtection + gloves.magicalProtection + necklace.magicalProtection + ring.magicalProtection + boots.magicalProtection;
+        this.warmthProtection = outfit.warmthRetention + gloves.warmthRetention + necklace.warmthRetention + ring.warmthRetention + boots.warmthRetention;
+        this.heatResistance = outfit.thirstRetention + gloves.thirstRetention + necklace.thirstRetention + ring.thirstRetention + boots.thirstRetention;
+        this.AdShockResist = outfit.shockResist + gloves.shockResist + necklace.shockResist + ring.shockResist + boots.shockResist;
         //Main Stat Bonuses
-        this.AdStrength = outfit.strengthBonus + gloves.strengthBonus + necklace.strengthBonus + ring.strengthBonus;
-        this.AdEndurance = outfit.enduranceBonus + gloves.enduranceBonus + necklace.enduranceBonus + ring.enduranceBonus;
-        this.AdToughness = outfit.toughnessBonus + gloves.toughnessBonus + necklace.toughnessBonus + ring.toughnessBonus;
-        this.AdIntelligence = outfit.intelligenceBonus + gloves.intelligenceBonus + necklace.intelligenceBonus + ring.intelligenceBonus;
-        this.AdCharisma = outfit.charismaBonus + gloves.charismaBonus + necklace.charismaBonus + ring.charismaBonus;
-        this.AdRanged = outfit.rangedBonus + gloves.rangedBonus + necklace.rangedBonus + ring.rangedBonus;
-        this.AdConstitution = outfit.constitutionBonus + gloves.constitutionBonus + necklace.constitutionBonus + ring.constitutionBonus;
-        this.AdStamina = outfit.staminaBonus + gloves.staminaBonus + necklace.staminaBonus + ring.staminaBonus;
-        this.AdDexterity = outfit.dexterityBonus + gloves.dexterityBonus + necklace.dexterityBonus + ring.dexterityBonus;
-        this.AdSurvivalism = outfit.survivalismBonus + gloves.survivalismBonus + necklace.survivalismBonus + ring.survivalismBonus;
+        this.AdStrength = outfit.strengthBonus + gloves.strengthBonus + necklace.strengthBonus + ring.strengthBonus + boots.strengthBonus;
+        this.AdEndurance = outfit.enduranceBonus + gloves.enduranceBonus + necklace.enduranceBonus + ring.enduranceBonus + boots.enduranceBonus;
+        this.AdToughness = outfit.toughnessBonus + gloves.toughnessBonus + necklace.toughnessBonus + ring.toughnessBonus + boots.toughnessBonus;
+        this.AdIntelligence = outfit.intelligenceBonus + gloves.intelligenceBonus + necklace.intelligenceBonus + ring.intelligenceBonus + boots.intelligenceBonus;
+        this.AdCharisma = outfit.charismaBonus + gloves.charismaBonus + necklace.charismaBonus + ring.charismaBonus + boots.charismaBonus;
+        this.AdRanged = outfit.rangedBonus + gloves.rangedBonus + necklace.rangedBonus + ring.rangedBonus + boots.rangedBonus;
+        this.AdConstitution = outfit.constitutionBonus + gloves.constitutionBonus + necklace.constitutionBonus + ring.constitutionBonus + boots.constitutionBonus;
+        this.AdStamina = outfit.staminaBonus + gloves.staminaBonus + necklace.staminaBonus + ring.staminaBonus + boots.staminaBonus;
+        this.AdDexterity = outfit.dexterityBonus + gloves.dexterityBonus + necklace.dexterityBonus + ring.dexterityBonus + boots.dexterityBonus;
+        this.AdSurvivalism = outfit.survivalismBonus + gloves.survivalismBonus + necklace.survivalismBonus + ring.survivalismBonus + boots.survivalismBonus;
         //Extra Stat Bonuses
-        this.AdSleep = outfit.sleepBonus + gloves.sleepBonus + necklace.sleepBonus;
-        this.hungerMAX = this.hungerMAX + outfit.hungerBonus + gloves.hungerBonus + necklace.hungerBonus + ring.hungerBonus;
-        this.thirstMAX = this.thirstMAX + outfit.thirstBonus + gloves.thirstBonus + necklace.thirstBonus + ring.thirstBonus;
-        this.warmthMAX = this.warmthMAX + outfit.warmthBonus + gloves.warmthBonus + necklace.warmthBonus + ring.warmthBonus;
+        this.AdSleep = outfit.sleepBonus + gloves.sleepBonus + necklace.sleepBonus + ring.sleepBonus + boots.sleepBonus;
+        this.hungerMAX = this.hungerMAX + outfit.hungerBonus + gloves.hungerBonus + necklace.hungerBonus + ring.hungerBonus + boots.hungerBonus;
+        this.thirstMAX = this.thirstMAX + outfit.thirstBonus + gloves.thirstBonus + necklace.thirstBonus + ring.thirstBonus + boots.thirstBonus;
+        this.warmthMAX = this.warmthMAX + outfit.warmthBonus + gloves.warmthBonus + necklace.warmthBonus + ring.warmthBonus + boots.warmthBonus;
         //Magical Stat Bonuses
-        this.AdEminence = outfit.eminenceBonus + gloves.eminenceBonus + necklace.eminenceBonus + ring.eminenceBonus;
-        this.AdWillpower = outfit.willpowerBonus + gloves.willpowerBonus + necklace.willpowerBonus + ring.willpowerBonus;
-        this.AdKnowledge = outfit.knowledgeBonus + gloves.knowledgeBonus + necklace.knowledgeBonus + ring.knowledgeBonus;
-        this.AdConcentration = outfit.concentrationBonus + gloves.concentrationBonus + necklace.concentrationBonus + ring.concentrationBonus;
-        this.AdMemory = outfit.memoryBonus + gloves.memoryBonus + necklace.memoryBonus + ring.memoryBonus;
+        this.AdEminence = outfit.eminenceBonus + gloves.eminenceBonus + necklace.eminenceBonus + ring.eminenceBonus + boots.eminenceBonus;
+        this.AdWillpower = outfit.willpowerBonus + gloves.willpowerBonus + necklace.willpowerBonus + ring.willpowerBonus + boots.willpowerBonus;
+        this.AdKnowledge = outfit.knowledgeBonus + gloves.knowledgeBonus + necklace.knowledgeBonus + ring.knowledgeBonus + boots.knowledgeBonus;
+        this.AdConcentration = outfit.concentrationBonus + gloves.concentrationBonus + necklace.concentrationBonus + ring.concentrationBonus + boots.concentrationBonus;
+        this.AdMemory = outfit.memoryBonus + gloves.memoryBonus + necklace.memoryBonus + ring.memoryBonus + boots.memoryBonus;
 
-        this.AdAbility = [outfit.ability, gloves.ability, necklace.ability, ring.ability];
+        this.AdAbility = [outfit.ability, gloves.ability, necklace.ability, ring.ability, boots.ability];
 
 
         if (this.getToughness() < outfit.toughnessRequirement)
@@ -4314,6 +4373,15 @@ function Adventurer()
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
             XXX.drawImage(zer0, 63, 232, 19, 19, - 1/2 * 19 * 2, - 1/2 * 19 * 2 + 1.2, 19 * 2, 19 * 2);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "skolLeatherArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (Math.PI));
+            XXX.drawImage(theng, 702, 1042, 37, 32, - 1/2 * 37 * 1, - 1/2 * 32 * 1 + 0, 37 * 1, 32 * 1);
             XXX.restore();
         }
         else if (this.outfitEquipped == "hyelingArmour")

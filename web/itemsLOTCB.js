@@ -145,7 +145,7 @@ function Item(type, x, y)
             this.energyCost = 0;
             this.range = 1;
             this.rate = 25;
-            this.damage = player.fistDamage;
+            this.damage = player.getFistDamage();
             this.magicalDamage = player.getMagicHands("damage");
             this.negateArmour = 0;
 
@@ -10737,6 +10737,26 @@ function Item(type, x, y)
             this.buyValue = 115 - Math.floor(player.getCharisma() / 2); // at max, buy for 90.
             this.sellValue = 60 + Math.floor(player.getCharisma() / 2); // at max, sell for 85.
         }
+        else if (this.type == "skolPelt")
+        {
+            //For All Items
+            this.identity = "Skol Pelt";
+            this.weight = 2.5;
+            this.size = 16;
+            this.description = "The thick rugged fur of a skol.";
+            this.intForDes = 1;
+            this.intDescription = "This can be used to make armour and clothing.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 6.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 6.
+        }
         else if (this.type == "rawWinterWolfFlesh")
         {
             //For All Items
@@ -10816,6 +10836,68 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 12 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 8.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 8); // at max, sell for 8.
+        }
+        else if (this.type == "rawSkolFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Skol Flesh";
+            this.weight = 1;
+            this.size = 14;
+            this.description = "A tough bit of flesh cut from a skol.";
+            this.intForDes = 2;
+            this.intDescription = "Eating this raw will lead to getting gut worms.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "skolMeat")
+        {
+            //For All Items
+            this.identity = "Skol Meat";
+            this.weight = 1;
+            this.size = 14;
+            this.description = "The cooked meat of a skol.";
+            this.intForDes = 0;
+            this.intDescription = "This meat is particularly tough and it doesn't taste very good.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.thirst = 0; //quenches thirst.
+            this.heal = 0; //heals health.
+            this.replenish = 0; //restores will.
+            this.hunger = 4; //satisfies hunger.
+            this.warmth = 0; //warms player.
+            this.generation = -2; //recoops lost energy.
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 4;
+            this.ingredients = [["Raw Skol Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
         }
         else if (this.type == "rawGreyWolfFlesh")
         {
@@ -13496,6 +13578,180 @@ function Item(type, x, y)
             this.buyValue = 99 - Math.floor(player.getCharisma() / 2.5); // at max, buy for 79.
             this.sellValue = 54 + Math.floor(player.getCharisma() / 2); // at max, sell for 79.
         }
+        else if (this.type == "skolLeatherArmour")
+        {
+            //For All Items
+            this.identity = "Skol Leather Armour";
+            this.weight = 5;
+            this.size = 26;
+            this.description = "A leather armour made from hardened skol pelts.";
+            this.intForDes = 3;
+            this.intDescription = "The armour is barbed so as to strike fear in your enemies.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 2 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 1;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2;
+            this.thirstRetention = -1;
+            this.shockResist = -0.2;
+            //Main Stat Bonuses
+            this.strengthBonus = 1;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 4;
+            this.rangedBonus = 1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 2;
+            //Extra Stat Bonuses
+            this.sleepBonus = 3;
+            this.hungerBonus = 1;
+            this.thirstBonus = 0;
+            this.warmthBonus = 5;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 36;
+            this.ingredients = [["Skol Pelt", 2], ["Iron", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 88 - Math.floor(player.getCharisma() / 5); // at max, buy for 78.
+            this.sellValue = 53 + Math.floor(player.getCharisma() / 2); // at max, sell for 78.
+        }
+        else if (this.type == "skolLeatherGloves")
+        {
+            //For All Items
+            this.identity = "Skol Leather Gloves";
+            this.weight = 1.4;
+            this.size = 10;
+            this.description = "Iron barbed leather gloves made from skol pelt.";
+            this.intForDes = 2;
+            this.intDescription = "Punching does more damage since these gloves are barbed.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "gloves";
+            //Utility Focused
+            //protections
+            this.protection = 0.2 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 1;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.1;
+            this.thirstRetention = -0.03;
+            this.shockResist = -0.05;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 2;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 1;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 1;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "spikedHandsI";
+
+            //Crafting
+            this.yield = 5;
+            this.intForCraft = 37;
+            this.ingredients = [["Skol Pelt", 1], ["Iron", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 29 - Math.floor(player.getCharisma() / 5); // at max, buy for 19.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 5); // at max, sell for 19.
+        }
+        else if (this.type == "skolLeatherBoots")
+        {
+            //For All Items
+            this.identity = "Skol Leather Boots";
+            this.weight = 3.3;
+            this.size = 10;
+            this.description = "Iron barbed leather boots made from skol pelt.";
+            this.intForDes = 2;
+            this.intDescription = "Punching does more damage since these gloves are barbed.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "boots";
+            //Utility Focused
+            //protections
+            this.protection = 0.3 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 1;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.15;
+            this.thirstRetention = -0.04;
+            this.shockResist = -0.08;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 2;
+            this.rangedBonus = 1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -4;
+            this.survivalismBonus = 1;
+            //Extra Stat Bonuses
+            this.sleepBonus = 1;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 1;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 36;
+            this.ingredients = [["Skol Pelt", 1], ["Iron", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 56 - Math.floor(player.getCharisma() / 5); // at max, buy for 46.
+            this.sellValue = 36 + Math.floor(player.getCharisma() / 5); // at max, sell for 46.
+        }
         else if (this.type == "walrusLeatherArmour")
         {
             //For All Items
@@ -13795,7 +14051,7 @@ function Item(type, x, y)
             this.thirstRetention = - 0.5;
             this.shockResist = 6;
             //Main Stat Bonuses
-            this.strengthBonus = 1;
+            this.strengthBonus = 2;
             this.enduranceBonus = 0;
             this.toughnessBonus = 0;
             this.intelligenceBonus = 0;
@@ -16827,6 +17083,36 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "skolLeatherBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 752, 1057, 37, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32 * 1.3), 37 * 1.3, 32 * 1.3);
+        }
+        else if (this.type == "skolLeatherGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 701, 1074, 37, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32 * 1.3), 37 * 1.3, 32 * 1.3);
+        }
+        else if (this.type == "skolLeatherArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 752, 993, 37, 59, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 1.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 59 * 1.65), 37 * 1.65, 59 * 1.65);
+        }
+        else if (this.type == "skolPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 55, 97, 30, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1.9), 30 * 1.9, 15 * 1.9);
+        }
+        else if (this.type == "rawSkolFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 10, 98, 17, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.9), 17 * 1.9, 18 * 1.9);
+        }
+        else if (this.type == "skolMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 27, 97, 17, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.9), 17 * 1.9, 18 * 1.9);
+        }
         else if (this.type == "steugiurneFlower")
         {
             XXX.beginPath();
@@ -19143,6 +19429,36 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "skolLeatherBoots")
+        {
+            LXX.beginPath();
+            LXX.drawImage(theng, 752, 1057, 37, 32, this.invX - (1/2 * 37 * 1.9), this.invY - (1/2 * 32 * 1.9), 37 * 1.9, 32 * 1.9);
+        }
+        else if (this.type == "skolLeatherGloves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(theng, 701, 1074, 37, 32, this.invX - (1/2 * 37 * 1.9), this.invY - (1/2 * 32 * 1.9), 37 * 1.9, 32 * 1.9);
+        }
+        else if (this.type == "skolLeatherArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(theng, 752, 993, 37, 59, this.invX - (1/2 * 37 * 1.2), this.invY - (1/2 * 59 * 1.2), 37 * 1.2, 59 * 1.2);
+        }
+        else if (this.type == "skolPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(theng, 55, 97, 30, 15, this.invX - (1/2 * 30 * 1.9), this.invY - (1/2 * 15 * 1.9), 30 * 1.9, 15 * 1.9);
+        }
+        else if (this.type == "rawSkolFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(theng, 10, 98, 17, 18, this.invX - (1/2 * 17 * 1.9), this.invY - (1/2 * 18 * 1.9), 17 * 1.9, 18 * 1.9);
+        }
+        else if (this.type == "skolMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(theng, 27, 97, 17, 18, this.invX - (1/2 * 17 * 1.9), this.invY - (1/2 * 18 * 1.9), 17 * 1.9, 18 * 1.9);
+        }
         else if (this.type == "steugiurneFlower")
         {
             LXX.beginPath();
@@ -21422,6 +21738,36 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "skolLeatherBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 752, 1057, 37, 32, this.invX - (1/2 * 37 * 1.9), this.invY - (1/2 * 32 * 1.9), 37 * 1.9, 32 * 1.9);
+        }
+        else if (this.type == "skolLeatherGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 701, 1074, 37, 32, this.invX - (1/2 * 37 * 1.9), this.invY - (1/2 * 32 * 1.9), 37 * 1.9, 32 * 1.9);
+        }
+        else if (this.type == "skolLeatherArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 752, 993, 37, 59, this.invX - (1/2 * 37 * 1.2), this.invY - (1/2 * 59 * 1.2), 37 * 1.2, 59 * 1.2);
+        }
+        else if (this.type == "skolPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 55, 97, 30, 15, this.invX - (1/2 * 30 * 1.9), this.invY - (1/2 * 15 * 1.9), 30 * 1.9, 15 * 1.9);
+        }
+        else if (this.type == "rawSkolFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 10, 98, 17, 18, this.invX - (1/2 * 17 * 1.9), this.invY - (1/2 * 18 * 1.9), 17 * 1.9, 18 * 1.9);
+        }
+        else if (this.type == "skolMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 27, 97, 17, 18, this.invX - (1/2 * 17 * 1.9), this.invY - (1/2 * 18 * 1.9), 17 * 1.9, 18 * 1.9);
         }
         else if (this.type == "steugiurneFlower")
         {

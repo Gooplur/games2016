@@ -2246,6 +2246,9 @@ function theLegend()
     allWorn.push(new Item("wizardGown", false)); //42
     allWorn.push(new Item("hoffalgreFurCloak", false)); //43
     allWorn.push(new Item("rabbitFootNecklace", false)); //44
+    allWorn.push(new Item("skolLeatherBoots", false)); //45
+    allWorn.push(new Item("skolLeatherGloves", false)); //46
+    allWorn.push(new Item("skolLeatherArmour", false)); //47
 
     scenicList = [];
 
@@ -2391,6 +2394,7 @@ function theLegend()
     foods.push(new Item("boulchomMeat", false));
     foods.push(new Item("thuegTripe", false));
     foods.push(new Item("hoffalgreMeat", false));
+    foods.push(new Item("skolMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -2428,6 +2432,9 @@ function theLegend()
     tailoring.push(new Item("fineFreydicOutfitM", false));
     tailoring.push(new Item("waantiFurOutfit", false));
     tailoring.push(new Item("hoffalgreFurCloak", false));
+    tailoring.push(new Item("skolLeatherArmour", false));
+    tailoring.push(new Item("skolLeatherBoots", false));
+    tailoring.push(new Item("skolLeatherGloves", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];

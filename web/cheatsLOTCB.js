@@ -370,9 +370,17 @@ function cheats()
                 testBarriers = false;
             }
         }
-        else if (cheatcode.toLowerCase() == "resetSurvivalism")
+        else if (cheatcode.toLowerCase() == "resetsurvivalism")
         {
             this.survivalism = 0;
+        }
+        else if (cheatcode.toLowerCase() == "resetdexterity")
+        {
+            this.dexterity = 0;
+        }
+        else if (cheatcode.toLowerCase() == "getfistdamage")
+        {
+            alert(player.getFistDamage());
         }
         else if (cheatcode == "4444444444444444")
         {

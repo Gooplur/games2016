@@ -372,11 +372,11 @@ function cheats()
         }
         else if (cheatcode.toLowerCase() == "resetsurvivalism")
         {
-            this.survivalism = 0;
+            player.survivalism = 0;
         }
         else if (cheatcode.toLowerCase() == "resetdexterity")
         {
-            this.dexterity = 0;
+            player.dexterity = 0;
         }
         else if (cheatcode.toLowerCase() == "getfistdamage")
         {
@@ -652,7 +652,7 @@ function cheats()
         {
             ArtificialIntelligenceAccess.push(new Unit(X + 500 - 1/2 * CCC.width, Y + 500 - 1/2 * CCC.height, "BogTroll", true, "Gravimull the Troll"));
         }
-        else if (cheatcode.toLowerCase() == "wetnoodle")
+        else if (cheatcode.toLowerCase() == "wetnoodle") //resets all physical stats to 0
         {
             player.toughness = 0;
             player.endurance = 0;
@@ -660,6 +660,10 @@ function cheats()
             player.charisma = 0;
             player.constitution = 0;
             player.strength = 0;
+            player.dexterity = 0;
+            player.ranged = 0;
+            player.intelligence = 0;
+            player.survivalism = 0;
         }
         else if (cheatcode.toLowerCase() == "kalbus")
         {

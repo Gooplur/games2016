@@ -846,7 +846,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(35 - 750, 5540, "Soldier", false, "Hetmer The Bandit Chief", {race: "Freynor", faction: "hostile", con: 6, speed: 1.2, outfit: ["hetmerArmour", 5.5], weapon: ["freydicSword", [6, 5], 0, 16, 1], ranged: [false, "arrow", 9, 2100, 1, 7, 0, "none", 1.2], patrolStops: 1, patrolLoop: false, route:[[221 -750, 5517]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(35 - 750, 5540, "Soldier", false, "Hetmer The Bandit Chief", {race: "Freynor", faction: "hostile", con: 7, speed: 1.2, outfit: ["hetmerArmour", 5.5], weapon: ["freydicSword", [7, 7], 0, 16, 1], ranged: [false, "arrow", 9, 2100, 1, 7, 0, "none", 1.2], patrolStops: 1, patrolLoop: false, route:[[221 -750, 5517]]}));
                     }
                 }
 

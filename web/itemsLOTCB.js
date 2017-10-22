@@ -14051,11 +14051,11 @@ function Item(type, x, y)
             this.thirstRetention = - 0.5;
             this.shockResist = 6;
             //Main Stat Bonuses
-            this.strengthBonus = 2;
+            this.strengthBonus = 4;
             this.enduranceBonus = 0;
             this.toughnessBonus = 0;
             this.intelligenceBonus = 0;
-            this.charismaBonus = 6;
+            this.charismaBonus = 9;
             this.rangedBonus = 0;
             this.constitutionBonus = 0;
             this.staminaBonus = 0;

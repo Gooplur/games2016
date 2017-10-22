@@ -12278,8 +12278,8 @@ function Item(type, x, y)
             this.identity = "Club";
             this.weight = 1.5;
             this.size = 14;
-            this.description = "Sharpened iron studs attached to the end of a wooden handle.";
-            this.intForDes = 4;
+            this.description = "Sharpened iron spikes attached to the end of a wooden handle.";
+            this.intForDes = 1;
             this.intDescription = "It is for smacking with...";
 
             //Define Utility
@@ -12290,7 +12290,7 @@ function Item(type, x, y)
             this.distance = 15 + (this.range * 7);
             this.range = 4;
             this.rate = Math.max(95, 125 - (30 * player.getDexterity() / 50));
-            this.damage = (3 - this.damageHandicap) * (this.leveledDamageMultiple / 25);
+            this.damage = (4 - this.damageHandicap) * (this.leveledDamageMultiple / 25);
             this.magicalDamage = 0;
             this.negateArmour = 3;
 
@@ -16626,7 +16626,7 @@ function Item(type, x, y)
             this.energyCost = 4.5;
             this.distance = 26 + (this.range * 7);
             this.range = 4;
-            this.rate = 100;
+            this.rate = 90;
             this.damage = (5.5 - (this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
             this.magicalDamage = 0;
             this.negateArmour = 0;

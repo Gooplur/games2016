@@ -4231,6 +4231,10 @@ function Adventurer()
         {
             outfit = allWorn[47];
         }
+        else if (this.outfitEquipped == "boulchomLeatherArmour")
+        {
+            outfit = allWorn[48];
+        }
         else
         {
             outfit = allWorn[0];
@@ -4250,6 +4254,10 @@ function Adventurer()
         {
             gloves = allWorn[46];
         }
+        else if (this.glovesEquipped == "boulchomLeatherGloves")
+        {
+            gloves = allWorn[49];
+        }
         else
         {
             gloves = allWorn[0];
@@ -4260,6 +4268,10 @@ function Adventurer()
         if (this.bootsEquipped == "skolLeatherBoots")
         {
             boots = allWorn[45]
+        }
+        else if (this.bootsEquipped == "boulchomLeatherBoots")
+        {
+            boots = allWorn[50]
         }
         else
         {
@@ -4382,6 +4394,15 @@ function Adventurer()
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (Math.PI));
             XXX.drawImage(theng, 702, 1042, 37, 32, - 1/2 * 37 * 1, - 1/2 * 32 * 1 + 0, 37 * 1, 32 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "boulchomLeatherArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (Math.PI));
+            XXX.drawImage(theng, 746, 1165, 27, 27, - 1/2 * 27 * 1.25, - 1/2 * 27 * 1.25 + 0, 27 * 1.25, 27 * 1.25);
             XXX.restore();
         }
         else if (this.outfitEquipped == "hyelingArmour")

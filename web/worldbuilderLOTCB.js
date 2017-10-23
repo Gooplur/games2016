@@ -634,7 +634,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-339, 72, "Soldier", false, "Jarl Orjov Tor", {race: "Freynor", faction: "Freynor", con: 40, speed: 0.6, outfit: ["jvostranPlateArmour", 42], weapon: ["freydicGreatSword", [37, 20], 0, 37, 5], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 2, patrolLoop: true, route:[[-339, 72], [-339, 72]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-341, -24, "Soldier", false, "Jarl Orjov Tor", {race: "Freynor", faction: "Freynor", con: 40, speed: 0.6, outfit: ["jvostranPlateArmour", 42], weapon: ["freydicGreatSword", [37, 20], 0, 37, 5], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 2, patrolLoop: true, route:[[-341, -24], [-341, -24]]}));
                     }
                 }
                 if (uniqueChars.laandegLDS == true)
@@ -775,11 +775,11 @@ function buildMaster()
                             {
                                 if (quests.theBalgurMercenariesCompletionStyle == "killedMercs" && quests.theBalgurMercenariesQuest == "complete" || quests.theBalgurMercenariesCompletionStyle == "royalProtection" && quests.theBalgurMercenariesQuest == "complete"|| quests.theBalgurMercenariesCompletionStyle == "threaten" && quests.theBalgurMercenariesQuest == "complete" || quests.theBalgurMercenariesCompletionStyle == "paidMercs" && quests.theBalgurMercenariesQuest == "complete") //if you beat neculai's quest in a way positive for neculai he likes you enough to sell his swamp walker armour.
                                 {
-                                    ArtificialIntelligenceAccess.push(new Unit(2644, 2006, "Person", false, "Neculai the Merchant", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("frichFurClothing", false, false), 3], [new Item("mace", false, false), 1], [new Item("vardanianAxe", false, false), 3], [new Item("vardanianAxeDual", false, false), 2], [new Item("vardanianCleaver", false, false), 1], [new Item("vardanianClub", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("rawWolfLiver", false, false), 4], [new Item("blackChainArmour", false, false), 2], [new Item("trollFlesh", false, false), 2], [new Item("wood", false, false), 14], [new Item("freydicSword", false, false), 1], [new Item("frichPelt", false, false), 6], [new Item("rawWalrusFlesh", false, false), 5], [new Item("walrusMeat", false, false), 1], [new Item("swampWalkerArmour", false, false), 1]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(2498, 1144, "Person", false, "Neculai the Merchant", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("frichFurClothing", false, false), 3], [new Item("mace", false, false), 1], [new Item("vardanianAxe", false, false), 3], [new Item("vardanianAxeDual", false, false), 2], [new Item("vardanianCleaver", false, false), 1], [new Item("vardanianClub", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("rawWolfLiver", false, false), 4], [new Item("blackChainArmour", false, false), 2], [new Item("trollFlesh", false, false), 2], [new Item("wood", false, false), 14], [new Item("freydicSword", false, false), 1], [new Item("frichPelt", false, false), 6], [new Item("rawWalrusFlesh", false, false), 5], [new Item("walrusMeat", false, false), 1], [new Item("swampWalkerArmour", false, false), 1]]}));
                                 }
                                 else
                                 {
-                                    ArtificialIntelligenceAccess.push(new Unit(2644, 2006, "Person", false, "Neculai the Merchant", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("frichFurClothing", false, false), 3], [new Item("mace", false, false), 1], [new Item("vardanianAxe", false, false), 3], [new Item("vardanianAxeDual", false, false), 2], [new Item("vardanianCleaver", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("rawWolfLiver", false, false), 4], [new Item("blackChainArmour", false, false), 2], [new Item("trollFlesh", false, false), 2], [new Item("wood", false, false), 14], [new Item("freydicSword", false, false), 1], [new Item("frichPelt", false, false), 6], [new Item("rawWalrusFlesh", false, false), 5], [new Item("walrusMeat", false, false), 1]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(2498, 1144, "Person", false, "Neculai the Merchant", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("frichFurClothing", false, false), 3], [new Item("mace", false, false), 1], [new Item("vardanianAxe", false, false), 3], [new Item("vardanianAxeDual", false, false), 2], [new Item("vardanianCleaver", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("rawWolfLiver", false, false), 4], [new Item("blackChainArmour", false, false), 2], [new Item("trollFlesh", false, false), 2], [new Item("wood", false, false), 14], [new Item("freydicSword", false, false), 1], [new Item("frichPelt", false, false), 6], [new Item("rawWalrusFlesh", false, false), 5], [new Item("walrusMeat", false, false), 1]]}));
                                 }
                             }
                             else
@@ -916,10 +916,29 @@ function buildMaster()
 
                 //Signs
                 scenicList.push(new Scenery("sign", 1570, 1115, 1/2 * Math.PI, 3, "Svehn's Smithy"));
-                scenicList.push(new Scenery("sign", 2792, 1706, 1/2 * Math.PI, 3, "Custom Tailoring"));
-                scenicList.push(new Scenery("sign", 2792, 2056, 1/2 * Math.PI, 3, "For Sale - 5000 coins"));
+                scenicList.push(new Scenery("sign", 2792, 1706, 1/2 * Math.PI, 3, "Northfolk Outfitters"));
                 scenicList.push(new Scenery("sign", 1583, 2026, 1/2 * Math.PI, 3, "Teshir General Goods"));
                 scenicList.push(new Scenery("sign", 1583, 2316, 1/2 * Math.PI, 3, "Teshir City Barracks"));
+                scenicList.push(new Scenery("sign", 1484, 1514, 0 * Math.PI, 3, "Teshir City Bank"));
+                scenicList.push(new Scenery("sign", 2175, 1657, 0 * Math.PI, 3, "The Harvest's Bounty - Inn"));
+
+                //filler and the rest
+                    //the inn
+                scenicList.push(new Scenery("bartop", 2308, 1736, -1/2 * Math.PI, true));
+                scenicList.push(new Scenery("bed", 1985, 1850, 1/2 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 2105, 1913, -1/2 * Math.PI, false));
+
+                //The Players Home (purchasable)
+                if (quests.teshirHomeOwned)
+                {
+                    scenicList.push(new Scenery("sign", 2792, 2056, 1/2 * Math.PI, 3, "Fairfield Lodge"));
+                    scenicList.push(new Scenery("bed", 2612, 2082, 1/2 * Math.PI, true));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("sign", 2792, 2056, 1/2 * Math.PI, 3, "For Sale - 5000 coins"));
+                    scenicList.push(new Scenery("bed", 2612, 2082, 1/2 * Math.PI, false));
+                }
 
                 //The Jarl's Estate
                 scenicList.push(new Scenery("freydicBuilding6", -102, 474, 0, true));
@@ -946,6 +965,9 @@ function buildMaster()
                 }
                     //The Jarls Chamber
                 scenicList.push(new Scenery("walrusHideRug", -331, 141, -1/2 * Math.PI, 2.5));
+                scenicList.push(new Scenery("feastingTable", -476, 156, -1/2 * Math.PI, true));
+                scenicList.push(new Scenery("feastingTable", -187, 156, -1/2 * Math.PI, true));
+                scenicList.push(new Scenery("bartop", -335, -3, 0 * Math.PI, true));
 
                 //bandit Camp in the north east
                 //tents

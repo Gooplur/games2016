@@ -2032,6 +2032,10 @@ function theLegend()
         fenwikEchlinArmed: 0,
         fenwikShopStyle: "normal",
         garldCrazyScroll: false,
+
+        //PLAYER PROPERTY
+        teshirHomeOwned: false,
+
         //ITEM STASH VARIABLES (non quest)
         lonerGuyStash: true,
 
@@ -2249,6 +2253,9 @@ function theLegend()
     allWorn.push(new Item("skolLeatherBoots", false)); //45
     allWorn.push(new Item("skolLeatherGloves", false)); //46
     allWorn.push(new Item("skolLeatherArmour", false)); //47
+    allWorn.push(new Item("boulchomLeatherArmour", false)); //48
+    allWorn.push(new Item("boulchomLeatherGloves", false)); //49
+    allWorn.push(new Item("boulchomLeatherBoots", false)); //50
 
     scenicList = [];
 
@@ -2435,6 +2442,9 @@ function theLegend()
     tailoring.push(new Item("skolLeatherArmour", false));
     tailoring.push(new Item("skolLeatherBoots", false));
     tailoring.push(new Item("skolLeatherGloves", false));
+    tailoring.push(new Item("boulchomLeatherArmour", false));
+    tailoring.push(new Item("boulchomLeatherBoots", false));
+    tailoring.push(new Item("boulchomLeatherGloves", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];

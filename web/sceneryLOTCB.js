@@ -1477,6 +1477,141 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             }
         }
+        else if (this.type == "bartop")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            this.zIndex = 1;
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(theng, 376, 1692, 133, 57, -(1/2 * 133 * 1), -(1/2 * 57 * 1), 133 * 1, 57 * 1);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "feastingTable")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            this.zIndex = 1;
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(theng, 556, 1672, 137, 119, -(1/2 * 137 * 1), -(1/2 * 119 * 1), 137 * 1, 119 * 1);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "blood")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            this.zIndex = 1;
+            if (this.temporary == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 632, 1799, 82, 77, -(1/2 * 82 * this.information), -(1/2 * 77 * this.information), 82 * this.information, 77 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 718, 1821, 82, 77, -(1/2 * 82 * this.information), -(1/2 * 77 * this.information), 82 * this.information, 77 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 713, 1754, 82, 77, -(1/2 * 82 * this.information), -(1/2 * 77 * this.information), 82 * this.information, 77 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 4)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 540, 1809, 82, 77, -(1/2 * 82 * this.information), -(1/2 * 77 * this.information), 82 * this.information, 77 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 5)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 447, 1783, 82, 77, -(1/2 * 82 * this.information), -(1/2 * 77 * this.information), 82 * this.information, 77 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 6)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 371, 1793, 82, 77, -(1/2 * 82 * this.information), -(1/2 * 77 * this.information), 82 * this.information, 77 * this.information);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "thenganSandbox")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            this.zIndex = 1;
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(theng, 46, 1680, 288, 196, -(1/2 * 288 * 2.5), -(1/2 * 196 * 2.5), 288 * 2.5, 196 * 2.5);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
         else if (this.type == "freydicBuilding1")
         {
             //TRAITS

@@ -13578,6 +13578,180 @@ function Item(type, x, y)
             this.buyValue = 99 - Math.floor(player.getCharisma() / 2.5); // at max, buy for 79.
             this.sellValue = 54 + Math.floor(player.getCharisma() / 2); // at max, sell for 79.
         }
+        else if (this.type == "boulchomLeatherArmour")
+        {
+            //For All Items
+            this.identity = "Boulchom Leather Armour";
+            this.weight = 3;
+            this.size = 25;
+            this.description = "A leather armour made from boulchom pelts.";
+            this.intForDes = 1;
+            this.intDescription = "This armour is made to resemble the form of a boulchom.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 1.2 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 1;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.5;
+            this.thirstRetention = -2;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 5;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 2;
+            this.survivalismBonus = 1;
+            //Extra Stat Bonuses
+            this.sleepBonus = 5;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 15;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 23;
+            this.ingredients = [["Boulchom Pelt", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 73 - Math.floor(player.getCharisma() / 2.5); // at max, buy for 53.
+            this.sellValue = 33 + Math.floor(player.getCharisma() / 2.5); // at max, sell for 53.
+        }
+        else if (this.type == "boulchomLeatherGloves")
+        {
+            //For All Items
+            this.identity = "Boulchom Leather Gloves";
+            this.weight = 0.9;
+            this.size = 7;
+            this.description = "Leather gloves made from boulchom pelt.";
+            this.intForDes = 1;
+            this.intDescription = "A good quality leather glove for both style and efficiency.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "gloves";
+            //Utility Focused
+            //protections
+            this.protection = 0.1 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 1;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.15;
+            this.thirstRetention = -0.1;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 1;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 4;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 6;
+            this.intForCraft = 21;
+            this.ingredients = [["Boulchom Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 3); // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "boulchomLeatherBoots")
+        {
+            //For All Items
+            this.identity = "Boulchom Leather Boots";
+            this.weight = 1.9;
+            this.size = 10;
+            this.description = "Leather boots made from boulchom pelt.";
+            this.intForDes = 4;
+            this.intDescription = "These are well made sturdy boots that are good for long hikes and stomping faces.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "boots";
+            //Utility Focused
+            //protections
+            this.protection = 0.15 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 1;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.25;
+            this.thirstRetention = -0.2;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 1;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 1;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 2;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 6;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 25;
+            this.ingredients = [["Boulchom Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 46 - Math.floor(player.getCharisma() / 2); // at max, buy for 21.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 4); // at max, sell for 21.
+        }
         else if (this.type == "skolLeatherArmour")
         {
             //For All Items
@@ -13686,7 +13860,7 @@ function Item(type, x, y)
             this.ability = "spikedHandsI";
 
             //Crafting
-            this.yield = 5;
+            this.yield = 3;
             this.intForCraft = 37;
             this.ingredients = [["Skol Pelt", 1], ["Iron", 1]];
 
@@ -13701,8 +13875,8 @@ function Item(type, x, y)
             this.weight = 3.3;
             this.size = 10;
             this.description = "Iron barbed leather boots made from skol pelt.";
-            this.intForDes = 2;
-            this.intDescription = "Punching does more damage since these gloves are barbed.";
+            this.intForDes = 1;
+            this.intDescription = "A pair of sharpened boots?";
 
             //Define Utility
             this.utility = "worn";
@@ -13744,7 +13918,7 @@ function Item(type, x, y)
             this.ability = "none";
 
             //Crafting
-            this.yield = 2;
+            this.yield = 1;
             this.intForCraft = 36;
             this.ingredients = [["Skol Pelt", 1], ["Iron", 1]];
 
@@ -17083,6 +17257,21 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "boulchomLeatherArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 744, 1115, 30, 45, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 2.15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 45 * 2.15), 30 * 2.15, 45 * 2.15);
+        }
+        else if (this.type == "boulchomLeatherBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 98, 237, 25, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.5), 25 * 1.5, 18 * 1.5);
+        }
+        else if (this.type == "boulchomLeatherGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 125, 240, 17, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1.5), 17 * 1.5, 13 * 1.5);
+        }
         else if (this.type == "skolLeatherBoots")
         {
             XXX.beginPath();
@@ -19429,6 +19618,21 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "boulchomLeatherArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(theng, 744, 1115, 30, 45, this.invX - (1/2 * 30 * 1.5), this.invY - (1/2 * 45 * 1.5), 30 * 1.5, 45 * 1.5);
+        }
+        else if (this.type == "boulchomLeatherBoots")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 98, 237, 25, 18, this.invX - (1/2 * 25 * 1.7), this.invY - (1/2 * 18 * 1.7), 25 * 1.7, 18 * 1.7);
+        }
+        else if (this.type == "boulchomLeatherGloves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 125, 240, 17, 13, this.invX - (1/2 * 17 * 1.7), this.invY - (1/2 * 13 * 1.7), 17 * 1.7, 13 * 1.7);
+        }
         else if (this.type == "skolLeatherBoots")
         {
             LXX.beginPath();
@@ -21738,6 +21942,21 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "boulchomLeatherArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 744, 1115, 30, 45, this.invX - (1/2 * 30 * 1.5), this.invY - (1/2 * 45 * 1.5), 30 * 1.5, 45 * 1.5);
+        }
+        else if (this.type == "boulchomLeatherBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 98, 237, 25, 18, this.invX - (1/2 * 25 * 1.7), this.invY - (1/2 * 18 * 1.7), 25 * 1.7, 18 * 1.7);
+        }
+        else if (this.type == "boulchomLeatherGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 125, 240, 17, 13, this.invX - (1/2 * 17 * 1.7), this.invY - (1/2 * 13 * 1.7), 17 * 1.7, 13 * 1.7);
         }
         else if (this.type == "skolLeatherBoots")
         {

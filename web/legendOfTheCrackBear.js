@@ -35,6 +35,7 @@
 //todo Add harsh hot weather conditions: deserts cause faster dehydration. (base the effect on elevation variable)
 //todo Add more traps to further advance the utility of the Survivalism (trapping) skill.
 //todo add a system that shows the player the names of each region that they enter upon entering it.
+//todo add unique fairytails for each faction
 
 function legendaryPrerequisites()
 {

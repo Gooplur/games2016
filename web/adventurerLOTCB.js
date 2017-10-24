@@ -11090,9 +11090,19 @@ function Adventurer()
             var x1 = focusObject.X; //the focus unit's X position.
             var y1 = focusObject.Y; //the focus unit's Y position.
             //console.log("X: " + X + " Y: " + Y + " barrierX: " + focusObject.X + " barrierY: " + focusObject.Y);
-            if ((x - this.mySize) < (x1 + focusObject.width) && (x + this.mySize) > x1 && (y - this.mySize) < (y1 + focusObject.height) && (y + this.mySize) > y1)
+            if (smoothWall)
             {
-                return true;
+                if ((x - this.mySize) < (x1 + focusObject.width) && (x + this.mySize) > x1 && (y - this.mySize) < (y1 + focusObject.height) && (y + this.mySize) > y1)
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if ((x) < (x1 + focusObject.width) && (x) > x1 && (y) < (y1 + focusObject.height) && (y) > y1)
+                {
+                    return true;
+                }
             }
         }
 
@@ -11114,8 +11124,8 @@ function Adventurer()
             // If the place where the player would move next under the same instruction is blocked then the player will not move.
             if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
             {
-                var nextX = X + (Math.cos(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                var nextY = Y + (Math.sin(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                var nextX = X + (Math.cos(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.cos(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                var nextY = Y + (Math.sin(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.sin(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
                 if (!this.isObstructed(nextX, nextY))
                 {
                     X += (Math.cos(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.cos(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);

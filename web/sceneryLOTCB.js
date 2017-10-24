@@ -1612,6 +1612,162 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "thenganBuilding1")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X - 117) && X < (this.X - 117) + 230 && Y > (this.Y - 105) && Y < (this.Y - 105) + 209)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(theng, 330, 492, 130, 119, -(1/2 * 130 * 1.75), -(1/2 * 119 * 1.75), 130 * 1.75, 119 * 1.75);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 5;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(theng, 330, 492, 130, 119, -(1/2 * 130 * 1.75), -(1/2 * 119 * 1.75), 130 * 1.75, 119 * 1.75);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(theng, 464, 489, 126, 122, -(1/2 * 126 * 1.725), -(1/2 * 122 * 1.725), 126 * 1.725, 122 * 1.725);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X -117, this.Y - 105, 209, 230, false)); // a square that covers the entire building
+
+            //BARRIERS
+            barrierList.push(new Barrier((this.X - 117), (this.Y - 105), 209, 19, false)); //right wall
+            barrierList.push(new Barrier((this.X + 98), (this.Y - 105), 209, 19, false)); //left wall
+            barrierList.push(new Barrier((this.X - 113.5), (this.Y + 92), 19, 230, false)); //top wall
+            barrierList.push(new Barrier((this.X - 113.5), (this.Y - 109), 19, 85, false)); //bottom wall
+            barrierList.push(new Barrier((this.X - 113.5 + 142), (this.Y - 109), 19, 88, false)); //bottom wall
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "thenganBuilding2")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X - 117) && X < (this.X - 117) + 230 && Y > (this.Y - 105) && Y < (this.Y - 105) + 209)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(theng, 330, 492, 130, 119, -(1/2 * 130 * 1.75), -(1/2 * 119 * 1.75), 130 * 1.75, 119 * 1.75);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 5;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(theng, 330, 492, 130, 119, -(1/2 * 130 * 1.75), -(1/2 * 119 * 1.75), 130 * 1.75, 119 * 1.75);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(theng, 464, 489, 126, 122, -(1/2 * 126 * 1.725), -(1/2 * 122 * 1.725), 126 * 1.725, 122 * 1.725);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X -117, this.Y - 105, 209, 230, false)); // a square that covers the entire building
+
+            //BARRIERS
+            barrierList.push(new Barrier((this.X - 117), (this.Y - 105), 209, 19, false)); //right wall
+            barrierList.push(new Barrier((this.X + 98), (this.Y - 105), 209, 19, false)); //left wall
+            barrierList.push(new Barrier((this.X - 113.5), (this.Y - 109), 19, 230, false)); //bottom wall
+            barrierList.push(new Barrier((this.X - 113.5), (this.Y + 92), 19, 88, false)); //top wall
+            barrierList.push(new Barrier((this.X - 113.5 + 145), (this.Y + 92), 19, 85, false)); //top wall
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "thenganBuilding3")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X - 210) && X < (this.X - 210) + 215 && Y > (this.Y - 164) && Y < (this.Y - 164) + 330)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 * Math.PI);
+                XXX.drawImage(theng, 422, 16, 180, 120, -(1/2 * 180 * 1.95), -(1/2 * 12 * 1.95), 180 * 1.95, 120 * 1.95);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 5;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 * Math.PI);
+                XXX.drawImage(theng, 422, 16, 180, 120, -(1/2 * 180 * 1.95), -(1/2 * 12 * 1.95), 180 * 1.95, 120 * 1.95);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 * Math.PI);
+                XXX.drawImage(theng, 410, 359, 183, 122, -(1/2 * 183 * 1.95), -(1/2 * 122 * 1.95 - 101), 183 * 1.95, 122 * 1.95);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X -210, this.Y -164, 330, 215, false)); // a square that covers the entire building
+
+            //BARRIERS
+            barrierList.push(new Barrier((this.X - 15), (this.Y - 167), 333, 19, false)); //left wall
+            barrierList.push(new Barrier((this.X - 215), (this.Y - 167), 19, 200, false)); //bottom wall
+            barrierList.push(new Barrier((this.X - 215), (this.Y + 149), 19, 200, false)); //top wall
+            barrierList.push(new Barrier((this.X - 215), (this.Y - 167), 150, 19, false)); //right wall
+            barrierList.push(new Barrier((this.X - 215), (this.Y + 45), 105, 19, false)); //right wall
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
         else if (this.type == "freydicBuilding1")
         {
             //TRAITS
@@ -2057,6 +2213,142 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 27;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (this.wellListo)
+                {
+                    this.wellChange = true;
+                    this.loopNum = 0;
+                    this.loopRate = 0;
+                    this.frameLoopComplete = false;
+
+                    //fill container with water
+                    if (this.wellUp == true)
+                    {
+                        this.doBreak = false;
+                        this.yaTiene = false;
+
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            for (var j = 0; j < wellConversionList.length; j++)
+                            {
+                                //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
+                                if (Inventory[i][0].type == wellConversionList[j][0])
+                                {
+                                    for (var k = 0; k < Inventory.length; k++)
+                                    {
+                                        if (Inventory[k][0].type == wellConversionList[j][1])
+                                        {
+                                            this.yaTiene = k;
+                                        }
+                                    }
+
+                                    if (Inventory[i][1] > 1)
+                                    {
+                                        Inventory[i][1] -= 1;
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.splice(i, 1);
+                                            Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                            Inventory.splice(i, 1);
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (this.doBreak == true)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (this.toggleWell == false && this.wellListo)
+                {
+                    this.toggleWell = true;
+                }
+                else if (this.toggleWell == true && this.wellListo)
+                {
+                    this.toggleWell = false;
+                }
+            }
+        }
+        else if (this.type == "thenganWell")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 80;
+
+            //DRAWSELF
+
+            if (this.wellChange == true)
+            {
+                this.wellListo = false;
+                if (this.toggleWell == true)
+                {
+                    this.frameLoop([[theng, 333, 392, 69, 66, 69 * 1.6, 66 * 1.6], [theng, 621 + 0.5, 208, 69, 66, 69 * 1.6, 66 * 1.6], [theng, 622, 139 - 1, 69, 66, 69 * 1.6, 66 * 1.6], [theng, 622 - 0.5, 74, 69, 66, 69 * 1.6, 66 * 1.6], [theng, 621, 12, 69, 66, 69 * 1.6, 66 * 1.6]], 4, 20, false);
+                    if (this.frameLoopComplete == true)
+                    {
+                        this.wellChange = false;
+                        this.wellUp = true;
+                        this.wellListo = true;
+                    }
+                }
+                else if (this.toggleWell == false)
+                {
+                    this.frameLoop([[theng, 714, 208, 69, 66, 69 * 1.6, 66 * 1.6], [theng, 714, 146 - 0.5, 69, 66, 69 * 1.6, 66 * 1.6], [theng, 714, 83, 69, 66, 69 * 1.6, 66 * 1.6], [theng, 715 - 0.75, 12, 69, 66, 69 * 1.6, 66 * 1.6], [theng, 333, 392, 69, 66, 69 * 1.6, 66 * 1.6]], 4, 20, false);
+                    if (this.frameLoopComplete == true)
+                    {
+                        this.wellChange = false;
+                        this.wellUp = false;
+                        this.wellListo = true;
+                    }
+                }
+            }
+
+            if (this.wellChange == false)
+            {
+                if (this.wellUp == true)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theng, 621, 12, 69, 66, -(1/2 * 69 * 1.6), -(1/2 * 66 * 1.6), 69 * 1.6, 66 * 1.6);
+                    XXX.restore();
+                }
+                else if (this.wellUp == false)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theng, 333, 392, 69, 66, -(1/2 * 69 * 1.6), -(1/2 * 66 * 1.6), 69 * 1.6, 66 * 1.6);
+                    XXX.restore();
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 45;
 
             //INTERACTION
             if (this.activate == true)
@@ -6255,6 +6547,398 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "hearth")
+        {
+            //TRAITS
+            if (this.lit)
+            {
+                this.solid = true;
+            }
+            else
+            {
+                this.solid = false;
+            }
+            this.interactionRange = 50;
+
+            if (this.runOneTime)
+            {
+                if (this.temporary == "lit" || this.temporary == "flame")
+                {
+                    this.lit = true;
+                    this.campFireTime = 0;
+                }
+                else if (this.temporary == "ash")
+                {
+                    this.runOneTime = false;
+                    this.burnt = true;
+                }
+                else
+                {
+                    this.runOneTime = false;
+                    this.burnt = "empty";
+                }
+            }
+
+            //animate
+            if (this.lit == true)
+            {
+                lights.push({X:this.X, Y: this.Y, size: 200, extraStops: true, GRD: 0.65, Alpha: 0.85, showMe: false});
+                this.fireCostume += 1;
+                this.campFireTime += 1;
+
+                //die out over time
+                if (this.campFireTime >= 15000)
+                {
+                    this.campFireTime = 0;
+                    this.lit = false;
+                    this.burnt = true;
+                }
+            }
+
+            if (this.burnt == true)
+            {
+                this.burntTime += 1;
+
+                if (this.burntTime >= 1000)
+                {
+                    this.burntTime = 0;
+                    this.burnt = "empty"
+                }
+            }
+
+            //DRAWSELF
+            if (this.lit == false)
+            {
+                if (this.burnt == false)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theng, 444, 319, 47, 26, -(1/2 * 47 * 1.6), -(1/2 * 26 * 1.6), 47 * 1.6, 26 * 1.6);
+                    XXX.restore();
+                }
+                else if ("empty")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theng, 440, 161, 47, 26, -(1/2 * 47 * 1.6), -(1/2 * 26 * 1.6), 47 * 1.6, 26 * 1.6);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theng, 439, 193, 47, 26, -(1/2 * 47 * 1.6), -(1/2 * 26 * 1.6), 47 * 1.6, 26 * 1.6);
+                    XXX.restore();
+                }
+            }
+            else if (this.fireCostume <= 8)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 442, 226, 47, 26, -(1/2 * 47 * 1.6), -(1/2 * 26 * 1.6), 47 * 1.6, 26 * 1.6);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 8 && this.fireCostume <= 16)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 442, 258, 47, 26, -(1/2 * 47 * 1.6), -(1/2 * 26 * 1.6), 47 * 1.6, 26 * 1.6);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 16 && this.fireCostume <= 24)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 444, 288, 47, 26, -(1/2 * 47 * 1.6), -(1/2 * 26 * 1.6), 47 * 1.6, 26 * 1.6);
+                XXX.restore();
+            }
+            else
+            {
+                this.fireCostume = 0;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 444, 288, 47, 26, -(1/2 * 47 * 1.6), -(1/2 * 26 * 1.6), 47 * 1.6, 26 * 1.6);
+                XXX.restore();
+            }
+
+            if (this.playerer <= this.radius && this.lit == true) //fire burns the player but heat resistance can reduce the damage it does.
+            {
+                if (player.mageShield > 0)
+                {
+                    player.mageShield -= 0.125;
+                    player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                }
+                else
+                {
+                    player.health += player.mageShield;
+                    player.mageShield = 0;
+
+                    player.health -= Math.max(0, (0.125 - (player.heatResistance / 200)));
+                    player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                    player.burningTime = new Date().getTime();
+                }
+            }
+            else if (this.playerer <= 125 && this.lit == true)
+            {
+                player.warmth += Math.max(0, (0.65 - (player.heatResistance / 200)));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                if (this.lit == false && this.burnt == false)
+                {
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].identity == "Fire-Starter")
+                        {
+                            this.gotFireStarter = true;
+                        }
+                    }
+
+                    if (this.gotFireStarter)
+                    {
+                        this.burntTime = 0;
+                        this.lit = true;
+                    }
+                }
+                else if (this.lit == true && this.burnt == false && this.temporary != "lit")
+                {
+                    player.craftPosition = 0;
+                    craftScroll = 0;
+                    crafting = "foods";
+                    lowBar = "crafting";
+                    gameState = "paused";
+                }
+
+                if (this.burnt == "empty" && this.lit == false && this.temporary || this.burnt && this.lit == false && this.temporary)
+                {
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].identity == "Wood" && Inventory[i][1] > 1)
+                        {
+                            Inventory[i][1] -= 1;
+                            this.burnt = false;
+                            break;
+                        }
+                        else if (Inventory[i][0].identity == "Wood" && Inventory[i][1] == 1)
+                        {
+                            Inventory.splice(i, 1);
+                            this.burnt = false;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this.type == "thenganHearth")
+        {
+            //TRAITS
+            if (this.lit)
+            {
+                this.solid = true;
+            }
+            else
+            {
+                this.solid = false;
+            }
+            this.interactionRange = 50;
+
+            if (this.runOneTime)
+            {
+                if (this.temporary == "lit" || this.temporary == "flame")
+                {
+                    this.lit = true;
+                    this.campFireTime = 0;
+                }
+                else if (this.temporary == "ash")
+                {
+                    this.runOneTime = false;
+                    this.burnt = true;
+                }
+                else
+                {
+                    this.runOneTime = false;
+                    this.burnt = "empty";
+                }
+            }
+
+            //animate
+            if (this.lit == true)
+            {
+                lights.push({X:this.X, Y: this.Y, size: 200, extraStops: true, GRD: 0.65, Alpha: 0.85, showMe: false});
+                this.fireCostume += 1;
+                this.campFireTime += 1;
+
+                //die out over time
+                if (this.campFireTime >= 15000)
+                {
+                    this.campFireTime = 0;
+                    this.lit = false;
+                    this.burnt = true;
+                }
+            }
+
+            if (this.burnt == true)
+            {
+                this.burntTime += 1;
+
+                if (this.burntTime >= 1000)
+                {
+                    this.burntTime = 0;
+                    this.burnt = "empty"
+                }
+            }
+
+            //DRAWSELF
+            if (this.lit == false)
+            {
+                if (this.burnt == false)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theng, 512, 320, 47, 26, -(1/2 * 47 * 1.6), -(1/2 * 26 * 1.6), 47 * 1.6, 26 * 1.6);
+                    XXX.restore();
+                }
+                else if ("empty")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theng, 512, 162, 47, 26, -(1/2 * 47 * 1.6), -(1/2 * 26 * 1.6), 47 * 1.6, 26 * 1.6);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(theng, 512, 194, 47, 26, -(1/2 * 47 * 1.6), -(1/2 * 26 * 1.6), 47 * 1.6, 26 * 1.6);
+                    XXX.restore();
+                }
+            }
+            else if (this.fireCostume <= 8)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 512, 226, 47, 26, -(1/2 * 47 * 1.6), -(1/2 * 26 * 1.6), 47 * 1.6, 26 * 1.6);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 8 && this.fireCostume <= 16)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 512, 258, 47, 26, -(1/2 * 47 * 1.6), -(1/2 * 26 * 1.6), 47 * 1.6, 26 * 1.6);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 16 && this.fireCostume <= 24)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 512, 290, 47, 26, -(1/2 * 47 * 1.6), -(1/2 * 26 * 1.6), 47 * 1.6, 26 * 1.6);
+                XXX.restore();
+            }
+            else
+            {
+                this.fireCostume = 0;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 512, 290, 47, 26, -(1/2 * 47 * 1.6), -(1/2 * 26 * 1.6), 47 * 1.6, 26 * 1.6);
+                XXX.restore();
+            }
+
+            if (this.playerer <= this.radius && this.lit == true) //fire burns the player but heat resistance can reduce the damage it does.
+            {
+                if (player.mageShield > 0)
+                {
+                    player.mageShield -= 0.125;
+                    player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                }
+                else
+                {
+                    player.health += player.mageShield;
+                    player.mageShield = 0;
+
+                    player.health -= Math.max(0, (0.125 - (player.heatResistance / 200)));
+                    player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                    player.burningTime = new Date().getTime();
+                }
+            }
+            else if (this.playerer <= 125 && this.lit == true)
+            {
+                player.warmth += Math.max(0, (0.65 - (player.heatResistance / 200)));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                if (this.lit == false && this.burnt == false)
+                {
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].identity == "Fire-Starter")
+                        {
+                            this.gotFireStarter = true;
+                        }
+                    }
+
+                    if (this.gotFireStarter)
+                    {
+                        this.burntTime = 0;
+                        this.lit = true;
+                    }
+                }
+                else if (this.lit == true && this.burnt == false && this.temporary != "lit")
+                {
+                    player.craftPosition = 0;
+                    craftScroll = 0;
+                    crafting = "foods";
+                    lowBar = "crafting";
+                    gameState = "paused";
+                }
+
+                if (this.burnt == "empty" && this.lit == false && this.temporary || this.burnt && this.lit == false && this.temporary)
+                {
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].identity == "Wood" && Inventory[i][1] > 1)
+                        {
+                            Inventory[i][1] -= 1;
+                            this.burnt = false;
+                            break;
+                        }
+                        else if (Inventory[i][0].identity == "Wood" && Inventory[i][1] == 1)
+                        {
+                            Inventory.splice(i, 1);
+                            this.burnt = false;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
         else if (this.type == "campFire")
         {
             //TRAITS
@@ -6389,7 +7073,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 this.activate = false;
 
-                if (this.lit == false && this.burnt == false || this.lit == false && longevity == true)
+                if (this.lit == false && this.burnt == false || this.lit == false && this.temporary == true)
                 {
                     for (var i = 0; i < Inventory.length; i++)
                     {

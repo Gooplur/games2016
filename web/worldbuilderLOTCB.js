@@ -927,17 +927,22 @@ function buildMaster()
                 scenicList.push(new Scenery("bartop", 2308, 1736, -1/2 * Math.PI, true));
                 scenicList.push(new Scenery("bed", 1985, 1850, 1/2 * Math.PI, false));
                 scenicList.push(new Scenery("bed", 2105, 1913, -1/2 * Math.PI, false));
+                scenicList.push(new Scenery("hearth", 2186, 1880, 1/2 * Math.PI, "lit"));
 
                 //The Players Home (purchasable)
                 if (quests.teshirHomeOwned)
                 {
+                    scenicList.push(new Scenery("walrusHideRug", 2663, 1989, 0, 1.65));
                     scenicList.push(new Scenery("sign", 2792, 2056, 1/2 * Math.PI, 3, "Fairfield Lodge"));
-                    scenicList.push(new Scenery("bed", 2612, 2082, 1/2 * Math.PI, true));
+                    scenicList.push(new Scenery("bed", 2594, 2082, 1/2 * Math.PI, true));
+                    scenicList.push(new Scenery("hearth", 2555, 1910, 3/4 * Math.PI, true));
                 }
                 else
                 {
-                    scenicList.push(new Scenery("sign", 2792, 2056, 1/2 * Math.PI, 3, "For Sale - 5000 coins"));
-                    scenicList.push(new Scenery("bed", 2612, 2082, 1/2 * Math.PI, false));
+                    scenicList.push(new Scenery("walrusHideRug", 2663, 1989, 0, 1.65));
+                    scenicList.push(new Scenery("sign", 2792, 2056, 1/2 * Math.PI, 3, "For Sale - 6200 coins"));
+                    scenicList.push(new Scenery("bed", 2594, 2082, 1/2 * Math.PI, false));
+                    scenicList.push(new Scenery("hearth", 2555, 1910, 3/4 * Math.PI, false));
                 }
 
                 //The Jarl's Estate
@@ -953,10 +958,12 @@ function buildMaster()
                 scenicList.push(new Scenery("walrusHideRug", -90, 466, 0, 2));
                 if (player.title == "Nobility" && player.faction == "Freynor" || player.title == "Royalty" && player.faction == "Freynor")
                 {
+                    scenicList.push(new Scenery("hearth", -339, -79, 0, "flame"));
                     scenicList.push(new Scenery("bed", -50, 563, -1/2 * Math.PI, true));
                 }
                 else
                 {
+                    scenicList.push(new Scenery("hearth", -339, -79, 0, "lit"));
                     scenicList.push(new Scenery("bed", -50, 563, -1/2 * Math.PI, false));
                 }
                 if (player.gender == "Female" && player.title == "Nobility")

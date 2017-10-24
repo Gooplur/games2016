@@ -1156,6 +1156,7 @@ var energyDrink;
 var quickRegeneration;
 var incredibleHulk;
 var developerRapidamente;
+var smoothWall;
 var rapidamente;
 var constantEXP;
 var constantMagic;
@@ -1961,6 +1962,7 @@ function theLegend()
     quickRegeneration = false; //This makes both health and energy restore quickly.
     incredibleHulk = false; //This makes the character outrageously strong and constituted.
     developerRapidamente = false; //This must be true as well as rapidamente in order to enable super speed.
+    smoothWall = true; //determines whether player's outer edge or inner coords touch barriers.
     rapidamente = false; //This makes the character have true super speed, but this only works if the above is also true.
     constantEXP = false;
     constantMagic = false;

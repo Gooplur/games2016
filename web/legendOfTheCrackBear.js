@@ -372,6 +372,20 @@ function legendaryPrerequisites()
     var maggyMostlyCleaning = new Audio("sounds/polySounds/maggyMostlyCleaning.mp3");
     window.maggyMostlyCleaning = maggyMostlyCleaning;
 
+    //ROSELIN CHARACTER: voice acting
+
+    var roselinGday = new Audio("sounds/polySounds/roselinGday.mp3");
+    window.roselinGday = roselinGday;
+
+    var roselinDiversified = new Audio("sounds/polySounds/roselinDiversified.mp3");
+    window.roselinDiversified = roselinDiversified;
+
+    var roselinBusiness = new Audio("sounds/polySounds/roselinBusiness.mp3");
+    window.roselinBusiness = roselinBusiness;
+
+    var roselinThankyou = new Audio("sounds/polySounds/roselinThankyou.mp3");
+    window.roselinThankyou = roselinThankyou;
+
     //IRENE CHARACTER: voice acting
 
     var irenePaWorries = new Audio("sounds/polySounds/irenePaWorries.mp3");
@@ -438,6 +452,47 @@ function legendaryPrerequisites()
 
     var kedwinGobblin = new Audio("sounds/polySounds/kedwinGobblin.mp3");
     window.kedwinGobblin = kedwinGobblin;
+
+    //OLIS PYNSKE CHARACTER: voice acting
+
+    var olisMyLady = new Audio("sounds/polySounds/olisMyLady.mp3");
+    window.olisMyLady = olisMyLady;
+
+    var olisMyLord = new Audio("sounds/polySounds/olisMyLord.mp3");
+    window.olisMyLord = olisMyLord;
+
+    var olisGraceF = new Audio("sounds/polySounds/olisGraceF.mp3");
+    window.olisGraceF = olisGraceF;
+
+    var olisMajestyM = new Audio("sounds/polySounds/olisMajestyM.mp3");
+    window.olisMajestyM = olisMajestyM;
+
+    var olisHello = new Audio("sounds/polySounds/olisHello.mp3");
+    window.olisHello = olisHello;
+
+    var olisIAm = new Audio("sounds/polySounds/olisIAm.mp3");
+    window.olisIAm = olisIAm;
+
+    var olisYourLordship = new Audio("sounds/polySounds/olisYourLordship.mp3");
+    window.olisYourLordship = olisYourLordship;
+
+    var olisYourLadyship = new Audio("sounds/polySounds/olisYourLadyship.mp3");
+    window.olisYourLadyship = olisYourLadyship;
+
+    var olisSurely = new Audio("sounds/polySounds/olisSurely.mp3");
+    window.olisSurely = olisSurely;
+
+    var olisIntroAgain = new Audio("sounds/polySounds/olisIntroAgain.mp3");
+    window.olisIntroAgain = olisIntroAgain;
+
+    var olisSavedHeir = new Audio("sounds/polySounds/olisSavedHeir.mp3");
+    window.olisSavedHeir = olisSavedHeir;
+
+    var olisBetterThanYou = new Audio("sounds/polySounds/olisBetterThanYou.mp3");
+    window.olisBetterThanYou = olisBetterThanYou;
+
+    var olisHero = new Audio("sounds/polySounds/olisHero.mp3");
+    window.olisHero = olisHero;
 
     //MEDLIA CHARACTER: voice acting
 
@@ -1362,7 +1417,7 @@ function aiIdentify()
     {
         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
         {
-            ArtificialIntelligenceAccess[i].interaction();
+            interaction(ArtificialIntelligenceAccess[i]);
         }
     }
 }

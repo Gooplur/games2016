@@ -1585,10 +1585,30 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(10752, 4668, "StoneGolem", false, "Orefal"));
 
                 //Ores
-                //scenicList.push(new Scenery("jvostran", 11408 , -2348, 14.64, 1, 3));
-                //scenicList.push(new Scenery("darkStone", 13060 , -1400, -11, 2.5, 2));
-                //scenicList.push(new Scenery("ashStone", 11234 , 1726, -4.45, 0.5, 1));
-                //scenicList.push(new Scenery("stone", 13224 , 2702, 0.12, 1, 2));
+                scenicList.push(new Scenery("stone", 28299 , -2272, 4, 2, 2));
+                scenicList.push(new Scenery("stone", 29689 , -1418, -2.5, 3, 3));
+                scenicList.push(new Scenery("stone", 30883 , 4805, 8, 1.5, 3));
+                scenicList.push(new Scenery("stone", 32429 , 5619, -11, 1.5, 3));
+                scenicList.push(new Scenery("stone", 34271 , 3975, 6, 1, 1));
+                scenicList.push(new Scenery("stone", 34271 , 3975, 9, 2.5, 1));
+                scenicList.push(new Scenery("stone", 34000 , -2770, 5, 3, 2));
+                scenicList.push(new Scenery("stone", 35121 , -3247, 3, 1, 1));
+                scenicList.push(new Scenery("stone", 36696 , -2366, 0, 1.5, 3));
+                scenicList.push(new Scenery("stone", 36055 , -354, 16, 3.5, 3));
+                scenicList.push(new Scenery("stone", 34675 , 65, 10.5, 2.5, 2));
+                scenicList.push(new Scenery("stone", 36487 , -57, -9, 1, 2));
+                scenicList.push(new Scenery("stone", 36318 , -3039, 2, 2, 1));
+                scenicList.push(new Scenery("darkStone", 31968 , 455, 6.5, 2.5, 2));
+                scenicList.push(new Scenery("darkStone", 32435 , -1586, -1, 3, 1));
+                scenicList.push(new Scenery("darkStone", 35402 , -1873, 0, 1, 3));
+                scenicList.push(new Scenery("darkStone", 36397 , 5826, -5.5, 1.5, 3));
+                scenicList.push(new Scenery("darkStone", 33707 , 4850, 6, 2, 2));
+                scenicList.push(new Scenery("darkStone", 29058 , 40, 0, 1.5, 3));
+                scenicList.push(new Scenery("darkStone", 30873 , 2846, -2.4, 1.5, 1));
+                scenicList.push(new Scenery("ashStone", 35160 , 4938, -8.85, 1, 1));
+                scenicList.push(new Scenery("ashStone", 29330 , 5128, 7, 2, 2));
+                scenicList.push(new Scenery("ashStone", 33659 , 1792, -1, 1, 3));
+                scenicList.push(new Scenery("ashStone", 32954 , -2545, -3, 1.5, 2));
 
                 //Plants
                 //scenicList.push(new Scenery("haeflowerPlant", 15185, 4442, 4, true));

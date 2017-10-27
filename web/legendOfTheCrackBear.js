@@ -3,14 +3,15 @@
  */
 
 //TODO LIST
-//todo fix the magic system to draw upon a concentration set by the scroll rather than automatically linking to the players current amount.
+//todo add creature "Miter" a humanoid beast that crawls around on all fours eating the flesh of the dead. It will gain full health everytime it does so, and if it scratches the player with its long claws the player will be grave poisoned which drains life from the player and gives it to the miter responsible.
 //todo add dialogue to the Jarl: Quests/Purchasable Property/etc.
 //todo add Ser Olis Pynske to the jarls estate.
+//todo add roselin's quest
 //todo Add world switch gameplay... -> Dungeons, Caves, trapdoors/ladders, cellars, etc.
 //todo add row boats and swimming
 //todo add the second Freydic City (make it a dock town) [the Freynor kingdom will span over several northern isles and the mainland]
 //todo add containers that operate like miniature banks with fixed numbers of slots.
-//todo add Maps W2 (rock lands), W3 (rock lands), W3 (rock lands), W4 (rock lands),W4S1 (rocklands), W5 (plains/mudflats), W5S1 (Lethik - a medium sized village on the fronteir of Thengaria)
+//todo add Maps W3 (rock lands), W4 (rock lands),W4S1 (rocklands), W5 (plains/mudflats), W5S1 (Lethik - a medium sized village on the fronteir of Thengaria)
 //todo add warm northern thick clothing made with waanti. //at this point there is only an outfit and not a clothing.
 //todo figure out why aldrekii claws manual attack thing won't let it at twice or even early, while the same code lets the flail perform its attack early.
 //todo finish adding sickness system

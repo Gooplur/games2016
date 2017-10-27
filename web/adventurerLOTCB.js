@@ -5120,7 +5120,7 @@ function Adventurer()
                         {
                             this.will -= secondarySpells[i].cost;
                             this.magicalExperience += secondarySpells[i].EXP;
-                            magicList.push(new Magic({ID: "repel"}, true));
+                            magicList.push(new Magic(secondarySpells[i], true));
                             this.secondaryCastingCooldown = new Date().getTime();
                         }
                     }
@@ -5132,56 +5132,56 @@ function Adventurer()
                             this.will -= secondarySpells[i].cost;
                             this.magicalExperience += secondarySpells[i].EXP;
 
-                            magicList.push(new Magic({ID: "chasingLights"}, true));
+                            magicList.push(new Magic(secondarySpells[i], true));
 
-                            if (this.getConcentration() > 2)
+                            if (secondarySpells[i].CNX >= 2)
                             {
-                                magicList.push(new Magic({ID: "chasingLights"}, true));
+                                magicList.push(new Magic(secondarySpells[i], true));
                             }
 
-                            if (this.getConcentration() > 4)
+                            if (secondarySpells[i].CNX >= 4)
                             {
-                                magicList.push(new Magic({ID: "chasingLights"}, true));
+                                magicList.push(new Magic(secondarySpells[i], true));
                             }
 
-                            if (this.getConcentration() > 7)
+                            if (secondarySpells[i].CNX >= 7)
                             {
-                                magicList.push(new Magic({ID: "chasingLights"}, true));
+                                magicList.push(new Magic(secondarySpells[i], true));
                             }
 
-                            if (this.getConcentration() > 10)
+                            if (secondarySpells[i].CNX >= 10)
                             {
-                                magicList.push(new Magic({ID: "chasingLights"}, true));
+                                magicList.push(new Magic(secondarySpells[i], true));
                             }
 
-                            if (this.getConcentration() > 15)
+                            if (secondarySpells[i].CNX >= 15)
                             {
-                                magicList.push(new Magic({ID: "chasingLights"}, true));
+                                magicList.push(new Magic(secondarySpells[i], true));
                             }
 
-                            if (this.getConcentration() > 20)
+                            if (secondarySpells[i].CNX >= 20)
                             {
-                                magicList.push(new Magic({ID: "chasingLights"}, true));
-                                magicList.push(new Magic({ID: "chasingLights"}, true));
+                                magicList.push(new Magic(secondarySpells[i], true));
+                                magicList.push(new Magic(secondarySpells[i], true));
                             }
 
-                            if (this.getConcentration() > 30)
+                            if (secondarySpells[i].CNX >= 30)
                             {
-                                magicList.push(new Magic({ID: "chasingLights"}, true));
-                                magicList.push(new Magic({ID: "chasingLights"}, true));
+                                magicList.push(new Magic(secondarySpells[i], true));
+                                magicList.push(new Magic(secondarySpells[i], true));
                             }
 
-                            if (this.getConcentration() > 40)
+                            if (secondarySpells[i].CNX >= 40)
                             {
-                                magicList.push(new Magic({ID: "chasingLights"}, true));
-                                magicList.push(new Magic({ID: "chasingLights"}, true));
+                                magicList.push(new Magic(secondarySpells[i], true));
+                                magicList.push(new Magic(secondarySpells[i], true));
                             }
 
-                            if (this.getConcentration() > 50)
+                            if (secondarySpells[i].CNX >= 50)
                             {
-                                magicList.push(new Magic({ID: "chasingLights"}, true));
-                                magicList.push(new Magic({ID: "chasingLights"}, true));
-                                magicList.push(new Magic({ID: "chasingLights"}, true));
+                                magicList.push(new Magic(secondarySpells[i], true));
+                                magicList.push(new Magic(secondarySpells[i], true));
+                                magicList.push(new Magic(secondarySpells[i], true));
                             }
 
 
@@ -5196,7 +5196,7 @@ function Adventurer()
                             this.will -= secondarySpells[i].cost;
                             this.magicalExperience += secondarySpells[i].EXP;
 
-                            magicList.push(new Magic({ID: "lifeTap"}, true));
+                            magicList.push(new Magic(secondarySpells[i], true));
                             if (this.willpower == 0 && this.constitution > 0)
                             {
                                 this.willpower += 1;
@@ -5206,9 +5206,9 @@ function Adventurer()
                             }
                             else
                             {
-                                this.energy -= 6 + 0.6 * this.getConcentration();
-                                this.health -= 6 + 0.6 * this.getConcentration();
-                                this.will += 3 + 0.2 * this.getConcentration();
+                                this.energy -= 6 + 0.6 * secondarySpells[i].CNX;
+                                this.health -= 6 + 0.6 * secondarySpells[i].CNX;
+                                this.will += 3 + 0.2 * secondarySpells[i].CNX;
                             }
 
                             this.secondaryCastingCooldown = new Date().getTime();
@@ -5222,7 +5222,7 @@ function Adventurer()
                             this.will -= secondarySpells[i].cost;
                             this.magicalExperience += secondarySpells[i].EXP;
 
-                            magicList.push(new Magic({ID: "surge"}, true));
+                            magicList.push(new Magic(secondarySpells[i], true));
 
                             this.secondaryCastingCooldown = new Date().getTime();
                         }
@@ -5235,7 +5235,7 @@ function Adventurer()
                             this.will -= secondarySpells[i].cost;
                             this.magicalExperience += secondarySpells[i].EXP;
 
-                            magicList.push(new Magic({ID: "minorVortex"}, true));
+                            magicList.push(new Magic(secondarySpells[i], true));
 
                             this.secondaryCastingCooldown = new Date().getTime();
                         }
@@ -5248,7 +5248,7 @@ function Adventurer()
                             this.will -= secondarySpells[i].cost;
                             this.magicalExperience += secondarySpells[i].EXP;
 
-                            magicList.push(new Magic({ID: "sanctuary"}, true));
+                            magicList.push(new Magic(secondarySpells[i], true));
 
                             this.secondaryCastingCooldown = new Date().getTime();
                         }
@@ -5261,7 +5261,7 @@ function Adventurer()
                             this.will -= secondarySpells[i].cost;
                             this.magicalExperience += secondarySpells[i].EXP;
 
-                            magicList.push(new Magic({ID: "repellingWard"}, true));
+                            magicList.push(new Magic(secondarySpells[i], true));
 
                             this.secondaryCastingCooldown = new Date().getTime();
                         }
@@ -5894,7 +5894,7 @@ function Adventurer()
                     }
                     this.magicalExperience += this.spell.EXP;
 
-                    if (player.getConcentration() >= 50)
+                    if (this.spell.CNX >= 50)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
@@ -5904,7 +5904,7 @@ function Adventurer()
                         magicList.push(new Magic(player.spell, true, 6));
                         magicList.push(new Magic(player.spell, true, 7));
                     }
-                    else if (player.getConcentration() >= 40)
+                    else if (this.spell.CNX >= 40)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
@@ -5912,20 +5912,20 @@ function Adventurer()
                         magicList.push(new Magic(player.spell, true, 4));
                         magicList.push(new Magic(player.spell, true, 5));
                     }
-                    else if (player.getConcentration() >= 30)
+                    else if (this.spell.CNX >= 30)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
                         magicList.push(new Magic(player.spell, true, 3));
                         magicList.push(new Magic(player.spell, true, 4));
                     }
-                    else if (player.getConcentration() >= 20)
+                    else if (this.spell.CNX >= 20)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
                         magicList.push(new Magic(player.spell, true, 3));
                     }
-                    else if (player.getConcentration() >= 10)
+                    else if (this.spell.CNX >= 10)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
@@ -6007,7 +6007,7 @@ function Adventurer()
                     this.doMagic = false;
                     this.magicalExperience += this.spell.EXP;
 
-                    if (player.getConcentration() >= 45)
+                    if (this.spell.CNX >= 45)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
@@ -6017,7 +6017,7 @@ function Adventurer()
                         magicList.push(new Magic(player.spell, true, 6));
                         magicList.push(new Magic(player.spell, true, 7));
                     }
-                    else if (player.getConcentration() >= 36)
+                    else if (this.spell.CNX >= 36)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
@@ -6026,7 +6026,7 @@ function Adventurer()
                         magicList.push(new Magic(player.spell, true, 5));
                         magicList.push(new Magic(player.spell, true, 6));
                     }
-                    else if (player.getConcentration() >= 29)
+                    else if (this.spell.CNX >= 29)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
@@ -6034,14 +6034,14 @@ function Adventurer()
                         magicList.push(new Magic(player.spell, true, 4));
                         magicList.push(new Magic(player.spell, true, 5));
                     }
-                    else if (player.getConcentration() >= 18)
+                    else if (this.spell.CNX >= 18)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
                         magicList.push(new Magic(player.spell, true, 3));
                         magicList.push(new Magic(player.spell, true, 4));
                     }
-                    else if (player.getConcentration() >= 6)
+                    else if (this.spell.CNX >= 6)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
@@ -6117,7 +6117,7 @@ function Adventurer()
                     this.doMagic = false;
                     this.magicalExperience += this.spell.EXP;
 
-                    if (player.getConcentration() >= 50)
+                    if (this.spell.CNX >= 50)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
@@ -6126,7 +6126,7 @@ function Adventurer()
                         magicList.push(new Magic(player.spell, true, 5));
                         magicList.push(new Magic(player.spell, true, 6));
                     }
-                    else if (player.getConcentration() >= 40)
+                    else if (this.spell.CNX >= 40)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
@@ -6134,20 +6134,20 @@ function Adventurer()
                         magicList.push(new Magic(player.spell, true, 4));
                         magicList.push(new Magic(player.spell, true, 5));
                     }
-                    else if (player.getConcentration() >= 30)
+                    else if (this.spell.CNX >= 30)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
                         magicList.push(new Magic(player.spell, true, 3));
                         magicList.push(new Magic(player.spell, true, 4));
                     }
-                    else if (player.getConcentration() >= 20)
+                    else if (this.spell.CNX >= 20)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
                         magicList.push(new Magic(player.spell, true, 3));
                     }
-                    else if (player.getConcentration() >= 10)
+                    else if (this.spell.CNX >= 10)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
@@ -18927,6 +18927,7 @@ function Adventurer()
                                     primarySpells[sp].cooldown = Inventory[i][0].spellCooldown;
                                     primarySpells[sp].description = Inventory[i][0].spellDescription;
                                     primarySpells[sp].EXP = Inventory[i][0].spellEXP;
+                                    primarySpells[sp].CNX = Number(this.getConcentration());
                                     slaps += 1;
                                 }
                             }
@@ -18936,7 +18937,7 @@ function Adventurer()
                                 this.will = 0;
                                 this.memory -= 1;
                                 this.spellzLearned += 1;
-                                primarySpells.push({name: Inventory[i][0].spellName, ID: Inventory[i][0].spellID, equipped: false, cost: Inventory[i][0].spellCost, cooldown: Inventory[i][0].spellCooldown, description: Inventory[i][0].spellDescription, EXP: Inventory[i][0].spellEXP});
+                                primarySpells.push({name: Inventory[i][0].spellName, ID: Inventory[i][0].spellID, equipped: false, cost: Inventory[i][0].spellCost, cooldown: Inventory[i][0].spellCooldown, description: Inventory[i][0].spellDescription, EXP: Inventory[i][0].spellEXP, CNX: Number(this.getConcentration())});
                             }
                         }
                         else if (Inventory[i][0].spellGroup == "Incantation" && player.getKnowledge() >= Inventory[i][0].spellKnowledgeRequirement)
@@ -18950,6 +18951,7 @@ function Adventurer()
                                     secondarySpells[ssp].cooldown = Inventory[i][0].spellCooldown;
                                     secondarySpells[ssp].description = Inventory[i][0].spellDescription;
                                     secondarySpells[ssp].EXP = Inventory[i][0].spellEXP;
+                                    secondarySpells[ssp].CNX = Number(this.getConcentration());
                                     slaps += 1;
                                 }
                             }
@@ -18959,7 +18961,7 @@ function Adventurer()
                                 this.will = 0;
                                 this.memory -= 1;
                                 this.spellzLearned += 1;
-                                secondarySpells.push({name: Inventory[i][0].spellName, ID: Inventory[i][0].spellID, equipped: false, cost: Inventory[i][0].spellCost, cooldown: Inventory[i][0].spellCooldown, description: Inventory[i][0].spellDescription, EXP: Inventory[i][0].spellEXP});
+                                secondarySpells.push({name: Inventory[i][0].spellName, ID: Inventory[i][0].spellID, equipped: false, cost: Inventory[i][0].spellCost, cooldown: Inventory[i][0].spellCooldown, description: Inventory[i][0].spellDescription, EXP: Inventory[i][0].spellEXP, CNX: Number(this.getConcentration())});
                             }
                         }
                         else if (Inventory[i][0].spellGroup == "Bind" && player.getKnowledge() >= Inventory[i][0].spellKnowledgeRequirement)
@@ -18973,6 +18975,7 @@ function Adventurer()
                                     tertiarySpells[sssp].cooldown = Inventory[i][0].spellCooldown;
                                     tertiarySpells[sssp].description = Inventory[i][0].spellDescription;
                                     tertiarySpells[sssp].EXP = Inventory[i][0].spellEXP;
+                                    tertiarySpells[sssp].CNX = Number(this.getConcentration());
                                     slaps += 1;
                                 }
                             }
@@ -18982,7 +18985,7 @@ function Adventurer()
                                 this.will = 0;
                                 this.memory -= 1;
                                 this.spellzLearned += 1;
-                                tertiarySpells.push({name: Inventory[i][0].spellName, ID: Inventory[i][0].spellID, equipped: false, cost: Inventory[i][0].spellCost, cooldown: Inventory[i][0].spellCooldown, description: Inventory[i][0].spellDescription, EXP: Inventory[i][0].spellEXP});
+                                tertiarySpells.push({name: Inventory[i][0].spellName, ID: Inventory[i][0].spellID, equipped: false, cost: Inventory[i][0].spellCost, cooldown: Inventory[i][0].spellCooldown, description: Inventory[i][0].spellDescription, EXP: Inventory[i][0].spellEXP, CNX: Number(this.getConcentration())});
                             }
                         }
                     }

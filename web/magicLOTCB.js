@@ -9,6 +9,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
     {
         //VARIABLES FOR ALL SPELLS
         this.spellType = spellInfo.ID;
+        this.cnx = spellInfo.CNX;
         this.X = false;
         this.Y = false;
         this.rotation = 0;
@@ -431,7 +432,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                         }
                         else if (whatDoIDo == "iceSpike")
                         {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, 3 + (1/50 * player.getConcentration()) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
+                            ArtificialIntelligenceAccess[i].health -= Math.max(0, 3 + (1/50 * this.cnx) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                             ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                         }
@@ -455,7 +456,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                         }
                         else if (whatDoIDo == "charm")
                         {
-                            if (ArtificialIntelligenceAccess[i].magicalResistance < 3 + 1/10 * player.getConcentration() && ArtificialIntelligenceAccess[i].healthMAX <= 25 + 2 * player.getConcentration() && !ArtificialIntelligenceAccess[i].marked)
+                            if (ArtificialIntelligenceAccess[i].magicalResistance < 3 + 1/10 * this.cnx && ArtificialIntelligenceAccess[i].healthMAX <= 25 + 2 * this.cnx && !ArtificialIntelligenceAccess[i].marked)
                             {
                                 ArtificialIntelligenceAccess[i].charmedTeam = "player";
                                 ArtificialIntelligenceAccess[i].charmedTime = new Date().getTime() + 45000;
@@ -464,7 +465,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                         }
                         else if (whatDoIDo == "mark")
                         {
-                            if (ArtificialIntelligenceAccess[i].magicalResistance < 3 + 1/10 * player.getConcentration() && ArtificialIntelligenceAccess[i].healthMAX <= 25 + 2 * player.getConcentration())
+                            if (ArtificialIntelligenceAccess[i].magicalResistance < 3 + 1/10 * this.cnx && ArtificialIntelligenceAccess[i].healthMAX <= 25 + 2 * this.cnx)
                             {
                                 ArtificialIntelligenceAccess[i].charmedTeam = (Math.random() * 1.7888888889);
                                 ArtificialIntelligenceAccess[i].charmedTime = new Date().getTime() + 25000;
@@ -487,7 +488,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                                     ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                                 }
 
-                                if (player.getConcentration() >= 65)
+                                if (this.cnx >= 65)
                                 {
                                     magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
                                     magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
@@ -506,7 +507,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                                     magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
                                     magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
                                 }
-                                else if (player.getConcentration() >= 50)
+                                else if (this.cnx >= 50)
                                 {
                                     magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
                                     magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
@@ -514,7 +515,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                                     magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
                                     magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
                                 }
-                                else if (player.getConcentration() >= 35)
+                                else if (this.cnx >= 35)
                                 {
                                     magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
                                     magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
@@ -625,8 +626,8 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                             {
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
                                 ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
-                                ArtificialIntelligenceAccess[i].X -= ((6 * player.getConcentration()) / 50) * Math.cos(this.playerRotation - 1 / 2 * Math.PI);
-                                ArtificialIntelligenceAccess[i].Y -= ((6 * player.getConcentration()) / 50) * Math.sin(this.playerRotation - 1 / 2 * Math.PI);
+                                ArtificialIntelligenceAccess[i].X -= ((6 * this.cnx) / 50) * Math.cos(this.playerRotation - 1 / 2 * Math.PI);
+                                ArtificialIntelligenceAccess[i].Y -= ((6 * this.cnx) / 50) * Math.sin(this.playerRotation - 1 / 2 * Math.PI);
                             }
                             else if (kind == "force")
                             {
@@ -730,8 +731,8 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                                 {
                                     ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
                                     ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].X -= ((6 * player.getConcentration()) / 50) * Math.cos(this.playerRotation - 1 / 2 * Math.PI);
-                                    ArtificialIntelligenceAccess[i].Y -= ((6 * player.getConcentration()) / 50) * Math.sin(this.playerRotation - 1 / 2 * Math.PI);
+                                    ArtificialIntelligenceAccess[i].X -= ((6 * this.cnx) / 50) * Math.cos(this.playerRotation - 1 / 2 * Math.PI);
+                                    ArtificialIntelligenceAccess[i].Y -= ((6 * this.cnx) / 50) * Math.sin(this.playerRotation - 1 / 2 * Math.PI);
                                 }
                                 else if (kind == "force")
                                 {
@@ -1126,7 +1127,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 }
 
 
-                this.spellTimer(180 + 3 * player.getConcentration());
+                this.spellTimer(180 + 3 * this.cnx);
 
             }
             //ICE SPIKES
@@ -1141,7 +1142,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     XXX.restore();
 
                     this.damageThenGoAway(7, "iceSpike");
-                    this.project(this.playerRotation + 1/2 * Math.PI, 166 * ((50 + 3 * player.getConcentration()) / 50), 5 * ((50 + player.getConcentration()) / 50), true);
+                    this.project(this.playerRotation + 1/2 * Math.PI, 166 * ((50 + 3 * this.cnx) / 50), 5 * ((50 + this.cnx) / 50), true);
 
                 }
                 else
@@ -1149,11 +1150,11 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     //todo add icespikes spell for AI
                 }
 
-                if (player.getConcentration() >= 50 && caster)
+                if (this.cnx >= 50 && caster)
                 {
                     this.spellTimer(0.85);
                 }
-                else if (player.getConcentration() >= 40 && caster)
+                else if (this.cnx >= 40 && caster)
                 {
                     this.spellTimer(0.65);
                 }
@@ -1170,8 +1171,8 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 {
                     this.flashAnimate(90, this.missileDirection - Math.PI, 0.92, [{image: nognog, imgX: 739, imgY: 116, portionW: 36, portionH: 20, adjX: -1 / 2 * 36 * 1.5, adjY: -1 / 2 * 20 * 1.5, width: 36 * 1.5, height: 20 * 1.5}, {image: nognog, imgX: 740, imgY: 94, portionW: 36, portionH: 20, adjX: -1 / 2 * 36 * 1.5, adjY: -1 / 2 * 20 * 1.5, width: 36 * 1.5, height: 20 * 1.5}, {image: nognog, imgX: 693, imgY: 95, portionW: 36, portionH: 20, adjX: -1 / 2 * 36 * 1.5, adjY: -1 / 2 * 20 * 1.5, width: 36 * 1.5, height: 20 * 1.5}, {image: nognog, imgX: 693, imgY: 114, portionW: 36, portionH: 20, adjX: -1 / 2 * 36 * 1.5, adjY: -1 / 2 * 20 * 1.5, width: 36 * 1.5, height: 20 * 1.5}]);
 
-                    this.damageThenGoAway(7, "magicalDamage", 4 + 0.2 * player.getConcentration(), 0, false);
-                    //this.project(this.playerRotation + 1/2 * Math.PI, 166 * ((50 + 3 * player.getConcentration()) / 50), 5 * ((50 + player.getConcentration()) / 50), true);
+                    this.damageThenGoAway(7, "magicalDamage", 4 + 0.2 * this.cnx, 0, false);
+                    //this.project(this.playerRotation + 1/2 * Math.PI, 166 * ((50 + 3 * this.cnx) / 50), 5 * ((50 + this.cnx) / 50), true);
                     if (instructions == 1)
                     {
                         this.missile("nearby", this.playerRotation + 5/10 * Math.PI, 0.35, 3.5, false);
@@ -1206,11 +1207,11 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     //todo add magicMissiles spell for AI
                 }
 
-                if (player.getConcentration() >= 50 && caster)
+                if (this.cnx >= 50 && caster)
                 {
                     this.spellTimer(3);
                 }
-                else if (player.getConcentration() >= 40 && caster)
+                else if (this.cnx >= 40 && caster)
                 {
                     this.spellTimer(2.5);
                 }
@@ -1226,7 +1227,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 this.turn += this.spin;
                 if (caster)
                 {
-                    var rang = 175 * ((50 + 2 * player.getConcentration()) / 50);
+                    var rang = 175 * ((50 + 2 * this.cnx) / 50);
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.turn);
@@ -1253,11 +1254,11 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     if (this.spellType == "summonFrich" && this.alert)
                     {
                         var alph = (Math.random() * 100) + 1;
-                        if (alph <= 1 + (player.getConcentration() / 2))
+                        if (alph <= 1 + (this.cnx / 2))
                         {
                             alph = "massive";
                         }
-                        else if (alph <= 20 + player.getConcentration())
+                        else if (alph <= 20 + this.cnx)
                         {
                             alph = true;
                         }
@@ -1279,7 +1280,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     else if (this.spellType == "summonWolf" && this.alert)
                     {
                         var alph = (Math.random() * 100) + 1;
-                        if (alph <= 1 + (player.getConcentration() / 5))
+                        if (alph <= 1 + (this.cnx / 5))
                         {
                             alph = true;
                         }
@@ -1320,7 +1321,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
 
                     }
 
-                    this.project(this.playerRotation + 1/2 * Math.PI, rang, 3.5 * ((50 + player.getConcentration()) / 50), "alert");
+                    this.project(this.playerRotation + 1/2 * Math.PI, rang, 3.5 * ((50 + this.cnx) / 50), "alert");
 
                 }
                 else
@@ -1355,7 +1356,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     }
 
                     this.damageThenGoAway(12, "charm", 0, 0, false, "alert");
-                    this.project(this.playerRotation + 1/2 * Math.PI, 100 + 3 * player.getConcentration(), 2 * ((50 + player.getConcentration()) / 50), "alert");
+                    this.project(this.playerRotation + 1/2 * Math.PI, 100 + 3 * this.cnx, 2 * ((50 + this.cnx) / 50), "alert");
 
                 }
                 else
@@ -1390,7 +1391,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     }
 
                     this.damageThenGoAway(12, "mark", 0, 0, false, "alert");
-                    this.project(this.playerRotation + 1/2 * Math.PI, 150 + 3 * player.getConcentration(), 1 + 2 * ((50 + player.getConcentration()) / 50), "alert");
+                    this.project(this.playerRotation + 1/2 * Math.PI, 150 + 3 * this.cnx, 1 + 2 * ((50 + this.cnx) / 50), "alert");
 
                 }
                 else
@@ -1411,39 +1412,39 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     XXX.drawImage(polypol, 1815, 207, 28, 28, - (1/2 * 28), - (1/2 * 28), 28, 28);
                     XXX.restore();
 
-                    this.contactDamage(false, 28, ((Math.random()) + 0.025 * player.getConcentration()) / 2, 250, "frostwind", "frostI");
+                    this.contactDamage(false, 28, ((Math.random()) + 0.025 * this.cnx) / 2, 250, "frostwind", "frostI");
 
                     if (instructions == 1)
                     {
-                        this.project(this.playerRotation + 0.7 / 2 * Math.PI, 90 * ((50 + 0.7 * player.getConcentration()) / 50), 2.2, true);
+                        this.project(this.playerRotation + 0.7 / 2 * Math.PI, 90 * ((50 + 0.7 * this.cnx) / 50), 2.2, true);
                     }
                     else if (instructions == 2)
                     {
-                        this.project(this.playerRotation + 1.3 / 2 * Math.PI, 90 * ((50 + 0.7 * player.getConcentration()) / 50), 2.2, true);
+                        this.project(this.playerRotation + 1.3 / 2 * Math.PI, 90 * ((50 + 0.7 * this.cnx) / 50), 2.2, true);
                     }
                     else if (instructions == 3)
                     {
-                        this.project(this.playerRotation + 1.4 / 2 * Math.PI, 90 * ((50 + 0.7 * player.getConcentration()) / 50), 2.2, true);
+                        this.project(this.playerRotation + 1.4 / 2 * Math.PI, 90 * ((50 + 0.7 * this.cnx) / 50), 2.2, true);
                     }
                     else if (instructions == 4)
                     {
-                        this.project(this.playerRotation + 0.6 / 2 * Math.PI, 90 * ((50 + 0.7 * player.getConcentration()) / 50), 2.2, true);
+                        this.project(this.playerRotation + 0.6 / 2 * Math.PI, 90 * ((50 + 0.7 * this.cnx) / 50), 2.2, true);
                     }
                     else if (instructions == 5)
                     {
-                        this.project(this.playerRotation + 1.2 / 2 * Math.PI, 90 * ((50 + 0.7 * player.getConcentration()) / 50), 2.2, true);
+                        this.project(this.playerRotation + 1.2 / 2 * Math.PI, 90 * ((50 + 0.7 * this.cnx) / 50), 2.2, true);
                     }
                     else if (instructions == 6)
                     {
-                        this.project(this.playerRotation + 0.8 / 2 * Math.PI, 90 * ((50 + 0.7 * player.getConcentration()) / 50), 2.2, true);
+                        this.project(this.playerRotation + 0.8 / 2 * Math.PI, 90 * ((50 + 0.7 * this.cnx) / 50), 2.2, true);
                     }
                     else if (instructions == 7)
                     {
-                        this.project(this.playerRotation + 1.05 / 2 * Math.PI, 90 * ((50 + 0.7 * player.getConcentration()) / 50), 2.2, true);
+                        this.project(this.playerRotation + 1.05 / 2 * Math.PI, 90 * ((50 + 0.7 * this.cnx) / 50), 2.2, true);
                     }
                     else if (instructions == 8)
                     {
-                        this.project(this.playerRotation + 0.95 / 2 * Math.PI, 90 * ((50 + 0.7 * player.getConcentration()) / 50), 2.2, true);
+                        this.project(this.playerRotation + 0.95 / 2 * Math.PI, 90 * ((50 + 0.7 * this.cnx) / 50), 2.2, true);
                     }
                 }
                 else
@@ -1456,17 +1457,17 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
             {
                 if (caster)
                 {
-                    if (this.ticCounter(250 + 11 * player.getConcentration()) + 40 <= 85 + player.getConcentration())
+                    if (this.ticCounter(250 + 11 * this.cnx) + 40 <= 85 + this.cnx)
                     {
-                        this.contactDamage(false, 10 + this.ticCounter(250 + 11 * player.getConcentration()), ((Math.random()) + 0.02 * player.getConcentration()) / 100, 5,  "force", "force");
+                        this.contactDamage(false, 10 + this.ticCounter(250 + 11 * this.cnx), ((Math.random()) + 0.02 * this.cnx) / 100, 5,  "force", "force");
 
                         XXX.save();
                         XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
                         XXX.globalAlpha = 0.55;
                         XXX.beginPath();
                         XXX.strokeStyle = "white";
-                        XXX.lineWidth = 10 + 1/50 * this.ticCounter(250 + 11 * player.getConcentration());
-                        XXX.arc(0, 0, 10 + this.ticCounter(250 + 11 * player.getConcentration()), 0, 2*Math.PI);
+                        XXX.lineWidth = 10 + 1/50 * this.ticCounter(250 + 11 * this.cnx);
+                        XXX.arc(0, 0, 10 + this.ticCounter(250 + 11 * this.cnx), 0, 2*Math.PI);
                         XXX.stroke();
                         XXX.restore();
                     }
@@ -1500,15 +1501,15 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                             var distanceToAI = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
                             if (distanceToAI <= 75)
                             {
-                                if (player.getConcentration() >= 50)
+                                if (this.cnx >= 50)
                                 {
                                     ArtificialIntelligenceAccess[i].health = Math.min(ArtificialIntelligenceAccess[i].healthMAX, ArtificialIntelligenceAccess[i].health + 0.06);
                                 }
-                                else if (player.getConcentration() >= 30)
+                                else if (this.cnx >= 30)
                                 {
                                     ArtificialIntelligenceAccess[i].health = Math.min(ArtificialIntelligenceAccess[i].healthMAX, ArtificialIntelligenceAccess[i].health + 0.055);
                                 }
-                                else if (player.getConcentration() >= 20)
+                                else if (this.cnx >= 20)
                                 {
                                     ArtificialIntelligenceAccess[i].health = Math.min(ArtificialIntelligenceAccess[i].healthMAX, ArtificialIntelligenceAccess[i].health + 0.05);
                                 }
@@ -1524,17 +1525,17 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     var distanceToPlayer = Math.sqrt((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y));
                     if (distanceToPlayer <= 75 + player.mySize)
                     {
-                        if (player.getConcentration() >= 50)
+                        if (this.cnx >= 50)
                         {
                             player.energy += 0.04;
                             player.health += 0.06;
                         }
-                        else if (player.getConcentration() >= 30)
+                        else if (this.cnx >= 30)
                         {
                             player.energy += 0.035;
                             player.health += 0.055;
                         }
-                        else if (player.getConcentration() >= 20)
+                        else if (this.cnx >= 20)
                         {
                             player.energy += 0.03;
                             player.health += 0.05;
@@ -1557,7 +1558,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     }
                 }
 
-                this.spellTimer(15 + player.getConcentration() * 4);
+                this.spellTimer(15 + this.cnx * 4);
             }
 
             //WARD OF REPELLING
@@ -1607,7 +1608,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     }
                 }
 
-                this.spellTimer(9 + (120 / 50) * player.getConcentration());
+                this.spellTimer(9 + (120 / 50) * this.cnx);
             }
 
             //SURGE
@@ -1616,22 +1617,22 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 this.orientToCaster(0, 1 / 2 * Math.PI);
                 if (caster)
                 {
-                    if (player.getConcentration() >= 25)
+                    if (this.cnx >= 25)
                     {
-                        this.contactDamage(false, 100, 4 + 0.15 * player.getConcentration(), 450, "electricity");
+                        this.contactDamage(false, 100, 4 + 0.15 * this.cnx, 450, "electricity");
                         this.flashAnimate(90, false, 0.90, [{image: mofu, imgX: 415, imgY: 4, portionW: 28, portionH: 28, adjX: -1 / 2 * ((28 * 1.5)/10) * 52, adjY: -1 / 2 * ((28 * 1.5)/10) * 52, width: ((28 * 1.5)/10) * 52, height: ((28 * 1.5)/10) * 52}, {image: mofu, imgX: 455, imgY: 3, portionW: 28, portionH: 28, adjX: -1 / 2 * ((28 * 1.5)/10) * 52, adjY: -1 / 2 * ((28 * 1.5)/10) * 52, width: ((28 * 1.5)/10) * 52, height: ((28 * 1.5)/10) * 52}, {image: mofu, imgX: 497, imgY: 4, portionW: 28, portionH: 28, adjX: -1 / 2 * ((28 * 1.5)/10) * 52, adjY: -1 / 2 * ((28 * 1.5)/10) * 52, width: ((28 * 1.5)/10) * 52, height: ((28 * 1.5)/10) * 52}]);
                         lights.push({X: this.X, Y: this.Y, size: 100, extraStops: true, GRD: 0.75, Alpha: 0.8, showMe: false});
                     }
                     else
                     {
-                        this.contactDamage(false, 75, 3 + 0.15 * player.getConcentration(), 450, "electricity");
+                        this.contactDamage(false, 75, 3 + 0.15 * this.cnx, 450, "electricity");
                         this.flashAnimate(90, false, 0.90, [{image: mofu, imgX: 415, imgY: 4, portionW: 28, portionH: 28, adjX: -1 / 2 * ((28 * 1.5)/10) * 34, adjY: -1 / 2 * ((28 * 1.5)/10) * 34, width: ((28 * 1.5)/10) * 34, height: ((28 * 1.5)/10) * 34}, {image: mofu, imgX: 455, imgY: 3, portionW: 28, portionH: 28, adjX: -1 / 2 * ((28 * 1.5)/10) * 34, adjY: -1 / 2 * ((28 * 1.5)/10) * 34, width: ((28 * 1.5)/10) * 34, height: ((28 * 1.5)/10) * 34}, {image: mofu, imgX: 497, imgY: 4, portionW: 28, portionH: 28, adjX: -1 / 2 * ((28 * 1.5)/10) * 34, adjY: -1 / 2 * ((28 * 1.5)/10) * 34, width: ((28 * 1.5)/10) * 34, height: ((28 * 1.5)/10) * 34}]);
                         lights.push({X: this.X, Y: this.Y, size: 75, extraStops: true, GRD: 0.75, Alpha: 0.8, showMe: false});
                     }
                 }
                 else
                 {
-                    this.contactDamage(false, 100, 3.5 + 0.15 * player.getConcentration(), 450, "electricity");
+                    this.contactDamage(false, 100, 3.5 + 0.15 * this.cnx, 450, "electricity");
                     this.flashAnimate(90, false, 0.90, [{image: mofu, imgX: 415, imgY: 4, portionW: 28, portionH: 28, adjX: -1 / 2 * ((28 * 1.5)/10) * 52, adjY: -1 / 2 * ((28 * 1.5)/10) * 52, width: ((28 * 1.5)/10) * 52, height: ((28 * 1.5)/10) * 52}, {image: mofu, imgX: 455, imgY: 3, portionW: 28, portionH: 28, adjX: -1 / 2 * ((28 * 1.5)/10) * 52, adjY: -1 / 2 * ((28 * 1.5)/10) * 52, width: ((28 * 1.5)/10) * 52, height: ((28 * 1.5)/10) * 52}, {image: mofu, imgX: 497, imgY: 4, portionW: 28, portionH: 28, adjX: -1 / 2 * ((28 * 1.5)/10) * 52, adjY: -1 / 2 * ((28 * 1.5)/10) * 52, width: ((28 * 1.5)/10) * 52, height: ((28 * 1.5)/10) * 52}]);
                     lights.push({X: this.X, Y: this.Y, size: 100, extraStops: true, GRD: 0.75, Alpha: 0.8, showMe: false});
                 }
@@ -1693,7 +1694,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     XXX.restore();
                 }
 
-                this.spellTimer(15 + player.getConcentration());
+                this.spellTimer(15 + this.cnx);
             }
 
             //EMBERS
@@ -1701,15 +1702,15 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
             {
                 if (caster)
                 {
-                    if (player.getConcentration() >= 25)
+                    if (this.cnx >= 25)
                     {
-                        this.contactDamage(false, 24, ((Math.random() + 3) + 0.2 * player.getConcentration()) / 2, 250, "fire", "fireI");
+                        this.contactDamage(false, 24, ((Math.random() + 3) + 0.2 * this.cnx) / 2, 250, "fire", "fireI");
                         this.flashAnimate(90, false, 1, [{image: polypol, imgX: 1688, imgY: 212, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * 2, adjY: -1 / 2 * 26 * 2, width: 29 * 2, height: 26 * 2}, {image: polypol, imgX: 1720, imgY: 210, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * 2, adjY: -1 / 2 * 26 * 2, width: 29 * 2, height: 26 * 2}, {image: polypol, imgX: 1754, imgY: 211, portionW: 29, portionH: 26, adjX: -1 / 2 * 29 * 2, adjY: -1 / 2 * 26 * 2, width: 29 * 2, height: 26 * 2}]);
                         lights.push({X: this.X, Y: this.Y, size: 30, extraStops: true, GRD: 0.75, Alpha: 0.7, showMe: false});
                     }
                     else
                     {
-                        this.contactDamage(false, 14, ((Math.random() + 3) + 0.2 * player.getConcentration()) / 2, 250,  "fire", "fireI");
+                        this.contactDamage(false, 14, ((Math.random() + 3) + 0.2 * this.cnx) / 2, 250,  "fire", "fireI");
                         this.flashAnimate(100, false, 1, [{image: polypol, imgX: 1688, imgY: 212, portionW: 29, portionH: 26, adjX: -1 / 2 * 29, adjY: -1 / 2 * 26, width: 29, height: 26}, {image: polypol, imgX: 1720, imgY: 210, portionW: 29, portionH: 26, adjX: -1 / 2 * 29, adjY: -1 / 2 * 26, width: 29, height: 26}, {image: polypol, imgX: 1754, imgY: 211, portionW: 29, portionH: 26, adjX: -1 / 2 * 29, adjY: -1 / 2 * 26, width: 29, height: 26}]);
                         lights.push({X: this.X, Y: this.Y, size: 17.5, extraStops: true, GRD: 0.75, Alpha: 0.7, showMe: false});
                     }
@@ -1720,11 +1721,11 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     this.flashAnimate(100, false, 1, [{image: polypol, imgX: 1688, imgY: 212, portionW: 29, portionH: 26, adjX: -1 / 2 * 29, adjY: -1 / 2 * 26, width: 29, height: 26}, {image: polypol, imgX: 1720, imgY: 210, portionW: 29, portionH: 26, adjX: -1 / 2 * 29, adjY: -1 / 2 * 26, width: 29, height: 26}, {image: polypol, imgX: 1754, imgY: 211, portionW: 29, portionH: 26, adjX: -1 / 2 * 29, adjY: -1 / 2 * 26, width: 29, height: 26}]);
                 }
 
-                if (player.getConcentration() >= 50 && caster)
+                if (this.cnx >= 50 && caster)
                 {
                     this.spellTimer(0.85);
                 }
-                else if (player.getConcentration() >= 40 && caster)
+                else if (this.cnx >= 40 && caster)
                 {
                     this.spellTimer(0.65);
                 }
@@ -1738,19 +1739,19 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
             {
                 if (caster)
                 {
-                    if (player.getConcentration() >= 30)
+                    if (this.cnx >= 30)
                     {
-                        this.contactDamage(false, 16, ((Math.random() * 6 + 6) + 0.3 * player.getConcentration()) / 5, 100,  "fire", "none");
+                        this.contactDamage(false, 16, ((Math.random() * 6 + 6) + 0.3 * this.cnx) / 5, 100,  "fire", "none");
                         this.flashAnimate(90, false, 1, [{image: polypol, imgX: 1691, imgY: 184, portionW: 24, portionH: 23, adjX: -1 / 2 * 24 * 1.5, adjY: -1 / 2 * 23 * 1.5, width: 24 * 1.5, height: 23 * 1.5}, {image: polypol, imgX: 1721, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24 * 1.5, adjY: -1 / 2 * 23 * 1.5, width: 24 * 1.5, height: 23 * 1.5}, {image: polypol, imgX: 1750, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24 * 1.5, adjY: -1 / 2 * 23 * 1.5, width: 24 * 1.5, height: 23 * 1.5}, {image: polypol, imgX: 1783, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24 * 1.5, adjY: -1 / 2 * 23 * 1.5, width: 24 * 1.5, height: 23 * 1.5}]);
                         lights.push({X: this.X, Y: this.Y, size: 16, extraStops: true, GRD: 0.86, Alpha: 0.7, showMe: false});
                     }
                     else
                     {
-                        this.contactDamage(false, 11, ((Math.random() * 4 + 4) + 0.3 * player.getConcentration()) / 5, 100,  "fire", "none");
+                        this.contactDamage(false, 11, ((Math.random() * 4 + 4) + 0.3 * this.cnx) / 5, 100,  "fire", "none");
                         this.flashAnimate(100, false, 1, [{image: polypol, imgX: 1691, imgY: 184, portionW: 24, portionH: 23, adjX: -1 / 2 * 24, adjY: -1 / 2 * 23, width: 24, height: 23}, {image: polypol, imgX: 1721, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24, adjY: -1 / 2 * 23, width: 24, height: 23}, {image: polypol, imgX: 1750, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24, adjY: -1 / 2 * 23, width: 24, height: 23}, {image: polypol, imgX: 1783, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24, adjY: -1 / 2 * 23, width: 24, height: 23}]);
                         lights.push({X: this.X, Y: this.Y, size: 11, extraStops: true, GRD: 0.86, Alpha: 0.7, showMe: false});
                     }
-                    this.project(this.playerRotation + 1/2 * Math.PI, 100 * ((50 + 3 * player.getConcentration()) / 50), 3 * ((50 + player.getConcentration()) / 50), true);
+                    this.project(this.playerRotation + 1/2 * Math.PI, 100 * ((50 + 3 * this.cnx) / 50), 3 * ((50 + this.cnx) / 50), true);
                 }
                 else
                 {
@@ -1866,7 +1867,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     this.keepSizeTime = new Date().getTime();
                     if (instructions != "iceShard")
                     {
-                        if (player.getConcentration() >= 50)
+                        if (this.cnx >= 50)
                         {
                             if (this.size < 1.3)
                             {
@@ -1889,7 +1890,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
 
                 if (instructions != "iceShard")
                 {
-                    if (player.getConcentration() == 50)
+                    if (this.cnx == 50)
                     {
                         if (this.size > 1.25)
                         {
@@ -1914,7 +1915,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
 
                 if (caster)
                 {
-                    this.damageThenGoAway(20 * this.size, "physicalDamage", ((45 + (25 / 50) * player.getConcentration()) * this.size), (5 + (10 / 50) * player.getConcentration()) * this.size, false, false);
+                    this.damageThenGoAway(20 * this.size, "physicalDamage", ((45 + (25 / 50) * this.cnx) * this.size), (5 + (10 / 50) * this.cnx) * this.size, false, false);
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     if (instructions != "iceShard")
@@ -1939,7 +1940,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     if (this.explosion == true)
                     {
                         this.explosion = false;
-                        if (player.getConcentration() >= 50)
+                        if (this.cnx >= 50)
                         {
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
@@ -1952,7 +1953,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                         }
-                        else if (player.getConcentration() >= 40)
+                        else if (this.cnx >= 40)
                         {
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
@@ -1963,7 +1964,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                         }
-                        else if (player.getConcentration() >= 30)
+                        else if (this.cnx >= 30)
                         {
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
@@ -1973,7 +1974,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                         }
-                        else if (player.getConcentration() >= 20)
+                        else if (this.cnx >= 20)
                         {
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
@@ -1982,7 +1983,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                         }
-                        else if (player.getConcentration() >= 10)
+                        else if (this.cnx >= 10)
                         {
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                             magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
@@ -2013,21 +2014,21 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 {
                     if (instructions == "aftershock")
                     {
-                        this.damageThenGoAway(10, "electricity", 5.5 + 0.2 * player.getConcentration(), 0, false);
+                        this.damageThenGoAway(10, "electricity", 5.5 + 0.2 * this.cnx, 0, false);
                         this.flashAnimate(90, unitSelf[0], 0.9, [{image: mofu, imgX: 454, imgY: 46, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}, {image: mofu, imgX: 475, imgY: 48, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}, {image: mofu, imgX: 498, imgY: 48, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}]);
-                        this.project(unitSelf[0] + 1/2 * Math.PI, 400 + ((100 * player.getConcentration()) / 50), 7 + 2 * (player.getConcentration() / 50), true);
+                        this.project(unitSelf[0] + 1/2 * Math.PI, 400 + ((100 * this.cnx) / 50), 7 + 2 * (this.cnx / 50), true);
                     }
                     else if (instructions == "aftershocked")
                     {
-                        this.damageThenGoAway(10, "electricity", 4 + 0.1 * player.getConcentration(), 0, false);
+                        this.damageThenGoAway(10, "electricity", 4 + 0.1 * this.cnx, 0, false);
                         this.flashAnimate(90, unitSelf[0], 0.7, [{image: mofu, imgX: 454, imgY: 46, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}, {image: mofu, imgX: 475, imgY: 48, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}, {image: mofu, imgX: 498, imgY: 48, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}]);
-                        this.project(unitSelf[0] + 1/2 * Math.PI, 400 + ((100 * player.getConcentration()) / 50), 7 + 2 * (player.getConcentration() / 50), true);
+                        this.project(unitSelf[0] + 1/2 * Math.PI, 400 + ((100 * this.cnx) / 50), 7 + 2 * (this.cnx / 50), true);
                     }
                     else
                     {
-                        this.damageThenGoAway(10, "electricity", 11 + 0.4 * player.getConcentration(), 0, false);
+                        this.damageThenGoAway(10, "electricity", 11 + 0.4 * this.cnx, 0, false);
                         this.flashAnimate(90, this.playerRotation, 1, [{image: mofu, imgX: 454, imgY: 46, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}, {image: mofu, imgX: 475, imgY: 48, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}, {image: mofu, imgX: 498, imgY: 48, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}]);
-                        this.project(this.playerRotation + 1/2 * Math.PI, 450 + ((250 * player.getConcentration()) / 50), 7 + 2 * (player.getConcentration() / 50), true);
+                        this.project(this.playerRotation + 1/2 * Math.PI, 450 + ((250 * this.cnx) / 50), 7 + 2 * (this.cnx / 50), true);
                     }
                     lights.push({X: this.X, Y: this.Y, size: 18, extraStops: true, GRD: 0.75, Alpha: 0.8, showMe: false});
                 }
@@ -2055,9 +2056,9 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
             {
                 if (caster)
                 {
-                    this.damageThenGoAway(10, "draining", 1 + (Math.floor(4/50 * player.getConcentration())));
+                    this.damageThenGoAway(10, "draining", 1 + (Math.floor(4/50 * this.cnx)));
                     this.flashAnimate(90, this.playerRotation, 1, [{image: polypol, imgX: 1767, imgY: 267, portionW: 16, portionH: 25, adjX: -1 / 2 * 16, adjY: -1 / 2 * 25, width: 16, height: 25}, {image: polypol, imgX: 1784, imgY: 267, portionW: 16, portionH: 25, adjX: -1 / 2 * 16, adjY: -1 / 2 * 25, width: 16, height: 25}, {image: polypol, imgX: 1809, imgY: 267, portionW: 16, portionH: 25, adjX: -1 / 2 * 16, adjY: -1 / 2 * 25, width: 16, height: 25}, {image: polypol, imgX: 1827, imgY: 267, portionW: 16, portionH: 25, adjX: -1 / 2 * 16, adjY: -1 / 2 * 25, width: 16, height: 25}]);
-                    this.project(this.playerRotation + 1/2 * Math.PI, 110 * ((50 + 3 * player.getConcentration()) / 50), 4 * ((50 + player.getConcentration()) / 50), true);
+                    this.project(this.playerRotation + 1/2 * Math.PI, 110 * ((50 + 3 * this.cnx) / 50), 4 * ((50 + this.cnx) / 50), true);
                 }
                 else
                 {
@@ -2117,7 +2118,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
             {
                 if (caster)
                 {
-                    if (player.getConcentration() >= 50)
+                    if (this.cnx >= 50)
                     {
 
                         for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
@@ -2130,7 +2131,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                         this.spellTimer(2);
                         lights.push({X: this.X, Y: this.Y, size: 10000, extraStops: true, GRD: 0.95, Alpha: 0.8, showMe: false});
                     }
-                    else if (player.getConcentration() >= 15)
+                    else if (this.cnx >= 15)
                     {
                         this.ticCounter(120);
                         this.contactDamage(false, 20 + 6 * this.ticCount, 0, 100,  "blinding", "none");

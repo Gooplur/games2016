@@ -575,7 +575,7 @@ function Item(type, x, y)
             //Utility Focused
             this.damages = true;
             this.spellDamage = 5 + 0.2 * player.getConcentration();
-            this.spellCost = Math.max(1, 2 + (28/50) * player.getConcentration() - (21/50) * player.getEminence());
+            this.spellCost = Math.max(1, 2 + (38/50) * player.getConcentration() - (17/50) * player.getEminence());
             this.spellGroup = "Form";
             this.spellGenre = "Cosmic";
             this.spellName = "Magic Missiles";

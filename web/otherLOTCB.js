@@ -452,7 +452,7 @@ function screenCover()
 
 
     //Night and Day
-    if (timeOfDay != "Day" && player.nightVision == false && gameState != "paused"|| player.underground && player.nightVision == false && gameState != "paused")
+    if (timeOfDay != "Day" && player.nightVision == false && gameState != "paused" || player.underground && player.nightVision == false && gameState != "paused")
     {
         var grd;
         var lightsDrawn = 0;
@@ -511,7 +511,11 @@ function screenCover()
         }
 
         //night
-        if (timeOfDay == "Night")
+        if (player.underground)
+        {
+            nightDarkness = 0.99;
+        }
+        else if (timeOfDay == "Night")
         {
             nightDarkness = darkestDark;
         }

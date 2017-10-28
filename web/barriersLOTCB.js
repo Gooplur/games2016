@@ -65,7 +65,14 @@ function Barrier(x, y, h, w, dev)
     this.drawSelfForTest = function()
     {
         XXX.beginPath();
-        XXX.fillStyle ="red";
+        if (this.dev)
+        {
+            XXX.fillStyle = "yellow";
+        }
+        else
+        {
+            XXX.fillStyle = "red";
+        }
         //XXX.fillRect(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height, this.width, this.height);
         XXX.fillRect(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height, -this.width, -this.height);
     };

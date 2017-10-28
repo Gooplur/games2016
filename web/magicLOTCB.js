@@ -12,6 +12,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
         this.cnx = spellInfo.CNX;
         this.X = false;
         this.Y = false;
+        this.dmx = map;
         this.rotation = 0;
         this.size = 1;
         this.zIndex = 4;
@@ -341,7 +342,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
             {
                 var distanceToPlayer = Math.sqrt((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y));
 
-                if (distanceToPlayer <= radius + player.mySize)
+                if (distanceToPlayer <= radius + player.mySize && player.dmx == this.dmx)
                 {
                     if (whatDoIDo == "drainOrb")
                     {
@@ -404,186 +405,189 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 {
                     var distanceToEnemy = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y));
 
-                    if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && !ArtificialIntelligenceAccess[i].flying || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && ArtificialIntelligenceAccess[i].flying && whatDoIDo != "earthDamage" && whatDoIDo != "magicalEarthDamage" || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && whatDoIDo == "earthDamage" && ArtificialIntelligenceAccess[i].underground || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && whatDoIDo == "magicalEarthDamage" && ArtificialIntelligenceAccess[i].underground)
+                    if (this.dmx == ArtificialIntelligenceAccess[i].dmx)
                     {
-                        if (whatDoIDo == "physicalDamage")
+                        if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && !ArtificialIntelligenceAccess[i].flying || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && ArtificialIntelligenceAccess[i].flying && whatDoIDo != "earthDamage" && whatDoIDo != "magicalEarthDamage" || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && whatDoIDo == "earthDamage" && ArtificialIntelligenceAccess[i].underground || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && whatDoIDo == "magicalEarthDamage" && ArtificialIntelligenceAccess[i].underground)
                         {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                        }
-                        if (whatDoIDo == "earthDamage" && !ArtificialIntelligenceAccess[i].flying)
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                        }
-                        else if (whatDoIDo == "magicalDamage")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance));
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                        }
-                        else if (whatDoIDo == "magicalEarthDamage" && !ArtificialIntelligenceAccess[i].flying)
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance));
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                        }
-                        else if (whatDoIDo == "iceSpike")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, 3 + (1/50 * this.cnx) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                        }
-                        else if (whatDoIDo == "quarterAcid")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
-                            if (damage + negate > ArtificialIntelligenceAccess[i].armour)
+                            if (whatDoIDo == "physicalDamage")
                             {
-                                ArtificialIntelligenceAccess[i].quarterAcid = true;
-                                ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
-                            }
-                        }
-                        else if (whatDoIDo == "acidI")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
-                            if (damage + negate > ArtificialIntelligenceAccess[i].armour)
-                            {
-                                ArtificialIntelligenceAccess[i].acidI = true;
-                                ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
-                            }
-                        }
-                        else if (whatDoIDo == "charm")
-                        {
-                            if (ArtificialIntelligenceAccess[i].magicalResistance < 3 + 1/10 * this.cnx && ArtificialIntelligenceAccess[i].healthMAX <= 25 + 2 * this.cnx && !ArtificialIntelligenceAccess[i].marked)
-                            {
-                                ArtificialIntelligenceAccess[i].charmedTeam = "player";
-                                ArtificialIntelligenceAccess[i].charmedTime = new Date().getTime() + 45000;
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                                 ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                             }
-                        }
-                        else if (whatDoIDo == "mark")
-                        {
-                            if (ArtificialIntelligenceAccess[i].magicalResistance < 3 + 1/10 * this.cnx && ArtificialIntelligenceAccess[i].healthMAX <= 25 + 2 * this.cnx)
+                            if (whatDoIDo == "earthDamage" && !ArtificialIntelligenceAccess[i].flying)
                             {
-                                ArtificialIntelligenceAccess[i].charmedTeam = (Math.random() * 1.7888888889);
-                                ArtificialIntelligenceAccess[i].charmedTime = new Date().getTime() + 25000;
-                                ArtificialIntelligenceAccess[i].marked = true;
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                                 ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                             }
-                        }
-                        else if (whatDoIDo == "electricity")
-                        {
-                            this.doDelete = false;
-                            if (instructions != "aftershock" && instructions != "aftershocked")
+                            else if (whatDoIDo == "magicalDamage")
                             {
-                                this.doDelete = true;
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance));
-                                if (Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance));
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
+                            else if (whatDoIDo == "magicalEarthDamage" && !ArtificialIntelligenceAccess[i].flying)
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance));
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
+                            else if (whatDoIDo == "iceSpike")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, 3 + (1/50 * this.cnx) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
+                            else if (whatDoIDo == "quarterAcid")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                if (damage + negate > ArtificialIntelligenceAccess[i].armour)
                                 {
-                                    ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                                }
-
-                                if (this.cnx >= 65)
-                                {
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                }
-                                else if (this.cnx >= 50)
-                                {
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                }
-                                else if (this.cnx >= 35)
-                                {
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                    ArtificialIntelligenceAccess[i].quarterAcid = true;
+                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
                                 }
                             }
-                            else if (unitSelf[3] !== ArtificialIntelligenceAccess[i] && this.instructions != "aftershocked")
+                            else if (whatDoIDo == "acidI")
                             {
-                                this.doDelete = true;
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance));
-                                if (Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                if (damage + negate > ArtificialIntelligenceAccess[i].armour)
                                 {
-                                    ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].acidI = true;
+                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
                                 }
-
-                                //magicList.push(new Magic({ID: "electricBolt"}, true, "aftershocked", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
                             }
-                            else if (instructions == "aftershocked" && unitSelf[3] !== ArtificialIntelligenceAccess[i])
+                            else if (whatDoIDo == "charm")
                             {
-                                this.doDelete = true;
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance));
-                                if (Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
+                                if (ArtificialIntelligenceAccess[i].magicalResistance < 3 + 1/10 * this.cnx && ArtificialIntelligenceAccess[i].healthMAX <= 25 + 2 * this.cnx && !ArtificialIntelligenceAccess[i].marked)
                                 {
-                                    ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].charmedTeam = "player";
+                                    ArtificialIntelligenceAccess[i].charmedTime = new Date().getTime() + 45000;
                                     ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                                 }
                             }
-                        }
-                        else if (whatDoIDo == "draining")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                            //todo add that it turns lifeforce successfully stolen into magical life orbs that shoot off to the player and heal him/her.
-                            var counterOrbCount = 0;
-                            if (ArtificialIntelligenceAccess[i].health < 0)
+                            else if (whatDoIDo == "mark")
                             {
-                                counterOrbCount = Math.round(- ArtificialIntelligenceAccess[i].health);
-                            }
-                            var orbsAllowed = Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance - counterOrbCount)
-                            for (var j = 0; j < orbsAllowed; j++)
-                            {
-                                magicList.push(new Magic({ID: "drainOrb"}, false, 0, ArtificialIntelligenceAccess[i]));
-                            }
-                        }
-
-                        if (extra != "alert")
-                        {
-                            if (this.doDelete)
-                            {
-                                for (var j=0; j < magicList.length; j++)
+                                if (ArtificialIntelligenceAccess[i].magicalResistance < 3 + 1/10 * this.cnx && ArtificialIntelligenceAccess[i].healthMAX <= 25 + 2 * this.cnx)
                                 {
-                                    if (magicList[j] === this)
+                                    ArtificialIntelligenceAccess[i].charmedTeam = (Math.random() * 1.7888888889);
+                                    ArtificialIntelligenceAccess[i].charmedTime = new Date().getTime() + 25000;
+                                    ArtificialIntelligenceAccess[i].marked = true;
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
+                            }
+                            else if (whatDoIDo == "electricity")
+                            {
+                                this.doDelete = false;
+                                if (instructions != "aftershock" && instructions != "aftershocked")
+                                {
+                                    this.doDelete = true;
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance));
+                                    if (Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
                                     {
-                                        magicList.splice(j, 1);
-                                        break;
+                                        ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    }
+
+                                    if (this.cnx >= 65)
+                                    {
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                    }
+                                    else if (this.cnx >= 50)
+                                    {
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                    }
+                                    else if (this.cnx >= 35)
+                                    {
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt"}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                    }
+                                }
+                                else if (unitSelf[3] !== ArtificialIntelligenceAccess[i] && this.instructions != "aftershocked")
+                                {
+                                    this.doDelete = true;
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance));
+                                    if (Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
+                                    {
+                                        ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    }
+
+                                    //magicList.push(new Magic({ID: "electricBolt"}, true, "aftershocked", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                }
+                                else if (instructions == "aftershocked" && unitSelf[3] !== ArtificialIntelligenceAccess[i])
+                                {
+                                    this.doDelete = true;
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance));
+                                    if (Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
+                                    {
+                                        ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                                     }
                                 }
                             }
-                        }
-                        else
-                        {
-                            this.alert = true;
+                            else if (whatDoIDo == "draining")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                //todo add that it turns lifeforce successfully stolen into magical life orbs that shoot off to the player and heal him/her.
+                                var counterOrbCount = 0;
+                                if (ArtificialIntelligenceAccess[i].health < 0)
+                                {
+                                    counterOrbCount = Math.round(- ArtificialIntelligenceAccess[i].health);
+                                }
+                                var orbsAllowed = Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance - counterOrbCount)
+                                for (var j = 0; j < orbsAllowed; j++)
+                                {
+                                    magicList.push(new Magic({ID: "drainOrb"}, false, 0, ArtificialIntelligenceAccess[i]));
+                                }
+                            }
+
+                            if (extra != "alert")
+                            {
+                                if (this.doDelete)
+                                {
+                                    for (var j=0; j < magicList.length; j++)
+                                    {
+                                        if (magicList[j] === this)
+                                        {
+                                            magicList.splice(j, 1);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                this.alert = true;
+                            }
                         }
                     }
                 }
@@ -604,7 +608,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     {
                         var distanceToEnemy = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
 
-                        if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground)
+                        if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && this.dmx == ArtificialIntelligenceAccess[i].dmx)
                         {
                             if (kind == "fire")
                             {
@@ -656,7 +660,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                         {
                             var distanceToPlayer = Math.sqrt((X - this.X) * (X - this.X) + (Y - this.Y) * (Y - this.Y));
 
-                            if (distanceToPlayer <= radius + ArtificialIntelligenceAccess[i].sizeRadius)
+                            if (distanceToPlayer <= radius + ArtificialIntelligenceAccess[i].sizeRadius && this.dmx == player.dmx)
                             {
                                 if (new Date().getTime() - this.contactDamageTime >= frequency)
                                 {
@@ -709,7 +713,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                         {
                             var distanceToEnemy = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
 
-                            if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground)
+                            if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && this.dmx == ArtificialIntelligenceAccess[i].dmx)
                             {
                                 if (kind == "fire")
                                 {
@@ -763,7 +767,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 {
                     var distanceToPlayer = Math.sqrt((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y));
 
-                    if (distanceToPlayer <= radius + ArtificialIntelligenceAccess[i].sizeRadius)
+                    if (distanceToPlayer <= radius + ArtificialIntelligenceAccess[i].sizeRadius && this.dmx == player.dmx)
                     {
                         if (new Date().getTime() - this.contactDamageTime >= frequency)
                         {

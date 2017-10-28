@@ -8,6 +8,7 @@ function Item(type, x, y)
     this.type = type;
     this.X = x;
     this.Y = y;
+    this.dmx = map; //dimension
     this.equipped = false; //this is for the inventory and equipping to the player.
     this.zIndex = 1;
     this.biproducts = []; //these are the accompanying items that come along with the main item being crafted.
@@ -1972,7 +1973,7 @@ function Item(type, x, y)
             this.size = 10;
             this.description = "A toothed black tentacle from a tilk.";
             this.intForDes = 29;
-            this.intDescription = "The tentacles of a tilk contain a strange fatty substance that can be used in advanced achemic recipes.";
+            this.intDescription = "The tentacles of a tilk contain a strange fatty substance that can be used in advanced alchemic recipes.";
 
             //Define Utility
             this.utility = "material";

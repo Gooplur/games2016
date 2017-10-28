@@ -65,6 +65,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.minionsMAX = 3; //total amount of soldiers the hive can have.
     this.summonRate = 32; //how long in seconds it takes to summon a new minion.
     this.summonTime = new Date().getTime();
+    //Building Variables
+    this.putBarriers = true;
 
     this.nectar = function(num)
     {
@@ -1262,6 +1264,30 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "blackBearFurRug")
+        {
+            //TRAITS
+            this.zIndex = 1;
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(polypol, 558, 18, 53, 30, -(1/2 * 53 * 3.35 * this.temporary), -(1/2 * 30 * 3.35 * this.temporary), 53 * 3.35 * this.temporary, 30 * 3.35 * this.temporary);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
         else if (this.type == "rubbledHome")
         {
             //TRAITS
@@ -1648,11 +1674,15 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //barrierList.push(new Barrier(this.X -117, this.Y - 105, 209, 230, false)); // a square that covers the entire building
 
             //BARRIERS
-            barrierList.push(new Barrier((this.X - 117), (this.Y - 105), 209, 19, false)); //right wall
-            barrierList.push(new Barrier((this.X + 98), (this.Y - 105), 209, 19, false)); //left wall
-            barrierList.push(new Barrier((this.X - 113.5), (this.Y + 92), 19, 230, false)); //top wall
-            barrierList.push(new Barrier((this.X - 113.5), (this.Y - 109), 19, 85, false)); //bottom wall
-            barrierList.push(new Barrier((this.X - 113.5 + 142), (this.Y - 109), 19, 88, false)); //bottom wall
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 117), (this.Y - 105), 209, 19, true)); //right wall
+                barrierList.push(new Barrier((this.X + 98), (this.Y - 105), 209, 19, true)); //left wall
+                barrierList.push(new Barrier((this.X - 113.5), (this.Y + 92), 19, 230, true)); //top wall
+                barrierList.push(new Barrier((this.X - 113.5), (this.Y - 109), 19, 85, true)); //bottom wall
+                barrierList.push(new Barrier((this.X - 113.5 + 142), (this.Y - 109), 19, 88, true)); //bottom wall
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 90;
@@ -1700,11 +1730,15 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //barrierList.push(new Barrier(this.X -117, this.Y - 105, 209, 230, false)); // a square that covers the entire building
 
             //BARRIERS
-            barrierList.push(new Barrier((this.X - 117), (this.Y - 105), 209, 19, false)); //right wall
-            barrierList.push(new Barrier((this.X + 98), (this.Y - 105), 209, 19, false)); //left wall
-            barrierList.push(new Barrier((this.X - 113.5), (this.Y - 109), 19, 230, false)); //bottom wall
-            barrierList.push(new Barrier((this.X - 113.5), (this.Y + 92), 19, 88, false)); //top wall
-            barrierList.push(new Barrier((this.X - 113.5 + 145), (this.Y + 92), 19, 85, false)); //top wall
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 117), (this.Y - 105), 209, 19, true)); //right wall
+                barrierList.push(new Barrier((this.X + 98), (this.Y - 105), 209, 19, true)); //left wall
+                barrierList.push(new Barrier((this.X - 113.5), (this.Y - 109), 19, 230, true)); //bottom wall
+                barrierList.push(new Barrier((this.X - 113.5), (this.Y + 92), 19, 88, true)); //top wall
+                barrierList.push(new Barrier((this.X - 113.5 + 145), (this.Y + 92), 19, 85, true)); //top wall
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 90;
@@ -1752,11 +1786,15 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //barrierList.push(new Barrier(this.X -210, this.Y -164, 330, 215, false)); // a square that covers the entire building
 
             //BARRIERS
-            barrierList.push(new Barrier((this.X - 15), (this.Y - 167), 333, 19, false)); //left wall
-            barrierList.push(new Barrier((this.X - 215), (this.Y - 167), 19, 200, false)); //bottom wall
-            barrierList.push(new Barrier((this.X - 215), (this.Y + 149), 19, 200, false)); //top wall
-            barrierList.push(new Barrier((this.X - 215), (this.Y - 167), 150, 19, false)); //right wall
-            barrierList.push(new Barrier((this.X - 215), (this.Y + 45), 105, 19, false)); //right wall
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 15), (this.Y - 167), 333, 19, true)); //left wall
+                barrierList.push(new Barrier((this.X - 215), (this.Y - 167), 19, 200, true)); //bottom wall
+                barrierList.push(new Barrier((this.X - 215), (this.Y + 149), 19, 200, true)); //top wall
+                barrierList.push(new Barrier((this.X - 215), (this.Y - 167), 150, 19, true)); //right wall
+                barrierList.push(new Barrier((this.X - 215), (this.Y + 45), 105, 19, true)); //right wall
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 90;
@@ -1804,19 +1842,23 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //barrierList.push(new Barrier(this.X -248, this.Y -257, 513, 245, false)); // a square that covers the entire building
 
             //BARRIERS
-            barrierList.push(new Barrier((this.X - 248), (this.Y - 257), 513, 19, false)); //right wall
-            barrierList.push(new Barrier((this.X - 14), (this.Y - 257), 227, 19, false)); //middle wall
-            barrierList.push(new Barrier((this.X - 14), (this.Y + 30), 227, 19, false)); //middle wall
-            barrierList.push(new Barrier((this.X - 248), (this.Y + 30), 19, 95, false)); //t inner wall
-            barrierList.push(new Barrier((this.X - 95), (this.Y + 30), 19, 95, false)); //t inner wall
-            barrierList.push(new Barrier((this.X - 248), (this.Y - 48), 19, 95, false)); //b inner wall
-            barrierList.push(new Barrier((this.X - 95), (this.Y - 48), 19, 95, false)); //b inner wall
-            barrierList.push(new Barrier((this.X - 248), (this.Y - 257), 19, 245, false)); //bottom wall
-            barrierList.push(new Barrier((this.X - 248), (this.Y + 240), 19, 245, false)); //top wall
-            barrierList.push(new Barrier((this.X + 3), (this.Y + 90), 19, 112, false)); //sm top wall
-            barrierList.push(new Barrier((this.X + 172), (this.Y + 90), 19, 80, false)); //sm top wall
-            barrierList.push(new Barrier((this.X + 3), (this.Y - 122), 19, 245, false)); //sm bottom wall
-            barrierList.push(new Barrier((this.X + 233), (this.Y - 122), 228, 19, false)); //sm right wall
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 248), (this.Y - 257), 513, 19, true)); //right wall
+                barrierList.push(new Barrier((this.X - 14), (this.Y - 257), 227, 19, true)); //middle wall
+                barrierList.push(new Barrier((this.X - 14), (this.Y + 30), 227, 19, true)); //middle wall
+                barrierList.push(new Barrier((this.X - 248), (this.Y + 30), 19, 95, true)); //t inner wall
+                barrierList.push(new Barrier((this.X - 95), (this.Y + 30), 19, 95, true)); //t inner wall
+                barrierList.push(new Barrier((this.X - 248), (this.Y - 48), 19, 95, true)); //b inner wall
+                barrierList.push(new Barrier((this.X - 95), (this.Y - 48), 19, 95, true)); //b inner wall
+                barrierList.push(new Barrier((this.X - 248), (this.Y - 257), 19, 245, true)); //bottom wall
+                barrierList.push(new Barrier((this.X - 248), (this.Y + 240), 19, 245, true)); //top wall
+                barrierList.push(new Barrier((this.X + 3), (this.Y + 90), 19, 112, true)); //sm top wall
+                barrierList.push(new Barrier((this.X + 172), (this.Y + 90), 19, 80, true)); //sm top wall
+                barrierList.push(new Barrier((this.X + 3), (this.Y - 122), 19, 245, true)); //sm bottom wall
+                barrierList.push(new Barrier((this.X + 233), (this.Y - 122), 228, 19, true)); //sm right wall
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 90;
@@ -1865,15 +1907,19 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //barrierList.push(new Barrier(this.X - 230, this.Y - 245, 470, 495, false)); // a square that covers the entire building
 
             //BARRIERS
-            barrierList.push(new Barrier((this.X - 230), (this.Y - 225), 454, 19, false)); //right wall
-            barrierList.push(new Barrier((this.X + 222), (this.Y - 242), 472, 19, false)); //left wall
-            barrierList.push(new Barrier((this.X - 230), (this.Y - 28), 19, 250, false)); //mid section horizontal
-            barrierList.push(new Barrier((this.X - 225), (this.Y + 214), 19, 462, false)); //upper wall
-            barrierList.push(new Barrier((this.X + 20), (this.Y + 114), 100, 19, false)); //upper mid section vertical
-            barrierList.push(new Barrier((this.X + 18), (this.Y - 93), 150, 19, false)); //mid section vertical
-            barrierList.push(new Barrier((this.X + 20), (this.Y - 225), 79, 19, false)); //lower mid section vertical
-            barrierList.push(new Barrier((this.X + 130), (this.Y - 242), 19, 96, false)); //left bottom horizontal
-            barrierList.push(new Barrier((this.X - 230), (this.Y - 242), 19, 306, false)); //right bottom horizontal
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 230), (this.Y - 225), 454, 19, true)); //right wall
+                barrierList.push(new Barrier((this.X + 222), (this.Y - 242), 472, 19, true)); //left wall
+                barrierList.push(new Barrier((this.X - 230), (this.Y - 28), 19, 250, true)); //mid section horizontal
+                barrierList.push(new Barrier((this.X - 225), (this.Y + 214), 19, 462, true)); //upper wall
+                barrierList.push(new Barrier((this.X + 20), (this.Y + 114), 100, 19, true)); //upper mid section vertical
+                barrierList.push(new Barrier((this.X + 18), (this.Y - 93), 150, 19, true)); //mid section vertical
+                barrierList.push(new Barrier((this.X + 20), (this.Y - 225), 79, 19, true)); //lower mid section vertical
+                barrierList.push(new Barrier((this.X + 130), (this.Y - 242), 19, 96, true)); //left bottom horizontal
+                barrierList.push(new Barrier((this.X - 230), (this.Y - 242), 19, 306, true)); //right bottom horizontal
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 90;
@@ -1916,15 +1962,19 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //barrierList.push(new Barrier((this.X - 85), (this.Y - 80), 160, 150, false));
 
             //BARRIERS
-            barrierList.push(new Barrier((this.X - 18), (this.Y + 60), 18, 36, false)); //top
-            barrierList.push(new Barrier((this.X + 20), (this.Y + 24), 39, 18, false));
-            barrierList.push(new Barrier((this.X + 39), (this.Y + -13), 38, 18, false));
-            barrierList.push(new Barrier((this.X + 50), (this.Y + -50), 37, 18, false));
-            barrierList.push(new Barrier((this.X + 26), (this.Y - 63), 18, 25, false));
-            barrierList.push(new Barrier((this.X - 18), (this.Y - 81), 18, 44, false)); //bottom
-            barrierList.push(new Barrier((this.X - 45), (this.Y - 63), 18, 28, false));
-            barrierList.push(new Barrier((this.X - 66), (this.Y - 35), 20, 21, false));
-            barrierList.push(new Barrier((this.X - 80), (this.Y - 17), 42, 18, false));
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 18), (this.Y + 60), 18, 36, true)); //top
+                barrierList.push(new Barrier((this.X + 20), (this.Y + 24), 39, 18, true));
+                barrierList.push(new Barrier((this.X + 39), (this.Y + -13), 38, 18, true));
+                barrierList.push(new Barrier((this.X + 50), (this.Y + -50), 37, 18, true));
+                barrierList.push(new Barrier((this.X + 26), (this.Y - 63), 18, 25, true));
+                barrierList.push(new Barrier((this.X - 18), (this.Y - 81), 18, 44, true)); //bottom
+                barrierList.push(new Barrier((this.X - 45), (this.Y - 63), 18, 28, true));
+                barrierList.push(new Barrier((this.X - 66), (this.Y - 35), 20, 21, true));
+                barrierList.push(new Barrier((this.X - 80), (this.Y - 17), 42, 18, true));
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 90;
@@ -1972,11 +2022,15 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //barrierList.push(new Barrier(this.X - 135, this.Y - 125, 251, 260, false)); // a square that covers the entire building
 
             //BARRIERS
-            barrierList.push(new Barrier((this.X + 114), (this.Y + 20), 105, 19, false)); //upper left vertical
-            barrierList.push(new Barrier((this.X + 114), (this.Y -125), 98, 19, false)); //lower left vertical
-            barrierList.push(new Barrier((this.X - 135), (this.Y -125), 251, 19, false)); //right wall
-            barrierList.push(new Barrier((this.X - 135), (this.Y -125), 19, 251, false)); //lower wall
-            barrierList.push(new Barrier((this.X - 135), (this.Y + 108), 19, 251, false)); //lower wall
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X + 114), (this.Y + 20), 105, 19, true)); //upper left vertical
+                barrierList.push(new Barrier((this.X + 114), (this.Y - 125), 98, 19, true)); //lower left vertical
+                barrierList.push(new Barrier((this.X - 135), (this.Y - 125), 251, 19, true)); //right wall
+                barrierList.push(new Barrier((this.X - 135), (this.Y - 125), 19, 251, true)); //lower wall
+                barrierList.push(new Barrier((this.X - 135), (this.Y + 108), 19, 251, true)); //lower wall
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 90;
@@ -2024,11 +2078,15 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //barrierList.push(new Barrier(this.X - 235, this.Y - 125, 251, 450, false)); // a square that covers the entire building
 
             //BARRIERS
-            barrierList.push(new Barrier((this.X - 235), (this.Y + 107), 20, 450, false)); //upper wall
-            barrierList.push(new Barrier((this.X + 214), (this.Y -125), 251, 20, false)); //left wall
-            barrierList.push(new Barrier((this.X - 235), (this.Y -125), 20, 308, false)); //lower right horizontal
-            barrierList.push(new Barrier((this.X + 128), (this.Y -125), 20, 86, false)); //lower left horizontal
-            barrierList.push(new Barrier((this.X -235), (this.Y -125), 251, 20, false)); //left wall
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 235), (this.Y + 107), 20, 450, true)); //upper wall
+                barrierList.push(new Barrier((this.X + 214), (this.Y - 125), 251, 20, true)); //left wall
+                barrierList.push(new Barrier((this.X - 235), (this.Y - 125), 20, 308, true)); //lower right horizontal
+                barrierList.push(new Barrier((this.X + 128), (this.Y - 125), 20, 86, true)); //lower left horizontal
+                barrierList.push(new Barrier((this.X - 235), (this.Y - 125), 251, 20, true)); //left wall
+            }
 
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
@@ -2070,16 +2128,20 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
 
             //BARRIERS
-            barrierList.push(new Barrier((this.X - 30), (this.Y + 65), 18, 44, false)); //top
-            barrierList.push(new Barrier((this.X + 7), (this.Y + 48), 18, 38, false));
-            barrierList.push(new Barrier((this.X + 25), (this.Y + 30), 18, 38, false));
-            barrierList.push(new Barrier((this.X - 55), (this.Y + 48), 18, 25, false));
-            barrierList.push(new Barrier((this.X - 70), (this.Y + 30), 18, 22, false));
-            barrierList.push(new Barrier((this.X + 63), (this.Y - 27), 62, 18, false));
-            barrierList.push(new Barrier((this.X -52), (this.Y - 43), 36, 18, false));
-            barrierList.push(new Barrier((this.X -67), (this.Y - 7), 42, 18, false));
-            barrierList.push(new Barrier((this.X -44), (this.Y - 53), 25, 18, false));
-            barrierList.push(new Barrier((this.X - 30), (this.Y - 72), 18, 61, false)); //bottom
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 30), (this.Y + 65), 18, 44, true)); //top
+                barrierList.push(new Barrier((this.X + 7), (this.Y + 48), 18, 38, true));
+                barrierList.push(new Barrier((this.X + 25), (this.Y + 30), 18, 38, true));
+                barrierList.push(new Barrier((this.X - 55), (this.Y + 48), 18, 25, true));
+                barrierList.push(new Barrier((this.X - 70), (this.Y + 30), 18, 22, true));
+                barrierList.push(new Barrier((this.X + 63), (this.Y - 27), 62, 18, true));
+                barrierList.push(new Barrier((this.X - 52), (this.Y - 43), 36, 18, true));
+                barrierList.push(new Barrier((this.X - 67), (this.Y - 7), 42, 18, true));
+                barrierList.push(new Barrier((this.X - 44), (this.Y - 53), 25, 18, true));
+                barrierList.push(new Barrier((this.X - 30), (this.Y - 72), 18, 61, true)); //bottom
+            }
 
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
@@ -2128,11 +2190,15 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //barrierList.push(new Barrier(this.X - 135, this.Y - 125, 251, 260, false)); // a square that covers the entire building
 
             //BARRIERS
-            barrierList.push(new Barrier((this.X + 114), (this.Y -125), 251, 19, false)); //left wall
-            barrierList.push(new Barrier((this.X - 135), (this.Y + 20), 105, 19, false)); //upper left vertical
-            barrierList.push(new Barrier((this.X - 135), (this.Y -125), 98, 19, false)); //lower left vertical
-            barrierList.push(new Barrier((this.X - 135), (this.Y -125), 19, 251, false)); //lower wall
-            barrierList.push(new Barrier((this.X - 135), (this.Y + 108), 19, 251, false)); //lower wall
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X + 114), (this.Y - 125), 251, 19, true)); //left wall
+                barrierList.push(new Barrier((this.X - 135), (this.Y + 20), 105, 19, true)); //upper left vertical
+                barrierList.push(new Barrier((this.X - 135), (this.Y - 125), 98, 19, true)); //lower left vertical
+                barrierList.push(new Barrier((this.X - 135), (this.Y - 125), 19, 251, true)); //lower wall
+                barrierList.push(new Barrier((this.X - 135), (this.Y + 108), 19, 251, true)); //lower wall
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 90;
@@ -2180,11 +2246,15 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //barrierList.push(new Barrier(this.X - 135, this.Y - 125, 251, 260, false)); // a square that covers the entire building
 
             //BARRIERS
-            barrierList.push(new Barrier((this.X - 230), (this.Y - 225), 454, 19, false)); //right wall
-            barrierList.push(new Barrier((this.X + 222), (this.Y - 242), 472, 19, false)); //left wall
-            barrierList.push(new Barrier((this.X - 75), (this.Y + 214), 19, 302, false)); //left bottom horizontal
-            barrierList.push(new Barrier((this.X - 225), (this.Y + 214), 19, 96, false)); //right bottom horizontal
-            barrierList.push(new Barrier((this.X - 230), (this.Y - 242), 19, 462, false)); //right bottom horizontal
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 230), (this.Y - 225), 454, 19, true)); //right wall
+                barrierList.push(new Barrier((this.X + 222), (this.Y - 242), 472, 19, true)); //left wall
+                barrierList.push(new Barrier((this.X - 75), (this.Y + 214), 19, 302, true)); //left bottom horizontal
+                barrierList.push(new Barrier((this.X - 225), (this.Y + 214), 19, 96, true)); //right bottom horizontal
+                barrierList.push(new Barrier((this.X - 230), (this.Y - 242), 19, 462, true)); //right bottom horizontal
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 90;
@@ -2232,11 +2302,15 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //barrierList.push(new Barrier(this.X - 69, this.Y - 67, 130, 140, false)); // a square that covers the entire building
 
             //BARRIERS
-            barrierList.push(new Barrier((this.X - 80), (this.Y - 40), 90, 19, false));
-            barrierList.push(new Barrier((this.X + 64), (this.Y - 40), 90, 19, false));
-            barrierList.push(new Barrier((this.X + -64), (this.Y + 60), 19, 140, false));
-            barrierList.push(new Barrier((this.X + -74), (this.Y -69), 19, 45, false));
-            barrierList.push(new Barrier((this.X + 36), (this.Y -69), 19, 45, false));
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 80), (this.Y - 40), 90, 19, true));
+                barrierList.push(new Barrier((this.X + 64), (this.Y - 40), 90, 19, true));
+                barrierList.push(new Barrier((this.X + -64), (this.Y + 60), 19, 140, true));
+                barrierList.push(new Barrier((this.X + -74), (this.Y - 69), 19, 45, true));
+                barrierList.push(new Barrier((this.X + 36), (this.Y - 69), 19, 45, true));
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 90;
@@ -2246,6 +2320,176 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 dClick = true;
                 this.activate = false;
+            }
+        }
+        else if (this.type == "cave")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 200;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(0);
+            XXX.drawImage(freeverse, 256, 518, 141, 96, -(1/2 * 141 * 1.6), -(1/2 * 96 * 1.6), 141 * 1.6, 96 * 1.6);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 45;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                X = this.temporary[0];
+                Y = this.temporary[1];
+                map = this.information;
+            }
+        }
+        else if (this.type == "caveExit")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 60;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2), -(1/2 * 16 * 3.2) + 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1), -(1/2 * 16 * 3.1) + 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2), -(1/2 * 16 * 3.2) - 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1), -(1/2 * 16 * 3.1) - 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3), -(1/2 * 16 * 3), 18 * 3, 16 * 3);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2), -(1/2 * 16 * 3.2) + 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1), -(1/2 * 16 * 3.1) + 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2), -(1/2 * 16 * 3.2) - 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1), -(1/2 * 16 * 3.1) - 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3), -(1/2 * 16 * 3), 18 * 3, 16 * 3);
+
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2) + 25, -(1/2 * 16 * 3.2) + 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1) + 25, -(1/2 * 16 * 3.1) + 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2) + 25, -(1/2 * 16 * 3.2) - 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1) + 25, -(1/2 * 16 * 3.1) - 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3) + 25, -(1/2 * 16 * 3), 18 * 3, 16 * 3);
+
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2) + 50, -(1/2 * 16 * 3.2) + 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1) + 50, -(1/2 * 16 * 3.1) + 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2) + 50, -(1/2 * 16 * 3.2) - 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1) + 50, -(1/2 * 16 * 3.1) - 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3) + 50, -(1/2 * 16 * 3), 18 * 3, 16 * 3);
+            XXX.restore();
+
+            //produces light
+            lights.push({X:this.X, Y: this.Y, size: 170, extraStops: true, GRD: 0.20, Alpha: 0.80, showMe: false});
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 45;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                X = this.temporary[0];
+                Y = this.temporary[1];
+                map = this.information;
+            }
+        }
+        else if (this.type == "cavePassage")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 60;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2), -(1/2 * 16 * 3.2) + 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1), -(1/2 * 16 * 3.1) + 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2), -(1/2 * 16 * 3.2) - 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1), -(1/2 * 16 * 3.1) - 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3), -(1/2 * 16 * 3), 18 * 3, 16 * 3);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2), -(1/2 * 16 * 3.2) + 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1), -(1/2 * 16 * 3.1) + 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2), -(1/2 * 16 * 3.2) - 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1), -(1/2 * 16 * 3.1) - 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3), -(1/2 * 16 * 3), 18 * 3, 16 * 3);
+
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2) + 25, -(1/2 * 16 * 3.2) + 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1) + 25, -(1/2 * 16 * 3.1) + 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2) + 25, -(1/2 * 16 * 3.2) - 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1) + 25, -(1/2 * 16 * 3.1) - 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3) + 25, -(1/2 * 16 * 3), 18 * 3, 16 * 3);
+
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2) + 50, -(1/2 * 16 * 3.2) + 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1) + 50, -(1/2 * 16 * 3.1) + 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2) + 50, -(1/2 * 16 * 3.2) - 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1) + 50, -(1/2 * 16 * 3.1) - 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3) + 50, -(1/2 * 16 * 3), 18 * 3, 16 * 3);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 45;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                X = this.temporary[0];
+                Y = this.temporary[1];
+                map = this.information;
+            }
+        }
+        else if (this.type == "trapdoor")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 60;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(theng, 746, 821, 47, 43, -(1/2 * 47 * 1.5), -(1/2 * 43 * 1.5), 47 * 1.5, 43 * 1.5);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 45;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                X = this.temporary[0];
+                Y = this.temporary[1];
+                map = this.information;
+            }
+        }
+        else if (this.type == "ladder")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 60;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(theng, 692, 822, 47, 43, -(1/2 * 47 * 1.5), -(1/2 * 43 * 1.5), 47 * 1.5, 43 * 1.5);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 45;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                X = this.temporary[0];
+                Y = this.temporary[1];
+                map = this.information;
             }
         }
         else if (this.type == "brokenWell")
@@ -6681,8 +6925,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
                 else if (this.temporary == "ash")
                 {
-                    this.runOneTime = false;
                     this.burnt = true;
+                    this.burntTime = 0;
                 }
                 else
                 {

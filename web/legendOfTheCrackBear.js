@@ -827,6 +827,10 @@ function legendaryPrerequisites()
     lushGrassEnv.src = ("images/reducedLush.jpg");
     window.lushGrassEnv = lushGrassEnv;
 
+    var dungeonStoneEnv = new Image();
+    dungeonStoneEnv.src = ("images/dungeonStone.jpg");
+    window.dungeonStoneEnv = dungeonStoneEnv;
+
     var frozenEnv = new Image();
     frozenEnv.src = ("images/tundra.jpg");
     window.frozenEnv = frozenEnv;
@@ -1365,7 +1369,10 @@ function projectileOperationsManagement(z)
         {
             if (playerProjectiles[i].zIndex == z)
             {
-                playerProjectiles[i].operations();
+                if (playerProjectiles[i].dmx == map)
+                {
+                    playerProjectiles[i].operations();
+                }
             }
         }
     }
@@ -1375,7 +1382,10 @@ function projectileOperationsManagement(z)
         {
             if (unitProjectiles[i].zIndex == z)
             {
-                unitProjectiles[i].operations();
+                if (unitProjectiles[i].dmx == map)
+                {
+                    unitProjectiles[i].operations();
+                }
             }
         }
     }
@@ -1389,7 +1399,10 @@ function magicOperationsManagement(z)
         {
             if (magicList[i].zIndex == z)
             {
-                magicList[i].operations();
+                if (magicList[i].dmx == map)
+                {
+                    magicList[i].operations();
+                }
             }
         }
     }
@@ -1399,15 +1412,18 @@ function artificialIntelligenceOperationsManagement(z)
 {
     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
     {
-        if (ArtificialIntelligenceAccess[i].zIndex == z)
+        if (ArtificialIntelligenceAccess[i].dmx == map)
         {
-            if (gameState == "active")
+            if (ArtificialIntelligenceAccess[i].zIndex == z)
             {
-                ArtificialIntelligenceAccess[i].operation();
-            }
-            else if (gameState == "stopTime" && ArtificialIntelligenceAccess[i].timeResistance == true) //when the player uses magic to stop time time resistant creatures will still exist but all others will disapear until time starts again. //TODO this needs to be rearranged if it is ever going to be a real spell for the game. Units would need to be able to take damage and draw during paused time.
-            {
-                ArtificialIntelligenceAccess[i].operation();
+                if (gameState == "active")
+                {
+                    ArtificialIntelligenceAccess[i].operation();
+                }
+                else if (gameState == "stopTime" && ArtificialIntelligenceAccess[i].timeResistance == true) //when the player uses magic to stop time time resistant creatures will still exist but all others will disapear until time starts again. //TODO this needs to be rearranged if it is ever going to be a real spell for the game. Units would need to be able to take damage and draw during paused time.
+                {
+                    ArtificialIntelligenceAccess[i].operation();
+                }
             }
         }
     }
@@ -1418,7 +1434,10 @@ function aiIdentify()
     {
         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
         {
-            interaction(ArtificialIntelligenceAccess[i]);
+            if (ArtificialIntelligenceAccess[i].dmx == map)
+            {
+                interaction(ArtificialIntelligenceAccess[i]);
+            }
         }
     }
 }
@@ -1427,7 +1446,10 @@ function deadAIOperationsManagement()
 {
     for (var i = 0; i < deadAIList.length; i++)
     {
-        deadAIList[i].operation();
+        if (deadAIList[i].dmx == map)
+        {
+            deadAIList[i].operation();
+        }
     }
 }
 //This function runs through the list of Invisible Game Barriers and activates their operation functions.
@@ -1467,7 +1489,10 @@ function ItemOperationsManager(z)
             {
                 if (worldItems[i][0].X > X - (1.2 * CCC.width) && worldItems[i][0].X < X + (1.2 * CCC.width) && worldItems[i][0].Y > Y - (1.2 * CCC.height) && worldItems[i][0].Y < Y + (1.2 * CCC.height))
                 {
-                    worldItems[i][0].operations();
+                    if (worldItems[i][0].dmx == map)
+                    {
+                        worldItems[i][0].operations();
+                    }
                 }
             }
         }
@@ -2097,6 +2122,7 @@ function theLegend()
 
         //ITEM STASH VARIABLES (non quest)
         lonerGuyStash: true,
+        sagesCacheStash: true,
 
         //QUEST: Teshir North Road ---- given by Toggin
         teshirNorthRoadBandits: true,

@@ -6,6 +6,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
 {
     this.X = startX;
     this.Y = startY;
+    this.dmx = map;
     this.rotation = startAngle;
     this.distanceFromStart = 0;
     this.damage = 0;
@@ -134,7 +135,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 if (distanceFromUnit < ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground)
                 {
                     //bullets do half damage against large enough non-human creatures. All others damage always remains the same.
-                    if (ArtificialIntelligenceAccess[i].team != this.team)
+                    if (ArtificialIntelligenceAccess[i].team != this.team && this.dmx == ArtificialIntelligenceAccess[i].dmx)
                     {
                         if (type == "bullet" && ArtificialIntelligenceAccess[i].healthMAX > 100 && ArtificialIntelligenceAccess[i].type != "Person" && ArtificialIntelligenceAccess[i].type != "Soldier")
                         {

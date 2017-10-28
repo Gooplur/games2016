@@ -12,6 +12,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.ID = ID; //This is gives this unit an identity so that they can be identified if a problem comes up.
     this.X = unitX; // this is the units X position in the world
     this.Y = unitY; // this is the units Y position in the world
+    this.dmx = map; // dimension
     this.type = type; //This determines what kind of unit it is.
     this.zIndex = 2;
     this.team = "wild"; //wild = all predators //herd = all passive or not predator animals //neutral = all creatures that are pure neutral but are not targeted //freynor = freynor faction etc.
@@ -432,7 +433,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     var swtchTrgt = false;
                     for (var j = 0; j < this.allys.length; j++)
                     {
-                        if (this.allys[j] == scenicList[i].webbed[k].team)
+                        if (this.allys[j] == scenicList[i].webbed[k].team || scenicList[i].webbed[k].dmx != this.dmx)
                         {
                             swtchTrgt = true;
                             break;
@@ -485,7 +486,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 var swtchTrgt = false;
                 for (var j = 0; j < this.allys.length; j++)
                 {
-                    if (this.allys[j] == ArtificialIntelligenceAccess[i].team)
+                    if (this.allys[j] == ArtificialIntelligenceAccess[i].team || ArtificialIntelligenceAccess[i].dmx != this.dmx)
                     {
                         swtchTrgt = true;
                         break;
@@ -15495,7 +15496,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         for (var i = 0; i < worldItems.length; i++) //look for any item but quest items to eat/steal.
                         {
-                            if (worldItems[i][0].utility != "questItem")
+                            if (worldItems[i][0].utility != "questItem" && worldItems[i][0].dmx == this.dmx)
                             {
                                 if (this.distanceFinder(this, worldItems[i][0]) <= this.rangeOfSight)
                                 {
@@ -17428,19 +17429,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                     for (var i = 0; i < worldItems.length; i++) //look for food... (grains and breads)
                     {
-                        if (worldItems[i][0].type == "santhGrain" || worldItems[i][0].type == "harstGrain" || worldItems[i][0].type == "santhBread"|| worldItems[i][0].type == "butteredSanthBread" || worldItems[i][0].type == "harstBread" || worldItems[i][0].type == "butteredHarstBread")
+                        if (worldItems[i][0].dmx == this.dmx)
                         {
-                            if (this.distanceFinder(this, worldItems[i][0]) <= (this.rangeOfSight / 2)) // if grains are easy to get to go after them.
+                            if (worldItems[i][0].type == "santhGrain" || worldItems[i][0].type == "harstGrain" || worldItems[i][0].type == "santhBread"|| worldItems[i][0].type == "butteredSanthBread" || worldItems[i][0].type == "harstBread" || worldItems[i][0].type == "butteredHarstBread")
                             {
-                                if (this.mofuTargetFood == "none")
+                                if (this.distanceFinder(this, worldItems[i][0]) <= (this.rangeOfSight / 2)) // if grains are easy to get to go after them.
                                 {
-                                    this.mofuTargetFood = worldItems[i][0];
-                                }
-                                else
-                                {
-                                    if (this.distanceFinder(this, worldItems[i][0]) < this.distanceFinder(this, this.mofuTargetFood))
+                                    if (this.mofuTargetFood == "none")
                                     {
                                         this.mofuTargetFood = worldItems[i][0];
+                                    }
+                                    else
+                                    {
+                                        if (this.distanceFinder(this, worldItems[i][0]) < this.distanceFinder(this, this.mofuTargetFood))
+                                        {
+                                            this.mofuTargetFood = worldItems[i][0];
+                                        }
                                     }
                                 }
                             }
@@ -18396,19 +18400,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                     for (var i = 0; i < worldItems.length; i++) //look for food... (grains and breads)
                     {
-                        if (worldItems[i][0].type == "santhGrain" || worldItems[i][0].type == "harstGrain" || worldItems[i][0].type == "santhBread" || worldItems[i][0].type == "butteredSanthBread" || worldItems[i][0].type == "harstBread" || worldItems[i][0].type == "butteredHarstBread" || worldItems[i][0].type == "akerBerries" || worldItems[i][0].type == "pluttBerries" || worldItems[i][0].type == "bushkaBerries" || worldItems[i][0].type == "gojiiBerries" || worldItems[i][0].type == "luufBerries" || worldItems[i][0].type == "suuliMelonSlice")
+                        if (worldItems[i][0].dmx == this.dmx)
                         {
-                            if (this.distanceFinder(this, worldItems[i][0]) <= (this.rangeOfSight / 2)) // if grains are easy to get to go after them.
+                            if (worldItems[i][0].type == "santhGrain" || worldItems[i][0].type == "harstGrain" || worldItems[i][0].type == "santhBread" || worldItems[i][0].type == "butteredSanthBread" || worldItems[i][0].type == "harstBread" || worldItems[i][0].type == "butteredHarstBread" || worldItems[i][0].type == "akerBerries" || worldItems[i][0].type == "pluttBerries" || worldItems[i][0].type == "bushkaBerries" || worldItems[i][0].type == "gojiiBerries" || worldItems[i][0].type == "luufBerries" || worldItems[i][0].type == "suuliMelonSlice")
                             {
-                                if (this.mofuTargetFood == "none")
+                                if (this.distanceFinder(this, worldItems[i][0]) <= (this.rangeOfSight / 2)) // if grains are easy to get to go after them.
                                 {
-                                    this.mofuTargetFood = worldItems[i][0];
-                                }
-                                else
-                                {
-                                    if (this.distanceFinder(this, worldItems[i][0]) < this.distanceFinder(this, this.mofuTargetFood))
+                                    if (this.mofuTargetFood == "none")
                                     {
                                         this.mofuTargetFood = worldItems[i][0];
+                                    }
+                                    else
+                                    {
+                                        if (this.distanceFinder(this, worldItems[i][0]) < this.distanceFinder(this, this.mofuTargetFood))
+                                        {
+                                            this.mofuTargetFood = worldItems[i][0];
+                                        }
                                     }
                                 }
                             }
@@ -21030,6 +21037,20 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (this.ultra.faction == "hostile")
                 {
+                    if (this.ID == "Looter")
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(460, false);
+
+                        this.drops = [[new Item("coins", this.X, this.Y), Math.floor(Math.random() * 12) + 1]];
+
+                        this.disturbed = true;
+
+                        if (this.disturbed == true)
+                        {
+                            this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
+                        }
+                    }
                     if (this.ID == "Northern Bandit")
                     {
                         //RANGE OF SIGHT (anything related to range of sight)

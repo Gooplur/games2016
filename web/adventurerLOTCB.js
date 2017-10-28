@@ -7,6 +7,8 @@ function Adventurer()
 {
     //Character related variables (non-code focused)
     this.name = "Name";
+    //Location
+    this.dmx = map;
     //Leveling
     this.level = 1;
     this.experience = 0;
@@ -863,15 +865,18 @@ function Adventurer()
             {
                 for (var i = 0; i < deadAIList.length; i++)
                 {
-                    var distToCorpse = Math.sqrt((X - deadAIList[i].X) * (X - deadAIList[i].X) + (Y - deadAIList[i].Y) * (Y - deadAIList[i].Y));
-                    var corpseDrainAmount = 2 + Math.floor(this.getEminence() / 10);
-                    if (distToCorpse <= 25 + (15 * this.getEminence()))
+                    if (this.dmx == deadAIList[i].dmx)
                     {
-                        for (var j = 0; j < corpseDrainAmount; j++)
+                        var distToCorpse = Math.sqrt((X - deadAIList[i].X) * (X - deadAIList[i].X) + (Y - deadAIList[i].Y) * (Y - deadAIList[i].Y));
+                        var corpseDrainAmount = 2 + Math.floor(this.getEminence() / 10);
+                        if (distToCorpse <= 25 + (15 * this.getEminence()))
                         {
-                            magicList.push(new Magic({ID: "drainOrb"}, false, 0, deadAIList[i]));
+                            for (var j = 0; j < corpseDrainAmount; j++)
+                            {
+                                magicList.push(new Magic({ID: "drainOrb"}, false, 0, deadAIList[i]));
+                            }
+                            deadAIList.splice(i, 1);
                         }
-                        deadAIList.splice(i, 1);
                     }
                 }
             }
@@ -18280,7 +18285,7 @@ function Adventurer()
                     {
                         Inventory[i][0].X = X;
                         Inventory[i][0].Y = Y;
-                        worldItems.push([Inventory[i][0], 1]);
+                        worldItems.push([new Item(Inventory[i][0].type, X, Y), 1]);
 
                         Inventory.splice(i, 1);
                     }
@@ -19837,7 +19842,7 @@ function Adventurer()
                 {
                     this.distanceFromMouse = Math.sqrt((X - (X - mouseX + (1/2 * CCC.width)))  *   (X - (X - mouseX + (1/2 * CCC.width)))   +  (Y - (Y - mouseY + (1/2 * CCC.height)))  *   (Y - (Y - mouseY + (1/2 * CCC.height)))); //distanceToPlayerFromMouse
                     var itemDistanceToMouse = Math.sqrt((worldItems[i][0].X - (X - mouseX + (1/2 * CCC.width))) * (worldItems[i][0].X - (X - mouseX + (1/2 * CCC.width))) + (worldItems[i][0].Y - (Y - mouseY + (1/2 * CCC.height))) * (worldItems[i][0].Y - (Y - mouseY + (1/2 * CCC.height)))); //distanceToItemFromMouse
-                    if (this.distanceFromMouse <= this.lootRadius && itemDistanceToMouse <= worldItems[i][0].size)
+                    if (this.distanceFromMouse <= this.lootRadius && itemDistanceToMouse <= worldItems[i][0].size && worldItems[i][0].dmx == map)
                     {
                         //console.log(i + " ;; " + itemDistanceToMouse + " ;; " + worldItems[i].type);
                         if (Inventory.length > 0)

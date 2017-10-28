@@ -8,6 +8,8 @@ function worldBuilder()
     //Each elevation zone extends 4 maps long: a different standard may apply at the extremes (such as very cold or very hot) Higher elevation is colder and lower is hotter.
     if (map == "world")
     {
+        player.dmx = map;
+        player.underground = false;
         //Layer -3 (cold region): elev 0
         //mapS3
         if (Y > -34556 && Y < -23654 && X < 7687 && X > - 3901) //X0
@@ -244,138 +246,42 @@ function worldBuilder()
             outlineBuilder( 150, 83, "snow", -80, -405);
         }
     }
-}
-
-// This is the template for building a map out of tiles.
-function outlineBuilder(width, length, terrain, extraX, extraY)
-{
-    for(var i = 0; i < width; i++)
+    else if (map == "sagesCache") //This is a dungeon found in map W3
     {
-        for(var j = 0; j < length; j++)
-        {
-            if ((j - 1) * 300 + (extraX * 300) >= -X - 1 * CCC.width && (j - 1) * 300 + (extraX * 300) <= -X + 1 * CCC.width && (i - 1) * 300 + (extraY * 300) >= -Y - 1 * CCC.height && (i - 1) * 300 + (extraY * 300) <= -Y + 1 * CCC.height)
-            {
-                if (player.cyrinthilimTrip || player.haeflowerTrip)
-                {
-                    if (player.cyrinthilimTrip)
-                    {
-                        XXX.save();
-                        XXX.globalAlpha = 0.4;
-                        XXX.scale(Math.random() * 6 + 1,Math.random() * 6 + 1);
-                        XXX.drawImage(blurDots, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                        XXX.restore();
-                    }
-                    else if (player.haeflowerTrip)
-                    {
-                        haeRotate += 0.22;
-                        XXX.beginPath();
-                        XXX.fillStyle = "pink";
-                        XXX.strokeStyle = "pink";
-                        XXX.rect((j-1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                        XXX.fill();
-                        XXX.stroke();
-                    }
-                }
-                else if (terrain == "outline")
-                {
-                    XXX.beginPath();
-                    XXX.fillStyle = "white";
-                    XXX.strokeStyle = "black";
-                    XXX.rect((j-1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                    XXX.fill();
-                    XXX.stroke();
-                }
-                else if (terrain == "muckgrass")
-                {
-                    XXX.drawImage(bogGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "muck")
-                {
-                    XXX.drawImage(bogMuckEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "thenganBrick")
-                {
-                    XXX.drawImage(thenganBrickEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "kellstone")
-                {
-                    XXX.drawImage(kellStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "kelltile")
-                {
-                    XXX.drawImage(kellsStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "farmland")
-                {
-                    XXX.drawImage(farmground, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "greenGrass")
-                {
-                    XXX.drawImage(lushGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "brightGrass")
-                {
-                    XXX.drawImage(verdantGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "hotGrass")
-                {
-                    XXX.drawImage(greenGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "jungle")
-                {
-                    XXX.drawImage(forestEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "crag")
-                {
-                    XXX.drawImage(rockyFlatEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "dirt")
-                {
-                    XXX.drawImage(dirtEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "desert")
-                {
-                    XXX.drawImage(sandyEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "frost")
-                {
-                    XXX.drawImage(snowyEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "stoneWork")
-                {
-                    XXX.drawImage(stoneWorkEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "molten")
-                {
-                    XXX.drawImage(volcanicEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "dryGrass")
-                {
-                    XXX.drawImage(dryGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "snow")
-                {
-                    XXX.drawImage(snowEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "stonePath")
-                {
-                    XXX.drawImage(stonePathEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "brokenStonePath")
-                {
-                    XXX.drawImage(brokenStonePathEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "arctic")
-                {
-                    XXX.drawImage(frozenEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-                else if (terrain == "forest")
-                {
-                    XXX.drawImage(nordWoods, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
-                }
-            }
-        }
-
+        player.dmx = map;
+        player.underground = true;
+        elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "sagesCache";
+        //starting chamber
+        outlineBuilder( 2, 2, "dungeon", 0, 0);
+        //north chamber
+        outlineBuilder( 7, 1, "dungeon", 1, -7);
+        outlineBuilder( 3, 3, "dungeon", 0, -10);
+        outlineBuilder( 1, 6, "dungeon", -6, -8);
+        //west chamber
+        outlineBuilder( 5, 2, "dungeon", -8, -9);
+        outlineBuilder( 7, 1, "dungeon", -7, -16);
+        outlineBuilder( 1, 10, "dungeon", -6, -13);
+        //mid chamber
+        outlineBuilder( 4, 3, "dungeon", 4, -15);
+        outlineBuilder( 1, 3, "dungeon", 7, -14);
+        outlineBuilder( 1, 9, "dungeon", 9, -13);
+        outlineBuilder( 3, 1, "dungeon", 17, -12);
+        //grand east chamber
+        outlineBuilder( 3, 6, "dungeon", 15, -11);
+        outlineBuilder( 1, 2, "dungeon", 21, -10);
+        outlineBuilder( 3, 3, "dungeon", 23, -11);
+        outlineBuilder( 1, 4, "dungeon", -7, -17);
+        outlineBuilder( 2, 1, "dungeon", -4, -19);
+        outlineBuilder( 2, 3, "dungeon", -5, -21);
+        //dead-end west
+        outlineBuilder( 1, 7, "dungeon", -14, -15);
+        outlineBuilder( 5, 1, "dungeon", -14, -14);
+        //east chamber
+        outlineBuilder( 1, 7, "dungeon", 2, -4);
+        outlineBuilder( 1, 1, "dungeon", 8, -3);
+        outlineBuilder( 3, 2, "dungeon", 7, -2);
+        outlineBuilder( 10, 1, "dungeon", 9, -13);
     }
 }
 
@@ -409,6 +315,9 @@ function buildMaster()
 
                 //Delete All Non-native Scenery
                 scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
 
                 //REGION CREATION
                 //Build AI Units
@@ -1182,6 +1091,9 @@ function buildMaster()
                 //Delete All Non-native Scenery
                 scenicList = [];
 
+                //Delete All Barriers
+                barrierList = [];
+
                 //REGION CREATION
                 //Build AI Units
 
@@ -1270,6 +1182,9 @@ function buildMaster()
 
                 //Delete All Non-native Scenery
                 scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
 
                 //REGION CREATION
                 //Build AI Units
@@ -1412,6 +1327,9 @@ function buildMaster()
 
                 //Delete All Non-native Scenery
                 scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
 
                 //REGION CREATION
                 //Build AI Units
@@ -1563,6 +1481,9 @@ function buildMaster()
                 //Delete All Non-native Scenery
                 scenicList = [];
 
+                //Delete All Barriers
+                barrierList = [];
+
                 //REGION CREATION
                 //Build AI Units
 
@@ -1610,6 +1531,9 @@ function buildMaster()
                 scenicList.push(new Scenery("ashStone", 33659 , 1792, -1, 1, 3));
                 scenicList.push(new Scenery("ashStone", 32954 , -2545, -3, 1.5, 2));
 
+                //Dungeon "Sage's Cache"
+                scenicList.push(new Scenery("cave", 35742, 1359, 0, [932, 36], "sagesCache"));
+
                 //Plants
                 //scenicList.push(new Scenery("haeflowerPlant", 15185, 4442, 4, true));
 
@@ -1642,6 +1566,9 @@ function buildMaster()
 
                 //Delete All Non-native Scenery
                 scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
 
                 //REGION CREATION
                 //Build AI Units
@@ -1703,6 +1630,9 @@ function buildMaster()
                 //Delete All Non-native Scenery
                 scenicList = [];
 
+                //Delete All Barriers
+                barrierList = [];
+
                 //REGION CREATION
                 //Build AI Units
 
@@ -1763,6 +1693,9 @@ function buildMaster()
                 //Delete All Non-native Scenery
                 scenicList = [];
 
+                //Delete All Barriers
+                barrierList = [];
+
                 //REGION CREATION
 
                 //Creatures
@@ -1801,6 +1734,9 @@ function buildMaster()
                 //Delete All Non-native Scenery
                 scenicList = [];
 
+                //Delete All Barriers
+                barrierList = [];
+
                 //REGION CREATION
 
                 //Creatures
@@ -1838,6 +1774,9 @@ function buildMaster()
 
                 //Delete All Non-native Scenery
                 scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
 
                 //REGION CREATION
                 //Build AI Units
@@ -2530,6 +2469,9 @@ function buildMaster()
                 //Delete All Non-native Scenery
                 scenicList = [];
 
+                //Delete All Barriers
+                barrierList = [];
+
                 //REGION CREATION
                 //Build AI Units
                 var bushornot = Math.floor(Math.random() * 9);
@@ -2877,6 +2819,9 @@ function buildMaster()
 
                 //Delete All Non-native Scenery
                 scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
 
                 //REGION CREATION
                 //Build AI Units
@@ -3888,6 +3833,9 @@ function buildMaster()
                 //Delete All Non-native Scenery
                 scenicList = [];
 
+                //Delete All Barriers
+                barrierList = [];
+
                 //REGION CREATION
                 //Build AI Units
 
@@ -4217,6 +4165,9 @@ function buildMaster()
                 //Delete All Non-native Scenery
                 scenicList = [];
 
+                //Delete All Barriers
+                barrierList = [];
+
                 //REGION CREATION
                 //Build AI Units
 
@@ -4322,6 +4273,9 @@ function buildMaster()
 
                 //Delete All Non-native Scenery
                 scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
 
                 //REGION CREATION
                 //Build AI Units
@@ -4609,6 +4563,9 @@ function buildMaster()
 
                 //Delete All Non-native Scenery
                 scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
 
                 //REGION CREATION
                 //Build AI Units
@@ -5440,6 +5397,464 @@ function buildMaster()
                 }
 
                 change = "e2";
+            }
+        }
+    }
+    else if (map == "sagesCache")
+    {
+        if (region == "sagesCache")
+        {
+            if (change != "sagesCache")
+            {
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (!ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //barriers
+                barrierList.push(new Barrier(1000, -66, 720, 70, true));
+                barrierList.push(new Barrier(328, -66, 1546, 70, true)); //long vertical right (entrance)
+                barrierList.push(new Barrier(328, 1775, 900, 70, true)); //extension vertical right (entrance)
+                barrierList.push(new Barrier(328, -96, 70, 720, true));
+                barrierList.push(new Barrier(702, 570, 70, 370, true));
+                barrierList.push(new Barrier(702, 630, 2045, 70, true)); //longer vertical left (entrance)
+                barrierList.push(new Barrier(30, 2607, 70, 300, true));
+                barrierList.push(new Barrier(30, 2607, 990, 70, true));
+                barrierList.push(new Barrier(770, 2607, 70, 2031, true)); //bottom left horizontal east
+                barrierList.push(new Barrier(1070, 2977, 70, 1731, true)); //top left horizontal east
+                barrierList.push(new Barrier(1000, 2976, 650, 70, true));
+                barrierList.push(new Barrier(30, 3578, 70, 1020, true));
+                barrierList.push(new Barrier(2730, 1738, 886, 70, true)); //east chamber
+                barrierList.push(new Barrier(3401, 1738, 1550, 70, true));
+                barrierList.push(new Barrier(2730, 1704, 70, 700, true));
+                barrierList.push(new Barrier(3100, 3278, 70, 340, true));
+                barrierList.push(new Barrier(2730, 3045, 1130, 70, true));
+                barrierList.push(new Barrier(3099, 3347, 1430, 70, true));
+                barrierList.push(new Barrier(3163, 4704, 70, 1738, true));
+                barrierList.push(new Barrier(3100, 5073, 70, 2105, true));
+                barrierList.push(new Barrier(2732, 4475, 899, 70, true));
+                barrierList.push(new Barrier(3099, 5141, 560, 70, true));
+                barrierList.push(new Barrier(1832, 5304, 70, 900, true));
+                barrierList.push(new Barrier(1830, 5308, 966, 70, true));
+                barrierList.push(new Barrier(2199, 5658, 70, 950, true));
+                barrierList.push(new Barrier(2199, 5677, 598, 70, true));
+                barrierList.push(new Barrier(5198, 3273, 1850, 70, true));
+                barrierList.push(new Barrier(4832, 3208, 70, 415, true));
+                barrierList.push(new Barrier(4832, 3208, 1560, 70, true));
+                barrierList.push(new Barrier(1535, 6204, 70, 330, true));
+                barrierList.push(new Barrier(1535, 6209, 700, 70, true));
+                barrierList.push(new Barrier(2270, 6206, 70, 330, true));
+                barrierList.push(new Barrier(2497, 6239, 670, 70, true));
+                barrierList.push(new Barrier(1552, 6878, 70, 1000, true));
+                barrierList.push(new Barrier(-202, 4106, 70, 3000, true));
+                barrierList.push(new Barrier(-199, 4478, 70, 3000, true));
+                barrierList.push(new Barrier(-196, 4478, 600, 70, true));
+                barrierList.push(new Barrier(-1160, 5078, 70, 1010, true));
+                barrierList.push(new Barrier(-1173, 4778, 340, 70, true));
+                barrierList.push(new Barrier(-1168, 3805, 70, 1010, true));
+                barrierList.push(new Barrier(-1169, 3795, 680, 70, true));
+                barrierList.push(new Barrier(-202, 3800, 320, 70, true));
+                barrierList.push(new Barrier(-1699, 4406, 70, 535, true));
+                barrierList.push(new Barrier(-2054, 4777, 70, 910, true));
+                barrierList.push(new Barrier(-1701, 1774, 2640, 70, true)); //long vertical
+                barrierList.push(new Barrier(-2078, 1403, 70, 380, true));
+                barrierList.push(new Barrier(-2068, 1426, 2752, 70, true));
+                barrierList.push(new Barrier(-2072, 4477, 390, 70, true));
+                barrierList.push(new Barrier(-1786, 202, 70, 740, true));
+                barrierList.push(new Barrier(-1766, 200, 1240, 70, true));
+                barrierList.push(new Barrier(-1097, 212, 1000, 70, true)); //vertical left side south
+                barrierList.push(new Barrier(-1398, 1174, 70, 400, true));
+                barrierList.push(new Barrier(-1398, 1174, 262, 70, true));
+                barrierList.push(new Barrier(-1404, 1403, 70, 1740, true));
+                barrierList.push(new Barrier(-1636, 1778, 70, 1964, true));
+                barrierList.push(new Barrier(-4085, 4108, 70, 2060, true)); //bot
+                barrierList.push(new Barrier(-4470, 4478, 70, 2417, true)); //top
+                barrierList.push(new Barrier(-4100, 3871, 300, 70, true));
+                barrierList.push(new Barrier(-4093, 3872, 70, 600, true));
+                barrierList.push(new Barrier(-4468, 3874, 620, 70, true)); //right vertical
+                barrierList.push(new Barrier(-3506, 2906, 1025, 70, true)); //far left low
+                barrierList.push(new Barrier(-5357, 2907, 70, 1900, true)); //bottom low (left)
+                barrierList.push(new Barrier(-5370, 2924, 290, 70, true)); // |
+                barrierList.push(new Barrier(-5902, 3200, 70, 603, true)); // --
+                barrierList.push(new Barrier(-5905, 2898, 320, 70, true)); // |
+                barrierList.push(new Barrier(-6890, 2904, 70, 1010, true));
+                barrierList.push(new Barrier(-6869, 2900, 1000, 70, true));
+                barrierList.push(new Barrier(-6889, 3872, 70, 1010, true)); //top right far horizontal
+                barrierList.push(new Barrier(-5359, 3870, 70, 900, true)); //top right near horizontal
+                barrierList.push(new Barrier(-5899, 3578, 70, 570, true));
+                barrierList.push(new Barrier(-5899, 3581, 360, 70, true));
+                barrierList.push(new Barrier(-5373, 3574, 340, 70, true));
+
+
+                //REGION CREATION
+                //Build AI Units
+
+                //first room
+                var rndx = Math.random();
+                if (rndx >= 0.55)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(845, 498, "Nog", true, "Kalp"));
+                    ArtificialIntelligenceAccess.push(new Unit(490, 106, "Nog", true, "Dilk"));
+                    ArtificialIntelligenceAccess.push(new Unit(757, 144, "Nog", false, "Pesht"));
+                }
+                else if (rndx >= 0.25)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(845, 498, "Frich", true, "Ja"));
+                    ArtificialIntelligenceAccess.push(new Unit(490, 106, "Frich", false, "Li"));
+                    ArtificialIntelligenceAccess.push(new Unit(757, 144, "Frich", true, "Ko"));
+                }
+                else if (rndx >= 0.15)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(795, 439, "Oolid", true, "Oglomok"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(931, 482, "Oolid", false, "Aglomel"));
+                    ArtificialIntelligenceAccess.push(new Unit(672, 35, "Oolid", false, "Eklamil"));
+                }
+                //hallway ambush or not
+                rndx = Math.random();
+                if (rndx >= 0.67)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(558, 1522, "Nog", false, "Paik"));
+                }
+                else if (rndx >= 0.46)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(558, 1522, "Nog", true, "Paike"));
+                }
+                else if (rndx >= 0.34)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(486, 1607, "Oolid", false, "ilklo"));
+                }
+                else if (rndx >= 0.26)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(558, 1522, "Frich", true, "Zo"));
+                    ArtificialIntelligenceAccess.push(new Unit(486, 1607, "Frich", false, "Ka"));
+                }
+
+                rndx = Math.random();
+                if (rndx >= 0.80)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(770, 2982, "Frich", "massive", "Scurr"));
+                    ArtificialIntelligenceAccess.push(new Unit(487, 3438, "Frich", "massive", "Relf"));
+                }
+                else if (rndx >= 0.60)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(560, 3189, "Tilk", true, "Poluikeiv"));
+                }
+                else if (rndx >= 0.40)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(853, 3420, "Tilk", false, "Kastur"));
+                    ArtificialIntelligenceAccess.push(new Unit(235, 3325, "Tilk", false, "Polukz"));
+                }
+                else if (rndx >= 0.20)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(476, 3362, "Oolid", true, "Merhuv"));
+                    ArtificialIntelligenceAccess.push(new Unit(697, 3090, "Oolid", false, "Clotzalk"));
+                }
+                else
+                {
+                    if (Math.round(Math.random()))
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(538, 3055, "Soldier", false, "Looter", {race: "Thengar", faction: "hostile", con: 4, speed: 0, outfit: ["none", 0], weapon: ["longbow", [0.1, 0.4], 0, 16, 1], ranged: [true, "arrow", 8, 1100, 1, 5, 0, "none", 1.2], patrolStops: 0, patrolLoop: false, route:[[435 - 750, 5563], [400 - 750, 5668], [636 - 750, 5860], [827 - 750, 5357]]}));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(538, 3055, "Soldier", false, "Looter", {race: "Freynor", faction: "hostile", con: 6, speed: 0, outfit: ["none", 0], weapon: ["longbow", [0.1, 0.4], 0, 16, 1], ranged: [true, "arrow", 7, 1275, 1, 4, 0, "none", 1.6], patrolStops: 0, patrolLoop: false, route:[[435 - 750, 5563], [400 - 750, 5668], [636 - 750, 5860], [827 - 750, 5357]]}));
+                    }
+                    scenicList.push(new Scenery("bearTrap", 629, 2638, 1/8 * Math.PI, true));
+                    scenicList.push(new Scenery("bearTrap", 549, 2500, 5.5/8 * Math.PI, true));
+                    scenicList.push(new Scenery("bearTrap", 448, 2531, 0 * Math.PI, true));
+                    scenicList.push(new Scenery("bearTrap", 409, 2405, 0.5 * Math.PI, true));
+                    scenicList.push(new Scenery("bearTrap", 660, 2315, 0.33 * Math.PI, true));
+                }
+                rndx = Math.random();
+                if (rndx <= 0.5)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(2981, 1978, "Nog", true, "Pok"));
+                    ArtificialIntelligenceAccess.push(new Unit(3332, 1834, "Nog", true, "Zob"));
+                    ArtificialIntelligenceAccess.push(new Unit(3253, 2121, "Nog", false, "Zim"));
+                    ArtificialIntelligenceAccess.push(new Unit(3089, 2322, "Nog", false, "Zal"));
+                    ArtificialIntelligenceAccess.push(new Unit(2903, 2302, "Nog", false, "Zil"));
+                    ArtificialIntelligenceAccess.push(new Unit(3297, 2545, "Nog", false, "Zop"));
+                    ArtificialIntelligenceAccess.push(new Unit(3198, 2888, "Nog", true, "Zolth"));
+                    ArtificialIntelligenceAccess.push(new Unit(3089, 3165, "Nog", false, "Zole"));
+                    ArtificialIntelligenceAccess.push(new Unit(3368, 3229, "Nog", false, "Afer"));
+                }
+                else if (rndx <= 0.8)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(2981, 1978, "Frich", false, "Fok"));
+                    ArtificialIntelligenceAccess.push(new Unit(3332, 1834, "Frich", false, "Fob"));
+                    ArtificialIntelligenceAccess.push(new Unit(3253, 2121, "Frich", true, "Fim"));
+                    ArtificialIntelligenceAccess.push(new Unit(3089, 2322, "Frich", true, "Fal"));
+                    ArtificialIntelligenceAccess.push(new Unit(2903, 2302, "Frich", false, "Fil"));
+                    ArtificialIntelligenceAccess.push(new Unit(3297, 2545, "Frich", false, "Fop"));
+                    ArtificialIntelligenceAccess.push(new Unit(3198, 2888, "Frich", true, "Folth"));
+                    ArtificialIntelligenceAccess.push(new Unit(3089, 3165, "Frich", true, "Fole"));
+                    ArtificialIntelligenceAccess.push(new Unit(3368, 3229, "Frich", false, "Fer"));
+                }
+                else if (rndx <= 0.95)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(3071, 1887, "Oolid", true, "Plutma"));
+                    ArtificialIntelligenceAccess.push(new Unit(3219, 2195, "Oolid", true, "Hlolutmor"));
+                    ArtificialIntelligenceAccess.push(new Unit(3231, 2657, "Oolid", false, "Hlotm"));
+                    ArtificialIntelligenceAccess.push(new Unit(2948, 3245, "Oolid", false, "Flomlaak"));
+                    ArtificialIntelligenceAccess.push(new Unit(3293, 2822, "Oolid", false, "Flotmora"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(3241, 2194, "Tilk", false, "Kolkezafa"));
+                    ArtificialIntelligenceAccess.push(new Unit(3153, 1883, "Tilk", false, "Karkefol"));
+                }
+
+                rndx = Math.random();
+                if (rndx <= 0.25)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(5056, 3469, "Tilk", true, "Lestuxlevt"));
+                }
+                else if (rndx <= 0.5)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(5056, 3469, "Olkrin", "baby", "Vaulswarthe"));
+                }
+
+                rndx = Math.random();
+                if (rndx <= 0.1)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(2362, 6727, "Tilk", false, "Ekenveldt"));
+                    ArtificialIntelligenceAccess.push(new Unit(1758, 6733, "Tilk", false, "Akenveldt"));
+                    ArtificialIntelligenceAccess.push(new Unit(2049, 6625, "Tilk", false, "Ikenveldt"));
+                }
+                else if (rndx <= 0.2)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(2053, 6796, "Olkrin", "baby", "Vonklaove"));
+                }
+                else if (rndx <= 0.3)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(2049, 6558, "Tilk", true, "Kavenveldt"));
+                }
+                else if (rndx <= 0.8)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(2298, 6676, "Nog", false, "Af"));
+                    ArtificialIntelligenceAccess.push(new Unit(2115, 6553, "Nog", true, "Aft"));
+                    ArtificialIntelligenceAccess.push(new Unit(2039, 6798, "Nog", true, "Afte"));
+                    ArtificialIntelligenceAccess.push(new Unit(1814, 6738, "Nog", false, "Afe"));
+                    ArtificialIntelligenceAccess.push(new Unit(1707, 6535, "Nog", true, "Tefa"));
+                    ArtificialIntelligenceAccess.push(new Unit(1943, 6477, "Nog", false, "Tafe"));
+                    ArtificialIntelligenceAccess.push(new Unit(2232, 6520, "Nog", true, "Efat"));
+                    ArtificialIntelligenceAccess.push(new Unit(2443, 6387, "Nog", false, "Faet"));
+                }
+                else if (rndx <= 0.88)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(2055, 6547, "MountainFrich", true, "Holof"));
+                }
+
+                rndx = Math.random();
+                if (rndx <= 0.2)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(2016, 4351, "Nog", false, "Atle"));
+                }
+                else if (rndx <= 0.4)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(2016, 4351, "Nog", true, "Etla"));
+                }
+                else if (rndx <= 0.5)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(2016, 4351, "Nog", true, "Etla"));
+                    ArtificialIntelligenceAccess.push(new Unit(1959, 4257, "Nog", true, "Leat"));
+                }
+                else if (rndx <= 0.6)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(2011, 4322, "MountainFrich", false, "Kalofer"));
+                }
+                else if (rndx <= 0.7)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(1513, 4426, "Oolid", false, "Koulpil"));
+                }
+                else if (rndx <= 0.8)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(1513, 4426, "Oolid", true, "Foulok"));
+                    ArtificialIntelligenceAccess.push(new Unit(1631, 4236, "Oolid", true, "Fowlomn"));
+                }
+
+                //TODO finish this dungeon (include the lightning spear mage as the final boss if you engage the right quest)
+
+                //Build Scenery
+                scenicList.push(new Scenery("caveExit", 959, 16, 3/4 * Math.PI, [35773, 1297], "world"));
+
+                scenicList.push(new Scenery("blackBearFurRug", 2049, 6450, 1/2 * Math.PI, 1.6));
+                scenicList.push(new Scenery("skeleton", 2058, 6781, 0.2 * Math.PI, 1.6));
+                scenicList.push(new Scenery("feastingTable", 2232, 6536, -1/2 * Math.PI, true));
+                scenicList.push(new Scenery("feastingTable", 1790, 6536, -1/2 * Math.PI, true));
+                scenicList.push(new Scenery("bartop", 2061, 6712, 1 * Math.PI, true));
+                scenicList.push(new Scenery("hearth", 2062, 6855, 0 * Math.PI, "ash"));
+
+
+                if (quests.sagesCacheStash)
+                {
+                    quests.sagesCacheStash = false;
+                    worldItems.push([new Item("oiledArrow", 2051, 6782), 9]);
+                    worldItems.push([new Item("longbow", 2066, 6646), 1]);
+                    worldItems.push([new Item("longsword", 2099, 6821), 1]);
+                    worldItems.push([new Item("pintGlass", 2053, 6701), 1]);
+                }
+
+                change = "sagesCache";
+            }
+        }
+    }
+}
+
+// This is the template for building a map out of tiles.
+function outlineBuilder(width, length, terrain, extraX, extraY)
+{
+    for(var i = 0; i < width; i++)
+    {
+        for(var j = 0; j < length; j++)
+        {
+            if ((j - 1) * 300 + (extraX * 300) >= -X - 1 * CCC.width && (j - 1) * 300 + (extraX * 300) <= -X + 1 * CCC.width && (i - 1) * 300 + (extraY * 300) >= -Y - 1 * CCC.height && (i - 1) * 300 + (extraY * 300) <= -Y + 1 * CCC.height)
+            {
+                if (player.cyrinthilimTrip || player.haeflowerTrip)
+                {
+                    if (player.cyrinthilimTrip)
+                    {
+                        XXX.save();
+                        XXX.globalAlpha = 0.4;
+                        XXX.scale(Math.random() * 6 + 1,Math.random() * 6 + 1);
+                        XXX.drawImage(blurDots, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.restore();
+                    }
+                    else if (player.haeflowerTrip)
+                    {
+                        haeRotate += 0.22;
+                        XXX.beginPath();
+                        XXX.fillStyle = "pink";
+                        XXX.strokeStyle = "pink";
+                        XXX.rect((j-1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                }
+                else if (terrain == "outline")
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "white";
+                    XXX.strokeStyle = "black";
+                    XXX.rect((j-1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    XXX.fill();
+                    XXX.stroke();
+                }
+                else if (terrain == "muckgrass")
+                {
+                    XXX.drawImage(bogGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "muck")
+                {
+                    XXX.drawImage(bogMuckEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "thenganBrick")
+                {
+                    XXX.drawImage(thenganBrickEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "kellstone")
+                {
+                    XXX.drawImage(kellStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "kelltile")
+                {
+                    XXX.drawImage(kellsStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "farmland")
+                {
+                    XXX.drawImage(farmground, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "greenGrass")
+                {
+                    XXX.drawImage(lushGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "brightGrass")
+                {
+                    XXX.drawImage(verdantGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "dungeon")
+                {
+                    XXX.drawImage(dungeonStoneEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "hotGrass")
+                {
+                    XXX.drawImage(greenGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "jungle")
+                {
+                    XXX.drawImage(forestEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "crag")
+                {
+                    XXX.drawImage(rockyFlatEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "dirt")
+                {
+                    XXX.drawImage(dirtEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "desert")
+                {
+                    XXX.drawImage(sandyEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "frost")
+                {
+                    XXX.drawImage(snowyEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "stoneWork")
+                {
+                    XXX.drawImage(stoneWorkEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "molten")
+                {
+                    XXX.drawImage(volcanicEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "dryGrass")
+                {
+                    XXX.drawImage(dryGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "snow")
+                {
+                    XXX.drawImage(snowEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "stonePath")
+                {
+                    XXX.drawImage(stonePathEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "brokenStonePath")
+                {
+                    XXX.drawImage(brokenStonePathEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "arctic")
+                {
+                    XXX.drawImage(frozenEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "forest")
+                {
+                    XXX.drawImage(nordWoods, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
             }
         }
     }

@@ -274,7 +274,27 @@ function cheats()
         {
             if (player.name == "Peter" && player.race == "#fc9462")
             {
-                alert("Welcome to your exclusive life manipulation informational center. Here are the commands that you can use: \ getItem \ setCoords")
+                alert("Welcome to your exclusive life manipulation informational center. Here are the commands that you can use: \ getItem \ setCoords \ setAttribute")
+            }
+        }
+        else if (cheatcode == "setAttribute")
+        {
+            if (player.name == "Peter" && player.race == "#fc9462")
+            {
+                var attrib = prompt("select attribute to set:", "catEye")
+                if (attrib == "catEye")
+                {
+                    if (player.nightVision)
+                    {
+                        player.nightVision = false;
+                        alert("catEye = false;");
+                    }
+                    else
+                    {
+                        player.nightVision = true;
+                        alert("catEye = true;");
+                    }
+                }
             }
         }
         else if (cheatcode == "getItem")

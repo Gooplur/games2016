@@ -10801,7 +10801,7 @@ function Adventurer()
                 {
                     var dfu = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.bubbleOfDamageX) * (ArtificialIntelligenceAccess[i].X - this.bubbleOfDamageX) + (ArtificialIntelligenceAccess[i].Y - this.bubbleOfDamageY) * (ArtificialIntelligenceAccess[i].Y - this.bubbleOfDamageY)) - ArtificialIntelligenceAccess[i].sizeRadius; //This is the distance from the center of the players attack/damaging bubble to the AI Unit.
 
-                    if (dfu <= this.weapon.range * 7 && this.finalAttackStage == true && !ArtificialIntelligenceAccess[i].underground)
+                    if (dfu <= this.weapon.range * 7 && this.finalAttackStage == true && !ArtificialIntelligenceAccess[i].underground && ArtificialIntelligenceAccess[i].dmx == this.dmx)
                     {
                         var justDealt = 0; //this stores the damage that was just dealt
                         if (this.powerAttack == false)

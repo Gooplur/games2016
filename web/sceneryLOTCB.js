@@ -9,6 +9,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.subVariety = "generic";
     this.X = x;
     this.Y = y;
+    this.dmx = map;
     this.radius = 1;
     this.information = information;
     this.rotation = rotation;
@@ -119,18 +120,21 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
     this.damagePlayer = function(damage, negate, effect)
     {
-        if (player.mageShield > 0)
+        if (player.dmx == this.dmx)
         {
-            player.mageShield -= damage;
-        }
-        else
-        {
-            player.health += player.mageShield;
-            //player.decreaseInHealth -= player.mageShield;
-            player.mageShield = 0;
+            if (player.mageShield > 0)
+            {
+                player.mageShield -= damage;
+            }
+            else
+            {
+                player.health += player.mageShield;
+                //player.decreaseInHealth -= player.mageShield;
+                player.mageShield = 0;
 
-            player.health -= Math.max(0, damage - Math.max(0, player.armourTotal - negate));
-            player.decreaseInHealth += Math.max(0, damage - Math.max(0, player.armourTotal - negate));
+                player.health -= Math.max(0, damage - Math.max(0, player.armourTotal - negate));
+                player.decreaseInHealth += Math.max(0, damage - Math.max(0, player.armourTotal - negate));
+            }
         }
     };
 
@@ -896,7 +900,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
                 {
-                    if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius && !ArtificialIntelligenceAccess[j].underground)
+                    if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
                     {
                         if (longevity == false)
                         {

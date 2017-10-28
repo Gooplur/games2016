@@ -190,7 +190,7 @@ function worldBuilder()
             outlineBuilder( 34, 1, "greenGrass", -55, -20);
 
         }
-        //mapW3 //TODO make the map
+        //mapW3
         if (Y > -3919 && Y < 6870 && X < 38616 && X > 26689) //X-3
         {
             elevation = 0;
@@ -1488,22 +1488,66 @@ function buildMaster()
                 //Build AI Units
 
                 //High-Hill Howlers
-                //ArtificialIntelligenceAccess.push(new Unit(15517, 5728, "GreyWolf", false, "Clawder"));
+                ArtificialIntelligenceAccess.push(new Unit(32553, 15, "GreyWolf", false, "Clowder"));
+                ArtificialIntelligenceAccess.push(new Unit(33567, 622, "GreyWolf", true, "Chauwder"));
+                ArtificialIntelligenceAccess.push(new Unit(32909, 678, "GreyWolf", false, "Choudah"));
+                ArtificialIntelligenceAccess.push(new Unit(33142, 71, "GreyWolf", false, "Choular"));
+                ArtificialIntelligenceAccess.push(new Unit(33060, -334, "GreyWolf", false, "Chorg"));
+                ArtificialIntelligenceAccess.push(new Unit(33754, 5, "GreyWolf", false, "Chalgra"));
+                ArtificialIntelligenceAccess.push(new Unit(34112, 351, "GreyWolf", false, "Choumol"));
+                ArtificialIntelligenceAccess.push(new Unit(34191, 887, "GreyWolf", false, "Choukama"));
+                ArtificialIntelligenceAccess.push(new Unit(33368, 1060, "GreyWolf", false, "Chowck"));
 
                 //Nogs (a dumb variety of goblins)
-                //ArtificialIntelligenceAccess.push(new Unit(10988, -2291, "Nog", false, "Buckle-Snorp"));
+                ArtificialIntelligenceAccess.push(new Unit(28495, 6199, "Nog", false, "Backle-Snarp"));
+                ArtificialIntelligenceAccess.push(new Unit(29622, 2479, "Nog", true, "Boogle-Snirp"));
+                ArtificialIntelligenceAccess.push(new Unit(29654, 2389, "Nog", false, "Boggle-Snurp"));
+                ArtificialIntelligenceAccess.push(new Unit(28493, 2492, "Nog", false, "Boggle-Snarp"));
+                ArtificialIntelligenceAccess.push(new Unit(33450, -2347, "Nog", false, "Baggle-Snirp"));
+                ArtificialIntelligenceAccess.push(new Unit(33274, -2475, "Nog", false, "Biggle-Snorp"));
+                ArtificialIntelligenceAccess.push(new Unit(33471, -2485, "Nog", false, "Beggle-Snerp"));
+                ArtificialIntelligenceAccess.push(new Unit(33862, -3122, "Nog", true, "Buggle-Snirk"));
+                ArtificialIntelligenceAccess.push(new Unit(33025, -2855, "Nog", false, "Boggle-Snark"));
+                ArtificialIntelligenceAccess.push(new Unit(34923, -1777, "Nog", false, "Biggle-Snork"));
+                ArtificialIntelligenceAccess.push(new Unit(36146, -2395, "Nog", true, "Riggle-Prok"));
+                ArtificialIntelligenceAccess.push(new Unit(36817, -2763, "Nog", true, "Roggle-Prak"));
+                ArtificialIntelligenceAccess.push(new Unit(36802, -2608, "Nog", false, "Raggle-Prik"));
+                ArtificialIntelligenceAccess.push(new Unit(35716, 469, "Nog", false, "Riggly-Palk"));
+                ArtificialIntelligenceAccess.push(new Unit(35472, 464, "Nog", true, "Roggly-Pilk"));
+
+                if (change != "sagesCache")
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(36177, 1615, "Nog", false, "Shaggle-Snelk"));
+                    ArtificialIntelligenceAccess.push(new Unit(35998, 1434, "Nog", false, "Chiggler-Parnik"));
+                    ArtificialIntelligenceAccess.push(new Unit(36018, 1208, "Nog", true, "Rigry-Pook"));
+                    ArtificialIntelligenceAccess.push(new Unit(35793, 1254, "Nog", true, "Rogly-Preik"));
+                    ArtificialIntelligenceAccess.push(new Unit(35783, 1093, "Nog", false, "Raggly-Prolk"));
+                    ArtificialIntelligenceAccess.push(new Unit(35964, 573, "Nog", false, "Riggly-Palk"));
+                }
 
                 //The friches of the rocky west
-                //ArtificialIntelligenceAccess.push(new Unit(8307, 4918, "MountainFrich", "massive", "Fruyuk"));
+                ArtificialIntelligenceAccess.push(new Unit(29626, 5521, "MountainFrich", false, "Frayuk"));
+                ArtificialIntelligenceAccess.push(new Unit(29760, 5431, "MountainFrich", false, "Frayak"));
+                ArtificialIntelligenceAccess.push(new Unit(29427, 3797, "MountainFrich", true, "Rayak"));
+                ArtificialIntelligenceAccess.push(new Unit(30527, 4339, "MountainFrich", false, "Frahak"));
+                ArtificialIntelligenceAccess.push(new Unit(30725, 3323, "MountainFrich", false, "Frohak"));
+                ArtificialIntelligenceAccess.push(new Unit(30823, 3246, "MountainFrich", false, "Frahok"));
+                ArtificialIntelligenceAccess.push(new Unit(30707, 3061, "MountainFrich", false, "Frohok"));
+                ArtificialIntelligenceAccess.push(new Unit(31458, 2838, "MountainFrich", false, "Frahook"));
+                ArtificialIntelligenceAccess.push(new Unit(31555, -2489, "MountainFrich", false, "Frihaak"));
+                ArtificialIntelligenceAccess.push(new Unit(29425, -2555, "MountainFrich", false, "Freehaawk"));
+                ArtificialIntelligenceAccess.push(new Unit(36020, -51, "MountainFrich", false, "Freehok"));
+                ArtificialIntelligenceAccess.push(new Unit(36201, -197, "MountainFrich", false, "Frilhork"));
 
                 //berulns in the west
-                //ArtificialIntelligenceAccess.push(new Unit(15918, -1709, "Beruln", false, "Kagim"));
+                ArtificialIntelligenceAccess.push(new Unit(33469, 5517, "Beruln", true, "Galima"));
 
                 //olkrin of the rocklands
                 //ArtificialIntelligenceAccess.push(new Unit(8199, 2310, "Olkrin", false, "Efaldor"));
 
                 //Rocky Rock Monsters of the Rocky Rock West
-                //ArtificialIntelligenceAccess.push(new Unit(10752, 4668, "StoneGolem", false, "Orefal"));
+                ArtificialIntelligenceAccess.push(new Unit(34641, -676, "StoneGolem", "baby", "Oree"));
+                ArtificialIntelligenceAccess.push(new Unit(33690, 3385, "StoneGolem", true, "Oreface"));
 
                 //Ores
                 scenicList.push(new Scenery("stone", 28299 , -2272, 4, 2, 2));
@@ -1535,7 +1579,7 @@ function buildMaster()
                 scenicList.push(new Scenery("cave", 35742, 1359, 0, [932, 36], "sagesCache"));
 
                 //Plants
-                //scenicList.push(new Scenery("haeflowerPlant", 15185, 4442, 4, true));
+                scenicList.push(new Scenery("haeflowerPlant", 32791, 5076, 4.444, true));
 
                 change = "w3";
             }

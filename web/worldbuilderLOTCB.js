@@ -187,7 +187,7 @@ function worldBuilder()
             region = "w2";
 
             outlineBuilder( 34, 34, "crag", -88, -20);
-            outlineBuilder( 34, 1, "greenGrass", -55, -20);
+            //outlineBuilder( 34, 1, "greenGrass", -55, -20);
 
         }
         //mapW3
@@ -197,7 +197,7 @@ function worldBuilder()
             region = "w3";
 
             outlineBuilder( 34, 34, "crag", -122, -20);
-            outlineBuilder( 34, 1, "greenGrass", -89, -20);
+            //outlineBuilder( 34, 1, "greenGrass", -89, -20);
 
         }
         //mapW4 //TODO make the map
@@ -207,7 +207,7 @@ function worldBuilder()
             region = "w4";
 
             outlineBuilder( 34, 34, "crag", -156, -20);
-            outlineBuilder( 34, 1, "greenGrass", -123, -20);
+            //outlineBuilder( 34, 1, "greenGrass", -123, -20);
 
         }
         //mapW5 //TODO make the map (Mud Flats)
@@ -217,7 +217,7 @@ function worldBuilder()
             region = "w5";
 
             outlineBuilder( 34, 34, "dirt", -190, -20);
-            outlineBuilder( 34, 1, "greenGrass", -157, -20);
+            //outlineBuilder( 34, 1, "greenGrass", -157, -20);
 
         }
         //layer 1 (frosty region): elev 1

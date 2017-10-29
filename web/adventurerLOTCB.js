@@ -721,7 +721,7 @@ function Adventurer()
         this.sleepMAX = 24 + this.getEndurance();
         this.totalSleep = this.sleepMAX + this.extraSleep + this.AdSleep;
         this.totalShockResist = this.shockResist + this.AdShockResist;
-        this.jumpBackTime = 8 - (this.getEndurance() / 12.5);
+        this.jumpBackTime = 8;// - (this.getEndurance() / 12.5);
 
         //this sets carry weight based on the total added weights in the player's inventory.
         if (Inventory.length > 0)

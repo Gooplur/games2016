@@ -18929,12 +18929,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             if (this.alpha == true)
             {
                 this.experience = (1 * ((player.getIntelligence() / 50) + 1));
-                this.drops = [[new Item("rabbitFoot", this.X, this.Y), Math.floor(Math.random() * 3)], [new Item("rawRabbitFlesh", this.X, this.Y), 2], [new Item("rabbitPelt", this.X, this.Y), 1]];
+                this.drops = [[new Item("rabbitFoot", this.X, this.Y), Math.floor(Math.random() * 2) + 1], [new Item("rawRabbitFlesh", this.X, this.Y), 2], [new Item("rabbitPelt", this.X, this.Y), 1]];
             }
             else
             {
                 this.experience = (0.5 * ((player.getIntelligence() / 50) + 1));
-                this.drops = [[new Item("rabbitFoot", this.X, this.Y), Math.floor(Math.random() * 3)], [new Item("rawRabbitFlesh", this.X, this.Y), 1], [new Item("rabbitPelt", this.X, this.Y), 1]];
+                this.drops = [[new Item("rabbitFoot", this.X, this.Y), Math.floor(Math.random() * 2) + 1], [new Item("rawRabbitFlesh", this.X, this.Y), 1], [new Item("rabbitPelt", this.X, this.Y), 1]];
             }
 
             //RANGE OF SIGHT (anything related to range of sight)

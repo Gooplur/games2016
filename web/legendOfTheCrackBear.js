@@ -2068,7 +2068,8 @@ function theLegend()
         dagmar: ["Dagmar", 0],
         adolf: ["Adolf", 0],
         brunelda: ["Brunelda", 0],
-        markos: ["Markos", 0]
+        markos: ["Markos", 0],
+        rutgar: ["Rutgar", 0]
     };
 
 //time Tracker Variables
@@ -2188,7 +2189,11 @@ function theLegend()
         cherylLDS: true,
         johannaLDS: true,
         lenaLDS: true,
-        friedrichLDS: true
+        friedrichLDS: true,
+        vsevolodLDS: true,
+        rutgarLDS: true,
+        axelLDS: true,
+        hildegardLDS: true
     };
 //QUESTS
     quests =
@@ -2210,6 +2215,7 @@ function theLegend()
         garldCrazyScroll: false,
         kellExecution: false,
         pitFight: false,
+        rutgarSlave: false,
 
         //PLAYER PROPERTY
         teshirHomeOwned: false,

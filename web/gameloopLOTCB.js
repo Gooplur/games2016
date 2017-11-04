@@ -251,6 +251,9 @@ function gameloopOfDestiny(time)
     gameTimeKeeper();
     screenCover();
 
+    //Turn Off Certain Variables at the very end of the game loop
+    clicked = false;
+
     //UI type text that needs to be read over the night and day cycle
     if (gameState == "active")
     {

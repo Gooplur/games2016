@@ -237,6 +237,9 @@ function Adventurer()
     this.bankPosition = 0;
     //Crafting Variables
     this.craftPosition = 0;
+    //Storage (Unit)
+    this.storage = false;
+    this.storageCap = 0;
     //Dialogue Variables
     this.dialoguePosition = 0; //This is the particular dialogue option you are on.
     this.dialogueOptions = []; //These are the options the player is allowed to choose from, they vary depending on which AI you speak with.
@@ -15956,131 +15959,49 @@ function Adventurer()
                         if (clickReleased == true && lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord && this.REQB == false) //When you click on an item you either access its utility or you equip it.
                         {
                             clickReleased = false;
-                            if (Inventory[i][1] - itemAmount >= 0 && Inventory[i][0].type != "coins" && Inventory[i][0].equipped == false)
+                            if (Inventory[i][1] - itemAmount >= 0 && Inventory[i][0].type != "coins" && Inventory[i][0].equipped == false || this.storage && Inventory[i][0].equipped == false && Inventory[i][1] - itemAmount >= 0)
                             {
-                                var badDeal = false;
-                                var shifted = 0;
-                                var newMoney = -1;
-                                var money = -1;
-                                var shopMoney = -1;
-                                var targetItem = -1; //the item that will be added to the shops inventory.
-                                for (var j = shopInventory.length - 1; j > -1; j--)
+                                if (!this.storage)
                                 {
-                                    if (shopInventory[j][0].type == "coins")
+                                    var badDeal = false;
+                                    var shifted = 0;
+                                    var newMoney = -1;
+                                    var money = -1;
+                                    var shopMoney = -1;
+                                    var targetItem = -1; //the item that will be added to the shops inventory.
+
+                                    for (var j = shopInventory.length - 1; j > -1; j--)
                                     {
-                                        shopMoney = j;
-                                    }
-                                    if (shopInventory[j][0].type == Inventory[i][0].type)
-                                    {
-                                        targetItem = j;
-                                    }
-                                }
-                                for (var k = Inventory.length - 1; k > -1; k--)
-                                {
-                                    if (Inventory[k][0].type == "coins")
-                                    {
-                                        money = k;
-                                    }
-                                }
-
-                                if (shopMoney != -1)
-                                {
-                                    if (shopInventory[shopMoney][1] >= Inventory[i][0].sellValue * itemAmount)
-                                    {
-                                        shopInventory[shopMoney][1] -= Inventory[i][0].sellValue * itemAmount;
-
-                                        if (money != -1)
+                                        if (shopInventory[j][0].type == "coins")
                                         {
-                                            Inventory[money][1] += Inventory[i][0].sellValue * itemAmount;
+                                            shopMoney = j;
                                         }
-                                        else
+                                        if (shopInventory[j][0].type == Inventory[i][0].type)
                                         {
-                                            newMoney = [new Item("coins", false, false), (Inventory[i][0].sellValue * itemAmount)];
-                                            Inventory.unshift(newMoney);
-                                            money = 0;
-                                            shifted = 1;
-                                        }
-
-                                        //Item Transference
-                                        if (Inventory[i + shifted][1] - itemAmount == 0)
-                                        {
-                                            if (targetItem != -1)
-                                            {
-                                                shopInventory[targetItem][1] += itemAmount;
-                                            }
-                                            else
-                                            {
-                                                shopInventory.push([Inventory[i + shifted][0], itemAmount]);
-                                            }
-                                            Inventory.splice(i + shifted, 1);
-                                        }
-                                        else
-                                        {
-                                            Inventory[i + shifted][1] -= itemAmount;
-                                            if (targetItem != -1)
-                                            {
-                                                shopInventory[targetItem][1] += itemAmount;
-                                            }
-                                            else
-                                            {
-                                                shopInventory.push([Inventory[i + shifted][0], itemAmount]);
-                                            }
-                                        }
-
-                                        //Since the location may have been altered we need to reset money and shopMoney
-                                        for (var j = shopInventory.length - 1; j > -1; j--)
-                                        {
-                                            if (shopInventory[j][0].type == "coins")
-                                            {
-                                                shopMoney = j;
-                                            }
-                                        }
-                                        for (var k = Inventory.length - 1; k > -1; k--)
-                                        {
-                                            if (Inventory[k][0].type == "coins")
-                                            {
-                                                money = k;
-                                            }
-                                        }
-
-                                        if (shopInventory[shopMoney][1] <= 0)
-                                        {
-                                            shopInventory.splice(shopMoney, 1);
-                                        }
-
-                                        if (money != -1)
-                                        {
-                                            console.log(Inventory);
-                                            if (Inventory[money][1] <= 0)
-                                            {
-                                                Inventory.splice(money, 1);
-                                            }
+                                            targetItem = j;
                                         }
                                     }
-                                    else //If the shop can't afford to buy it you sell it anyway for whatever the shop has left.
+                                    for (var k = Inventory.length - 1; k > -1; k--)
                                     {
-                                        if (itemAmount > 1)
+                                        if (Inventory[k][0].type == "coins")
                                         {
-                                            badDeal = confirm("Are you sure you want to sell your " + itemAmount + " " + Inventory[i][0].identity + "s for only " + shopInventory[shopMoney][1] + " coins?");
+                                            money = k;
                                         }
-                                        else
-                                        {
-                                            badDeal = confirm("Are you sure you want to sell your " + Inventory[i][0].identity + " for only " + shopInventory[shopMoney][1] + " coins?");
-                                        }
+                                    }
 
-
-                                        if (badDeal == true)
+                                    if (shopMoney != -1)
+                                    {
+                                        if (shopInventory[shopMoney][1] >= Inventory[i][0].sellValue * itemAmount)
                                         {
-                                            badDeal = shopInventory[shopMoney][1];
-                                            shopInventory[shopMoney][1] -= shopInventory[shopMoney][1];
+                                            shopInventory[shopMoney][1] -= Inventory[i][0].sellValue * itemAmount;
 
                                             if (money != -1)
                                             {
-                                                Inventory[money][1] += badDeal;
+                                                Inventory[money][1] += Inventory[i][0].sellValue * itemAmount;
                                             }
                                             else
                                             {
-                                                newMoney = [new Item("coins", false, false), badDeal];
+                                                newMoney = [new Item("coins", false, false), (Inventory[i][0].sellValue * itemAmount)];
                                                 Inventory.unshift(newMoney);
                                                 money = 0;
                                                 shifted = 1;
@@ -16135,11 +16056,135 @@ function Adventurer()
 
                                             if (money != -1)
                                             {
+                                                console.log(Inventory);
                                                 if (Inventory[money][1] <= 0)
                                                 {
                                                     Inventory.splice(money, 1);
                                                 }
                                             }
+                                        }
+                                        else //If the shop can't afford to buy it you sell it anyway for whatever the shop has left.
+                                        {
+                                            if (itemAmount > 1)
+                                            {
+                                                badDeal = confirm("Are you sure you want to sell your " + itemAmount + " " + Inventory[i][0].identity + "s for only " + shopInventory[shopMoney][1] + " coins?");
+                                            }
+                                            else
+                                            {
+                                                badDeal = confirm("Are you sure you want to sell your " + Inventory[i][0].identity + " for only " + shopInventory[shopMoney][1] + " coins?");
+                                            }
+
+
+                                            if (badDeal == true)
+                                            {
+                                                badDeal = shopInventory[shopMoney][1];
+                                                shopInventory[shopMoney][1] -= shopInventory[shopMoney][1];
+
+                                                if (money != -1)
+                                                {
+                                                    Inventory[money][1] += badDeal;
+                                                }
+                                                else
+                                                {
+                                                    newMoney = [new Item("coins", false, false), badDeal];
+                                                    Inventory.unshift(newMoney);
+                                                    money = 0;
+                                                    shifted = 1;
+                                                }
+
+                                                //Item Transference
+                                                if (Inventory[i + shifted][1] - itemAmount == 0)
+                                                {
+                                                    if (targetItem != -1)
+                                                    {
+                                                        shopInventory[targetItem][1] += itemAmount;
+                                                    }
+                                                    else
+                                                    {
+                                                        shopInventory.push([Inventory[i + shifted][0], itemAmount]);
+                                                    }
+                                                    Inventory.splice(i + shifted, 1);
+                                                }
+                                                else
+                                                {
+                                                    Inventory[i + shifted][1] -= itemAmount;
+                                                    if (targetItem != -1)
+                                                    {
+                                                        shopInventory[targetItem][1] += itemAmount;
+                                                    }
+                                                    else
+                                                    {
+                                                        shopInventory.push([Inventory[i + shifted][0], itemAmount]);
+                                                    }
+                                                }
+
+                                                //Since the location may have been altered we need to reset money and shopMoney
+                                                for (var j = shopInventory.length - 1; j > -1; j--)
+                                                {
+                                                    if (shopInventory[j][0].type == "coins")
+                                                    {
+                                                        shopMoney = j;
+                                                    }
+                                                }
+                                                for (var k = Inventory.length - 1; k > -1; k--)
+                                                {
+                                                    if (Inventory[k][0].type == "coins")
+                                                    {
+                                                        money = k;
+                                                    }
+                                                }
+
+                                                if (shopInventory[shopMoney][1] <= 0)
+                                                {
+                                                    shopInventory.splice(shopMoney, 1);
+                                                }
+
+                                                if (money != -1)
+                                                {
+                                                    if (Inventory[money][1] <= 0)
+                                                    {
+                                                        Inventory.splice(money, 1);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else //if the shopkeeper is really a human pack mule
+                                {
+                                    var targetItem = -1;
+                                    for (var j = shopInventory.length - 1; j > -1; j--)
+                                    {
+                                        if (shopInventory[j][0].type == Inventory[i][0].type)
+                                        {
+                                            targetItem = j;
+                                        }
+                                    }
+                                    //Item Transference
+                                    if (Inventory[i][1] - itemAmount == 0)
+                                    {
+                                        if (targetItem != -1)
+                                        {
+                                            shopInventory[targetItem][1] += itemAmount;
+                                            Inventory.splice(i, 1);
+                                        }
+                                        else if (shopInventory.length < this.storageCap)
+                                        {
+                                            shopInventory.push([Inventory[i][0], itemAmount]);
+                                            Inventory.splice(i, 1);
+                                        }
+                                    }
+                                    else if (Inventory[i][1] - itemAmount > 0)
+                                    {
+                                        if (targetItem != -1)
+                                        {
+                                            shopInventory[targetItem][1] += itemAmount;
+                                            Inventory[i][1] -= itemAmount;
+                                        }
+                                        else if (shopInventory.length < this.storageCap)
+                                        {
+                                            shopInventory.push([Inventory[i][0], itemAmount]);
+                                            Inventory[i][1] -= itemAmount;
                                         }
                                     }
                                 }
@@ -16154,12 +16199,13 @@ function Adventurer()
                             XXX.fillText(Inventory[i][0].identity, 1/2 * CCC.width, 140);
 
                             //Sell Price
-
-                            XXX.font = "bold 140px Book Antiqua";
-                            XXX.fillStyle = "gold";
-                            XXX.textAlign = "center"; //this is to reset it to the standard for the rest to come.
-                            XXX.fillText(Inventory[i][0].sellValue * itemAmount, 1/2 * CCC.width, 340);
-
+                            if (!this.storage) //only shows if the shop is actually a shop and not a slave.
+                            {
+                                XXX.font = "bold 140px Book Antiqua";
+                                XXX.fillStyle = "gold";
+                                XXX.textAlign = "center"; //this is to reset it to the standard for the rest to come.
+                                XXX.fillText(Inventory[i][0].sellValue * itemAmount, 1/2 * CCC.width, 340);
+                            }
                         }
                     }
                 }
@@ -16254,104 +16300,146 @@ function Adventurer()
                         if (clickReleased == true && mouseX > listOfInvX1Coords[i] && mouseX < listOfInvX2Coords[i] && mouseY > invY1Coord && mouseY < invY2Coord && this.REQB == false)
                         {
                             clickReleased = false;
-                            if (shopInventory[i][1] - itemAmount >= 0 && shopInventory[i][0].type != "coins")
+                            if (shopInventory[i][1] - itemAmount >= 0 && shopInventory[i][0].type != "coins" || this.storage && shopInventory[i][1] - itemAmount >= 0)
                             {
-                                var shifted = 0;
-                                var newMoney = -1;
-                                var money = -1;
-                                var shopMoney = -1;
-                                var targetItem = -1;
-                                for (var j = Inventory.length - 1; j > -1; j--)
+                                if (!this.storage)
                                 {
-                                    if (Inventory[j][0].type == "coins")
+                                    var shifted = 0;
+                                    var newMoney = -1;
+                                    var money = -1;
+                                    var shopMoney = -1;
+                                    var targetItem = -1;
+                                    for (var j = Inventory.length - 1; j > -1; j--)
                                     {
-                                        money = j;
-                                    }
-                                    if (Inventory[j][0].type == shopInventory[i][0].type)
-                                    {
-                                        targetItem = j;
-                                    }
-                                }
-                                for (var k = shopInventory.length - 1; k > -1; k--)
-                                {
-                                    if (shopInventory[k][0].type == "coins")
-                                    {
-                                        shopMoney = k;
-                                    }
-                                }
-
-                                if (money != -1)
-                                {
-                                    if (Inventory[money][1] >= shopInventory[i][0].buyValue * itemAmount)
-                                    {
-                                        Inventory[money][1] -= shopInventory[i][0].buyValue * itemAmount;
-
-                                        if (shopMoney != -1)
+                                        if (Inventory[j][0].type == "coins")
                                         {
-                                            shopInventory[shopMoney][1] += shopInventory[i][0].buyValue * itemAmount;
+                                            money = j;
                                         }
-                                        else
+                                        if (Inventory[j][0].type == shopInventory[i][0].type)
                                         {
-                                            newMoney = [new Item("coins", false, false), (shopInventory[i][0].buyValue * itemAmount)];
-                                            shopInventory.unshift(newMoney);
-                                            shopMoney = 0;
-                                            shifted = 1;
+                                            targetItem = j;
                                         }
-
-                                        //Item Transference
-                                        if (shopInventory[i + shifted][1] - itemAmount == 0)
+                                    }
+                                    for (var k = shopInventory.length - 1; k > -1; k--)
+                                    {
+                                        if (shopInventory[k][0].type == "coins")
                                         {
-                                            if (targetItem != -1)
+                                            shopMoney = k;
+                                        }
+                                    }
+
+                                    if (money != -1)
+                                    {
+                                        if (Inventory[money][1] >= shopInventory[i][0].buyValue * itemAmount)
+                                        {
+                                            Inventory[money][1] -= shopInventory[i][0].buyValue * itemAmount;
+
+                                            if (shopMoney != -1)
                                             {
-                                                Inventory[targetItem][1] += itemAmount;
+                                                shopInventory[shopMoney][1] += shopInventory[i][0].buyValue * itemAmount;
                                             }
                                             else
                                             {
-                                                Inventory.push([shopInventory[i + shifted][0], itemAmount]);
+                                                newMoney = [new Item("coins", false, false), (shopInventory[i][0].buyValue * itemAmount)];
+                                                shopInventory.unshift(newMoney);
+                                                shopMoney = 0;
+                                                shifted = 1;
                                             }
-                                            shopInventory.splice(i + shifted, 1);
-                                        }
-                                        else
-                                        {
-                                            shopInventory[i + shifted][1] -= itemAmount;
 
-                                            if (targetItem != -1)
+                                            //Item Transference
+                                            if (shopInventory[i + shifted][1] - itemAmount == 0)
                                             {
-                                                Inventory[targetItem][1] += itemAmount;
+                                                if (targetItem != -1)
+                                                {
+                                                    Inventory[targetItem][1] += itemAmount;
+                                                }
+                                                else
+                                                {
+                                                    Inventory.push([shopInventory[i + shifted][0], itemAmount]);
+                                                }
+                                                shopInventory.splice(i + shifted, 1);
                                             }
                                             else
                                             {
-                                                Inventory.push([shopInventory[i + shifted][0], itemAmount]);
-                                            }
-                                        }
+                                                shopInventory[i + shifted][1] -= itemAmount;
 
-                                        //Since the location may have been altered we need to reset shopMoney and money
-                                        for (var j = Inventory.length - 1; j > -1; j--)
-                                        {
-                                            if (Inventory[j][0].type == "coins")
-                                            {
-                                                money = j;
+                                                if (targetItem != -1)
+                                                {
+                                                    Inventory[targetItem][1] += itemAmount;
+                                                }
+                                                else
+                                                {
+                                                    Inventory.push([shopInventory[i + shifted][0], itemAmount]);
+                                                }
                                             }
-                                        }
-                                        for (var k = shopInventory.length - 1; k > -1; k--)
-                                        {
-                                            if (shopInventory[k][0].type == "coins")
-                                            {
-                                                shopMoney = k;
-                                            }
-                                        }
 
-                                        if (Inventory[money][1] <= 0)
-                                        {
-                                            Inventory.splice(money, 1);
-                                        }
-
-                                        if (shopMoney != -1)
-                                        {
-                                            if (shopInventory[shopMoney][1] <= 0)
+                                            //Since the location may have been altered we need to reset shopMoney and money
+                                            for (var j = Inventory.length - 1; j > -1; j--)
                                             {
-                                                shopInventory.splice(shopMoney, 1);
+                                                if (Inventory[j][0].type == "coins")
+                                                {
+                                                    money = j;
+                                                }
                                             }
+                                            for (var k = shopInventory.length - 1; k > -1; k--)
+                                            {
+                                                if (shopInventory[k][0].type == "coins")
+                                                {
+                                                    shopMoney = k;
+                                                }
+                                            }
+
+                                            if (Inventory[money][1] <= 0)
+                                            {
+                                                Inventory.splice(money, 1);
+                                            }
+
+                                            if (shopMoney != -1)
+                                            {
+                                                if (shopInventory[shopMoney][1] <= 0)
+                                                {
+                                                    shopInventory.splice(shopMoney, 1);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else //if the unit is a slave and not really a shopkeeper
+                                {
+                                    var targetItem = -1;
+                                    for (var j = Inventory.length - 1; j > -1; j--)
+                                    {
+                                        if (Inventory[j][0].type == shopInventory[i][0].type)
+                                        {
+                                            console.log(shopInventory[i][0].type);
+                                            targetItem = j;
+                                        }
+                                    }
+                                    //Item Transference
+                                    if (shopInventory[i][1] - itemAmount == 0)
+                                    {
+                                        if (targetItem != -1)
+                                        {
+                                            Inventory[targetItem][1] += itemAmount;
+                                            shopInventory.splice(i, 1);
+                                        }
+                                        else
+                                        {
+                                            Inventory.push([shopInventory[i][0], itemAmount]);
+                                            shopInventory.splice(i, 1);
+                                        }
+                                    }
+                                    else if (shopInventory[i][1] - itemAmount > 0)
+                                    {
+                                        if (targetItem != -1)
+                                        {
+                                            Inventory[targetItem][1] += itemAmount;
+                                            shopInventory[i][1] -= itemAmount;
+                                        }
+                                        else
+                                        {
+                                            Inventory.push([shopInventory[i][0], itemAmount]);
+                                            shopInventory[i][1] -= itemAmount;
                                         }
                                     }
                                 }
@@ -16365,11 +16453,14 @@ function Adventurer()
                             XXX.textAlign = "center"; //this is to reset it to the standard for the rest to come.
                             XXX.fillText(shopInventory[i][0].identity, 1/2 * CCC.width, 140);
 
-                            //Buy Price
-                            XXX.font = "bold 140px Book Antiqua";
-                            XXX.fillStyle = "gold";
-                            XXX.textAlign = "center"; //this is to reset it to the standard for the rest to come.
-                            XXX.fillText(shopInventory[i][0].buyValue * itemAmount, 1/2 * CCC.width, 340);
+                            if (!this.storage)
+                            {
+                                //Buy Price
+                                XXX.font = "bold 140px Book Antiqua";
+                                XXX.fillStyle = "gold";
+                                XXX.textAlign = "center"; //this is to reset it to the standard for the rest to come.
+                                XXX.fillText(shopInventory[i][0].buyValue * itemAmount, 1/2 * CCC.width, 340);
+                            }
                         }
                     }
                 }

@@ -126,6 +126,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.follower = false; //if true the creature follows through with attack without being disturbed but does not actually harm the player.
     //Other variables
     this.other = false; //this is unique for every unit... do whith it what you will.
+    this.interactable = false; //this allows a creature other than a human to be interacted with in the dialogue system.
     this.attackBusy = false; //used to see if the attack is happening and the creature is not just waiting to attack.
     this.emerge = false; //this is for the creatures that use an animation phase like lombrises. blah blah blah
     this.creatureBiz = false; //reference evadeObstructions to see purpose
@@ -564,6 +565,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.friendDecider = function()
     {
         this.allys = [this.team, "neutral"];
+
+        if (this.team != "player")
+        {
+            this.allys.push("neutral2");
+        }
 
         if (this.team != "arena1" && this.team != "arena2" && this.team!= "arena3")
         {
@@ -2916,7 +2922,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else
                 {
-                    if (type == "Soldier" && nearbyUnitsList[i].ultra.faction == this.ultra.faction || type == "Shehid")
+                    if (type == "Soldier" && nearbyUnitsList[i].ultra.faction == this.ultra.faction && this.dmx == nearbyUnitsList[i].dmx || type == "Shehid")
                     {
                         nearbyUnitsList[i].disturbed = true;
                     }
@@ -5746,11 +5752,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "automatic";
             this.resistances = ["acid", "stun", "blinded", "shock", "burning", "frozen"];
             this.team = "shehidia";
-            this.baseTeam = this.team;
             if (this.ID == "docile")
             {
                 this.team = "docile";
             }
+            this.baseTeam = this.team;
 
             if (this.alpha == true)
             {
@@ -6116,12 +6122,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.damageFrame = "automatic";
             this.team = "wild";
-            this.baseTeam = this.team;
             this.haste = true;
             if (this.ID == "docile")
             {
                 this.team = "docile";
             }
+            this.baseTeam = this.team;
 
             this.magicalResistance = 0;
             this.heatResistance = 0;
@@ -6148,11 +6154,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.damageFrame = "automatic";
             this.team = "wild";
-            this.baseTeam = this.team;
             if (this.ID == "docile")
             {
                 this.team = "docile";
             }
+            this.baseTeam = this.team;
 
             if (this.alpha == true)
             {
@@ -6207,11 +6213,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.damageFrame = "automatic";
             this.team = "wild";
-            this.baseTeam = this.team;
             if (this.ID == "docile")
             {
                 this.team = "docile";
             }
+            this.baseTeam = this.team;
 
             if (this.alpha == true)
             {
@@ -6291,11 +6297,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.charger = true; //this unit charges through and past the enemy.
             this.damageFrame = "manual"; //it is necessary to set this to "manual" so that the attackBubble function can determine the damaging.
             this.team = "wild";
-            this.baseTeam = this.team;
             if (this.ID == "docile")
             {
                 this.team = "docile";
             }
+            this.baseTeam = this.team;
 
             if (this.alpha == true)
             {
@@ -6354,11 +6360,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.followThrough = true; //this unit follows through with its attacks even if the player moves out of range.
             this.damageFrame = "manual"; //it is necessary to set this to "manual" so that the attackBubble function can determine the damaging.
             this.team = "lombrisia";
-            this.baseTeam = this.team;
             if (this.ID == "docile")
             {
                 this.team = "docile";
             }
+            this.baseTeam = this.team;
 
             if (this.alpha == true)
             {
@@ -6413,11 +6419,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.damageFrame = "automatic";
             this.team = "wild";
-            this.baseTeam = this.team;
             if (this.ID == "docile")
             {
                 this.team = "docile";
             }
+            this.baseTeam = this.team;
 
             if (this.alpha == true)
             {
@@ -6470,13 +6476,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.damageFrame = "automatic";
             this.team = "hyeling";
-            this.baseTeam = this.team;
             if (this.ID == "docile")
             {
                 this.team = "docile";
             }
             this.dropRND = Math.random();
             this.extraRot = 1/2 * Math.PI;
+            this.baseTeam = this.team;
 
             if (this.alpha == true)
             {
@@ -6531,13 +6537,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.damageFrame = "automatic";
             this.team = "hyeling";
-            this.baseTeam = this.team;
             if (this.ID == "docile")
             {
                 this.team = "docile";
             }
             this.dropRND = Math.random();
             this.extraRot = 1/2 * Math.PI;
+            this.baseTeam = this.team;
 
             if (this.alpha == true)
             {
@@ -6615,11 +6621,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.damageFrame = "automatic";
             this.team = "wild";
-            this.baseTeam = this.team;
             if (this.ID == "docile")
             {
                 this.team = "docile";
             }
+            this.baseTeam = this.team;
 
             if (this.alpha == true)
             {
@@ -6696,11 +6702,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "automatic";
             this.resistances = ["stun"];
             this.team = "wild";
-            this.baseTeam = this.team;
             if (this.ID == "docile")
             {
                 this.team = "docile";
             }
+            this.baseTeam = this.team;
 
             if (this.alpha == true)
             {
@@ -6804,11 +6810,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "automatic";
             this.resistances = ["stun", "web"];
             this.team = "etnia";
-            this.baseTeam = this.team;
             if (this.ID == "docile")
             {
                 this.team = "docile";
             }
+            this.baseTeam = this.team;
 
             if (this.alpha == true)
             {
@@ -7874,11 +7880,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.damageFrame = "manual";
             this.team = "herd";
-            this.baseTeam = this.team;
             if (this.ID == "docile")
             {
                 this.team = "docile";
             }
+            this.baseTeam = this.team;
 
             if (this.alpha == true)
             {
@@ -7931,11 +7937,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.damageFrame = "manual";
             this.team = "herd";
-            this.baseTeam = this.team;
             if (this.ID == "docile")
             {
                 this.team = "docile";
             }
+            else if (this.ID == "neutral2")
+            {
+                this.team = "neutral2";
+            }
+            this.baseTeam = this.team;
 
             if (this.alpha == true)
             {
@@ -13726,7 +13736,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.experience = (67 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
-                this.drops = [[new Item("boulchomPelt", this.X, this.Y), 1], [new Item("rawboulchomFlesh", this.X, this.Y), 2]];
+                this.drops = [[new Item("boulchomPelt", this.X, this.Y), 1], [new Item("rawBoulchomFlesh", this.X, this.Y), 2]];
                 if (player.getIntelligence() >= 30)
                 {
                     this.drops.push([new Item("boulchomLung", this.X, this.Y), 1]);
@@ -13743,7 +13753,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.experience = 17 * ((player.getIntelligence() / 50) + 1) / 10;
                 }
 
-                this.drops = [[new Item("boulchomPelt", this.X, this.Y), 1], [new Item("rawboulchomFlesh", this.X, this.Y), 1]];
+                this.drops = [[new Item("boulchomPelt", this.X, this.Y), 1], [new Item("rawBoulchomFlesh", this.X, this.Y), 1]];
                 if (player.getIntelligence() >= 30)
                 {
                     this.drops.push([new Item("boulchomLung", this.X, this.Y), 1]);
@@ -20944,6 +20954,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.freynorFaction -= 12;
                         }
                     }
+                    else if (this.ID == "Hildegard")
+                    {
+                        uniqueChars.hildegardLDS = false;
+                    }
+                    else if (this.ID == "Axel")
+                    {
+                        uniqueChars.axelLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.thengarFaction -= 3;
+                        }
+                    }
                     else if (this.ID == "Cheryl the Tailor")
                     {
                         uniqueChars.cherylLDS = false;
@@ -21506,13 +21528,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         this.drops = [[new Item("coins", this.X, this.Y), 90], [new Item("thenganPlateArmour", this.X, this.Y), 1], [new Item("flail", this.X, this.Y), 1]];
                     }
+                    if (this.ID == "Rutgar the Warden")
+                    {
+                        this.drops = [[new Item("coins", this.X, this.Y), 190], [new Item("thenganPlateArmour", this.X, this.Y), 1], [new Item("longsword", this.X, this.Y), 1]];
+                    }
                     else if (this.ID == "Beulingerr Commander Friedrich")
                     {
                         this.drops = [[new Item("coins", this.X, this.Y), 230], [new Item("thenganPlateArmour", this.X, this.Y), 1], [new Item("thenganWarhammer", this.X, this.Y), 1]];
                     }
                     else if (this.ID == "Beulingerr Soldier")
                     {
-                        this.drops = [[new Item("coins", this.X, this.Y), 10 + (Math.random() * 51)]];
+                        this.drops = [[new Item("coins", this.X, this.Y), 10 + (Math.floor(Math.random() * 51))]];
                     }
                     else
                     {
@@ -21864,6 +21890,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.thengarFaction -= 100;
+                        }
+                    }
+                    if (this.ID == "Rutgar the Warden")
+                    {
+                        uniqueChars.rutgarLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.thengarFaction -= 90;
                         }
                     }
                     else if (this.ID == "Beulingerr Commander Friedrich")

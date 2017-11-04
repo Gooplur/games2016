@@ -35,10 +35,10 @@ function interaction(me)
         {
             var dtm = self.DTM();
 
-            if (self.type == "Person" || self.type == "Soldier")
+            if (self.type == "Person" || self.type == "Soldier" || self.interactable)
             {
                 //CONVERSATION AND SOCIAL INTERACTIONS WITH AI CHARACTERS
-                if (clickReleased == true && dtm < self.sizeRadius && dtp < 100 && self.disturbed == false && self.offended == false || conversationID[0] != "none" && dtp < 100 && self.disturbed == false && self.offended == false || playersTurnToSpeak == false)
+                if (clickReleased == true && dtm < self.sizeRadius && dtp < 55 && self.disturbed == false && self.offended == false || conversationID[0] != "none" && dtp < 55 && self.disturbed == false && self.offended == false) //|| playersTurnToSpeak == false
                 {
                     self.engagedInDialogue = true;
 
@@ -652,7 +652,7 @@ function interaction(me)
                         }
                     }
 
-                    if (self.ID == "Balgur Mercenary" && player.theBalgurMercenariesFaction >= 0 && self.team != "player" && self.DTP() < 65 || conversationID[0] == "Balgur Mercenary" && player.theBalgurMercenariesFaction >= 0 && self.team != "player" && self.DTP() < 65)
+                    if (self.ID == "Balgur Mercenary" && player.theBalgurMercenariesFaction >= 0 && self.team != "player" || self.ID == "Balgur Mercenary" && player.theBalgurMercenariesFaction >= 0 && self.team != "player" || conversationID[0] == "Balgur Mercenary" && player.theBalgurMercenariesFaction >= 0 && self.team != "player")
                     {
                         lowBar = "dialogue";
                         conversationID[0] = "Balgur Mercenary";
@@ -723,7 +723,7 @@ function interaction(me)
                         }
                     }
 
-                    if (self.ID == "Tor Captain" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" && self.DTP() < 65 || self.ID == "Tor Captain" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty" && self.DTP() < 65 || self.ID == "Tor Soldier" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty" && self.DTP() < 65 || self.ID == "Tor Soldier" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" && self.DTP() < 65 || self.ID == "Tor Huskarl" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty" && self.DTP() < 65 || self.ID == "Tor Huskarl" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" && self.DTP() < 65 || conversationID[0] == "Tor" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" && self.DTP() < 65 || conversationID[0] == "Tor" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty" && self.DTP() < 65)
+                    if (self.ID == "Tor Captain" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" || self.ID == "Tor Captain" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty" || self.ID == "Tor Soldier" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty" || self.ID == "Tor Soldier" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" || self.ID == "Tor Huskarl" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty"  || self.ID == "Tor Huskarl" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" || conversationID[0] == "Tor" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" || conversationID[0] == "Tor" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty")
                     {
                         lowBar = "dialogue";
                         conversationID[0] = "Tor";
@@ -766,7 +766,7 @@ function interaction(me)
                         }
                     }
 
-                    if (self.ID == "Beulingerr Captain" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Nobility" && self.DTP() < 65 || self.ID == "Beulingerr Captain" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty" && self.DTP() < 65 || self.ID == "Beulingerr Soldier" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty" && self.DTP() < 65 || self.ID == "Beulingerr Soldier" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Nobility" && self.DTP() < 65 || conversationID[0] == "Beulingerr" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Nobility" && self.DTP() < 65 || conversationID[0] == "Beulingerr" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty" && self.DTP() < 65)
+                    if (self.ID == "Beulingerr Captain" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Nobility" || self.ID == "Beulingerr Captain" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty" || self.ID == "Beulingerr Soldier" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty" || self.ID == "Beulingerr Soldier" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Nobility" || conversationID[0] == "Beulingerr" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Nobility" || conversationID[0] == "Beulingerr" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty")
                     {
                         lowBar = "dialogue";
                         conversationID[0] = "Beulingerr";
@@ -802,6 +802,78 @@ function interaction(me)
                         else if (conversationID[1] == "0a")
                         {
                             self.baseTeam = "player";
+
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
+                    if (self.ID == "Rutgar the Warden" || conversationID[0] == "Rutgar")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Rutgar";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["[Buy Kellish Slave For 290 Coins]", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            var coinHitz = -1;
+                            var servicesPaid = false;
+
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 290)
+                                {
+                                    coinHitz = i;
+                                }
+                            }
+
+                            if (coinHitz > -1)
+                            {
+                                if (Inventory[coinHitz][1] == 290)
+                                {
+                                    Inventory.splice(coinHitz, 1);
+                                }
+                                else
+                                {
+                                    Inventory[coinHitz][1] -= 290;
+                                }
+
+                                servicesPaid = true;
+                            }
+
+                            if (servicesPaid)
+                            {
+                                quests.rutgarSlave = true;
+                                change = "slavePurchased";
+                            }
 
                             player.dialoguePosition = 0;
                             conversationID[1] = 0;
@@ -7066,7 +7138,14 @@ function interaction(me)
                 {
                     if (self.hostile == true)
                     {
-                        XXX.fillStyle = "red";
+                        if (self.team == "player")
+                        {
+                            XXX.fillStyle = "gold";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "red";
+                        }
                     }
                     else
                     {
@@ -7086,8 +7165,18 @@ function interaction(me)
                         var parsedFactionRelation = 0;
                     }
 
-                    if (dClick == true && self.ultra.merchant == true && dtp < 100 && self.disturbed == false && parsedFactionRelation >= -25) //merchant by click
+                    if (dClick == true && self.ultra.merchant == true && dtp < 100 && self.disturbed == false && parsedFactionRelation >= -25 || dClick == true && self.ultra.storage == true) //merchant by click
                     {
+                        if (self.ultra.storage == true)
+                        {
+                            player.storage = true;
+                            player.storageCap = self.ultra.storageCap;
+                        }
+                        else
+                        {
+                            player.storage = false;
+                            player.storageCap = 0;
+                        }
                         shopInventory = self.ultra.merchandise;
                         shopID = self.ID;
                         shopkeeper = self;

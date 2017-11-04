@@ -88,7 +88,7 @@ function worldBuilder()
             outlineBuilder( 34, 1, "stonePath", -4, 14);
             //outlineBuilder( 1, 1, "forest", -4, 14);
         }
-        //mapS1W4 //TODO make the map
+        //mapS1W4
         if (Y > -14144 && Y < -3328 && X < 48510 && X > 36883) //X-4
         {
             elevation = 0;
@@ -96,7 +96,7 @@ function worldBuilder()
             outlineBuilder( 34, 34, "crag", -156, 14);
             //outlineBuilder( 1, 34, "greenGrass", -156, 14);
         }
-        //mapS1W5 //TODO make the map (Lethik City)
+        //mapS1W5 //Lethik City
         if (Y > -14144 && Y < -3328 && X < 58680 && X > 47082) //X-5
         {
             elevation = 0;
@@ -122,6 +122,15 @@ function worldBuilder()
             outlineBuilder( 13, 2, "crag", -163, 25);
             outlineBuilder( 4, 1, "crag", -162, 38);
             outlineBuilder( 1, 1, "crag", -161, 47);
+            if (uniqueChars.vsevolodLDS)
+            {
+                outlineBuilder( 1, 2, "desert", -175, 22);
+            }
+            else
+            {
+                outlineBuilder( 1, 2, "farmland", -175, 22);
+            }
+            outlineBuilder( 2, 1, "farmland", -176, 26);
             //outlineBuilder( 1, 34, "greenGrass", -190, 14);
 
         }
@@ -152,7 +161,7 @@ function worldBuilder()
             outlineBuilder( 1, 2, "greenGrass", 26, -4);
             outlineBuilder( 1, 34, "stonePath", 14, -3);
         }
-        // mapCentral
+        // mapCentral //Teshir City
         if (Y > -3919 && Y < 6870 && X < 7687 && X > - 3901) //X0
         {
             elevation = 0;
@@ -219,7 +228,7 @@ function worldBuilder()
             //outlineBuilder( 34, 1, "greenGrass", -89, -20);
 
         }
-        //mapW4 //TODO make the map
+        //mapW4
         if (Y > -3919 && Y < 6870 && X < 48510 && X > 36883) //X-4
         {
             elevation = 0;
@@ -301,6 +310,15 @@ function worldBuilder()
         outlineBuilder( 1, 1, "dungeon", 8, -3);
         outlineBuilder( 3, 2, "dungeon", 7, -2);
         outlineBuilder( 10, 1, "dungeon", 9, -13);
+    }
+    else if (map == "lethikCityPrison") //This is a dungeon found in map W3
+    {
+        player.dmx = map;
+        player.underground = false;
+        elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "lethikCityPrison";
+        //starting chamber
+        outlineBuilder( 2, 4, "dungeon", 0, 0);
     }
 }
 
@@ -2059,6 +2077,40 @@ function buildMaster()
                     }
                 }
 
+                if (uniqueChars.axelLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Axel")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(52794, -6236, "Person", false, "Axel", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.03, 0.025], 0, 0, 1], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]]}));
+                        ArtificialIntelligenceAccess[i].health = 7;
+                    }
+                }
+
+                if (uniqueChars.hildegardLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Hildegard")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51616, -7327, "Person", false, "Hildegard", {race: "Thengar", faction: "Thengar", personality: "scared", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.03, 0.025], 0, 0, 1], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]]}));
+                        ArtificialIntelligenceAccess[i].health = 1;
+                    }
+                }
+
                 if (uniqueChars.cherylLDS == true)
                 {
                     var hits = 0;
@@ -2119,6 +2171,22 @@ function buildMaster()
                     if (hits == 0)
                     {
                         ArtificialIntelligenceAccess.push(new Unit(50858, -8123, "Soldier", false, "Markos the Pit Master", {race: "Thengar", faction: "Thengar", con: 22, speed: 0.85, outfit: ["thenganPlateArmour", 19], weapon: ["flail", [26, 10], 14, 63, 3.6], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
+                    }
+                }
+
+                if (uniqueChars.rutgarLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Rutgar the Warden")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(53108, -6704, "Soldier", false, "Rutgar the Warden", {race: "Thengar", faction: "Thengar", con: 19, speed: 0.74, outfit: ["thenganPlateArmour", 14], weapon: ["thenganSword", [12, 8], 0, 16, 1.25], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
                     }
                 }
 
@@ -3548,6 +3616,21 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(51945, -8393, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 8, speed: 1.34, outfit: ["chainArmour", 6.5], weapon: ["thenganSword", [12, 4], 0, 16, 1.45], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 4, patrolLoop: true, route:[[51945, -10184], [50570, -10156], [50559, -8470], [51972, -8481]]}));
                 ArtificialIntelligenceAccess.push(new Unit(51738, -9966, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 6, speed: 1.27, outfit: ["chainArmour", 7.5], weapon: ["thenganSword", [6, 6], 0, 16, 1.25], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 8, patrolLoop: true, route:[[51724, -9287], [51157, -9272], [51152, -9064], [51747, -9066], [51738, -8679], [50749, -8692], [50750, -9979], [51738, -9966]]}));
                 ArtificialIntelligenceAccess.push(new Unit(52037, -7560, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 7, speed: 1.38, outfit: ["chainArmour", 7], weapon: ["thenganSword", [10, 5], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 5, patrolLoop: true, route:[[53457, -7558], [53450, -7776], [50544, -7777], [50548, -6374], [53459, -6369]]}));
+                ArtificialIntelligenceAccess.push(new Unit(53257, -6468, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 9, speed: 1.21, outfit: ["chainArmour", 8], weapon: ["thenganSword", [9, 6], 0, 16, 1.3], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 2, patrolLoop: true, route:[[53267, -7596], [53257, -6468]]}));
+                //citizens
+                    //grain seller (only one on the map at once)
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Grain Farmer")
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(53064, -7291, "Person", false, "Grain Farmer", {race: "Thengar", faction: "Thengar", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.3, 0.25], 0, 1, 1], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 4], [new Item("harstGrain", false, false), 80]]}));
+                }
 
                 //Creatures
                 ArtificialIntelligenceAccess.push(new Unit(48545, -4542, "Nog", false, "Chom-Chom"));
@@ -3588,6 +3671,39 @@ function buildMaster()
                 scenicList.push(new Scenery("thenganBuilding1", 52462, -7356, 0, true));
                 scenicList.push(new Scenery("thenganBuilding1", 52764, -7356, 0, true));
                 scenicList.push(new Scenery("thenganBuilding5", 53066, -7282, 0, true));
+                scenicList.push(new Scenery("thenganBuilding2", 51858, -7206, 0, true));
+                scenicList.push(new Scenery("thenganBuilding2", 52160, -7206, 0, true));
+                scenicList.push(new Scenery("thenganBuilding2", 52462, -7206, 0, true));
+                scenicList.push(new Scenery("thenganBuilding2", 52764, -7206, 0, true));
+                scenicList.push(new Scenery("thenganBuilding1", 51858, -6896, 0, true));
+                scenicList.push(new Scenery("thenganBuilding1", 52160, -6896, 0, true));
+                scenicList.push(new Scenery("thenganBuilding1", 52462, -6896, 0, true));
+                scenicList.push(new Scenery("thenganBuilding1", 52764, -6896, 0, true));
+                scenicList.push(new Scenery("thenganBuilding5", 53066, -6812, 0, true));
+                scenicList.push(new Scenery("thenganBuilding2", 51858, -6746, 0, true));
+                scenicList.push(new Scenery("thenganBuilding2", 52160, -6746, 0, true));
+                scenicList.push(new Scenery("thenganBuilding2", 52462, -6746, 0, true));
+                scenicList.push(new Scenery("thenganBuilding2", 52764, -6746, 0, true));
+                scenicList.push(new Scenery("thenganBuilding1", 52793, -6224, 0, true));
+                    //the residential zone
+                scenicList.push(new Scenery("bed", 52833, -7184, 0 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 52531, -7184, 0 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 52229, -7184, 0 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 51927, -7184, 0 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 52700, -7384, 0 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 52398, -7384, 0 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 52096, -7384, 0 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 51794, -7384, 0 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 51492, -7384, 0 * Math.PI, false));
+                scenicList.push(new Scenery("thenganHearth", 51617, -7286, 0 * Math.PI, "lit"));
+                scenicList.push(new Scenery("bed", 52833, -7184 + 460, 1 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 52531, -7184 + 460, 1 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 52229, -7184 + 460, 1 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 51927, -7184 + 460, 1 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 52700, -7384 + 460, 1 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 52398, -7384 + 460, 1 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 52096, -7384 + 460, 1 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 51794, -7384 + 460, 1 * Math.PI, false));
                     //the inn
                 scenicList.push(new Scenery("thenganHearth", 50281, -10331, 1/2 * Math.PI, "lit"));
                 scenicList.push(new Scenery("bed", 50471, -10423, 0 * Math.PI, false));
@@ -3667,7 +3783,47 @@ function buildMaster()
                     scenicList.push(new Scenery("item", 51641, -8870, 0, "thengar", ["viperSnakeSkin", 1, -20]));
                     scenicList.push(new Scenery("item", 51643, -8850, 0, "thengar", ["kofkeLeaves", 1, -20]));
                 }
+                //city prison
+                scenicList.push(new Scenery("trapdoor", 53014, -6700, 0 * Math.PI, [379, 424], "lethikCityPrison"));
+                if (quests.rutgarSlave)
+                {
+                    quests.rutgarSlave = false;
+                    var slavesSex = Math.round(Math.random());
+                    if (slavesSex)
+                    {
+                        var slaveName = prompt("Your slave has been procured, but what is her name?", "Ailey");
+                    }
+                    else
+                    {
+                        var slaveName = prompt("Your slave has been procured, but what is his name?", "Connor");
+                    }
 
+                    if (typeof(slaveName) == "undefined" || slaveName == "")
+                    {
+                        if (slavesSex)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(53014, -6700, "Soldier", false, "Slave Woman", {race: "Kel", faction: "player", con: 1.25, speed: 1.15, outfit: ["none", 0], weapon: ["none", [0.3, 0.25], 0, 1, 1], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: 0, patrolStops: 0, patrolLoop: false, route:[], storage: true, storageCap: 1, merchant: true, merchandise: []}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(53014, -6700, "Soldier", false, "Slave Man", {race: "Kel", faction: "player", con: 3, speed: 1, outfit: ["none", 0], weapon: ["none", [0.3, 0.25], 0, 1, 1], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: 0, patrolStops: 0, patrolLoop: false, route:[], storage: true, storageCap: 1, merchant: true, merchandise: []}));
+                        }
+
+
+                    }
+                    else
+                    {
+                        if (slavesSex)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(53014, -6700, "Soldier", false, slaveName + ", " + player.name + "'s Slave", {race: "Kel", faction: "player", con: 1.25, speed: 1.15, outfit: ["none", 0], weapon: ["none", [0.3, 0.25], 0, 1, 1], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: 0, patrolStops: 0, patrolLoop: false, route:[], storage: true, storageCap: 1, merchant: true, merchandise: []}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(53014, -6700, "Soldier", false, slaveName + ", " + player.name + "'s Slave", {race: "Kel", faction: "player", con: 3, speed: 1, outfit: ["none", 0], weapon: ["none", [0.3, 0.25], 0, 1, 1], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: 0, patrolStops: 0, patrolLoop: false, route:[], storage: true, storageCap: 1, merchant: true, merchandise: []}));
+                        }
+                    }
+
+                }
                 //signs
                 scenicList.push(new Scenery("sign", 50710, -10222, Math.PI, 3, "The Ragged Wanderer - Inn"));
                 scenicList.push(new Scenery("sign", 51307, -9427, Math.PI, 3, "Bonecrusher Arms/Armour"));
@@ -3679,8 +3835,245 @@ function buildMaster()
                 scenicList.push(new Scenery("sign", 51631, -8771, Math.PI, 3, "Sweet Leaf Apothecary"));
                 scenicList.push(new Scenery("sign", 50805, -7419, -1/2 * Math.PI, 3, "Lethik City Barracks"));
                 scenicList.push(new Scenery("sign", 51292, -7496, -0 * Math.PI, 3, "Lethik City Barracks"));
+                scenicList.push(new Scenery("sign", 53180, -7371, 1/2 * Math.PI, 3, "Redbrick Farm - Produce Shop/Farm"));
+                scenicList.push(new Scenery("sign", 53180, -6750, 1/2 * Math.PI, 3, "Lethik City Prison"));
+
+                //leaping beasts
+                ArtificialIntelligenceAccess.push(new Unit(51835, -4394, "Boulchom", true, "Chraular"));
+                ArtificialIntelligenceAccess.push(new Unit(54848, -10379, "Boulchom", false, "Graw"));
+                ArtificialIntelligenceAccess.push(new Unit(56007, -4941, "Boulchom", false, "Grew"));
+
+                //fuzzy bunnies
+                ArtificialIntelligenceAccess.push(new Unit(51199, -5791, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(49944, -6433, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(51472, -11115, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(52512, -10540, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(52555, -9697, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(52975, -8101, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(54535, -6473, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(54245, -5778, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(53112, -10408, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(52474, -11869, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(50198, -11730, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(56994, -9547, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(56103, -7759, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(57216, -7422, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(52782, -9167, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(51403, -13049, "Conejo", true, "neutral2"));
+
+                //sun baskers basking in the sun
+                ArtificialIntelligenceAccess.push(new Unit(53162, -12293, "Thueg", true, "Dillo"));
+                ArtificialIntelligenceAccess.push(new Unit(52521, -12553, "Thueg", false, "Arma"));
+                ArtificialIntelligenceAccess.push(new Unit(50330, -12849, "Thueg", true, "Dallo"));
+                ArtificialIntelligenceAccess.push(new Unit(51547, -12505, "Thueg", "baby", "Dal"));
+                ArtificialIntelligenceAccess.push(new Unit(52152, -13314, "Thueg", false, "Calma"));
+                ArtificialIntelligenceAccess.push(new Unit(56617, -11499, "Thueg", false, "Gal"));
+                ArtificialIntelligenceAccess.push(new Unit(56999, -12395, "Thueg", "baby", "Dol"));
+                ArtificialIntelligenceAccess.push(new Unit(55838, -12139, "Thueg", "baby", "Dil"));
+                ArtificialIntelligenceAccess.push(new Unit(56498, -6155, "Thueg", true, "Dollo"));
+                ArtificialIntelligenceAccess.push(new Unit(56493, -5432, "Thueg", false, "Gallo"));
+                ArtificialIntelligenceAccess.push(new Unit(49215, -5067, "Thueg", false, "Gillo"));
 
                 //Plants
+                    //flora silvestre
+                scenicList.push(new Scenery("vorlymPlant", 56069, -4971, 1.2, false));
+                scenicList.push(new Scenery("galloshPlant", 54769, -6544, 6, false));
+                scenicList.push(new Scenery("galloshPlant", 51798, -5305, 0, false));
+                scenicList.push(new Scenery("vorlymPlant", 50130, -12600, -4.4, false));
+                scenicList.push(new Scenery("galloshPlant", 56590, -12133, 3, false));
+                scenicList.push(new Scenery("vorlymPlant", 55622, -10570, 2.81, false));
+                scenicList.push(new Scenery("galloshPlant", 53651, -12192, 5.5, false));
+                scenicList.push(new Scenery("galloshPlant", 51235, -11803, -2.6, false));
+                    //Farms
+                        //Cursed Farm
+                if (uniqueChars.vsevolodLDS == false)
+                {
+                    scenicList.push(new Scenery("suuliPlant", 52958, -6076, 0, "thengar"));
+                    scenicList.push(new Scenery("suuliPlant", 53028, -6076, -4, "thengar"));
+                    scenicList.push(new Scenery("suuliPlant", 53114, -6076, 1, "thengar"));
+                    scenicList.push(new Scenery("suuliPlant", 53214, -6076, 3.15, "thengar"));
+                    scenicList.push(new Scenery("santhPlant", 53301, -6080, 1, "thengar"));
+                    scenicList.push(new Scenery("santhPlant", 53342, -6080, 5, "thengar"));
+                    scenicList.push(new Scenery("santhPlant", 53400, -6080, 2, "thengar"));
+                    scenicList.push(new Scenery("santhPlant", 53462, -6080, 3, "thengar"));
+                    scenicList.push(new Scenery("santhPlant", 53370, -6055, 0, "thengar"));
+                    scenicList.push(new Scenery("santhPlant", 53432, -6053, 4, "thengar"));
+                    scenicList.push(new Scenery("santhPlant", 53316, -6050, -3, "thengar"));
+                    scenicList.push(new Scenery("santhPlant", 53478, -6050, -6, "thengar"));
+
+                    //carrots row 1
+                    scenicList.push(new Scenery("carrotPlant", 52936, -6158, -0.5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 17, -6158, 4.5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 34, -6158, 2.5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 51, -6158, 5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 68, -6158, 2, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 85, -6158, -2.5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 102, -6158, 4, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 119, -6158, -3.25, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 136, -6158, 3, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 153, -6158, 1.5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 170, -6158, -5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 187, -6158, -2, "thengar"));
+                    //carrots row 2
+                    scenicList.push(new Scenery("carrotPlant", 52936, -6158 + 10, -4.3, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 17, -6158 + 20, 2.3, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 34, -6158 + 20, 2, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 51, -6158 + 20, 8, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 68, -6158 + 20, 6, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 85, -6158 + 20, -5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 102, -6158 + 20, 3, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 119, -6158 + 20, -21, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 136, -6158 + 20, 6, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 153, -6158 + 20, 7.5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 170, -6158 + 20, -2, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 187, -6158 + 20, -3, "thengar"));
+                    //carrots row 3
+                    scenicList.push(new Scenery("carrotPlant", 52936, -6158 - 20, -0.9, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 17, -6158 - 20, 4.4, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 34, -6158 - 20, 4.9, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 51, -6158 - 20, 1.3, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 68, -6158 - 20, 3.6, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 85, -6158 - 20, -12.2, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 102, -6158 - 20, 2.6, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 119, -6158 - 20, -2, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 136, -6158 - 20, 1, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 153, -6158 - 20, 6, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 170, -6158 - 20, -7, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 187, -6158 - 20, -4, "thengar"));
+
+                    //carrots row 1
+                    scenicList.push(new Scenery("carrotPlant", 52936, -6158 - 95, -0.5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 17, -6158 - 95, 4.5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 34, -6158 - 95, 2.5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 51, -6158 - 95, 5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 68, -6158 - 95, 2, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 85, -6158 - 95, -2.5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 102, -6158 - 95, 4, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 119, -6158 - 95, -3.25, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 136, -6158 - 95, 3, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 153, -6158 - 95, 1.5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 170, -6158 - 95, -5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 187, -6158 - 95, -2, "thengar"));
+                    //carrots row 2
+                    scenicList.push(new Scenery("carrotPlant", 52936, -6158 - 75, -4.3, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 17, -6158 - 75, 2.3, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 34, -6158 - 75, 2, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 51, -6158 - 75, 8, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 68, -6158 - 75, 6, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 85, -6158 - 75, -5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 102, -6158 - 75, 3, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 119, -6158 - 75, -21, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 136, -6158 - 75, 6, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 153, -6158 - 75, 7.5, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 170, -6158 - 75, -2, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 187, -6158 - 75, -3, "thengar"));
+                    //carrots row 3
+                    scenicList.push(new Scenery("carrotPlant", 52936, -6158 - 115, -0.9, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 17, -6158 - 115, 4.4, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 34, -6158 - 115, 4.9, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 51, -6158 - 115, 1.3, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 68, -6158 - 115, 3.6, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 85, -6158 - 115, -12.2, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 102, -6158 - 115, 2.6, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 119, -6158 - 115, -2, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 136, -6158 - 115, 1, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 153, -6158 - 115, 6, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 170, -6158 - 115, -7, "thengar"));
+                    scenicList.push(new Scenery("carrotPlant", 52936 + 187, -6158 - 115, -4, "thengar"));
+
+                    scenicList.push(new Scenery("potatoPlant", 53220, -6287, -1.1, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 30, -6287, -5, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 60, -6287, 3.72, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 90, -6287, 1.8, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 120, -6287, 6.72, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 150, -6287, -5, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 180, -6287, 5, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 210, -6287, 1, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 240, -6287, -3, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 270, -6287, -9, "thengar"));
+
+                    scenicList.push(new Scenery("potatoPlant", 53220, -6287 + 70, -4.1, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 30, -6287 + 70, -5, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 60, -6287 + 70, 7.62, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 90, -6287 + 70, 11, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 120, -6287 + 70, 32, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 150, -6287 + 70, -3, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 180, -6287 + 70, 4, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 210, -6287 + 70, 1, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 240, -6287 + 70, -7, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 270, -6287 + 70, -55, "thengar"));
+
+                    scenicList.push(new Scenery("potatoPlant", 53220, -6287 + 140, -2, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 30, -6287 + 140, -3, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 60, -6287 + 140, 1.46, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 90, -6287 + 140, 7.9, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 120, -6287 + 140, -3.6, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 150, -6287 + 140, 4.75, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 180, -6287 + 140, -5, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 210, -6287 + 140, -1, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 240, -6287 + 140, 1.7, "thengar"));
+                    scenicList.push(new Scenery("potatoPlant", 53220 + 270, -6287 + 140, 4, "thengar"));
+                }
+                        //redbrick farm
+                //column 1
+                scenicList.push(new Scenery("harstPlant", 53546 - 10, -7267, 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 - 10, -7267 - (44 * 1), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 - 10, -7267 - (44 * 2), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 - 10, -7267 - (44 * 3), 4, "thengar"));
+
+                scenicList.push(new Scenery("harstPlant", 53546 - 10, -7267 - (44 * 5), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 - 10, -7267 - (44 * 6), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 - 10, -7267 - (44 * 7), 4, "thengar"));
+
+                scenicList.push(new Scenery("harstPlant", 53546 - 10, -7267 - (44 * 9), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 - 10, -7267 - (44 * 10), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 - 10, -7267 - (44 * 11), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 - 10, -7267 - (44 * 12), 4, "thengar"));
+
+                //column 2
+                scenicList.push(new Scenery("harstPlant", 53546 + 70, -7267, 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 70, -7267 - (44 * 1), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 70, -7267 - (44 * 2), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 70, -7267 - (44 * 3), 4, "thengar"));
+
+                scenicList.push(new Scenery("harstPlant", 53546 + 70, -7267 - (44 * 5), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 70, -7267 - (44 * 6), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 70, -7267 - (44 * 7), 4, "thengar"));
+
+                scenicList.push(new Scenery("harstPlant", 53546 + 70, -7267 - (44 * 9), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 70, -7267 - (44 * 10), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 70, -7267 - (44 * 11), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 70, -7267 - (44 * 12), 4, "thengar"));
+
+                //column 3
+                scenicList.push(new Scenery("harstPlant", 53546 + 150, -7267, 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 150, -7267 - (44 * 1), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 150, -7267 - (44 * 2), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 150, -7267 - (44 * 3), 4, "thengar"));
+
+                scenicList.push(new Scenery("harstPlant", 53546 + 150, -7267 - (44 * 5), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 150, -7267 - (44 * 6), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 150, -7267 - (44 * 7), 4, "thengar"));
+
+                scenicList.push(new Scenery("harstPlant", 53546 + 150, -7267 - (44 * 9), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 150, -7267 - (44 * 10), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 150, -7267 - (44 * 11), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 150, -7267 - (44 * 12), 4, "thengar"));
+
+                //column 4
+                scenicList.push(new Scenery("harstPlant", 53546 + 230, -7267, 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 230, -7267 - (44 * 1), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 230, -7267 - (44 * 2), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 230, -7267 - (44 * 3), 4, "thengar"));
+
+                scenicList.push(new Scenery("harstPlant", 53546 + 230, -7267 - (44 * 5), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 230, -7267 - (44 * 6), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 230, -7267 - (44 * 7), 4, "thengar"));
+
+                scenicList.push(new Scenery("harstPlant", 53546 + 230, -7267 - (44 * 9), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 230, -7267 - (44 * 10), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 230, -7267 - (44 * 11), 4, "thengar"));
+                scenicList.push(new Scenery("harstPlant", 53546 + 230, -7267 - (44 * 12), 4, "thengar"));
                 //scenicList.push(new Scenery("haeflowerPlant", 15185, 4442, 4, true));
 
                 change = "s1w5";
@@ -7698,6 +8091,80 @@ function buildMaster()
                 }
 
                 change = "sagesCache";
+            }
+        }
+    }
+    else if (map == "lethikCityPrison")
+    {
+        if (region == "lethikCityPrison")
+        {
+            if (change != "lethikCityPrison")
+            {
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (!ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //barriers
+                barrierList.push(new Barrier(1000, -66, 720, 70, true));
+                barrierList.push(new Barrier(-275, -66, 720, 70, true));
+                barrierList.push(new Barrier(-291, -99, 70, 1320, true));
+                barrierList.push(new Barrier(-291, 577, 70, 1320, true));
+
+                //scenery
+                scenicList.push(new Scenery("ladder", 373, 465, 0 * Math.PI, [53014, -6700], "world"));
+                //units
+                ArtificialIntelligenceAccess.push(new Unit(467, 434, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 7, speed: 1.38, outfit: ["chainArmour", 7], weapon: ["thenganSword", [10, 5], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[]}));
+                ArtificialIntelligenceAccess.push(new Unit(852, 495, "Soldier", false, "Slave Man", {race: "Kel", faction: "arena2", con: 1.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.45, 0.3], 0, 0, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(855, 252, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 1.15, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(869, 284, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(794, 248, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(520, 319, "Soldier", false, "Slave Man", {race: "Kel", faction: "arena2", con: 1.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.45, 0.3], 0, 0, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(178, 505, "Soldier", false, "Slave Man", {race: "Kel", faction: "Kel", con: 1.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.45, 0.3], 0, 0, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(304, 388, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 7, speed: 1.38, outfit: ["chainArmour", 7], weapon: ["thenganSword", [10, 5], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[]}));
+                ArtificialIntelligenceAccess.push(new Unit(374, 192, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 2, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(389, 114, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(50, 25, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(4, 41, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-14, 74, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.75, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(41, 287, "Soldier", false, "Slave Man", {race: "Kel", faction: "arena2", con: 1.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.45, 0.3], 0, 0, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-70, 429, "Soldier", false, "Slave Man", {race: "Kel", faction: "arena2", con: 1.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.45, 0.3], 0, 0, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(623, 53, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 1.15, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+
+                //If not noble or royal and thengan the guards will attack you for trespassing.
+                if (player.raceName != "Thengar" || player.title != "Nobility" && player.title != "Royalty")
+                {
+                    console.log("pass");
+                    for (var ii = 0; ii < ArtificialIntelligenceAccess.length; ii++)
+                    {
+                        if (ArtificialIntelligenceAccess[ii].team == "Thengar")
+                        {
+                            ArtificialIntelligenceAccess[ii].disturbedTime = new Date().getTime();
+                        }
+                    }
+                }
+
+                change = "lethikCityPrison";
             }
         }
     }

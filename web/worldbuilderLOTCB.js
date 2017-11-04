@@ -94,7 +94,7 @@ function worldBuilder()
             elevation = 0;
             region = "s1w4";
             outlineBuilder( 34, 34, "crag", -156, 14);
-            outlineBuilder( 1, 34, "greenGrass", -156, 14);
+            //outlineBuilder( 1, 34, "greenGrass", -156, 14);
         }
         //mapS1W5 //TODO make the map (Lethik City)
         if (Y > -14144 && Y < -3328 && X < 58680 && X > 47082) //X-5
@@ -103,7 +103,26 @@ function worldBuilder()
             region = "s1w5";
 
             outlineBuilder( 34, 34, "hotGrass", -190, 14);
-            outlineBuilder( 1, 34, "greenGrass", -190, 14);
+            outlineBuilder( 8, 5, "thenganBrick", -170, 27);
+            outlineBuilder( 3, 8, "thenganBrick", -174, 24);
+            outlineBuilder( 1, 2, "brickRoad", -169, 32); //
+            outlineBuilder( 8, 1, "brickRoad", -170, 27);
+            outlineBuilder( 4, 1, "brickRoad", -175, 24);
+            outlineBuilder( 1, 4, "brickRoad", -174, 27);
+            outlineBuilder( 1, 4, "brickRoad", -170, 27);
+            outlineBuilder( 1, 10, "brickRoad", -175, 23);
+            outlineBuilder( 11, 1, "brickRoad", -166, 24);
+            outlineBuilder( 1, 5, "brickRoad", -170, 35);
+            outlineBuilder( 1, 25, "brickRoad", -190, 30);
+            outlineBuilder( 24, 5, "crag", -161, 20);
+            outlineBuilder( 4, 4, "crag", -160, 44);
+            outlineBuilder( 5, 3, "crag", -159, 15);
+            outlineBuilder( 1, 2, "crag", -158, 14);
+            outlineBuilder( 2, 1, "crag", -160, 16);
+            outlineBuilder( 13, 2, "crag", -163, 25);
+            outlineBuilder( 4, 1, "crag", -162, 38);
+            outlineBuilder( 1, 1, "crag", -161, 47);
+            //outlineBuilder( 1, 34, "greenGrass", -190, 14);
 
         }
         //Layer 0 (cold region): elev 0
@@ -544,6 +563,21 @@ function buildMaster()
                     if (hits == 0)
                     {
                         ArtificialIntelligenceAccess.push(new Unit(-341, -24, "Soldier", false, "Jarl Orjov Tor", {race: "Freynor", faction: "Freynor", con: 40, speed: 0.6, outfit: ["jvostranPlateArmour", 42], weapon: ["freydicGreatSword", [37, 20], 0, 37, 5], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 2, patrolLoop: true, route:[[-341, -24], [-341, -24]]}));
+                    }
+                }
+                if (uniqueChars.pynskeLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Ser Olis Pynske")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-514, 277, "Soldier", false, "Ser Olis Pynske", {race: "Freynor", faction: "Freynor", con: 20, speed: 0.55, outfit: ["jvostranPlateArmour", 37.5], weapon: ["freydicGreatSword", [25, 14], 0, 37, 5.5], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 2, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
                     }
                 }
                 if (uniqueChars.laandegLDS == true)
@@ -1914,7 +1948,7 @@ function buildMaster()
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
-                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee || ArtificialIntelligenceAccess[i].team == "arena1" || ArtificialIntelligenceAccess[i].team == "arena2" || ArtificialIntelligenceAccess[i].team == "arena3")
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                         console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
@@ -1938,9 +1972,1713 @@ function buildMaster()
                 barrierList = [];
 
                 //REGION CREATION
+                //characters
+                    //unique AND non-unique only by necessity
+                if (uniqueChars.bameyLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Bamey the Huntsman")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51563, -9805, "Person", false, "Bamey the Huntsman", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["boulchomLeatherArmour", 1.5], weapon: ["longbow", [0.2, 0.25], 0, 1, 1.1], ranged: [true, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 36], [new Item("longbow", false, false), 3], [new Item("arrow", false, false), 160], [new Item("steelArrow", false, false), 80], [new Item("beartrap", false, false), 4]]}));
+                        ArtificialIntelligenceAccess[i].health = 37;
+                    }
+                }
+
+                if (uniqueChars.bruneldaLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Brunelda the Merchant")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(50986, -9534, "Person", false, "Brunelda the Merchant", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 1.3], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 65], [new Item("skolPelt", false, false), 3], [new Item("mountainFrichPelt", false, false), 1], [new Item("boulchomPelt", false, false), 2], [new Item("wood", false, false), 5], [new Item("fireStarter", false, false), 2], [new Item("jarOfOil", false, false), 2], [new Item("oilLampEmpty", false, false), 2], [new Item("bucket", false, false), 3], [new Item("tent", false, false), 1], [new Item("hammer", false, false), 2], [new Item("pickaxe", false, false), 4], [new Item("timberAxe", false, false), 1], [new Item("harstGrain", false, false), 18]]}));
+                        ArtificialIntelligenceAccess[i].health = 4;
+                    }
+                }
+
+                if (uniqueChars.gerlachLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Gerlach the Butcher")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51564, -9414, "Person", false, "Gerlach the Butcher", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["none", 0], weapon: ["timberAxe", [10, 4], 2, 19, 1.5], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 43], [new Item("rawBearFlesh", false, false), 4], [new Item("rawRabbitFlesh", false, false), 7], [new Item("rawBoulchomFlesh", false, false), 3]]}));
+                        ArtificialIntelligenceAccess[i].health = 8;
+                    }
+                }
+
+                if (uniqueChars.johannaLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Johanna the Herbalist")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51560, -8907, "Person", false, "Johanna the Herbalist", {race: "Thengar", faction: "Thengar", personality: "scared", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.3, 0.25], 0, 0, 1.4], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 50], [new Item("hydroraSalve", false, false), 2], [new Item("culprisBandage", false, false), 4], [new Item("kofkeLeaves", false, false), 6], [new Item("steugiurneFlower", false, false), 2], [new Item("thalisLeaf", false, false), 4], [new Item("viperSnakeSkin", false, false), 2], [new Item("lizardTail", false, false), 7], [new Item("glassJar", false, false), 6], [new Item("potionGlass", false, false), 5]]}));
+                        ArtificialIntelligenceAccess[i].health = 3;
+                    }
+                }
+
+                if (uniqueChars.lenaLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Lena")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51499, -8933, "Person", false, "Lena", {race: "Thengar", faction: "Thengar", personality: "scared", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.03, 0.025], 0, 0, 1], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], kid: true}));
+                        ArtificialIntelligenceAccess[i].health = 1;
+                    }
+                }
+
+                if (uniqueChars.cherylLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Cheryl the Tailor")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51263, -9776, "Person", false, "Cheryl the Tailor", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.25, 0.25], 0, 1, 1.25], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 29], [new Item("boulchomLeatherArmour", false, false), 2], [new Item("boulchomLeatherBoots", false, false), 2], [new Item("boulchomLeatherGloves", false, false), 3], [new Item("blackBearFurClothing", false, false), 2], [new Item("blackBearLeatherArmour", false, false), 1], [new Item("hoffalgreFurCloak", false, false), 8]]}));
+                        ArtificialIntelligenceAccess[i].health = 3;
+                    }
+                }
+
+                if (uniqueChars.adolfLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Adolf the Pit Fighter")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        if (quests.swordDeliveryQuest == "complete")
+                        {
+                            if (quests.swordDeliveryFight)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51493, -8252, "Soldier", false, "Adolf the Pit Fighter", {race: "Thengar", faction: "arena1", con: 10, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [9, 4], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51645, -8388, "Soldier", false, "Adolf the Pit Fighter", {race: "Thengar", faction: "Thengar", con: 10, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [9, 4], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
+                            }
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51645, -8388, "Soldier", false, "Adolf the Pit Fighter", {race: "Thengar", faction: "Thengar", con: 10, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["none", [0.5, 0.6], 0, 1, 0.9], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
+                        }
+                    }
+                }
+
+                if (uniqueChars.markosLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Markos the Pit Master")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(50858, -8123, "Soldier", false, "Markos the Pit Master", {race: "Thengar", faction: "Thengar", con: 22, speed: 0.85, outfit: ["thenganPlateArmour", 19], weapon: ["flail", [26, 10], 14, 63, 3.6], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
+                    }
+                }
+
+                if (uniqueChars.friedrichLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Beulingerr Commander Friedrich")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51236, -7402, "Soldier", false, "Beulingerr Commander Friedrich", {race: "Thengar", faction: "Thengar", con: 26, speed: 0.88, outfit: ["thenganPlateArmour", 22], weapon: ["thenganWarhammer", [30, 20], 20, 48, 5.75], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
+                    }
+                }
+
+                if (uniqueChars.ederhalLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Ederhal the Innkeeper")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(50569, -10420, "Person", false, "Ederhal the Innkeeper", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.3, 0.4], 0, 1, 1.15], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 69], [new Item("bearMeat", false, false), 3], [new Item("rabbitMeat", false, false), 5], [new Item("harstAle", false, false), 39], [new Item("harstBread", false, false), 1], [new Item("vel", false, false), 4]]}));
+                        ArtificialIntelligenceAccess[i].health = 13;
+                    }
+                }
+
+                if (uniqueChars.naokoLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Naoko the Banker")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(50956, -9146, "Person", false, "Naoko the Banker", {race: "Orgell", faction: "Thengar", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.2, 0.1], 0, 0, 1.2], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 0, patrolLoop: false, route:[[2200, 1460]], banker: true}));
+                    }
+                }
+
+                if (uniqueChars.dagmarLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Dagmar the Smith")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51270, -9539, "Person", false, "Dagmar the Smith", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["none", 0], weapon: ["thenganSword", [8, 5], 0, 16, 1.45], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 240], [new Item("steel", false, false), 6], [new Item("iron", false, false), 4], [new Item("mace", false, false), 4], [new Item("thenganDagger", false, false), 3], [new Item("longsword", false, false), 4], [new Item("thenganSwordAndShield", false, false), 1], [new Item("longSpikedMorningStar", false, false), 2], [new Item("thenganWarhammer", false, false), 1], [new Item("flail", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("thenganPlateArmour", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("pickaxe", false, false), 2]]}));
+                        ArtificialIntelligenceAccess[i].health = 46;
+                    }
+                    ArtificialIntelligenceAccess.push(new Unit(51352, -9394, "Person", false, "Blacksmith's Apprentice", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["none", 0], weapon: ["hammer", [2, 1.5], 3, 12, 1.35], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[1793, 314]]}));
+                }
+                else if (uniqueChars.lennardLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Lennard the Smith")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51270, -9539, "Person", false, "Lennard the Smith", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 1, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 60], [new Item("steel", false, false), 2], [new Item("iron", false, false), 1], [new Item("mace", false, false), 1], [new Item("thenganDagger", false, false), 1], [new Item("longsword", false, false), 1], [new Item("longSpikedMorningStar", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("pickaxe", false, false), 3]]}));
+                        ArtificialIntelligenceAccess[i].health = 9;
+                    }
+                    ArtificialIntelligenceAccess.push(new Unit(51352, -9394, "Person", false, "Blacksmith's Apprentice", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["none", 0], weapon: ["hammer", [2, 1.5], 3, 12, 1.35], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[1793, 314]]}));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(51270, -9539, "Person", false, "Journeyman Blacksmith", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.1], 0, 1, 1.2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 20], [new Item("steel", false, false), 1], [new Item("iron", false, false), 1], [new Item("mace", false, false), 1], [new Item("thenganDagger", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("pickaxe", false, false), 1]]}));
+                }
+
+                //a well known thengan mercenary crew's captain.
+                if (uniqueChars.kronheimeLDS == true && quests.theBalgurMercenariesQuest == false || uniqueChars.kronheimeLDS == true && quests.theBalgurMercenariesQuest == "complete")
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Mercenary Captain Kronheime")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51243, -7210, "Soldier", false, "Mercenary Captain Kronheime", {race: "Thengar", faction: "TheBalgurMercenaries", con: 20, speed: 1.3, outfit: ["balgurCaptainArmour", 7], weapon: ["flail", [25, 7], 11, 63, 3.1], ranged: [false, "arrow", 7, 1800, 1, 6, 0, "none", 2.4], patrolStops: 0, patrolLoop: false, route:[[1654, 1507], [1661, 2311], [1864, 2315], [1852, 1499]]}));
+                    }
+                }
+                else if (uniqueChars.kronheimeLDS == false)
+                {
+                    if (uniqueChars.barretLDS == true)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Mercenary Captain Barret")
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51243, -7210, "Soldier", false, "Mercenary Captain Barret", {race: "Thengar", faction: "TheBalgurMercenaries", con: 24, speed: 1.25, outfit: ["balgurCaptainArmour", 7], weapon: ["thenganWarhammer", [26, 26], 20, 47, 5], ranged: [false, "arrow", 7, 1800, 1, 6, 0, "none", 2.4], patrolStops: 0, patrolLoop: false, route:[[1654, 1507], [1661, 2311], [1864, 2315], [1852, 1499]]}));
+                        }
+                    }
+                }
+
+                //non-unique
+                    //balgur mercs
+                if (uniqueChars.kronheimeLDS == true || uniqueChars.barretLDS == true)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(51435, -6729, "Soldier", false, "Balgur Mercenary", {race: "Thengar", faction: "TheBalgurMercenaries", con: 12, speed: 1.2, outfit: ["balgurMercArmour", 5], weapon: ["longSpikedMorningStar", [13, 5], 14, 20, 2.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(51334, -6700, "Soldier", false, "Balgur Mercenary", {race: "Thengar", faction: "TheBalgurMercenaries", con: 9, speed: 1.25, outfit: ["balgurMercArmour", 4], weapon: ["longSpikedMorningStar", [11, 4], 14, 20, 2.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(51020, -6731, "Soldier", false, "Balgur Mercenary", {race: "Thengar", faction: "TheBalgurMercenaries", con: 11, speed: 1.3, outfit: ["balgurMercArmour", 4], weapon: ["longSpikedMorningStar", [12, 4], 14, 20, 2.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(51141, -6698, "Soldier", false, "Balgur Mercenary", {race: "Thengar", faction: "TheBalgurMercenaries", con: 13, speed: 1.225, outfit: ["balgurMercArmour", 4.5], weapon: ["longSpikedMorningStar", [14, 6], 14, 20, 2.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(51398, -6934, "Soldier", false, "Balgur Mercenary", {race: "Thengar", faction: "TheBalgurMercenaries", con: 8, speed: 1.175, outfit: ["balgurMercArmour", 3.5], weapon: ["longSpikedMorningStar", [10, 3], 14, 20, 2.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(51083, -7027, "Soldier", false, "Balgur Mercenary", {race: "Thengar", faction: "TheBalgurMercenaries", con: 14, speed: 1.3, outfit: ["balgurMercArmour", 5], weapon: ["longSpikedMorningStar", [14, 7], 14, 20, 2.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(50894, -6932, "Soldier", false, "Balgur Mercenary", {race: "Thengar", faction: "TheBalgurMercenaries", con: 15, speed: 1.4, outfit: ["balgurMercArmour", 5], weapon: ["longSpikedMorningStar", [16, 6.5], 14, 20, 2.3], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(51567, -6939, "Soldier", false, "Balgur Mercenary", {race: "Thengar", faction: "TheBalgurMercenaries", con: 12, speed: 1.2, outfit: ["balgurMercArmour", 5], weapon: ["longSpikedMorningStar", [13, 5], 14, 20, 2.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                }
+                    //adolf arena fight v skols
+                if (quests.swordDeliveryFight && uniqueChars.adolfLDS == true && quests.swordDeliveryQuest == "complete")
+                {
+                    quests.swordDeliveryFight = false;
+                    ArtificialIntelligenceAccess.push(new Unit(51308, -8021, "Skol", false, "arena2"));
+                    ArtificialIntelligenceAccess.push(new Unit(51038, -8134, "Skol", false, "arena2"));
+                }
+
+                if (quests.kellExecution == "beasts")
+                {
+                    var rnd = Math.random();
+                    if (rnd > 0.64)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51509, -7990, "Skol", false, "arena1"));
+                        ArtificialIntelligenceAccess.push(new Unit(51508, -8245, "Skol", false, "arena1"));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51309, -8098, "Nog", false, "arena1"));
+                        ArtificialIntelligenceAccess.push(new Unit(51392, -8021, "Nog", false, "arena1"));
+                        ArtificialIntelligenceAccess.push(new Unit(51526, -8100, "Nog", true, "arena1"));
+                        ArtificialIntelligenceAccess.push(new Unit(51438, -8223, "Nog", false, "arena1"));
+                    }
+
+                    rnd = Math.random();
+                    if (rnd > 0.3333)
+                    {
+                        //kell soldier (prisoner)
+                        ArtificialIntelligenceAccess.push(new Unit(51178, -8128, "Soldier", false, "War Prisoner", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.3, 0.35], 0, 0, 1.1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    }
+                    else
+                    {
+                        //kell family
+                        if (Math.round(Math.random()))
+                        {
+                            if (Math.round(Math.random()))
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51178, -8145, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51101, -8198, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51056, -8124, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51048, -8191, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51077, -8171, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51079, -8218, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                        }
+                        else
+                        {
+                            if (Math.round(Math.random()))
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51048, -8146, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51077, -8126, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51079, -8173, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51154, -8213, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51107, -8264, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51239, -8035, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51182, -8089, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                        }
+                    }
+                    quests.kellExecution = false;
+                }
+                else if (quests.kellExecution == "champion")
+                {
+                    var rnd = Math.random();
+                    if (rnd > 0.7)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 14, speed: 1.38, outfit: ["blackBearLeatherArmour", 6], weapon: ["smashStick", [12, 11], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    }
+                    else if (rnd > 0.4)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 13, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    }
+                    else if (rnd > 0.1)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 9, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 6, speed: 0.73, outfit: ["thenganPlateArmour", 14], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    }
+
+                    rnd = Math.random();
+                    if (rnd > 0.3333)
+                    {
+                        //kell soldier (prisoner)
+                        ArtificialIntelligenceAccess.push(new Unit(51178, -8128, "Soldier", false, "War Prisoner", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.3, 0.35], 0, 0, 1.1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    }
+                    else
+                    {
+                        //kell family
+                        if (Math.round(Math.random()))
+                        {
+                            if (Math.round(Math.random()))
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51178, -8145, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51101, -8198, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51056, -8124, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51048, -8191, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51077, -8171, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51079, -8218, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                        }
+                        else
+                        {
+                            if (Math.round(Math.random()))
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51048, -8146, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51077, -8126, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51079, -8173, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51154, -8213, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51107, -8264, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51239, -8035, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51182, -8089, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                        }
+                    }
+                    quests.kellExecution = false;
+                }
+                else if (quests.pitFight == "spectacle")
+                {
+                    var rndm = Math.random();
+                    if (rndm > 0.9)
+                    {
+                        var rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 13, speed: 1.41, outfit: ["blackBearLeatherArmour", 6], weapon: ["longSpikedMorningStar", [15, 5], 14, 20, 2.35], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 14, speed: 0.9, outfit: ["skolLeatherArmour", 3], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 8, speed: 1.3, outfit: ["boulchomLeatherArmour", 2], weapon: ["smashStick", [12, 11], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 10, speed: 0.79, outfit: ["thenganPlateArmour", 14], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.65)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51061, -8126, "Soldier", false, "Alzkwaya Tribal", {race: "Kel", faction: "arena2", con: 13, speed: 1.5, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [8, 4], 3, 12, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(50987, -8126, "Soldier", false, "Alzkwaya Slave Man", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["mofuTribalWear", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(50950, -8085, "Soldier", false, "Alzkwaya Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["mofuTribalWear", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(50960, -8178, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["mofuTribalWear", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.32)
+                        {
+                            if (Math.random() > 0.65)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51061, -8126, "Soldier", false, "Echlin Tribal", {race: "Kel", faction: "arena2", con: 17, speed: 1.37, outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [16, 0], 8, 16, 1.25], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(50987, -8126, "Soldier", false, "Echlin Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["naapridLeatherArmour", 4], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(50960, -8178, "Soldier", false, "Echlin Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["naapridLeatherArmour", 1.5], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(50950, -8085, "Soldier", false, "Echlin Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["naapridLeatherArmour", 1.5], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51099, -8071, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena2", con: 0.5, speed: 0.9, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [4, 0], 1, 4, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51083, -8156, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena2", con: 0.5, speed: 0.9, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [2, 1], 0.5, 4, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(50992, -8109, "Soldier", false, "Echlin Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0.82, outfit: ["naapridLeatherArmour", 1.5], weapon: ["hammer", [1, 0.8], 0.35, 0, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                    }
+                    else if (rndm > 0.849)
+                    {
+                        var rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 14, speed: 1.38, outfit: ["blackBearLeatherArmour", 6], weapon: ["smashStick", [12, 11], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 13, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 9, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 6, speed: 0.73, outfit: ["thenganPlateArmour", 14], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.3333)
+                        {
+                            //kell soldier (prisoner)
+                            ArtificialIntelligenceAccess.push(new Unit(51178, -8128, "Soldier", false, "War Prisoner", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.3, 0.35], 0, 0, 1.1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            //kell family
+                            if (Math.round(Math.random()))
+                            {
+                                if (Math.round(Math.random()))
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(51178, -8145, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51101, -8198, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51056, -8124, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(51048, -8191, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51077, -8171, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51079, -8218, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                }
+                            }
+                            else
+                            {
+                                if (Math.round(Math.random()))
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(51048, -8146, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51077, -8126, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51079, -8173, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(51154, -8213, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51107, -8264, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51239, -8035, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51182, -8089, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                }
+                            }
+                        }
+                    }
+                    else if (rndm > 0.8)
+                    {
+                        var rnd = Math.random();
+                        if (rnd > 0.64)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51509, -7990, "Skol", false, "arena1"));
+                            ArtificialIntelligenceAccess.push(new Unit(51508, -8245, "Skol", false, "arena1"));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51309, -8098, "Nog", false, "arena1"));
+                            ArtificialIntelligenceAccess.push(new Unit(51392, -8021, "Nog", false, "arena1"));
+                            ArtificialIntelligenceAccess.push(new Unit(51526, -8100, "Nog", true, "arena1"));
+                            ArtificialIntelligenceAccess.push(new Unit(51438, -8223, "Nog", false, "arena1"));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.3333)
+                        {
+                            //kell soldier (prisoner)
+                            ArtificialIntelligenceAccess.push(new Unit(51178, -8128, "Soldier", false, "War Prisoner", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.3, 0.35], 0, 0, 1.1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            //kell family
+                            if (Math.round(Math.random()))
+                            {
+                                if (Math.round(Math.random()))
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(51178, -8145, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51101, -8198, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51056, -8124, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(51048, -8191, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51077, -8171, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51079, -8218, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                }
+                            }
+                            else
+                            {
+                                if (Math.round(Math.random()))
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(51048, -8146, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51077, -8126, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51079, -8173, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(51154, -8213, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51107, -8264, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51239, -8035, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51182, -8089, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                }
+                            }
+                        }
+                    }
+                    else if (rndm > 0.749)
+                    {
+                        var rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51486, -8114, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 15, speed: 1.42, outfit: ["blackBearLeatherArmour", 6], weapon: ["thenganSword", [9, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51486, -8114, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 16, speed: 1, outfit: ["skolLeatherArmour", 3], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51486, -8114, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 11, speed: 1.25, outfit: ["boulchomLeatherArmour", 2], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51486, -8114, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 10, speed: 0.66, outfit: ["thenganPlateArmour", 14], weapon: ["smashStick", [12, 11], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.50)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(50978, -8134, "Soldier", false, "Echlin Tribal", {race: "Kel", faction: "arena2", con: 15, speed: 1.55, outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [16, 0], 8, 16, 1.25], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else //when I come up with more kellish tribes add more exemplary soldiers.
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(50978, -8134, "Soldier", false, "Alzkwaya Tribal", {race: "Kel", faction: "arena2", con: 15, speed: 1.55, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [8, 4], 3, 12, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                    }
+                    else if (rndm > 0.7)
+                    {
+                        var rnd = Math.random();
+                        if (rnd > 0.45)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51450, -8126, "Skol", true, "arena1"));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51452, -8027, "BlackBear", true, "arena1"));
+                            ArtificialIntelligenceAccess.push(new Unit(51450, -8126, "BlackBear", true, "arena1"));
+                            ArtificialIntelligenceAccess.push(new Unit(51453, -8249, "BlackBear", true, "arena1"));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.50)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(50978, -8134, "Soldier", false, "Echlin Tribal", {race: "Kel", faction: "arena2", con: 15, speed: 1.55, outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [16, 0], 8, 16, 1.25], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else //when I come up with more kellish tribes add more exemplary soldiers.
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(50978, -8134, "Soldier", false, "Alzkwaya Tribal", {race: "Kel", faction: "arena2", con: 15, speed: 1.55, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [8, 4], 3, 12, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                    }
+                    else if (rndm > 0.6)
+                    {
+
+                        var rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51486, -8114, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 16, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51486, -8114, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 13, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51486, -8114, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 19, speed: 1, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51486, -8114, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 14, speed: 0.7, outfit: ["thenganPlateArmour", 17], weapon: ["smashStick", [13, 12], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.45)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51058, -8130, "Skol", true, "arena2"));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51037, -7990, "BlackBear", true, "arena2"));
+                            ArtificialIntelligenceAccess.push(new Unit(51058, -8130, "BlackBear", true, "arena2"));
+                            ArtificialIntelligenceAccess.push(new Unit(51001, -8284, "BlackBear", true, "arena2"));
+                        }
+                    }
+                    else if (rndm > 0.5)
+                    {
+                        var rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 14, speed: 1.38, outfit: ["blackBearLeatherArmour", 6], weapon: ["smashStick", [12, 11], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 13, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 9, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 6, speed: 0.73, outfit: ["thenganPlateArmour", 14], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.64)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51047, -8014, "Skol", false, "arena2"));
+                            ArtificialIntelligenceAccess.push(new Unit(51038, -8262, "Skol", false, "arena2"));
+                            if (Math.round(Math.random()))
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51007, -8084, "Skol", false, "arena2"));
+                            }
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51047, -8014, "Nog", true, "arena2"));
+                            ArtificialIntelligenceAccess.push(new Unit(51038, -8262, "Nog", false, "arena2"));
+                            ArtificialIntelligenceAccess.push(new Unit(50969, -8097, "Nog", true, "arena2"));
+                            ArtificialIntelligenceAccess.push(new Unit(51107, -8156, "Nog", false, "arena2"));
+                            ArtificialIntelligenceAccess.push(new Unit(51173, -8076, "Nog", false, "arena2"));
+                        }
+                    }
+                    else if (rndm > 0.4)
+                    {
+                        var rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8126, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 14, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8126, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8126, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 17, speed: 1, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8126, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 12, speed: 0.7, outfit: ["thenganPlateArmour", 16], weapon: ["smashStick", [13, 12], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8132, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 15, speed: 1.38, outfit: ["blackBearLeatherArmour", 6], weapon: ["smashStick", [12, 11], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8132, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 14, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8132, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8132, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 19, speed: 0.65, outfit: ["thenganPlateArmour", 15], weapon: ["thenganWarhammer", [26, 16], 19, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                    }
+                    else if (rndm > 0.3)
+                    {
+                        var rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 14, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 17, speed: 1, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 12, speed: 0.7, outfit: ["thenganPlateArmour", 16], weapon: ["smashStick", [13, 12], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 15, speed: 1.38, outfit: ["blackBearLeatherArmour", 6], weapon: ["smashStick", [12, 11], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 14, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 19, speed: 0.65, outfit: ["thenganPlateArmour", 15], weapon: ["thenganWarhammer", [26, 16], 19, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 15, speed: 1.38, outfit: ["blackBearLeatherArmour", 6], weapon: ["smashStick", [12, 11], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 14, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 19, speed: 0.65, outfit: ["thenganPlateArmour", 15], weapon: ["thenganWarhammer", [26, 16], 19, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 14, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 17, speed: 1, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 12, speed: 0.7, outfit: ["thenganPlateArmour", 16], weapon: ["smashStick", [13, 12], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                    }
+                    else if (rndm > 0.2)
+                    {
+                        var rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 15, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 12, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 18, speed: 1, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 13, speed: 0.7, outfit: ["thenganPlateArmour", 16], weapon: ["smashStick", [13, 12], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 16, speed: 1.38, outfit: ["blackBearLeatherArmour", 6], weapon: ["smashStick", [12, 11], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 15, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 11, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 20, speed: 0.65, outfit: ["thenganPlateArmour", 15], weapon: ["thenganWarhammer", [26, 16], 19, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.45)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51043, -8004, "Skol", true, "arena2"));
+                            ArtificialIntelligenceAccess.push(new Unit(51063, -8250, "Skol", true, "arena2"));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51041, -7995, "BlackBear", true, "arena2"));
+                            ArtificialIntelligenceAccess.push(new Unit(51065, -8069, "BlackBear", true, "arena2"));
+                            ArtificialIntelligenceAccess.push(new Unit(51084, -8179, "BlackBear", true, "arena2"));
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8264, "BlackBear", true, "arena2"));
+                        }
+                    }
+                    else if (rndm > 0.15)
+                    {
+                        var rnd = Math.random();
+                        if (rnd > 0.45)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51486, -8062, "Skol", false, "arena1"));
+                            ArtificialIntelligenceAccess.push(new Unit(51347, -8269, "Skol", false, "arena1"));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51520, -8118, "BlackBear", true, "arena1"));
+                        }
+
+                        rnd = Math.random();
+
+                        if (rnd > 0.49)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51079, -8019, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena2", con: 0.5, speed: 0.95, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [4, 0.5], 1, 4, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51008, -8134, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0.85, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [3, 1], 0.5, 4, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51130, -8114, "Soldier", false, "Echlin Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0.82, outfit: ["naapridLeatherArmour", 1.5], weapon: ["hammer", [1.5, 1], 0.25, 3, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51059, -8298, "Soldier", false, "Echlin Slave Boy", {race: "Kel", faction: "arena2", con: 0.5, speed: 0.89, outfit: ["naapridLeatherArmour", 1.5], weapon: ["hammer", [1, 1.5], 0, 3, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51079, -8019, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena2", con: 0.5, speed: 0.9, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [4, 0.5], 1, 4, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51008, -8134, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena2", con: 0.5, speed: 0.9, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [3, 1], 0.5, 4, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51130, -8114, "Soldier", false, "Echlin Slave Boy", {race: "Kel", faction: "arena2", con: 1, speed: 0.85, outfit: ["naapridLeatherArmour", 1.5], weapon: ["warHammer", [3.5, 2], 1, 3, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51059, -8298, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena2", con: 0.75, speed: 1, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [3, 1.5], 0.5, 4, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                    }
+                    else if (rndm > 0.1)
+                    {
+                        var rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 11, speed: 1.38, outfit: ["blackBearLeatherArmour", 6], weapon: ["smashStick", [12, 11], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 10, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 6, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 5, speed: 0.73, outfit: ["thenganPlateArmour", 14], weapon: ["thenganSword", [9, 6], 0, 16, 1.45], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+
+                        rnd = Math.random();
+
+                        if (rnd > 0.49)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51079, -8019, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena2", con: 0.5, speed: 0.95, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [4, 0.5], 1, 4, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51008, -8134, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0.85, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [3, 1], 0.5, 4, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51130, -8114, "Soldier", false, "Echlin Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0.82, outfit: ["naapridLeatherArmour", 1.5], weapon: ["hammer", [1.5, 1], 0.25, 3, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51059, -8298, "Soldier", false, "Echlin Slave Boy", {race: "Kel", faction: "arena2", con: 0.5, speed: 0.89, outfit: ["naapridLeatherArmour", 1.5], weapon: ["hammer", [1, 1.5], 0, 3, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51154, -8192, "Soldier", false, "Echlin Slave Boy", {race: "Kel", faction: "arena2", con: 1, speed: 0.85, outfit: ["naapridLeatherArmour", 1.5], weapon: ["warHammer", [3.5, 2], 1, 3, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51079, -8019, "Soldier", false, "Echlin Slave Boy", {race: "Kel", faction: "arena2", con: 0.5, speed: 0.89, outfit: ["naapridLeatherArmour", 1.5], weapon: ["hammer", [1, 1.5], 0, 3, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51008, -8134, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena2", con: 0.5, speed: 0.9, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [3, 1], 0.5, 4, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51130, -8114, "Soldier", false, "Echlin Slave Boy", {race: "Kel", faction: "arena2", con: 1, speed: 0.85, outfit: ["naapridLeatherArmour", 1.5], weapon: ["warHammer", [3.5, 2], 1, 3, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51059, -8298, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena2", con: 0.75, speed: 1, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [3, 1.5], 0.5, 4, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51154, -8192, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena2", con: 1, speed: 1.1, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [3, 1.75], 1, 4, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                    }
+                    else
+                    {
+                        var rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 14, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 17, speed: 1, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 12, speed: 0.7, outfit: ["thenganPlateArmour", 16], weapon: ["smashStick", [13, 12], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 15, speed: 1.38, outfit: ["blackBearLeatherArmour", 6], weapon: ["smashStick", [12, 11], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 14, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 19, speed: 0.65, outfit: ["thenganPlateArmour", 15], weapon: ["thenganWarhammer", [26, 16], 19, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51568, -8132, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 14, speed: 1.35, outfit: ["blackBearLeatherArmour", 6], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51568, -8132, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 18, speed: 1.3, outfit: ["skolLeatherArmour", 3], weapon: ["smashStick", [13, 12], 10, 30, 2.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51568, -8132, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 16, speed: 1.1, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51568, -8132, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 7, speed: 0.85, outfit: ["thenganPlateArmour", 20], weapon: ["thenganSword", [10, 7], 0, 16, 1.35], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 15, speed: 1.38, outfit: ["blackBearLeatherArmour", 6], weapon: ["smashStick", [12, 11], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 14, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 19, speed: 0.65, outfit: ["thenganPlateArmour", 15], weapon: ["thenganWarhammer", [26, 16], 19, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 14, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 17, speed: 1, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 12, speed: 0.7, outfit: ["thenganPlateArmour", 16], weapon: ["smashStick", [13, 12], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+
+                        rnd = Math.random();
+                        if (rnd > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 13, speed: 1.35, outfit: ["blackBearLeatherArmour", 6], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 12, speed: 1.3, outfit: ["skolLeatherArmour", 3], weapon: ["smashStick", [13, 12], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else if (rnd > 0.1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 16, speed: 1.1, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 13, speed: 0.85, outfit: ["thenganPlateArmour", 18], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                    }
+
+                    quests.pitFight = false;
+                }
+                else if (quests.pitFight == "bears")
+                {
+                    if (Math.round(Math.random()))
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51046, -8031, "BlackBear", true, "arena3"));
+                        ArtificialIntelligenceAccess.push(new Unit(51042, -8252, "BlackBear", true, "arena3"));
+                        if (Math.round(Math.random()))
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51001, -8140, "BlackBear", true, "arena3"));
+                        }
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51046, -8031, "BlackBear", false, "arena3"));
+                        ArtificialIntelligenceAccess.push(new Unit(51042, -8252, "BlackBear", false, "arena3"));
+                        ArtificialIntelligenceAccess.push(new Unit(51001, -8140, "BlackBear", false, "arena3"));
+                        if (Math.round(Math.random()))
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51160, -7975, "BlackBear", false, "arena3"));
+                            ArtificialIntelligenceAccess.push(new Unit(51166, -8301, "BlackBear", false, "arena3"));
+                        }
+                    }
+                }
+                else if (quests.pitFight == "skols")
+                {
+                    if (Math.round(Math.random()))
+                    {
+                        if (Math.round(Math.random()))
+                        {
+                            if (Math.round(Math.random()))
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51046, -8031, "Skol", true, "arena3"));
+                            }
+                            ArtificialIntelligenceAccess.push(new Unit(51042, -8252, "Skol", true, "arena3"));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51042, -8252, "Skol", false, "arena3"));
+                            ArtificialIntelligenceAccess.push(new Unit(51046, -8031, "Skol", false, "arena3"));
+                            if (Math.round(Math.random()))
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51001, -8140, "Skol", false, "arena3"));
+                            }
+                            else
+                            {
+                                if (Math.round(Math.random()))
+                                {
+                                    if (Math.round(Math.random()))
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(51160, -8000, "Skol", false, "arena3"));
+                                        ArtificialIntelligenceAccess.push(new Unit(51166, -8276, "Skol", false, "arena3"));
+                                    }
+                                    else
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(51162, -8012, "Skol", false, "arena3"));
+                                    }
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(51160, -8000, "Skol", false, "arena3"));
+                                    ArtificialIntelligenceAccess.push(new Unit(51166, -8276, "Skol", false, "arena3"));
+                                    if (Math.round(Math.random()))
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(51162, -8012, "Skol", false, "arena3"));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51042, -8252, "Skol", false, "arena3"));
+                        ArtificialIntelligenceAccess.push(new Unit(51046, -8031, "Skol", false, "arena3"));
+                        if (Math.round(Math.random()))
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51001, -8140, "Skol", false, "arena3"));
+                        }
+                    }
+                }
+                else if (quests.pitFight == "nogs")
+                {
+                    var rnd = Math.random();
+                    if (rnd > 0.65)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51047, -8014, "Nog", true, "arena3"));
+                        ArtificialIntelligenceAccess.push(new Unit(51038, -8262, "Nog", false, "arena3"));
+                        ArtificialIntelligenceAccess.push(new Unit(50969, -8097, "Nog", true, "arena3"));
+                        ArtificialIntelligenceAccess.push(new Unit(51107, -8156, "Nog", false, "arena3"));
+                        ArtificialIntelligenceAccess.push(new Unit(51173, -8076, "Nog", false, "arena3"));
+                        if (Math.round(Math.random()))
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51155, -8247, "Nog", false, "arena3"));
+                            ArtificialIntelligenceAccess.push(new Unit(51202, -8131, "Nog", true, "arena3"));
+                        }
+                    }
+                    else if (rnd > 0.32)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51047, -8014, "Nog", false, "arena3"));
+                        ArtificialIntelligenceAccess.push(new Unit(51038, -8262, "Nog", true, "arena3"));
+                        ArtificialIntelligenceAccess.push(new Unit(50969, -8097, "Nog", false, "arena3"));
+                        ArtificialIntelligenceAccess.push(new Unit(51107, -8156, "Nog", true, "arena3"));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51038, -8262, "Nog", false, "arena3"));
+                        ArtificialIntelligenceAccess.push(new Unit(50969, -8097, "Nog", true, "arena3"));
+                        ArtificialIntelligenceAccess.push(new Unit(51107, -8156, "Nog", false, "arena3"));
+                    }
+                }
+                else if (quests.pitFight == "pitFighters")
+                {
+                    var rnd = Math.random();
+                    if (rnd > 0.65)
+                    {
+                        if (Math.round(Math.random()))
+                        {
+                            var rnd = Math.random();
+                            if (rnd > 0.7)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 9, speed: 1.34, outfit: ["blackBearLeatherArmour", 6], weapon: ["smashStick", [12, 11], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.4)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 10, speed: 1.4, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.1)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 7, speed: 1.56, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 5, speed: 0.74, outfit: ["thenganPlateArmour", 14], weapon: ["flail", [27, 8.5], 17, 47, 7], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                        }
+                        else
+                        {
+                            var rnd = Math.random();
+                            if (rnd > 0.7)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 16, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["thenganSword", [10, 7], 0, 16, 1.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.4)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 14, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.1)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 17, speed: 1, outfit: ["boulchomLeatherArmour", 2], weapon: ["smashStick", [13, 12], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 10, speed: 0.7, outfit: ["thenganPlateArmour", 15], weapon: ["smashStick", [13, 12], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                        }
+                    }
+                    else if (rnd > 0.32)
+                    {
+                        if (Math.round(Math.random()))
+                        {
+                            var rnd = Math.random();
+                            if (rnd > 0.7)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 16, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["thenganSword", [10, 7], 0, 16, 1.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.4)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 14, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.1)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 17, speed: 1, outfit: ["boulchomLeatherArmour", 2], weapon: ["smashStick", [13, 12], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 10, speed: 0.7, outfit: ["thenganPlateArmour", 15], weapon: ["smashStick", [13, 12], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+
+                            rnd = Math.random();
+                            if (rnd > 0.7)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 9, speed: 1.34, outfit: ["blackBearLeatherArmour", 6], weapon: ["smashStick", [12, 11], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.4)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 10, speed: 1.4, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.1)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 7, speed: 1.56, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 5, speed: 0.74, outfit: ["thenganPlateArmour", 14], weapon: ["flail", [27, 8.5], 17, 47, 7], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                        }
+                        else
+                        {
+                            var rnd = Math.random();
+                            if (rnd > 0.7)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 11, speed: 1.38, outfit: ["blackBearLeatherArmour", 6], weapon: ["thenganWarhammer", [26, 16], 19, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.4)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 13, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.1)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 8, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 15, speed: 0.86, outfit: ["thenganPlateArmour", 15], weapon: ["smashStick", [12, 11], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+
+                            rnd = Math.random();
+                            if (rnd > 0.7)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 13, speed: 1.35, outfit: ["blackBearLeatherArmour", 6], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.4)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 12, speed: 1.3, outfit: ["skolLeatherArmour", 3], weapon: ["smashStick", [13, 12], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.1)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 16, speed: 1.1, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 13, speed: 0.85, outfit: ["thenganPlateArmour", 18], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (Math.round(Math.random()))
+                        {
+                            var rnd = Math.random();
+                            if (rnd > 0.7)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 11, speed: 1.38, outfit: ["blackBearLeatherArmour", 6], weapon: ["thenganWarhammer", [26, 16], 19, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.4)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 13, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.1)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 8, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 15, speed: 0.86, outfit: ["thenganPlateArmour", 15], weapon: ["smashStick", [12, 11], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+
+                            rnd = Math.random();
+                            if (rnd > 0.7)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 15, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["thenganSword", [10, 7], 0, 16, 1.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.4)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 10, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.1)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 18, speed: 1, outfit: ["boulchomLeatherArmour", 2], weapon: ["smashStick", [13, 12], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 11, speed: 0.7, outfit: ["thenganPlateArmour", 16], weapon: ["smashStick", [13, 12], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+
+                            rnd = Math.random();
+                            if (rnd > 0.7)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 12, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["longSpikedMorningStar", [15, 5], 14, 20, 2.3], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.4)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 15, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.1)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 17, speed: 1.4, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 9, speed: 0.69, outfit: ["thenganPlateArmour", 14], weapon: ["longSpikedMorningStar", [18, 7], 14, 20, 2.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                        }
+                        else
+                        {
+                            var rnd = Math.random();
+                            if (rnd > 0.7)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 15, speed: 1.38, outfit: ["blackBearLeatherArmour", 6], weapon: ["smashStick", [12, 11], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.4)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 14, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.1)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 19, speed: 0.65, outfit: ["thenganPlateArmour", 15], weapon: ["thenganWarhammer", [26, 16], 19, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+
+                            rnd = Math.random();
+                            if (rnd > 0.7)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 14, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.4)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.1)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 17, speed: 1, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 12, speed: 0.7, outfit: ["thenganPlateArmour", 16], weapon: ["smashStick", [13, 12], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+
+                            rnd = Math.random();
+                            if (rnd > 0.7)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 13, speed: 1.35, outfit: ["blackBearLeatherArmour", 6], weapon: ["longSpikedMorningStar", [16, 6], 14, 20, 2.5], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.4)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 12, speed: 1.3, outfit: ["skolLeatherArmour", 3], weapon: ["smashStick", [13, 12], 10, 30, 2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else if (rnd > 0.1)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 16, speed: 1.1, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganWarhammer", [20, 14], 16, 47, 6.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 13, speed: 0.85, outfit: ["thenganPlateArmour", 18], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                        }
+                    }
+                }
+                else if (quests.pitFight == "prisoners")
+                {
+                    var rnd = Math.random();
+                    if (rnd > 0.65)
+                    {
+                        if (Math.round(Math.random()))
+                        {
+                            rnd = Math.random();
+                            if (rnd > 0.3333)
+                            {
+                                //kell soldier (prisoner)
+                                ArtificialIntelligenceAccess.push(new Unit(51178, -8128, "Soldier", false, "War Prisoner", {race: "Kel", faction: "arena3", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.3, 0.35], 0, 0, 1.1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                //kell family
+                                if (Math.round(Math.random()))
+                                {
+                                    if (Math.round(Math.random()))
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(51178, -8145, "Soldier", false, "Slave Man", {race: "Kel", faction: "arena3", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51101, -8198, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51056, -8124, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    }
+                                    else
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(51048, -8191, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena3", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51077, -8171, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51079, -8218, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    }
+                                }
+                                else
+                                {
+                                    if (Math.round(Math.random()))
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(51048, -8146, "Soldier", false, "Slave Man", {race: "Kel", faction: "arena3", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51077, -8126, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51079, -8173, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    }
+                                    else
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(51154, -8213, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena3", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51107, -8264, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51239, -8035, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51182, -8089, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            rnd = Math.random();
+                            if (rnd > 0.3333)
+                            {
+                                //kell soldier (prisoner)
+                                ArtificialIntelligenceAccess.push(new Unit(51178, -8128, "Soldier", false, "War Prisoner", {race: "Kel", faction: "arena3", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.3, 0.35], 0, 0, 1.1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            }
+                            else
+                            {
+                                //kell family
+                                if (Math.round(Math.random()))
+                                {
+                                    if (Math.round(Math.random()))
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(51178, -8145, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena3", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51101, -8198, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51056, -8124, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    }
+                                    else
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(51048, -8191, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena3", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51077, -8171, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51079, -8218, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    }
+                                }
+                                else
+                                {
+                                    if (Math.round(Math.random()))
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(51048, -8146, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena3", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51077, -8126, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51079, -8173, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    }
+                                    else
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(51154, -8213, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena3", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51107, -8264, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51239, -8035, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(51182, -8089, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (rnd > 0.32)
+                    {
+                        if (Math.round(Math.random()))
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51178, -8128, "Soldier", false, "War Prisoner", {race: "Kel", faction: "arena3", con: 1, speed: 0, outfit: ["none", 0], weapon: ["none", [0.3, 0.35], 0, 0, 1.1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51061, -8126, "Soldier", false, "Alzkwaya Tribal", {race: "Kel", faction: "arena3", con: 14, speed: 1.5, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [8, 4], 3, 12, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                    }
+                    else
+                    {
+                        if (Math.round(Math.random()))
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51061, -8126, "Soldier", false, "Echlin Tribal", {race: "Kel", faction: "arena3", con: 18, speed: 1.37, outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [16, 0], 8, 16, 1.25], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        }
+                        else
+                        {
+                            if (Math.round(Math.random()))
+                            {
+                                rnd = Math.random();
+                                if (rnd > 0.65)
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(51061, -8126, "Soldier", false, "Alzkwaya Tribal", {race: "Kel", faction: "arena3", con: 13, speed: 1.5, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [8, 4], 3, 12, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(50987, -8126, "Soldier", false, "Alzkwaya Slave Man", {race: "Kel", faction: "arena3", con: 1, speed: 0, outfit: ["mofuTribalWear", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(50950, -8085, "Soldier", false, "Alzkwaya Slave Boy", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["mofuTribalWear", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(50960, -8178, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["mofuTribalWear", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                }
+                                else if (rnd > 0.32)
+                                {
+                                    if (Math.random() > 0.65)
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(51061, -8126, "Soldier", false, "Echlin Tribal", {race: "Kel", faction: "arena3", con: 17, speed: 1.37, outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [16, 0], 8, 16, 1.25], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(50987, -8126, "Soldier", false, "Echlin Slave Woman", {race: "Kel", faction: "arena3", con: 1, speed: 0, outfit: ["naapridLeatherArmour", 4], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(50960, -8178, "Soldier", false, "Echlin Slave Boy", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["naapridLeatherArmour", 1.5], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                        ArtificialIntelligenceAccess.push(new Unit(50950, -8085, "Soldier", false, "Echlin Slave Girl", {race: "Kel", faction: "arena3", con: 0.25, speed: 0, outfit: ["naapridLeatherArmour", 1.5], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    }
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(51099, -8071, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena3", con: 0.5, speed: 0.9, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [4, 0], 1, 4, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51083, -8156, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena3", con: 0.5, speed: 0.9, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [2, 1], 0.5, 4, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(50992, -8109, "Soldier", false, "Echlin Slave Boy", {race: "Kel", faction: "arena3", con: 0.25, speed: 0.82, outfit: ["naapridLeatherArmour", 1.5], weapon: ["hammer", [1, 0.8], 0.35, 0, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                }
+                            }
+                            else
+                            {
+                                rnd = Math.random();
+
+                                if (rnd > 0.49)
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(51079, -8019, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena3", con: 0.5, speed: 0.95, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [4, 0.5], 1, 4, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51008, -8134, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena3", con: 0.25, speed: 0.85, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [3, 1], 0.5, 4, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51130, -8114, "Soldier", false, "Echlin Slave Boy", {race: "Kel", faction: "arena3", con: 0.25, speed: 0.82, outfit: ["naapridLeatherArmour", 1.5], weapon: ["hammer", [1.5, 1], 0.25, 3, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51059, -8298, "Soldier", false, "Echlin Slave Boy", {race: "Kel", faction: "arena3", con: 0.5, speed: 0.89, outfit: ["naapridLeatherArmour", 1.5], weapon: ["hammer", [1, 1.5], 0, 3, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51154, -8192, "Soldier", false, "Echlin Slave Boy", {race: "Kel", faction: "arena3", con: 1, speed: 0.85, outfit: ["naapridLeatherArmour", 1.5], weapon: ["warHammer", [3.5, 2], 1, 3, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(51079, -8019, "Soldier", false, "Echlin Slave Boy", {race: "Kel", faction: "arena3", con: 0.5, speed: 0.89, outfit: ["naapridLeatherArmour", 1.5], weapon: ["hammer", [1, 1.5], 0, 3, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51008, -8134, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena3", con: 0.5, speed: 0.9, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [3, 1], 0.5, 4, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51130, -8114, "Soldier", false, "Echlin Slave Boy", {race: "Kel", faction: "arena3", con: 1, speed: 0.85, outfit: ["naapridLeatherArmour", 1.5], weapon: ["warHammer", [3.5, 2], 1, 3, 0.9], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51059, -8298, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena3", con: 0.75, speed: 1, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [3, 1.5], 0.5, 4, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                    ArtificialIntelligenceAccess.push(new Unit(51154, -8192, "Soldier", false, "Alzkwaya Slave Girl", {race: "Kel", faction: "arena3", con: 1, speed: 1.1, outfit: ["mofuTribalWear", 0], weapon: ["kellishSawClub", [3, 1.75], 1, 4, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                }
+                            }
+                        }
+                    }
+                }
+
+                //city guards
+                ArtificialIntelligenceAccess.push(new Unit(51166, -7530, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 5, speed: 1.15, outfit: ["chainArmour", 7], weapon: ["thenganSword", [8, 5], 0, 16, 1.3], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
+                ArtificialIntelligenceAccess.push(new Unit(51945, -8393, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 8, speed: 1.34, outfit: ["chainArmour", 6.5], weapon: ["thenganSword", [12, 4], 0, 16, 1.45], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 4, patrolLoop: true, route:[[51945, -10184], [50570, -10156], [50559, -8470], [51972, -8481]]}));
+                ArtificialIntelligenceAccess.push(new Unit(51738, -9966, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 6, speed: 1.27, outfit: ["chainArmour", 7.5], weapon: ["thenganSword", [6, 6], 0, 16, 1.25], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 8, patrolLoop: true, route:[[51724, -9287], [51157, -9272], [51152, -9064], [51747, -9066], [51738, -8679], [50749, -8692], [50750, -9979], [51738, -9966]]}));
+                ArtificialIntelligenceAccess.push(new Unit(52037, -7560, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 7, speed: 1.38, outfit: ["chainArmour", 7], weapon: ["thenganSword", [10, 5], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 5, patrolLoop: true, route:[[53457, -7558], [53450, -7776], [50544, -7777], [50548, -6374], [53459, -6369]]}));
 
                 //Creatures
-                //ArtificialIntelligenceAccess.push(new Unit(10988, -2291, "Nog", false, "Buckle-Snorp"));
+                ArtificialIntelligenceAccess.push(new Unit(48545, -4542, "Nog", false, "Chom-Chom"));
+                ArtificialIntelligenceAccess.push(new Unit(48522, -5978, "Nog", false, "Cham-Chom"));
+                ArtificialIntelligenceAccess.push(new Unit(48633, -6134, "Nog", false, "Chom-Cham"));
+                ArtificialIntelligenceAccess.push(new Unit(48523, -7671, "Nog", true, "Cham-Cham"));
+                ArtificialIntelligenceAccess.push(new Unit(49222, -8636, "Nog", false, "Chim-Chom"));
+                ArtificialIntelligenceAccess.push(new Unit(48981, -8754, "Nog", false, "Chim-Cham"));
+                ArtificialIntelligenceAccess.push(new Unit(47822, -9474, "Nog", false, "Chim-Chim"));
+                ArtificialIntelligenceAccess.push(new Unit(48710, -9747, "Nog", false, "Cham-Chim"));
+                ArtificialIntelligenceAccess.push(new Unit(49471, -9477, "Nog", false, "Chom-Chim"));
+                ArtificialIntelligenceAccess.push(new Unit(48667, -10602, "Nog", false, "Chilm-Chom"));
+                ArtificialIntelligenceAccess.push(new Unit(48479, -10688, "Nog", false, "Chom-Chalm"));
+                ArtificialIntelligenceAccess.push(new Unit(48828, -10765, "Nog", true, "Cholm-Chilm"));
+                ArtificialIntelligenceAccess.push(new Unit(49343, -10196, "Nog", false, "Cholm-Chim"));
+                ArtificialIntelligenceAccess.push(new Unit(48547, -11796, "Nog", false, "Chilm-Chim"));
+                ArtificialIntelligenceAccess.push(new Unit(48810, -11983, "Nog", true, "Chilm-Chorm"));
+                ArtificialIntelligenceAccess.push(new Unit(48416, -13042, "Nog", false, "Chirm-Chim"));
+
+                //buildings
+                scenicList.push(new Scenery("thenganBuilding4", 50497, -10330, 0, true));
+                scenicList.push(new Scenery("thenganBuilding1", 51258, -9800, 0, true));
+                scenicList.push(new Scenery("thenganBuilding1", 51561, -9800, 0, true));
+                scenicList.push(new Scenery("thenganBuilding3", 51052, -9548, 0, true));
+                scenicList.push(new Scenery("thenganBuilding3", 51052, -9055, 0, true));
+                scenicList.push(new Scenery("thenganBuilding2", 51561, -8874, 0, true));
+                scenicList.push(new Scenery("thenganBuilding2", 51258, -8874, 0, true));
+                scenicList.push(new Scenery("thenganBuilding5", 51561, -9506, 0, true));
+                scenicList.push(new Scenery("thenganBuilding2", 51258, -9530, 0, true));
+                scenicList.push(new Scenery("thenganBuilding3", 51486, -6942, 0, true));
+                scenicList.push(new Scenery("thenganBuilding5", 51084, -6942, 0, true));
+                scenicList.push(new Scenery("thenganBuilding2", 51238, -7205, 0, true));
+                scenicList.push(new Scenery("thenganBuilding3", 51025, -7344, 0, true));
+                scenicList.push(new Scenery("thenganBuilding1", 51234, -7398, 0, true));
+                scenicList.push(new Scenery("thenganBuilding1", 51556, -7356, 0, true));
+                scenicList.push(new Scenery("thenganBuilding1", 51858, -7356, 0, true));
+                scenicList.push(new Scenery("thenganBuilding1", 52160, -7356, 0, true));
+                scenicList.push(new Scenery("thenganBuilding1", 52462, -7356, 0, true));
+                scenicList.push(new Scenery("thenganBuilding1", 52764, -7356, 0, true));
+                scenicList.push(new Scenery("thenganBuilding5", 53066, -7282, 0, true));
+                    //the inn
+                scenicList.push(new Scenery("thenganHearth", 50281, -10331, 1/2 * Math.PI, "lit"));
+                scenicList.push(new Scenery("bed", 50471, -10423, 0 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 50471, -10240, 1 * Math.PI, false));
+                scenicList.push(new Scenery("bartop", 50563, -10381, 1 * Math.PI, false));
+                    //the well
+                scenicList.push(new Scenery("thenganWell", 50927, -9830, 0, false));
+                    //the sand pit
+                scenicList.push(new Scenery("thenganSandbox", 51254, -8126, 0, false));
+                    //blacksmithy
+                scenicList.push(new Scenery("anvil", 51345, -9360, Math.PI * 5/8, true));
+                scenicList.push(new Scenery("forge", 51178, -9377, Math.PI * 1/4, true));
+                scenicList.push(new Scenery("countertop", 51179, -9536, 1/2 * Math.PI, false));
+                scenicList.push(new Scenery("countertop", 51337, -9536, 1/2 * Math.PI, false));
+                if (uniqueChars.dagmarLDS)
+                {
+                    scenicList.push(new Scenery("item", 51182, -9502, 0, "thengar", ["longSpikedMorningStar", 1, -100]));
+                    scenicList.push(new Scenery("item", 51180, -9555, 0, "thengar", ["longsword", 1, -70]));
+                    scenicList.push(new Scenery("item", 51334, -9496, 0, "thengar", ["thenganDagger", 1, -50]));
+                    scenicList.push(new Scenery("item", 51334, -9563, 0, "thengar", ["smashStick", 1, -90]));
+                }
+                    //butcher's shop
+                scenicList.push(new Scenery("countertop", 51642, -9415, 1/2 * Math.PI, false));
+                if (uniqueChars.gerlachLDS)
+                {
+                    scenicList.push(new Scenery("item", 51643, -9370, 0, "thengar", ["rawBearFlesh", 1, -15]));
+                    scenicList.push(new Scenery("item", 51642, -9387, 0, "thengar", ["rawBearFlesh", 1, -15]));
+                    scenicList.push(new Scenery("item", 51643, -9409, 0, "thengar", ["rawBearTongue", 1, -15]));
+                    scenicList.push(new Scenery("item", 51644, -9453, 0, "thengar", ["rawBoulchomFlesh", 1, -10]));
+                    scenicList.push(new Scenery("item", 51642, -9429, 0, "thengar", ["rawRabbitFlesh", 1, -10]));
+                }
+                    //tailor shop
+                scenicList.push(new Scenery("loom", 51324, -9747, 3/4 * Math.PI, true));
+                scenicList.push(new Scenery("countertop", 51177, -9823, 1/2 * Math.PI, false));
+                scenicList.push(new Scenery("countertop", 51205, -9823, 1/2 * Math.PI, false));
+                scenicList.push(new Scenery("item", 51192, -9785, 0, "thengar", ["boulchomPelt", 1, -20]));
+                scenicList.push(new Scenery("item", 51192, -9825, 0, "thengar", ["boulchomPelt", 1, -20]));
+                scenicList.push(new Scenery("item", 51192, -9865, 0, "thengar", ["hoffalgrePelt", 1, -15]));
+                    //balgurMercsHQ
+                scenicList.push(new Scenery("bed", 51449, -6847, 0 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 51449, -7038, 1 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 51315, -6847, 0 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 51315, -7038, 1 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 51149, -6847, 0 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 51149, -7038, 1 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 51022, -6847, 0 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 51022, -7038, 1 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 51304, -7173, 0 * Math.PI, false));
+                scenicList.push(new Scenery("thenganHearth", 51240, -7276, Math.PI, "lit"));
+                    //playerPurchasableHome
+                if (quests.lethikHomeOwned)
+                {
+                    scenicList.push(new Scenery("bed", 51329, -8839, 0 * Math.PI, true));
+                    scenicList.push(new Scenery("thenganHearth", 51181, -8925, 1/2 * Math.PI, true));
+                    scenicList.push(new Scenery("sign", 51186, -8775, Math.PI, 3, "Battlecry Cabin"));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("bed", 51329, -8839, 0 * Math.PI, false));
+                    scenicList.push(new Scenery("thenganHearth", 51181, -8925, 1/2 * Math.PI, false));
+                    scenicList.push(new Scenery("sign", 51186, -8775, Math.PI, 3, "For Sale - 5500 coins"));
+                }
+                    //barracks
+                scenicList.push(new Scenery("bed", 51449 - 465, -6847 - 396, 0 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 51449 - 465, -7038 - 407, 1 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 51315 - 465, -6847 - 396, 0 * Math.PI, false));
+                scenicList.push(new Scenery("bed", 51315 - 465, -7038 - 407, 1 * Math.PI, false));
+                    //apothecary
+                scenicList.push(new Scenery("thenganHearth", 51564, -8943, 1 * Math.PI, "lit"));
+                scenicList.push(new Scenery("lab", 51562, -8874, 0 * Math.PI, true));
+                scenicList.push(new Scenery("countertop", 51642, -8897, -1/2 * Math.PI, false));
+                if (uniqueChars.johannaLDS)
+                {
+                    scenicList.push(new Scenery("item", 51642, -8947, 0, "thengar", ["lizardTail", 1, -10]));
+                    scenicList.push(new Scenery("item", 51642, -8921, 0, "thengar", ["steugiurneFlower", 1, -30]));
+                    scenicList.push(new Scenery("item", 51640, -8892, 0, "thengar", ["thalisLeaf", 1, -15]));
+                    scenicList.push(new Scenery("item", 51641, -8870, 0, "thengar", ["viperSnakeSkin", 1, -20]));
+                    scenicList.push(new Scenery("item", 51643, -8850, 0, "thengar", ["kofkeLeaves", 1, -20]));
+                }
+
+                //signs
+                scenicList.push(new Scenery("sign", 50710, -10222, Math.PI, 3, "The Ragged Wanderer - Inn"));
+                scenicList.push(new Scenery("sign", 51307, -9427, Math.PI, 3, "Bonecrusher Arms/Armour"));
+                scenicList.push(new Scenery("sign", 51631, -9904, -0 * Math.PI, 3, "Bamey's Hunt Shop"));
+                scenicList.push(new Scenery("sign", 51193, -9902, -0 * Math.PI, 3, "The Careful Stiches"));
+                scenicList.push(new Scenery("sign", 51677, -9586, 1/2 * Math.PI, 3, "The Meatery"));
+                scenicList.push(new Scenery("sign", 50834, -9593, -1/2 * Math.PI, 3, "Lethik General Store"));
+                scenicList.push(new Scenery("sign", 50834, -8972, -1/2 * Math.PI, 3, "Lethik City Bank"));
+                scenicList.push(new Scenery("sign", 51631, -8771, Math.PI, 3, "Sweet Leaf Apothecary"));
+                scenicList.push(new Scenery("sign", 50805, -7419, -1/2 * Math.PI, 3, "Lethik City Barracks"));
+                scenicList.push(new Scenery("sign", 51292, -7496, -0 * Math.PI, 3, "Lethik City Barracks"));
 
                 //Plants
                 //scenicList.push(new Scenery("haeflowerPlant", 15185, 4442, 4, true));
@@ -6015,6 +7753,10 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 else if (terrain == "thenganBrick")
                 {
                     XXX.drawImage(thenganBrickEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "brickRoad")
+                {
+                    XXX.drawImage(brickRoadEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
                 else if (terrain == "kellstone")
                 {

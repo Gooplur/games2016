@@ -1045,10 +1045,15 @@ function applySelectionsButton()
                 Y = 467;
             }
         }
-        if (player.raceName == "Kel")
+        else if (player.raceName == "Kel")
         {
             X = -1297;
             Y = -30784;
+        }
+        else if (player.raceName == "Thengar")
+        {
+            X = 51861;
+            Y = -8577;
         }
         //Actually start the game here.
         theme.pause();

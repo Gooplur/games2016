@@ -3043,7 +3043,7 @@ function Item(type, x, y)
 
             //Utility Focused
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
-            this.hunger = 11; //satisfies hunger.
+            this.hunger = 9; //satisfies hunger.
             this.thirst = 0; //quenches thirst.
             this.warmth = 0; //warms player.
             this.heal = 0; //heals health.
@@ -9983,6 +9983,23 @@ function Item(type, x, y)
             this.buyValue = 0; // at max, buy for 0.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "adolfsNewSword")
+        {
+            //For All Items
+            this.identity = "Adolf's New Sword";
+            this.weight = 3;
+            this.size = 30;
+            this.description = "A brand new longsword made for a man named Adolf who is a pit fighter.";
+            this.intForDes = 8;
+            this.intDescription = "The sword is forged from good thengan steel.";
+
+            //Define Utility
+            this.utility = "questItem";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 30 - Math.floor(player.getCharisma() / 4); // at max, buy for 18.
+            this.sellValue = 8; // at max, sell for 8.
+        }
         else if (this.type == "brokenHyelingCleaver")
         {
             //For All Items
@@ -12069,7 +12086,7 @@ function Item(type, x, y)
             this.utility = "weapon";
 
             //Utility Focused
-            this.energyCost = 7.5;
+            this.energyCost = 12;
             this.distance = 31 + (this.range * 7);
             this.range = 1 + 4/7;
             this.rate = 240;
@@ -16284,7 +16301,7 @@ function Item(type, x, y)
             this.rate = 175 - (1/2 * player.getDexterity());
             this.damage = (20 - this.damageHandicap - this.damageHandicapII) * (this.leveledDamageMultiple / 25) + ((1/25) * player.getStrength());
             this.magicalDamage = 0;
-            this.negateArmour = 4;
+            this.negateArmour = 5;
 
             //ability
             this.ability = "none";
@@ -19281,7 +19298,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 65, 226, 10, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 2.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 2), 20 * 2, 24 * 2);
         }
-        else if (this.type == "MountainFrichMeat")
+        else if (this.type == "mountainFrichMeat")
         {
             XXX.beginPath();
             XXX.drawImage(verse, 79, 227, 10, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 2.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 2), 20 * 2, 24 * 2);
@@ -19547,7 +19564,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(poly, 151, 128, 39, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1.15), 39 * 1.15, 39 * 1.15);
         }
-        else if (this.type == "longsword")
+        else if (this.type == "longsword" || this.type == "adolfsNewSword")
         {
             XXX.beginPath();
             XXX.drawImage(theCrack, 75, 366, 17, 47, X - this.X + (1/2 * CCC.width) - (1/2 * 17), Y - this.Y + (1/2 * CCC.height) - (1/2 * 47), 17, 64);
@@ -21872,7 +21889,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(poly, 151, 128, 39, 39, this.invX - (1/2 * 39 * 1.15), this.invY - (1/2 * 39 * 1.15), 39 * 1.15, 39 * 1.15);
         }
-        else if (this.type == "longsword")
+        else if (this.type == "longsword" || this.type == "adolfsNewSword")
         {
             LXX.beginPath();
             LXX.drawImage(theCrack, 75, 366, 17, 47, this.invX - (1/2 * 25.5), this.invY - (1/2 * 70.5) - 3, 25.5, 70.5);
@@ -24193,7 +24210,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(poly, 151, 128, 39, 39, this.invX - (1/2 * 39 * 1.15), this.invY - (1/2 * 39 * 1.15), 39 * 1.15, 39 * 1.15);
         }
-        else if (this.type == "longsword")
+        else if (this.type == "longsword" || this.type == "adolfsNewSword")
         {
             XXX.beginPath();
             XXX.drawImage(theCrack, 75, 366, 17, 47, this.invX - (1/2 * 25.5), this.invY - (1/2 * 70.5) - 3, 25.5, 70.5);

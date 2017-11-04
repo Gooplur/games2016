@@ -652,6 +652,163 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Balgur Mercenary" && player.theBalgurMercenariesFaction >= 0 && self.team != "player" && self.DTP() < 65 || conversationID[0] == "Balgur Mercenary" && player.theBalgurMercenariesFaction >= 0 && self.team != "player" && self.DTP() < 65)
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Balgur Mercenary";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["[Hire for 350 Coins]", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            var coinHitz = -1;
+                            var servicesPaid = false;
+
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 350)
+                                {
+                                    coinHitz = i;
+                                }
+                            }
+
+                            if (coinHitz > -1)
+                            {
+                                if (Inventory[coinHitz][1] == 350)
+                                {
+                                    Inventory.splice(coinHitz, 1);
+                                }
+                                else
+                                {
+                                    Inventory[coinHitz][1] -= 350
+                                }
+
+                                servicesPaid = true;
+                            }
+
+                            if (servicesPaid)
+                            {
+                                self.baseTeam = "player";
+                            }
+
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
+                    if (self.ID == "Tor Captain" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" && self.DTP() < 65 || self.ID == "Tor Captain" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty" && self.DTP() < 65 || self.ID == "Tor Soldier" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty" && self.DTP() < 65 || self.ID == "Tor Soldier" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" && self.DTP() < 65 || self.ID == "Tor Huskarl" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty" && self.DTP() < 65 || self.ID == "Tor Huskarl" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" && self.DTP() < 65 || conversationID[0] == "Tor" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" && self.DTP() < 65 || conversationID[0] == "Tor" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty" && self.DTP() < 65)
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Tor";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["[Take Command]", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            self.baseTeam = "player";
+
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
+                    if (self.ID == "Beulingerr Captain" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Nobility" && self.DTP() < 65 || self.ID == "Beulingerr Captain" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty" && self.DTP() < 65 || self.ID == "Beulingerr Soldier" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty" && self.DTP() < 65 || self.ID == "Beulingerr Soldier" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Nobility" && self.DTP() < 65 || conversationID[0] == "Beulingerr" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Nobility" && self.DTP() < 65 || conversationID[0] == "Beulingerr" && player.thengarFaction >= 0 && self.team != "player" && player.raceName == "Thengar" && player.title == "Royalty" && self.DTP() < 65)
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Beulingerr";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["[Take Command]", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            self.baseTeam = "player";
+
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
                     if (self.ID == "Maggy the Tailor" || conversationID[0] == "Maggy")
                     {
                         lowBar = "dialogue";
@@ -742,6 +899,963 @@ function interaction(me)
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;
                                 self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Brunelda the Merchant" || conversationID[0] == "Brunelda")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Brunelda";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Hello.", false, "a"], ["How's business?", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            bruneldaLollygagging.play();
+                            bruneldaLollygagging.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            bruneldaQuestions.play();
+                            bruneldaQuestions.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Markos the Pit Master" || conversationID[0] == "Markos")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Markos";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I want to fight in the sand pit!", false, "a"], ["When will the next fight be?", false, "b"]];
+                                if (player.raceName == "Thengar" && player.title == "Royalty" || player.raceName == "Thengar" && player.title == "Nobility")
+                                {
+                                    player.dialogueOptions.unshift(["Have one of the kellish prisoners devoured by beasts.", false, "c"], ["Have one of the kellish prisoners felled by a pit fighter.", false, "d"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            if (player.title == "Royalty" || player.title == "Nobility")
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    markosShocked.play();
+                                    markosShocked.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 1;
+                                        self.SC();
+                                    }
+                                }
+                                else
+                                {
+                                    markosLiege.play();
+                                    markosLiege.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 1;
+                                        self.SC();
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                markosPick.play();
+                                markosPick.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            markosNow.play();
+                            markosNow.onended = function()
+                            {
+                                quests.pitFight = "spectacle";
+                                change = "pitfight";
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            markosRightAway.play();
+                            markosRightAway.onended = function()
+                            {
+                                quests.kellExecution = "beasts";
+                                change = "pitfight";
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            markosRightAway.play();
+                            markosRightAway.onended = function()
+                            {
+                                quests.kellExecution = "champion";
+                                change = "pitfight";
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["[bears]", false, "a"], ["[skols]", false, "b"], ["[nogs]", false, "c"], ["[pit fighters]", false, "d"], ["[kellish prisoners]", false, "e"], ["Nevermind.", false, "f"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "1c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "1d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "1e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "1f";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            X = 51550;
+                            Y = -8115;
+                            quests.pitFight = "bears";
+                            change = "pitfight";
+                            player.blinded = true;
+                            player.blindedStoreTime = new Date().getTime();
+                            player.blindedTime = 0.2;
+
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            X = 51550;
+                            Y = -8115;
+                            quests.pitFight = "skols";
+                            change = "pitfight";
+                            player.blinded = true;
+                            player.blindedStoreTime = new Date().getTime();
+                            player.blindedTime = 0.2;
+
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            X = 51550;
+                            Y = -8115;
+                            quests.pitFight = "nogs";
+                            change = "pitfight";
+                            player.blinded = true;
+                            player.blindedStoreTime = new Date().getTime();
+                            player.blindedTime = 0.2;
+
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == "1d")
+                        {
+                            X = 51550;
+                            Y = -8115;
+                            quests.pitFight = "pitFighters";
+                            change = "pitfight";
+                            player.blinded = true;
+                            player.blindedStoreTime = new Date().getTime();
+                            player.blindedTime = 0.2;
+
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == "1e")
+                        {
+                            X = 51550;
+                            Y = -8115;
+                            quests.pitFight = "prisoners";
+                            change = "pitfight";
+                            player.blinded = true;
+                            player.blindedStoreTime = new Date().getTime();
+                            player.blindedTime = 0.2;
+
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == "1f")
+                        {
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
+                    if (self.ID == "Dagmar the Smith" || conversationID[0] == "Dagmar")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Dagmar";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Hello.", false, "a"], ["What do you have for sale?", false, "b"], ["Would you accept me as an apprentice?", false, "c"], ["Have you been a smith long?", false, "d"], ["I have some ore for sale.", false, "e"]];
+                                if (quests.swordDeliveryQuest == false)
+                                {
+                                    player.dialogueOptions.push(["Have any work for me?", false, "f"]);
+                                }
+                                else if (quests.swordDeliveryQuest == true)
+                                {
+                                    player.dialogueOptions.unshift(["Who am I to deliver this to?", false, "g"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            dagmarLike.play();
+                            dagmarLike.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            dagmarLookAround.play();
+                            dagmarLookAround.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            dagmarOne.play();
+                            dagmarOne.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            dagmarDecades.play();
+                            dagmarDecades.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            dagmarGot.play();
+                            dagmarGot.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            dagmarSword.play();
+                            dagmarSword.onended = function()
+                            {
+                                quests.activeQuests.push({name: "Sword Delivery", description: "Deliver the newly forged sword to its buyer."});
+                                quests.swordDeliveryQuest = true;
+                                Inventory.push([new Item("adolfsNewSword", false, false), 1]);
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            dagmarAdolf.play();
+                            dagmarAdolf.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["[previous dialogue options]", false, "c"]];
+
+                                var coalHas = -1;
+                                var ironHas = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "ironOre" && Inventory[i][1] >= 1)
+                                    {
+                                        ironHas = i;
+                                    }
+                                    else if (Inventory[i][0].type == "coal" && Inventory[i][1] >= 1)
+                                    {
+                                        coalHas = i;
+                                    }
+                                }
+
+                                if (ironHas > -1)
+                                {
+                                    player.dialogueOptions.unshift(["[sell iron 8 coins]", false, "b"])
+                                }
+                                if (coalHas > -1)
+                                {
+                                    player.dialogueOptions.unshift(["[sell coal 6 coins]", false, "a"])
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "1c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            dagmarCoal.play();
+                            dagmarCoal.onended = function()
+                            {
+                                var coalHas = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coal" && Inventory[i][1] >= 1)
+                                    {
+                                        coalHas = i;
+                                    }
+                                }
+
+                                if (coalHas > -1)
+                                {
+                                    if (Inventory[coalHas][1] == 1)
+                                    {
+                                        Inventory.splice(coalHas, 1);
+                                    }
+                                    else
+                                    {
+                                        Inventory[coalHas][1] -= 1;
+                                    }
+                                }
+                                worldItems.push([new Item("coins", X, Y), 6]);
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            dagmarIron.play();
+                            dagmarIron.onended = function()
+                            {
+                                var ironHas = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "ironOre" && Inventory[i][1] >= 1)
+                                    {
+                                        ironHas = i;
+                                    }
+                                }
+
+                                if (ironHas > -1)
+                                {
+                                    if (Inventory[ironHas][1] == 1)
+                                    {
+                                        Inventory.splice(ironHas, 1);
+                                    }
+                                    else
+                                    {
+                                        Inventory[ironHas][1] -= 1;
+                                    }
+                                }
+                                worldItems.push([new Item("coins", X, Y), 8]);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
+                    if (self.ID == "Adolf the Pit Fighter" || conversationID[0] == "Adolf")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Adolf";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good Day.", false, "a"], ["What are you fighting?", false, "b"]];
+
+                                if (quests.swordDeliveryQuest)
+                                {
+                                    var swordHas = -1;
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].type == "adolfsNewSword" && Inventory[i][1] >= 1)
+                                        {
+                                            swordHas = i;
+                                        }
+                                    }
+                                    if (swordHas > -1)
+                                    {
+                                        player.dialogueOptions.unshift(["I have the sword that you purchased from Dagmar.", false, "c"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            adolfSure.play();
+                            adolfSure.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            adolfDontKnow.play();
+                            adolfDontKnow.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            adolfWin.play();
+                            adolfWin.onended = function()
+                            {
+                                var swordHas = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "adolfsNewSword" && Inventory[i][1] >= 1)
+                                    {
+                                        swordHas = i;
+                                    }
+                                }
+
+                                if (swordHas > -1)
+                                {
+                                    if (Inventory[swordHas][1] == 1)
+                                    {
+                                        Inventory.splice(swordHas, 1);
+                                    }
+                                    else
+                                    {
+                                        Inventory[swordHas][1] -= 1;
+                                    }
+                                }
+
+                                quests.swordDeliveryQuest = "complete";
+                                player.experience += 75;
+                                player.thengarFaction += 2;
+                                //player.fame += 1;
+                                worldItems.push([new Item("coins", X, Y), 10]);
+                                quests.completeQuests.push({name: "Sword Delivery", description: "You delivered a newly forged blade to Adolf, a pit fighter who needed it for a fight."});
+                                self.baseTeam = "arena1";
+                                self.team = "arena1";
+                                change = "pitfight";
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Ser Olis Pynske" || conversationID[0] == "Pynske")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Pynske";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Hello.", false, "a"], ["Who are you?", false, "b"], ["How did you become a knight?", false, "c"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            olisHello.play();
+                            olisHello.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            if (player.raceName == "Freynor")
+                            {
+                                if (player.title == "Royalty")
+                                {
+                                    if (player.gender == "Female")
+                                    {
+                                        olisGraceF.play();
+                                        olisGraceF.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        olisMajestyM.play();
+                                        olisMajestyM.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (player.title == "Nobility")
+                                {
+                                    if (player.gender == "Male")
+                                    {
+                                        olisMyLord.play();
+                                        olisMyLord.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        olisMyLady.play();
+                                        olisMyLady.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (player.title == "Highfolk")
+                                {
+                                    olisIntroAgain.play();
+                                    olisIntroAgain.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else
+                                {
+                                    olisSurely.play();
+                                    olisSurely.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (player.title == "Royalty" || player.title == "Nobility")
+                                {
+                                    if (player.gender == "Male")
+                                    {
+                                        olisYourLordship.play();
+                                        olisYourLordship.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        olisYourLadyship.play();
+                                        olisYourLadyship.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                                else if (player.title == "Highfolk")
+                                {
+                                    olisIntroAgain.play();
+                                    olisIntroAgain.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else
+                                {
+                                    olisIAm.play();
+                                    olisIAm.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            if (player.title == "Nobility" && player.raceName == "Freynor")
+                            {
+                                olisHero.play();
+                                olisHero.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else if (player.title == "Royalty" || player.title == "Nobility" || player.title == "Highfolk")
+                            {
+                                olisSavedHeir.play();
+                                olisSavedHeir.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                olisBetterThanYou.play();
+                                olisBetterThanYou.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
                             }
                         }
                     }

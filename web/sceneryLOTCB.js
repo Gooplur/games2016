@@ -68,6 +68,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.summonTime = new Date().getTime();
     //Building Variables
     this.putBarriers = true;
+    //Scenery Item
 
     this.nectar = function(num)
     {
@@ -1507,6 +1508,55 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             }
         }
+        else if (this.type == "item")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 88;
+            var thisItem = new Item(this.information[0], this.X, this.Y);
+
+            //DRAWSELF
+            thisItem.drawItem();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 22;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+
+                //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(this.information[2]);
+                    }
+                }
+
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == this.information[0])
+                    {
+                        Inventory[i][1] += this.information[1];
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item(this.information[0], false, false), this.information[1]]);
+                }
+
+                //delete self
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+        }
         else if (this.type == "bartop")
         {
             //TRAITS
@@ -1518,6 +1568,29 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
             XXX.rotate(this.rotation);
             XXX.drawImage(theng, 376, 1692, 133, 57, -(1/2 * 133 * 1), -(1/2 * 57 * 1), 133 * 1, 57 * 1);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "countertop")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            this.zIndex = 1;
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(theng, 376, 1692, 133, 35, -(1/2 * 133 * 1), -(1/2 * 35 * 1), 133 * 1, 35 * 1);
             XXX.restore();
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
@@ -1862,6 +1935,62 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 barrierList.push(new Barrier((this.X + 172), (this.Y + 90), 19, 80, true)); //sm top wall
                 barrierList.push(new Barrier((this.X + 3), (this.Y - 122), 19, 245, true)); //sm bottom wall
                 barrierList.push(new Barrier((this.X + 233), (this.Y - 122), 228, 19, true)); //sm right wall
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "thenganBuilding5")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X - 110) && X < (this.X - 110) + 215 && Y > (this.Y - 164) && Y < (this.Y - 164) + 330)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(theng, 422, 16, 180, 120, -(1/2 * 180 * 1.95), -(1/2 * 120 * 1.95), 180 * 1.95, 120 * 1.95);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 5;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(theng, 422, 16, 180, 120, -(1/2 * 180 * 1.95), -(1/2 * 120 * 1.95), 180 * 1.95, 120 * 1.95);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(theng, 410, 359, 183, 122, -(1/2 * 183 * 1.95), -(1/2 * 122 * 1.95), 183 * 1.95, 122 * 1.95);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X -210, this.Y -164, 330, 215, false)); // a square that covers the entire building
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 115), (this.Y - 167), 333, 19, true)); //right wall n
+                barrierList.push(new Barrier((this.X - 95), (this.Y - 167), 19, 200, true)); //bottom wall
+                barrierList.push(new Barrier((this.X - 95), (this.Y + 149), 19, 200, true)); //top wall
+                barrierList.push(new Barrier((this.X + 94), (this.Y + 16), 150, 19, true)); //right wall
+                barrierList.push(new Barrier((this.X + 94), (this.Y -167), 125, 19, true)); //right wall
             }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.

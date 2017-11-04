@@ -180,6 +180,25 @@ function legendaryPrerequisites()
     var nelgrefKiss = new Audio("sounds/polySounds/nelgrefKiss.mp3");
     window.nelgrefKiss = nelgrefKiss;
 
+    //ADOLF CHARACTER: voice acting
+
+    var adolfSure = new Audio("sounds/polySounds/adolfSure.mp3");
+    window.adolfSure = adolfSure;
+
+    var adolfDontKnow = new Audio("sounds/polySounds/adolfDontKnow.mp3");
+    window.adolfDontKnow = adolfDontKnow;
+
+    var adolfWin = new Audio("sounds/polySounds/adolfWin.mp3");
+    window.adolfWin = adolfWin;
+
+        //BRUNELDA CHARACTER: voice acting
+
+    var bruneldaLollygagging = new Audio("sounds/polySounds/bruneldaLollygagging.mp3");
+    window.bruneldaLollygagging = bruneldaLollygagging;
+
+    var bruneldaQuestions = new Audio("sounds/polySounds/bruneldaQuestions.mp3");
+    window.bruneldaQuestions = bruneldaQuestions;
+
         //TOGGIN CHARACTER: voice acting
 
     var togginGreet = new Audio("sounds/polySounds/togginGreeting.mp3");
@@ -209,7 +228,36 @@ function legendaryPrerequisites()
     var togginChangeMind = new Audio("sounds/polySounds/togginChangeMind.mp3");
     window.togginChangeMind = togginChangeMind;
 
-    //FENWIK CHARACTER: voice acting
+        //DAGMAR CHARACTER: voice acting
+
+    var dagmarLike = new Audio("sounds/polySounds/dagmarLike.mp3");
+    window.dagmarLike = dagmarLike;
+
+    var dagmarLookAround = new Audio("sounds/polySounds/dagmarLookAround.mp3");
+    window.dagmarLookAround = dagmarLookAround;
+
+    var dagmarOne = new Audio("sounds/polySounds/dagmarOne.mp3");
+    window.dagmarOne = dagmarOne;
+
+    var dagmarDecades = new Audio("sounds/polySounds/dagmarDecades.mp3");
+    window.dagmarDecades = dagmarDecades;
+
+    var dagmarSword = new Audio("sounds/polySounds/dagmarSword.mp3");
+    window.dagmarSword = dagmarSword;
+
+    var dagmarAdolf = new Audio("sounds/polySounds/dagmarAdolf.mp3");
+    window.dagmarAdolf = dagmarAdolf;
+
+    var dagmarGot = new Audio("sounds/polySounds/dagmarGot.mp3");
+    window.dagmarGot = dagmarGot;
+
+    var dagmarCoal = new Audio("sounds/polySounds/dagmarCoal.mp3");
+    window.dagmarCoal = dagmarCoal;
+
+    var dagmarIron = new Audio("sounds/polySounds/dagmarIron.mp3");
+    window.dagmarIron = dagmarIron;
+
+        //FENWIK CHARACTER: voice acting
 
     var fenwikGooday = new Audio("sounds/polySounds/fenwikGooday.mp3");
     window.fenwikGooday = fenwikGooday;
@@ -297,7 +345,7 @@ function legendaryPrerequisites()
     var drohforLordVictory = new Audio("sounds/polySounds/drohforLordVictory.mp3");
     window.drohforLordVictory = drohforLordVictory;
 
-    //STENDOR CHARACTER: voice acting
+        //STENDOR CHARACTER: voice acting
 
     var stendorGoodDay = new Audio("sounds/polySounds/stendorGoodDay.mp3");
     window.stendorGoodDay = stendorGoodDay;
@@ -359,7 +407,7 @@ function legendaryPrerequisites()
     var stendorTrouble = new Audio("sounds/polySounds/stendorTrouble.mp3");
     window.stendorTrouble = stendorTrouble;
 
-    //MAGGY CHARACTER: voice acting
+        //MAGGY CHARACTER: voice acting
 
     var maggyJustCleaning = new Audio("sounds/polySounds/maggyJustCleaning.mp3");
     window.maggyJustCleaning = maggyJustCleaning;
@@ -373,7 +421,7 @@ function legendaryPrerequisites()
     var maggyMostlyCleaning = new Audio("sounds/polySounds/maggyMostlyCleaning.mp3");
     window.maggyMostlyCleaning = maggyMostlyCleaning;
 
-    //ROSELIN CHARACTER: voice acting
+        //ROSELIN CHARACTER: voice acting
 
     var roselinGday = new Audio("sounds/polySounds/roselinGday.mp3");
     window.roselinGday = roselinGday;
@@ -387,7 +435,7 @@ function legendaryPrerequisites()
     var roselinThankyou = new Audio("sounds/polySounds/roselinThankyou.mp3");
     window.roselinThankyou = roselinThankyou;
 
-    //IRENE CHARACTER: voice acting
+        //IRENE CHARACTER: voice acting
 
     var irenePaWorries = new Audio("sounds/polySounds/irenePaWorries.mp3");
     window.irenePaWorries = irenePaWorries;
@@ -425,7 +473,7 @@ function legendaryPrerequisites()
     var ireneFluffyOne = new Audio("sounds/polySounds/ireneFuzzyOne.mp3");
     window.ireneFluffyOne = ireneFluffyOne;
 
-    //KEDWIN CHARACTER: voice acting
+        //KEDWIN CHARACTER: voice acting
 
     var kedwinRumors = new Audio("sounds/polySounds/kedwinRumors.mp3");
     window.kedwinRumors = kedwinRumors;
@@ -454,7 +502,24 @@ function legendaryPrerequisites()
     var kedwinGobblin = new Audio("sounds/polySounds/kedwinGobblin.mp3");
     window.kedwinGobblin = kedwinGobblin;
 
-    //OLIS PYNSKE CHARACTER: voice acting
+        //MARKOS CHARACTER: voice acting
+
+    var markosRightAway = new Audio("sounds/polySounds/markosRightAway.mp3");
+    window.markosRightAway = markosRightAway;
+
+    var markosNow = new Audio("sounds/polySounds/markosNow.mp3");
+    window.markosNow = markosNow;
+
+    var markosLiege = new Audio("sounds/polySounds/markosLiege.mp3");
+    window.markosLiege = markosLiege;
+
+    var markosShocked = new Audio("sounds/polySounds/markosShocked.mp3");
+    window.markosShocked = markosShocked;
+
+    var markosPick = new Audio("sounds/polySounds/markosPick.mp3");
+    window.markosPick = markosPick;
+
+        //OLIS PYNSKE CHARACTER: voice acting
 
     var olisMyLady = new Audio("sounds/polySounds/olisMyLady.mp3");
     window.olisMyLady = olisMyLady;
@@ -495,7 +560,7 @@ function legendaryPrerequisites()
     var olisHero = new Audio("sounds/polySounds/olisHero.mp3");
     window.olisHero = olisHero;
 
-    //MEDLIA CHARACTER: voice acting
+        //MEDLIA CHARACTER: voice acting
 
     var medliaMaybeIf = new Audio("sounds/polySounds/medliaMaybeIf.mp3");
     window.medliaMaybeIf = medliaMaybeIf;
@@ -536,7 +601,7 @@ function legendaryPrerequisites()
     var medliaItWorked = new Audio("sounds/polySounds/medliaItWorked.mp3");
     window.medliaItWorked = medliaItWorked;
 
-    //TEBER CHARACTER: voice acting
+        //TEBER CHARACTER: voice acting
 
     var teberShanToor = new Audio("sounds/polySounds/teberShanToor.mp3");
     window.teberShanToor = teberShanToor;
@@ -565,7 +630,7 @@ function legendaryPrerequisites()
     var teberDontWant = new Audio("sounds/polySounds/teberDontWant.mp3");
     window.teberDontWant = teberDontWant;
 
-    //NECULAI CHARACTER: voice acting
+        //NECULAI CHARACTER: voice acting
 
     var neculaiBountyHere = new Audio("sounds/polySounds/neculaiBountyHere.mp3");
     window.neculaiBountyHere = neculaiBountyHere;
@@ -609,7 +674,7 @@ function legendaryPrerequisites()
     var neculaiZerGone = new Audio("sounds/polySounds/neculaiZerGone.mp3");
     window.neculaiZerGone = neculaiZerGone;
 
-    //KRONHEIME CHARACTER: voice acting
+        //KRONHEIME CHARACTER: voice acting
 
     var kronheimeHaventHeard = new Audio("sounds/polySounds/kronheimeHaventHeard.mp3");
     window.kronheimeHaventHeard = kronheimeHaventHeard;
@@ -674,7 +739,7 @@ function legendaryPrerequisites()
     var kronheimeGood = new Audio("sounds/polySounds/kronheimeGood.mp3");
     window.kronheimeGood = kronheimeGood;
 
-    //HILMUND CHARACTER: voice acting
+        //HILMUND CHARACTER: voice acting
 
     var hilmundForRoom = new Audio("sounds/polySounds/hilmundForRoom.mp3");
     window.hilmundForRoom = hilmundForRoom;
@@ -818,6 +883,10 @@ function legendaryPrerequisites()
     var thenganBrickEnv = new Image();
     thenganBrickEnv.src = ("images/thenganBrick.png");
     window.thenganBrickEnv = thenganBrickEnv;
+
+    var brickRoadEnv = new Image();
+    brickRoadEnv.src = ("images/brickRoad.jpg");
+    window.brickRoadEnv = brickRoadEnv;
 
     var snowyEnv = new Image();
     snowyEnv.src = ("images/permaFrost.jpg");
@@ -1991,7 +2060,15 @@ function theLegend()
         medlia: ["Medlia", 0],
         neculai: ["Neculai", 0],
         kronheime: ["Kronheime", 0],
-        garld: ["Garld", 0]
+        garld: ["Garld", 0],
+        balgurMercenary: ["Balgur Mercenary", 0],
+        tor: ["Tor", 0],
+        beulingerr: ["Beulingerr", 0],
+        pynske: ["Pynske", 0],
+        dagmar: ["Dagmar", 0],
+        adolf: ["Adolf", 0],
+        brunelda: ["Brunelda", 0],
+        markos: ["Markos", 0]
     };
 
 //time Tracker Variables
@@ -2096,7 +2173,22 @@ function theLegend()
         ireneLDS: true,
         fenwikLDS: true,
         schuylarLDS: true,
-        OrjovTorLDS: true
+        OrjovTorLDS: true,
+        dagmarLDS: true,
+        lennardLDS: true,
+        naokoLDS: true,
+        ederhalLDS: true,
+        bameyLDS: true,
+        barretLDS: true,
+        pynskeLDS: true,
+        adolfLDS: true,
+        bruneldaLDS: true,
+        markosLDS: true,
+        gerlachLDS: true,
+        cherylLDS: true,
+        johannaLDS: true,
+        lenaLDS: true,
+        friedrichLDS: true
     };
 //QUESTS
     quests =
@@ -2116,13 +2208,20 @@ function theLegend()
         fenwikEchlinArmed: 0,
         fenwikShopStyle: "normal",
         garldCrazyScroll: false,
+        kellExecution: false,
+        pitFight: false,
 
         //PLAYER PROPERTY
         teshirHomeOwned: false,
+        lethikHomeOwned: false,
 
         //ITEM STASH VARIABLES (non quest)
         lonerGuyStash: true,
         sagesCacheStash: true,
+
+        //QUEST: Sword Delivery ---- given by Dagmar
+        swordDeliveryQuest: false,
+        swordDeliveryFight: true,
 
         //QUEST: Teshir North Road ---- given by Toggin
         teshirNorthRoadBandits: true,

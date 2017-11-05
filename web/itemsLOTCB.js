@@ -4157,7 +4157,7 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             if (shopkeeper != "none")
             {
-                if (shopkeeper.raceName != "Thengar")
+                if (shopkeeper.ultra.race != "Thengar")
                 {
                     this.buyValue = 13 - Math.floor(player.getCharisma() / 8); // at max, buy for 7.
                     this.sellValue = 3 + Math.floor(player.getCharisma() / 12); // at max, sell for 7.

@@ -180,7 +180,35 @@ function legendaryPrerequisites()
     var nelgrefKiss = new Audio("sounds/polySounds/nelgrefKiss.mp3");
     window.nelgrefKiss = nelgrefKiss;
 
-    //ADOLF CHARACTER: voice acting
+        //JOHANNA CHARACTER: voice acting
+
+    var johannaHelp = new Audio("sounds/polySounds/johannaHelp.mp3");
+    window.johannaHelp = johannaHelp;
+
+    var johannaPoor = new Audio("sounds/polySounds/johannaPoor.mp3");
+    window.johannaPoor = johannaPoor;
+
+    var johannaFine = new Audio("sounds/polySounds/johannaFine.mp3");
+    window.johannaFine = johannaFine;
+
+    var johannaOwch = new Audio("sounds/polySounds/johannaOwch.mp3");
+    window.johannaOwch = johannaOwch;
+
+    var johannaLeave = new Audio("sounds/polySounds/johannaLeave.mp3");
+    window.johannaLeave = johannaLeave;
+
+        //LENA CHARACTER: voice acting
+
+    var lenaHi = new Audio("sounds/polySounds/lenaHi.mp3");
+    window.lenaHi = lenaHi;
+
+    var lenaAway = new Audio("sounds/polySounds/lenaAway.mp3");
+    window.lenaAway = lenaAway;
+
+    var lenaPotions = new Audio("sounds/polySounds/lenaPotions.mp3");
+    window.lenaPotions = lenaPotions;
+
+        //ADOLF CHARACTER: voice acting
 
     var adolfSure = new Audio("sounds/polySounds/adolfSure.mp3");
     window.adolfSure = adolfSure;
@@ -227,6 +255,44 @@ function legendaryPrerequisites()
 
     var togginChangeMind = new Audio("sounds/polySounds/togginChangeMind.mp3");
     window.togginChangeMind = togginChangeMind;
+
+        //CHERYL CHARACTER: voice acting
+
+    var cherylDarling = new Audio("sounds/polySounds/cherylDarling.mp3");
+    window.cherylDarling = cherylDarling;
+
+    var cherylDifficult = new Audio("sounds/polySounds/cherylDifficult.mp3");
+    window.cherylDifficult = cherylDifficult;
+
+    var cherylWell = new Audio("sounds/polySounds/cherylWell.mp3");
+    window.cherylWell = cherylWell;
+
+    var cherylILoveYou = new Audio("sounds/polySounds/cherylILoveYou.mp3");
+    window.cherylILoveYou = cherylILoveYou;
+
+    var cherylDead = new Audio("sounds/polySounds/cherylDead.mp3");
+    window.cherylDead = cherylDead;
+
+    var cherylStitching = new Audio("sounds/polySounds/cherylStitching.mp3");
+    window.cherylStitching = cherylStitching;
+
+    var cherylHoping = new Audio("sounds/polySounds/cherylHoping.mp3");
+    window.cherylHoping = cherylHoping;
+
+    var cherylAsWell = new Audio("sounds/polySounds/cherylAsWell.mp3");
+    window.cherylAsWell = cherylAsWell;
+
+    var cherylKind = new Audio("sounds/polySounds/cherylKind.mp3");
+    window.cherylKind = cherylKind;
+
+    var cherylSafe = new Audio("sounds/polySounds/cherylSafe.mp3");
+    window.cherylSafe = cherylSafe;
+
+    var cherylSame = new Audio("sounds/polySounds/cherylSame.mp3");
+    window.cherylSame = cherylSame;
+
+    var cherylBehaving = new Audio("sounds/polySounds/cherylBehaving.mp3");
+    window.cherylBehaving = cherylBehaving;
 
         //DAGMAR CHARACTER: voice acting
 

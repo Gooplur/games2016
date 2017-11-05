@@ -552,6 +552,13 @@ function cheats()
                 bankSlots = 10;
             }
         }
+        else if (cheatcode.toLowerCase() == "noonesawnooneknows")
+        {
+            if (player.name == "Desmonde")
+            {
+                player.theBalgurMercenariesFaction = 0;
+            }
+        }
         else if (cheatcode.toLowerCase() == "qualdo")
         {
             console.log(allSpells.length);

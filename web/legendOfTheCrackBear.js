@@ -1411,6 +1411,7 @@ var reading = [];
 var haeRotate = 0;
 var showUnitAttackBubble;
 var testBarriers;
+var dialogueActive = false;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()

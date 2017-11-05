@@ -127,6 +127,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //Other variables
     this.other = false; //this is unique for every unit... do whith it what you will.
     this.interactable = false; //this allows a creature other than a human to be interacted with in the dialogue system.
+    this.engagedInDialogue = false;
     this.attackBusy = false; //used to see if the attack is happening and the creature is not just waiting to attack.
     this.emerge = false; //this is for the creatures that use an animation phase like lombrises. blah blah blah
     this.creatureBiz = false; //reference evadeObstructions to see purpose

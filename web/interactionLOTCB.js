@@ -975,6 +975,204 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Johanna the Herbalist" || conversationID[0] == "Johanna")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Johanna";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good Day.", false, "a"], ["I need medical supplies, I'm hurt.", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            if (uniqueChars.lenaLDS)
+                            {
+                                johannaHelp.play();
+                                johannaHelp.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                johannaLeave.play();
+                                johannaLeave.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            if (uniqueChars.lenaLDS)
+                            {
+                                johannaPoor.play();
+                                johannaPoor.onended = function()
+                                {
+                                    if (player.health >= 0.75 * player.healthMAX)
+                                    {
+                                        johannaFine.play();
+                                        johannaFine.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        johannaOwch.play();
+                                        johannaOwch.onended = function()
+                                        {
+                                            playersTurnToSpeak = true;
+                                            player.dialoguePosition = 0;
+                                            conversationID[1] = 0;
+                                            self.SC();
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                johannaLeave.play();
+                                johannaLeave.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Lena" || conversationID[0] == "Lena")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Lena";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Hello.", false, "a"], ["What do you do around here?", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            if (uniqueChars.johannaLDS)
+                            {
+                                lenaHi.play();
+                                lenaHi.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                lenaAway.play();
+                                lenaAway.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            if (uniqueChars.johannaLDS)
+                            {
+                                lenaPotions.play();
+                                lenaPotions.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                lenaAway.play();
+                                lenaAway.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                        }
+                    }
+
                     if (self.ID == "Brunelda the Merchant" || conversationID[0] == "Brunelda")
                     {
                         lowBar = "dialogue";
@@ -6679,8 +6877,8 @@ function interaction(me)
                             }
                             else if (player.gender == "Female" && player.title == "Royalty" || player.gender == "Female" && player.title == "Nobility")
                             {
-                                hilmundFlattered.play();
-                                hilmundFlattered.onended = function()
+                                hilmundFlattering.play();
+                                hilmundFlattering.onended = function()
                                 {
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;

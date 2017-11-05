@@ -2135,7 +2135,10 @@ function theLegend()
         adolf: ["Adolf", 0],
         brunelda: ["Brunelda", 0],
         markos: ["Markos", 0],
-        rutgar: ["Rutgar", 0]
+        rutgar: ["Rutgar", 0],
+        lena: ["Lena", 0],
+        johanna: ["Johanna", 0],
+        cheryl: ["Cheryl", 0]
     };
 
 //time Tracker Variables

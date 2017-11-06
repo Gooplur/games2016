@@ -245,6 +245,18 @@ function worldBuilder()
             region = "w5";
 
             outlineBuilder( 34, 34, "dirt", -190, -20);
+            outlineBuilder( 6, 34, "hotGrass", -190, 8);
+            outlineBuilder( 1, 13, "hotGrass", -180, 7);
+            outlineBuilder( 2, 6, "hotGrass", -190, 6);
+            outlineBuilder( 1, 2, "hotGrass", -184, 7);
+            outlineBuilder( 1, 3, "hotGrass", -189, 5);
+            outlineBuilder( 1, 5, "hotGrass", -163, 7);
+            outlineBuilder( 1, 4, "hotGrass", -173, 6);
+            outlineBuilder( 8, 1, "crag", -157, -3);
+            outlineBuilder( 3, 1, "crag", -158, 1);
+            outlineBuilder( 5, 1, "crag", -157, -18);
+            outlineBuilder( 1, 1, "crag", -158, -15);
+            outlineBuilder( 2, 1, "crag", -157, -20);
             //outlineBuilder( 34, 1, "greenGrass", -157, -20);
 
         }
@@ -4112,10 +4124,47 @@ function buildMaster()
                 //REGION CREATION
 
                 //Creatures
-                //ArtificialIntelligenceAccess.push(new Unit(10988, -2291, "Nog", false, "Buckle-Snorp"));
+                ArtificialIntelligenceAccess.push(new Unit(49791, -2099, "Boulchom", false, "Boork"));
+                ArtificialIntelligenceAccess.push(new Unit(56357, -2218, "Thueg", false, "Spindles"));
+                ArtificialIntelligenceAccess.push(new Unit(57089, -2223, "Thueg", "baby", "Spindlez"));
+                ArtificialIntelligenceAccess.push(new Unit(56780, -2980, "Conejo", true, "boo"));
+                ArtificialIntelligenceAccess.push(new Unit(54703, -2152, "Conejo", false, "book"));
+                ArtificialIntelligenceAccess.push(new Unit(49347, -3077, "Boulchom", false, "Balg"));
+                ArtificialIntelligenceAccess.push(new Unit(48738, -2165, "Thueg", false, "Spindles"));
+                ArtificialIntelligenceAccess.push(new Unit(49756, -2106, "Conejo", false, "booky"));
+
+                //Worms (not ripped off from Dune whatsoever)
+                ArtificialIntelligenceAccess.push(new Unit(48678, -1004, "Lombris", false, "Dune"));
+                ArtificialIntelligenceAccess.push(new Unit(49865, -661, "Lombris", false, "Duna"));
+                ArtificialIntelligenceAccess.push(new Unit(50518, -1460, "Lombris", false, "Lom"));
+                ArtificialIntelligenceAccess.push(new Unit(51522, -732, "Lombris", false, "Bris"));
+                ArtificialIntelligenceAccess.push(new Unit(54476, -387, "Lombris", true, "Brys"));
+                ArtificialIntelligenceAccess.push(new Unit(56400, -485, "Lombris", false, "Lomol"));
+                ArtificialIntelligenceAccess.push(new Unit(56904, 1205, "Lombris", true, "Brysol"));
+                ArtificialIntelligenceAccess.push(new Unit(54758, 1943, "Lombris", false, "Draln"));
+                ArtificialIntelligenceAccess.push(new Unit(52311, 1550, "Lombris", false, "Driln"));
+                ArtificialIntelligenceAccess.push(new Unit(48867, 2248, "Lombris", false, "Dreln"));
+                ArtificialIntelligenceAccess.push(new Unit(51315, 1394, "Lombris", false, "Druln"));
+                ArtificialIntelligenceAccess.push(new Unit(49674, 3448, "Lombris", true, "Dryln"));
+                ArtificialIntelligenceAccess.push(new Unit(48833, 5885, "Lombris", true, "Dreuln"));
+                ArtificialIntelligenceAccess.push(new Unit(52760, 5462, "Lombris", true, "Draaln"));
+                ArtificialIntelligenceAccess.push(new Unit(52929, -597, "Lombris", false, "Drooln"));
+                ArtificialIntelligenceAccess.push(new Unit(51847, 4531, "Lombris", true, "Drouln"));
+                ArtificialIntelligenceAccess.push(new Unit(54483, 3935, "Lombris", false, "Dreiln"));
+                ArtificialIntelligenceAccess.push(new Unit(56540, 2269, "Lombris", true, "Droaln"));
+                ArtificialIntelligenceAccess.push(new Unit(57427, 5350, "Lombris", false, "Drieln"));
+                ArtificialIntelligenceAccess.push(new Unit(53909, 5323, "Lombris", false, "Drioln"));
+                ArtificialIntelligenceAccess.push(new Unit(50610, 9, "Lombris", false, "Dryiln"));
+                ArtificialIntelligenceAccess.push(new Unit(52654, 2604, "Lombris", true, "Drueln"));
+                ArtificialIntelligenceAccess.push(new Unit(55717, 4334, "Lombris", true, "Druyln"));
+                ArtificialIntelligenceAccess.push(new Unit(49396, 899, "Lombris", true, "Drualn"));
+                ArtificialIntelligenceAccess.push(new Unit(57382, 3259, "Lombris", false, "Drieln"));
+
 
                 //Plants
-                //scenicList.push(new Scenery("haeflowerPlant", 15185, 4442, 4, true));
+                scenicList.push(new Scenery("vorlymPlant", 50983, -2297, 1.5, false));
+                scenicList.push(new Scenery("galloshPlant", 56610, -2539, -4, false));
+                scenicList.push(new Scenery("galloshPlant", 49607, -2238, -2, false));
 
                 change = "w5";
             }

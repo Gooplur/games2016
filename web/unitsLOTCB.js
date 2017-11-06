@@ -4495,7 +4495,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.heatResistance = 2;
                 this.attackStyle = "chunked";
                 this.attackRate = 0;  //this is for rapid style combat only.
-                this.healthMAX = Math.floor(Math.random() * 9) + 22;
+                this.healthMAX = Math.floor(Math.random() * 13) + 62;
                 this.health = this.healthMAX;
                 this.armour = 0;
                 this.speed = 4.6;
@@ -4521,7 +4521,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.heatResistance = 2;
                 this.attackStyle = "chunked";
                 this.attackRate = 0;  //this is for rapid style combat only.
-                this.healthMAX = 3;
+                this.healthMAX = 5;
                 this.health = this.healthMAX;
                 this.armour = 0;
                 this.speed = 3.5;
@@ -4548,7 +4548,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.heatResistance = 2;
                 this.attackStyle = "chunked";
                 this.attackRate = 0;  //this is for rapid style combat only.
-                this.healthMAX = Math.floor(Math.random() * 5) + 7;
+                this.healthMAX = Math.floor(Math.random() * 6) + 18;
                 this.health = this.healthMAX;
                 this.armour = 0;
                 this.speed = 4.3;

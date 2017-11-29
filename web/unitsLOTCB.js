@@ -14169,7 +14169,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.alpha)
                     {
-                        this.attackBubble([[35, this.rotation, 0, this.sizeRadius + 38], [26, this.rotation, 0, this.sizeRadius + 2]]); //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                        this.attackBubble([[26, this.rotation, 0, this.sizeRadius + 38], [26, this.rotation, 0, this.sizeRadius + 2]]); //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
                     }
                     else
                     {
@@ -14331,24 +14331,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.attacking)
                     {
-                        if (this.emerge)
-                        {
-                            if (this.alpha)
-                            {
-                                if (this.attackBubble([[26, this.rotation, 0, this.sizeRadius + 30], [26, this.rotation, 0, this.sizeRadius + 2]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
-                                {
-                                    this.damageDealt = false;
-                                }
-                            }
-                            else
-                            {
-                                if (this.attackBubble([[15, this.rotation, 0, this.sizeRadius + 9], [12, this.rotation, 0, this.sizeRadius - 7]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
-                                {
-                                    this.damageDealt = false;
-                                }
-                            }
-                        }
-
                         this.drawUnit(nognog, 694, 226, 57, 26, -1/2 * 57 * this.alphaSize * szr - this.xAdjustment, -1/2 * 26 * this.alphaSize * szr - this.yAdjustment, 57 * this.alphaSize * szr, 26 * this.alphaSize * szr);
                     }
                 }

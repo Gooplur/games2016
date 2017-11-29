@@ -4197,7 +4197,7 @@ function buildMaster()
                 change = "w5";
             }
         }
-        else if (region == "s1w6")
+        else if (region == "s1w6") //Visig Forest
         {
             if (change != "s1w6")
             {

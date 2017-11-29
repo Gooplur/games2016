@@ -2545,7 +2545,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             {
                                 if (this.guarantee)
                                 {
-                                    this.killedByCompanion = true;
+                                    this.target.killedByCompanion = true;
                                 }
                                 this.target.killByPlayerTeam = true;
                                 this.target.killNotByPlayer = true;

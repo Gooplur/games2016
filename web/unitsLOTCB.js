@@ -23,6 +23,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.targetDistance = "none";
     this.extraRot = 0;
     this.traverse = false; //the ability to walk over other units but nothing else.
+    this.contraPlayer = true; //this is manually set to false when defining a creature if it is a creature that never engages the player in combat.
 
     //team variables
     this.muzzle = false; //if true the unit will not be able to target the player.
@@ -62,6 +63,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.beastEntry = "none";
     this.killNotByPlayer = false;
     this.killByPlayerTeam = false; //if killed by a player controlled unit.
+    this.killedByCompanion = false; //if killed by a player companion.
     //AI and sensing variables
     this.closestDistance; //this is the distance away from this unit that the closest other unit is.
     this.closestUnit; // this is the exact unit that is the closest at the moment.
@@ -279,6 +281,28 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             if (this.guarantee)
             {
                 this.showHealthTime = new Date().getTime();
+                if (!this.attacking && this.stay)
+                {
+                    if (player.getSurvivalism() >= 20)
+                    {
+                        this.health = Math.min(this.healthMAX, this.health + 0.0025); //companions have an increased health regeneration while not attacking and while staying put (by player's command)
+                    }
+                    else
+                    {
+                        this.health = Math.min(this.healthMAX, this.health + 0.002); //companions have an increased health regeneration while not attacking and while staying put (by player's command)
+                    }
+                }
+                else if (!this.attacking)
+                {
+                    if (player.getSurvivalism() >= 20)
+                    {
+                        this.health = Math.min(this.healthMAX, this.health + 0.002); //companions have a slight health regeneration while not attacking.
+                    }
+                    else
+                    {
+                        this.health = Math.min(this.healthMAX, this.health + 0.001); //companions have a slight health regeneration while not attacking.
+                    }
+                }
             }
         }
         else
@@ -2519,6 +2543,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             if (this.team == "player")
                             {
+                                if (this.guarantee)
+                                {
+                                    this.killedByCompanion = true;
+                                }
                                 this.target.killByPlayerTeam = true;
                                 this.target.killNotByPlayer = true;
                             }
@@ -3881,7 +3909,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     player.experience += Math.max(0, this.experience - this.lessEXP);
                 }
 
-                if (this.killNotByPlayer == false && this.muzzle == false)
+                if (this.killNotByPlayer == false && this.muzzle == false || this.killedByCompanion && this.muzzle == false)
                 {
                     if (this.revived != true)
                     {
@@ -7520,6 +7548,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 16;
                 this.negateArmour = 0;
                 this.attackWait = 8;
+                this.contraPlayer = false;
 
                 this.alphaSize = 2;
 
@@ -7543,6 +7572,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 7;
                 this.negateArmour = 0;
                 this.attackWait = 4;
+                this.contraPlayer = false;
 
                 this.alphaSize = 0.9;
 
@@ -7566,6 +7596,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 12;
                 this.negateArmour = 0;
                 this.attackWait = 6;
+                this.contraPlayer = false;
 
                 this.alphaSize = 1.45;
 
@@ -7595,6 +7626,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 18;
                 this.negateArmour = 0;
                 this.attackWait = 2.5;
+                this.contraPlayer = false;
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -7619,6 +7651,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 4.5;
                 this.negateArmour = 0;
                 this.attackWait = 3.5;
+                this.contraPlayer = false;
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 0.5;
@@ -7643,6 +7676,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 9;
                 this.negateArmour = 0;
                 this.attackWait = 3;
+                this.contraPlayer = false;
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1;
@@ -7684,6 +7718,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.hunger = 55;
                     this.sustenance = 0;
                     this.suckling = false;
+                    this.contraPlayer = false;
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 1.35; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -7713,6 +7748,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.hunger = 25;
                     this.sustenance = 0;
                     this.suckling = false;
+                    this.contraPlayer = false;
 
                     //alpha has a larger size body and skills.
                     this.alphaSize = 1.55; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -7741,6 +7777,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.hungerMAX = 10;
                 this.hunger = 10;
                 this.sustenance = 0;
+                this.contraPlayer = false;
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 0.65; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -7769,6 +7806,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.hunger = 20;
                 this.sustenance = 0;
                 this.suckling = false;
+                this.contraPlayer = false;
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -7801,6 +7839,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.hungerMAX = 9;
             this.hunger = 9;
             this.consume = false;
+            this.contraPlayer = false;
 
             //alpha has a larger size body and skills.
             this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -7948,6 +7987,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 4;
                 this.negateArmour = 0;
                 this.attackWait = 0.01;
+                this.contraPlayer = false;
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -7971,6 +8011,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 2;
                 this.negateArmour = 0;
                 this.attackWait = 0.01;
+                this.contraPlayer = false;
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -8009,6 +8050,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 6;
                 this.negateArmour = 0;
                 this.attackWait = 4;
+                this.contraPlayer = false;
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.4; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -8032,6 +8074,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 4;
                 this.negateArmour = 0;
                 this.attackWait = 4;
+                this.contraPlayer = false;
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -8070,6 +8113,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 5;
                 this.negateArmour = 0;
                 this.attackWait = 0.01;
+                this.contraPlayer = false;
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 2.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -8093,6 +8137,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 4;
                 this.negateArmour = 0;
                 this.attackWait = 0.01;
+                this.contraPlayer = false;
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.7; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.

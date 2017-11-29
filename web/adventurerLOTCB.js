@@ -20924,7 +20924,7 @@ function Adventurer()
             var hits = 0;
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i ++)
             {
-                if (ArtificialIntelligenceAccess[i].playerSeen == false || ArtificialIntelligenceAccess[i].playerSeen == true && ArtificialIntelligenceAccess[i].disturbed == false && ArtificialIntelligenceAccess[i].type == "Soldier" || ArtificialIntelligenceAccess[i].playerSeen == true && ArtificialIntelligenceAccess[i].disturbed == false && ArtificialIntelligenceAccess[i].type == "Person")
+                if (ArtificialIntelligenceAccess[i].playerSeen == false || ArtificialIntelligenceAccess[i].team == "player" || !ArtificialIntelligenceAccess[i].contraPlayer || ArtificialIntelligenceAccess[i].playerSeen == true && ArtificialIntelligenceAccess[i].disturbed == false && ArtificialIntelligenceAccess[i].type == "Soldier" || ArtificialIntelligenceAccess[i].playerSeen == true && ArtificialIntelligenceAccess[i].disturbed == false && ArtificialIntelligenceAccess[i].type == "Person")
                 {
                     hits += 1;
                 }

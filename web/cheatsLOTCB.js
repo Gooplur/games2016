@@ -593,6 +593,10 @@ function cheats()
             }
             player.engagedSenser();
         }
+        else if (cheatcode.toLowerCase() == "change")
+        {
+            change = "cheatChange#" + (Math.random() * Math.random() * Math.random());
+        }
         else if (cheatcode.toLowerCase() == "howsexyami")
         {
             player.charisma = JSON.parse(prompt("You tell me, how sexy are you???"));

@@ -1610,7 +1610,7 @@ function Item(type, x, y)
 
             //Utility Focused
             this.damages = true;
-            this.spellCost = Math.max(1, 6 + (7 / 50) * player.getConcentration() - (8 / 50) * player.getEminence());
+            this.spellCost = Math.max(1, 6 + (7 / 50) * player.getConcentration() - (7 / 50) * player.getEminence());
             this.spellGroup = "Form";
             this.spellGenre = "Electricity";
             this.spellName = "Electric Bolt";
@@ -2748,13 +2748,13 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
-        else if (this.type == "etnaEggSack")
+        else if (this.type == "etnaEggSac")
         {
             //For All Items
-            this.identity = "Etna Egg Sack";
+            this.identity = "Etna Egg Sac";
             this.weight = 40;
             this.size = 15;
-            this.description = "An egg sack full of developing baby etnas.";
+            this.description = "An egg sac full of developing baby etnas.";
             this.intForDes = 2;
             this.intDescription = "Leave it on the ground and in time a swarm of baby etnas will crawl out of it.";
 
@@ -2768,10 +2768,10 @@ function Item(type, x, y)
             this.buyValue = 29; // at max, buy for 29.
             this.sellValue = 29; // at max, sell for 29.
         }
-        else if (this.type == "etnaVenomSack")
+        else if (this.type == "etnaVenomSac")
         {
             //For All Items
-            this.identity = "Etna Venom Sack";
+            this.identity = "Etna Venom Sac";
             this.weight = 0.6;
             this.size = 5;
             this.description = "The organ in which etnas store their venom.";
@@ -5449,7 +5449,7 @@ function Item(type, x, y)
             this.size = 12;
             this.description = "A leaf from a carnivorous ulgoy plant.";
             this.intForDes = 7;
-            this.intDescription = "This can be used in rare alchemy recipes.";
+            this.intDescription = "This can be used in rare alchemy recipes as either an amplifyer or a former.";
 
             //Define Utility
             this.utility = "material";
@@ -5642,7 +5642,7 @@ function Item(type, x, y)
             this.hunger = 5; //satisfies hunger.
             this.thirst = 4; //quenches thirst.
             this.warmth = 0; //warms player.
-            this.heal = -12; //heals health.
+            this.heal = -46; //heals health.
             this.generation = -5; //recoops lost energy.
             this.replenish = -5; //restores will.
 
@@ -6765,6 +6765,31 @@ function Item(type, x, y)
             this.buyValue = 24 - Math.floor(player.getCharisma() / 12); // at max, buy for 20.
             this.sellValue = 9 + Math.floor(player.getCharisma() / 5); // at max, sell for 19.
         }
+        else if (this.type == "jarOfButterMellowOil")
+        {
+            //For All Items
+            this.identity = "Jar of Butter-Mellow Oil";
+            this.weight = 4;
+            this.size = 7;
+            this.description = "A glass jar full to the brim with highly alchemically reactive oil that smells of butter.";
+            this.intForDes = 9;
+            this.intDescription = "This is an incredibly potent alchemic agent that acts as both an amplifier and a changer.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 25;
+            this.ingredients = [["Butter-Mellow Flower", 200], ["Glass Jar", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 745 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 645.
+            this.sellValue = 220 + Math.floor(player.getCharisma() / 0.125); // at max, sell for 620.
+        }
         else if (this.type == "potionGlass")
         {
             //For All Items
@@ -6856,6 +6881,42 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 73 - Math.floor(player.getCharisma() / 50); // at max, buy for 72.
             this.sellValue = 67 + Math.floor(player.getCharisma() / 10); // at max, sell for 72.
+        }
+        else if (this.type == "neevBlood")
+        {
+            //For All Items
+            this.identity = "Neev Blood";
+            this.weight = 0.7;
+            this.size = 5;
+            this.description = "A pure black tar-like black blood.";
+            this.intForDes = 20;
+            this.intDescription = "Neev blood is an immensely powerful base used to make certain potions.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = -6; //satisfies hunger.
+            this.thirst = -6; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -3; //heals health.
+            this.generation = -3; //recoops lost energy.
+            this.replenish = -14; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 12;
+            this.ingredients = [["Potion Glass", 2], ["Neev Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 66 - Math.floor(player.getCharisma() / 3); // at max, buy for 51.
+            this.sellValue = 27 + Math.floor(player.getCharisma() / 3); // at max, sell for 42.
         }
         else if (this.type == "ogardPerfume")
         {
@@ -7072,6 +7133,78 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 225 - Math.floor(player.getCharisma() / 1); // at max, buy for 175.
             this.sellValue = 95 + Math.floor(player.getCharisma() / 2); // at max, sell for 120.
+        }
+        else if (this.type == "mightPotionI")
+        {
+            //For All Items
+            this.identity = "Elixer of Might";
+            this.weight = 0.5;
+            this.size = 5;
+            this.description = "A thick red liquid that swirls slowly throughout the glass.";
+            this.intForDes = 0;
+            this.intDescription = "This potion magically enhances your strength and your toughness.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "mightI";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 33;
+            this.ingredients = [["Vial of Water", 1], ["Viper Snake Skin", 1], ["Lizard Tail", 1], ["Raw Bear Tongue", 1], ["Raw Wolf Liver", 1], ["Steugiurne Flower", 2], ["Kofke Leaves", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 310 - Math.floor(player.getCharisma() / 1); // at max, buy for 260.
+            this.sellValue = 210 + Math.floor(player.getCharisma() / 1); // at max, sell for 260.
+        }
+        else if (this.type == "mightPotionII")
+        {
+            //For All Items
+            this.identity = "Elixer of Might II";
+            this.weight = 0.5;
+            this.size = 5;
+            this.description = "A thick red liquid that spirals stubbornly within the glass.";
+            this.intForDes = 0;
+            this.intDescription = "This potion magically enhances your strength and your toughness.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "mightII";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 33;
+            this.ingredients = [["Vial of Water", 1], ["Viper Snake Skin", 2], ["Fletter Wing", 3], ["Raw Bear Tongue", 2], ["Raw Wolf Liver", 1], ["Steugiurne Flower", 2], ["Kofke Leaves", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 550 - Math.floor(player.getCharisma() / 1); // at max, buy for 500.
+            this.sellValue = 450 + Math.floor(player.getCharisma() / 1); // at max, sell for 500.
         }
         else if (this.type == "mindPotionI")
         {
@@ -11171,7 +11304,7 @@ function Item(type, x, y)
             this.identity = "Raw Mudfly Flesh";
             this.weight = 0.6;
             this.size = 9;
-            this.description = "The horrible smelling green mush-sack like flesh of a mudfly.";
+            this.description = "The horrible smelling green mush-sac like flesh of a mudfly.";
             this.intForDes = 8;
             this.intDescription = "Nobody who doesn't have to eat mudfly meat will, especially not raw.";
 
@@ -11459,7 +11592,7 @@ function Item(type, x, y)
             this.size = 7;
             this.description = "The gland within a viper that allows it to produce its venom.";
             this.intForDes = 14;
-            this.intDescription = "Certain reactants in this venom could be used for alchemaic practises if they were to be fermented.";
+            this.intDescription = "Certain reactants in this venom could be used for alchemic practices if they were to be fermented.";
 
             //Define Utility
             this.utility = "food";
@@ -11488,7 +11621,7 @@ function Item(type, x, y)
             this.size = 9;
             this.description = "The sour smelling bulged swolen fermented venom gland from a viper.";
             this.intForDes = 13;
-            this.intDescription = "The poison becomes slightly less toxic after fermentation.";
+            this.intDescription = "The poison becomes slightly less toxic after fermentation; this acts as a changer.";
 
             //Define Utility
             this.utility = "food";
@@ -17400,12 +17533,12 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(nognog, 742, 165, 8, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 8 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.6), 8 * 1.6, 14 * 1.6);
         }
-        else if (this.type == "etnaEggSack")
+        else if (this.type == "etnaEggSac")
         {
             XXX.beginPath();
             XXX.drawImage(nognog, 834, 374, 10, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 3.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 3.7), 10 * 3.7, 10 * 3.7);
         }
-        else if (this.type == "etnaVenomSack")
+        else if (this.type == "etnaVenomSac")
         {
             XXX.beginPath();
             XXX.drawImage(nognog, 831, 359, 12, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.7), 12 * 1.7, 10 * 1.7);
@@ -18383,6 +18516,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(freeverse, 431, 945, 10, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 10, 17);
         }
+        else if (this.type == "mightPotionI" || this.type == "mightPotionII" || this.type == "mightPotionIII" || this.type == "mightPotionIV" || this.type == "mightPotionV")
+        {
+            XXX.beginPath();
+            XXX.drawImage(oldverse, 1788, 183, 9, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 9, 16);
+        }
+        else if (this.type == "neevBlood")
+        {
+            XXX.beginPath();
+            XXX.drawImage(oldverse, 1741, 183, 8, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 8, 16);
+        }
         else if (this.type == "utExtract")
         {
             XXX.beginPath();
@@ -18973,7 +19116,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polyPNG, 452, 33, 8, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 12), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 12, 21);
         }
-        else if (this.type == "jarOfOil")
+        else if (this.type == "jarOfOil" || this.type == "jarOfButterMellowOil")
         {
             XXX.beginPath();
             XXX.drawImage(mofu, 97, 3, 10, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21.5), 15, 21.5);
@@ -19761,12 +19904,12 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(nognog, 742, 165, 8, 14, this.invX - (1/2 * 8 * 1.6), this.invY - (1/2 * 14 * 1.6), 8 * 1.6, 14 * 1.6);
         }
-        else if (this.type == "etnaEggSack")
+        else if (this.type == "etnaEggSac")
         {
             LXX.beginPath();
             LXX.drawImage(nognog, 834, 374, 10, 10, this.invX - (1/2 * 10 * 3.7), this.invY - (1/2 * 10 * 3.7), 10 * 3.7, 10 * 3.7);
         }
-        else if (this.type == "etnaVenomSack")
+        else if (this.type == "etnaVenomSac")
         {
             LXX.beginPath();
             LXX.drawImage(nognog, 831, 359, 12, 10, this.invX - (1/2 * 12 * 1.7), this.invY - (1/2 * 10 * 1.7), 12 * 1.7, 10 * 1.7);
@@ -20829,6 +20972,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(freeverse, 431, 945, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
+        else if (this.type == "mightPotionI" || this.type == "mightPotionII" || this.type == "mightPotionIII" || this.type == "mightPotionIV" || this.type == "mightPotionV")
+        {
+            LXX.beginPath();
+            LXX.drawImage(oldverse, 1788, 183, 9, 16, this.invX - (1/2 * 9), this.invY - (1/2 * 16), 9, 16);
+        }
+        else if (this.type == "neevBlood")
+        {
+            LXX.beginPath();
+            LXX.drawImage(oldverse, 1741, 183, 8, 16, this.invX - (1/2 * 8), this.invY - (1/2 * 16), 8, 16);
+        }
         else if (this.type == "utExtract")
         {
             LXX.beginPath();
@@ -21329,7 +21482,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polyPNG, 452, 33, 8, 14, this.invX - (1/2 * 12), this.invY - (1/2 * 21), 12, 21);
         }
-        else if (this.type == "jarOfOil")
+        else if (this.type == "jarOfOil" || this.type == "jarOfButterMellowOil")
         {
             LXX.beginPath();
             LXX.drawImage(mofu, 97, 3, 10, 15, this.invX - (1/2 * 15), this.invY - (1/2 * 21.5), 15, 21.5);
@@ -22086,12 +22239,12 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(nognog, 742, 165, 8, 14, this.invX - (1/2 * 8 * 1.6), this.invY - (1/2 * 14 * 1.6), 8 * 1.6, 14 * 1.6);
         }
-        else if (this.type == "etnaEggSack")
+        else if (this.type == "etnaEggSac")
         {
             XXX.beginPath();
             XXX.drawImage(nognog, 834, 374, 10, 10, this.invX - (1/2 * 10 * 3.7), this.invY - (1/2 * 10 * 3.7), 10 * 3.7, 10 * 3.7);
         }
-        else if (this.type == "etnaVenomSack")
+        else if (this.type == "etnaVenomSac")
         {
             XXX.beginPath();
             XXX.drawImage(nognog, 831, 359, 12, 10, this.invX - (1/2 * 12 * 1.7), this.invY - (1/2 * 10 * 1.7), 12 * 1.7, 10 * 1.7);
@@ -23154,6 +23307,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(freeverse, 431, 945, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
+        else if (this.type == "mightPotionI" || this.type == "mightPotionII" || this.type == "mightPotionIII" || this.type == "mightPotionIV" || this.type == "mightPotionV")
+        {
+            XXX.beginPath();
+            XXX.drawImage(oldverse, 1788, 183, 9, 16, this.invX - (1/2 * 9), this.invY - (1/2 * 16), 9, 16);
+        }
+        else if (this.type == "neevBlood")
+        {
+            XXX.beginPath();
+            XXX.drawImage(oldverse, 1741, 183, 8, 16, this.invX - (1/2 * 8), this.invY - (1/2 * 16), 8, 16);
+        }
         else if (this.type == "utExtract")
         {
             XXX.beginPath();
@@ -23650,7 +23813,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polyPNG, 452, 33, 8, 14, this.invX - (1/2 * 12), this.invY - (1/2 * 21), 12, 21);
         }
-        else if (this.type == "jarOfOil")
+        else if (this.type == "jarOfOil" || this.type == "jarOfButterMellowOil")
         {
             XXX.beginPath();
             XXX.drawImage(mofu, 97, 3, 10, 15, this.invX - (1/2 * 15), this.invY - (1/2 * 21.5), 15, 21.5);

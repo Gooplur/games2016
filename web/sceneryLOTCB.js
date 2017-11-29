@@ -405,18 +405,18 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             XXX.save();
             XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
             XXX.rotate(this.rotation);
-            XXX.drawImage(nognog, 739, 351, 70, 62, -(1/2 * 70 * 1.6 * longevity), -(1/2 * 62 * 1.6 * longevity), 70 * 1.6 * longevity, 62 * 1.6 * longevity);
+            XXX.drawImage(nognog, 739, 351, 70, 62, -(1/2 * 70 * 1.6 * this.temporary), -(1/2 * 62 * 1.6 * this.temporary), 70 * 1.6 * this.temporary, 62 * 1.6 * this.temporary);
             XXX.restore();
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-            this.radius = 45 * longevity;
+            this.radius = 45 * this.temporary;
 
             //stick player and units in the web then store the data for spiders to access.
             this.webbed = [];
             if (this.playerer <= this.radius)
             {
                 player.webbedNum = 3;
-                player.webbedTime = new Date().getTime();;
+                player.webbedTime = new Date().getTime();
                 this.webbed.push(player);
             }
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
@@ -429,6 +429,22 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     this.webbed.push(ArtificialIntelligenceAccess[i]);
                 }
             }
+        }
+        else if (this.type == "overWeb") //this is a purely decorative version of web that covers items and scenery objects.
+        {
+            //TRAITS
+            this.zIndex = 3;
+            this.solid = false;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(nognog, 739, 351, 70, 62, -(1/2 * 70 * 1.6 * this.temporary), -(1/2 * 62 * 1.6 * this.temporary), 70 * 1.6 * this.temporary, 62 * 1.6 * this.temporary);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 45 * this.temporary;
         }
         else if (this.type == "mofuNest")
         {
@@ -1002,10 +1018,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
-        else if (this.type == "etnaEggSack")
+        else if (this.type == "etnaEggSac")
         {
             //TRAITS
-            this.solid = true;
+            this.solid = false;
             this.interactionRange = 75;
 
             //DRAWSELF
@@ -1047,7 +1063,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.activate == true)
             {
                 this.activate = false;
-                worldItems.push([new Item("etnaEggSack", this.X, this.Y), 1]);
+                worldItems.push([new Item("etnaEggSac", this.X, this.Y), 1]);
 
                 for (var i = 0; i < scenicList.length; i++)
                 {
@@ -1733,7 +1749,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else
             {
-                this.zIndex = 5;
+                this.zIndex = 6;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(0);
@@ -1789,7 +1805,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else
             {
-                this.zIndex = 5;
+                this.zIndex = 6;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(Math.PI);
@@ -1845,7 +1861,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else
             {
-                this.zIndex = 5;
+                this.zIndex = 6;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(-1/2 * Math.PI);
@@ -1901,7 +1917,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else
             {
-                this.zIndex = 5;
+                this.zIndex = 6;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(0);
@@ -1965,7 +1981,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else
             {
-                this.zIndex = 5;
+                this.zIndex = 6;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(1/2 * Math.PI);
@@ -2021,7 +2037,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else
             {
-                this.zIndex = 5;
+                this.zIndex = 6;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(0);
@@ -2082,7 +2098,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else
             {
-                this.zIndex = 5;
+                this.zIndex = 6;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(-2/3 * Math.PI);
@@ -2137,7 +2153,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else
             {
-                this.zIndex = 5;
+                this.zIndex = 6;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(Math.PI);
@@ -2193,7 +2209,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else
             {
-                this.zIndex = 5;
+                this.zIndex = 6;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(0);
@@ -2250,7 +2266,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else
             {
-                this.zIndex = 5;
+                this.zIndex = 6;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(Math.PI * 1/3);
@@ -2305,7 +2321,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else
             {
-                this.zIndex = 5;
+                this.zIndex = 6;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(0);
@@ -2361,7 +2377,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else
             {
-                this.zIndex = 5;
+                this.zIndex = 6;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(Math.PI);
@@ -2417,7 +2433,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else
             {
-                this.zIndex = 5;
+                this.zIndex = 6;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(0);
@@ -6019,7 +6035,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 if (this.playerer < 130)
                 {
-                    this.zIndex = 5;
+                    this.zIndex = 6;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
@@ -6036,7 +6052,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
                 else
                 {
-                    this.zIndex = 5;
+                    this.zIndex = 6;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
@@ -6103,7 +6119,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     console.log(distFromCutCut);
                     if (distFromCutCut <= player.weapon.range * 7 + 35)
                     {
-                        this.treeHealth -= 0.2;
+                        this.treeHealth -= 0.45;
                     }
 
                     if (this.treeHealth <= 0)
@@ -6131,7 +6147,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     console.log(distFromCutCut);
                     if (distFromCutCut <= player.weapon.range * 7 + 35)
                     {
-                        this.treeHealth -= 0.4;
+                        this.treeHealth -= 0.2;
                     }
 
                     if (this.treeHealth <= 0)
@@ -6145,7 +6161,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     console.log(distFromCutCut);
                     if (distFromCutCut <= player.weapon.range * 10 + 35)
                     {
-                        this.treeHealth -= 0.8;
+                        this.treeHealth -= 0.35;
                     }
 
                     if (this.treeHealth <= 0)

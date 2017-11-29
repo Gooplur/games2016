@@ -38,7 +38,7 @@ function interaction(me)
             if (self.type == "Person" || self.type == "Soldier" || self.interactable)
             {
                 //CONVERSATION AND SOCIAL INTERACTIONS WITH AI CHARACTERS
-                if (!dialogueActive && clickReleased == true && dtm < self.sizeRadius && dtp < 55 && self.disturbed == false && self.offended == false || dialogueActive && conversationID[0] != "none" && dtp < 55 && self.disturbed == false && self.offended == false && self.engagedInDialogue) //|| playersTurnToSpeak == false
+                if (!dialogueActive && clickReleased == true && dtm < self.sizeRadius && dtp < 55 && self.disturbed == false && self.offended == false && self.dmx == player.dmx || dialogueActive && conversationID[0] != "none" && dtp < 55 && self.disturbed == false && self.offended == false && self.engagedInDialogue && self.dmx == player.dmx) //|| playersTurnToSpeak == false
                 {
                     dialogueActive = true;
                     self.engagedInDialogue = true;
@@ -7318,19 +7318,9 @@ function interaction(me)
                         }
                     }
                 }
-                else
+                else if (dialogueActive && self.engagedInDialogue == true)
                 {
-                    if (dialogueActive && self.engagedInDialogue == true)
-                    {
-                        self.engagedInDialogue = false;
-                        player.dialoguePosition = 0;
-                        player.inventoryPosition = 0;
-                        invScroll = 0;
-                        conversationID[0] = "none";
-                        conversationID[1] = 0;
-                        lowBar = "information";
-                        dialogueActive = false;
-                    }
+                    dialogueReset();
                 }
 
                 //ACCESS SHOPS BANKS AND OTHER AI SERVICES
@@ -7396,4 +7386,16 @@ function interaction(me)
             }
         }
     }
+}
+
+function dialogueReset()
+{
+    self.engagedInDialogue = false;
+    player.dialoguePosition = 0;
+    player.inventoryPosition = 0;
+    invScroll = 0;
+    conversationID[0] = "none";
+    conversationID[1] = 0;
+    lowBar = "information";
+    dialogueActive = false;
 }

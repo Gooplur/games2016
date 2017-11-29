@@ -1030,6 +1030,14 @@ function legendaryPrerequisites()
     forestEnv.src = ("images/mBank.jpg");
     window.forestEnv = forestEnv;
 
+    var wormDirtEnv = new Image();
+    wormDirtEnv.src = ("images/wormDirt.jpg");
+    window.wormDirtEnv = wormDirtEnv;
+
+    var woodsEnv = new Image();
+    woodsEnv.src = ("images/thenganWoods.jpg");
+    window.woodsEnv = woodsEnv;
+
     var poly = new Image();
     poly.src = ("images/poly.png");
     window.poly = poly;
@@ -2294,6 +2302,7 @@ function theLegend()
         //ITEM STASH VARIABLES (non quest)
         lonerGuyStash: true,
         sagesCacheStash: true,
+        spiderwebLoot: true,
 
         //QUEST: Sword Delivery ---- given by Dagmar
         swordDeliveryQuest: false,
@@ -2728,6 +2737,8 @@ function theLegend()
     alchemy.push(new Item("energilPotionI", false));
     alchemy.push(new Item("energilPotionII", false));
     alchemy.push(new Item("mindPotionI", false));
+    alchemy.push(new Item("mightPotionI", false));
+    alchemy.push(new Item("mightPotionII", false));
     alchemy.push(new Item("fermentedNarthwarpMouth", false));
     alchemy.push(new Item("fermentedViperVenomGland", false));
     alchemy.push(new Item("driedCyrinthilimMushroom", false));
@@ -2741,6 +2752,8 @@ function theLegend()
     alchemy.push(new Item("fermentedUtTentacle", false));
     alchemy.push(new Item("mudflyMold", false));
     alchemy.push(new Item("haeflowerPollen", false));
+    alchemy.push(new Item("neevBlood", false));
+    alchemy.push(new Item("jarOfButterMellowOil", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

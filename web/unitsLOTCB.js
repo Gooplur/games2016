@@ -12,6 +12,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.ID = ID; //This is gives this unit an identity so that they can be identified if a problem comes up.
     this.X = unitX; // this is the units X position in the world
     this.Y = unitY; // this is the units Y position in the world
+    this.initX = this.X; //this stores initial position X
+    this.initY = this.Y; //this stores initial position Y
     this.dmx = map; // dimension
     this.type = type; //This determines what kind of unit it is.
     this.zIndex = 2;
@@ -88,7 +90,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.attackStyle = "chunked";
     this.attackRate = 10;
     this.attackWait = 0.1;
-    this.justAttacked = false; //just to be safe this.justAttacked should be true. This is the flag that shows whether or not a unit has just attacked.
+    this.justAttacked = false; //This is the flag that shows whether or not a unit has just attacked.
     this.timeBetweenAttacks = new Date().getTime(); //this is a variable that regulates the wait timer for attacking.
     this.grudge = 0; //this is how long the unit will hold a grudge against the player for attacking them. 20 seconds is what it starts at so a grudge 0 seconds long would be - 20.
     this.combatMode = 0; //Some Units can switch between different styles of attacks or enter a beserker mode etc.
@@ -191,6 +193,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.stay = false;
     this.guaranteeTime = new Date().getTime();
     this.guarantee = false;
+    this.buffout = 1;
+    this.buffoutTime = 0;
+    this.buffoutTimer = 0;
+    this.subBuffoutToggle = false;
+    this.subBuffout = 0;
+    this.initBuffout = 1;
 
     //Artificial Intelligence
     this.setTeamByID = function()
@@ -2258,7 +2266,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.damage > player.armourTotal)
                     {
-                        this.damage = Math.floor(Math.random() * (randomDamage + 1)) + setDamage;
+                        this.damage = (Math.floor(Math.random() * (randomDamage + 1)) + setDamage) * this.buffout;
 
                         if (player.immune && this.unavoidable == false)
                         {
@@ -2275,11 +2283,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         this.finalAttackCostume = false;
                         this.justAttacked = false;
-                        this.damage = Math.floor(Math.random() * (randomDamage + 1)) + setDamage;
                     }
 
                     if (this.finalAttackCostume)
                     {
+                        this.damage = (Math.floor(Math.random() * (randomDamage + 1)) + setDamage) * this.buffout;
                         if (player.immune && this.unavoidable == false)
                         {
                             this.damage = 0;
@@ -2479,7 +2487,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.damage > this.target.armour)
                     {
-                        this.damage = Math.floor(Math.random() * (randomDamage + 1)) + setDamage;
+                        this.damage = (Math.floor(Math.random() * (randomDamage + 1)) + setDamage) * this.buffout;
                         this.target.health -= Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) * (TTD / (16.75 + (100 * this.attackRate)));
                     }
                 }
@@ -2489,11 +2497,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         this.finalAttackCostume = false;
                         this.justAttacked = false;
-                        this.damage = Math.floor(Math.random() * (randomDamage + 1)) + setDamage;
                     }
 
                     if (this.finalAttackCostume)
                     {
+                        this.damage = (Math.floor(Math.random() * (randomDamage + 1)) + setDamage) * this.buffout;
                         //console.log(this.damage + " is the damage done by " + this.ID + " through an armour total of " + player.armourTotal + ". The resulting damage was " + Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / 16.75) + ".");
 
                         this.target.health -= Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour));
@@ -2534,6 +2542,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.target.stunV = true;
                             this.target.stunTimer = 20;
                             this.target.stunTime = new Date().getTime();
+                            this.target.buffoutTime = new Date().getTime();
+                            this.target.buffoutTimer = 17;
+                            this.target.initBuffout = 0.65;
+                            this.target.subBuffoutToggle = true;
                         }
                         else if (this.effect == "stunIV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                         {
@@ -2687,6 +2699,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         var acidResistance = false;
         var charmResistance = false;
         var webResistance = false;
+        var buffoutResistance = false;
 
         //for loop to check for resistance
         for (var i = 0; i < resistancesList.length; i++)
@@ -2723,6 +2736,38 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 webResistance = true;
             }
+            else if (resistancesList[i] == "buffout")
+            {
+                buffoutResistance = true;
+            }
+        }
+
+        //Buffout Effect
+        if (buffoutResistance == false && new Date().getTime() - this.buffoutTime <= this.buffoutTimer * 1000)
+        {
+            //subBuffouts
+            this.subBuffout = 0;
+            if (webResistance == false && this.webbedNum > 0)
+            {
+                this.subBuffout -= 0.2;
+            }
+            if (this.subBuffoutToggle)
+            {
+                this.buffout = this.initBuffout + this.subBuffout;
+            }
+            else
+            {
+                this.buffout = this.initBuffout;
+            }
+        }
+        else
+        {
+            this.initBuffout = 1;
+            this.buffout = 1;
+            this.buffoutTime = 0;
+            this.buffoutTimer = 0;
+            this.subBuffout = 0;
+            this.subBuffoutToggle = false;
         }
 
         //Burning Effect
@@ -6823,16 +6868,16 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.heatResistance = 0.3;
                 this.attackStyle = "chunked";
                 this.attackRate = 0;  //this is for rapid style combat only.
-                this.healthMAX = Math.floor(Math.random() * 4) + 7;
+                this.healthMAX = Math.floor(Math.random() * 4) + 9;
                 this.health = this.healthMAX;
-                this.armour = 1.2;
+                this.armour = 3.9;
                 this.speed = 3.2 + (Math.floor(Math.random() * 3) / 10);
                 this.rangeOfSight = 650; //This is just to set the variable initially. The rest is variable.
                 this.rotationSpeed = 0.1;
                 this.effect = "etnaVenom";
                 this.engagementRadius = 35;
                 this.sizeRadius = 16;
-                this.negateArmour = 7.4;
+                this.negateArmour = 9;
                 this.attackWait = 1.89;
 
                 //alpha has a larger size body and skills.
@@ -6849,14 +6894,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.attackRate = 0;  //this is for rapid style combat only.
                 this.healthMAX = 1;
                 this.health = this.healthMAX;
-                this.armour = 0.45;
+                this.armour = 1.5;
                 this.speed = 2.25 + (Math.floor(Math.random() * 3) / 10);
                 this.rangeOfSight = 650; //This is just to set the variable initially. The rest is variable.
                 this.rotationSpeed = 0.1;
                 this.effect = "etnaVenom";
                 this.engagementRadius = 19.8;
                 this.sizeRadius = 3;
-                this.negateArmour = 0;
+                this.negateArmour = 3;
                 this.attackWait = 1.89;
 
                 //alpha has a larger size body and skills.
@@ -6871,9 +6916,9 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.heatResistance = 0.3;
                 this.attackStyle = "chunked";
                 this.attackRate = 0;  //this is for rapid style combat only.
-                this.healthMAX = Math.floor(Math.random() * 2) + 4;
+                this.healthMAX = Math.floor(Math.random() * 2) + 6;
                 this.health = this.healthMAX;
-                this.armour = 1;
+                this.armour = 2.9;
                 this.speed = 3 + (Math.floor(Math.random() * 3) / 10);
                 this.rangeOfSight = 650; //This is just to set the variable initially. The rest is variable.
                 this.rotationSpeed = 0.1;
@@ -15535,7 +15580,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.experience = (67 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
-                this.drops = [[new Item("etnaVenomSack", this.X, this.Y), 1]];
+                this.drops = [[new Item("etnaVenomSac", this.X, this.Y), 1]];
             }
             else if (this.alpha == "baby")
             {
@@ -15561,7 +15606,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.experience = 60 * ((player.getIntelligence() / 50) + 1) / 10;
                 }
 
-                this.drops = [[new Item("etnaVenomSack", this.X, this.Y), 1]];
+                this.drops = [[new Item("etnaVenomSac", this.X, this.Y), 1]];
             }
 
             //RANGE OF SIGHT (anything related to range of sight)
@@ -15630,7 +15675,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.pointTowards(this.target);
                     this.moveInRelationToThing(this.target);
                 }
-
+                else
+                {
+                    this.pointTowards({X: this.initX, Y: this.initY});
+                    this.moveInRelationToThing({X: this.initX, Y: this.initY});
+                }
             }
 
             //ANIMATIONS
@@ -17913,11 +17962,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             //RANGE OF SIGHT (anything related to range of sight)
             if (this.alpha == true)
             {
-                this.rangeOfSightCalculator(900, false);
+                this.rangeOfSightCalculator(3000, false);
             }
             else
             {
-                this.rangeOfSightCalculator(900, false);
+                this.rangeOfSightCalculator(3000, false);
             }
 
             //AI
@@ -17926,6 +17975,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.hunger -= 0.0002 * (TTD / 16.75);
                 if (this.hunger < 0)
                 {
+                    this.killNotByPlayer = true; //if starving it will not drop things or give exp
                     this.health -= 0.0005 * (TTD / 16.75);
                 }
 
@@ -18091,15 +18141,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             //RANGE OF SIGHT (anything related to range of sight)
             if (this.alpha == true)
             {
-                this.rangeOfSightCalculator(250, false);
+                this.rangeOfSightCalculator(2500, false);
             }
             else if (this.alpha == "baby")
             {
-                this.rangeOfSightCalculator(200, false);
+                this.rangeOfSightCalculator(2000, false);
             }
             else
             {
-                this.rangeOfSightCalculator(250, false);
+                this.rangeOfSightCalculator(2500, false);
             }
 
             //AI
@@ -18231,27 +18281,26 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
 
                 //hunger and tittling
+                var hungering = true;
                 if (mother != "none")
                 {
-                    if (this.DTU(mother) > (this.engagementRadius + this.sizeRadius + mother.sizeRadius) || mother.hunger < 10 || this.hunger > 9.75)
+                    if (this.DTU(mother) > (this.engagementRadius + this.sizeRadius + mother.sizeRadius) || this.hunger > 9.75 || mother.hunger < 10)
                     {
-                        this.hunger -= 0.0002 * (TTD / 16.75);
-                        if (this.hunger < 0)
-                        {
-                            this.health -= 0.0005 * (TTD / 16.75);
-                        }
                         this.suckling = false;
                     }
                     else
                     {
+                        hungering = false;
                         this.suckling = true;
                     }
                 }
-                else
+
+                if (hungering)
                 {
                     this.hunger -= 0.0002 * (TTD / 16.75);
                     if (this.hunger < 0)
                     {
+                        this.killNotByPlayer = true; //if starving nothing is gained from its death.
                         this.health -= 0.0005 * (TTD / 16.75);
                     }
                 }
@@ -18260,10 +18309,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 if (this.sex == "Male")
                 {
                     this.horniness += 0.001 * (TTD / 16.75);
-                    if (this.hunger > 10)
-                    {
-                        this.health -= 0.0005 * (TTD / 16.75);
-                    }
                 }
 
                 //eat from plants (non-fungi)
@@ -18282,7 +18327,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.target == player)
                 {
-                    if (this.DTP() < this.rangeOfSight)
+                    if (this.DTP() < this.rangeOfSight / 10)
                     {
                         this.pointAwayFromPlayer();
                         this.moveInRelationToPlayer();
@@ -18310,14 +18355,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                     else if (this.horniness > 10 && this.sex == "Male")
                     {
+                        var mateDist = 1000000;
                         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                         {
                             if (ArtificialIntelligenceAccess[i].type == "Hoffalgre")
                             {
                                 if (ArtificialIntelligenceAccess[i].sex == "Female" && ArtificialIntelligenceAccess[i].horniness == 0)
                                 {
-                                    mate = ArtificialIntelligenceAccess[i];
-                                    break;
+                                    if (this.DTU(ArtificialIntelligenceAccess[i]) < mateDist)
+                                    {
+                                        mate = ArtificialIntelligenceAccess[i];
+                                    }
                                 }
                             }
                         }
@@ -18351,7 +18399,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (this.target != "none")
                 {
-                    if (this.DTU(this.target) < this.rangeOfSight)
+                    if (this.DTU(this.target) < this.rangeOfSight / 10)
                     {
                         this.pointAway(this.target);
                         this.moveInRelationToThing(this.target);
@@ -18379,14 +18427,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                     else if (this.horniness > 10 && this.sex == "Male")
                     {
+                        var mateDist = 1000000;
                         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                         {
                             if (ArtificialIntelligenceAccess[i].type == "Hoffalgre")
                             {
                                 if (ArtificialIntelligenceAccess[i].sex == "Female" && ArtificialIntelligenceAccess[i].horniness == 0)
                                 {
-                                    mate = ArtificialIntelligenceAccess[i];
-                                    break;
+                                    if (this.DTU(ArtificialIntelligenceAccess[i]) < mateDist)
+                                    {
+                                        mate = ArtificialIntelligenceAccess[i];
+                                    }
                                 }
                             }
                         }

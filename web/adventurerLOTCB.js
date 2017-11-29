@@ -56,13 +56,18 @@ function Adventurer()
     this.AdToughness = 0; //this is the amount of stat adjustment to toughness.
     this.AdCharisma = 0; //this is the amount of stat adjustment to charisma.
     this.AdSleep = 0; //this is the amount of adjustment to sleep.
-    this.AdShockResist // this is extra armour given shock resist.
+    this.AdShockResist = 0; // this is extra armour given shock resist.
     //more skill adjusters
     this.dexBoost = 0; //this is stat adjustment by magic and potions.
     this.intBoost = 0; //this is stat adjustment by magic and potions.
     this.memBoost = 0; //this is stat adjustment by magic and potions.
     this.wilBoost = 0; //this is stat adjustment by magic and potions.
     this.emiBoost = 0; //this is stat adjustment by magic and potions.
+    this.strBoost = 0; //this is stat adjustment by magic and potions.
+    this.tghBoost = 0; //this is stat adjustment by magic and potions.
+    this.conBoost = 0; //this is stat adjustment by magic and potions.
+    this.staBoost = 0; //this is stat adjustment by magic and potions.
+    this.rngBoost = 0; //this is stat adjustment by magic and potions.
     //Magical Skills
     this.willpower = 50; //this is the amount of energy the caster has to cast magic with, like MP. (100 Maximum Willpower)
     this.knowledge = 50; //this determines what caliber of spells the caster can cast.
@@ -347,6 +352,41 @@ function Adventurer()
     this.stunTimer = new Date().getTime();
     this.fleshMites = false;
     this.timeSinceLastFleshFeast = new Date().getTime();
+    this.strengthI = false;
+    this.strengthII = false;
+    this.strengthIII = false;
+    this.strengthIV = false;
+    this.strengthV = false;
+    this.strengthBoost = 0;
+    this.strTime = 0;
+    this.toughnessI = false;
+    this.toughnessII = false;
+    this.toughnessIII = false;
+    this.toughnessIV = false;
+    this.toughnessV = false;
+    this.toughnessBoost = 0;
+    this.tghTime = 0;
+    this.constitutionI = false;
+    this.constitutionII = false;
+    this.constitutionIII = false;
+    this.constitutionIV = false;
+    this.constitutionV = false;
+    this.constitutionBoost = 0;
+    this.conTime = 0;
+    this.staminaI = false;
+    this.staminaII = false;
+    this.staminaIII = false;
+    this.staminaIV = false;
+    this.staminaV = false;
+    this.staminaBoost = 0;
+    this.staTime = 0;
+    this.rangedI = false;
+    this.rangedII = false;
+    this.rangedIII = false;
+    this.rangedIV = false;
+    this.rangedV = false;
+    this.rangedBoost = 0;
+    this.rngTime = 0;
     this.burningTime = 0;
     this.burningTime2 = new Date().getTime();
     this.wateredClock = 0; //this is like fedClock for thirst.
@@ -516,7 +556,10 @@ function Adventurer()
                 primarySpells[i].equipped = false;
             }
         }
+    };
 
+    this.overAnims = function()
+    {
         //web
         this.onWeb = function()
         {
@@ -2385,6 +2428,236 @@ function Adventurer()
                 this.memoryIV = false;
                 this.memoryV = false;
             }
+
+            //This is the flag setter for strength boosts.
+            if (this.strengthI || this.strengthII || this.strengthIII || this.strengthIV || this.strengthV)
+            {
+                this.strengthBoost = true;
+            }
+            else
+            {
+                if (this.strengthBoost == true)
+                {
+                    this.strBoost = 0;
+                    this.strengthBoost = false;
+                }
+            }
+
+            //This applies the boost.
+            if (this.strengthV == true && new Date().getTime() - this.strTime < 25000)
+            {
+                this.strBoost = 30;
+            }
+            else if (this.strengthIV == true && new Date().getTime() - this.strTime < 25000)
+            {
+                this.strBoost = 22;
+            }
+            else if (this.strengthIII == true && new Date().getTime() - this.strTime < 25000)
+            {
+                this.strBoost = 15;
+            }
+            if (this.strengthII == true && new Date().getTime() - this.strTime < 25000)
+            {
+                this.strBoost = 10;
+            }
+            else if (this.strengthI == true && new Date().getTime() - this.strTime < 25000)
+            {
+                this.strBoost = 5;
+            }
+            else
+            {
+                this.strBoost = 0;
+
+                this.strengthI = false;
+                this.strengthII = false;
+                this.strengthIII = false;
+                this.strengthIV = false;
+                this.strengthV = false;
+            }
+
+            //This is the flag setter for toughness boosts.
+            if (this.toughnessI || this.toughnessII || this.toughnessIII || this.toughnessIV || this.toughnessV)
+            {
+                this.toughnessBoost = true;
+            }
+            else
+            {
+                if (this.toughnessBoost == true)
+                {
+                    this.tghBoost = 0;
+                    this.toughnessBoost = false;
+                }
+            }
+
+            //This applies the boost.
+            if (this.toughnessV == true && new Date().getTime() - this.tghTime < 25000)
+            {
+                this.tghBoost = 30;
+            }
+            else if (this.toughnessIV == true && new Date().getTime() - this.tghTime < 25000)
+            {
+                this.tghBoost = 22;
+            }
+            else if (this.toughnessIII == true && new Date().getTime() - this.tghTime < 25000)
+            {
+                this.tghBoost = 15;
+            }
+            if (this.toughnessII == true && new Date().getTime() - this.tghTime < 25000)
+            {
+                this.tghBoost = 10;
+            }
+            else if (this.toughnessI == true && new Date().getTime() - this.tghTime < 25000)
+            {
+                this.tghBoost = 5;
+            }
+            else
+            {
+                this.tghBoost = 0;
+
+                this.toughnessI = false;
+                this.toughnessII = false;
+                this.toughnessIII = false;
+                this.toughnessIV = false;
+                this.toughnessV = false;
+            }
+
+            //This is the flag setter for constitution boosts.
+            if (this.constitutionI || this.constitutionII || this.constitutionIII || this.constitutionIV || this.constitutionV)
+            {
+                this.constitutionBoost = true;
+            }
+            else
+            {
+                if (this.constitutionBoost == true)
+                {
+                    this.conBoost = 0;
+                    this.constitutionBoost = false;
+                }
+            }
+
+            //This applies the boost.
+            if (this.constitutionV == true && new Date().getTime() - this.conTime < 25000)
+            {
+                this.conBoost = 60;
+            }
+            else if (this.constitutionIV == true && new Date().getTime() - this.conTime < 25000)
+            {
+                this.conBoost = 45;
+            }
+            else if (this.constitutionIII == true && new Date().getTime() - this.conTime < 25000)
+            {
+                this.conBoost = 30;
+            }
+            if (this.constitutionII == true && new Date().getTime() - this.conTime < 25000)
+            {
+                this.conBoost = 15;
+            }
+            else if (this.constitutionI == true && new Date().getTime() - this.conTime < 25000)
+            {
+                this.conBoost = 5;
+            }
+            else
+            {
+                this.conBoost = 0;
+
+                this.constitutionI = false;
+                this.constitutionII = false;
+                this.constitutionIII = false;
+                this.constitutionIV = false;
+                this.constitutionV = false;
+            }
+
+            //This is the flag setter for stamina boosts.
+            if (this.staminaI || this.staminaII || this.staminaIII || this.staminaIV || this.staminaV)
+            {
+                this.staminaBoost = true;
+            }
+            else
+            {
+                if (this.staminaBoost == true)
+                {
+                    this.staBoost = 0;
+                    this.staminaBoost = false;
+                }
+            }
+
+            //This applies the boost.
+            if (this.staminaV == true && new Date().getTime() - this.staTime < 25000)
+            {
+                this.staBoost = 35;
+            }
+            else if (this.staminaIV == true && new Date().getTime() - this.staTime < 25000)
+            {
+                this.staBoost = 25;
+            }
+            else if (this.staminaIII == true && new Date().getTime() - this.staTime < 25000)
+            {
+                this.staBoost = 16;
+            }
+            if (this.staminaII == true && new Date().getTime() - this.staTime < 25000)
+            {
+                this.staBoost = 9;
+            }
+            else if (this.staminaI == true && new Date().getTime() - this.staTime < 25000)
+            {
+                this.staBoost = 4;
+            }
+            else
+            {
+                this.staBoost = 0;
+
+                this.staminaI = false;
+                this.staminaII = false;
+                this.staminaIII = false;
+                this.staminaIV = false;
+                this.staminaV = false;
+            }
+
+            //This is the flag setter for ranged boosts.
+            if (this.rangedI || this.rangedII || this.rangedIII || this.rangedIV || this.rangedV)
+            {
+                this.rangedBoost = true;
+            }
+            else
+            {
+                if (this.rangedBoost == true)
+                {
+                    this.rngBoost = 0;
+                    this.rangedBoost = false;
+                }
+            }
+
+            //This applies the boost.
+            if (this.rangedV == true && new Date().getTime() - this.rngTime < 25000)
+            {
+                this.rngBoost = 25;
+            }
+            else if (this.rangedIV == true && new Date().getTime() - this.rngTime < 25000)
+            {
+                this.rngBoost = 20;
+            }
+            else if (this.rangedIII == true && new Date().getTime() - this.rngTime < 25000)
+            {
+                this.rngBoost = 15;
+            }
+            if (this.rangedII == true && new Date().getTime() - this.rngTime < 25000)
+            {
+                this.rngBoost = 10;
+            }
+            else if (this.rangedI == true && new Date().getTime() - this.rngTime < 25000)
+            {
+                this.rngBoost = 5;
+            }
+            else
+            {
+                this.rngBoost = 0;
+
+                this.rangedI = false;
+                this.rangedII = false;
+                this.rangedIII = false;
+                this.rangedIV = false;
+                this.rangedV = false;
+            }
         };
 
         this.sightSeeing = function()
@@ -2770,11 +3043,11 @@ function Adventurer()
         }
         else if (this.gojiiPoisoned == true)
         {
-            return Math.max(0, (this.strength + this.AdStrength) / 2);
+            return Math.max(0, (this.strength + this.AdStrength + this.strBoost) / 2);
         }
         else // returns the normal amount.
         {
-            return Math.max(0, (this.strength + this.AdStrength + this.swollenSTR));
+            return Math.max(0, (this.strength + this.AdStrength + this.swollenSTR + this.strBoost));
         }
     };
     this.getConstitution = function()
@@ -2786,7 +3059,7 @@ function Adventurer()
         }
         else // returns the normal amount.
         {
-            return Math.max(0, (this.constitution + this.AdConstitution + this.swollenCON));
+            return Math.max(0, (this.constitution + this.AdConstitution + this.swollenCON + this.conBoost));
         }
     };
     this.getDexterity = function()
@@ -2812,17 +3085,17 @@ function Adventurer()
 
     this.getStamina = function()
     {
-        return (Math.max(0, this.stamina + this.AdStamina));
+        return (Math.max(0, this.stamina + this.AdStamina + this.staBoost));
     };
 
     this.getToughness = function()
     {
-        return (Math.max(0, this.toughness + this.AdToughness));
+        return (Math.max(0, this.toughness + this.AdToughness + this.tghBoost));
     };
 
     this.getRanged = function()
     {
-        return (Math.max(0, this.ranged + this.AdRanged + this.swollenRNG));
+        return (Math.max(0, this.ranged + this.AdRanged + this.rngBoost + this.swollenRNG));
     };
 
     this.getSurvivalism = function()
@@ -3474,7 +3747,7 @@ function Adventurer()
         }
     };
 
-    //WILLPOWER BOOST Notice Function
+    //MEMORY BOOST Notice Function
     this.memoryBoostChecker = function()
     {
         if (this.memoryBoost == true)
@@ -3498,6 +3771,133 @@ function Adventurer()
             this.removeNotice("Memorization");
         }
     };
+
+    //STRENGTH BOOST Notice Function
+    this.strengthBoostChecker = function()
+    {
+        if (this.strengthBoost == true)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Strength");
+            //the background
+            XXX.beginPath();
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.fillStyle = "crimson";
+            XXX.rect(this.arrangeNotices("Strength"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            //the image
+            XXX.drawImage(zapa, 312, 44, 11, 26, this.arrangeNotices("Strength"), 413, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Strength");
+        }
+    };
+
+    //TOUGHNESS BOOST Notice Function
+    this.toughnessBoostChecker = function()
+    {
+        if (this.toughnessBoost == true)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Toughness");
+            //the background
+            XXX.beginPath();
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.fillStyle = "#331900";
+            XXX.rect(this.arrangeNotices("Toughness"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            //the image
+            XXX.drawImage(furr, 38, 39, 34, 55, this.arrangeNotices("Toughness"), 413, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Toughness");
+        }
+    };
+
+    //CONSTITUTION BOOST Notice Function
+    this.constitutionBoostChecker = function()
+    {
+        if (this.constitutionBoost == true)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Constitution");
+            //the background
+            XXX.beginPath();
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.fillStyle = "beige";
+            XXX.rect(this.arrangeNotices("Constitution"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            //the image
+            XXX.drawImage(dolls, 161, 105, 24, 38, this.arrangeNotices("Constitution"), 413, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Constitution");
+        }
+    };
+
+    //STAMINA BOOST Notice Function
+    this.staminaBoostChecker = function()
+    {
+        if (this.staminaBoost == true)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Stamina");
+            //the background
+            XXX.beginPath();
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.fillStyle = "yellow";
+            XXX.rect(this.arrangeNotices("Stamina"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            //the image
+            XXX.drawImage(polpol, 121, 545, 18, 20, this.arrangeNotices("Stamina") - 0.5, 413, 20, 20);
+            XXX.drawImage(polpol, 104, 38, 42, 40, this.arrangeNotices("Stamina"), 413, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Stamina");
+        }
+    };
+
+    //RANGED BOOST Notice Function
+    this.rangedBoostChecker = function()
+    {
+        if (this.rangedBoost == true)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Ranged");
+            //the background
+            XXX.beginPath();
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.fillStyle = "#3F3A46";
+            XXX.rect(this.arrangeNotices("Ranged"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            //the image
+            XXX.drawImage(polyPNG, 379, 592, 36, 37, this.arrangeNotices("Ranged"), 413, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Ranged");
+        }
+    };
+
 
     //TROLL POISON Notice Function
     this.trollPoisonChecker = function ()
@@ -3775,6 +4175,11 @@ function Adventurer()
         this.intelligenceBoostChecker();
         this.willpowerBoostChecker();
         this.memoryBoostChecker();
+        this.strengthBoostChecker();
+        this.toughnessBoostChecker();
+        this.constitutionBoostChecker();
+        this.staminaBoostChecker();
+        this.rangedBoostChecker();
         this.starvationChecker();
         this.dehydrationChecker();
         this.quenchedChecker();
@@ -18554,6 +18959,20 @@ function Adventurer()
                                 this.thirst -= 10;
                                 this.fungalFever = true;
                             }
+                            else if (Inventory[i][0].ability == "mightI")
+                            {
+                                this.strTime = new Date().getTime() + 35000;
+                                this.strengthII = true;
+                                this.tghTime = new Date().getTime() + 35000;
+                                this.toughnessI = true;
+                            }
+                            else if (Inventory[i][0].ability == "mightII")
+                            {
+                                this.strTime = new Date().getTime() + 35000;
+                                this.strengthIII = true;
+                                this.tghTime = new Date().getTime() + 35000;
+                                this.toughnessII = true;
+                            }
                             else if (Inventory[i][0].ability == "satiate") //Food with this effect will keep you fed for a little bit.
                             {
                                 this.fed = true;
@@ -19513,7 +19932,7 @@ function Adventurer()
                             for (var j = 0; j < scenicList.length; j++)
                             {
                                 //5 is the radius of mofuEgg Scenery Object.
-                                if (scenicList[j].X - 19 <= X + scenicList[j].radius && scenicList[j].X + 19 >= X - scenicList[j].radius && scenicList[j].Y - 19 <= Y + scenicList[j].radius && scenicList[j].Y + 19 >= Y - scenicList[j].radius)
+                                if (scenicList[j].X - 19 <= X + scenicList[j].radius && scenicList[j].X + 19 >= X - scenicList[j].radius && scenicList[j].Y - 19 <= Y + scenicList[j].radius && scenicList[j].Y + 19 >= Y - scenicList[j].radius && scenicList[j].type != "web")
                                 {
                                     canPlace = false;
                                 }
@@ -19521,7 +19940,7 @@ function Adventurer()
 
                             if (canPlace == true)
                             {
-                                scenicList.push(new Scenery("etnaEggSack", X, Y, (Math.random() * (2 * Math.PI)), false));
+                                scenicList.push(new Scenery("etnaEggSac", X, Y, (Math.random() * (2 * Math.PI)), false));
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {
@@ -20976,6 +21395,10 @@ function Adventurer()
                 this.defend();
             }
 
+            if (zindex == 5)
+            {
+                this.overAnims();
+            }
             //Quick fixes are my lazy way of solving challenging or bothersom problems!
             if (zindex == 6)
             {

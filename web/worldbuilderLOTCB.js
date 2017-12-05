@@ -2077,7 +2077,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(51564, -9414, "Person", false, "Gerlach the Butcher", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["none", 0], weapon: ["timberAxe", [10, 4], 2, 19, 1.5], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 43], [new Item("rawBearFlesh", false, false), 4], [new Item("rawRabbitFlesh", false, false), 7], [new Item("rawBoulchomFlesh", false, false), 3]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(51564, -9414, "Person", false, "Gerlach the Butcher", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["none", 0], weapon: ["timberAxe", [10, 4], 2, 19, 1.5], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 43], [new Item("rawBearFlesh", false, false), 4], [new Item("rawBearTongue", false, false), 1], [new Item("rawRabbitFlesh", false, false), 7], [new Item("rawBoulchomFlesh", false, false), 3], [new Item("rawHoffalgreFlesh", false, false), 6]]}));
                         ArtificialIntelligenceAccess[i].health = 8;
                     }
                 }
@@ -2257,7 +2257,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(50569, -10420, "Person", false, "Ederhal the Innkeeper", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.3, 0.4], 0, 1, 1.15], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 69], [new Item("bearMeat", false, false), 3], [new Item("rabbitMeat", false, false), 5], [new Item("harstAle", false, false), 39], [new Item("harstBread", false, false), 1], [new Item("vel", false, false), 4]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(50569, -10420, "Person", false, "Ederhal the Innkeeper", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.3, 0.4], 0, 1, 1.15], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 69], [new Item("bearMeat", false, false), 3], [new Item("hoffalgreMeat", false, false), 3], [new Item("rabbitMeat", false, false), 5], [new Item("harstAle", false, false), 39], [new Item("harstBread", false, false), 1], [new Item("vel", false, false), 4]]}));
                         ArtificialIntelligenceAccess[i].health = 13;
                     }
                 }
@@ -2497,6 +2497,7 @@ function buildMaster()
                 }
                 else if (quests.pitFight == "spectacle")
                 {
+                    quests.pitFight = "none";
                     var rndm = Math.random();
                     if (rndm > 0.9)
                     {
@@ -3137,6 +3138,7 @@ function buildMaster()
                 }
                 else if (quests.pitFight == "bears")
                 {
+                    quests.pitFight = "none";
                     if (Math.round(Math.random()))
                     {
                         ArtificialIntelligenceAccess.push(new Unit(51046, -8031, "BlackBear", true, "arena3"));
@@ -3160,6 +3162,7 @@ function buildMaster()
                 }
                 else if (quests.pitFight == "skols")
                 {
+                    quests.pitFight = "none";
                     if (Math.round(Math.random()))
                     {
                         if (Math.round(Math.random()))
@@ -3216,6 +3219,7 @@ function buildMaster()
                 }
                 else if (quests.pitFight == "nogs")
                 {
+                    quests.pitFight = "none";
                     var rnd = Math.random();
                     if (rnd > 0.65)
                     {
@@ -3246,6 +3250,7 @@ function buildMaster()
                 }
                 else if (quests.pitFight == "pitFighters")
                 {
+                    quests.pitFight = "none";
                     var rnd = Math.random();
                     if (rnd > 0.65)
                     {
@@ -3487,6 +3492,7 @@ function buildMaster()
                 }
                 else if (quests.pitFight == "prisoners")
                 {
+                    quests.pitFight = "none";
                     var rnd = Math.random();
                     if (rnd > 0.65)
                     {
@@ -3768,7 +3774,7 @@ function buildMaster()
                 scenicList.push(new Scenery("countertop", 51642, -9415, 1/2 * Math.PI, false));
                 if (uniqueChars.gerlachLDS)
                 {
-                    scenicList.push(new Scenery("item", 51643, -9370, 0, "thengar", ["rawBearFlesh", 1, -15]));
+                    scenicList.push(new Scenery("item", 51643, -9367, 0, "thengar", ["rawHoffalgreFlesh", 1, -15]));
                     scenicList.push(new Scenery("item", 51642, -9387, 0, "thengar", ["rawBearFlesh", 1, -15]));
                     scenicList.push(new Scenery("item", 51643, -9409, 0, "thengar", ["rawBearTongue", 1, -15]));
                     scenicList.push(new Scenery("item", 51644, -9453, 0, "thengar", ["rawBoulchomFlesh", 1, -10]));

@@ -3,15 +3,19 @@
  */
 
 //TODO LIST
+//todo add the estoc into the game
+//todo add a standard leather armour
+//todo add items: dried plutt with honey, bread with vel, one more plant for thengan forestland, more alchemy stuff
+//todo add vamprism and lycanthropy
+//todo add the withered beings: Withered Ancient, Withered Crawler
+//todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
+//todo add a brown beetle creature that derps around in the mudflats
 //todo add creature "Miter" a humanoid beast that crawls around on all fours eating the flesh of the dead. It will gain full health everytime it does so, and if it scratches the player with its long claws the player will be grave poisoned which drains life from the player and gives it to the miter responsible.
 //todo add dialogue to the Jarl: Quests/Purchasable Property/etc.
-//todo add Ser Olis Pynske to the jarls estate.
 //todo add roselin's quest
-//todo Add world switch gameplay... -> Dungeons, Caves, trapdoors/ladders, cellars, etc.
 //todo add row boats and swimming
 //todo add the second Freydic City (make it a dock town) [the Freynor kingdom will span over several northern isles and the mainland]
 //todo add containers that operate like miniature banks with fixed numbers of slots.
-//todo add Maps W3 (rock lands), W4 (rock lands),W4S1 (rocklands), W5 (plains/mudflats), W5S1 (Lethik - a medium sized village on the fronteir of Thengaria)
 //todo add warm northern thick clothing made with waanti. //at this point there is only an outfit and not a clothing.
 //todo figure out why aldrekii claws manual attack thing won't let it at twice or even early, while the same code lets the flail perform its attack early.
 //todo finish adding sickness system
@@ -21,9 +25,8 @@
 //todo add brain flies.
 //todo add hangover, and soarness effects as well as their mini notices.
 //todo add a rest without bed button on the UI that uses a homemade confirm popup to ask if you are sure you want to sleep. Add the nappy closed eye for the sleepButton. (it's on poly)
-//todo add items: dried plutt with honey
 //todo add the dexterity system: lv 20 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
-//todo add arrow mods such as poison, electric, wind, armour piercing...
+//todo add arrow mods such as toxic/posion, electric, wind, armour piercing...
 //todo add vines spell
 //todo add weaken spell
 //todo add tornado spell
@@ -37,6 +40,7 @@
 //todo Add more traps to further advance the utility of the Survivalism (trapping) skill.
 //todo add a system that shows the player the names of each region that they enter upon entering it.
 //todo add unique fairytails for each faction
+
 
 function legendaryPrerequisites()
 {

@@ -4686,6 +4686,7 @@ function Item(type, x, y)
             this.yield = 2;
             this.intForCraft = 4;
             this.ingredients = [["Harst Flour", 6], ["Bucket of Water", 1]];
+            this.biproducts = [[new Item("bucket", false), 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 25); // at max, buy for 3.
@@ -4720,6 +4721,7 @@ function Item(type, x, y)
             this.yield = 3;
             this.intForCraft = 6;
             this.ingredients = [["Harst Flour", 6], ["Naaprid Butter", 1], ["Pumpkin", 1], ["Bucket of Water", 1], ["Ground Ogard", 1]];
+            this.biproducts = [[new Item("bucket", false), 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 6.
@@ -4890,6 +4892,7 @@ function Item(type, x, y)
             this.yield = 2;
             this.intForCraft = 20;
             this.ingredients = [["Santh Flour", 4], ["Naaprid Butter", 2], ["Kellish Clay Pot of Naaprid Milk", 1]];
+            this.biproducts = [[new Item("bucket", false), 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 40 - Math.floor(player.getCharisma() / 3); // at max, buy for 25.

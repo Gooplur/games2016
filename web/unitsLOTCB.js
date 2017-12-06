@@ -88,7 +88,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.followThrough = false; //this variable determines if a unit finishes an attack even if the target isn't there to be hit by it.
     this.damageFrame = "automatic"; //When this is set to automatic it makes the last attack frame deal the damage to the target. If it is anything else the final attack frame needs to be triggered from within the front end of the animation.
     this.finalAttackCostume = false; //When this flag is triggered the Unit deals its damage to the player.
-    this.damageDealt = "n/a"; //for manual Unit damage dealing (meaning damage dealt on a frame picked inside of the Units animation rather than automatically the final frame)
+    this.damageDealt = false; //for manual Unit damage dealing (meaning damage dealt on a frame picked inside of the Units animation rather than automatically the final frame)
     this.attackStyle = "chunked";
     this.attackRate = 10;
     this.attackWait = 0.1;
@@ -6367,6 +6367,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "Boulchom")
         {
+            this.damageDealt = "n/a";
             this.followThrough = true; //this unit follows through with its attacks even if the player moves out of range.
             this.charger = true; //this unit charges through and past the enemy.
             this.damageFrame = "manual"; //it is necessary to set this to "manual" so that the attackBubble function can determine the damaging.
@@ -6430,6 +6431,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "Lombris")
         {
+            this.damageDealt = "n/a";
             this.resistances = ["blinded", "burning"];
             this.followThrough = true; //this unit follows through with its attacks even if the player moves out of range.
             this.damageFrame = "manual"; //it is necessary to set this to "manual" so that the attackBubble function can determine the damaging.

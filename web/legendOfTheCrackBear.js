@@ -2698,11 +2698,11 @@ function theLegend()
     tailoring.push(new Item("tent", false));
     tailoring.push(new Item("mufFiber", false));
     tailoring.push(new Item("mufCloth", false));
+    tailoring.push(new Item("dyedMufCloth", false));
     tailoring.push(new Item("cloth", false));
     tailoring.push(new Item("naapridFiber", false));
     tailoring.push(new Item("varnFiber", false));
-    tailoring.push(new Item("avrakFiber", false));
-    tailoring.push(new Item("evrakFiber", false));
+    tailoring.push(new Item("hoffalgreFiber", false));
     tailoring.push(new Item("mofuTribalWear", false));
     tailoring.push(new Item("mofuRunnerOutfit", false));
     tailoring.push(new Item("ardilFurClothing", false));

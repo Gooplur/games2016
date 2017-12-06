@@ -1213,7 +1213,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         else if (this.type == "sign")
         {
             //TRAITS
-            this.zIndex = 5;
+            this.zIndex = 6;
             this.solid = false;
             this.interactionRange = 100;
 

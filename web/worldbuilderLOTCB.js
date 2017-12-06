@@ -503,7 +503,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(2760, 601, "Person", false, "Drohfor", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["walrusLeatherArmour", 5], weapon: ["longbow", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [true, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 7, patrolLoop: true, route:[[2847, 502], [2076, 507], [2167, -451], [2871, -564], [4026, -9], [3119, 622], [2774, 590]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(1875, 243, "Person", false, "Drohfor", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["walrusLeatherArmour", 5], weapon: ["longbow", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [true, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 7, patrolLoop: true, route:[[1875, 243], [1600, -181], [987, -45], [384, -299], [1707, -151], [1420, -366], [1581, 21]]}));
                     }
                 }
                 if (quests.teshirNorthRoadQuest != "complete")
@@ -642,7 +642,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(1193, 777, "Person", false, "Laandeg the Alchemist", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[1193, 777]], merchant: true, merchandise: [[new Item("coins", false, false), 29], [new Item("culprisBandage", false, false), 2], [new Item("healingSalve", false, false), 4], [new Item("trollsBlood", false, false), 1], [new Item("rawTrollsBlood", false, false), 1], [new Item("cleansingPotion", false, false), 1], [new Item("energyPotionI", false, false), 3], [new Item("speedPotionI", false, false), 2], [new Item("energilPotionI", false, false), 2], [new Item("energilPotionII", false, false), 1], [new Item("potionGlass", false, false), 18], [new Item("glassJar", false, false), 14], [new Item("rawWolfLiver", false, false), 4]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(1193, 777, "Person", false, "Laandeg the Alchemist", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[1193, 777]], merchant: true, merchandise: [[new Item("coins", false, false), 29], [new Item("culprisBandage", false, false), 2], [new Item("healingSalve", false, false), 4], [new Item("trollsBlood", false, false), 1], [new Item("rawTrollsBlood", false, false), 1], [new Item("cleansingPotion", false, false), 1], [new Item("energyPotionI", false, false), 3], [new Item("speedPotionI", false, false), 2], [new Item("energilPotionI", false, false), 2], [new Item("energilPotionII", false, false), 1], [new Item("mightPotionI", false, false), 3], [new Item("potionGlass", false, false), 18], [new Item("glassJar", false, false), 14], [new Item("rawWolfLiver", false, false), 4]]}));
                     }
                 }
                 if (uniqueChars.hilmundLDS == true)

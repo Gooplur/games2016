@@ -2263,7 +2263,7 @@ function Item(type, x, y)
             this.size = 13;
             this.description = "The raw flesh of a tilk.";
             this.intForDes = 16;
-            this.intDescription = "This meat while raw, though it smells and tastes foul, has both an energizing and warming property.";
+            this.intDescription = "This meat while raw, though it smells and tastes foul, has both an energizing and warming property. However it will make you throw up.";
 
             //Define Utility
             this.utility = "food";
@@ -2310,7 +2310,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 1;
-            this.ingredients = [["Raw Tilk Meat", 1]];
+            this.ingredients = [["Raw Tilk Flesh", 1]];
 
             //ability
             this.ability = "foodPoisoning";
@@ -9052,56 +9052,6 @@ function Item(type, x, y)
             this.buyValue = 25 - Math.floor(player.getCharisma() / 10); // at max, buy for 20.
             this.sellValue = 8 + Math.floor(player.getCharisma() / 4); // at max, sell for 20.
         }
-        else if (this.type == "evrakFiber")
-        {
-            //For All Items
-            this.identity = "Fiber";
-            this.weight = 0.1;
-            this.size = 10;
-            this.description = "Strong thin strands of fiber.";
-            this.intForDes = 1;
-            this.intDescription = "Fiber is a basic material used in many crafting recipies.";
-
-            //Define Utility
-            this.utility = "material";
-
-            //ability
-            this.ability = "none";
-
-            //Crafting
-            this.yield = 6;
-            this.intForCraft = 19;
-            this.ingredients = [["Evrak Hide", 1]];
-
-            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 3; // at max, buy for 3.
-            this.sellValue = 3; // at max, sell for 3.
-        }
-        else if (this.type == "avrakFiber")
-        {
-            //For All Items
-            this.identity = "Fiber";
-            this.weight = 0.1;
-            this.size = 10;
-            this.description = "Strong thin strands of fiber.";
-            this.intForDes = 1;
-            this.intDescription = "Fiber is a basic material used in many crafting recipies.";
-
-            //Define Utility
-            this.utility = "material";
-
-            //ability
-            this.ability = "none";
-
-            //Crafting
-            this.yield = 7;
-            this.intForCraft = 18;
-            this.ingredients = [["Avrak Hide", 1]];
-
-            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 2; // at max, buy for 2.
-            this.sellValue = 2; // at max, sell for 2.
-        }
         else if (this.type == "varnFiber")
         {
             //For All Items
@@ -9120,8 +9070,33 @@ function Item(type, x, y)
 
             //Crafting
             this.yield = 3;
-            this.intForCraft = 26;
+            this.intForCraft = 20;
             this.ingredients = [["Varn Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "hoffalgreFiber")
+        {
+            //For All Items
+            this.identity = "Fiber";
+            this.weight = 0.1;
+            this.size = 10;
+            this.description = "Strong thin strands of fiber.";
+            this.intForDes = 1;
+            this.intDescription = "Fiber is a basic material used in many crafting recipies.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 14;
+            this.ingredients = [["Hoffalgre Pelt", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
@@ -10804,7 +10779,7 @@ function Item(type, x, y)
 
             //Crafting
             this.yield = 10;
-            this.intForCraft = 25;
+            this.intForCraft = 16;
             this.ingredients = [["Naaprid Pelt", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
@@ -18144,7 +18119,7 @@ function Item(type, x, y)
             XXX.drawImage(verse, 3955, 309, 29, 10,  - (1/2 * 29 / 1.25), - (1/2 * 10 / 1.25), 29 / 1.25, 10 / 1.25);
             XXX.restore();
         }
-        else if (this.type == "naapridFiber" || this.type == "varnFiber" || this.type == "evrakFiber" || this.type == "avrakFiber")
+        else if (this.type == "naapridFiber" || this.type == "varnFiber" || this.type == "hoffalgreFiber")
         {
             XXX.beginPath();
             XXX.drawImage(poly, 85, 46, 10, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.65), 10 * 1.65, 18 * 1.65);
@@ -20590,7 +20565,7 @@ function Item(type, x, y)
             LXX.drawImage(verse, 3955, 309, 29, 10,  - (1/2 * 29 / 1.25), - (1/2 * 10 / 1.25), 29 / 1.25, 10 / 1.25);
             LXX.restore();
         }
-        else if (this.type == "naapridFiber" || this.type == "varnFiber" || this.type == "evrakFiber" || this.type == "avrakFiber")
+        else if (this.type == "naapridFiber" || this.type == "varnFiber" || this.type == "hoffalgreFiber")
         {
             LXX.beginPath();
             LXX.drawImage(poly, 85, 46, 10, 18, this.invX - (1/2 * 10 * 1.65), this.invY - (1/2 * 18 * 1.65), 10 * 1.65, 18 * 1.65);
@@ -22925,7 +22900,7 @@ function Item(type, x, y)
             XXX.drawImage(verse, 3955, 309, 29, 10,  - (1/2 * 29 / 1.25), - (1/2 * 10 / 1.25), 29 / 1.25, 10 / 1.25);
             XXX.restore();
         }
-        else if (this.type == "naapridFiber" || this.type == "varnFiber" || this.type == "evrakFiber" || this.type == "avrakFiber")
+        else if (this.type == "naapridFiber" || this.type == "varnFiber" || this.type == "hoffalgreFiber")
         {
             XXX.beginPath();
             XXX.drawImage(poly, 85, 46, 10, 18, this.invX - (1/2 * 10 * 1.65), this.invY - (1/2 * 18 * 1.65), 10 * 1.65, 18 * 1.65);

@@ -370,6 +370,21 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
             }
         };
 
+        this.shieldFactoring = function(damage)
+        {
+            if (player.mageShield > 0)
+            {
+                player.mageShield -= damage;
+            }
+            else
+            {
+                player.health += player.mageShield;
+                player.mageShield = 0;
+
+                player.health -= damage;
+            }
+        };
+
         this.damageThenGoAway = function(radius, whatDoIDo, damage, negate, affectPlayer, extra)
         {
             if (affectPlayer == true)
@@ -384,7 +399,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     }
                     else if (whatDoIDo == "fire")
                     {
-                        player.health -= Math.max(0, damage - player.heatResistance);
+                        this.shieldFactoring(Math.max(0, (damage - (player.heatResistance))));
                         player.thirst -= Math.max(0, damage - player.heatResistance);
                         player.burningTime = new Date().getTime();
                     }
@@ -395,13 +410,14 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     }
                     else if (whatDoIDo == "bonk")
                     {
-                        player.health -= Math.max(0, damage - Math.max(0, player.armourTotal - negate));
+                        this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
                         player.stunnedIII = true;
                         player.stunnedTime = 2;
                     }
                     else if (whatDoIDo == "quarterAcid")
                     {
-                        player.health -= Math.max(0, damage - Math.max(0, player.armourTotal - negate));
+                        this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
+
                         if (damage + negate > player.armourTotal)
                         {
                             player.quarterAcid = true;
@@ -410,7 +426,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     }
                     else if (whatDoIDo == "acidI")
                     {
-                        player.health -= Math.max(0, damage - Math.max(0, player.armourTotal - negate));
+                        this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
                         if (damage + negate > player.armourTotal)
                         {
                             player.acidI = true;
@@ -419,7 +435,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     }
                     else if (whatDoIDo == "electricity")
                     {
-                        player.health -= Math.max(0, damage - ((player.totalShockResist * 3) + (19 * player.magicalResistanceTotal)));
+                        this.shieldFactoring(Math.max(0, damage - ((player.totalShockResist * 3) + (19 * player.magicalResistanceTotal))));
                         if (Math.max(0, damage -  (19 * player.magicalResistanceTotal)) > 0)
                         {
                             player.shockedTime = new Date().getTime();
@@ -719,13 +735,13 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
 
                                 if (kind == "fire")
                                 {
-                                    player.health -= Math.max(0, damage - player.heatResistance);
+                                    this.shieldFactoring(Math.max(0, damage - player.heatResistance));
                                     player.thirst -= Math.max(0, damage - player.heatResistance);
                                     player.burningTime = new Date().getTime();
                                 }
                                 else if (kind == "electricity")
                                 {
-                                    player.health -= Math.max(0, damage - ((player.totalShockResist * 3) + (19 * player.magicalResistanceTotal)));
+                                    this.shieldFactoring(Math.max(0, damage - ((player.totalShockResist * 3) + (19 * player.magicalResistanceTotal))));
                                     if (Math.max(0, damage - (19 * player.magicalResistanceTotal)) > 0)
                                     {
                                         player.shockedTime = new Date().getTime();
@@ -734,13 +750,13 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                                 }
                                 else if (kind == "frostwind")
                                 {
-                                    player.health -= Math.max(0, damage - player.warmthProtection);
+                                    this.shieldFactoring(Math.max(0, damage - player.warmthProtection));
                                     player.warmth -= Math.max(0, 5 - player.warmthProtection);
                                     //todo figure out how to add wind pushback based on ai rotation for the player and put it here.
                                 }
                                 else if (kind == "magic")
                                 {
-                                    player.health -= Math.max(0, damage - player.magicalResistanceTotal);
+                                    this.shieldFactoring(Math.max(0, damage - player.magicalResistanceTotal));
                                 }
                                 else if (kind == "blinding")
                                 {

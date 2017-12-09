@@ -20,6 +20,8 @@ function Adventurer()
     this.magicalExperience = 0;
     this.magicalExperienceRequiredToLevel = 1000 + (400 * (this.level - 1));
     this.magicalSkillPoints = 0; //you gain magical skill points every magic level that you can put into magic related skills. ( 4 points per level)
+    this.extraSkillPoints = 0;
+    this.extraMagicPoints = 0;
     //Faction Relations
     this.kelFaction = 0; //green (kellish) Chieftain Har
     this.thengarFaction = 0; //brown (thengan) King Wolthgar
@@ -2968,6 +2970,16 @@ function Adventurer()
         }
     };
 
+    this.getTotalSkillPoints = function()
+    {
+        return (this.totalSkillPoints + this.extraSkillPoints);
+    };
+
+    this.getTotalMagicPoints = function()
+    {
+        return (this.totalMagicPoints + this.extraMagicPoints);
+    }
+
     this.getFistDamage = function()
     {
         return (this.fistDamage + this.spikedHandsBonus);
@@ -4648,6 +4660,10 @@ function Adventurer()
         {
             outfit = allWorn[48];
         }
+        else if (this.outfitEquipped == "ancientArmour")
+        {
+            outfit = allWorn[51];
+        }
         else
         {
             outfit = allWorn[0];
@@ -4852,6 +4868,15 @@ function Adventurer()
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (1 / 2 * Math.PI));
             XXX.drawImage(verse, 508, 659, 40, 39, -(1 / 2 * 40 * 0.8) + 2, -(1 / 2 * 39 * 0.8) + 0, 40 * 0.8, 39 * 0.8);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "ancientArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            XXX.drawImage(oldverse, 1756, 205, 37, 43, -(1 / 2 * 37 * 1.1) + 1, -(1 / 2 * 43 * 1.1) + 0, 37 * 1.1, 43 * 1.1);
             XXX.restore();
         }
         else if (this.outfitEquipped == "blackChainArmour")
@@ -5615,7 +5640,7 @@ function Adventurer()
                                 this.willpower += 1;
                                 this.totalMagicPoints += 1;
                                 this.constitution -= 1;
-                                this.totalSkillPoints -= 1;
+                                this.extraSkillPoints -= 1;
                             }
                             else
                             {
@@ -5629,6 +5654,19 @@ function Adventurer()
                     }
                     //Surge
                     if (secondarySpells[i].ID == "surge")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                        {
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+
+                            magicList.push(new Magic(secondarySpells[i], true));
+
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+                    }
+                    //Entanglement
+                    if (secondarySpells[i].ID == "entanglement")
                     {
                         if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
                         {
@@ -15627,7 +15665,7 @@ function Adventurer()
                         LXX.font="bold 10px Book Antiqua";
                         LXX.fillText("LV: " + dataList[0].level, 87.5, 47);
                         LXX.fillText("MLV: " + dataList[0].magicLevel, 87.5, 60);
-                        LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints), 87.5, 73);
+                        LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints + dataList[0].extraSkillPoints + dataList[0].extraMagicPoints), 87.5, 73);
                     }
                     else
                     {
@@ -15696,7 +15734,7 @@ function Adventurer()
                         LXX.font="bold 10px Book Antiqua";
                         LXX.fillText("LV: " + dataList[0].level, 176 + 87.5, 47);
                         LXX.fillText("MLV: " + dataList[0].magicLevel, 176 + 87.5, 60);
-                        LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints), 176 + 87.5, 73);
+                        LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints + dataList[0].extraSkillPoints + dataList[0].extraMagicPoints), 176 + 87.5, 73);
                     }
                     else
                     {
@@ -15765,7 +15803,7 @@ function Adventurer()
                         LXX.font="bold 10px Book Antiqua";
                         LXX.fillText("LV: " + dataList[0].level, 351 + 87.5, 47);
                         LXX.fillText("MLV: " + dataList[0].magicLevel, 351 + 87.5, 60);
-                        LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints), 351 + 87.5, 73);
+                        LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints + dataList[0].extraSkillPoints + dataList[0].extraMagicPoints), 351 + 87.5, 73);
                     }
                     else
                     {
@@ -15834,7 +15872,7 @@ function Adventurer()
                         LXX.font="bold 10px Book Antiqua";
                         LXX.fillText("LV: " + dataList[0].level, 526 + 87.5, 47);
                         LXX.fillText("MLV: " + dataList[0].magicLevel, 526 + 87.5, 60);
-                        LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints), 526 + 87.5, 73);
+                        LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints + dataList[0].extraSkillPoints + dataList[0].extraMagicPoints), 526 + 87.5, 73);
                     }
                     else
                     {
@@ -15902,7 +15940,7 @@ function Adventurer()
                         LXX.font="bold 10px Book Antiqua";
                         LXX.fillText("LV: " + dataList[0].level, 701 + 87.5, 47);
                         LXX.fillText("MLV: " + dataList[0].magicLevel, 701 + 87.5, 60);
-                        LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints), 701 + 87.5, 73);
+                        LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints + dataList[0].extraSkillPoints + dataList[0].extraMagicPoints), 701 + 87.5, 73);
                     }
                     else
                     {
@@ -15970,7 +16008,7 @@ function Adventurer()
                         LXX.font="bold 10px Book Antiqua";
                         LXX.fillText("LV: " + dataList[0].level, 876 + 87.5, 47);
                         LXX.fillText("MLV: " + dataList[0].magicLevel, 876 + 87.5, 60);
-                        LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints), 876 + 87.5, 73);
+                        LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints + dataList[0].extraSkillPoints + dataList[0].extraMagicPoints), 876 + 87.5, 73);
                     }
                     else
                     {
@@ -16038,7 +16076,7 @@ function Adventurer()
                         LXX.font="bold 10px Book Antiqua";
                         LXX.fillText("LV: " + dataList[0].level, 1051 + 87.5, 47);
                         LXX.fillText("MLV: " + dataList[0].magicLevel, 1051 + 87.5, 60);
-                        LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints), 1051 + 87.5, 73);
+                        LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints + dataList[0].extraSkillPoints + dataList[0].extraMagicPoints), 1051 + 87.5, 73);
                     }
                     else
                     {
@@ -16106,7 +16144,7 @@ function Adventurer()
                         LXX.font="bold 10px Book Antiqua";
                         LXX.fillText("LV: " + dataList[0].level, 1226 + 87.5, 47);
                         LXX.fillText("MLV: " + dataList[0].magicLevel, 1226 + 87.5, 60);
-                        LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints), 1226 + 87.5, 73);
+                        LXX.fillText("Skill: " + (dataList[0].totalSkillPoints + dataList[0].totalMagicPoints + dataList[0].extraSkillPoints + dataList[0].extraMagicPoints), 1226 + 87.5, 73);
                     }
                     else
                     {
@@ -17247,7 +17285,7 @@ function Adventurer()
             XXX.font = "30px Book Antiqua";
             XXX.fillStyle = "black";
             XXX.textAlign = "center";
-            XXX.fillText(this.totalSkillPoints, 255 + (1 / 2 * 85), 105 + 250);
+            XXX.fillText(this.getTotalSkillPoints(), 255 + (1 / 2 * 85), 105 + 250);
 
             //Deviding line between level and magic level stuff
             XXX.beginPath();
@@ -17343,7 +17381,7 @@ function Adventurer()
             XXX.font = "30px Book Antiqua";
             XXX.fillStyle = "black";
             XXX.textAlign = "center";
-            XXX.fillText(this.totalMagicPoints, 255 + (1 / 2 * 85), 115 + 390);
+            XXX.fillText(this.getTotalMagicPoints(), 255 + (1 / 2 * 85), 115 + 390);
 
             //THE SKILLS
             //Constitution
@@ -18989,6 +19027,11 @@ function Adventurer()
                             {
                                 this.watered = true;
                                 this.fed = true;
+                            }
+                            else if (Inventory[i][0].ability == "soul") //Food with this effect will keep you fed for a little bit.
+                            {
+                                this.skillPoints += 1;
+                                this.extraSkillPoints += 1;
                             }
                             else if (Inventory[i][0].ability == "healthVI") //This is the highest level of health regeneration.
                             {

@@ -25,6 +25,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.traverse = false; //the ability to walk over other units but nothing else.
     this.contraPlayer = true; //this is manually set to false when defining a creature if it is a creature that never engages the player in combat.
 
+    //timers for AI
+    this.aiTimer = 0; //the total time a unit has been in existence (unless reset)
+    this.aiAttackingTimer = 0; //the total time a unit has been attacking without interruption (unless reset)
+    this.aiKeepTime = 0; // a variable that is used in the function that increments the timers by 0.1 every 1/10 second.
+
     //team variables
     this.muzzle = false; //if true the unit will not be able to target the player.
     this.teamByID = true; //sets team based on ID once.
@@ -321,6 +326,24 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
     };
 
+    this.incrementAITimer = function()
+    {
+        if (new Date().getTime() > this.aiKeepTime + 100)
+        {
+            //counts up the attacking timer
+            if (this.attacking)
+            {
+                this.aiAttackingTimer += 0.1;
+            }
+            else
+            {
+                this.aiAttackingTimer = 0;
+            }
+            //Counts up the AI TIMER
+            this.aiTimer += 0.1;
+            this.aiKeepTime = new Date().getTime();
+        }
+    }
     //This makes sure that each existing Unit has a different dominance ranking and so when they get stuck on eachother the one with lower dominance will move out of the way.
     this.stackSorter = function()
     {
@@ -5440,6 +5463,73 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.yAdjustment = 0; //was -34
             this.xAdjustment = 0; //was - 26
         }
+        else if (this.type == "AncientBeing")
+        {
+            this.resistances = ["blinded", "stun", "frozen", "web"];
+            this.damageFrame = "automatic";
+            this.team = "ancient";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.ancientSoulNum = 0;
+            this.doSoulSuck = true;
+            this.teleportRate = 40;
+            this.summonsDisp = Math.floor(Math.random() * 5);
+
+            this.magicalResistance = 20;
+            this.heatResistance = 10;
+            this.attackStyle = "chunked";
+            this.attackRate = 0;  //this is for rapid style combat only.
+            this.healthMAX = 110;
+            this.health = this.healthMAX;
+            this.armour = 4;
+            this.speed = 0;
+            this.rangeOfSight = 1200; //This is just to set the variable initially. The rest is variable.
+            this.rotationSpeed = 0.1;
+            this.engagementRadius = 4000;
+            this.sizeRadius = 20;
+            this.negateArmour = 0;
+            this.attackWait = 5;
+
+            this.alphaSize = 1.5;
+            this.yAdjustment = 0;
+            this.xAdjustment = 0;
+        }
+        else if (this.type == "AncientCrawler")
+        {
+            this.damageDealt = "n/a";
+            this.followThrough = true; //this unit follows through with its attacks even if the player moves out of range.
+            this.damageFrame = "manual"; //it is necessary to set this to "manual" so that the attackBubble function can determine the damaging.
+            this.resistances = ["blinded", "stun", "frozen", "web"];
+            this.effect = "fire";
+            this.team = "ancient";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+
+            this.magicalResistance = 20;
+            this.heatResistance = 10;
+            this.attackStyle = "chunked";
+            this.attackRate = 0;  //this is for rapid style combat only.
+            this.healthMAX = 90;
+            this.health = this.healthMAX;
+            this.armour = 11;
+            this.speed = 4;
+            this.rangeOfSight = 900; //This is just to set the variable initially. The rest is variable.
+            this.rotationSpeed = 0.1;
+            this.engagementRadius = 67;
+            this.sizeRadius = 45;
+            this.negateArmour = 0;
+            this.attackWait = 3.9;
+
+            this.alphaSize = 2;
+            this.yAdjustment = 0;
+            this.xAdjustment = 0;
+        }
         else if (this.type == "Frich")
         {
             this.damageFrame = "automatic";
@@ -5500,7 +5590,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.yAdjustment = 5.5;
                 this.xAdjustment = 26;
             }
-
             else
             {
                 //STATS (non-variable)
@@ -9150,6 +9239,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
 
         }
+
         //MOUNTAIN FRICH
         if (this.type == "MountainFrich")
         {
@@ -9302,6 +9392,480 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(oldverse, 1742, 5, 83, 33, -55 - this.xAdjustment, -16 - this.yAdjustment, 83 * this.alphaSize, 33 * this.alphaSize);
+            }
+
+        }
+        //ANCIENT BEING
+        if (this.type == "AncientBeing")
+        {
+            //Set Drops and experience
+            if (Math.max(0, 80 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+            {
+                this.experience = 1313 * ((player.getIntelligence() / 50) + 1);
+            }
+            else
+            {
+                this.experience = (1313 * ((player.getIntelligence() / 50) + 1)) / 10;
+            }
+
+            if (this.ancientSoulNum > 0)
+            {
+                this.drops = [[new Item("ancientFragment", this.X, this.Y), 6], [new Item("soul", this.X, this.Y), this.ancientSoulNum]];
+            }
+            else
+            {
+                this.drops = [[new Item("ancientFragment", this.X, this.Y), 6]];
+            }
+
+
+            this.rangeOfSightCalculator(4000, false);
+
+
+            //AI
+            if (this.alive == true)
+            {
+
+                this.Attack(0, 0);
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                if (this.aiTimer >= 120 && this.summonsDisp > 0)
+                {
+                    var rnd = Math.random();
+
+                    if (rnd > 0.79)
+                    {
+                        if (this.summonsDisp >= 3)
+                        {
+                            this.summonsDisp -= 3
+                            magicList.push(new Magic({ID: "ancientRift"}, false, "AncientCrawler", this));
+                            magicList.push(new Magic({ID: "ancientRift"}, false, "AncientCrawler", this));
+                            magicList.push(new Magic({ID: "ancientRift"}, false, "AncientCrawler", this));
+                            this.aiTimer = 0;
+                        }
+                        else if (this.summonsDisp >= 2)
+                        {
+                            this.summonsDisp -= 2
+                            magicList.push(new Magic({ID: "ancientRift"}, false, "AncientCrawler", this));
+                            magicList.push(new Magic({ID: "ancientRift"}, false, "AncientCrawler", this));
+                            this.aiTimer = 0;
+                        }
+                        else
+                        {
+                            this.summonsDisp = 0;
+                            magicList.push(new Magic({ID: "ancientRift"}, false, "AncientCrawler", this));
+                            this.aiTimer = 0;
+                        }
+                    }
+                    else if (rnd > 0.4)
+                    {
+                        if (this.summonsDisp >= 2)
+                        {
+                            this.summonsDisp -= 2
+                            magicList.push(new Magic({ID: "ancientRift"}, false, "AncientCrawler", this));
+                            magicList.push(new Magic({ID: "ancientRift"}, false, "AncientCrawler", this));
+                            this.aiTimer = 0;
+                        }
+                        else
+                        {
+                            this.summonsDisp = 0;
+                            magicList.push(new Magic({ID: "ancientRift"}, false, "AncientCrawler", this));
+                            this.aiTimer = 0;
+                        }
+                    }
+                    else
+                    {
+                        this.summonsDisp -= 1;
+                        magicList.push(new Magic({ID: "ancientRift"}, false, "AncientCrawler", this));
+                        this.aiTimer = 0;
+                    }
+                }
+
+                if (this.target == player)
+                {
+                    this.pointTowardsPlayer();
+
+                    if (this.aiAttackingTimer > 19) //if the target has been engaged in combat with this for 19 seconds without this teleporting then this will gain an attack rate boost and an even higher boost if at or below half health (though not when its health is full).
+                    {
+                        if (this.health <= 55)
+                        {
+                            this.attackWait = 2;
+                        }
+                        else if (this.health < this.healthMAX)
+                        {
+                            this.attackWait = 2.5;
+                        }
+                        else
+                        {
+                            this.attackWait = 3;
+                        }
+                    }
+                    else //if this is at or below 17 health it will gain a slight boost to attack rate.
+                    {
+                        if (this.health <= 17)
+                        {
+                            this.teleportRate = 20;
+                            this.attackWait = 2.5;
+                        }
+                        if (this.health <= 38)
+                        {
+                            this.teleportRate = 30;
+                            this.attackWait = 3;
+                        }
+                        else
+                        {
+                            this.teleportRate = 40;
+                            this.attackWait = 3;
+                        }
+                    }
+
+                    if (this.DTP() > 520)
+                    {
+                        this.attackType = "fireball";
+                        if (this.aiAttackingTimer > this.teleportRate) //after 40 seconds this teleports into a short range of the target if injured, and potentially a longer ranged position from the target if not.
+                        {
+                            this.aiAttackingTimer = 0;
+                            magicList.push(new Magic({ID: "shadowFog"}, false, false, this));
+                            if (this.health <= 70)
+                            {
+                                this.X = X + (250 - Math.random() * 500);
+                                this.Y = Y + (250 - Math.random() * 500);
+                            }
+                            else
+                            {
+                                this.X = X + (250 - Math.random() * 500) * 6;
+                                this.Y = Y + (250 - Math.random() * 500) * 6;
+                            }
+                            magicList.push(new Magic({ID: "shadowFog"}, false, "short", this));
+                        }
+                    }
+                    else if (this.DTP() < 400)
+                    {
+                        this.attackType = "souldrain";
+                        if (this.aiAttackingTimer > this.teleportRate) //after 40 seconds this teleports between short-long range of the target
+                        {
+                            this.aiAttackingTimer = 0;
+                            magicList.push(new Magic({ID: "shadowFog"}, false, false, this));
+                            this.X = X + (777 - Math.random() * 1554);
+                            this.Y = Y + (777 - Math.random() * 1554);
+                            magicList.push(new Magic({ID: "shadowFog"}, false, "short", this));
+                        }
+                    }
+                    else //if the target is in the space between attack zones this engages in a quick teleport
+                    {
+                        if (this.aiAttackingTimer > (this.teleportRate + 1))
+                        {
+                            this.aiAttackingTimer = this.teleportRate - 11;
+                            magicList.push(new Magic({ID: "shadowFog"}, false, false, this));
+                            this.X += (160 - Math.random() * 320);
+                            this.Y += (160 - Math.random() * 320);
+                            magicList.push(new Magic({ID: "shadowFog"}, false, "short", this));
+                        }
+                    }
+                }
+                else if (this.target != "none")
+                {
+                    this.pointTowards(this.target);
+
+                    if (this.aiAttackingTimer > 19) //if the target has been engaged in combat with this for 19 seconds without this teleporting then this will gain an attack rate boost and an even higher boost if at or below half health (though not when its health is full).
+                    {
+                        if (this.health <= 55)
+                        {
+                            this.attackWait = 2;
+                        }
+                        else if (this.health < this.healthMAX)
+                        {
+                            this.attackWait = 2.5;
+                        }
+                        else
+                        {
+                            this.attackWait = 3;
+                        }
+                    }
+                    else //if this is at or below 17 health it will gain a slight boost to attack rate.
+                    {
+                        if (this.health <= 17)
+                        {
+                            this.teleportRate = 20;
+                            this.attackWait = 2.5;
+                        }
+                        if (this.health <= 38)
+                        {
+                            this.teleportRate = 30;
+                            this.attackWait = 3;
+                        }
+                        else
+                        {
+                            this.teleportRate = 40;
+                            this.attackWait = 3;
+                        }
+                    }
+
+                    if (this.DTU(this.target) > 520)
+                    {
+                        this.attackType = "fireball";
+                        if (this.aiAttackingTimer > this.teleportRate) //after 40 seconds this teleports into a short range of the target if injured, and potentially a longer ranged position from the target if not.
+                        {
+                            this.aiAttackingTimer = 0;
+                            magicList.push(new Magic({ID: "shadowFog"}, false, false, this));
+                            if (this.health <= 70)
+                            {
+                                this.X = this.target.X + (250 - Math.random() * 500);
+                                this.Y = this.target.Y + (250 - Math.random() * 500);
+                            }
+                            else
+                            {
+                                this.X = this.target.X + (250 - Math.random() * 500) * 6;
+                                this.Y = this.target.Y + (250 - Math.random() * 500) * 6;
+                            }
+                            magicList.push(new Magic({ID: "shadowFog"}, false, "short", this));
+                        }
+                    }
+                    else if (this.DTU(this.target) < 400)
+                    {
+                        this.attackType = "souldrain";
+                        if (this.aiAttackingTimer > this.teleportRate) //after 40 seconds this teleports between short-long range of the target
+                        {
+                            this.aiAttackingTimer = 0;
+                            magicList.push(new Magic({ID: "shadowFog"}, false, false, this));
+                            this.X = this.target.X + (777 - Math.random() * 1554);
+                            this.Y = this.target.Y + (777 - Math.random() * 1554);
+                            magicList.push(new Magic({ID: "shadowFog"}, false, "short", this));
+                        }
+                    }
+                    else //if the target is in the space between attack zones this engages in a quick teleport
+                    {
+                        if (this.aiAttackingTimer > (this.teleportRate + 1))
+                        {
+                            this.aiAttackingTimer = this.teleportRate - 11;
+                            magicList.push(new Magic({ID: "shadowFog"}, false, false, this));
+                            this.X += (160 - Math.random() * 320);
+                            this.Y += (160 - Math.random() * 320);
+                            magicList.push(new Magic({ID: "shadowFog"}, false, "short", this));
+                        }
+                    }
+                }
+            }
+            else
+            {
+                //do stuff when an ancient being dies...
+                if (this.doOnDeathOnce == true)
+                {
+                    this.doOnDeathOnce = false;
+                }
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if (this.attackType == "fireball")
+                    {
+                        if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.costumeEngine(12, 0.10, false);
+                        }
+                    }
+                    else if (this.attackType == "souldrain")
+                    {
+                        if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 3000))
+                        {
+                            this.costumeEngine(12, 0.12, false);
+                        }
+                    }
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (this.attacking)
+                    {
+                        this.doSoulSuck = true;
+                        this.drawUnit(oldverse, 1567, 310, 51, 80, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 80 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(oldverse, 1567, 310, 51, 80, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 80 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking)
+                    {
+                        if (this.attackType == "fireball")
+                        {
+                            this.drawUnit(oldverse, 1448, 188, 51, 80, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 80 * this.alphaSize);
+                        }
+                        else if (this.attackType == "souldrain")
+                        {
+                            this.drawUnit(oldverse, 1448, 188, 51, 80, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 80 * this.alphaSize);
+                        }
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.attacking)
+                    {
+                        if (this.attackType == "fireball")
+                        {
+                            this.drawUnit(oldverse, 1633, 309, 51, 80, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 80 * this.alphaSize);
+                        }
+                        else if (this.attackType == "souldrain")
+                        {
+                            this.drawUnit(oldverse, 1633, 309, 51, 80, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 80 * this.alphaSize);
+                        }
+                    }
+                }
+                else if (theCostume <= 3)
+                {
+                    if (this.attackType == "fireball")
+                    {
+                        this.drawUnit(oldverse, 1633, 309, 51, 80, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 80 * this.alphaSize);
+                    }
+                    else if (this.attackType == "souldrain")
+                    {
+                        this.drawUnit(oldverse, 1633, 309, 51, 80, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 80 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 4)
+                {
+                    if (this.attackType == "fireball")
+                    {
+                        if (this.doSoulSuck)
+                        {
+                            magicList.push(new Magic({ID: "flamingMissiles"}, false, "left", this));
+                            this.doSoulSuck = false;
+                        }
+                        this.drawUnit(oldverse, 1754, 301, 54, 91, -1/2 * 54 * this.alphaSize - this.xAdjustment, -1/2 * 91 * this.alphaSize - this.yAdjustment, 54 * this.alphaSize, 91 * this.alphaSize);
+                    }
+                    else if (this.attackType == "souldrain")
+                    {
+                        this.drawUnit(oldverse, 1882, 306, 51, 80, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 80 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 5)
+                {
+                    if (this.attackType == "fireball")
+                    {
+                        this.drawUnit(oldverse, 1754, 301, 54, 91, -1/2 * 54 * this.alphaSize - this.xAdjustment, -1/2 * 91 * this.alphaSize - this.yAdjustment, 54 * this.alphaSize, 91 * this.alphaSize);
+                    }
+                    else if (this.attackType == "souldrain")
+                    {
+
+                        if (this.doSoulSuck)
+                        {
+                            if (this.target == player)
+                            {
+                                if (player.magicalResistanceTotal < 20)
+                                {
+                                    if (player.constitution > 0)
+                                    {
+                                        magicList.push(new Magic({ID: "soulOrb"}, true, false, this));
+                                        player.constitution -= 1;
+                                        player.will -= 20;
+                                        player.energy -= 5;
+                                        this.ancientSoulNum += 1;
+                                    }
+                                    else
+                                    {
+                                        player.health = -256;
+                                    }
+                                }
+                            }
+                            else if (this.target != "none")
+                            {
+                                magicList.push(new Magic({ID: "soulOrb"}, false, this.target, this));
+                                this.target.health = Math.min(this.target.health, this.target.health - (40 - this.target.magicalResistance));
+                            }
+                            this.doSoulSuck = false;
+                        }
+                        this.drawUnit(oldverse, 1882, 306, 51, 80, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 80 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 6)
+                {
+                    this.doSoulSuck = true;
+                    if (this.attackType == "fireball")
+                    {
+                        this.drawUnit(oldverse, 1633, 309, 51, 80, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 80 * this.alphaSize);
+                    }
+                    else if (this.attackType == "souldrain")
+                    {
+                        this.drawUnit(oldverse, 1633, 309, 51, 80, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 80 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 7)
+                {
+                    if (this.attackType == "fireball")
+                    {
+                        this.drawUnit(oldverse, 1633, 309, 51, 80, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 80 * this.alphaSize);
+                    }
+                    else if (this.attackType == "souldrain")
+                    {
+                        this.drawUnit(oldverse, 1448, 188, 51, 80, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 80 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 8)
+                {
+                    if (this.attackType == "fireball")
+                    {
+                        if (this.doSoulSuck)
+                        {
+                            magicList.push(new Magic({ID: "flamingMissiles"}, false, "right", this));
+                            this.doSoulSuck = false;
+                        }
+                        this.drawUnit(oldverse, 1813, 302, 54, 91, -1/2 * 54 * this.alphaSize - this.xAdjustment, -1/2 * 91 * this.alphaSize - this.yAdjustment, 54 * this.alphaSize, 91 * this.alphaSize);
+                    }
+                    else if (this.attackType == "souldrain")
+                    {
+                        this.drawUnit(oldverse, 1689, 300, 54, 91, -1/2 * 54 * this.alphaSize - this.xAdjustment, -1/2 * 91 * this.alphaSize - this.yAdjustment, 54 * this.alphaSize, 91 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 9)
+                {
+                    if (this.attackType == "fireball")
+                    {
+                        this.drawUnit(oldverse, 1813, 302, 54, 91, -1/2 * 54 * this.alphaSize - this.xAdjustment, -1/2 * 91 * this.alphaSize - this.yAdjustment, 54 * this.alphaSize, 91 * this.alphaSize);
+                    }
+                    else if (this.attackType == "souldrain")
+                    {
+                        this.drawUnit(oldverse, 1689, 300, 54, 91, -1/2 * 54 * this.alphaSize - this.xAdjustment, -1/2 * 91 * this.alphaSize - this.yAdjustment, 54 * this.alphaSize, 91 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 10)
+                {
+                    if (this.attackType == "fireball")
+                    {
+                        this.drawUnit(oldverse, 1633, 309, 51, 80, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 80 * this.alphaSize);
+                    }
+                    else if (this.attackType == "souldrain")
+                    {
+                        this.drawUnit(oldverse, 1689, 300, 54, 91, -1/2 * 54 * this.alphaSize - this.xAdjustment, -1/2 * 91 * this.alphaSize - this.yAdjustment, 54 * this.alphaSize, 91 * this.alphaSize);
+                    }
+                }
+                else if (theCostume >= 11)
+                {
+                    if (this.attackType == "fireball")
+                    {
+                        this.drawUnit(oldverse, 1448, 188, 51, 80, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 80 * this.alphaSize);
+                    }
+                    else if (this.attackType == "souldrain")
+                    {
+                        this.drawUnit(oldverse, 1448, 188, 51, 80, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 80 * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(oldverse, 1823, 182, 41, 30, -1/2 * 41 * this.alphaSize - this.xAdjustment, -1/2 * 30 * this.alphaSize - this.yAdjustment, 41 * this.alphaSize, 30 * this.alphaSize);
             }
 
         }
@@ -12535,7 +13099,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             //Set Drops and experience
             if (this.alpha == true)
             {
-                if (Math.max(0, 20 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                if (Math.max(0, 8 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
                     this.experience = 92 * ((player.getIntelligence() / 50) + 1);
                 }
@@ -12555,7 +13119,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.alpha == "baby")
             {
-                if (Math.max(0, 20 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                if (Math.max(0, 1 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
                     this.experience = 2 * ((player.getIntelligence() / 50) + 1);
                 }
@@ -12568,7 +13132,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else
             {
-                if (Math.max(0, 10 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                if (Math.max(0, 5 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
                     this.experience = 23 * ((player.getIntelligence() / 50) + 1);
                 }
@@ -13633,7 +14197,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             //Set Drops and experience
             if (this.alpha == true)
             {
-                if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                if (Math.max(0, 13 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
                     this.experience = 34 * ((player.getIntelligence() / 50) + 1);
                 }
@@ -13646,7 +14210,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.alpha == "massive")
             {
-                if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                if (Math.max(0, 37 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
                     this.experience = 140 * ((player.getIntelligence() / 50) + 1);
                 }
@@ -13659,7 +14223,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else
             {
-                if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
                     this.experience = 26 * ((player.getIntelligence() / 50) + 1);
                 }
@@ -13814,13 +14378,276 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawUnit(theng, 356, 55, 53, 34, -1/2 * 53 * this.alphaSize * szx - this.xAdjustment, -1/2 * 34 * this.alphaSize * szx - this.yAdjustment, 53 * this.alphaSize * szx, 34 * this.alphaSize * szx);
             }
         }
+        //ANCIENT CRAWLER
+        if (this.type == "AncientCrawler")
+        {
+            //Set Drops and experience
+            if (Math.max(0, 30 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+            {
+                this.experience = 888 * ((player.getIntelligence() / 50) + 1);
+            }
+            else
+            {
+                this.experience = (888 * ((player.getIntelligence() / 50) + 1)) / 10;
+            }
+
+            this.drops = [[new Item("ancientFragment", this.X, this.Y), 11]];
+
+            this.rangeOfSightCalculator(2100, false);
+
+            //AI
+            if (this.alive == true)
+            {
+                if (showUnitAttackBubble)
+                {
+                    this.attackBubble([[16, this.rotation, 0, this.sizeRadius + 14]]); //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                if (this.target == player)
+                {
+                    if (!this.attacking)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                }
+                else if (this.target != "none" && typeof(this.target) != "undefined")
+                {
+                    if (!this.attacking)
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                }
+
+                if (this.aiTimer > 9 && !this.attackBusy)
+                {
+                    this.aiTimer = 0;
+                    var rnd = Math.random();
+                    if (rnd >= 0.45)
+                    {
+                        this.attackType = "flames";
+                    }
+                    else
+                    {
+                        this.attackType = "slash";
+                    }
+                }
+
+                if (this.attackType == "flames")
+                {
+                    this.Attack(17, 12);
+                    this.negateArmour = 0;
+                    this.effect = "fire";
+                }
+                else if (this.attackType == "slash")
+                {
+                    this.Attack(26, 9);
+                    this.negateArmour = 5;
+                    this.effect = "none";
+                }
+            }
+
+            //ANIMATIONS
+            if (this.alive == true)
+            {
+                if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if (this.attackType == "flames")
+                    {
+                        if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                        {
+                            this.attackBusy = true;
+                            this.costumeEngine(6, 0.12, true);
+                        }
+                    }
+                    else if (this.attackType == "slash")
+                    {
+                        if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1200))
+                        {
+                            this.attackBusy = true;
+                            this.costumeEngine(6, 0.17, true);
+                        }
+                    }
+                }
+                else if (this.moving) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(6, 0.14, false);
+                }
+                else
+                {
+                    this.drawUnit(oldverse, 462, 189, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (this.attacking)
+                    {
+                        if (this.damageDealt == false) // if the Unit has not yet dealt damage to its target then...
+                        {
+                            this.finalAttackCostume = true; //deal the damage!
+                            this.damageDealt = true; //tell the loop that the Unit has already dealt the damage for this attack.
+                        }
+                        this.attackBusy = true;
+                        if (this.stopAttacking)
+                        {
+                            this.attackBusy = false;
+                            this.attacking = false;
+                        }
+
+                        this.drawUnit(oldverse, 462, 189, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                    }
+                    else if (this.moving)
+                    {
+                        this.drawUnit(oldverse, 462, 189, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(oldverse, 462, 189, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking)
+                    {
+                        if (this.attackType == "flames")
+                        {
+                            this.drawUnit(oldverse, 462, 189, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                        }
+                        else if (this.attackType == "slash")
+                        {
+                            this.drawUnit(oldverse, 934, 289, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                        }
+                    }
+                    else
+                    {
+                        this.drawUnit(oldverse, 569, 186, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.attacking)
+                    {
+                        if (this.attackType == "flames")
+                        {
+                            if (this.attackBubble([[16, this.rotation, 0, this.sizeRadius + 14]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                            {
+                                this.damageDealt = false;
+                            }
+                            this.drawUnit(oldverse, 466, 291, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                        }
+                        else if (this.attackType == "slash")
+                        {
+                            this.drawUnit(oldverse, 1049, 292, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                        }
+                    }
+                    else
+                    {
+                        this.drawUnit(oldverse, 698, 185, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 3)
+                {
+                    if (this.attacking)
+                    {
+                        if (this.attackType == "flames")
+                        {
+                            if (this.attackBubble([[16, this.rotation, 0, this.sizeRadius + 14]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                            {
+                                this.damageDealt = false;
+                            }
+                            this.drawUnit(oldverse, 565, 293, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                        }
+                        else if (this.attackType == "slash")
+                        {
+                            if (this.attackBubble([[16, this.rotation, 0, this.sizeRadius + 14]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                            {
+                                this.damageDealt = false;
+                            }
+                            this.drawUnit(oldverse, 1178, 293, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                        }
+                    }
+                    else
+                    {
+                        this.drawUnit(oldverse, 827, 185, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 4)
+                {
+                    if (this.attacking)
+                    {
+                        if (this.attackType == "flames")
+                        {
+                            if (this.attackBubble([[16, this.rotation, 0, this.sizeRadius + 14]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                            {
+                                this.damageDealt = false;
+                            }
+                            this.drawUnit(oldverse, 697, 293, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                        }
+                        else if (this.attackType == "slash")
+                        {
+                            if (this.attackBubble([[16, this.rotation, 0, this.sizeRadius + 14]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                            {
+                                this.damageDealt = false;
+                            }
+                            this.drawUnit(oldverse, 1314, 291, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                        }
+                    }
+                    else
+                    {
+                        this.drawUnit(oldverse, 960, 186, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 5)
+                {
+                    if (this.attacking)
+                    {
+                        if (this.attackType == "flames")
+                        {
+                            if (this.attackBubble([[16, this.rotation, 0, this.sizeRadius + 14]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                            {
+                                this.damageDealt = false;
+                            }
+                            this.drawUnit(oldverse, 814, 293, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                            this.stopAttacking = true;
+                        }
+                        else if (this.attackType == "slash")
+                        {
+                            if (this.attackBubble([[16, this.rotation, 0, this.sizeRadius + 14]])) //[[radius, this.rotation, relativeAngle, distance], ["", "", "", ""], etc.]
+                            {
+                                this.damageDealt = false;
+                            }
+                            this.drawUnit(oldverse, 1430, 292, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                            this.stopAttacking = true;
+                        }
+                    }
+                    else
+                    {
+                        this.drawUnit(oldverse, 569, 186, 86, 107, -1/2 * 86 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 86 * this.alphaSize, 107 * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(oldverse, 1825, 181, 39, 33, -1/2 * 39 * this.alphaSize - this.xAdjustment, -1/2 * 33 * this.alphaSize - this.yAdjustment, 39 * this.alphaSize, 33 * this.alphaSize);
+            }
+        }
         //BOULCHOM
         if (this.type == "Boulchom")
         {
             //Set Drops and experience
             if (this.alpha == true)
             {
-                if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                if (Math.max(0, 30 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
                     this.experience = 110 * ((player.getIntelligence() / 50) + 1);
                 }
@@ -13837,7 +14664,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else
             {
-                if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                if (Math.max(0, 10 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
                     this.experience = 17 * ((player.getIntelligence() / 50) + 1);
                 }
@@ -14174,7 +15001,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             //Set Drops and experience
             if (this.alpha == true)
             {
-                if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                if (Math.max(0, 81 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
                     this.experience = 245 * ((player.getIntelligence() / 50) + 1);
                 }
@@ -14187,7 +15014,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else
             {
-                if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                if (Math.max(0, 24 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
                     this.experience = 92 * ((player.getIntelligence() / 50) + 1);
                 }
@@ -22218,6 +23045,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //OPERATION [all of the functions in this class are activated here]
     this.operation = function()
     {
+        this.incrementAITimer(); //This counts up on the variable aiTimer which is used for making the ai do certain things at certainTimes
         this.wepLayer = false; //resets weapon layer variable so that weapons that do not use this variable will not be affected.
         this.activateUnits(); //this is what runs all normal unit code
         this.teamCommands(); //this is a list of specific key commands the player can use to control those on his/her team.

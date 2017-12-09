@@ -126,10 +126,10 @@ function mainMenuLoop()
                             XXX.font = "bold 12px Book Antiqua";
                             XXX.fillText("LV: " + player.level, (170 * (loadNumber - 1)) + 27.5 + 75, 270);
                             XXX.fillText("XP: " + Math.floor(player.experience) + " / " + player.experienceRequiredToLevel, (170 * (loadNumber - 1)) + 27.5 + 75, 290);
-                            XXX.fillText("SP: " + player.skillPoints, (170 * (loadNumber - 1)) + 27.5 + 75, 310);
+                            XXX.fillText("SP: " + (player.getTotalSkillPoints()), (170 * (loadNumber - 1)) + 27.5 + 75, 310);
                             XXX.fillText("MLV: " + player.magicLevel, (170 * (loadNumber - 1)) + 27.5 + 75, 330);
                             XXX.fillText("MXP: " + Math.floor(player.magicalExperience) + " / " + player.magicalExperienceRequiredToLevel, (170 * (loadNumber - 1)) + 27.5 + 75, 350);
-                            XXX.fillText("MSP: " + player.magicalSkillPoints, (170 * (loadNumber - 1)) + 27.5 + 75, 370);
+                            XXX.fillText("MSP: " + (player.getTotalMagicPoints()), (170 * (loadNumber - 1)) + 27.5 + 75, 370);
                             XXX.fillText("Fame: " + player.fame, (170 * (loadNumber - 1)) + 27.5 + 75, 390);
                             XXX.fillText("Time Played", (170 * (loadNumber - 1)) + 27.5 + 75, 430);
                             XXX.fillText(Math.floor(timePlayed / 3600) + ":" + Math.floor(timePlayed % 3600 / 60) + " (" + Math.floor(timePlayed % 60) + ")", (170 * (loadNumber - 1)) + 27.5 + 75, 445);

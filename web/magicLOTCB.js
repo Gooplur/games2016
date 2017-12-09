@@ -15,8 +15,11 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
         this.dmx = map;
         this.rotation = 0;
         this.size = 1;
+        this.sizeChanger = 0; //this changes size by the value of the variable.
         this.zIndex = 4;
+        this.orders = instructions;
         //VARIABLES for some or even single spells
+        this.duration = 0;
         this.speed = 0; //this allows a fixed random speed to be selected if it is wanted.
         this.turn = 0; //this is a fixed rotation to add spin to or not...
         this.spin = 0; //this is a fixed spin rate that you add to rotation to make the spell spin.
@@ -30,6 +33,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
         {
             this.unitRotation = unitSelf.rotation;
         }
+        this.stage = 0; // this can be used by whichever spell but shall not be used in functions.
         this.ticCount = 0;
         this.repeated = false;
         this.size = 0;
@@ -41,17 +45,37 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
         this.doOnce = true; //this is not to be used for a function.
         this.alert = false; //this is flicked on when the spell would otherwise have been destroyed to let the custom code know to get rid of the spell in its own way.
         this.doDelete = true; //this is a touch and die function variable that determines if it deletes or not for very special cases.
+        this.durAlert = false;
+        this.targeted = "none"; //this is a variable that is not for use in functions meant to serve as a standard targeting tool.
+        this.ready = false; //ready is an alternative to alert just in case alert is already being used for something.
         //SPELL BUILDER (functions that can be given to each individual spell to define its characteristics)
-        this.spellTimer = function(duration)
+        this.spellTimer = function(duration, alert)
         {
-            if (new Date().getTime() - this.spellTime >= duration * 1000)
+            this.duration = duration;
+            this.durAlert = alert;
+            if (new Date().getTime() - this.spellTime >= this.duration * 1000)
             {
-                for (var i = 0; i < magicList.length; i++)
+                if (this.durAlert == true)
                 {
-                    if (magicList[i] === this)
+                    this.alert = true;
+                }
+                else if (this.durAlert == "ready")
+                {
+                    this.ready = true;
+                }
+                else if (this.durAlert == "unready")
+                {
+                    this.ready = false;
+                }
+                else
+                {
+                    for (var i = 0; i < magicList.length; i++)
                     {
-                        magicList.splice(i, 1);
-                        break;
+                        if (magicList[i] === this)
+                        {
+                            magicList.splice(i, 1);
+                            break;
+                        }
                     }
                 }
             }
@@ -69,6 +93,12 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 this.Y = unitSelf.Y + Math.sin(unitSelf.rotation + rotate) * radius;
                 this.X = unitSelf.X + Math.cos(unitSelf.rotation + rotate) * radius;
             }
+        };
+
+        this.orientToInstructions = function (radius, rotate)
+        {
+            this.Y = this.orders.Y + Math.sin(this.orders.rotation + rotate) * radius;
+            this.X = this.orders.X + Math.cos(this.orders.rotation + rotate) * radius;
         };
 
         this.flashAnimate = function(framerate, rotation, transparency, list, repeat, deleteAfter)
@@ -117,6 +147,10 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                             break;
                         }
                     }
+                }
+                else if (deleteAfter == "alert")
+                {
+                    this.alert = true;
                 }
             }
         };
@@ -348,6 +382,17 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     {
                         player.health += damage;
                     }
+                    else if (whatDoIDo == "fire")
+                    {
+                        player.health -= Math.max(0, damage - player.heatResistance);
+                        player.thirst -= Math.max(0, damage - player.heatResistance);
+                        player.burningTime = new Date().getTime();
+                    }
+                    else if (whatDoIDo == "soulOrb")
+                    {
+                        player.skillPoints += 1;
+                        player.extraSkillPoints += 1;
+                    }
                     else if (whatDoIDo == "bonk")
                     {
                         player.health -= Math.max(0, damage - Math.max(0, player.armourTotal - negate));
@@ -409,13 +454,22 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     {
                         if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && !ArtificialIntelligenceAccess[i].flying || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && ArtificialIntelligenceAccess[i].flying && whatDoIDo != "earthDamage" && whatDoIDo != "magicalEarthDamage" || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && whatDoIDo == "earthDamage" && ArtificialIntelligenceAccess[i].underground || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && whatDoIDo == "magicalEarthDamage" && ArtificialIntelligenceAccess[i].underground)
                         {
-                            if (whatDoIDo == "physicalDamage")
+                            if (whatDoIDo == "soulOrb")
+                            {
+                                ArtificialIntelligenceAccess[i].health = Math.min(ArtificialIntelligenceAccess[i].healthMAX, ArtificialIntelligenceAccess[i].health + 55)
+                            }
+                            else if (whatDoIDo == "fire")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
+                                ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                            }
+                            else if (whatDoIDo == "physicalDamage")
                             {
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
                                 ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                                 ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                             }
-                            if (whatDoIDo == "earthDamage" && !ArtificialIntelligenceAccess[i].flying)
+                            else if (whatDoIDo == "earthDamage" && !ArtificialIntelligenceAccess[i].flying)
                             {
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
                                 ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
@@ -660,43 +714,43 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                         {
                             var distanceToPlayer = Math.sqrt((X - this.X) * (X - this.X) + (Y - this.Y) * (Y - this.Y));
 
-                            if (distanceToPlayer <= radius + ArtificialIntelligenceAccess[i].sizeRadius && this.dmx == player.dmx)
+                            if (distanceToPlayer <= radius + player.mySize && this.dmx == player.dmx)
                             {
-                                if (new Date().getTime() - this.contactDamageTime >= frequency)
-                                {
-                                    if (kind == "fire")
-                                    {
-                                        player.health -= Math.max(0, damage - player.heatResistance);
-                                        player.thirst -= Math.max(0, damage - player.heatResistance);
-                                        player.burningTime = new Date().getTime();
-                                    }
-                                    else if (kind == "electricity")
-                                    {
-                                        player.health -= Math.max(0, damage - ((player.totalShockResist * 3) + (19 * player.magicalResistanceTotal)));
-                                        if (Math.max(0, damage - (19 * player.magicalResistanceTotal)) > 0)
-                                        {
-                                            player.shockedTime = new Date().getTime();
-                                            player.shockedTime2 = new Date().getTime();
-                                        }
-                                    }
-                                    else if (kind == "frostwind")
-                                    {
-                                        player.health -= Math.max(0, damage - player.warmthProtection);
-                                        player.warmth -= Math.max(0, 5 - player.warmthProtection);
-                                        //todo figure out how to add wind pushback based on ai rotation for the player and put it here.
-                                    }
-                                    else if (kind == "magic")
-                                    {
-                                        player.health -= Math.max(0, damage - player.magicalResistanceTotal);
-                                    }
-                                    else if (kind == "blinding")
-                                    {
-                                        player.health -= Math.max(0, damage - player.magicalResistanceTotal);
-                                        //todo add blinding effects for the player
-                                    }
 
-                                    this.contactDamageTime = new Date().getTime();
+                                if (kind == "fire")
+                                {
+                                    player.health -= Math.max(0, damage - player.heatResistance);
+                                    player.thirst -= Math.max(0, damage - player.heatResistance);
+                                    player.burningTime = new Date().getTime();
                                 }
+                                else if (kind == "electricity")
+                                {
+                                    player.health -= Math.max(0, damage - ((player.totalShockResist * 3) + (19 * player.magicalResistanceTotal)));
+                                    if (Math.max(0, damage - (19 * player.magicalResistanceTotal)) > 0)
+                                    {
+                                        player.shockedTime = new Date().getTime();
+                                        player.shockedTime2 = new Date().getTime();
+                                    }
+                                }
+                                else if (kind == "frostwind")
+                                {
+                                    player.health -= Math.max(0, damage - player.warmthProtection);
+                                    player.warmth -= Math.max(0, 5 - player.warmthProtection);
+                                    //todo figure out how to add wind pushback based on ai rotation for the player and put it here.
+                                }
+                                else if (kind == "magic")
+                                {
+                                    player.health -= Math.max(0, damage - player.magicalResistanceTotal);
+                                }
+                                else if (kind == "blinding")
+                                {
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 2;
+                                }
+
+                                this.contactDamageTime = new Date().getTime();
+
                             }
                         }
                     }
@@ -767,7 +821,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 {
                     var distanceToPlayer = Math.sqrt((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y));
 
-                    if (distanceToPlayer <= radius + ArtificialIntelligenceAccess[i].sizeRadius && this.dmx == player.dmx)
+                    if (distanceToPlayer <= radius + player.mySize && this.dmx == player.dmx)
                     {
                         if (new Date().getTime() - this.contactDamageTime >= frequency)
                         {
@@ -800,8 +854,10 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                             }
                             else if (kind == "blinding")
                             {
-                                player.health -= Math.max(0, damage - player.magicalResistanceTotal);
-                                //todo add blinding effects for the player
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 2;
+
                             }
                         }
                     }
@@ -819,6 +875,12 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
         if (this.spellType == "fart")
         {
             this.orientToCaster(10, - 1 / 2 * Math.PI);
+        }
+        //SURGE
+        if (this.spellType == "shadowFog")
+        {
+            this.size = 1;
+            this.orientToCaster(0, 0);
         }
         //GOLEM ROCK
         if (this.spellType == "golemRock")
@@ -872,6 +934,33 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
             this.orientToCaster(17, 1 / 2 * Math.PI);
             this.drawWithRotation(polypol, 1688, 212, 29, 26, 29, 26, player.rotation, -1 / 2 * 29, -1 / 2 * 26);
         }
+        //FLAMING MISSILES
+        if (this.spellType == "flamingMissiles")
+        {
+            var directedRotation = "none";
+            if (caster)
+            {
+                this.orientToCaster(20, 8 / 16 * Math.PI); //TODO fix this up to be accurate for the player
+            }
+            else
+            {
+                if (unitSelf.type == "AncientBeing")
+                {
+                    if (this.orders == "left")
+                    {
+                        this.orientToCaster(34, 11 / 16 * Math.PI);
+                    }
+                    else if (this.orders == "right")
+                    {
+                        this.orientToCaster(34, -5 / 16 * Math.PI);
+                    }
+                }
+                else
+                {
+                    this.orientToCaster(20, 8 / 16 * Math.PI); //TODO fix this up to be accurate for other units
+                }
+            }
+        }
         //SURGE
         if (this.spellType == "surge")
         {
@@ -908,6 +997,54 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
             {
                 this.orientToCaster(29, 3.2 / 5 * Math.PI);
                 this.drawWithRotation(mofu, 454, 46, 19, 32, 29, 26, player.rotation, -1 / 2 * 19, -1 / 2 * 32);
+            }
+        }
+        //ENTANGLEMENT
+        if (this.spellType == "entanglement")
+        {
+            this.stage = 0;
+            this.zIndex = 1;
+            this.size = 1;
+
+            if (caster)
+            {
+                this.X = X - mouseX + 1/2 * CCC.width;
+                this.Y = Y - mouseY + 1/2 * CCC.height;
+            }
+            else
+            {
+                this.orientToCaster(29, 3.2 / 5 * Math.PI);
+                this.drawWithRotation(mofu, 454, 46, 19, 32, 29, 26, player.rotation, -1 / 2 * 19, -1 / 2 * 32);
+            }
+        }
+        //SOUL ORB
+        if (this.spellType == "soulOrb")
+        {
+            if (caster)
+            {
+                this.orientToCaster(0, 0);
+            }
+            else
+            {
+                if (typeof(this.orders) != "boolean" && typeof(this.orders) != "string" && typeof(this.orders) != "undefined")
+                {
+                    this.orientToInstructions(0, 0);
+                }
+            }
+        }
+        //Ancient Rift
+        if (this.spellType == "ancientRift")
+        {
+            this.spin = -0.0004;
+            if (caster)
+            {
+                this.X = X + (400 - Math.random() * 800);
+                this.Y = Y + (400 - Math.random() * 800);
+            }
+            else
+            {
+                this.X = unitSelf.X + (400 - Math.random() * 800);
+                this.Y = unitSelf.Y + (400 - Math.random() * 800);
             }
         }
         //ICEBERG
@@ -1404,6 +1541,173 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 }
             }
 
+            //FLAMING MISSILES
+            if (this.spellType == "flamingMissiles")
+            {
+                if (caster)
+                {
+                    this.flashAnimate(90, this.rotation - Math.PI, 0.92, [{image: oldverse, imgX: 1510, imgY: 201, portionW: 29, portionH: 18, adjX: -1 / 2 * 29 * 1.5, adjY: -1 / 2 * 18 * 1.5, width: 29 * 1.5, height: 18 * 1.5}, {image: oldverse, imgX: 1511, imgY: 221, portionW: 29, portionH: 18, adjX: -1 / 2 * 29 * 1.5, adjY: -1 / 2 * 18 * 1.5, width: 29 * 1.5, height: 18 * 1.5}, {image: oldverse, imgX: 1510, imgY: 245, portionW: 29, portionH: 18, adjX: -1 / 2 * 29 * 1.5, adjY: -1 / 2 * 18 * 1.5, width: 29 * 1.5, height: 18 * 1.5}, {image: oldverse, imgX: 1510, imgY: 267, portionW: 29, portionH: 18, adjX: -1 / 2 * 29 * 1.5, adjY: -1 / 2 * 18 * 1.5, width: 29 * 1.5, height: 18 * 1.5}]);
+
+                    this.damageThenGoAway(8, "fire", 3 * (1 + this.cnx / 25), 0, false, true);
+
+                    var elBlanco = {alive: false};
+
+                    if (this.targeted == "none" || elBlanco.alive == false)
+                    {
+                        var loMasCercano = 1000000;
+                        var suIdentidad = -1;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            var distancia = Math.sqrt((this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X) + (this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y))
+                            if (distancia < loMasCercano || suIdentidad == -1)
+                            {
+                                if (ArtificialIntelligenceAccess[i].team != "player")
+                                {
+                                    loMasCercano = distancia;
+                                    suIdentidad = i;
+                                    this.targeted = i;
+                                }
+                            }
+                        }
+                    }
+                    if (this.targeted != "none")
+                    {
+                        elBlanco = ArtificialIntelligenceAccess[this.targeted];
+                    }
+
+                    if (this.ready == false && directedRotation == "none")
+                    {
+                        this.spellTimer(1, "ready");
+                    }
+
+                    if (this.ready && elBlanco.alive == true)
+                    {
+                        if (directedRotation == "none")
+                        {
+                            this.spellTime = new Date().getTime();
+                        }
+                        this.rotation = Math.atan2(elBlanco.Y - this.Y, elBlanco.X - this.X);
+                        this.project(this.rotation, 1000 + 10 * this.cnx, 3 + 2 * ((50 + this.cnx) / 50), true);
+
+                        this.spellTimer(0.5, "unready");
+                        directedRotation = Number(this.rotation);
+                    }
+                    else if (this.ready || directedRotation == "none")
+                    {
+                        this.rotation = this.playerRotation + 1/2 * Math.PI;
+                        this.project(this.rotation, 1000 + 10 * this.cnx, 3 + 2 * ((50 + this.cnx) / 50), true);
+                    }
+
+                    if (this.ready == false && directedRotation != "none")
+                    {
+                        this.rotation = directedRotation;
+                        this.project(this.rotation, 1000 + 10 * this.cnx, 3 + 2 * ((50 + 40) / 50), true);
+                    }
+                }
+                else
+                {
+                    this.flashAnimate(90, this.rotation - Math.PI, 0.92, [{image: oldverse, imgX: 1510, imgY: 201, portionW: 29, portionH: 18, adjX: -1 / 2 * 29 * 1.5, adjY: -1 / 2 * 18 * 1.5, width: 29 * 1.5, height: 18 * 1.5}, {image: oldverse, imgX: 1511, imgY: 221, portionW: 29, portionH: 18, adjX: -1 / 2 * 29 * 1.5, adjY: -1 / 2 * 18 * 1.5, width: 29 * 1.5, height: 18 * 1.5}, {image: oldverse, imgX: 1510, imgY: 245, portionW: 29, portionH: 18, adjX: -1 / 2 * 29 * 1.5, adjY: -1 / 2 * 18 * 1.5, width: 29 * 1.5, height: 18 * 1.5}, {image: oldverse, imgX: 1510, imgY: 267, portionW: 29, portionH: 18, adjX: -1 / 2 * 29 * 1.5, adjY: -1 / 2 * 18 * 1.5, width: 29 * 1.5, height: 18 * 1.5}]);
+
+                    var elBlanco = {health: 0};
+                    if (this.targeted == "player")
+                    {
+                        this.damageThenGoAway(8, "fire", 8, 0, true, true);
+                        elBlanco = player;
+                    }
+                    else if (this.targeted != "none")
+                    {
+                        this.damageThenGoAway(8, "fire", 8, 0, false, true);
+                        elBlanco = ArtificialIntelligenceAccess[this.targeted];
+                    }
+                    var sePuedePasar = false;
+                    if (typeof(elBlanco) != "undefined")
+                    {
+                        if (elBlanco.health <= 0)
+                        {
+                            sePuedePasar = true;
+                        }
+                    }
+                    else
+                    {
+                        sePuedePasar = true;
+                    }
+
+                    if (this.targeted == "none" || sePuedePasar)
+                    {
+                        var distanciaAlUsario;
+                        var loMasCercano = 1000000;
+                        var suIdentidad = -1;
+                        if (this.team != "player")
+                        {
+                            distanciaAlUsario = Math.sqrt((this.X - X)*(this.X - X) + (this.Y - Y)*(this.Y - Y));
+                            this.targeted = "player";
+                        }
+
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            var distancia = Math.sqrt((this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X) + (this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y));
+                            if (this.targeted == "player")
+                            {
+                                if (distancia < distanciaAlUsario && ArtificialIntelligenceAccess[i] != unitSelf && ArtificialIntelligenceAccess[i].team != unitSelf.team)
+                                {
+                                    loMasCercano = distancia;
+                                    suIdentidad = i;
+                                    this.targeted = i;
+                                }
+                            }
+                            else
+                            {
+                                if (ArtificialIntelligenceAccess[i] != unitSelf && ArtificialIntelligenceAccess[i].team != unitSelf.team)
+                                {
+                                    if (distancia < loMasCercano || suIdentidad == -1)
+                                    {
+                                        loMasCercano = distancia;
+                                        suIdentidad = i;
+                                        this.targeted = i;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (this.ready == false && directedRotation == "none")
+                    {
+                        this.spellTimer(1, "ready");
+                    }
+
+                    if (this.ready && elBlanco.health > 0)
+                    {
+                        if (directedRotation == "none")
+                        {
+                            this.spellTime = new Date().getTime();
+                        }
+
+                        if (elBlanco == player)
+                        {
+                            this.rotation = Math.atan2(Y - this.Y, X - this.X);
+                        }
+                        else
+                        {
+                            this.rotation = Math.atan2(elBlanco.Y - this.Y, elBlanco.X - this.X);
+                        }
+                        this.project(this.rotation, 1500, 3 + 2 * ((50 + 40) / 50), true);
+                        this.spellTimer(0.5, "unready");
+                        directedRotation = Number(this.rotation);
+                    }
+                    else if (this.ready || directedRotation == "none")
+                    {
+                        //this.rotation = Math.atan2(Y - this.Y, X - this.X);
+                        this.rotation = unitSelf.rotation + Math.PI;
+                        this.project(this.rotation, 1500, 3 + 2 * ((50 + 40) / 50), true);
+                    }
+
+                    if (this.ready == false && directedRotation != "none")
+                    {
+                        this.rotation = directedRotation;
+                        this.project(this.rotation, 1500, 3 + 2 * ((50 + 40) / 50), true);
+                    }
+                }
+            }
+
             //FROST WIND
             if (this.spellType == "frostWind")
             {
@@ -1615,6 +1919,63 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 this.spellTimer(9 + (120 / 50) * this.cnx);
             }
 
+            //ENTANGLEMENT
+            if (this.spellType == "entanglement")
+            {
+                if (caster)
+                {
+                    if (this.alert)
+                    {
+                        this.stage += 1;
+                        this.alert = false;
+                        this.repeated = false;
+                    }
+
+                    if (this.stage == 1)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(0);
+                        XXX.drawImage(oldverse, 3098, 133, 121, 91, - (1/2 * 121 * this.size), - (1/2 * 91 * this.size), 121 * this.size, 91 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.stage == 0)
+                    {
+                        this.flashAnimate(200, 0, 1, [{image: oldverse, imgX: 3100, imgY: 309, portionW: 121, portionH: 91, adjX: -1 / 2 * 121 * this.size, adjY: -1 / 2 * 91 * this.size, width: 121 * this.size, height: 91 * this.size}, {image: oldverse, imgX: 3097, imgY: 225, portionW: 121, portionH: 91, adjX: -1 / 2 * 121 * this.size, adjY: -1 / 2 * 91 * this.size, width: 121 * this.size, height: 91 * this.size}, {image: oldverse, imgX: 3098, imgY: 133, portionW: 121, portionH: 91, adjX: -1 / 2 * 121 * this.size, adjY: -1 / 2 * 91 * this.size, width: 121 * this.size, height: 91 * this.size}], false, "alert");
+                        if (this.alert)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                            XXX.rotate(0);
+                            XXX.drawImage(oldverse, 3098, 133, 121, 91, -(1 / 2 * 121 * this.size), -(1 / 2 * 91 * this.size), 121 * this.size, 91 * this.size);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.stage >= 1)
+                    {
+                        this.flashAnimate(200, 0, 1, [{image: oldverse, imgX: 3098, imgY: 133, portionW: 121, portionH: 91, adjX: -1 / 2 * 121 * this.size, adjY: -1 / 2 * 91 * this.size, width: 121 * this.size, height: 91 * this.size}, {image: oldverse, imgX: 3097, imgY: 225, portionW: 121, portionH: 91, adjX: -1 / 2 * 121 * this.size, adjY: -1 / 2 * 91 * this.size, width: 121 * this.size, height: 91 * this.size}, {image: oldverse, imgX: 3100, imgY: 309, portionW: 121, portionH: 91, adjX: -1 / 2 * 121 * this.size, adjY: -1 / 2 * 91 * this.size, width: 121 * this.size, height: 91 * this.size}], false, true);
+                    }
+
+
+                    //Pushes non player team units away
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].team != "player")
+                        {
+                            var distanceToAI = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
+                            if (distanceToAI <= 45)
+                            {
+                                ArtificialIntelligenceAccess[i].stunIV = true;
+                                ArtificialIntelligenceAccess[i].stunTimer = 1;
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                            }
+                        }
+                    }
+                }
+
+                this.spellTimer(6 + (this.cnx / 5), true);
+            }
+
             //SURGE
             if (this.spellType == "surge")
             {
@@ -1760,6 +2121,61 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 else
                 {
                     //Todo add the Ai part of this spell...
+                }
+            }
+
+            if (this.spellType == "shadowFog")
+            {
+                if (caster)
+                {
+                    if (this.size <= 1)
+                    {
+                        this.sizeChanger = 0.0025;
+                    }
+                    else if (this.size >= 1.2)
+                    {
+                        this.sizeChanger = -0.0025;
+                    }
+                    this.size += this.sizeChanger;
+                    this.spin = 0.01;
+                    this.turn += this.spin;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.turn);
+                    XXX.drawImage(oldverse, 276, 258, 156, 134, - (1/2 * 156 * this.size), - (1/2 * 134 * this.size), 156 * this.size, 134 * this.size);
+                    XXX.restore();
+
+                    this.contactDamage(false, 74 * this.size, 0, 90,  "blinding", "blinding");
+                    this.spellTimer(7 + (this.cnx / 10));
+                }
+                else
+                {
+                    if (this.size <= 1)
+                    {
+                        this.sizeChanger = 0.0025;
+                    }
+                    else if (this.size >= 1.2)
+                    {
+                        this.sizeChanger = -0.0025;
+                    }
+                    this.size += this.sizeChanger;
+                    this.spin = 0.01;
+                    this.turn += this.spin;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.turn);
+                    XXX.drawImage(oldverse, 276, 258, 156, 134, - (1/2 * 156 * this.size), - (1/2 * 134 * this.size), 156 * this.size, 134 * this.size);
+                    XXX.restore();
+
+                    this.contactDamage(true, 74 * this.size, 0, 90,  "blinding", "blinding");
+                    if (this.orders == "short")
+                    {
+                        this.spellTimer(3);
+                    }
+                    else
+                    {
+                        this.spellTimer(9);
+                    }
                 }
             }
 
@@ -2054,6 +2470,52 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     this.flashAnimate(90, this.ticCounter(100), 0.75, [{image: polypol, imgX: 1668, imgY: 270, portionW: 20, portionH: 18, adjX: -1 / 2 * 20 * 0.4, adjY: -1 / 2 * 18 * 0.4, width: 20 * 0.4, height: 18 * 0.4}, {image: polypol, imgX: 1695, imgY: 270, portionW: 20, portionH: 18, adjX: -1 / 2 * 20 * 0.4, adjY: -1 / 2 * 18 * 0.4, width: 20 * 0.4, height: 18 * 0.4}, {image: polypol, imgX: 1723, imgY: 270, portionW: 20, portionH: 18, adjX: -1 / 2 * 20 * 0.4, adjY: -1 / 2 * 18 * 0.4, width: 20 * 0.4, height: 18 * 0.4}]);
                     this.project(Math.atan2(Y - this.Y, X - this.X), 100000, 3 + Math.random() * 2, true);
                 }
+            }
+            if (this.spellType == "soulOrb")
+            {
+                if (caster)
+                {
+                    this.damageThenGoAway(8, "soulOrb", 0, 0, false);
+                    this.turn -= 0.314;
+                    XXX.beginPath();
+                    XXX.save();
+                    XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                    XXX.rotate(this.turn);
+                    XXX.drawImage(mofu, 23, 51, 22, 19, - (1/2 * 22), - (1/2 * 19), 22, 19);
+                    XXX.restore();
+                    this.project(Math.atan2(unitSelf.Y - this.Y, unitSelf.X - this.X), 1000000, 4 + (Math.random() * 3), true);
+                }
+                else
+                {
+                    //this spell is not for player use.
+                }
+            }
+
+            //ANCIENT RIFT
+            if (this.spellType == "ancientRift")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                this.spin += 0.025;
+                this.turn += this.spin;
+                XXX.rotate(this.turn);
+                XXX.drawImage(oldverse, 1953, 133, 170, 159, - (1/2 * 170 * 1.4), - (1/2 * 159 * 1.4), 170 * 1.4, 159 * 1.4);
+                XXX.restore();
+
+                if (this.doOnce)
+                {
+                    if (this.orders == "AncientBeing")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "AncientBeing", true, "Dejn-Vaa-Chorm"));
+                    }
+                    else if (this.orders == "AncientCrawler")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "AncientCrawler", true, "Kavad-Hod"));
+                    }
+                    this.doOnce = false;
+                }
+
+                this.spellTimer(4);
             }
 
             if (this.spellType == "drainingI")

@@ -1181,6 +1181,7 @@ function buildMaster()
 
                 //REGION CREATION
                 //Build AI Units
+                ArtificialIntelligenceAccess.push(new Unit(2000, 26087, "AncientBeing", true, "Dejn-Vaa-Chorm"));
 
                 //waanti
                 ArtificialIntelligenceAccess.push(new Unit(3458, 12734, "Waanti", true, "goablt"));

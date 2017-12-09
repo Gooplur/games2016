@@ -16,6 +16,7 @@ function Item(type, x, y)
     this.wake = 0;
     this.store = []; //these are the items you gain from opening a package utility item.
 
+    this.turn = 0;
     this.flashFrame = 0;
     this.flashFrameTime = new Date().getTime();
     this.flashAnimate = function(framerate, rotation, transparency, list)
@@ -409,6 +410,51 @@ function Item(type, x, y)
             this.spellDescription = "A blast of magical synthesis energy that forms an allied wolf.";
             this.spellKnowledgeRequirement = 4;
             this.spellRange = "Near-Medium";
+        }
+        else if (this.type == "entanglement")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 3)
+            {
+                this.identity = "Scroll of Entanglement";
+                this.description = "Studying this scroll will teach you how to conjure magical vines to trap their target.";
+                this.intForDes = 0;
+                this.intDescription = "The more concentration the caster has, the longer the vines will stay around.";
+                this.buyValue = 200 - Math.floor(player.getCharisma() / 1); // at max, buy for 150.
+                this.sellValue = 100 + Math.floor(player.getCharisma() / 1); // at max, sell for 150.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 200 - Math.floor(player.getCharisma() / 1); // at max, buy for 150.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+
+            this.spellCost = Math.max(1, 2 + 8 / 50 * player.getConcentration() - (6 / 50) * player.getEminence());
+
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Druidic";
+            this.spellName = "Entanglement";
+            this.spellID = "entanglement";
+            this.spellEXP = 4 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(8, 10 + (10/50) * player.getConcentration() - (4/50) * player.getEminence());
+            this.spellDescription = "Calls forth magical vines that protrude from the ground and entangle foes.";
+            this.spellKnowledgeRequirement = 3;
+            this.spellRange = "Mouse-Pointer";
         }
         else if (this.type == "charm")
         {
@@ -10761,6 +10807,55 @@ function Item(type, x, y)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
         }
+        else if (this.type == "ancientFragment")
+        {
+            //For All Items
+            this.identity = "Ancient Fragment";
+            this.weight = 2;
+            this.size = 7;
+            this.description = "A withered boney otherworldly material.";
+            this.intForDes = 38;
+            this.intDescription = "Ancient fragments can be used to forge a powerful armour.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15; // at max, buy for 15.
+            this.sellValue = 15; // at max, sell for 15.
+        }
+        else if (this.type == "soul")
+        {
+            //For All Items
+            this.identity = "Soul";
+            this.weight = 0;
+            this.size = 12;
+            this.description = "A physical stagnation of raw soul.";
+            this.intForDes = 40;
+            this.intDescription = "Soul can be absorbed giving the player a skillpoint.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 5; //recoops lost energy.
+            this.replenish = 20; //restores will.
+
+            //ability
+            this.ability = "soul";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "naapridFiber")
         {
             //For All Items
@@ -14676,6 +14771,64 @@ function Item(type, x, y)
             this.buyValue = 640 - Math.floor(player.getCharisma() / 3); // at max, buy for 625.
             this.sellValue = 600 + Math.floor(player.getCharisma() / 2); // at max, sell for 625.
         }
+        else if (this.type == "ancientArmour")
+        {
+            //For All Items
+            this.identity = "Ancient Armour";
+            this.weight = 100;
+            this.size = 26;
+            this.description = "An eerily strange armour forged of otherworldly bone fragments.";
+            this.intForDes = 16;
+            this.intDescription = "This armour exudes a feeling of pure fear.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 17 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 20;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0;
+            this.thirstRetention = 10;
+            this.shockResist = -8;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 25;
+            this.rangedBonus = -40;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -50;
+            this.survivalismBonus = -50;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 10;
+            this.willpowerBonus = 10;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 10;
+
+            //ability
+            this.ability = "heavy";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 60;
+            this.ingredients = [["Ancient Fragment", 100]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2200 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 2000.
+            this.sellValue = 2000; // at max, sell for 2000.
+        }
         else if (this.type == "blackChainArmour")
         {
             //For All Items
@@ -17386,10 +17539,21 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
-        else if (this.type == "boulchomLeatherArmour")
+        else if (this.type == "ancientFragment")
         {
             XXX.beginPath();
-            XXX.drawImage(theng, 744, 1115, 30, 45, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 2.15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 45 * 2.15), 30 * 2.15, 45 * 2.15);
+            XXX.drawImage(oldverse, 1423, 198, 17, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.5), 17 * 1.5, 18 * 1.5);
+        }
+        else if (this.type == "soul")
+        {
+            XXX.beginPath();
+            this.turn -= 0.314;
+            XXX.beginPath();
+            XXX.save();
+            XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+            XXX.rotate(this.turn);
+            XXX.drawImage(mofu, 23, 51, 22, 19, - (1/2 * 22), - (1/2 * 19), 22, 19);
+            XXX.restore();
         }
         else if (this.type == "boulchomLeatherBoots")
         {
@@ -17760,6 +17924,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(theCrack, 72, 581, 35, 65, X - this.X + (1/2 * CCC.width) - (1/2 * 35 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 65 * 1.5), 35 * 1.5, 65 * 1.5);
+        }
+        else if (this.type == "ancientArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(oldverse, 1828, 225, 43, 61, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 61 * 1.5), 43 * 1.5, 61 * 1.5);
         }
         else if (this.type == "wightbloomBerries")
         {
@@ -18704,7 +18873,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1922, 4, 23, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 23), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32), 23, 32);
         }
-        else if (this.type == "magicMissiles")
+        else if (this.type == "magicMissiles" || this.type == "entanglement")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1804, 36, 26, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 26), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23), 26, 23);
@@ -19757,6 +19926,22 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "ancientFragment")
+        {
+            LXX.beginPath();
+            LXX.drawImage(oldverse, 1423, 198, 17, 18, this.invX - (1/2 * 17 * 1.5), this.invY - (1/2 * 18 * 1.5), 17 * 1.5, 18 * 1.5);
+        }
+        else if (this.type == "soul")
+        {
+            LXX.beginPath();
+            this.turn -= 0.314;
+            LXX.beginPath();
+            LXX.save();
+            LXX.translate(this.invX, this.invY);
+            LXX.rotate(this.turn);
+            LXX.drawImage(mofu, 23, 51, 22, 19, - (1/2 * 22), - (1/2 * 19), 22, 19);
+            LXX.restore()
+        }
         else if (this.type == "boulchomLeatherArmour")
         {
             LXX.beginPath();
@@ -20197,6 +20382,11 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(theCrack, 72, 581, 35, 65, this.invX - (1/2 * 35 * 1.1), this.invY - (1/2 * 65 * 1.1), 35 * 1.1, 65 * 1.1);
+        }
+        else if (this.type == "ancientArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(oldverse, 1828, 225, 43, 61, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 61 * 1), 43 * 1, 61 * 1);
         }
         else if (this.type == "wightbloomBerries")
         {
@@ -21135,7 +21325,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -22092,6 +22282,21 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "ancientFragment")
+        {
+            XXX.beginPath();
+            XXX.drawImage(oldverse, 1423, 198, 17, 18, this.invX - (1/2 * 17 * 1.5), this.invY - (1/2 * 18 * 1.5), 17 * 1.5, 18 * 1.5);
+        }
+        else if (this.type == "soul")
+        {
+            this.turn -= 0.314;
+            XXX.beginPath();
+            XXX.save();
+            XXX.translate(this.invX, this.invY);
+            XXX.rotate(this.turn);
+            XXX.drawImage(mofu, 23, 51, 22, 19, - (1/2 * 22), - (1/2 * 19), 22, 19);
+            XXX.restore();
+        }
         else if (this.type == "boulchomLeatherArmour")
         {
             XXX.beginPath();
@@ -22532,6 +22737,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(theCrack, 72, 581, 35, 65, this.invX - (1/2 * 35 * 1.1), this.invY - (1/2 * 65 * 1.1), 35 * 1.1, 65 * 1.1);
+        }
+        else if (this.type == "ancientArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(oldverse, 1828, 225, 43, 61, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 61 * 1), 43 * 1, 61 * 1);
         }
         else if (this.type == "wightbloomBerries")
         {
@@ -23470,7 +23680,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);

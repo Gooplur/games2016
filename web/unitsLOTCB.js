@@ -9,6 +9,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //Priority Variables
     this.mobile = true;
     this.stackDominance = Math.random();
+    this.barcode = ((Math.random() - 1/2 * Math.random()) * Math.random() + Math.random()) / Math.random() + 4 * Math.random(); //this is a near impossible to replicate random identifyer for each unit in the game.
     this.ID = ID; //This is gives this unit an identity so that they can be identified if a problem comes up.
     this.X = unitX; // this is the units X position in the world
     this.Y = unitY; // this is the units Y position in the world
@@ -230,6 +231,23 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
     };
 
+    this.removeSelfFromCompanionList = function()
+    {
+        var doSubtract = -1;
+        for (var i = 0; i < player.companions.length; i++)
+        {
+            if (player.companions[i].barcode == this.barcode)
+            {
+                doSubtract = i;
+            }
+        }
+        if (doSubtract > -1)
+        {
+            this.guarantee = false;
+            player.companions.splice(doSubtract, 1);
+        }
+    };
+
     this.teamCommands = function()
     {
         //PLAYER TEAM COMMANDS
@@ -251,6 +269,24 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.speed = 0;
                 this.stayTime = new Date().getTime() + 900;
             }
+            else if (tKey && vKey && shiftKey && this.stayTime <= new Date().getTime()) //stays all minions
+            {
+                if (!this.stay)
+                {
+                    this.stay = true;
+                    if (this.keepSpeed < this.speed)
+                    {
+                        this.staySpeed = this.speed;
+                    }
+                    else
+                    {
+                        this.staySpeed = this.keepSpeed;
+                    }
+
+                    this.speed = 0;
+                    this.stayTime = new Date().getTime() + 900;
+                }
+            }
             else if (!shiftKey && vKey && this.stay && this.DTP() < 140 && this.stayTime <= new Date().getTime()) //un-stays minions in direct proximity to the player
             {
                 this.stay = false;
@@ -266,20 +302,31 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             //GUARANTEE (toggles a creature between being a preserved companion and being an expendable follower)
             if (!shiftKey && gKey && !this.guarantee && this.guaranteeTime <= new Date().getTime() && this.DTP() < 140 && player.companions.length < player.companionLimit)
             {
-                this.guarantee = true;
                 this.guaranteeTime = new Date().getTime() + 3000;
-                player.companions.push(this);
+                var noAdd = false;
+                for (var i = 0; i < player.companions.length; i++)
+                {
+                    if (player.companions[i].barcode == this.barcode || !this.alive)
+                    {
+                        noAdd = true;
+                    }
+                }
+                if (!noAdd)
+                {
+                    this.guarantee = true;
+                    player.companions.push(this);
+                }
             }
             else if (!shiftKey && gKey && this.guarantee && this.guaranteeTime <= new Date().getTime() && this.DTP() < 140)
             {
-                this.guarantee = false;
-                player.companions.splice(player.companions.indexOf(this), 1);
                 this.guaranteeTime = new Date().getTime() + 3000;
+                this.removeSelfFromCompanionList();
             }
             else if (shiftKey && gKey && this.guarantee && this.guaranteeTime <= new Date().getTime())
             {
                 this.guarantee = false;
-                player.companions.splice(player.companions.indexOf(this), 1);
+                //player.companions.splice(player.companions.indexOf(this), 1);
+                player.companions = [];
                 this.guaranteeTime = new Date().getTime() + 3000;
             }
 
@@ -290,22 +337,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (player.getSurvivalism() >= 20)
                     {
-                        this.health = Math.min(this.healthMAX, this.health + 0.0025); //companions have an increased health regeneration while not attacking and while staying put (by player's command)
+                        this.health = Math.min(this.healthMAX, this.health + 0.006); //companions have an increased health regeneration while not attacking and while staying put (by player's command)
                     }
                     else
                     {
-                        this.health = Math.min(this.healthMAX, this.health + 0.002); //companions have an increased health regeneration while not attacking and while staying put (by player's command)
+                        this.health = Math.min(this.healthMAX, this.health + 0.004); //companions have an increased health regeneration while not attacking and while staying put (by player's command)
                     }
                 }
                 else if (!this.attacking)
                 {
                     if (player.getSurvivalism() >= 20)
                     {
-                        this.health = Math.min(this.healthMAX, this.health + 0.002); //companions have a slight health regeneration while not attacking.
+                        this.health = Math.min(this.healthMAX, this.health + 0.004); //companions have a slight health regeneration while not attacking.
                     }
                     else
                     {
-                        this.health = Math.min(this.healthMAX, this.health + 0.001); //companions have a slight health regeneration while not attacking.
+                        this.health = Math.min(this.healthMAX, this.health + 0.002); //companions have a slight health regeneration while not attacking.
                     }
                 }
             }
@@ -343,7 +390,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.aiTimer += 0.1;
             this.aiKeepTime = new Date().getTime();
         }
-    }
+    };
     //This makes sure that each existing Unit has a different dominance ranking and so when they get stuck on eachother the one with lower dominance will move out of the way.
     this.stackSorter = function()
     {
@@ -3969,6 +4016,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
 
                 //transference into the list of the dead...
+                if (this.guarantee)
+                {
+                    this.removeSelfFromCompanionList(); //if the unit was a companion this removes the unit from the player's companion list.
+                }
                 var me = ArtificialIntelligenceAccess.indexOf(this);
                 deadAIList.push(this);
                 ArtificialIntelligenceAccess.splice(me, 1);
@@ -21440,6 +21491,24 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 109 + (quests.medliaNewWealth / 2)]];
             }
+            else if (this.ID == "[ " + quests.hilmundChildName + " ]") //this sets stats for the player child with Hilmund
+            {
+                this.disturbedTime = new Date().getTime(); //this is so that your child is inclined to follow you
+                if (shiftKey && wKey || fKey || tKey) //runs when player runs or when directed to go somewhere
+                {
+                    if (!this.stay)
+                    {
+                        this.speed = 1.2;
+                    }
+                }
+                else //walks when player walks
+                {
+                    if (!this.stay)
+                    {
+                        this.speed = 0.6;
+                    }
+                }
+            }
             else if (this.ID == "Cheryl the Tailor")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 29]];
@@ -21865,6 +21934,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "Hildegard")
                     {
                         uniqueChars.hildegardLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            if (quests.thePlightOfLethikQuest && quests.thePlightOfLethikWitchInterrogated)
+                            {
+                                player.thengarFaction += 25;
+                            }
+                        }
                     }
                     else if (this.ID == "Axel")
                     {
@@ -21933,6 +22009,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             player.freynorFaction -= 15;
                         }
+                    }
+                    else if (this.ID == "[ " + quests.hilmundChildName + " ]")
+                    {
+                        uniqueChars.hilmundChildLDS = false;
                     }
                     else if (this.ID == "Drohfor")
                     {

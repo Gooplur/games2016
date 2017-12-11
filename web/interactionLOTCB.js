@@ -976,6 +976,267 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Hildegard" || conversationID[0] == "Hildegard")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Hildegard";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+                                if (quests.thePlightOfLethikWitchInterrogated == true && quests.thePlightOfLethikQuest == true)
+                                {
+                                    player.dialogueOptions.unshift(["I'm not done with you, hag!", false, "a"]);
+                                    player.dialogueOptions.unshift(["Hello again.", false, "a"]);
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.push(["Hello.", false, "a"]);
+                                    player.dialogueOptions.push(["Hi there.", false, "a"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            if (quests.thePlightOfLethikWitchInterrogated == false)
+                            {
+                                hildegardSweety.play();
+                                hildegardSweety.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                hildegardNow.play();
+                                hildegardNow.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["How are you?", false, "a"]];
+                                if (quests.thePlightOfLethikQuest == true)
+                                {
+                                    player.dialogueOptions.unshift(["Prepare to die you foul hag!", false, "c"]);
+                                    player.dialogueOptions.unshift(["You have been accused of witchcraft! How do you plead?", false, "b"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            hildegardCried.play();
+                            hildegardCried.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            hildegardNasty.play();
+                            hildegardNasty.onended = function()
+                            {
+                                quests.thePlightOfLethikWitchInterrogated = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            hildegardWait.play();
+                            hildegardWait.onended = function()
+                            {
+                                quests.thePlightOfLethikWitchInterrogated = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 2)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Then tell me witch, who cursed Axel's field?", false, "a"], ["I don't believe you.", false, "b"], ["Then who might I ask is behind this outrageous and vile deed, who cursed the town field?", false, "a"], ["I've heard enough of your lies, witch!", false, "b"], ["If not you, who then cursed Axel's field?", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            conversationID[1] = "2b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2a")
+                        {
+                            hildegardVardan.play();
+                            hildegardVardan.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2b")
+                        {
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == 3)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["The punishment for witchcraft is death, crone.", false, "a"], ["You should have considered the value of your life before you went into witchcraft, it's too late for you now.", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "3a")
+                        {
+                            hildegardISwear.play();
+                            hildegardISwear.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 4;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 4)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["That is exactly what a witch would say.", false, "a"], ["If your not a witch then why were you muttering spells by his field?", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            conversationID[1] = "4a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "4b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "4a")
+                        {
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == "4b")
+                        {
+                            hildegardSinging.play();
+                            hildegardSinging.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Johanna the Herbalist" || conversationID[0] == "Johanna")
                     {
                         lowBar = "dialogue";
@@ -6667,7 +6928,7 @@ function interaction(me)
                                 {
                                     player.dialogueOptions.push(["I'm looking for a place to spend the night.", false, "d"]);
                                     player.dialogueOptions.push(["Do you get many customers around here?", false, "e"]);
-                                    if (player.freynorRelation >= 20 && player.inebriation >= 70 && player.charisma >= 5 || player.gender != "Female" && player.freynorRelation >= 20 && player.inebriation >= 70 || player.title == "Royalty" && player.freynorRelation >= 20 && player.inebriation >= 70 || player.title == "Nobility" && player.freynorRelation >= 20 && player.inebriation >= 70)
+                                    if (player.freynorFaction >= 20 && player.inebriation >= 70 && player.charisma >= 5 || player.gender != "Female" && player.freynorFaction >= 20 && player.inebriation >= 70 || player.title == "Royalty" && player.freynorFaction >= 20 && player.inebriation >= 70 || player.title == "Nobility" && player.freynorFaction >= 20 && player.inebriation >= 70)
                                     {
                                         player.dialogueOptions.push(["Hey there handsome.", false, "f"]);
                                     }
@@ -6823,7 +7084,25 @@ function interaction(me)
                             hilmundLookingForward.play();
                             hilmundLookingForward.onended = function()
                             {
+                                if (!quests.hilmundChild)
+                                {
+                                    sleeperTime += 60 * 60 * 24 * 365 * 6.75;
+                                    player.experience = 0;
+                                    player.magicalExperience = 0;
+                                    player.health = player.healthMAX;
+                                    player.energy = player.energyMAX;
+                                    player.will = player.willMAX;
+                                    player.hunger = player.hungerMAX;
+                                    player.thirst = player.thirstMAX;
+                                }
                                 sleep();
+                                if (!quests.hilmundChild)
+                                {
+                                    quests.hilmundChild = true;
+                                    quests.hilmundChildName = prompt("You may not have expected it, but shortly after sleeping with Hilmund that night you knew that you were carrying his baby. You and him worked out arrangements whilst you were pregnant for you to settle down; then finally, after nine long months of nausea and strange cravings the time came to bring your child into the world. What was the name that you and Hilmund decided upon for your baby boy?", "Boki");
+                                    alert("You stayed with " + quests.hilmundChildName + " to care for him, making sure he was raised as you saw fit. He grew fast and before you knew it he had turned six years old.")
+                                    change = "makemy6yearoldherealready!";
+                                }
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;
@@ -6964,7 +7243,9 @@ function interaction(me)
                                 {
                                     Inventory.splice(room, 1);
                                 }
+
                                 sleep();
+
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;

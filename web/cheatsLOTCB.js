@@ -332,6 +332,14 @@ function cheats()
                 player.survivalism = 500;
             }
         }
+        else if (cheatcode == "cmplst")
+        {
+            alert("The length of the companion list is: " + player.companions.length);
+            for (var cmplst = 0; cmplst < player.companions.length; cmplst++)
+            {
+                console.log(player.companions[cmplst]);
+            }
+        }
         else if (cheatcode == "drugsaregoodandifyoudothempeoplethinkthatyou'recool")
         {
             player.constitution = 1000;

@@ -7,7 +7,7 @@
 //todo add a standard leather armour
 //todo add items: dried plutt with honey, bread with vel, one more plant for thengan forestland, more alchemy stuff
 //todo add vamprism and lycanthropy
-//todo add the withered beings: Withered Ancient, Withered Crawler
+//todo fix potential problem with the Ancient Crawler that it forgets to continue attacking if the player stays still near it.
 //todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
 //todo add a brown beetle creature that derps around in the mudflats
 //todo add creature "Miter" a humanoid beast that crawls around on all fours eating the flesh of the dead. It will gain full health everytime it does so, and if it scratches the player with its long claws the player will be grave poisoned which drains life from the player and gives it to the miter responsible.
@@ -18,27 +18,24 @@
 //todo add containers that operate like miniature banks with fixed numbers of slots.
 //todo add warm northern thick clothing made with waanti. //at this point there is only an outfit and not a clothing.
 //todo figure out why aldrekii claws manual attack thing won't let it at twice or even early, while the same code lets the flail perform its attack early.
-//todo finish adding sickness system
-//todo add Lodotos, a sickness that one can get in the kellish mud bog.
+//todo finish adding sickness system //add Lodotos, a sickness that one can get in the kellish mud bog. //add sicknesses and symptons (dizziness, pox, fever, fatigue, etc.) ex: make dizziness spin the screen, make pox weaken players constitution etc., make fever decrease thirst.
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
 //todo finish adding the beast journal.
 //todo add brain flies.
 //todo add hangover, and soarness effects as well as their mini notices.
 //todo add a rest without bed button on the UI that uses a homemade confirm popup to ask if you are sure you want to sleep. Add the nappy closed eye for the sleepButton. (it's on poly)
-//todo add the dexterity system: lv 20 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
+//todo add the dexterity system: lv20 = side-walking ---- lv 25 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
 //todo add arrow mods such as toxic/posion, electric, wind, armour piercing...
-//todo add vines spell
 //todo add weaken spell
 //todo add tornado spell
 //todo add mage boss who uses the electric spear as well as magical shielding spell he uses.
 //todo add throwing stars for the orgel
-//todo add sicknesses and symptons (dizziness, pox, fever, fatigue, etc.) ex: make dizziness spin the screen, make pox weaken players constitution etc., make fever decrease thirst.
 //todo add the rest of the alcohols and drinks.
 //todo make alpha Olkrin's death animation line up slightly more.
 //todo add options menu with button: it will allow you to toggle certain settings like mouse combat mode, game coordinates, and other such features.
 //todo Add harsh hot weather conditions: deserts cause faster dehydration. (base the effect on elevation variable)
 //todo Add more traps to further advance the utility of the Survivalism (trapping) skill.
-//todo add a system that shows the player the names of each region that they enter upon entering it.
+//todo add a system that shows the player the names of each region that they enter upon entering it. or: put road signs around to name parts of the world.
 //todo add unique fairytails for each faction
 
 
@@ -259,6 +256,35 @@ function legendaryPrerequisites()
 
     var togginChangeMind = new Audio("sounds/polySounds/togginChangeMind.mp3");
     window.togginChangeMind = togginChangeMind;
+
+        //AXEL CHARACTER: voice acting
+
+    var axelCurses = new Audio("sounds/polySounds/axelCurses.mp3");
+    window.axelCurses = axelCurses;
+
+    var axelTwist = new Audio("sounds/polySounds/axelTwist.mp3");
+    window.axelTwist = axelTwist;
+
+    var axelPayYou = new Audio("sounds/polySounds/axelPayYou.mp3");
+    window.axelPayYou = axelPayYou;
+
+    var axelHi = new Audio("sounds/polySounds/axelHi.mp3");
+    window.axelHi = axelHi;
+
+    var axelWitchcraff = new Audio("sounds/polySounds/axelWitchcraff.mp3");
+    window.axelWitchcraff = axelWitchcraff;
+
+    var axelHelp = new Audio("sounds/polySounds/axelHelp.mp3");
+    window.axelHelp = axelHelp;
+
+    var axelField = new Audio("sounds/polySounds/axelField.mp3");
+    window.axelField = axelField;
+
+    var axelBlessings = new Audio("sounds/polySounds/axelBlessings.mp3");
+    window.axelBlessings = axelBlessings;
+
+    var axelBewary = new Audio("sounds/polySounds/axelBewary.mp3");
+    window.axelBewary = axelBewary;
 
         //CHERYL CHARACTER: voice acting
 
@@ -571,6 +597,32 @@ function legendaryPrerequisites()
 
     var kedwinGobblin = new Audio("sounds/polySounds/kedwinGobblin.mp3");
     window.kedwinGobblin = kedwinGobblin;
+
+        //HILDEGARD CHARACTER: voice acting
+
+    var hildegardWait = new Audio("sounds/polySounds/hildegardWait.mp3");
+    window.hildegardWait = hildegardWait;
+
+    var hildegardVardan = new Audio("sounds/polySounds/hildegardVardan.mp3");
+    window.hildegardVardan = hildegardVardan;
+
+    var hildegardISwear = new Audio("sounds/polySounds/hildegardISwear.mp3");
+    window.hildegardISwear = hildegardISwear;
+
+    var hildegardSweety = new Audio("sounds/polySounds/hildegardSweety.mp3");
+    window.hildegardSweety = hildegardSweety;
+
+    var hildegardSinging = new Audio("sounds/polySounds/hildegardSinging.mp3");
+    window.hildegardSinging = hildegardSinging;
+
+    var hildegardNow = new Audio("sounds/polySounds/hildegardNow.mp3");
+    window.hildegardNow = hildegardNow;
+
+    var hildegardCried = new Audio("sounds/polySounds/hildegardCried.mp3");
+    window.hildegardCried = hildegardCried;
+
+    var hildegardNasty = new Audio("sounds/polySounds/hildegardNasty.mp3");
+    window.hildegardNasty = hildegardNasty;
 
         //MARKOS CHARACTER: voice acting
 
@@ -2151,7 +2203,8 @@ function theLegend()
         rutgar: ["Rutgar", 0],
         lena: ["Lena", 0],
         johanna: ["Johanna", 0],
-        cheryl: ["Cheryl", 0]
+        cheryl: ["Cheryl", 0],
+        hildegard: ["Hildegard", 0]
     };
 
 //time Tracker Variables
@@ -2275,7 +2328,8 @@ function theLegend()
         vsevolodLDS: true,
         rutgarLDS: true,
         axelLDS: true,
-        hildegardLDS: true
+        hildegardLDS: true,
+        hilmundChildLDS: true
     };
 //QUESTS
     quests =
@@ -2307,6 +2361,16 @@ function theLegend()
         lonerGuyStash: true,
         sagesCacheStash: true,
         spiderwebLoot: true,
+
+        //PLAYER CHILDREN SPAWN
+        hilmundChild: false,
+        hilmundChildName: "Boki",
+
+        //QUEST: The Plight of Lethik ---- given by Axel
+        thePlightOfLethikQuest: true,
+        thePlightOfLethikWitchInterrogated: false,
+        thePlightOfLethikCompletionStyle: false,
+        thePlightOfLethikFarmRestored: false,
 
         //QUEST: Sword Delivery ---- given by Dagmar
         swordDeliveryQuest: false,
@@ -2475,6 +2539,7 @@ function theLegend()
     allWeapons.push(new Item("thenganDagger", false)); //56
     allWeapons.push(new Item("staff", false)); //57
     allWeapons.push(new Item("thenganWarhammer", false)); //58
+    allWeapons.push(new Item("estoc", false)); //59
 
 //This list holds one of each type of worn item so that the player can access the worn item stats.
     allWorn = [];

@@ -5571,7 +5571,7 @@ function Item(type, x, y)
             this.size = 6;
             this.description = "An expertly devised alchemic mixture that can be used to heal minor wounds.";
             this.intForDes = 6;
-            this.intDescription = "Healing salve is the most commonly used medacine in the lands.";
+            this.intDescription = "Healing salve is the most commonly used medicine in the lands.";
 
             //Define Utility
             this.utility = "food";
@@ -12611,7 +12611,7 @@ function Item(type, x, y)
             this.rate = (150 - player.getDexterity());
             this.damage = (4 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
             this.magicalDamage = 0;
-            this.negateArmour = 6 + ((1/6.25) * player.getStrength());
+            this.negateArmour = 10 + ((7/50) * player.getStrength());
 
             //ability
             this.ability = "none";
@@ -12624,6 +12624,51 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 30 - Math.floor(player.getCharisma() / 5); // at max, buy for 20.
             this.sellValue = 10 + Math.floor(player.getCharisma() / 5); // at max, sell for 20.
+        }
+        else if (this.type == "estoc")
+        {
+            //For All Items
+            this.identity = "Estoc";
+            this.weight = 2;
+            this.size = 24;
+            this.description = "A nirinese sword made for piercing through plate armour.";
+            this.intForDes = 0;
+            this.intDescription = "It's edges are not sharp, as the sword is meant for stabbing.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            if (player.getEndurance() >= 10)
+            {
+                this.energyCost = 5;
+            }
+            else if (player.getEndurance() >= 5)
+            {
+                this.energyCost = 6;
+            }
+            else
+            {
+                this.energyCost = 8;
+            }
+            this.distance = 56.5 + (this.range * 7);
+            this.range = 3;
+            this.rate = 170;
+            this.damage = (6 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((3/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 20 + 20/50 * player.getStrength();
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 34;
+            this.ingredients = [["Thrice Forged Steel", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 95 - Math.floor(player.getCharisma() / 3); // at max, buy for 80.
+            this.sellValue = 65 + Math.floor(player.getCharisma() / 3); // at max, sell for 80.
         }
         else if (this.type == "rasper")
         {
@@ -12934,10 +12979,10 @@ function Item(type, x, y)
             this.subUtility = "bow";
 
             //Utility Focused
-            this.range = 1800 + (500 * player.getRanged() / 50);
+            this.range = 2000 + (500 * player.getRanged() / 50);
             this.rate = Math.max(0.1, 35 - (34 * player.getRanged() / 50));
             this.speed = 5 + (3 * player.getRanged() / 50);
-            this.negateArmour = (2 * player.getRanged() / 50);
+            this.negateArmour = (5 * player.getRanged() / 50);
 
             //ability
             this.ability = "none";
@@ -17539,6 +17584,15 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "estoc")
+        {
+            XXX.beginPath();
+            XXX.save();
+            XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+            XXX.rotate(-1/8 * 2 * Math.PI);
+            XXX.drawImage(dolls, 578, 3, 18, 74, - (1/2 * 18), - (1/2 * 74), 18, 74);
+            XXX.restore();
+        }
         else if (this.type == "ancientFragment")
         {
             XXX.beginPath();
@@ -19926,6 +19980,15 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "estoc")
+        {
+            LXX.beginPath();
+            LXX.save();
+            LXX.translate(this.invX, this.invY);
+            LXX.rotate(-1/8 * 2 * Math.PI);
+            LXX.drawImage(dolls, 578, 3, 18, 74, - (1/2 * 18), - (1/2 * 74), 18, 74);
+            LXX.restore();
+        }
         else if (this.type == "ancientFragment")
         {
             LXX.beginPath();
@@ -22281,6 +22344,15 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "estoc")
+        {
+            XXX.beginPath();
+            XXX.save();
+            XXX.translate(this.invX, this.invY);
+            XXX.rotate(-1/8 * 2 * Math.PI);
+            XXX.drawImage(dolls, 578, 3, 18, 74, - (1/2 * 18), - (1/2 * 74), 18, 74);
+            XXX.restore();
         }
         else if (this.type == "ancientFragment")
         {

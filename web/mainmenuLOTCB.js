@@ -774,6 +774,10 @@ function applySelectionsButton()
             {
                 Inventory.push([new Item("nirineseSpear", false, false), 1]);
             }
+            else if (player.title == "Nobility" || player.title == "Royalty")
+            {
+                Inventory.push([new Item("nirineseSabre", false, false), 1], [new Item("estoc", false, false), 1]);
+            }
             else
             {
                 Inventory.push([new Item("nirineseSabre", false, false), 1]);

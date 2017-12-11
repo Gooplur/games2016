@@ -21493,19 +21493,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.ID == "[ " + quests.hilmundChildName + " ]") //this sets stats for the player child with Hilmund
             {
-                this.disturbedTime = new Date().getTime(); //this is so that your child is inclined to follow you
-                if (shiftKey && wKey || fKey || tKey) //runs when player runs or when directed to go somewhere
+                if (this.aiTimer > 4)
                 {
-                    if (!this.stay)
+                    this.disturbedTime = new Date().getTime(); //this is so that your child is inclined to follow you
+                    if (shiftKey && wKey || fKey || tKey) //runs when player runs or when directed to go somewhere
                     {
-                        this.speed = 1.2;
+                        if (!this.stay)
+                        {
+                            this.speed = 1.2;
+                        }
                     }
-                }
-                else //walks when player walks
-                {
-                    if (!this.stay)
+                    else //walks when player walks
                     {
-                        this.speed = 0.6;
+                        if (!this.stay)
+                        {
+                            this.speed = 0.6;
+                        }
                     }
                 }
             }

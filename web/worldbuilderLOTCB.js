@@ -658,8 +658,6 @@ function buildMaster()
                     if (hits == 0)
                     {
                         ArtificialIntelligenceAccess.push(new Unit(2346, 1788, "Person", false, "[ " + quests.hilmundChildName + " ]", {race: player.raceName, faction: "player", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.2, 0.2], 0, 0, 1.2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2164, 1656]], kid: true}));
-                        ArtificialIntelligenceAccess[i].speed = 1.2;
-                        ArtificialIntelligenceAccess[i].baseTeam = "player";
                     }
                 }
                 if (uniqueChars.hilmundLDS == true)

@@ -11,14 +11,14 @@ function worldBuilder()
         player.dmx = map;
         player.underground = false;
         //Layer -3 (cold region): elev 0
-        //mapS3
+        //mapS3 //Calcutt (town)
         if (Y > -34556 && Y < -23654 && X < 7687 && X > - 3901) //X0
         {
             elevation = 0;
             region = "s3";
             outlineBuilder( 34, 34, "greenGrass", -20, 82);
             outlineBuilder( 34, 1, "stonePath", 3, 82);
-            outlineBuilder( 4, 4, "kelltile", 4, 103);
+            outlineBuilder( 4, 4, "thatch", 4, 103);
             outlineBuilder( 1, 1, "farmland", 8, 104);
         }
         //mapS3 E1
@@ -31,7 +31,7 @@ function worldBuilder()
             outlineBuilder( 30, 6, "greenGrass", 14, 86);
             outlineBuilder( 4, 1, "greenGrass", 20, 93);
             outlineBuilder( 2, 2, "greenGrass", 20, 97);
-            outlineBuilder( 34, 1, "forest", 14, 82);
+            //outlineBuilder( 34, 1, "forest", 14, 82);
             outlineBuilder( 7, 3, "muckgrass", 20, 86);
             outlineBuilder( 4, 2, "muckgrass", 21, 93);
             outlineBuilder( 1, 11, "muckgrass", 22, 85);
@@ -7427,6 +7427,10 @@ function buildMaster()
                 scenicList.push(new Scenery("kellishBuilding4", -312, -30807, 0, true));
                 scenicList.push(new Scenery("kellishBuilding6", -1205, -30838, 0, true));
 
+                //stuff
+                scenicList.push(new Scenery("well", -718, -30700, 4, true));
+                scenicList.push(new Scenery("campFire", -1186, -30846, -1.2, "permaLit"));
+
                 //Echlin Village crafting stations
                 scenicList.push(new Scenery("anvil", -884, -31318, -Math.PI * 1/4, true));
                 scenicList.push(new Scenery("forge", -882, -31444, Math.PI * 1/2, true));
@@ -7521,6 +7525,9 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(5797, -27298, "Frich", false, "Ratul"));
                 ArtificialIntelligenceAccess.push(new Unit(2245, -27179, "Frich", false, "Ratin"));
                 ArtificialIntelligenceAccess.push(new Unit(1895, -25407, "Frich", true, "Rattail"));
+                ArtificialIntelligenceAccess.push(new Unit(-1420, -29340, "Frich", false, "Rataul"));
+                ArtificialIntelligenceAccess.push(new Unit(-1204, -29146, "Frich", false, "Ratein"));
+                ArtificialIntelligenceAccess.push(new Unit(-1381, -33597, "Frich", true, "Froozle"));
 
                 ArtificialIntelligenceAccess.push(new Unit(1314, -32450, "Avrak", false, "Ava"));
 
@@ -7734,6 +7741,30 @@ function buildMaster()
 
                 //REGION CREATION
                 //Build AI Units
+
+                //grassborder animals
+                ArtificialIntelligenceAccess.push(new Unit(-3906, -29862, "Frich", true, "Ratool"));
+                ArtificialIntelligenceAccess.push(new Unit(-4181, -30861, "Frich", false, "Ratain"));
+                ArtificialIntelligenceAccess.push(new Unit(-4251, -31000, "Frich", true, "Ratoal"));
+                ArtificialIntelligenceAccess.push(new Unit(-4438, -30923, "Frich", false, "Rataon"));
+                ArtificialIntelligenceAccess.push(new Unit(-3795, -32187, "Frich", false, "Ration"));
+                ArtificialIntelligenceAccess.push(new Unit(-11615, -24474, "Frich", true, "Ratoala"));
+                ArtificialIntelligenceAccess.push(new Unit(-11815, -24561, "Frich", false, "Rataono"));
+                ArtificialIntelligenceAccess.push(new Unit(-9604, -24669, "Frich", true, "Ratoalo"));
+                ArtificialIntelligenceAccess.push(new Unit(-6382, -24510, "Frich", false, "Rata"));
+
+                ArtificialIntelligenceAccess.push(new Unit(-4432, -33545, "Mofu", true, "Kaperbaldi"));
+                ArtificialIntelligenceAccess.push(new Unit(-4650, -33429, "Mofu", false, "Aperbaldica"));
+                ArtificialIntelligenceAccess.push(new Unit(-4590, -33709, "Mofu", "baby", "Aper"));
+
+                scenicList.push(new Scenery("tunskMound", -9277, -33752, 0, true)); //for mofu nests the last number determines its size multiplier.
+
+                //Mofu Habitations
+                scenicList.push(new Scenery("mofuNest", -4432, -33545, -2.1, 1.315)); //for mofu nests the last number determines its size multiplier.
+                scenicList.push(new Scenery("techiPlant", -4599, -28695, 3, true));
+                scenicList.push(new Scenery("luufPlant", -4355, -24889, -5, true));
+                scenicList.push(new Scenery("itlinPlant", -9599, -24620, -3.2, true));
+                scenicList.push(new Scenery("techiPlant", -9265, -24930, 1.11, true));
 
                 //Animals in the mud bog
                 //ArtificialIntelligenceAccess.push(new Unit(-6610, -32189, "Grewble", false, "Glud"));
@@ -9314,6 +9345,10 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 else if (terrain == "kellstone")
                 {
                     XXX.drawImage(kellStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "thatch")
+                {
+                    XXX.drawImage(thatchEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
                 else if (terrain == "kelltile")
                 {

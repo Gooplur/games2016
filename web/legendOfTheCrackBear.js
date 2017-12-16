@@ -978,6 +978,10 @@ function legendaryPrerequisites()
     kellsStone.src = ("images/heavyRock.jpg");
     window.kellsStone = kellsStone;
 
+    var thatchEnv = new Image();
+    thatchEnv.src = ("images/thatchedKel.jpg");
+    window.thatchEnv = thatchEnv;
+
     var mushBlur = new Image();
     mushBlur.src = ("images/blurredGreenSwish.jpg");
     window.mushBlur = mushBlur;

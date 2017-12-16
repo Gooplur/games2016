@@ -7740,6 +7740,13 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.solid = false;
             this.interactionRange = 35;
 
+            if (this.temporary == "permaLit")
+            {
+                this.campFireTime = 0;
+                this.lit = true;
+                this.burnt = false;
+            }
+
             //animate
             if (this.lit == true)
             {
@@ -7763,7 +7770,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (this.burntTime >= 2000)
                 {
                     this.burntTime = 0;
-                    if (longevity == false)
+                    if (this.temporary == false)
                     {
                         for (var i = 0; i < scenicList.length; i++)
                         {

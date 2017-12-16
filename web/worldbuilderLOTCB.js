@@ -7282,15 +7282,17 @@ function buildMaster()
                 //citizens of Echlin village/tribe
                 if (quests.fenwikEchlinArmed)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-1366, -30864, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 4, speed: 1.65, outfit: ["naapridLeatherArmour", 4], weapon: ["kellishClaymore", [24, 9], 0, 50, 2.06], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-995, -30767, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 4, speed: 1.65, outfit: ["naapridLeatherArmour", 4], weapon: ["kellishClaymore", [24, 9], 0, 50, 2.06], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
                     ArtificialIntelligenceAccess.push(new Unit(-1348, -30360, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 2, speed: 1.80, outfit: ["naapridLeatherArmour", 4], weapon: ["kellishClaymore", [23, 9], 0, 50, 2.15], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 6, patrolLoop: true, route:[[-218, -30349], [-227, -31505], [-1706, -31503], [-1724, -30600], [-1366, -30601], [-1348, -30360]]}));
                     ArtificialIntelligenceAccess.push(new Unit(-295, -30422, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 1, speed: 1.95, outfit: ["naapridLeatherArmour", 4], weapon: ["kellishClaymore", [18, 9], 0, 50, 3], ranged: [false, "arrow", 7, 1500, 1, 3, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-588, -31257, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 2, speed: 1.7, outfit: ["naapridLeatherArmour", 4], weapon: ["kellishClaymore", [20, 9], 0, 50, 3.15], ranged: [false, "arrow", 7, 1500, 1, 3, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
                 }
                 else
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-1366, -30864, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 4, speed: 1.65, outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [10, 1], 8, 16, 1], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-995, -30767, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 4, speed: 1.65, outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [10, 1], 8, 16, 1], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
                     ArtificialIntelligenceAccess.push(new Unit(-1348, -30360, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 2, speed: 1.80, outfit: ["naapridLeatherArmour", 4], weapon: ["warHammer", [11, 1], 8, 16, 1], ranged: [false, "arrow", 5, 1500, 1, 3, 0, "none", 1.50], patrolStops: 6, patrolLoop: true, route:[[-218, -30349], [-227, -31505], [-1706, -31503], [-1724, -30600], [-1366, -30601], [-1348, -30360]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(-295, -30422, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 1, speed: 1.95, outfit: ["naapridLeatherArmour", 4], weapon: ["longbow", [8, 1], 8, 16, 1], ranged: [true, "arrow", 7, 1500, 1, 3, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-295, -30422, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 1, speed: 1.95, outfit: ["naapridLeatherArmour", 4], weapon: ["longbow", [8, 1], 8, 16, 1], ranged: [true, "arrow", 7, 1500, 1, 5, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-588, -31257, "Soldier", false, "Echlin Tribe Warrior", {race: "Kel", faction: "Kel", con: 2, speed: 1.7, outfit: ["naapridLeatherArmour", 4], weapon: ["longbow", [8, 1], 8, 16, 1], ranged: [true, "arrow", 7, 1200, 1, 3, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[3071, 314], [3014, 394], [2218, 346]]}));
                 }
 
                 if (uniqueChars.teberLDS == true && quests.bountyTeberCompletionStyle != "royal pardon")
@@ -7313,11 +7315,11 @@ function buildMaster()
                     {
                         if (quests.fenwikEchlinArmed)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-631, -30389, "Person", false, teberName, {race: "Freynor", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 4], weapon: ["kellishClaymore", [19, 2], 0, 50, 2.45], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 62], [new Item("naapridFiber", false, false), 11], [new Item("ironRing", false, false), 6], [new Item("pintGlass", false, false), 18], [new Item("potionGlass", false, false), 16], [new Item("glassJar", false, false), 7]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-441, -30503, "Person", false, teberName, {race: "Freynor", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 4], weapon: ["kellishClaymore", [19, 2], 0, 50, 2.45], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 62], [new Item("naapridFiber", false, false), 11], [new Item("ironRing", false, false), 6], [new Item("pintGlass", false, false), 18], [new Item("potionGlass", false, false), 16], [new Item("glassJar", false, false), 7]]}));
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-631, -30389, "Person", false, teberName, {race: "Freynor", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 4], weapon: ["freydicSword", [6, 6], 0, 0, 1.45], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 62], [new Item("naapridFiber", false, false), 11], [new Item("ironRing", false, false), 6], [new Item("pintGlass", false, false), 18], [new Item("potionGlass", false, false), 16], [new Item("glassJar", false, false), 7]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-441, -30503, "Person", false, teberName, {race: "Freynor", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 4], weapon: ["freydicSword", [6, 6], 0, 0, 1.45], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 62], [new Item("naapridFiber", false, false), 11], [new Item("ironRing", false, false), 6], [new Item("pintGlass", false, false), 18], [new Item("potionGlass", false, false), 16], [new Item("glassJar", false, false), 7]]}));
                         }
 
                         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
@@ -7398,7 +7400,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-1335, -30763, "Person", false, "Chieftan Schuylar", {race: "Kel", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 6], weapon: ["kellishClaymore", [25, 1], 0, 50, 2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 492], [new Item("kellishClayPotOfNaapridMilk", false, false), 6], [new Item("naapridButter", false, false), 5], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 8], [new Item("kellishClayPot", false, false), 9], [new Item("santhBread", false, false), 1], [new Item("kellishSanthDough", false, false), 2], [new Item("rawNaapridFlesh", false, false), 4], [new Item("naapridMeat", false, false), 2], [new Item("pumpkin", false, false), 2], [new Item("jackOLanternEmpty", false, false), 3], [new Item("beesWax", false, false), 4], [new Item("candle", false, false), 6], [new Item("fireStarter", false, false), 2]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-1281, -30842, "Person", false, "Chieftain Schuylar", {race: "Kel", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 6], weapon: ["kellishClaymore", [25, 1], 0, 50, 2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 492], [new Item("kellishClayPotOfNaapridMilk", false, false), 6], [new Item("naapridButter", false, false), 5], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 8], [new Item("kellishClayPot", false, false), 9], [new Item("santhBread", false, false), 1], [new Item("kellishSanthDough", false, false), 2], [new Item("rawNaapridFlesh", false, false), 4], [new Item("naapridMeat", false, false), 2], [new Item("pumpkin", false, false), 2], [new Item("jackOLanternEmpty", false, false), 3], [new Item("beesWax", false, false), 4], [new Item("candle", false, false), 6], [new Item("fireStarter", false, false), 2]]}));
 
                         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                         {
@@ -7413,6 +7415,17 @@ function buildMaster()
                         }
                     }
                 }
+                //Buildings
+                scenicList.push(new Scenery("kellishBuilding1", -1238, -30472, 0, true));
+                scenicList.push(new Scenery("kellishBuilding1", -879, -30432, 0, true));
+                scenicList.push(new Scenery("kellishBuilding1", -443, -30529, 0, true));
+                scenicList.push(new Scenery("kellishBuilding2", -741, -31419, 0, true));
+                scenicList.push(new Scenery("kellishBuilding2", -382, -31379, 0, true));
+                scenicList.push(new Scenery("kellishBuilding4", -469, -31083, 0, true));
+                scenicList.push(new Scenery("kellishBuilding3", -1168, -31170, 0, true));
+                scenicList.push(new Scenery("kellishBuilding3", -1319, -31348, 0, true));
+                scenicList.push(new Scenery("kellishBuilding4", -312, -30807, 0, true));
+                scenicList.push(new Scenery("kellishBuilding6", -1205, -30838, 0, true));
 
                 //Echlin Village crafting stations
                 scenicList.push(new Scenery("anvil", -884, -31318, -Math.PI * 1/4, true));

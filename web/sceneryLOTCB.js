@@ -2471,6 +2471,296 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "kellishBuilding2")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X - 69) && X < (this.X - 69) + 140 && Y > (this.Y - 67) && Y < (this.Y - 67) + 130)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(theng, 684, 716, 90, 80, -(1/2 * 90 * 1.9), -(1/2 * 80 * 1.9), 90 * 1.9, 80 * 1.9);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(theng, 684, 716, 90, 80, -(1/2 * 90 * 1.9), -(1/2 * 80 * 1.9), 90 * 1.9, 80 * 1.9);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(theng, 688, 632, 90, 80, -(1/2 * 90 * 1.9), -(1/2 * 80 * 1.9), 90 * 1.9, 80 * 1.9);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X - 69, this.Y - 67, 130, 140, false)); // a square that covers the entire building
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 80), (this.Y - 40), 90, 19, true));
+                barrierList.push(new Barrier((this.X + 64), (this.Y - 40), 90, 19, true));
+                barrierList.push(new Barrier((this.X + -64), (this.Y - 69), 19, 140, true));
+                barrierList.push(new Barrier((this.X + -74), (this.Y + 60), 19, 45, true));
+                barrierList.push(new Barrier((this.X + 20), (this.Y + 56), 19, 45, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "kellishBuilding3")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X - 69) && X < (this.X - 69) + 140 && Y > (this.Y - 67) && Y < (this.Y - 67) + 130)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(theng, 684, 716, 90, 80, -(1/2 * 90 * 1.9), -(1/2 * 80 * 1.9), 90 * 1.9, 80 * 1.9);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 *Math.PI);
+                XXX.drawImage(theng, 684, 716, 90, 80, -(1/2 * 90 * 1.9), -(1/2 * 80 * 1.9), 90 * 1.9, 80 * 1.9);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(theng, 688, 632, 90, 80, -(1/2 * 90 * 1.9), -(1/2 * 80 * 1.9), 90 * 1.9, 80 * 1.9);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X - 69, this.Y - 67, 130, 140, false)); // a square that covers the entire building
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 40), (this.Y - 80), 19, 90, true));
+                barrierList.push(new Barrier((this.X - 40), (this.Y + 64), 19, 90, true));
+                barrierList.push(new Barrier((this.X - 69), (this.Y - 64), 140, 19, true));
+                barrierList.push(new Barrier((this.X + 56), (this.Y - 64), 45, 19, true));
+                barrierList.push(new Barrier((this.X + 56), (this.Y + 20), 45, 19, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "kellishBuilding4")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X - 69) && X < (this.X - 69) + 140 && Y > (this.Y - 67) && Y < (this.Y - 67) + 130)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 * Math.PI);
+                XXX.drawImage(theng, 684, 716, 90, 80, -(1/2 * 90 * 1.9), -(1/2 * 80 * 1.9), 90 * 1.9, 80 * 1.9);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 *Math.PI);
+                XXX.drawImage(theng, 684, 716, 90, 80, -(1/2 * 90 * 1.9), -(1/2 * 80 * 1.9), 90 * 1.9, 80 * 1.9);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 * Math.PI);
+                XXX.drawImage(theng, 688, 632, 90, 80, -(1/2 * 90 * 1.9), -(1/2 * 80 * 1.9), 90 * 1.9, 80 * 1.9);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X - 69, this.Y - 67, 130, 140, false)); // a square that covers the entire building
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 40), (this.Y - 80), 19, 90, true));
+                barrierList.push(new Barrier((this.X - 40), (this.Y + 64), 19, 90, true));
+                barrierList.push(new Barrier((this.X + 56), (this.Y - 64), 140, 19, true));
+                barrierList.push(new Barrier((this.X - 69), (this.Y - 64), 45, 19, true));
+                barrierList.push(new Barrier((this.X - 69), (this.Y + 20), 45, 19, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "kellishBuilding5")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X - 70 * 2.5) && X < (this.X - 70 * 2.5) + 70 * 2.5 + 54 * 2.5 && Y > (this.Y - 67 * 2.5) && Y < (this.Y - 67 * 2.5) + 67 * 2.5 + 64 * 2.5)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 * Math.PI);
+                XXX.drawImage(theng, 684, 716, 90, 80, -(1/2 * 90 * 1.9 * 2.5), -(1/2 * 80 * 1.9 * 2.5), 90 * 1.9 * 2.5, 80 * 1.9 * 2.5);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 *Math.PI);
+                XXX.drawImage(theng, 684, 716, 90, 80, -(1/2 * 90 * 1.9 * 2.5), -(1/2 * 80 * 1.9 * 2.5), 90 * 1.9 * 2.5, 80 * 1.9 * 2.5);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 * Math.PI);
+                XXX.drawImage(theng, 688, 632, 90, 80, -(1/2 * 90 * 1.9 * 2.5), -(1/2 * 80 * 1.9 * 2.5), 90 * 1.9 * 2.5, 80 * 1.9 * 2.5);
+                XXX.restore();
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 60), (this.Y - 67 * 2.5), 19, 130, true));
+                barrierList.push(new Barrier((this.X - 60), (this.Y + 64 * 2.5), 19, 130, true));
+                barrierList.push(new Barrier((this.X + 56 * 2.5), (this.Y - 64), 140, 19, true));
+                barrierList.push(new Barrier((this.X - 69 * 2.5), (this.Y - 80), 45, 19, true));
+                barrierList.push(new Barrier((this.X - 69 * 2.5), (this.Y + 36), 45, 19, true));
+                barrierList.push(new Barrier((this.X - 60 * 2.5), (this.Y - 126), 55, 19, true));
+                barrierList.push(new Barrier((this.X - 60 * 2.5), (this.Y + 72), 55, 19, true));
+                barrierList.push(new Barrier((this.X + 48 * 2.5), (this.Y - 126), 55, 19, true));
+                barrierList.push(new Barrier((this.X + 48 * 2.5), (this.Y + 72), 55, 19, true));
+                barrierList.push(new Barrier((this.X + 60), (this.Y - 59 * 2.5), 19, 70, true));
+                barrierList.push(new Barrier((this.X + 60), (this.Y + 53 * 2.5), 19, 70, true));
+                barrierList.push(new Barrier((this.X - 130), (this.Y - 59 * 2.5), 19, 70, true));
+                barrierList.push(new Barrier((this.X - 130), (this.Y + 53 * 2.5), 19, 70, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "kellishBuilding6")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X - 70 * 2.5) && X < (this.X - 70 * 2.5) + 70 * 2.5 + 64 * 2.5 && Y > (this.Y - 67 * 2.5) && Y < (this.Y - 67 * 2.5) + 67 * 2.5 + 64 * 2.5)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(theng, 684, 716, 90, 80, -(1/2 * 90 * 1.9 * 2.5), -(1/2 * 80 * 1.9 * 2.5), 90 * 1.9 * 2.5, 80 * 1.9 * 2.5);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 *Math.PI);
+                XXX.drawImage(theng, 684, 716, 90, 80, -(1/2 * 90 * 1.9 * 2.5), -(1/2 * 80 * 1.9 * 2.5), 90 * 1.9 * 2.5, 80 * 1.9 * 2.5);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(theng, 688, 632, 90, 80, -(1/2 * 90 * 1.9 * 2.5), -(1/2 * 80 * 1.9 * 2.5), 90 * 1.9 * 2.5, 80 * 1.9 * 2.5);
+                XXX.restore();
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 60), (this.Y - 67 * 2.5), 19, 130, true));
+                barrierList.push(new Barrier((this.X - 60), (this.Y + 64 * 2.5), 19, 130, true));
+                barrierList.push(new Barrier((this.X - 69 * 2.5), (this.Y - 64), 140, 19, true));
+                barrierList.push(new Barrier((this.X + 59 * 2.5), (this.Y - 80), 45, 19, true));
+                barrierList.push(new Barrier((this.X + 59 * 2.5), (this.Y + 46), 45, 19, true));
+                barrierList.push(new Barrier((this.X + 48 * 2.5), (this.Y - 126), 55, 19, true));
+                barrierList.push(new Barrier((this.X + 48 * 2.5), (this.Y + 72), 55, 19, true));
+                barrierList.push(new Barrier((this.X - 57 * 2.5), (this.Y - 126), 55, 19, true));
+                barrierList.push(new Barrier((this.X - 57 * 2.5), (this.Y + 72), 55, 19, true));
+                barrierList.push(new Barrier((this.X - 130), (this.Y - 59 * 2.5), 19, 70, true));
+                barrierList.push(new Barrier((this.X - 130), (this.Y + 53 * 2.5), 19, 70, true));
+                barrierList.push(new Barrier((this.X + 60), (this.Y - 59 * 2.5), 19, 70, true));
+                barrierList.push(new Barrier((this.X + 60), (this.Y + 53 * 2.5), 19, 70, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
         else if (this.type == "cave")
         {
             //TRAITS

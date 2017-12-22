@@ -3642,6 +3642,59 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "hracklePlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(2);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(freeverse, 441, 364, 54, 44, -(1/2 * 54), -(1/2 * 44), 54, 44);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(freeverse, 440, 409, 54, 44, -(1/2 * 54), -(1/2 * 44), 54, 44);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 22;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "hracklePod")
+                    {
+                        Inventory[i][1] += 1 + Math.floor(Math.random() * 3);
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("hracklePod", false, false), 1 + Math.floor(Math.random() * 3)]);
+                }
+            }
+        }
         else if (this.type == "potatoPlant")
         {
             //TRAITS

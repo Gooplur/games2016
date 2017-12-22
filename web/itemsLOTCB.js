@@ -852,6 +852,50 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 3;
             this.spellRange = "Short-Medium";
         }
+        else if (this.type == "whirlwind")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 5)
+            {
+                this.identity = "Scroll of Whirlwind";
+                this.description = "Studying this scroll will teach you how to bring about a devestating whirlwind.";
+                this.intForDes = 0;
+                this.intDescription = "The whirlwind created by this spell goes wherever the caster wants it to go.";
+                this.buyValue = 1400 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1200.
+                this.sellValue = 1000 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 1200.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 1400 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1200.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = true;
+            this.spellDamage = 1.25 + (0.5 + 0.05 * player.getConcentration());
+            this.spellCost = Math.max(3, 6 + 11 / 50 * player.getConcentration() - (12 / 50) * player.getEminence());
+            this.spellGroup = "Form";
+            this.spellGenre = "Air";
+            this.spellName = "Whirlwind";
+            this.spellID = "whirlwind";
+            this.spellEXP = 11 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(11, 12 + (20/50) * player.getConcentration() - (11/50) * player.getEminence());
+            this.spellDescription = "A swirling mass of opposing winds that is directed at will.";
+            this.spellKnowledgeRequirement = 5;
+            this.spellRange = "Mouse-Pointer";
+        }
         else if (this.type == "iceberg")
         {
             //For All Items
@@ -4144,6 +4188,35 @@ function Item(type, x, y)
             this.buyValue = 7 - Math.floor(player.getCharisma() / 50); // at max, buy for 6.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
         }
+        else if (this.type == "hracklePod")
+        {
+            //For All Items
+            this.identity = "Hrackle Pod";
+            this.weight = 1.2;
+            this.size = 8;
+            this.description = "A prickly green pod full of liquid.";
+            this.intForDes = 5;
+            this.intDescription = "Hrackle plants store extra water in their pods to keep hydrated throughout the year.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
         else if (this.type == "galloshFlower")
         {
             //For All Items
@@ -6151,9 +6224,9 @@ function Item(type, x, y)
             this.thirst = 4; //quenches thirst.
             this.warmth = 0; //warms player.
             this.heal = 0; //heals health.
-            this.generation = 0.5; //recoops lost energy.
+            this.generation = 0.35; //recoops lost energy.
             this.replenish = -2; //restores will.
-            this.alcohol = 35; //intoxicates the mind.
+            this.alcohol = 27; //intoxicates the mind.
 
             //ability
             this.ability = "none";
@@ -6167,6 +6240,82 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "santhAle")
+        {
+            //For All Items
+            this.identity = "Santh Ale";
+            this.weight = 1;
+            this.size = 6;
+            this.description = "A glass pint of Santh ale.";
+            this.intForDes = 1;
+            this.intDescription = "This ale is made from Santh grain.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["pintGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 4; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 1; //recoops lost energy.
+            this.replenish = -3; //restores will.
+            this.alcohol = 40; //intoxicates the mind.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 200;
+            this.intForCraft = 0;
+            this.ingredients = [["Pint Glass", 200], ["Barrel of Santh Ale", 1]];
+            this.biproducts = [[[new Item("barrel", false), 1]]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 50); // at max, buy for 6.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 10); // at max, sell for 6.
+        }
+        else if (this.type == "mead")
+        {
+            //For All Items
+            this.identity = "Mead";
+            this.weight = 1;
+            this.size = 6;
+            this.description = "A glass pint of mead.";
+            this.intForDes = 1;
+            this.intDescription = "A strong alcoholic beverage brewed from honey.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["pintGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.75; //recoops lost energy.
+            this.replenish = -4; //restores will.
+            this.alcohol = 60; //intoxicates the mind.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 200;
+            this.intForCraft = 0;
+            this.ingredients = [["Pint Glass", 200], ["Barrel of Mead", 1]];
+            this.biproducts = [[[new Item("barrel", false), 1]]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 15); // at max, sell for 4.
         }
         else if (this.type == "pluttWine")
         {
@@ -6185,12 +6334,12 @@ function Item(type, x, y)
 
             //Utility Focused
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
-            this.hunger = 0.5; //satisfies hunger.
-            this.thirst = 4; //quenches thirst.
+            this.hunger = 0.25; //satisfies hunger.
+            this.thirst = 4.5; //quenches thirst.
             this.warmth = 0; //warms player.
             this.heal = 0; //heals health.
-            this.generation = 0.5; //recoops lost energy.
-            this.replenish = -3; //restores will.
+            this.generation = 0.65; //recoops lost energy.
+            this.replenish = -3.5; //restores will.
             this.alcohol = 50; //intoxicates the mind.
 
             //ability
@@ -6227,7 +6376,7 @@ function Item(type, x, y)
             this.thirst = 16; //quenches thirst.
             this.warmth = 0; //warms player.
             this.heal = 0; //heals health.
-            this.generation = 2; //recoops lost energy.
+            this.generation = 2.5; //recoops lost energy.
             this.replenish = -12; //restores will.
             this.alcohol = 200; //intoxicates the mind.
 
@@ -14816,6 +14965,64 @@ function Item(type, x, y)
             this.buyValue = 640 - Math.floor(player.getCharisma() / 3); // at max, buy for 625.
             this.sellValue = 600 + Math.floor(player.getCharisma() / 2); // at max, sell for 625.
         }
+        else if (this.type == "northernPlateArmour")
+        {
+            //For All Items
+            this.identity = "Steel Plate Armour";
+            this.weight = 80;
+            this.size = 26;
+            this.description = "Forged steel plate armour with a cloak made from waanti fur.";
+            this.intForDes = 1;
+            this.intDescription = "This armour is strong and keeps the cold away.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 13 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 14;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2;
+            this.thirstRetention = -0.5;
+            this.shockResist = -8;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 17;
+            this.rangedBonus = -20;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -50;
+            this.survivalismBonus = -50;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 15;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "heavy";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 33;
+            this.ingredients = [["Steel", 17], ["Waanti Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 600 - Math.floor(player.getCharisma() / 1); // at max, buy for 550.
+            this.sellValue = 500 + Math.floor(player.getCharisma() / 1); // at max, sell for 550.
+        }
         else if (this.type == "ancientArmour")
         {
             //For All Items
@@ -15955,6 +16162,388 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 25 - Math.floor(player.getCharisma() / 10); // at max, buy for 20.
             this.sellValue = 17 + Math.floor(player.getCharisma() / 15); // at max, sell for 20.
+        }
+        else if (this.type == "purpleMageRobe")
+        {
+            //For All Items
+            this.identity = "Mage Robe";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A purple robe of a sort that commonly would be worn by a spellcaster.";
+            this.intForDes = 4;
+            this.intDescription = "This is enchanted to enhance a mage's magical potential while worn.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 2;
+            this.magicalProtection = 0;
+            this.warmthRetention = -0.2;
+            this.thirstRetention = 0.25;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 1;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -6;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            if (player.getEminence() >= 2)
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 4;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+            }
+            else
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+            }
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 2;
+            if (player.eminence >= 7)
+            {
+                this.intForCraft = 13;
+            }
+            else
+            {
+                this.intForCraft = 100;
+            }
+            this.ingredients = [["Cloth", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 30 - Math.floor(player.getCharisma() / 10); // at max, buy for 25.
+            this.sellValue = 22 + Math.floor(player.getCharisma() / 15); // at max, sell for 25.
+        }
+        else if (this.type == "redMageRobe")
+        {
+            //For All Items
+            this.identity = "Mage Robe";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A red robe of a sort that commonly would be worn by a spellcaster.";
+            this.intForDes = 4;
+            this.intDescription = "This is enchanted to enhance a mage's magical potential while worn.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 2;
+            this.magicalProtection = 0;
+            this.warmthRetention = -0.2;
+            if (player.getEminence() >= 2)
+            {
+                this.thirstRetention = 5;
+            }
+            else
+            {
+                this.thirstRetention = 0.25;
+            }
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 1;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -6;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            if (player.getEminence() >= 2)
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 3;
+                this.memoryBonus = 0;
+            }
+            else
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+            }
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 2;
+            if (player.eminence >= 7)
+            {
+                this.intForCraft = 13;
+            }
+            else
+            {
+                this.intForCraft = 100;
+            }
+            this.ingredients = [["Cloth", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 30 - Math.floor(player.getCharisma() / 10); // at max, buy for 25.
+            this.sellValue = 22 + Math.floor(player.getCharisma() / 15); // at max, sell for 25.
+        }
+        else if (this.type == "cyanMageRobe")
+        {
+            //For All Items
+            this.identity = "Mage Robe";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A cyan coloured robe of a sort that commonly would be worn by a spellcaster.";
+            this.intForDes = 4;
+            this.intDescription = "This is enchanted to enhance a mage's magical potential while worn.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 4;
+            this.magicalProtection = 5;
+            this.warmthRetention = -0.2;
+            this.thirstRetention = 0.25;
+            this.shockResist = 5;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 1;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -6;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            if (player.getEminence() >= 4)
+            {
+                this.eminenceBonus = 3;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+            }
+            else
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+            }
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 2;
+            if (player.eminence >= 10)
+            {
+                this.intForCraft = 13;
+            }
+            else
+            {
+                this.intForCraft = 100;
+            }
+            this.ingredients = [["Cloth", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 40 - Math.floor(player.getCharisma() / 10); // at max, buy for 35.
+            this.sellValue = 32 + Math.floor(player.getCharisma() / 15); // at max, sell for 35.
+        }
+        else if (this.type == "whiteMageRobe")
+        {
+            //For All Items
+            this.identity = "Mage Robe";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A pale white hooded robe of a sort commonly worn by mages.";
+            this.intForDes = 4;
+            this.intDescription = "This is enchanted to enhance a mage's magical potential while worn.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 3;
+            this.magicalProtection = 0;
+            this.warmthRetention = -0.2;
+            this.thirstRetention = 0.25;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 4;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -6;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            if (player.getEminence() >= 3)
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 7;
+            }
+            else
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+            }
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 2;
+            if (player.eminence >= 12)
+            {
+                this.intForCraft = 13;
+            }
+            else
+            {
+                this.intForCraft = 100;
+            }
+            this.ingredients = [["Cloth", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 40 - Math.floor(player.getCharisma() / 10); // at max, buy for 35.
+            this.sellValue = 32 + Math.floor(player.getCharisma() / 15); // at max, sell for 35.
+        }
+        else if (this.type == "blackMageRobe")
+        {
+            //For All Items
+            this.identity = "Mage Robe";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A fearsome black hooded robe of a sort commonly worn by practitioners of nechromancy.";
+            this.intForDes = 4;
+            this.intDescription = "If the wearer has 3+ eminence then this robe increases the effectiveness of life draining spells.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 6;
+            this.magicalProtection = 0;
+            this.warmthRetention = -0.2;
+            this.thirstRetention = 0.25;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 4;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -6;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            if (player.getEminence() >= 6)
+            {
+                this.eminenceBonus = 1;
+                this.willpowerBonus = 1;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 1;
+                this.memoryBonus = 0;
+            }
+            else
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+            }
+
+            //ability
+            this.ability = "extraDraining";
+
+            this.yield = 2;
+            if (player.eminence >= 15)
+            {
+                this.intForCraft = 13;
+            }
+            else
+            {
+                this.intForCraft = 100;
+            }
+            this.ingredients = [["Cloth", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 50 - Math.floor(player.getCharisma() / 10); // at max, buy for 45.
+            this.sellValue = 42 + Math.floor(player.getCharisma() / 15); // at max, sell for 45.
         }
         else if (this.type == "varnFurClothing")
         {
@@ -17979,6 +18568,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(theCrack, 72, 581, 35, 65, X - this.X + (1/2 * CCC.width) - (1/2 * 35 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 65 * 1.5), 35 * 1.5, 65 * 1.5);
         }
+        else if (this.type == "northernPlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 38, 38, 35, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 35 * 1.95), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1.95), 35 * 1.95, 57 * 1.95);
+        }
         else if (this.type == "ancientArmour")
         {
             XXX.beginPath();
@@ -18697,6 +19291,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(freeverse, 247, 17, 10, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.5), 10 * 1.5, 10 * 1.5);
         }
+        else if (this.type == "santhAle")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 164, 19, 10, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 1.5), 10 * 1.5, 11 * 1.5);
+        }
+        else if (this.type == "mead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 218, 17, 10, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 1.5), 10 * 1.5, 11 * 1.5);
+        }
         else if (this.type == "techiTea")
         {
             XXX.beginPath();
@@ -18817,6 +19421,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 2148, 516, 15, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 15, 16);
         }
+        else if (this.type == "hracklePod")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 462, 457, 15, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14), 15, 14);
+        }
         else if (this.type == "pluttBerries")
         {
             XXX.beginPath();
@@ -18932,7 +19541,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1804, 36, 26, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 26), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23), 26, 23);
         }
-        else if (this.type == "iceberg")
+        else if (this.type == "iceberg" || this.type == "whirlwind")
         {
             XXX.beginPath();
             XXX.drawImage(zapa, 455, 455, 39, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.22), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.22), 39 * 1.22, 24 * 1.22);
@@ -19140,6 +19749,31 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(zer0, 67, 254, 18, 41, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 2.85), Y - this.Y + (1/2 * CCC.height) - (1/2 * 41 * 2.85), 18 * 2.85, 41 * 2.85);
+        }
+        else if (this.type == "purpleMageRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 765, 98, 43, 54, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 2.05), Y - this.Y + (1/2 * CCC.height) - (1/2 * 54 * 2.05), 43 * 2.05, 54 * 2.05);
+        }
+        else if (this.type == "redMageRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 643, 98, 43, 54, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 2.05), Y - this.Y + (1/2 * CCC.height) - (1/2 * 54 * 2.05), 43 * 2.05, 54 * 2.05);
+        }
+        else if (this.type == "cyanMageRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 526, 95, 43, 54, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 2.05), Y - this.Y + (1/2 * CCC.height) - (1/2 * 54 * 2.05), 43 * 2.05, 54 * 2.05);
+        }
+        else if (this.type == "whiteMageRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 884, 103, 43, 54, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 2.05), Y - this.Y + (1/2 * CCC.height) - (1/2 * 54 * 2.05), 43 * 2.05, 54 * 2.05);
+        }
+        else if (this.type == "blackMageRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 882, 213, 43, 54, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 2.05), Y - this.Y + (1/2 * CCC.height) - (1/2 * 54 * 2.05), 43 * 2.05, 54 * 2.05);
         }
         else if (this.type == "hetmerArmour")
         {
@@ -20446,6 +21080,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(theCrack, 72, 581, 35, 65, this.invX - (1/2 * 35 * 1.1), this.invY - (1/2 * 65 * 1.1), 35 * 1.1, 65 * 1.1);
         }
+        else if (this.type == "northernPlateArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(furr, 38, 38, 35, 57, this.invX - (1/2 * 35 * 1.26), this.invY - (1/2 * 57 * 1.26), 35 * 1.26, 57 * 1.26);
+        }
         else if (this.type == "ancientArmour")
         {
             LXX.beginPath();
@@ -21183,6 +21822,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(freeverse, 247, 1, 11, 12, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 12 * 2), 11 * 2, 12 * 2);
         }
+        else if (this.type == "santhAle")
+        {
+            LXX.beginPath();
+            LXX.drawImage(freeverse, 163, 4, 12, 11, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 11 * 2), 12 * 2, 11 * 2);
+        }
+        else if (this.type == "mead")
+        {
+            LXX.beginPath();
+            LXX.drawImage(freeverse, 217, 2, 12, 11, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 11 * 2), 12 * 2, 11 * 2);
+        }
         else if (this.type == "techiTea")
         {
             LXX.beginPath();
@@ -21303,6 +21952,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(verse, 2148, 516, 15, 16, this.invX - (1/2 * 15), this.invY - (1/2 * 16), 15, 16);
         }
+        else if (this.type == "hracklePod")
+        {
+            LXX.beginPath();
+            LXX.drawImage(freeverse, 462, 457, 15, 14, this.invX - (1/2 * 15), this.invY - (1/2 * 14), 15, 14);
+        }
         else if (this.type == "pluttBerries")
         {
             LXX.beginPath();
@@ -21388,7 +22042,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -21536,6 +22190,31 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(zer0, 67, 254, 18, 41, this.invX - (1/2 * 18 * 2.05), this.invY - (1/2 * 41 * 2.05), 18 * 2.05, 41 * 2.05);
+        }
+        else if (this.type == "purpleMageRobe")
+        {
+            LXX.beginPath();
+            LXX.drawImage(freeverse, 765, 98, 43, 54, this.invX - (1/2 * 43 * 1.25), this.invY - (1/2 * 54 * 1.25), 43 * 1.25, 54 * 1.25);
+        }
+        else if (this.type == "redMageRobe")
+        {
+            LXX.beginPath();
+            LXX.drawImage(freeverse, 643, 98, 43, 54, this.invX - (1/2 * 43 * 1.25), this.invY - (1/2 * 54 * 1.25), 43 * 1.25, 54 * 1.25);
+        }
+        else if (this.type == "cyanMageRobe")
+        {
+            LXX.beginPath();
+            LXX.drawImage(freeverse, 526, 95, 43, 54, this.invX - (1/2 * 43 * 1.25), this.invY - (1/2 * 54 * 1.25), 43 * 1.25, 54 * 1.25);
+        }
+        else if (this.type == "whiteMageRobe")
+        {
+            LXX.beginPath();
+            LXX.drawImage(freeverse, 884, 103, 43, 54, this.invX - (1/2 * 43 * 1.25), this.invY - (1/2 * 54 * 1.25), 43 * 1.25, 54 * 1.25);
+        }
+        else if (this.type == "blackMageRobe")
+        {
+            LXX.beginPath();
+            LXX.drawImage(freeverse, 882, 213, 43, 54, this.invX - (1/2 * 43 * 1.25), this.invY - (1/2 * 54 * 1.25), 43 * 1.25, 54 * 1.25);
         }
         else if (this.type == "hetmerArmour")
         {
@@ -22810,6 +23489,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(theCrack, 72, 581, 35, 65, this.invX - (1/2 * 35 * 1.1), this.invY - (1/2 * 65 * 1.1), 35 * 1.1, 65 * 1.1);
         }
+        else if (this.type == "northernPlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(furr, 38, 38, 35, 57, this.invX - (1/2 * 35 * 1.26), this.invY - (1/2 * 57 * 1.26), 35 * 1.26, 57 * 1.26);
+        }
         else if (this.type == "ancientArmour")
         {
             XXX.beginPath();
@@ -23547,6 +24231,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(freeverse, 247, 1, 11, 12, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 12 * 2), 11 * 2, 12 * 2);
         }
+        else if (this.type == "santhAle")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 163, 4, 12, 11, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 11 * 2), 12 * 2, 11 * 2);
+        }
+        else if (this.type == "mead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 217, 2, 12, 11, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 11 * 2), 12 * 2, 11 * 2);
+        }
         else if (this.type == "techiTea")
         {
             XXX.beginPath();
@@ -23667,6 +24361,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 2148, 516, 15, 16, this.invX - (1/2 * 15), this.invY - (1/2 * 16), 15, 16);
         }
+        else if (this.type == "hracklePod")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 462, 457, 15, 14, this.invX - (1/2 * 15), this.invY - (1/2 * 14), 15, 14);
+        }
         else if (this.type == "pluttBerries")
         {
             XXX.beginPath();
@@ -23752,7 +24451,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -23896,6 +24595,31 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(zer0, 67, 254, 18, 41, this.invX - (1/2 * 18 * 2.05), this.invY - (1/2 * 41 * 2.05), 18 * 2.05, 41 * 2.05);
+        }
+        else if (this.type == "purpleMageRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 765, 98, 43, 54, this.invX - (1/2 * 43 * 1.25), this.invY - (1/2 * 54 * 1.25), 43 * 1.25, 54 * 1.25);
+        }
+        else if (this.type == "redMageRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 643, 98, 43, 54, this.invX - (1/2 * 43 * 1.25), this.invY - (1/2 * 54 * 1.25), 43 * 1.25, 54 * 1.25);
+        }
+        else if (this.type == "cyanMageRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 526, 95, 43, 54, this.invX - (1/2 * 43 * 1.25), this.invY - (1/2 * 54 * 1.25), 43 * 1.25, 54 * 1.25);
+        }
+        else if (this.type == "whiteMageRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 884, 103, 43, 54, this.invX - (1/2 * 43 * 1.25), this.invY - (1/2 * 54 * 1.25), 43 * 1.25, 54 * 1.25);
+        }
+        else if (this.type == "blackMageRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 882, 213, 43, 54, this.invX - (1/2 * 43 * 1.25), this.invY - (1/2 * 54 * 1.25), 43 * 1.25, 54 * 1.25);
         }
         else if (this.type == "hetmerArmour")
         {

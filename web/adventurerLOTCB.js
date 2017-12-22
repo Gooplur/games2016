@@ -454,6 +454,7 @@ function Adventurer()
     this.webbed = true;
     this.etnaVenom = false;
     this.etnaVenTime = 0;
+    this.extraDraining = false;
 
     //faction variables
     this.factionToggle = false;
@@ -757,7 +758,7 @@ function Adventurer()
         this.carryWeightMAX = 10 + (5 * this.getStrength());
         this.naturalArmour = this.getToughness() / 50;
         this.armourTotal = this.naturalArmour + this.armour + this.shielding;
-        this.willMAX = (0.1 + this.willpower) - this.bindedWill;
+        this.willMAX = (0.1 + this.getWillpower()) - this.bindedWill;
         this.energyMAX = 6 + (5 * this.getStamina());
         this.healthMAX = 0.1 + (4 * this.getConstitution());
         this.naturalMagicalResistance = this.getEminence() / 5;
@@ -841,6 +842,7 @@ function Adventurer()
             var drainCorpseFlag = false;
             var luckFlag = false;
             var spikedHandsFlag = false;
+            var extraDrainFlag = false;
 
             //search worn ability list for abilities
             for (var i = 0; i < this.AdAbility.length; i++)
@@ -848,6 +850,10 @@ function Adventurer()
                 if (this.AdAbility[i] == "resistDisease")
                 {
                     resistDiseaseFlag = true;
+                }
+                if (this.AdAbility[i] == "extraDraining")
+                {
+                    extraDrainFlag = true;
                 }
                 if (this.AdAbility[i] == "drainPlayer")
                 {
@@ -880,6 +886,17 @@ function Adventurer()
                 this.resistDisease = false;
             }
 
+            //extraDraining
+            if (extraDrainFlag)
+            {
+                this.extraDraining = true;
+            }
+            else
+            {
+                this.extraDraining = false;
+            }
+
+            //spiked hands
             if (spikedHandsFlag)
             {
                 if (spikedHandsType == "spikedHandsI")
@@ -904,11 +921,13 @@ function Adventurer()
                 this.spikedHandsBonus = 0;
             }
 
+            //drain player
             if (drainPlayerFlag)
             {
                 this.health -= 0.11;
             }
 
+            //drain corpse
             if (drainCorpseFlag)
             {
                 for (var i = 0; i < deadAIList.length; i++)
@@ -929,9 +948,14 @@ function Adventurer()
                 }
             }
 
+            //luck
             if (luckFlag)
             {
                 this.miningLuck = 4;
+            }
+            else
+            {
+                this.miningLuck = 0;
             }
         };
 
@@ -1938,7 +1962,7 @@ function Adventurer()
                 //Take away hunger from the player because the gut-worms are eating the player's nutrition and calorie intake.
                 this.inebriation = Math.max(0, this.inebriation - 1);
 
-                if (this.inebriation >= 100 + (this.getToughness() * 3))
+                if (this.inebriation >= 100 + (this.getToughness() * 3) && this.gender == "Male" || this.inebriation >= 60 + (this.getToughness() * 1.5) && this.gender != "Male")
                 {
                     this.inebriated = true;
                 }
@@ -4664,6 +4688,30 @@ function Adventurer()
         {
             outfit = allWorn[51];
         }
+        else if (this.outfitEquipped == "northernPlateArmour")
+        {
+            outfit = allWorn[52];
+        }
+        else if (this.outfitEquipped == "purpleMageRobe")
+        {
+            outfit = allWorn[53];
+        }
+        else if (this.outfitEquipped == "redMageRobe")
+        {
+            outfit = allWorn[54];
+        }
+        else if (this.outfitEquipped == "cyanMageRobe")
+        {
+            outfit = allWorn[55];
+        }
+        else if (this.outfitEquipped == "whiteMageRobe")
+        {
+            outfit = allWorn[56];
+        }
+        else if (this.outfitEquipped == "blackMageRobe")
+        {
+            outfit = allWorn[57];
+        }
         else
         {
             outfit = allWorn[0];
@@ -4814,6 +4862,60 @@ function Adventurer()
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
             XXX.drawImage(zer0, 63, 232, 19, 19, - 1/2 * 19 * 2, - 1/2 * 19 * 2 + 1.2, 19 * 2, 19 * 2);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "purpleMageRobe")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(freeverse, 824, 111, 34, 30, - 1/2 * 34 * 0.9 + 1, - 1/2 * 30 * 0.9 + 1, 34 * 0.9, 30 * 0.9);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "redMageRobe")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(freeverse, 702, 111, 34, 30, - 1/2 * 34 * 0.9 + 0.85, - 1/2 * 30 * 0.9 + 1.5, 34 * 0.9, 30 * 0.9);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "cyanMageRobe")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(freeverse, 584, 107, 34, 30, - 1/2 * 34 * 0.9 + 0.4, - 1/2 * 30 * 0.9 + 1.55, 34 * 0.9, 30 * 0.9);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "whiteMageRobe")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(freeverse, 941, 114, 34, 30, - 1/2 * 34 * 0.9 + 0.4, - 1/2 * 30 * 0.9 + 1.1, 34 * 0.9, 30 * 0.9);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "blackMageRobe")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(freeverse, 940, 224, 34, 30, - 1/2 * 34 * 0.9 + 0.3, - 1/2 * 30 * 0.9 + 1.15, 34 * 0.9, 30 * 0.9);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "northernPlateArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (Math.PI));
+            XXX.drawImage(furr, 44, 18, 21, 18, - 1/2 * 21 * 2.15, - 1/2 * 18 * 2.15 + 0, 21 * 2.15, 18 * 2.15);
             XXX.restore();
         }
         else if (this.outfitEquipped == "skolLeatherArmour")
@@ -5647,6 +5749,10 @@ function Adventurer()
                                 this.energy -= 6 + 0.6 * secondarySpells[i].CNX;
                                 this.health -= 6 + 0.6 * secondarySpells[i].CNX;
                                 this.will += 3 + 0.2 * secondarySpells[i].CNX;
+                                if (this.extraDraining)
+                                {
+                                    this.will += 5;
+                                }
                             }
 
                             this.secondaryCastingCooldown = new Date().getTime();
@@ -7162,6 +7268,142 @@ function Adventurer()
                 this.castingCooldown = new Date().getTime();
             }
 
+        }
+
+        //Whirlwind Form
+        if (this.spell.ID == "whirlwind")
+        {
+            this.stageEngine(18, 0.15, false);
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 674, 1294, 47, 45, -1/2 * 47 * 0.88 + 0.7, -1/2 * 45 * 0.88 - 10, 47 * 0.88, 45 * 0.88);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 675, 1349, 47, 45, -1/2 * 47 * 0.88 + 0.8, -1/2 * 45 * 0.88 - 6, 47 * 0.88, 45 * 0.88);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2) //a
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 737, 1199, 47, 45, -1/2 * 47 * 0.88 + 3.9, -1/2 * 45 * 0.88 - 8, 47 * 0.75, 45 * 0.88);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3) //b
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 733, 1246, 47, 45, -1/2 * 47 * 0.88 + 1.4, -1/2 * 45 * 0.88 - 7.5, 47 * 0.82, 45 * 0.88);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4) //c
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 733, 1293, 47, 45, -1/2 * 47 * 0.88 + 3.6, -1/2 * 45 * 0.88 - 7, 47 * 0.72, 45 * 0.88);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5) //d
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 733, 1350, 47, 45, -1/2 * 47 * 0.88 + 2.5, -1/2 * 45 * 0.88 - 7.8, 47 * 0.78, 45 * 0.88);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 737, 1199, 47, 45, -1/2 * 47 * 0.88 + 3.9, -1/2 * 45 * 0.88 - 8, 47 * 0.75, 45 * 0.88);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 7)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 733, 1246, 47, 45, -1/2 * 47 * 0.88 + 1.4, -1/2 * 45 * 0.88 - 7.5, 47 * 0.82, 45 * 0.88);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 8)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 733, 1293, 47, 45, -1/2 * 47 * 0.88 + 3.6, -1/2 * 45 * 0.88 - 7, 47 * 0.72, 45 * 0.88);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 9)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 733, 1350, 47, 45, -1/2 * 47 * 0.88 + 2.5, -1/2 * 45 * 0.88 - 7.8, 47 * 0.78, 45 * 0.88);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 10)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 737, 1199, 47, 45, -1/2 * 47 * 0.88 + 3.9, -1/2 * 45 * 0.88 - 8, 47 * 0.75, 45 * 0.88);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 11)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 675, 1349, 47, 45, -1/2 * 47 * 0.88 + 0.8, -1/2 * 45 * 0.88 - 6, 47 * 0.88, 45 * 0.88);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 12)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 674, 1294, 47, 45, -1/2 * 47 * 0.88 + 0.7, -1/2 * 45 * 0.88 - 10, 47 * 0.88, 45 * 0.88);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) <= 16)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 679, 1250, 47, 45, -1/2 * 47 * 0.88 + 0, -1/2 * 45 * 0.88 - 8, 47 * 0.88, 45 * 0.88);
+                XXX.restore();
+                if (this.doMagic)
+                {
+                    this.doMagic = false;
+                    this.magicalExperience += this.spell.EXP;
+                    magicList.push(new Magic(player.spell, true));
+                }
+            }
+            else if (Math.floor(this.stage) >= 17)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theng, 674, 1294, 47, 45, -1/2 * 47 * 0.88 + 0.7, -1/2 * 45 * 0.88 - 10, 47 * 0.88, 45 * 0.88);
+                XXX.restore();
+                this.castingCooldown = new Date().getTime();
+            }
         }
 
         //Embers Form
@@ -11366,6 +11608,13 @@ function Adventurer()
                                 for (var j = 0; j < orbsAllowed; j++)
                                 {
                                     magicList.push(new Magic({ID: "drainOrb"}, false, 0, ArtificialIntelligenceAccess[i]));
+                                }
+                                if (this.extraDraining)
+                                {
+                                    for (var j = 0; j < 3; j++)
+                                    {
+                                        magicList.push(new Magic({ID: "drainOrb"}, false, 0, ArtificialIntelligenceAccess[i]));
+                                    }
                                 }
                             }
                         }
@@ -21408,6 +21657,336 @@ function Adventurer()
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
                             XXX.drawImage(polpol, 108, 79, 30, 57, -(1 / 2 * 30) - 8.5, -(1 / 2 * 57) + 35.5, 45, this.capeFlappiness);
+                            XXX.restore();
+                        }
+                    }
+                }
+                else if (this.outfitEquipped == "purpleMageRobe")
+                {
+                    if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
+                    {
+                        this.wasCapeFlapping = true; //this lets the cape know it was showing so when the player slows down or stops moving the cape will ease back.
+                        this.capeFlappiness += 2; //this is a variable that determines what costume the cape will be.
+                        if (this.capeFlappiness > 100)
+                        {
+                            this.capeFlappiness = 0;
+                        }
+
+                        if (this.capeFlappiness <= 12.5 || this.capeFlappiness > 37.5 && this.capeFlappiness <= 50 && this.capeFlappiness <= 62.5 || this.capeFlappiness > 75 && this.capeFlappiness <= 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 770, 158, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                            XXX.restore();
+                        }
+                        else if (this.capeFlappiness > 12.5 && this.capeFlappiness <= 25 || this.capeFlappiness > 50 || this.capeFlappiness > 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 810, 160, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                            XXX.restore();
+                        }
+                        else if (this.capeFlappiness > 25 && this.capeFlappiness <= 37.5 || this.capeFlappiness > 62.5 && this.capeFlappiness <= 75)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 845, 162, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.wasCapeFlapping == true)
+                    {
+                        this.capeFlappiness = 47 * 0.9;
+                        this.wasCapeFlapping = "gooblebunches";
+                        //display the cape while codey stuff happens...
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(freeverse, 845, 162, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                        XXX.restore();
+                    }
+                    else if (this.wasCapeFlapping == "gooblebunches")
+                    {
+                        this.capeFlappiness -= 1; //this time cape flappiness referrs to the cape flapping down on its way out of being displayed.
+                        if (this.capeFlappiness < 1)
+                        {
+                            this.capeFlappiness = 0;
+                            this.wasCapeFlapping = false;
+                        }
+
+                        if (this.capeFlappiness > 0)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 845, 162, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, this.capeFlappiness);
+                            XXX.restore();
+                        }
+                    }
+                }
+                else if (this.outfitEquipped == "redMageRobe")
+                {
+                    if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
+                    {
+                        this.wasCapeFlapping = true; //this lets the cape know it was showing so when the player slows down or stops moving the cape will ease back.
+                        this.capeFlappiness += 2; //this is a variable that determines what costume the cape will be.
+                        if (this.capeFlappiness > 100)
+                        {
+                            this.capeFlappiness = 0;
+                        }
+
+                        if (this.capeFlappiness <= 12.5 || this.capeFlappiness > 37.5 && this.capeFlappiness <= 50 && this.capeFlappiness <= 62.5 || this.capeFlappiness > 75 && this.capeFlappiness <= 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 648, 157, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                            XXX.restore();
+                        }
+                        else if (this.capeFlappiness > 12.5 && this.capeFlappiness <= 25 || this.capeFlappiness > 50 || this.capeFlappiness > 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 687, 160, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                            XXX.restore();
+                        }
+                        else if (this.capeFlappiness > 25 && this.capeFlappiness <= 37.5 || this.capeFlappiness > 62.5 && this.capeFlappiness <= 75)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 722, 162, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.wasCapeFlapping == true)
+                    {
+                        this.capeFlappiness = 47 * 0.9;
+                        this.wasCapeFlapping = "gooblebunches";
+                        //display the cape while codey stuff happens...
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(freeverse, 722, 162, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                        XXX.restore();
+                    }
+                    else if (this.wasCapeFlapping == "gooblebunches")
+                    {
+                        this.capeFlappiness -= 1; //this time cape flappiness referrs to the cape flapping down on its way out of being displayed.
+                        if (this.capeFlappiness < 1)
+                        {
+                            this.capeFlappiness = 0;
+                            this.wasCapeFlapping = false;
+                        }
+
+                        if (this.capeFlappiness > 0)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 722, 162, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, this.capeFlappiness);
+                            XXX.restore();
+                        }
+                    }
+                }
+                else if (this.outfitEquipped == "cyanMageRobe")
+                {
+                    if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
+                    {
+                        this.wasCapeFlapping = true; //this lets the cape know it was showing so when the player slows down or stops moving the cape will ease back.
+                        this.capeFlappiness += 2; //this is a variable that determines what costume the cape will be.
+                        if (this.capeFlappiness > 100)
+                        {
+                            this.capeFlappiness = 0;
+                        }
+
+                        if (this.capeFlappiness <= 12.5 || this.capeFlappiness > 37.5 && this.capeFlappiness <= 50 && this.capeFlappiness <= 62.5 || this.capeFlappiness > 75 && this.capeFlappiness <= 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 531, 154, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                            XXX.restore();
+                        }
+                        else if (this.capeFlappiness > 12.5 && this.capeFlappiness <= 25 || this.capeFlappiness > 50 || this.capeFlappiness > 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 570, 156, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                            XXX.restore();
+                        }
+                        else if (this.capeFlappiness > 25 && this.capeFlappiness <= 37.5 || this.capeFlappiness > 62.5 && this.capeFlappiness <= 75)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 606, 158, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.wasCapeFlapping == true)
+                    {
+                        this.capeFlappiness = 47 * 0.9;
+                        this.wasCapeFlapping = "gooblebunches";
+                        //display the cape while codey stuff happens...
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(freeverse, 606, 158, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                        XXX.restore();
+                    }
+                    else if (this.wasCapeFlapping == "gooblebunches")
+                    {
+                        this.capeFlappiness -= 1; //this time cape flappiness referrs to the cape flapping down on its way out of being displayed.
+                        if (this.capeFlappiness < 1)
+                        {
+                            this.capeFlappiness = 0;
+                            this.wasCapeFlapping = false;
+                        }
+
+                        if (this.capeFlappiness > 0)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 606, 158, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, this.capeFlappiness);
+                            XXX.restore();
+                        }
+                    }
+                }
+                else if (this.outfitEquipped == "whiteMageRobe")
+                {
+                    if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
+                    {
+                        this.wasCapeFlapping = true; //this lets the cape know it was showing so when the player slows down or stops moving the cape will ease back.
+                        this.capeFlappiness += 2; //this is a variable that determines what costume the cape will be.
+                        if (this.capeFlappiness > 100)
+                        {
+                            this.capeFlappiness = 0;
+                        }
+
+                        if (this.capeFlappiness <= 12.5 || this.capeFlappiness > 37.5 && this.capeFlappiness <= 50 && this.capeFlappiness <= 62.5 || this.capeFlappiness > 75 && this.capeFlappiness <= 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 888, 161, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                            XXX.restore();
+                        }
+                        else if (this.capeFlappiness > 12.5 && this.capeFlappiness <= 25 || this.capeFlappiness > 50 || this.capeFlappiness > 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 927, 164, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                            XXX.restore();
+                        }
+                        else if (this.capeFlappiness > 25 && this.capeFlappiness <= 37.5 || this.capeFlappiness > 62.5 && this.capeFlappiness <= 75)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 962, 166, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.wasCapeFlapping == true)
+                    {
+                        this.capeFlappiness = 47 * 0.9;
+                        this.wasCapeFlapping = "gooblebunches";
+                        //display the cape while codey stuff happens...
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(freeverse, 888, 161, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                        XXX.restore();
+                    }
+                    else if (this.wasCapeFlapping == "gooblebunches")
+                    {
+                        this.capeFlappiness -= 1; //this time cape flappiness referrs to the cape flapping down on its way out of being displayed.
+                        if (this.capeFlappiness < 1)
+                        {
+                            this.capeFlappiness = 0;
+                            this.wasCapeFlapping = false;
+                        }
+
+                        if (this.capeFlappiness > 0)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 888, 161, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, this.capeFlappiness);
+                            XXX.restore();
+                        }
+                    }
+                }
+                else if (this.outfitEquipped == "blackMageRobe")
+                {
+                    if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
+                    {
+                        this.wasCapeFlapping = true; //this lets the cape know it was showing so when the player slows down or stops moving the cape will ease back.
+                        this.capeFlappiness += 2; //this is a variable that determines what costume the cape will be.
+                        if (this.capeFlappiness > 100)
+                        {
+                            this.capeFlappiness = 0;
+                        }
+
+                        if (this.capeFlappiness <= 12.5 || this.capeFlappiness > 37.5 && this.capeFlappiness <= 50 && this.capeFlappiness <= 62.5 || this.capeFlappiness > 75 && this.capeFlappiness <= 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 886, 272, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                            XXX.restore();
+                        }
+                        else if (this.capeFlappiness > 12.5 && this.capeFlappiness <= 25 || this.capeFlappiness > 50 || this.capeFlappiness > 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 926, 274, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                            XXX.restore();
+                        }
+                        else if (this.capeFlappiness > 25 && this.capeFlappiness <= 37.5 || this.capeFlappiness > 62.5 && this.capeFlappiness <= 75)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 961, 276, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.wasCapeFlapping == true)
+                    {
+                        this.capeFlappiness = 47 * 0.9;
+                        this.wasCapeFlapping = "gooblebunches";
+                        //display the cape while codey stuff happens...
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(freeverse, 886, 272, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
+                        XXX.restore();
+                    }
+                    else if (this.wasCapeFlapping == "gooblebunches")
+                    {
+                        this.capeFlappiness -= 1; //this time cape flappiness referrs to the cape flapping down on its way out of being displayed.
+                        if (this.capeFlappiness < 1)
+                        {
+                            this.capeFlappiness = 0;
+                            this.wasCapeFlapping = false;
+                        }
+
+                        if (this.capeFlappiness > 0)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(freeverse, 886, 272, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, this.capeFlappiness);
                             XXX.restore();
                         }
                     }

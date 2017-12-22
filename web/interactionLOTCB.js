@@ -6928,7 +6928,7 @@ function interaction(me)
                                 {
                                     player.dialogueOptions.push(["I'm looking for a place to spend the night.", false, "d"]);
                                     player.dialogueOptions.push(["Do you get many customers around here?", false, "e"]);
-                                    if (player.freynorFaction >= 20 && player.inebriation >= 70 && player.charisma >= 5 || player.gender != "Female" && player.freynorFaction >= 20 && player.inebriation >= 70 || player.title == "Royalty" && player.freynorFaction >= 20 && player.inebriation >= 70 || player.title == "Nobility" && player.freynorFaction >= 20 && player.inebriation >= 70)
+                                    if (player.freynorFaction >= 20 && player.inebriation >= 60 && player.charisma >= 4 || player.gender != "Female" && player.freynorFaction >= 20 && player.inebriation >= 70 || player.title == "Royalty" && player.freynorFaction >= 20 && player.inebriation >= 70 || player.title == "Nobility" && player.freynorFaction >= 20 && player.inebriation >= 70)
                                     {
                                         player.dialogueOptions.push(["Hey there handsome.", false, "f"]);
                                     }
@@ -7099,7 +7099,7 @@ function interaction(me)
                                 if (!quests.hilmundChild)
                                 {
                                     quests.hilmundChild = true;
-                                    quests.hilmundChildName = prompt("You may not have expected it, but shortly after sleeping with Hilmund that night you knew that you were carrying his baby. You and him worked out arrangements whilst you were pregnant for you to settle down; then finally, after nine long months of nausea and strange cravings the time came to bring your child into the world. What was the name that you and Hilmund decided upon for your baby boy?", "Boki");
+                                    quests.hilmundChildName = prompt("You may not have expected it, but shortly after sleeping with Hilmund you knew that you were carrying his baby. You and him worked out arrangements whilst you were pregnant for you to settle down; then finally, after nine long months of nausea and strange cravings the time came to bring your child into the world. What was the name that you and Hilmund decided upon for your baby boy?", "Boki");
                                     alert("You stayed with " + quests.hilmundChildName + " to care for him, making sure he was raised as you saw fit. He grew fast and before you knew it he had turned six years old.")
                                     change = "makemy6yearoldherealready!";
                                 }

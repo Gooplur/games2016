@@ -154,7 +154,7 @@ function castleLoader()
                     cx.restore();
                 }
             }
-            if (type == "Thangorian Knight")
+            else if (type == "Thangorian Knight")
             {
                 if (this.attacking == false)
                 {
@@ -185,7 +185,7 @@ function castleLoader()
             {
                 this.damage = 5;
                 this.health = 5;
-                this.speed = 1;
+                this.speed = 2.3;
                 this.attackSpeed = 1;
                 this.armour = 3;
                 this.team = "Thangorlon";
@@ -196,7 +196,7 @@ function castleLoader()
             {
                 this.damage = 10;
                 this.health = 5;
-                this.speed = 0.5;
+                this.speed = 1.25;
                 this.attackSpeed = 0.5;
                 this.armour = 9;
                 this.team = "Player";
@@ -209,12 +209,9 @@ function castleLoader()
         {
             if (this.priority == "default")
             {
-                if (this.avoidingOb == false)
+                if (this.inSight.length >= 1)
                 {
-                    if (this.inSight.length >= 1)
-                    {
-                        this.engaging = true;
-                    }
+                    this.engaging = true;
                 }
             }
         };
@@ -283,6 +280,14 @@ function castleLoader()
             }
 
 
+        };
+
+        this.attack = function()
+        {
+            if (this.engaged)
+            {
+                //TODO do the attack here
+            }
         };
 
         //TODO make a path for movement!

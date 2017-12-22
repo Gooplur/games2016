@@ -633,10 +633,17 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                                 {
                                     counterOrbCount = Math.round(- ArtificialIntelligenceAccess[i].health);
                                 }
-                                var orbsAllowed = Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance - counterOrbCount)
+                                var orbsAllowed = Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance - counterOrbCount);
                                 for (var j = 0; j < orbsAllowed; j++)
                                 {
                                     magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, false, 0, ArtificialIntelligenceAccess[i]));
+                                }
+                                if (player.extraDraining)
+                                {
+                                    for (var j = 0; j < 5; j++)
+                                    {
+                                        magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, false, 0, ArtificialIntelligenceAccess[i]));
+                                    }
                                 }
                             }
 
@@ -1026,6 +1033,25 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
             {
                 this.X = X - mouseX + 1/2 * CCC.width;
                 this.Y = Y - mouseY + 1/2 * CCC.height;
+            }
+            else
+            {
+                this.orientToCaster(29, 3.2 / 5 * Math.PI);
+                this.drawWithRotation(mofu, 454, 46, 19, 32, 29, 26, player.rotation, -1 / 2 * 19, -1 / 2 * 32);
+            }
+        }
+        //WHIRLWIND
+        if (this.spellType == "whirlwind")
+        {
+            this.stage = 0;
+            this.zIndex = 5;
+            this.size = 1;
+            this.turn = 1/5 * Math.PI;
+
+            if (caster)
+            {
+                this.X = X;
+                this.Y = Y;
             }
             else
             {
@@ -1935,6 +1961,31 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 this.spellTimer(9 + (120 / 50) * this.cnx);
             }
 
+            //WHIRLWIND
+            if (this.spellType == "whirlwind")
+            {
+                if (caster)
+                {
+                    this.rotation += this.turn;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mofu, 1244, 4, 53, 50, -(1/2 * 53), -(1/2 * 50), 53, 50);
+                    XXX.restore();
+                    var gamouseX = X - mouseX + 1/2 * CCC.width;
+                    var gamouseY = Y - mouseY + 1/2 * CCC.height;
+                    this.X += Math.cos(Math.atan2(this.Y - gamouseY, this.X - gamouseX) + Math.PI) * 5;
+                    this.Y += Math.sin(Math.atan2(this.Y - gamouseY, this.X - gamouseX) + Math.PI) * 5;
+
+                    this.contactDamage(false, 30, ((2.5 * Math.random()) + 0.05 * this.cnx) / 100, 5,  "force", "force");
+                    this.spellTimer(8 + (this.cnx / 5));
+                }
+                else
+                {
+
+                }
+            }
+
             //ENTANGLEMENT
             if (this.spellType == "entanglement")
             {
@@ -2378,61 +2429,61 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                         this.explosion = false;
                         if (this.cnx >= 50)
                         {
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                         }
                         else if (this.cnx >= 40)
                         {
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                         }
                         else if (this.cnx >= 30)
                         {
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                         }
                         else if (this.cnx >= 20)
                         {
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                         }
                         else if (this.cnx >= 10)
                         {
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                         }
                         else
                         {
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
-                            magicList.push(new Magic({ID: "iceberg"}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
+                            magicList.push(new Magic({ID: "iceberg", CNX: this.cnx}, true, "iceShard", [Math.random() * (2 * Math.PI), this.X, this.Y]));
                         }
 
                         magicList.splice(magicList.indexOf(this), 1);

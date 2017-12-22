@@ -9452,11 +9452,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             //Set Drops and experience
             if (Math.max(0, 80 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
             {
-                this.experience = 1313 * ((player.getIntelligence() / 50) + 1);
+                this.experience = 2017 * ((player.getIntelligence() / 50) + 1);
             }
             else
             {
-                this.experience = (1313 * ((player.getIntelligence() / 50) + 1)) / 10;
+                this.experience = (2017 * ((player.getIntelligence() / 50) + 1)) / 10;
             }
 
             if (this.ancientSoulNum > 0)

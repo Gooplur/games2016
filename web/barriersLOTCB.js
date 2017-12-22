@@ -1,13 +1,14 @@
 /**
  * Created by skyeguy on 9/23/17.
  */
-function Barrier(x, y, h, w, dev)
+function Barrier(x, y, h, w, dev, info)
 {
     this.X = x;
     this.Y = y;
     this.height = h;
     this.width = w;
     this.dev = dev;
+    this.info = info;
 
     this.deleteMissile = function()
     {

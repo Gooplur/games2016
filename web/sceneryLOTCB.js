@@ -1188,7 +1188,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             //TRAITS
             this.solid = true;
-            this.interactionRange = 20;
+            this.interactionRange = 50;
 
             //DRAWSELF
             XXX.save();
@@ -1345,6 +1345,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.tic = 0;
                 this.phase = 0;
                 this.doTic = false;
+                this.primed = true;
+                this.clave = "woodenGate" + Math.random();
             }
 
             //DRAWSELF
@@ -1363,7 +1365,22 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.restore();
 
                 //barriers
-                barrierList.push(new Barrier((this.X - 158), (this.Y - 26), 30, 310, false)); //gate closed
+                if (this.primed)
+                {
+                    var deleteList = [];
+                    for (var l = 0; l < barrierList.length; l++)
+                    {
+                        if (barrierList[l].info == this.clave)
+                        {
+                            deleteList.push(l);
+                        }
+                    }
+                    for (var l = deleteList.length - 1; l > -1; l--)
+                    {
+                        barrierList.splice(deleteList[l], 1);
+                    }
+                    barrierList.push(new Barrier((this.X - 158), (this.Y - 26), 30, 310, true, this.clave)); //gate closed
+                }
             }
             else if (this.phase == 1)
             {
@@ -1420,6 +1437,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.rotate((360 - 100) * Math.PI / 360);
                 XXX.drawImage(freeverse, 306, 487, 28, 13, (-1/2 * 28 * 8) + 45, (-1/2 * 13 * 5) + 112, 28 * 8.25, 13 * 5);
                 XXX.restore();
+                this.primed = true;
             }
             else if (this.phase == 5)
             {
@@ -1434,8 +1452,23 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.rotate((360 - 155) * Math.PI / 360);
                 XXX.drawImage(freeverse, 306, 487, 28, 13, (-1/2 * 28 * 8) - 33, (-1/2 * 13 * 5) + 153, 28 * 8.25, 13 * 5);
                 XXX.restore();
-                barrierList.push(new Barrier((this.X - 173), (this.Y - 8), 155, 30, false)); //gate open right
-                barrierList.push(new Barrier((this.X + 131), (this.Y - 8), 155, 30, false)); //gate open left
+                if (this.primed)
+                {
+                    var deleteList = [];
+                    for (var l = 0; l < barrierList.length; l++)
+                    {
+                        if (barrierList[l].info == this.clave)
+                        {
+                            deleteList.push(l);
+                        }
+                    }
+                    for (var l = deleteList.length - 1; l > -1; l--)
+                    {
+                        barrierList.splice(deleteList[l], 1);
+                    }
+                    barrierList.push(new Barrier((this.X - 173), (this.Y - 8), 155, 30, true, this.clave)); //gate open right
+                    barrierList.push(new Barrier((this.X + 131), (this.Y - 8), 155, 30, true, this.clave)); //gate open left
+                }
             }
 
 

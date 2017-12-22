@@ -964,7 +964,7 @@ function buildMaster()
                 scenicList.push(new Scenery("tylunPlant", -348 , 464, 4, "freynor", "theGreatFlowerOfTheJarlOfTeshir"));
                     //The noble player's room
                 scenicList.push(new Scenery("walrusHideRug", -90, 466, 0, 2));
-                if (player.title == "Nobility" && player.faction == "Freynor" || player.title == "Royalty" && player.faction == "Freynor")
+                if (player.title == "Nobility" && player.raceName == "Freynor" || player.title == "Royalty" && player.raceName == "Freynor")
                 {
                     scenicList.push(new Scenery("hearth", -339, -79, 0, "flame"));
                     scenicList.push(new Scenery("bed", -50, 563, -1/2 * Math.PI, true));
@@ -974,7 +974,7 @@ function buildMaster()
                     scenicList.push(new Scenery("hearth", -339, -79, 0, "lit"));
                     scenicList.push(new Scenery("bed", -50, 563, -1/2 * Math.PI, false));
                 }
-                if (player.gender == "Female" && player.title == "Nobility")
+                if (player.gender == "Female" && player.title == "Nobility" && player.raceName == "Freynor")
                 {
                     scenicList.push(new Scenery("loom", -183, 392, 3/4 * Math.PI, true));
                 }

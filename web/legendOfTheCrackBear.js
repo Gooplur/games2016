@@ -3,8 +3,10 @@
  */
 
 //TODO LIST
+//todo add the air staff, and 'the undying edge' from Theng img sheet
 //todo add a standard leather armour
-//todo add items: dried plutt with honey, bread with vel, one more plant for thengan forestland, more alchemy stuff
+//todo add one more plant for thengan forestland
+//todo add more alchemy stuff: potions, salves, dusts
 //todo add vamprism and lycanthropy
 //todo fix potential problem with the Ancient Crawler that it forgets to continue attacking if the player stays still near it.
 //todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
@@ -28,7 +30,6 @@
 //todo add weaken spell
 //todo add mage boss who uses the electric spear as well as magical shielding spell he uses.
 //todo add throwing stars for the orgel
-//todo add the rest of the alcohols and drinks.
 //todo make alpha Olkrin's death animation line up slightly more.
 //todo add options menu with button: it will allow you to toggle certain settings like mouse combat mode, game coordinates, and other such features.
 //todo Add harsh hot weather conditions: deserts cause faster dehydration. (base the effect on elevation variable)
@@ -1151,6 +1152,18 @@ function comingUpToLastPreStage()
     window.polpol = polpol;
 
     polpol.onload = function()
+    {
+        noHaTerminadoTodavia();
+    };
+}
+
+function noHaTerminadoTodavia()
+{
+    var balkur = new Image();
+    balkur.src = ("images/balkur.png");
+    window.balkur = balkur;
+
+    balkur.onload = function()
     {
         casiAlFin();
     };
@@ -2542,6 +2555,10 @@ function theLegend()
     allWeapons.push(new Item("staff", false)); //57
     allWeapons.push(new Item("thenganWarhammer", false)); //58
     allWeapons.push(new Item("estoc", false)); //59
+    allWeapons.push(new Item("aldrekiiLongbow", false)); //60
+    allWeapons.push(new Item("scimitar", false)); //61
+    allWeapons.push(new Item("kellishSpear", false)); //62
+
 
 //This list holds one of each type of worn item so that the player can access the worn item stats.
     allWorn = [];
@@ -2636,6 +2653,7 @@ function theLegend()
     smithing.push(new Item("aldrekiiBardiche", false));
     smithing.push(new Item("longbow", false));
     smithing.push(new Item("arrow", false));
+    smithing.push(new Item("aldrekiiLongbow", false));
     smithing.push(new Item("lifeLeachArrow", false));
     smithing.push(new Item("freezingArrow", false));
     smithing.push(new Item("fireArrow", false));
@@ -2645,6 +2663,7 @@ function theLegend()
     smithing.push(new Item("vardanianAxeDual", false));
     smithing.push(new Item("vardanianAxe", false));
     smithing.push(new Item("flail", false));
+    smithing.push(new Item("scimitar", false));
     smithing.push(new Item("aldrekiiBlade", false));
     smithing.push(new Item("aldrekiiClaws", false));
     smithing.push(new Item("pickaxe", false));
@@ -2690,6 +2709,7 @@ function theLegend()
     smithing.push(new Item("thenganWarhammer", false));
     smithing.push(new Item("ancientArmour", false));
     smithing.push(new Item("northernPlateArmour", false));
+    smithing.push(new Item("kellishSpear", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];
@@ -2870,6 +2890,9 @@ function theLegend()
     handcrafted.push(new Item("butteredHarstBread", false));
     handcrafted.push(new Item("butteredPumpkinBread", false));
     handcrafted.push(new Item("butteredSanthBread", false));
+    handcrafted.push(new Item("velHarstBread", false));
+    handcrafted.push(new Item("velPumpkinBread", false));
+    handcrafted.push(new Item("velSanthBread", false));
     handcrafted.push(new Item("harstFlour", false));
     handcrafted.push(new Item("harstDough", false));
     handcrafted.push(new Item("pumpkinDough", false));
@@ -2889,13 +2912,13 @@ function theLegend()
     handcrafted.push(new Item("pluttWine", false));
     handcrafted.push(new Item("roastedWegRootChunks", false));
     handcrafted.push(new Item("driedPluttBerries", false));
+    handcrafted.push(new Item("driedPluttBerriesWithHoney", false));
     handcrafted.push(new Item("driedTechiLeaf", false));
     handcrafted.push(new Item("techiTea", false));
     handcrafted.push(new Item("dualVardanianBattleAxe", false));
     handcrafted.push(new Item("dyedMufCloth", false));
     handcrafted.push(new Item("culprisBandage", false));
     handcrafted.push(new Item("bowlOfMushroomStew", false));
-    handcrafted.push(new Item("staff", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

@@ -274,7 +274,7 @@ function cheats()
         {
             if (player.name == "Peter" && player.race == "#fc9462")
             {
-                alert("Welcome to your exclusive life manipulation informational center. Here are the commands that you can use: \ getItem \ setCoords \ setAttribute")
+                alert("Welcome to your exclusive life manipulation informational center. Here are the commands that you can use: \ getItem \ setCoords \ setAttribute \ getAllWeapons \ getAllWorn \ getAllSpells \ getSkillpoints \ getMagicpoints")
             }
         }
         else if (cheatcode == "setAttribute")
@@ -295,6 +295,57 @@ function cheats()
                         alert("catEye = true;");
                     }
                 }
+            }
+        }
+        else if (cheatcode == "getAllWeapons")
+        {
+            if (player.name == "Peter" && player.race == "#fc9462")
+            {
+                var wepp;
+                for (var i = 0; i < allWeapons.length; i++)
+                {
+                    if (i != 2)
+                    {
+                        wepp = [allWeapons[i], 1];
+                        Inventory.push(wepp);
+                    }
+                }
+            }
+        }
+        else if (cheatcode == "getAllWorn")
+        {
+            if (player.name == "Peter" && player.race == "#fc9462")
+            {
+                var wepp;
+                for (var i = 1; i < allWorn.length; i++)
+                {
+                    wepp = [allWorn[i], 1];
+                    Inventory.push(wepp);
+                }
+            }
+        }
+        else if (cheatcode == "getAllSpells")
+        {
+            if (player.name == "Peter" && player.race == "#fc9462")
+            {
+                for (var i = 1; i < allSpells.length; i++)
+                {
+                    Inventory.push(allSpells[i]);
+                }
+            }
+        }
+        else if (cheatcode == "getSkillpoints")
+        {
+            if (player.name == "Peter" && player.race == "#fc9462")
+            {
+                player.skillPoints += 50;
+            }
+        }
+        else if (cheatcode == "getMagicpoints")
+        {
+            if (player.name == "Peter" && player.race == "#fc9462")
+            {
+                player.magicalSkillPoints += 50;
             }
         }
         else if (cheatcode == "getItem")

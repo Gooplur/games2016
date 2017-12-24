@@ -4130,6 +4130,40 @@ function Item(type, x, y)
             this.buyValue = 9 - Math.floor(player.getCharisma() / 12); // at max, buy for 5.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
         }
+        else if (this.type == "driedPluttBerriesWithHoney")
+        {
+            //For All Items
+            this.identity = "Dried Plutt Berries with Honey";
+            this.weight = 0.9;
+            this.size = 8;
+            this.description = "Sweet chewy and flavorful dried berries coated in fresh honey.";
+            this.intForDes = 1;
+            this.intDescription = "The honey really compliments the plutt beriies' flavour.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0.2; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 6;
+            this.intForCraft = 3;
+            this.ingredients = [["Dried Plutt Berries", 6], ["Honey", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 14 - Math.floor(player.getCharisma() / 12); // at max, buy for 10.
+            this.sellValue = 8 + Math.floor(player.getCharisma() / 25); // at max, sell for 10.
+        }
         else if (this.type == "pluttBerries")
         {
             //For All Items
@@ -4911,8 +4945,42 @@ function Item(type, x, y)
             this.ingredients = [["Pumpkin Bread", 1], ["Naaprid Butter", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 16; // at max, buy for 16.
-            this.sellValue = 12 + Math.floor(player.getCharisma() / 12); // at max, sell for 16.
+            this.buyValue = 27; // at max, buy for 27.
+            this.sellValue = 23 + Math.floor(player.getCharisma() / 12); // at max, sell for 27.
+        }
+        else if (this.type == "velPumpkinBread")
+        {
+            //For All Items
+            this.identity = "Pumpkin Bread with Vel";
+            this.weight = 0.7;
+            this.size = 7;
+            this.description = "Dark spiced pumpkin bread made from harst grain.";
+            this.intForDes = 5;
+            this.intDescription = "Pumpkin Bread is a traditional Kellish recipe.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 25; //satisfies hunger.
+            this.thirst = 0.6; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.2; //recoops lost energy.
+            this.replenish = 0.4; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Pumpkin Bread", 1], ["Vel", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 41; // at max, buy for 41.
+            this.sellValue = 37 + Math.floor(player.getCharisma() / 12); // at max, sell for 41.
         }
         else if (this.type == "harstBread")
         {
@@ -4979,8 +5047,42 @@ function Item(type, x, y)
             this.ingredients = [["Harst Bread", 1], ["Naaprid Butter", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 11; // at max, buy for 11.
-            this.sellValue = 8 + Math.floor(player.getCharisma() / 15); // at max, sell for 11.
+            this.buyValue = 22; // at max, buy for 22.
+            this.sellValue = 19 + Math.floor(player.getCharisma() / 15); // at max, sell for 22.
+        }
+        else if (this.type == "velHarstBread")
+        {
+            //For All Items
+            this.identity = "Harst Bread with Vel";
+            this.weight = 0.4;
+            this.size = 7;
+            this.description = "Grainy, coarse, dark bread made from harst grain... spread with a delicious and creamy layer of vel.";
+            this.intForDes = 1;
+            this.intDescription = "Harst bread is a common food of the peasant class.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 23; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.5; //recoops lost energy.
+            this.replenish = 0.25; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Harst Bread", 1], ["Vel", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 36; // at max, buy for 36.
+            this.sellValue = 33 + Math.floor(player.getCharisma() / 15); // at max, sell for 36.
         }
         else if (this.type == "kellishSanthDough")
         {
@@ -5085,6 +5187,40 @@ function Item(type, x, y)
             this.buyValue = 61 - Math.floor(player.getCharisma() / 3); // at max, buy for 46.
             this.sellValue = 46; // at max, sell for 46.
         }
+        else if (this.type == "velSanthBread")
+        {
+            //For All Items
+            this.identity = "Santh Bread with Vel";
+            this.weight = 0.3;
+            this.size = 7;
+            this.description = "The smoothest, lightest, whitest, and most delicate bread one could ever eat... smothered with sweet and creamy vel!";
+            this.intForDes = 1;
+            this.intDescription = "Properly made santh bread is of a quality suitable for kings and queens.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 30; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.75; //recoops lost energy.
+            this.replenish = 0.75; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Santh Bread", 1], ["Vel", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 75 - Math.floor(player.getCharisma() / 3); // at max, buy for 60.
+            this.sellValue = 60; // at max, sell for 60.
+        }
         else if (this.type == "naapridButter")
         {
             //For All Items
@@ -5120,7 +5256,7 @@ function Item(type, x, y)
             this.buyValue = 11 - Math.floor(player.getCharisma() / 25); // at max, buy for 9.
             this.sellValue = 7 + Math.floor(player.getCharisma() / 25); // at max, sell for 9.
         }
-        else if (this.type == "vel")
+        else if (this.type == "vel") //velvel
         {
             //For All Items
             this.identity = "Vel";
@@ -12800,7 +12936,7 @@ function Item(type, x, y)
             {
                 this.energyCost = 8;
             }
-            this.distance = 56.5 + (this.range * 7);
+            this.distance = 43 + (this.range * 7);
             this.range = 3;
             this.rate = 170;
             this.damage = (6 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((3/50) * player.getStrength());
@@ -13131,7 +13267,7 @@ function Item(type, x, y)
             this.range = 2000 + (500 * player.getRanged() / 50);
             this.rate = Math.max(0.1, 35 - (34 * player.getRanged() / 50));
             this.speed = 5 + (3 * player.getRanged() / 50);
-            this.negateArmour = (5 * player.getRanged() / 50);
+            this.negateArmour = 5 + (4 * player.getRanged() / 50);
 
             //ability
             this.ability = "none";
@@ -13144,6 +13280,39 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 44 - Math.floor(player.getCharisma() / 8); // at max, buy for 38.
             this.sellValue = 23 + Math.floor(player.getCharisma() / 3); // at max, sell for 38.
+        }
+        else if (this.type == "aldrekiiLongbow")
+        {
+            //For All Items
+            this.identity = "Aldrekii Long Bow";
+            this.weight = 1.25;
+            this.size = 24;
+            this.description = "A well crafted long bow carved from fine and flexible wood and strung with an equally durable bowstring.";
+            this.intForDes = 4;
+            this.intDescription = "Long bows are known for their superior range!";
+
+            //Define Utility
+            this.utility = "ranged";
+            //Sub Utility
+            this.subUtility = "bow";
+
+            //Utility Focused
+            this.range = 2550 + (500 * player.getRanged() / 50);
+            this.rate = Math.max(0.1, 35 - (34 * player.getRanged() / 50));
+            this.speed = 6 + (4 * player.getRanged() / 50);
+            this.negateArmour = 8 + (6 * player.getRanged() / 50);
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 40;
+            this.ingredients = [["Wood", 1], ["Fiber", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 95 - Math.floor(player.getCharisma() / 10); // at max, buy for 90.
+            this.sellValue = 75 + Math.floor(player.getCharisma() / 3); // at max, sell for 90.
         }
         else if (this.type == "oiledArrow")
         {
@@ -17025,9 +17194,9 @@ function Item(type, x, y)
             this.distance = 38 + (this.range * 7);
             this.range = 2.8;
             this.rate = 140;
-            this.damage = (4 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/25) * player.getStrength());
+            this.damage = (4 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((5/50) * player.getStrength());
             this.magicalDamage = 0;
-            this.negateArmour = 0;
+            this.negateArmour = 3;
 
             //ability
             this.ability = "none";
@@ -17334,20 +17503,20 @@ function Item(type, x, y)
             //Utility Focused
             if (player.getEndurance() >= 50)
             {
-                this.energyCost = 20;
+                this.energyCost = 18;
             }
             else if (player.getEndurance() > 34)
             {
-                this.energyCost = 23;
+                this.energyCost = 22;
             }
             else
             {
-                this.energyCost = 25;
+                this.energyCost = 24;
             }
             this.distance = 55 + (this.range * 7);
             this.range = 3.6;
             this.rate = 165;
-            this.damage = (20 - this.damageHandicap - this.damageHandicapII) * (this.leveledDamageMultiple / 25) + Math.floor(((1/6.6) * player.getStrength()));
+            this.damage = (20 - this.damageHandicap * 5) * (this.leveledDamageMultiple / 25) + Math.floor(((1/6.6) * player.getStrength()));
             this.magicalDamage = 0;
             this.negateArmour = 0;
 
@@ -17361,6 +17530,50 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 274 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 174.
             this.sellValue = 118 + Math.floor(player.getCharisma() / 1); // at max, sell for 168.
+        }
+        else if (this.type == "scimitar")
+        {
+            //For All Items
+            this.identity = "Scimitar";
+            this.weight = 1.25;
+            this.size = 29;
+            this.description = "A curved blade that broadens towards the point.";
+            this.intForDes = 1;
+            this.intDescription = "This weapon is of aldrekii design.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 1.5;
+            this.distance = 27 + (this.range * 7);
+            this.range = 4 + 1/7;
+            this.rate = 80;
+            if (player.getDexterity() >= 8)
+            {
+                this.damage = ((4.25 - this.damageHandicap) * (this.leveledDamageMultiple / 25)) + ((1/50) * player.getStrength()) + ((2/50) * player.getDexterity() + this.superStealthNum(2));
+            }
+            else if (player.getDexterity() >= 4)
+            {
+                this.damage = ((3.75 - this.damageHandicap) * (this.leveledDamageMultiple / 25)) + ((1/50) * player.getStrength()) + ((2/50) * player.getDexterity() + this.superStealthNum(2));
+            }
+            else
+            {
+                this.damage = ((3.25 - this.damageHandicap) * (this.leveledDamageMultiple / 25)) + ((1/50) * player.getStrength()) + ((2/50) * player.getDexterity() + this.superStealthNum(2));
+            }
+            this.magicalDamage = 0;
+            this.negateArmour = 0 + this.superStealthNum(2);
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 33;
+            this.ingredients = [["Ikrinium", 1], ["Steel", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 55 - Math.floor(player.getCharisma() / 10); // at max, buy for 50.
+            this.sellValue = 30 + Math.floor(player.getCharisma() / 2.5); // at max, sell for 50.
         }
         else if (this.type == "aldrekiiBlade")
         {
@@ -17382,11 +17595,11 @@ function Item(type, x, y)
             this.rate = 70 - Math.floor(player.getEndurance() / 5);
             if (player.getDexterity() >= 3 && player.getDexterity() < 10)
             {
-                this.damage = ((4 - this.damageHandicap) * (this.leveledDamageMultiple / 25)) * (1 + 0.2 * this.superStealthNum(1));
+                this.damage = ((3.5 - this.damageHandicap) * (this.leveledDamageMultiple / 25)) * (1 + 0.2 * this.superStealthNum(1));
             }
             else if (player.getDexterity() >= 10)
             {
-                this.damage = ((5 - this.damageHandicap) * (this.leveledDamageMultiple / 25)) * (1 + 0.2 * this.superStealthNum(1));
+                this.damage = ((4.5 - this.damageHandicap) * (this.leveledDamageMultiple / 25)) * (1 + 0.2 * this.superStealthNum(1));
             }
             else
             {
@@ -17625,6 +17838,50 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 36 - Math.floor(player.getCharisma() / 8); // at max, buy for 30.
             this.sellValue = 20 + Math.floor(player.getCharisma() / 6); // at max, sell for 28.
+        }
+        else if (this.type == "kellishSpear")
+        {
+            //For All Items
+            this.identity = "Kellish Spear";
+            this.weight = 2;
+            this.size = 14;
+            this.description = "A wooden shafted iron spear decorated with mofu feathers.";
+            this.intForDes = 3;
+            this.intDescription = "Such spears are most commonly used by the Alzkwaya tribe.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            if (player.getEndurance() >= 7)
+            {
+                this.energyCost = 1;
+            }
+            else
+            {
+                this.energyCost = 1.5;
+            }
+            this.distance = 60 + (this.range * 7);
+            this.range = 1 + 4/7;
+            this.rate = 90;
+            if (player.getDexterity() >= 6)
+            {
+                this.rate = 80;
+            }
+            this.damage = (3.5 - (this.damageHandicap * 0.5)) * (this.leveledDamageMultiple / 25) + ((2/50) * player.getStrength()) + ((2/50) * player.getDexterity());
+            this.magicalDamage = 0;
+            this.negateArmour = 6.5;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 2;
+            this.intForCraft = 17;
+            this.ingredients = [["Iron", 1], ["Wood", 2], ["Mofu Feather", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 10); // at max, buy for 15.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 15.
         }
         else if (this.type == "kellishSawClub")
         {
@@ -18173,6 +18430,17 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "kellishSpear")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 503, 7, 79, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 79 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34 * 1), 79 * 1, 34 * 1);
+        }
+        else if (this.type == "scimitar")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 337, 14, 66, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 66 * 0.785), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 0.725), 66 * 0.785, 33 * 0.725);
+            XXX.drawImage(balkur, 337, 14, 66, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 66 * 0.785), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 0.725), 66 * 0.785, 33 * 0.725);
+        }
         else if (this.type == "estoc")
         {
             XXX.beginPath();
@@ -18718,6 +18986,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(poly, 70, 2, 19, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.8), 19 * 1.8, 18 * 1.8);
         }
+        else if (this.type == "velPumpkinBread")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 604, 1202, 20, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.8), 20 * 1.8, 19 * 1.8);
+        }
         else if (this.type == "harstBread")
         {
             XXX.beginPath();
@@ -18727,6 +19000,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(mofu, 1392, 27, 17, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.8), 17 * 1.8, 17 * 1.8);
+        }
+        else if (this.type == "velHarstBread")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 601, 1125, 18, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.8), 18 * 1.8, 17 * 1.8);
         }
         else if (this.type == "harstDough")
         {
@@ -19181,6 +19459,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(oldverse, 2965, 250, 32, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 32), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26), 32, 26);
         }
+        else if (this.type == "velSanthBread")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 601, 1162, 29, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 29), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26), 29, 26);
+        }
         else if (this.type == "healingSalve")
         {
             XXX.beginPath();
@@ -19435,6 +19718,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(poly, 104, 47, 17, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 17), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19), 17, 19);
+        }
+        else if (this.type == "driedPluttBerriesWithHoney")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poly, 103, 72, 19, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 19), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19), 19, 19);
         }
         else if (this.type == "akerBerries")
         {
@@ -20421,6 +20709,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polyPNG, 380, 593, 34, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 51), Y - this.Y + (1/2 * CCC.height) - (1/2 * 51), 51, 51);
         }
+        else if (this.type == "aldrekiiLongbow")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 17, 441, 71, 70, X - this.X + (1/2 * CCC.width) - (1/2 * 71), Y - this.Y + (1/2 * CCC.height) - (1/2 * 70), 71, 70);
+        }
         else if (this.type == "walrusLeatherArmour")
         {
             XXX.beginPath();
@@ -20613,6 +20906,17 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "kellishSpear")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 503, 7, 79, 34, this.invX - (1/2 * 79 * 1), this.invY - (1/2 * 34 * 1), 79 * 1, 34 * 1);
+        }
+        else if (this.type == "scimitar")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 337, 14, 66, 33, this.invX - (1/2 * 66 * 0.785), this.invY - (1/2 * 33 * 0.725), 66 * 0.785, 33 * 0.725);
+            LXX.drawImage(balkur, 337, 14, 66, 33, this.invX - (1/2 * 66 * 0.785), this.invY - (1/2 * 33 * 0.725), 66 * 0.785, 33 * 0.725);
         }
         else if (this.type == "estoc")
         {
@@ -21230,6 +21534,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(poly, 70, 2, 19, 18, this.invX - (1/2 * 19 * 1.8), this.invY - (1/2 * 18 * 1.8), 19 * 1.8, 18 * 1.8);
         }
+        else if (this.type == "velPumpkinBread")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 604, 1202, 20, 19, this.invX - (1/2 * 20 * 1.8), this.invY - (1/2 * 19 * 1.8), 20 * 1.8, 19 * 1.8);
+        }
         else if (this.type == "harstBread")
         {
             LXX.beginPath();
@@ -21239,6 +21548,11 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(mofu, 1392, 27, 17, 17, this.invX - (1/2 * 17 * 1.8), this.invY - (1/2 * 17 * 1.8), 17 * 1.8, 17 * 1.8);
+        }
+        else if (this.type == "velHarstBread")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 601, 1125, 18, 17, this.invX - (1/2 * 18 * 1.8), this.invY - (1/2 * 17 * 1.8), 18 * 1.8, 17 * 1.8);
         }
         else if (this.type == "harstDough")
         {
@@ -21712,6 +22026,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(oldverse, 2965, 250, 32, 26, this.invX - (1/2 * 32), this.invY - (1/2 * 26), 32, 26);
         }
+        else if (this.type == "velSanthBread")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 601, 1162, 29, 26, this.invX - (1/2 * 29), this.invY - (1/2 * 26), 29, 26);
+        }
         else if (this.type == "healingSalve")
         {
             LXX.beginPath();
@@ -21966,6 +22285,11 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(poly, 104, 47, 17, 19, this.invX - (1/2 * 17), this.invY - (1/2 * 19), 17, 19);
+        }
+        else if (this.type == "driedPluttBerriesWithHoney")
+        {
+            LXX.beginPath();
+            LXX.drawImage(poly, 103, 72, 19, 19, this.invX - (1/2 * 19), this.invY - (1/2 * 19), 19, 19);
         }
         else if (this.type == "akerBerries")
         {
@@ -22862,6 +23186,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polyPNG, 380, 593, 34, 34, this.invX - (1/2 * 51), this.invY - (1/2 * 51), 51, 51);
         }
+        else if (this.type == "aldrekiiLongbow")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 17, 441, 71, 70, this.invX - (1/2 * 71 * 0.7), this.invY - (1/2 * 70 * 0.7), 71 * 0.7, 70 * 0.7);
+        }
         else if (this.type == "walrusLeatherArmour")
         {
             LXX.beginPath();
@@ -23023,6 +23352,17 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "kellishSpear")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 503, 7, 79, 34, this.invX - (1/2 * 79 * 1), this.invY - (1/2 * 34 * 1), 79 * 1, 34 * 1);
+        }
+        else if (this.type == "scimitar")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 337, 14, 66, 33, this.invX - (1/2 * 66 * 0.785), this.invY - (1/2 * 33 * 0.725), 66 * 0.785, 33 * 0.725);
+            XXX.drawImage(balkur, 337, 14, 66, 33, this.invX - (1/2 * 66 * 0.785), this.invY - (1/2 * 33 * 0.725), 66 * 0.785, 33 * 0.725);
         }
         else if (this.type == "estoc")
         {
@@ -23648,6 +23988,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(poly, 70, 2, 19, 18, this.invX - (1/2 * 19 * 1.8), this.invY - (1/2 * 18 * 1.8), 19 * 1.8, 18 * 1.8);
         }
+        else if (this.type == "velPumpkinBread")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 604, 1202, 20, 19, this.invX - (1/2 * 20 * 1.8), this.invY - (1/2 * 19 * 1.8), 20 * 1.8, 19 * 1.8);
+        }
         else if (this.type == "harstBread")
         {
             XXX.beginPath();
@@ -23657,6 +24002,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(mofu, 1392, 27, 17, 17, this.invX - (1/2 * 17 * 1.8), this.invY - (1/2 * 17 * 1.8), 17 * 1.8, 17 * 1.8);
+        }
+        else if (this.type == "velHarstBread")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 601, 1125, 18, 17, this.invX - (1/2 * 18 * 1.8), this.invY - (1/2 * 17 * 1.8), 18 * 1.8, 17 * 1.8);
         }
         else if (this.type == "harstDough")
         {
@@ -24121,6 +24471,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(oldverse, 2965, 250, 32, 26, this.invX - (1/2 * 32), this.invY - (1/2 * 26), 32, 26);
         }
+        else if (this.type == "velSanthBread")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 601, 1162, 29, 26, this.invX - (1/2 * 29), this.invY - (1/2 * 26), 29, 26);
+        }
         else if (this.type == "healingSalve")
         {
             XXX.beginPath();
@@ -24375,6 +24730,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(poly, 104, 47, 17, 19, this.invX - (1/2 * 17), this.invY - (1/2 * 19), 17, 19);
+        }
+        else if (this.type == "driedPluttBerriesWithHoney")
+        {
+            XXX.beginPath();
+            XXX.drawImage(poly, 103, 72, 19, 19, this.invX - (1/2 * 19), this.invY - (1/2 * 19), 19, 19);
         }
         else if (this.type == "akerBerries")
         {
@@ -25266,6 +25626,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(polyPNG, 380, 593, 34, 34, this.invX - (1/2 * 51), this.invY - (1/2 * 51), 51, 51);
+        }
+        else if (this.type == "aldrekiiLongbow")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 17, 441, 71, 70, this.invX - (1/2 * 71 * 0.7), this.invY - (1/2 * 70 * 0.7), 71 * 0.7, 70 * 0.7);
         }
         else if (this.type == "walrusLeatherArmour")
         {

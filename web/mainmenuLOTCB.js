@@ -837,14 +837,14 @@ function applySelectionsButton()
         {
             if (player.title == "Vagabond" || player.title == "Peasant" || player.title == "Commoner" || player.title == "Tradefolk")
             {
-                Inventory.push([new Item("longbow", false, false), 1], [new Item("arrow", false, false), 25]);
+                Inventory.push([new Item("aldrekiiLongbow", false, false), 1], [new Item("arrow", false, false), 25]);
             }
             else
             {
-                Inventory.push([new Item("longbow", false, false), 1], [new Item("aldrekiiArrow", false, false), 25]);
+                Inventory.push([new Item("aldrekiiLongbow", false, false), 1], [new Item("aldrekiiArrow", false, false), 50]);
             }
         }
-        if (player.class == "Ranger" && player.raceName == "Nirwaden")
+        else if (player.class == "Ranger" && player.raceName == "Nirwaden")
         {
             if (player.title == "Vagabond" || player.title == "Peasant" || player.title == "Commoner" || player.title == "Tradefolk")
             {

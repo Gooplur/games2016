@@ -259,7 +259,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.teamCommands = function()
     {
         //TAMING (a survivalism based skill)
-        if (this.muzzle == false && this.dmx == player.dmx && this.owned == false && this.baseTeam != "player" && this.team != "player" && yKey == true && this.tamable && player.getSurvivalism() >= this.tameREQ && this.health < ((50 + Math.max(0, player.getSurvivalism() - this.tameREQ))/200 * this.healthMAX))
+        if (this.alive && this.muzzle == false && this.dmx == player.dmx && this.owned == false && this.baseTeam != "player" && this.team != "player" && yKey == true && this.tamable && player.getSurvivalism() >= this.tameREQ && this.health < ((50 + Math.max(0, player.getSurvivalism() - this.tameREQ))/200 * this.healthMAX))
         {
             if (this.DTP() < this.engagementRadius + 8)
             {
@@ -280,7 +280,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
         }
 
-        if (this.muzzle == false && this.dmx == player.dmx && this.owned == false && this.baseTeam != "player" && this.team != "player" && yKey == false && this.tamable && player.getSurvivalism() >= this.tameREQ && this.health < ((50 + Math.max(0, player.getSurvivalism() - this.tameREQ))/200 * this.healthMAX))
+        if (this.alive && this.muzzle == false && this.dmx == player.dmx && this.owned == false && this.baseTeam != "player" && this.team != "player" && yKey == false && this.tamable && player.getSurvivalism() >= this.tameREQ && this.health < ((50 + Math.max(0, player.getSurvivalism() - this.tameREQ))/200 * this.healthMAX))
         {
             tameShrink = 0;
             tameSize = 14 + Math.random() * 19;

@@ -13770,7 +13770,7 @@ function Item(type, x, y)
             //Utility Focused
             //protections
             this.protection = 1.1 * ((player.toughness / 100) + 1);
-            this.toughnessRequirement = 1;
+            this.toughnessRequirement = 2;
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 3;

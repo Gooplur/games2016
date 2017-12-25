@@ -2093,7 +2093,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(51564, -9414, "Person", false, "Gerlach the Butcher", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["none", 0], weapon: ["timberAxe", [10, 4], 2, 19, 1.5], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 43], [new Item("rawBearFlesh", false, false), 4], [new Item("rawBearTongue", false, false), 1], [new Item("rawRabbitFlesh", false, false), 7], [new Item("rawBoulchomFlesh", false, false), 3], [new Item("rawHoffalgreFlesh", false, false), 6]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(51564, -9414, "Person", false, "Gerlach the Butcher", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["none", 0], weapon: ["meatCleaver", [1, 2], 1, 11, 1.7], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 43], [new Item("rawBearFlesh", false, false), 4], [new Item("rawBearTongue", false, false), 1], [new Item("rawRabbitFlesh", false, false), 7], [new Item("rawBoulchomFlesh", false, false), 3], [new Item("rawHoffalgreFlesh", false, false), 6]]}));
                         ArtificialIntelligenceAccess[i].health = 8;
                     }
                 }

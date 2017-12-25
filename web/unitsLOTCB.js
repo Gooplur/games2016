@@ -25,6 +25,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.extraRot = 0;
     this.traverse = false; //the ability to walk over other units but nothing else.
     this.contraPlayer = true; //this is manually set to false when defining a creature if it is a creature that never engages the player in combat.
+    this.owned = false; //if this is owned by a faction then set owned to true;
 
     //timers for AI
     this.aiTimer = 0; //the total time a unit has been in existence (unless reset)
@@ -134,6 +135,9 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.doOnDeathOnce = true; //this is for unique characters, upon their death they trigger a flag letting the game know never to respawn them.
     //team variables
     this.follower = false; //if true the creature follows through with attack without being disturbed but does not actually harm the player.
+    //taming variables
+    this.tamable = true;
+    this.tameREQ = 20;
     //Other variables
     this.other = false; //this is unique for every unit... do whith it what you will.
     this.interactable = false; //this allows a creature other than a human to be interacted with in the dialogue system.
@@ -248,8 +252,47 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
     };
 
+    var tameShrink = 0;
+    var tameSize = 8 + Math.random() * 5;
+    var tameSpeed = 0.2 + 0.3 * Math.random();
+    var tameAttempt = false;
     this.teamCommands = function()
     {
+        //TAMING (a survivalism based skill)
+        if (this.muzzle == false && this.dmx == player.dmx && this.owned == false && this.baseTeam != "player" && this.team != "player" && yKey == true && this.tamable && player.getSurvivalism() >= this.tameREQ && this.health < ((50 + Math.max(0, player.getSurvivalism() - this.tameREQ))/200 * this.healthMAX))
+        {
+            if (this.DTP() < this.engagementRadius + 8)
+            {
+                XXX.beginPath();
+                if (100 - tameShrink <= tameSize && tameShrink < 92)
+                {
+                    tameShrink = Math.min(99, tameShrink + 2.5 * tameSpeed);
+                    XXX.fillStyle="green";
+                    tameAttempt = true;
+                }
+                else
+                {
+                    tameShrink = Math.min(99, tameShrink + tameSpeed);
+                    XXX.fillStyle="orange";
+                    tameAttempt = false;
+                }
+                XXX.fillRect(1/2 * CCC.width - 50 + 1/2 * tameShrink, 1/2 * CCC.height - 40, 100 - tameShrink, 7);
+            }
+        }
+
+        if (this.muzzle == false && this.dmx == player.dmx && this.owned == false && this.baseTeam != "player" && this.team != "player" && yKey == false && this.tamable && player.getSurvivalism() >= this.tameREQ && this.health < ((50 + Math.max(0, player.getSurvivalism() - this.tameREQ))/200 * this.healthMAX))
+        {
+            tameShrink = 0;
+            tameSize = 14 + Math.random() * 19;
+            tameSpeed = 0.2 + 0.3 * Math.random();
+            if (tameAttempt)
+            {
+                this.baseTeam = "player";
+                this.team = "player";
+            }
+            tameAttempt = false;
+        }
+
         //PLAYER TEAM COMMANDS
         if (this.team == "player")
         {
@@ -3198,6 +3241,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         this.costumeEngine(8, 0.20, false);
                     }
+                    else if (this.weapon == "longbow")
+                    {
+                        this.costumeEngine(8, 0.20, false);
+                    }
                     else if (this.weapon == "crossbow")
                     {
                         this.costumeEngine(28, 0.10, false);
@@ -3279,6 +3326,41 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (theCostume >= 7)
             {
                 this.drawUnit(polyPNG, 717, 583, 40, 43, -17, -38.5, 50, 53.75, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "aldrekiiLongbow")
+        {
+            if (theCostume <= 0)
+            {
+                this.drawUnit(balkur, 368, 667, 70, 89, -1/2 * 70 + 0, -1/2 * 89 - 4, 70, 89, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(balkur, 566, 666, 70, 89, -1/2 * 70 + 0, -1/2 * 89 - 4, 70, 89, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(balkur, 422, 577, 70, 89, -1/2 * 70 + 0, -1/2 * 89 - 4, 70, 89, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(balkur, 422, 577, 70, 89, -1/2 * 70 + 0, -1/2 * 89 - 4, 70, 89, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 4)
+            {
+                this.drawUnit(balkur, 570, 577, 70, 89, -1/2 * 70 + 1, -1/2 * 89 - 4, 70, 89, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 5)
+            {
+                this.drawUnit(balkur, 689, 576, 70, 89, -1/2 * 70 + 1, -1/2 * 89 - 4, 70, 89, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 6)
+            {
+                this.drawUnit(balkur, 27, 670, 70, 89, -1/2 * 70 - 1.5, -1/2 * 89 - 2.5, 70, 89, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 7)
+            {
+                this.drawUnit(balkur, 196, 672, 70, 89, -1/2 * 70 - 3, -1/2 * 89 - 0.3, 70, 89, 1 / 2 * Math.PI);
             }
         }
         else if (this.weapon == "crossbow")
@@ -3558,6 +3640,38 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawUnit(polyPNG, 788, 111, 96, 86, -48, -75, 88, 86, 1/2 * Math.PI);
             }
         }
+        else if (this.weapon == "meatCleaver")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(balkur, 46, 748, 123, 101, -1/2* 123 * 0.74 + 2, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74, 1/2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(balkur, 180, 749, 123, 101, -1/2* 123 * 0.74 + 2, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74, 1/2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(balkur, 329, 747, 123, 101, -1/2* 123 * 0.74 + 2, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74, 1/2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(balkur, 481, 742, 123, 101, -1/2* 123 * 0.74 + 1, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74, 1/2 * Math.PI);
+            }
+            else if (theCostume <= 4)
+            {
+                this.drawUnit(balkur, 614, 742, 123, 101, -1/2* 123 * 0.74 + 1.5, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74, 1/2 * Math.PI);
+            }
+            else if (theCostume <= 5)
+            {
+                this.drawUnit(balkur, 711, 741, 123, 101, -1/2* 123 * 0.74 + 9.7, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74, 1/2 * Math.PI);
+            }
+            else if (theCostume >= 6)
+            {
+                this.drawUnit(balkur, 10, 857, 123, 89, -1/2* 123 * 0.74 + 10, -1/2* 89 * 0.74 - 28, 123 * 0.74, 89 * 0.74, 1/2 * Math.PI);
+            }
+        }
         else if (this.weapon == "hammer")
         {
             this.damageFrame = "automatic";
@@ -3656,6 +3770,30 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (theCostume >= 6)
             {
                 this.drawUnit(poly, 452, 141, 55, 58, -31, -51, 55 * 1.15, 58 * 1.15, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "kellishSpear")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(balkur, 30, 1125, 124, 101, -1/2 * 124 + 7, -1/2 * 101 - 22.4, 124, 101, 1 / 2 * Math.PI);
+                this.drawUnit(balkur, 30, 1125, 124, 101, -1/2 * 124 + 7, -1/2 * 101 - 22.4, 124, 101, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(balkur, 163, 1120, 93, 122, -1/2 * 93 + 0.6, -1/2 * 122 - 20, 93, 122, 1 / 2 * Math.PI);
+                this.drawUnit(balkur, 163, 1120, 93, 122, -1/2 * 93 + 0.6, -1/2 * 122 - 20, 93, 122, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(balkur, 289, 1115, 93, 122, -1/2 * 93 + 2.35, -1/2 * 122 - 20.75, 93, 122, 1 / 2 * Math.PI);
+                this.drawUnit(balkur, 289, 1115, 93, 122, -1/2 * 93 + 2.35, -1/2 * 122 - 20.75, 93, 122, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 3)
+            {
+                this.drawUnit(balkur, 438, 1110, 93, 122, -1/2 * 93 + 1.9, -1/2 * 122 - 20.75, 93, 122, 1 / 2 * Math.PI);
+                this.drawUnit(balkur, 438, 1110, 93, 122, -1/2 * 93 + 1.9, -1/2 * 122 - 20.75, 93, 122, 1 / 2 * Math.PI);
             }
         }
         else if (this.weapon == "kellishSword")
@@ -4421,6 +4559,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 XXX.rotate(this.rotation);
                 XXX.drawImage(polypol, 622, 26, 23, 22, -(1 / 2 * 23 * 1.3) - 0, -(1 / 2 * 22 * 1.3) + 0, 23 * 1.3, 22 * 1.3);
             }
+            else if (outfit == "balkurLeatherArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                //XXX.drawImage(balkur, 137, 3, 39, 47, -(1 / 2 * 39 * 1.05) + 8, -(1 / 2 * 47 * 1.05) + 0, 39 * 1.05, 47 * 1.05);
+                XXX.drawImage(balkur, 137, 3, 39, 47, -(1 / 2 * 39 * 0.75 * 1.1) + 3.5, -(1 / 2 * 47 * 1.05 * 1.1) + 0, 39 * 0.75 * 1.1, 47 * 1.05 * 1.1);
+            }
             else if (outfit == "skinAndBones")
             {
                 XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
@@ -4454,6 +4603,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "automatic";
             this.team = "wild";
             this.baseTeam = this.team;
+            this.tameREQ = 9;
 
             if (this.alpha == true)
             {
@@ -4515,6 +4665,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             if (this.alpha == true)
             {
+                this.tameREQ = 49;
                 this.magicalResistance = 0;
                 this.heatResistance = 3;
                 this.attackStyle = "chunked";
@@ -4540,6 +4691,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 //STATS (non-variable)
+                this.tameREQ = 32;
                 this.magicalResistance = 0;
                 this.heatResistance = 2;
                 this.attackStyle = "chunked";
@@ -4572,6 +4724,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.resistances = ["acid", "stun", "burning", "shock"];
             this.team = "shehidia";
             this.baseTeam = this.team;
+            this.tamable = false;
 
             if (this.alpha == true)
             {
@@ -4635,6 +4788,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.team = "wild";
             this.baseTeam = this.team;
             this.attackListo = "start"; //this activates the feature that randomizes the attack of the unit (for this unit)
+            this.tameREQ = 39;
 
             if (this.alpha == true)
             {
@@ -4724,9 +4878,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.resistances = ["shock"];
             this.team = "wild";
             this.baseTeam = this.team;
+            this.tameREQ = 37;
 
             if (this.alpha == "giant")
             {
+                this.tamable = false;
                 this.magicalResistance = 0;
                 this.heatResistance = -1;
                 this.attackStyle = "chunked";
@@ -4837,9 +4993,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "docile";
             }
             this.baseTeam = this.team;
+            this.tameREQ = 28;
 
             if (this.alpha == true)
             {
+                this.tameREQ = 41;
                 this.magicalResistance = 0;
                 this.heatResistance = 1;
                 this.attackStyle = "chunked";
@@ -4933,6 +5091,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             if (this.alpha == true)
             {
+                this.tameREQ = 40;
                 this.magicalResistance = 0;
                 this.heatResistance = -1;
                 this.attackStyle = "chunked";
@@ -4958,6 +5117,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 //STATS (non-variable)
+                this.tameREQ = 36;
                 this.magicalResistance = 0;
                 this.heatResistance = -1;
                 this.attackStyle = "chunked";
@@ -4991,6 +5151,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             if (this.alpha == true)
             {
+                this.tamable = false;
                 this.magicalResistance = 0;
                 this.heatResistance = 0;
                 this.attackStyle = "chunked";
@@ -5016,6 +5177,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (this.alpha == "baby")
             {
                 //STATS (non-variable)
+                this.tameREQ = 50;
                 this.magicalResistance = 0;
                 this.heatResistance = 0;
                 this.attackStyle = "chunked";
@@ -5041,6 +5203,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 //STATS (non-variable)
+                this.tameREQ = 100;
                 this.magicalResistance = 0;
                 this.heatResistance = 0;
                 this.attackStyle = "chunked";
@@ -5070,9 +5233,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.team = "trollia";
             this.baseTeam = this.team;
             this.haste = true;
+            this.tameREQ = 66;
 
             if (this.alpha == true)
             {
+                this.tameREQ = 84;
                 this.magicalResistance = 5;
                 this.heatResistance = 7;
                 this.attackStyle = "chunked";
@@ -5099,6 +5264,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (this.alpha == "baby")
             {
                 //STATS (non-variable)
+                this.tameREQ = 30;
                 this.magicalResistance = 1.5;
                 this.heatResistance = 3;
                 this.attackStyle = "chunked";
@@ -5154,9 +5320,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "manual";
             this.team = "wild";
             this.baseTeam = this.team;
+            this.tameREQ = 22;
 
             if (this.alpha == true)
             {
+                this.tameREQ = 34;
                 this.magicalResistance = 0;
                 this.heatResistance = -1;
                 this.attackStyle = "chunked";
@@ -5220,9 +5388,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
 
             this.baseTeam = this.team;
+            this.tameREQ = 19;
 
             if (this.alpha == true)
             {
+                this.tameREQ = 32;
                 this.magicalResistance = 0;
                 this.heatResistance = -1;
                 this.attackStyle = "chunked";
@@ -5278,6 +5448,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.resistances = ["shock"];
             this.team = "wild";
             this.baseTeam = this.team;
+            this.tameREQ = 26;
 
             if (this.alpha == true)
             {
@@ -5335,6 +5506,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "automatic";
             this.team = "neutral";
             this.baseTeam = this.team;
+            this.tamable = false;
 
             if (this.alpha == true)
             {
@@ -5391,6 +5563,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.effect = "blindingIII";
             this.team = "golgemoffia";
             this.baseTeam = this.team;
+            this.tamable = false;
 
             if (this.alpha == true)
             {
@@ -5491,6 +5664,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.damageFrame = "automatic";
             this.team = "neutral";
+            this.tamable = false;
 
             //STATS (non-variable)
             this.magicalResistance = 0;
@@ -5528,6 +5702,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.doSoulSuck = true;
             this.teleportRate = 40;
             this.summonsDisp = Math.floor(Math.random() * 5);
+            this.tamable = false;
 
             this.magicalResistance = 20;
             this.heatResistance = 10;
@@ -5561,6 +5736,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "docile";
             }
             this.baseTeam = this.team;
+            this.tamable = false;
 
             this.magicalResistance = 20;
             this.heatResistance = 10;
@@ -5597,6 +5773,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             if (this.alpha == true)
             {
+                this.tameREQ = 9;
                 this.magicalResistance = 0;
                 this.heatResistance = -1;
                 this.attackStyle = "chunked";
@@ -5620,6 +5797,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.alpha == "massive")
             {
+                this.tameREQ = 23;
                 this.magicalResistance = 0;
                 this.heatResistance = -1;
                 this.attackStyle = "chunked";
@@ -5644,6 +5822,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 //STATS (non-variable)
+                this.tameREQ = 7;
                 this.magicalResistance = 0;
                 this.heatResistance = -1;
                 this.attackStyle = "chunked";
@@ -5672,6 +5851,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "automatic";
             this.team = "wild";
             this.baseTeam = this.team;
+            this.tameREQ = 37;
 
             if (this.alpha == true)
             {
@@ -5698,6 +5878,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.alpha == "massive")
             {
+                this.tamable = false;
                 this.magicalResistance = 0;
                 this.heatResistance = -1;
                 this.attackStyle = "chunked";
@@ -5750,6 +5931,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "automatic";
             this.team = "wild";
             this.baseTeam = this.team;
+            this.tamable = false;
 
             if (this.alpha == true)
             {
@@ -5829,6 +6011,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.team = "shehidia";
             this.baseTeam = this.team;
             this.other = new Date().getTime();
+            this.tamable = false;
 
             if (this.alpha == true)
             {
@@ -5887,6 +6070,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.resistances = ["acid", "stun", "blinded", "shock"];
             this.team = "shehidia";
             this.baseTeam = this.team;
+            this.tamable = false;
 
             if (this.alpha == true)
             {
@@ -5971,6 +6155,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "docile";
             }
             this.baseTeam = this.team;
+            this.tamable = false;
 
             if (this.alpha == true)
             {
@@ -6050,6 +6235,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "manual";
             this.team = "tilkia";
             this.baseTeam = this.team;
+            this.tameREQ = 47;
 
             if (this.alpha == true)
             {
@@ -6078,6 +6264,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (this.alpha == "massive")
             {
                 //STATS (non-variable)
+                this.tamable = false;
                 this.magicalResistance = 0;
                 this.heatResistance = 1;
                 this.attackStyle = "chunked";
@@ -6102,6 +6289,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 //STATS (non-variable)
+                this.tameREQ = 38;
                 this.magicalResistance = 0;
                 this.heatResistance = 1;
                 this.attackStyle = "chunked";
@@ -6129,6 +6317,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "manual";
             this.team = "wild";
             this.baseTeam = this.team;
+            this.tameREQ = 29;
 
             if (this.alpha == true)
             {
@@ -6157,6 +6346,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (this.alpha == "giant")
             {
                 //STATS (non-variable)
+                this.tameREQ = 39;
                 this.magicalResistance = 0;
                 this.heatResistance = 1;
                 this.attackStyle = "chunked";
@@ -6236,6 +6426,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.team = "ulgoyia";
             this.baseTeam = this.team;
             this.mode = "waiting";
+            this.tamable = false;
 
             if (this.alpha == true)
             {
@@ -6342,6 +6533,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "docile";
             }
             this.baseTeam = this.team;
+            this.tamable = false;
 
             this.magicalResistance = 0;
             this.heatResistance = 0;
@@ -6373,6 +6565,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "docile";
             }
             this.baseTeam = this.team;
+            this.tameREQ = 14;
 
             if (this.alpha == true)
             {
@@ -6432,9 +6625,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "docile";
             }
             this.baseTeam = this.team;
+            this.tameREQ = 27;
 
             if (this.alpha == true)
             {
+                this.tameREQ = 37;
                 this.magicalResistance = 0;
                 this.heatResistance = -2;
                 this.attackStyle = "chunked";
@@ -6458,6 +6653,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.alpha == "massive")
             {
+                this.tamable = false;
                 this.magicalResistance = 0;
                 this.heatResistance = -2;
                 this.attackStyle = "chunked";
@@ -6517,6 +6713,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "docile";
             }
             this.baseTeam = this.team;
+            this.tameREQ = 36;
 
             if (this.alpha == true)
             {
@@ -6581,6 +6778,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "docile";
             }
             this.baseTeam = this.team;
+            this.tameREQ = 50;
 
             if (this.alpha == true)
             {
@@ -6640,6 +6838,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "docile";
             }
             this.baseTeam = this.team;
+            this.tameREQ = 6;
 
             if (this.alpha == true)
             {
@@ -6699,6 +6898,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.dropRND = Math.random();
             this.extraRot = 1/2 * Math.PI;
             this.baseTeam = this.team;
+            this.tamable = false;
 
             if (this.alpha == true)
             {
@@ -6760,6 +6960,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.dropRND = Math.random();
             this.extraRot = 1/2 * Math.PI;
             this.baseTeam = this.team;
+            this.tamable = false;
 
             if (this.alpha == true)
             {
@@ -6842,6 +7043,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "docile";
             }
             this.baseTeam = this.team;
+            this.tameREQ = 43;
 
             if (this.alpha == true)
             {
@@ -6923,6 +7125,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "docile";
             }
             this.baseTeam = this.team;
+            this.tameREQ = 33;
 
             if (this.alpha == true)
             {
@@ -6950,6 +7153,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.alpha == "giant")
             {
+                this.tamable = false;
                 this.magicalResistance = 0;
                 this.heatResistance = 2;
                 this.attackStyle = "chunked";
@@ -7031,6 +7235,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "docile";
             }
             this.baseTeam = this.team;
+            this.tamable = false;
 
             if (this.alpha == true)
             {
@@ -7110,6 +7315,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "automatic";
             this.team = "wild";
             this.baseTeam = this.team;
+            this.tameREQ = 24;
 
             if (this.alpha == true)
             {
@@ -7136,6 +7342,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.alpha == "giant")
             {
+                this.tamable = false;
                 this.magicalResistance = 0;
                 this.heatResistance = 1;
                 this.attackStyle = "chunked";
@@ -7187,6 +7394,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "automatic";
             this.team = "wild";
             this.baseTeam = this.team;
+            this.tameREQ = 21;
 
             if (this.alpha == true)
             {
@@ -7213,6 +7421,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.alpha == "giant")
             {
+                this.tamable = false;
                 this.magicalResistance = 0;
                 this.heatResistance = 2;
                 this.attackStyle = "chunked";
@@ -7266,6 +7475,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.resistances = ["shock"];
             this.team = "neutral";
             this.baseTeam = this.team;
+            this.tamable = false;
 
             if (this.alpha == true)
             {
@@ -7370,6 +7580,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "docile";
             }
             this.baseTeam = this.team;
+            this.tameREQ = 26;
 
             if (this.alpha == true)
             {
@@ -7429,6 +7640,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "docile";
             }
             this.baseTeam = this.team;
+            this.tameREQ = 29;
 
             if (this.alpha == true)
             {
@@ -7456,6 +7668,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (this.alpha == "giant")
             {
                 //STATS (non-variable)
+                this.tamable = false;
                 this.magicalResistance = 0;
                 this.heatResistance = -1;
                 this.attackStyle = "chunked";
@@ -7510,6 +7723,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.effect = "poisonII";
             this.team = "wild";
             this.baseTeam = this.team;
+            this.tameREQ = 30;
 
             if (this.alpha == true)
             {
@@ -7537,6 +7751,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (this.alpha == "giant")
             {
                 //STATS (non-variable)
+                this.tamable = false;
                 this.magicalResistance = 0;
                 this.heatResistance = 0.25;
                 this.attackStyle = "chunked";
@@ -7591,6 +7806,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.team = "herd";
             this.baseTeam = this.team;
             this.milkTime = new Date().getTime();
+            this.tameREQ = 20;
 
             if (this.alpha == true)
             {
@@ -7672,6 +7888,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.milkTime = new Date().getTime();
             this.goatEatness = 0;
             this.goatly = false;
+            this.tameREQ = 25;
 
             if (this.alpha == true)
             {
@@ -7751,6 +7968,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "manual";
             this.team = "herd";
             this.baseTeam = this.team;
+            this.tameREQ = 11;
 
             if (this.alpha == true)
             {
@@ -7834,6 +8052,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.baseTeam = this.team;
             this.sex = "Young";
             this.traverse = true;
+            this.tameREQ = 7;
 
             if (this.alpha == true)
             {
@@ -7901,6 +8120,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.alpha == "baby")
             {
+                this.tameREQ = 2;
                 this.magicalResistance = 0;
                 this.heatResistance = -2.5;
                 this.attackStyle = "chunked";
@@ -7963,6 +8183,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.team = "herd";
             this.baseTeam = this.team;
             this.flying = true;
+            this.tameREQ = 5;
 
             this.magicalResistance = 0;
             this.heatResistance = 0;
@@ -8004,6 +8225,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             this.baseTeam = this.team;
             this.sex = "Young";
+            this.tameREQ = 4;
 
             if (this.alpha == true)
             {
@@ -8112,6 +8334,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "docile";
             }
             this.baseTeam = this.team;
+            this.tameREQ = 2;
 
             if (this.alpha == true)
             {
@@ -8175,6 +8398,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "neutral2";
             }
             this.baseTeam = this.team;
+            this.tameREQ = 3;
 
             if (this.alpha == true)
             {
@@ -8238,6 +8462,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.tunskTurn = -1
             }
+            this.tameREQ = 2;
 
             if (this.alpha == true)
             {
@@ -8298,6 +8523,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             if (this.alpha == true)
             {
+                this.tameREQ = 25;
                 this.magicalResistance = 0;
                 this.heatResistance = -1;
                 this.attackStyle = "chunked";
@@ -8322,6 +8548,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 //STATS (non-variable)
+                this.tameREQ = 22;
                 this.magicalResistance = 0;
                 this.heatResistance = -1;
                 this.attackStyle = "chunked";
@@ -8351,6 +8578,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.customEXP = false;
             this.team = this.ultra.faction;
             this.baseTeam = this.team;
+            this.tamable = false;
 
             //Personality effected STATS
             if (this.ultra.personality == "scared")
@@ -8401,6 +8629,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "automatic";
             this.team = this.ultra.faction;
             this.baseTeam = this.team;
+            this.tamable = false;
 
             //STATS (non-variable)
             if (typeof(this.ultra.rot) != "undefined")
@@ -22256,6 +22485,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             this.costumeEngine(7, 0.21, true);
                         }
+                        else if (this.weapon == "kellishSpear")
+                        {
+                            this.costumeEngine(5, 0.21, true);
+                        }
+                        else if (this.weapon == "meatCleaver")
+                        {
+                            this.costumeEngine(7, 0.26, true);
+                        }
                     }
                 }
                 //draw some weapons underneath the body
@@ -23090,6 +23327,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         else if (this.weapon == "kellishSawClub")
                         {
                             this.costumeEngine(7, 0.21, true);
+                        }
+                        else if (this.weapon == "kellishSpear")
+                        {
+                            this.costumeEngine(5, 0.21, true);
+                        }
+                        else if (this.weapon == "meatCleaver")
+                        {
+                            this.costumeEngine(7, 0.26, true);
                         }
                     }
                 }

@@ -976,6 +976,127 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Cheryl the Tailor" || conversationID[0] == "Cheryl")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Cheryl";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                var romanceOrNot = false
+                                for (var i = 0; i < player.romance.length; i++)
+                                {
+                                    if (player.romance[i] == "cheryl")
+                                    {
+                                        romanceOrNot = true;
+                                    }
+                                }
+
+                                if (romanceOrNot)
+                                {
+                                    player.dialogueOptions = [["Hi there my love.", false, "d"], ["I love you sweety!", false, "e"], ["Let's have a quick tumble.", false, "f"], ["Good Day!", false, "a"], ["How's business?", false, "b"], ["Let's go somewhere private and wear a bit less clothing.", false, "f"]];
+                                    if (quests.cherylChild == true)
+                                    {
+                                        var childNameWithoutParenths = quests.cherylChildName;
+                                        childNameWithoutParenths.splice(0, 1);
+                                        childNameWithoutParenths.splice(childNameWithoutParenths.length - 1, 1);
+                                        player.dialogueOptions.push(["How is our son, " + childNameWithoutParenths + "?", false, "g"], ["I want " + childNameWithoutParenths + " to come with me on my travels so that he can learn to be a man.", false, "h"]);
+                                    }
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Good Day!", false, "a"], ["How's business?", false, "b"]];
+                                    if (player.charisma >= 4 && player.gender == "Male")
+                                    {
+                                        player.dialogueOptions.push(["You are absolutely gorgeous!", false, "c"], ["I am madly in love with you!", false, "i"], ["I have been in love with you since the very first moment I laid eyes on your beautiful face. I feel that we should be together.", false, "j"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            maggyJustLovely.play();
+                            maggyJustLovely.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            maggyJustCleaning.play();
+                            maggyJustCleaning.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            maggyMostlyCleaning.play();
+                            maggyMostlyCleaning.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            maggyLifeStory.play();
+                            maggyLifeStory.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Hildegard" || conversationID[0] == "Hildegard")
                     {
                         lowBar = "dialogue";

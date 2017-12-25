@@ -12876,6 +12876,74 @@ function Item(type, x, y)
             this.buyValue = 45 - Math.floor(player.getCharisma() / 3); // at max, buy for 30.
             this.sellValue = 12 + Math.floor(player.getCharisma() / 3); // at max, sell for 27.
         }
+        else if (this.type == "meatCleaver")
+        {
+            //For All Items
+            this.identity = "Meat Cleaver";
+            this.weight = 0.65;
+            this.size = 15;
+            this.description = "A large culinary knife used for cutting meat.";
+            this.intForDes = 4;
+            this.intDescription = "Cleavers are the best type of knife for cutting through bone.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 1;
+            this.distance = 21 + (this.range * 7);
+            this.range = 1 + 3/7;
+            this.rate = (170 - player.getDexterity());
+            this.damage = (1.5 - this.damageHandicap * 0.5) * (this.leveledDamageMultiple / 25) + ((5/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 1;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 5;
+            this.ingredients = [["Steel", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 31 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 27.
+            this.sellValue = 26 + Math.floor(player.getCharisma() / 50); // at max, sell for 27.
+        }
+        else if (this.type == "vardanianGlaive")
+        {
+            //For All Items
+            this.identity = "Vardanian Glaive (short)";
+            this.weight = 2;
+            this.size = 15;
+            this.description = "A short sword blade at the end of a spear shaft.";
+            this.intForDes = 2;
+            this.intDescription = "A polearm meant for fighting one's enemies from afar.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 5;
+            this.distance = 55 + (this.range * 7);
+            this.range = 2 + 3/7;
+            this.rate = (220 - player.getDexterity());
+            this.damage = (7 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((3/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 1 + ((1/50) * player.getStrength());
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 32;
+            this.ingredients = [["Steel", 2], ["Iron", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 100 - Math.floor(player.getCharisma() / 5); // at max, buy for 90.
+            this.sellValue = 60 + Math.floor(player.getCharisma() / 1.666666); // at max, sell for 90.
+        }
         else if (this.type == "nirineseSpear")
         {
             //For All Items
@@ -13571,6 +13639,178 @@ function Item(type, x, y)
             this.buyValue = 20 - Math.floor(player.getCharisma() / 10); // at max, buy for 15.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 10); // at max, sell for 10.
         }
+        else if (this.type == "balkurLeatherGloves")
+        {
+            //For All Items
+            this.identity = "Balkur Leather Gloves";
+            this.weight = 0.4;
+            this.size = 11;
+            this.description = "Gloves sewn from tanned balkur pelt and balkur fur for warmth.";
+            this.intForDes = 0;
+            this.intDescription = "These gloves are very comfortable!";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "gloves";
+            //Utility Focused
+            //protections
+            this.protection = 0.085 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.35;
+            this.thirstRetention = -0.085;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 6;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 3;
+            this.intForCraft = 19;
+            this.ingredients = [["Balkur Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 17 - Math.floor(player.getCharisma() / 6); // at max, buy for 9.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 9.
+        }
+        else if (this.type == "balkurLeatherBoots")
+        {
+            //For All Items
+            this.identity = "Balkur Leather Boots";
+            this.weight = 1.6;
+            this.size = 11;
+            this.description = "Boots sewn from tanned balkur pelt and balkur fur for warmth.";
+            this.intForDes = 4;
+            this.intDescription = "These boots are ideal for trudging through harsh snowy conditions!";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "boots";
+            //Utility Focused
+            //protections
+            this.protection = 0.125 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.85;
+            this.thirstRetention = -0.085;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 1;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 24;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 2;
+            this.intForCraft = 23;
+            this.ingredients = [["Balkur Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 28 - Math.floor(player.getCharisma() / 6); // at max, buy for 20.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 5); // at max, sell for 20.
+        }
+        else if (this.type == "balkurLeatherArmour")
+        {
+            //For All Items
+            this.identity = "Balkur Leather Armour";
+            this.weight = 3;
+            this.size = 25;
+            this.description = "A leather armour made from balkur pelts.";
+            this.intForDes = 1;
+            this.intDescription = "This armour is commonly worn by freydic warriors to strike fear into the hearts of their enemies.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 1.1 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 1;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 3;
+            this.thirstRetention = -2;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 2;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 1;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 10;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 1;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 1;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 40;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 23;
+            this.ingredients = [["Balkur Pelt", 3], ["Balkur Fang", 8]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 102 - Math.floor(player.getCharisma() / 6); // at max, buy for 94.
+            this.sellValue = 79 + Math.floor(player.getCharisma() / 3); // at max, sell for 94.
+        }
         else if (this.type == "frichFurMittens")
         {
             //For All Items
@@ -14185,8 +14425,8 @@ function Item(type, x, y)
             this.toughnessRequirement = 1;
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
-            this.warmthRetention = 2.5;
-            this.thirstRetention = -2;
+            this.warmthRetention = 1.8;
+            this.thirstRetention = 0;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -14243,8 +14483,8 @@ function Item(type, x, y)
             this.toughnessRequirement = 1;
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
-            this.warmthRetention = 0.15;
-            this.thirstRetention = -0.1;
+            this.warmthRetention = 0.1;
+            this.thirstRetention = 0;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -14301,8 +14541,8 @@ function Item(type, x, y)
             this.toughnessRequirement = 1;
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
-            this.warmthRetention = 0.25;
-            this.thirstRetention = -0.2;
+            this.warmthRetention = 0.15;
+            this.thirstRetention = 0;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -14533,7 +14773,7 @@ function Item(type, x, y)
             this.toughnessRequirement = 4;
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
-            this.warmthRetention = 3;
+            this.warmthRetention = 3.5;
             this.thirstRetention = - 0.5;
             this.shockResist = 5;
             //Main Stat Bonuses
@@ -14808,7 +15048,7 @@ function Item(type, x, y)
             this.toughnessRequirement = 5;
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
-            this.warmthRetention = 3;
+            this.warmthRetention = 3.5;
             this.thirstRetention = - 0.5;
             this.shockResist = 6;
             //Main Stat Bonuses
@@ -16697,7 +16937,7 @@ function Item(type, x, y)
             }
 
             //ability
-            this.ability = "extraDraining";
+            this.ability = "nechroCombo";
 
             this.yield = 2;
             if (player.eminence >= 15)
@@ -17161,7 +17401,7 @@ function Item(type, x, y)
             this.distance = 23 + (this.range * 7);
             this.range = 5.4;
             this.rate = 140;
-            this.damage = (11 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+            this.damage = (12 - this.damageHandicap * 2) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
             this.magicalDamage = 0;
             this.negateArmour = 2;
 
@@ -17551,15 +17791,15 @@ function Item(type, x, y)
             this.rate = 80;
             if (player.getDexterity() >= 8)
             {
-                this.damage = ((4.25 - this.damageHandicap) * (this.leveledDamageMultiple / 25)) + ((1/50) * player.getStrength()) + ((2/50) * player.getDexterity() + this.superStealthNum(2));
+                this.damage = ((4.25 - this.damageHandicap * 0.25) * (this.leveledDamageMultiple / 25)) + ((1/50) * player.getStrength()) + ((2/50) * player.getDexterity() + this.superStealthNum(2));
             }
             else if (player.getDexterity() >= 4)
             {
-                this.damage = ((3.75 - this.damageHandicap) * (this.leveledDamageMultiple / 25)) + ((1/50) * player.getStrength()) + ((2/50) * player.getDexterity() + this.superStealthNum(2));
+                this.damage = ((3.75) * (this.leveledDamageMultiple / 25)) + ((1/50) * player.getStrength()) + ((2/50) * player.getDexterity() + this.superStealthNum(2));
             }
             else
             {
-                this.damage = ((3.25 - this.damageHandicap) * (this.leveledDamageMultiple / 25)) + ((1/50) * player.getStrength()) + ((2/50) * player.getDexterity() + this.superStealthNum(2));
+                this.damage = ((3.25) * (this.leveledDamageMultiple / 25)) + ((1/50) * player.getStrength()) + ((2/50) * player.getDexterity() + this.superStealthNum(2));
             }
             this.magicalDamage = 0;
             this.negateArmour = 0 + this.superStealthNum(2);
@@ -18429,6 +18669,31 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "balkurLeatherGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 743, 388, 51, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34 * 0.8), 51 * 0.8, 34 * 0.8);
+        }
+        else if (this.type == "balkurLeatherBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 738, 331, 61, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 61 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 0.8), 61 * 0.8, 42 * 0.8);
+        }
+        else if (this.type == "balkurLeatherArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 669, 310, 59, 111, X - this.X + (1/2 * CCC.width) - (1/2 * 59 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 111 * 1), 59 * 1, 111 * 1);
+        }
+        else if (this.type == "meatCleaver")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 605, 0, 23, 48, X - this.X + (1/2 * CCC.width) - (1/2 * 23 * 0.74), Y - this.Y + (1/2 * CCC.height) - (1/2 * 48 * 0.74), 23 * 0.74, 48 * 0.74);
+        }
+        else if (this.type == "vardanianGlaive")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 667, 2, 123, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 123 * 0.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 0.65), 123 * 0.65, 42 * 0.65);
         }
         else if (this.type == "kellishSpear")
         {
@@ -20907,6 +21172,31 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "balkurLeatherGloves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 743, 388, 51, 34, this.invX - (1/2 * 51 * 0.7), this.invY - (1/2 * 34 * 0.7), 51 * 0.7, 34 * 0.7);
+        }
+        else if (this.type == "balkurLeatherBoots")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 738, 331, 61, 42, this.invX - (1/2 * 61 * 0.7), this.invY - (1/2 * 42 * 0.7), 61 * 0.7, 42 * 0.7);
+        }
+        else if (this.type == "balkurLeatherArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 669, 310, 59, 111, this.invX - (1/2 * 59 * 0.6), this.invY - (1/2 * 111 * 0.6), 59 * 0.6, 111 * 0.6);
+        }
+        else if (this.type == "meatCleaver")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 605, 0, 23, 48, this.invX - (1/2 * 23 * 0.74), this.invY - (1/2 * 48 * 0.74), 23 * 0.74, 48 * 0.74);
+        }
+        else if (this.type == "vardanianGlaive")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 667, 2, 123, 42, this.invX - (1/2 * 123 * 0.65), this.invY - (1/2 * 42 * 0.65), 123 * 0.65, 42 * 0.65);
+        }
         else if (this.type == "kellishSpear")
         {
             LXX.beginPath();
@@ -23352,6 +23642,31 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "balkurLeatherGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 743, 388, 51, 34, this.invX - (1/2 * 51 * 0.7), this.invY - (1/2 * 34 * 0.7), 51 * 0.7, 34 * 0.7);
+        }
+        else if (this.type == "balkurLeatherBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 738, 331, 61, 42, this.invX - (1/2 * 61 * 0.7), this.invY - (1/2 * 42 * 0.7), 61 * 0.7, 42 * 0.7);
+        }
+        else if (this.type == "balkurLeatherArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 669, 310, 59, 111, this.invX - (1/2 * 59 * 0.6), this.invY - (1/2 * 111 * 0.6), 59 * 0.6, 111 * 0.6);
+        }
+        else if (this.type == "meatCleaver")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 605, 0, 23, 48, this.invX - (1/2 * 23 * 0.74), this.invY - (1/2 * 48 * 0.74), 23 * 0.74, 48 * 0.74);
+        }
+        else if (this.type == "vardanianGlaive")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 667, 2, 123, 42, this.invX - (1/2 * 123 * 0.65), this.invY - (1/2 * 42 * 0.65), 123 * 0.65, 42 * 0.65);
         }
         else if (this.type == "kellishSpear")
         {

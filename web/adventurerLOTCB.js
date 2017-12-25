@@ -843,10 +843,15 @@ function Adventurer()
             var luckFlag = false;
             var spikedHandsFlag = false;
             var extraDrainFlag = false;
+            var nechroComboFlag = false;
 
             //search worn ability list for abilities
             for (var i = 0; i < this.AdAbility.length; i++)
             {
+                if (this.AdAbility[i] == "nechroCombo")
+                {
+                    nechroComboFlag = true;
+                }
                 if (this.AdAbility[i] == "resistDisease")
                 {
                     resistDiseaseFlag = true;
@@ -877,7 +882,7 @@ function Adventurer()
             //EXECUTE EFFECTS
 
             //resistDisease
-            if (resistDiseaseFlag)
+            if (resistDiseaseFlag || nechroComboFlag)
             {
                 this.resistDisease = true;
             }
@@ -887,7 +892,7 @@ function Adventurer()
             }
 
             //extraDraining
-            if (extraDrainFlag)
+            if (extraDrainFlag || nechroComboFlag)
             {
                 this.extraDraining = true;
             }
@@ -4712,6 +4717,10 @@ function Adventurer()
         {
             outfit = allWorn[57];
         }
+        else if (this.outfitEquipped == "balkurLeatherArmour")
+        {
+            outfit = allWorn[60];
+        }
         else
         {
             outfit = allWorn[0];
@@ -4735,6 +4744,10 @@ function Adventurer()
         {
             gloves = allWorn[49];
         }
+        else if (this.glovesEquipped == "balkurLeatherGloves")
+        {
+            gloves = allWorn[58];
+        }
         else
         {
             gloves = allWorn[0];
@@ -4749,6 +4762,10 @@ function Adventurer()
         else if (this.bootsEquipped == "boulchomLeatherBoots")
         {
             boots = allWorn[50]
+        }
+        else if (this.bootsEquipped == "balkurLeatherBoots")
+        {
+            boots = allWorn[59]
         }
         else
         {
@@ -4997,6 +5014,15 @@ function Adventurer()
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
             XXX.drawImage(polpol, 71, 450, 34, 35, -(1 / 2 * 34 * 1.3) - 0.6, -(1 / 2 * 35 * 1.3) - 2, 34 * 1.3, 35 * 1.3);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "balkurLeatherArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            XXX.drawImage(balkur, 137, 3, 39, 47, -(1 / 2 * 39 * 0.75 * 1.1) + 3.5, -(1 / 2 * 47 * 1.05 * 1.1) + 0, 39 * 0.75 * 1.1, 47 * 1.05 * 1.1);
             XXX.restore();
         }
         else if (this.outfitEquipped == "chainArmour")
@@ -8424,6 +8450,140 @@ function Adventurer()
                 XXX.restore();
             }
         }
+        //MEAT CLEAVER
+        if (this.weaponEquipped == "meatCleaver")
+        {
+            this.stageEngine(7, 0.26, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(balkur, 46, 748, 123, 101, -1/2* 123 * 0.74 + 2, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(balkur, 180, 749, 123, 101, -1/2* 123 * 0.74 + 2, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(balkur, 329, 747, 123, 101, -1/2* 123 * 0.74 + 2, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(balkur, 481, 742, 123, 101, -1/2* 123 * 0.74 + 1, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(balkur, 614, 742, 123, 101, -1/2* 123 * 0.74 + 1.5, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(balkur, 711, 741, 123, 101, -1/2* 123 * 0.74 + 9.7, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(balkur, 10, 857, 123, 89, -1/2* 123 * 0.74 + 10, -1/2* 89 * 0.74 - 28, 123 * 0.74, 89 * 0.74);
+                XXX.restore();
+            }
+        }
+        //VARDANIAN GLAIVE
+        if (this.weaponEquipped == "vardanianGlaive")
+        {
+            this.stageEngine(9, 0.25, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(balkur, 7, 1252, 203, 137, -1/2* 203 * 0.65 -9.9, -1/2* 137 * 0.65 - 32, 203 * 0.65, 137 * 0.65);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(balkur, 181, 1247, 203, 137, -1/2* 203 * 0.65 -11, -1/2* 137 * 0.65 - 33.25, 203 * 0.65, 137 * 0.65);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(balkur, 350, 1241, 203, 137, -1/2* 203 * 0.65 -11, -1/2* 137 * 0.65 - 33.25, 203 * 0.65, 137 * 0.65);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(balkur, 509, 1245, 203, 137, -1/2* 203 * 0.65 -11, -1/2* 137 * 0.65 - 33.25, 203 * 0.65, 137 * 0.65);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(balkur, 6, 1395, 203, 137, -1/2* 203 * 0.65 -11, -1/2* 137 * 0.65 - 34.25, 203 * 0.65, 137 * 0.65);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(balkur, 189, 1400, 203, 137, -1/2* 203 * 0.65 -9, -1/2* 137 * 0.65 - 36.25, 203 * 0.65, 137 * 0.65);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(balkur, 366, 1404, 203, 137, -1/2* 203 * 0.65 -8, -1/2* 137 * 0.65 - 38, 203 * 0.65, 137 * 0.65);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 7)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(balkur, 545, 1403, 203, 137, -1/2* 203 * 0.65 -5.5, -1/2* 137 * 0.65 - 39, 203 * 0.65, 137 * 0.65);
+                XXX.restore();
+            }
+        }
         //NIRINESE SABRE
         if (this.weaponEquipped == "nirineseSabre")
         {
@@ -11716,6 +11876,22 @@ function Adventurer()
             //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.65/5 * Math.PI) * (this.mySize + 60);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.65/5 * Math.PI) * (this.mySize + 60);
+        }
+        else if (this.weaponEquipped == "vardanianGlaive")
+        {
+            this.weapon = allWeapons[63];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.35/5 * Math.PI) * (this.mySize + 55);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.35/5 * Math.PI) * (this.mySize + 55);
+        }
+        else if (this.weaponEquipped == "meatCleaver")
+        {
+            this.weapon = allWeapons[64];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.35/5 * Math.PI) * (this.mySize + 21);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.35/5 * Math.PI) * (this.mySize + 21);
         }
     };
 
@@ -19917,6 +20093,7 @@ function Adventurer()
                                 Inventory[i][0].equipped = false;
                                 this.weaponEquipped = "none";
                                 this.weaponIsRanged = false;
+                                this.isWeaponEquipped = false;
                             }
                             else
                             {
@@ -19931,6 +20108,7 @@ function Adventurer()
                                 Inventory[i][0].equipped = true;
                                 this.weaponEquipped = Inventory[i][0].type;
                                 this.weaponIsRanged = false;
+                                this.isWeaponEquipped = true;
                             }
                         }
                         else

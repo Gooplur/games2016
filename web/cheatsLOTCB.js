@@ -306,7 +306,7 @@ function cheats()
                 {
                     if (i != 2)
                     {
-                        wepp = [allWeapons[i], 1];
+                        wepp = [new Item(allWeapons[i].type, X, Y), 1];
                         Inventory.push(wepp);
                     }
                 }
@@ -319,7 +319,7 @@ function cheats()
                 var wepp;
                 for (var i = 1; i < allWorn.length; i++)
                 {
-                    wepp = [allWorn[i], 1];
+                    wepp = [new Item(allWorn[i].type, X, Y), 1];
                     Inventory.push(wepp);
                 }
             }

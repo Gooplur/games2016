@@ -400,8 +400,11 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     else if (whatDoIDo == "fire")
                     {
                         this.shieldFactoring(Math.max(0, (damage - (player.heatResistance))));
-                        player.thirst -= Math.max(0, damage - player.heatResistance);
-                        player.burningTime = new Date().getTime();
+                        if (player.mageShield <= 0)
+                        {
+                            player.thirst -= Math.max(0, damage - player.heatResistance);
+                            player.burningTime = new Date().getTime();
+                        }
                     }
                     else if (whatDoIDo == "soulOrb")
                     {
@@ -411,35 +414,46 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     else if (whatDoIDo == "bonk")
                     {
                         this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
-                        player.stunnedIII = true;
-                        player.stunnedTime = 2;
+                        if (player.mageShield <= 0)
+                        {
+                            player.stunnedIII = true;
+                            player.stunnedTime = 2;
+                        }
                     }
                     else if (whatDoIDo == "quarterAcid")
                     {
                         this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
-
-                        if (damage + negate > player.armourTotal)
+                        if (player.mageShield <= 0)
                         {
-                            player.quarterAcid = true;
-                            player.acidTime = new Date().getTime() + 5000;
+                            if (damage + negate > player.armourTotal)
+                            {
+                                player.quarterAcid = true;
+                                player.acidTime = new Date().getTime() + 5000;
+                            }
                         }
                     }
                     else if (whatDoIDo == "acidI")
                     {
                         this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
-                        if (damage + negate > player.armourTotal)
+                        if (player.mageShield <= 0)
                         {
-                            player.acidI = true;
-                            player.acidTime = new Date().getTime() + 5000;
+                            if (damage + negate > player.armourTotal)
+                            {
+                                player.acidI = true;
+                                player.acidTime = new Date().getTime() + 5000;
+                            }
                         }
                     }
                     else if (whatDoIDo == "electricity")
                     {
                         this.shieldFactoring(Math.max(0, damage - ((player.totalShockResist * 3) + (19 * player.magicalResistanceTotal))));
-                        if (Math.max(0, damage -  (19 * player.magicalResistanceTotal)) > 0)
+                        if (player.mageShield <= 0)
                         {
-                            player.shockedTime = new Date().getTime();
-                            player.shockedTime2 = new Date().getTime();
+                            if (Math.max(0, damage -  (19 * player.magicalResistanceTotal)) > 0)
+                            {
+                                player.shockedTime = new Date().getTime();
+                                player.shockedTime2 = new Date().getTime();
+                            }
                         }
                     }
 

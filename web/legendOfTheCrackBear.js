@@ -3,7 +3,14 @@
  */
 
 //TODO LIST
+//todo make 'Y' the taming button, make certain creatures untamable, set survivalism req to tame each creature, a creature must be at 1/3 health in order to be tamed.
+//todo add the alzkwaya village
+//todo add new freydic dock town "Venning"
+//todo finish adding cheryls dialogue and the kid the player can have with her.
+//todo add the balkur (sabertooth ice stalker) and its drops
+//todo add interesting and immersive options for player children interaction (like: feeding, arming, praising, getting to know about them, teaching them spells, punishment, loving comments)
 //todo add the air staff, and 'the undying edge' from Theng img sheet
+//todo add the freydic hatchet from the balkur img sheet
 //todo add a standard leather armour
 //todo add one more plant for thengan forestland
 //todo add more alchemy stuff: potions, salves, dusts
@@ -13,7 +20,14 @@
 //todo add a brown beetle creature that derps around in the mudflats
 //todo add creature "Miter" a humanoid beast that crawls around on all fours eating the flesh of the dead. It will gain full health everytime it does so, and if it scratches the player with its long claws the player will be grave poisoned which drains life from the player and gives it to the miter responsible.
 //todo add dialogue to the Jarl: Quests/Purchasable Property/etc.
+//todo make Lethik city property purchasable at the bank.
 //todo add roselin's quest
+//todo add lakes, fishing spots, fish, and ice holes
+//todo add seals - they run away from you and drop blubber and seal hide.
+//todo add cute fuzzy white bearlike creature with a black button nose "Koopu" - for the north!
+//todo add clam-ooze creature that attacks from its shell and then hides again "Cloimid" they are heavily armoured while not attacking
+//todo add "Frost Beruln" - a larger version of a beruln that lives in the frozen north
+//todo add the savanah large cat creature (already drawn) and the savanah snake (already drawn)
 //todo add row boats and swimming
 //todo add the second Freydic City (make it a dock town) [the Freynor kingdom will span over several northern isles and the mainland]
 //todo add containers that operate like miniature banks with fixed numbers of slots.
@@ -1417,6 +1431,7 @@ var tKey;
 var cKey;
 var gKey;
 var keyBAR;
+var yKey;
 var tellCoords;
 var showSight;
 var adminShowSight;
@@ -1920,6 +1935,11 @@ function keyReleased(event)
     {
         keyBAR = false;
     }
+
+    if (key == 89)
+    {
+        yKey = false;
+    }
 }
 //when a key is held down
 function keyHeld(event)
@@ -2054,6 +2074,11 @@ function keyHeld(event)
     if (key == 220)
     {
         keyBAR = true;
+    }
+
+    if (key == 89)
+    {
+        yKey = true;
     }
 }
 
@@ -2337,6 +2362,7 @@ function theLegend()
         markosLDS: true,
         gerlachLDS: true,
         cherylLDS: true,
+        cherylChildLDS: true,
         johannaLDS: true,
         lenaLDS: true,
         friedrichLDS: true,
@@ -2380,6 +2406,8 @@ function theLegend()
         //PLAYER CHILDREN SPAWN
         hilmundChild: false,
         hilmundChildName: "Boki",
+        cherylChild: false,
+        cherylChildName: "Adalard",
 
         //QUEST: The Plight of Lethik ---- given by Axel
         thePlightOfLethikQuest: true,
@@ -2558,6 +2586,8 @@ function theLegend()
     allWeapons.push(new Item("aldrekiiLongbow", false)); //60
     allWeapons.push(new Item("scimitar", false)); //61
     allWeapons.push(new Item("kellishSpear", false)); //62
+    allWeapons.push(new Item("vardanianGlaive", false)); //63
+    allWeapons.push(new Item("meatCleaver", false)); //64
 
 
 //This list holds one of each type of worn item so that the player can access the worn item stats.
@@ -2620,6 +2650,9 @@ function theLegend()
     allWorn.push(new Item("cyanMageRobe", false)); //55
     allWorn.push(new Item("whiteMageRobe", false)); //56
     allWorn.push(new Item("blackMageRobe", false)); //57
+    allWorn.push(new Item("balkurLeatherGloves", false)); //58
+    allWorn.push(new Item("balkurLeatherBoots", false)); //59
+    allWorn.push(new Item("balkurLeatherArmour", false)); //60
 
     scenicList = [];
 
@@ -2705,11 +2738,13 @@ function theLegend()
     smithing.push(new Item("hyelingCleaver", false));
     smithing.push(new Item("hyelingArmour", false));
     smithing.push(new Item("staff", false));
+    smithing.push(new Item("vardanianGlaive", false));
     smithing.push(new Item("thenganDagger", false));
     smithing.push(new Item("thenganWarhammer", false));
     smithing.push(new Item("ancientArmour", false));
     smithing.push(new Item("northernPlateArmour", false));
     smithing.push(new Item("kellishSpear", false));
+    smithing.push(new Item("meatCleaver", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];
@@ -2820,6 +2855,9 @@ function theLegend()
     tailoring.push(new Item("cyanMageRobe", false));
     tailoring.push(new Item("whiteMageRobe", false));
     tailoring.push(new Item("blackMageRobe", false));
+    tailoring.push(new Item("balkurLeatherArmour", false));
+    tailoring.push(new Item("balkurLeatherBoots", false));
+    tailoring.push(new Item("balkurLeatherGloves", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];

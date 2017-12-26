@@ -3,11 +3,10 @@
  */
 
 //TODO LIST
-//todo make 'Y' the taming button, make certain creatures untamable, set survivalism req to tame each creature, a creature must be at 1/3 health in order to be tamed.
+//todo finish adding the beast journal.
 //todo add the alzkwaya village
-//todo add new freydic dock town "Venning"
+//todo add new freydic dock town "Venning" [the Freynor kingdom will span over several northern isles and the mainland]
 //todo finish adding cheryls dialogue and the kid the player can have with her.
-//todo add the balkur (sabertooth ice stalker) and its drops
 //todo add interesting and immersive options for player children interaction (like: feeding, arming, praising, getting to know about them, teaching them spells, punishment, loving comments)
 //todo add the air staff, and 'the undying edge' from Theng img sheet
 //todo add the freydic hatchet from the balkur img sheet
@@ -23,19 +22,17 @@
 //todo make Lethik city property purchasable at the bank.
 //todo add roselin's quest
 //todo add lakes, fishing spots, fish, and ice holes
+//todo add row boats and swimming
 //todo add seals - they run away from you and drop blubber and seal hide.
 //todo add cute fuzzy white bearlike creature with a black button nose "Koopu" - for the north!
 //todo add clam-ooze creature that attacks from its shell and then hides again "Cloimid" they are heavily armoured while not attacking
 //todo add "Frost Beruln" - a larger version of a beruln that lives in the frozen north
 //todo add the savanah large cat creature (already drawn) and the savanah snake (already drawn)
-//todo add row boats and swimming
-//todo add the second Freydic City (make it a dock town) [the Freynor kingdom will span over several northern isles and the mainland]
 //todo add containers that operate like miniature banks with fixed numbers of slots.
 //todo add warm northern thick clothing made with waanti. //at this point there is only an outfit and not a clothing.
 //todo figure out why aldrekii claws manual attack thing won't let it at twice or even early, while the same code lets the flail perform its attack early.
 //todo finish adding sickness system //add Lodotos, a sickness that one can get in the kellish mud bog. //add sicknesses and symptons (dizziness, pox, fever, fatigue, etc.) ex: make dizziness spin the screen, make pox weaken players constitution etc., make fever decrease thirst.
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
-//todo finish adding the beast journal.
 //todo add brain flies.
 //todo add hangover, and soarness effects as well as their mini notices.
 //todo add a rest without bed button on the UI that uses a homemade confirm popup to ask if you are sure you want to sleep. Add the nappy closed eye for the sleepButton. (it's on poly)
@@ -48,7 +45,7 @@
 //todo add options menu with button: it will allow you to toggle certain settings like mouse combat mode, game coordinates, and other such features.
 //todo Add harsh hot weather conditions: deserts cause faster dehydration. (base the effect on elevation variable)
 //todo Add more traps to further advance the utility of the Survivalism (trapping) skill.
-//todo add a system that shows the player the names of each region that they enter upon entering it. or: put road signs around to name parts of the world.
+//todo put road signs around to name parts of the world.
 //todo add unique fairytails for each faction
 
 
@@ -2653,6 +2650,9 @@ function theLegend()
     allWorn.push(new Item("balkurLeatherGloves", false)); //58
     allWorn.push(new Item("balkurLeatherBoots", false)); //59
     allWorn.push(new Item("balkurLeatherArmour", false)); //60
+    allWorn.push(new Item("neevFurCloak", false)); //61
+    allWorn.push(new Item("neevFurBoots", false)); //62
+    allWorn.push(new Item("neevFurGloves", false)); //63
 
     scenicList = [];
 
@@ -2806,6 +2806,7 @@ function theLegend()
     foods.push(new Item("thuegTripe", false));
     foods.push(new Item("hoffalgreMeat", false));
     foods.push(new Item("skolMeat", false));
+    foods.push(new Item("balkurMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -2858,6 +2859,9 @@ function theLegend()
     tailoring.push(new Item("balkurLeatherArmour", false));
     tailoring.push(new Item("balkurLeatherBoots", false));
     tailoring.push(new Item("balkurLeatherGloves", false));
+    tailoring.push(new Item("neevFurCloak", false));
+    tailoring.push(new Item("neevFurBoots", false));
+    tailoring.push(new Item("neevFurGloves", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];

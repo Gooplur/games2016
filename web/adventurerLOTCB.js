@@ -253,6 +253,8 @@ function Adventurer()
     this.dialogueChoiceMade = false; //this is a variable that helps determine when the player has chosen what to say during dialogue, it will be reset after the recipient registers the players input.
     this.romance = []; //This is the list of individuals in game that are in a romantic relationship with you.
     //effects variables
+    this.obscurity = true; //this is a secondary control for subtlety it should be true.
+    this.subtlety = false; //this sets the player to permaStealth without even having to stealth (the player can run and still be unspotted in this mode)
     this.spikedHandsBonus = 0;
     this.miningLuck = 0;
     this.fedClock = 0; // this is the amount of time a player can avoid losing hunger after eating. This value is set elsewhere.
@@ -844,10 +846,15 @@ function Adventurer()
             var spikedHandsFlag = false;
             var extraDrainFlag = false;
             var nechroComboFlag = false;
+            var obscurityFlag = false;
 
             //search worn ability list for abilities
             for (var i = 0; i < this.AdAbility.length; i++)
             {
+                if (this.AdAbility[i] == "obscurity")
+                {
+                    obscurityFlag = true;
+                }
                 if (this.AdAbility[i] == "nechroCombo")
                 {
                     nechroComboFlag = true;
@@ -961,6 +968,16 @@ function Adventurer()
             else
             {
                 this.miningLuck = 0;
+            }
+
+            //obscurity
+            if (obscurityFlag && this.obscurity)
+            {
+                this.subtlety = true;
+            }
+            else
+            {
+                this.subtlety = false;
             }
         };
 
@@ -2712,22 +2729,22 @@ function Adventurer()
             {
                 if (this.getDexterity() >= 40)
                 {
-                    stlthIncrement = 39 + this.superStealthBonus;
+                    stlthIncrement = 44 + this.superStealthBonus;
                     this.superStealthCooldown = Math.max(7, (12 - this.superStealthCooldownReduction));
                 }
                 else if (this.getDexterity() >= 35)
                 {
-                    stlthIncrement = 34 + this.superStealthBonus;
+                    stlthIncrement = 39 + this.superStealthBonus;
                     this.superStealthCooldown = Math.max(7, (16 - this.superStealthCooldownReduction));
                 }
                 else if (this.getDexterity() >= 30)
                 {
-                    stlthIncrement = 29 + this.superStealthBonus;
+                    stlthIncrement = 34 + this.superStealthBonus;
                     this.superStealthCooldown = Math.max(7, (20 - this.superStealthCooldownReduction));
                 }
                 else
                 {
-                    stlthIncrement = 24 + this.superStealthBonus;
+                    stlthIncrement = 29 + this.superStealthBonus;
                     this.superStealthCooldown = Math.max(7, (24 - this.superStealthCooldownReduction));
                 }
 
@@ -4481,6 +4498,10 @@ function Adventurer()
         XXX.save();
         XXX.translate(700, 275);
         XXX.rotate(this.rotation);
+        if (this.subtlety)
+        {
+            XXX.globalAlpha = 0.1;
+        }
         XXX.strokeStyle = "black";
         XXX.lineWidth = 2;
         XXX.moveTo(-4, 0);
@@ -4500,6 +4521,10 @@ function Adventurer()
         XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
         XXX.rotate(this.rotation);
         XXX.beginPath();
+        if (this.subtlety)
+        {
+            XXX.globalAlpha = 0.2;
+        }
         XXX.lineWidth = 1;
         XXX.arc(0, 0, this.mySize, 0, 2 * Math.PI);
         XXX.strokeStyle = "black";
@@ -4516,7 +4541,14 @@ function Adventurer()
             XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
             XXX.rotate(this.rotation);
             XXX.beginPath();
-            XXX.globalALpha = 0.35;
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.025;
+            }
+            else
+            {
+                XXX.globalAlpha = 0.35;
+            }
             XXX.lineWidth = 1;
             XXX.arc(0, 0, this.mySize, 0, 2 * Math.PI);
             XXX.strokeStyle = "#DCD060";
@@ -4721,6 +4753,10 @@ function Adventurer()
         {
             outfit = allWorn[60];
         }
+        else if (this.outfitEquipped == "neevFurCloak")
+        {
+            outfit = allWorn[61];
+        }
         else
         {
             outfit = allWorn[0];
@@ -4748,6 +4784,10 @@ function Adventurer()
         {
             gloves = allWorn[58];
         }
+        else if (this.glovesEquipped == "neevFurGloves")
+        {
+            gloves = allWorn[63];
+        }
         else
         {
             gloves = allWorn[0];
@@ -4766,6 +4806,10 @@ function Adventurer()
         else if (this.bootsEquipped == "balkurLeatherBoots")
         {
             boots = allWorn[59]
+        }
+        else if (this.bootsEquipped == "neevFurBoots")
+        {
+            boots = allWorn[62]
         }
         else
         {
@@ -4860,6 +4904,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(polyPNG, 804, 262, 35, 24, -(1 / 2 * 45.5) + 8, -(1 / 2 * 31.2) + 1.25, 42, 28.8);
             XXX.restore();
         }
@@ -4869,6 +4917,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(oldverse, 44, 89, 51, 35, -(1 / 2 * 40.8) + 6.3, -(1 / 2 * 28) - 0.5, 45.9, 31.5);
             XXX.restore();
         }
@@ -4878,7 +4930,24 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(zer0, 63, 232, 19, 19, - 1/2 * 19 * 2, - 1/2 * 19 * 2 + 1.2, 19 * 2, 19 * 2);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "neevFurCloak")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation + Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(balkur, 658, 1123, 31, 28, - 1/2 * 31 * 1.1 + 0, - 1/2 * 28 * 1.1 - 1.75, 31 * 1.1, 28 * 1.1);
             XXX.restore();
         }
         else if (this.outfitEquipped == "purpleMageRobe")
@@ -4887,6 +4956,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(freeverse, 824, 111, 34, 30, - 1/2 * 34 * 0.9 + 1, - 1/2 * 30 * 0.9 + 1, 34 * 0.9, 30 * 0.9);
             XXX.restore();
         }
@@ -4896,6 +4969,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(freeverse, 702, 111, 34, 30, - 1/2 * 34 * 0.9 + 0.85, - 1/2 * 30 * 0.9 + 1.5, 34 * 0.9, 30 * 0.9);
             XXX.restore();
         }
@@ -4905,6 +4982,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(freeverse, 584, 107, 34, 30, - 1/2 * 34 * 0.9 + 0.4, - 1/2 * 30 * 0.9 + 1.55, 34 * 0.9, 30 * 0.9);
             XXX.restore();
         }
@@ -4914,6 +4995,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(freeverse, 941, 114, 34, 30, - 1/2 * 34 * 0.9 + 0.4, - 1/2 * 30 * 0.9 + 1.1, 34 * 0.9, 30 * 0.9);
             XXX.restore();
         }
@@ -4923,6 +5008,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(freeverse, 940, 224, 34, 30, - 1/2 * 34 * 0.9 + 0.3, - 1/2 * 30 * 0.9 + 1.15, 34 * 0.9, 30 * 0.9);
             XXX.restore();
         }
@@ -4932,6 +5021,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(furr, 44, 18, 21, 18, - 1/2 * 21 * 2.15, - 1/2 * 18 * 2.15 + 0, 21 * 2.15, 18 * 2.15);
             XXX.restore();
         }
@@ -4941,6 +5034,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(theng, 702, 1042, 37, 32, - 1/2 * 37 * 1, - 1/2 * 32 * 1 + 0, 37 * 1, 32 * 1);
             XXX.restore();
         }
@@ -4950,6 +5047,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(theng, 746, 1165, 27, 27, - 1/2 * 27 * 1.25, - 1/2 * 27 * 1.25 + 0, 27 * 1.25, 27 * 1.25);
             XXX.restore();
         }
@@ -4959,6 +5060,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(furr, 197, 3, 16, 16, -(1 / 2 * 16 * 2.1) + 0, -(1 / 2 * 16 * 2.1) + 1, 16 * 2.1, 16 * 2.1);
             XXX.restore();
         }
@@ -4968,6 +5073,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(furr, 289, 439, 40, 32, -(1 / 2 * 40) - 1.3, -(1 / 2 * 32) + 2, 40, 32);
             XXX.restore();
         }
@@ -4977,6 +5086,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(furr, 230, 555, 40, 32, -(1 / 2 * 40) + 2.9, -(1 / 2 * 32) + 4.5, 36, 28.8);
             XXX.restore();
         }
@@ -4986,6 +5099,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(verse, 508, 659, 40, 39, -(1 / 2 * 40 * 0.8) + 2, -(1 / 2 * 39 * 0.8) + 0, 40 * 0.8, 39 * 0.8);
             XXX.restore();
         }
@@ -4995,6 +5112,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(oldverse, 1756, 205, 37, 43, -(1 / 2 * 37 * 1.1) + 1, -(1 / 2 * 43 * 1.1) + 0, 37 * 1.1, 43 * 1.1);
             XXX.restore();
         }
@@ -5004,6 +5125,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(verse, 1948, 1, 31, 27, -(1 / 2 * 26) - 0.3, -(1 / 2 * 27) + 1.5, 27, 27);
             XXX.restore();
         }
@@ -5013,6 +5138,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(polpol, 71, 450, 34, 35, -(1 / 2 * 34 * 1.3) - 0.6, -(1 / 2 * 35 * 1.3) - 2, 34 * 1.3, 35 * 1.3);
             XXX.restore();
         }
@@ -5022,6 +5151,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(balkur, 137, 3, 39, 47, -(1 / 2 * 39 * 0.75 * 1.1) + 3.5, -(1 / 2 * 47 * 1.05 * 1.1) + 0, 39 * 0.75 * 1.1, 47 * 1.05 * 1.1);
             XXX.restore();
         }
@@ -5031,6 +5164,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(verse, 1915, 1, 31, 27, -(1 / 2 * 26) - 1.3, -(1 / 2 * 27) + 1.5, 27, 27);
             XXX.restore();
         }
@@ -5040,6 +5177,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             //XXX.drawImage(polpol, 112, 139, 21, 26, -(1 / 2 * 21 * 1.6) - 2, -(1 / 2 * 26 * 1.6) + 2, 21 * 1.6, 26 * 1.6);
             XXX.drawImage(polpol, 112, 139, 21, 26, -(1 / 2 * 21 * 2) - 2, -(1 / 2 * 26 * 2) + 2, 21 * 2, 26 * 2);
             XXX.restore();
@@ -5050,6 +5191,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(polypol, 622, 26, 23, 22, -(1 / 2 * 23 * 1.3) - 0, -(1 / 2 * 22 * 1.3) + 0, 23 * 1.3, 22 * 1.3);
             XXX.restore();
         }
@@ -5059,6 +5204,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(polypol, 622, 3, 23, 22, -(1 / 2 * 23 * 1.4) - 0, -(1 / 2 * 22 * 1.4) + 0, 23 * 1.4, 22 * 1.4);
             XXX.restore();
         }
@@ -5070,6 +5219,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3141, 206, 38, 42, -(1 / 2 * 38) + 0.3, -(1 / 2 * 42) + 4.3, 38, 42);
                 XXX.restore();
             }
@@ -5078,6 +5231,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3182, 206, 38, 42, -(1 / 2 * 38) + 0.3, -(1 / 2 * 42) + 5.3, 38, 42);
                 XXX.restore();
             }
@@ -5090,6 +5247,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3044, 208, 38, 42, -(1 / 2 * 38) + 0.3, -(1 / 2 * 42) + 8.8, 38, 42);
                 XXX.restore();
             }
@@ -5098,6 +5259,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3003, 208, 38, 42, -(1 / 2 * 38) + 0.3, -(1 / 2 * 42) + 7.8, 38, 42);
                 XXX.restore();
             }
@@ -5108,6 +5273,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(verse, 3062, 1, 35, 22, -(1 / 2 * 49) + 0.5, -(1 / 2 * 30.8) + 2.25, 49, 30.8);
             XXX.restore();
         }
@@ -5117,6 +5286,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(theCrack, 127, 614, 23, 20, -(1 / 2 * 23 * 1.6) - 0, -(1 / 2 * 20 * 1.6) -0, 23 * 1.6, 20 * 1.6);
             XXX.restore();
         }
@@ -5126,6 +5299,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(theCrack, 128, 584, 21, 19, -(1 / 2 * 21 * 1.55) - 0, -(1 / 2 * 19 * 1.55) -0, 21 * 1.55, 19 * 1.55);
             XXX.restore();
         }
@@ -5135,6 +5312,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(poly, 48, 106, 40, 32, -(1 / 2 * 40 * 1.2) - 3.65, -(1 / 2 * 32 * 1.2) -18.25, 40 * 1.38, 32 * 1.73);
             XXX.restore();
         }
@@ -5144,6 +5325,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(poly, 50, 140, 36, 36, -(1 / 2 * 36 * 1.2) + 5, -(1 / 2 * 36 * 1.2) -9.5, 36 * 0.9, 36 * 1.45);
             XXX.restore();
         }
@@ -5153,6 +5338,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(mofu, 92, 2119, 48, 39, -(1 / 2 * 48 * 0.9) - 2, -(1 / 2 * 39 * 0.9) + 0, 48 * 0.9, 39 * 0.9);
             XXX.restore();
         }
@@ -5162,6 +5351,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(mofu, 71, 2186, 53, 57, -(1 / 2 * 53 * 0.7) + 2, -(1 / 2 * 57 * 0.7) + 1, 53 * 0.7, 57 * 0.7);
             XXX.restore();
         }
@@ -5171,6 +5364,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(mofu, 1200, 68, 26, 27, -(1 / 2 * 26 * 1.22) - 0.75, -(1 / 2 * 27 * 1.2) + 1.2, 26 * 1.22, 27 * 1.2);
             XXX.restore();
         }
@@ -5180,6 +5377,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(verse, 3084, 155, 36, 37, -(1 / 2 * 54) + 5, -(1 / 2 * 55.5) - 0.75, 46.8, 48.1);
             XXX.restore();
         }
@@ -5189,6 +5390,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(verse, 3099, 208, 28, 25, -(1 / 2 * 33.6) + 0, -(1 / 2 * 30) - 0.75, 33.6, 30);
             XXX.restore();
         }
@@ -5198,6 +5403,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(verse, 3185, 165, 33, 28, -(1 / 2 * 26.4) + 0, -(1 / 2 * 22.4) - 0.75, 29.7, 25.2);
             XXX.restore();
         }
@@ -5207,6 +5416,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(polyPNG, 792, 308, 52, 48, -(1 / 2 * 62.4) + 0, -(1 / 2 * 57.6) - 2.5, 67.6, 62.4);
             XXX.restore();
         }
@@ -5216,6 +5429,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation - Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(nognog, 669, 12, 17, 14, -(1 / 2 * 17 * 1.64) + 0, -(1 / 2 * 14 * 1.6) - 1, 17 * 1.64, 14 * 1.6);
             XXX.restore();
         }
@@ -5225,6 +5442,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(verse, 2106, 5, 29, 24, -(1 / 2 * 29) + 1.75, -(1 / 2 * 24) - 0, 26, 26);
             XXX.restore();
         }
@@ -5234,6 +5455,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(furr, 289, 493, 29, 22, -(1 / 2 * 29 * 1.5) + 0, -(1 / 2 * 22 * 1.5) - 0.25, 29 * 1.5, 22 * 1.5);
             XXX.restore();
         }
@@ -5243,6 +5468,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(verse, 2140, 29, 25, 20, -(1 / 2 * 25) - 1.75, -(1 / 2 * 20) - 4, 31, 27.2);
             XXX.restore();
         }
@@ -5254,6 +5483,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 7, 436, 34, 32, -(1 / 2 * 68) + 20, -(1 / 2 * 64) + 18.3, 27.2, 26.6);
                 XXX.restore();
             }
@@ -5262,6 +5495,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3, 390, 43, 43, -(1 / 2 * 86) + 26, -(1 / 2 * 86) + 27.3, 34.4, 40);
                 XXX.restore();
             }
@@ -5274,6 +5511,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation + 1/2 * Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 99, 39, 53, 39, -(1 / 2 * 53) + 1, -(1 / 2 * 39) + 1.85, 53, 39);
                 XXX.restore();
             }
@@ -5282,6 +5523,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation + 1/2 * Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 100, 1, 53, 39, -(1 / 2 * 53) + 1.6, -(1 / 2 * 39) + 4, 53, 39);
                 XXX.restore();
             }
@@ -5292,6 +5537,10 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation + 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(polpol, 61, 97, 32, 32, -(1 / 2 * 32 * 1.25) + 4, -(1 / 2 * 32 * 1.25) + 0.75, 32 * 1.25, 32 * 1.25);
             XXX.restore();
         }
@@ -5301,21 +5550,34 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
             XXX.rotate(this.rotation + 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
             XXX.drawImage(polpol, 61, 97, 32, 32, -(1 / 2 * 32 * 1.25) + 4, -(1 / 2 * 32 * 1.35) + 0.75, 32 * 1.25, 32 * 1.35);
             XXX.restore();
         }
         else if (this.outfitEquipped == "ardilFurClothing" || this.outfitEquipped == "ardilFurSkirt")
         {
+            var translucence = 1;
+            if (this.subtlety)
+            {
+                translucence = 0.4;
+            }
             this.outfitZ = true;
             if (this.movingType == 0 || this.movingType == 1 || this.movingType == 4 || this.freeze > 1.5 || this.movingType == 3)
             {
                 if (this.outfitState == 1)
                 {
-                    if (this.flashAnimate(250, this.rotation - 1/2 * Math.PI, 1, [{image: polpol, imgX: 4, imgY: 256, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 4, imgY: 234, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}], true))
+                    if (this.flashAnimate(250, this.rotation - 1/2 * Math.PI, translucence, [{image: polpol, imgX: 4, imgY: 256, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 4, imgY: 234, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}], true))
                     {
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
                         XXX.drawImage(polpol, 4, 234, 41, 22, -(1 / 2 * 41 * 1.7) - 4, -(1 / 2 * 22 * 1.7) - 0.2, 41 * 1.7, 22 * 1.7);
                         XXX.restore();
                         this.outfitState = 0;
@@ -5327,17 +5589,25 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(polpol, 4, 234, 41, 22, -(1 / 2 * 41 * 1.7) - 4, -(1 / 2 * 22 * 1.7) - 0.2, 41 * 1.7, 22 * 1.7);
                     XXX.restore();
                 }
             }
             else if (this.outfitState == 0)
             {
-                if (this.flashAnimate(250, this.rotation - 1/2 * Math.PI, 1, [{image: polpol, imgX: 4, imgY: 234, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 4, imgY: 256, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}], true))
+                if (this.flashAnimate(250, this.rotation - 1/2 * Math.PI, translucence, [{image: polpol, imgX: 4, imgY: 234, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 4, imgY: 256, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}], true))
                 {
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(polpol, 4, 256, 41, 22, -(1 / 2 * 41 * 1.7) - 4, -(1 / 2 * 22 * 1.7) - 0.2, 41 * 1.7, 22 * 1.7);
                     XXX.restore();
                     this.outfitState = 1;
@@ -5345,7 +5615,7 @@ function Adventurer()
             }
             else if (this.outfitState == 1)
             {
-                this.flashAnimate(120, this.rotation - 1/2 * Math.PI, 1, [{image: polpol, imgX: 4, imgY: 214, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 4, imgY: 319, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 3.5, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 3.4, imgY: 300, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 4, imgY: 279, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 3.3, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}]);
+                this.flashAnimate(120, this.rotation - 1/2 * Math.PI, translucence, [{image: polpol, imgX: 4, imgY: 214, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 4, imgY: 319, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 3.5, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 3.4, imgY: 300, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 4, imgY: 279, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 3.3, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}]);
             }
         }
     };
@@ -6005,6 +6275,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1636, 92, 46, 27, -29, -21, 46 * 1.3, 27);
                 XXX.restore();
             }
@@ -6013,6 +6287,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1636, 64, 46, 27, -29, -21, 46 * 1.3, 27);
                 XXX.restore();
             }
@@ -6021,6 +6299,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1636, 35, 46, 27, -29, -21, 46 * 1.3, 27);
                 XXX.restore();
                 this.doMagic = true
@@ -6030,6 +6312,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1636, 5, 46, 27, -30, -21, 46 * 1.3, 27);
                 XXX.restore();
                 if (this.doMagic)
@@ -6053,6 +6339,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 5, 107, 61, 52, -39.5, -30.5, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
             }
@@ -6061,6 +6351,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 6, 167, 61, 52, -36.5, -35.5, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
             }
@@ -6069,6 +6363,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 4, 228, 61, 52, -39.5, -38.5, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
             }
@@ -6077,6 +6375,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 4, 301, 61, 52, -39.5, -33, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
             }
@@ -6085,6 +6387,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 6, 363, 61, 52, -38, -33.5, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
             }
@@ -6093,6 +6399,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 6, 428, 61, 52, -40.5, -38.5, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
             }
@@ -6101,6 +6411,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 8, 489, 61, 52, -39.5, -37.5, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
             }
@@ -6109,6 +6423,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 9, 557, 61, 52, -39.5, -39, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
             }
@@ -6117,6 +6435,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 10, 638, 61, 52, -38.5, -38, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
             }
@@ -6125,6 +6447,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 10, 707, 61, 52, -39.5, -39, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
             }
@@ -6133,6 +6459,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 12, 792, 61, 52, -39.1, -38.5, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
             }
@@ -6141,6 +6471,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 15, 892, 61, 52, -37.7, -40, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
             }
@@ -6149,6 +6483,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 139, 416, 61, 52, -37.6, -40, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
             }
@@ -6157,6 +6495,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 136, 503, 61, 52, -38, -40.5, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
             }
@@ -6165,6 +6507,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 133, 592, 61, 52, -40.3, -41, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
             }
@@ -6173,6 +6519,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 135, 679, 61, 52, -38.8, -41, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
                 this.doMagic = true;
@@ -6182,6 +6532,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 136, 763, 61, 52, -39.5, -30, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
             }
@@ -6190,6 +6544,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 137, 828, 61, 52, -39.5, -29.5, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
                 if (this.doMagic)
@@ -6247,6 +6605,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 137, 902, 61, 52, -40.4, -29.5, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
             }
@@ -6255,6 +6617,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 139, 946, 61, 52, -39.5, -47.5, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
                 this.castingCooldown = new Date().getTime();
@@ -6273,6 +6639,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1867, 296, 36, 31, -22, -30, 36 * 1.2, 31 * 1.2);
                 XXX.restore();
             }
@@ -6281,6 +6651,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1867, 334, 36, 31, -26, -28, 36 * 1.2, 31 * 1.2);
                 XXX.restore();
             }
@@ -6289,6 +6663,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1870, 373, 36, 31, -25, -29, 36 * 1.2, 31 * 1.2);
                 XXX.restore();
             }
@@ -6297,6 +6675,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1872, 409, 36, 31, -25, -27, 36 * 1.2, 31 * 1.2);
                 XXX.restore();
             }
@@ -6305,6 +6687,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1875, 443, 36, 31, -24, -27, 36 * 1.2, 31 * 1.2);
                 XXX.restore();
                 this.doMagic = true;
@@ -6314,6 +6700,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1875, 477, 36, 31, -28, -28, 36 * 1.2, 31 * 1.2);
                 XXX.restore();
                 if (this.doMagic)
@@ -6337,6 +6727,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zapa, 549, 241, 44, 41, -1/2 * 44 * 1.3, -1/2 * 41 * 1.3 - 2, 44 * 1.3, 41 * 1.3);
                 XXX.restore();
             }
@@ -6345,6 +6739,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zapa, 551, 407, 44, 41, -1/2 * 44 * 1.3, -1/2 * 41 * 1.3 - 2, 44 * 1.3, 41 * 1.3);
                 XXX.restore();
             }
@@ -6353,6 +6751,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zapa, 549, 241, 44, 41, -1/2 * 44 * 1.3, -1/2 * 41 * 1.3 - 2, 44 * 1.3, 41 * 1.3);
                 XXX.restore();
             }
@@ -6361,6 +6763,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zapa, 550, 284, 44, 41, -1/2 * 44 * 1.3 -0.5, -1/2 * 41 * 1.3 - 2.25, 44 * 1.3, 41 * 1.3);
                 XXX.restore();
             }
@@ -6369,6 +6775,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zapa, 550, 324, 44, 41, -1/2 * 44 * 1.3, -1/2 * 41 * 1.3 - 4.75, 44 * 1.3, 41 * 1.3);
                 XXX.restore();
                 this.doMagic = true;
@@ -6378,6 +6788,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zapa, 551, 364, 44, 41, -1/2 * 44 * 1.3, -1/2 * 41 * 1.3 - 4.7, 44 * 1.3, 41 * 1.3);
                 XXX.restore();
                 if (this.doMagic)
@@ -6393,6 +6807,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zapa, 551, 407, 44, 41, -1/2 * 44 * 1.3, -1/2 * 41 * 1.3 - 2, 44 * 1.3, 41 * 1.3);
                 XXX.restore();
             }
@@ -6401,6 +6819,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zapa, 549, 241, 44, 41, -1/2 * 44 * 1.3, -1/2 * 41 * 1.3 - 2, 44 * 1.3, 41 * 1.3);
                 XXX.restore();
             }
@@ -6417,6 +6839,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1862, 109, 44, 24, -22, -20, 44, 24);
                 XXX.restore();
             }
@@ -6425,6 +6851,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1864, 141, 44, 24, -22, -20, 44, 24);
                 XXX.restore();
             }
@@ -6433,6 +6863,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1864, 203, 44, 24, -21, -21, 44, 24);
                 XXX.restore();
             }
@@ -6441,6 +6875,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1864, 230, 44, 24, -21, -21, 44, 24);
                 XXX.restore();
             }
@@ -6449,6 +6887,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1865, 172, 44, 24, -21, -21, 44, 24);
                 XXX.restore();
             }
@@ -6457,6 +6899,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1864, 260, 44, 24, -21, -21, 44, 24);
                 XXX.restore();
                 this.doMagic = true;
@@ -6466,6 +6912,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1864, 260, 44, 24, -21, -21, 44, 24);
                 XXX.restore();
                 if (this.doMagic)
@@ -6534,6 +6984,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1573, 33, 50, 34, -28, -25, 50 * 1.1, 34 * 1.1);
                 XXX.restore();
             }
@@ -6542,6 +6996,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1636, 236, 50, 34, -29, -23, 50 * 1.15, 34 * 1.15);
                 XXX.restore();
             }
@@ -6550,6 +7008,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1860, 138, 50, 34, -29, -23, 50 * 1.15, 34 * 1.15);
                 XXX.restore();
             }
@@ -6558,6 +7020,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1927, 106, 50, 34, -28.5, -23, 50 * 1.1, 34 * 1.1);
                 XXX.restore();
             }
@@ -6566,6 +7032,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1633, 90, 50, 34, -29, -26, 50 * 1.17, 34 * 1.17);
                 XXX.restore();
             }
@@ -6574,6 +7044,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1633, 62, 50, 34, -29, -26, 50 * 1.15, 34 * 1.15);
                 XXX.restore();
                 this.doMagic = true;
@@ -6583,6 +7057,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1573, 232, 50, 34, -29, -24.5, 50 * 1.15, 34 * 1.15);
                 XXX.restore();
                 if (this.doMagic)
@@ -6652,6 +7130,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.4, -1/2 * 41 * 1.4, 57 * 1.4, 37 * 1.4);
                 XXX.restore();
             }
@@ -6660,6 +7142,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 163, 367, 57, 37, -1/2 * 57 * 1.35, -1/2 * 39 * 1.35, 57 * 1.35, 37 * 1.35);
                 XXX.restore();
             }
@@ -6668,6 +7154,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.35, -1/2 * 39 * 1.35, 57 * 1.35, 37 * 1.35);
                 XXX.restore();
             }
@@ -6676,6 +7166,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 450, 57, 37, -1/2 * 57 * 1.3, -1/2 * 39 * 1.3, 57 * 1.3, 37 * 1.3);
                 XXX.restore();
             }
@@ -6684,6 +7178,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 174, 490, 37, 29, -1/2 * 37 * 1.3, -1/2 * 29 * 1.3, 37 * 1.3, 29 * 1.3);
                 XXX.restore();
                 this.doMagic = true;
@@ -6693,6 +7191,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 175, 570, 37, 29, -1/2 * 37 * 1.25, -1/2 * 29 * 1.25, 37 * 1.25, 29 * 1.25);
                 XXX.restore();
                 if (this.doMagic)
@@ -6747,6 +7249,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 174, 490, 37, 29, -1/2 * 37 * 1.25, -1/2 * 29 * 1.25, 37 * 1.25, 29 * 1.25);
                 XXX.restore();
             }
@@ -6755,6 +7261,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
                 XXX.restore();
             }
@@ -6763,6 +7273,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 450, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
                 XXX.restore();
             }
@@ -6778,6 +7292,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.4, -1/2 * 41 * 1.4, 57 * 1.4, 37 * 1.4);
                 XXX.restore();
             }
@@ -6786,6 +7304,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 163, 367, 57, 37, -1/2 * 57 * 1.35, -1/2 * 39 * 1.35, 57 * 1.35, 37 * 1.35);
                 XXX.restore();
             }
@@ -6794,6 +7316,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.35, -1/2 * 39 * 1.35, 57 * 1.35, 37 * 1.35);
                 XXX.restore();
             }
@@ -6802,6 +7328,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 450, 57, 37, -1/2 * 57 * 1.3, -1/2 * 39 * 1.3, 57 * 1.3, 37 * 1.3);
                 XXX.restore();
             }
@@ -6810,6 +7340,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 174, 490, 37, 29, -1/2 * 37 * 1.3, -1/2 * 29 * 1.3, 37 * 1.3, 29 * 1.3);
                 XXX.restore();
                 this.doMagic = true;
@@ -6819,6 +7353,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 175, 570, 37, 29, -1/2 * 37 * 1.25, -1/2 * 29 * 1.25, 37 * 1.25, 29 * 1.25);
                 XXX.restore();
                 if (this.doMagic)
@@ -6834,6 +7372,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 174, 490, 37, 29, -1/2 * 37 * 1.25, -1/2 * 29 * 1.25, 37 * 1.25, 29 * 1.25);
                 XXX.restore();
             }
@@ -6842,6 +7384,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
                 XXX.restore();
             }
@@ -6850,6 +7396,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 450, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
                 XXX.restore();
             }
@@ -6866,6 +7416,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.4, -1/2 * 41 * 1.4, 57 * 1.4, 37 * 1.4);
                 XXX.restore();
             }
@@ -6874,6 +7428,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 163, 367, 57, 37, -1/2 * 57 * 1.35, -1/2 * 39 * 1.35, 57 * 1.35, 37 * 1.35);
                 XXX.restore();
             }
@@ -6882,6 +7440,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.35, -1/2 * 39 * 1.35, 57 * 1.35, 37 * 1.35);
                 XXX.restore();
             }
@@ -6890,6 +7452,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 450, 57, 37, -1/2 * 57 * 1.3, -1/2 * 39 * 1.3, 57 * 1.3, 37 * 1.3);
                 XXX.restore();
             }
@@ -6898,6 +7464,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 174, 490, 37, 29, -1/2 * 37 * 1.3, -1/2 * 29 * 1.3, 37 * 1.3, 29 * 1.3);
                 XXX.restore();
                 this.doMagic = true;
@@ -6907,6 +7477,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 174, 516, 38, 31, -1/2 * 38 * 1.3, -1/2 * 31 * 1.3, 38 * 1.3, 31 * 1.3);
                 XXX.restore();
                 if (this.doMagic)
@@ -6922,6 +7496,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 174, 490, 37, 29, -1/2 * 37 * 1.25, -1/2 * 29 * 1.25, 37 * 1.25, 29 * 1.25);
                 XXX.restore();
             }
@@ -6930,6 +7508,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
                 XXX.restore();
             }
@@ -6938,6 +7520,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 450, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
                 XXX.restore();
             }
@@ -6954,6 +7540,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.4, -1/2 * 41 * 1.4, 57 * 1.4, 37 * 1.4);
                 XXX.restore();
             }
@@ -6962,6 +7552,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 163, 367, 57, 37, -1/2 * 57 * 1.35, -1/2 * 39 * 1.35, 57 * 1.35, 37 * 1.35);
                 XXX.restore();
             }
@@ -6970,6 +7564,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.35, -1/2 * 39 * 1.35, 57 * 1.35, 37 * 1.35);
                 XXX.restore();
             }
@@ -6978,6 +7576,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 450, 57, 37, -1/2 * 57 * 1.3, -1/2 * 39 * 1.3, 57 * 1.3, 37 * 1.3);
                 XXX.restore();
             }
@@ -6986,6 +7588,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 174, 490, 37, 29, -1/2 * 37 * 1.3, -1/2 * 29 * 1.3, 37 * 1.3, 29 * 1.3);
                 XXX.restore();
                 this.doMagic = true;
@@ -6995,6 +7601,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 174, 516, 38, 31, -1/2 * 38 * 1.3, -1/2 * 31 * 1.3, 38 * 1.3, 31 * 1.3);
                 XXX.restore();
                 if (this.doMagic)
@@ -7010,6 +7620,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 174, 490, 37, 29, -1/2 * 37 * 1.25, -1/2 * 29 * 1.25, 37 * 1.25, 29 * 1.25);
                 XXX.restore();
             }
@@ -7018,6 +7632,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
                 XXX.restore();
             }
@@ -7026,6 +7644,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 165, 450, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
                 XXX.restore();
             }
@@ -7042,6 +7664,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1635, 2, 49, 33, -29, -23, 49 * 1.2, 33);
                 XXX.restore();
             }
@@ -7050,6 +7676,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1636, 33, 49, 33, -27.5, -23, 49 * 1.2, 33);
                 XXX.restore();
             }
@@ -7058,6 +7688,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1635, 60, 49, 33, -29, -25, 49 * 1.2, 33);
                 XXX.restore();
             }
@@ -7066,6 +7700,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1691, 118, 49, 33, -29, -24, 49 * 1.2, 33);
                 XXX.restore();
             }
@@ -7074,6 +7712,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1690, 80, 49, 33, -30.25, -25, 49 * 1.2, 33);
                 XXX.restore();
                 this.doMagic = true
@@ -7083,6 +7725,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1691, 42, 49, 33, -28, -35, 49 * 1.2, 33 * 1.2);
                 XXX.restore();
                 if (this.doMagic)
@@ -7109,6 +7755,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1731, 43, 49, 33, -27, -36, 49 * 1.2, 33 * 1.2);
                 XXX.restore();
                 this.castingCooldown = new Date().getTime();
@@ -7127,6 +7777,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1575, 29, 48, 35, -23.5, -25.5, 48, 35);
                 XXX.restore();
             }
@@ -7135,6 +7789,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1577, 67, 48, 35, -22.5, -25, 48, 35);
                 XXX.restore();
             }
@@ -7143,6 +7801,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1577, 103, 48, 35, -22.1, -25.4, 48, 35);
                 XXX.restore();
             }
@@ -7151,6 +7813,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1578, 141, 48, 35, -20.5, -28, 48, 35);
                 XXX.restore();
             }
@@ -7159,6 +7825,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1573, 187, 48, 35, -24.3, -26.6, 48, 35);
                 XXX.restore();
             }
@@ -7167,6 +7837,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1574, 226, 48, 35, -25, -26.5, 48, 35);
                 XXX.restore();
             }
@@ -7175,6 +7849,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1573, 187, 48, 35, -24.3, -26.6, 48, 35);
                 XXX.restore();
             }
@@ -7183,6 +7861,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1578, 141, 48, 35, -20.5, -28, 48, 35);
                 XXX.restore();
             }
@@ -7191,6 +7873,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1577, 103, 48, 35, -22.1, -25.4, 48, 35);
                 XXX.restore();
             }
@@ -7199,6 +7885,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1577, 67, 48, 35, -22.5, -25, 48, 35);
                 XXX.restore();
             }
@@ -7207,6 +7897,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1575, 29, 48, 35, -23.5, -25.5, 48, 35);
                 XXX.restore();
             }
@@ -7215,6 +7909,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1577, 67, 48, 35, -22.5, -25, 48, 35);
                 XXX.restore();
             }
@@ -7223,6 +7921,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1577, 103, 48, 35, -22.1, -25.4, 48, 35);
                 XXX.restore();
             }
@@ -7231,6 +7933,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1578, 141, 48, 35, -20.5, -28, 48, 35);
                 XXX.restore();
             }
@@ -7239,6 +7945,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1573, 187, 48, 35, -24.3, -26.6, 48, 35);
                 XXX.restore();
             }
@@ -7247,6 +7957,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1574, 226, 48, 35, -25, -26.5, 48, 35);
                 XXX.restore();
                 this.doMagic = true;
@@ -7256,6 +7970,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1574, 226, 48, 35, -25, -26.5, 48, 35);
                 XXX.restore();
                 if (this.doMagic)
@@ -7281,6 +7999,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1574, 226, 48, 35, -25, -26.5, 48, 35);
                 XXX.restore();
             }
@@ -7289,6 +8011,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1574, 226, 48, 35, -25, -26.5, 48, 35);
                 XXX.restore();
                 this.castingCooldown = new Date().getTime();
@@ -7307,6 +8033,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 674, 1294, 47, 45, -1/2 * 47 * 0.88 + 0.7, -1/2 * 45 * 0.88 - 10, 47 * 0.88, 45 * 0.88);
                 XXX.restore();
             }
@@ -7315,6 +8045,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 675, 1349, 47, 45, -1/2 * 47 * 0.88 + 0.8, -1/2 * 45 * 0.88 - 6, 47 * 0.88, 45 * 0.88);
                 XXX.restore();
             }
@@ -7323,6 +8057,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 737, 1199, 47, 45, -1/2 * 47 * 0.88 + 3.9, -1/2 * 45 * 0.88 - 8, 47 * 0.75, 45 * 0.88);
                 XXX.restore();
             }
@@ -7331,6 +8069,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 733, 1246, 47, 45, -1/2 * 47 * 0.88 + 1.4, -1/2 * 45 * 0.88 - 7.5, 47 * 0.82, 45 * 0.88);
                 XXX.restore();
             }
@@ -7339,6 +8081,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 733, 1293, 47, 45, -1/2 * 47 * 0.88 + 3.6, -1/2 * 45 * 0.88 - 7, 47 * 0.72, 45 * 0.88);
                 XXX.restore();
             }
@@ -7347,6 +8093,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 733, 1350, 47, 45, -1/2 * 47 * 0.88 + 2.5, -1/2 * 45 * 0.88 - 7.8, 47 * 0.78, 45 * 0.88);
                 XXX.restore();
             }
@@ -7355,6 +8105,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 737, 1199, 47, 45, -1/2 * 47 * 0.88 + 3.9, -1/2 * 45 * 0.88 - 8, 47 * 0.75, 45 * 0.88);
                 XXX.restore();
             }
@@ -7363,6 +8117,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 733, 1246, 47, 45, -1/2 * 47 * 0.88 + 1.4, -1/2 * 45 * 0.88 - 7.5, 47 * 0.82, 45 * 0.88);
                 XXX.restore();
             }
@@ -7371,6 +8129,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 733, 1293, 47, 45, -1/2 * 47 * 0.88 + 3.6, -1/2 * 45 * 0.88 - 7, 47 * 0.72, 45 * 0.88);
                 XXX.restore();
             }
@@ -7379,6 +8141,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 733, 1350, 47, 45, -1/2 * 47 * 0.88 + 2.5, -1/2 * 45 * 0.88 - 7.8, 47 * 0.78, 45 * 0.88);
                 XXX.restore();
             }
@@ -7387,6 +8153,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 737, 1199, 47, 45, -1/2 * 47 * 0.88 + 3.9, -1/2 * 45 * 0.88 - 8, 47 * 0.75, 45 * 0.88);
                 XXX.restore();
             }
@@ -7395,6 +8165,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 675, 1349, 47, 45, -1/2 * 47 * 0.88 + 0.8, -1/2 * 45 * 0.88 - 6, 47 * 0.88, 45 * 0.88);
                 XXX.restore();
             }
@@ -7403,6 +8177,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 674, 1294, 47, 45, -1/2 * 47 * 0.88 + 0.7, -1/2 * 45 * 0.88 - 10, 47 * 0.88, 45 * 0.88);
                 XXX.restore();
                 this.doMagic = true;
@@ -7412,6 +8190,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 679, 1250, 47, 45, -1/2 * 47 * 0.88 + 0, -1/2 * 45 * 0.88 - 8, 47 * 0.88, 45 * 0.88);
                 XXX.restore();
                 if (this.doMagic)
@@ -7426,6 +8208,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 674, 1294, 47, 45, -1/2 * 47 * 0.88 + 0.7, -1/2 * 45 * 0.88 - 10, 47 * 0.88, 45 * 0.88);
                 XXX.restore();
                 this.castingCooldown = new Date().getTime();
@@ -7443,6 +8229,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1635, 2, 49, 33, -29, -23, 49 * 1.2, 33);
                 XXX.restore();
             }
@@ -7451,6 +8241,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1636, 33, 49, 33, -27.5, -23, 49 * 1.2, 33);
                 XXX.restore();
             }
@@ -7459,6 +8253,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1635, 60, 49, 33, -29, -25, 49 * 1.2, 33);
                 XXX.restore();
             }
@@ -7467,6 +8265,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1635, 89, 49, 33, -29, -24, 49 * 1.2, 33);
                 XXX.restore();
             }
@@ -7475,6 +8277,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1632, 118, 49, 33, -30.25, -25, 49 * 1.2, 33);
                 XXX.restore();
             }
@@ -7483,6 +8289,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1632, 146, 49, 33, -30, -25, 49 * 1.2, 33);
                 XXX.restore();
             }
@@ -7491,6 +8301,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1635, 177, 49, 33, -28.5, -26, 49 * 1.2, 33);
                 XXX.restore();
                 this.doMagic = true
@@ -7500,6 +8314,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1635, 207, 49, 33, -29.5, -23, 49 * 1.2, 33);
                 XXX.restore();
                 if (this.doMagic)
@@ -7515,6 +8333,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1637, 234, 49, 33, -29, -23, 49 * 1.2, 33);
                 XXX.restore();
                 this.castingCooldown = new Date().getTime();
@@ -7532,6 +8354,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 455, 103, 32, 30, -17, -25, 32 * 1.25, 30 * 1.25);
                 XXX.restore();
             }
@@ -7540,6 +8366,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 455, 144, 32, 30, -19, -25, 32 * 1.25, 30 * 1.25);
                 XXX.restore();
             }
@@ -7548,6 +8378,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 457, 175, 32, 30, -22, -28, 32 * 1.25, 30 * 1.25);
                 XXX.restore();
             }
@@ -7556,6 +8390,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 458, 207, 32, 30, -21, -27, 32 * 1.25, 30 * 1.25);
                 XXX.restore();
             }
@@ -7564,6 +8402,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 460, 236, 32, 30, -22, -30, 32 * 1.25, 30 * 1.25);
                 XXX.restore();
             }
@@ -7572,6 +8414,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 461, 267, 32, 30, -21, -33, 32 * 1.25, 30 * 1.25);
                 XXX.restore();
                 this.doMagic = true;
@@ -7581,6 +8427,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 461, 267, 32, 30, -21, -33, 32 * 1.25, 30 * 1.25);
                 XXX.restore();
                 if (this.doMagic)
@@ -7595,6 +8445,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 461, 267, 32, 30, -21, -33, 32 * 1.25, 30 * 1.25);
                 XXX.restore();
                 this.castingCooldown = new Date().getTime();
@@ -7619,6 +8473,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22);
                 XXX.restore();
             }
@@ -7627,6 +8485,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 638, 118, 80, 37, -24, -17, 46, 22);
                 XXX.restore();
             }
@@ -7635,6 +8497,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 639, 195, 80, 37, -26, -20, 46, 22);
                 XXX.restore();
             }
@@ -7643,6 +8509,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 643, 276, 80, 37, -28.5, -20, 48, 23);
                 XXX.restore();
             }
@@ -7651,6 +8521,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 653, 352, 80, 37, -26.5, -21, 48, 23);
                 XXX.restore();
             }
@@ -7667,6 +8541,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 51, 70, 105, 46, -26, -22, 70, 45);
                 XXX.restore();
             }
@@ -7675,6 +8553,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 169, 62, 105, 46, -26, -29, 70, 45);
                 XXX.restore();
             }
@@ -7683,6 +8565,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 282, 47, 105, 53, -33, -40, 70, 45);
                 XXX.restore();
             }
@@ -7691,6 +8577,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 399, 68, 105, 59, -38, -43, 72, 45);
                 XXX.restore();
             }
@@ -7699,6 +8589,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 520, 59, 105, 69, -28, -43, 72, 47);
                 XXX.restore();
             }
@@ -7714,6 +8608,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 400, 301, 60, 134, -24, -81, 60, 134);
                 XXX.restore();
             }
@@ -7722,6 +8620,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 393, 165, 60, 134, -27, -79, 60, 134);
                 XXX.restore();
             }
@@ -7730,6 +8632,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 400, 301, 60, 134, -24, -81, 60, 134);
                 XXX.restore();
             }
@@ -7738,6 +8644,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 411, 422, 60, 134, -26, -77, 60, 134);
                 XXX.restore();
             }
@@ -7746,6 +8656,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 411, 422, 60, 134, -26, -77, 60, 134);
                 XXX.restore();
             }
@@ -7754,6 +8668,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 497, 182, 60, 134, -26, -79, 60, 134);
                 XXX.restore();
             }
@@ -7769,6 +8687,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 7, 153, 80, 95, -1/2 * 80 + 3.4, -1/2 * 95 + -0.5, 80, 95);
                 XXX.restore();
             }
@@ -7777,6 +8699,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 4, 68, 80, 95, -1/2 * 80 + 2.4, -1/2 * 95 + -0.5, 80, 95);
                 XXX.restore();
             }
@@ -7785,6 +8711,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 7, 153, 80, 95, -1/2 * 80 + 3.4, -1/2 * 95 + -0.5, 80, 95);
                 XXX.restore();
             }
@@ -7793,6 +8723,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 9, 242, 80, 95, -1/2 * 80 + 3.9, -1/2 * 95 + -1.5, 80, 95);
                 XXX.restore();
             }
@@ -7801,6 +8735,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 16, 341, 80, 95, -1/2 * 80 + 4.7, -1/2 * 95 + -1.6, 80, 95);
                 XXX.restore();
             }
@@ -7809,6 +8747,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 21, 453, 80, 95, -1/2 * 80 + 5.6, -1/2 * 95 + -5, 80, 95);
                 XXX.restore();
             }
@@ -7824,6 +8766,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 132, 183, 108, 113, -1/2 * 108 + -1, -1/2 * 113 + 0, 108, 113);
                 XXX.restore();
             }
@@ -7832,6 +8778,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 131, 283, 108, 113, -1/2 * 108 + 0, -1/2 * 113 + 0, 108, 113);
                 XXX.restore();
             }
@@ -7840,6 +8790,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 133, 380, 108, 113, -1/2 * 108 + 0, -1/2 * 113 + 0, 108, 113);
                 XXX.restore();
             }
@@ -7848,6 +8802,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 133, 470, 108, 113, -1/2 * 108 + 0, -1/2 * 113 - 1, 108, 113);
                 XXX.restore();
             }
@@ -7856,6 +8814,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 270, 168, 108, 113, -1/2 * 108 + 1, -1/2 * 113 - 23, 108, 113);
                 XXX.restore();
             }
@@ -7864,6 +8826,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 268, 256, 108, 113, -1/2 * 108 + 2.5, -1/2 * 113 - 19, 108, 113);
                 XXX.restore();
             }
@@ -7872,6 +8838,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 265, 355, 108, 113, -1/2 * 108 + 3.5, -1/2 * 113 - 18.5, 108, 113);
                 XXX.restore();
             }
@@ -7880,6 +8850,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(dolls, 266, 467, 108, 113, -1/2 * 108 + 3, -1/2 * 113 + 3, 108, 113);
                 XXX.restore();
             }
@@ -7895,6 +8869,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 160, 14, 77, 75, -1/2 * 77 * 1.3 + 4, -1/2 * 75 * 1.3 - 17, 77 * 1.3, 75 * 1.3);
                 XXX.restore();
             }
@@ -7903,6 +8881,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 161, 101, 77, 75, -1/2 * 77 * 1.3 + 1, -1/2 * 75 * 1.3 - 13, 77 * 1.3, 75 * 1.3);
                 XXX.restore();
             }
@@ -7911,6 +8893,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 160, 14, 77, 75, -1/2 * 77 * 1.3 + 4, -1/2 * 75 * 1.3 - 17, 77 * 1.3, 75 * 1.3);
                 XXX.restore();
             }
@@ -7919,6 +8905,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 166, 190, 77, 75, -1/2 * 77 * 1.3 - 0.2, -1/2 * 75 * 1.3 - 22, 77 * 1.3, 75 * 1.3);
                 XXX.restore();
             }
@@ -7927,6 +8917,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 248, 9, 77, 75, -1/2 * 77 * 1.3 -0.5, -1/2 * 75 * 1.3 - 23, 77 * 1.3, 75 * 1.3);
                 XXX.restore();
             }
@@ -7935,6 +8929,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 258, 99, 77, 75, -1/2 * 77 * 1.3 + 0.5, -1/2 * 75 * 1.3 - 15, 77 * 1.3, 75 * 1.3);
                 XXX.restore();
             }
@@ -7943,6 +8941,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polpol, 258, 205, 77, 75, -1/2 * 77 * 1.3 - 3, -1/2 * 75 * 1.3 - 3.5, 77 * 1.3, 75 * 1.3);
                 XXX.restore();
             }
@@ -7953,17 +8955,23 @@ function Adventurer()
             this.stageEngine(4, 0.18, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
 
             //ATTACK ANIMATION
+            var translucence = 0.90;
+            if (this.subtlety)
+            {
+                translucence = 0.4;
+            }
+
             if (Math.floor(this.stage) <= 0)
             {
-                this.flashAnimate(90, this.rotation, 0.90, [{image: mofu, imgX: 327, imgY: 43, portionW: 33, portionH: 77, adjX: -7, adjY: -92, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 365, imgY: 43, portionW: 33, portionH: 77, adjX: -7, adjY: -92, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 404, imgY: 43.5, portionW: 33, portionH: 77, adjX: -7, adjY: -92, width: 33 * 1.5, height: 77 * 1.5}]);
+                this.flashAnimate(90, this.rotation, translucence, [{image: mofu, imgX: 327, imgY: 43, portionW: 33, portionH: 77, adjX: -7, adjY: -92, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 365, imgY: 43, portionW: 33, portionH: 77, adjX: -7, adjY: -92, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 404, imgY: 43.5, portionW: 33, portionH: 77, adjX: -7, adjY: -92, width: 33 * 1.5, height: 77 * 1.5}]);
             }
             else if (Math.floor(this.stage) <= 1)
             {
-                this.flashAnimate(90, this.rotation, 0.90, [{image: mofu, imgX: 325, imgY: 222, portionW: 33, portionH: 77, adjX: -6, adjY: -102, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 366, imgY: 222, portionW: 33, portionH: 77, adjX: -6, adjY: -102, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 406, imgY: 222, portionW: 33, portionH: 77, adjX: -6, adjY: -102, width: 33 * 1.5, height: 77 * 1.5}]);
+                this.flashAnimate(90, this.rotation, translucence, [{image: mofu, imgX: 325, imgY: 222, portionW: 33, portionH: 77, adjX: -6, adjY: -102, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 366, imgY: 222, portionW: 33, portionH: 77, adjX: -6, adjY: -102, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 406, imgY: 222, portionW: 33, portionH: 77, adjX: -6, adjY: -102, width: 33 * 1.5, height: 77 * 1.5}]);
             }
             else if (Math.floor(this.stage) >= 2)
             {
-                this.flashAnimate(90, this.rotation, 0.90, [{image: mofu, imgX: 329, imgY: 133, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 370.5, imgY: 134, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 409.5, imgY: 134, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}]);
+                this.flashAnimate(90, this.rotation, translucence, [{image: mofu, imgX: 329, imgY: 133, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 370.5, imgY: 134, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 409.5, imgY: 134, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}]);
             }
         }
         //ZER0's BLADE
@@ -7977,6 +8985,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zer0, 206, 16, 76, 75, -1/2 * 76 * 3 + 175, -1/2 * 75 * 3 + 141, -1/2 * 76 * 3, -1/2 * 75 * 3);
                 XXX.restore();
             }
@@ -7985,6 +8997,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zer0, 211, 84, 76, 75, -1/2 * 76 * 3 + 175, -1/2 * 75 * 3 + 141, -1/2 * 76 * 3, -1/2 * 75 * 3);
                 XXX.restore();
             }
@@ -7993,6 +9009,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zer0, 213, 157, 76, 75, -1/2 * 76 * 3 + 176, -1/2 * 75 * 3 + 141, -1/2 * 76 * 3, -1/2 * 75 * 3);
                 XXX.restore();
             }
@@ -8001,6 +9021,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zer0, 218, 224, 76, 75, -1/2 * 76 * 3 + 178, -1/2 * 75 * 3 + 138, -1/2 * 76 * 3, -1/2 * 75 * 3);
                 XXX.restore();
             }
@@ -8009,6 +9033,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zer0, 311, 77, 76, 75, -1/2 * 76 * 3 + 177, -1/2 * 75 * 3 + 137, -1/2 * 76 * 3, -1/2 * 75 * 3);
                 XXX.restore();
             }
@@ -8017,6 +9045,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zer0, 318, 148, 76, 75, -1/2 * 76 * 3 + 177, -1/2 * 75 * 3 + 138, -1/2 * 76 * 3, -1/2 * 75 * 3);
                 XXX.restore();
             }
@@ -8026,6 +9058,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zer0, 317, 223, 76, 75, -1/2 * 76 * 3 + 178, -1/2 * 75 * 3 + 138, -1/2 * 76 * 3, -1/2 * 75 * 3);
                 XXX.restore();
             }
@@ -8040,6 +9076,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zer0, 113, 149, 76, 75, -1/2 * 76 * 3 + 175, -1/2 * 75 * 3 + 136, -1/2 * 76 * 3, -1/2 * 75 * 3);
                 XXX.restore();
             }
@@ -8048,6 +9088,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zer0, 113, 149, 76, 75, -1/2 * 76 * 3 + 175, -1/2 * 75 * 3 + 136, -1/2 * 76 * 3, -1/2 * 75 * 3);
                 XXX.restore();
             }
@@ -8056,6 +9100,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zer0, 113, 149, 76, 75, -1/2 * 76 * 3 + 175, -1/2 * 75 * 3 + 136, -1/2 * 76 * 3, -1/2 * 75 * 3);
                 XXX.restore();
             }
@@ -8064,6 +9112,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zer0, 113, 149, 76, 75, -1/2 * 76 * 3 + 175, -1/2 * 75 * 3 + 136, -1/2 * 76 * 3, -1/2 * 75 * 3);
                 XXX.restore();
             }
@@ -8072,6 +9124,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zer0, 116, 224, 76, 75, -1/2 * 76 * 3 + 175.5, -1/2 * 75 * 3 + 136, -1/2 * 76 * 3, -1/2 * 75 * 3);
                 XXX.restore();
             }
@@ -8080,6 +9136,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(zer0, 22, 151, 76, 75, -1/2 * 76 * 3 + 177, -1/2 * 75 * 3 + 133, -1/2 * 76 * 3, -1/2 * 75 * 3);
                 XXX.restore();
             }
@@ -8095,6 +9155,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 187, 132, 64, 55, -65, -44, 64 * 1.5, 55 * 1.5);
                 XXX.restore();
             }
@@ -8103,6 +9167,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 252, 132, 64, 55, -64, -47, 64 * 1.5, 55 * 1.5);
                 XXX.restore();
             }
@@ -8111,6 +9179,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 190, 190, 64, 55, -51, -52.5, 64 * 1.5, 55 * 1.5);
                 XXX.restore();
             }
@@ -8119,6 +9191,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 242, 191, 64, 55, -48.5, -58, 64 * 1.5, 55 * 1.5);
                 XXX.restore();
             }
@@ -8127,6 +9203,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 187, 245, 64, 55, -42, -60, 64 * 1.5, 55 * 1.5);
                 XXX.restore();
             }
@@ -8135,6 +9215,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 239, 250, 64, 55, -36, -51, 64 * 1.5, 55 * 1.5);
                 XXX.restore();
             }
@@ -8143,6 +9227,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 186, 307, 64, 55, -37, -49, 64 * 1.5, 55 * 1.5);
                 XXX.restore();
             }
@@ -8153,15 +9241,25 @@ function Adventurer()
             this.stageEngine(7, 0.23, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
 
             //ATTACK ANIMATION
+            var translucence = 0.90;
+            if (this.subtlety)
+            {
+                translucence = 0.4;
+            }
+
             if (Math.floor(this.stage) <= 0)
             {
-                this.flashAnimate(90, this.rotation, 0.90, [{image: mofu, imgX: 60, imgY: 404, portionW: 66, portionH: 65, adjX: -58, adjY: -52, width: 66 * 1.5, height: 65 * 1.5}, {image: mofu, imgX: 56, imgY: 353, portionW: 66, portionH: 65, adjX: -63, adjY: -52, width: 66 * 1.5, height: 65 * 1.5}, {image: mofu, imgX: 43, imgY: 131, portionW: 66, portionH: 65, adjX: -63, adjY: -47, width: 66 * 1.5, height: 65 * 1.5}, {image: mofu, imgX: 60, imgY: 404, portionW: 66, portionH: 65, adjX: -58, adjY: -52, width: 66 * 1.5, height: 65 * 1.5}, {image: mofu, imgX: 56, imgY: 353, portionW: 66, portionH: 65, adjX: -63, adjY: -52, width: 66 * 1.5, height: 65 * 1.5}]);
+                this.flashAnimate(90, this.rotation, translucence, [{image: mofu, imgX: 60, imgY: 404, portionW: 66, portionH: 65, adjX: -58, adjY: -52, width: 66 * 1.5, height: 65 * 1.5}, {image: mofu, imgX: 56, imgY: 353, portionW: 66, portionH: 65, adjX: -63, adjY: -52, width: 66 * 1.5, height: 65 * 1.5}, {image: mofu, imgX: 43, imgY: 131, portionW: 66, portionH: 65, adjX: -63, adjY: -47, width: 66 * 1.5, height: 65 * 1.5}, {image: mofu, imgX: 60, imgY: 404, portionW: 66, portionH: 65, adjX: -58, adjY: -52, width: 66 * 1.5, height: 65 * 1.5}, {image: mofu, imgX: 56, imgY: 353, portionW: 66, portionH: 65, adjX: -63, adjY: -52, width: 66 * 1.5, height: 65 * 1.5}]);
             }
             else if (Math.floor(this.stage) <= 1)
             {
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 109, 127, 66, 65, -60, -55, 66 * 1.5, 65 * 1.5);
                 XXX.restore();
             }
@@ -8170,6 +9268,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 41, 180, 66, 65, -56, -70, 66 * 1.5, 65 * 1.5);
                 XXX.restore();
             }
@@ -8178,6 +9280,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 97, 186, 66, 65, -48, -65, 66 * 1.5, 65 * 1.5);
                 XXX.restore();
             }
@@ -8186,6 +9292,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 41, 245, 66, 65, -44, -62, 66 * 1.5, 65 * 1.5);
                 XXX.restore();
             }
@@ -8194,6 +9304,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 92, 248, 66, 65, -38, -55, 66 * 1.5, 65 * 1.5);
                 XXX.restore();
             }
@@ -8202,6 +9316,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 40, 306, 66, 65, -38, -51.5, 66 * 1.5, 65 * 1.5);
                 XXX.restore();
             }
@@ -8217,6 +9335,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 640, 106, 57, 57, -43.5, -51, 57 * 1.65, 57 * 1.65);
                 XXX.restore();
             }
@@ -8225,6 +9347,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 701, 110, 57, 57, -43, -49, 57 * 1.65, 57 * 1.65);
                 XXX.restore();
             }
@@ -8233,6 +9359,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 769, 110, 57, 57, -46.5, -52, 57 * 1.65, 57 * 1.65);
                 XXX.restore();
             }
@@ -8241,6 +9371,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 830, 107, 57, 57, -42, -56, 57 * 1.65, 57 * 1.65);
                 XXX.restore();
             }
@@ -8249,6 +9383,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 892, 104, 57, 57, -45, -62, 57 * 1.65, 57 * 1.65);
                 XXX.restore();
             }
@@ -8264,6 +9402,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 449, 456, 83, 54, -1/2 * 83 * 1.5 + 4, -1/2 * 54 * 1.5 - 0.25, 83 * 1.4, 54 * 1.4);
                 XXX.restore();
             }
@@ -8272,6 +9414,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 521, 454, 83, 54, -1/2 * 83 * 1.5 + 17, -1/2 * 54 * 1.5 + 1, 83 * 1.4, 54 * 1.4);
                 XXX.restore();
             }
@@ -8280,6 +9426,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 449, 456, 83, 54, -1/2 * 83 * 1.5 +4, -1/2 * 54 * 1.5 - 0.25, 83 * 1.4, 54 * 1.4);
                 XXX.restore();
             }
@@ -8288,6 +9438,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 594, 457, 83, 54, -1/2 * 83 * 1.5 + 6.5, -1/2 * 54 * 1.5 + 0, 83 * 1.4, 54 * 1.4);
                 XXX.restore();
             }
@@ -8296,6 +9450,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 675, 454, 83, 54, -1/2 * 83 * 1.5 + 5, -1/2 * 54 * 1.5 - 4, 83 * 1.4, 54 * 1.4);
                 XXX.restore();
             }
@@ -8304,6 +9462,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 745, 447, 83, 54, -1/2 * 83 * 1.5 - 1, -1/2 * 54 * 1.5 - 8.25, 83 * 1.4, 54 * 1.4);
                 XXX.restore();
             }
@@ -8312,6 +9474,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 838, 449, 83, 54, -1/2 * 83 * 1.5 + 2.75, -1/2 * 54 * 1.5 - 4, 83 * 1.4, 54 * 1.4);
                 XXX.restore();
             }
@@ -8320,6 +9486,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 932, 448, 83, 54, -1/2 * 83 * 1.5 + 2.25, -1/2 * 54 * 1.5 - 1.45, 83 * 1.4, 54 * 1.4);
                 XXX.restore();
             }
@@ -8335,6 +9505,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(poly, 207, 143, 55, 58, -34, -39, 55 * 1.15, 58 * 1.15);
                 XXX.restore();
             }
@@ -8343,6 +9517,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(poly, 260, 145, 55, 58, -30, -42, 55 * 1.15, 58 * 1.15);
                 XXX.restore();
             }
@@ -8351,6 +9529,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(poly, 307, 147, 55, 58, -31, -40, 55 * 1.15, 58 * 1.15);
                 XXX.restore();
             }
@@ -8359,6 +9541,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(poly, 356, 147, 55, 58, -33, -39, 55 * 1.15, 58 * 1.15);
                 XXX.restore();
             }
@@ -8367,6 +9553,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(poly, 400, 142, 55, 58, -30, -47, 55 * 1.15, 58 * 1.15);
                 XXX.restore();
             }
@@ -8375,6 +9565,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(poly, 452, 141, 55, 58, -31, -51, 55 * 1.15, 58 * 1.15);
                 XXX.restore();
             }
@@ -8390,6 +9584,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 917, 566, 96, 86, -18, -31, 88, 86);
                 XXX.restore();
             }
@@ -8398,6 +9596,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 918, 487, 96, 86, -12, -39, 88, 86);
                 XXX.restore();
             }
@@ -8406,6 +9608,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 915, 421, 96, 86, -16, -57, 88, 86);
                 XXX.restore();
             }
@@ -8414,6 +9620,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 909, 342, 96, 86, -22, -67, 88, 86);
                 XXX.restore();
             }
@@ -8422,6 +9632,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 905, 239, 96, 86, -29, -77, 88, 86);
                 XXX.restore();
             }
@@ -8430,6 +9644,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 898, 100, 96, 86, -35, -81, 88, 86);
                 XXX.restore();
             }
@@ -8438,6 +9656,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 825, 1, 96, 86, -35, -78, 88, 86);
                 XXX.restore();
             }
@@ -8446,6 +9668,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 788, 111, 96, 86, -48, -75, 88, 86);
                 XXX.restore();
             }
@@ -8461,6 +9687,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 46, 748, 123, 101, -1/2* 123 * 0.74 + 2, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74);
                 XXX.restore();
             }
@@ -8469,6 +9699,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 180, 749, 123, 101, -1/2* 123 * 0.74 + 2, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74);
                 XXX.restore();
             }
@@ -8477,6 +9711,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 329, 747, 123, 101, -1/2* 123 * 0.74 + 2, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74);
                 XXX.restore();
             }
@@ -8485,6 +9723,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 481, 742, 123, 101, -1/2* 123 * 0.74 + 1, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74);
                 XXX.restore();
             }
@@ -8493,6 +9735,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 614, 742, 123, 101, -1/2* 123 * 0.74 + 1.5, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74);
                 XXX.restore();
             }
@@ -8501,6 +9747,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 711, 741, 123, 101, -1/2* 123 * 0.74 + 9.7, -1/2* 101 * 0.74 - 23, 123 * 0.74, 101 * 0.74);
                 XXX.restore();
             }
@@ -8509,6 +9759,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 10, 857, 123, 89, -1/2* 123 * 0.74 + 10, -1/2* 89 * 0.74 - 28, 123 * 0.74, 89 * 0.74);
                 XXX.restore();
             }
@@ -8524,6 +9778,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 7, 1252, 203, 137, -1/2* 203 * 0.65 -9.9, -1/2* 137 * 0.65 - 32, 203 * 0.65, 137 * 0.65);
                 XXX.restore();
             }
@@ -8532,6 +9790,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 181, 1247, 203, 137, -1/2* 203 * 0.65 -11, -1/2* 137 * 0.65 - 33.25, 203 * 0.65, 137 * 0.65);
                 XXX.restore();
             }
@@ -8540,6 +9802,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 350, 1241, 203, 137, -1/2* 203 * 0.65 -11, -1/2* 137 * 0.65 - 33.25, 203 * 0.65, 137 * 0.65);
                 XXX.restore();
             }
@@ -8548,6 +9814,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 509, 1245, 203, 137, -1/2* 203 * 0.65 -11, -1/2* 137 * 0.65 - 33.25, 203 * 0.65, 137 * 0.65);
                 XXX.restore();
             }
@@ -8556,6 +9826,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 6, 1395, 203, 137, -1/2* 203 * 0.65 -11, -1/2* 137 * 0.65 - 34.25, 203 * 0.65, 137 * 0.65);
                 XXX.restore();
             }
@@ -8564,6 +9838,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 189, 1400, 203, 137, -1/2* 203 * 0.65 -9, -1/2* 137 * 0.65 - 36.25, 203 * 0.65, 137 * 0.65);
                 XXX.restore();
             }
@@ -8572,6 +9850,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 366, 1404, 203, 137, -1/2* 203 * 0.65 -8, -1/2* 137 * 0.65 - 38, 203 * 0.65, 137 * 0.65);
                 XXX.restore();
             }
@@ -8580,6 +9862,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 545, 1403, 203, 137, -1/2* 203 * 0.65 -5.5, -1/2* 137 * 0.65 - 39, 203 * 0.65, 137 * 0.65);
                 XXX.restore();
             }
@@ -8595,6 +9881,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 373, 2, 90, 96, -55, -41, 90, 96);
                 XXX.restore();
             }
@@ -8603,6 +9893,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 455, 2, 90, 96, -40, -44, 90, 96);
                 XXX.restore();
             }
@@ -8611,6 +9905,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 529, 2, 90, 96, -44, -39, 90, 96);
                 XXX.restore();
             }
@@ -8619,6 +9917,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 600, 2, 90, 96, -45, -44, 90, 96);
                 XXX.restore();
             }
@@ -8627,6 +9929,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 696, 2, 90, 96, -32, -44, 90, 96);
                 XXX.restore();
             }
@@ -8635,6 +9941,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 798, 2, 90, 96, -32, -48, 90, 96);
                 XXX.restore();
             }
@@ -8643,6 +9953,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 896, 2, 90, 96, -36, -46, 90, 96);
                 XXX.restore();
             }
@@ -8651,6 +9965,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 996, 2, 90, 96, -42, -71.5, 90, 96);
                 XXX.restore();
             }
@@ -8659,6 +9977,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 1085, 2, 90, 96, -49, -84, 90, 96);
                 XXX.restore();
             }
@@ -8675,6 +9997,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 44, 1406, 62, 139, -29.35, -85.5, 62 * 1.05, 139 * 1.05);
                 XXX.restore();
             }
@@ -8684,6 +10010,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 143, 1411, 62, 138, -28.86, -80, 62 * 1.05, 139 * 1.05);
                 XXX.restore();
             }
@@ -8693,6 +10023,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 237, 1411, 62, 138, -28.86, -80, 62 * 1.05, 139 * 1.05);
                 XXX.restore();
             }
@@ -8702,6 +10036,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 310, 1416, 62, 138, -28.86, -77.5, 62 * 1.05, 139 * 1.05);
                 XXX.restore();
             }
@@ -8711,6 +10049,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 381, 1417, 62, 138, -28.86, -77.5, 62 * 1.05, 139 * 1.05);
                 XXX.restore();
             }
@@ -8720,6 +10062,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theng, 450, 1417, 62, 138, -27.8, -77.5, 62 * 1.05, 139 * 1.05);
                 XXX.restore();
             }
@@ -8735,6 +10081,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 3, 189, 100, 97, -16, -80, 120, 116.4);
                 XXX.restore();
             }
@@ -8743,6 +10093,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 202, 616, 100, 97, -16, -28, 120, 116.4);
                 XXX.restore();
             }
@@ -8751,6 +10105,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 204, 670, 100, 97, -16, -95, 120, 116.4);
                 XXX.restore();
             }
@@ -8759,6 +10117,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 308, 669, 100, 97, -24, -97, 120, 116.4);
                 XXX.restore();
             }
@@ -8767,6 +10129,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 403, 669, 100, 97, -33, -108, 120, 116.4);
                 XXX.restore();
             }
@@ -8775,6 +10141,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 491, 671, 100, 97, -35, -109, 120, 116.4);
                 XXX.restore();
             }
@@ -8783,6 +10153,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 558, 670, 100, 97, -62, -108, 120, 116.4);
                 XXX.restore();
             }
@@ -8804,6 +10178,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3351, 187, 110, 85, -50, -72, 121, 93.5);
                 XXX.restore();
             }
@@ -8817,6 +10195,10 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(verse, 3462, 184, 110, 85, -58, -71, 121, 93.5);
                     XXX.restore();
                 }
@@ -8825,6 +10207,10 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(verse, 3296, 269, 110, 85, -64, -67, 121, 93.5);
                     XXX.restore();
                 }
@@ -8833,6 +10219,10 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(verse, 3401, 271, 110, 85, -68, -75, 121, 93.5);
                     XXX.restore();
                 }
@@ -8841,6 +10231,10 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(verse, 3495, 274, 110, 85, -75, -72, 121, 93.5);
                     XXX.restore();
                 }
@@ -8849,6 +10243,10 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(verse, 3575, 274, 110, 85, -82, -73, 121, 93.5);
                     XXX.restore();
                 }
@@ -8857,6 +10255,10 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(verse, 3666, 274, 110, 85, -69, -72, 121, 93.5);
                     XXX.restore();
                 }
@@ -8870,6 +10272,10 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(verse, 3306, 353, 110, 85, -43, -65, 121, 93.5);
                     XXX.restore();
                 }
@@ -8878,6 +10284,10 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(verse, 3429, 357, 110, 85, -41, -57, 121, 93.5);
                     XXX.restore();
                 }
@@ -8886,6 +10296,10 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(verse, 3530, 356, 110, 85, -46, -63, 121, 93.5);
                     XXX.restore();
                 }
@@ -8894,6 +10308,10 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(verse, 3626, 365, 110, 85, -49, -52, 121, 93.5);
                     XXX.restore();
                 }
@@ -8910,6 +10328,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 138, 118, 113, 104, -68.75, -55, 101.7, 93.6);
                 XXX.restore();
             }
@@ -8918,6 +10340,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 301, 145, 113, 104, -55.75, -60, 101.7, 93.6);
                 XXX.restore();
             }
@@ -8926,6 +10352,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 428, 163, 113, 104, -49, -56, 101.7, 93.6);
                 XXX.restore();
             }
@@ -8934,6 +10364,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 133, 229, 113, 104, -48, -62.5, 101.7, 93.6);
                 XXX.restore();
             }
@@ -8942,6 +10376,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 276, 252, 113, 104, -38, -63, 101.7, 93.6);
                 XXX.restore();
             }
@@ -8950,6 +10388,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 393, 275, 113, 104, -40.5, -51.3, 101.7, 93.6);
                 XXX.restore();
             }
@@ -8965,6 +10407,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 68, 381, 143, 141, -45, -65, 100.1, 98.7);
                 XXX.restore();
             }
@@ -8973,6 +10419,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 234, 391, 143, 141, -42, -76, 100.1, 98.7);
                 XXX.restore();
             }
@@ -8981,6 +10431,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 394, 414, 143, 141, -48, -79, 100.1, 98.7);
                 XXX.restore();
             }
@@ -8989,6 +10443,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 565, 413, 143, 141, -52, -86, 100.1, 98.7);
                 XXX.restore();
             }
@@ -8997,6 +10455,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 714, 396, 143, 141, -67, -89, 100.1, 98.7);
                 XXX.restore();
             }
@@ -9012,6 +10474,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 382, 104, 53, 76, -39, -65, 53, 76);
                 XXX.restore();
             }
@@ -9020,6 +10486,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 434, 104, 53, 76, -37.5, -67, 53, 76);
                 XXX.restore();
             }
@@ -9028,6 +10498,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 484, 104, 53, 76, -35.25, -68, 53, 76);
                 XXX.restore();
             }
@@ -9036,6 +10510,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 535, 104, 53, 76, -28.5, -71, 53, 76);
                 XXX.restore();
             }
@@ -9044,6 +10522,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 591, 104, 53, 76, -21.5, -73.75, 53, 76);
                 XXX.restore();
             }
@@ -9059,6 +10541,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.2;
+                }
                 XXX.drawImage(balkur, 30, 1125, 124, 101, -1/2 * 124 + 7, -1/2 * 101 - 22.4, 124, 101);
                 XXX.drawImage(balkur, 30, 1125, 124, 101, -1/2 * 124 + 7, -1/2 * 101 - 22.4, 124, 101);
                 XXX.restore();
@@ -9068,6 +10554,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.2;
+                }
                 XXX.drawImage(balkur, 163, 1120, 93, 122, -1/2 * 93 + 0.6, -1/2 * 122 - 20, 93, 122);
                 XXX.drawImage(balkur, 163, 1120, 93, 122, -1/2 * 93 + 0.6, -1/2 * 122 - 20, 93, 122);
                 XXX.restore();
@@ -9077,6 +10567,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.2;
+                }
                 XXX.drawImage(balkur, 289, 1115, 93, 122, -1/2 * 93 + 2.35, -1/2 * 122 - 20.75, 93, 122);
                 XXX.drawImage(balkur, 289, 1115, 93, 122, -1/2 * 93 + 2.35, -1/2 * 122 - 20.75, 93, 122);
                 XXX.restore();
@@ -9086,6 +10580,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.2;
+                }
                 XXX.drawImage(balkur, 438, 1110, 93, 122, -1/2 * 93 + 1.9, -1/2 * 122 - 20.75, 93, 122);
                 XXX.drawImage(balkur, 438, 1110, 93, 122, -1/2 * 93 + 1.9, -1/2 * 122 - 20.75, 93, 122);
                 XXX.restore();
@@ -9102,6 +10600,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.2;
+                }
                 XXX.drawImage(balkur, 170, 888, 120, 109, -1/2 * 120 * 0.75 - 2.25, -1/2 * 109 * 0.75 - 16.5, 120 * 0.75, 109 * 0.75);
                 XXX.drawImage(balkur, 170, 888, 120, 109, -1/2 * 120 * 0.75 - 2.25, -1/2 * 109 * 0.75 - 16.5, 120 * 0.75, 109 * 0.75);
                 XXX.restore();
@@ -9111,6 +10613,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.2;
+                }
                 XXX.drawImage(balkur, 286, 888, 120, 109, -1/2 * 120 * 0.75 + 4.15, -1/2 * 109 * 0.75 - 16.5, 120 * 0.625, 109 * 0.8);
                 XXX.drawImage(balkur, 286, 888, 120, 109, -1/2 * 120 * 0.75 + 4.15, -1/2 * 109 * 0.75 - 16.5, 120 * 0.625, 109 * 0.8);
                 XXX.restore();
@@ -9120,6 +10626,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.2;
+                }
                 XXX.drawImage(balkur, 401, 888, 120, 109, -1/2 * 120 * 0.75 + 4.15, -1/2 * 109 * 0.75 - 18, 120 * 0.625, 109 * 0.8);
                 XXX.drawImage(balkur, 401, 888, 120, 109, -1/2 * 120 * 0.75 + 4.15, -1/2 * 109 * 0.75 - 18, 120 * 0.625, 109 * 0.8);
                 XXX.restore();
@@ -9129,6 +10639,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.2;
+                }
                 XXX.drawImage(balkur, 532, 887, 120, 109, -1 / 2 * 120 * 0.75 - 0.65, -1 / 2 * 109 * 0.75 - 23, 120 * 0.725, 109 * 0.8);
                 XXX.drawImage(balkur, 532, 887, 120, 109, -1 / 2 * 120 * 0.75 - 0.65, -1 / 2 * 109 * 0.75 - 23, 120 * 0.725, 109 * 0.8);
                 XXX.restore();
@@ -9138,6 +10652,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.2;
+                }
                 XXX.drawImage(balkur, 666, 888, 120, 109, -1 / 2 * 120 * 0.75 - 0.65, -1 / 2 * 109 * 0.75 - 22, 120 * 0.725, 109 * 0.8);
                 XXX.drawImage(balkur, 666, 888, 120, 109, -1 / 2 * 120 * 0.75 - 0.65, -1 / 2 * 109 * 0.75 - 22, 120 * 0.725, 109 * 0.8);
                 XXX.restore();
@@ -9154,6 +10672,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2206, 75, 60, 52, -13, -51, 72, 64.8);
                 XXX.restore();
             }
@@ -9162,6 +10684,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2271, 74, 60, 52, -22.5, -54, 72, 64.8);
                 XXX.restore();
             }
@@ -9170,6 +10696,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2334, 71, 60, 52, -35, -54, 72, 64.8);
                 XXX.restore();
             }
@@ -9178,6 +10708,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2397, 69, 60, 52, -47, -56, 72, 64.8);
                 XXX.restore();
             }
@@ -9186,6 +10720,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2458, 67, 60, 52, -54, -54.5, 72, 64.8);
                 XXX.restore();
             }
@@ -9194,6 +10732,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2515, 66, 60, 52, -60.5, -51, 72, 64.8);
                 XXX.restore();
             }
@@ -9209,6 +10751,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(lodo, 11, 209, 59, 47,- 1/2 * 59 * 2 + 3.25, -1/2 * 47 * 2 - 1.5, 59 * 2, 47 * 2);
                 XXX.restore();
             }
@@ -9217,6 +10763,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(lodo, 70, 210, 59, 47,- 1/2 * 59 * 2 + 6.85, -1/2 * 47 * 2 + 0.75, 59 * 2, 47 * 2);
                 XXX.restore();
             }
@@ -9225,6 +10775,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(lodo, 124, 212, 59, 47,- 1/2 * 59 * 2 + 5.4, -1/2 * 47 * 2 + 0.9, 59 * 2, 47 * 2);
                 XXX.restore();
             }
@@ -9240,6 +10794,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(lodo, 185, 212, 59, 47,- 1/2 * 59 * 2 + 2.75, -1/2 * 47 * 2 - 0.5, 59 * 2, 47 * 2);
                 XXX.restore();
             }
@@ -9249,6 +10807,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(lodo, 124, 212, 59, 47,- 1/2 * 59 * 2 + 5.4, -1/2 * 47 * 2 + 0.9, 59 * 2, 47 * 2);
                 XXX.restore();
             }
@@ -9257,6 +10819,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(lodo, 70, 210, 59, 47,- 1/2 * 59 * 2 + 6.85, -1/2 * 47 * 2 + 0.75, 59 * 2, 47 * 2);
                 XXX.restore();
             }
@@ -9265,6 +10831,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(lodo, 11, 209, 59, 47,- 1/2 * 59 * 2 + 3.25, -1/2 * 47 * 2 - 1.5, 59 * 2, 47 * 2);
                 XXX.restore();
             }
@@ -9273,6 +10843,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(lodo, 133, 253, 59, 47,- 1/2 * 59 * 2 + 1, -1/2 * 47 * 2 - 2.75, 59 * 2, 47 * 2);
                 XXX.restore();
             }
@@ -9281,6 +10855,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(lodo, 78, 253, 59, 47,- 1/2 * 59 * 2 + 1, -1/2 * 47 * 2 - 5, 59 * 2, 47 * 2);
                 XXX.restore();
             }
@@ -9295,6 +10873,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(lodo, 15, 251, 59, 47,- 1/2 * 59 * 2 + 1.65, -1/2 * 47 * 2 - 9, 59 * 2, 47 * 2);
                 XXX.restore();
             }
@@ -9304,6 +10886,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(lodo, 78, 253, 59, 47,- 1/2 * 59 * 2 + 1, -1/2 * 47 * 2 - 5, 59 * 2, 47 * 2);
                 XXX.restore();
             }
@@ -9312,6 +10898,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(lodo, 133, 253, 59, 47,- 1/2 * 59 * 2 + 1, -1/2 * 47 * 2 - 2.75, 59 * 2, 47 * 2);
                 XXX.restore();
             }
@@ -9327,6 +10917,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2581, 78, 35, 37, -23, -50.5, 52.5, 55.5);
                 XXX.restore();
             }
@@ -9335,6 +10929,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2626, 78, 35, 37, -17.5, -53, 52.5, 55.5);
                 XXX.restore();
             }
@@ -9343,6 +10941,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2669, 78, 35, 37, -20, -54, 52.5, 55.5);
                 XXX.restore();
             }
@@ -9351,6 +10953,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2716, 78, 35, 37, -23, -50, 52.5, 55.5);
                 XXX.restore();
             }
@@ -9359,6 +10965,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2765, 78, 35, 37, -22, -47.5, 52.5, 55.5);
                 XXX.restore();
             }
@@ -9367,6 +10977,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2800, 78, 35, 37, -42, -43, 52.5, 55.5);
                 XXX.restore();
             }
@@ -9382,6 +10996,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2210, 1, 73, 63, -13, -60, 91.875, 78.75);
                 XXX.restore();
             }
@@ -9390,6 +11008,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2290, 1, 73, 63, -17.5, -60, 91.875, 78.75);
                 XXX.restore();
             }
@@ -9398,6 +11020,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2367, 1, 73, 63, -25, -61, 91.875, 78.75);
                 XXX.restore();
             }
@@ -9406,6 +11032,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2438, 1, 73, 63, -31, -61.5, 91.875, 78.75);
                 XXX.restore();
             }
@@ -9414,6 +11044,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2513, 1, 73, 63, -36, -64, 91.875, 78.75);
                 XXX.restore();
             }
@@ -9422,6 +11056,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2577, 1, 73, 63, -44, -69, 91.875, 78.75);
                 XXX.restore();
             }
@@ -9430,6 +11068,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2635, 1, 73, 63, -49.25, -69, 91.875, 78.75);
                 XXX.restore();
             }
@@ -9445,6 +11087,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2205, 203, 89, 88, -7, -80, 106.8, 105.6);
                 XXX.restore();
             }
@@ -9453,6 +11099,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2305, 203, 89, 88, -6, -83.5, 106.8, 105.6);
                 XXX.restore();
             }
@@ -9461,6 +11111,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2405, 203, 89, 88, -8, -85.5, 106.8, 105.6);
                 XXX.restore();
             }
@@ -9469,6 +11123,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2505, 203, 89, 88, -13.5, -87, 106.8, 105.6);
                 XXX.restore();
             }
@@ -9477,6 +11135,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2605, 203, 89, 88, -21, -90, 106.8, 105.6);
                 XXX.restore();
             }
@@ -9485,6 +11147,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2678, 203, 89, 88, -49, -93, 106.8, 105.6);
                 XXX.restore();
             }
@@ -9493,6 +11159,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2750, 203, 89, 88, -55, -92.5, 106.8, 105.6);
                 XXX.restore();
             }
@@ -9501,6 +11171,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2830, 203, 89, 88, -65, -90, 106.8, 105.6);
                 XXX.restore();
             }
@@ -9516,6 +11190,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 239, 547, 114, 82, -1/2 * 114 * 1.35 - 4.3, -1/2 * 82 * 1.35 - 27, 114 * 1.35, 82 * 1.35);
                 XXX.restore();
             }
@@ -9524,6 +11202,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 340, 540, 114, 82, -1/2 * 114 * 1.35 - 3, -1/2 * 82 * 1.35 - 34, 114 * 1.35, 82 * 1.35);
                 XXX.restore();
             }
@@ -9532,6 +11214,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 441, 534, 114, 82, -1/2 * 114 * 1.35 + 2, -1/2 * 82 * 1.35 - 44.5, 114 * 1.35, 82 * 1.35);
                 XXX.restore();
             }
@@ -9540,6 +11226,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 556, 533, 114, 82, -1/2 * 114 * 1.35 + 5, -1/2 * 82 * 1.35 - 49, 114 * 1.35, 82 * 1.35);
                 XXX.restore();
             }
@@ -9548,6 +11238,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 244, 628, 114, 82, -1/2 * 114 * 1.35 + 7, -1/2 * 82 * 1.35 - 40, 114 * 1.35, 82 * 1.35);
                 XXX.restore();
             }
@@ -9556,6 +11250,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 359, 630, 114, 82, -1/2 * 114 * 1.35 + 10.5, -1/2 * 82 * 1.35 - 32.5, 114 * 1.35, 82 * 1.35);
                 XXX.restore();
             }
@@ -9564,6 +11262,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 474, 642, 114, 82, -1/2 * 114 * 1.35 + 11.5, -1/2 * 82 * 1.35 - 17.5, 114 * 1.35, 82 * 1.35);
                 XXX.restore();
             }
@@ -9579,6 +11281,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 491, 830, 135, 135, -50, -90, 135, 135);
                 XXX.restore();
             }
@@ -9587,6 +11293,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 654, 827, 135, 135, -50, -93, 135, 135);
                 XXX.restore();
             }
@@ -9595,6 +11305,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 870, 837, 135, 135, -46, -85, 135, 135);
                 XXX.restore();
             }
@@ -9603,6 +11317,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1100, 838, 135, 135, -44, -80, 135, 135);
                 XXX.restore();
             }
@@ -9611,6 +11329,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1386, 832, 135, 135, -14, -81, 135, 135);
                 XXX.restore();
             }
@@ -9619,6 +11341,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1652, 828, 135, 135, -10, -79, 135, 135);
                 XXX.restore();
             }
@@ -9627,6 +11353,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 513, 993, 135, 135, -15, -82, 135, 135);
                 XXX.restore();
             }
@@ -9635,6 +11365,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 673, 990, 135, 135, -21, -83, 135, 135);
                 XXX.restore();
             }
@@ -9643,6 +11377,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 892, 981, 135, 135, -17, -93, 135, 135);
                 XXX.restore();
             }
@@ -9651,6 +11389,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1106, 971, 135, 135, -18, -113, 135, 135);
                 XXX.restore();
             }
@@ -9659,6 +11401,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1333, 963, 135, 135, -59, -124, 135, 135);
                 XXX.restore();
             }
@@ -9667,6 +11413,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1611, 961, 135, 135, -74, -124, 135, 135);
                 XXX.restore();
             }
@@ -9675,6 +11425,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 503, 1162, 135, 135, -75, -117, 135, 135);
                 XXX.restore();
             }
@@ -9683,6 +11437,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 680, 1158, 135, 135, -88, -112, 135, 135);
                 XXX.restore();
             }
@@ -9699,6 +11457,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 670, 161, 86, 53, -62.25, -52, 107.7, 66.25);
                 XXX.restore();
             }
@@ -9707,6 +11469,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 789, 161, 86, 53, -53.75, -50, 107.7, 66.25);
                 XXX.restore();
             }
@@ -9715,6 +11481,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 879, 161, 86, 53, -66.85, -52, 107.7, 66.25);
                 XXX.restore();
             }
@@ -9723,6 +11493,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 988, 161, 86, 53, -43.75, -52, 107.7, 66.25);
                 XXX.restore();
             }
@@ -9731,6 +11505,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 1075, 161, 86, 53, -47.25, -52, 107.7, 66.25);
                 XXX.restore();
             }
@@ -9746,6 +11524,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 669, 92, 110, 68, -55, -60, 110, 68);
                 XXX.restore();
             }
@@ -9754,6 +11536,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 785, 92, 110, 68, -49, -60, 110, 68);
                 XXX.restore();
             }
@@ -9762,6 +11548,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 884, 92, 110, 68, -49, -65, 110, 68);
                 XXX.restore();
             }
@@ -9770,6 +11560,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 972, 92, 110, 68, -49, -68, 110, 68);
                 XXX.restore();
             }
@@ -9785,6 +11579,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 667, 222, 73, 64, -51, -64, 91.25, 80);
                 XXX.restore();
             }
@@ -9793,6 +11591,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 732, 222, 73, 64, -49, -64, 91.25, 80);
                 XXX.restore();
             }
@@ -9801,6 +11603,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 801, 222, 73, 64, -51, -65, 91.25, 80);
                 XXX.restore();
             }
@@ -9809,6 +11615,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 876, 222, 73, 64, -50, -64, 91.25, 80);
                 XXX.restore();
             }
@@ -9817,6 +11627,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 955, 220, 73, 64, -46.5, -65, 91.25, 80);
                 XXX.restore();
             }
@@ -9825,6 +11639,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 1034, 222, 73, 64, -44.6, -63, 91.25, 80);
                 XXX.restore();
             }
@@ -9840,6 +11658,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2194, 128, 66, 72, -42, -102, 99, 108);
                 XXX.restore();
             }
@@ -9848,6 +11670,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2253, 128, 66, 72, -47.5, -103, 99, 108);
                 XXX.restore();
             }
@@ -9856,6 +11682,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2313, 128, 66, 72, -41.75, -103, 99, 108);
                 XXX.restore();
             }
@@ -9864,6 +11694,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2373, 128, 66, 72, -46.5, -102, 99, 108);
                 XXX.restore();
             }
@@ -9878,6 +11712,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2430, 128, 66, 72, -62, -104.5, 99, 108);
                 XXX.restore();
             }
@@ -9887,6 +11725,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2489, 128, 66, 72, -57.5, -105, 99, 108);
                 XXX.restore();
             }
@@ -9895,6 +11737,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2539, 128, 66, 72, -59.25, -103, 99, 108);
                 XXX.restore();
             }
@@ -9903,6 +11749,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2588, 128, 66, 72, -61.5, -104.5, 99, 108);
                 XXX.restore();
             }
@@ -9911,6 +11761,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2639, 128, 66, 72, -58, -104, 99, 108);
                 XXX.restore();
             }
@@ -9919,6 +11773,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2689, 128, 66, 72, -62, -104, 99, 108);
                 XXX.restore();
             }
@@ -9927,6 +11785,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(oldverse, 2744, 128, 66, 72, -51.5, -105, 99, 108);
                 XXX.restore();
             }
@@ -9942,6 +11804,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3909, 453, 57, 66, -41, -78, 89.1, 97.2);
                 XXX.restore();
             }
@@ -9950,6 +11816,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3841, 449, 57, 66, -29, -85, 89.1, 97.2);
                 XXX.restore();
             }
@@ -9958,6 +11828,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3772, 449, 57, 66, -33, -83.75, 89.1, 97.2);
                 XXX.restore();
             }
@@ -9966,6 +11840,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3701, 449, 57, 66, -34, -82, 89.1, 97.2);
                 XXX.restore();
             }
@@ -9974,6 +11852,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3645, 449, 57, 66, -32.5, -83, 89.1, 97.2);
                 XXX.restore();
             }
@@ -9982,6 +11864,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3591, 449, 57, 66, -40, -81.5, 89.1, 97.2);
                 XXX.restore();
             }
@@ -9990,6 +11876,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3541, 449, 57, 66, -48.25, -79, 89.1, 97.2);
                 XXX.restore();
             }
@@ -9998,6 +11888,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3496, 449, 57, 66, -59, -75, 89.1, 97.2);
                 XXX.restore();
             }
@@ -10006,6 +11900,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3453, 449, 57, 66, -65, -74, 89.1, 97.2);
                 XXX.restore();
             }
@@ -10014,6 +11912,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3402, 449, 57, 66, -74, -72.5, 89.1, 97.2);
                 XXX.restore();
             }
@@ -10022,6 +11924,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3333, 449, 57, 66, -89.5, -71, 89.1, 97.2);
                 XXX.restore();
             }
@@ -10037,6 +11943,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 334, 332, 54, 49, -60.25, -42, 54 * 1.4, 49 * 1.4);
                 XXX.restore();
             }
@@ -10045,6 +11955,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 390, 328, 54, 49, -56.25, -47, 54 * 1.4, 49 * 1.4);
                 XXX.restore();
             }
@@ -10053,6 +11967,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 453, 330, 54, 49, -44.25, -60, 54 * 1.4, 49 * 1.4);
                 XXX.restore();
             }
@@ -10061,6 +11979,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 516, 330, 54, 49, -35, -60, 54 * 1.4, 49 * 1.4);
                 XXX.restore();
             }
@@ -10069,6 +11991,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 576, 332, 54, 49, -30, -56, 54 * 1.4, 49 * 1.4);
                 XXX.restore();
             }
@@ -10077,6 +12003,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 634, 332, 54, 49, -25, -49, 54 * 1.4, 49 * 1.4);
                 XXX.restore();
             }
@@ -10085,6 +12015,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 680, 332, 54, 49, -16, -43, 54 * 1.4, 49 * 1.4);
                 XXX.restore();
             }
@@ -10100,6 +12034,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3552, 657, 50, 34, -30.25, -20, 50, 34);
                 XXX.restore();
             }
@@ -10108,6 +12046,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3618, 652, 50, 34, -31, -24, 50, 34);
                 XXX.restore();
             }
@@ -10116,6 +12058,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3683, 650, 50, 34, -30.25, -26, 50, 34);
                 XXX.restore();
             }
@@ -10124,6 +12070,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3745, 650, 50, 34, -27.5, -25, 50, 34);
                 XXX.restore();
             }
@@ -10132,6 +12082,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3811, 650, 50, 34, -22.5, -27, 50, 34);
                 XXX.restore();
             }
@@ -10140,6 +12094,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3875, 650, 50, 34, -16, -28.5, 50, 34);
                 XXX.restore();
             }
@@ -10148,6 +12106,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3937, 645, 50, 34, -17, -33.5, 50, 34);
                 XXX.restore();
             }
@@ -10163,6 +12125,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3585, 595, 73, 51, -41.25, -40, 73, 51);
                 XXX.restore();
             }
@@ -10171,6 +12137,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3660, 595, 73, 51, -37.25, -40, 73, 51);
                 XXX.restore();
             }
@@ -10179,6 +12149,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3729, 595, 73, 51, -35.25, -41, 73, 51);
                 XXX.restore();
             }
@@ -10187,6 +12161,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3797, 592, 58, 51, -24.25, -47, 58, 51);
                 XXX.restore();
             }
@@ -10195,6 +12173,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3847, 595, 58, 51, -23.5, -46, 58, 51);
                 XXX.restore();
             }
@@ -10203,6 +12185,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3893, 595, 58, 51, -23, -49, 58, 51);
                 XXX.restore();
             }
@@ -10211,6 +12197,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3942, 595, 58, 51, -21.5, -48.5, 58, 51);
                 XXX.restore();
             }
@@ -10226,6 +12216,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 11, 107, 73, 90, -51, -77, 73 * 1.1, 90 * 1.1);
                 XXX.restore();
             }
@@ -10234,6 +12228,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 124, 107, 73, 90, -57, -75, 73 * 1.1, 90 * 1.1);
                 XXX.restore();
             }
@@ -10242,6 +12240,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 239, 102, 73, 90, -56, -81, 73 * 1.1, 90 * 1.1);
                 XXX.restore();
             }
@@ -10250,6 +12252,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 356, 107, 73, 90, -56, -80, 73 * 1.1, 90 * 1.1);
                 XXX.restore();
             }
@@ -10258,6 +12264,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 468, 107, 73, 90, -58.5, -74, 73 * 1.1, 90 * 1.1);
                 XXX.restore();
             }
@@ -10266,6 +12276,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 569, 107, 73, 90, -57, -74, 73 * 1.1, 90 * 1.1);
                 XXX.restore();
             }
@@ -10274,6 +12288,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 682, 85, 73, 90, -51, -88, 73 * 1.1, 90 * 1.1);
                 XXX.restore();
             }
@@ -10282,6 +12300,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 784, 83, 73, 90, -42, -91, 73 * 1.1, 90 * 1.1);
                 XXX.restore();
             }
@@ -10290,6 +12312,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 873, 85, 73, 90, -33, -88, 73 * 1.1, 90 * 1.1);
                 XXX.restore();
             }
@@ -10298,6 +12324,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 971, 86, 73, 90, -24, -85, 73 * 1.1, 90 * 1.1);
                 XXX.restore();
             }
@@ -10306,6 +12336,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1082, 92, 73, 90, -14, -78, 73 * 1.1, 90 * 1.1);
                 XXX.restore();
             }
@@ -10314,6 +12348,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1204, 96, 73, 90, -9, -72, 73 * 1.1, 90 * 1.1);
                 XXX.restore();
             }
@@ -10329,6 +12367,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(furr, 131, 302, 63, 50, -31.5 * 1.6, -25 * 1.6, 63 * 1.6, 50 * 1.6);
                 XXX.restore();
             }
@@ -10337,6 +12379,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(furr, 130, 370, 63, 50, -31.5 * 1.6, -25 * 1.6, 63 * 1.6, 50 * 1.6);
                 XXX.restore();
             }
@@ -10345,6 +12391,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(furr, 132, 434, 63, 50, -31.5 * 1.6, -25 * 1.6, 63 * 1.6, 50 * 1.6);
                 XXX.restore();
             }
@@ -10353,6 +12403,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(furr, 133, 492, 63, 50, -31.5 * 1.6, -25 * 1.6, 63 * 1.6, 50 * 1.6);
                 XXX.restore();
             }
@@ -10361,6 +12415,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(furr, 131, 547, 63, 50, -31.5 * 1.6, -25 * 1.6, 63 * 1.6, 50 * 1.6);
                 XXX.restore();
             }
@@ -10369,6 +12427,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(furr, 128, 599, 63, 50, -31.5 * 1.6 - 1, -25 * 1.6 -10, 63 * 1.6, 50 * 1.6);
                 XXX.restore();
             }
@@ -10384,6 +12446,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 420, 360, 70, 68, -1/2 * 70 * 1.4, -1/2 * 68 * 1.4 - 14, 70 * 1.4, 68 * 1.4);
                 XXX.restore();
             }
@@ -10392,6 +12458,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 521, 347, 56, 103, -1/2 * 56 * 1.4 - 2, -1/2 * 103 * 1.4 - 10, 56 * 1.4, 103 * 1.4);
                 XXX.restore();
             }
@@ -10400,6 +12470,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 624, 346, 59, 118, -1/2 * 59 * 1.4 + 0.75, -1/2 * 118 * 1.4 - 5, 59 * 1.4, 118 * 1.4);
                 XXX.restore();
             }
@@ -10408,6 +12482,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 733, 355, 115, 90, -1/2 * 115 * 1.4 - 0.25, -1/2 * 90 * 1.4 - 7, 115 * 1.4, 90 * 1.4);
                 XXX.restore();
             }
@@ -10416,6 +12494,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(theCrack, 882, 375, 134, 59, -1/2 * 134 * 1.4 - 0.35, -1/2 * 59 * 1.4 + 4, 134 * 1.4, 59 * 1.4);
                 XXX.restore();
             }
@@ -10431,6 +12513,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3342, 537, 61, 55, -13, -31.5, 79.3, 71.5);
                 XXX.restore();
             }
@@ -10439,6 +12525,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3425, 533, 61, 55, -13, -46, 79.3, 71.5);
                 XXX.restore();
             }
@@ -10447,6 +12537,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3506, 532, 61, 55, -15, -54, 79.3, 71.5);
                 XXX.restore();
             }
@@ -10455,6 +12549,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3580, 526, 61, 55, -28, -62, 79.3, 71.5);
                 XXX.restore();
             }
@@ -10463,6 +12561,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3647, 529, 61, 55, -39, -68, 79.3, 71.5);
                 XXX.restore();
             }
@@ -10471,6 +12573,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3720, 532, 61, 55, -53, -59, 79.3, 71.5);
                 XXX.restore();
             }
@@ -10479,6 +12585,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3784, 531, 61, 55, -69, -44, 79.3, 71.5);
                 XXX.restore();
             }
@@ -10502,6 +12612,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 340, 267, 104, 108, -90, -64, 104, 108);
                 XXX.restore();
             }
@@ -10510,6 +12624,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 507, 265, 104, 108, -89, -74, 104, 108);
                 XXX.restore();
             }
@@ -10518,6 +12636,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 669, 256, 104, 108, -78, -88, 104, 108);
                 XXX.restore();
             }
@@ -10526,6 +12648,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 819, 249, 104, 108, -62, -94, 104, 108);
                 XXX.restore();
             }
@@ -10534,6 +12660,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 934, 248, 104, 108, -52, -102, 104, 108);
                 XXX.restore();
             }
@@ -10542,6 +12672,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1055, 255, 104, 108, -41, -99, 104, 108);
                 XXX.restore();
             }
@@ -10550,6 +12684,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1186, 264, 104, 108, -30, -95, 104, 108);
                 XXX.restore();
             }
@@ -10558,6 +12696,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1333, 274, 104, 108, -17, -82, 104, 108);
                 XXX.restore();
             }
@@ -10573,6 +12715,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 41, 1505, 42, 87, -9, -66.5, 50.4, 98.1);
                 XXX.restore();
             }
@@ -10581,6 +12727,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 82, 1507, 42, 87, -7, -68.5, 50.4, 98.1);
                 XXX.restore();
             }
@@ -10589,6 +12739,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 120, 1506, 42, 87, -6, -72, 50.4, 98.1);
                 XXX.restore();
             }
@@ -10597,6 +12751,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 159, 1501, 42, 87, -6, -76, 50.4, 98.1);
                 XXX.restore();
             }
@@ -10605,6 +12763,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 193, 1501, 42, 87, -14.5, -77, 50.4, 98.1);
                 XXX.restore();
             }
@@ -10613,6 +12775,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 224, 1501, 42, 87, -17.5, -79, 50.4, 98.1);
                 XXX.restore();
             }
@@ -10644,6 +12810,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 32, 605, 93, 87, -21, -43, 93 / 1.3, 87 / 1.3);
                 XXX.restore();
             }
@@ -10652,6 +12822,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 169, 605, 93, 87, -21, -43, 93 / 1.3, 87 / 1.3);
                 XXX.restore();
             }
@@ -10660,6 +12834,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 304, 605, 93, 87, -22, -45, 93 / 1.3, 87 / 1.3);
                 XXX.restore();
             }
@@ -10668,6 +12846,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 443, 605, 93, 87, -29, -46, 93 / 1.3, 87 / 1.3);
                 XXX.restore();
             }
@@ -10676,6 +12858,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 589, 599, 93, 87, -32, -50, 93 / 1.3, 87 / 1.3);
                 XXX.restore();
             }
@@ -10684,6 +12870,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 720, 590, 93, 87, -36, -53, 93 / 1.3, 87 / 1.3);
                 XXX.restore();
             }
@@ -10692,6 +12882,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 836, 594, 93, 87, -46, -50, 93 / 1.3, 87 / 1.3);
                 XXX.restore();
             }
@@ -10700,6 +12894,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 958, 593, 93, 87, -49, -47.5, 93 / 1.3, 87 / 1.3);
                 XXX.restore();
             }
@@ -10708,6 +12906,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1083, 591, 93, 87, -51.5, -45, 93 / 1.3, 87 / 1.3);
                 XXX.restore();
             }
@@ -10723,6 +12925,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 399, 703, 70, 70, -19, -36, 70 / 1.3, 70 / 1.3);
                 XXX.restore();
             }
@@ -10731,6 +12937,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 518, 704, 70, 70, -22, -39, 70 / 1.3, 70 / 1.3);
                 XXX.restore();
             }
@@ -10739,6 +12949,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 615, 708, 70, 70, -24, -39, 70 / 1.3, 70 / 1.3);
                 XXX.restore();
             }
@@ -10747,6 +12961,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 732, 708, 70, 70, -25, -41, 70 / 1.3, 70 / 1.3);
                 XXX.restore();
             }
@@ -10755,6 +12973,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 814, 701, 70, 70, -29, -45, 70 / 1.3, 70 / 1.3);
                 XXX.restore();
             }
@@ -10763,6 +12985,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 918, 704, 70, 70, -41, -44, 70 / 1.3, 70 / 1.3);
                 XXX.restore();
             }
@@ -10771,6 +12997,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1002, 702, 70, 70, -43, -36, 70 / 1.3, 70 / 1.3);
                 XXX.restore();
             }
@@ -10779,6 +13009,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1083, 703, 70, 70, -47, -34, 70 / 1.3, 70 / 1.3);
                 XXX.restore();
             }
@@ -10794,6 +13028,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1254, 663, 85, 85, -64, -52, 85, 85);
                 XXX.restore();
             }
@@ -10802,6 +13040,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1346, 661, 85, 85, -58, -54, 85, 85);
                 XXX.restore();
             }
@@ -10810,6 +13052,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1429, 662, 85, 85, -47.5, -54, 85, 85);
                 XXX.restore();
             }
@@ -10818,6 +13064,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1506, 661, 85, 85, -41, -57, 85, 85);
                 XXX.restore();
             }
@@ -10826,6 +13076,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1597, 662, 85, 85, -26, -60, 85, 85);
                 XXX.restore();
             }
@@ -10834,6 +13088,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1663, 664, 85, 85, -33, -64, 85, 85);
                 XXX.restore();
             }
@@ -10842,6 +13100,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polypol, 1732, 663, 85, 85, -34, -64, 85, 85);
                 XXX.restore();
             }
@@ -10857,6 +13119,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 683, 43, 55, 51, -47, -49, 55 * 1.3, 51 * 1.3);
                 XXX.restore();
             }
@@ -10865,6 +13131,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 755, 37, 55, 51, -39, -55, 55 * 1.3, 51 * 1.3);
                 XXX.restore();
             }
@@ -10873,6 +13143,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 834, 38, 55, 51, -36, -54, 55 * 1.3, 51 * 1.3);
                 XXX.restore();
             }
@@ -10881,6 +13155,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 903, 35, 55, 51, -30, -54.5, 55 * 1.3, 51 * 1.3);
                 XXX.restore();
             }
@@ -10889,6 +13167,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(freeverse, 928, 346, 55, 51, -27, -54, 55 * 1.3, 51 * 1.3);
                 XXX.restore();
             }
@@ -10916,6 +13198,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 421, 589, 40, 43, -17, -41, 50, 53.75);
                 XXX.restore();
             }
@@ -10924,6 +13210,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 487, 589, 40, 43, -11, -42, 50, 53.75);
                 XXX.restore();
             }
@@ -10932,6 +13222,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 536, 589, 40, 43, -16, -39, 50, 53.75);
                 XXX.restore();
             }
@@ -10940,6 +13234,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 576, 588, 40, 43, -19, -41, 50, 53.75);
                 XXX.restore();
             }
@@ -10948,6 +13246,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 608, 588, 40, 43, -21, -41, 50, 53.75);
                 XXX.restore();
             }
@@ -10956,6 +13258,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 645, 589, 40, 43, -16, -40, 50, 53.75);
                 XXX.restore();
             }
@@ -10964,6 +13270,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 681, 582, 40, 43, -22, -38.5, 50, 53.75);
                 XXX.restore();
                 this.ammoLoaded = true;
@@ -10974,6 +13284,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(polyPNG, 717, 583, 40, 43, -17, -38.5, 50, 53.75);
                 XXX.restore();
             }
@@ -11001,6 +13315,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 368, 667, 70, 89, -1/2 * 70 + 0, -1/2 * 89 - 4, 70, 89);
                 XXX.restore();
             }
@@ -11009,6 +13327,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 566, 666, 70, 89, -1/2 * 70 + 0, -1/2 * 89 - 4, 70, 89);
                 XXX.restore();
             }
@@ -11017,6 +13339,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 422, 577, 70, 89, -1/2 * 70 + 0, -1/2 * 89 - 4, 70, 89);
                 XXX.restore();
             }
@@ -11025,6 +13351,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 570, 577, 70, 89, -1/2 * 70 + 1, -1/2 * 89 - 4, 70, 89);
                 XXX.restore();
             }
@@ -11033,6 +13363,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 689, 576, 70, 89, -1/2 * 70 + 1, -1/2 * 89 - 4, 70, 89);
                 XXX.restore();
             }
@@ -11041,6 +13375,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 27, 670, 70, 89, -1/2 * 70 - 1.5, -1/2 * 89 - 2.5, 70, 89);
                 XXX.restore();
             }
@@ -11049,6 +13387,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 196, 672, 70, 89, -1/2 * 70 - 3, -1/2 * 89 - 0.3, 70, 89);
                 XXX.restore();
                 this.ammoLoaded = true;
@@ -11059,6 +13401,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(balkur, 368, 667, 70, 89, -1/2 * 70 + 0, -1/2 * 89 - 4, 70, 89);
                 XXX.restore();
             }
@@ -11096,6 +13442,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3911, 695, 50, 40, -27, -43, 52.5, 42);
                 XXX.restore();
             }
@@ -11104,6 +13454,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 2788, 695, 50, 40, -25, -42, 52.5, 42);
                 XXX.restore();
             }
@@ -11112,6 +13466,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 2843, 695, 50, 40, -26, -42, 52.5, 42);
                 XXX.restore();
             }
@@ -11120,6 +13478,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 2899, 695, 50, 40, -28, -39.5, 52.5, 42);
                 XXX.restore();
             }
@@ -11128,6 +13490,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 2950, 695, 50, 40, -26, -42, 52.5, 42);
                 XXX.restore();
             }
@@ -11136,6 +13502,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 2994, 695, 50, 40, -28, -42, 52.5, 42);
                 XXX.restore();
             }
@@ -11144,6 +13514,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3044, 695, 50, 40, -25.5, -42, 52.5, 42);
                 XXX.restore();
             }
@@ -11152,6 +13526,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3089, 695, 50, 40, -27, -39.5, 52.5, 42);
                 XXX.restore();
             }
@@ -11160,6 +13538,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3135, 695, 50, 40, -26, -42, 52.5, 42);
                 XXX.restore();
             }
@@ -11168,6 +13550,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3183, 695, 50, 40, -27.85, -42, 52.5, 42);
                 XXX.restore();
             }
@@ -11176,6 +13562,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3227, 695, 50, 40, -26.85, -42, 52.5, 42);
                 XXX.restore();
             }
@@ -11184,6 +13574,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3270, 695, 50, 40, -28, -39.5, 52.5, 42);
                 XXX.restore();
             }
@@ -11192,6 +13586,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3313, 695, 50, 40, -26.35, -42, 52.5, 42);
                 XXX.restore();
             }
@@ -11200,6 +13598,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3358, 695, 50, 40, -26.85, -42, 52.5, 42);
                 XXX.restore();
             }
@@ -11208,6 +13610,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3403, 695, 50, 40, -26.85, -42, 52.5, 42);
                 XXX.restore();
             }
@@ -11216,6 +13622,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3452, 695, 50, 40, -25.85, -41, 52.5, 42);
                 XXX.restore();
             }
@@ -11224,6 +13634,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3498, 695, 50, 40, -25, -40, 52.5, 42);
                 XXX.restore();
             }
@@ -11232,6 +13646,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3552, 695, 50, 40, -23.6, -39, 52.5, 42);
                 XXX.restore();
             }
@@ -11240,6 +13658,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3608, 698, 50, 40, -22.5, -36, 52.5, 42);
                 XXX.restore();
             }
@@ -11248,6 +13670,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3665, 698, 50, 40, -23.5, -37.25, 52.5, 42);
                 XXX.restore();
             }
@@ -11256,6 +13682,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3717, 698, 50, 40, -26, -38.25, 52.5, 42);
                 XXX.restore();
             }
@@ -11264,6 +13694,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3770, 698, 50, 40, -26, -38.25, 52.5, 42);
                 XXX.restore();
             }
@@ -11272,6 +13706,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3817, 698, 50, 40, -27, -38.25, 52.5, 42);
                 XXX.restore();
             }
@@ -11282,6 +13720,10 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(verse, 3962, 695, 32, 39, -21, -43.25, 33.6, 40.95);
                     XXX.restore();
                     this.attacking = false;
@@ -11292,6 +13734,10 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(verse, 3865, 698, 50, 40, -27, -38.25, 52.5, 42);
                     XXX.restore();
                     this.attacking = false;
@@ -11303,6 +13749,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(verse, 3865, 698, 50, 40, -27, -38.25, 52.5, 42);
                 XXX.restore();
             }
@@ -11340,6 +13790,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 517, 100, 25, 44, -14, -60, 25 * 1.8, 44 * 1.8);
                 XXX.restore();
             }
@@ -11348,6 +13802,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 552, 100, 25, 44, -14, -61, 25 * 1.8, 44 * 1.8);
                 XXX.restore();
             }
@@ -11356,6 +13814,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 587, 99, 25, 44, -11, -60, 25 * 1.8, 44 * 1.8);
                 XXX.restore();
                 this.attacking = false;
@@ -11368,6 +13830,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 587, 99, 25, 44, -11, -60, 25 * 1.8, 44 * 1.8);
                 XXX.restore();
             }
@@ -11405,6 +13871,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 518, 153, 25, 44, -9, -47, 25 * 1.8, 44 * 1.8);
                 XXX.restore();
             }
@@ -11413,6 +13883,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 552, 153, 25, 44, -9, -47, 25 * 1.8, 44 * 1.8);
                 XXX.restore();
             }
@@ -11421,6 +13895,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 587, 153, 25, 44, -9, -47, 25 * 1.8, 44 * 1.8);
                 XXX.restore();
                 this.attacking = false;
@@ -11433,6 +13911,10 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
                 XXX.drawImage(mofu, 587, 153, 25, 44, -9, -47, 25 * 1.8, 44 * 1.8);
                 XXX.restore();
             }
@@ -21827,6 +24309,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(verse, 3959, 347, 23, 33, -(1 / 2 * 27.6) + 2.7, -(1 / 2 * 39.6) + 20.5, 27.6, 39.6);
                             XXX.restore();
                         }
@@ -21835,6 +24321,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(verse, 3959, 286, 23, 33, -(1 / 2 * 27.6) + 2.7, -(1 / 2 * 39.6) + 20.5, 27.6, 39.6);
                             XXX.restore();
                         }
@@ -21847,6 +24337,10 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
                         XXX.drawImage(verse, 3959, 286, 23, 33, -(1 / 2 * 27.6) + 2.7, -(1 / 2 * 39.6) + 20.5, 27.6, 39.6);
                         XXX.restore();
                     }
@@ -21864,6 +24358,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(verse, 3959, 286, 23, 33, -(1 / 2 * 27.6) + 2.7, -(1 / 2 * 39.6) + 20.5, 27.6, this.capeFlappiness);
                             XXX.restore();
                         }
@@ -21885,6 +24383,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(verse, 3962, 384, 20, 30, -(1 / 2 * 26) - 1, -(1 / 2 * 39) + 20.5, 29.5, 39);
                             XXX.restore();
                         }
@@ -21893,6 +24395,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(verse, 3962, 414, 20, 30, -(1 / 2 * 26) - 1, -(1 / 2 * 39) + 20.5, 29.5, 39);
                             XXX.restore();
                         }
@@ -21905,6 +24411,10 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
                         XXX.drawImage(verse, 3962, 384, 20, 30, -(1 / 2 * 26) - 1, -(1 / 2 * 39) + 20.5, 29.5, 39);
                         XXX.restore();
                     }
@@ -21922,6 +24432,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(verse, 3962, 384, 20, 30, -(1 / 2 * 26) - 1, -(1 / 2 * 39) + 20.5, 29.5, this.capeFlappiness);
                             XXX.restore();
                         }
@@ -21943,6 +24457,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(nognog, 698, 6, 13, 20, -(1 / 2 * 13 * 1.95) + 0.5, -(1 / 2 * 20 * 1.8) + 22, 13 * 1.95, 20 * 1.8);
                             XXX.restore();
                         }
@@ -21951,6 +24469,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation + (Math.PI * 0.025 * (Math.random() - 0.5)));
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(nognog, 698, 6, 13, 20, -(1 / 2 * 13 * 2.1) + 0.5, -(1 / 2 * 20 * 1.8) + 22, 13 * 2.1, 20 * 1.8);
                             XXX.restore();
                         }
@@ -21963,6 +24485,10 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
                         XXX.drawImage(nognog, 698, 6, 13, 20, -(1 / 2 * 13 * 1.95) + 0.5, -(1 / 2 * 20 * 1.8) + 22, 13 * 1.95, 20 * 1.8);
                         XXX.restore();
                     }
@@ -21980,6 +24506,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(nognog, 698, 6, 13, 20, -(1 / 2 * 13 * 1.95) + 0.5, -(1 / 2 * 20 * 1.8) + 22, 13 * 1.95, this.capeFlappiness);
                             XXX.restore();
                         }
@@ -22001,6 +24531,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(polpol, 108, 79, 30, 57, -(1 / 2 * 30) - 8.5, -(1 / 2 * 57) + 35.5, 45, 40);
                             XXX.restore();
                         }
@@ -22009,6 +24543,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(polpol, 108, 79, 30, 57, -(1 / 2 * 30) - 8.9, -(1 / 2 * 57) + 35.5, 47, 42);
                             XXX.restore();
                         }
@@ -22021,6 +24559,10 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
                         XXX.drawImage(polpol, 108, 79, 30, 57, -(1 / 2 * 30) - 8.5, -(1 / 2 * 57) + 35.5, 45, 40);
                         XXX.restore();
                     }
@@ -22038,6 +24580,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(polpol, 108, 79, 30, 57, -(1 / 2 * 30) - 8.5, -(1 / 2 * 57) + 35.5, 45, this.capeFlappiness);
                             XXX.restore();
                         }
@@ -22059,6 +24605,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 770, 158, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                             XXX.restore();
                         }
@@ -22067,6 +24617,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 810, 160, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                             XXX.restore();
                         }
@@ -22075,6 +24629,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 845, 162, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                             XXX.restore();
                         }
@@ -22087,6 +24645,10 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
                         XXX.drawImage(freeverse, 845, 162, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                         XXX.restore();
                     }
@@ -22104,6 +24666,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 845, 162, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, this.capeFlappiness);
                             XXX.restore();
                         }
@@ -22125,6 +24691,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 648, 157, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                             XXX.restore();
                         }
@@ -22133,6 +24703,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 687, 160, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                             XXX.restore();
                         }
@@ -22141,6 +24715,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 722, 162, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                             XXX.restore();
                         }
@@ -22153,6 +24731,10 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
                         XXX.drawImage(freeverse, 722, 162, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                         XXX.restore();
                     }
@@ -22170,6 +24752,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 722, 162, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, this.capeFlappiness);
                             XXX.restore();
                         }
@@ -22191,6 +24777,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 531, 154, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                             XXX.restore();
                         }
@@ -22199,6 +24789,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 570, 156, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                             XXX.restore();
                         }
@@ -22207,6 +24801,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 606, 158, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                             XXX.restore();
                         }
@@ -22219,6 +24817,10 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
                         XXX.drawImage(freeverse, 606, 158, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                         XXX.restore();
                     }
@@ -22236,6 +24838,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 606, 158, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, this.capeFlappiness);
                             XXX.restore();
                         }
@@ -22257,6 +24863,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 888, 161, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                             XXX.restore();
                         }
@@ -22265,6 +24875,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 927, 164, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                             XXX.restore();
                         }
@@ -22273,6 +24887,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 962, 166, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                             XXX.restore();
                         }
@@ -22285,6 +24903,10 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
                         XXX.drawImage(freeverse, 888, 161, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                         XXX.restore();
                     }
@@ -22302,6 +24924,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 888, 161, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, this.capeFlappiness);
                             XXX.restore();
                         }
@@ -22323,6 +24949,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 886, 272, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                             XXX.restore();
                         }
@@ -22331,6 +24961,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 926, 274, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                             XXX.restore();
                         }
@@ -22339,6 +24973,10 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 961, 276, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                             XXX.restore();
                         }
@@ -22351,6 +24989,10 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
                         XXX.drawImage(freeverse, 886, 272, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, 47 * 0.9);
                         XXX.restore();
                     }
@@ -22368,7 +25010,97 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
                             XXX.drawImage(freeverse, 886, 272, 33, 47, -(1/2 * 33 * 0.9 + 3) + 0, -(47 * 0.9 - 42) + 0, 33 * 1.1, this.capeFlappiness);
+                            XXX.restore();
+                        }
+                    }
+                }
+                else if (this.outfitEquipped == "neevFurCloak")
+                {
+                    if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
+                    {
+                        this.wasCapeFlapping = true; //this lets the cape know it was showing so when the player slows down or stops moving the cape will ease back.
+                        this.capeFlappiness += 2; //this is a variable that determines what costume the cape will be.
+                        if (this.capeFlappiness > 100)
+                        {
+                            this.capeFlappiness = 0;
+                        }
+
+                        if (this.capeFlappiness <= 12.5 || this.capeFlappiness > 37.5 && this.capeFlappiness <= 50 && this.capeFlappiness <= 62.5 || this.capeFlappiness > 75 && this.capeFlappiness <= 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(balkur, 703, 1125, 25, 32, -(1/2 * 25 * 1.25 + 0), -(32 * 1.1 - 38), 25 * 1.25, 32 * 1.55);
+                            XXX.restore();
+                        }
+                        else if (this.capeFlappiness > 12.5 && this.capeFlappiness <= 25 || this.capeFlappiness > 50 || this.capeFlappiness > 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(balkur, 736, 1126, 25, 32, -(1/2 * 25 * 1.25 + 0), -(32 * 1.1 - 38), 25 * 1.25, 32 * 1.55);
+                            XXX.restore();
+                        }
+                        else if (this.capeFlappiness > 25 && this.capeFlappiness <= 37.5 || this.capeFlappiness > 62.5 && this.capeFlappiness <= 75)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(balkur, 767, 1125, 25, 32, -(1/2 * 25 * 1.25 + 0), -(32 * 1.1 - 38), 25 * 1.25, 32 * 1.55);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.wasCapeFlapping == true)
+                    {
+                        this.capeFlappiness = 32 * 1.55;
+                        this.wasCapeFlapping = "gooblebunches";
+                        //display the cape while codey stuff happens...
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(balkur, 703, 1125, 25, 32, -(1/2 * 25 * 1.2 + 0), -(32 * 1.1 - 38), 25 * 1.2, 32 * 1.55);
+                        XXX.restore();
+                    }
+                    else if (this.wasCapeFlapping == "gooblebunches")
+                    {
+                        this.capeFlappiness -= 1; //this time cape flappiness referrs to the cape flapping down on its way out of being displayed.
+                        if (this.capeFlappiness < 1)
+                        {
+                            this.capeFlappiness = 0;
+                            this.wasCapeFlapping = false;
+                        }
+
+                        if (this.capeFlappiness > 0)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(balkur, 703, 1125, 25, 32, -(1/2 * 25 * 1.2 + 0), -(32 * 1.1 - 38), 25 * 1.2, this.capeFlappiness);
                             XXX.restore();
                         }
                     }

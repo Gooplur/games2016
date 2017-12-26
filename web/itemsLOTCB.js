@@ -2409,6 +2409,84 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "rawBalkurFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Balkur Flesh";
+            this.weight = 2;
+            this.size = 11;
+            this.description = "The raw flesh of a balkur.";
+            this.intForDes = 1;
+            this.intDescription = "Balkur flesh tends to have mites infesting it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "fleshmites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "balkurMeat")
+        {
+            //For All Items
+            this.identity = "Balkur Meat";
+            this.weight = 1.55;
+            this.size = 10;
+            this.description = "The cooked meat of a balkur.";
+            this.intForDes = 1;
+            this.intDescription = "The meat is grissly and tough to eat, but for some people its flavour is worth it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            if (player.raceName == "Freynor")
+            {
+                this.hunger = 10; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 2; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -2; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "satiate";
+            }
+            else
+            {
+                this.hunger = 6; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 2; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -2; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                this.ability = "none";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 7;
+            this.ingredients = [["Raw Balkur Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 10); // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
         else if (this.type == "rawWalrusFlesh")
         {
             //For All Items
@@ -11166,6 +11244,26 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "balkurPelt")
+        {
+            //For All Items
+            this.identity = "Balkur Pelt";
+            this.weight = 2.25;
+            this.size = 19;
+            this.description = "The thick and soft furry pelt of a balkur.";
+            this.intForDes = 6;
+            this.intDescription = "Balkur fur is used by the freydic to make warm clothing and armours.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 29 - Math.floor(player.getCharisma() / 15); // at max, buy for 26.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 3); // at max, sell for 26.
+        }
         else if (this.type == "winterWolfPelt")
         {
             //For All Items
@@ -13688,7 +13786,7 @@ function Item(type, x, y)
             //ability
             this.ability = "none";
 
-            this.yield = 3;
+            this.yield = 4;
             this.intForCraft = 19;
             this.ingredients = [["Balkur Pelt", 1]];
 
@@ -13804,7 +13902,7 @@ function Item(type, x, y)
 
             //Crafting
             this.yield = 1;
-            this.intForCraft = 23;
+            this.intForCraft = 29;
             this.ingredients = [["Balkur Pelt", 3], ["Balkur Fang", 8]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
@@ -17132,6 +17230,208 @@ function Item(type, x, y)
             this.buyValue = 33 - Math.floor(player.getCharisma() / 8); // at max, buy for 27.
             this.sellValue = 17 + Math.floor(player.getCharisma() / 5); // at max, sell for 27.
         }
+        else if (this.type == "neevFurCloak")
+        {
+            //For All Items
+            this.identity = "Neev Fur Cloak";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A cloak sewn from neev fur.";
+            this.intForDes = 21;
+            this.intDescription = "Neevs are a type of fairy and have magical fur that when worn obscures the wearer from the awareness of others.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 1;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.5;
+            this.thirstRetention = -0.5;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 6;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 15;
+            //Magical Stat Bonuses
+            if (player.getEminence() >= 1)
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 1;
+            }
+            else
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+            }
+
+            //ability
+            this.ability = "obscurity";
+
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Neev Fur", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2000 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1800.
+            this.sellValue = 300 + Math.floor(player.getCharisma() / 0.0333333333); // at max, sell for 1800.
+        }
+        else if (this.type == "neevFurBoots")
+        {
+            //For All Items
+            this.identity = "Neev Fur Boots";
+            this.weight = 0.5;
+            this.size = 10;
+            this.description = "Boots made of neev fur.";
+            this.intForDes = 3;
+            this.intDescription = "You can move about more quickly while wearing these boots.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "boots";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 3;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.3;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            if (player.getEminence() >= 3)
+            {
+                this.dexterityBonus = 4;
+            }
+            else
+            {
+                this.dexterityBonus = 3;
+            }
+            this.survivalismBonus = 1;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 3;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 20;
+            this.ingredients = [["Neev Fur", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 300 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 200.
+            this.sellValue = 150 + Math.floor(player.getCharisma() / 1); // at max, sell for 200.
+        }
+        else if (this.type == "neevFurGloves")
+        {
+            //For All Items
+            this.identity = "Neev Fur Gloves";
+            this.weight = 0.4;
+            this.size = 7;
+            this.description = "Gloves made from neev fur.";
+            this.intForDes = 23;
+            this.intDescription = "The fur is magical and it quickens your hands' muscle memory.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "gloves";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 2;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.2;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 1;
+            this.survivalismBonus = 1;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 2;
+            //Magical Stat Bonuses
+            if (player.getEminence() >= 2)
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 1;
+                this.memoryBonus = 0;
+            }
+            else
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+            }
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 18;
+            this.ingredients = [["Neev Fur", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 66 - Math.floor(player.getCharisma() / 2.5); // at max, buy for 46.
+            this.sellValue = 46; // at max, sell for 46.
+        }
         else if (this.type == "mofuMatriarchHeaddress")
         {
             //For All Items
@@ -18669,6 +18969,36 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "neevFurCloak")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 681, 1161, 38, 73, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 1.39), Y - this.Y + (1/2 * CCC.height) - (1/2 * 73 * 1.39), 38 * 1.39, 73 * 1.39);
+        }
+        else if (this.type == "neevFurBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 723, 1171, 36, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.25), 36 * 1.25, 24 * 1.25);
+        }
+        else if (this.type == "neevFurGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 745, 1199, 36, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.25), 36 * 1.25, 24 * 1.25);
+        }
+        else if (this.type == "balkurMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 57, 1, 24, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 24), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 24, 16);
+        }
+        else if (this.type == "rawBalkurFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 28, 1, 24, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 24), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 24, 16);
+        }
+        else if (this.type == "balkurPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 12, 31, 69, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 69), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33), 69, 33);
         }
         else if (this.type == "balkurLeatherGloves")
         {
@@ -21172,6 +21502,36 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "neevFurCloak")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 681, 1161, 38, 73, this.invX - (1/2 * 38 * 0.95), this.invY - (1/2 * 73 * 0.95), 38 * 0.95, 73 * 0.95);
+        }
+        else if (this.type == "neevFurBoots")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 723, 1171, 36, 24, this.invX - (1/2 * 36 * 1.15), this.invY - (1/2 * 24 * 1.15), 36 * 1.15, 24 * 1.15);
+        }
+        else if (this.type == "neevFurGloves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 745, 1199, 36, 24, this.invX - (1/2 * 36 * 1.15), this.invY - (1/2 * 24 * 1.15), 36 * 1.15, 24 * 1.15);
+        }
+        else if (this.type == "balkurMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 57, 1, 24, 16, this.invX - (1/2 * 24), this.invY - (1/2 * 16), 24, 16);
+        }
+        else if (this.type == "rawBalkurFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 28, 1, 24, 16, this.invX - (1/2 * 24), this.invY - (1/2 * 16), 24, 16);
+        }
+        else if (this.type == "balkurPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 12, 31, 69, 33, this.invX - (1/2 * 69), this.invY - (1/2 * 33), 69, 33);
+        }
         else if (this.type == "balkurLeatherGloves")
         {
             LXX.beginPath();
@@ -23602,10 +23962,10 @@ function Item(type, x, y)
             LXX.drawImage(polyPNG, 385, 7, 11, 15, this.invX - (1/2 * 16.5), this.invY - (1/2 * 22.5), 16.5, 22.5);
         }
         else if (this.type == "yaihefBerries")
-            {
-                LXX.beginPath();
-                LXX.drawImage(theCrack, 62, 508, 16, 16, this.invX - (1/2 * 32), this.invY - (1/2 * 32), 32, 32);
-            }
+        {
+            LXX.beginPath();
+            LXX.drawImage(theCrack, 62, 508, 16, 16, this.invX - (1/2 * 32), this.invY - (1/2 * 32), 32, 32);
+        }
     };
 
     this.drawShopCraftItem = function(type, invX, invY)
@@ -23642,6 +24002,36 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "neevFurCloak")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 681, 1161, 38, 73, this.invX - (1/2 * 38 * 0.95), this.invY - (1/2 * 73 * 0.95), 38 * 0.95, 73 * 0.95);
+        }
+        else if (this.type == "neevFurBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 723, 1171, 36, 24, this.invX - (1/2 * 36 * 1.15), this.invY - (1/2 * 24 * 1.15), 36 * 1.15, 24 * 1.15);
+        }
+        else if (this.type == "neevFurGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 745, 1199, 36, 24, this.invX - (1/2 * 36 * 1.15), this.invY - (1/2 * 24 * 1.15), 36 * 1.15, 24 * 1.15);
+        }
+        else if (this.type == "balkurMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 57, 1, 24, 16, this.invX - (1/2 * 24), this.invY - (1/2 * 16), 24, 16);
+        }
+        else if (this.type == "rawBalkurFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 28, 1, 24, 16, this.invX - (1/2 * 24), this.invY - (1/2 * 16), 24, 16);
+        }
+        else if (this.type == "balkurPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 12, 31, 69, 33, this.invX - (1/2 * 69), this.invY - (1/2 * 33), 69, 33);
         }
         else if (this.type == "balkurLeatherGloves")
         {

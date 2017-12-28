@@ -126,6 +126,7 @@ function Adventurer()
     this.magicalResistance = 0; //this is the magical resistance that is gained from worn equipment.
     //Items and Such
     this.unskilledUse = false;
+    this.weaponID = false; //this is ID of the weapon equipped, false means that nothing but fists or a spell is equipped.
     this.weaponEquipped = "none";
     this.outfitEquipped = "none";
     this.glovesEquipped = "none";
@@ -8530,6 +8531,170 @@ function Adventurer()
             }
 
         }
+        //DUST POUCH (all varieties)
+        if (this.weaponEquipped == "pouchOfGlowDust" || this.weaponEquipped == "pouchOfVrezinDust" || this.weaponEquipped == "pouchOfIrilDust" || this.weaponEquipped == "pouchOfPimberDust" || this.weaponEquipped == "pouchOfShomeDust")
+        {
+            var slotNum = -1;
+
+            if (this.weaponID != false)
+            {
+                for (var l = 0; l < Inventory.length; l++)
+                {
+                    if (Inventory[l][0].barcode == this.weaponID)
+                    {
+                        slotNum = l;
+                        break;
+                    }
+                }
+                if (Inventory[slotNum][1] <= 0)
+                {
+                    Inventory[slotNum][0].equipped = false;
+                    this.weaponEquipped = "none";
+                    this.weaponIsRanged = false;
+                    this.isWeaponEquipped = false;
+                    this.weaponID = false;
+                    Inventory.splice(slotNum, 1);
+                    slotNum = -1;
+                }
+            }
+            if (slotNum > -1)
+            {
+                this.stageEngine(10, 0.14, false); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+                //ATTACK
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(trapper, 7, 127, 62, 56, -1/2 * 62 * 1.3 + 3, -1/2 * 56 * 1.3 - 9, 62 * 1.3, 56 * 1.3);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(trapper, 72, 126, 62, 56, -1/2 * 62 * 1.3 + 3, -1/2 * 56 * 1.3 - 9, 62 * 1.3, 56 * 1.3);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(trapper, 129, 128, 62, 56, -1/2 * 62 * 1.3 + 3, -1/2 * 56 * 1.3 - 9, 62 * 1.3, 56 * 1.3);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(trapper, 191, 128, 62, 56, -1/2 * 62 * 1.3 + 2, -1/2 * 56 * 1.3 - 9, 62 * 1.3, 56 * 1.3);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(trapper, 5, 172, 62, 56, -1/2 * 62 * 1.3 + 2.5, -1/2 * 56 * 1.3 - 9.5, 62 * 1.3, 56 * 1.3);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(trapper, 68, 171, 62, 56, -1/2 * 62 * 1.3 + 3, -1/2 * 56 * 1.3 - 11, 62 * 1.3, 56 * 1.3);
+                    XXX.restore();
+                    this.dustListo = true;
+                }
+                else if (Math.floor(this.stage) <= 7) //make the dust at this stage
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(trapper, 128, 170, 62, 56, -1/2 * 62 * 1.3 + 3, -1/2 * 56 * 1.3 - 11, 62 * 1.3, 56 * 1.3);
+                    XXX.restore();
+                    if (this.dustListo)
+                    {
+                        this.dustListo = false;
+
+                        this.experience += 3;
+
+                        if (this.weaponEquipped == "pouchOfGlowDust")
+                        {
+                            magicList.push(new Magic({ID: "glowDust"}, true));
+                        }
+                        else if (this.weaponEquipped == "pouchOfVrezinDust")
+                        {
+                            magicList.push(new Magic({ID: "vrezinDust"}, true));
+                        }
+                        else if (this.weaponEquipped == "pouchOfIrilDust")
+                        {
+                            magicList.push(new Magic({ID: "irilDust"}, true));
+                        }
+                        else if (this.weaponEquipped == "pouchOfPimberDust")
+                        {
+                            magicList.push(new Magic({ID: "pimberDust"}, true));
+                        }
+                        else if (this.weaponEquipped == "pouchOfShomeDust")
+                        {
+                            magicList.push(new Magic({ID: "shomeDust"}, true));
+                        }
+                        worldItems.push([new Item("dustPouch", X + Math.cos(this.rotation + 2.7 / 5 * Math.PI) * 23, Y + Math.sin(this.rotation + 2.7 / 5 * Math.PI) * 23), 1]); //each pouch is dropped on the ground after its use.
+                        this.dustBorrar = true
+                    }
+                }
+                else if (Math.floor(this.stage) >= 8)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(trapper, 175, 171, 62, 56, -1/2 * 62 * 1.3 + 3, -1/2 * 56 * 1.3 - 11, 62 * 1.3, 56 * 1.3);
+                    XXX.restore();
+                    if (this.stage >= 8.8 && this.dustBorrar)
+                    {
+                        this.dustBorrar = false;
+                        Inventory[slotNum][1] -= 1;
+                    }
+                }
+            }
+        }
         //MACE
         if (this.weaponEquipped == "mace")
         {
@@ -14375,6 +14540,14 @@ function Adventurer()
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.35/5 * Math.PI) * (this.mySize + 21);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.35/5 * Math.PI) * (this.mySize + 21);
         }
+        else if (this.weaponEquipped == "pouchOfGlowDust" || this.weaponEquipped == "pouchOfVrezinDust" || this.weaponEquipped == "pouchOfIrilDust" || this.weaponEquipped == "pouchOfPimberDust" || this.weaponEquipped == "pouchOfShomeDust") //DUST POUCH (counts as a single weapon because the individualized stats are all in the magic module and not actually determined by the weapon item.
+        {
+            this.weapon = allWeapons[65];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.8/5 * Math.PI) * (this.mySize + 0);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.8/5 * Math.PI) * (this.mySize + 0);
+        }
     };
 
     //BLOCKING FUNCTION
@@ -16928,59 +17101,11 @@ function Adventurer()
                     LXX.stroke();
                     LXX.save();
                     LXX.translate(invScroll + 20.5 + (79 * i) + (1/2 * 79), 1/2 * 79);
-                    var picture;
-                    if (beastJournal[i].image[0] == "verse")
-                    {
-                        picture = verse;
-                    }
-                    else if (beastJournal[i].image[0] == "polypol")
-                    {
-                        picture = polypol;
-                    }
-                    else if (beastJournal[i].image[0] == "polpol")
-                    {
-                        picture = polpol;
-                    }
-                    else if (beastJournal[i].image[0] == "oldverse")
-                    {
-                        picture = oldverse;
-                    }
-                    else if (beastJournal[i].image[0] == "freeverse")
-                    {
-                        picture = freeverse;
-                    }
-                    else if (beastJournal[i].image[0] == "theCrack")
-                    {
-                        picture = theCrack;
-                    }
-                    else if (beastJournal[i].image[0] == "polyPNG")
-                    {
-                        picture = polyPNG;
-                    }
-                    else if (beastJournal[i].image[0] == "mofu")
-                    {
-                        picture = mofu;
-                    }
-                    else if (beastJournal[i].image[0] == "poly")
-                    {
-                        picture = poly;
-                    }
-                    else if (beastJournal[i].image[0] == "mufmuf")
-                    {
-                        picture = mufmuf;
-                    }
-                    else if (beastJournal[i].image[0] == "lodo")
-                    {
-                        picture = lodo;
-                    }
-                    else if (beastJournal[i].image[0] == "furr")
-                    {
-                        picture = furr;
-                    }
+
                     //sourcing image from list: //this list is of all the beasts your character learns about in the world.
                     //beastJournal List -- each element in which is an object.
                     //              IMG                         Start X                    Start Y                  Width                      Height                        Centering X            +  Adjust X                            Centering Y          +        Adjust Y                   SizeX                    SizeY
-                    LXX.drawImage(picture, beastJournal[i].image[1], beastJournal[i].image[2], beastJournal[i].image[3], beastJournal[i].image[4], -1/2 * beastJournal[i].image[7] + beastJournal[i].image[5], -1/2 * beastJournal[i].image[8] + beastJournal[i].image[6], beastJournal[i].image[7], beastJournal[i].image[8]);
+                    LXX.drawImage(window[beastJournal[i].image[0]], beastJournal[i].image[1], beastJournal[i].image[2], beastJournal[i].image[3], beastJournal[i].image[4], -1/2 * beastJournal[i].image[7] + beastJournal[i].image[5], -1/2 * beastJournal[i].image[8] + beastJournal[i].image[6], beastJournal[i].image[7], beastJournal[i].image[8]);
                     LXX.restore();
                 }
 
@@ -22209,32 +22334,32 @@ function Adventurer()
                             }
                             else if (Inventory[i][0].ability == "healthVI") //This is the highest level of health regeneration.
                             {
-                                this.recoveryTime = 200;
+                                this.recoveryTime = 400;
                                 this.recoverV = true;
                             }
                             else if (Inventory[i][0].ability == "healthV") //This is the highest level of health regeneration.
                             {
-                                this.recoveryTime = 100;
+                                this.recoveryTime = 200;
                                 this.recoverV = true;
                             }
                             else if (Inventory[i][0].ability == "healthIV") //This is the fourth level of health regeneration.
                             {
-                                this.recoveryTime = 100;
+                                this.recoveryTime = 200;
                                 this.recoverIV = true;
                             }
                             else if (Inventory[i][0].ability == "healthIII") //This is the third level of health regeneration.
                             {
-                                this.recoveryTime = 100;
+                                this.recoveryTime = 200;
                                 this.recoverIII = true;
                             }
                             else if (Inventory[i][0].ability == "healthII") //This is the third level of health regeneration.
                             {
-                                this.recoveryTime = 100;
+                                this.recoveryTime = 200;
                                 this.recoverII = true;
                             }
                             else if (Inventory[i][0].ability == "healthI") //This is the third level of health regeneration.
                             {
-                                this.recoveryTime = 100;
+                                this.recoveryTime = 200;
                                 this.recoverI = true;
                             }
                             else if (Inventory[i][0].ability == "fatigueV") //This is the highest level of health regeneration.
@@ -22576,6 +22701,7 @@ function Adventurer()
                                 this.weaponEquipped = "none";
                                 this.weaponIsRanged = false;
                                 this.isWeaponEquipped = false;
+                                this.weaponID = false;
                             }
                             else
                             {
@@ -22591,6 +22717,7 @@ function Adventurer()
                                 this.weaponEquipped = Inventory[i][0].type;
                                 this.weaponIsRanged = false;
                                 this.isWeaponEquipped = true;
+                                this.weaponID = Inventory[i][0].barcode;
                             }
                         }
                         else
@@ -22602,6 +22729,7 @@ function Adventurer()
                                 this.isWeaponEquipped = true;
                                 this.weaponEquipped = Inventory[i][0].type;
                                 this.weaponIsRanged = false;
+                                this.weaponID = Inventory[i][0].barcode;
                             }
                             else
                             {
@@ -22612,6 +22740,7 @@ function Adventurer()
                                     Inventory[i][0].equipped = false;
                                     this.weaponEquipped = "none";
                                     this.weaponIsRanged = false;
+                                    this.weaponID = false;
                                 }
 
                             }

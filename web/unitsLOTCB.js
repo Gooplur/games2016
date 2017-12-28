@@ -44,6 +44,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.negateArmour = 0;
     this.magicalDamage = 0;
     this.heatResistance = 0;
+    this.acidResistance = 0;
     this.magicalResistance = 0;
     this.speed = 0;
     this.rangeOfSight = 120;
@@ -1982,7 +1983,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "Person" && this.playerSeen || this.type == "Soldier" && this.playerSeen || this.type != "Person" && this.type != "Soldier" && this.playerSeen)
         {
-            player.obscurity = false; //Cancels player's invisibility if the player is seen
+            if (this.type != "Neev")
+            {
+                player.obscurity = false; //Cancels player's invisibility if the player is seen
+            }
         }
 
         if (this.target == player)
@@ -2923,6 +2927,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.subBuffout -= 0.2;
             }
+
             if (this.subBuffoutToggle)
             {
                 this.buffout = this.initBuffout + this.subBuffout;
@@ -2992,12 +2997,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         if (charmResistance == false && this.team != "neutral" && new Date().getTime() < this.charmedTime)
         {
             this.isCharmed = true;
-            if (this.marked)
+            if (this.marked == true)
             {
                 this.spin += 1/17 * Math.PI;
                 this.flashAnimate(90, this.spin, 0.37, [{image: zapa, imgX: 308, imgY: 42, portionW: 18, portionH: 31, adjX: -1 / 2 * ((18 * 1.7)/10) * this.sizeRadius, adjY: -1 / 2 * ((31 * 1.7)/10) * this.sizeRadius, width: ((18 * 1.7)/10) * this.sizeRadius, height: ((31 * 1.7)/10) * this.sizeRadius}]);
             }
-            else
+            else if (this.marked != "shome")
             {
                 this.spin += 1/30;
                 this.flashAnimate(90, this.spin, 0.86, [{image: polpol, imgX: 120, imgY: 375, portionW: 23, portionH: 23, adjX: -1 / 2 * ((23 * 1.5)/10) * this.sizeRadius, adjY: -1 / 2 * ((23 * 1.5)/10) * this.sizeRadius, width: ((23 * 1.5)/10) * this.sizeRadius, height: ((23 * 1.5)/10) * this.sizeRadius}]);
@@ -3058,7 +3063,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
 
         //Blinded Effect
-        if (blindedResistance == false && new Date().getTime() - this.blindedTime <= 5000 + (1000 * (player.getConcentration() / 5)))
+        if (blindedResistance == false && new Date().getTime() - this.blindedTime <= 5000)
         {
             this.blinded = true;
         }
@@ -4171,7 +4176,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             {
                                 if (this.beastEntry.name == beastJournal[i].name && this.beastEntry.alpha == beastJournal[i].alpha)
                                 {
-                                    addEntry = false;
+                                    if (changeBeastiary)
+                                    {
+                                        beastJournal.splice(i, 1);
+                                    }
+                                    else
+                                    {
+                                        addEntry = false;
+                                    }
                                     break;
                                 }
                             }
@@ -4652,7 +4664,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 30;
                 this.negateArmour = 5;
                 this.attackWait = 0.55;
-                this.beastEntry = {intReq: 3, name: "Etyr", health: "6 - 11", armour: "3", damage: "1 - 7", negate: "5", ability: "none", fireProof: 1, habitat: "Jungle", sight: 600, alpha: "Alpha", magicProof: 0, size: 30, speed: 2.75, rotation: 0.025, rate: 0.55, experience: 40, description: ["Etyr's are scaley reptilian creatures that have a behavior similar to that of a wolf. They hunt in packs, it is very", "rare to find one alone, and if you do the rest of its pack is probably about to ambush you. They", "usually lurk about the forest floor eating whatever small critters they can get their jaws around."], image: ["theCrack", 56, 18, 53, 41, 0, 0, 53 * 1.5 / 3, 41 * 1.5 / 3]};
+                this.beastEntry = {intReq: 3, name: "Etyr", health: "6 - 11", armour: "3", damage: "1 - 7", negate: "5", ability: "None", fireProof: 1, habitat: "Jungle", sight: 600, alpha: "Alpha", magicProof: 0, size: 30, speed: 2.75, rotation: 0.025, rate: 0.55, experience: 40, description: ["Etyr's are scaley reptilian creatures that have a behavior similar to that of a wolf. They hunt in packs, it is very", "rare to find one alone, and if you do the rest of its pack is probably about to ambush you. They", "usually lurk about the forest floor eating whatever small critters they can get their jaws around."], image: ["theCrack", 56, 18, 53, 41, 0, 0, 53 * 1.5 / 3, 41 * 1.5 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -4677,7 +4689,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 20;
                 this.negateArmour = 3;
                 this.attackWait = 0.57;
-                this.beastEntry = {intReq: 1, name: "Etyr", health: "3 - 5", armour: "1", damage: "1 - 4", negate: "3", ability: "none", fireProof: 1, habitat: "Jungle", sight: 450, alpha: "Normal", magicProof: 0, size: 20, speed: 2, rotation: 0.1, rate: 0.57, experience: 22, description: ["Etyr's are scaley reptilian creatures that have a behavior similar to that of a wolf. They hunt in packs, it is very", "rare to find one alone, and if you do the rest of its pack is probably about to ambush you. They", "usually lurk about the forest floor eating whatever small critters they can get their jaws around."], image: ["theCrack", 56, 18, 53, 0, 0, 20, 53 / 3, 41 / 3]};
+                this.beastEntry = {intReq: 1, name: "Etyr", health: "3 - 5", armour: "1", damage: "1 - 4", negate: "3", ability: "None", fireProof: 1, habitat: "Jungle", sight: 450, alpha: "Normal", magicProof: 0, size: 20, speed: 2, rotation: 0.1, rate: 0.57, experience: 22, description: ["Etyr's are scaley reptilian creatures that have a behavior similar to that of a wolf. They hunt in packs, it is very", "rare to find one alone, and if you do the rest of its pack is probably about to ambush you. They", "usually lurk about the forest floor eating whatever small critters they can get their jaws around."], image: ["theCrack", 56, 18, 53, 0, 0, 20, 53 / 3, 41 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1;
@@ -4838,7 +4850,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 5;
                 this.attackWait = 1.80;
                 this.effect = "none";
-                this.beastEntry = {intReq: 22, name: "Thueg", health: "22 - 30", armour: "0 - 25", damage: "8 - 18", negate: "5", ability: "none", fireProof: "0 - 30", habitat: "Northern Plains / Mud Plains", sight: "250 - 1000", alpha: "Alpha", magicProof: 0, size: 26, speed: 4.6, rotation: 0.05, rate: 1.8, experience: 92, description: ["Thueg lie around all day sleeping in the shelter of their protective shell. Other plains creatures sometimes seek shade by them and meet their untimely demise.", "Thueg may rest a lot, but they are not lazy beasts. They can run quickly and wil persue their prey for long distances to catch it. Thueg are blind and use echolocation and smell to hunt."], image: ["nognog", 283, 47, 47, 37, 0, 0, 47 * 3 / 3, 37 * 3 / 3]};
+                this.beastEntry = {intReq: 22, name: "Thueg", health: "22 - 30", armour: "0 - 25", damage: "8 - 18", negate: "5", ability: "None", fireProof: "0 - 30", habitat: "Northern Plains / Mud Plains", sight: "250 - 1000", alpha: "Alpha", magicProof: 0, size: 26, speed: 4.6, rotation: 0.05, rate: 1.8, experience: 92, description: ["Thueg lie around all day sleeping in the shelter of their protective shell. Other plains creatures sometimes seek shade by them and meet their untimely demise.", "Thueg may rest a lot, but they are not lazy beasts. They can run quickly and wil persue their prey for long distances to catch it.", "Thueg are blind and use echolocation and smell to hunt."], image: ["nognog", 283, 47, 47, 37, 0, 0, 47 * 3 / 3, 37 * 3 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.4; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -4864,7 +4876,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 0.5;
                 this.attackWait = 1.80;
                 this.effect = "none";
-                this.beastEntry = {intReq: 10, name: "Thueg", health: "3", armour: "0 - 5", damage: "1.5 - 2.5", negate: "0.5", ability: "none", fireProof: "0 - 10", habitat: "Northern Plains / Mud Plains", sight: "100 - 360", alpha: "Baby", magicProof: 0, size: 12, speed: 3.5, rotation: 0.05, rate: 1.8, experience: 2, description: ["While still being completely ravenous and vile, baby thueg are notably less so than the older of their species. Thueg are blind and use echolocation and smell to hunt."], image: ["nognog", 283, 47, 47, 37, 0, 0, 47 * 1 / 3, 37 * 1 / 3]};
+                this.beastEntry = {intReq: 10, name: "Thueg", health: "3", armour: "0 - 5", damage: "1.5 - 2.5", negate: "0.5", ability: "None", fireProof: "0 - 10", habitat: "Northern Plains / Mud Plains", sight: "100 - 360", alpha: "Baby", magicProof: 0, size: 12, speed: 3.5, rotation: 0.05, rate: 1.8, experience: 2, description: ["While still being completely ravenous and vile, baby thueg are notably less so than the older of their species.", "Thueg are blind and use echolocation and smell to hunt."], image: ["nognog", 283, 47, 47, 37, 0, 0, 47 * 1 / 3, 37 * 1 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 0.65;
@@ -4891,7 +4903,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 1.5;
                 this.attackWait = 1.80;
                 this.effect = "none";
-                this.beastEntry = {intReq: 16, name: "Thueg", health: "7 - 11", armour: "0 - 15", damage: "4 - 10", negate: "1.5", ability: "none", fireProof: "0 - 20", habitat: "Northern Plains / Mud Plains", sight: "250 - 1000", alpha: "Normal", magicProof: 0, size: 18, speed: 4.3, rotation: 0.05, rate: 1.8, experience: 23, description: ["Thueg lie around all day sleeping in the shelter of their protective shell. Other plains creatures sometimes seek shade by them and meet their untimely demise.", "Thueg may rest a lot, but they are not lazy beasts. They can run quickly and wil persue their prey for long distances to catch it. Thueg are blind and use echolocation and smell to hunt."], image: ["nognog", 283, 47, 47, 37, 0, 0, 47 * 2 / 3, 37 * 2 / 3]};
+                this.beastEntry = {intReq: 16, name: "Thueg", health: "7 - 11", armour: "0 - 15", damage: "4 - 10", negate: "1.5", ability: "None", fireProof: "0 - 20", habitat: "Northern Plains / Mud Plains", sight: "250 - 1000", alpha: "Normal", magicProof: 0, size: 18, speed: 4.3, rotation: 0.05, rate: 1.8, experience: 23, description: ["Thueg lie around all day sleeping in the shelter of their protective shell. Other plains creatures sometimes seek shade by them and meet their untimely demise.", "Thueg may rest a lot, but they are not lazy beasts. They can run quickly and wil persue their prey for long distances to catch it.", "Thueg are blind and use echolocation and smell to hunt."], image: ["nognog", 283, 47, 47, 37, 0, 0, 47 * 2 / 3, 37 * 2 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1;
@@ -4929,7 +4941,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 11;
                 this.attackWait = 0.6;
                 this.effect = "none";
-                this.beastEntry = {intReq: 30, name: "Grush", health: "204 - 243", armour: "0 - 75", damage: "10 - 18", negate: "11", ability: "none", fireProof: -1, habitat: "Grasslands", sight: "80 - 140", alpha: "Giant", magicProof: 0, size: 25, speed: 3.2, rotation: 0.09, rate: 0.6, experience: 1100, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resember the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have itself a feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near there", "resting place or they go back to sleep."], image: ["mofu", 877, 1, 72, 72, 0, 0, 72 * 3 / 3, 72 * 3 / 3]};
+                this.beastEntry = {intReq: 30, name: "Grush", health: "204 - 243", armour: "0 - 75", damage: "10 - 18", negate: "11", ability: "None", fireProof: -1, habitat: "Grasslands", sight: "80 - 140", alpha: "Giant", magicProof: 0, size: 25, speed: 3.2, rotation: 0.09, rate: 0.6, experience: 1100, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resember the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have itself a feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near their", "resting place or they go back to sleep."], image: ["mofu", 877, 1, 72, 72, 0, 0, 72 * 3 / 3, 72 * 3 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 3; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -4955,7 +4967,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 0.1;
                 this.attackWait = 0.5;
                 this.effect = "none";
-                this.beastEntry = {intReq: 6, name: "Grush", health: "1", armour: "0 - 15", damage: "0.5 - 1", negate: 0.1, ability: "none", fireProof: -1, habitat: "Grasslands", sight: "45 - 60", alpha: "Baby", magicProof: 0, size: 8, speed: 0.85, rotation: 0.05, rate: 0.5, experience: 4, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resemble the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have itself a feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near their", "resting place or they go back to sleep."], image: ["mofu", 877, 1, 72, 72, 0, 0, 72 * 0.6 / 3, 72 * 0.6 / 3]};
+                this.beastEntry = {intReq: 6, name: "Grush", health: "1", armour: "0 - 15", damage: "0.5 - 1", negate: 0.1, ability: "None", fireProof: -1, habitat: "Grasslands", sight: "45 - 60", alpha: "Baby", magicProof: 0, size: 8, speed: 0.85, rotation: 0.05, rate: 0.5, experience: 4, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resemble the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have itself a feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near their", "resting place or they go back to sleep."], image: ["mofu", 877, 1, 72, 72, 0, 0, 72 * 0.6 / 3, 72 * 0.6 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 0.6; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -4980,7 +4992,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 2.5;
                 this.attackWait = 0.6;
                 this.effect = "none";
-                this.beastEntry = {intReq: 16, name: "Grush", health: "44 - 53", armour: "0 - 55", damage: "3 - 9", negate: "2.5", ability: "none", fireProof: -1, habitat: "Grasslands", sight: "55 - 90", alpha: "Alpha", magicProof: 0, size: 21, speed: 1.6, rotation: 0.085, rate: 0.6, experience: 95, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resemble the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have a itself feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near their", "resting place or they go back to sleep."], image: ["mofu", 877, 1, 72, 72, 0, 0, 72 * 1.5 / 3, 72 * 1.5 / 3]};
+                this.beastEntry = {intReq: 16, name: "Grush", health: "44 - 53", armour: "0 - 55", damage: "3 - 9", negate: "2.5", ability: "None", fireProof: -1, habitat: "Grasslands", sight: "55 - 90", alpha: "Alpha", magicProof: 0, size: 21, speed: 1.6, rotation: 0.085, rate: 0.6, experience: 95, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resemble the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have a itself feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near their", "resting place or they go back to sleep."], image: ["mofu", 877, 1, 72, 72, 0, 0, 72 * 1.5 / 3, 72 * 1.5 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -5006,7 +5018,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 1;
                 this.attackWait = 0.5;
                 this.effect = "none";
-                this.beastEntry = {intReq: 9, name: "Grush", health: "29 - 36", armour: "0 - 35", damage: "2 - 6", negate: 1, ability: "none", fireProof: -1, habitat: "Grasslands", sight: "45 - 60", alpha: "Normal", magicProof: 0, size: 14, speed: 1, rotation: 0.05, rate: 0.5, experience: 45, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resemble the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have a itself feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near their", "resting place or they go back to sleep."], image: ["mofu", 877, 1, 72, 72, 0, 0, 72 / 3, 72 / 3]};
+                this.beastEntry = {intReq: 9, name: "Grush", health: "29 - 36", armour: "0 - 35", damage: "2 - 6", negate: 1, ability: "None", fireProof: -1, habitat: "Grasslands", sight: "45 - 60", alpha: "Normal", magicProof: 0, size: 14, speed: 1, rotation: 0.05, rate: 0.5, experience: 45, description: ["Grushes live in a protective shell that grows biological plantlike fibers from its pores that strongly resemble the plant grush weed that grushes", "usually live around. A grush will not leave its shell until its prey comes right next to it which is when it will poke its long sharp toothed", "jaw out and gnaw whatever it finds apart and then pull what it can of the mangled flesh back into its shell to have a itself feast. Grushes are", "incredily lazy and they will stop persuing a target almost as fast as they had started, either they succeed at eating it while it's near their", "resting place or they go back to sleep."], image: ["mofu", 877, 1, 72, 72, 0, 0, 72 / 3, 72 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1;
@@ -5137,7 +5149,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 50;
                 this.negateArmour = 10;
                 this.attackWait = 0.75;
-                this.beastEntry = {intReq: 13, name: "Beruln", health: "36 - 61", armour: 0, damage: "8 - 22", negate: 10, ability: "None", fireProof: -1, habitat: "Northern Rocky Barrens", sight: 900, alpha: "Alpha", magicProof: 0, size: 50, speed: "6.1 - 6.5", rotation: 0.075, rate: 0.75, experience: 93, description: ["Berulns are massive grey furred beasts that are known for their ferocity. They have an extra thick patch of fur that goes from the back of their", "head and widenes as it bristles back toward their tail end. Berulns are skilled hunters and they can be fairly silent while stalking prey and can", "also be exceptionally good climbers. Berulns are savage when it comes to eating, they will grasp their victim in their jaws and swing it around and", "smash it into the ground or large rocks before finally settling down to eat it. Alpha Berulns are slightly larger than the normal ones and they are a bit more agressive and perceptive to prey as well."], image: ["polyPNG", 92, 599, 77, 54, 0, 0, 154 * 1.1 / 3, 108 * 1.1 / 3]};
+                this.beastEntry = {intReq: 13, name: "Beruln", health: "36 - 61", armour: 0, damage: "8 - 22", negate: 10, ability: "None", fireProof: -1, habitat: "Northern Craglands", sight: 900, alpha: "Alpha", magicProof: 0, size: 50, speed: "6.1 - 6.5", rotation: 0.075, rate: 0.75, experience: 93, description: ["Berulns are massive grey furred beasts that are known for their ferocity. They have an extra thick patch of fur that goes from the back of their", "head and widenes as it bristles back toward their tail end. Berulns are skilled hunters and they can be fairly silent while stalking prey and can", "also be exceptionally good climbers. Berulns are savage when it comes to eating, they will grasp their victim in their jaws and swing it around and", "smash it into the ground or large rocks before finally settling down to eat it. Alpha Berulns are slightly larger than the normal ones and they are", "a bit more agressive and perceptive to prey as well."], image: ["polyPNG", 92, 599, 77, 54, 0, 0, 154 * 1.1 / 3, 108 * 1.1 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -5163,7 +5175,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 42;
                 this.negateArmour = 9;
                 this.attackWait = 0.85;
-                this.beastEntry = {intReq: 11, name: "Beruln", health: "32 - 45", armour: 0, damage: "7 - 22", negate: 9, ability: "None", fireProof: -1, habitat: "Northern Rocky Barrens", sight: 850, alpha: "Normal", magicProof: 0, size: 42, speed: "5.8 - 6", rotation: 0.075, rate: 0.85, experience: 81, description: ["Berulns are massive grey furred beasts that are known for their ferocity. They have an extra thick patch of fur that goes from the back of their", "head and widenes as it bristles back toward their tail end. Berulns are skilled hunters and they can be fairly silent while stalking prey and can", "also be exceptionally good climbers. Berulns are savage when it comes to eating, they will grasp their victim in their jaws and swing it around and", "smash it into the ground or large rocks before finally settling down to eat it."], image: ["polyPNG", 92, 599, 77, 54, 0, 0, 154 / 3, 108 / 3]};
+                this.beastEntry = {intReq: 11, name: "Beruln", health: "32 - 45", armour: 0, damage: "7 - 22", negate: 9, ability: "None", fireProof: -1, habitat: "Northern Craglands", sight: 850, alpha: "Normal", magicProof: 0, size: 42, speed: "5.8 - 6", rotation: 0.075, rate: 0.85, experience: 81, description: ["Berulns are massive grey furred beasts that are known for their ferocity. They have an extra thick patch of fur that goes from the back of their", "head and widenes as it bristles back toward their tail end. Berulns are skilled hunters and they can be fairly silent while stalking prey and can", "also be exceptionally good climbers. Berulns are savage when it comes to eating, they will grasp their victim in their jaws and swing it around and", "smash it into the ground or large rocks before finally settling down to eat it."], image: ["polyPNG", 92, 599, 77, 54, 0, 0, 154 / 3, 108 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1;
@@ -5197,7 +5209,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 47;
                 this.negateArmour = 20;
                 this.attackWait = 3;
-                this.beastEntry = {intReq: 45, name: "Olkrin", health: "500 - 600", armour: 9, damage: "36 - 64", negate: 20, ability: "None", fireProof: 0, habitat: "Rocky Barrens", sight: 1100, alpha: "Goliath", magicProof: 0, size: 47, speed: "7.1 - 7.5", rotation: 0.1, rate: 3, experience: 1400, description: ["Olkrins are thought to be only of myth and legend for the reason that they are not common to find, which is because they are humongous beasts", "with vast appetites that need to be filled and many places do not have the right ecosystem to support their species' size. Those who do recognize there", "existence often consider olkrins to be a type of demon, but in truth they are just an ancient species of abnormally huge ferocious monsters that may be", "on the verge of extinction."], image: ["verse", 156, 706, 117, 157, 0, 0, 117 * 2.4 / 3, 157 * 2.4 / 3]};
+                this.beastEntry = {intReq: 45, name: "Olkrin", health: "500 - 600", armour: 9, damage: "36 - 64", negate: 20, ability: "None", fireProof: 0, habitat: "Craglands", sight: 1100, alpha: "Goliath", magicProof: 0, size: 47, speed: "7.1 - 7.5", rotation: 0.1, rate: 3, experience: 1400, description: ["Olkrins are thought to be only of myth and legend for the reason that they are not common to find, which is because they are humongous beasts", "with vast appetites that need to be filled and many places do not have the right ecosystem to support their species' size. Those who do recognize there", "existence often consider olkrins to be a type of demon, but in truth they are just an ancient species of abnormally huge ferocious monsters that may be", "on the verge of extinction."], image: ["verse", 156, 706, 117, 157, 0, 0, 117 * 2.4 / 3, 157 * 2.4 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 2.40; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -5223,7 +5235,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 24;
                 this.negateArmour = 10;
                 this.attackWait = 2;
-                this.beastEntry = {intReq: 35, name: "Olkrin", health: "45 - 60", armour: 2.5, damage: "12 - 20", negate: 10, ability: "None", fireProof: 0, habitat: "Rocky Barrens", sight: 750, alpha: "Baby", magicProof: 0, size: 24, speed: "5.1 - 5.3", rotation: 0.1, rate: 2, experience: 172, description: ["Olkrins are thought to be only of myth and legend for the reason that they are not common to find, which is because they are humongous beasts", "with vast appetites that need to be filled and many places do not have the right ecosystem to support their species' size. Those who do recognize there", "existence often consider olkrins to be a type of demon, but in truth they are just an ancient species of abnormally huge ferocious monsters that may be", "on the verge of extinction."], image: ["verse", 156, 706, 117, 157, 0, 0, 117 * 1.1 / 3, 157 * 1.1 / 3]};
+                this.beastEntry = {intReq: 35, name: "Olkrin", health: "45 - 60", armour: 2.5, damage: "12 - 20", negate: 10, ability: "None", fireProof: 0, habitat: "Craglands", sight: 750, alpha: "Baby", magicProof: 0, size: 24, speed: "5.1 - 5.3", rotation: 0.1, rate: 2, experience: 172, description: ["Olkrins are thought to be only of myth and legend for the reason that they are not common to find, which is because they are humongous beasts", "with vast appetites that need to be filled and many places do not have the right ecosystem to support their species' size. Those who do recognize there", "existence often consider olkrins to be a type of demon, but in truth they are just an ancient species of abnormally huge ferocious monsters that may be", "on the verge of extinction."], image: ["verse", 156, 706, 117, 157, 0, 0, 117 * 1.1 / 3, 157 * 1.1 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1.1;
@@ -5249,7 +5261,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 42;
                 this.negateArmour = 14;
                 this.attackWait = 3;
-                this.beastEntry = {intReq: 40, name: "Olkrin", health: "225 - 310", armour: 5, damage: "24 - 40", negate: 14, ability: "None", fireProof: 0, habitat: "Rocky Barrens", sight: 900, alpha: "Normal", magicProof: 0, size: 42, speed: "6.8 - 7", rotation: 0.1, rate: 3, experience: 1000, description: ["Olkrins are thought to be only of myth and legend for the reason that they are not common to find, which is because they are humongous beasts", "with vast appetites that need to be filled and many places do not have the right ecosystem to support their species' size. Those who do recognize there", "existence often consider olkrins to be a type of demon, but in truth they are just an ancient species of abnormally huge ferocious monsters that may be", "on the verge of extinction."], image: ["verse", 156, 706, 117, 157, 0, 0, 117 * 1.75 / 3, 157 * 1.75 / 3]};
+                this.beastEntry = {intReq: 40, name: "Olkrin", health: "225 - 310", armour: 5, damage: "24 - 40", negate: 14, ability: "None", fireProof: 0, habitat: "Craglands", sight: 900, alpha: "Normal", magicProof: 0, size: 42, speed: "6.8 - 7", rotation: 0.1, rate: 3, experience: 1000, description: ["Olkrins are thought to be only of myth and legend for the reason that they are not common to find, which is because they are humongous beasts", "with vast appetites that need to be filled and many places do not have the right ecosystem to support their species' size. Those who do recognize there", "existence often consider olkrins to be a type of demon, but in truth they are just an ancient species of abnormally huge ferocious monsters that may be", "on the verge of extinction."], image: ["verse", 156, 706, 117, 157, 0, 0, 117 * 1.75 / 3, 157 * 1.75 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1.75;
@@ -5438,7 +5450,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 35;
                 this.negateArmour = 2.5;
                 this.attackWait = 1.65;
-                this.beastEntry = {intReq: 11, name: "Grey Wolf", health: "28 - 47", armour: 0, damage: "5 - 22", negate: 2.5, ability: "None", fireProof: -1, habitat: "Mountains/Rocky Barrens/Temperate Forest", sight: 700, alpha: "Massive", magicProof: 0, size: 35, speed: "4.7 - 5.1", rotation: 0.085, rate: 1.65, experience: 90, description: ["Tales have been told of such oversized man-eating wolves. Grey wolves are the most common wolves of the lands, though there is nothing common about the much larger version of these fearsome grey-furred beasts."], image: ["oldverse", 2853, 17, 49, 29, 0, 0, 49 * 3.2 / 3, 29 * 3.2 / 3]};
+                this.beastEntry = {intReq: 11, name: "Grey Wolf", health: "28 - 47", armour: 0, damage: "5 - 22", negate: 2.5, ability: "None", fireProof: -1, habitat: "Temperate", sight: 700, alpha: "Massive", magicProof: 0, size: 35, speed: "4.7 - 5.1", rotation: 0.085, rate: 1.65, experience: 90, description: ["Tales have been told of such oversized man-eating wolves. Grey wolves are the most common wolves of the lands, though there is nothing common about", "the much larger version of these fearsome grey-furred beasts."], image: ["oldverse", 2853, 17, 49, 29, 0, 0, 49 * 3.2 / 3, 29 * 3.2 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 3.2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -5463,7 +5475,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 24;
                 this.negateArmour = 0.5;
                 this.attackWait = 1.65;
-                this.beastEntry = {intReq: 6, name: "Grey Wolf", health: "8 - 15", armour: 0, damage: "3 - 8", negate: 0.5, ability: "None", fireProof: -1, habitat: "Mountains/Rocky Barrens/Temperate Forest", sight: 600, alpha: "Normal", magicProof: 0, size: 24, speed: "4.5 - 4.7", rotation: 0.085, rate: 1.65, experience: 38, description: ["Grey wolves are the most common type of wolf in the lands. They are found in small to medium large packs, which may be found in forest regions, in", "mountainous regions, and in rocky barrens."], image: ["oldverse", 2853, 17, 49, 29, 0, 0, 49 * 1.8 / 3, 29 * 1.8 / 3]};
+                this.beastEntry = {intReq: 6, name: "Grey Wolf", health: "8 - 15", armour: 0, damage: "3 - 8", negate: 0.5, ability: "None", fireProof: -1, habitat: "Temperate", sight: 600, alpha: "Normal", magicProof: 0, size: 24, speed: "4.5 - 4.7", rotation: 0.085, rate: 1.65, experience: 38, description: ["Grey wolves are the most common type of wolf in the lands. They are found in small to medium large packs, which may be found in forest regions, in", "mountainous regions, and in rocky barrens."], image: ["oldverse", 2853, 17, 49, 29, 0, 0, 49 * 1.8 / 3, 29 * 1.8 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1.8;
@@ -5522,7 +5534,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 13;
                 this.negateArmour = 4;
                 this.attackWait = 0.5;
-                this.beastEntry = {intReq: 9, name: "Gulfrey", health: "4 - 8", armour: 4, damage: "2 - 4", negate: 4, ability: "None", fireProof: 1, habitat: "Jungle", sight: 440, alpha: "Baby", magicProof: 0, size: 13, speed: "2.8 - 3.1", rotation: 0.05, rate: 0.5, experience: 8, description: ["Gulfreys are long shelled insects with multiple shell sections that allow them much maneuverability. Young Gulfreys are born from large clusters of eggs and they tend to be successful at surviving if they hatch because they will all hunt together. A pack of young gulfreys is a fearful sight, but worse is when they each grow into their fully grown form which is massive."], image: ["oldverse", 242, 10, 123, 52, 0, 0, 123 * 0.65 / 3, 52 * 0.65 / 3]};
+                this.beastEntry = {intReq: 9, name: "Gulfrey", health: "4 - 8", armour: 4, damage: "2 - 4", negate: 4, ability: "None", fireProof: 1, habitat: "Jungle", sight: 440, alpha: "Baby", magicProof: 0, size: 13, speed: "2.8 - 3.1", rotation: 0.05, rate: 0.5, experience: 8, description: ["Gulfreys are long shelled insects with multiple shell sections that allow them much maneuverability. Young Gulfreys are born from large clusters of eggs", "and they tend to be successful at surviving if they hatch because they will all hunt together. A pack of young gulfreys is a fearful sight, but worse", "is when they each grow into their fully grown form which is massive."], image: ["oldverse", 242, 10, 123, 52, 0, 0, 123 * 0.65 / 3, 52 * 0.65 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 0.65;
@@ -5556,6 +5568,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 16;
                 this.negateArmour = 1;
                 this.attackWait = 1;
+                this.beastEntry = {intReq: 44, name: "Neev", health: "39 - 54", armour: 0, damage: "3 - 11", negate: 1, ability: "Obscurity", fireProof: -1, habitat: "Cold - Warm Climates", sight: 800, alpha: "Large", magicProof: 7, size: 16, speed: "3.2 - 3.6", rotation: 0.1, rate: 1, experience: 55, description: ["Neevs or Beer fairies are a type of magical creature commonly classified as a fairy. Neevs are kleptomaniacs that stash away all that", "they steal in an unaccessible wormhole dimension. They wander the periphery of human awareness invisibly stealing to their heart's content. Neevs can", "only be seen while drunk or while also traversing the subconscious dimension of obscurity."], image: ["poly", 186, 3, 48, 51, 0, 0, 48 * 4 / 3, 51 * 4 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.8; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -5580,6 +5593,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 13;
                 this.negateArmour = 0;
                 this.attackWait = 1;
+                this.beastEntry = {intReq: 38, name: "Neev", health: "11 - 17", armour: 0, damage: "1.5 - 4.5", negate: 0, ability: "Obscurity", fireProof: -1, habitat: "Cold - Warm Climates", sight: 650, alpha: "Normal", magicProof: 5, size: 13, speed: "2.4 - 2.9", rotation: 0.1, rate: 1, experience: 20, description: ["Neevs or Beer fairies are a type of magical creature commonly classified as a fairy. Neevs are kleptomaniacs that stash away all that", "they steal in an unaccessible wormhole dimension. They wander the periphery of human awareness invisibly stealing to their heart's content. Neevs can", "only be seen while drunk or while also traversing the subconscious dimension of obscurity."], image: ["poly", 186, 3, 48, 51, 0, 0, 48 * 3 / 3, 51 * 3 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1;
@@ -5612,7 +5626,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.engagementRadius = 42;
                 this.sizeRadius = 18;
                 this.negateArmour = 0.15;
-                this.attackWait = 0.25;
+                this.attackWait = 0.5;
+                this.beastEntry = {intReq: 11, name: "Golgemoff", health: "11 - 17", armour: 4, damage: "1 - 2.5", negate: 0.5, ability: "blindingIII", fireProof: -1, habitat: "Warm - Temperate", sight: 860, alpha: "Large", magicProof: 0, size: 18, speed: "5.5 - 6", rotation: 0.1, rate: 0.5, experience: 27, description: ["Golgemoffs are a potentially sentient spider-like being. Each golgemoff is thought to be part of a collective hivemind but no clear evidence", "is available to prove such a suspicion. Golgemoffs roam throughout various landscapes hunting to bring sustenance back to their hive. They have", "tentacles that are coated in", "a toxin that causes temporary blindness. Golgemoffs can be found charging around in massive swarms or completely solitary."], image: ["mofu", 945, 283, 67, 69, 0, 0, 67 * 1.35 / 3, 69 * 1.35 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.35; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -5634,8 +5649,9 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
                 this.engagementRadius = 50;
                 this.sizeRadius = 23;
-                this.negateArmour = 0.5;
+                this.negateArmour = 1;
                 this.attackWait = 0.25;
+                this.beastEntry = {intReq: 19, name: "Golgemoff", health: "55 - 72", armour: 6, damage: "2 - 5", negate: 1, ability: "blindingIII", fireProof: -1, habitat: "Warm - Temperate", sight: 1000, alpha: "Massive", magicProof: 0, size: 23, speed: "6 - 6.7", rotation: 0.1, rate: 0.25, experience: 84, description: ["Golgemoffs are a potentially sentient spider-like being. Each golgemoff is thought to be part of a collective hivemind but no clear evidence", "is available to prove such a suspicion. Golgemoffs roam throughout various landscapes hunting to bring sustenance back to their hive. They have", "tentacles that are coated in", "a toxin that causes temporary blindness. Massive golgemoffs are uncommon, it is thought that they are a variant of the", "species that grows larger to fill a particular role in the hivemind structure."], image: ["mofu", 945, 283, 67, 69, 0, 0, 67 * 1.9 / 3, 69 * 1.9 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.85; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -5646,7 +5662,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (this.alpha == "baby")
             {
                 this.magicalResistance = 0;
-                this.heatResistance = 2;
+                this.heatResistance = -1;
                 this.attackStyle = "chunked";
                 this.attackRate = 0;  //this is for rapid style combat only.
                 this.healthMAX = 1.5;
@@ -5659,6 +5675,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 4;
                 this.negateArmour = 0;
                 this.attackWait = 0.25;
+                this.beastEntry = {intReq: 9, name: "Golgemoff", health: "1.5", armour: 1, damage: "0.25", negate: 0, ability: "blindingIII", fireProof: -1, habitat: "Warm - Temperate", sight: 700, alpha: "Baby", magicProof: 0, size: 4, speed: "3.5 - 4.5", rotation: 0.1, rate: 0.25, experience: 1, description: ["Golgemoffs are a potentially sentient spider-like being. Each golgemoff is thought to be part of a collective hivemind but no clear evidence", "is available to prove such a suspicion. Golgemoffs roam throughout various landscapes hunting to bring sustenance back to their hive. They have", "tentacles that are coated in a toxin that causes temporary blindness. The baby golgemoffs are more commonly found in swarms than the other varieties,", "it is assumed that this is a survival strategy as safety is often found in numbers."], image: ["mofu", 945, 283, 67, 69, 0, 0, 67 * 0.6 / 3, 69 * 0.6 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 0.35; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -5681,8 +5698,9 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
                 this.engagementRadius = 39;
                 this.sizeRadius = 13;
-                this.negateArmour = 0;
+                this.negateArmour = 0.15;
                 this.attackWait = 0.55;
+                this.beastEntry = {intReq: 10, name: "Golgemoff", health: "3-5", armour: 2.5, damage: "0.5 – 1.5", negate: 0.15, ability: "blindingIII", fireProof: -1, habitat: "Warm - Temperate", sight: 800, alpha: "Normal", magicProof: 0, size: 13, speed: "5 - 5.4", rotation: 0.1, rate: 0.55, experience: 10, description: ["Golgemoffs are a potentially sentient spider-like being. Each golgemoff is thought to be part of a collective hivemind but no clear", "evidence is available to prove such a suspicion. Golgemoffs roam throughout various landscapes hunting to bring sustenance back to their hive.", "They have tentacles that are coated in a toxin that causes temporary blindness. Golgemoffs can be found charging around in massive swarms or completely", "solitary. The first sighting of a golgemoff was allegedly when a large rock fell from the heavens and smashed into the ground and swarms of golgemoffs", " began to pour out of it."], image: ["mofu", 945, 283, 67, 69, 0, 0, 67 * 1.15 / 3, 69 * 1.15 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1;
@@ -5713,6 +5731,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.sizeRadius = 12;
             this.negateArmour = 45;
             this.attackWait = 0.1;
+            this.beastEntry = {intReq: 1, name: "Bees", health: "1 - 3", armour: 0, damage: "0.015", negate: 45, ability: "SwollenI", fireProof: -1, habitat: "Temperate/Cold Forests", sight: 500, alpha: "Normal", magicProof: 0, size: 12, speed: "4 - 4.3", rotation: 0.1, rate: 0.1, experience: 3, description: ["Bees are an important part of the woodland ecosystem as they are responsible for pollinating the various plantlife. Bees produce honey as a", "food source for the hive made out of nectar and pollen taken from the different plants in the area. Bees do not tend to be aggressive, but if someone gets", "in the way of a swarm they should expect to be stung several times."], image: ["poly", 42, 312, 79, 70, 0, 0, 79 * 1.2 / 3, 70 * 1.2 / 3]};
 
             //this multiplies the draw image skew numbers by 1 so that it stays the same
             this.alphaSize = 1;
@@ -5750,6 +5769,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.sizeRadius = 20;
             this.negateArmour = 0;
             this.attackWait = 5;
+            this.beastEntry = {intReq: 50, name: "Ancient Being", health: "110", armour: 4, damage: "8 - 40", negate: 0, ability: "See Description", fireProof: 10, habitat: "Otherrealm", sight: 4000, alpha: "Normal", magicProof: 0, size: 20, speed: "0", rotation: 0.1, rate: 5, experience: 2017, description: ["Ancient Beings are demonic fiends from another realm. They can cross into the living realm when", "magical rifts form a gate to their realm allowing them to pass through. They have a variety of unique abilities:", " ", "Shadowportation ~ the ancient can teleport through a blinding mass of shadowy fog from one location to another.", "Flaming Missiles ~ the ancient throws two firey blasts that seek its victim, each deals 8 fire damage.", "Summoning ~ the ancient draws upon the dissonance between the torn realms to bring powerful otherrealmly crawlers into the living realm.", "Soul Sucking ~ If its victim is near it, the ancient will drain a part of its soul from it.", "Against the player this steals a point of Constitution and takes 20 will and 5 energy, against others it deals 40 magic damage."], image: ["oldverse", 1567, 310, 51, 80, 0, 0, 51 * 1.5 / 3, 80 * 1.5 / 3]};
 
             this.alphaSize = 1.5;
             this.yAdjustment = 0;
@@ -5784,6 +5804,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.sizeRadius = 45;
             this.negateArmour = 0;
             this.attackWait = 3.9;
+            this.beastEntry = {intReq: 40, name: "Ancient Crawler", health: "90", armour: 11, damage: "9 - 26", negate: 5, ability: "Fire", fireProof: 10, habitat: "Otherrealm", sight: 2100, alpha: "Normal", magicProof: 20, size: 45, speed: "4", rotation: 0.1, rate: 3.9, experience: 888, description: ["Ancient Crawlers are demonic beasts from another realm that breath flames and crawl on long boney legs. Crawlers are often used by ancient beings as", "powerful demonic minions."], image: ["oldverse", 462, 189, 86, 107, 0, 0, 86 * 2 / 3, 107 * 2 / 3]};
 
             this.alphaSize = 2;
             this.yAdjustment = 0;
@@ -5820,6 +5841,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 17;
                 this.negateArmour = 0;
                 this.attackWait = 0.55;
+                this.beastEntry = {intReq: 3, name: "Frich", health: "4 - 7", armour: 0, damage: "1 - 4", negate: 0, ability: "None", fireProof: -1, habitat: "Underground / Grasslands", sight: 431, alpha: "Alpha", magicProof: 0, size: 17, speed: "2.8 - 3.1", rotation: 0.1, rate: 0.55, experience: 15, description: ["A Frich is a grey haired rodent that has a bare unfurred face. Friches tend to prefer cooler temperatures and thusly live both underground and in", "temperate climates. They scavenge leftover carrion when it is available and when not they hunt small critters or ransack a farm if there is one nearby.", "Friches are often found in small packs that hunt together, but it is also common enough to see a lone frich seeking out food."], image: ["verse", 1290, 5, 83, 33, 0, 0, 83 * 1.5 / 3, 33 * 1.5 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -5844,6 +5866,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 19;
                 this.negateArmour = 1;
                 this.attackWait = 0.80;
+                this.beastEntry = {intReq: 6, name: "Frich", health: "12 - 19", armour: 0, damage: "2 - 7", negate: 1, ability: "None", fireProof: -1, habitat: "Underground / Grasslands", sight: 525, alpha: "Massive", magicProof: 0, size: 19, speed: "3.3 - 3.5", rotation: 0.1, rate: 0.80, experience: 33, description: ["A Frich is a grey haired rodent that has a bare unfurred face. Friches tend to prefer cooler temperatures and thusly live both underground and in", "Massive friches tend to be more likely than others to actively seek out human flesh for their diet. They tend to be found in small groups of at the most", "up to three or four, but more often are found hunting alone or in pairs."], image: ["verse", 1290, 5, 83, 33, 0, 0, 83 * 1.9 / 3, 33 * 1.9 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.6; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -5869,6 +5892,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 15;
                 this.negateArmour = 0;
                 this.attackWait = 0.55;
+                this.beastEntry = {intReq: 2, name: "Frich", health: "3 - 5", armour: 0, damage: "1 - 2", negate: 0, ability: "None", fireProof: -1, habitat: "Underground / Grasslands", sight: 400, alpha: "Normal", magicProof: 0, size: 15, speed: "2.6 - 3", rotation: 0.1, rate: 0.55, experience: 11, description: ["A Frich is a grey haired rodent that has a bare unfurred face. Friches tend to prefer cooler temperatures and thusly live both underground and in", "temperate climates. They scavenge leftover carrion when it is available and when not they hunt small critters or ransack a farm if there is one nearby.", "Friches are often found in small packs that hunt together, but it is also common enough to see a lone frich seeking out food."], image: ["verse", 1290, 5, 83, 33, 0, 0, 83 * 1.15 / 3, 33 * 1.15 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1;
@@ -5901,6 +5925,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 19;
                 this.negateArmour = 2;
                 this.attackWait = 0.85;
+                this.beastEntry = {intReq: 8, name: "Mountain Frich", health: "47 - 62", armour: 0, damage: "3 - 10", negate: 2, ability: "None", fireProof: -1, habitat: "Craglands / Mountains", sight: 625, alpha: "Alpha", magicProof: 0, size: 19, speed: "3.6 - 3.9", rotation: 0.1, rate: 0.85, experience: 58, description: ["Mountain Friches are extremely large black haired rodents that clamber thoughout rocky crags and across jagged mountainsides often taking shelter in", "caves or between large rocks. Mountain friches eat whichever unfortunate creature finds itself before them; they eat their prey bones and all, they are", "not picky in the least."], image: ["oldverse", 1290, 5, 83, 33, 0, 0, 83 * 2.2 / 3, 33 * 2.2 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -5925,6 +5950,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 24;
                 this.negateArmour = 3;
                 this.attackWait = 0.90;
+                this.beastEntry = {intReq: 14, name: "Mountain Frich", health: "73 - 94", armour: 0, damage: "4 - 14", negate: 3, ability: "None", fireProof: -1, habitat: "Craglands / Mountains", sight: 725, alpha: "Massive", magicProof: 0, size: 24, speed: "4.1 - 4.3", rotation: 0.1, rate: 0.90, experience: 90, description: ["Mountain Friches are extremely large black haired rodents that clamber thoughout rocky crags and across jagged mountainsides often taking shelter in", "caves or between large rocks. Mountain friches eat whichever unfortunate creature finds itself before them; they eat their prey bones and all, they are", "not picky in the least."], image: ["oldverse", 1290, 5, 83, 33, 0, 0, 83 * 2.6 / 3, 33 * 2.6 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 2.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -5949,6 +5975,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 18;
                 this.negateArmour = 1;
                 this.attackWait = 0.8;
+                this.beastEntry = {intReq: 7, name: "Mountain Frich", health: "30 - 36", armour: 0, damage: "2 - 7", negate: 1, ability: "None", fireProof: -1, habitat: "Craglands / Mountains", sight: 525, alpha: "Normal", magicProof: 0, size: 18, speed: "3.2 - 3.6", rotation: 0.1, rate: 0.8, experience: 41, description: ["Mountain Friches are extremely large black haired rodents that clamber thoughout rocky crags and across jagged mountainsides often taking shelter in", "caves or between large rocks. Mountain friches eat whichever unfortunate creature finds itself before them; they eat their prey bones and all, they are", "not picky in the least."], image: ["oldverse", 1290, 5, 83, 33, 0, 0, 83 * 1.8 / 3, 33 * 1.8 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1.5;
@@ -5981,6 +6008,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 17;
                 this.negateArmour = 3;
                 this.attackWait = 1.25;
+                this.beastEntry = {intReq: 5, name: "Anter", health: "9 - 15", armour: 6, damage: "3 - 6", negate: 3, ability: "None", fireProof: 0.5, habitat: "Grasslands / Mudflats", sight: 400, alpha: "Soldier", magicProof: 0, size: 17, speed: "3.9 - 4.1", rotation: 0.1, rate: 1.25, experience: 20, description: ["Anters are a large three parted black insect with six legs and strong mandables. Soldier Anters are meant to protect the anter nest from outside threats.", "They also keep the worker anters in line and doing their jobs. Some have suggested that anters are a collect hivemind, but others have proposed that", "they are in fact sentient or partially sentient life-forms that live out complex lives and work to support their colony just as people work to support", "their kingdom's economic prosperity."], image: ["polpol", 13, 489, 50, 30, 0, 0, 50 * 1.8 / 3, 30 * 1.8 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.6; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -6004,6 +6032,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 18;
                 this.negateArmour = 3;
                 this.attackWait = 1.25;
+                this.beastEntry = {intReq: 8, name: "Anter", health: "35 - 46", armour: 6, damage: "4 - 9", negate: 3, ability: "None", fireProof: 0.5, habitat: "Grasslands / Mudflats", sight: 500, alpha: "Guardian", magicProof: 0, size: 18, speed: "3.9 - 4.1", rotation: 0.1, rate: 1.25, experience: 60, description: ["Anters are a large three parted black insect with six legs and strong mandables. Guardian Anters are meant to protect the eggs and the queen from harm.", "Though in some cases a guardian anter or two will sally out to defend the nest from a threat on the outside. Some have suggested that anters are a", "collective hivemind, but others have proposed that they are in fact sentient or partially sentient life-forms that live out complex lives and work to", "support their colony just as people work to support their kingdom's economic prosperity."], image: ["polpol", 13, 489, 50, 30, 0, 0, 50 * 2.3 / 3, 30 * 2.3 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -6027,6 +6056,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 15;
                 this.negateArmour = 3;
                 this.attackWait = 1.25;
+                this.beastEntry = {intReq: 4, name: "Anter", health: "5 - 9", armour: 6, damage: "2 - 4", negate: 3, ability: "None", fireProof: 0.5, habitat: "Grasslands / Mudflats", sight: 400, alpha: "Worker", magicProof: 0, size: 15, speed: "3.9 - 4.1", rotation: 0.1, rate: 1.25, experience: 14, description: ["Anters are a large three parted black insect with six legs and strong mandables. Worker Anters are meant to scavenge and gather food for the colony.", "Anters have a strong sense of smell and actively search for any even remotely edible substance to carry back to the nest. Some have suggested that", "anters are a collect hivemind, but others have proposed that they are in fact sentient or partially sentient life-forms that live out complex lives and", "work to support their colony just as people work to support their kingdom's economic prosperity."], image: ["polpol", 13, 489, 50, 30, 0, 0, 50 * 1.4 / 3, 30 * 1.4 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1.3;
@@ -6065,6 +6095,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 4 + 0.45 * this.alphaSize;
                 this.attackWait = 0.86 + (Math.random() * 2);
                 this.effect = "fire";
+                this.beastEntry = {intReq: 25, name: "Pelcrid", health: "15 - 17", armour: 10.75, damage: "6.85 - 11.85", negate: 6.25, ability: "Fire", fireProof: 1000, habitat: "Molten barrens / Underground", sight: 320, alpha: "Large", magicProof: -2, size: 20, speed: "0.25 - 0.55", rotation: 0.05, rate: "0.86 - 2.85", experience: 65, description: ["Pelcrid's are a type of slime that lives at a very high temperature and that is fed by heat. If fire comes in contact with a pelcrid the pelcrid will", "absorb the heat and almost immediately grow larger. Pelcrids can not survive off of heat alone they also need to consume carbon in order to maintain", "itself; pelcrids hunt for prey to make up its carbon content incinerating it and soaking it into itself. Pelcrids, being reliant on heat, are damaged", "significantly when they are frozen.", " ", "When a pelcrid increased in size all of its stats increase as well, so the stats shown here are not accurate for an enlarged pelcrid."], image: ["nognog", 560, 92, 43, 28, 0, 0, 43 * 1.3 / 3, 28 * 1.3 / 3]};
 
                 // this is the adjustment the alpha type of Etyr needs to be centered.
                 this.yAdjustment = 0;
@@ -6090,13 +6121,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 4 + 0.45 * this.alphaSize;
                 this.attackWait = 0.86 + (Math.random() * 2);
                 this.effect = "fire";
+                this.beastEntry = {intReq: 25, name: "Pelcrid", health: "9 - 11", armour: 9.25, damage: "5.05 - 8.05", negate: 5.35, ability: "Fire", fireProof: 1000, habitat: "Molten barrens / Underground", sight: 290, alpha: "Normal", magicProof: -2, size: 16, speed: "0.21 - 0.51", rotation: 0.05, rate: "0.86 - 2.85", experience: 39, description: ["Pelcrid's are a type of slime that lives at a very high temperature and that is fed by heat. If fire comes in contact with a pelcrid the pelcrid will", "absorb the heat and almost immediately grow larger. Pelcrids can not survive off of heat alone they also need to consume carbon in order to maintain", "itself; pelcrids hunt for prey to make up its carbon content incinerating it and soaking it into itself. Pelcrids, being reliant on heat, are damaged", "significantly when they are frozen.", " ", "When a pelcrid increased in size all of its stats increase as well, so the stats shown here are not accurate for an enlarged pelcrid."], image: ["nognog", 560, 92, 43, 28, 0, 0, 43 * 1 / 3, 28 * 1 / 3]};
 
                 // this is the adjustment the alpha type of Etyr needs to be centered.
                 this.yAdjustment = 0;
                 this.xAdjustment = 0;
             }
         }
-        else if (this.type == "Oolid")
+        else if (this.type == "Oolid") //todo continue from here with beastEntries
         {
             this.damageFrame = "automatic";
             this.resistances = ["acid", "stun", "blinded", "shock"];
@@ -9630,11 +9662,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
-                    this.experience = 41 * ((player.getIntelligence() / 50) + 1);
+                    this.experience = 58 * ((player.getIntelligence() / 50) + 1);
                 }
                 else
                 {
-                    this.experience = (41 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    this.experience = (58 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
                 this.drops = [[new Item("mountainFrichPelt", this.X, this.Y), 2], [new Item("rawMountainFrichFlesh", this.X, this.Y), 2]];
@@ -9643,11 +9675,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
-                    this.experience = 55 * ((player.getIntelligence() / 50) + 1);
+                    this.experience = 90 * ((player.getIntelligence() / 50) + 1);
                 }
                 else
                 {
-                    this.experience = (55 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    this.experience = (90 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
                 this.drops = [[new Item("mountainFrichPelt", this.X, this.Y), 4], [new Item("rawMountainFrichFlesh", this.X, this.Y), 4]];
@@ -9656,11 +9688,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (Math.max(0, 2 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
-                    this.experience = 30 * ((player.getIntelligence() / 50) + 1);
+                    this.experience = 41 * ((player.getIntelligence() / 50) + 1);
                 }
                 else
                 {
-                    this.experience = 30 * ((player.getIntelligence() / 50) + 1) / 10;
+                    this.experience = 41 * ((player.getIntelligence() / 50) + 1) / 10;
                 }
 
                 this.drops = [[new Item("mountainFrichPelt", this.X, this.Y), 1], [new Item("rawMountainFrichFlesh", this.X, this.Y), 1]];
@@ -9823,7 +9855,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (this.summonsDisp >= 3)
                         {
-                            this.summonsDisp -= 3
+                            this.summonsDisp -= 3;
                             magicList.push(new Magic({ID: "ancientRift"}, false, "AncientCrawler", this));
                             magicList.push(new Magic({ID: "ancientRift"}, false, "AncientCrawler", this));
                             magicList.push(new Magic({ID: "ancientRift"}, false, "AncientCrawler", this));
@@ -9831,7 +9863,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         }
                         else if (this.summonsDisp >= 2)
                         {
-                            this.summonsDisp -= 2
+                            this.summonsDisp -= 2;
                             magicList.push(new Magic({ID: "ancientRift"}, false, "AncientCrawler", this));
                             magicList.push(new Magic({ID: "ancientRift"}, false, "AncientCrawler", this));
                             this.aiTimer = 0;
@@ -9847,7 +9879,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (this.summonsDisp >= 2)
                         {
-                            this.summonsDisp -= 2
+                            this.summonsDisp -= 2;
                             magicList.push(new Magic({ID: "ancientRift"}, false, "AncientCrawler", this));
                             magicList.push(new Magic({ID: "ancientRift"}, false, "AncientCrawler", this));
                             this.aiTimer = 0;

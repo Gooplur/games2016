@@ -15,6 +15,7 @@ function Item(type, x, y)
     this.alcohol = 0;
     this.wake = 0;
     this.store = []; //these are the items you gain from opening a package utility item.
+    this.barcode = this.type + (Math.random() * Math.random());
 
     this.turn = 0;
     this.flashFrame = 0;
@@ -5870,7 +5871,7 @@ function Item(type, x, y)
             this.hunger = 0; //satisfies hunger.
             this.thirst = 0; //quenches thirst.
             this.warmth = 0; //warms player.
-            this.heal = 2; //heals health.
+            this.heal = 3; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0; //restores will.
 
@@ -5906,7 +5907,7 @@ function Item(type, x, y)
             this.hunger = 1; //satisfies hunger.
             this.thirst = 3; //quenches thirst.
             this.warmth = 3; //warms player.
-            this.heal = 15; //heals health.
+            this.heal = 20; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0; //restores will.
 
@@ -5919,8 +5920,8 @@ function Item(type, x, y)
             this.ingredients = [["Jar of Troll's Blood", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 1000 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 800.
-            this.sellValue = 300 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 500.
+            this.buyValue = 1200 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1000.
+            this.sellValue = 500 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 700.
         }
         else if (this.type == "rawTrollsBlood")
         {
@@ -11820,7 +11821,7 @@ function Item(type, x, y)
         else if (this.type == "mudflyMold")
         {
             //For All Items
-            this.identity = "White Mud Wrot";
+            this.identity = "White Mud Rot";
             this.weight = 0.5;
             this.size = 9;
             this.description = "This smells so terrible that you are tempted to pull the face off of your skull.";
@@ -12407,6 +12408,26 @@ function Item(type, x, y)
             this.buyValue = 135 - Math.floor(player.getCharisma() / 1); // at max, buy for 85.
             this.sellValue = 60 + Math.floor(player.getCharisma() / 2); // at max, sell for 85.
         }
+        else if (this.type == "salt")
+        {
+            //For All Items
+            this.identity = "Salt";
+            this.weight = 0.2;
+            this.size = 6;
+            this.description = "A salty mineral.";
+            this.intForDes = 5;
+            this.intDescription = "Salt is found in oceanic water, and in some mineral deposits.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 15); // at max, sell for 7.
+        }
         else if (this.type == "varnPelt")
         {
             //For All Items
@@ -12426,6 +12447,156 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 8 - Math.floor(player.getCharisma() / 15); // at max, buy for 5.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "shomeDust")
+        {
+            //For All Items
+            this.identity = "Shome Dust";
+            this.weight = 0.0001;
+            this.size = 4;
+            this.description = "A bright blue dust that affects people such that they temporarily become crazy and violent.";
+            this.intForDes = 40;
+            this.intDescription = "The dust is made by melting a thick adhesive into glutid ooze then transfiguring it at a high temperature.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 40;
+            this.ingredients = [["Glutid Ooze", 3], ["Salt", 1], ["Iron", 1], ["Raw Golgemoff Flesh", 4], ["White Mud Rot", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 52; // at max, buy for 52.
+            this.sellValue = 52; // at max, sell for 52.
+        }
+        else if (this.type == "pimberDust")
+        {
+            //For All Items
+            this.identity = "Pimber Dust";
+            this.weight = 0.0001;
+            this.size = 4;
+            this.description = "A green dust that turns into a corrosive liquid acid once disturbed.";
+            this.intForDes = 24;
+            this.intDescription = "The dust is made by melting the ingredients into shehid ooze, heating it up to an extreme temperature to harden it, then grinding it.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 24;
+            this.ingredients = [["Shehid Ooze", 1], ["Tylun Flower", 1], ["Stomwik Leaf", 2], ["Walrus Tusks", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 29; // at max, buy for 29.
+            this.sellValue = 29; // at max, sell for 29.
+        }
+        else if (this.type == "irilDust")
+        {
+            //For All Items
+            this.identity = "Iril Dust";
+            this.weight = 0.0001;
+            this.size = 4;
+            this.description = "A greyish-brown dust that numbs and paralyzes to the touch.";
+            this.intForDes = 15;
+            this.intDescription = "Iril dust is perfect as an anesthesia for surgeries, though most doctors don't care enough to seek it out.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 8;
+            this.intForCraft = 34;
+            this.ingredients = [["Oolid Ooze Remains", 1], ["Torper Venom Sac", 1], ["Viper Snake Skin", 1], ["Clay", 1], ["Teppreklia Fungus", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 6; // at max, sell for 6.
+        }
+        else if (this.type == "vrezinDust")
+        {
+            //For All Items
+            this.identity = "Vrezin Dust";
+            this.weight = 0.0001;
+            this.size = 4;
+            this.description = "A sensitive red dust that catches aflame at the slightest disturbance.";
+            this.intForDes = 22;
+            this.intDescription = "The dust is made by transfiguring pelcrid ooze with salt while simultaneously melting iron into the mixture at high heat.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 22;
+            this.ingredients = [["Pelcrid Ooze Remains", 1], ["Salt", 4], ["Iron", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 37; // at max, buy for 8.
+            this.sellValue = 37; // at max, sell for 8.
+        }
+        else if (this.type == "glowDust")
+        {
+            //For All Items
+            this.identity = "Glow Dust";
+            this.weight = 0.0001;
+            this.size = 4;
+            this.description = "A golden dust that shines brightly.";
+            this.intForDes = 11;
+            this.intDescription = "The dust is made by blending all of the ingredients and then letting the mixture dry and finally grinding it.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 45;
+            this.intForCraft = 11;
+            this.ingredients = [["Sesre Stamen", 2], ["Fletter Wing", 1], ["Raw Wolf Liver", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "dustPouch")
+        {
+            //For All Items
+            this.identity = "Dust Pouch";
+            this.weight = 0.1498;
+            this.size = 6;
+            this.description = "A small cloth pouch for holding alchemic dusts and powders.";
+            this.intForDes = 4;
+            this.intDescription = "Throwing dust of various kinds is the non-mage's alternative to spellcasting.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 4;
+            this.ingredients = [["Cloth", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
         }
         else if (this.type == "cutlass")
         {
@@ -18463,6 +18634,88 @@ function Item(type, x, y)
             this.buyValue = 25 - Math.floor(player.getCharisma() / 6); // at max, buy for 17.
             this.sellValue = 11 + Math.floor(player.getCharisma() / 8); // at max, sell for 17.
         }
+        else if (this.type == "pouchOfGlowDust" || this.type == "pouchOfVrezinDust" || this.type == "pouchOfIrilDust" || this.type == "pouchOfPimberDust" || this.type == "pouchOfShomeDust")
+        {
+            //For All Items
+            this.weight = 0.15;
+            this.size = 6;
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 0;
+            this.distance = 40 + (4 * 7);
+            this.range = 0;
+            this.rate = 75;
+            this.damage = 0;
+            this.magicalDamage = 0;
+            this.negateArmour = 0;
+
+            //ability
+            this.ability = "none";
+
+            if (this.type == "pouchOfGlowDust")
+            {
+                this.identity = "Pouch of Glow Dust";
+                this.description = "A cloth pouch of shining gold coloured dust for throwing in the eyes of one's foes.";
+                this.intForDes = 0;
+                this.intDescription = "It sucks to get something caught in your eye, but wouldn't it suck more to have something incredibly bright stuck in it?";
+                this.yield = 1;
+                this.intForCraft = 0;
+                this.ingredients = [["Dust Pouch", 1], ["Glow Dust", 2]];
+                this.buyValue = 3; // at max, buy for 3.
+                this.sellValue = 3; // at max, sell for 3.
+            }
+            else if (this.type == "pouchOfVrezinDust")
+            {
+                this.identity = "Pouch of Vrezin Dust";
+                this.description = "A cloth pouch of smoldering red dust for throwing at one's foes.";
+                this.intForDes = 30;
+                this.intDescription = "Be very careful to handle vrezin dust gently, as it catches aflame when it reaches a certain relative velocity to air-resistance.";
+                this.yield = 1;
+                this.intForCraft = 0;
+                this.ingredients = [["Dust Pouch", 1], ["Vrezin Dust", 2]];
+                this.buyValue = 75; // at max, buy for 75.
+                this.sellValue = 50 + Math.floor(player.getCharisma() / 2); // at max, sell for 75.
+            }
+            else if (this.type == "pouchOfIrilDust")
+            {
+                this.identity = "Pouch of Iril Dust";
+                this.description = "A cloth pouch of greyish-brown dust that numbs your fingers upon touching it.";
+                this.intForDes = 1;
+                this.intDescription = "Iril dust is absorbed through the skin or breathed in. It momentarily attacks the central nervous system causing paralisis and numbness.";
+                this.yield = 1;
+                this.intForCraft = 0;
+                this.ingredients = [["Dust Pouch", 1], ["Iril Dust", 2]];
+                this.buyValue = 13; // at max, buy for 13.
+                this.sellValue = 12 + Math.floor(player.getCharisma() / 50); // at max, sell for 13.
+            }
+            else if (this.type == "pouchOfPimberDust")
+            {
+                this.identity = "Pouch of Pimber Dust";
+                this.description = "A cloth pouch of green dust that turns into a corrosive acid.";
+                this.intForDes = 26;
+                this.intDescription = "The friction of throwing pimber dust through the air ripens it to chemically transform into a corrosive liquid.";
+                this.yield = 1;
+                this.intForCraft = 0;
+                this.ingredients = [["Dust Pouch", 1], ["Pimber Dust", 2]];
+                this.buyValue = 60; // at max, buy for 60.
+                this.sellValue = 40 + Math.floor(player.getCharisma() / 2.5); // at max, sell for 60.
+            }
+            else if (this.type == "pouchOfShomeDust")
+            {
+                this.identity = "Pouch of Shome Dust";
+                this.description = "A cloth pouch of blue dust that upon being inhaled drives people to a raging madness.";
+                this.intForDes = 26;
+                this.intDescription = "The dest affects the judgement and emotion controlling parts of the brain and produces extreme irrational anger.";
+                this.yield = 1;
+                this.intForCraft = 0;
+                this.ingredients = [["Dust Pouch", 1], ["Shome Dust", 2]];
+                this.buyValue = 300; // at max, buy for 300.
+                this.sellValue = 100 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 300.
+            }
+        }
         else if (this.type == "hyelingCleaver")
         {
             //For All Items
@@ -18969,6 +19222,36 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "glowDust")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 3, 1, 15, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1), 15 * 1, 15 * 1);
+        }
+        else if (this.type == "vrezinDust")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 22, 2, 15, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1), 15 * 1, 15 * 1);
+        }
+        else if (this.type == "irilDust")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 43, 1, 15, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1), 15 * 1, 15 * 1);
+        }
+        else if (this.type == "pimberDust")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 280, 109, 15, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1), 15 * 1, 15 * 1);
+        }
+        else if (this.type == "shomeDust")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 280, 180, 15, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1), 15 * 1, 15 * 1);
+        }
+        else if (this.type == "dustPouch" || this.type == "pouchOfGlowDust" || this.type == "pouchOfVrezinDust" || this.type == "pouchOfIrilDust" || this.type == "pouchOfPimberDust" || this.type == "pouchOfShomeDust")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 64, 3, 15, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1.3), 15 * 1.3, 15 * 1.3);
         }
         else if (this.type == "neevFurCloak")
         {
@@ -19859,7 +20142,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(candlewic, 46, 196, 11, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 1.5), 11 * 1.5, 11 * 1.5);
         }
-        else if (this.type == "bushkaBerries")
+        else if (this.type == "bushkaBerries" || this.type == "salt")
         {
             XXX.beginPath();
             XXX.drawImage(candlewic, 23, 125, 13, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 13), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12), 13, 12);
@@ -21502,6 +21785,36 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "glowDust")
+        {
+            LXX.beginPath();
+            LXX.drawImage(trapper, 3, 1, 15, 15, this.invX - (1/2 * 15 * 1.4), this.invY - (1/2 * 15 * 1.4), 15 * 1.4, 15 * 1.4);
+        }
+        else if (this.type == "vrezinDust")
+        {
+            LXX.beginPath();
+            LXX.drawImage(trapper, 22, 2, 15, 15, this.invX - (1/2 * 15 * 1.4), this.invY - (1/2 * 15 * 1.4), 15 * 1.4, 15 * 1.4);
+        }
+        else if (this.type == "irilDust")
+        {
+            LXX.beginPath();
+            LXX.drawImage(trapper, 43, 1, 15, 15, this.invX - (1/2 * 15 * 1.4), this.invY - (1/2 * 15 * 1.4), 15 * 1.4, 15 * 1.4);
+        }
+        else if (this.type == "pimberDust")
+        {
+            LXX.beginPath();
+            LXX.drawImage(trapper, 280, 109, 15, 15, this.invX - (1/2 * 15 * 1.4), this.invY - (1/2 * 15 * 1.4), 15 * 1.4, 15 * 1.4);
+        }
+        else if (this.type == "shomeDust")
+        {
+            LXX.beginPath();
+            LXX.drawImage(trapper, 280, 180, 15, 15, this.invX - (1/2 * 15 * 1.4), this.invY - (1/2 * 15 * 1.4), 15 * 1.4, 15 * 1.4);
+        }
+        else if (this.type == "dustPouch" || this.type == "pouchOfGlowDust" || this.type == "pouchOfVrezinDust" || this.type == "pouchOfIrilDust" || this.type == "pouchOfPimberDust" || this.type == "pouchOfShomeDust")
+        {
+            LXX.beginPath();
+            LXX.drawImage(trapper, 64, 3, 15, 15, this.invX - (1/2 * 15 * 1.3), this.invY - (1/2 * 15 * 1.3), 15 * 1.3, 15 * 1.3);
+        }
         else if (this.type == "neevFurCloak")
         {
             LXX.beginPath();
@@ -22481,7 +22794,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 45, 181, 11, 11, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 11 * 2), 11 * 2, 11 * 2);
         }
-        else if (this.type == "bushkaBerries")
+        else if (this.type == "bushkaBerries" || this.type == "salt")
         {
             LXX.beginPath();
             LXX.drawImage(candlewic, 23, 125, 13, 12, this.invX - (1/2 * 13 * 1.15), this.invY - (1/2 * 12 * 1.15), 13 * 1.15, 12 * 1.5);
@@ -24003,6 +24316,36 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "glowDust")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 3, 1, 15, 15, this.invX - (1/2 * 15 * 1.4), this.invY - (1/2 * 15 * 1.4), 15 * 1.4, 15 * 1.4);
+        }
+        else if (this.type == "vrezinDust")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 22, 2, 15, 15, this.invX - (1/2 * 15 * 1.4), this.invY - (1/2 * 15 * 1.4), 15 * 1.4, 15 * 1.4);
+        }
+        else if (this.type == "irilDust")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 43, 1, 15, 15, this.invX - (1/2 * 15 * 1.4), this.invY - (1/2 * 15 * 1.4), 15 * 1.4, 15 * 1.4);
+        }
+        else if (this.type == "pimberDust")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 280, 109, 15, 15, this.invX - (1/2 * 15 * 1.4), this.invY - (1/2 * 15 * 1.4), 15 * 1.4, 15 * 1.4);
+        }
+        else if (this.type == "shomeDust")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 280, 180, 15, 15, this.invX - (1/2 * 15 * 1.4), this.invY - (1/2 * 15 * 1.4), 15 * 1.4, 15 * 1.4);
+        }
+        else if (this.type == "dustPouch" || this.type == "pouchOfGlowDust" || this.type == "pouchOfVrezinDust" || this.type == "pouchOfIrilDust" || this.type == "pouchOfPimberDust" || this.type == "pouchOfShomeDust")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 64, 3, 15, 15, this.invX - (1/2 * 15 * 1.3), this.invY - (1/2 * 15 * 1.3), 15 * 1.3, 15 * 1.3);
+        }
         else if (this.type == "neevFurCloak")
         {
             XXX.beginPath();
@@ -24981,7 +25324,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(candlewic, 45, 181, 11, 11, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 11 * 2), 11 * 2, 11 * 2);
         }
-        else if (this.type == "bushkaBerries")
+        else if (this.type == "bushkaBerries" || this.type == "salt")
         {
             XXX.beginPath();
             XXX.drawImage(candlewic, 23, 125, 13, 12, this.invX - (1/2 * 13 * 1.15), this.invY - (1/2 * 12 * 1.15), 13 * 1.15, 12 * 1.5);

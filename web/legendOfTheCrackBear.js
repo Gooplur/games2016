@@ -3,6 +3,8 @@
  */
 
 //TODO LIST
+//todo add balkur fang to balkurs' drop list and add it as an item to the game in the first place
+//todo add the traps on the IMG 'trapper'
 //todo finish adding the beast journal.
 //todo add the alzkwaya village
 //todo add new freydic dock town "Venning" [the Freynor kingdom will span over several northern isles and the mainland]
@@ -12,7 +14,7 @@
 //todo add the freydic hatchet from the balkur img sheet
 //todo add a standard leather armour
 //todo add one more plant for thengan forestland
-//todo add more alchemy stuff: potions, salves, dusts
+//todo add more alchemy stuff: potions, salves
 //todo add vamprism and lycanthropy
 //todo fix potential problem with the Ancient Crawler that it forgets to continue attacking if the player stays still near it.
 //todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
@@ -1120,6 +1122,10 @@ function legendaryPrerequisites()
     horde1.src = ("images/hordepics.png");
     window.horde1 = horde1;
 
+    var trapper = new Image();
+    trapper.src = ("images/trapper.png");
+    window.trapper = trapper;
+
     var polyPNG = new Image();
     polyPNG.src = ("images/polyAssets.png");
     window.polyPNG = polyPNG;
@@ -1429,6 +1435,7 @@ var cKey;
 var gKey;
 var keyBAR;
 var yKey;
+var changeBeastiary;
 var tellCoords;
 var showSight;
 var adminShowSight;
@@ -2283,6 +2290,8 @@ function theLegend()
     testingUnitSizes = false; //This displays the AI Units' sizes as a faded white circle.
     unitSurround = true;
     showUnitAttackBubble = false;
+//menus
+    changeBeastiary = false;
 //manipulation
     wallPhase = false;
 //environmental
@@ -2585,6 +2594,7 @@ function theLegend()
     allWeapons.push(new Item("kellishSpear", false)); //62
     allWeapons.push(new Item("vardanianGlaive", false)); //63
     allWeapons.push(new Item("meatCleaver", false)); //64
+    allWeapons.push(new Item("pouchOfGlowDust", false)); //65 //this accounts for all throwable dust varieties
 
 
 //This list holds one of each type of worn item so that the player can access the worn item stats.
@@ -2862,6 +2872,7 @@ function theLegend()
     tailoring.push(new Item("neevFurCloak", false));
     tailoring.push(new Item("neevFurBoots", false));
     tailoring.push(new Item("neevFurGloves", false));
+    tailoring.push(new Item("dustPouch", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];
@@ -2902,6 +2913,8 @@ function theLegend()
     alchemy.push(new Item("haeflowerPollen", false));
     alchemy.push(new Item("neevBlood", false));
     alchemy.push(new Item("jarOfButterMellowOil", false));
+    alchemy.push(new Item("glowDust", false));
+    alchemy.push(new Item("irilDust", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];
@@ -2920,6 +2933,9 @@ function theLegend()
     forge.push(new Item("jvostran", false));
     forge.push(new Item("kellishClayPot", false));
     forge.push(new Item("clayBowl", false));
+    forge.push(new Item("vrezinDust", false));
+    forge.push(new Item("pimberDust", false));
+    forge.push(new Item("shomeDust", false));
 
 //Handcrafted (things the player can do without a work station of some kind)
     handcrafted = [];
@@ -2961,6 +2977,11 @@ function theLegend()
     handcrafted.push(new Item("dyedMufCloth", false));
     handcrafted.push(new Item("culprisBandage", false));
     handcrafted.push(new Item("bowlOfMushroomStew", false));
+    handcrafted.push(new Item("pouchOfGlowDust", false));
+    handcrafted.push(new Item("pouchOfVrezinDust", false));
+    handcrafted.push(new Item("pouchOfIrilDust", false));
+    handcrafted.push(new Item("pouchOfPimberDust", false));
+    handcrafted.push(new Item("pouchOfShomeDust", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

@@ -18,6 +18,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
         this.sizeChanger = 0; //this changes size by the value of the variable.
         this.zIndex = 4;
         this.orders = instructions;
+        this.ordenes = false; //use this for whatever but not in a function
         //VARIABLES for some or even single spells
         this.duration = 0;
         this.speed = 0; //this allows a fixed random speed to be selected if it is wanted.
@@ -493,6 +494,31 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
                                 ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
                             }
+                            else if (whatDoIDo == "blinding")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000 * (this.cnx / 5));
+                            }
+                            else if (whatDoIDo == "blindingGlow") //this is a type of physical damaging
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() - 1500;
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                var claimTaken = false;
+                                for (var ll = 0; ll < magicList.length; ll++)
+                                {
+                                    if (magicList[ll].spellType == "chasingLights" && magicList[ll].claim === ArtificialIntelligenceAccess[i])
+                                    {
+                                        claimTaken = true;
+                                        break;
+                                    }
+                                }
+                                if (!claimTaken)
+                                {
+                                    magicList.push(new Magic({ID: "chasingLights", CNX: 50}, true, ["glowDust", this.X, this.Y]));
+                                }
+                            }
                             else if (whatDoIDo == "physicalDamage")
                             {
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
@@ -530,6 +556,8 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                                 {
                                     ArtificialIntelligenceAccess[i].quarterAcid = true;
                                     ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
+                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                                 }
                             }
                             else if (whatDoIDo == "acidI")
@@ -539,6 +567,81 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                                 {
                                     ArtificialIntelligenceAccess[i].acidI = true;
                                     ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
+                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
+                            }
+                            else if (whatDoIDo == "acidII")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                if (damage + negate > ArtificialIntelligenceAccess[i].armour)
+                                {
+                                    ArtificialIntelligenceAccess[i].acidII = true;
+                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
+                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
+                            }
+                            else if (whatDoIDo == "acidIII")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                if (damage + negate > ArtificialIntelligenceAccess[i].armour)
+                                {
+                                    ArtificialIntelligenceAccess[i].acidIII = true;
+                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
+                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
+                            }
+                            else if (whatDoIDo == "acidIV")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                if (damage + negate > ArtificialIntelligenceAccess[i].armour)
+                                {
+                                    ArtificialIntelligenceAccess[i].acidIV = true;
+                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
+                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
+                            }
+                            else if (whatDoIDo == "acidV")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                if (damage + negate > ArtificialIntelligenceAccess[i].armour)
+                                {
+                                    ArtificialIntelligenceAccess[i].acidV = true;
+                                    if (extra == "pimber")
+                                    {
+                                        ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 10000;
+                                        ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime() + 8500;
+                                    }
+                                    else
+                                    {
+                                        ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
+                                        ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                    }
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
+                            }
+                            else if (whatDoIDo == "alter")
+                            {
+                                ArtificialIntelligenceAccess[i].buffoutTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].buffoutTimer = negate;
+                                ArtificialIntelligenceAccess[i].initBuffout = damage;
+                                ArtificialIntelligenceAccess[i].subBuffoutToggle = true;
+
+                                if (damage < 1)
+                                {
+                                    console.log(ArtificialIntelligenceAccess[i].buffout);
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
+
+                                if (extra == "iril")
+                                {
+                                    ArtificialIntelligenceAccess[i].stunIII = true;
+                                    ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                                 }
                             }
                             else if (whatDoIDo == "charm")
@@ -556,8 +659,17 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                                 {
                                     ArtificialIntelligenceAccess[i].charmedTeam = (Math.random() * 1.7888888889);
                                     ArtificialIntelligenceAccess[i].charmedTime = new Date().getTime() + 25000;
-                                    ArtificialIntelligenceAccess[i].marked = true;
+                                    if (extra == "shome")
+                                    {
+                                        console.log("soDuh!");
+                                        ArtificialIntelligenceAccess[i].marked = "shome";
+                                    }
+                                    else
+                                    {
+                                        ArtificialIntelligenceAccess[i].marked = true;
+                                    }
                                     ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+
                                 }
                             }
                             else if (whatDoIDo == "electricity")
@@ -737,7 +849,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                             else if (kind == "blinding")
                             {
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000 * (this.cnx / 5));;
                             }
 
                             if (kind != "blinding")
@@ -842,7 +954,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                                 else if (kind == "blinding")
                                 {
                                     ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                    ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000 * (this.cnx / 5));;
                                 }
 
                                 if (kind != "blinding")
@@ -906,12 +1018,33 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
         //CHASING LIGHTS
         if (this.spellType == "chasingLights")
         {
-            this.orientToCaster(0, 1 / 2 * Math.PI);
+            if (this.orders[0] == "glowDust")
+            {
+                this.X = this.orders[1];
+                this.Y = this.orders[2];
+            }
+            else
+            {
+                this.orientToCaster(0, 1 / 2 * Math.PI);
+            }
         }
         //FART
         if (this.spellType == "fart")
         {
             this.orientToCaster(10, - 1 / 2 * Math.PI);
+        }
+        //DUSTS
+        if (this.spellType == "glowDust" || this.spellType == "vrezinDust" || this.spellType == "irilDust" || this.spellType == "pimberDust" || this.spellType == "shomeDust")
+        {
+            if (caster)
+            {
+                this.orientToCaster(42, 2.8 / 5 * Math.PI);
+                this.rotation = this.playerRotation + 1/2 * Math.PI;
+            }
+            else
+            {
+                this.orientToCaster(42, 2.8 / 5 * Math.PI);
+            }
         }
         //SURGE
         if (this.spellType == "shadowFog")
@@ -2658,6 +2791,84 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 else
                 {
                     //todo add farting for AI
+                }
+            }
+
+            if (this.spellType == "glowDust")
+            {
+                var szx = 3;
+                if (caster)
+                {
+                    this.flashAnimate(90, this.rotation, 0.90, [{image: trapper, imgX: 3, imgY: 18, portionW: 15, portionH: 15, adjX: -1/2 * 15 * szx, adjY: -1/2 * 15 * szx, width: 15 * szx, height: 15 * szx}, {image: trapper, imgX: 3, imgY: 35, portionW: 15, portionH: 15, adjX: -1/2 * 15 * szx, adjY: -1/2 * 15 * szx, width: 15 * szx, height: 15 * szx}, {image: trapper, imgX: 3, imgY: 52, portionW: 15, portionH: 15, adjX: -1/2 * 15 * szx, adjY: -1/2 * 15 * szx, width: 15 * szx, height: 15 * szx}], true, false);
+                    this.damageThenGoAway(7.5 * szx, "blindingGlow", 0, 100, false);
+                    lights.push({X: this.X, Y: this.Y, size: 7.5 * szx, extraStops: true, GRD: 0.8, Alpha: 0.9, showMe: false});
+                    this.project(this.rotation, 35, 2.5, true);
+                }
+                else
+                {
+                    //todo add glowDust for AI
+                }
+            }
+
+            if (this.spellType == "vrezinDust")
+            {
+                var szx = 3;
+                if (caster)
+                {
+                    this.flashAnimate(90, this.rotation, 0.90, [{image: trapper, imgX: 23, imgY: 18, portionW: 15, portionH: 15, adjX: -1/2 * 15 * szx, adjY: -1/2 * 15 * szx, width: 15 * szx, height: 15 * szx}, {image: trapper, imgX: 23, imgY: 35, portionW: 15, portionH: 15, adjX: -1/2 * 15 * szx, adjY: -1/2 * 15 * szx, width: 15 * szx, height: 15 * szx}, {image: trapper, imgX: 22, imgY: 52, portionW: 15, portionH: 15, adjX: -1/2 * 15 * szx, adjY: -1/2 * 15 * szx, width: 15 * szx, height: 15 * szx}], true, false);
+                    this.damageThenGoAway(7.5 * szx, "fire", 5, 100, false);
+                    lights.push({X: this.X, Y: this.Y, size: 7.5 * szx, extraStops: true, GRD: 0.7, Alpha: 0.55, showMe: false});
+                    this.project(this.rotation, 35, 2.5, true);
+                }
+                else
+                {
+                    //todo add vrezinDust for AI
+                }
+            }
+
+            if (this.spellType == "irilDust")
+            {
+                var szx = 3;
+                if (caster)
+                {
+                    this.flashAnimate(90, this.rotation, 0.90, [{image: trapper, imgX: 43, imgY: 18, portionW: 15, portionH: 15, adjX: -1/2 * 15 * szx, adjY: -1/2 * 15 * szx, width: 15 * szx, height: 15 * szx}, {image: trapper, imgX: 43, imgY: 35, portionW: 15, portionH: 15, adjX: -1/2 * 15 * szx, adjY: -1/2 * 15 * szx, width: 15 * szx, height: 15 * szx}, {image: trapper, imgX: 42, imgY: 52, portionW: 15, portionH: 15, adjX: -1/2 * 15 * szx, adjY: -1/2 * 15 * szx, width: 15 * szx, height: 15 * szx}], true, false);
+                    this.damageThenGoAway(7.5 * szx, "alter", 0.5, 5, false, "iril"); //negate is the timer for 'alter' //0.6 damage means that enemy damage is 60% of its normal amount
+                    this.project(this.rotation, 35, 2.5, true);
+                }
+                else
+                {
+                    //todo add irilDust for AI
+                }
+            }
+
+            if (this.spellType == "pimberDust")
+            {
+                var szx = 3;
+                if (caster)
+                {
+                    this.flashAnimate(90, this.rotation, 0.90, [{image: trapper, imgX: 281, imgY: 126, portionW: 15, portionH: 15, adjX: -1/2 * 15 * szx, adjY: -1/2 * 15 * szx, width: 15 * szx, height: 15 * szx}, {image: trapper, imgX: 281, imgY: 143, portionW: 15, portionH: 15, adjX: -1/2 * 15 * szx, adjY: -1/2 * 15 * szx, width: 15 * szx, height: 15 * szx}, {image: trapper, imgX: 280, imgY: 160, portionW: 15, portionH: 15, adjX: -1/2 * 15 * szx, adjY: -1/2 * 15 * szx, width: 15 * szx, height: 15 * szx}], true, false);
+                    this.damageThenGoAway(7.5 * szx, "acidV", 2, 100, false, "pimber");
+                    this.project(this.rotation, 35, 2.5, true);
+                }
+                else
+                {
+                    //todo add pimberDust for AI
+                }
+            }
+
+            if (this.spellType == "shomeDust")
+            {
+                this.cnx = 60;
+                var szx = 3;
+                if (caster)
+                {
+                    this.flashAnimate(90, this.rotation, 0.90, [{image: trapper, imgX: 281, imgY: 197, portionW: 15, portionH: 15, adjX: -1/2 * 15 * szx, adjY: -1/2 * 15 * szx, width: 15 * szx, height: 15 * szx}, {image: trapper, imgX: 281, imgY: 214, portionW: 15, portionH: 15, adjX: -1/2 * 15 * szx, adjY: -1/2 * 15 * szx, width: 15 * szx, height: 15 * szx}, {image: trapper, imgX: 280, imgY: 231, portionW: 15, portionH: 15, adjX: -1/2 * 15 * szx, adjY: -1/2 * 15 * szx, width: 15 * szx, height: 15 * szx}], true, false);
+                    this.damageThenGoAway(7.5 * szx, "mark", 0, 100, false, "shome");
+                    this.project(this.rotation, 35, 2.5, true);
+                }
+                else
+                {
+                    //todo add shomeDust for AI
                 }
             }
 

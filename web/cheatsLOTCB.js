@@ -164,6 +164,17 @@ function cheats()
             player.lightSourceDuration = 180;
             player.lightSource = "candle";
         }
+        else if (cheatcode.toLowerCase() == "beastjam")
+        {
+            if (!changeBeastiary)
+            {
+                changeBeastiary = true;
+            }
+            else
+            {
+                changeBeastiary = false;
+            }
+        }
         else if (cheatcode == "JumP")
         {
             sleeperTime += (60 * 60 * 24 * 90);

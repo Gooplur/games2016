@@ -9907,12 +9907,18 @@ function Item(type, x, y)
             this.size = 10;
             this.description = "A sharp toothed metal trap the clamps shut when pressure is put on its center.";
             this.intForDes = 0;
-            this.intDescription = "1 survivalism point is required to set this type of trap. Advice: Don't spring your own trap!";
+            this.intDescription = "Advice: Don't spring your own trap!";
 
             //Define Utility
             this.utility = "trap";
             //subUtility
             this.subUtility = "beartrap";
+
+            //Utility Focused
+            this.damage = Math.floor(5 + 30/50 * player.getSurvivalism());
+            this.negate = 1;
+            this.range = 13.5;
+            this.survReq = 1;
 
             //ability
             this.ability = "none";
@@ -9925,6 +9931,39 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 30 - Math.floor(player.getCharisma() / 10); // at max, buy for 25.
             this.sellValue = 20 + Math.floor(player.getCharisma() / 10); // at max, sell for 25.
+        }
+        else if (this.type == "clawtrap")
+        {
+            //For All Items
+            this.identity = "Claw-Trap";
+            this.weight = 2.5;
+            this.size = 16;
+            this.description = "A three spiked metal trap that swings shut on whatever sets off the burried pressure plate in front of it.";
+            this.intForDes = 0;
+            this.intDescription = "Advice: Don't spring your own trap!";
+
+            //Define Utility
+            this.utility = "trap";
+            //subUtility
+            this.subUtility = "clawtrap";
+
+            //Utility Focused
+            this.damage = Math.floor(9 + 34 / 50 * player.getSurvivalism());
+            this.negate = 3;
+            this.range = 14;
+            this.survReq = 4;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 33;
+            this.ingredients = [["Iron", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 50 - Math.floor(player.getCharisma() / 10); // at max, buy for 45.
+            this.sellValue = 40 + Math.floor(player.getCharisma() / 10); // at max, sell for 45.
         }
         else if (this.type == "wood")
         {
@@ -21021,6 +21060,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(mofu, 83, 8, 10, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.5), 10 * 1.5, 9 * 1.5);
         }
+        else if (this.type == "clawtrap")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 96, 26, 32, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 32 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.5), 32 * 1.5, 18 * 1.5);
+        }
         else if (this.type == "fireStarter")
         {
             XXX.beginPath();
@@ -23583,6 +23627,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(mofu, 62, 8, 10, 9, this.invX - (1/2 * 10 * 1.5), this.invY - (1/2 * 9 * 1.5), 10 * 1.5, 9 * 1.5);
         }
+        else if (this.type == "clawtrap")
+        {
+            LXX.beginPath();
+            LXX.drawImage(trapper, 96, 26, 32, 18, this.invX - (1/2 * 32 * 1.5), this.invY - (1/2 * 18 * 1.5), 32 * 1.5, 18 * 1.5);
+        }
         else if (this.type == "fireStarter")
         {
             LXX.beginPath();
@@ -26108,6 +26157,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(mofu, 62, 8, 10, 9, this.invX - (1/2 * 10 * 1.5), this.invY - (1/2 * 9 * 1.5), 10 * 1.5, 9 * 1.5);
+        }
+        else if (this.type == "clawtrap")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 96, 26, 32, 18, this.invX - (1/2 * 32 * 1.5), this.invY - (1/2 * 18 * 1.5), 32 * 1.5, 18 * 1.5);
         }
         else if (this.type == "fireStarter")
         {

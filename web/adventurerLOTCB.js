@@ -23385,10 +23385,56 @@ function Adventurer()
                                     canPlace = false;
                                 }
                             }
+                            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                            {
+                                //42 is the radius of tent Scenery Object.
+                                if (ArtificialIntelligenceAccess[j].X - (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 12) <= inFrontX + ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].X + (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 12) >= inFrontX - ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].Y - (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 12) <= inFrontY + ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].Y + (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 12) >= inFrontY - ArtificialIntelligenceAccess[j].sizeRadius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
 
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("bearTrap", inFrontX, inFrontY, (this.rotation), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
+                        else if (Inventory[i][0].subUtility == "clawtrap" && player.getSurvivalism() >= 4)
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            var inFrontY = Y + Math.sin(this.rotation + 1/2 * Math.PI) * 38;
+                            var inFrontX = X + Math.cos(this.rotation + 1/2 * Math.PI) * 38;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //42 is the radius of tent Scenery Object.
+                                if (scenicList[j].X - 4 <= inFrontX + scenicList[j].radius && scenicList[j].X + 4 >= inFrontX - scenicList[j].radius && scenicList[j].Y - 4 <= inFrontY + scenicList[j].radius && scenicList[j].Y + 4 >= inFrontY - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+                            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                            {
+                                //42 is the radius of tent Scenery Object.
+                                if (ArtificialIntelligenceAccess[j].X - (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 4) <= inFrontX + ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].X + (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 4) >= inFrontX - ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].Y - (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 4) <= inFrontY + ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].Y + (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 4) >= inFrontY - ArtificialIntelligenceAccess[j].sizeRadius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("clawTrap", inFrontX, inFrontY, (this.rotation), false));
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {
@@ -23615,7 +23661,7 @@ function Adventurer()
                         XXX.font="14px Book Antiqua";
                         XXX.fillStyle = "black";
                         XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
-                        XXX.fillText("      Trap", 157, 514);
+                        XXX.fillText("      Trap" + "   Damage: " + Inventory[i][0].damage + "   Armour Negation: " + Inventory[i][0].negate + "   Range: " + Inventory[i][0].range + "   Survivalism Requirement: " + Inventory[i][0].survReq, 157, 514);
                     }
                     else if (Inventory[i][0].utility == "book")
                     {

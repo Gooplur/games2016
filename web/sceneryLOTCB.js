@@ -60,6 +60,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.lightTime = 0;
     //trap variables
     this.snapShut = false;
+    this.triggered = false;
     //Hive Variables
     this.hiveID = Math.random();
     this.minions = 0; //the current amount of soldiers the hive has.
@@ -904,11 +905,11 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 if (longevity == false)
                 {
-                    this.damagePlayer(9 + 25/50 * player.getSurvivalism(), 1)
+                    this.damagePlayer(5 + 30/50 * player.getSurvivalism(), 1);
                 }
                 else
                 {
-                    this.damagePlayer(20, 1)
+                    this.damagePlayer(20, 1);
                 }
                 this.stage = 2;
                 this.snapShut = true;
@@ -917,16 +918,18 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
                 {
-                    if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                    if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
                     {
                         if (longevity == false)
                         {
-                            ArtificialIntelligenceAccess[j].health -= Math.max(0, (5 + 30/50 * player.getSurvivalism()) - ArtificialIntelligenceAccess[j].armour);
-                            player.experience += 8 * (player.getIntelligence() + 50 / 50); //the player gets experience for successful trapping.
+                            ArtificialIntelligenceAccess[j].health -= Math.max(0, (5 + 30/50 * player.getSurvivalism()) - Math.max(0, ArtificialIntelligenceAccess[j].armour - 1));
+                            player.experience += 8 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
+                            ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
+                            ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess[j].health -= Math.max(0, 10 - ArtificialIntelligenceAccess[j].armour);
+                            ArtificialIntelligenceAccess[j].health -= Math.max(0, 20 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 1));
                         }
                         this.stage = 2;
                         this.snapShut = true;
@@ -950,11 +953,17 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.activate == true)
             {
                 this.activate = false;
-                if (this.stage == 1)
+                if (this.stage == 1 && this.temporary == false)
                 {
                     this.snapShut = true;
                     this.stage = 2;
                 }
+                else if (this.stage == 1 && player.getSurvivalism >= 1)
+                {
+                    this.snapShut = true;
+                    this.stage = 2;
+                }
+
                 if (longevity == false && this.stage == 0)
                 {
                     worldItems.push([new Item("beartrap", this.X, this.Y), 1]);
@@ -967,6 +976,209 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                             break;
                         }
                     }
+                }
+            }
+        }
+        else if (this.type == "clawTrap")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 65;
+
+            if (this.runOneTime)
+            {
+                this.stage = 1;
+                this.runOneTime = false;
+                this.tiic = 0;
+                this.triggered = false;
+            }
+
+            if (this.triggered)
+            {
+                this.tiic += 1;
+            }
+
+            //DRAWSELF
+            if (this.stage == 0)
+            {
+                this.snapShut = false;
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(trapper, 186, 47, 14, 35, -(1 / 2 * 14 * 1.5), -(1 / 2 * 35 * 1.5), 14 * 1.5, 35 * 1.5);
+                XXX.restore();
+            }
+            else if (this.stage == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(trapper, 102, 47, 14, 35, -(1 / 2 * 14 * 1.5), -(1 / 2 * 35 * 1.5), 14 * 1.5, 35 * 1.5);
+                XXX.restore();
+                if (this.tiic >= 1)
+                {
+                    this.stage += 1;
+                    this.tiic = 0;
+                }
+            }
+            else if (this.stage == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(trapper, 123, 46, 14, 35, -(1 / 2 * 14 * 1.5), -(1 / 2 * 35 * 1.5), 14 * 1.5, 35 * 1.5);
+                XXX.restore();
+                if (this.tiic >= 1)
+                {
+                    this.stage += 1;
+                    this.tiic = 0;
+                }
+            }
+            else if (this.stage == 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(trapper, 148, 46, 14, 35, -(1 / 2 * 14 * 1.5), -(1 / 2 * 35 * 1.5), 14 * 1.5, 35 * 1.5);
+                XXX.restore();
+                if (this.tiic >= 1)
+                {
+                    this.stage += 1;
+                    this.tiic = 0;
+                }
+            }
+            else if (this.stage == 4)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(trapper, 166, 48, 14, 35, -(1 / 2 * 14 * 1.5), -(1 / 2 * 35 * 1.5), 14 * 1.5, 35 * 1.5);
+                XXX.restore();
+                if (this.tiic >= 1)
+                {
+                    this.stage += 1;
+                    this.tiic = 0;
+                }
+            }
+            else if (this.stage == 5)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(trapper, 186, 47, 14, 35, -(1 / 2 * 14 * 1.5), -(1 / 2 * 35 * 1.5), 14 * 1.5, 35 * 1.5);
+                XXX.restore();
+                if (this.tiic >= 1)
+                {
+                    this.stage += 1;
+                    this.tiic = 0;
+                }
+            }
+            else if (this.stage == 6)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(trapper, 186, 47, 14, 35, -(1 / 2 * 14 * 1.5), -(1 / 2 * 35 * 1.5), 14 * 1.5, 35 * 1.5);
+                XXX.restore();
+                if (this.tiic >= 1)
+                {
+                    trapclap.play();
+                    this.stage = 0; //set to disarmed mode.
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 24;
+
+            //spring trap
+            if (this.stage == 1 || this.stage == 5)
+            {
+                if (this.stage == 1)
+                {
+                    if (this.dst(X, Y) <= 14) //sensitivity range
+                    {
+                        if (this.triggered != "ended")
+                        {
+                            this.triggered = true;
+                        }
+                    }
+                }
+                if (this.stage == 1 && this.triggered == true)
+                {
+                    if (this.dst(X, Y) <= 22) //sensitivity range
+                    {
+                        this.triggered = "ended";
+                        if (longevity == false)
+                        {
+                            this.damagePlayer(9 + 34 / 50 * player.getSurvivalism(), 3);
+                        }
+                        else
+                        {
+                            this.damagePlayer(34, 3);
+                        }
+                    }
+                }
+
+
+                for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                {
+                    if (this.stage == 1)
+                    {
+                        if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 14 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                        {
+                            if (this.triggered != "ended")
+                            {
+                                this.triggered = true;
+                            }
+                        }
+                    }
+                    if (this.stage == 1 && this.triggered == true)
+                    {
+                        if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 22 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                        {
+                            this.triggered = "ended";
+                            if (longevity == false)
+                            {
+                                ArtificialIntelligenceAccess[j].health -= Math.max(0, (9 + 34 / 50 * player.getSurvivalism()) - Math.max(0, ArtificialIntelligenceAccess[j].armour - 3));
+                                player.experience += 9 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
+                                ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess[j].health -= Math.max(0, 34 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 3));
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                if (this.temporary == false && this.stage == 0)
+                {
+                    worldItems.push([new Item("clawtrap", this.X, this.Y), 1]);
+
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                else if (this.stage == 1 && this.temporary == false)
+                {
+                    this.triggered = true;
+                }
+                else if (this.stage == 1 && player.getSurvivalism() >= 3)
+                {
+                    this.triggered = true;
                 }
             }
         }

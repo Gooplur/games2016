@@ -918,7 +918,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
                 {
-                    if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                    if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
                     {
                         if (longevity == false)
                         {
@@ -1124,7 +1124,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 {
                     if (this.stage == 1)
                     {
-                        if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 14 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                        if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 14 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
                         {
                             if (this.triggered != "ended")
                             {
@@ -1134,7 +1134,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     }
                     if (this.stage == 1 && this.triggered == true)
                     {
-                        if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 22 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                        if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 22 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
                         {
                             this.triggered = "ended";
                             if (longevity == false)
@@ -1179,6 +1179,85 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 else if (this.stage == 1 && player.getSurvivalism() >= 3)
                 {
                     this.triggered = true;
+                }
+            }
+        }
+        else if (this.type == "jacks")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 60;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(trapper, 217, 30, 37, 35, -(1 / 2 * 37 * 1.5), -(1 / 2 * 35 * 1.5), 37 * 1.5, 35 * 1.5);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 25;
+
+            //spring trap
+            if (this.dst(X, Y) <= this.radius) //sensitivity range
+            {
+                this.triggered = true;
+                if (longevity == false)
+                {
+                    this.damagePlayer(1 + 3 / 50 * player.getSurvivalism(), 1);
+                }
+                else
+                {
+                    this.damagePlayer(3, 1);
+                }
+            }
+            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+            {
+                if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3 / 4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                {
+                    this.triggered = true;
+                    if (longevity == false)
+                    {
+                        ArtificialIntelligenceAccess[j].health -= Math.max(0, (1 + 3 / 50 * player.getSurvivalism()) - Math.max(0, ArtificialIntelligenceAccess[j].armour - 1));
+                        player.experience += 1 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
+                        ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
+                        ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess[j].health -= Math.max(0, 3 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 1));
+                    }
+                }
+            }
+
+            //delete upon successful trapping
+            if (this.triggered)
+            {
+                for (var i = 0; i < scenicList.length; i++)
+                {
+                    if (scenicList[i] === this)
+                    {
+                        scenicList.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                worldItems.push([new Item("jacks", this.X, this.Y), 1]);
+
+                for (var i = 0; i < scenicList.length; i++)
+                {
+                    if (scenicList[i] === this)
+                    {
+                        scenicList.splice(i, 1);
+                        break;
+                    }
                 }
             }
         }

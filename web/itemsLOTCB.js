@@ -9918,7 +9918,7 @@ function Item(type, x, y)
             this.damage = Math.floor(5 + 30/50 * player.getSurvivalism());
             this.negate = 1;
             this.range = 13.5;
-            this.survReq = 1;
+            this.survReq = 2;
 
             //ability
             this.ability = "none";
@@ -9964,6 +9964,39 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 50 - Math.floor(player.getCharisma() / 10); // at max, buy for 45.
             this.sellValue = 40 + Math.floor(player.getCharisma() / 10); // at max, sell for 45.
+        }
+        else if (this.type == "jacks")
+        {
+            //For All Items
+            this.identity = "Jacks";
+            this.weight = 0.25;
+            this.size = 8;
+            this.description = "Spiky metal balls that are spread across the ground to injure those who step on them.";
+            this.intForDes = 0;
+            this.intDescription = "Someone without sufficient trapping knowledge likely would scatter them ineffectively or too visibly.";
+
+            //Define Utility
+            this.utility = "trap";
+            //subUtility
+            this.subUtility = "jacks";
+
+            //Utility Focused
+            this.damage = Math.floor(1 + 3 / 50 * player.getSurvivalism());
+            this.negate = 1;
+            this.range = 25;
+            this.survReq = 1;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 50;
+            this.intForCraft = 9;
+            this.ingredients = [["Iron", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
         }
         else if (this.type == "wood")
         {
@@ -19262,6 +19295,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "jacks")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 269, 45, 19, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1), 19 * 1, 18 * 1);
+        }
         else if (this.type == "glowDust")
         {
             XXX.beginPath();
@@ -21829,6 +21867,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "jacks")
+        {
+            LXX.beginPath();
+            LXX.drawImage(trapper, 269, 45, 19, 18, this.invX - (1/2 * 19 * 1), this.invY - (1/2 * 18 * 1), 19 * 1, 18 * 1);
+        }
         else if (this.type == "glowDust")
         {
             LXX.beginPath();
@@ -24364,6 +24407,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "jacks")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 269, 45, 19, 18, this.invX - (1/2 * 19 * 1), this.invY - (1/2 * 18 * 1), 19 * 1, 18 * 1);
         }
         else if (this.type == "glowDust")
         {

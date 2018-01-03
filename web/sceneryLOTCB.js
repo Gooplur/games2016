@@ -28,6 +28,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.runOneTime = true; //this will not be used in general functions, only for making sure each type of scenery can run something only once.
     this.loopTimer = new Date().getTime();
     this.unpassable = false; //certain creatures with the haste ability (like berulns) can pass over almost any obstacle, but not if the obstacle has this property set to true.
+    this.intervalStore = new Date().getTime(); //this variable is for the interval function which calls a function on a loop at a rate defined by you.
     //Campfire variables
     this.lit = false;
     this.fireCostume = 0;
@@ -70,6 +71,15 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     //Building Variables
     this.putBarriers = true;
     //Scenery Item
+
+    this.interval = function(time, method)
+    {
+        if (new Date().getTime() - this.intervalStore >= time * 1000)
+        {
+            this.intervalStore = new Date().getTime();
+            method();
+        }
+    };
 
     this.nectar = function(num)
     {
@@ -923,7 +933,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         if (longevity == false)
                         {
                             ArtificialIntelligenceAccess[j].health -= Math.max(0, (5 + 30/50 * player.getSurvivalism()) - Math.max(0, ArtificialIntelligenceAccess[j].armour - 1));
-                            player.experience += 8 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
+                            //player.experience += 8 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
                             ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
                             ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
                         }
@@ -1140,7 +1150,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                             if (longevity == false)
                             {
                                 ArtificialIntelligenceAccess[j].health -= Math.max(0, (9 + 34 / 50 * player.getSurvivalism()) - Math.max(0, ArtificialIntelligenceAccess[j].armour - 3));
-                                player.experience += 9 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
+                                //player.experience += 9 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
                                 ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
                                 ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
                             }
@@ -1219,7 +1229,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     if (longevity == false)
                     {
                         ArtificialIntelligenceAccess[j].health -= Math.max(0, (1 + 3 / 50 * player.getSurvivalism()) - Math.max(0, ArtificialIntelligenceAccess[j].armour - 1));
-                        player.experience += 1 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
+                        //player.experience += 1 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
                         ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
                         ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
                     }
@@ -1259,6 +1269,132 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         break;
                     }
                 }
+            }
+        }
+        else if (this.type == "spindleTrap")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 62;
+            this.zIndex = 2;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.triggered = true;
+                this.gearTurn = 0;
+                this.bladeTurn = 0;
+                this.gearSpin = 0;
+                this.bladeSpin = 0;
+                this.tiic = 0;
+            }
+
+            //spring trap
+            var self = this;
+
+            this.springTrap = function()
+            {
+                self.tiic += 1;
+                if (self.dst(X, Y) <= self.radius) //sensitivity range
+                {
+                    if (self.temporary == false)
+                    {
+                        self.damagePlayer(1 + 3 / 50 * player.getSurvivalism(), 13);
+                    }
+                    else
+                    {
+                        self.damagePlayer(3.5, 13);
+                    }
+                }
+                for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                {
+                    if (self.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= self.radius + (3 / 4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == self.dmx)
+                    {
+                        if (self.temporary == false)
+                        {
+                            ArtificialIntelligenceAccess[j].health -= Math.max(0, (1 + 3 / 50 * player.getSurvivalism()) - Math.max(0, ArtificialIntelligenceAccess[j].armour - 13));
+                            //player.experience += 0.15 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
+                            ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
+                            ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess[j].health -= Math.max(0, 3.5 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 13));
+                        }
+                    }
+                }
+            };
+
+            //Wind-up Spin
+            if (this.tiic >= 60)
+            {
+                this.triggered = false;
+            }
+
+            if (this.bladeSpin >= 1.8)
+            {
+                this.interval(0.345, this.springTrap); //can only be called from one site per scenery object
+            }
+
+            if (this.triggered)
+            {
+                this.gearSpin = Math.max(-6.6, this.gearSpin - 0.02);
+                this.bladeSpin = Math.min(3.3, this.bladeSpin + 0.015);
+            }
+            else
+            {
+                this.gearSpin = Math.min(0, this.gearSpin + 0.1);
+                this.bladeSpin = Math.max(0, this.bladeSpin - 0.075);
+            }
+            this.gearTurn += this.gearSpin;
+            this.bladeTurn += this.bladeSpin;
+
+            //DRAWSELF
+            //base
+            XXX.save();
+            XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(trapper, 124, 93, 10, 10, -(1 / 2 * 10 * 2.5), -(1 / 2 * 10 * 2.5), 10 * 2.5, 10 * 2.5);
+            XXX.restore();
+            //blade
+            XXX.save();
+            XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+            XXX.rotate(this.rotation + this.bladeTurn / (Math.PI * 6));
+            XXX.drawImage(trapper, 46, 79, 42, 39, -(1 / 2 * 42 * 2.5), -(1 / 2 * 39 * 2.5), 42 * 2.5, 39 * 2.5);
+            XXX.restore();
+            //gear
+            XXX.save();
+            XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+            XXX.rotate(this.rotation + this.gearTurn / (Math.PI * 6));
+            XXX.drawImage(trapper, 105, 92, 10, 10, -(1 / 2 * 10 * 2.5), -(1 / 2 * 10 * 2.5), 10 * 2.5, 10 * 2.5);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 58;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                if (!this.triggered && this.bladeSpin <= 0 && this.temporary == false)
+                {
+                    worldItems.push([new Item("spindletrap", this.X, this.Y), 1]);
+
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                else if (player.getSurvivalism() >= 13 && this.triggered)
+                {
+                    this.triggered = false;
+                }
+
             }
         }
         else if (this.type == "fertilizedMofuEgg")
@@ -7169,7 +7305,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
                 for (var looop = 0; looop < 1 + player.miningLuck; looop++)
                 {
-                    this.rockLoad.push({type: "silverOre", quantity: 1});
+                    this.rockLoad.push({type: "rawSilver", quantity: 1});
                 }
             }
 
@@ -7253,7 +7389,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
                 for (var looop = 0; looop < 1 + player.miningLuck; looop++)
                 {
-                    this.rockLoad.push({type: "silverOre", quantity: 1});
+                    this.rockLoad.push({type: "rawSilver", quantity: 1});
                 }
                 for (var looop = 0; looop < 1 + player.miningLuck; looop++)
                 {

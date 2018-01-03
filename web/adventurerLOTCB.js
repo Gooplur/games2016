@@ -23485,6 +23485,44 @@ function Adventurer()
                                 break;
                             }
                         }
+                        else if (Inventory[i][0].subUtility == "spindletrap" && player.getSurvivalism() >= 15)
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            var inFrontY = Y + Math.sin(this.rotation + 1/2 * Math.PI) * 62;
+                            var inFrontX = X + Math.cos(this.rotation + 1/2 * Math.PI) * 62;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //42 is the radius of tent Scenery Object.
+                                if (scenicList[j].X - 50 <= inFrontX + scenicList[j].radius && scenicList[j].X + 50 >= inFrontX - scenicList[j].radius && scenicList[j].Y - 50 <= inFrontY + scenicList[j].radius && scenicList[j].Y + 50 >= inFrontY - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+                            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                            {
+                                //42 is the radius of tent Scenery Object.
+                                if (ArtificialIntelligenceAccess[j].X - (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 50) <= inFrontX + ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].X + (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 50) >= inFrontX - ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].Y - (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 50) <= inFrontY + ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].Y + (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 50) >= inFrontY - ArtificialIntelligenceAccess[j].sizeRadius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("spindleTrap", inFrontX, inFrontY, (this.rotation), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
                         else if (Inventory[i][0].subUtility == "bandage")
                         {
                             if (Inventory[i][0].ability == "bandageI")

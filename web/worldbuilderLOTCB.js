@@ -2063,7 +2063,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(51563, -9805, "Person", false, "Bamey the Huntsman", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["boulchomLeatherArmour", 1.5], weapon: ["longbow", [0.2, 0.25], 0, 1, 1.1], ranged: [true, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 36], [new Item("longbow", false, false), 3], [new Item("arrow", false, false), 160], [new Item("steelArrow", false, false), 80], [new Item("beartrap", false, false), 4], [new Item("clawtrap", false, false), 3], [new Item("jacks", false, false), 39]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(51563, -9805, "Person", false, "Bamey the Huntsman", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["boulchomLeatherArmour", 1.5], weapon: ["longbow", [0.2, 0.25], 0, 1, 1.1], ranged: [true, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 36], [new Item("longbow", false, false), 3], [new Item("arrow", false, false), 160], [new Item("steelArrow", false, false), 80], [new Item("beartrap", false, false), 4], [new Item("clawtrap", false, false), 3], [new Item("jacks", false, false), 39], [new Item("spindletrap", false, false), 1]]}));
                         ArtificialIntelligenceAccess[i].health = 37;
                     }
                 }

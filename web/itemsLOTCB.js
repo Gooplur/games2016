@@ -9998,6 +9998,39 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "spindletrap")
+        {
+            //For All Items
+            this.identity = "Spindle-Trap";
+            this.weight = 11;
+            this.size = 26;
+            this.description = "Four curved blades attached to a mechanical contraption made of gears, springs, and wire.";
+            this.intForDes = 1;
+            this.intDescription = "The trap spins around cutting all nearby it into pieces.";
+
+            //Define Utility
+            this.utility = "trap";
+            //subUtility
+            this.subUtility = "spindletrap";
+
+            //Utility Focused
+            this.damage = Math.floor(1 + 3 / 50 * player.getSurvivalism());
+            this.negate = 13;
+            this.range = 58;
+            this.survReq = 15;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 40;
+            this.ingredients = [["Iron", 15]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 300 - Math.floor(player.getCharisma() / 1); // at max, buy for 250.
+            this.sellValue = 150 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 250.
+        }
         else if (this.type == "wood")
         {
             //For All Items
@@ -19295,6 +19328,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "spindletrap")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 148, 89, 27, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 2.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 2.5), 27 * 2.5, 27 * 2.5);
+        }
         else if (this.type == "jacks")
         {
             XXX.beginPath();
@@ -21867,6 +21905,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "spindletrap")
+        {
+            LXX.beginPath();
+            LXX.drawImage(trapper, 148, 89, 27, 27, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 27 * 1.5), 27 * 1.5, 27 * 1.5);
+        }
         else if (this.type == "jacks")
         {
             LXX.beginPath();
@@ -24407,6 +24450,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "spindletrap")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 148, 89, 27, 27, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 27 * 1.5), 27 * 1.5, 27 * 1.5);
         }
         else if (this.type == "jacks")
         {

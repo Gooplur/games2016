@@ -2755,6 +2755,10 @@ function theLegend()
     smithing.push(new Item("northernPlateArmour", false));
     smithing.push(new Item("kellishSpear", false));
     smithing.push(new Item("meatCleaver", false));
+    smithing.push(new Item("jacks", false));
+    smithing.push(new Item("beartrap", false));
+    smithing.push(new Item("clawtrap", false));
+    smithing.push(new Item("spindletrap", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];

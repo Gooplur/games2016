@@ -5817,7 +5817,7 @@ function Adventurer()
                     {
                         if (bothwaysBool == false) // if the animation is one way it ends here...
                         {
-                            if (this.weaponEquipped != "flail" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "cero")
+                            if (this.weaponEquipped != "flail" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero")
                             {
                                 self.finalAttackStage = true;
                                 self.attackCooldown = new Date().getTime();
@@ -9838,6 +9838,208 @@ function Adventurer()
                     XXX.globalAlpha = 0.4;
                 }
                 XXX.drawImage(polyPNG, 788, 111, 96, 86, -48, -75, 88, 86);
+                XXX.restore();
+            }
+        }
+        //THE UNDYING EDGE
+        if (this.weaponEquipped == "theUndyingEdge")
+        {
+            this.stageEngine(15, 0.25, false); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                this.attackManual = false;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(theng, 2, 711, 184, 136, -184 / 3 + 20, -136 / 3 - 10, 184 / 1.5, 136 / 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(theng, 1, 870, 184, 136, -184 / 3 + 21, -136 / 3 - 10, 184 / 1.5, 136 / 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(theng, 219, 701, 184, 136, -184 / 3 + 22, -136 / 3 - 10, 184 / 1.5, 136 / 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(theng, 445, 701, 184, 136, -184 / 3 + 23, -136 / 3 - 10, 184 / 1.5, 136 / 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(theng, 221, 862, 184, 136, -184 / 3 + 23, -136 / 3 - 11, 184 / 1.5, 136 / 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(theng, 445, 701, 184, 136, -184 / 3 + 23, -136 / 3 - 10, 184 / 1.5, 136 / 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(theng, 444, 870, 184, 136, -184 / 3 + 24, -136 / 3 - 11, 184 / 1.5, 136 / 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 7)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(theng, 6, 1037, 184, 136, -184 / 3 + 23, -136 / 3 - 17, 184 / 1.5, 136 / 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 8)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(theng, 203, 1011, 184, 136, -184 / 3 + 24, -136 / 3 - 32, 184 / 1.5, 136 / 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 9)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(theng, 446, 1011, 184, 136, -184 / 3 + 25.5, -136 / 3 - 32, 184 / 1.5, 136 / 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 10)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(theng, 17, 1223, 184, 136, -184 / 3 + 23, -136 / 3 - 32, 184 / 1.5, 136 / 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 11)
+            {
+                if (this.attackManual == false)
+                {
+                    this.attackManual = true;
+                    this.finalAttackStage = true;
+                    this.attackCooldown = new Date().getTime();
+                }
+
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(theng, 17, 1223, 184, 136, -184 / 3 + 23, -136 / 3 - 32, 184 / 1.5, 136 / 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 12)
+            {
+                if (this.attackManual == false)
+                {
+                    this.attackManual = true;
+                    this.finalAttackStage = true;
+                    this.attackCooldown = new Date().getTime();
+                }
+
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(theng, 17, 1223, 184, 136, -184 / 3 + 23, -136 / 3 - 32, 184 / 1.5, 136 / 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 13)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(theng, 203, 1216, 184, 136, -184 / 3 + 24, -136 / 3 - 29, 184 / 1.5, 136 / 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 14)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(theng, 203, 1216, 184, 136, -184 / 3 + 24, -136 / 3 - 29, 184 / 1.5, 136 / 1.5);
                 XXX.restore();
             }
         }
@@ -14548,6 +14750,14 @@ function Adventurer()
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.8/5 * Math.PI) * (this.mySize + 0);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.8/5 * Math.PI) * (this.mySize + 0);
         }
+        else if (this.weaponEquipped == "theUndyingEdge")
+        {
+            this.weapon = allWeapons[66];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.2/5 * Math.PI) * (this.mySize + 35);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.2/5 * Math.PI) * (this.mySize + 35);
+        }
     };
 
     //BLOCKING FUNCTION
@@ -14739,6 +14949,10 @@ function Adventurer()
                             ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
                             ArtificialIntelligenceAccess[i].stunTimer = 5;
                             ArtificialIntelligenceAccess[i].stunV = true;
+                        }
+                        else if (this.weapon.ability == "undying" && ArtificialIntelligenceAccess[i].health <= 0)
+                        {
+                            ArtificialIntelligenceAccess[i].undeath = true;
                         }
                     }
                 }

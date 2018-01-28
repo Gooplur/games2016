@@ -212,6 +212,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.subBuffoutToggle = false;
     this.subBuffout = 0;
     this.initBuffout = 1;
+    this.undeath = false;
 
     //Artificial Intelligence
     this.setTeamByID = function()
@@ -4142,7 +4143,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.extraRangeTime = 0;
             this.extraRange = 0;
 
-            if (this.wasAlive == true)
+            if (this.wasAlive == true && !this.undeath)
             {
                 this.wasAlive = false;
                 this.timeSinceDead = new Date().getTime();
@@ -4155,6 +4156,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.killNotByPlayer == false && this.muzzle == false || this.killedByCompanion && this.muzzle == false)
                 {
+
                     if (this.revived != true)
                     {
                         for (var i = 0; i < this.drops.length; i++)
@@ -4201,9 +4203,26 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     this.removeSelfFromCompanionList(); //if the unit was a companion this removes the unit from the player's companion list.
                 }
+
+
                 var me = ArtificialIntelligenceAccess.indexOf(this);
                 deadAIList.push(this);
                 ArtificialIntelligenceAccess.splice(me, 1);
+            }
+            else if (this.undeath == true)
+            {
+                this.undeath = false;
+                this.disturbedTime = new Date().getTime() + 9999999999;
+                this.disturbed = true;
+                this.health = 1/1000 * this.healthMAX;
+                this.alive = true;
+                if (player.getEminence() >= 2)
+                {
+                    if (this.baseTeam != "neutral")
+                    {
+                        this.baseTeam = "player";
+                    }
+                }
             }
         }
     };
@@ -14488,7 +14507,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.experience = (125 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
-                this.drops = [[new Item("balkurPelt", this.X, this.Y), 2], [new Item("rawBalkurFlesh", this.X, this.Y), 3]];
+                this.drops = [[new Item("balkurPelt", this.X, this.Y), 2], [new Item("rawBalkurFlesh", this.X, this.Y), 3], [new Item("balkurFang", this.X, this.Y), 2]];
             }
             else
             {
@@ -14501,7 +14520,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.experience = (70 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
-                this.drops = [[new Item("balkurPelt", this.X, this.Y), 1], [new Item("rawBalkurFlesh", this.X, this.Y), 2]];
+                this.drops = [[new Item("balkurPelt", this.X, this.Y), 1], [new Item("rawBalkurFlesh", this.X, this.Y), 2], [new Item("balkurFang", this.X, this.Y), 1 + Math.round(Math.random())]];
             }
 
             //RANGE OF SIGHT (anything related to range of sight)

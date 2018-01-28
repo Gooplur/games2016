@@ -8,7 +8,6 @@
 //todo finish adding the beast journal.
 //todo add the alzkwaya village
 //todo add new freydic dock town "Venning" [the Freynor kingdom will span over several northern isles and the mainland]
-//todo finish adding cheryls dialogue and the kid the player can have with her.
 //todo add interesting and immersive options for player children interaction (like: feeding, arming, praising, getting to know about them, teaching them spells, punishment, loving comments)
 //todo add the air staff, and 'the undying edge' from Theng img sheet
 //todo add the freydic hatchet from the balkur img sheet
@@ -2596,6 +2595,7 @@ function theLegend()
     allWeapons.push(new Item("vardanianGlaive", false)); //63
     allWeapons.push(new Item("meatCleaver", false)); //64
     allWeapons.push(new Item("pouchOfGlowDust", false)); //65 //this accounts for all throwable dust varieties
+    allWeapons.push(new Item("theUndyingEdge", false)); //66
 
 
 //This list holds one of each type of worn item so that the player can access the worn item stats.

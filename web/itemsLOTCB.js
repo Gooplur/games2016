@@ -17883,6 +17883,43 @@ function Item(type, x, y)
             this.buyValue = 155 - Math.floor(player.getCharisma() / 2); // at max, buy for 130.
             this.sellValue = 120 + Math.floor(player.getCharisma() / 5); // at max, sell for 130.
         }
+        else if (this.type == "theUndyingEdge")
+        {
+            //For All Items
+            this.identity = "The Undying Edge";
+            this.weight = 1.75;
+            this.size = 35;
+            this.description = "A terrifying longsword forged of death and infused with the life force of the one who made it.";
+            this.intForDes = 10;
+            if (player.getEminence() >= 2)
+            {
+                this.intDescription = "Upon slaying a foe they are reborn anew and bound in undead service to you.";
+            }
+            else
+            {
+                this.intDescription = "Upon slaying a foe they are reborn anew and cursed to live undead until they kill you.";
+            }
+
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 7;
+            this.distance = 35 + (this.range * 7);
+            this.range = 4 + 1/7;
+            this.rate = 120;
+            this.damage = (9 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((4/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 0;
+
+            //ability
+            this.ability = "undying";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2500 - Math.floor(player.getCharisma() / 0.125); // at max, buy for 2100.
+            this.sellValue = 2000 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 2100.
+        }
         else if (this.type == "longsword")
         {
             //For All Items
@@ -19327,6 +19364,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "theUndyingEdge")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 8, 193, 22, 93, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 0.67), Y - this.Y + (1/2 * CCC.height) - (1/2 * 93 * 0.67), 22 * 0.67, 93 * 0.67);
         }
         else if (this.type == "spindletrap")
         {
@@ -21905,6 +21947,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "theUndyingEdge")
+        {
+            LXX.beginPath();
+            LXX.drawImage(theng, 8, 193, 22, 93, this.invX - (1/2 * 22 * 0.6), this.invY - (1/2 * 93 * 0.6), 22 * 0.6, 93 * 0.6);
+        }
         else if (this.type == "spindletrap")
         {
             LXX.beginPath();
@@ -24450,6 +24497,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "theUndyingEdge")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 8, 193, 22, 93, this.invX - (1/2 * 22 * 0.6), this.invY - (1/2 * 93 * 0.6), 22 * 0.6, 93 * 0.6);
         }
         else if (this.type == "spindletrap")
         {

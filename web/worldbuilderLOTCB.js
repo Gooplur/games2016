@@ -2187,6 +2187,23 @@ function buildMaster()
                     }
                 }
 
+                if (uniqueChars.cherylChildLDS == true && quests.cherylChild)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "[ " + quests.cherylChildName + " ]")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(51325, -9860, "Person", false, "[ " + quests.cherylChildName + " ]", {race: player.raceName, faction: "Thengar", personality: "violent", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.25, 0.25], 0, 0, 1.3], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[51325, -9860]], kid: true}));
+                        ArtificialIntelligenceAccess[i].health = 1;
+                    }
+                }
+
                 if (uniqueChars.adolfLDS == true)
                 {
                     var hits = 0;

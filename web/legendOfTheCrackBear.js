@@ -2414,6 +2414,7 @@ function theLegend()
         hilmundChildName: "Boki",
         cherylChild: false,
         cherylChildName: "Adalard",
+        cherylChildAccompany: false,
 
         //QUEST: The Plight of Lethik ---- given by Axel
         thePlightOfLethikQuest: true,

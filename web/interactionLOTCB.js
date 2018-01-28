@@ -991,7 +991,7 @@ function interaction(me)
                         {
                             if (player.dialogueChoiceMade == false)
                             {
-                                var romanceOrNot = false
+                                var romanceOrNot = false;
                                 for (var i = 0; i < player.romance.length; i++)
                                 {
                                     if (player.romance[i] == "cheryl")
@@ -1002,12 +1002,12 @@ function interaction(me)
 
                                 if (romanceOrNot)
                                 {
-                                    player.dialogueOptions = [["Hi there my love.", false, "d"], ["I love you sweety!", false, "e"], ["Let's have a quick tumble.", false, "f"], ["Good Day!", false, "a"], ["How's business?", false, "b"], ["Let's go somewhere private and wear a bit less clothing.", false, "f"]];
+                                    player.dialogueOptions = [["Hi there my love.", false, "d"], ["I love you sweety!", false, "e"], ["Let's have a quick tumble.", false, "f"], ["Good Day!", false, "a"], ["How's business?", false, "b"], ["Let's go somewhere private with a bit less clothing.", false, "f"]];
                                     if (quests.cherylChild == true)
                                     {
                                         var childNameWithoutParenths = quests.cherylChildName;
-                                        childNameWithoutParenths.splice(0, 1);
-                                        childNameWithoutParenths.splice(childNameWithoutParenths.length - 1, 1);
+                                        //childNameWithoutParenths.splice(0, 1);
+                                        //childNameWithoutParenths.splice(childNameWithoutParenths.length - 1, 1);
                                         player.dialogueOptions.push(["How is our son, " + childNameWithoutParenths + "?", false, "g"], ["I want " + childNameWithoutParenths + " to come with me on my travels so that he can learn to be a man.", false, "h"]);
                                     }
                                 }
@@ -1016,7 +1016,7 @@ function interaction(me)
                                     player.dialogueOptions = [["Good Day!", false, "a"], ["How's business?", false, "b"]];
                                     if (player.charisma >= 4 && player.gender == "Male")
                                     {
-                                        player.dialogueOptions.push(["You are absolutely gorgeous!", false, "c"], ["I am madly in love with you!", false, "i"], ["I have been in love with you since the very first moment I laid eyes on your beautiful face. I feel that we should be together.", false, "j"]);
+                                        player.dialogueOptions.push(["You are absolutely gorgeous!", false, "c"], ["I am madly in love with you!", false, "i"], ["I have been in love with you since the very first moment I laid eyes on your beautiful face. I feel that we should be together.", false, "i"]);
                                     }
                                 }
                             }
@@ -1047,14 +1047,39 @@ function interaction(me)
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "0d";
                                         }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
                                     }
                                 }
                             }
                         }
                         else if (conversationID[1] == "0a")
                         {
-                            maggyJustLovely.play();
-                            maggyJustLovely.onended = function()
+                            cherylAsWell.play();
+                            cherylAsWell.onended = function()
                             {
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
@@ -1064,19 +1089,67 @@ function interaction(me)
                         }
                         else if (conversationID[1] == "0b")
                         {
-                            maggyJustCleaning.play();
-                            maggyJustCleaning.onended = function()
+                            var romanceOrNot = false;
+                            for (var i = 0; i < player.romance.length; i++)
                             {
-                                playersTurnToSpeak = true;
-                                player.dialoguePosition = 0;
-                                conversationID[1] = 0;
-                                self.SC();
+                                if (player.romance[i] == "cheryl")
+                                {
+                                    romanceOrNot = true;
+                                }
+                            }
+                            for (var ii = 0; ii < ArtificialIntelligenceAccess.length; ii++)
+                            {
+                                if (ArtificialIntelligenceAccess[ii].ID == ("[ " + quests.cherylChildName + " ]"))
+                                {
+                                    if (ArtificialIntelligenceAccess[ii].baseTeam == "player")
+                                    {
+                                        quests.cherylChildAccompany = true;
+                                    }
+                                    else
+                                    {
+                                        quests.cherylChildAccompany = false;
+                                    }
+                                }
+                            }
+
+                            if (quests.cherylChild && !quests.cherylChildAccompany)
+                            {
+                                cherylDifficult.play();
+                                cherylDifficult.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else if (romanceOrNot)
+                            {
+                                cherylWell.play();
+                                cherylWell.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                cherylStitching.play();
+                                cherylStitching.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
                             }
                         }
                         else if (conversationID[1] == "0c")
                         {
-                            maggyMostlyCleaning.play();
-                            maggyMostlyCleaning.onended = function()
+                            cherylKind.play();
+                            cherylKind.onended = function()
                             {
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
@@ -1086,9 +1159,112 @@ function interaction(me)
                         }
                         else if (conversationID[1] == "0d")
                         {
-                            maggyLifeStory.play();
-                            maggyLifeStory.onended = function()
+                            cherylDarling.play();
+                            cherylDarling.onended = function()
                             {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            cherylILoveYou.play();
+                            cherylILoveYou.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            cherylHoping.play();
+                            cherylHoping.onended = function()
+                            {
+                                if (!quests.cherylChild)
+                                {
+                                    sleeperTime += 60 * 60 * 24 * 365 * 6.75;
+                                    player.health = player.healthMAX;
+                                    player.energy = player.energyMAX;
+                                    player.will = player.willMAX;
+                                    player.hunger = player.hungerMAX;
+                                    player.thirst = player.thirstMAX;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 7;
+                                    player.experience += 250; // gain for whatever your character did to provide for your new family for 6 years.
+                                }
+                                else
+                                {
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 3;
+                                }
+
+                                if (!quests.cherylChild)
+                                {
+                                    quests.cherylChild = true;
+                                    quests.cherylChildName = prompt("Just a few weeks after having relations with Cheryl that night she confided to you that she was pregnant with your child. You did what you could to provide for her until the day came when your baby was born. Cheryl, with your input decided to name your child...", "Gunder");
+                                    alert("You provided for Cheryl and " + quests.cherylChildName + " in whatever ways that you could. Your son grew fast and before you knew it he had turned six years old.");
+                                    change = "makemy6yearoldherealready!";
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            if (uniqueChars.cherylChildLDS)
+                            {
+                                cherylBehaving.play();
+                                cherylBehaving.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                cherylDead.play();
+                                cherylDead.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            cherylSafe.play();
+                            cherylSafe.onended = function()
+                            {
+                                for (var ii = 0; ii < ArtificialIntelligenceAccess.length; ii++)
+                                {
+                                    if (ArtificialIntelligenceAccess[ii].ID == ("[ " + quests.cherylChildName + " ]"))
+                                    {
+                                        ArtificialIntelligenceAccess[ii].baseTeam = "player";
+                                        ArtificialIntelligenceAccess[ii].team = "player";
+                                    }
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0i")
+                        {
+                            cherylSame.play();
+                            cherylSame.onended = function()
+                            {
+                                player.romance.push("cheryl");
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;

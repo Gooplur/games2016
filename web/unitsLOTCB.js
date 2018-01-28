@@ -22197,6 +22197,30 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                 }
             }
+            else if (this.ID == "[ " + quests.cherylChildName + " ]") //this sets stats for the player child with Hilmund
+            {
+                if (this.aiTimer > 4)
+                {
+                    if (this.team == "player")
+                    {
+                        this.disturbedTime = new Date().getTime(); //this is so that your child is inclined to follow you
+                    }
+                    if (shiftKey && wKey || fKey || tKey) //runs when player runs or when directed to go somewhere
+                    {
+                        if (!this.stay)
+                        {
+                            this.speed = 1.25;
+                        }
+                    }
+                    else //walks when player walks
+                    {
+                        if (!this.stay)
+                        {
+                            this.speed = 0.55;
+                        }
+                    }
+                }
+            }
             else if (this.ID == "Cheryl the Tailor")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 29]];
@@ -22380,7 +22404,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
                             {
-                                this.callForNearbyHelpFromType(1850, "Soldier");
+                                if (this.baseTeam != "player")
+                                {
+                                    this.callForNearbyHelpFromType(1850, "Soldier");
+                                }
                             }
                         }
                         else
@@ -22422,7 +22449,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             {
                                 if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
                                 {
-                                    this.callForNearbyHelpFromType(1850, "Soldier");
+                                    if (this.baseTeam != "player")
+                                    {
+                                        this.callForNearbyHelpFromType(1850, "Soldier");
+                                    }
                                 }
                             }
                             else
@@ -22453,7 +22483,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             {
                                 if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
                                 {
-                                    this.callForNearbyHelpFromType(1850, "Soldier");
+                                    if (this.baseTeam != "player")
+                                    {
+                                        this.callForNearbyHelpFromType(1850, "Soldier");
+                                    }
                                 }
                             }
                             else
@@ -22484,12 +22517,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
                             {
-                                this.callForNearbyHelpFromType(1850, "Soldier");
+                                if (this.baseTeam != "player")
+                                {
+                                    this.callForNearbyHelpFromType(1850, "Soldier");
+                                }
                             }
                         }
                         else
                         {
-                            this.callForHelp(1850, "Soldier");
+                            if (this.baseTeam != "player")
+                            {
+                                this.callForNearbyHelpFromType(1850, "Soldier");
+                            }
                         }
                     }
                 }
@@ -22701,6 +22740,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "[ " + quests.hilmundChildName + " ]")
                     {
                         uniqueChars.hilmundChildLDS = false;
+                    }
+                    else if (this.ID == "[ " + quests.cherylChildName + " ]")
+                    {
+                        uniqueChars.cherylChildLDS = false;
                     }
                     else if (this.ID == "Drohfor")
                     {

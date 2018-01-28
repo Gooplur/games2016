@@ -9848,6 +9848,26 @@ function Item(type, x, y)
             this.buyValue = 17 - Math.floor(player.getCharisma() / 6); // at max, buy for 9.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 7.
         }
+        else if (this.type == "balkurFang")
+        {
+            //For All Items
+            this.identity = "Balkur Fang";
+            this.weight = 0.25;
+            this.size = 7;
+            this.description = "The fang of a balkur.";
+            this.intForDes = 5;
+            this.intDescription = "Balkurs have two large fangs each one as sharp as a sword.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
         else if (this.type == "fireStarter")
         {
             //For All Items
@@ -19365,6 +19385,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "balkurFang")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 9, 1, 10, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1), 10 * 1, 15 * 1);
+        }
         else if (this.type == "theUndyingEdge")
         {
             XXX.beginPath();
@@ -21947,6 +21972,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "balkurFang")
+        {
+            LXX.beginPath();
+            LXX.drawImage(balkur, 9, 1, 10, 15, this.invX - (1/2 * 10 * 1), this.invY - (1/2 * 15 * 1), 10 * 1, 15 * 1);
+        }
         else if (this.type == "theUndyingEdge")
         {
             LXX.beginPath();
@@ -24497,6 +24527,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "balkurFang")
+        {
+            XXX.beginPath();
+            XXX.drawImage(balkur, 9, 1, 10, 15, this.invX - (1/2 * 10 * 1), this.invY - (1/2 * 15 * 1), 10 * 1, 15 * 1);
         }
         else if (this.type == "theUndyingEdge")
         {

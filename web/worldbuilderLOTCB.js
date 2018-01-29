@@ -285,8 +285,21 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n1";
-            outlineBuilder( 20, 83, "frost", -80, -40); //frost
-            outlineBuilder( 80, 83, "snow", -80, -105); //snow
+            //outlineBuilder( 20, 83, "frost", -80, -40); //frost
+            //outlineBuilder( 80, 83, "snow", -80, -105); //snow
+            outlineBuilder(34, 34, "frost", -20, -54);
+            outlineBuilder(2, 7, "greenGrass", -5, -22);
+            outlineBuilder(1, 5, "greenGrass", 1, -21);
+            outlineBuilder(1, 1, "greenGrass", 4, -22);
+            outlineBuilder(1, 2, "greenGrass", -1, -23);
+            outlineBuilder(1, 6, "greenGrass", -14, -21);
+            outlineBuilder(1, 3, "greenGrass", -13, -22);
+            outlineBuilder(2, 2, "greenGrass", -19, -22);
+            outlineBuilder(1, 1, "greenGrass", -18, -23);
+            outlineBuilder(1, 5, "greenGrass", -20, -21);
+            outlineBuilder(1, 5, "greenGrass", 9, -21);
+            outlineBuilder(1, 2, "greenGrass", 10, -22);
+            outlineBuilder(34, 1, "stonePath", -3, -54);
         }
         //layer 2 (frosty region): elev 1
         //mapN2 //TODO remake this map
@@ -1196,67 +1209,81 @@ function buildMaster()
 
                 //REGION CREATION
                 //Build AI Units
-                ArtificialIntelligenceAccess.push(new Unit(2000, 30087, "AncientBeing", true, "Dejn-Vaa-Chorm"));
 
+                //meant for the map
                 //balkur
-                ArtificialIntelligenceAccess.push(new Unit(3900, 15400, "Balkur", true, "Tiitvehlesh"));
-                ArtificialIntelligenceAccess.push(new Unit(1400, 14900, "Balkur", false, "Tiitvehlesh"));
+                ArtificialIntelligenceAccess.push(new Unit(5432, 15332, "Balkur", true, "Tiitvehlesh"));
+                ArtificialIntelligenceAccess.push(new Unit(-396, 15991, "Balkur", false, "Tiitvehlesh"));
+                ArtificialIntelligenceAccess.push(new Unit(-2158, 13626, "Balkur", false, "Tiitvehlesh"));
 
                 //waanti
-                ArtificialIntelligenceAccess.push(new Unit(3458, 12734, "Waanti", true, "goablt"));
-                ArtificialIntelligenceAccess.push(new Unit(2901, 12535, "Waanti", true, "golabtlt"));
-                ArtificialIntelligenceAccess.push(new Unit(3113, 12857, "Waanti", false, "hablyem"));
-                ArtificialIntelligenceAccess.push(new Unit(2726, 13078, "Waanti", false, "yematlt"));
-                ArtificialIntelligenceAccess.push(new Unit(3118, 13167, "Waanti", "baby", "yem"));
-                ArtificialIntelligenceAccess.push(new Unit(3239, 13076, "Waanti", "baby", "yatlt"));
-                ArtificialIntelligenceAccess.push(new Unit(3538, 13144, "Waanti", false, "yetlat"));
-                ArtificialIntelligenceAccess.push(new Unit(3303, 13486, "Waanti", true, "Lebyetlt"));
-
-                //elder walruses
-                ArtificialIntelligenceAccess.push(new Unit(1600, 7790, "Walrus", true, "Ice Toby"));
-                ArtificialIntelligenceAccess.push(new Unit(2000, 7890, "Walrus", true, "Ice Tammy"));
-
-                //walruses
-                ArtificialIntelligenceAccess.push(new Unit(900, 7290, "Walrus", false, "Santa Claws"));
-                ArtificialIntelligenceAccess.push(new Unit(1200, 7290, "Walrus", false, "Mary Claws"));
-                ArtificialIntelligenceAccess.push(new Unit(325, 7290, "Walrus", false, "Big Boy Ringo"));
+                ArtificialIntelligenceAccess.push(new Unit(323, 15308, "Waanti", true, "Goablt"));
+                ArtificialIntelligenceAccess.push(new Unit(-693, 14241, "Waanti", true, "golabtlt"));
+                ArtificialIntelligenceAccess.push(new Unit(110, 14479, "Waanti", false, "hablyem"));
+                ArtificialIntelligenceAccess.push(new Unit(614, 14798, "Waanti", false, "yematlt"));
+                ArtificialIntelligenceAccess.push(new Unit(219, 14191, "Waanti", "baby", "yem"));
+                ArtificialIntelligenceAccess.push(new Unit(853, 14583, "Waanti", "baby", "yatlt"));
+                ArtificialIntelligenceAccess.push(new Unit(19, 13961, "Waanti", false, "yetlat"));
+                ArtificialIntelligenceAccess.push(new Unit(645, 14231, "Waanti", true, "Lebyetlt"));
+                ArtificialIntelligenceAccess.push(new Unit(4965, 12265, "Waanti", true, "Kajlabtlt"));
+                ArtificialIntelligenceAccess.push(new Unit(5334, 12140, "Waanti", false, "yablyem"));
+                ArtificialIntelligenceAccess.push(new Unit(5037, 12049, "Waanti", false, "kematlt"));
+                ArtificialIntelligenceAccess.push(new Unit(4620, 11851, "Waanti", "baby", "jemsi"));
+                ArtificialIntelligenceAccess.push(new Unit(-2041, 7579, "Waanti", true, "Febyektl"));
 
                 //winter wolves
-                ArtificialIntelligenceAccess.push(new Unit(2400, 8820, "WinterWolf", false, "Dogmeat"));
-                ArtificialIntelligenceAccess.push(new Unit(2600, 8940, "WinterWolf", false, "Husky"));
-                ArtificialIntelligenceAccess.push(new Unit(2500, 8600, "WinterWolf", false, "German"));
-                ArtificialIntelligenceAccess.push(new Unit(4000, 10000, "WinterWolf", true, "Ghost"));
+                ArtificialIntelligenceAccess.push(new Unit(4659, 8375, "WinterWolf", false, "Dogmeat"));
+                ArtificialIntelligenceAccess.push(new Unit(4345, 8849, "WinterWolf", false, "Husky"));
+                ArtificialIntelligenceAccess.push(new Unit(3674, 8607, "WinterWolf", false, "German"));
+                ArtificialIntelligenceAccess.push(new Unit(5676, 9600, "WinterWolf", true, "Ghost"));
+                ArtificialIntelligenceAccess.push(new Unit(-1466, 9900, "WinterWolf", false, "Russia"));
+                ArtificialIntelligenceAccess.push(new Unit(-2484, 9430, "WinterWolf", false, "Icepaw"));
+                ArtificialIntelligenceAccess.push(new Unit(-1447, 9055, "WinterWolf", false, "Eski"));
+                ArtificialIntelligenceAccess.push(new Unit(629, 10673, "WinterWolf", false, "Moaba"));
+                ArtificialIntelligenceAccess.push(new Unit(198, 10037, "WinterWolf", false, "Alaska"));
+                ArtificialIntelligenceAccess.push(new Unit(6290, 8636, "WinterWolf", false, "Everest"));
 
                 //glutids
-                ArtificialIntelligenceAccess.push(new Unit(895, 9921, "Glutid", "massive", "Glub", {patrolStops: 7, patrolLoop: true, route:[[1527, 10105], [1114, 10325], [834, 10992], [895, 9921]]}));
-                ArtificialIntelligenceAccess.push(new Unit(2255, 10148, "Glutid", true, "Glup", {patrolStops: 7, patrolLoop: true, route:[[1741, 10369], [1898, 9900], [1602, 9909], [1635, 10189], [2255, 10148]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-275, 9055, "Glutid", "massive", "Glub", {patrolStops: 4, patrolLoop: true, route:[[-1071, 9239], [-1003, 9594], [-75, 9913], [-275, 9055]]}));
+                ArtificialIntelligenceAccess.push(new Unit(2255, 10148, "Glutid", true, "Glup", {patrolStops: 5, patrolLoop: true, route:[[1741, 10369], [1898, 9900], [1602, 9909], [1635, 10189], [2255, 10148]]}));
+                ArtificialIntelligenceAccess.push(new Unit(5175, 12158, "Glutid", false, "Glip", {patrolStops: 3, patrolLoop: true, route:[[4509, 12083], [5073, 12453], [5175, 12158]]}));
 
-                //Seguidores del Hielo
+                //Scenery
+                scenicList.push(new Scenery("bushkaPlant", 576, 8067, 2.5, true));
+                scenicList.push(new Scenery("bushkaPlant", -930 , 11917, -1, true));
+                scenicList.push(new Scenery("wightbloomPlant", -1508 , 14448, 0, true));
+                scenicList.push(new Scenery("wightbloomPlant", 611 , 15616, 5, true));
+                scenicList.push(new Scenery("bushkaPlant", 5101 , 14837, -3.2, true));
+                scenicList.push(new Scenery("bushkaPlant", 4226 , 13450, 0, true));
+                scenicList.push(new Scenery("wightbloomPlant", 5400 , 10239, -4, true));
+                scenicList.push(new Scenery("bushkaPlant", -1811 , 15449, -1.5, true));
+
+                //off map //todo put these in other maps later on
+                    //boss
+                ArtificialIntelligenceAccess.push(new Unit(2000, 30087, "AncientBeing", true, "Dejn-Vaa-Chorm"));
+
+                //elder walruses
+                ArtificialIntelligenceAccess.push(new Unit(1600, 21790, "Walrus", true, "Ice Toby"));
+                ArtificialIntelligenceAccess.push(new Unit(2000, 21890, "Walrus", true, "Ice Tammy"));
+
+                //walruses
+                ArtificialIntelligenceAccess.push(new Unit(900, 21290, "Walrus", false, "Santa Claws"));
+                ArtificialIntelligenceAccess.push(new Unit(1200, 21490, "Walrus", false, "Mary Claws"));
+                ArtificialIntelligenceAccess.push(new Unit(325, 21590, "Walrus", false, "Big Boy Ringo"));
+
+                    //Seguidores del Hielo
                 ArtificialIntelligenceAccess.push(new Unit(9000, 10000, "HyelingSoldier", true, "Frost Maw"));
                 ArtificialIntelligenceAccess.push(new Unit(8900, 10100, "HyelingSoldier", false, "Long Tooth"));
                 ArtificialIntelligenceAccess.push(new Unit(9584, 9046, "Hyeling", "baby", "Cold Cloth"));
                 ArtificialIntelligenceAccess.push(new Unit(9498, 8856, "Hyeling", false, "Old Eyes"));
                 ArtificialIntelligenceAccess.push(new Unit(10041, 8746, "Hyeling", true, "White Hammer"));
                 ArtificialIntelligenceAccess.push(new Unit(9711, 8503, "HyelingSoldier", false, "Running Stone"));
-
-                //Scenery
-                scenicList.push(new Scenery("bushkaPlant", 2410 , 7578, 2.5, true));
-                scenicList.push(new Scenery("bushkaPlant", 2710 , 7478, -1, true));
-                scenicList.push(new Scenery("wightbloomPlant", 2900 , 7900, 0, true));
                 scenicList.push(new Scenery("largeCeremonialRockCircle", 10075 , 8783, 0, true));
                 scenicList.push(new Scenery("hyelingTent", 9199 , 8965, 1/2 * Math.PI, true));
                 scenicList.push(new Scenery("hyelingTent", 9677 , 9170, -1/11 * Math.PI, true));
                 scenicList.push(new Scenery("hyelingTent", 10800 , 8897, -1/2 * Math.PI, true));
                 scenicList.push(new Scenery("hyelingTent", 10458 , 8363, -3/5 * Math.PI, true));
                 scenicList.push(new Scenery("hyelingSkeleton", 10071 , 8788, 0.12, true));
-
-                //Gulfreys in the jungle
-                //ArtificialIntelligenceAccess.push(new Unit(3400, 8820, "Gulfrey", true, "Plikt"));
-                //ArtificialIntelligenceAccess.push(new Unit(3600, 8940, "Gulfrey", true, "Plakt"));
-                //for (var i = 0; i < 20; i++)
-                //{
-                //    ArtificialIntelligenceAccess.push(new Unit(3000 + (i * 40), 9250, "Gulfrey", false, null));
-                //}
 
                 change = "n1";
             }

@@ -77,6 +77,19 @@ function cheats()
         {
             uniqueChars.medliaLDS = true;
         }
+        else if (cheatcode == "forget")
+        {
+            if (player.getKnowledge() >= 1)
+            {
+                var chekerPromt = confirm("Are you sure you want to forget all of the spells you have learned?");
+                if (chekerPromt)
+                {
+                    primarySpells = [];
+                    secondarySpells = [];
+                    tertiarySpells = [];
+                }
+            }
+        }
         else if (cheatcode == "MedliaKit")
         {
             uniqueChars.medliaLDS = true;

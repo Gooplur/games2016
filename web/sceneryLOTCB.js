@@ -1326,7 +1326,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             };
 
             //Wind-up Spin
-            if (this.tiic >= 60)
+            if (this.tiic >= 60 && this.temporary != true)
             {
                 this.triggered = false;
             }

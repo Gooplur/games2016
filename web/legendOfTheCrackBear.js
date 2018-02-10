@@ -1181,6 +1181,18 @@ function noHaTerminadoTodavia()
 
     balkur.onload = function()
     {
+        todaviaNo();
+    };
+}
+
+function todaviaNo()
+{
+    var troli = new Image();
+    troli.src = ("images/troli.png");
+    window.troli = troli;
+
+    troli.onload = function()
+    {
         casiAlFin();
     };
 }

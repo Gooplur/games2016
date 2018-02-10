@@ -9232,6 +9232,62 @@ function buildMaster()
                     ArtificialIntelligenceAccess.push(new Unit(1631, 4236, "Oolid", true, "Fowlomn"));
                 }
 
+                rndx = Math.random();
+                if (rndx <= 0.3)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-670, 1671, "Miter", false, "Cash"));
+                }
+                else if (rndx <= 0.6)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-670, 1671, "Miter", true, "Cash"));
+                }
+                else if (rndx <= 0.7)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-670, 1671, "Miter", false, "Cash"));
+                    ArtificialIntelligenceAccess.push(new Unit(-863, 1532, "Miter", false, "Grave"));
+                }
+                else if (rndx <= 0.8)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-815, 1699, "Miter", true, "Cash"));
+                    ArtificialIntelligenceAccess.push(new Unit(-568, 1560, "Miter", true, "Grave"));
+                }
+                else if (rndx <= 0.9)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-815, 1699, "Miter", true, "Cash"));
+                    ArtificialIntelligenceAccess.push(new Unit(-568, 1560, "Miter", false, "Grave"));
+                }
+                else if (rndx <= 1)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-815, 1699, "Miter", false, "Cash"));
+                    ArtificialIntelligenceAccess.push(new Unit(-568, 1560, "Miter", true, "Grave"));
+                }
+
+                rndx = Math.random();
+                if (rndx <= 0.25)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-1257, 873, "Tilk", true, "Thavenveldt"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1409, 492, "Tilk", true, "Dgavemxeldt"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1199, 474, "Tilk", false, "Jyermovenm"));
+                }
+                else if (rndx <= 0.6)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-1249, 1029, "Miter", false, "Ditch"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1221, 383, "Miter", true, "Cash"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1422, 470, "Miter", true, "Grave"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1520, 749, "Miter", true, "Dig"));
+                }
+                else if (rndx <= 1)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-1221, 383, "Miter", true, "Cash"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1422, 470, "Miter", true, "Grave"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1520, 749, "Miter", true, "Dig"));
+                }
+
+                scenicList.push(new Scenery("spindleTrap", -1748, 1715, -0.33 * Math.PI, true));
+                scenicList.push(new Scenery("spindleTrap", -1911, 1543, 0.66 * Math.PI, true));
+                scenicList.push(new Scenery("spindleTrap", -1904, 1719, 0.2 * Math.PI, true));
+                scenicList.push(new Scenery("spindleTrap", -1777, 1588, -0.55 * Math.PI, true));
+
                 //TODO finish this dungeon (include the lightning spear mage as the final boss if you engage the right quest)
 
                 //Build Scenery

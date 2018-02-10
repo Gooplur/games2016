@@ -9868,6 +9868,66 @@ function Item(type, x, y)
             this.buyValue = 2; // at max, buy for 2.
             this.sellValue = 2; // at max, sell for 2.
         }
+        else if (this.type == "miterHide")
+        {
+            //For All Items
+            this.identity = "Miter Hide";
+            this.weight = 3;
+            this.size = 11;
+            this.description = "The spined thick grey hide of a miter.";
+            this.intForDes = 6;
+            this.intDescription = "Miter hide can be used to make a durable leather.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "emptyMiterBloodSac")
+        {
+            //For All Items
+            this.identity = "Empty Miter Blood Sac";
+            this.weight = 2;
+            this.size = 9;
+            this.description = "The organ of the miter used for storing the blood sucked from its victims.";
+            this.intForDes = 2;
+            this.intDescription = "The miter has not fed recently or this would be full of blood.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 4; // at max, sell for 4.
+        }
+        else if (this.type == "miterBloodSac")
+        {
+            //For All Items
+            this.identity = "Miter Blood Sac";
+            this.weight = 4;
+            this.size = 9;
+            this.description = "The organ of the miter used for storing the blood that it sucks out of its prey.";
+            this.intForDes = 0;
+            this.intDescription = "It is swollen full with blood sucked from the miter's victims.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9; // at max, buy for 9.
+            this.sellValue = 9; // at max, sell for 9.
+        }
         else if (this.type == "fireStarter")
         {
             //For All Items
@@ -19385,6 +19445,21 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "emptyMiterBloodSac")
+        {
+            XXX.beginPath();
+            XXX.drawImage(troli, 96, 222, 17, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1), 17 * 1, 17 * 1);
+        }
+        else if (this.type == "miterBloodSac")
+        {
+            XXX.beginPath();
+            XXX.drawImage(troli, 76, 223, 17, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1), 17 * 1, 17 * 1);
+        }
+        else if (this.type == "miterHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(troli, 31, 223, 27, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.2), 27 * 1.2, 19 * 1.2);
+        }
         else if (this.type == "balkurFang")
         {
             XXX.beginPath();
@@ -21972,6 +22047,21 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "emptyMiterBloodSac")
+        {
+            LXX.beginPath();
+            LXX.drawImage(troli, 96, 222, 17, 17, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 17 * 1), 17 * 1, 17 * 1);
+        }
+        else if (this.type == "miterBloodSac")
+        {
+            LXX.beginPath();
+            LXX.drawImage(troli, 76, 223, 17, 17, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 17 * 1), 17 * 1, 17 * 1);
+        }
+        else if (this.type == "miterHide")
+        {
+            LXX.beginPath();
+            LXX.drawImage(troli, 31, 223, 27, 19, this.invX - (1/2 * 27 * 1.2), this.invY - (1/2 * 19 * 1.2), 27 * 1.2, 19 * 1.2);
+        }
         else if (this.type == "balkurFang")
         {
             LXX.beginPath();
@@ -24527,6 +24617,21 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "emptyMiterBloodSac")
+        {
+            XXX.beginPath();
+            XXX.drawImage(troli, 96, 222, 17, 17, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 17 * 1), 17 * 1, 17 * 1);
+        }
+        else if (this.type == "miterBloodSac")
+        {
+            XXX.beginPath();
+            XXX.drawImage(troli, 76, 223, 17, 17, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 17 * 1), 17 * 1, 17 * 1);
+        }
+        else if (this.type == "miterHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(troli, 31, 223, 27, 19, this.invX - (1/2 * 27 * 1.2), this.invY - (1/2 * 19 * 1.2), 27 * 1.2, 19 * 1.2);
         }
         else if (this.type == "balkurFang")
         {

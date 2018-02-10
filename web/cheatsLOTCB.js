@@ -815,12 +815,13 @@ function cheats()
         {
             player.totalSkillPoints -= player.constitution;
             player.constitution = 0;
+            player.strength = 20;
             player.health = player.healthMAX;
             if (machineGunCrossbow == false)
             {
                 Inventory = [];
                 Inventory.push([new Item("crossbow", false, false), 1]);
-                Inventory.push([new Item("steelBolt", false, false), 11]);
+                Inventory.push([new Item("steelBolt", false, false), 501]);
                 machineGunCrossbow = true;
             }
         }

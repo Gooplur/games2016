@@ -6114,7 +6114,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 4 + 0.45 * this.alphaSize;
                 this.attackWait = 0.86 + (Math.random() * 2);
                 this.effect = "fire";
-                this.beastEntry = {intReq: 25, name: "Pelcrid", health: "15 - 17", armour: 10.75, damage: "6.85 - 11.85", negate: 6.25, ability: "Fire", fireProof: 1000, habitat: "Molten barrens / Underground", sight: 320, alpha: "Large", magicProof: -2, size: 20, speed: "0.25 - 0.55", rotation: 0.05, rate: "0.86 - 2.85", experience: 65, description: ["Pelcrid's are a type of slime that lives at a very high temperature and that is fed by heat. If fire comes in contact with a pelcrid the pelcrid will", "absorb the heat and almost immediately grow larger. Pelcrids can not survive off of heat alone they also need to consume carbon in order to maintain", "itself; pelcrids hunt for prey to make up its carbon content incinerating it and soaking it into itself. Pelcrids, being reliant on heat, are damaged", "significantly when they are frozen.", " ", "When a pelcrid increased in size all of its stats increase as well, so the stats shown here are not accurate for an enlarged pelcrid."], image: ["nognog", 560, 92, 43, 28, 0, 0, 43 * 1.3 / 3, 28 * 1.3 / 3]};
+                this.beastEntry = {intReq: 25, name: "Pelcrid", health: "15 - 17", armour: 10.75, damage: "6.85 - 11.85", negate: 6.25, ability: "Fire", fireProof: 1000, habitat: "Molten barrens / Underground", sight: 320, alpha: "Large", magicProof: -2, size: 20, speed: "0.25 - 0.55", rotation: 0.05, rate: "0.86 - 2.85", experience: 65, description: ["Pelcrids are a type of slime that lives at a very high temperature and that is fed by heat. If fire comes in contact with a pelcrid the pelcrid will", "absorb the heat and almost immediately grow larger. Pelcrids can not survive off of heat alone they also need to consume carbon in order to maintain", "itself; pelcrids hunt for prey to make up its carbon content incinerating it and soaking it into itself. Pelcrids, being reliant on heat, are damaged", "significantly when they are frozen.", " ", "When a pelcrid increased in size all of its stats increase as well, so the stats shown here are not accurate for an enlarged pelcrid."], image: ["nognog", 560, 92, 43, 28, 0, 0, 43 * 1.3 / 3, 28 * 1.3 / 3]};
 
                 // this is the adjustment the alpha type of Etyr needs to be centered.
                 this.yAdjustment = 0;
@@ -6140,14 +6140,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 4 + 0.45 * this.alphaSize;
                 this.attackWait = 0.86 + (Math.random() * 2);
                 this.effect = "fire";
-                this.beastEntry = {intReq: 25, name: "Pelcrid", health: "9 - 11", armour: 9.25, damage: "5.05 - 8.05", negate: 5.35, ability: "Fire", fireProof: 1000, habitat: "Molten barrens / Underground", sight: 290, alpha: "Normal", magicProof: -2, size: 16, speed: "0.21 - 0.51", rotation: 0.05, rate: "0.86 - 2.85", experience: 39, description: ["Pelcrid's are a type of slime that lives at a very high temperature and that is fed by heat. If fire comes in contact with a pelcrid the pelcrid will", "absorb the heat and almost immediately grow larger. Pelcrids can not survive off of heat alone they also need to consume carbon in order to maintain", "itself; pelcrids hunt for prey to make up its carbon content incinerating it and soaking it into itself. Pelcrids, being reliant on heat, are damaged", "significantly when they are frozen.", " ", "When a pelcrid increased in size all of its stats increase as well, so the stats shown here are not accurate for an enlarged pelcrid."], image: ["nognog", 560, 92, 43, 28, 0, 0, 43 * 1 / 3, 28 * 1 / 3]};
+                this.beastEntry = {intReq: 25, name: "Pelcrid", health: "9 - 11", armour: 9.25, damage: "5.05 - 8.05", negate: 5.35, ability: "Fire", fireProof: 1000, habitat: "Molten barrens / Underground", sight: 290, alpha: "Normal", magicProof: -2, size: 16, speed: "0.21 - 0.51", rotation: 0.05, rate: "0.86 - 2.85", experience: 39, description: ["Pelcrids are a type of slime that lives at a very high temperature and that is fed by heat. If fire comes in contact with a pelcrid the pelcrid will", "absorb the heat and almost immediately grow larger. Pelcrids can not survive off of heat alone they also need to consume carbon in order to maintain", "itself; pelcrids hunt for prey to make up its carbon content incinerating it and soaking it into itself. Pelcrids, being reliant on heat, are damaged", "significantly when they are frozen.", " ", "When a pelcrid increased in size all of its stats increase as well, so the stats shown here are not accurate for an enlarged pelcrid."], image: ["nognog", 560, 92, 43, 28, 0, 0, 43 * 1 / 3, 28 * 1 / 3]};
 
                 // this is the adjustment the alpha type of Etyr needs to be centered.
                 this.yAdjustment = 0;
                 this.xAdjustment = 0;
             }
         }
-        else if (this.type == "Oolid") //todo continue from here with beastEntries
+        else if (this.type == "Oolid")
         {
             this.damageFrame = "automatic";
             this.resistances = ["acid", "stun", "blinded", "shock"];
@@ -6172,6 +6172,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 14;
                 this.attackWait = 0.45 + Math.random();
                 this.effect = "stunII";
+                this.beastEntry = {intReq: 14, name: "Oolid", health: "20 - 23", armour: 0, damage: "6 - 14", negate: 14, ability: "StunII", fireProof: -3, habitat: "Jungle / Underground", sight: 700, alpha: "Medium", magicProof: 4, size: 15, speed: "0.3 - 1", rotation: 0.05, rate: "0.45 - 1.45", experience: 20, description: ["Oolids are a type of slime that often lurks along the jungle underbrush in the shade engulfing any creatures that accidentally step in it or do not", "notice its slow and silent approach. Oolids are known to reproduce through self replication, but regardless of their independent reproductive", "capabilities they can still often be found in groups that hunt and replicate together. During Replications oolids have even been known to mix into one", "another producing offspring made by a combination of multiple oolids."], image: ["theCrack", 38, 171, 38, 36, 0, 0, 36 * 2 / 3, 38 * 2 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -6196,6 +6197,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 19;
                 this.attackWait = 0.45 + Math.random();
                 this.effect = "stunII";
+                this.beastEntry = {intReq: 19, name: "Oolid", health: "31 - 37", armour: 0, damage: "9 - 21", negate: 19, ability: "StunII", fireProof: -3, habitat: "Jungle / Underground", sight: 700, alpha: "Large", magicProof: 4, size: 23, speed: "1 - 1.7", rotation: 0.025, rate: "0.45 - 1.45", experience: 30, description: ["Oolids are a type of slime that often lurks along the jungle underbrush in the shade engulfing any creatures that accidentally step in it or do not", "notice its slow and silent approach. Not all oolids replicate when they grow bigger, some oolids simply keep growing, making them all the more dangerous."], image: ["theCrack", 38, 171, 38, 36, 0, 0, 36 * 3 / 3, 38 * 3 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -6220,6 +6222,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 8;
                 this.attackWait = 0.45 + Math.random();
                 this.effect = "stunI";
+                this.beastEntry = {intReq: 11, name: "Oolid", health: "10 - 12", armour: 0, damage: "3 - 7", negate: 8, ability: "StunI", fireProof: -3, habitat: "Jungle / Underground", sight: 700, alpha: "Small", magicProof: 4, size: 12, speed: "0.2 - 0.9", rotation: 0.05, rate: "0.45 - 1.45", experience: 10, description: ["Oolids are a type of slime that often lurks along the jungle underbrush in the shade engulfing any creatures that accidentally step in it or do not", "notice its slow and silent approach. Oolids are often found in small groups but in rare cases they can be found in large swarms."], image: ["theCrack", 38, 171, 38, 36, 0, 0, 36 * 1.4 / 3, 38 * 1.4 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -6257,6 +6260,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 6;
                 this.attackWait = 1 + Math.random();
                 this.effect = "freezingStun";
+                this.beastEntry = {intReq: 18, name: "Glutid", health: "34 - 40", armour: 6, damage: "8 - 20", negate: 6, ability: "Freezing Stun", fireProof: 4, habitat: "Frozen Tundra", sight: 600, alpha: "Medium", magicProof: 5, size: 18, speed: "0.25 - 0.65", rotation: 0.05, rate: "1 - 2", experience: 30, description: ["Glutids are a type of slime that develops a hard and jagged shell and that can retract into it for safety. Glutids ooze across the frozen tundra engorging", "themselves upon whichever small tundra creatures it happens across. Glutids can survive a remarkably long time without eating anything which makes them", "particularly well adapted to living in the harsh and freezing climates of the arctic. Once a glutid dies its ooze will chemically change to be able to", "evaporate in relatively average temperature conditions."], image: ["theCrack", 372, 265, 41, 39, 0, 0, 41 * 2 / 3, 39 * 2 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -6281,6 +6285,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 6;
                 this.attackWait = 1 + Math.random();
                 this.effect = "freezingStun";
+                this.beastEntry = {intReq: 21, name: "Glutid", health: "59 - 67", armour: 7, damage: "12 - 28", negate: 6, ability: "Freezing Stun", fireProof: 4, habitat: "Frozen Tundra", sight: 600, alpha: "Large", magicProof: 5, size: 23, speed: "0.25 - 0.65", rotation: 0.05, rate: "1 - 2", experience: 50, description: ["Glutids are a type of slime that develops a hard and jagged shell and that can retract into it for safety. Glutids ooze across the frozen tundra engorging", "themselves upon whichever small tundra creatures it happens across. Glutids can survive a remarkably long time without eating anything which makes them", "particularly well adapted to living in the harsh and freezing climates of the arctic. Once a glutid dies its ooze will chemically change to be able to", "evaporate in relatively average temperature conditions."], image: ["theCrack", 372, 265, 41, 39, 0, 0, 41 * 3 / 3, 39 * 3 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -6305,6 +6310,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 6;
                 this.attackWait = 1 + Math.random();
                 this.effect = "freezingStun";
+                this.beastEntry = {intReq: 15, name: "Glutid", health: "19 - 22", armour: 5, damage: "6 - 14", negate: 6, ability: "Freezing Stun", fireProof: 4, habitat: "Frozen Tundra", sight: 600, alpha: "Large", magicProof: 5, size: 13, speed: "0.25 - 0.65", rotation: 0.05, rate: "1 - 2", experience: 15, description: ["Glutids are a type of slime that develops a hard and jagged shell and that can retract into it for safety. Glutids ooze across the frozen tundra engorging", "themselves upon whichever small tundra creatures it happens across. Glutids can survive a remarkably long time without eating anything which makes them", "particularly well adapted to living in the harsh and freezing climates of the arctic. Once a glutid dies its ooze will chemically change to be able to", "evaporate in relatively average temperature conditions."], image: ["theCrack", 372, 265, 41, 39, 0, 0, 41 * 1.4 / 3, 39 * 1.4 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -10470,11 +10476,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
-                    this.experience = 10 * ((player.getIntelligence() / 50) + 1);
+                    this.experience = 20 * ((player.getIntelligence() / 50) + 1);
                 }
                 else
                 {
-                    this.experience = (10 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    this.experience = (20 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
                 this.drops = [[new Item("medOolidOozeRemains", this.X, this.Y), 1]];
@@ -10496,11 +10502,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (Math.max(0, 2 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
-                    this.experience = 20 * ((player.getIntelligence() / 50) + 1);
+                    this.experience = 10 * ((player.getIntelligence() / 50) + 1);
                 }
                 else
                 {
-                    this.experience = 20 * ((player.getIntelligence() / 50) + 1) / 10;
+                    this.experience = 10 * ((player.getIntelligence() / 50) + 1) / 10;
                 }
 
                 this.drops = [[new Item("smlOolidOozeRemains", this.X, this.Y), 1]];

@@ -1421,6 +1421,8 @@ var TTD;
 var fairSleep;
 var wKey;
 var sKey;
+var aKey;
+var dKey;
 var spaceKey;
 var shiftKey;
 var altKey;
@@ -1861,6 +1863,16 @@ function keyReleased(event)
         sKey = false;
     }
 
+    if (key == 65)
+    {
+        aKey = false;
+    }
+
+    if (key == 68)
+    {
+        dKey = false;
+    }
+
     if (key == 69)
     {
         eKey = false;
@@ -1999,6 +2011,16 @@ function keyHeld(event)
     if (key == 83)
     {
         sKey = true;
+    }
+
+    if (key == 65)
+    {
+        aKey = true;
+    }
+
+    if (key == 68)
+    {
+        dKey = true;
     }
 
     if (key == 69)
@@ -2272,6 +2294,8 @@ function theLegend()
 //Key sensing variables
     wKey = false;
     sKey = false;
+    aKey = false;
+    dKey = false;
     spaceKey = false;
     shiftKey = false;
     altKey = false;

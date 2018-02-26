@@ -4267,7 +4267,7 @@ function Adventurer()
         }
 
         // if the player is walking backwards then the player's legs move back and forth to simulate walking backwards.
-        //BACKWALKING
+        //BACKWALKING / SIDEWALKING
         if (this.movingType == 4)
         {
             // the left leg goes back 25 pixles and the right goes forward 25.
@@ -4427,7 +4427,7 @@ function Adventurer()
         }
 
         //MOUNTED
-        if (this.movingType == 6)
+        if (this.movingType == 7)
         {
             this.lLegY = 0;
             this.rLegY = 0;
@@ -4490,15 +4490,46 @@ function Adventurer()
                 XXX.restore();
             }
         }
-    }
+    };
 
     //DRAW SELF STUFF
     //to put it simply, this function draws two lines that represent the main character's legs.
     this.drawLegs = function ()
     {
+        var legRotation = 0;
+        if (wKey && dKey && !aKey && this.movingType == 1 || sKey && aKey && !dKey && this.movingType == 4)
+        {
+            if (this.getDexterity() >= 12 && this.energy >= 0 || this.getDexterity() >= 20)
+            {
+                if (this.movingType == 1 && !shiftKey)
+                {
+                    legRotation = 1/8 * Math.PI;
+                }
+                else if (this.movingType == 4 && !shiftKey)
+                {
+                    legRotation = 1/7 * Math.PI;
+                }
+            }
+        }
+        else if (wKey && aKey && !dKey && this.movingType == 1 || sKey && dKey && !aKey && this.movingType == 4)
+        {
+            if (this.getDexterity() >= 12 && this.energy >= 0 || this.getDexterity() >= 20)
+            {
+                if (this.movingType == 1 && !shiftKey)
+                {
+                    legRotation = -1/8 * Math.PI;
+                }
+                else if (this.movingType == 4 && !shiftKey)
+                {
+                    legRotation = -1/7 * Math.PI;
+                }
+            }
+        }
+
+        //draw the legs
         XXX.save();
         XXX.translate(700, 275);
-        XXX.rotate(this.rotation);
+        XXX.rotate(this.rotation + legRotation);
         if (this.subtlety)
         {
             XXX.globalAlpha = 0.1;
@@ -15151,10 +15182,60 @@ function Adventurer()
                 Y += (Math.sin(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.sin(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
             }
         }
-        //STANDING
-        if (wKey == false && altKey == false && sKey == false && !this.jumpingBack && this.mounted == false)
+        //SIDEWALKING
+        if (dKey == true && aKey == false && shiftKey != true && this.getDexterity() >= 12 && !this.jumpingBack && this.mounted == false) //leftwalking
         {
-            this.movingType = 0;
+            if (this.energy >= 0 || this.getDexterity() >= 20)
+            {
+                // If the place where the player would move next under the same instruction is blocked then the player will not move.
+                if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
+                {
+                    var nextX = X + (Math.cos(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.cos(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                    var nextY = Y + (Math.sin(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.sin(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                    if (!this.isObstructed(nextX, nextY))
+                    {
+                        X += (Math.cos(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.cos(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                        Y += (Math.sin(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.sin(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                    }
+                }
+                else
+                {
+                    //TODO eventually make magical walls and game borders that wallPhase does not let the player walk through.
+                    X += (Math.cos(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.cos(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                    Y += (Math.sin(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.sin(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                }
+            }
+        }
+        else if (aKey == true && dKey == false && shiftKey != true && this.getDexterity() >= 12 && !this.jumpingBack && this.mounted == false) //rightwalking
+        {
+            if (this.energy >= 0 || this.getDexterity() >= 20)
+            {
+                // If the place where the player would move next under the same instruction is blocked then the player will not move.
+                if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
+                {
+                    var nextX = X + (Math.cos(this.rotation) * (0.25 / this.freeze) + Math.cos(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                    var nextY = Y + (Math.sin(this.rotation) * (0.25 / this.freeze) + Math.sin(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                    if (!this.isObstructed(nextX, nextY))
+                    {
+                        X += (Math.cos(this.rotation) * (0.25 / this.freeze) + Math.cos(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                        Y += (Math.sin(this.rotation) * (0.25 / this.freeze) + Math.sin(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                    }
+                }
+                else
+                {
+                    //TODO eventually make magical walls and game borders that wallPhase does not let the player walk through.
+                    X += (Math.cos(this.rotation) * (0.25 / this.freeze) + Math.cos(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                    Y += (Math.sin(this.rotation) * (0.25 / this.freeze) + Math.sin(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                }
+            }
+        }
+        //STANDING
+        if (wKey == false && altKey == false && !this.jumpingBack && this.mounted == false)
+        {
+            if (this.getDexterity() < 5 || sKey == false)
+            {
+                this.movingType = 0;
+            }
         }
         //WALKING
         if (wKey == true && shiftKey != true && !altKey && !this.jumpingBack && this.mounted == false)
@@ -15379,7 +15460,7 @@ function Adventurer()
     //MOUNTED -- riding animals as mounts
     if (wKey == true && this.mounted)
     {
-        this.movingType = 6;
+        this.movingType = 7;
         if (shiftKey == true)
         {
             this.mountMove = this.mountSpeed * 1.5;

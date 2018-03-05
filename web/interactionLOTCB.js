@@ -1273,6 +1273,751 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Ederhal the Innkeeper" || conversationID[0] == "Ederhal")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Ederhal";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Hello.", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            if (player.raceName == "Thengar" || player.raceName == "Freynor" || player.raceName == "Vardan")
+                            {
+                                ederhalGet.play();
+                                ederhalGet.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                            }
+                            else if (player.raceName == "Kel")
+                            {
+                                ederhalKell.play();
+                                ederhalKell.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                ederhalQuickly.play();
+                                ederhalQuickly.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I'm looking for something to drink.", false, "a"], ["I want a place to spend the night.", false, "b"], ["Are there any interesting rumors going about?", false, "c"], ["Are there any jobs that I could take?", false, "d"]];
+
+                                if (quests.debtCollectorQuest == true)
+                                {
+                                    player.dialogueOptions.push(["Who should I collect the money from and how much do they owe?", false, "e"]);
+                                }
+                                if (quests.draftAndDieQuest == true && uniqueChars.friedrichLDS == false)
+                                {
+                                    player.dialogueOptions.push(["Your shipment is in, now where's my coin?", false, "g"], ["The task is complete, I'm back for my pay.", false, "g"]);
+                                }
+
+                                var hasEnufCoinz = false;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 229)
+                                    {
+                                        hasEnufCoinz = true;
+                                        break;
+                                    }
+                                }
+                                if (hasEnufCoinz && quests.debtCollectorQuest == true)
+                                {
+                                    player.dialogueOptions.unshift(["I collected the bar tabs. (give 229 coins)", false, "f"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1g";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            ederhalRightPlace.play();
+                            ederhalRightPlace.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            ederhalSheets.play();
+                            ederhalSheets.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            ederhalGossip.play();
+                            ederhalGossip.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                if (quests.thePlightOfLethikQuest != "complete")
+                                {
+                                    conversationID[1] = 3;
+                                }
+                                else
+                                {
+                                    conversationID[1] = 1;
+                                }
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1d")
+                        {
+                            if (quests.debtCollectorQuest == false)
+                            {
+                                ederhalConvincing.play();
+                                ederhalConvincing.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 4;
+                                    self.SC();
+                                }
+                            }
+                            else if (quests.draftAndDieQuest == false && uniqueChars.friedrichLDS == true)
+                            {
+                                ederhalTrust.play();
+                                ederhalTrust.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 5;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1e")
+                        {
+                            if (quests.debtCollectorWho == false)
+                            {
+                                quests.debtCollectorWho = true;
+                                ederhalFirstRound.play();
+                                ederhalFirstRound.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                ederhalLetsSee.play();
+                                ederhalLetsSee.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1f")
+                        {
+                            ederhalYourCut.play();
+                            ederhalYourCut.onended = function()
+                            {
+                                var coinReqq = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][1] >= 229 && Inventory[i][0].type == "coin")
+                                    {
+                                        coinReqq = i;
+                                        break;
+                                    }
+                                }
+
+                                if (coinReqq > -1)
+                                {
+                                    quests.debtCollectorQuest = "complete";
+                                    quests.completeQuests.push({name: "Beer Money", description: "You brought Ederhal the Innkeeper the money that his patrons owed him for their bar tabs."});
+                                    Inventory[coinReqq][1] -= 169;
+                                    player.thengarFaction += 5;
+                                    player.experience += 50;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1g")
+                        {
+                            if (quests.draftAndDiePlayersKill == true)
+                            {
+                                var coinReqq = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coin")
+                                    {
+                                        coinReqq = i;
+                                        break;
+                                    }
+                                }
+
+                                if (coinReqq > -1)
+                                {
+                                    Inventory[coinReqq][1] += quests.draftAndDieReward;
+                                }
+                                else
+                                {
+                                    Inventory.unshift([new Item("coin", false, false), quests.draftAndDieReward]);
+                                }
+                                quests.draftAndDieQuest = "complete";
+                                quests.completeQuests.push({name: "To Draft to Death", description: "You assassinated the captain of the guard of Lethik City for a hefty sum."});
+                                player.experience += 250;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                ederhalForgetAboutIt.play();
+                                ederhalForgetAboutIt.onended = function()
+                                {
+                                    quests.draftAndDieQuest = "complete";
+                                    quests.completeQuests.push({name: "To Draft to Death", description: "The captain of the guard was killed, but not by you. Your employer Ederhal was delighted that he no longer required such costly services as yours."});
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == 2)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Alright, here you are. (give 9 coins)", false, "a"], ["Nevermind.", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "2b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2a")
+                        {
+                            var room = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 9)
+                                {
+                                    room = i;
+                                }
+                            }
+                            if (room < 0)
+                            {
+                                ederhalForgetAboutIt.play();
+                                ederhalForgetAboutIt.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                Inventory[room][1] -= 9;
+                                if (Inventory[room][1] < 1)
+                                {
+                                    Inventory.splice(room, 1);
+                                }
+
+                                sleep();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2b")
+                        {
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 1;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == 3)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Nevermind.", false, "b"], ["Forget it.", false, "b"], ["I can respect that.", false, "b"]];
+                                var hasEnufCoinz = false;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 10)
+                                    {
+                                        hasEnufCoinz = true;
+                                        break;
+                                    }
+                                }
+                                if (hasEnufCoinz)
+                                {
+                                    player.dialogueOptions.unshift(["What if I were to pay you 10 coins?", false, "a"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "3b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "3a")
+                        {
+                            var room = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 10)
+                                {
+                                    room = i;
+                                }
+                            }
+                            if (room < 0)
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                Inventory[room][1] -= 10;
+                                if (Inventory[room][1] < 1)
+                                {
+                                    Inventory.splice(room, 1);
+                                }
+
+                                ederhalKnow.play();
+                                ederhalKnow.onended = function()
+                                {
+                                    ederhalNonsense.play();
+                                    ederhalNonsense.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 1;
+                                        self.SC();
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "3b")
+                        {
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 1;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == 4)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["How much will you pay?", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "4a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "4a")
+                        {
+                            ederhalTabs.play();
+                            ederhalTabs.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 8;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 5)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+                                if (player.getCharisma() >= 12)
+                                {
+                                    player.dialogueOptions.unshift(["What is it?", false, "a"], ["Elaborate.", false, "a"]);
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.unshift(["What is it?", false, "b"], ["Trust me, you can trust me. I'm trustworthy.", false, "b"]);
+                                }
+
+                                if (player.getDexterity() >= 25)
+                                {
+                                    player.dialogueOptions.unshift(["I'm highly qualified, tell me about the job.", false, "a"]);
+                                }
+                                else if (player.getDexterity() >= 15)
+                                {
+                                    player.dialogueOptions.push(["Trust doesn't matter, I've got skill.", false, "b"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "5a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "5b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "5a")
+                        {
+                            ederhalDrafted.play();
+                            ederhalDrafted.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 6;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "5b")
+                        {
+                            ederhalForgetAboutIt.play();
+                            ederhalForgetAboutIt.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 6)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["What are you proposing that I do?", false, "a"]];
+                                if (player.getCharisma() >= 20)
+                                {
+                                    player.dialogueOptions.unshift(["I understand what needs to be done; I will work for no less than 500 coins", false, "b"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "6a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "6b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "6a")
+                        {
+                            ederhalKill.play();
+                            ederhalKill.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 7;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "6b")
+                        {
+                            quests.activeQuests.push({name: "To Draft to Death", description: "Assassinate the captain of the guard of Lethik City for drafting the Innkeeper's son."});
+                            quests.draftAndDieQuest = true;
+                            quests.draftAndDieReward = 500;
+
+                            playersTurnToSpeak = true;
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 1;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == 7)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I refuse.", false, "a"], ["I will do it for 300 coins.", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "7a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "7b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "7a")
+                        {
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 1;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == "7b")
+                        {
+                            quests.activeQuests.push({name: "To Draft to Death", description: "Assassinate the captain of the guard of Lethik City for drafting the Innkeeper's son."});
+                            quests.draftAndDieQuest = true;
+                            quests.draftAndDieReward = 300;
+
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 1;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == 8)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I'll do it.", false, "a"], ["That does not sound like something I would want to do.", false, "b"], ["My talents would be wasted doing such a dull job.", false, "c"], ["Who do I get to kill?", false, "d"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "8a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "8b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "8c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "8d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "8a")
+                        {
+                            quests.activeQuests.push({name: "Beer Money", description: "You have been tasked to collect 229 coins in bar tabs for Ederhal the Innkeeper."});
+                            quests.debtCollectorQuest = true;
+
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 1;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == "8b")
+                        {
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 1;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == "8c")
+                        {
+                            if (quests.draftAndDieQuest == false && uniqueChars.friedrichLDS == true)
+                            {
+                                ederhalTrust.play();
+                                ederhalTrust.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 5;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "8d")
+                        {
+                            ederhalOwe.play();
+                            ederhalOwe.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 8;
+                                self.SC();
+                            }
+                        }
+                    }
+
+
                     if (self.ID == "Hildegard" || conversationID[0] == "Hildegard")
                     {
                         lowBar = "dialogue";

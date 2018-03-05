@@ -24040,11 +24040,25 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                     else if (this.ID == "Beulingerr Commander Friedrich")
                     {
-                        uniqueChars.friedrichLDS = false;
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
-                            player.thengarFaction -= 150;
+                            if (quests.draftAndDieQuest == true)
+                            {
+                                if (uniqueChars.friedrichLDS == true)
+                                {
+                                    player.thengarFaction += 50;
+                                }
+                            }
+                            else
+                            {
+                                player.thengarFaction -= 150;
+                            }
                         }
+                        else
+                        {
+                            quests.draftAndDiePlayersKill = false;
+                        }
+                        uniqueChars.friedrichLDS = false;
                     }
                     else if (this.ID == "Tor Commissioner Stendor")
                     {

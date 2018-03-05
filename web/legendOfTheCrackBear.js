@@ -3,22 +3,20 @@
  */
 
 //TODO LIST
-//todo add balkur fang to balkurs' drop list and add it as an item to the game in the first place
 //todo add the traps on the IMG 'trapper'
 //todo finish adding the beast journal.
 //todo add the alzkwaya village
 //todo add new freydic dock town "Venning" [the Freynor kingdom will span over several northern isles and the mainland]
 //todo add interesting and immersive options for player children interaction (like: feeding, arming, praising, getting to know about them, teaching them spells, punishment, loving comments)
-//todo add the air staff, and 'the undying edge' from Theng img sheet
+//todo add the 'air staff' from Theng img sheet
 //todo add the freydic hatchet from the balkur img sheet
-//todo add a standard leather armour
+//todo create and add a standard leather armour
 //todo add one more plant for thengan forestland
 //todo add more alchemy stuff: potions, salves
 //todo add vamprism and lycanthropy
 //todo fix potential problem with the Ancient Crawler that it forgets to continue attacking if the player stays still near it.
 //todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
 //todo add a brown beetle creature that derps around in the mudflats
-//todo add creature "Miter" a humanoid beast that crawls around on all fours eating the flesh of the dead. It will gain full health everytime it does so, and if it scratches the player with its long claws the player will be grave poisoned which drains life from the player and gives it to the miter responsible.
 //todo add dialogue to the Jarl: Quests/Purchasable Property/etc.
 //todo make Lethik city property purchasable at the bank.
 //todo add roselin's quest
@@ -45,7 +43,6 @@
 //todo make alpha Olkrin's death animation line up slightly more.
 //todo add options menu with button: it will allow you to toggle certain settings like mouse combat mode, game coordinates, and other such features.
 //todo Add harsh hot weather conditions: deserts cause faster dehydration. (base the effect on elevation variable)
-//todo Add more traps to further advance the utility of the Survivalism (trapping) skill.
 //todo put road signs around to name parts of the world.
 //todo add unique fairytails for each faction
 
@@ -121,6 +118,62 @@ function legendaryPrerequisites()
 
     var svehnCrook = new Audio("sounds/polySounds/svehnCrook.mp3");
     window.svehnCrook = svehnCrook;
+
+        //EDERHAL CHARACTER: voice acting
+
+    var ederhalGet = new Audio("sounds/polySounds/ederhalGet.mp3");
+    window.ederhalGet = ederhalGet;
+
+    var ederhalKell = new Audio("sounds/polySounds/ederhalKell.mp3");
+    window.ederhalKell = ederhalKell;
+
+    var ederhalQuickly = new Audio("sounds/polySounds/ederhalQuickly.mp3");
+    window.ederhalQuickly = ederhalQuickly;
+
+    var ederhalYourCut = new Audio("sounds/polySounds/ederhalYourCut.mp3");
+    window.ederhalYourCut = ederhalYourCut;
+
+    var ederhalDrafted = new Audio("sounds/polySounds/ederhalDrafted.mp3");
+    window.ederhalDrafted = ederhalDrafted;
+
+    var ederhalSheets = new Audio("sounds/polySounds/ederhalSheets.mp3");
+    window.ederhalSheets = ederhalSheets;
+
+    var ederhalForgetAboutIt = new Audio("sounds/polySounds/ederhalForgetAboutIt.mp3");
+    window.ederhalForgetAboutIt = ederhalForgetAboutIt;
+
+    var ederhalGossip = new Audio("sounds/polySounds/ederhalGossip.mp3");
+    window.ederhalGossip = ederhalGossip;
+
+    var ederhalOwe = new Audio("sounds/polySounds/ederhalOwe.mp3");
+    window.ederhalOwe = ederhalOwe;
+
+    var ederhalConvincing = new Audio("sounds/polySounds/ederhalConvincing.mp3");
+    window.ederhalConvincing = ederhalConvincing;
+
+    var ederhalKill = new Audio("sounds/polySounds/ederhalKill.mp3");
+    window.ederhalKill = ederhalKill;
+
+    var ederhalFirstRound = new Audio("sounds/polySounds/ederhalFirstRound.mp3");
+    window.ederhalFirstRound = ederhalFirstRound;
+
+    var ederhalTabs = new Audio("sounds/polySounds/ederhalTabs.mp3");
+    window.ederhalTabs = ederhalTabs;
+
+    var ederhalRightPlace = new Audio("sounds/polySounds/ederhalRightPlace.mp3");
+    window.ederhalRightPlace = ederhalRightPlace;
+
+    var ederhalKnow = new Audio("sounds/polySounds/ederhalKnow.mp3");
+    window.ederhalKnow = ederhalKnow;
+
+    var ederhalLetsSee = new Audio("sounds/polySounds/ederhalLetsSee.mp3");
+    window.ederhalLetsSee = ederhalLetsSee;
+
+    var ederhalTrust = new Audio("sounds/polySounds/ederhalTrust.mp3");
+    window.ederhalTrust = ederhalTrust;
+
+    var ederhalNonsense = new Audio("sounds/polySounds/ederhalNonsense.mp3");
+    window.ederhalNonsense = ederhalNonsense;
 
         //GARLD CHARACTER: voice acting
 
@@ -2281,7 +2334,8 @@ function theLegend()
         lena: ["Lena", 0],
         johanna: ["Johanna", 0],
         cheryl: ["Cheryl", 0],
-        hildegard: ["Hildegard", 0]
+        hildegard: ["Hildegard", 0],
+        ederhal: ["Ederhal", 0]
     };
 
 //time Tracker Variables
@@ -2456,6 +2510,15 @@ function theLegend()
         thePlightOfLethikWitchInterrogated: false,
         thePlightOfLethikCompletionStyle: false,
         thePlightOfLethikFarmRestored: false,
+
+        //QUEST: Debt Collector ---- given by Ederhal
+        debtCollectorQuest: false,
+        debtCollectorWho: false,
+
+        //QUEST: Debt Collector ---- given by Ederhal
+        draftAndDieQuest: false,
+        draftAndDieReward: 300,
+        draftAndDiePlayersKill: true,
 
         //QUEST: Sword Delivery ---- given by Dagmar
         swordDeliveryQuest: false,

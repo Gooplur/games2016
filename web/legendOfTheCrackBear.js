@@ -3,47 +3,86 @@
  */
 
 //TODO LIST
-//todo add the traps on the IMG 'trapper'
-//todo finish adding the beast journal.
-//todo add the alzkwaya village
-//todo add new freydic dock town "Venning" [the Freynor kingdom will span over several northern isles and the mainland]
-//todo add interesting and immersive options for player children interaction (like: feeding, arming, praising, getting to know about them, teaching them spells, punishment, loving comments)
-//todo add the 'air staff' from Theng img sheet
-//todo add the freydic hatchet from the balkur img sheet
-//todo create and add a standard leather armour
-//todo add one more plant for thengan forestland
-//todo add more alchemy stuff: potions, salves
-//todo add vamprism and lycanthropy
-//todo fix potential problem with the Ancient Crawler that it forgets to continue attacking if the player stays still near it.
-//todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
-//todo add a brown beetle creature that derps around in the mudflats
-//todo add dialogue to the Jarl: Quests/Purchasable Property/etc.
-//todo make Lethik city property purchasable at the bank.
-//todo add roselin's quest
-//todo add lakes, fishing spots, fish, and ice holes
-//todo add row boats and swimming
+//Venning Update
+//todo add a greyish purple giant crab monster for the northern coast
 //todo add seals - they run away from you and drop blubber and seal hide.
 //todo add cute fuzzy white bearlike creature with a black button nose "Koopu" - for the north!
 //todo add clam-ooze creature that attacks from its shell and then hides again "Cloimid" they are heavily armoured while not attacking
 //todo add "Frost Beruln" - a larger version of a beruln that lives in the frozen north
-//todo add the savanah large cat creature (already drawn) and the savanah snake (already drawn)
-//todo add containers that operate like miniature banks with fixed numbers of slots.
+//todo add a giant green sea anenome creature that is stationary (it lives in the shallow water)
+//todo add Jarl Rannuk Stambjord of Venning City
+//todo add Siggi the Harborman (he sells you a boat, and fishing rod, etc.)
+//todo add an algae that grows on rocks
+//todo add a waterwalking elixer
+//todo add three more snow maps then add Venning to the right of the third snow map (Venning is a dock town)
 //todo add warm northern thick clothing made with waanti. //at this point there is only an outfit and not a clothing.
+//todo add the freydic hatchet from the balkur img sheet
+//todo add washed up seaweed scenery object
+//todo add fishing
+//todo add row boats and swimming
+//todo add lakes, fishing spots, fish, and ice holes
+//todo add various northern fish items that can be caught randomly through the fishing system (Red Crombal, Thab (yellow), Juurgo (blue), Razorfin (green))
+//todo add orange torni berries to the north
+//todo add glass of Waanti milk (if it is not already in the game) ----- add waanti butter
+//todo add sandmites (grey little bugs that scurry around and that eat dead bodies on the beach)
+
+//Lethik Patch
+//todo finish the witch quest
+//todo finish the beer money quest, (add the characters mentions to collect money from)
+//todo add a bountyhunt quest that the captain gives (if he is still alive of course)
+//todo add a brown beetle creature that derps around in the mudflats
+//todo make Lethik city property purchasable at the bank.
+//todo add one more plant for thengan forestland
+//todo extend the thengan forest
+
+//Teshir Patch
+//todo decorate the various buildings more
+//todo add dialogue to the Jarl: Quests/Purchasable Property/etc.
+
+//Calcutt Patch
+//todo add roselin's quest
+//todo add drinking horns
+
+//Alzkwaya Update
+//todo add the alzkwaya village
+//todo add the savanah large cat creature (already drawn) and the savanah snake (already drawn)
+//todo add hot climate farm plants
+//todo add other hot climate wild plants
+//todo add savanah trees
+
+//Cephrian Update
+//todo add Sonja Fruit and Sonja fruit trees (tropical trees that drop Sonja fruits)
+//todo add jungle trees
+//todo add gulfreys, Blil plant, etres, blue water berries that dmitri made a while ago
+//todo add a venus fly trap monster
+//todo create and add a hive mind fungus that infects creatures to carry its spores and plant itself around the map, other jungle stuff
+//todo add a cephrian city directly to the south of the jungle map "Holuix City" (a town bustling with tropical market places and various magic venders)
+//todo add the 'air staff' from Theng img sheet
+//todo add weaken spell
+//todo add arrow mods such as toxic/posion, electric, wind, armour piercing...
+
+//Other
+//todo add the traps on the IMG 'trapper'
+//todo put road signs around to name parts of the world.
+//todo finish adding the beast journal.
+//todo create and add a standard leather armour
+//todo add interesting and immersive options for player children interaction (like: feeding, arming, praising, getting to know about them, teaching them spells, punishment, loving comments)
+//todo add more alchemy stuff: potions, salves
+//todo add vamprism and lycanthropy
+//todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
+//todo add containers that operate like miniature banks with fixed numbers of slots.
 //todo figure out why aldrekii claws manual attack thing won't let it at twice or even early, while the same code lets the flail perform its attack early.
 //todo finish adding sickness system //add Lodotos, a sickness that one can get in the kellish mud bog. //add sicknesses and symptons (dizziness, pox, fever, fatigue, etc.) ex: make dizziness spin the screen, make pox weaken players constitution etc., make fever decrease thirst.
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
 //todo add brain flies.
 //todo add hangover, and soarness effects as well as their mini notices.
 //todo add a rest without bed button on the UI that uses a homemade confirm popup to ask if you are sure you want to sleep. Add the nappy closed eye for the sleepButton. (it's on poly)
-//todo add the dexterity system: lv20 = side-walking ---- lv 25 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
-//todo add arrow mods such as toxic/posion, electric, wind, armour piercing...
-//todo add weaken spell
+//todo add lv 25 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
 //todo add mage boss who uses the electric spear as well as magical shielding spell he uses.
 //todo add throwing stars for the orgel
 //todo make alpha Olkrin's death animation line up slightly more.
 //todo add options menu with button: it will allow you to toggle certain settings like mouse combat mode, game coordinates, and other such features.
 //todo Add harsh hot weather conditions: deserts cause faster dehydration. (base the effect on elevation variable)
-//todo put road signs around to name parts of the world.
 //todo add unique fairytails for each faction
 
 
@@ -1209,6 +1248,18 @@ function notReallyJustKidding()
     window.furr = furr;
 
     furr.onload = function()
+    {
+        darklingBeetleAndLoading();
+    };
+}
+
+function darklingBeetleAndLoading()
+{
+    var norc = new Image();
+    norc.src = ("images/norc.png");
+    window.norc = norc;
+
+    norc.onload = function()
     {
         comingUpToLastPreStage();
     };

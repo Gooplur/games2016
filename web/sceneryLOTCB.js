@@ -4509,6 +4509,58 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "hoilPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.solid = false;
+            this.interactionRange = 75;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 13, 360, 18, 16, -(1/2 * 18 * 1.6), -(1/2 * 16 * 1.6), 18 * 1.6, 16 * 1.6);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 37, 360, 18, 16, -(1/2 * 18 * 1.6), -(1/2 * 16 * 1.6), 18 * 1.6, 16 * 1.6);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 17;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "hoilLeaves")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("hoilLeaves", false, false), 1]);
+                }
+            }
+        }
         else if (this.type == "harstPlant")
         {
             //TRAITS

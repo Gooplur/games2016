@@ -1,14 +1,14 @@
 /**
  * Created by skyeguy on 12/17/15.
  */
+//look up TEST to find tests in the code
 
 //TODO LIST
 //Venning Update
-//todo add a greyish purple giant crab monster for the northern coast
+//todo add shears (for shearing wool from sheep)
+//todo add crab armour
 //todo add seals - they run away from you and drop blubber and seal hide.
-//todo add cute fuzzy white bearlike creature with a black button nose "Koopu" - for the north!
 //todo add clam-ooze creature that attacks from its shell and then hides again "Cloimid" they are heavily armoured while not attacking
-//todo add "Frost Beruln" - a larger version of a beruln that lives in the frozen north
 //todo add a giant green sea anenome creature that is stationary (it lives in the shallow water)
 //todo add Jarl Rannuk Stambjord of Venning City
 //todo add Siggi the Harborman (he sells you a boat, and fishing rod, etc.)
@@ -23,16 +23,15 @@
 //todo add lakes, fishing spots, fish, and ice holes
 //todo add various northern fish items that can be caught randomly through the fishing system (Red Crombal, Thab (yellow), Juurgo (blue), Razorfin (green))
 //todo add orange torni berries to the north
-//todo add glass of Waanti milk (if it is not already in the game) ----- add waanti butter
-//todo add sandmites (grey little bugs that scurry around and that eat dead bodies on the beach)
+//todo add glass of Waanti milk
+//todo add beachmites (grey little bugs that scurry around and that eat dead bodies on the beach)
+//todo create and add Margul - White furred, large, carnivorous, arctic beast with a tail and a long neck...
 
 //Lethik Patch
 //todo finish the witch quest
 //todo finish the beer money quest, (add the characters mentions to collect money from)
 //todo add a bountyhunt quest that the captain gives (if he is still alive of course)
-//todo add a brown beetle creature that derps around in the mudflats
 //todo make Lethik city property purchasable at the bank.
-//todo add one more plant for thengan forestland
 //todo extend the thengan forest
 
 //Teshir Patch
@@ -62,6 +61,8 @@
 //todo add arrow mods such as toxic/posion, electric, wind, armour piercing...
 
 //Other
+//todo add "the grail of eternity" (a elaborate cup that heals you when you drink from it, you can refill it at a well)
+//todo add a secret unit (an undead monster that is in an inanimate form during the day but lurks murderously throughout the night)
 //todo add the traps on the IMG 'trapper'
 //todo put road signs around to name parts of the world.
 //todo finish adding the beast journal.
@@ -2972,6 +2973,12 @@ function theLegend()
     foods.push(new Item("hoffalgreMeat", false));
     foods.push(new Item("skolMeat", false));
     foods.push(new Item("balkurMeat", false));
+    foods.push(new Item("koobuMeat", false));
+    foods.push(new Item("crabMeat", false));
+    foods.push(new Item("butteredCrab", false));
+    foods.push(new Item("crabClaw", false));
+    foods.push(new Item("crabChowder", false));
+    foods.push(new Item("crabBisque", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -3100,6 +3107,7 @@ function theLegend()
     handcrafted.push(new Item("bagOfSanthFlour", false));
     handcrafted.push(new Item("suuliMelonSlice", false));
     handcrafted.push(new Item("naapridButter", false));
+    handcrafted.push(new Item("waantiButter", false));
     handcrafted.push(new Item("butteredHarstBread", false));
     handcrafted.push(new Item("butteredPumpkinBread", false));
     handcrafted.push(new Item("butteredSanthBread", false));
@@ -3137,6 +3145,7 @@ function theLegend()
     handcrafted.push(new Item("pouchOfIrilDust", false));
     handcrafted.push(new Item("pouchOfPimberDust", false));
     handcrafted.push(new Item("pouchOfShomeDust", false));
+    handcrafted.push(new Item("woodenBowl", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

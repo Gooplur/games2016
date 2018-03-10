@@ -2546,7 +2546,7 @@ function Item(type, x, y)
 
             //Crafting
             this.yield = 1;
-            this.intForCraft = 9;
+            this.intForCraft = 10;
             this.ingredients = [["Raw Walrus Flesh", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
@@ -2763,6 +2763,33 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 5; // at max, buy for 10.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 15); // at max, sell for 5.
+        }
+        else if (this.type == "mudBeetleLeg")
+        {
+            //For All Items
+            this.identity = "Mud Beetle Leg";
+            this.weight = 0.7;
+            this.size = 12;
+            this.description = "The leg of a mud beetle; it has a bitter chemical smell.";
+            this.intForDes = 0;
+            if (player.getIntelligence() < 6)
+            {
+                this.intDescription = "This aweful smelling insect leg seems to be completely useless.";
+            }
+            else
+            {
+                this.intDescription = "This is used as a changer in alchemy.";
+            }
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
         }
         else if (this.type == "utMeat")
         {
@@ -3104,6 +3131,73 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "rawKoobuFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Koobu Flesh";
+            this.weight = 0.5;
+            this.size = 6;
+            this.description = "The raw flesh from a Koobu.";
+            this.intForDes = 2;
+            this.intDescription = "A small bit of meat coated in a thick layer of blubbery fat.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "koobuMeat")
+        {
+            //For All Items
+            this.identity = "Koobu Meat";
+            this.weight = 0.45;
+            this.size = 7;
+            this.description = "The cooked meat of a koobu.";
+            this.intForDes = 0;
+            this.intDescription = "A very tender, fatty, and flavorful meat.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            if (player.raceName == "Freynor")
+            {
+                this.hunger = 6.5; //satisfies hunger.
+            }
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.025; //recoops lost energy.
+            this.replenish = 0.0001; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 8;
+            this.ingredients = [["Raw Koobu Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7; // at max, buy for 7.
+            this.sellValue = 5; // at max, sell for 5.
         }
         else if (this.type == "boulchomLung")
         {
@@ -5300,6 +5394,41 @@ function Item(type, x, y)
             this.buyValue = 75 - Math.floor(player.getCharisma() / 3); // at max, buy for 60.
             this.sellValue = 60; // at max, sell for 60.
         }
+        else if (this.type == "waantiButter")
+        {
+            //For All Items
+            this.identity = "Waanti Butter";
+            this.weight = 0.15;
+            this.size = 5;
+            this.description = "The thick textured, gamey, fatty butter from a waanti.";
+            this.intForDes = 1;
+            this.intDescription = "Waanti butter is used in freydic recipes.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 6;
+            this.intForCraft = 22;
+            this.ingredients = [["Bucket of Waanti Milk", 1]];
+            this.biproducts = [[new Item("bucket", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 25); // at max, buy for 14.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 25); // at max, sell for 14.
+        }
         else if (this.type == "naapridButter")
         {
             //For All Items
@@ -5557,6 +5686,28 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 15 - Math.floor(player.getCharisma() / 10); // at max, buy for 10.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 10); // at max, sell for 8.
+        }
+        else if (this.type == "hoilLeaves")
+        {
+            //For All Items
+            this.identity = "Hoil Leaves";
+            this.weight = 0.15;
+            this.size = 8;
+            this.description = "A bunch of thick, rough, sap filled, green leaves with a moderately musky odor.";
+            this.intForDes = 0;
+            this.intDescription = "This acts as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //Utility Focused
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10 - Math.floor(player.getCharisma() / 12); // at max, buy for 6.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 12); // at max, sell for 6.
         }
         else if (this.type == "ishBranch")
         {
@@ -6727,6 +6878,31 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "woodenBowl")
+        {
+            //For All Items
+            this.identity = "Wooden Bowl";
+            this.weight = 0.25;
+            this.size = 6;
+            this.description = "A bowl made of wood.";
+            this.intForDes = 1;
+            this.intDescription = "You can eat things out of it!";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 5;
+            this.ingredients = [["Wood", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "bowlOfMushroomStew")
         {
             //For All Items
@@ -6758,11 +6934,11 @@ function Item(type, x, y)
             this.yield = 12;
             this.intForCraft = 0;
             this.biproducts = [[new Item("kellishClayPot", false), 1]];
-            this.ingredients = [["Kellish Clay Pot of Mushroom Stew", 1], ["Clay Bowl", 12]];
+            this.ingredients = [["Kellish Clay Pot of Mushroom Stew", 1], ["Clay Bowl", 24]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 15 - Math.floor(player.getCharisma() / 15); // at max, buy for 12.
-            this.sellValue = 10 + Math.floor(player.getCharisma() / 25); // at max, sell for 12.
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 6.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 50); // at max, sell for 6.
         }
         else if (this.type == "bowlOfCreamyHarst")
         {
@@ -6777,7 +6953,7 @@ function Item(type, x, y)
             //Define Utility
             this.utility = "food";
             this.subUtility = "reusable";
-            this.refund = [["clayBowl", 1]];
+            this.refund = [["woodenBowl", 1]];
 
             //Utility Focused
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
@@ -6795,7 +6971,7 @@ function Item(type, x, y)
             this.yield = 10;
             this.intForCraft = 1;
             this.biproducts = [[new Item("bucket", false), 1]];
-            this.ingredients = [["Bucket of Naaprid Milk", 1], ["Clay Bowl", 10], ["Harst Grain", 10]];
+            this.ingredients = [["Bucket of Naaprid Milk", 1], ["Wooden Bowl", 10], ["Harst Grain", 10]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 7; // at max, buy for 7.
@@ -6814,7 +6990,7 @@ function Item(type, x, y)
             //Define Utility
             this.utility = "food";
             this.subUtility = "reusable";
-            this.refund = [["clayBowl", 1]];
+            this.refund = [["woodenBowl", 1]];
 
             //Utility Focused
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
@@ -6832,7 +7008,7 @@ function Item(type, x, y)
             this.yield = 14;
             this.intForCraft = 8;
             this.biproducts = [[new Item("bucket", false), 1]];
-            this.ingredients = [["Bucket of Naaprid Milk", 1], ["Clay Bowl", 14], ["Santh Grain", 14], ["Honey", 1], ["Naaprid Butter", 1]];
+            this.ingredients = [["Bucket of Naaprid Milk", 1], ["Wooden Bowl", 14], ["Santh Grain", 14], ["Honey", 1], ["Naaprid Butter", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 17; // at max, buy for 17.
@@ -6851,7 +7027,7 @@ function Item(type, x, y)
             //Define Utility
             this.utility = "food";
             this.subUtility = "reusable";
-            this.refund = [["clayBowl", 1]];
+            this.refund = [["woodenBowl", 1]];
 
             //Utility Focused
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
@@ -6869,7 +7045,7 @@ function Item(type, x, y)
             this.yield = 6;
             this.intForCraft = 1;
             this.biproducts = [[new Item("bucket", false), 1]];
-            this.ingredients = [["Bucket of Water", 1], ["Clay Bowl", 6], ["Harst Grain", 6]];
+            this.ingredients = [["Bucket of Water", 1], ["Wooden Bowl", 6], ["Harst Grain", 6]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 3; // at max, buy for 3.
@@ -7980,9 +8156,9 @@ function Item(type, x, y)
 
             //Utility Focused
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
-            this.hunger = 9; //satisfies hunger.
+            this.hunger = 12; //satisfies hunger.
             this.thirst = 0.15; //quenches thirst.
-            this.warmth = 1; //warms player.
+            this.warmth = 3; //warms player.
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0; //restores will.
@@ -7992,7 +8168,7 @@ function Item(type, x, y)
 
             //Crafting
             this.yield = 1;
-            this.intForCraft = 8;
+            this.intForCraft = 9;
             this.ingredients = [["Raw Hoffalgre Flesh", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
@@ -8018,6 +8194,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 15); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "koobuPelt")
+        {
+            //For All Items
+            this.identity = "Koobu Pelt";
+            this.weight = 0.5;
+            this.size = 7;
+            this.description = "The sleek short white furred pelt of a koobu.";
+            this.intForDes = 13;
+            this.intDescription = "These are used to make some types of elegant clothing, they are especially saught after for their use in making fine pillows.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
         }
         else if (this.type == "boulchomPelt")
         {
@@ -12162,6 +12358,243 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "crabFlesh")
+        {
+            //For All Items
+            this.identity = "Crab Flesh";
+            this.weight = 0.9;
+            this.size = 11;
+            this.description = "The raw flesh of a crab.";
+            this.intForDes = 4;
+            this.intDescription = "Crab flesh is safe to eat raw, but is especially tasty when cooked.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = -1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+        }
+        else if (this.type == "crabMeat")
+        {
+            //For All Items
+            this.identity = "Crab Meat";
+            this.weight = 0.9;
+            this.size = 11;
+            this.description = "Poached crab meat.";
+            this.intForDes = 3;
+            this.intDescription = "Crab meat is eaten commonly throughout the freydic north, but is highly valued in some traditional dishes.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 5;
+            this.intForCraft = 10;
+            this.biproducts = [[new Item("bucket", false), 1]];
+            this.ingredients = [["Crab Flesh", 5], ["Bucket of Water", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 50); // at max, buy for 14.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 10); // at max, sell for 14.
+        }
+        else if (this.type == "rawCrabClaw")
+        {
+            //For All Items
+            this.identity = "Raw Crab Claw";
+            this.weight = 5.2;
+            this.size = 19;
+            this.description = "A raw crab claw full of fresh crab flesh.";
+            this.intForDes = 4;
+            this.intDescription = "Crab flesh is safe to eat raw, but is especially tasty when cooked.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = -2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 25); // at max, buy for 18.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 15); // at max, sell for 15.
+        }
+        else if (this.type == "crabClaw")
+        {
+            //For All Items
+            this.identity = "Crab Claw";
+            this.weight = 5.2;
+            this.size = 19;
+            this.description = "A roasted crab claw full of fresh crab meat.";
+            this.intForDes = 9;
+            this.intDescription = "Crab claw is considered a luxurious way to eat crab in freydic culture.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 17; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 7; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Raw Crab Claw", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 40 - Math.floor(player.getCharisma() / 10); // at max, buy for 35.
+            this.sellValue = 25 + Math.floor(player.getCharisma() / 10); // at max, sell for 30.
+        }
+        else if (this.type == "butteredCrab")
+        {
+            //For All Items
+            this.identity = "Buttered Crab";
+            this.weight = 0.9;
+            this.size = 11;
+            this.description = "A bowl of crab meat enriched with melted waanti butter.";
+            this.intForDes = 0;
+            this.intDescription = "The rich creamy flavor of the butter compliments the oceanic flavors in the crab meat, though the gamey taste is a bit strange.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["woodenBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 10; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.125; //recoops lost energy.
+            this.replenish = 0.075; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 10;
+            this.ingredients = [["Crab Meat", 2], ["Waanti Butter", 1], ["Wooden Bowl", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 25); // at max, buy for 18.
+            this.sellValue = 16 + Math.floor(player.getCharisma() / 25); // at max, sell for 18.
+        }
+        else if (this.type == "crabChowder")
+        {
+            //For All Items
+            this.identity = "Crab Chowder";
+            this.weight = 1.5;
+            this.size = 11;
+            this.description = "A gamey chowder of thickened waanti milk, crab and potatoes.";
+            this.intForDes = 1;
+            this.intDescription = "This is a considered a delicacy in freydic culture, though it is eaten rather commonly among members of the merchant class.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["woodenBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.15; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 16;
+            this.intForCraft = 20;
+            this.biproducts = [[new Item("bucket", false), 1]];
+            this.ingredients = [["Crab Meat", 2], ["Potato", 3], ["Waanti Butter", 1], ["Bucket of Waanti Milk", 1], ["Harst Flour", 2], ["Salt", 1], ["Wooden Bowl", 16]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10 - Math.floor(player.getCharisma() / 25); // at max, buy for 8.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 15); // at max, sell for 8.
+        }
+        else if (this.type == "crabBisque")
+        {
+            //For All Items
+            this.identity = "Crab Bisque";
+            this.weight = 1.5;
+            this.size = 11;
+            this.description = "A grain thickened soup flavored with crab.";
+            this.intForDes = 1;
+            this.intDescription = "This style of soup is eaten commonly along the various freydic coastlines.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["woodenBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 3; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.15; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 14;
+            this.intForCraft = 11;
+            this.biproducts = [[new Item("bucket", false), 1]];
+            this.ingredients = [["Crab Meat", 2], ["Harst Grain", 4], ["Bucket of Water", 1], ["Wooden Bowl", 14]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
         }
         else if (this.type == "viperMeat")
         {
@@ -19445,6 +19878,66 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "crabFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 850, 6, 13, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 1.3), 13 * 1.3, 12 * 1.3);
+        }
+        else if (this.type == "crabMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 850, 36, 13, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 1.3), 13 * 1.3, 12 * 1.3);
+        }
+        else if (this.type == "crabClaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 806, 26, 31, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.3), 31 * 1.3, 21 * 1.3);
+        }
+        else if (this.type == "rawCrabClaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 807, 3, 31, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.3), 31 * 1.3, 21 * 1.3);
+        }
+        else if (this.type == "butteredCrab")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 875, 16, 9, 8, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 8 * 1.6), 9 * 1.6, 8 * 1.6);
+        }
+        else if (this.type == "crabChowder")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 890, 16, 9, 8, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 8 * 1.6), 9 * 1.6, 8 * 1.6);
+        }
+        else if (this.type == "crabBisque")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 905, 16, 9, 8, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 8 * 1.6), 9 * 1.6, 8 * 1.6);
+        }
+        else if (this.type == "hoilLeaves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 63, 361, 23, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 23 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.6), 23 * 1.6, 17 * 1.6);
+        }
+        else if (this.type == "mudBeetleLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 123, 258, 23, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 23 * 1.75), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.75), 23 * 1.75, 16 * 1.75);
+        }
+        else if (this.type == "rawKoobuFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 542, 743, 11, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 2), 11 * 2, 9 * 2);
+        }
+        else if (this.type == "koobuMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 590, 742, 11, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1.95), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.95), 11 * 1.95, 9 * 1.95);
+        }
+        else if (this.type == "koobuPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 561, 742, 20, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.5), 20 * 1.5, 9 * 1.5);
+        }
         else if (this.type == "emptyMiterBloodSac")
         {
             XXX.beginPath();
@@ -19751,7 +20244,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(nognog, 12, 238, 26, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 2.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 2.3), 26 * 2.3, 15 * 2.3);
         }
-        else if (this.type == "clayBowl")
+        else if (this.type == "clayBowl" || this.type == "woodenBowl")
         {
             XXX.beginPath();
             XXX.drawImage(mofu, 5, 15, 12, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.6), 12 * 1.6, 10 * 1.6);
@@ -20579,7 +21072,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(oldverse, 2940, 230, 17, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 2.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 2.6), 17 * 2.6, 14 * 2.6);
         }
-        else if (this.type == "naapridButter")
+        else if (this.type == "naapridButter" || this.type == "waantiButter")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 2940, 230, 17, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 17), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14), 17, 14);
@@ -22047,6 +22540,66 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "crabFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 850, 6, 13, 12, this.invX - (1/2 * 13 * 1.3), this.invY - (1/2 * 12 * 1.3), 13 * 1.3, 12 * 1.3);
+        }
+        else if (this.type == "crabMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 850, 36, 13, 12, this.invX - (1/2 * 13 * 1.3), this.invY - (1/2 * 12 * 1.3), 13 * 1.3, 12 * 1.3);
+        }
+        else if (this.type == "crabClaw")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 806, 26, 31, 21, this.invX - (1/2 * 31 * 1.3), this.invY - (1/2 * 21 * 1.3), 31 * 1.3, 21 * 1.3);
+        }
+        else if (this.type == "rawCrabClaw")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 807, 3, 31, 21, this.invX - (1/2 * 31 * 1.3), this.invY - (1/2 * 21 * 1.3), 31 * 1.3, 21 * 1.3);
+        }
+        else if (this.type == "butteredCrab")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 873, 3, 13, 11, this.invX - (1/2 * 13 * 1.6), this.invY - (1/2 * 11 * 1.6), 13 * 1.6, 11 * 1.6);
+        }
+        else if (this.type == "crabChowder")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 889, 5, 11, 8, this.invX - (1/2 * 11 * 1.6), this.invY - (1/2 * 8 * 1.6), 11 * 1.6, 8 * 1.6);
+        }
+        else if (this.type == "crabBisque")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 904, 5, 11, 8, this.invX - (1/2 * 11 * 1.6), this.invY - (1/2 * 8 * 1.6), 11 * 1.6, 8 * 1.6);
+        }
+        else if (this.type == "hoilLeaves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 63, 361, 23, 17, this.invX - (1/2 * 23 * 1.6), this.invY - (1/2 * 17 * 1.6), 23 * 1.6, 17 * 1.6);
+        }
+        else if (this.type == "mudBeetleLeg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 123, 258, 23, 16, this.invX - (1/2 * 23 * 1.75), this.invY - (1/2 * 16 * 1.75), 23 * 1.75, 16 * 1.75);
+        }
+        else if (this.type == "rawKoobuFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 542, 743, 11, 9, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 9 * 2), 11 * 2, 9 * 2);
+        }
+        else if (this.type == "koobuMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 590, 742, 11, 9, this.invX - (1/2 * 11 * 1.95), this.invY - (1/2 * 9 * 1.95), 11 * 1.95, 9 * 1.95);
+        }
+        else if (this.type == "koobuPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 561, 742, 20, 9, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 9 * 1.5), 20 * 1.5, 9 * 1.5);
+        }
         else if (this.type == "emptyMiterBloodSac")
         {
             LXX.beginPath();
@@ -22358,7 +22911,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(nognog, 12, 238, 26, 15, this.invX - (1/2 * 26 * 1.7), this.invY - (1/2 * 15 * 1.7), 26 * 1.7, 15 * 1.7);
         }
-        else if (this.type == "clayBowl")
+        else if (this.type == "clayBowl" || this.type == "woodenBowl")
         {
             LXX.beginPath();
             LXX.drawImage(mofu, 2, 3, 18, 12, this.invX - (1/2 * 18 * 1.6), this.invY - (1/2 * 12 * 1.6), 18 * 1.6, 12 * 1.6);
@@ -23271,7 +23824,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(oldverse, 2940, 230, 17, 14, this.invX - (1/2 * 17 * 2.6), this.invY - (1/2 * 14 * 2.6), 17 * 2.6, 14 * 2.6);
         }
-        else if (this.type == "naapridButter")
+        else if (this.type == "naapridButter" || this.type == "waantiButter")
         {
             LXX.beginPath();
             LXX.drawImage(oldverse, 2940, 230, 17, 14, this.invX - (1/2 * 17), this.invY - (1/2 * 14), 17, 14);
@@ -24618,6 +25171,66 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "crabFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 850, 6, 13, 12, this.invX - (1/2 * 13 * 1.3), this.invY - (1/2 * 12 * 1.3), 13 * 1.3, 12 * 1.3);
+        }
+        else if (this.type == "crabMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 850, 36, 13, 12, this.invX - (1/2 * 13 * 1.3), this.invY - (1/2 * 12 * 1.3), 13 * 1.3, 12 * 1.3);
+        }
+        else if (this.type == "crabClaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 806, 26, 31, 21, this.invX - (1/2 * 31 * 1.3), this.invY - (1/2 * 21 * 1.3), 31 * 1.3, 21 * 1.3);
+        }
+        else if (this.type == "rawCrabClaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 807, 3, 31, 21, this.invX - (1/2 * 31 * 1.3), this.invY - (1/2 * 21 * 1.3), 31 * 1.3, 21 * 1.3);
+        }
+        else if (this.type == "butteredCrab")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 873, 3, 13, 11, this.invX - (1/2 * 13 * 1.6), this.invY - (1/2 * 11 * 1.6), 13 * 1.6, 11 * 1.6);
+        }
+        else if (this.type == "crabChowder")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 889, 5, 11, 8, this.invX - (1/2 * 11 * 1.6), this.invY - (1/2 * 8 * 1.6), 11 * 1.6, 8 * 1.6);
+        }
+        else if (this.type == "crabBisque")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 904, 5, 11, 8, this.invX - (1/2 * 11 * 1.6), this.invY - (1/2 * 8 * 1.6), 11 * 1.6, 8 * 1.6);
+        }
+        else if (this.type == "hoilLeaves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 63, 361, 23, 17, this.invX - (1/2 * 23 * 1.6), this.invY - (1/2 * 17 * 1.6), 23 * 1.6, 17 * 1.6);
+        }
+        else if (this.type == "mudBeetleLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 123, 258, 23, 16, this.invX - (1/2 * 23 * 1.75), this.invY - (1/2 * 16 * 1.75), 23 * 1.75, 16 * 1.75);
+        }
+        else if (this.type == "rawKoobuFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 542, 743, 11, 9, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 9 * 2), 11 * 2, 9 * 2);
+        }
+        else if (this.type == "koobuMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 590, 742, 11, 9, this.invX - (1/2 * 11 * 1.95), this.invY - (1/2 * 9 * 1.95), 11 * 1.95, 9 * 1.95);
+        }
+        else if (this.type == "koobuPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 561, 742, 20, 9, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 9 * 1.5), 20 * 1.5, 9 * 1.5);
+        }
         else if (this.type == "emptyMiterBloodSac")
         {
             XXX.beginPath();
@@ -24928,7 +25541,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(nognog, 12, 238, 26, 15, this.invX - (1/2 * 26 * 1.7), this.invY - (1/2 * 15 * 1.7), 26 * 1.7, 15 * 1.7);
         }
-        else if (this.type == "clayBowl")
+        else if (this.type == "clayBowl" || this.type == "woodenBowl")
         {
             XXX.beginPath();
             XXX.drawImage(mofu, 2, 3, 18, 12, this.invX - (1/2 * 18 * 1.6), this.invY - (1/2 * 12 * 1.6), 18 * 1.6, 12 * 1.6);
@@ -25841,7 +26454,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(oldverse, 2940, 230, 17, 14, this.invX - (1/2 * 17 * 2.6), this.invY - (1/2 * 14 * 2.6), 17 * 2.6, 14 * 2.6);
         }
-        else if (this.type == "naapridButter")
+        else if (this.type == "naapridButter" || this.type == "waantiButter")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 2940, 230, 17, 14, this.invX - (1/2 * 17), this.invY - (1/2 * 14), 17, 14);

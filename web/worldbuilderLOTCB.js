@@ -4257,6 +4257,18 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(55717, 4334, "Lombris", true, "Druyln"));
                 ArtificialIntelligenceAccess.push(new Unit(49396, 899, "Lombris", true, "Drualn"));
                 ArtificialIntelligenceAccess.push(new Unit(57382, 3259, "Lombris", false, "Drieln"));
+                //Mud Beetles
+                ArtificialIntelligenceAccess.push(new Unit(54541, 192, "MudBeetle", true, "Brufe"));
+                ArtificialIntelligenceAccess.push(new Unit(50024, 1055, "MudBeetle", true, "Brufe"));
+                ArtificialIntelligenceAccess.push(new Unit(52521, 4689, "MudBeetle", true, "Brufe"));
+                ArtificialIntelligenceAccess.push(new Unit(54120, 3408, "MudBeetle", true, "Brufe"));
+                ArtificialIntelligenceAccess.push(new Unit(55264, 2258, "MudBeetle", true, "Brufe"));
+                ArtificialIntelligenceAccess.push(new Unit(52169, 27, "MudBeetle", true, "Brufe"));
+                ArtificialIntelligenceAccess.push(new Unit(51113, -1230, "MudBeetle", true, "Brufe"));
+                ArtificialIntelligenceAccess.push(new Unit(48970, -11, "MudBeetle", true, "Brufe"));
+                ArtificialIntelligenceAccess.push(new Unit(51652, 3171, "MudBeetle", true, "Brufe"));
+                ArtificialIntelligenceAccess.push(new Unit(56369, 944, "MudBeetle", true, "Brufe"));
+                ArtificialIntelligenceAccess.push(new Unit(53413, 71, "MudBeetle", true, "Brufe"));
 
 
                 //Plants

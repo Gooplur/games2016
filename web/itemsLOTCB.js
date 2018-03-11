@@ -3767,8 +3767,8 @@ function Item(type, x, y)
             this.ingredients = [["Raw Bear Flesh", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 24 - Math.floor(player.getCharisma() / 12); // at max, buy for 20.
-            this.sellValue = 12 + Math.floor(player.getCharisma() / 6); // at max, sell for 20.
+            this.buyValue = 21 - Math.floor(player.getCharisma() / 25); // at max, buy for 19.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 6); // at max, sell fo.
         }
         else if (this.type == "rawBearTongue")
         {

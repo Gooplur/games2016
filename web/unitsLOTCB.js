@@ -863,6 +863,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("bearia");
             this.allys.push("ulgoyia");
         }
+        if (this.team == "herd")
+        {
+            this.allys.push("docile");
+        }
         if (this.team == "etnia")
         {
             this.allys.push("lombrisia");
@@ -917,6 +921,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("berulnia");
             this.allys.push("lombrisia");
             this.allys.push("etnia");
+            this.allys.push("cangrejia");
+            this.allys.push("balkuria");
         }
         if (this.team == "gribia")
         {
@@ -4737,7 +4743,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.heatResistance = 3;
                 this.attackStyle = "chunked";
                 this.attackRate = 0;  //this is for rapid style combat only.
-                this.healthMAX = Math.floor(Math.random() * 40) + 100;
+                this.healthMAX = Math.floor(Math.random() * 42) + 170;
                 this.health = this.healthMAX;
                 this.armour = 2;
                 this.speed = 1.1;
@@ -4745,9 +4751,9 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.rotationSpeed = 0.035;
                 this.engagementRadius = 65; //was 55
                 this.sizeRadius = 45;
-                this.negateArmour = 17;
+                this.negateArmour = 20;
                 this.attackWait = 1.75;
-                this.beastEntry = {intReq: 13, name: "Walrus", health: "100 - 139", armour: "2", damage: "32 - 77", negate: "17", ability: "Cold Resistant", fireProof: 3, habitat: "Ice Flats", sight: 330, alpha: "Elder", magicProof: 0, size: 45, speed: 1.1, rotation: 0.035, rate: 1.75, experience: 104, description: ["It is said that elder walruses are just walruses that have lived for hundreds of years. They tend to be fairly solitary unlike", "the younger variety, except of course when they have to mate, then the male usually protects the female while it is pregnant."], image: ["polyPNG", 871, 695, 77, 63, 0, 0, 146 * 1.35 / 3, 126 * 1.35 / 3]};
+                this.beastEntry = {intReq: 13, name: "Walrus", health: "170 - 211", armour: "2", damage: "33 - 78", negate: "20", ability: "Cold Resistant", fireProof: 3, habitat: "Ice Flats", sight: 330, alpha: "Elder", magicProof: 0, size: 45, speed: 1.1, rotation: 0.035, rate: 1.75, experience: 244, description: ["It is said that elder walruses are just walruses that have lived for hundreds of years. They tend to be fairly solitary unlike", "the younger variety, except of course when they have to mate, then the male usually protects the female while it is pregnant."], image: ["polyPNG", 871, 695, 77, 63, 0, 0, 146 * 1.35 / 3, 126 * 1.35 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.35; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -4763,7 +4769,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.heatResistance = 2;
                 this.attackStyle = "chunked";
                 this.attackRate = 0;  //this is for rapid style combat only.
-                this.healthMAX = Math.floor(Math.random() * 10) + 18;
+                this.healthMAX = Math.floor(Math.random() * 21) + 60;
                 this.health = this.healthMAX;
                 this.armour = 1;
                 this.speed = 0.85;
@@ -4773,7 +4779,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 40;
                 this.negateArmour = 6;
                 this.attackWait = 3.25;
-                this.beastEntry = {intReq: 4, name: "Walrus", health: "18 - 27", armour: "1", damage: "2 - 14", negate: "6", ability: "Cold Resistant", fireProof: 2, habitat: "Ice Flats", sight: 250, alpha: "Normal", magicProof: 0, size: 40, speed: 0.85, rotation: 0.025, rate: 3.25, experience: 28, description: ["Walruses are large tusked animals with thick skin and a large blubber layer of fat to keep them warm in the harsh cold climate that they", "live in. They tend to group together so as to keep predators away by numbers, but it is not uncommon for one to be found alone."], image: ["polyPNG", 871, 695, 77, 63, 0, 0, 146 / 3, 126 / 3]};
+                this.beastEntry = {intReq: 4, name: "Walrus", health: "60 - 80", armour: "1", damage: "4 - 18", negate: "6", ability: "Cold Resistant", fireProof: 2, habitat: "Ice Flats", sight: 250, alpha: "Normal", magicProof: 0, size: 40, speed: 0.85, rotation: 0.025, rate: 3.25, experience: 40, description: ["Walruses are large tusked animals with thick skin and a large blubber layer of fat to keep them warm in the harsh cold climate that they", "live in. They tend to group together so as to keep predators away by numbers, but it is not uncommon for one to be found alone."], image: ["polyPNG", 871, 695, 77, 63, 0, 0, 146 / 3, 126 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1;
@@ -6906,12 +6912,93 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.sizeRadius = 16;
             this.negateArmour = 0;
             this.attackWait = 1.2;
+            this.contraPlayer = false;
 
             //this multiplies the draw image skew numbers by 1 so that it stays the same
             this.alphaSize = 1.5;
 
             this.yAdjustment = 0;
             this.xAdjustment = 0;
+        }
+        else if (this.type == "Seal")
+        {
+            this.damageFrame = "manual";
+            this.team = "herd";
+            this.baseTeam = this.team;
+
+            this.tameREQ = 6;
+
+            if (this.alpha == true)
+            {
+                //STATS (non-variable)
+                this.magicalResistance = 0;
+                this.heatResistance = 0.2;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 3) + 18;
+                this.health = this.healthMAX;
+                this.armour = 0.05;
+                this.speed = 2.1 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.065; // 0.01 is a standard turn speed.
+                this.engagementRadius = 33;
+                this.sizeRadius = 17;
+                this.negateArmour = 0;
+                this.attackWait = 1.8;
+                this.contraPlayer = false;
+
+                this.alphaSize = 1.9;
+
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else if (this.alpha == "baby")
+            {
+                //STATS (non-variable)
+                this.magicalResistance = 0;
+                this.heatResistance = 0.2;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = 5;
+                this.health = this.healthMAX;
+                this.armour = 0.05;
+                this.speed = 1.4 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 400; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.065; // 0.01 is a standard turn speed.
+                this.engagementRadius = 16;
+                this.sizeRadius = 8;
+                this.negateArmour = 0;
+                this.attackWait = 1.8;
+                this.contraPlayer = false;
+
+                this.alphaSize = 0.8;
+
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else
+            {
+                //STATS (non-variable)
+                this.magicalResistance = 0;
+                this.heatResistance = 0.2;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 3) + 18;
+                this.health = this.healthMAX;
+                this.armour = 0.05;
+                this.speed = 1.8 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.065; // 0.01 is a standard turn speed.
+                this.engagementRadius = 25;
+                this.sizeRadius = 13;
+                this.negateArmour = 0;
+                this.attackWait = 1.8;
+                this.contraPlayer = false;
+                this.alphaSize = 1.45;
+
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
         }
         else if (this.type == "MudBeetle")
         {
@@ -6939,6 +7026,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.sizeRadius = 19;
             this.negateArmour = 0;
             this.attackWait = 1.6;
+            this.contraPlayer = false;
 
             //this multiplies the draw image skew numbers by 1 so that it stays the same
             this.alphaSize = 1.75;
@@ -9230,27 +9318,27 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (Math.max(0, 60 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
-                    this.experience = 104 * ((player.getIntelligence() / 50) + 1);
+                    this.experience = 244 * ((player.getIntelligence() / 50) + 1);
                 }
                 else
                 {
-                    (this.experience = 104 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    (this.experience = 244 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
-                this.drops = [[new Item("elderWalrusHide", this.X, this.Y), 1], [new Item("rawWalrusFlesh", this.X, this.Y), 4], [new Item("blubber", this.X, this.Y), 2], [new Item("elderWalrusTusks", this.X, this.Y), 1]];
+                this.drops = [[new Item("elderWalrusHide", this.X, this.Y), 1], [new Item("rawWalrusFlesh", this.X, this.Y), 10], [new Item("blubber", this.X, this.Y), 8], [new Item("elderWalrusTusks", this.X, this.Y), 1]];
             }
             else
             {
                 if (Math.max(0, 14 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
-                    this.experience = 28 * ((player.getIntelligence() / 50) + 1);
+                    this.experience = 40 * ((player.getIntelligence() / 50) + 1);
                 }
                 else
                 {
-                    (this.experience = 28 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    (this.experience = 40 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
-                this.drops = [[new Item("walrusHide", this.X, this.Y), 1], [new Item("rawWalrusFlesh", this.X, this.Y), 2], [new Item("blubber", this.X, this.Y), 1], [new Item("walrusTusks", this.X, this.Y), 1]];
+                this.drops = [[new Item("walrusHide", this.X, this.Y), 1], [new Item("rawWalrusFlesh", this.X, this.Y), 4], [new Item("blubber", this.X, this.Y), 2], [new Item("walrusTusks", this.X, this.Y), 1]];
             }
 
             //RANGE OF SIGHT (anything related to range of sight)
@@ -9268,12 +9356,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (this.alpha == true)
                 {
-                    this.Attack(45, 32);
+                    this.Attack(45, 33);
                     this.callForNearbyHelpFromType(160, "Walrus");
                 }
                 else
                 {
-                    this.Attack(12, 2);
+                    this.Attack(14, 4);
                     this.callForNearbyHelpFromType(100, "Walrus");
                 }
 
@@ -20334,6 +20422,306 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.plantedY = this.Y;
 
         }
+        //SEAL
+        if (this.type == "Seal")
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 100 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 3 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (10 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("rawSealFlesh", this.X, this.Y), 3], [new Item("blubber", this.X, this.Y), 1], [new Item("sealSkin", this.X, this.Y), 1]];
+            }
+            else if (this.alpha == "baby")
+            {
+                if (Math.max(0, 100 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 1 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (1 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("rawSealFlesh", this.X, this.Y), 1], [new Item("babySealSkin", this.X, this.Y), 1]];
+            }
+            else
+            {
+                if (Math.max(0, 100 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 2 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (2 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("rawSealFlesh", this.X, this.Y), 2], [new Item("blubber", this.X, this.Y), 1], [new Item("sealSkin", this.X, this.Y), 1]];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(600, false);
+            }
+            else if (this.alpha == "baby")
+            {
+                this.rangeOfSightCalculator(400, false);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(500, false);
+            }
+
+            //AI
+            if (this.alive == true) //Seal's attack is used for eating fish, not for attacking
+            {
+                if (this.alpha == true)
+                {
+                    this.callForNearbyHelpFromType(800, "Seal");
+                }
+                else if (this.alpha == "baby")
+                {
+                    this.callForNearbyHelpFromType(800, "Seal");
+                }
+                else
+                {
+                    this.callForNearbyHelpFromType(800, "Seal");
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                //eating fish
+                if (this.attacking && this.disturbed) // makes running priority when disturbed
+                {
+                    this.attacking = false;
+                }
+
+                if (this.disturbed == false && player.weaponEquipped == "none" && player.getSurvivalism() >= 5 || this.disturbed == false && this.DTP() > 225 || this.team == "player" && tKey == false && fKey == false && rKey == false) //if not frightened...
+                {
+                    this.targetFood = "none";
+                    this.moving = false;
+
+                    for (var i = 0; i < worldItems.length; i++) //look for food... (grains and breads)
+                    {
+                        if (worldItems[i][0].dmx == this.dmx)
+                        {
+                            if (worldItems[i][0].type == "crabFlesh" || worldItems[i][0].type == "rawCrabClaw" || worldItems[i][0].type == "rawRedCrombal" || worldItems[i][0].type == "rawThab" || worldItems[i][0].type == "rawJuurgo" || worldItems[i][0].type == "rawRazorfin" || worldItems[i][0].type == "rawCloimidFlesh")
+                            {
+                                if (this.distanceFinder(this, worldItems[i][0]) <= (this.rangeOfSight + 250)) //seals can smell raw fish to eat from a while off.
+                                {
+                                    if (this.targetFood == "none")
+                                    {
+                                        this.targetFood = worldItems[i][0];
+                                    }
+                                    else
+                                    {
+                                        if (this.distanceFinder(this, worldItems[i][0]) < this.distanceFinder(this, this.targetFood))
+                                        {
+                                            this.targetFood = worldItems[i][0];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (this.targetFood != "none")
+                    {
+                        if (this.distanceFinder(this, this.targetFood) <= this.engagementRadius)
+                        {
+                            this.attacking = true;
+                        }
+                        else
+                        {
+                            //attacking is reset to false at the end of the eating animation
+                            this.pointTowards(this.targetFood);
+                            this.moveInRelationToThing(this.targetFood);
+                        }
+                    }
+                    else if (player.weaponEquipped == "none" && player.getSurvivalism() >= 5 && this.DTP() > 225)
+                    {
+                        if (this.target == player)
+                        {
+                            this.pointTowardsPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.pointAway(this.target);
+                        }
+                    }
+                    else
+                    {
+                        if (this.target == player)
+                        {
+                            this.pointAwayFromPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.pointAway(this.target);
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.target == player)
+                    {
+                        this.pointAwayFromPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointAway(this.target);
+                    }
+                }
+
+                if (this.attacking == false)
+                {
+                    if (this.target == player && player.getSurvivalism() < 5 || this.target == player && this.disturbed || this.target == player && player.weaponEquipped != "none" || this.DTP() < 210)
+                    {
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.moveInRelationToThing(this.target);
+                    }
+                }
+
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(3, 0.15, true);
+                }
+                else if (this.attacking)
+                {
+                    this.costumeEngine(6, 0.06, true);
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                //manual damaging
+                if (theCostume <= 0)
+                {
+                    if (this.sealy == true)
+                    {
+                        this.attacking = false;
+                    }
+                    if (this.moving  && !this.attacking)
+                    {
+                        this.drawUnit(norc, 59, 1, 53, 28, -1/2 * 53 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 53 * this.alphaSize, 28 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(norc, 59, 1, 53, 28, -1/2 * 53 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 53 * this.alphaSize, 28 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.moving && !this.attacking)
+                    {
+                        this.drawUnit(norc, 121, 2, 53, 28, -1/2 * 53 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 53 * this.alphaSize, 28 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(norc, 123, 41, 53, 28, -1/2 * 53 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 53 * this.alphaSize, 28 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.moving && !this.attacking)
+                    {
+                        this.drawUnit(norc, 57, 36, 53, 28, -1/2 * 53 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 53 * this.alphaSize, 28 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(norc, 60, 78, 53, 28, -1/2 * 53 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 53 * this.alphaSize, 28 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 3)
+                {
+                    if (this.moving && !this.attacking)
+                    {
+                        this.drawUnit(norc, 121, 2, 53, 28, -1/2 * 53 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 53 * this.alphaSize, 28 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.feastPrepped = true;
+                        this.drawUnit(norc, 120, 81, 53, 28, -1/2 * 53 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 53 * this.alphaSize, 28 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 4)
+                {
+                    if (this.moving && !this.attacking)
+                    {
+                        this.drawUnit(norc, 59, 1, 53, 28, -1/2 * 53 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 53 * this.alphaSize, 28 * this.alphaSize);
+                    }
+                    else
+                    {
+
+                        if (this.feastPrepped == true)
+                        {
+                            this.sealy = true;
+                            for (var i = 0; i < worldItems.length; i++)
+                            {
+                                if (worldItems[i][0] === this.targetFood)
+                                {
+                                    this.health = Math.min(this.healthMAX, this.health + 4);
+                                    if (worldItems[i][0].ability == "poisonI" || worldItems[i][0].ability == "poisonII" || worldItems[i][0].ability == "poisonIII" || worldItems[i][0].ability == "poisonIV" || worldItems[i][0].ability == "poisonV")
+                                    {
+                                        this.health = 0;
+                                    }
+                                    if (worldItems[i][1] > 1)
+                                    {
+                                        worldItems[i][1] -= 1;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        this.targetFood = "none";
+                                        worldItems.splice(i, 1);
+                                        break;
+                                    }
+                                }
+                            }
+                            this.feastPrepped = false;
+                        }
+                        this.drawUnit(norc, 120, 81, 53, 28, -1/2 * 53 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 53 * this.alphaSize, 28 * this.alphaSize);
+                    }
+                }
+                else if (theCostume >= 5)
+                {
+                    if (this.moving && !this.attacking)
+                    {
+                        this.drawUnit(furr, 269, 109, 76, 46, -1/2 * 76 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 76 * this.alphaSize, 46 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(norc, 120, 81, 53, 28, -1/2 * 53 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 53 * this.alphaSize, 28 * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(norc, 1, 76, 53, 28, -1/2 * 53 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 53 * this.alphaSize, 28 * this.alphaSize);
+            }
+
+        }
         //MOFU
         if (this.type == "Mofu") //pronounced moe-foo
         {
@@ -21455,7 +21843,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (worldItems[i][0].dmx == this.dmx)
                         {
-                            if (worldItems[i][0].type == "santhGrain" || worldItems[i][0].type == "harstGrain" || worldItems[i][0].type == "santhBread" || worldItems[i][0].type == "butteredSanthBread" || worldItems[i][0].type == "harstBread" || worldItems[i][0].type == "butteredHarstBread" || worldItems[i][0].type == "akerBerries" || worldItems[i][0].type == "pluttBerries" || worldItems[i][0].type == "bushkaBerries" || worldItems[i][0].type == "gojiiBerries" || worldItems[i][0].type == "luufBerries" || worldItems[i][0].type == "suuliMelonSlice")
+                            if (worldItems[i][0].type == "santhGrain" || worldItems[i][0].type == "harstGrain" || worldItems[i][0].type == "santhBread" || worldItems[i][0].type == "butteredSanthBread" || worldItems[i][0].type == "harstBread" || worldItems[i][0].type == "butteredHarstBread" || worldItems[i][0].type == "akerBerries" || worldItems[i][0].type == "pluttBerries" || worldItems[i][0].type == "bushkaBerries" || worldItems[i][0].type == "gojiiBerries" || worldItems[i][0].type == "luufBerries" || worldItems[i][0].type == "suuliMelonSlice" || worldItems[i][0].type == "darbBerries" || worldItems[i][0].type == "callopBerries" || worldItems[i][0].type == "torniBerries" || worldItems[i][0].type == "yaihefBerries")
                             {
                                 if (this.distanceFinder(this, worldItems[i][0]) <= (this.rangeOfSight / 2)) // if grains are easy to get to go after them.
                                 {

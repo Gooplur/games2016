@@ -2923,6 +2923,7 @@ function theLegend()
     foods.push(new Item("olkrinMeat", false));
     foods.push(new Item("trollMeat", false));
     foods.push(new Item("walrusMeat", false));
+    foods.push(new Item("sealMeat", false));
     foods.push(new Item("frichMeat", false));
     foods.push(new Item("mountainFrichMeat", false));
     foods.push(new Item("youngNaapridMeat", false));
@@ -3035,6 +3036,7 @@ function theLegend()
     tailoring.push(new Item("neevFurBoots", false));
     tailoring.push(new Item("neevFurGloves", false));
     tailoring.push(new Item("dustPouch", false));
+    tailoring.push(new Item("sealSkin", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];

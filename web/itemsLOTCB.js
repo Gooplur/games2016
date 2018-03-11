@@ -2488,26 +2488,26 @@ function Item(type, x, y)
             this.buyValue = 9 - Math.floor(player.getCharisma() / 10); // at max, buy for 4.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
         }
-        else if (this.type == "rawWalrusFlesh")
+        else if (this.type == "rawSealFlesh")
         {
             //For All Items
-            this.identity = "Raw Walrus Flesh";
-            this.weight = 2;
+            this.identity = "Raw Seal Flesh";
+            this.weight = 4;
             this.size = 11;
-            this.description = "The raw flesh of a land walrus.";
+            this.description = "The raw flesh of a seal.";
             this.intForDes = 1;
-            this.intDescription = "Eating this raw would be tough...";
+            this.intDescription = "Though this is safe to eat raw, it would not be a pleasant experience to do so.";
 
             //Define Utility
             this.utility = "food";
 
             //Utility Focused
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
-            this.hunger = 1; //satisfies hunger.
+            this.hunger = 1.5; //satisfies hunger.
             this.thirst = 0; //quenches thirst.
             this.warmth = 0; //warms player.
             this.heal = 0; //heals health.
-            this.generation = -1; //recoops lost energy.
+            this.generation = -2; //recoops lost energy.
             this.replenish = 0; //restores will.
 
 
@@ -2515,29 +2515,29 @@ function Item(type, x, y)
             this.ability = "none";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 9 - Math.floor(player.getCharisma() / 15); // at max, buy for 6.
-            this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 15); // at max, buy for 5.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 5.
         }
-        else if (this.type == "walrusMeat")
+        else if (this.type == "sealMeat")
         {
             //For All Items
-            this.identity = "Walrus Meat";
-            this.weight = 2;
+            this.identity = "Seal Meat";
+            this.weight = 4;
             this.size = 11;
-            this.description = "The cooked meat of a land walrus.";
-            this.intForDes = 3;
-            this.intDescription = "Land walrus meat is filling and hearty, and even more it can provide you with the energy you need to endure in cold climates.";
+            this.description = "The cooked meat of a seal.";
+            this.intForDes = 0;
+            this.intDescription = "Seal meat is fatty, hearty, and filling.";
 
             //Define Utility
             this.utility = "food";
 
             //Utility Focused
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
-            this.hunger = 19; //satisfies hunger.
+            this.hunger = 16; //satisfies hunger.
             this.thirst = 0; //quenches thirst.
-            this.warmth = 4; //warms player.
+            this.warmth = 6; //warms player.
             this.heal = 0; //heals health.
-            this.generation = 0; //recoops lost energy.
+            this.generation = 0.1; //recoops lost energy.
             this.replenish = 0; //restores will.
 
 
@@ -2546,12 +2546,77 @@ function Item(type, x, y)
 
             //Crafting
             this.yield = 1;
-            this.intForCraft = 10;
+            this.intForCraft = 12;
+            this.ingredients = [["Raw Seal Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 18 - Math.floor(player.getCharisma() / 8); // at max, buy for 12.
+            this.sellValue = 12; // at max, sell for 12.
+        }
+        else if (this.type == "rawWalrusFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Walrus Flesh";
+            this.weight = 8;
+            this.size = 12;
+            this.description = "The raw flesh of a walrus.";
+            this.intForDes = 1;
+            this.intDescription = "Eating this raw would be tough...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11 - Math.floor(player.getCharisma() / 15); // at max, buy for 8.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 10); // at max, sell for 8.
+        }
+        else if (this.type == "walrusMeat")
+        {
+            //For All Items
+            this.identity = "Walrus Meat";
+            this.weight = 8;
+            this.size = 12;
+            this.description = "The cooked meat of a walrus.";
+            this.intForDes = 3;
+            this.intDescription = "Walrus meat is filling and hearty, and even more it can provide you with the energy you need to endure in cold climates.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 27; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 10; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.25; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 16;
             this.ingredients = [["Raw Walrus Flesh", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 18 - Math.floor(player.getCharisma() / 6.25); // at max, buy for 10.
-            this.sellValue = 6 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 10.
+            this.buyValue = 24 - Math.floor(player.getCharisma() / 25); // at max, buy for 22.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 6); // at max, sell for 22.
         }
         else if (this.type == "ogoFruit")
         {
@@ -3842,7 +3907,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Yaihef Berries";
-            this.weight = 0.5;
+            this.weight = 0.8;
             this.size = 7;
             this.description = "Juicy light blue berries with a plumlike texture.";
             this.intForDes = 2;
@@ -3865,7 +3930,7 @@ function Item(type, x, y)
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
-            this.sellValue = 1; // at max, sell for 1.
+            this.sellValue = 2; // at max, sell for 2.
         }
         else if (this.type == "akerBerries")
         {
@@ -3895,6 +3960,35 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "tyrniBerries")
+        {
+            //For All Items
+            this.identity = "Tyrni Berries";
+            this.weight = 0.6;
+            this.size = 9;
+            this.description = "Sour berries with a mild sweetness that is accompanied by a depth of subtle aromatic flavours.";
+            this.intForDes = 14;
+            this.intDescription = "Also called sea buckthorn berries because the bushes are covered in sharp barbed needle-like thorns.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = -0.45; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
         }
         else if (this.type == "callopBerries")
         {
@@ -10851,7 +10945,7 @@ function Item(type, x, y)
             this.identity = "Walrus Hide";
             this.weight = 6;
             this.size = 35;
-            this.description = "The hide of a land walrus.";
+            this.description = "The hide of a walrus.";
             this.intForDes = 15;
             this.intDescription = "Walrus hide is particularly thick and can be made into a number of different items!";
 
@@ -10864,6 +10958,51 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 16 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 12.
             this.sellValue = 7 + Math.floor(player.getCharisma() / 10); // at max, sell for 12.
+        }
+        else if (this.type == "sealSkin")
+        {
+            //For All Items
+            this.identity = "Seal Skin";
+            this.weight = 2.5;
+            this.size = 24;
+            this.description = "The thick skin of a seal.";
+            this.intForDes = 3;
+            this.intDescription = "Seal skin can be made into clothing.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Baby Seal Skin", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
+        else if (this.type == "babySealSkin")
+        {
+            //For All Items
+            this.identity = "Baby Seal Skin";
+            this.weight = 1.25;
+            this.size = 13;
+            this.description = "The thick skin of a baby seal.";
+            this.intForDes = 2;
+            this.intDescription = "Sew together two baby seal skins to make one larger one.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
         else if (this.type == "vomit")
         {
@@ -19878,6 +20017,31 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "tyrniBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 67, 337, 13, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 2), 13 * 2, 9 * 2);
+        }
+        else if (this.type == "sealSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 5, 39, 42, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1.75), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.75), 42 * 1.75, 18 * 1.75);
+        }
+        else if (this.type == "babySealSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 5, 39, 42, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 0.9), 42 * 0.9, 18 * 0.9);
+        }
+        else if (this.type == "rawSealFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 9, 59, 10, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.85), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.85), 10 * 1.85, 14 * 1.85);
+        }
+        else if (this.type == "sealMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 21, 59, 10, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.85), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.85), 10 * 1.85, 14 * 1.85);
+        }
         else if (this.type == "crabFlesh")
         {
             XXX.beginPath();
@@ -22540,6 +22704,31 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "tyrniBerries")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 67, 337, 13, 9, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 9 * 2), 13 * 2, 9 * 2);
+        }
+        else if (this.type == "sealSkin")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 5, 39, 42, 18, this.invX - (1/2 * 42 * 1.75), this.invY - (1/2 * 18 * 1.75), 42 * 1.75, 18 * 1.75);
+        }
+        else if (this.type == "babySealSkin")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 5, 39, 42, 18, this.invX - (1/2 * 42 * 0.9), this.invY - (1/2 * 18 * 0.9), 42 * 0.9, 18 * 0.9);
+        }
+        else if (this.type == "rawSealFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 9, 59, 10, 14, this.invX - (1/2 * 10 * 1.85), this.invY - (1/2 * 14 * 1.85), 10 * 1.85, 14 * 1.85);
+        }
+        else if (this.type == "sealMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 21, 59, 10, 14, this.invX - (1/2 * 10 * 1.85), this.invY - (1/2 * 14 * 1.85), 10 * 1.85, 14 * 1.85);
+        }
         else if (this.type == "crabFlesh")
         {
             LXX.beginPath();
@@ -25170,6 +25359,31 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "tyrniBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 67, 337, 13, 9, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 9 * 2), 13 * 2, 9 * 2);
+        }
+        else if (this.type == "sealSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 5, 39, 42, 18, this.invX - (1/2 * 42 * 1.75), this.invY - (1/2 * 18 * 1.75), 42 * 1.75, 18 * 1.75);
+        }
+        else if (this.type == "babySealSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 5, 39, 42, 18, this.invX - (1/2 * 42 * 0.9), this.invY - (1/2 * 18 * 0.9), 42 * 0.9, 18 * 0.9);
+        }
+        else if (this.type == "rawSealFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 9, 59, 10, 14, this.invX - (1/2 * 10 * 1.85), this.invY - (1/2 * 14 * 1.85), 10 * 1.85, 14 * 1.85);
+        }
+        else if (this.type == "sealMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 21, 59, 10, 14, this.invX - (1/2 * 10 * 1.85), this.invY - (1/2 * 14 * 1.85), 10 * 1.85, 14 * 1.85);
         }
         else if (this.type == "crabFlesh")
         {

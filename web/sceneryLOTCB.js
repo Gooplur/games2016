@@ -6077,6 +6077,64 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "tyrniPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(3);
+            this.interactionRange = 85;
+            this.solid = true;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 40, 336, 23, 18, -(1/2 * 23 * 2), -(1/2 * 18 * 2), 23 * 2, 18 * 2);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 10, 336, 23, 18, -(1/2 * 23 * 2), -(1/2 * 18 * 2), 23 * 2, 18 * 2);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 10;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                if (player.glovesEquipped == "none")
+                {
+                    player.health -= 2;
+                    player.energy -= 1;
+                }
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "tyrniBerries")
+                    {
+                        Inventory[i][1] += Math.floor(1 + Math.random() * 2);
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("tyrniBerries", false, false), Math.floor(1 + Math.random() * 2)]);
+                }
+            }
+        }
         else if (this.type == "lorkweedPlant")
         {
             //TRAITS

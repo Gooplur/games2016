@@ -2815,6 +2815,13 @@ function theLegend()
     allWorn.push(new Item("neevFurCloak", false)); //61
     allWorn.push(new Item("neevFurBoots", false)); //62
     allWorn.push(new Item("neevFurGloves", false)); //63
+    allWorn.push(new Item("saltBloodArmour", false)); //64
+    allWorn.push(new Item("sealSkinClothing", false)); //65
+    allWorn.push(new Item("sealSkinGloves", false)); //66
+    allWorn.push(new Item("sealSkinBoots", false)); //67
+    allWorn.push(new Item("northernClothing", false)); //68
+    allWorn.push(new Item("northernGloves", false)); //69
+    allWorn.push(new Item("northernBoots", false)); //70
 
     scenicList = [];
 

@@ -4789,6 +4789,18 @@ function Adventurer()
         {
             outfit = allWorn[61];
         }
+        else if (this.outfitEquipped == "saltBloodArmour")
+        {
+            outfit = allWorn[64];
+        }
+        else if (this.outfitEquipped == "sealSkinClothing")
+        {
+            outfit = allWorn[65];
+        }
+        else if (this.outfitEquipped == "northernClothing")
+        {
+            outfit = allWorn[68];
+        }
         else
         {
             outfit = allWorn[0];
@@ -4820,6 +4832,14 @@ function Adventurer()
         {
             gloves = allWorn[63];
         }
+        else if (this.glovesEquipped == "sealSkinGloves")
+        {
+            gloves = allWorn[66];
+        }
+        else if (this.glovesEquipped == "northernGloves")
+        {
+            gloves = allWorn[69];
+        }
         else
         {
             gloves = allWorn[0];
@@ -4842,6 +4862,14 @@ function Adventurer()
         else if (this.bootsEquipped == "neevFurBoots")
         {
             boots = allWorn[62]
+        }
+        else if (this.bootsEquipped == "sealSkinBoots")
+        {
+            boots = allWorn[67]
+        }
+        else if (this.bootsEquipped == "northernBoots")
+        {
+            boots = allWorn[70]
         }
         else
         {
@@ -4954,6 +4982,45 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(oldverse, 44, 89, 51, 35, -(1 / 2 * 40.8) + 6.3, -(1 / 2 * 28) - 0.5, 45.9, 31.5);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "saltBloodArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(norc, 126, 118, 36, 31, -(1 / 2 * 36 * 2) + 0, -(1 / 2 * 31 * 2) + 1.5, 36 * 2, 31 * 2);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "northernClothing")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(norc, 2, 10, 18, 19, -(1 / 2 * 18 * 1.8) - 2.5, -(1 / 2 * 19 * 1.8) - 0, 18 * 1.8, 19 * 1.8);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "sealSkinClothing")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - Math.PI - 0.1);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(norc, 9, 114, 18, 19, -(1 / 2 * 18 * 1.7) + 0.45, -(1 / 2 * 19 * 1.9) + 0, 18 * 1.7, 19 * 1.9);
             XXX.restore();
         }
         else if (this.outfitEquipped == "wizardGown")

@@ -811,6 +811,14 @@ function cheats()
         {
             player.level = 51;
         }
+        else if (cheatcode == "tellArmour")
+        {
+            alert("Armour Rating [ " + player.armourTotal + " ]");
+        }
+        else if (cheatcode == "tellWeight")
+        {
+            alert("Weight Carried [ " + player.carryWeight + " ]");
+        }
         else if (cheatcode.toLowerCase() == "thisgameismissingsomething")
         {
             player.totalSkillPoints -= player.constitution;

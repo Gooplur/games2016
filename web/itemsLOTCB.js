@@ -8210,7 +8210,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Raw Hoffalgre Flesh";
-            this.weight = 1;
+            this.weight = 1.3;
             this.size = 12;
             this.description = "The raw flesh of a Hoffalgre.";
             this.intForDes = 6;
@@ -8239,7 +8239,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Hoffalgre Meat";
-            this.weight = 1.1;
+            this.weight = 1.2;
             this.size = 8;
             this.description = "A tender and juicy but rather simple tasting meat.";
             this.intForDes = 6;
@@ -16226,6 +16226,66 @@ function Item(type, x, y)
             this.buyValue = 194 - Math.floor(player.getCharisma() / 1); // at max, buy for 144.
             this.sellValue = 90 + Math.floor(player.getCharisma() / 1); // at max, sell for 140.
         }
+        else if (this.type == "saltBloodArmour")
+        {
+            //For All Items
+            this.identity = "Salt-Blood Armour";
+            this.weight = 57;
+            this.size = 26;
+            this.description = "An armour made from crab limbs and hard pieces of crab shell; it has the stench of the sea about it.";
+            this.intForDes = 6;
+            this.intDescription = "This armour belonged to Captain Jalmari Salt-blood, a fearsome pirate of the northern sea.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 14 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 14;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.6;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 2;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = -1;
+            this.charismaBonus = 8;
+            this.rangedBonus = -6;
+            this.constitutionBonus = 1;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -33;
+            this.survivalismBonus = 5;
+            //Extra Stat Bonuses
+            this.sleepBonus = 7;
+            this.hungerBonus = 8;
+            this.thirstBonus = -3;
+            this.warmthBonus = 12;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (player.strength >= 30 && player.dexterity >= 15)
+            {
+                this.ability = "none";
+            }
+            else
+            {
+                this.ability = "hefty";
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 257 - Math.floor(player.getCharisma() / 2); // at max, buy for 232.
+            this.sellValue = 163 + Math.floor(player.getCharisma() / 1); // at max, sell for 213.
+        }
         else if (this.type == "jvostranPlateArmour")
         {
             //For All Items
@@ -16374,7 +16434,7 @@ function Item(type, x, y)
             this.rangedBonus = -20;
             this.constitutionBonus = 0;
             this.staminaBonus = 0;
-            this.dexterityBonus = -50;
+            this.dexterityBonus = -35;
             this.survivalismBonus = -50;
             //Extra Stat Bonuses
             this.sleepBonus = 0;
@@ -16389,7 +16449,18 @@ function Item(type, x, y)
             this.memoryBonus = 0;
 
             //ability
-            this.ability = "heavy";
+            if (player.strength >= 30 && player.dexterity >= 15)
+            {
+                this.ability = "none";
+            }
+            else if (player.strength >= 20 && player.dexterity >= 10)
+            {
+                this.ability = "hefty";
+            }
+            else
+            {
+                this.ability = "heavy";
+            }
 
             //Crafting
             this.yield = 1;
@@ -16432,7 +16503,7 @@ function Item(type, x, y)
             this.rangedBonus = -20;
             this.constitutionBonus = 0;
             this.staminaBonus = 0;
-            this.dexterityBonus = -50;
+            this.dexterityBonus = -35;
             this.survivalismBonus = -50;
             //Extra Stat Bonuses
             this.sleepBonus = 0;
@@ -16447,7 +16518,18 @@ function Item(type, x, y)
             this.memoryBonus = 0;
 
             //ability
-            this.ability = "heavy";
+            if (player.strength >= 30 && player.dexterity >= 15)
+            {
+                this.ability = "none";
+            }
+            else if (player.strength >= 20 && player.dexterity >= 10)
+            {
+                this.ability = "hefty";
+            }
+            else
+            {
+                this.ability = "heavy";
+            }
 
             //Crafting
             this.yield = 1;
@@ -17458,6 +17540,352 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 38 - Math.floor(player.getCharisma() / 15); // at max, buy for 35.
             this.sellValue = 29 + Math.floor(player.getCharisma() / 8); // at max, sell for 35.
+        }
+        else if (this.type == "sealSkinClothing")
+        {
+            //For All Items
+            this.identity = "Seal Skin Clothing";
+            this.weight = 2.4;
+            this.size = 26;
+            this.description = "Clothing sewn from seal skins.";
+            this.intForDes = 0;
+            this.intDescription = "Seal skin clothing is a cheaper clothing that is worn in the arctic north.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.75;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 18;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 18;
+            this.ingredients = [["Seal Skin", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12 - Math.floor(player.getCharisma() / 50); // at max, buy for 11.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 50); // at max, sell for 11.
+        }
+        else if (this.type == "sealSkinGloves")
+        {
+            //For All Items
+            this.identity = "Seal Skin Gloves";
+            this.weight = 0.55;
+            this.size = 7;
+            this.description = "Gloves made from seal skin.";
+            this.intForDes = 0;
+            this.intDescription = "Seal skin is good at keeping warmth in and it is fairly affordable.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "gloves";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.2;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 9;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 20;
+            this.ingredients = [["Seal Skin", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "sealSkinBoots")
+        {
+            //For All Items
+            this.identity = "Seal Skin Boots";
+            this.weight = 2.1;
+            this.size = 10;
+            this.description = "Boots sewn from seal skin.";
+            this.intForDes = 0;
+            this.intDescription = "Seal skin is good at keeping warmth in and it is fairly affordable.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "boots";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.3;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 14;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 21;
+            this.ingredients = [["Seal Skin", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
+        }
+        else if (this.type == "northernClothing")
+        {
+            //For All Items
+            this.identity = "Northern Clothing";
+            this.weight = 3;
+            this.size = 26;
+            this.description = "Clothing sewn from the pelts of waanti and padded even more thickly with wool.";
+            this.intForDes = 0;
+            this.intDescription = "The standard clothing worn by the citizens of the kingdom of Freynor; it keeps northerners warm in the coldest of habitable regions.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 3.1;
+            this.thirstRetention = -3;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 30;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 24;
+            this.ingredients = [["Waanti Pelt", 2], ["Wool", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 38 - Math.floor(player.getCharisma() / 6); // at max, buy for 30.
+            this.sellValue = 20 + Math.floor(player.getCharisma() / 5); // at max, sell for 30.
+        }
+        else if (this.type == "northernGloves")
+        {
+            //For All Items
+            this.identity = "Northern Gloves";
+            this.weight = 0.55;
+            this.size = 7;
+            this.description = "Gloves made from waanti fur and wool.";
+            this.intForDes = 0;
+            this.intDescription = "These are especially able to keep hands warm in cold regions.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "gloves";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.35;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 10;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 22;
+            this.ingredients = [["Waanti Pelt", 1], ["Wool", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 17 - Math.floor(player.getCharisma() / 25); // at max, buy for 15.
+            this.sellValue = 13 + Math.floor(player.getCharisma() / 25); // at max, sell for 15.
+        }
+        else if (this.type == "northernBoots")
+        {
+            //For All Items
+            this.identity = "Northern Boots";
+            this.weight = 2.1;
+            this.size = 10;
+            this.description = "Thick waanti fur boots layered with wool.";
+            this.intForDes = 0;
+            this.intDescription = "Highly effective boots for trudging through the snow in frozen northern climates.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "boots";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.55;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 20;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 26;
+            this.ingredients = [["Waanti Pelt", 1], ["Wool", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 30 - Math.floor(player.getCharisma() / 10); // at max, buy for 25.
+            this.sellValue = 19 + Math.floor(player.getCharisma() / 10); // at max, sell for 24.
         }
         else if (this.type == "waantiFurOutfit")
         {
@@ -20016,6 +20444,41 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "saltBloodArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 130, 153, 30, 46, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 2.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 46 * 2.1), 30 * 2.1, 46 * 2.1);
+        }
+        else if (this.type == "sealSkinClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 37, 116, 20, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 2.35), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 2.35), 20 * 2.35, 36 * 2.35);
+        }
+        else if (this.type == "sealSkinGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 66, 123, 15, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 2.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 2.1), 12 * 2.1, 12 * 2.1);
+        }
+        else if (this.type == "sealSkinBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 65, 139, 20, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 2.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 2.1), 20 * 2.1, 15 * 2.1);
+        }
+        else if (this.type == "northernClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 22, 2, 20, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 2.35), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 2.35), 20 * 2.35, 36 * 2.35);
+        }
+        else if (this.type == "northernGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 94, 118, 15, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 2.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 2.1), 12 * 2.1, 12 * 2.1);
+        }
+        else if (this.type == "northernBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 90, 134, 20, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 2.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 2.1), 20 * 2.1, 15 * 2.1);
         }
         else if (this.type == "tyrniBerries")
         {
@@ -22704,6 +23167,42 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "saltBloodArmour")
+        {
+
+            LXX.beginPath();
+            LXX.drawImage(norc, 130, 153, 30, 46, this.invX - (1/2 * 30 * 1.7), this.invY - (1/2 * 46 * 1.7), 30 * 1.7, 46 * 1.7);
+        }
+        else if (this.type == "sealSkinClothing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 37, 116, 20, 36, this.invX - (1/2 * 20 * 1.7), this.invY - (1/2 * 36 * 1.7), 20 * 1.7, 36 * 1.7);
+        }
+        else if (this.type == "sealSkinGloves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 66, 123, 15, 12, this.invX - (1/2 * 15 * 2.1), this.invY - (1/2 * 12 * 2.1), 12 * 2.1, 12 * 2.1);
+        }
+        else if (this.type == "sealSkinBoots")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 65, 139, 20, 15, this.invX - (1/2 * 20 * 2.1), this.invY - (1/2 * 15 * 2.1), 20 * 2.1, 15 * 2.1);
+        }
+        else if (this.type == "northernClothing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 22, 2, 20, 36, this.invX - (1/2 * 20 * 1.7), this.invY - (1/2 * 36 * 1.7), 20 * 1.7, 36 * 1.7);
+        }
+        else if (this.type == "northernGloves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 94, 118, 15, 12, this.invX - (1/2 * 15 * 2.1), this.invY - (1/2 * 12 * 2.1), 12 * 2.1, 12 * 2.1);
+        }
+        else if (this.type == "northernBoots")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 90, 134, 20, 15, this.invX - (1/2 * 20 * 2.1), this.invY - (1/2 * 15 * 2.1), 20 * 2.1, 15 * 2.1);
+        }
         else if (this.type == "tyrniBerries")
         {
             LXX.beginPath();
@@ -25359,6 +25858,41 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "saltBloodArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 130, 153, 30, 46, this.invX - (1/2 * 30 * 1.7), this.invY - (1/2 * 46 * 1.7), 30 * 1.7, 46 * 1.7);
+        }
+        else if (this.type == "sealSkinClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 37, 116, 20, 36, this.invX - (1/2 * 20 * 1.7), this.invY - (1/2 * 36 * 1.7), 20 * 1.7, 36 * 1.7);
+        }
+        else if (this.type == "sealSkinGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 66, 123, 15, 12, this.invX - (1/2 * 15 * 2.1), this.invY - (1/2 * 12 * 2.1), 12 * 2.1, 12 * 2.1);
+        }
+        else if (this.type == "sealSkinBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 65, 139, 20, 15, this.invX - (1/2 * 20 * 2.1), this.invY - (1/2 * 15 * 2.1), 20 * 2.1, 15 * 2.1);
+        }
+        else if (this.type == "northernClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 22, 2, 20, 36, this.invX - (1/2 * 20 * 1.7), this.invY - (1/2 * 36 * 1.7), 20 * 1.7, 36 * 1.7);
+        }
+        else if (this.type == "northernGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 94, 118, 15, 12, this.invX - (1/2 * 15 * 2.1), this.invY - (1/2 * 12 * 2.1), 12 * 2.1, 12 * 2.1);
+        }
+        else if (this.type == "northernBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 90, 134, 20, 15, this.invX - (1/2 * 20 * 2.1), this.invY - (1/2 * 15 * 2.1), 20 * 2.1, 15 * 2.1);
         }
         else if (this.type == "tyrniBerries")
         {

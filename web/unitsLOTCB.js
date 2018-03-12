@@ -4481,6 +4481,26 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 XXX.rotate(this.rotation);
                 XXX.drawImage(polyPNG, 804, 262, 35, 24, -(1 / 2 * 45.5) + 8, -(1 / 2 * 31.2) + 1.25, 42, 28.8);
             }
+            else if (outfit == "northernClothing")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation - 1 / 2 * Math.PI);
+                XXX.drawImage(norc, 2, 10, 18, 19, -(1 / 2 * 18 * 1.8) - 2.5, -(1 / 2 * 19 * 1.8) - 0, 18 * 1.8, 19 * 1.8);
+            }
+            else if (outfit == "sealSkinClothing")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation - 1 / 2 * Math.PI - 0.1);
+                XXX.drawImage(norc, 9, 114, 18, 19, -(1 / 2 * 18 * 1.7) + 0.45, -(1 / 2 * 19 * 1.9) + 0, 18 * 1.7, 19 * 1.9);
+            }
             else if (outfit == "thenganPlateArmour")
             {
                 XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));

@@ -253,6 +253,9 @@ function Adventurer()
     this.dialogueOptions = []; //These are the options the player is allowed to choose from, they vary depending on which AI you speak with.
     this.dialogueChoiceMade = false; //this is a variable that helps determine when the player has chosen what to say during dialogue, it will be reset after the recipient registers the players input.
     this.romance = []; //This is the list of individuals in game that are in a romantic relationship with you.
+    //saving
+    this.autosaveEnabled = false; //determines if the game will save automatically or not. starts out off.
+    this.autosaveFrequency = 200;
     //effects variables
     this.obscurity = true; //this is a secondary control for subtlety it should be true.
     this.subtlety = false; //this sets the player to permaStealth without even having to stealth (the player can run and still be unspotted in this mode)

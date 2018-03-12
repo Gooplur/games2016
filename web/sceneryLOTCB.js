@@ -5925,6 +5925,11 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.solid = false;
             this.interactionRange = 75;
 
+            if (quests.ultherFlower == false && this.temporary == "ultherFlower")
+            {
+                this.phase = "picked";
+            }
+
             //DRAWSELF
             if (this.phase == 0)
             {
@@ -5949,6 +5954,12 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //INTERACTION
             if (this.activate == true && this.phase == 0)
             {
+                //this is a special case in which picking this changes a specific variable
+                if (this.temporary == "ultherFlower")
+                {
+                    quests.ultherFlower = false;
+                }
+
                 this.activate = false;
                 this.phase = "picked";
                 var hits = 0;

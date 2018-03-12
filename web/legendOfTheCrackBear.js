@@ -1482,7 +1482,6 @@ var lastUpdate;
 var saveType;
 var loadType;
 var saveBrain;
-var autosaving;
 var keyString;
 var mouseX;
 var mouseY;
@@ -1628,6 +1627,7 @@ var haeRotate = 0;
 var showUnitAttackBubble;
 var testBarriers;
 var dialogueActive = false;
+var autosaveTime;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -2307,7 +2307,6 @@ function theLegend()
     saveType = 1;
     loadType = 1;
     saveBrain = {};
-    autosaving = true;
 
 //Important Sensing Variables
     mouseX = 0; //main canvas mouse coords.
@@ -2396,6 +2395,7 @@ function theLegend()
     TTP = 0; //Previous Time a.k.a [Time Previous]
     TTD = 0; //Difference in time a.k.a [Delta Time]
     fairSleep = true; //when the game starts this makes sure the sleep timer is caught up to game time.
+    autosaveTime = new Date().getTime(); //holds time for autosaves to use to calculate a preset length of time between saves
 
 //Key sensing variables
     wKey = false;
@@ -2549,6 +2549,10 @@ function theLegend()
         lonerGuyStash: true,
         sagesCacheStash: true,
         spiderwebLoot: true,
+        ultherMapItems: true,
+
+        //EVENTS (non quest)
+        ultherFlower: true,
 
         //PLAYER CHILDREN SPAWN
         hilmundChild: false,

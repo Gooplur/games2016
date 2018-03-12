@@ -7757,6 +7757,48 @@ function buildMaster()
                 scenicList.push(new Scenery("pineTree", -13009 , -5159, -1.29, true));
                 scenicList.push(new Scenery("pineTree", -11286 , -5204, 7, true));
 
+                //tomb of ulther, the brave
+                scenicList.push(new Scenery("pineTree", -10076 , -11643, 3, true));
+                scenicList.push(new Scenery("pineTree", -10720 , -11378, 1, true));
+                scenicList.push(new Scenery("stone", -10195 , -11349, 1.3, 3, 1));
+                scenicList.push(new Scenery("pineTree", -9458 , -11437, 7, true));
+                scenicList.push(new Scenery("pineTree", -10452 , -10851, 4, true));
+                scenicList.push(new Scenery("pineTree", -11136 , -11033, 2, true));
+                scenicList.push(new Scenery("brightbloomPlant", -10190 , -11268, 4.1, "ultherFlower"));
+                ArtificialIntelligenceAccess.push(new Unit(-12115, -11594, "Varn", true, "bossmanI"));
+                ArtificialIntelligenceAccess.push(new Unit(-12166, -11846, "Varn", false, "bossmanII"));
+                ArtificialIntelligenceAccess.push(new Unit(-11953, -11997, "Varn", true, "bossmanIII"));
+                ArtificialIntelligenceAccess.push(new Unit(-10489, -10993, "Shehid", false, "hackeyI"));
+                ArtificialIntelligenceAccess.push(new Unit(-11009, -11109, "Shehid", false, "hackeyII"));
+                ArtificialIntelligenceAccess.push(new Unit(-10154, -11510, "Shehid", true, "hackeyBossman"));
+                scenicList.push(new Scenery("akerPlant", -10152 , -11356, 5.5, true));
+                ArtificialIntelligenceAccess.push(new Unit(-12454, -12972, "Avrak", false, "ahhratattackI"));
+                ArtificialIntelligenceAccess.push(new Unit(-12200, -12910, "Avrak", false, "ahhratattackII"));
+                ArtificialIntelligenceAccess.push(new Unit(-5000, -7500, "Frich", "massive", "uhohspagheti"));
+                scenicList.push(new Scenery("grushweedPlant", -7654 , -12453, 1.3, 3));
+                scenicList.push(new Scenery("grushweedPlant", -7832 , -12332, 4, 1.6));
+                var rndmxz = Math.round(Math.random());
+                if (rndmxz == 0)
+                {
+                    scenicList.push(new Scenery("grushweedPlant", -7370 , -12397, 6, 2));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-7370 , -12397, "Grush", true, "boyomatic"));
+                }
+                scenicList.push(new Scenery("glinPlant", -10695 , -11241, 3.7, true));
+
+
+
+
+
+                //all items dropped on map //todo put a note telling of uther the bravew
+                //if (quests.ultherMapItems == true)
+                //{
+                //    quests.ultherMapItems = false;
+                //    worldItems.push([new Item("ultherNote", -10163 , -11312), 1]);
+                //}
+
                 //Plants of the souther tip of the wuncwer woods
                 scenicList.push(new Scenery("akerPlant", -7460 , -4008, 6.8, true));
                 scenicList.push(new Scenery("glinPlant", -8837 , -4003, 1, true));

@@ -32,24 +32,20 @@ function autosave()
         save();
         saveType = null;
     }
-    //Automatic autosaving
-    if (autosaving == true && player.health > (25/100) * player.healthMAX && player.inCombat == false && player.thirst > 5 && player.hunger > 10 && player.warmth < (7/10 * player.warmthMAX))
+    //Autosave
+    if (player.autosaveEnabled && player.health > (25/100) * player.healthMAX && player.inCombat == false && player.thirst > 5 && player.hunger > 10 && player.warmth > (5/10 * player.warmthMAX))
     {
-        if (Math.round(timePlayed % 180) == 0 && singleAuto == true && timePlayed >= 180)
+        if (new Date().getTime() - autosaveTime > player.autosaveFrequency * 1000) //manual number of seconds between autosaves (starts at 200)
         {
-            singleAuto = false;
-            if (lowBar != "save" && doAutosave == true)
+            autosaveTime = new Date().getTime();
+            if (lowBar != "save")
             {
                 //alert("** Autosave **");
+                console.log("** Autosave **");
                 saveType = "autosave";
                 save();
                 saveType = null;
-                //TODO a little autosave animation should be triggered by this.
             }
-        }
-        else if (Math.round(timePlayed % 180) != 0)
-        {
-            singleAuto = true;
         }
     }
 }
@@ -186,13 +182,30 @@ function save()
     {
         localStorage.setItem("save8", saveFile);
     }
-    else if (saveType == "autosave")
-    {
-        localStorage.setItem("autosave", saveFile);
-    }
     else if (saveType == "quicksave")
     {
         localStorage.setItem("quicksave", saveFile);
+    }
+    else if (saveType == "autosave")
+    {
+        //Code that I took off the Internet in order to download a string as a file
+        var csvString = saveFile;
+        var fileName = player.name + "_Auto";
+
+        if (window.navigator.msSaveOrOpenBlob)
+        {
+            var blob = new Blob([csvString]);
+            window.navigator.msSaveOrOpenBlob(blob, fileName + ".txt");
+        }
+        else
+        {
+            var a = document.createElement('a');
+            a.href = 'data:attachment/txt,' +  encodeURIComponent(csvString);
+            a.target = '_blank';
+            a.download = fileName + ".txt"; //csv
+            document.body.appendChild(a);
+            a.click();
+        }
     }
     else if (saveType == "download")
     {

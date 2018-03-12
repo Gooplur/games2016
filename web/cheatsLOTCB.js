@@ -811,11 +811,38 @@ function cheats()
         {
             player.level = 51;
         }
-        else if (cheatcode == "tellArmour")
+        else if (cheatcode.toLowerCase() == "toggleautosave")
+        {
+            if (player.autosaveEnabled)
+            {
+                alert("Autosaving Disabled!");
+                player.autosaveEnabled = false;
+            }
+            else
+            {
+                alert("Autosaving Enabled!");
+                player.autosaveEnabled = true;
+            }
+        }
+        else if (cheatcode.toLowerCase() == "saverate")
+        {
+            var saveRateManual = prompt("Set the rate at which the game downloads an autosave file to your computer in terms of seconds. If you do not want autosaving use the cheat 'toggleAutosave'.");
+            if (saveRateManual >= 180)
+            {
+                player.autosaveFrequency = saveRateManual;
+                alert("The game will now make an autosave every " + saveRateManual + " seconds.")
+            }
+            else
+            {
+                player.autosaveFrequency = 200;
+                alert("Input too small, save rate set to default. (minimum input: 180 seconds)")
+            }
+        }
+        else if (cheatcode.toLowerCase() == "tellarmour")
         {
             alert("Armour Rating [ " + player.armourTotal + " ]");
         }
-        else if (cheatcode == "tellWeight")
+        else if (cheatcode.toLowerCase() == "tellweight")
         {
             alert("Weight Carried [ " + player.carryWeight + " ]");
         }

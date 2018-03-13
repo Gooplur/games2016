@@ -95,6 +95,12 @@ function legendaryPrerequisites()
     window.theme = theme;
 
     //action sounds
+    var carbineShot = new Audio("sounds/polySounds/carbineShot.wav");
+    window.carbineShot = carbineShot;
+
+    var loadMag = new Audio("sounds/insertClip.mp3");
+    window.loadMag = loadMag;
+
     var crossbowGun = new Audio("sounds/basicGunSound.mp3");
     window.crossbowGun = crossbowGun;
 
@@ -1628,6 +1634,8 @@ var showUnitAttackBubble;
 var testBarriers;
 var dialogueActive = false;
 var autosaveTime;
+var magAmmo = 30;
+var reloadMag = false;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -2751,6 +2759,7 @@ function theLegend()
     allWeapons.push(new Item("meatCleaver", false)); //64
     allWeapons.push(new Item("pouchOfGlowDust", false)); //65 //this accounts for all throwable dust varieties
     allWeapons.push(new Item("theUndyingEdge", false)); //66
+    allWeapons.push(new Item("m16Carbine", false)); //67 //this weapon is not canon
 
 
 //This list holds one of each type of worn item so that the player can access the worn item stats.

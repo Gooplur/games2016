@@ -860,6 +860,11 @@ function cheats()
                 machineGunCrossbow = true;
             }
         }
+        else if (cheatcode == "ohSayCanYouSeeByTheDawn'sEarlyLight" && player.name == "Big Sister" || cheatcode == "ohSayCanYouSeeByTheDawn'sEarlyLight" && player.name == "Big Brother" || cheatcode == "ohSayCanYouSeeByTheDawn'sEarlyLight" && player.name == "Uncle Sam" || cheatcode == "whoseBroadStripesAndBrightStarsThroughThePerilousFight" && player.name == "Uncle Sam" || cheatcode == "ohSayCanYouSeeByTheDawn'sEarlyLight" && player.name == "Aunt Sue" || cheatcode == "whoseBroadStripesAndBrightStarsThroughThePerilousFight" && player.name == "Aunt Sue")
+        {
+            Inventory.push([new Item("m16Carbine", false, false), 1]);
+            Inventory.push([new Item("m16CarbineClip", false, false), 25]);
+        }
         else if (cheatcode.toLowerCase() == "clearitems")
         {
             worldItems = [];

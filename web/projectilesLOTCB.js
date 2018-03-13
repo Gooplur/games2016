@@ -141,6 +141,10 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.damage / 2) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.negateArmour / 2))) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                         }
+                        else if (type == "5.56MMRound" && ArtificialIntelligenceAccess[i].healthMAX > 90 && ArtificialIntelligenceAccess[i].type != "Person" && ArtificialIntelligenceAccess[i].type != "Soldier")
+                        {
+                            ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.damage / 3) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.negateArmour / 20))) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                        }
                         else
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
@@ -744,6 +748,46 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
                 XXX.rotate(this.rotation + (1 / 2 * Math.PI));
                 XXX.drawImage(mofu, 1321, 16, 5, 5, 4, 4, 8, 8);
+                XXX.restore();
+            }
+        }
+        else if (type == "5.56MMRound")
+        {
+            if (list == playerProjectiles && this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.damage = 29;
+                this.shoot();
+                this.impact();
+                this.shoot();
+                this.impact();
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                XXX.drawImage(troli, 365, 334, 11, 16, 0, 0, 11, 16);
+                XXX.restore();
+            }
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(this.rotation + (1 / 2 * Math.PI));
+                XXX.drawImage(troli, 365, 334, 11, 16, 0, 0, 11, 16);
                 XXX.restore();
             }
         }

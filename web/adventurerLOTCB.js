@@ -555,6 +555,17 @@ function Adventurer()
                 this.REQB = true;
             }
         }
+        else if (this.weapon.subUtility == "assaultRifle")
+        {
+            if (this.ammoLoaded == false)
+            {
+                this.REQB = false;
+            }
+            else
+            {
+                this.REQB = true;
+            }
+        }
 
         //setSpellToFalseWhenWeaponIsTrue
         if (this.weaponEquipped != "none" && this.spell != "none")
@@ -580,7 +591,7 @@ function Adventurer()
                 XXX.drawImage(nognog, 739, 351, 70, 62, - 1/2 * ((70 * 1.2) / 23 * this.mySize), - 1/2 * ((62 * 1.2) / 23 * this.mySize), (70 * 1.2) / 23 * this.mySize, (62 * 1.2) / 23 * this.mySize);
                 XXX.restore();
             }
-        }
+        };
         this.onWeb();
         //electricity on the highest layer possible;
         this.onElectric = function()
@@ -594,7 +605,7 @@ function Adventurer()
                     this.health -= Math.max(0, 1 - (this.totalShockResist / 10));
                 }
             }
-        }
+        };
         //fire effect on highest layer possible;
         this.onFire = function()
         {
@@ -5826,6 +5837,38 @@ function Adventurer()
                                 Inventory[blkPwder][1] -= 1;
                                 this.projectileReleased = false;
                                 this.strike = true;
+                            }
+
+                            //console.log("projectile released " + this.projectileReleased + " ammo loaded " + this.ammoLoaded + " attacking " + this.attacking);
+                            if (this.ammoLoaded == true)
+                            {
+                                this.projectileReleased = true;
+                            }
+                        }
+                    }
+                    else if (Inventory[i][0].utility == "ammunition" && Inventory[i][0].subUtility == "mag" && Inventory[i][0].equipped == true && this.rangedWeaponType == "assaultRifle")
+                    {
+                        spaceKey = false;
+                        if (this.attacking != true)
+                        {
+                            //reload mag if empty
+                            if (magAmmo <= 0 && Inventory[i][1] >= 1) //this.ammoLoaded == false
+                            {
+                                Inventory[i][1] -= 1;
+                                magAmmo = 30;
+                                reloadMag = true;
+                            }
+
+                            //fire bullet
+                            if (magAmmo > 0)
+                            {
+                                if (reloadMag != true)
+                                {
+                                    magAmmo -= 1;
+                                }
+                                this.projectileReleased = false; //false
+                                this.strike = true;
+                                //this.ammoLoaded = true;
                             }
 
                             //console.log("projectile released " + this.projectileReleased + " ammo loaded " + this.ammoLoaded + " attacking " + this.attacking);
@@ -14306,6 +14349,138 @@ function Adventurer()
                 XXX.restore();
             }
         }
+        //M16 CARBINE
+        if (this.weaponEquipped == "m16Carbine")
+        {
+            if (reloadMag == false)
+            {
+                this.attacking = false;
+                this.ammoLoaded = true;
+            }
+
+            if (this.ammoLoaded == false)
+            {
+                if (new Date().getTime() - this.reloadTime > allWeapons[67].rate * 100)
+                {
+                    this.stageEngine(6, 0.10, true);
+                }
+            }
+            else
+            {
+                if (this.projectileReleased == false)
+                {
+                    this.stage = "loadedAndReady";
+                }
+                else
+                {
+                    this.stage = 0;
+                }
+            }
+
+            //Loading ANIMATION
+            //This cycles through the stages of the load
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(troli, 818, 34, 133, 95, -1/2 * 133 * 0.75 + 2, -1/2 * 95 * 0.75 - 18, 133 * 0.75, 95 * 0.75);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(troli, 847, 305, 133, 95, -1/2 * 133 * 0.6 - 3.35, -1/2 * 95 * 0.6 - 12, 133 * 0.6, 95 * 0.6);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(troli, 440, 305, 133, 95, -1/2 * 133 * 0.6 - 3.35, -1/2 * 95 * 0.6 - 12, 133 * 0.6, 95 * 0.6);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(troli, 587, 304, 133, 95, -1/2 * 133 * 0.6 - 2.75, -1/2 * 95 * 0.6 - 12, 133 * 0.6, 95 * 0.6);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(troli, 714, 302, 133, 95, -1/2 * 133 * 0.6 - 2.75, -1/2 * 95 * 0.6 - 13.25, 133 * 0.6, 95 * 0.6);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(troli, 847, 305, 133, 95, -1/2 * 133 * 0.6 - 3.35, -1/2 * 95 * 0.6 - 12, 133 * 0.6, 95 * 0.6);
+                XXX.restore();
+                this.attacking = false;
+                this.ammoLoaded = true;
+                reloadMag = false;
+                loadMag.load();
+                loadMag.play();
+            }
+            else if (this.stage == "loadedAndReady")
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(troli, 818, 34, 133, 95, -1/2 * 133 * 0.75 + 2, -1/2 * 95 * 0.75 - 18, 133 * 0.75, 95 * 0.75);
+                XXX.restore();
+            }
+            else if (this.stage == "bangbangBurst")
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(troli, 820, 164, 133, 95, -1/2 * 133 * 0.75 + 4, -1/2 * 95 * 0.75 - 22, 133 * 0.75, 95 * 0.75);
+                XXX.restore();
+            }
+        }
         //BLUNDERBUSS
         if (this.weaponEquipped == "blunderbuss")
         {
@@ -14441,6 +14616,14 @@ function Adventurer()
             //This adjusts the starting position of the bullet.
             this.projectileX = -20;
             this.projectileY = -20;
+        }
+        else if (this.weaponEquipped == "m16Carbine")
+        {
+            this.weapon = allWeapons[67];
+
+            //This adjusts the starting position of the bullet.
+            this.projectileX = -5;
+            this.projectileY = -5;
         }
 
         //Access Stats for each weapon first. //1/2 is directly forward facing.
@@ -15064,7 +15247,7 @@ function Adventurer()
         else if (this.weaponIsRanged == true)
         {
             //On release the projectile is fired.
-            if (this.projectileReleased == false && spaceKey == false && this.ammoLoaded == true && this.weapon.subUtility == "bow" || this.weapon.subUtility == "crossbow" && this.projectileReleased == true && this.ammoLoaded == true || this.weapon.subUtility == "gun" && this.projectileReleased == true && this.ammoLoaded == true)
+            if (this.projectileReleased == false && spaceKey == false && this.ammoLoaded == true && this.weapon.subUtility == "bow" || this.weapon.subUtility == "crossbow" && this.projectileReleased == true && this.ammoLoaded == true || this.weapon.subUtility == "gun" && this.projectileReleased == true && this.ammoLoaded == true || this.weapon.subUtility == "assaultRifle" && this.projectileReleased == true && this.ammoLoaded == true)
             {
                 this.attacking = false;
                 this.reloadTime = new Date().getTime();
@@ -15079,6 +15262,10 @@ function Adventurer()
                     this.projectileReleased = false;
                 }
                 else if (this.weapon.subUtility == "gun")
+                {
+                    this.projectileReleased = false;
+                }
+                else if (this.weapon.subUtility == "assaultRifle")
                 {
                     this.projectileReleased = false;
                 }
@@ -15122,6 +15309,14 @@ function Adventurer()
                             playerProjectiles.push(new Projectile(loaded.type, X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation + (Math.random() * ((Math.PI / 360) * 50)) - ((Math.PI / 360) * 25), projector.speed, projector.range, projector.negateArmour, playerProjectiles));
                         }
                     }
+                    else if (player.weaponEquipped == "m16Carbine")
+                    {
+                        carbineShot.playbackRate = 2.5;
+                        crossbowGun.volume = 0.5;
+                        carbineShot.currentTime = 0;
+                        carbineShot.play();
+                        playerProjectiles.push(new Projectile("5.56MMRound", X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation, projector.speed, projector.range, projector.negateArmour, playerProjectiles));
+                    }
                     else
                     {
                         playerProjectiles.push(new Projectile(loaded.type, X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation, projector.speed, projector.range, projector.negateArmour, playerProjectiles));
@@ -15137,6 +15332,7 @@ function Adventurer()
                         break;
                     }
                 }
+
                 if (this.weapon.subUtility == "gun")
                 {
                     for (var i = 0; i < Inventory.length; i++)
@@ -24028,6 +24224,10 @@ function Adventurer()
                         {
                             XXX.fillText("      Range + " + Math.floor(Inventory[i][0].range) + "   Rate + " + Math.floor(Inventory[i][0].rate) + "    Projectile Speed + " + Math.floor(Inventory[i][0].speed * 2) + "    Armour Negation + " + Math.floor(Inventory[i][0].negateArmour), 157, 514);
                         }
+                        else if (Inventory[i][0].subUtility == "assaultRifle")
+                        {
+                            XXX.fillText("      Damage + 29" + "   Range + " + Math.floor(Inventory[i][0].range) + "   Rate + " + Math.floor(Inventory[i][0].rate) + "    Projectile Speed + " + Math.floor(Inventory[i][0].speed * 2) + "    Armour Negation + " + Math.floor(Inventory[i][0].negateArmour), 157, 514);
+                        }
 
                     }
                     else if (Inventory[i][0].utility == "ammunition")
@@ -24035,7 +24235,14 @@ function Adventurer()
                         XXX.font="14px Book Antiqua";
                         XXX.fillStyle = "black";
                         XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
-                        XXX.fillText("      Type: " + Inventory[i][0].subUtilityName + "   Damage + " + Math.floor(Inventory[i][0].damage) + "    Magical Damage + " + Math.floor(Inventory[i][0].magicalDamage), 157, 514);
+                        if (Inventory[i][0].subUtility == "mag")
+                        {
+                            XXX.fillText("      Type: " + Inventory[i][0].subUtilityName, 157, 514);
+                        }
+                        else
+                        {
+                            XXX.fillText("      Type: " + Inventory[i][0].subUtilityName + "   Damage + " + Math.floor(Inventory[i][0].damage) + "    Magical Damage + " + Math.floor(Inventory[i][0].magicalDamage), 157, 514);
+                        }
                     }
                     else if (Inventory[i][0].utility == "spell")
                     {

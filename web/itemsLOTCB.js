@@ -11765,6 +11765,62 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "m16CarbineClip")
+        {
+            //For All Items
+            this.identity = "M16 Carbine Clip";
+            this.weight = 0.25;
+            this.size = 4;
+            this.description = "A 30 round magazine fitted for 5.56 mm rounds.";
+            this.intForDes = 0;
+            this.intDescription = "Rounds left in current clip: " + magAmmo;
+
+            //Define Utility
+            this.utility = "ammunition";
+            //Sub Utility
+            this.subUtility = "mag";
+            this.subUtilityName = "Mag";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10; // at max, buy for 10.
+            this.sellValue = 10; // at max, sell for 10.
+        }
+        else if (this.type == "m16Carbine")
+        {
+            //For All Items
+            this.identity = "M16 Carbine";
+            this.weight = 3.3;
+            this.size = 15;
+            this.description = "A standard USA military grade rifle that fires 5.56 mm rounds.";
+            this.intForDes = 0;
+            this.intDescription = "This is second ammendment!!!";
+
+            //Define Utility
+            this.utility = "ranged";
+            //Sub Utility
+            this.subUtility = "assaultRifle";
+
+            //Utility Focused
+            this.range = 4000;
+            this.rate = 1;
+            this.speed = 9;
+            this.negateArmour = 200;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2000;
+            this.ingredients = [["Pre-manufactured Rifle Parts", 5]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2000; // at max, buy for 2000.
+            this.sellValue = 1800; // at max, sell for 1800.
+        }
         else if (this.type == "balkurPelt")
         {
             //For All Items
@@ -20435,6 +20491,16 @@ function Item(type, x, y)
             XXX.arc(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
             XXX.fill();
         }
+        else if (this.type == "m16CarbineClip")
+        {
+            XXX.beginPath();
+            XXX.drawImage(troli, 342, 330, 12, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1), 12 * 1, 16 * 1);
+        }
+        else if (this.type == "m16Carbine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(troli, 327, 359, 81, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 81 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1), 81 * 1, 21 * 1);
+        }
         else if (this.type == "freydicFolkTales" || this.type == "lonersJournal")
         {
             XXX.beginPath();
@@ -23157,6 +23223,16 @@ function Item(type, x, y)
             LXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             LXX.fill();
         }
+        else if (this.type == "m16CarbineClip")
+        {
+            LXX.beginPath();
+            LXX.drawImage(troli, 342, 330, 12, 16, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 16 * 1), 12 * 1, 16 * 1);
+        }
+        else if (this.type == "m16Carbine")
+        {
+            LXX.beginPath();
+            LXX.drawImage(troli, 327, 359, 81, 21, this.invX - (1/2 * 81 * 1), this.invY - (1/2 * 21 * 1), 81 * 1, 21 * 1);
+        }
         else if (this.type == "freydicFolkTales" || this.type == "lonersJournal")
         {
             LXX.beginPath();
@@ -25848,6 +25924,16 @@ function Item(type, x, y)
             XXX.fillStyle = "turquoise";
             XXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             XXX.fill();
+        }
+        else if (this.type == "m16CarbineClip")
+        {
+            XXX.beginPath();
+            XXX.drawImage(troli, 342, 330, 12, 16, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 16 * 1), 12 * 1, 16 * 1);
+        }
+        else if (this.type == "m16Carbine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(troli, 327, 359, 81, 21, this.invX - (1/2 * 81 * 1), this.invY - (1/2 * 21 * 1), 81 * 1, 21 * 1);
         }
         else if (this.type == "freydicFolkTales" || this.type == "lonersJournal")
         {

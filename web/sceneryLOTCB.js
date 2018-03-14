@@ -2197,6 +2197,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
                 if (this.phase == "opened")
                 {
+                    if (this.temporary > 2 && this.storageListChecked == true && player.noticed == true)
+                    {
+                        this.changeFactionRelation(this.information[3]);
+                    }
                     if (this.temporary > 2 && this.storageListChecked == true)
                     {
                         storedID = this.information[1];
@@ -2208,10 +2212,6 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 else
                 {
                     this.phase = "opened";
-                    if (this.temporary > 2 && this.storageListChecked == true && player.noticed == true)
-                    {
-                        this.changeFactionRelation(this.information[3]);
-                    }
                 }
             }
         }

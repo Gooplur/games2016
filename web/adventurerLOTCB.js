@@ -15759,7 +15759,7 @@ function Adventurer()
     this.buildUIBar = function ()
     {
         XXX.beginPath();
-        if (mouseY < 526 && lowBar != "skills" && lowBar != "shop" && lowBar != "bank" && lowBar != "crafting" && lowBar != "spellbook" && lowBar != "beastJournal" && lowBar != "questLog" && lowBar != "reading" && lowBar != "factionMenu")
+        if (mouseY < 526 && lowBar != "skills" && lowBar != "shop" && lowBar != "bank" && lowBar != "crafting" && lowBar != "spellbook" && lowBar != "beastJournal" && lowBar != "questLog" && lowBar != "reading" && lowBar != "storage" && lowBar != "factionMenu")
         {
             XXX.fillStyle = "rgba(211, 211, 211, 0.1)";
             XXX.strokeStyle = "rgba(211, 211, 211, 0.1)"
@@ -15776,7 +15776,7 @@ function Adventurer()
     //UI Buttons
     this.uiButton = function ()
     {
-        if (mouseY > 526 || lowBar == "skills" || lowBar == "shop" || lowBar == "bank" || lowBar == "crafting" || lowBar == "spellbook" || lowBar == "beastJournal" || lowBar == "questLog" || lowBar == "reading" || lowBar == "factionMenu")
+        if (mouseY > 526 || lowBar == "skills" || lowBar == "shop" || lowBar == "bank" || lowBar == "crafting" || lowBar == "spellbook" || lowBar == "beastJournal" || lowBar == "questLog" || lowBar == "reading" || lowBar == "storage" || lowBar == "factionMenu")
         {
             //inventory button
             XXX.beginPath();
@@ -19488,6 +19488,692 @@ function Adventurer()
             this.bankAccountScrolling();
             this.displayCustomerInventory();
             this.bankSlotPricer();
+        }
+    };
+
+    //STORAGE
+    this.displayStorage = function()
+    {
+        if (lowBar == "storage")
+        {
+            if (wKey || sKey || aKey || dKey)
+            {
+                lowBar = "inventory";
+            }
+            ////BACKGROUND
+            //the top part
+            XXX.beginPath();
+            XXX.fillStyle = "lightGrey";
+            XXX.strokeStyle = "black";
+            XXX.lineWidth = 1;
+            XXX.rect(1, 1, 1398, 80);
+            XXX.fill();
+            XXX.stroke();
+
+            //the bottom part
+            XXX.beginPath();
+            XXX.fillStyle = "lightGrey";
+            XXX.strokeStyle = "black";
+            XXX.lineWidth = 1;
+            XXX.rect(1, 529, 149, 20);
+            XXX.fill();
+            XXX.stroke();
+
+            //Exit bank Button
+            //the button part
+            if (mouseX > 2 && mouseX < 2 + 148 && mouseY > 529 && mouseY < 529 + 20)
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "white";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 3;
+                XXX.rect(2, 529, 148, 20);
+                XXX.fill();
+                XXX.stroke();
+
+                if (clicked == true)
+                {
+                    clicked = false;
+                    lowBar = "information";
+                    gameState = "active";
+                }
+            }
+            else
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "E8E8E8";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 3;
+                XXX.rect(2, 529, 148, 20);
+                XXX.fill();
+                XXX.stroke();
+            }
+            //the text part
+            XXX.font = "bold 14px Book Antiqua";
+            XXX.fillStyle = "black";
+            XXX.textAlign = "center";
+            XXX.fillText("Exit Storage", 75, 543);
+
+            //line between bank account and description
+            XXX.beginPath();
+            XXX.strokeStyle = "black";
+            XXX.lineWidth = 2;
+            XXX.moveTo(0, 80);
+            XXX.lineTo(1400, 80);
+            XXX.stroke();
+
+            //DISPLAY PLAYER'S INVENTORY
+            this.displayCustomerInventory = function()
+            {
+                // each inventory slot is a list with three things in it... [Item, quantity]
+                for (var i = 0; i < Inventory.length; i++)
+                {
+                    if (Inventory[i][0].equipped == true)
+                    {
+                        LXX.beginPath();
+                        LXX.lineWidth = 2;
+                        LXX.fillStyle ="rgba(102, 255, 102, 0.35)";
+                        LXX.strokeStyle ="black";
+                        LXX.rect(invScroll + 20.5 + (79 * i), 0.5, 79, 79);
+                        LXX.fill();
+                        LXX.stroke();
+                        Inventory[i][0].drawInventoryItem(Inventory[i][0].type, invScroll + 20.5 + (79 * i) + (1/2 * 79), 1/2 * 79);
+                        //quantity
+                        LXX.font="16px Book Antiqua";
+                        LXX.textAlign="left";
+                        LXX.fillStyle ="black";
+                        if (Inventory[i][1] < 1000)
+                        {
+                            LXX.fillText(Inventory[i][1], invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                        }
+                        else if (Inventory[i][1] >= 1000 && Inventory[i][1] < 1000000)
+                        {
+                            LXX.fillText(Math.floor(Inventory[i][1] / 1000) + "K", invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                        }
+                        else if (Inventory[i][1] >= 1000000)
+                        {
+                            LXX.fillText((Math.floor(Inventory[i][1] / 100000) / 10) + "M", invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                        }
+                        //weight
+                        LXX.font="10px Book Antiqua";
+                        LXX.fillStyle ="black";
+                        LXX.textAlign="right";
+                        LXX.fillText("W:" + Inventory[i][0].weight, invScroll + 20.5 + (79 * i) + (1/2 * 79) + 37, (39/40 * 79));
+                        LXX.textAlign="left"; // this is to reset it back to standard for those oldies out there...
+                    }
+                    else
+                    {
+                        LXX.beginPath();
+                        LXX.lineWidth = 2;
+                        LXX.fillStyle ="rgba(222, 184, 135, 0.15)";
+                        LXX.strokeStyle ="black";
+                        LXX.rect(invScroll + 20.5 + (79 * i), 0.5, 79, 79);
+                        LXX.fill();
+                        LXX.stroke();
+                        Inventory[i][0].drawInventoryItem(Inventory[i][0].type, invScroll + 20.5 + (79 * i) + (1/2 * 79), 1/2 * 79);
+                        //quantity
+                        LXX.font="16px Book Antiqua";
+                        LXX.textAlign="left";
+                        LXX.fillStyle ="black";
+                        if (Inventory[i][1] < 1000)
+                        {
+                            LXX.fillText(Inventory[i][1], invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                        }
+                        else if (Inventory[i][1] >= 1000 && Inventory[i][1] < 1000000)
+                        {
+                            LXX.fillText(Math.floor(Inventory[i][1] / 1000) + "K", invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                        }
+                        else if (Inventory[i][1] >= 1000000)
+                        {
+                            LXX.fillText((Math.floor(Inventory[i][1] / 100000) / 10) + "M", invScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                        }
+                        //weight
+                        LXX.font="10px Book Antiqua";
+                        LXX.fillStyle ="black";
+                        LXX.textAlign="right";
+                        LXX.fillText("W:" + Inventory[i][0].weight, invScroll + 20.5 + (79 * i) + (1/2 * 79) + 37, (39/40 * 79));
+                        LXX.textAlign="left"; // this is to reset it back to standard for those oldies out there...
+                    }
+                }
+
+                //left scroll arrow
+                LXX.beginPath();
+                LXX.lineWidth = 1;
+                LXX.fillStyle ="darkGrey";
+                LXX.strokeStyle ="black";
+                LXX.rect(0.5, 0.5, 20, 79);
+                LXX.fill();
+                LXX.stroke();
+                LXX.drawImage(polyPNG, 1, 735, 11, 30, 4, 8, 12, 64);
+
+                //weight display
+                LXX.beginPath();
+                LXX.fillStyle ="lightGray";
+                LXX.strokeStyle ="black";
+                LXX.rect(1329.5, 0.1, 50, 79.8);
+                LXX.fill();
+                LXX.stroke();
+                //Draw a cover on the weight display to represent the amount of carry weight filled.
+                LXX.beginPath();
+                //LXX.fillStyle ="rgba(255, 255, 255, 0.65)"; //white fill in colour
+                //LXX.fillStyle ="rgba(139, 134, 78, 0.8)"; //beige fill in colour
+                //LXX.fillStyle = "rgba(138, 54, 15, 0.65)"; //burnt sienna colour
+                LXX.fillStyle ="grey";
+                LXX.rect(1329.6, 79.5, 50, -79 * this.carryWeight / this.carryWeightMAX);
+                LXX.fill();
+                //Draw the weight number on the top and bottom and the deviding bar.
+                LXX.font="16px Book Antiqua";
+                LXX.fillStyle = "black";
+                LXX.textAlign="center";
+                LXX.fillText(JSON.stringify(Math.floor(this.carryWeight)), 1352, 25);
+                //dividing line
+                LXX.beginPath();
+                LXX.strokeStyle="black";
+                LXX.lineWidth=3;
+                LXX.moveTo(1334, 39.5);
+                LXX.lineTo(1374, 39.5);
+                LXX.stroke();
+                //divisor
+                LXX.font="16px Book Antiqua";
+                LXX.fillStyle = "black";
+                LXX.textAlign="center";
+                LXX.fillText(JSON.stringify(Math.floor(this.carryWeightMAX)), 1352, 64.5);
+                LXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+
+                //right scroll arrow
+                LXX.beginPath();
+                LXX.lineWidth=1;
+                LXX.fillStyle ="darkGrey";
+                LXX.strokeStyle ="black";
+                LXX.rect(1379.5, 0.5, 20, 79);
+                LXX.fill();
+                LXX.stroke();
+                LXX.drawImage(polyPNG, 11, 735, 11, 30, 1384, 8, 12, 64);
+            };
+
+            //
+            //THE INVENTORY's SCROLLING IS LEAKING INTO BOTH SHOP AND BANK SYSTEMS So an extra inventory scroll is not needed here.
+            //
+            //FIND STORAGE
+            this.findStorage = function()
+            {
+                for (var i = 0; i < storageList.length; i++)
+                {
+                    if (storageList[i][0] == storedID)
+                    {
+                        stored = storageList[i][2];
+                        break;
+                    }
+                }
+            };
+
+            //DISPLAY BANK ACCOUNT
+            this.displayStorageList = function()
+            {
+                // each inventory slot is a list with three things in it... [Item, quantity]
+                for (var i = 0; i < storageSlots; i++)
+                {
+                    XXX.beginPath();
+                    XXX.lineWidth = 2;
+                    XXX.fillStyle ="rgba(222, 184, 135, 0.15)";
+                    XXX.strokeStyle ="black";
+                    XXX.rect(bankScroll + 20.5 + (79 * i), 0.5, 79, 79);
+                    XXX.fill();
+                    XXX.stroke();
+                    if (i < stored.length)
+                    {
+                        //image
+                        stored[i][0].drawShopCraftItem(stored[i][0].type, bankScroll + 20.5 + (79 * i) + (1/2 * 79), 1/2 * 79);
+                        //quantity
+                        XXX.font="16px Book Antiqua";
+                        XXX.textAlign="left";
+                        XXX.fillStyle ="black";
+                        if (stored[i][1] < 1000)
+                        {
+                            XXX.fillText(stored[i][1], bankScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                        }
+                        else if (stored[i][1] >= 1000 && stored[i][1] < 1000000)
+                        {
+                            XXX.fillText(Math.floor(stored[i][1] / 1000) + "K", bankScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                        }
+                        else if (stored[i][1] >= 1000000)
+                        {
+                            XXX.fillText((Math.floor(stored[i][1] / 100000) / 10) + "M", bankScroll + 20.5 + (79 * i) + (1/2 * 79) - 37, (39/40 * 79));
+                        }
+                        //weight
+                        XXX.font="10px Book Antiqua";
+                        XXX.fillStyle ="black";
+                        XXX.textAlign="right";
+                        XXX.fillText("W:" + stored[i][0].weight, bankScroll + 20.5 + (79 * i) + (1/2 * 79) + 37, (39/40 * 79));
+                        XXX.textAlign="left"; // this is to reset it back to standard for those oldies out there...
+                    }
+                }
+
+                //left scroll arrow
+                XXX.beginPath();
+                XXX.lineWidth = 1;
+                XXX.fillStyle ="darkGrey";
+                XXX.strokeStyle ="black";
+                XXX.rect(0.5, 0.5, 20, 79);
+                XXX.fill();
+                XXX.stroke();
+                XXX.drawImage(polyPNG, 1, 735, 11, 30, 4, 8, 12, 64);
+
+                //right scroll arrow
+                XXX.beginPath();
+                XXX.lineWidth=1;
+                XXX.fillStyle ="darkGrey";
+                XXX.strokeStyle ="black";
+                XXX.rect(1379.5, 0.5, 20, 79);
+                XXX.fill();
+                XXX.stroke();
+                XXX.drawImage(polyPNG, 11, 735, 11, 30, 1384, 8, 12, 64);
+            };
+
+            this.storageScrolling = function()
+            {
+                //When the left inventory scroll is clicked scroll one to the left if there is one to the left otherwise don't.
+                if (this.bankPosition < storageSlots && mouseX > 1379.5 && mouseX < 1399.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true) //this (20.5, 0.5, 79, 79) is the position the first in the list will be in if the left scroll will not work.
+                {
+                    clickReleased = false;
+                    bankScroll -= 79;
+                    this.bankPosition += 1;
+                }
+
+                //When the right inventory scroll is clicked scroll one to the right if there is one to the right otherwise don't.
+                if (this.bankPosition > 0 && mouseX > 0.5 && mouseX < 20.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true)
+                {
+                    clickReleased = false;
+                    bankScroll += 79;
+                    this.bankPosition -= 1;
+                }
+            };
+
+            this.customerInventoryInteract = function()
+            {
+                var listOfInvX1Coords = []; //this is the list of the X coordinates for the Inventory Slots.
+
+                for (var i = -this.inventoryPosition; i < Inventory.length - this.inventoryPosition; i++)
+                {
+                    listOfInvX1Coords.push(20.5 + (79 * i));
+                }
+
+
+                var listOfInvX2Coords = []; //This is the same as the X1 coords except for with an added 79 to each.
+
+                for (var i = -this.inventoryPosition; i < Inventory.length - this.inventoryPosition; i++)
+                {
+                    listOfInvX2Coords.push(20.5 + (79 * i) + 79);
+                }
+
+
+                var invY1Coord = 0.5; //This doesn't change.
+
+
+                var invY2Coord = 79.5; //this is just Y + 79
+
+                for (var i = Inventory.length - 1; i > -1; i--)
+                {
+                    if (lMouseX >= 21 && lMouseX <= 1329) //This checks if the mouse is between the scroll buttons rather than on them.
+                    {
+                        if (clickReleased == true && lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord && this.REQB == false) //When you click on an item you either access its utility or you equip it.
+                        {
+                            clickReleased = false;
+                            if (Inventory[i][0].equipped == false)
+                            {
+                                var gotIn = false;
+                                var deletion = false;
+                                var deleteNum = -1;
+                                for (var j = stored.length - 1; j > -1; j--)
+                                {
+                                    //console.log("i: " + i + " j: " + j + " bankAccount.length: " + bankAccount.length + " Inventory.length: " + Inventory.length);
+                                    //console.log("bank: " + bankAccount[j]);
+                                    //console.log("Inv: " + Inventory[i][0]);
+                                    if (stored[j][0].type == Inventory[i][0].type)
+                                    {
+                                        gotIn = true;
+                                        if (altKey)
+                                        {
+                                            altKey = false;
+                                            var amount = prompt("Enter the amount you would like to store.");
+                                            var amountt = 0;
+                                            if (amount != "")
+                                            {
+                                                amountt = JSON.parse(amount);
+                                            }
+
+                                            if (amountt != 0)
+                                            {
+                                                if (Inventory[i][1] - amountt <= 0)
+                                                {
+                                                    if (Inventory[i][1] - amountt == 0 && amountt != 0)
+                                                    {
+                                                        stored[j][1] += amountt;
+                                                        deletion = true;
+                                                        deleteNum = i;
+                                                        //Inventory.splice(i, 1);
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    stored[j][1] += amountt;
+                                                    Inventory[i][1] -= amountt;
+                                                }
+                                            }
+
+                                        }
+                                        else if (shiftKey)
+                                        {
+                                            stored[j][1] += Inventory[i][1];
+                                            deletion = true;
+                                            deleteNum = i;
+                                            //Inventory.splice(i, 1);
+                                        }
+                                        else
+                                        {
+                                            stored[j][1] += 1;
+                                            if (Inventory[i][1] - 1 < 1)
+                                            {
+                                                deletion = true;
+                                                deleteNum = i;
+                                                //Inventory.splice(i, 1);
+                                            }
+                                            else
+                                            {
+                                                Inventory[i][1] -= 1;
+                                            }
+                                        }
+                                    }
+                                }
+                                if (gotIn == false)
+                                {
+                                    if (stored.length < storageSlots)
+                                    {
+                                        var invenType = Inventory[i][0].type;
+                                        if (altKey)
+                                        {
+                                            altKey = false;
+                                            var amount = prompt("Enter the amount you would like to store.");
+                                            var amountt = 0;
+                                            if (amount != "")
+                                            {
+                                                amountt = JSON.parse(amount);
+                                            }
+
+                                            if (amountt != 0)
+                                            {
+                                                if (Inventory[i][1] - amountt <= 0)
+                                                {
+                                                    if (Inventory[i][1] - amountt == 0)
+                                                    {
+                                                        stored.push([new Item(invenType, false, false), amountt]);
+                                                        deletion = true;
+                                                        deleteNum = i;
+                                                        //Inventory.splice(i, 1);
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    stored.push([new Item(invenType, false, false), amountt]);
+                                                    Inventory[i][1] -= amountt;
+                                                }
+                                            }
+
+                                        }
+                                        else if (shiftKey)
+                                        {
+                                            stored.push([new Item(invenType, false, false), Inventory[i][1]]);
+                                            deletion = true;
+                                            deleteNum = i;
+                                            //Inventory.splice(i, 1);
+                                        }
+                                        else
+                                        {
+                                            stored.push([new Item(invenType, false, false), 1]);
+                                            if (Inventory[i][1] - 1 < 1)
+                                            {
+                                                deletion = true;
+                                                deleteNum = i;
+                                                //Inventory.splice(i, 1);
+                                            }
+                                            else
+                                            {
+                                                Inventory[i][1] -= 1;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                if (deletion == true)
+                                {
+                                    deletion = false;
+                                    Inventory.splice(deleteNum, 1);
+                                }
+                            }
+                        }
+                        else if (lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord) //give the name of the Item and its stats when hovered over.
+                        {
+                            var sizer = 0;
+
+                            for (var k = 0; k < Inventory[i][0].identity.length; k++)
+                            {
+                                if (Inventory[i][0].identity[k] == "'")
+                                {
+                                    sizer += 1;
+                                }
+                                else if (Inventory[i][0].identity[k].indexOf(' ') != -1)
+                                {
+                                    sizer += 0;
+                                }
+                                else if (Inventory[i][0].identity[k] == Inventory[i][0].identity[k].toUpperCase() )
+                                {
+                                    sizer += 17; //9.21;
+                                }
+                                else if (Inventory[i][0].identity[k] == Inventory[i][0].identity[k].toLowerCase())
+                                {
+                                    sizer += 12;
+                                }
+                            }
+
+                            XXX.beginPath();
+                            XXX.fillStyle="white";
+                            XXX.fillRect(3, 503, sizer, 22);
+                            //The Name of the Item
+                            XXX.font = "bold 22px Book Antiqua";
+                            XXX.fillStyle = "black";
+                            XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                            XXX.fillText(Inventory[i][0].identity, 4, 522);
+                        }
+                    }
+                }
+            };
+
+            this.storageInteract = function()
+            {
+                var listOfInvX1Coords = []; //this is the list of the X coordinates for the Inventory Slots.
+
+                for (var i = -this.bankPosition; i < stored.length - this.bankPosition; i++)
+                {
+                    listOfInvX1Coords.push(20.5 + (79 * i));
+                }
+
+
+                var listOfInvX2Coords = []; //This is the same as the X1 coords except for with an added 79 to each.
+
+                for (var i = -this.bankPosition; i < stored.length - this.bankPosition; i++)
+                {
+                    listOfInvX2Coords.push(20.5 + (79 * i) + 79);
+                }
+
+
+                var invY1Coord = 0.5; //This doesn't change.
+
+
+                var invY2Coord = 79.5; //this is just Y + 79
+
+                for (var i = stored.length - 1; i > -1; i--)
+                {
+                    stored[i][0].setItemID();
+                    if (mouseX >= 21 && mouseX <= 1329  && mouseY < 80) //This checks if the mouse is between the scroll buttons rather than on them.
+                    {
+                        if (clickReleased == true && mouseX > listOfInvX1Coords[i] && mouseX < listOfInvX2Coords[i] && mouseY > invY1Coord && mouseY < invY2Coord && this.REQB == false)
+                        {
+                            clickReleased = false;
+                            var gotIn = false;
+                            for (var j = Inventory.length - 1; j > -1; j--)
+                            {
+                                //console.log("i: " + i + " j: " + j + "bankAccount.length: " + bankAccount.length);
+                                //console.log("bank: " + bankAccount[i]);
+                                //console.log("Inv: " + Inventory[j][0]);
+                                if (stored[i][0].type == Inventory[j][0].type)
+                                {
+                                    gotIn = true;
+                                    if (altKey)
+                                    {
+                                        altKey = false;
+                                        var amount = prompt("Enter the amount you would like to remove.");
+                                        var amountt = 0;
+                                        if (amount != "")
+                                        {
+                                            amountt = JSON.parse(amount);
+                                        }
+
+                                        if (amountt != 0)
+                                        {
+                                            if (stored[i][1] - amountt <= 0)
+                                            {
+                                                if (stored[i][1] - amountt == 0)
+                                                {
+                                                    Inventory[j][1] += amountt;
+                                                    stored.splice(i, 1);
+                                                    break;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Inventory[j][1] += amountt;
+                                                stored[i][1] -= amountt;
+                                            }
+                                        }
+
+                                    }
+                                    else if (shiftKey)
+                                    {
+                                        Inventory[j][1] += bankAccount[i][1];
+                                        stored.splice(i, 1);
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        Inventory[j][1] += 1;
+                                        if (stored[i][1] - 1 < 1)
+                                        {
+                                            stored.splice(i, 1);
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            stored[i][1] -= 1;
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (gotIn == false)
+                            {
+                                var invenType = stored[i][0].type;
+                                if (altKey)
+                                {
+                                    altKey = false;
+                                    var amount = prompt("Enter the amount you would like to remove.");
+                                    var amountt = 0;
+                                    if (amount != "")
+                                    {
+                                        amountt = JSON.parse(amount);
+                                    }
+
+                                    if (amountt != 0)
+                                    {
+                                        if (stored[i][1] - amountt <= 0)
+                                        {
+                                            if (stored[i][1] - amountt == 0 && amountt != 0)
+                                            {
+                                                Inventory.push([new Item(invenType, false, false), amountt]);
+                                                stored.splice(i, 1);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Inventory.push([new Item(invenType, false, false), amountt]);
+                                            stored[i][1] -= amountt;
+                                        }
+                                    }
+
+                                }
+                                else if (shiftKey)
+                                {
+                                    Inventory.push([new Item(invenType, false, false), stored[i][1]]);
+                                    stored.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory.push([new Item(invenType, false, false), 1]);
+                                    if (stored[i][1] - 1 < 1)
+                                    {
+                                        stored.splice(i, 1);
+                                    }
+                                    else
+                                    {
+                                        stored[i][1] -= 1;
+                                    }
+                                }
+                            }
+                        }
+                        else if (mouseX > listOfInvX1Coords[i] && mouseX < listOfInvX2Coords[i] && mouseY > invY1Coord && mouseY < invY2Coord) //give the name of the Item and its stats when hovered over.
+                        {
+                            var sizer = 0;
+
+                            for (var k = 0; k < stored[i][0].identity.length; k++)
+                            {
+                                if (stored[i][0].identity[k] == "'")
+                                {
+                                    sizer += 1;
+                                }
+                                else if (stored[i][0].identity[k].indexOf(' ') != -1)
+                                {
+                                    sizer += 0;
+                                    console.log("space");
+                                }
+                                else if (stored[i][0].identity[k] == stored[i][0].identity[k].toUpperCase() )
+                                {
+                                    sizer += 17; //9.21;
+                                }
+                                else if (stored[i][0].identity[k] == stored[i][0].identity[k].toLowerCase())
+                                {
+                                    sizer += 12;
+                                }
+                            }
+
+                            XXX.beginPath();
+                            XXX.fillStyle="white";
+                            XXX.fillRect(3, 82, sizer, 22);
+                            //The Name of the Item
+                            XXX.font = "bold 22px Book Antiqua";
+                            XXX.fillStyle = "black";
+                            XXX.textAlign = "left"; //this is to reset it to the standard for the rest to come.
+                            console.log(stored);
+                            XXX.fillText(stored[i][0].identity, 4, 100);
+                        }
+                    }
+                }
+            };
+
+            this.findStorage();
+            this.storageInteract();
+            this.customerInventoryInteract();
+            this.displayStorageList();
+            this.storageScrolling();
+            this.displayCustomerInventory();
         }
     };
 
@@ -24708,6 +25394,9 @@ function Adventurer()
 
         //Bank
         this.displayBank(); //#Bank
+
+        //Storage
+        this.displayStorage(); //#Storage
 
         //Beast Journal
         this.displayBeastJournal(); //#BeastJournal

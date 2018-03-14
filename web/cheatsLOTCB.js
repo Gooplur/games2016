@@ -562,7 +562,7 @@ function cheats()
         }
         else if (cheatcode.toLowerCase() == "tellme")
         {
-
+            console.log(storageList);
         }
         else if (cheatcode.toLowerCase() == "dime")
         {

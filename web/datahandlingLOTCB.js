@@ -73,6 +73,33 @@ function saveList(list, listName, complex) //complex is for a list that has list
             contents.push([{type: className, data: classData}, amount]); //this adds a save object interpretation of the original class that has the original classes type and all of the original class's non-method data.
         }
     }
+    else if (complex == "storage")
+    {
+        for (var i = 0; i < list.length; i++)
+        {
+            var id = list[i][0];
+            var slots = list[i][1];
+            var itemListAspect = [];
+            for (var j = 0; j < list[i][2].length; j++)
+            {
+                var elem = list[i][2][j][0]; //This variable is set equal to the class in the argument list.
+                var className = elem.constructor.name; //this stores the specific identity of the class like whether it is a Unit or an Item or a Projectile etc.
+                var classData = {}; //This is just like the data in the class in that it stores all of the keys and values that the focus class presently holds excluding the methods.
+                var amount = list[i][2][j][1];
+
+                for (var key in elem)
+                {
+                    var value = elem[key]; //this finds and stores the value attached to the present key within the focus class.
+                    if (typeof(value) != "function") // so if the key is anything other than a method it will be added to the object class data so that it can be saved.
+                    {
+                        classData[key] = value;
+                    }
+                }
+                itemListAspect.push([{type: className, data: classData}, amount])
+            }
+            contents.push([id, slots, itemListAspect]); //this adds a save object interpretation of the original class that has the original classes type and all of the original class's non-method data.
+        }
+    }
     else
     {
         for (var i = 0; i < list.length; i++)
@@ -117,6 +144,7 @@ function save()
     saveList(unitProjectiles, "unitProjectiles");
     saveList(shopInventory, "shopInventory", true);
     saveList(bankAccount, "bankAccount", true);
+    saveList(storageList, "storageList", "storage");
     for (var n = 0; n < ArtificialIntelligenceAccess.length; n++)
     {
         var merchN = "merchandise" + JSON.stringify(n);
@@ -149,6 +177,7 @@ function save()
     saveBrain["beastJournal"] = beastJournal;
 
     var saveFile = JSON.stringify(saveBrain);
+
     //based on what save type the player chooses the save will be stored in one of the four game slots.
     if (saveType == 1)
     {
@@ -249,6 +278,7 @@ function load()
     Inventory = loadList("Inventory", true);
     shopInventory = loadList("shopInventory", true);
     bankAccount = loadList("bankAccount", true);
+    //storageList = loadList("storageList", "storage");
     for (var n = 0; n < ArtificialIntelligenceAccess.length; n++)
     {
         //ArtificialIntelligenceAccess[n].ultra.merchandise = loadList("merchandise" + n, true);
@@ -287,6 +317,27 @@ function loadList(listName, complex)
                 elem[key] = parts[0].data[key];
             }
             contents.push([elem, amount]);
+        }
+    }
+    else if (complex == "storage")
+    {
+        for (var i = 0; i < load.length; i++)
+        {
+            var id = load[i][0];
+            var slots = load[i][1];
+            var itemListAspect = [];
+            for (var j = 0; j < load[i][2].length; j++)
+            {
+                var parts = load[i][2][j][0]; // [[id, slots, [ [{TYPE, DATA}, #], ... ], ... ] //Capital implies that it is selected by what is written in the code to the left.
+                var elem = eval("new " + parts.type + "()");
+                var amount = load[i][2][j][1];
+                for (var key in parts.data)
+                {
+                    elem[key] = parts.data[key];
+                }
+                itemListAspect.push([elem, amount]);
+            }
+            contents.push([id, slots, itemListAspect]);
         }
     }
     else
@@ -408,6 +459,10 @@ function retrieveSave(listName)
     else if (listName == "bankAccount")
     {
         return parsed.bankAccount;
+    }
+    else if (listName == "storageList")
+    {
+        return parsed.storageList;
     }
     else
     {

@@ -957,6 +957,7 @@ function buildMaster()
                     scenicList.push(new Scenery("sign", 2792, 2056, 1/2 * Math.PI, 3, "Fairfield Lodge"));
                     scenicList.push(new Scenery("bed", 2594, 2082, 1/2 * Math.PI, true));
                     scenicList.push(new Scenery("hearth", 2555, 1910, 3/4 * Math.PI, true));
+                    scenicList.push(new Scenery("crate", 2731, 2080, 3.5/4 * Math.PI, 3, [1.2, "teshirHomeCrate1", 6, [[new Item("woodenBowl", false, false), 7]], false, 0]));
                 }
                 else
                 {
@@ -964,6 +965,7 @@ function buildMaster()
                     scenicList.push(new Scenery("sign", 2792, 2056, 1/2 * Math.PI, 3, "For Sale - 6200 coins"));
                     scenicList.push(new Scenery("bed", 2594, 2082, 1/2 * Math.PI, false));
                     scenicList.push(new Scenery("hearth", 2555, 1910, 3/4 * Math.PI, false));
+                    scenicList.push(new Scenery("crate", 2731, 2080, 3.5/4 * Math.PI, 1, [1.2]));
                 }
 
                 //The Jarl's Estate

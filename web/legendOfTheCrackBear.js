@@ -5,9 +5,8 @@
 
 //TODO LIST
 //Venning Update
+//todo add the unadded style of freydic house from the 'freeverse' IMG
 //todo add shears (for shearing wool from sheep)
-//todo add crab armour
-//todo add seals - they run away from you and drop blubber and seal hide.
 //todo add clam-ooze creature that attacks from its shell and then hides again "Cloimid" they are heavily armoured while not attacking
 //todo add a giant green sea anenome creature that is stationary (it lives in the shallow water)
 //todo add Jarl Rannuk Stambjord of Venning City
@@ -15,14 +14,12 @@
 //todo add an algae that grows on rocks
 //todo add a waterwalking elixer
 //todo add three more snow maps then add Venning to the right of the third snow map (Venning is a dock town)
-//todo add warm northern thick clothing made with waanti. //at this point there is only an outfit and not a clothing.
 //todo add the freydic hatchet from the balkur img sheet
 //todo add washed up seaweed scenery object
 //todo add fishing
 //todo add row boats and swimming
 //todo add lakes, fishing spots, fish, and ice holes
 //todo add various northern fish items that can be caught randomly through the fishing system (Red Crombal, Thab (yellow), Juurgo (blue), Razorfin (green))
-//todo add orange torni berries to the north
 //todo add glass of Waanti milk
 //todo add beachmites (grey little bugs that scurry around and that eat dead bodies on the beach)
 //todo create and add Margul - White furred, large, carnivorous, arctic beast with a tail and a long neck...
@@ -33,6 +30,9 @@
 //todo add a bountyhunt quest that the captain gives (if he is still alive of course)
 //todo make Lethik city property purchasable at the bank.
 //todo extend the thengan forest
+//todo add hops and the red flower from 'freeverse' IMG
+//todo add the strange light greenish plant from 'nognog' IMG
+//todo add fungus from  'theng' IMG
 
 //Teshir Patch
 //todo decorate the various buildings more
@@ -41,13 +41,15 @@
 //Calcutt Patch
 //todo add roselin's quest
 //todo add drinking horns
+//todo add drinking horns
+//todo add kellish dolls
 
 //Alzkwaya Update
 //todo add the alzkwaya village
 //todo add the savanah large cat creature (already drawn) and the savanah snake (already drawn)
 //todo add hot climate farm plants
 //todo add other hot climate wild plants
-//todo add savanah trees
+//todo add savanah trees and savanah monsters (use IMG 'mufmuf')
 
 //Cephrian Update
 //todo add Sonja Fruit and Sonja fruit trees (tropical trees that drop Sonja fruits)
@@ -59,8 +61,12 @@
 //todo add the 'air staff' from Theng img sheet
 //todo add weaken spell
 //todo add arrow mods such as toxic/posion, electric, wind, armour piercing...
+//todo add toxic slugs from 'zapa' IMG
 
 //Other
+//todo add more jewelry from 'polpol' IMG
+//todo add haeflower drug trip monsters from 'zapa' IMG
+//todo add a spell that casts out a blast that causes a small rock explosion (use IMG from 'nognog')
 //todo add "the grail of eternity" (a elaborate cup that heals you when you drink from it, you can refill it at a well)
 //todo add a secret unit (an undead monster that is in an inanimate form during the day but lurks murderously throughout the night)
 //todo add the traps on the IMG 'trapper'
@@ -75,7 +81,7 @@
 //todo figure out why aldrekii claws manual attack thing won't let it at twice or even early, while the same code lets the flail perform its attack early.
 //todo finish adding sickness system //add Lodotos, a sickness that one can get in the kellish mud bog. //add sicknesses and symptons (dizziness, pox, fever, fatigue, etc.) ex: make dizziness spin the screen, make pox weaken players constitution etc., make fever decrease thirst.
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
-//todo add brain flies.
+//todo add brain flies from 'poly' img.
 //todo add hangover, and soarness effects as well as their mini notices.
 //todo add a rest without bed button on the UI that uses a homemade confirm popup to ask if you are sure you want to sleep. Add the nappy closed eye for the sleepButton. (it's on poly)
 //todo add lv 25 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
@@ -85,6 +91,7 @@
 //todo add options menu with button: it will allow you to toggle certain settings like mouse combat mode, game coordinates, and other such features.
 //todo Add harsh hot weather conditions: deserts cause faster dehydration. (base the effect on elevation variable)
 //todo add unique fairytails for each faction
+//todo add Yaihef berry bush (look up how they are actually spelled first) from 'crackAssets' IMG
 
 
 function legendaryPrerequisites()
@@ -1636,6 +1643,10 @@ var dialogueActive = false;
 var autosaveTime;
 var magAmmo = 30;
 var reloadMag = false;
+var storageList = [];
+var storageSlots = 1;
+var storedID = -1;
+var stored;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -1833,6 +1844,7 @@ function sceneryOperationsManager(z)
                 {
                     scenicList[i].operations();
                 }
+                scenicList[i].keeper(); //this is for the storage system (it adds the container's ID to the storageList if it is not laready there. Without this the game would crash when around storage containers.
             }
         }
     }

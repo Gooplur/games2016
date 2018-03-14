@@ -44,6 +44,9 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     //Tree Variables
     this.treePhase = 0;
     this.treeHealth = 120;
+    //container variables
+    this.storageListChecked = false;
+    this.storage = false;
     //web variables
     this.webbed = [];
     //Rock variables
@@ -78,6 +81,42 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             this.intervalStore = new Date().getTime();
             method();
+        }
+    };
+
+    this.keeper = function() //this method adds the container to the storageList if it is not on it and abreviates unsavable portions of code.
+    {
+        //manual determination
+        if (this.type == "crate")
+        {
+            if (this.temporary > 2)
+            {
+                this.storage = true;
+            }
+        }
+
+        // (inf0: size, inf1: storageID, inf2: storageSlots, inf3: Item List, inf4: Owned By..., inf5: factionRelationDecreaseForOpening)
+        if (this.storageListChecked == false && this.storage == true)
+        {
+            this.storageListChecked = true;
+
+            this.information = [information[0], information[1], information[2], information[5]];
+            this.owned = information[4];
+
+            var isInList = false;
+            for (var i = 0; i < storageList.length; i++)
+            {
+                if (storageList[i][0] == this.information[1])
+                {
+                    isInList = true;
+                    break;
+                }
+            }
+
+            if (isInList == false)
+            {
+                storageList.push([this.information[1], this.information[2], information[3]]); // [containerID, storageSlots, [items inside]]
+            }
         }
     };
 
@@ -2100,6 +2139,80 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 dClick = true;
                 this.activate = false;
+            }
+        }
+        else if (this.type == "crate")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 35 + 35 * this.information[0];
+
+            this.zIndex = 1;
+            if (this.temporary == 1 || this.temporary == 3)
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 89, 212, 66, 40, -(1/2 * 66 * this.information[0]), -(1/2 * 40 * this.information[0]), 66 * this.information[0], 40 * this.information[0]);
+                    XXX.restore();
+                }
+                else if (this.phase == "opened")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 88, 260, 66, 40, -(1/2 * 66 * this.information[0]), -(1/2 * 40 * this.information[0]), 66 * this.information[0], 40 * this.information[0]);
+                    XXX.restore();
+                }
+            }
+            else if (this.temporary == 2 || this.temporary == 4)
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 298, 273, 49, 57, -(1/2 * 49 * this.information[0]), -(1/2 * 57 * this.information[0]), 49 * this.information[0], 57 * this.information[0]);
+                    XXX.restore();
+                }
+                else if (this.phase == "opened")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(polpol, 96, 300, 49, 57, -(1/2 * 49 * this.information[0]), -(1/2 * 57 * this.information[0]), 49 * this.information[0], 57 * this.information[0]);
+                    XXX.restore();
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 35 * this.information[0];
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                if (this.phase == "opened")
+                {
+                    if (this.temporary > 2 && this.storageListChecked == true)
+                    {
+                        storedID = this.information[1];
+                        storageSlots = this.information[2];
+                        lowBar = "storage";
+                    }
+                    this.phase = 0;
+                }
+                else
+                {
+                    this.phase = "opened";
+                    if (this.temporary > 2 && this.storageListChecked == true && player.noticed == true)
+                    {
+                        this.changeFactionRelation(this.information[3]);
+                    }
+                }
             }
         }
         else if (this.type == "blood")

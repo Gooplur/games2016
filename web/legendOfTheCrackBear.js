@@ -4,6 +4,9 @@
 //look up TEST to find tests in the code
 
 //TODO LIST
+//top priority
+//todo uncomment-out: storageList = loadList("storageList", "storage"); in datahandlingLOTCB after all players have saved their characters with the new save system.
+
 //Venning Update
 //todo add the unadded style of freydic house from the 'freeverse' IMG
 //todo add shears (for shearing wool from sheep)
@@ -19,7 +22,6 @@
 //todo add fishing
 //todo add row boats and swimming
 //todo add lakes, fishing spots, fish, and ice holes
-//todo add various northern fish items that can be caught randomly through the fishing system (Red Crombal, Thab (yellow), Juurgo (blue), Razorfin (green))
 //todo add glass of Waanti milk
 //todo add beachmites (grey little bugs that scurry around and that eat dead bodies on the beach)
 //todo create and add Margul - White furred, large, carnivorous, arctic beast with a tail and a long neck...
@@ -2772,6 +2774,7 @@ function theLegend()
     allWeapons.push(new Item("pouchOfGlowDust", false)); //65 //this accounts for all throwable dust varieties
     allWeapons.push(new Item("theUndyingEdge", false)); //66
     allWeapons.push(new Item("m16Carbine", false)); //67 //this weapon is not canon
+    allWeapons.push(new Item("fishingpole", false)); //68
 
 
 //This list holds one of each type of worn item so that the player can access the worn item stats.
@@ -2894,6 +2897,7 @@ function theLegend()
     smithing.push(new Item("aldrekiiBlade", false));
     smithing.push(new Item("aldrekiiClaws", false));
     smithing.push(new Item("pickaxe", false));
+    smithing.push(new Item("fishingpole", false));
     smithing.push(new Item("freydicSword", false));
     smithing.push(new Item("aldrekiiArrow", false));
     smithing.push(new Item("freydicGreatSword", false));
@@ -3012,6 +3016,10 @@ function theLegend()
     foods.push(new Item("crabClaw", false));
     foods.push(new Item("crabChowder", false));
     foods.push(new Item("crabBisque", false));
+    foods.push(new Item("redCrombal", false));
+    foods.push(new Item("razorfin", false));
+    foods.push(new Item("juurgo", false));
+    foods.push(new Item("thab", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -3180,6 +3188,7 @@ function theLegend()
     handcrafted.push(new Item("pouchOfPimberDust", false));
     handcrafted.push(new Item("pouchOfShomeDust", false));
     handcrafted.push(new Item("woodenBowl", false));
+    handcrafted.push(new Item("dryKelp", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

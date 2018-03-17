@@ -3168,6 +3168,298 @@ function Item(type, x, y)
             this.buyValue = 20 - Math.floor(player.getCharisma() / 50); // at max, buy for 19.
             this.sellValue = 14 + Math.floor(player.getCharisma() / 10); // at max, sell for 19.
         }
+        else if (this.type == "rawRazorfin")
+        {
+            //For All Items
+            this.identity = "Raw Razorfin";
+            this.weight = 2.8;
+            this.size = 11;
+            this.description = "A green cold-water fish with pronounced fins and sharp, pointed scales.";
+            this.intForDes = 1;
+            this.intDescription = "This fish needs to have its scales trimmed before it can be served whole roasted.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.35; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -1; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "razorfin")
+        {
+            //For All Items
+            this.identity = "Razorfin";
+            this.weight = 2.8;
+            this.size = 11;
+            this.description = "A roasted fish with freshly trimmed green scales, and a strong but flavorful red meat.";
+            this.intForDes = 7;
+            this.intDescription = "This is often used to make a traditional northern freydic soup with kelp and fish.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 9; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 9;
+            this.ingredients = [["Raw Razorfin", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11; // at max, buy for 11.
+            this.sellValue = 9; // at max, sell for 9.
+        }
+        else if (this.type == "rawJuurgo")
+        {
+            //For All Items
+            this.identity = "Raw Juurgo";
+            this.weight = 4;
+            this.size = 13;
+            this.description = "A northern blue carnivorous fish that is an uncommon catch.";
+            this.intForDes = 1;
+            this.intDescription = "This is a tougher and more meaty fish than most others. Don't eat it raw.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 0.3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 2.
+        }
+        else if (this.type == "juurgo")
+        {
+            //For All Items
+            this.identity = "Juurgo";
+            this.weight = 4;
+            this.size = 13;
+            this.description = "Roasted fish with a rubbery but tender meat and an intensely oceanic flavor.";
+            this.intForDes = 1;
+            this.intDescription = "The freydic have adapted to this strong tasting fish after centuries of proximity; other races tend to find it repulsing.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            if (player.raceName == "Freynor")
+            {
+                this.hunger = 12; //satisfies hunger.
+                this.ability = "satiate";
+            }
+            else
+            {
+                this.hunger = 10; //satisfies hunger.
+                this.ability = "foodPoisoning";
+            }
+            this.thirst = 0.3; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 8;
+            this.ingredients = [["Raw Juurgo", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12; // at max, buy for 12.
+            this.sellValue = 9; // at max, sell for 9.
+        }
+        else if (this.type == "rawThab")
+        {
+            //For All Items
+            this.identity = "Raw Thab";
+            this.weight = 5.8;
+            this.size = 18;
+            this.description = "A fast swimming yellowish grey fish that is valued for its rich and buttery white flesh.";
+            this.intForDes = 1;
+            this.intDescription = "When cooked its scales gleam a somewhat golden tone of dark yellow. Don't eat it raw.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.5; //satisfies hunger.
+            this.thirst = 0.6; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -3.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10; // at max, buy for 1.
+            this.sellValue = 10; // at max, sell for 1.
+        }
+        else if (this.type == "thab")
+        {
+            //For All Items
+            this.identity = "Thab";
+            this.weight = 5.8;
+            this.size = 18;
+            this.description = "Roasted fish with golden yellow scales; it has a rich and buttery white meat.";
+            this.intForDes = 1;
+            this.intDescription = "This northern fish is rather large, and a highly desirable catch.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 16; //satisfies hunger.
+            this.thirst = 0.55; //quenches thirst.
+            this.warmth = 8; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.15; //recoops lost energy.
+            this.replenish = 0.15; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 10;
+            this.ingredients = [["Raw Thab", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 18; // at max, buy for 18.
+            this.sellValue = 16; // at max, sell for 16.
+        }
+        else if (this.type == "rawRedCrombal")
+        {
+            //For All Items
+            this.identity = "Raw Red Crombal";
+            this.weight = 1.2;
+            this.size = 8;
+            this.description = "A northern fish that is an extremely common catch.";
+            this.intForDes = 1;
+            this.intDescription = "This fish is not particularly highly valued. Don't eat it raw.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.5; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "redCrombal")
+        {
+            //For All Items
+            this.identity = "Red Crombal";
+            this.weight = 1.2;
+            this.size = 8;
+            this.description = "A roasted red fish commonly eaten in the north.";
+            this.intForDes = 1;
+            this.intDescription = "This fish is not particularly highly valued as it is easily found, caught and cooked.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 5; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 3;
+            this.ingredients = [["Raw Red Crombal", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "dryKelp")
+        {
+            //For All Items
+            this.identity = "Dry Kelp";
+            this.weight = 0.4;
+            this.size = 9;
+            this.description = "The dried oceanic salty fronds of northern sea kelp that is washed ashore.";
+            this.intForDes = 6;
+            this.intDescription = "This can be eaten plain as a tasty snack, but it is most notably used in a northern freydic fish soup.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = -0.25; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Kelp", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "rawFrichFlesh")
         {
             //For All Items
@@ -4758,6 +5050,26 @@ function Item(type, x, y)
             this.buyValue = 6 - Math.floor(player.getCharisma() / 12); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
+        else if (this.type == "kelp")
+        {
+            //For All Items
+            this.identity = "Kelp";
+            this.weight = 0.75;
+            this.size = 9;
+            this.description = "The oceanic salty fronds of northern sea kelp that is washed ashore.";
+            this.intForDes = 1;
+            this.intDescription = "Kelp can be dried and eaten or used to make northern freydic soup.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "culprisLeaf")
         {
             //For All Items
@@ -4776,7 +5088,7 @@ function Item(type, x, y)
             this.hunger = 0; //satisfies hunger.
             this.thirst = 0; //quenches thirst.
             this.warmth = 0; //warms player.
-            this.heal = 0.25; //heals health.
+            this.heal = 0.38; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0.25; //restores will.
 
@@ -13493,6 +13805,40 @@ function Item(type, x, y)
             this.buyValue = 18 - Math.floor(player.getCharisma() / 6); // at max, buy for 12.
             this.sellValue = 7 + Math.floor(player.getCharisma() / 10); // at max, sell for 12.
         }
+        else if (this.type == "fishingpole")
+        {
+            //For All Items
+            this.identity = "Fishing Pole";
+            this.weight = 1;
+            this.size = 12;
+            this.description = "Used for catching fish.";
+            this.intForDes = 0;
+            this.intDescription = "In order to fish: use your attack on a rippling spot in the water and wait 41 seconds without moving or switching your weapon. There is a 50% chance to catch a fish.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 1;
+            this.distance = 24 + (this.range * 7);
+            this.range = 1;
+            this.rate = 500;
+            this.damage = 0.25;
+            this.magicalDamage = 0;
+            this.negateArmour = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 10;
+            this.ingredients = [["Wood", 1], ["Fiber", 2], ["Iron", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 10); // at max, buy for 15.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 5); // at max, sell for 15.
+        }
         else if (this.type == "staff")
         {
             //For All Items
@@ -20381,6 +20727,26 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "ultherRIP")
+        {
+            //For All Items
+            this.identity = "The Tale of Ulther the Brave";
+            this.weight = 0.001;
+            this.size = 12;
+            this.description = "The tale of a great warrior who was among the first of the freydic to travel south from Freynor.";
+            this.intForDes = 9;
+            this.intDescription = "The note was left at the tomb of Ulther the Brave; it was kept dry beneath a seal skin.";
+
+            //Define Utility
+            this.utility = "note";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 2; // at max, sell for 2.
+        }
         else if (this.type == "unitMarker")
         {
             //For All Items
@@ -20506,10 +20872,73 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote")
+        else if (this.type == "madmanNote" || this.type == "ultherRIP")
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "fishingpole")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 181, 486, 24, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1.5), 24 * 1.5, 30 * 1.5);
+        }
+        else if (this.type == "kelp")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 126, 227, 19, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.25), 19 * 1.25, 24 * 1.25);
+        }
+        else if (this.type == "dryKelp")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 141, 204, 19, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.25), 19 * 1.25, 24 * 1.25);
+        }
+        else if (this.type == "rawRedCrombal")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 97, 254, 18, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.4), 18 * 1.4, 10 * 1.4);
+        }
+        else if (this.type == "redCrombal")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 97, 308, 18, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.4), 18 * 1.4, 10 * 1.4);
+        }
+        else if (this.type == "rawJuurgo")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 97, 263, 19, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 3.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 3.2), 19 * 3.2, 9 * 3.2);
+        }
+        else if (this.type == "juurgo")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 96, 320, 19, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 3.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 3.2), 19 * 3.2, 9 * 3.2);
+        }
+        else if (this.type == "rawRazorfin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 95, 273, 22, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 2), 22 * 2, 18 * 2);
+        }
+        else if (this.type == "razorfin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 93, 332, 22, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 2), 22 * 2, 18 * 2);
+        }
+        else if (this.type == "rawThab")
+        {
+            XXX.beginPath();
+            XXX.save();
+            XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+            XXX.rotate(2.5/8 * 2 * Math.PI);
+            XXX.drawImage(norc, 92, 292, 32, 11, 0 - (1/2 * 32 * 3.5), 0 - (1/2 * 11 * 3.5), 32 * 3.5, 11 * 3.5);
+            XXX.restore();
+        }
+        else if (this.type == "thab")
+        {
+            XXX.beginPath();
+            XXX.save();
+            XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+            XXX.rotate(2.5/8 * 2 * Math.PI);
+            XXX.drawImage(norc, 92, 350, 32, 11, 0 - (1/2 * 32 * 3.5), 0 - (1/2 * 11 * 3.5), 32 * 3.5, 11 * 3.5);
+            XXX.restore();
         }
         else if (this.type == "saltBloodArmour")
         {
@@ -23238,10 +23667,73 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote")
+        else if (this.type == "madmanNote" || this.type == "ultherRIP")
         {
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "fishingpole")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 181, 486, 24, 30, this.invX - (1/2 * 24 * 1.5), this.invY - (1/2 * 30 * 1.5), 24 * 1.5, 30 * 1.5);
+        }
+        else if (this.type == "kelp")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 126, 227, 19, 24, this.invX - (1/2 * 19 * 1.25), this.invY - (1/2 * 24 * 1.25), 19 * 1.25, 24 * 1.25);
+        }
+        else if (this.type == "dryKelp")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 141, 204, 19, 24, this.invX - (1/2 * 19 * 1.25), this.invY - (1/2 * 24 * 1.25), 19 * 1.25, 24 * 1.25);
+        }
+        else if (this.type == "rawRedCrombal")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 97, 254, 18, 10, this.invX - (1/2 * 18 * 1.4), this.invY - (1/2 * 10 * 1.4), 18 * 1.4, 10 * 1.4);
+        }
+        else if (this.type == "redCrombal")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 97, 308, 18, 10, this.invX - (1/2 * 18 * 1.4), this.invY - (1/2 * 10 * 1.4), 18 * 1.4, 10 * 1.4);
+        }
+        else if (this.type == "rawJuurgo")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 97, 263, 19, 9, this.invX - (1/2 * 19 * 3.2), this.invY - (1/2 * 9 * 3.2), 19 * 3.2, 9 * 3.2);
+        }
+        else if (this.type == "juurgo")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 96, 320, 19, 9, this.invX - (1/2 * 19 * 3.2), this.invY - (1/2 * 9 * 3.2), 19 * 3.2, 9 * 3.2);
+        }
+        else if (this.type == "rawRazorfin")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 95, 273, 22, 18, this.invX - (1/2 * 22 * 2), this.invY - (1/2 * 18 * 2), 22 * 2, 18 * 2);
+        }
+        else if (this.type == "razorfin")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 93, 332, 22, 18, this.invX - (1/2 * 22 * 2), this.invY - (1/2 * 18 * 2), 22 * 2, 18 * 2);
+        }
+        else if (this.type == "rawThab")
+        {
+            LXX.beginPath();
+            LXX.save();
+            LXX.translate(this.invX, this.invY);
+            LXX.rotate(2.5/8 * 2 * Math.PI);
+            LXX.drawImage(norc, 92, 292, 32, 11, 0 - (1/2 * 32 * 3.1), 0 - (1/2 * 11 * 3.1), 32 * 3.1, 11 * 3.1);
+            LXX.restore();
+        }
+        else if (this.type == "thab")
+        {
+            LXX.beginPath();
+            LXX.save();
+            LXX.translate(this.invX, this.invY);
+            LXX.rotate(2.5/8 * 2 * Math.PI);
+            LXX.drawImage(norc, 92, 350, 32, 11, 0 - (1/2 * 32 * 3.1), 0 - (1/2 * 11 * 3.1), 32 * 3.1, 11 * 3.1);
+            LXX.restore();
         }
         else if (this.type == "saltBloodArmour")
         {
@@ -25940,10 +26432,73 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote")
+        else if (this.type == "madmanNote" || this.type == "ultherRIP")
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "fishingpole")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 181, 486, 24, 30, this.invX - (1/2 * 24 * 1.5), this.invY - (1/2 * 30 * 1.5), 24 * 1.5, 30 * 1.5);
+        }
+        else if (this.type == "kelp")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 126, 227, 19, 24, this.invX - (1/2 * 19 * 1.25), this.invY - (1/2 * 24 * 1.25), 19 * 1.25, 24 * 1.25);
+        }
+        else if (this.type == "dryKelp")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 141, 204, 19, 24, this.invX - (1/2 * 19 * 1.25), this.invY - (1/2 * 24 * 1.25), 19 * 1.25, 24 * 1.25);
+        }
+        else if (this.type == "rawRedCrombal")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 97, 254, 18, 10, this.invX - (1/2 * 18 * 1.4), this.invY - (1/2 * 10 * 1.4), 18 * 1.4, 10 * 1.4);
+        }
+        else if (this.type == "redCrombal")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 97, 308, 18, 10, this.invX - (1/2 * 18 * 1.4), this.invY - (1/2 * 10 * 1.4), 18 * 1.4, 10 * 1.4);
+        }
+        else if (this.type == "rawJuurgo")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 97, 263, 19, 9, this.invX - (1/2 * 19 * 3.2), this.invY - (1/2 * 9 * 3.2), 19 * 3.2, 9 * 3.2);
+        }
+        else if (this.type == "juurgo")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 96, 320, 19, 9, this.invX - (1/2 * 19 * 3.2), this.invY - (1/2 * 9 * 3.2), 19 * 3.2, 9 * 3.2);
+        }
+        else if (this.type == "rawRazorfin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 95, 273, 22, 18, this.invX - (1/2 * 22 * 2), this.invY - (1/2 * 18 * 2), 22 * 2, 18 * 2);
+        }
+        else if (this.type == "razorfin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 93, 332, 22, 18, this.invX - (1/2 * 22 * 2), this.invY - (1/2 * 18 * 2), 22 * 2, 18 * 2);
+        }
+        else if (this.type == "rawThab")
+        {
+            XXX.beginPath();
+            XXX.save();
+            XXX.translate(this.invX, this.invY);
+            XXX.rotate(2.5/8 * 2 * Math.PI);
+            XXX.drawImage(norc, 92, 292, 32, 11, 0 - (1/2 * 32 * 3.1), 0 - (1/2 * 11 * 3.1), 32 * 3.1, 11 * 3.1);
+            XXX.restore();
+        }
+        else if (this.type == "thab")
+        {
+            XXX.beginPath();
+            XXX.save();
+            XXX.translate(this.invX, this.invY);
+            XXX.rotate(2.5/8 * 2 * Math.PI);
+            XXX.drawImage(norc, 92, 350, 32, 11, 0 - (1/2 * 32 * 3.1), 0 - (1/2 * 11 * 3.1), 32 * 3.1, 11 * 3.1);
+            XXX.restore();
         }
         else if (this.type == "saltBloodArmour")
         {

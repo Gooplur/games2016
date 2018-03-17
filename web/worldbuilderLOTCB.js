@@ -7794,12 +7794,15 @@ function buildMaster()
 
 
 
-                //all items dropped on map //todo put a note telling of uther the bravew
-                //if (quests.ultherMapItems == true)
-                //{
-                //    quests.ultherMapItems = false;
-                //    worldItems.push([new Item("ultherNote", -10163 , -11312), 1]);
-                //}
+                //all items dropped on map
+                if (quests.ultherMapItems == true)
+                {
+                    quests.ultherMapItems = false;
+                    worldItems.push([new Item("ultherRIP", -10163 , -11312), 1]);
+                    worldItems.push([new Item("sealSkin", -10150 , -11312), 1]);
+                    worldItems.push([new Item("culprisLeaf", -10157 , -11312), 2]);
+                    worldItems.push([new Item("tylunFlower", -10150 , -11312), 1]);
+                }
 
                 //Plants of the souther tip of the wuncwer woods
                 scenicList.push(new Scenery("akerPlant", -7460 , -4008, 6.8, true));

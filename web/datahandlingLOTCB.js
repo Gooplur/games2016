@@ -278,7 +278,7 @@ function load()
     Inventory = loadList("Inventory", true);
     shopInventory = loadList("shopInventory", true);
     bankAccount = loadList("bankAccount", true);
-    //storageList = loadList("storageList", "storage");
+    storageList = loadList("storageList", "storage");
     for (var n = 0; n < ArtificialIntelligenceAccess.length; n++)
     {
         //ArtificialIntelligenceAccess[n].ultra.merchandise = loadList("merchandise" + n, true);

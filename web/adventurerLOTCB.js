@@ -491,6 +491,12 @@ function Adventurer()
     this.outfitType = "none";
     this.glovesType = "none";
     this.necklaceType = "none";
+    //fishing variables
+    this.fishing = false;
+    this.fishingID = "none";
+    this.fishingTime = 0;
+    this.fishingFrame = false;
+    this.fished = false;
     //extra-movement variables
     this.jumpBackKeepTime = 0;
     this.jumpBackTime = 10;
@@ -563,7 +569,10 @@ function Adventurer()
             }
             else
             {
-                this.REQB = true;
+                if (this.isAmmoEquipped)
+                {
+                    this.REQB = true;
+                }
             }
         }
 
@@ -575,6 +584,16 @@ function Adventurer()
             {
                 primarySpells[i].equipped = false;
             }
+        }
+
+        //fishingToFalseIfWeaponIsNotFishingpoleOrIfMoving
+        if (this.weaponEquipped != "fishingpole" || wKey || sKey || aKey || dKey)
+        {
+            this.fishing = false;
+            this.fishingID = "none";
+            this.fishingTime = 0;
+            this.fishingFrame = false;
+            this.fished = false;
         }
     };
 
@@ -8906,6 +8925,85 @@ function Adventurer()
                 XXX.restore();
             }
         }
+        //FISHINGPOLE
+        if (this.weaponEquipped == "fishingpole")
+        {
+            if (this.fishing == false)
+            {
+                this.stageEngine(6, 0.15, true);
+            }
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                this.fished = false;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 214, 641, 37, 105, -1/2 * 37 * 1.5 -2, -1/2 * 105 * 1.5 - 76, 37 * 1.5, 105 * 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 266, 643, 37, 105, -1/2 * 37 * 1.5 -2, -1/2 * 105 * 1.5 - 76, 37 * 1.5, 105 * 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 320, 644, 37, 105, -1/2 * 37 * 1.5 -2, -1/2 * 105 * 1.5 - 76, 37 * 1.5, 105 * 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 367, 645, 37, 105, -1/2 * 37 * 1.5 -2, -1/2 * 105 * 1.5 - 76, 37 * 1.5, 105 * 1.5);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 408, 645, 37, 105, -1/2 * 37 * 1.5 -2, -1/2 * 105 * 1.5 - 76, 37 * 1.5, 105 * 1.5);
+                XXX.restore();
+                if (this.stage >= 5)
+                {
+                    if (this.fished == false)
+                    {
+                        this.fished = true;
+                        this.fishingFrame = true;
+                    }
+                }
+            }
+        }
         //ESTOC
         if (this.weaponEquipped == "estoc")
         {
@@ -15042,6 +15140,14 @@ function Adventurer()
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.2/5 * Math.PI) * (this.mySize + 35);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.2/5 * Math.PI) * (this.mySize + 35);
         }
+        else if (this.weaponEquipped == "fishingpole")
+        {
+            this.weapon = allWeapons[68];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 125);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 125);
+        }
     };
 
     //BLOCKING FUNCTION
@@ -15355,7 +15461,7 @@ function Adventurer()
     //This makes the character always face the mouse pointer.
     this.pointAtMouse = function()
     {
-        if (!this.jumpingBack)
+        if (!this.jumpingBack && this.fishing != true)
         {
             this.rotation = Math.atan2(mouseY - this.myScreenY, mouseX - this.myScreenX) + Math.PI / 2;
         }

@@ -15221,6 +15221,12 @@ function Adventurer()
 
                         //effects
 
+                        //if the player kills the enemy it is marked as being killed by the player
+                        if (ArtificialIntelligenceAccess[i].health <= 0)
+                        {
+                            ArtificialIntelligenceAccess[i].killNotByPlayer = false;
+                        }
+
                         if (this.weapon.ability == "freeze")
                         {
                             ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
@@ -23679,6 +23685,104 @@ function Adventurer()
                             {
                                 this.watered = true;
                                 this.fed = true;
+                            }
+                            else if (Inventory[i][0].ability == "quarterToxicity" || Inventory[i][0].ability == "quarterToxic") //This toxifies the player and makes them puke.
+                            {
+                                if (Inventory[i][0].ability == "quarterToxicity")
+                                {
+                                    //food poison and reduced hunger.
+                                    if (this.timeSinceBadFoodEaten == 0)
+                                    {
+                                        this.timeSinceBadFoodEaten = new Date().getTime() - 19000;
+                                    }
+                                }
+
+                                this.acidTime = new Date().getTime() + 20000;
+                                this.quarterAcid = true;
+                            }
+                            else if (Inventory[i][0].ability == "halfToxicity" || Inventory[i][0].ability == "halfToxic") //This toxifies the player and makes them puke.
+                            {
+                                if (Inventory[i][0].ability == "halfToxicity")
+                                {
+                                    //food poison and reduced hunger.
+                                    if (this.timeSinceBadFoodEaten == 0)
+                                    {
+                                        this.timeSinceBadFoodEaten = new Date().getTime() - 19000;
+                                    }
+                                }
+
+                                this.acidTime = new Date().getTime() + 20000;
+                                this.halfAcid = true;
+                            }
+                            else if (Inventory[i][0].ability == "toxicityI" || Inventory[i][0].ability == "toxicI") //This toxifies the player and makes them puke.
+                            {
+                                if (Inventory[i][0].ability == "toxicityI")
+                                {
+                                    //food poison and reduced hunger.
+                                    if (this.timeSinceBadFoodEaten == 0)
+                                    {
+                                        this.timeSinceBadFoodEaten = new Date().getTime() - 19000;
+                                    }
+                                }
+
+                                this.acidTime = new Date().getTime() + 20000;
+                                this.acidI = true;
+                            }
+                            else if (Inventory[i][0].ability == "toxicityII" || Inventory[i][0].ability == "toxicII") //This toxifies the player and makes them puke.
+                            {
+                                if (Inventory[i][0].ability == "toxicityII")
+                                {
+                                    //food poison and reduced hunger.
+                                    if (this.timeSinceBadFoodEaten == 0)
+                                    {
+                                        this.timeSinceBadFoodEaten = new Date().getTime() - 19000;
+                                    }
+                                }
+
+                                this.acidTime = new Date().getTime() + 20000;
+                                this.acidII = true;
+                            }
+                            else if (Inventory[i][0].ability == "toxicityIII" || Inventory[i][0].ability == "toxicIII") //This toxifies the player and makes them puke.
+                            {
+                                if (Inventory[i][0].ability == "toxicityIII")
+                                {
+                                    //food poison and reduced hunger.
+                                    if (this.timeSinceBadFoodEaten == 0)
+                                    {
+                                        this.timeSinceBadFoodEaten = new Date().getTime() - 19000;
+                                    }
+                                }
+
+                                this.acidTime = new Date().getTime() + 20000;
+                                this.acidIII = true;
+                            }
+                            else if (Inventory[i][0].ability == "toxicityIV" || Inventory[i][0].ability == "toxicIV") //This toxifies the player and makes them puke.
+                            {
+                                if (Inventory[i][0].ability == "toxicityIV")
+                                {
+                                    //food poison and reduced hunger.
+                                    if (this.timeSinceBadFoodEaten == 0)
+                                    {
+                                        this.timeSinceBadFoodEaten = new Date().getTime() - 19000;
+                                    }
+                                }
+
+                                this.acidTime = new Date().getTime() + 20000;
+                                this.acidIV = true;
+                            }
+                            else if (Inventory[i][0].ability == "toxicityV" || Inventory[i][0].ability == "toxicV") //This toxifies the player and makes them puke.
+                            {
+                                if (Inventory[i][0].ability == "toxicityV")
+                                {
+                                    //food poison and reduced hunger.
+                                    if (this.timeSinceBadFoodEaten == 0)
+                                    {
+                                        this.timeSinceBadFoodEaten = new Date().getTime() - 19000;
+                                    }
+                                }
+
+                                this.acidTime = new Date().getTime() + 20000;
+                                this.acidV = true;
                             }
                             else if (Inventory[i][0].ability == "soul") //Food with this effect will keep you fed for a little bit.
                             {

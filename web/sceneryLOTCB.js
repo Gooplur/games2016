@@ -975,6 +975,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                             //player.experience += 8 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
                             ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
                             ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
+                            if (ArtificialIntelligenceAccess[j].health <= 0)
+                            {
+                                ArtificialIntelligenceAccess[j].killNotByPlayer = false;
+                            }
                         }
                         else
                         {
@@ -1192,6 +1196,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                                 //player.experience += 9 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
                                 ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
                                 ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
+                                if (ArtificialIntelligenceAccess[j].health <= 0)
+                                {
+                                    ArtificialIntelligenceAccess[j].killNotByPlayer = false;
+                                }
                             }
                             else
                             {
@@ -1271,6 +1279,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         //player.experience += 1 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
                         ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
                         ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
+                        if (ArtificialIntelligenceAccess[j].health <= 0)
+                        {
+                            ArtificialIntelligenceAccess[j].killNotByPlayer = false;
+                        }
                     }
                     else
                     {
@@ -1355,6 +1367,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                             //player.experience += 0.15 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
                             ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
                             ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
+                            if (ArtificialIntelligenceAccess[j].health <= 0)
+                            {
+                                ArtificialIntelligenceAccess[j].killNotByPlayer = false;
+                            }
                         }
                         else
                         {
@@ -4393,6 +4409,96 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 {
                     player.stunnedI = true;
                     player.stunnedTime = 1;
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "anemoneSlime")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+            {
+                this.size = this.owned;
+            }
+            else
+            {
+                this.size = 1.5;
+            }
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.globalAlpha = 0.4;
+            XXX.rotate(this.rotation);
+            XXX.drawImage(norc, 824, 184, 31, 28, -(1/2 * 31 * this.size), -(1/2 * 28 * this.size), 31 * this.size, 28 * this.size);
+            XXX.restore();
+
+            //Permanence
+            if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+            {
+                if (new Date().getTime() >= this.loopTimer + 10000)
+                {
+                    scenicList.splice(scenicList.indexOf(this), 1);
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 12 * this.size;
+
+            //FUNCTIONALITY
+            if (player.acidI == false && this.size < 1 || player.acidIII == false && this.size < 2 || player.acidIV == false && this.size >= 2)
+            {
+                if (Math.sqrt((X - this.X) * (X - this.X) + (Y - this.Y) * (Y - this.Y)) <= this.radius)
+                {
+                    if (this.size < 1)
+                    {
+                        player.acidI = true;
+                        player.acidTime = new Date().getTime() + 3000;
+                    }
+                    else if (this.size < 2)
+                    {
+                        player.acidIII = true;
+                        player.acidTime = new Date().getTime() + 4000;
+                    }
+                    else
+                    {
+                        player.acidIV = true;
+                        player.acidTime = new Date().getTime() + 4500;
+                    }
+                }
+            }
+
+            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+            {
+                if (Math.sqrt((ArtificialIntelligenceAccess[j].X - this.X) * (ArtificialIntelligenceAccess[j].X - this.X) + (ArtificialIntelligenceAccess[j].Y - this.Y) * (ArtificialIntelligenceAccess[j].Y - this.Y)) <= this.radius)
+                {
+                    if (this.size < 1)
+                    {
+                        ArtificialIntelligenceAccess[j].acidI = true;
+                        ArtificialIntelligenceAccess[j].acidTime = new Date().getTime() + 3000;
+                        ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+
+                    }
+                    else if (this.size < 2)
+                    {
+                        ArtificialIntelligenceAccess[j].acidIII = true;
+                        ArtificialIntelligenceAccess[j].acidTime = new Date().getTime() + 4000;
+                        ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess[j].acidIV = true;
+                        ArtificialIntelligenceAccess[j].acidTime = new Date().getTime() + 4500;
+                        ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                    }
                 }
             }
 

@@ -773,6 +773,11 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                                 }
                             }
 
+                            if (caster == true && ArtificialIntelligenceAccess[i].health <= 0)
+                            {
+                                ArtificialIntelligenceAccess[i].killNotByPlayer = false;
+                            }
+
                             if (extra != "alert")
                             {
                                 if (this.doDelete)
@@ -962,6 +967,11 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                                     ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                                     ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                                 }
+
+                                if (caster == true && ArtificialIntelligenceAccess[i].health <= 0)
+                                {
+                                    ArtificialIntelligenceAccess[i].killNotByPlayer = false;
+                                }
                             }
                         }
                     }
@@ -1006,7 +1016,6 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                                 player.blinded = true;
                                 player.blindedStoreTime = new Date().getTime();
                                 player.blindedTime = 2;
-
                             }
                         }
                     }

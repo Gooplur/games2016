@@ -2488,6 +2488,72 @@ function Item(type, x, y)
             this.buyValue = 9 - Math.floor(player.getCharisma() / 10); // at max, buy for 4.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
         }
+        else if (this.type == "rawCloimidFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Cloimid Flesh";
+            this.weight = 43;
+            this.size = 15;
+            this.description = "The raw underhalf of a cloimid.";
+            this.intForDes = 17;
+            this.intDescription = "Eating this raw is toxic. The toxin is neutralized when it is cooked; the meat is actually alright tasting.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 10; //satisfies hunger.
+            this.thirst = 8; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "toxicityII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 18; // at max, buy for 18.
+            this.sellValue = 13 + Math.floor(player.getCharisma() / 10);; // at max, sell for 18.
+        }
+        else if (this.type == "cloimidMeat")
+        {
+            //For All Items
+            this.identity = "Cloimid Meat";
+            this.weight = 42;
+            this.size = 15;
+            this.description = "The steamed meat of a cloimid; It's tender, mildly sweet, and tastes of the sea.";
+            this.intForDes = 30;
+            this.intDescription = "When cooked the toxins that were in the raw flesh were neutralized and mostly evaporated.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 41; //satisfies hunger.
+            this.thirst = 5.5; //quenches thirst.
+            this.warmth = 18; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 16;
+            this.biproducts = [[new Item("bucket", false), 1]];
+            this.ingredients = [["Raw Cloimid Flesh", 1], ["Bucket of Water", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 39; // at max, buy for 39.
+            this.sellValue = 24 + Math.floor(player.getCharisma() / 3); // at max, sell for 39.
+        }
         else if (this.type == "rawSealFlesh")
         {
             //For All Items
@@ -8373,6 +8439,26 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "beachMiteInnards")
+        {
+            //For All Items
+            this.identity = "Beach Mite Innards";
+            this.weight = 0.6;
+            this.size = 7;
+            this.description = "The semi-translucent gelatinous specled innards of a beach mite. They smell of decaying flesh and death.";
+            this.intForDes = 25;
+            this.intDescription = "They are used as an amplifyer and a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "sesreStamen")
         {
             //For All Items
@@ -8452,6 +8538,132 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "rawLamb")
+        {
+            //For All Items
+            this.identity = "Raw Lamb";
+            this.weight = 2;
+            this.size = 10;
+            this.description = "The raw flesh of a young sheep.";
+            this.intForDes = 4;
+            this.intDescription = "Lamb is only obtained from young sheep and is much more tender than the mutton of older sheep.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutworms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 15); // at max, sell for 8.
+        }
+        else if (this.type == "lamb")
+        {
+            //For All Items
+            this.identity = "Lamb";
+            this.weight = 2;
+            this.size = 10;
+            this.description = "Butter drizzled lamb roasted over an open flame and finished with salt.";
+            this.intForDes = 0;
+            this.intDescription = "It is tender, hearty, rich, and has a strong sheepy flavor.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 25; //satisfies hunger.
+            this.thirst = -0.25; //quenches thirst.
+            this.warmth = 20; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Raw Lamb", 1], ["Waanti Butter", 1], ["Salt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 45 - Math.floor(player.getCharisma() / 25); // at max, buy for 43.
+            this.sellValue = 40 + Math.floor(player.getCharisma() / 15); // at max, sell for 43.
+        }
+        else if (this.type == "rawMutton")
+        {
+            //For All Items
+            this.identity = "Raw Mutton";
+            this.weight = 2;
+            this.size = 10;
+            this.description = "The raw flesh of an adult sheep.";
+            this.intForDes = 4;
+            this.intDescription = "Mutton is obtained from older sheep and is more sinewous then lamb which is from younger sheep.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutworms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 15); // at max, sell for 4.
+        }
+        else if (this.type == "mutton")
+        {
+            //For All Items
+            this.identity = "Mutton";
+            this.weight = 2;
+            this.size = 10;
+            this.description = "Roasted sheep meat.";
+            this.intForDes = 0;
+            this.intDescription = "It has a very pronounced sheepy flavor, and is thick and hearty.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 20; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 10; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 14;
+            this.ingredients = [["Raw Mutton", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 19 - Math.floor(player.getCharisma() / 25); // at max, buy for 17.
+            this.sellValue = 13 + Math.floor(player.getCharisma() / 12); // at max, sell for 17.
         }
         else if (this.type == "hoffalgreTendrils")
         {
@@ -8580,6 +8792,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 14 - Math.floor(player.getCharisma() / 8); // at max, buy for 8.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 15); // at max, sell for 8.
+        }
+        else if (this.type == "anemoneTentacle")
+        {
+            //For All Items
+            this.identity = "Anemone Tentacle";
+            this.weight = 2.5;
+            this.size = 9;
+            this.description = "The slimy toxic tentacle of an anemone.";
+            this.intForDes = 19;
+            this.intDescription = "This is used as both a former and a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 6.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 25); // at max, sell for 6.
         }
         else if (this.type == "frichPelt")
         {
@@ -11315,6 +11547,46 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "cloimidPearl")
+        {
+            //For All Items
+            this.identity = "Cloimid Pearl";
+            this.weight = 10;
+            this.size = 10;
+            this.description = "A smooth, glistening, orange sphere.";
+            this.intForDes = 15;
+            this.intDescription = "Some large chunk of non-dissolvable material got stuck in the cloimid and became coated with layer after layer of mother of pearl.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2000 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 1900.
+            this.sellValue = 1700 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 1900.
+        }
+        else if (this.type == "wool")
+        {
+            //For All Items
+            this.identity = "Wool";
+            this.weight = 1.5;
+            this.size = 9;
+            this.description = "A fluffy bunch of woolen fleece.";
+            this.intForDes = 15;
+            this.intDescription = "It is thick, soft, and very fluffy! Wool is used to make extremely warm northern clothing.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 50); // at max, buy for 7.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
         }
         else if (this.type == "vomit")
         {
@@ -20877,6 +21149,46 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "cloimidMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 93, 228, 27, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 2.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 2.2), 27 * 2.2, 24 * 2.2);
+        }
+        else if (this.type == "rawCloimidFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 94, 204, 27, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 2.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 2.2), 27 * 2.2, 24 * 2.2);
+        }
+        else if (this.type == "cloimidPearl")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 126, 209, 11, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 2), 11 * 2, 11 * 2);
+        }
+        else if (this.type == "wool")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 933, 7, 22, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 2), 22 * 2, 19 * 2);
+        }
+        else if (this.type == "lamb" || this.type == "mutton")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 987, 4, 12, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 2), 12 * 2, 18 * 2);
+        }
+        else if (this.type == "rawLamb" || this.type == "rawMutton")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 970, 4, 12, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 2), 12 * 2, 18 * 2);
+        }
+        else if (this.type == "anemoneTentacle")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 652, 252, 12, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.6), 12 * 1.6, 16 * 1.6);
+        }
+        else if (this.type == "beachMiteInnards")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 98, 160, 10, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.2), 10 * 1.2, 9 * 1.2);
+        }
         else if (this.type == "fishingpole")
         {
             XXX.beginPath();
@@ -23672,6 +23984,46 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "cloimidMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 93, 228, 27, 24, this.invX - (1/2 * 27 * 2.2), this.invY - (1/2 * 24 * 2.2), 27 * 2.2, 24 * 2.2);
+        }
+        else if (this.type == "rawCloimidFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 94, 204, 27, 24, this.invX - (1/2 * 27 * 2.2), this.invY - (1/2 * 24 * 2.2), 27 * 2.2, 24 * 2.2);
+        }
+        else if (this.type == "cloimidPearl")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 126, 209, 11, 11, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 11 * 2), 11 * 2, 11 * 2);
+        }
+        else if (this.type == "wool")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 933, 7, 22, 19, this.invX - (1/2 * 22 * 2), this.invY - (1/2 * 19 * 2), 22 * 2, 19 * 2);
+        }
+        else if (this.type == "lamb" || this.type == "mutton")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 987, 4, 12, 18, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 18 * 2), 12 * 2, 18 * 2);
+        }
+        else if (this.type == "rawLamb" || this.type == "rawMutton")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 970, 4, 12, 18, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 18 * 2), 12 * 2, 18 * 2);
+        }
+        else if (this.type == "anemoneTentacle")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 652, 252, 12, 16, this.invX - (1/2 * 12 * 1.6), this.invY - (1/2 * 16 * 1.6), 12 * 1.6, 16 * 1.6);
+        }
+        else if (this.type == "beachMiteInnards")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 98, 160, 10, 9, this.invX - (1/2 * 10 * 1.4), this.invY - (1/2 * 9 * 1.4), 10 * 1.4, 9 * 1.4);
+        }
         else if (this.type == "fishingpole")
         {
             LXX.beginPath();
@@ -26436,6 +26788,46 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "cloimidMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 93, 228, 27, 24, this.invX - (1/2 * 27 * 2.2), this.invY - (1/2 * 24 * 2.2), 27 * 2.2, 24 * 2.2);
+        }
+        else if (this.type == "rawCloimidFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 94, 204, 27, 24, this.invX - (1/2 * 27 * 2.2), this.invY - (1/2 * 24 * 2.2), 27 * 2.2, 24 * 2.2);
+        }
+        else if (this.type == "cloimidPearl")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 126, 209, 11, 11, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 11 * 2), 11 * 2, 11 * 2);
+        }
+        else if (this.type == "wool")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 933, 7, 22, 19, this.invX - (1/2 * 22 * 2), this.invY - (1/2 * 19 * 2), 22 * 2, 19 * 2);
+        }
+        else if (this.type == "lamb" || this.type == "mutton")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 987, 4, 12, 18, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 18 * 2), 12 * 2, 18 * 2);
+        }
+        else if (this.type == "rawLamb" || this.type == "rawMutton")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 970, 4, 12, 18, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 18 * 2), 12 * 2, 18 * 2);
+        }
+        else if (this.type == "anemoneTentacle")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 652, 252, 12, 16, this.invX - (1/2 * 12 * 1.6), this.invY - (1/2 * 16 * 1.6), 12 * 1.6, 16 * 1.6);
+        }
+        else if (this.type == "beachMiteInnards")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 98, 160, 10, 9, this.invX - (1/2 * 10 * 1.4), this.invY - (1/2 * 9 * 1.4), 10 * 1.4, 9 * 1.4);
         }
         else if (this.type == "fishingpole")
         {

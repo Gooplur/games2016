@@ -5,25 +5,20 @@
 
 //TODO LIST
 //top priority
-//todo uncomment-out: storageList = loadList("storageList", "storage"); in datahandlingLOTCB after all players have saved their characters with the new save system.
+//todo finish adding anemone unit
 
 //Venning Update
 //todo add the unadded style of freydic house from the 'freeverse' IMG
-//todo add shears (for shearing wool from sheep)
-//todo add clam-ooze creature that attacks from its shell and then hides again "Cloimid" they are heavily armoured while not attacking
-//todo add a giant green sea anenome creature that is stationary (it lives in the shallow water)
+//todo insert //ArtificialIntelligenceAccess.push(new Unit(3400, 1200, "Cloimid", false, "moistclambybottom", {rotation: 90/360 * 2 * Math.PI}));
 //todo add Jarl Rannuk Stambjord of Venning City
 //todo add Siggi the Harborman (he sells you a boat, and fishing rod, etc.)
 //todo add an algae that grows on rocks
 //todo add a waterwalking elixer
 //todo add three more snow maps then add Venning to the right of the third snow map (Venning is a dock town)
 //todo add the freydic hatchet from the balkur img sheet
-//todo add washed up seaweed scenery object
-//todo add fishing
 //todo add row boats and swimming
-//todo add lakes, fishing spots, fish, and ice holes
+//todo add lakes and ice holes
 //todo add glass of Waanti milk
-//todo add beachmites (grey little bugs that scurry around and that eat dead bodies on the beach)
 //todo create and add Margul - White furred, large, carnivorous, arctic beast with a tail and a long neck...
 
 //Lethik Patch
@@ -34,7 +29,7 @@
 //todo extend the thengan forest
 //todo add hops and the red flower from 'freeverse' IMG
 //todo add the strange light greenish plant from 'nognog' IMG
-//todo add fungus from  'theng' IMG
+//todo add slop/fungus from  'theng' IMG (not sure which it should be)
 
 //Teshir Patch
 //todo decorate the various buildings more
@@ -1842,11 +1837,11 @@ function sceneryOperationsManager(z)
         {
             if (scenicList[i].zIndex == z)
             {
+                scenicList[i].keeper(); //this is for the storage system (it adds the container's ID to the storageList if it is not laready there. Without this the game would crash when around storage containers.
                 if (scenicList[i].X > X - (1.6 * CCC.width) && scenicList[i].X < X + (1.6 * CCC.width) && scenicList[i].Y > Y - (1.6 * CCC.height) && scenicList[i].Y < Y + (1.6 * CCC.height))
                 {
                     scenicList[i].operations();
                 }
-                scenicList[i].keeper(); //this is for the storage system (it adds the container's ID to the storageList if it is not laready there. Without this the game would crash when around storage containers.
             }
         }
     }
@@ -3020,6 +3015,9 @@ function theLegend()
     foods.push(new Item("razorfin", false));
     foods.push(new Item("juurgo", false));
     foods.push(new Item("thab", false));
+    foods.push(new Item("lamb", false));
+    foods.push(new Item("mutton", false));
+    foods.push(new Item("cloimidMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];

@@ -158,6 +158,11 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                         ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
 
                         //Effects
+                        if (ArtificialIntelligenceAccess[i].health <= 0 && this.isPlayerProjectile)
+                        {
+                            ArtificialIntelligenceAccess[i].killNotByPlayer = false;
+                        }
+
                         if (this.ability == "stunI")
                         {
                             if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)

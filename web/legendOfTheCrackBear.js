@@ -8,15 +8,12 @@
 //todo finish adding anemone unit
 
 //Venning Update
-//todo add the unadded style of freydic house from the 'freeverse' IMG
-//todo insert //ArtificialIntelligenceAccess.push(new Unit(3400, 1200, "Cloimid", false, "moistClambyTickle", {rotation: 90/360 * 2 * Math.PI}));
 //todo add Jarl Rannuk Stambjord of Venning City
 //todo add Siggi the Harborman (he sells you a boat, and fishing rod, etc.)
 //todo add an algae that grows on rocks
 //todo add a waterwalking elixer
-//todo add two more snow maps then add Venning to the right of the third snow map (Venning is a dock town)
+//todo add Venning to the right of the third snow map (Venning is a dock town)
 //todo add the freydic hatchet from the balkur img sheet
-//todo add row boats and swimming
 //todo add lakes and ice holes
 //todo add glass of Waanti milk
 //todo create and add Margul - White furred, large, carnivorous, arctic beast with a tail and a long neck...
@@ -2295,6 +2292,8 @@ function over(kind, j, i, extraX, extraY) //TEST
     var tileX = ((j - 1) * 300 + (extraX * 300) - 1/2 * CCC.width);
     var tileY = ((i - 1) * 300 + (extraY * 300) - 1/2 * CCC.height);
     //XXX.drawImage(sea, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+
+    //PLAYER LANDSCAPE SENSING
     if (-X < tileX + 300 && -X > tileX && -Y < tileY + 300 && -Y > tileY)
     {
         if (kind == "sea")
@@ -2308,6 +2307,25 @@ function over(kind, j, i, extraX, extraY) //TEST
             player.water = true;
         }
     }
+
+    //UNIT LANDSCAPE SENSING
+    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+    {
+        if (-ArtificialIntelligenceAccess[i].X < tileX + 300 && -ArtificialIntelligenceAccess[i].X > tileX && -ArtificialIntelligenceAccess[i].Y < tileY + 300 && -ArtificialIntelligenceAccess[i].Y > tileY)
+        {
+            if (kind == "sea")
+            {
+                ArtificialIntelligenceAccess[i].water = true;
+                ArtificialIntelligenceAccess[i].land = false;
+            }
+            else if (kind == "landing")
+            {
+                ArtificialIntelligenceAccess[i].water = true;
+                ArtificialIntelligenceAccess[i].land = true;
+            }
+        }
+    }
+
 }
 
 //This function sets the lower canvas X and Y to un-problematic values whilst the mouse is in the main inventory.
@@ -2636,7 +2654,6 @@ function theLegend()
         sagesCacheStash: true,
         spiderwebLoot: true,
         ultherMapItems: true,
-        n3Stash: true,
 
         //EVENTS (non quest)
         ultherFlower: true,

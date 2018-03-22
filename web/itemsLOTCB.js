@@ -15,6 +15,7 @@ function Item(type, x, y)
     this.alcohol = 0;
     this.wake = 0;
     this.store = []; //these are the items you gain from opening a package utility item.
+    this.aqua = false; //this determines if the item can be dropped or used while in water
     this.barcode = this.type + (Math.random() * Math.random());
 
     this.turn = 0;
@@ -228,6 +229,9 @@ function Item(type, x, y)
             this.damage = 0;
             this.magicalDamage = 0;
             this.negateArmour = 0;
+
+            //extra
+            this.aqua = true;
 
             //ability
             this.ability = "none";
@@ -16835,7 +16839,7 @@ function Item(type, x, y)
             this.toughnessRequirement = 4;
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
-            this.warmthRetention = 3.5;
+            this.warmthRetention = 5.5;
             this.thirstRetention = - 0.5;
             this.shockResist = 5;
             //Main Stat Bonuses
@@ -17110,7 +17114,7 @@ function Item(type, x, y)
             this.toughnessRequirement = 5;
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
-            this.warmthRetention = 3.5;
+            this.warmthRetention = 5.5;
             this.thirstRetention = - 0.5;
             this.shockResist = 6;
             //Main Stat Bonuses
@@ -18770,7 +18774,7 @@ function Item(type, x, y)
             this.toughnessRequirement = 0;
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
-            this.warmthRetention = 3.1;
+            this.warmthRetention = 4.1;
             this.thirstRetention = -3;
             this.shockResist = 0;
             //Main Stat Bonuses
@@ -18827,7 +18831,7 @@ function Item(type, x, y)
             this.toughnessRequirement = 0;
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
-            this.warmthRetention = 0.35;
+            this.warmthRetention = 0.55;
             this.thirstRetention = 0;
             this.shockResist = 0;
             //Main Stat Bonuses
@@ -18885,7 +18889,7 @@ function Item(type, x, y)
             this.toughnessRequirement = 0;
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
-            this.warmthRetention = 0.55;
+            this.warmthRetention = 0.85;
             this.thirstRetention = 0;
             this.shockResist = 0;
             //Main Stat Bonuses

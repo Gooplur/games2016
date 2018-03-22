@@ -1388,6 +1388,12 @@ function Adventurer()
             //This is Where warmth and thirst will either increase or decrease depending on the region the player is in.
             if (elevation == 3 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
             {
+                //extra coldness is added for swimming in cold water
+                if (this.movingType == "swimming")
+                {
+                    this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (11 - this.warmthProtection)));
+                }
+                //COLD SYSTEM (seasonal differences)
                 if (currentSeason == "Bright")
                 {
                     if (timeOfDay == "Day")
@@ -1463,6 +1469,12 @@ function Adventurer()
             }
             else if (elevation == 2 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
             {
+                //extra coldness is added for swimming in cold water
+                if (this.movingType == "swimming")
+                {
+                    this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (9 - this.warmthProtection)));
+                }
+                //COLD SYSTEM (seasonal differences)
                 if (currentSeason == "Bright")
                 {
                     if (timeOfDay == "Day")
@@ -1538,6 +1550,12 @@ function Adventurer()
             }
             else if (elevation == 1 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
             {
+                //extra coldness is added for swimming in cold water
+                if (this.movingType == "swimming")
+                {
+                    this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (7 - this.warmthProtection)));
+                }
+                //COLD SYSTEM (seasonal differences)
                 if (currentSeason == "Bright")
                 {
                     if (timeOfDay == "Day")
@@ -1613,6 +1631,12 @@ function Adventurer()
             }
             else if (elevation == 0 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
             {
+                //extra coldness is added for swimming in cold water
+                if (this.movingType == "swimming")
+                {
+                    this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
+                }
+                //COLD SYSTEM (seasonal differences)
                 if (currentSeason == "Bright")
                 {
                     if (timeOfDay == "Day")
@@ -2910,8 +2934,11 @@ function Adventurer()
 
                 if (this.gojiiVomit == true)
                 {
-                    worldItems.push([new Item("vomit", X, Y), 1]);
-                    worldItems.push([new Item("vomit", X, Y), 1]);
+                    if (this.land == true)
+                    {
+                        worldItems.push([new Item("vomit", X, Y), 1]);
+                        worldItems.push([new Item("vomit", X, Y), 1]);
+                    }
                     this.hunger = Math.max(0, this.hunger - 48);
                     this.gojiiVomit = false;
                 }
@@ -2969,7 +2996,10 @@ function Adventurer()
             //Food poisoning
             if (new Date().getTime() - this.timeSinceBadFoodEaten >= 33000 && new Date().getTime() - this.timeSinceBadFoodEaten < 34000)
             {
-                worldItems.push([new Item("vomit", X, Y), 1]);
+                if (this.land == true)
+                {
+                    worldItems.push([new Item("vomit", X, Y), 1]);
+                }
                 this.hunger = Math.max(0, this.hunger - 24);
                 this.energy -= 3;
                 this.timeSinceBadFoodEaten = 0;
@@ -23911,7 +23941,20 @@ function Adventurer()
         {
             if (lMouseX >= 21 && lMouseX <= 1329) //This checks if the mouse is between the scroll buttons rather than on them.
             {
-                if (shiftKey != true && lowBar == "inventory" && clickReleased == true && lMouseX > listOfInvX1Coords[i] + 64 && lMouseX < listOfInvX2Coords[i] && lMouseY > 3 && lMouseY < 20 && Inventory[i][0].equipped == false && this.REQB == false) //Drop item when the X button is pressed.
+                //limit what can be used or dropped in certain conditions
+                var canDrop = true;
+                var canUse = true;
+                if (this.movingType == "swimming" && Inventory[i][0].aqua != true || this.movingType == "boating" && this.water == true && Inventory[i][0].aqua != true)
+                {
+                    canDrop = false;
+                }
+                if (this.movingType == "swimming" && Inventory[i][0].aqua != true || this.movingType == "swimming" && Inventory[i][0].utility == "food" || this.movingType == "boating" && this.water == true && Inventory[i][0].aqua != true && Inventory[i][0].utility != "food" && Inventory[i][0].utility != "weapon" && Inventory[i][0].utility != "worn" && Inventory[i][0].utility != "book" && Inventory[i][0].utility != "note" && Inventory[i][0].utility != "tablet" && Inventory[i][0].utility != "spell" && Inventory[i][0].utility != "audiolog" && Inventory[i][0].utility != "recipe" && Inventory[i][0].utility != "package")
+                {
+                    canUse = false;
+                }
+
+                //Interact With Item Dropping, using, etc.
+                if (shiftKey != true && lowBar == "inventory" && clickReleased == true && lMouseX > listOfInvX1Coords[i] + 64 && lMouseX < listOfInvX2Coords[i] && lMouseY > 3 && lMouseY < 20 && Inventory[i][0].equipped == false && this.REQB == false && canDrop) //Drop item when the X button is pressed.
                 {
                     clickReleased = false;
                     Inventory[i][1] -= 1;
@@ -23928,13 +23971,13 @@ function Adventurer()
                         worldItems.push([new Item(Inventory[i][0].type, X, Y), 1]);
                     }
                 }
-                else if (shiftKey == true && lowBar == "inventory"  && clickReleased == true && lMouseX > listOfInvX1Coords[i] + 64 && lMouseX < listOfInvX2Coords[i] && lMouseY > 3 && lMouseY < 20 && Inventory[i][0].equipped == false && this.REQB == false) //Drop all items when the X button is pressed.
+                else if (shiftKey == true && lowBar == "inventory"  && clickReleased == true && lMouseX > listOfInvX1Coords[i] + 64 && lMouseX < listOfInvX2Coords[i] && lMouseY > 3 && lMouseY < 20 && Inventory[i][0].equipped == false && this.REQB == false && canDrop) //Drop all items when the X button is pressed.
                 {
                     clickReleased = false;
                     worldItems.push([new Item(Inventory[i][0].type, X, Y), Inventory[i][1] + cheatItem]);
                     Inventory.splice(i, 1);
                 }
-                else if (clickReleased == true && lowBar == "inventory" && lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord && this.REQB == false) //When you click on an item you either access its utility or you equip it.
+                else if (clickReleased == true && lowBar == "inventory" && lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord && this.REQB == false && canUse) //When you click on an item you either access its utility or you equip it.
                 {
                     clickReleased = false;
                     //console.log(Inventory[i][0].equipped);
@@ -24948,7 +24991,7 @@ function Adventurer()
                             }
                         }
                     }
-                    else if (Inventory[i][0].utility == "book" || Inventory[i][0].utility == "note")
+                    else if (Inventory[i][0].utility == "book" || Inventory[i][0].utility == "note" || Inventory[i][0].utility == "tablet")
                     {
                         gameState = "paused";
                         lowBar = "reading";
@@ -25706,6 +25749,13 @@ function Adventurer()
                         XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
                         XXX.fillText("      Note", 157, 514);
                     }
+                    else if (Inventory[i][0].utility == "tablet")
+                    {
+                        XXX.font="14px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("      Tablet", 157, 514);
+                    }
                     else if (Inventory[i][0].utility == "audiolog")
                     {
                         XXX.font="14px Book Antiqua";
@@ -26189,7 +26239,13 @@ function Adventurer()
     //Energy
     this.energyRegeneration = function()
     {
-        if (this.movingType != 2 && this.movingType != "swimming")
+        var paddlingBoat = false;
+        if (this.movingType == "boating" && spaceKey)
+        {
+            paddlingBoat = true;
+        }
+
+        if (this.movingType != 2 && this.movingType != "swimming" && !paddlingBoat)
         {
             //ENERGY REGENERATION
             if (this.hunger > 1/10 * this.hungerMAX) //if the hunger is greater than 1/10 regeneration is allowed.

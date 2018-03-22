@@ -312,24 +312,57 @@ function worldBuilder()
         }
         //layer 3 (frosty region): elev 1
         //mapN3
-        if (Y > 26650 && Y < 100000) //X0
+        if (Y > 26650 && Y < 37456) //X0
         {
             elevation = 1;
             region = "n3";
-            outlineBuilder(34, 34, "snow", -20, -122); //frost
+            outlineBuilder(34, 34, "frost", -20, -122);
             outlineBuilder(34, 1, "stonePath", -3, -122);
-            outlineBuilder(3, 3, "sea", -8, -91);
-            outlineBuilder(1, 1, "seaCornerTL", -9, -91);
-            outlineBuilder(1, 1, "shallow", -9, -90);
-            outlineBuilder(1, 1, "seaCornerBL", -9, -89);
         }
         //layer 4 (frosty region): elev 1
         //mapN4
-        if (Y > 100000) //X0
+        if (Y > 36878 && Y < 47662 && X < 7530 && X > -3910) //North Coast//X0
         {
             elevation = 1;
             region = "n4";
-            outlineBuilder( 150, 83, "snow", -80, -405);
+            outlineBuilder(18, 34, "frost", -20, -140); //-156 is the top of the map //18 tiles thick of of snow
+
+            outlineBuilder(12, 34, "greySand", -20, -152); //11 tiles thick of sand
+            outlineBuilder(4, 34, "sea", -20, -156); //4 tiles thick of sea
+            outlineBuilder(1, 1, "seaCornerBL", -17, -151);
+            outlineBuilder(1, 4, "sea", -16, -153);
+            outlineBuilder(1, 3, "sea", -15, -152);
+            outlineBuilder(1, 1, "shallow", -16, -152);
+            outlineBuilder(1, 4, "shallow", -16, -151);
+            outlineBuilder(1, 4, "shallow", -20, -152);
+            outlineBuilder(1, 1, "sea", -12, -152);
+            outlineBuilder(1, 1, "seaCornerBR", -11, -152);
+            outlineBuilder(1, 1, "seaCornerBR", -12, -151);
+            outlineBuilder(1, 24, "shallow", -10, -153);
+            outlineBuilder(1, 1, "seaCornerBL", -3, -152);
+            outlineBuilder(1, 2, "shallow", -2, -152);
+            outlineBuilder(1, 1, "seaCornerBR", 0, -152);
+
+            outlineBuilder(1, 20, "frost", -16, -141);
+            outlineBuilder(1, 3, "frost", -9, -142);
+            outlineBuilder(1, 6, "frost", -17, -142);
+            outlineBuilder(2, 5, "frost", 9, -142);
+            outlineBuilder(1, 1, "frost", 12, -143);
+            outlineBuilder(1, 2, "frost", 6, -141);
+            outlineBuilder(1, 2, "frost", -14, -143);
+            outlineBuilder(3, 1, "frost", -20, -143);
+
+            outlineBuilder(8, 1, "stonePath", -1, -132);
+            outlineBuilder(1, 1, "stonePath", -3, -123);
+            outlineBuilder(1, 3, "stonePath", -3, -124);
+            outlineBuilder(1, 14, "stonePath", 0, -132);
+        }
+        //mapN4E1
+        if (Y > 36878 && Y < 47662 && X < -2647) //North Coast//X1
+        {
+            elevation = 1;
+            region = "n4e1";
+            outlineBuilder(34, 34, "outline", 14, -156);
         }
     } //ALTERNATE DIMENSIONS
     else if (map == "sagesCache") //This is a dungeon found in map W3
@@ -1486,48 +1519,169 @@ function buildMaster()
                 //meant for the map
 
                 //humans
-                ArtificialIntelligenceAccess.push(new Unit(3675, 29302, "Soldier", false, "Freydic Hunter", {race: "Freynor", faction: "Freynor", con: 8, speed: 1.1, outfit: ["sealSkinClothing", 0], weapon: ["freydicSpear", [2, 3], 4, 24, 1.25], ranged: [false, "arrow", 5, 1600, 1, 4, 0, "none", 2], patrolStops: 5, patrolLoop: true, route:[[2197, 29577], [3889, 29603], [3736, 30019], [2977, 28941], [3701, 29233]]}));
 
                 //balkur
-                //ArtificialIntelligenceAccess.push(new Unit(-1455, 26201, "Balkur", false, "Tivilesh"));
+                if (Math.round(Math.random()))
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(6014, 29100, "Balkur", true, "Kalovesh"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(6014, 29100, "Balkur", false, "Kalobech"));
+                }
+                ArtificialIntelligenceAccess.push(new Unit(4674, 34221, "Balkur", true, "Kalobesh"));
 
                 //waanti
-                //ArtificialIntelligenceAccess.push(new Unit(2658, 24515, "Waanti", "baby", "yiim"));
+                ArtificialIntelligenceAccess.push(new Unit(6268, 30642, "Waanti", "baby", "yiam"));
+                ArtificialIntelligenceAccess.push(new Unit(6037, 30878, "Waanti", "baby", "yiom"));
+                ArtificialIntelligenceAccess.push(new Unit(6022, 30704, "Waanti", "baby", "yiilmera"));
+                ArtificialIntelligenceAccess.push(new Unit(6330, 31214, "Waanti", false, "Ilmurdara"));
+                ArtificialIntelligenceAccess.push(new Unit(5665, 30990, "Waanti", false, "Genjura"));
+                ArtificialIntelligenceAccess.push(new Unit(5449, 30427, "Waanti", true, "Jolhaffsmur"));
+                ArtificialIntelligenceAccess.push(new Unit(6642, 32479, "Waanti", true, "Jolhaffsmuro"));
+                ArtificialIntelligenceAccess.push(new Unit(2067, 32440, "Waanti", false, "Genjuraya"));
+                ArtificialIntelligenceAccess.push(new Unit(1969, 32293, "Waanti", true, "Ialhoffsmurre"));
+                ArtificialIntelligenceAccess.push(new Unit(253, 34639, "Waanti", "baby", "yiaam"));
+                ArtificialIntelligenceAccess.push(new Unit(-16, 34447, "Waanti", "baby", "yialmera"));
+                ArtificialIntelligenceAccess.push(new Unit(431, 34196, "Waanti", false, "Almurdara"));
+                ArtificialIntelligenceAccess.push(new Unit(84, 34672, "Waanti", false, "Jenjura"));
+                ArtificialIntelligenceAccess.push(new Unit(-207, 34260, "Waanti", true, "Golhaffsmur"));
+                ArtificialIntelligenceAccess.push(new Unit(-31, 33917, "Waanti", true, "Holhaffsmuro"));
+                ArtificialIntelligenceAccess.push(new Unit(545, 34903, "Waanti", false, "Lenjurara"));
+                ArtificialIntelligenceAccess.push(new Unit(-40, 35098, "Waanti", true, "Falhoffsmurrek"));
+                ArtificialIntelligenceAccess.push(new Unit(322, 29192, "Waanti", false, "Lenjura"));
+                ArtificialIntelligenceAccess.push(new Unit(-411, 29166, "Waanti", "baby", "Lolhaffsmur"));
+                ArtificialIntelligenceAccess.push(new Unit(65, 28751, "Waanti", true, "Hiolhaffsmuro"));
+                ArtificialIntelligenceAccess.push(new Unit(-50, 28988, "Waanti", false, "Thenjurara"));
+                ArtificialIntelligenceAccess.push(new Unit(-343, 28802, "Waanti", true, "Thalhoffsmurrek"));
+                ArtificialIntelligenceAccess.push(new Unit(-1944, 28046, "Waanti", "baby", "Lalhaffsmur"));
+                ArtificialIntelligenceAccess.push(new Unit(-2338, 28313, "Waanti", true, "Hialhaffsmuro"));
+                ArtificialIntelligenceAccess.push(new Unit(-2464, 27845, "Waanti", false, "Thanara"));
+                ArtificialIntelligenceAccess.push(new Unit(-1850, 28239, "Waanti", false, "Thihoffsmurrek"));
+
+                if (change != "n4")
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(1523, 37117, "Waanti", true, "Hioulhioffsmurre"));
+                    ArtificialIntelligenceAccess.push(new Unit(1484, 37247, "Waanti", false, "Hioulhioffsmurre"));
+
+                    ArtificialIntelligenceAccess.push(new Unit(2025, 37205, "Waanti", "baby", "Lalhaffsmur"));
+                    ArtificialIntelligenceAccess.push(new Unit(2157, 37116, "Waanti", false, "Thanara"));
+                }
+                if (Math.round(Math.random() * 4) == 1)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(2026, 36815, "Waanti", true, "Hialhaffsmuro"));
+                }
 
                 //koobu
-                //ArtificialIntelligenceAccess.push(new Unit(-917, 19442, "Koobu", false, "Kipper"));
+                ArtificialIntelligenceAccess.push(new Unit(3997, 27954, "Koobu", true, "Kapper"));
+                ArtificialIntelligenceAccess.push(new Unit(4653, 28074, "Koobu", false, "Keppler"));
+                if (Math.round(Math.random()))
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(2957, 29014, "Koobu", false, "Kippler"));
+                }
+
+                if (Math.round(Math.random()))
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-2090, 34378, "Koobu", false, "Kouppler"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-2090, 34378, "Koobu", true, "Kauppler"));
+                }
+
+                if (Math.round(Math.random()))
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-2381, 33953, "Koobu", false, "Kuppler"));
+                }
+                ArtificialIntelligenceAccess.push(new Unit(934, 30135, "Koobu", false, "Kilppar"));
+
 
                 //winter wolves
-                //ArtificialIntelligenceAccess.push(new Unit(-2350, 17359, "WinterWolf", false, "Lusgorr"));
+                if (change != "n2")
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(4605, 27278, "WinterWolf", false, "Lusgorre"));
+                    if (change == "n4")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(5054, 27117, "WinterWolf", false, "Lusgorria"));
+                        ArtificialIntelligenceAccess.push(new Unit(4743, 27010, "WinterWolf", false, "Lusgorrial"));
+                    }
+                }
+                if (Math.round(Math.random() * 5) == 4)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(4562, 29644, "WinterWolf", false, "Lusgorrai"));
+                    ArtificialIntelligenceAccess.push(new Unit(4207, 29666, "WinterWolf", false, "Lusgorriel"));
+                }
+                ArtificialIntelligenceAccess.push(new Unit(2905, 36769, "WinterWolf", false, "Lusgorraiya"));
+
+                if (change != "n3w1")
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(6161, 36572, "WinterWolf", true, "Lusgorrielle"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(6228, 36216, "WinterWolf", false, "Losgorrailia"));
+                    ArtificialIntelligenceAccess.push(new Unit(5691, 36371, "WinterWolf", false, "Lisgorriellia"));
+                }
+                ArtificialIntelligenceAccess.push(new Unit(35, 32208, "WinterWolf", false, "Luusgorrail"));
+                ArtificialIntelligenceAccess.push(new Unit(-90, 31873, "WinterWolf", false, "Laasgorriellia"));
+                ArtificialIntelligenceAccess.push(new Unit(145, 31910, "WinterWolf", false, "Liusgorrailia"));
+                ArtificialIntelligenceAccess.push(new Unit(-387, 32016, "WinterWolf", false, "Loisgorrielle"));
+                ArtificialIntelligenceAccess.push(new Unit(-535, 31680, "WinterWolf", false, "Laugorrel"));
+
+                ArtificialIntelligenceAccess.push(new Unit(83, 27616, "WinterWolf", false, "Laurgorrelle"));
+                if (Math.round(Math.random()))
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(292, 36133, "WinterWolf", false, "Luargorrua"));
+                    ArtificialIntelligenceAccess.push(new Unit(-243, 36242, "WinterWolf", false, "Luargorru"));
+                    ArtificialIntelligenceAccess.push(new Unit(396, 36440, "WinterWolf", false, "Luargurana"));
+                }
 
                 //glutids
                 //ArtificialIntelligenceAccess.push(new Unit(6317, 21218, "Glutid", true, "Gluptard", {patrolStops: 5, patrolLoop: true, route:[[6037, 21507], [6833, 21852], [6568, 22378], [7140, 22077], [6317, 21218]]}));
                 //ArtificialIntelligenceAccess.push(new Unit(2674, 17194, "Glutid", false, "Gluptariela", {patrolStops: 1, patrolLoop: true, route:[[2674, 17194]]}));
 
                 //Plants
-                //scenicList.push(new Scenery("bushkaPlant", 5940, 17870, -1.5, true));
+                scenicList.push(new Scenery("bushkaPlant", 3207, 27390, 5, true));
+                scenicList.push(new Scenery("bushkaPlant", 4497, 27682, 4.8, true));
+                scenicList.push(new Scenery("bushkaPlant", 5300, 35493, -6.61, true));
+                scenicList.push(new Scenery("bushkaPlant", -2366, 35548, -2.75, true));
+                scenicList.push(new Scenery("bushkaPlant", -2182, 34319, 2.75, true));
+                scenicList.push(new Scenery("bushkaPlant", -1849, 34052, 4.75, true));
+                scenicList.push(new Scenery("bushkaPlant", -1078, 28815, -5.1, true));
 
-                //scenicList.push(new Scenery("wightbloomPlant", 5160 , 26153, 0.25, true));
+                scenicList.push(new Scenery("wightbloomPlant", 4185 , 32149, 10, true));
+                scenicList.push(new Scenery("wightbloomPlant", 53 , 30093, -9, true));
 
-                //scenicList.push(new Scenery("tyrniPlant", 3391, 22531, 0, true));
+                if (change != "n4")
+                {
+                    scenicList.push(new Scenery("tyrniPlant", 3902, 36896, 6, true));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("tyrniPlant", 3575, 36471, 6.5, true));
+                }
+                scenicList.push(new Scenery("tyrniPlant", 19, 36084, -5.4, true));
 
                 //Scenery
+                scenicList.push(new Scenery("stone", 3755 , 29352, 1.2, 2, 2));
+                scenicList.push(new Scenery("stone", 4214 , 29229, -4, 1, 3));
+                scenicList.push(new Scenery("stone", 4733 , 30127, -3, 1.5, 2));
+                if (Math.round(Math.random() * 3) == 3)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(3675, 29302, "Soldier", false, "Freydic Hunter", {race: "Freynor", faction: "Freynor", con: 8, speed: 1.1, outfit: ["sealSkinClothing", 0], weapon: ["freydicSpear", [2, 3], 4, 24, 1.25], ranged: [false, "arrow", 5, 1600, 1, 4, 0, "none", 2], patrolStops: 5, patrolLoop: true, route:[[2197, 29577], [3889, 29603], [3736, 30019], [2977, 28941], [3701, 29233]]}));
                     //hunter's camp
                     scenicList.push(new Scenery("tent", 3822, 29306, 1/8 * 2 * Math.PI, true));
-                    scenicList.push(new Scenery("stone", 3755 , 29352, 1.2, 2, 2));
-                    scenicList.push(new Scenery("stone", 4214 , 29229, -4, 1, 3));
-                    scenicList.push(new Scenery("stone", 4733 , 30127, -3, 1.5, 2));
                     scenicList.push(new Scenery("deadWaanti", 3755 , 29352, 3.14, 1.6));
                     scenicList.push(new Scenery("campFire", 3757 , 29275, 1, "permaLit"));
-                    scenicList.push(new Scenery("item", 3807, 29356, 0, "freynor", ["bucket", 1, -20]));
-
-                //Items
-                if (quests.n3Stash)
-                {
-                    quests.n3Stash = false;
-
-                    worldItems.push([new Item("arrow", 3797, 29257), 3]);
+                    scenicList.push(new Scenery("item", 3807, 29356, 0, "freynor", ["bucket", 1, -18]));
+                    scenicList.push(new Scenery("item", 3797, 29257, 0, "freynor", ["arrow", 3, -9]));
                 }
+                scenicList.push(new Scenery("stone", 4201 , 28220, 3.6, 0.5, 1));
+                scenicList.push(new Scenery("stone", 5626 , 31426, 8.3, 0.5, 3));
+                scenicList.push(new Scenery("stone", 6055 , 31963, -2, 0.5, 3));
+                scenicList.push(new Scenery("stone", 845 , 35479, 4.444, 1.5, 2));
+                scenicList.push(new Scenery("stone", 256 , 35885, 2.8, 0.5, 1));
+                scenicList.push(new Scenery("stone", -2069 , 32193, -1, 1, 2));
 
                 //Hyeling Camps
                 //ArtificialIntelligenceAccess.push(new Unit(10041, 8746, "Hyeling", true, "White Hammer"));
@@ -1537,6 +1691,173 @@ function buildMaster()
                 //scenicList.push(new Scenery("hyelingSkeleton", 10071 , 8788, 0.12, true));
 
                 change = "n3";
+            }
+        }
+        else if (region == "n4") //Y > 6290 && Y < 32370
+        {
+            if (change != "n4")
+            {
+                dialogueReset();
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //meant for the map
+
+                //humans
+
+                //balkur
+                //ArtificialIntelligenceAccess.push(new Unit(4674, 34221, "Balkur", true, "Kalobesh"));
+
+                //waanti
+                ArtificialIntelligenceAccess.push(new Unit(4592, 40636, "Waanti", "baby", "yiam"));
+                ArtificialIntelligenceAccess.push(new Unit(4922, 40968, "Waanti", true, "yiam"));
+                ArtificialIntelligenceAccess.push(new Unit(4480, 40755, "Waanti", false, "yiam"));
+
+                //koobu
+                ArtificialIntelligenceAccess.push(new Unit(6077, 39074, "Koobu", true, "Kooper"));
+                ArtificialIntelligenceAccess.push(new Unit(-256, 39271, "Koobu", false, "Kouperr"));
+
+
+                //winter wolves
+                ArtificialIntelligenceAccess.push(new Unit(-1750, 37746, "WinterWolf", false, "Laugorrela"));
+                ArtificialIntelligenceAccess.push(new Unit(-1952, 37576, "WinterWolf", false, "Laugorreli"));
+                ArtificialIntelligenceAccess.push(new Unit(-2507, 37794, "WinterWolf", false, "Laugorrele"));
+                ArtificialIntelligenceAccess.push(new Unit(-2462, 37602, "WinterWolf", false, "Laugorrelo"));
+
+                //glutids
+                ArtificialIntelligenceAccess.push(new Unit(3105, 39083, "Glutid", true, "Gluuptarg", {patrolStops: 5, patrolLoop: true, route:[[2547, 38775], [2060, 39066], [1805, 38576], [3082, 38393], [3105, 39083]]}));
+                ArtificialIntelligenceAccess.push(new Unit(4084, 38917, "Glutid", false, "Gluho", {patrolStops: 1, patrolLoop: true, route:[[4084, 38917]]}));
+                ArtificialIntelligenceAccess.push(new Unit(5167, 37697, "Glutid", false, "Gluho", {patrolStops: 3, patrolLoop: true, route:[[4186, 38091], [4854, 38220], [5167, 37697]]}));
+
+
+                //beach creatures
+                ArtificialIntelligenceAccess.push(new Unit(3918, 46085, "Cangrejo", "baby", "pincher"));
+                ArtificialIntelligenceAccess.push(new Unit(3940, 45556, "Cangrejo", "baby", "pinchy"));
+                if (Math.round(Math.random() * 3) == 2)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(1899, 45526, "Cangrejo", false, "pincharette"));
+                }
+                else
+                {
+                    if (Math.round(Math.random()))
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(1899, 45526, "Anemone", false, "slimer"));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(1899, 45526, "Anemone", "baby", "slimal"));
+                    }
+                }
+                //anemones
+                ArtificialIntelligenceAccess.push(new Unit(4505, 46018, "Anemone", true, "slimar"));
+                if (change != "n4w1")
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(6237, 46128, "Anemone", false, "slimic"));
+                    ArtificialIntelligenceAccess.push(new Unit(6748, 45976, "Anemone", "baby", "slimy"));
+                    ArtificialIntelligenceAccess.push(new Unit(6691, 45447, "Seal", false, "uf"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(6237, 46128, "Seal", true, "oof"));
+                }
+                //seals
+                ArtificialIntelligenceAccess.push(new Unit(6282, 45115, "Seal", false, "uf"));
+                ArtificialIntelligenceAccess.push(new Unit(881, 43637, "Seal", true, "arf"));
+                ArtificialIntelligenceAccess.push(new Unit(301, 44174, "Seal", true, "urf"));
+                ArtificialIntelligenceAccess.push(new Unit(675, 45843, "Seal", false, "ouf"));
+                ArtificialIntelligenceAccess.push(new Unit(622, 46092, "Seal", "baby", "auf"));
+                ArtificialIntelligenceAccess.push(new Unit(6, 45851, "Seal", true, "ourf"));
+                ArtificialIntelligenceAccess.push(new Unit(-368, 46245, "Seal", false, "aurf"));
+                ArtificialIntelligenceAccess.push(new Unit(-609, 45823, "Seal", false, "ouourf"));
+                ArtificialIntelligenceAccess.push(new Unit(-210, 46421, "Seal", "baby", "oof"));
+                ArtificialIntelligenceAccess.push(new Unit(-2542, 46364, "Seal", true, "aaurf"));
+                ArtificialIntelligenceAccess.push(new Unit(-2256, 45723, "Seal", false, "auurf"));
+                ArtificialIntelligenceAccess.push(new Unit(-1686, 46378, "Seal", false, "ouuoourf"));
+                ArtificialIntelligenceAccess.push(new Unit(-2456, 46135, "Seal", "baby", "oaouf"));
+                ArtificialIntelligenceAccess.push(new Unit(-2080, 43806, "Seal", false, "oaourf"));
+
+                //mites
+                ArtificialIntelligenceAccess.push(new Unit(3402, 45274, "BeachMite", false, "bit"));
+                ArtificialIntelligenceAccess.push(new Unit(4121, 44340, "BeachMite", true, "bit"));
+                ArtificialIntelligenceAccess.push(new Unit(5415, 45022, "BeachMite", false, "bit"));
+                ArtificialIntelligenceAccess.push(new Unit(5419, 45032, "BeachMite", true, "bit"));
+                ArtificialIntelligenceAccess.push(new Unit(5410, 45020, "BeachMite", false, "bit"));
+                ArtificialIntelligenceAccess.push(new Unit(-2305, 44720, "BeachMite", false, "bit"));
+                ArtificialIntelligenceAccess.push(new Unit(-2315, 44710, "BeachMite", false, "bit"));
+                ArtificialIntelligenceAccess.push(new Unit(6088, 44272, "BeachMite", true, "bit"));
+                ArtificialIntelligenceAccess.push(new Unit(6080, 44270, "BeachMite", false, "bit"));
+                ArtificialIntelligenceAccess.push(new Unit(6075, 44277, "BeachMite", false, "bit"));
+                ArtificialIntelligenceAccess.push(new Unit(6095, 44275, "BeachMite", false, "bit"));
+                ArtificialIntelligenceAccess.push(new Unit(4156, 44677, "BeachMite", false, "bit"));
+                ArtificialIntelligenceAccess.push(new Unit(4150, 44670, "BeachMite", false, "bit"));
+
+                //cloimids
+                ArtificialIntelligenceAccess.push(new Unit(4721, 45874, "Cloimid", true, "moistClambyTickle", {rotation: -110/360 * 2 * Math.PI}));
+                ArtificialIntelligenceAccess.push(new Unit(4707, 45837, "Cloimid", false, "moistClambyFondle", {rotation: -155/360 * 2 * Math.PI}));
+                ArtificialIntelligenceAccess.push(new Unit(4679, 45836, "Cloimid", false, "moistClambyLick", {rotation: -235/360 * 2 * Math.PI}));
+                ArtificialIntelligenceAccess.push(new Unit(4476, 44980, "Cloimid", true, "moistClambyTickles", {rotation: -90/360 * 2 * Math.PI}));
+                ArtificialIntelligenceAccess.push(new Unit(4435, 44970, "Cloimid", false, "moistClambyLicks", {rotation: -45/360 * 2 * Math.PI}));
+                ArtificialIntelligenceAccess.push(new Unit(4503, 44950, "Cloimid", true, "moistClambyKiss", {rotation: -180/360 * 2 * Math.PI}));
+                ArtificialIntelligenceAccess.push(new Unit(4424, 44919, "Cloimid", true, "moistClambyKisses", {rotation: 35/360 * 2 * Math.PI}));
+                ArtificialIntelligenceAccess.push(new Unit(4440, 44885, "Cloimid", false, "moistClambyHicky", {rotation: 72/360 * 2 * Math.PI}));
+
+
+                //Plants
+                scenicList.push(new Scenery("bushkaPlant", 3504, 42017, 1, true));
+                scenicList.push(new Scenery("bushkaPlant", -1493, 38240, 1.55, true));
+                scenicList.push(new Scenery("tyrniPlant", 5472, 38523, -7, true));
+                scenicList.push(new Scenery("tyrniPlant", -1070, 41492, -3.77, true));
+                scenicList.push(new Scenery("tyrniPlant", 3130, 42388, 4.6, true));
+                    //algae
+                //scenicList.push(new Scenery("algae", 4656, 45859, 0, 1)); //use these coords please
+
+                //Scenery
+                scenicList.push(new Scenery("stone", 4265 , 41412, 2.4, 2, 3));
+                scenicList.push(new Scenery("stone", 4897 , 41696, 2.2, 0.5, 2));
+                scenicList.push(new Scenery("stone", 3914 , 45416, 6.2, 1.5, 2));
+                scenicList.push(new Scenery("stone", 3548 , 45487, 6.9, 1, 1));
+                scenicList.push(new Scenery("stone", 3797 , 45784, 1.3, 1, 2));
+                scenicList.push(new Scenery("stone", 3329 , 45948, -5.58, 0.5, 3));
+                scenicList.push(new Scenery("stone", 2423 , 45781, -8.1, 1.5, 1));
+                scenicList.push(new Scenery("stone", 2172 , 45197, 0, 0.5, 2));
+                scenicList.push(new Scenery("stone", 5252 , 46088, -2, 2.5, 2));
+                scenicList.push(new Scenery("stone", 4750 , 46484, 4.3, 2, 3));
+                scenicList.push(new Scenery("stone", 4684 , 45879, 3, 2, 1));
+                scenicList.push(new Scenery("stone", 4461 , 44964, 0.5, 1.5, 2));
+                scenicList.push(new Scenery("stone", 4467 , 44916, 4, 2, 1));
+                scenicList.push(new Scenery("stone", 4417 , 44955, 2.9, 1, 3));
+
+                //Hyeling Camps
+                //ArtificialIntelligenceAccess.push(new Unit(10041, 8746, "Hyeling", true, "White Hammer"));
+                //ArtificialIntelligenceAccess.push(new Unit(9711, 8503, "HyelingSoldier", false, "Running Stone"));
+                //scenicList.push(new Scenery("largeCeremonialRockCircle", 10075 , 8783, 0, true));
+                //scenicList.push(new Scenery("hyelingTent", 9199 , 8965, 1/2 * Math.PI, true));
+                //scenicList.push(new Scenery("hyelingSkeleton", 10071 , 8788, 0.12, true));
+
+                change = "n4";
             }
         }
         else if (region == "w1") //Y > 6290 && Y < 32370

@@ -26,6 +26,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.traverse = false; //the ability to walk over other units but nothing else.
     this.contraPlayer = true; //this is manually set to false when defining a creature if it is a creature that never engages the player in combat.
     this.owned = false; //if this is owned by a faction then set owned to true;
+    this.flotation = false; //if true this unit drops items and shows its body upon death in the water.
 
     //timers for AI
     this.aiTimer = 0; //the total time a unit has been in existence (unless reset)
@@ -139,6 +140,9 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //taming variables
     this.tamable = true;
     this.tameREQ = 20;
+    //landscape variables
+    this.water = false;
+    this.land = false;
     //Other variables
     this.other = false; //this is unique for every unit... do whith it what you will.
     this.interactable = false; //this allows a creature other than a human to be interacted with in the dialogue system.
@@ -167,11 +171,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
     }
     this.numberOfSameTypeNearby = 0;
+    this.invisible = false; //this determines if a unit can be seen at all
+    this.ghost = false; //this determines if a unit is a ghost (it makes it fade out to only 30% opacity
 
     //Sound variables
     this.voicedSounds = [];
     this.voiceTime = new Date().getTime();
     this.voiceFrequency = 45;
+    //swimming
+    this.swimMAX = 25;
+    this.swim = 25;
+    this.swimming = false;
+    this.swimSpeed = 1;
     //effects variables
     this.blindedTime = 0;
     this.blinded = false;
@@ -2245,9 +2256,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             var dtp = this.DTP();
             if (dtp > this.engagementRadius && dtp < this.rangeOfSight || this.fleeing == true && dtp < this.rangeOfSight || this.charger == true && dtp <= this.rangeOfSight) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
             {
+                var spd;
+                if (this.swimming)
+                {
+                    spd = this.swimSpeed;
+                }
+                else
+                {
+                    spd = this.speed;
+                }
 
-                var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
-                var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
+                var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * spd) * this.stunned;
+                var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * spd) * this.stunned;
 
                 if (!this.isObstructed( nextX, nextY ) || this.flying == true || this.underground == true)
                 {
@@ -2430,8 +2450,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             var dTo = this.distanceFinder(this, thing);
             if (dTo > this.engagementRadius && dTo < (this.rangeOfSight + extraS) || this.fleeing == true && dTo < (this.rangeOfSight + extraS) || this.charger == true && dTo <= this.rangeOfSight) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
             {
-                var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
-                var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
+                var spd;
+                if (this.swimming)
+                {
+                    spd = this.swimSpeed;
+                }
+                else
+                {
+                    spd = this.speed;
+                }
+
+                var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * spd) * this.stunned;
+                var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * spd) * this.stunned;
 
                 if (!this.isObstructed( nextX, nextY ) || this.flying == true || this.underground == true)
                 {
@@ -3046,6 +3076,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         var charmResistance = false;
         var webResistance = false;
         var buffoutResistance = false;
+        var drowningResistance = false;
 
         //for loop to check for resistance
         for (var i = 0; i < resistancesList.length; i++)
@@ -3085,6 +3116,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (resistancesList[i] == "buffout")
             {
                 buffoutResistance = true;
+            }
+            else if (resistancesList[i] == "water")
+            {
+                drowningResistance = true;
             }
         }
 
@@ -3293,6 +3328,30 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.stunned = 1;
         }
+
+        //Drowning Effect / Swimming
+        if (this.water == true && this.land == false && !this.flying)
+        {
+            this.swimming = true; //this is for animating sminning for those units that do.
+
+            if (drowningResistance == false && this.type != "Person" && this.type != "Soldier") //I'm lazy so I am excluding human type Units from swimming manually here instead of changing their resistances.
+            {
+                this.swim -= 0.04;
+
+                if (this.swim <= 0)
+                {
+                    this.stunned = 0;
+                    this.killNotByPlayer = true;
+                    this.health -= 1/74 * this.healthMAX;
+                    this.deleteBody = true;
+                }
+            }
+        }
+        else if (this.land)
+        {
+            this.swim = this.swimMAX;
+            this.swimming = false;
+        }
     };
     //This function increases the rangeOfSight of all of the surrounding nearby units.
     this.callForNearbyHelpFromType = function(range, type)
@@ -3419,13 +3478,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
     this.drawHumanArms = function()
     {
-        var playerFriendly = false
+        var playerFriendly = false;
         if (this.team == "player" && this.target == player) //this is so that ranged weapon using humans will not attack the player if they are on the players team.
         {
             playerFriendly = true;
         }
 
-        if (this.ranged == true && !playerFriendly)
+        if (this.ranged == true && !playerFriendly && this.weapon != "swimming")
         {
             var dtp;
             var dtu;
@@ -3497,6 +3556,65 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (theCostume >= 4)
             {
                 this.drawUnit(polyPNG, 653, 352, 80, 37, -26.5, -21, 48, 23, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "swimming") //this is irregular, do not copy it
+        {
+            //stage engine
+            this.swimStage += 0.15;
+
+            //ATTACK ANIMATION
+            if (this.swimStage <= 1)
+            {
+                this.drawUnit(norc, 844, 582, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4, 1 / 2 * Math.PI);
+            }
+            else if (this.swimStage <= 2)
+            {
+                this.drawUnit(norc, 844, 633, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4, 1 / 2 * Math.PI);
+            }
+            else if (this.swimStage <= 3)
+            {
+                this.drawUnit(norc, 844, 676, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4, 1 / 2 * Math.PI);
+            }
+            else if (this.swimStage <= 4)
+            {
+                this.drawUnit(norc, 845, 722, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4, 1 / 2 * Math.PI);
+            }
+            else if (this.swimStage <= 5)
+            {
+                this.drawUnit(norc, 844, 676, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4, 1 / 2 * Math.PI);
+            }
+            else if (this.swimStage <= 6)
+            {
+                this.drawUnit(norc, 844, 633, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4, 1 / 2 * Math.PI);
+            }
+            else if (this.swimStage <= 7)
+            {
+                this.drawUnit(norc, 844, 582, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4, 1 / 2 * Math.PI);
+            }
+            else if (this.swimStage <= 8)
+            {
+                this.drawUnit(norc, 925, 617, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4, 1 / 2 * Math.PI);
+            }
+            else if (this.swimStage <= 9)
+            {
+                this.drawUnit(norc, 925, 661, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4, 1 / 2 * Math.PI);
+            }
+            else if (this.swimStage <= 10)
+            {
+                this.drawUnit(norc, 926, 711, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4, 1 / 2 * Math.PI);
+            }
+            else if (this.swimStage <= 11)
+            {
+                this.drawUnit(norc, 925, 661, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4, 1 / 2 * Math.PI);
+            }
+            else
+            {
+                this.drawUnit(norc, 925, 617, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4, 1 / 2 * Math.PI);
+                if (this.swimStage >= 12)
+                {
+                    this.swimStage = 0;
+                }
             }
         }
         else if (this.weapon == "longbow")
@@ -4305,6 +4423,20 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
     };
 
+    this.switchToSwimming = function()
+    {
+        if (this.swimming == true)
+        {
+            this.weapon = "swimming";
+            this.ranged = true;
+        }
+        else
+        {
+            this.weapon = this.ultra.weapon[0];
+            this.ranged = this.ultra.ranged[0];
+        }
+    };
+
     //Basic Functionality
 
     this.disturbedTimer = function()
@@ -4349,17 +4481,19 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.killNotByPlayer == false && this.muzzle == false || this.killedByCompanion && this.muzzle == false)
                 {
-
-                    if (this.revived != true)
+                    if (!this.water || this.flotation || this.land) //items are lost to the water unless the creature can float
                     {
-                        for (var i = 0; i < this.drops.length; i++)
+                        if (this.revived != true)
                         {
-                            worldItems.push([this.drops[i][0], this.drops[i][1]]);
+                            for (var i = 0; i < this.drops.length; i++)
+                            {
+                                worldItems.push([this.drops[i][0], this.drops[i][1]]);
+                            }
                         }
-                    }
-                    else
-                    {
-                        worldItems.push([new Item("nechromanticDust", this.X, this.Y), 1 + Math.floor(this.healthMAX / 35)]);
+                        else
+                        {
+                            worldItems.push([new Item("nechromanticDust", this.X, this.Y), 1 + Math.floor(this.healthMAX / 35)]);
+                        }
                     }
 
                     if (this.beastEntry != "none")
@@ -4399,7 +4533,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
 
                 var me = ArtificialIntelligenceAccess.indexOf(this);
-                deadAIList.push(this);
+                if (!this.deleteBody)
+                {
+                    if (!this.water || this.flotation || this.land) //bodies are lost to the water unless the creature can float
+                    {
+                        deadAIList.push(this);
+                    }
+                }
                 ArtificialIntelligenceAccess.splice(me, 1);
             }
             else if (this.undeath == true)
@@ -4531,6 +4671,26 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
     };
 
+    this.getGlobalAlpha = function()
+    {
+        if (this.swimming && this.flotation == false && this.type != "Person" && this.type != "Soldier")
+        {
+            return 0.5;
+        }
+        else if (this.invisible)
+        {
+            return 0;
+        }
+        else if (this.ghost)
+        {
+            return 0.3;
+        }
+        else
+        {
+            return 1;
+        }
+    };
+
     //BUILD-LAB [this section is where the individualized ai unit skeletons will start to form up a bit.
     //this is a quick draw self function to make things a lot easier...
     this.drawUnit = function(img, cutX, cutY, width, length, positionX, positionY, skewW, skewL, extraRotation)
@@ -4562,6 +4722,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         XXX.rotate(this.rotation + this.extraRot + extraRot);
         XXX.beginPath();
+        XXX.globalAlpha = this.getGlobalAlpha();
         XXX.drawImage(img, cutX, cutY, width, length, positionX, positionY , skewW, skewL);
         XXX.restore();
     };
@@ -4934,7 +5095,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Walrus")
         {
             this.damageFrame = "automatic";
-            this.resistances = ["frozen", "shock"];
+            this.resistances = ["frozen", "shock", "water"];
             this.team = "walarusia";
             this.baseTeam = this.team;
 
@@ -4990,6 +5151,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.xAdjustment = 0;
 
             }
+            this.swimSpeed = this.speed * 3.25;
         }
         else if (this.type == "Shehid")
         {
@@ -7039,7 +7201,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "Cloimid")
         {
-            this.resistances = ["acid", "stun", "blinded", "shock", "burning", "frozen"];
+            this.resistances = ["acid", "stun", "blinded", "shock", "burning", "frozen", "water"];
             this.damageFrame = "manual";
             this.followThrough = true;
             this.team = "clamia";
@@ -7137,7 +7299,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Cangrejo")
         {
             this.damageFrame = "automatic";
-            this.resistances = ["acid", "stun", "burning"];
+            this.resistances = ["acid", "stun", "burning", "water"];
             this.team = "cangrejia";
             if (this.ID == "docile")
             {
@@ -7247,11 +7409,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.xAdjustment = 0;
 
             }
+            this.swimSpeed = 1/2 * this.speed;
         }
         else if (this.type == "Anemone")
         {
             this.damageFrame = "automatic";
-            this.resistances = ["acid", "stun", "burning", "blinded"];
+            this.resistances = ["acid", "stun", "burning", "blinded", "water"];
             this.team = "anemonia";
             if (this.ID == "docile")
             {
@@ -7331,8 +7494,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 // this is the adjustment the alpha type of Etyr needs to be centered.
                 this.yAdjustment = 0;
                 this.xAdjustment = 0;
-
             }
+            this.swimSpeed = 2 * this.speed;
         }
         else if (this.type == "Koobu")
         {
@@ -7371,7 +7534,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Seal")
         {
             this.damageFrame = "manual";
-            this.resistances = ["frozen", "shock"];
+            this.resistances = ["frozen", "shock", "water"];
             this.team = "herd";
             this.baseTeam = this.team;
 
@@ -7448,6 +7611,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.yAdjustment = 0;
                 this.xAdjustment = 0;
             }
+            this.swimSpeed = this.speed * 2.5;
         }
         else if (this.type == "MudBeetle")
         {
@@ -8651,8 +8815,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 // this is the adjustment the alpha type of Etyr needs to be centered.
                 this.yAdjustment = 0; //was -34
                 this.xAdjustment = 0; //was - 26
-
             }
+            this.swimSpeed = 3/5 * this.speed;
         }
         else if (this.type == "Viper")
         {
@@ -9610,6 +9774,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.sizeRadius = 10;
             this.negateArmour = this.ultra.weapon[2];
             this.attackWait = this.ultra.weapon[4];
+            this.swimStage = 0;
+            this.swimSpeed = 0.6 * this.speed;
 
             //this multiplies the draw image skew numbers by 1 so that it stays the same
             this.alphaSize = 1;
@@ -9648,6 +9814,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.sizeRadius = 10;
             this.negateArmour = this.ultra.weapon[2];
             this.attackWait = this.ultra.weapon[4];
+            this.swimStage = 0;
+            this.swimSpeed = 0.6 * this.speed;
         }
     };
     this.designUnits();
@@ -16526,7 +16694,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 //Appear to be eating dead bodies
                 for (var carrionNum = 0; carrionNum < deadAIList.length; carrionNum++)
                 {
-                    if (deadAIList[carrionNum].type != "BeachMite")
+                    if (deadAIList[carrionNum].type != "BeachMite" && deadAIList[carrionNum].flotation == false)
                     {
                         carrionDistNew = Math.sqrt((this.X - deadAIList[carrionNum].X) * (this.X - deadAIList[carrionNum].X) + (this.Y - deadAIList[carrionNum].Y) * (this.Y - deadAIList[carrionNum].Y));
                         if (carrionDistNew <= carrionDist)
@@ -21857,7 +22025,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     if (this.goatly == true)
                     {
                         this.goatEatness = 0;
-                        this.goatly = false
+                        this.goatly = false;
                     }
                     if (this.moving  && !this.attacking)
                     {
@@ -25552,6 +25720,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
 
                 //this.deathChecker();
+                this.switchToSwimming();
                 this.disturbedTimer();
                 this.visibleSight();
             }
@@ -26001,7 +26170,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                 }
                 //draw some weapons underneath the body
-                if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore")
+                if (this.wepLayer == "under" || this.weapon == "swimming" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore")
                 {
                     this.drawHumanArms();
                 }
@@ -26010,7 +26179,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawHuman();
 
                 //draw the others over it.
-                if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore")
+                if (this.wepLayer == "standard" || this.weapon == "swimming" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore")
                 {
                     this.drawHumanArms();
                 }
@@ -26496,6 +26665,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
 
                 //this.deathChecker();
+                this.switchToSwimming();
                 this.disturbedTimer();
                 this.visibleSight();
             }
@@ -26941,5 +27111,9 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.disturbedTime = new Date().getTime();
         }
+
+        //reset landscape variables
+        this.water = false;
+        this.land = true;
     };
 };

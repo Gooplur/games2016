@@ -53,6 +53,8 @@ freydicBuilding4 - a freydic building
 freydicBuilding5 - a freydic building
 freydicBuilding6 - a freydic building
 freydicBuilding7 - a freydic building
+freydicBuilding8 - a freydic building
+freydicBuilding9 - a freydic building
 kellishBuilding1 - a kellish building
 kellishBuilding2 - a kellish building
 kellishBuilding3 - a kellish building
@@ -96,6 +98,8 @@ thenganHearth - a fireplace in the thengan style that lets wood burn longer and 
 campFire - a pinewood fire that serves for warmth and a cooking system (or a source for lighting oneself aflame)
 yeolCampFire - a yeolwood fire that burns shorter than pine does and provides access to the cooking system
 deadWaanti - a dead waanti as a scenery object
+floatingBoat - a boat that counts as a piece of land regardless of the water
+boat - a boat that is purely for decoration
 
 
 

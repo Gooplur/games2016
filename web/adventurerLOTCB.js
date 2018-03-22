@@ -256,6 +256,14 @@ function Adventurer()
     //saving
     this.autosaveEnabled = false; //determines if the game will save automatically or not. starts out off.
     this.autosaveFrequency = 200;
+    //swimming/boating
+    this.waterVelocityX = 0;
+    this.waterVelocityY = 0;
+    this.rowed = false;
+    this.swimStage = 0;
+    //tileInteraction Variables (being over water etc.)
+    this.land = true; //if true the player is on land (if both are true it is because they are on both)
+    this.water = false; //if true the player is over water
     //effects variables
     this.obscurity = true; //this is a secondary control for subtlety it should be true.
     this.subtlety = false; //this sets the player to permaStealth without even having to stealth (the player can run and still be unspotted in this mode)
@@ -1322,7 +1330,50 @@ function Adventurer()
             }
         };
 
-        this.climateEffects = function ()
+        this.landscapeEffects = function()
+        {
+            //WATER
+            if (player.water == true && player.land == false) //Player is fully submersed in water and must use the swimming system
+            {
+                if (player.weaponEquipped != "boat")
+                {
+                    //Unequip weapon when in water unless weapon is boat
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].utility == "weapon")
+                        {
+                            Inventory[i][0].equipped = false;
+                            this.weaponEquipped = "swimming";
+                            this.weaponIsRanged = false;
+                            this.isWeaponEquipped = false;
+                            this.weaponID = false;
+                        }
+                    }
+
+                    //DROWN if in water and run out of energy past fatigue point
+                    if (this.movingType == "swimming" && this.energy < -5)
+                    {
+                        this.drowned = true;
+                    }
+
+                    if (this.drowned == true)
+                    {
+                        wKey = false;
+                        this.subtlety = true;
+                        this.health -= 1/74 * this.healthMAX;
+                    }
+                }
+            }
+            else
+            {
+                if (this.weaponEquipped == "swimming")
+                {
+                    this.weaponEquipped = "none";
+                }
+            }
+        };
+
+        this.climateEffects = function()
         {
             //If the player's warmth is not at max then the flag for the mini notice is true otherwise it is false.
             if (this.warmth < this.warmthMAX)
@@ -2984,6 +3035,8 @@ function Adventurer()
         this.sleepCalculator();
         this.blinder();
         this.superStealthness();
+
+        this.landscapeEffects(); //if the player is over some sort of tile that interacts with them in a unique way
     };
 
     //operations for the stat/variables regarding the characters skills and leveling
@@ -4288,153 +4341,88 @@ function Adventurer()
     //walking, running, sneaking, etc.
     this.movement = function ()
     {
-        // self = this because apparently you can not use this in a setTimeout which I needed to use to pace the walking animation speed.
-        var self = this;
-
-        // if the player is standing, the player's legs are not moving or changing.
-        //STANDING
-        if (this.movingType == 0)
+        if (this.land)
         {
-            this.lLegY = 0;
-            this.rLegY = 0;
-        }
+            // self = this because apparently you can not use this in a setTimeout which I needed to use to pace the walking animation speed.
+            var self = this;
 
-        // if the player is walking backwards then the player's legs move back and forth to simulate walking backwards.
-        //BACKWALKING / SIDEWALKING
-        if (this.movingType == 4)
-        {
-            // the left leg goes back 25 pixles and the right goes forward 25.
-            if (this.lLegY > -23 && this.legSwitch == 0)
+            // if the player is standing, the player's legs are not moving or changing.
+            //STANDING
+            if (this.movingType == 0)
             {
-                // this makes the legs extend
-                self.lLegY -= 1 * TTD / (16.75 - (0.17 / 4 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
-                self.rLegY += 1 * TTD / (16.75 - (0.17 / 4 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
-                //console.log("left" + " " + self.lLegY + " " + self.rLegY);
-            }
-            else
-            {
-                //switch to the right leg forward routine.
-                this.legSwitch = 1;
+                this.lLegY = 0;
+                this.rLegY = 0;
             }
 
-            // the right leg goes back 25 pixles and the left goes forward 25.
-            if (this.lLegY < 23 && this.legSwitch == 1)
+            // if the player is walking backwards then the player's legs move back and forth to simulate walking backwards.
+            //BACKWALKING / SIDEWALKING
+            if (this.movingType == 4)
             {
-                // this makes the legs extend
-                self.lLegY += 1 * TTD / (16.75 - (0.17 / 4 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
-                self.rLegY -= 1 * TTD / (16.75 - (0.17 / 4 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
-                //console.log("right" + " " + self.lLegY + " " + self.rLegY);
-            }
-            else
-            {
-                // switch to the left leg forward routine.
-                this.legSwitch = 0;
-            }
-        }
-
-        // if the player is walking then the player's legs move back and forth to simulate walking.
-        //WALKING
-        if (rapidamente == true)
-        {
-            if (this.lLegY < 27 && this.legSwitch == 0)
-            {
-                // this makes the legs extend
-                self.lLegY += 1 * TTD / (12.35 - (0.25 / 2 * 86));
-                self.rLegY -= 1 * TTD / (12.35 - (0.25 / 2 * 86));
-            }
-            else
-            {
-                // switch to the left leg forward routine.
-                this.legSwitch = 1;
-            }
-
-            if (this.lLegY > -27 && this.legSwitch == 1)
-            {
-                // this makes the legs extend
-                self.lLegY -= 1 * TTD / (12.35 - (0.25 / 2 * 86));
-                self.rLegY += 1 * TTD / (12.35 - (0.25 / 2 * 86));
-            }
-            else
-            {
-                // switch to the left leg forward routine.
-                this.legSwitch = 0;
-            }
-        }
-        else if (this.movingType == 1)
-        {
-            // the right leg goes back 25 pixles and the left goes forward 25.
-            if (this.lLegY < 23 && this.legSwitch == 0)
-            {
-                // this makes the legs extend
-                self.lLegY += 1 * TTD / (16.75 - (0.17 / 2 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
-                self.rLegY -= 1 * TTD / (16.75 - (0.17 / 2 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
-                //console.log("left" + " " + self.lLegY + " " + self.rLegY);
-            }
-            else
-            {
-                //switch to the right leg forward routine.
-                this.legSwitch = 1;
-            }
-
-            // the left leg goes back 25 pixles and the right goes forward 25.
-            if (this.lLegY > -23 && this.legSwitch == 1)
-            {
-                // this makes the legs extend
-                self.lLegY -= 1 * TTD / (16.75 - (0.17 / 2 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
-                self.rLegY += 1 * TTD / (16.75 - (0.17 / 2 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
-                //console.log("right" + " " + self.lLegY + " " + self.rLegY);
-            }
-            else
-            {
-                // switch to the left leg forward routine.
-                this.legSwitch = 0;
-            }
-        }
-
-        //RUNNING
-        //You can only run if you have the energy...
-
-        if (this.movingType == 2)
-        {
-            // the right leg goes back 25 pixles and the left goes forward 25.
-            if (this.lLegY < 27 && this.legSwitch == 0)
-            {
-                // this makes the legs extend
-                self.lLegY += 1 * TTD / (12.35 - (0.25 / 2 * this.getDexterity())); // 0.25 subtracted from the DT stabilizer is to make the running animation speed as dexterity is increased.
-                self.rLegY -= 1 * TTD / (12.35 - (0.25 / 2 * this.getDexterity())); // 0.25 subtracted from the DT stabilizer is to make the running animation speed as dexterity is increased.
-                //console.log("left" + " " + self.lLegY + " " + self.rLegY);
-            }
-            else
-            {
-                //switch to the right leg forward routine.
-                this.legSwitch = 1;
-            }
-
-            // the left leg goes back 25 pixles and the right goes forward 25.
-            if (this.lLegY > -27 && this.legSwitch == 1)
-            {
-                // this makes the legs extend
-                self.lLegY -= 1 * TTD / (12.35 - (0.25 / 2 * this.getDexterity())); // 0.25 subtracted from the DT stabilizer is to make the running animation speed as dexterity is increased.
-                self.rLegY += 1 * TTD / (12.35 - (0.25 / 2 * this.getDexterity())); // 0.25 subtracted from the DT stabilizer is to make the running animation speed as dexterity is increased.
-                //console.log("right" + " " + self.lLegY + " " + self.rLegY);
-            }
-            else
-            {
-                // switch to the left leg forward routine.
-                this.legSwitch = 0;
-            }
-        }
-        //SNEAKING
-        if (this.movingType == 3)
-        {
-            if (wKey)
-            {
-                // the right leg goes back 25 pixles and the left goes forward 25.
-                if (this.lLegY < 15 && this.legSwitch == 0)
+                // the left leg goes back 25 pixles and the right goes forward 25.
+                if (this.lLegY > -23 && this.legSwitch == 0)
                 {
                     // this makes the legs extend
-                    self.lLegY += 1 * TTD / (50.75 - (0.3 / 2 * this.getDexterity())); // 0.3 subtracted from the DT stabilizer is to make the sneaking animation speed as dexterity is increased.
-                    self.rLegY -= 1 * TTD / (50.75 - (0.3 / 2 * this.getDexterity())); // 0.3 subtracted from the DT stabilizer is to make the sneaking animation speed as dexterity is increased.
+                    self.lLegY -= 1 * TTD / (16.75 - (0.17 / 4 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
+                    self.rLegY += 1 * TTD / (16.75 - (0.17 / 4 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
+                    //console.log("left" + " " + self.lLegY + " " + self.rLegY);
+                }
+                else
+                {
+                    //switch to the right leg forward routine.
+                    this.legSwitch = 1;
+                }
+
+                // the right leg goes back 25 pixles and the left goes forward 25.
+                if (this.lLegY < 23 && this.legSwitch == 1)
+                {
+                    // this makes the legs extend
+                    self.lLegY += 1 * TTD / (16.75 - (0.17 / 4 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
+                    self.rLegY -= 1 * TTD / (16.75 - (0.17 / 4 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
+                    //console.log("right" + " " + self.lLegY + " " + self.rLegY);
+                }
+                else
+                {
+                    // switch to the left leg forward routine.
+                    this.legSwitch = 0;
+                }
+            }
+
+            // if the player is walking then the player's legs move back and forth to simulate walking.
+            //WALKING
+            if (rapidamente == true)
+            {
+                if (this.lLegY < 27 && this.legSwitch == 0)
+                {
+                    // this makes the legs extend
+                    self.lLegY += 1 * TTD / (12.35 - (0.25 / 2 * 86));
+                    self.rLegY -= 1 * TTD / (12.35 - (0.25 / 2 * 86));
+                }
+                else
+                {
+                    // switch to the left leg forward routine.
+                    this.legSwitch = 1;
+                }
+
+                if (this.lLegY > -27 && this.legSwitch == 1)
+                {
+                    // this makes the legs extend
+                    self.lLegY -= 1 * TTD / (12.35 - (0.25 / 2 * 86));
+                    self.rLegY += 1 * TTD / (12.35 - (0.25 / 2 * 86));
+                }
+                else
+                {
+                    // switch to the left leg forward routine.
+                    this.legSwitch = 0;
+                }
+            }
+            else if (this.movingType == 1)
+            {
+                // the right leg goes back 25 pixles and the left goes forward 25.
+                if (this.lLegY < 23 && this.legSwitch == 0)
+                {
+                    // this makes the legs extend
+                    self.lLegY += 1 * TTD / (16.75 - (0.17 / 2 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
+                    self.rLegY -= 1 * TTD / (16.75 - (0.17 / 2 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
                     //console.log("left" + " " + self.lLegY + " " + self.rLegY);
                 }
                 else
@@ -4444,11 +4432,11 @@ function Adventurer()
                 }
 
                 // the left leg goes back 25 pixles and the right goes forward 25.
-                if (this.lLegY > -15 && this.legSwitch == 1)
+                if (this.lLegY > -23 && this.legSwitch == 1)
                 {
                     // this makes the legs extend
-                    self.lLegY -= 1 * TTD / (50.75 - (0.3 / 2 * this.getDexterity())); // 0.3 subtracted from the DT stabilizer is to make the sneaking animation speed as dexterity is increased.
-                    self.rLegY += 1 * TTD / (50.75 - (0.3 / 2 * this.getDexterity())); // 0.3 subtracted from the DT stabilizer is to make the sneaking animation speed as dexterity is increased.
+                    self.lLegY -= 1 * TTD / (16.75 - (0.17 / 2 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
+                    self.rLegY += 1 * TTD / (16.75 - (0.17 / 2 * this.getDexterity())); // 0.17 subtracted from the DT stabilizer is to make the walking animation speed as dexterity is increased.
                     //console.log("right" + " " + self.lLegY + " " + self.rLegY);
                 }
                 else
@@ -4457,10 +4445,83 @@ function Adventurer()
                     this.legSwitch = 0;
                 }
             }
-        }
 
-        //MOUNTED
-        if (this.movingType == 7)
+            //RUNNING
+            //You can only run if you have the energy...
+
+            if (this.movingType == 2)
+            {
+                // the right leg goes back 25 pixles and the left goes forward 25.
+                if (this.lLegY < 27 && this.legSwitch == 0)
+                {
+                    // this makes the legs extend
+                    self.lLegY += 1 * TTD / (12.35 - (0.25 / 2 * this.getDexterity())); // 0.25 subtracted from the DT stabilizer is to make the running animation speed as dexterity is increased.
+                    self.rLegY -= 1 * TTD / (12.35 - (0.25 / 2 * this.getDexterity())); // 0.25 subtracted from the DT stabilizer is to make the running animation speed as dexterity is increased.
+                    //console.log("left" + " " + self.lLegY + " " + self.rLegY);
+                }
+                else
+                {
+                    //switch to the right leg forward routine.
+                    this.legSwitch = 1;
+                }
+
+                // the left leg goes back 25 pixles and the right goes forward 25.
+                if (this.lLegY > -27 && this.legSwitch == 1)
+                {
+                    // this makes the legs extend
+                    self.lLegY -= 1 * TTD / (12.35 - (0.25 / 2 * this.getDexterity())); // 0.25 subtracted from the DT stabilizer is to make the running animation speed as dexterity is increased.
+                    self.rLegY += 1 * TTD / (12.35 - (0.25 / 2 * this.getDexterity())); // 0.25 subtracted from the DT stabilizer is to make the running animation speed as dexterity is increased.
+                    //console.log("right" + " " + self.lLegY + " " + self.rLegY);
+                }
+                else
+                {
+                    // switch to the left leg forward routine.
+                    this.legSwitch = 0;
+                }
+            }
+            //SNEAKING
+            if (this.movingType == 3)
+            {
+                if (wKey)
+                {
+                    // the right leg goes back 25 pixles and the left goes forward 25.
+                    if (this.lLegY < 15 && this.legSwitch == 0)
+                    {
+                        // this makes the legs extend
+                        self.lLegY += 1 * TTD / (50.75 - (0.3 / 2 * this.getDexterity())); // 0.3 subtracted from the DT stabilizer is to make the sneaking animation speed as dexterity is increased.
+                        self.rLegY -= 1 * TTD / (50.75 - (0.3 / 2 * this.getDexterity())); // 0.3 subtracted from the DT stabilizer is to make the sneaking animation speed as dexterity is increased.
+                        //console.log("left" + " " + self.lLegY + " " + self.rLegY);
+                    }
+                    else
+                    {
+                        //switch to the right leg forward routine.
+                        this.legSwitch = 1;
+                    }
+
+                    // the left leg goes back 25 pixles and the right goes forward 25.
+                    if (this.lLegY > -15 && this.legSwitch == 1)
+                    {
+                        // this makes the legs extend
+                        self.lLegY -= 1 * TTD / (50.75 - (0.3 / 2 * this.getDexterity())); // 0.3 subtracted from the DT stabilizer is to make the sneaking animation speed as dexterity is increased.
+                        self.rLegY += 1 * TTD / (50.75 - (0.3 / 2 * this.getDexterity())); // 0.3 subtracted from the DT stabilizer is to make the sneaking animation speed as dexterity is increased.
+                        //console.log("right" + " " + self.lLegY + " " + self.rLegY);
+                    }
+                    else
+                    {
+                        // switch to the left leg forward routine.
+                        this.legSwitch = 0;
+                    }
+                }
+            }
+
+            //MOUNTED
+            if (this.movingType == 7)
+            {
+                this.lLegY = 0;
+                this.rLegY = 0;
+            }
+        }
+        else
         {
             this.lLegY = 0;
             this.rLegY = 0;
@@ -8694,6 +8755,169 @@ function Adventurer()
             }
 
         }
+        //SWIMMING
+        if (this.weaponEquipped == "swimming")
+        {
+            if (wKey)
+            {
+                this.swimStage += 0.2;
+            }
+            else
+            {
+                this.swimStage += 0.1;
+            }
+
+            //ATTACK ANIMATION
+            if (this.swimStage <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 844, 582, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4);
+                XXX.restore();
+            }
+            else if (this.swimStage <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 844, 633, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4);
+                XXX.restore();
+            }
+            else if (this.swimStage <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 844, 676, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4);
+                XXX.restore();
+            }
+            else if (this.swimStage <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 845, 722, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4);
+                XXX.restore();
+            }
+            else if (this.swimStage <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 844, 676, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4);
+                XXX.restore();
+            }
+            else if (this.swimStage <= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 844, 633, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4);
+                XXX.restore();
+            }
+            else if (this.swimStage <= 7)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 844, 582, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4);
+                XXX.restore();
+            }
+            else if (this.swimStage <= 8)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 925, 617, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4);
+                XXX.restore();
+            }
+            else if (this.swimStage <= 9)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 925, 661, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4);
+                XXX.restore();
+            }
+            else if (this.swimStage <= 10)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 926, 711, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4);
+                XXX.restore();
+            }
+            else if (this.swimStage <= 11)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 925, 661, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 925, 617, 64, 35, -1/2 * 64 * 1.4 -0.5, -1/2 * 35 * 1.4 + 0, 64 * 1.4, 35 * 1.4);
+                XXX.restore();
+                if (this.swimStage >= 12)
+                {
+                    this.swimStage = 0;
+                }
+            }
+
+        }
         //DUST POUCH (all varieties)
         if (this.weaponEquipped == "pouchOfGlowDust" || this.weaponEquipped == "pouchOfVrezinDust" || this.weaponEquipped == "pouchOfIrilDust" || this.weaponEquipped == "pouchOfPimberDust" || this.weaponEquipped == "pouchOfShomeDust")
         {
@@ -8922,6 +9146,101 @@ function Adventurer()
                     XXX.globalAlpha = 0.4;
                 }
                 XXX.drawImage(polyPNG, 520, 59, 105, 69, -28, -43, 72, 47);
+                XXX.restore();
+            }
+        }
+        //BOAT
+        if (this.weaponEquipped == "boat")
+        {
+            this.stageEngine(8, 0.12, false); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 815, 448, 130, 109, -1/2 * 130 * 1.4 + 0, -1/2 * 109 * 1.4 + 0, 130 * 1.4, 109 * 1.4);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 460, 572, 130, 109, -1/2 * 130 * 1.4 + 0, -1/2 * 109 * 1.4 + 0, 130 * 1.4, 109 * 1.4);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 640, 575, 130, 109, -1/2 * 130 * 1.4 + 0, -1/2 * 109 * 1.4 + 0, 130 * 1.4, 109 * 1.4);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                this.rowed = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 460, 572, 130, 109, -1/2 * 130 * 1.4 + 0, -1/2 * 109 * 1.4 + 0, 130 * 1.4, 109 * 1.4);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                this.rowed = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 815, 448, 130, 109, -1/2 * 130 * 1.4 + 0, -1/2 * 109 * 1.4 + 0, 130 * 1.4, 109 * 1.4);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                this.rowed = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 641, 446, 130, 109, -1/2 * 130 * 1.4 + 0, -1/2 * 109 * 1.4 + 0, 130 * 1.4, 109 * 1.4);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 6)
+            {
+                this.rowed = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 459, 442, 130, 109, -1/2 * 130 * 1.4 + 0, -1/2 * 109 * 1.4 + 0, 130 * 1.4, 109 * 1.4);
                 XXX.restore();
             }
         }
@@ -15148,6 +15467,14 @@ function Adventurer()
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 125);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 125);
         }
+        else if (this.weaponEquipped == "boat")
+        {
+            this.weapon = allWeapons[69];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X;
+            this.bubbleOfDamageY = Y;
+        }
     };
 
     //BLOCKING FUNCTION
@@ -15535,280 +15862,395 @@ function Adventurer()
     };
 
     // CHARACTER MOVEMENT
-    this.motion = function ()
+    this.motion = function()
     {
-        //BACKWALKING
-        if (sKey == true && shiftKey != true && wKey != true && this.getDexterity() >= 5 && !this.jumpingBack && this.mounted == false)
+        if (this.water == true && this.land == false)
         {
-            this.movingType = 4;
-
-            // If the place where the player would move next under the same instruction is blocked then the player will not move.
-            if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
+            if (this.weaponEquipped == "boat") //BOATING
             {
-                var nextX = X + (Math.cos(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.cos(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                var nextY = Y + (Math.sin(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.sin(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                this.movingType = "boating";
+                //motion regardlesss of pressing anything
+                var nextX = X + Math.cos(this.rotation + 1 / 2 * Math.PI) * Math.min((5.5 + this.getStrength() / 50), this.waterVelocityX);
+                var nextY = Y + Math.sin(this.rotation + 1 / 2 * Math.PI) * Math.min((5.5 + this.getStrength() / 50), this.waterVelocityY);
                 if (!this.isObstructed(nextX, nextY))
                 {
-                    X += (Math.cos(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.cos(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                    Y += (Math.sin(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.sin(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                    X += Math.cos(this.rotation + 1 / 2 * Math.PI) * Math.min((5.5 + this.getStrength() / 50), this.waterVelocityX);
+                    Y += Math.sin(this.rotation + 1 / 2 * Math.PI) * Math.min((5.5 + this.getStrength() / 50), this.waterVelocityY);
+                }
+
+                //decrease in velocity over time
+
+                this.waterVelocityX = this.waterVelocityX * 0.99;
+                this.waterVelocityY = this.waterVelocityY * 0.99;
+
+                //increase motion
+                if (this.rowed)
+                {
+                    this.rowed = false;
+                    // If the place where the player would move next under the same instruction is blocked then the player will not move.
+                    var strBasedMinBoatSpeed = 1 + (this.getStrength() / 100);
+                    if (this.waterVelocityX < strBasedMinBoatSpeed)
+                    {
+                        this.waterVelocityX = strBasedMinBoatSpeed;
+                    }
+                    if (this.waterVelocityY < strBasedMinBoatSpeed)
+                    {
+                        this.waterVelocityY = strBasedMinBoatSpeed;
+                    }
+                    this.waterVelocityX = this.waterVelocityX * (1.05 + (1 / 10000) * this.getStrength());
+                    this.waterVelocityY = this.waterVelocityY * (1.05 + (1 / 10000) * this.getStrength());
                 }
             }
-            else
+            else //SWIMMING
             {
-                //TODO eventually make magical walls and game borders that wallPhase does not let the player walk through.
-                X += (Math.cos(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.cos(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                Y += (Math.sin(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.sin(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-            }
-        }
-        //SIDEWALKING
-        if (dKey == true && aKey == false && shiftKey != true && this.getDexterity() >= 12 && !this.jumpingBack && this.mounted == false) //leftwalking
-        {
-            if (this.energy >= 0 || this.getDexterity() >= 20)
-            {
-                // If the place where the player would move next under the same instruction is blocked then the player will not move.
-                if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
+                this.energy -= 0.0025;
+                //motion regardlesss of pressing anything
+                var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * Math.min((4 + this.getEndurance() / 33.4), this.waterVelocityX) / (this.freeze * this.freeze));
+                var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * Math.min((4 + this.getEndurance() / 33.4), this.waterVelocityY) / (this.freeze * this.freeze));
+                if (!this.isObstructed(nextX, nextY))
                 {
-                    var nextX = X + (Math.cos(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.cos(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
-                    var nextY = Y + (Math.sin(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.sin(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
-                    if (!this.isObstructed(nextX, nextY))
+                    X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * Math.min((4 + this.getEndurance() / 33.4), this.waterVelocityX)) / (this.freeze * this.freeze);
+                    Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * Math.min((4 + this.getEndurance() / 33.4), this.waterVelocityY)) / (this.freeze * this.freeze);
+                }
+
+                //decrease in velocity over time
+                this.movingType = "swimming";
+
+                if (wKey)
+                {
+                    this.energy -= 0.015;
+                    // If the place where the player would move next under the same instruction is blocked then the player will not move.
+                    var strBasedMinSwimSpeed = 0.7 + (this.getEndurance() / 110);
+                    if (this.waterVelocityX < strBasedMinSwimSpeed)
                     {
-                        X += (Math.cos(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.cos(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
-                        Y += (Math.sin(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.sin(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                        this.waterVelocityX = strBasedMinSwimSpeed;
                     }
+                    if (this.waterVelocityY < strBasedMinSwimSpeed)
+                    {
+                        this.waterVelocityY = strBasedMinSwimSpeed;
+                    }
+                    this.waterVelocityX = this.waterVelocityX * (1.02 + (1 / 20000) * this.getEndurance());
+                    this.waterVelocityY = this.waterVelocityY * (1.02 + (1 / 20000) * this.getEndurance());
                 }
                 else
                 {
-                    //TODO eventually make magical walls and game borders that wallPhase does not let the player walk through.
-                    X += (Math.cos(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.cos(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
-                    Y += (Math.sin(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.sin(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                    this.waterVelocityX = this.waterVelocityX * 0.8;
+                    this.waterVelocityY = this.waterVelocityY * 0.8;
                 }
             }
         }
-        else if (aKey == true && dKey == false && shiftKey != true && this.getDexterity() >= 12 && !this.jumpingBack && this.mounted == false) //rightwalking
+        else
         {
-            if (this.energy >= 0 || this.getDexterity() >= 20)
+            this.waterVelocityX = 0;
+            this.waterVelocityY = 0;
+
+            if (this.weaponEquipped == "boat")
             {
-                // If the place where the player would move next under the same instruction is blocked then the player will not move.
-                if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
+                if (this.water == true && this.land == true)
                 {
-                    var nextX = X + (Math.cos(this.rotation) * (0.25 / this.freeze) + Math.cos(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
-                    var nextY = Y + (Math.sin(this.rotation) * (0.25 / this.freeze) + Math.sin(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
-                    if (!this.isObstructed(nextX, nextY))
+                    if (this.rowed)
                     {
-                        X += (Math.cos(this.rotation) * (0.25 / this.freeze) + Math.cos(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
-                        Y += (Math.sin(this.rotation) * (0.25 / this.freeze) + Math.sin(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
-                    }
-                }
-                else
-                {
-                    //TODO eventually make magical walls and game borders that wallPhase does not let the player walk through.
-                    X += (Math.cos(this.rotation) * (0.25 / this.freeze) + Math.cos(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
-                    Y += (Math.sin(this.rotation) * (0.25 / this.freeze) + Math.sin(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
-                }
-            }
-        }
-        //STANDING
-        if (wKey == false && altKey == false && !this.jumpingBack && this.mounted == false)
-        {
-            if (this.getDexterity() < 5 || sKey == false)
-            {
-                this.movingType = 0;
-            }
-        }
-        //WALKING
-        if (wKey == true && shiftKey != true && !altKey && !this.jumpingBack && this.mounted == false)
-        {
-            this.movingType = 1;
-
-            // If the place where the player would move next under the same instruction is blocked then the player will not move.
-            if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
-            {
-                var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                if (!this.isObstructed(nextX, nextY))
-                {
-                    X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                    Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                }
-            }
-            else
-            {
-                //TODO eventually make magical walls and game borders that wallPhase does not let the player walk through.
-                X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * 1 + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity())) * (TTD / 16.75);
-                Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * 1 + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity())) * (TTD / 16.75);
-            }
-        }
-        //RUNNING
-        // if you run out of energy while running you regress into a walk.
-        if (this.energy <= 0 && wKey == true && shiftKey == true && !altKey && !this.jumpingBack && this.mounted == false)
-        {
-            this.movingType = 1;
-
-            // If the place where the player would move next under the same instruction is blocked then the player will not move.
-            if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
-            {
-                var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                if (!this.isObstructed(nextX, nextY))
-                {
-                    X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                    Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                }
-            }
-            else
-            {
-                X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * 1 + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity())) * (TTD / 16.75);
-                Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * 1 + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity())) * (TTD / 16.75);
-            }
-        }
-
-        if (wKey == true && shiftKey == true && !altKey && this.energy > 0 && !this.jumpingBack && this.mounted == false)
-        {
-            this.movingType = 2;
-
-            // If the place where the player would move next under the same instruction is blocked then the player will not move.
-            if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
-            {
-                var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * (4 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * (4 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                if (!this.isObstructed(nextX, nextY))
-                {
-                    X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * (4 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                    Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * (4 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                }
-            }
-            else
-            {
-                X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * 4 + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity())) * (TTD / 16.75);
-                Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * 4 + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity())) * (TTD / 16.75);
-            }
-        }
-        //SNEAKING
-        if (altKey == true && !this.jumpingBack && this.mounted == false)
-        {
-            this.movingType = 3;
-            if (wKey)
-            {
-                // If the place where the player would move next under the same instruction is blocked then the player will not move.
-                if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
-                {
-                    var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                    var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                    if (!this.isObstructed(nextX, nextY))
-                    {
-                        X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                        Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
-                    }
-                }
-                else
-                {
-                    X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity())) * (TTD / 16.75);
-                    Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity())) * (TTD / 16.75);
-                }
-            }
-        }
-        //JUMP-BACK
-        if (sKey == true && shiftKey == true && this.jumpingBack == false && this.readyForAnotherJumpBack && this.getDexterity() >= 10 && this.energy >= 5 && this.movingType != 2 && this.mounted == false)
-        {
-            if (this.freeze <= 1.5)
-            {
-                this.energy -= 5;
-                this.movingType = 5;
-                this.jumpingBack = true;
-                this.readyForAnotherJumpBack = false;
-                this.jBack = 0;
-                this.jumpBack();
-
-                var jumpHitter = true;
-                for (var i = 1; i <= 17 + this.jumpDistance; i++)
-                {
-                    var nextX = X - 3 * i * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * 40 / this.freeze))) * (TTD / 16.75);
-                    var nextY = Y - 3 * i * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * 40 / this.freeze))) * (TTD / 16.75);
-                    if (this.isObstructed(nextX, nextY))
-                    {
-                        jumpHitter = false;
-                    }
-                }
-
-                if (jumpHitter)
-                {
-                    this.immune = true;
-                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
-                    {
-                        if (ArtificialIntelligenceAccess[i].target == player && ArtificialIntelligenceAccess[i].ranged != true && ArtificialIntelligenceAccess[i].unavoidable != true)
+                        this.rowed = false;
+                        var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * (1) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 50 * this.getStrength() / 3)) * (TTD / 16.75);
+                        var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * (1) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 50 * this.getStrength() / 3)) * (TTD / 16.75);
+                        if (!this.isObstructed(nextX, nextY))
                         {
-                            if (player.getDexterity() >= 25)
+                            X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * (1) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 50 * this.getStrength() / 3)) * (TTD / 16.75);
+                            Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * (1) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 50 * this.getStrength() / 3)) * (TTD / 16.75);
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.rowed)
+                    {
+                        this.rowed = false;
+                        var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 5) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 50 * this.getStrength() / 5)) * (TTD / 16.75);
+                        var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 5) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 50 * this.getStrength() / 5)) * (TTD / 16.75);
+                        if (!this.isObstructed(nextX, nextY))
+                        {
+                            X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 5) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 50 * this.getStrength() / 5)) * (TTD / 16.75);
+                            Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 5) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 50 * this.getStrength() / 5)) * (TTD / 16.75);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                //BACKWALKING
+                if (sKey == true && shiftKey != true && wKey != true && this.getDexterity() >= 5 && !this.jumpingBack && this.mounted == false)
+                {
+                    this.movingType = 4;
+
+                    // If the place where the player would move next under the same instruction is blocked then the player will not move.
+                    if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
+                    {
+                        var nextX = X + (Math.cos(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.cos(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        var nextY = Y + (Math.sin(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.sin(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        if (!this.isObstructed(nextX, nextY))
+                        {
+                            X += (Math.cos(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.cos(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                            Y += (Math.sin(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.sin(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        }
+                    }
+                    else
+                    {
+                        //TODO eventually make magical walls and game borders that wallPhase does not let the player walk through.
+                        X += (Math.cos(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.cos(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        Y += (Math.sin(this.rotation - 1 / 2 * Math.PI) * (0.5 / this.freeze) + Math.sin(this.rotation - 1 / 2 * Math.PI) * (1 / 48 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                    }
+                }
+                //SIDEWALKING
+                if (dKey == true && aKey == false && shiftKey != true && this.getDexterity() >= 12 && !this.jumpingBack && this.mounted == false) //leftwalking
+                {
+                    if (this.energy >= 0 || this.getDexterity() >= 20)
+                    {
+                        // If the place where the player would move next under the same instruction is blocked then the player will not move.
+                        if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
+                        {
+                            var nextX = X + (Math.cos(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.cos(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                            var nextY = Y + (Math.sin(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.sin(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                            if (!this.isObstructed(nextX, nextY))
                             {
-                                if (this.freeze > 1)
-                                {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1250;
-                                }
-                                else
-                                {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 2200;
-                                }
+                                X += (Math.cos(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.cos(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                                Y += (Math.sin(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.sin(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
                             }
-                            else if (player.getDexterity() >= 20)
+                        }
+                        else
+                        {
+                            //TODO eventually make magical walls and game borders that wallPhase does not let the player walk through.
+                            X += (Math.cos(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.cos(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                            Y += (Math.sin(this.rotation + Math.PI) * (0.25 / this.freeze) + Math.sin(this.rotation + Math.PI) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                        }
+                    }
+                }
+                else if (aKey == true && dKey == false && shiftKey != true && this.getDexterity() >= 12 && !this.jumpingBack && this.mounted == false) //rightwalking
+                {
+                    if (this.energy >= 0 || this.getDexterity() >= 20)
+                    {
+                        // If the place where the player would move next under the same instruction is blocked then the player will not move.
+                        if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
+                        {
+                            var nextX = X + (Math.cos(this.rotation) * (0.25 / this.freeze) + Math.cos(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                            var nextY = Y + (Math.sin(this.rotation) * (0.25 / this.freeze) + Math.sin(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                            if (!this.isObstructed(nextX, nextY))
                             {
-                                if (this.freeze > 1)
-                                {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1150;
-                                }
-                                else
-                                {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 2000;
-                                }
+                                X += (Math.cos(this.rotation) * (0.25 / this.freeze) + Math.cos(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                                Y += (Math.sin(this.rotation) * (0.25 / this.freeze) + Math.sin(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
                             }
-                            else if (player.getDexterity() >= 15)
+                        }
+                        else
+                        {
+                            //TODO eventually make magical walls and game borders that wallPhase does not let the player walk through.
+                            X += (Math.cos(this.rotation) * (0.25 / this.freeze) + Math.cos(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                            Y += (Math.sin(this.rotation) * (0.25 / this.freeze) + Math.sin(this.rotation) * (1 / 48 * this.getDexterity() / 1.5 / this.freeze)) * (TTD / 16.75);
+                        }
+                    }
+                }
+                //STANDING
+                if (wKey == false && altKey == false && !this.jumpingBack && this.mounted == false)
+                {
+                    if (this.getDexterity() < 5 || sKey == false)
+                    {
+                        this.movingType = 0;
+                    }
+                }
+                //WALKING
+                if (wKey == true && shiftKey != true && !altKey && !this.jumpingBack && this.mounted == false)
+                {
+                    this.movingType = 1;
+
+                    // If the place where the player would move next under the same instruction is blocked then the player will not move.
+                    if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
+                    {
+                        var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        if (!this.isObstructed(nextX, nextY))
+                        {
+                            X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                            Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        }
+                    }
+                    else
+                    {
+                        //TODO eventually make magical walls and game borders that wallPhase does not let the player walk through.
+                        X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * 1 + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity())) * (TTD / 16.75);
+                        Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * 1 + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity())) * (TTD / 16.75);
+                    }
+                }
+                //RUNNING
+                // if you run out of energy while running you regress into a walk.
+                if (this.energy <= 0 && wKey == true && shiftKey == true && !altKey && !this.jumpingBack && this.mounted == false)
+                {
+                    this.movingType = 1;
+
+                    // If the place where the player would move next under the same instruction is blocked then the player will not move.
+                    if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
+                    {
+                        var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        if (!this.isObstructed(nextX, nextY))
+                        {
+                            X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                            Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        }
+                    }
+                    else
+                    {
+                        X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * 1 + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity())) * (TTD / 16.75);
+                        Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * 1 + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity())) * (TTD / 16.75);
+                    }
+                }
+
+                if (wKey == true && shiftKey == true && !altKey && this.energy > 0 && !this.jumpingBack && this.mounted == false)
+                {
+                    this.movingType = 2;
+
+                    // If the place where the player would move next under the same instruction is blocked then the player will not move.
+                    if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
+                    {
+                        var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * (4 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * (4 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        if (!this.isObstructed(nextX, nextY))
+                        {
+                            X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * (4 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                            Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * (4 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                        }
+                    }
+                    else
+                    {
+                        X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * 4 + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity())) * (TTD / 16.75);
+                        Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * 4 + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 24 * this.getDexterity())) * (TTD / 16.75);
+                    }
+                }
+                //SNEAKING
+                if (altKey == true && !this.jumpingBack && this.mounted == false)
+                {
+                    this.movingType = 3;
+                    if (wKey)
+                    {
+                        // If the place where the player would move next under the same instruction is blocked then the player will not move.
+                        if (wallPhase == false) //If the developerMode wallPhase is set to false the player can not walk through obstacles, otherwise the player can.
+                        {
+                            var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                            var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                            if (!this.isObstructed(nextX, nextY))
                             {
-                                if (this.freeze > 1)
-                                {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1050;
-                                }
-                                else
-                                {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1800;
-                                }
+                                X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
+                                Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity() / this.freeze)) * (TTD / 16.75);
                             }
-                            else
+                        }
+                        else
+                        {
+                            X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity())) * (TTD / 16.75);
+                            Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * 0.2 + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * this.getDexterity())) * (TTD / 16.75);
+                        }
+                    }
+                }
+                //JUMP-BACK
+                if (sKey == true && shiftKey == true && this.jumpingBack == false && this.readyForAnotherJumpBack && this.getDexterity() >= 10 && this.energy >= 5 && this.movingType != 2 && this.mounted == false)
+                {
+                    if (this.freeze <= 1.5)
+                    {
+                        this.energy -= 5;
+                        this.movingType = 5;
+                        this.jumpingBack = true;
+                        this.readyForAnotherJumpBack = false;
+                        this.jBack = 0;
+                        this.jumpBack();
+
+                        var jumpHitter = true;
+                        for (var i = 1; i <= 17 + this.jumpDistance; i++)
+                        {
+                            var nextX = X - 3 * i * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * 40 / this.freeze))) * (TTD / 16.75);
+                            var nextY = Y - 3 * i * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * 40 / this.freeze))) * (TTD / 16.75);
+                            if (this.isObstructed(nextX, nextY))
                             {
-                                if (this.freeze > 1)
+                                jumpHitter = false;
+                            }
+                        }
+
+                        if (jumpHitter)
+                        {
+                            this.immune = true;
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].target == player && ArtificialIntelligenceAccess[i].ranged != true && ArtificialIntelligenceAccess[i].unavoidable != true)
                                 {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 950;
-                                }
-                                else
-                                {
-                                    ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1600;
+                                    if (player.getDexterity() >= 25)
+                                    {
+                                        if (this.freeze > 1)
+                                        {
+                                            ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1250;
+                                        }
+                                        else
+                                        {
+                                            ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 2200;
+                                        }
+                                    }
+                                    else if (player.getDexterity() >= 20)
+                                    {
+                                        if (this.freeze > 1)
+                                        {
+                                            ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1150;
+                                        }
+                                        else
+                                        {
+                                            ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 2000;
+                                        }
+                                    }
+                                    else if (player.getDexterity() >= 15)
+                                    {
+                                        if (this.freeze > 1)
+                                        {
+                                            ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1050;
+                                        }
+                                        else
+                                        {
+                                            ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1800;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (this.freeze > 1)
+                                        {
+                                            ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 950;
+                                        }
+                                        else
+                                        {
+                                            ArtificialIntelligenceAccess[i].timeBetweenAttacks = new Date().getTime() + 1600;
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-        }
-        //Segment the jump process
-        if (this.jumpingBack)
-        {
-            if (this.jBack < (17 + this.jumpDistance))
-            {
-                this.jumpBack();
-                this.jumpBackKeepTime = new Date().getTime();
-            }
-            else
-            {
-                this.readyToStopJumpingBack = true;
-                this.jumpingBack = false;
-            }
-        }
-        //End the jump back and have a wait time.
-        if (this.readyToStopJumpingBack && this.jBack > 0)
-        {
-            this.immune = false;
-            if (new Date().getTime() - this.jumpBackKeepTime > this.jumpBackTime * 1000)
-            {
-                this.readyToStopJumpingBack = false;
-                this.readyForAnotherJumpBack = true;
-                this.jBack = 0;
+                //Segment the jump process
+                if (this.jumpingBack)
+                {
+                    if (this.jBack < (17 + this.jumpDistance))
+                    {
+                        this.jumpBack();
+                        this.jumpBackKeepTime = new Date().getTime();
+                    }
+                    else
+                    {
+                        this.readyToStopJumpingBack = true;
+                        this.jumpingBack = false;
+                    }
+                }
+                //End the jump back and have a wait time.
+                if (this.readyToStopJumpingBack && this.jBack > 0)
+                {
+                    this.immune = false;
+                    if (new Date().getTime() - this.jumpBackKeepTime > this.jumpBackTime * 1000)
+                    {
+                        this.readyToStopJumpingBack = false;
+                        this.readyForAnotherJumpBack = true;
+                        this.jBack = 0;
+                    }
+                }
             }
         }
     };
@@ -23522,9 +23964,11 @@ function Adventurer()
                         if (Inventory[i][0].subUtility == "reusable")
                         {
                             var hits = 0;
-                            for (var rr = 0; rr < Inventory[i][0].refund.length; rr ++)
+
+                            for (var rr = 0; rr < Inventory[i][0].refund.length; rr++)
                             {
-                                for (var r = 0; r < Inventory.length; r ++)
+                                hits = 0;
+                                for (var r = 0; r < Inventory.length; r++)
                                 {
                                     if (Inventory[r][0].type == Inventory[i][0].refund[rr][0])
                                     {
@@ -23536,7 +23980,7 @@ function Adventurer()
                                         hits += 1;
                                     }
                                 }
-                                if (hits == Inventory.length)
+                                if (hits >= Inventory.length)
                                 {
                                     Inventory.push([new Item(Inventory[i][0].refund[rr][0], false, false), Inventory[i][0].refund[rr][1]]);
                                 }
@@ -24643,9 +25087,10 @@ function Adventurer()
                                 if (Inventory[i][0].subUtility == "reusable" && useLight)
                                 {
                                     var hits = 0;
-                                    for (var rr = 0; rr < Inventory[i][0].refund.length; rr ++)
+                                    for (var rr = 0; rr < Inventory[i][0].refund.length; rr++)
                                     {
-                                        for (var r = 0; r < Inventory.length; r ++)
+                                        hits = 0;
+                                        for (var r = 0; r < Inventory.length; r++)
                                         {
                                             if (Inventory[r][0].type == Inventory[i][0].refund[rr][0])
                                             {
@@ -24786,6 +25231,46 @@ function Adventurer()
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("campFire", X, Y, (Math.random() * (2 * Math.PI)), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
+                        else if (Inventory[i][0].subUtility == "yeolCampFire")
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //19 is the radius of campFire Scenery Object.
+                                if (scenicList[j].X - 19 <= X + scenicList[j].radius && scenicList[j].X + 19 >= X - scenicList[j].radius && scenicList[j].Y - 19 <= Y + scenicList[j].radius && scenicList[j].Y + 19 >= Y - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+                            for (var j = 0; j < Inventory.length; j++)
+                            {
+                                if (Inventory[j][0].identity != "Fire-Starter")
+                                {
+                                    hits += 1;
+                                }
+                            }
+
+                            if (hits == Inventory.length)
+                            {
+                                canPlace = false;
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("yeolCampFire", X, Y, (Math.random() * (2 * Math.PI)), false));
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {
@@ -25640,25 +26125,28 @@ function Adventurer()
     //Health
     this.healthRegeneration = function()
     {
-        if (this.movingType == 4 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.movingType == 1 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: A bandage must be used.
+        if (!this.drowned)
         {
-            this.health += 6 * (TTD / (45000 - 420 * Math.min(58.333, this.getEndurance()) * 2));
-        }
-        else if (this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 3/5) && this.energy >= 1/2 * this.energyMAX && this.hunger >= (5/10 * this.hungerMAX) && this.thirst >= (5/10 * this.thirstMAX) && this.fleshMites == false && this.getEndurance() >= 10) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: If level 10 endurance is achieved.
-        {
-            this.health += 2 * (TTD / (45000 - 420 * Math.min(58.333, this.getEndurance()) * 2));
-        }
-        else if (this.health < this.healthMAX && this.health > 0 && this.fleshMites == false && this.hunger > 0 && this.thirst > 0)
-        {
-            this.health += 1 * (TTD / (45000 - 420 * Math.min(58.333, this.getEndurance()) * 2));
-        }
-        if (this.health > this.healthMAX)
-        {
-            this.health = this.healthMAX;
-        }
-        else if (this.health < 0)
-        {
-            this.health = 0;
+            if (this.movingType == 4 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.movingType == 1 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: A bandage must be used.
+            {
+                this.health += 6 * (TTD / (45000 - 420 * Math.min(58.333, this.getEndurance()) * 2));
+            }
+            else if (this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 3/5) && this.energy >= 1/2 * this.energyMAX && this.hunger >= (5/10 * this.hungerMAX) && this.thirst >= (5/10 * this.thirstMAX) && this.fleshMites == false && this.getEndurance() >= 10) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: If level 10 endurance is achieved.
+            {
+                this.health += 2 * (TTD / (45000 - 420 * Math.min(58.333, this.getEndurance()) * 2));
+            }
+            else if (this.health < this.healthMAX && this.health > 0 && this.fleshMites == false && this.hunger > 0 && this.thirst > 0)
+            {
+                this.health += 1 * (TTD / (45000 - 420 * Math.min(58.333, this.getEndurance()) * 2));
+            }
+            if (this.health > this.healthMAX)
+            {
+                this.health = this.healthMAX;
+            }
+            else if (this.health < 0)
+            {
+                this.health = 0;
+            }
         }
     };
 
@@ -25701,7 +26189,7 @@ function Adventurer()
     //Energy
     this.energyRegeneration = function()
     {
-        if (this.movingType != 2)
+        if (this.movingType != 2 && this.movingType != "swimming")
         {
             //ENERGY REGENERATION
             if (this.hunger > 1/10 * this.hungerMAX) //if the hunger is greater than 1/10 regeneration is allowed.
@@ -26009,7 +26497,7 @@ function Adventurer()
                 }
 
                 //this is rare, but some weapons draw below the body layer.
-                if (this.wepLayer == "under" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar") //add more cases for more overhead weapons.
+                if (this.wepLayer == "under" || this.weaponEquipped == "swimming" || this.weaponEquipped == "boat" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }
@@ -26832,7 +27320,7 @@ function Adventurer()
                 this.drawBody();
 
                 //most weapons draw beneath the armour layer.
-                if (this.wepLayer == "standard" || this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar") //add more cases for more overhead weapons.
+                if (this.wepLayer == "standard" || this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "swimming" && this.weaponEquipped != "boat" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }

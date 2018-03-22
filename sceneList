@@ -1,0 +1,109 @@
+NOT IN CODE YET
+
+NOT IN GAME YET
+
+IN GAME
+item - literally any item you want in the form of a scenery object
+pineStumps - a large clearcut of pine trees
+web - a spiderweb for giant spiders (etnas)
+overWeb - web that draws over so that you can cover things in it
+mofuNest - the nest of a mofu bird
+anvil - the catalyst for the smithing system if you hit it with a hammer
+candle - a hunk of wax with a wic in it
+jackOLantern - a carved pumpkin with a candle in it
+oilLamp - oil burning lamp
+oilLantern - an oil burning lantern (best light producer)
+bearTrap - a trap that snaps shut with metal teeth... owch!
+clawTrap - a metal claw that slams down with metal spikes
+jacks - metal spiky things that hurt to step on
+spindleTrap - a blades trap that spins around cutting things
+fertilizedMofuEgg - an egg that hatches into a mofu
+etnaEggSac - an eggsack that hatches several baby etnas
+grewbleEgg - an egg that hatches into a grewble
+grewbleEggPatch - nest of three grewble eggs that hatch into three grewbles
+bed - a generic bed for the player to sleep in or for decoration
+sign - for use in labeling buildings, and vias
+walrusHideRug - a northern themed floor covering made from the hide of a walrus
+blackBearFurRug - a large rug made from the pelt of a black bear
+rubbledHome - broken down (un-enterable) freydic home
+woodenGate - a large gate made of wood that can be opened and closed
+bartop - a bartop for serving drinks to customers
+countertop - surface to store or display things on
+feastingTable - a large table on which many a feast can be had (comes with chairs)
+longTable - a long table with no chairs
+woodenBench - a wooden bench in either freydic or thengan style
+smallTable - a small table for two that has no chairs
+mediumTable - a variety of different medium sized tables
+stumpStool - stool in either the freydic or thengan style
+northernFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (northern fish types found here)
+lostPaddle - an oar for a boat
+crashedBoat - a rowboat that is in ruin
+crate - decorative and storage-system-capable varieties of crates in two color schemes dark-wood and light-wood
+blood - 6 different bloodstain options for spilled blood
+thenganSandbox - A sandpit arena in the thengan style
+thenganBuilding1 - a thengan building
+thenganBuilding2 - a thengan building
+thenganBuilding3 - a thengan building
+thenganBuilding4 - a thengan building
+thenganBuilding5 - a thengan building
+freydicBuilding1 - a freydic building
+freydicBuilding2 - a freydic building
+freydicBuilding3 - a freydic building
+freydicBuilding4 - a freydic building
+freydicBuilding5 - a freydic building
+freydicBuilding6 - a freydic building
+freydicBuilding7 - a freydic building
+kellishBuilding1 - a kellish building
+kellishBuilding2 - a kellish building
+kellishBuilding3 - a kellish building
+kellishBuilding4 - a kellish building
+kellishBuilding5 - a kellish building
+kellishBuilding6 - a kellish building
+cave - a DMX portal that takes the form of a cave entrance
+caveExit - an ugly meshed together bunch of stones that acts as a lit DMX exitportal for the cave portal
+cavePassage - a DMX portal that is about as ugly as caveExit and is also just a bunch of stones meshed together
+trapdoor - a DMX portal that looks like a trapdoor
+ladder - a DMX portal/exitportal that looks like a ladder
+brokenWell - a freydic style well in disrepair
+well - a common style of well that is notably freydic, but also used by some kellish tribes
+thenganWell - a thengan style of well
+forge - a burning forge that brings light warmth and the forging crafting system
+loom - a loom at which the tailoring crafting system can be accessed
+lab - an alchemy station where the alchemy crafting system can be accessed
+skeleton - a human skeleton or a giant (depending on how large you make it)
+propWagon - a wagon without a horse or a driver (presumably robbed)
+clayDeposit - a deposit of clay that can be collected from with ones bare hands
+utSlime - the grey movement-halting slime of an ut (temporary)
+anemoneSlime - the light green acidic slime of an anemone (temporary)
+deadNaaprid - a dead naaprid as a scenery object
+brolleFeast - a dead spitting mudfly that is being feasted upon by brolles (spawns a brolle worm swarm after some time and player approach)
+beachedKelp - a kelp plant that has been washed ashore (kelp leaves can be collected from it) (there are three varieties)
+largeCeremonialRockCircle - a large circle of elaborate stones (often found in Hyeling camps or sacred ritual spots but some freydic appropriation has taken place)
+smallRockCircle - a small circle of elaborate stones (often found in Hyeling camps or sacred ritual spots but some freydic appropriation has taken place)
+hyelingSkeleton - the skeleton of a hyeling
+tent - a place that the player can sleep that acts as a portable bed/shelter
+hyelingTent - a warm enclosure made from animal furs (sleeping in it restores 50 warmth)
+stone - a lightGrey rock that can be mined with a pickaxe
+darkStone - a darkGrey rock that can be mined with a pickaxe
+darkStoneOver - a version of darkStone that draws over
+ashStone - black rock that can be mined with a pickaxe (it yields coal more often than most)
+jvostran - a rare mineral deposit where jvostran ore can be mined directly
+beeHive - a hive that spawns bees that zoom across the map in search of not fungus plants (contains wax and honey)
+anterHill - a hive that spawns anters that look for food within their vision radius or attack nearby adversaries
+tunskMound - a mound of packed dirt that is broken apart by a tunsk in attempt to escape the player if the player lingers too long by it
+hearth - a fireplace in the freydic style that lets wood burn longer and that provides a cooking system and warmth
+thenganHearth - a fireplace in the thengan style that lets wood burn longer and that provides a cooking system and warmth
+campFire - a pinewood fire that serves for warmth and a cooking system (or a source for lighting oneself aflame)
+yeolCampFire - a yeolwood fire that burns shorter than pine does and provides access to the cooking system
+deadWaanti - a dead waanti as a scenery object
+
+
+
+
+
+
+
+
+
+
+

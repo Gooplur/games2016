@@ -9,12 +9,12 @@
 
 //Venning Update
 //todo add the unadded style of freydic house from the 'freeverse' IMG
-//todo insert //ArtificialIntelligenceAccess.push(new Unit(3400, 1200, "Cloimid", false, "moistclambybottom", {rotation: 90/360 * 2 * Math.PI}));
+//todo insert //ArtificialIntelligenceAccess.push(new Unit(3400, 1200, "Cloimid", false, "moistClambyTickle", {rotation: 90/360 * 2 * Math.PI}));
 //todo add Jarl Rannuk Stambjord of Venning City
 //todo add Siggi the Harborman (he sells you a boat, and fishing rod, etc.)
 //todo add an algae that grows on rocks
 //todo add a waterwalking elixer
-//todo add three more snow maps then add Venning to the right of the third snow map (Venning is a dock town)
+//todo add two more snow maps then add Venning to the right of the third snow map (Venning is a dock town)
 //todo add the freydic hatchet from the balkur img sheet
 //todo add row boats and swimming
 //todo add lakes and ice holes
@@ -43,10 +43,8 @@
 
 //Alzkwaya Update
 //todo add the alzkwaya village
-//todo add the savanah large cat creature (already drawn) and the savanah snake (already drawn)
 //todo add hot climate farm plants
 //todo add other hot climate wild plants
-//todo add savanah trees and savanah monsters (use IMG 'mufmuf')
 
 //Cephrian Update
 //todo add Sonja Fruit and Sonja fruit trees (tropical trees that drop Sonja fruits)
@@ -474,9 +472,6 @@ function legendaryPrerequisites()
 
     var fenwikTwillBe = new Audio("sounds/polySounds/fenwikTwillBe.mp3");
     window.fenwikTwillBe = fenwikTwillBe;
-
-    var fenwikGooday = new Audio("sounds/polySounds/fenwikGooday.mp3");
-    window.fenwikGooday = fenwikGooday;
 
     var fenwikFocus = new Audio("sounds/polySounds/fenwikFocus.mp3");
     window.fenwikFocus = fenwikFocus;
@@ -1156,6 +1151,58 @@ function legendaryPrerequisites()
     nordWoods.src = ("images/nordForest.png");
     window.nordWoods = nordWoods;
 
+    var sea = new Image();
+    sea.src = ("images/sea.png");
+    window.sea = sea;
+
+    var sea2 = new Image();
+    sea2.src = ("images/sea2.png");
+    window.sea2 = sea2;
+
+    var seaCornerBR = new Image();
+    seaCornerBR.src = ("images/seaCornerBR.png");
+    window.seaCornerBR = seaCornerBR;
+
+    var seaCornerBR2 = new Image();
+    seaCornerBR2.src = ("images/seaCornerBR2.png");
+    window.seaCornerBR2 = seaCornerBR2;
+
+    var seaCornerBL = new Image();
+    seaCornerBL.src = ("images/seaCornerBL.png");
+    window.seaCornerBL = seaCornerBL;
+
+    var seaCornerBL2 = new Image();
+    seaCornerBL2.src = ("images/seaCornerBL2.png");
+    window.seaCornerBL2 = seaCornerBL2;
+
+    var seaCornerTR = new Image();
+    seaCornerTR.src = ("images/seaCornerTR.png");
+    window.seaCornerTR = seaCornerTR;
+
+    var seaCornerTR2 = new Image();
+    seaCornerTR2.src = ("images/seaCornerTR2.png");
+    window.seaCornerTR2 = seaCornerTR2;
+
+    var seaCornerTL = new Image();
+    seaCornerTL.src = ("images/seaCornerTL.png");
+    window.seaCornerTL = seaCornerTL;
+
+    var seaCornerTL2 = new Image();
+    seaCornerTL2.src = ("images/seaCornerTL2.png");
+    window.seaCornerTL2 = seaCornerTL2;
+
+    var dockH = new Image();
+    dockH.src = ("images/dockH.jpg");
+    window.dockH = dockH;
+
+    var dockV = new Image();
+    dockV.src = ("images/dockV.jpg");
+    window.dockV = dockV;
+
+    var greySand = new Image();
+    greySand.src = ("images/greySand.png");
+    window.greySand = greySand;
+
     var snowEnv = new Image();
     snowEnv.src = ("images/fluffySnow.jpg");
     window.snowEnv = snowEnv;
@@ -1644,6 +1691,7 @@ var storageList = [];
 var storageSlots = 1;
 var storedID = -1;
 var stored;
+var seaFlux = 0;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -2241,6 +2289,27 @@ function keyHeld(event)
     }
 }
 
+function over(kind, j, i, extraX, extraY) //TEST
+{
+    //console.log("( " + ((j - 1) * 300 + (extraX * 300) - 1/2 * CCC.width) + ", " + ((i - 1) * 300 + (extraY * 300) - 1/2 * CCC.height) + " )");
+    var tileX = ((j - 1) * 300 + (extraX * 300) - 1/2 * CCC.width);
+    var tileY = ((i - 1) * 300 + (extraY * 300) - 1/2 * CCC.height);
+    //XXX.drawImage(sea, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+    if (-X < tileX + 300 && -X > tileX && -Y < tileY + 300 && -Y > tileY)
+    {
+        if (kind == "sea")
+        {
+            player.land = false;
+            player.water = true;
+        }
+        else if (kind == "landing")
+        {
+            player.land = true;
+            player.water = true;
+        }
+    }
+}
+
 //This function sets the lower canvas X and Y to un-problematic values whilst the mouse is in the main inventory.
 function lowerCanvasMouseCoordsReset()
 {
@@ -2567,6 +2636,7 @@ function theLegend()
         sagesCacheStash: true,
         spiderwebLoot: true,
         ultherMapItems: true,
+        n3Stash: true,
 
         //EVENTS (non quest)
         ultherFlower: true,
@@ -2770,6 +2840,7 @@ function theLegend()
     allWeapons.push(new Item("theUndyingEdge", false)); //66
     allWeapons.push(new Item("m16Carbine", false)); //67 //this weapon is not canon
     allWeapons.push(new Item("fishingpole", false)); //68
+    allWeapons.push(new Item("boat", false)); //69
 
 
 //This list holds one of each type of worn item so that the player can access the worn item stats.
@@ -2942,6 +3013,7 @@ function theLegend()
     smithing.push(new Item("beartrap", false));
     smithing.push(new Item("clawtrap", false));
     smithing.push(new Item("spindletrap", false));
+    smithing.push(new Item("boat", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];
@@ -3018,6 +3090,8 @@ function theLegend()
     foods.push(new Item("lamb", false));
     foods.push(new Item("mutton", false));
     foods.push(new Item("cloimidMeat", false));
+    foods.push(new Item("yioshkMeat", false));
+    foods.push(new Item("taipanMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];

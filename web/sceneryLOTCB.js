@@ -4538,6 +4538,36 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "deadWaanti")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+            {
+                this.size = this.owned;
+            }
+            else
+            {
+                this.size = 1.25;
+            }
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(furr, 268, 236, 76, 46, -1/2 * 76 * this.size, -1/2 * 46 * this.size, 76 * this.size, 46 * this.size);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "brolleFeast")
         {
             //TRAITS
@@ -7019,6 +7049,112 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "corneliusPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(1);
+            this.interactionRange = 50;
+            this.solid = false;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mufmuf, 234, 7, 9, 7, -(1/2 * 9 * 2), -(1/2 * 7 * 2), 9 * 2, 7 * 2);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mufmuf, 259, 7, 9, 7, -(1/2 * 9 * 2), -(1/2 * 7 * 2), 9 * 2, 7 * 2);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 14;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "corneliusFlower")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("corneliusFlower", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "rilthasiaPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(1);
+            this.interactionRange = 50;
+            this.solid = false;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mufmuf, 247, 7, 9, 7, -(1/2 * 9 * 2), -(1/2 * 7 * 2), 9 * 2, 7 * 2);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mufmuf, 259, 7, 9, 7, -(1/2 * 9 * 2), -(1/2 * 7 * 2), 9 * 2, 7 * 2);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 14;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "rilthasiaFlower")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("rilthasiaFlower", false, false), 1]);
+                }
+            }
+        }
         else if (this.type == "mufPlant")
         {
             //TRAITS
@@ -7623,7 +7759,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.drawImage(verse, 172, 1593, 28, 28, -(1/2 * 28 * 4.5), -(1/2 * 28 * 4.5), 28 * 4.5, 28 * 4.5);
                     XXX.restore();
 
-                    XXX.globalAlpha = 0.96;
+                    XXX.globalAlpha = 0.9;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
@@ -7685,6 +7821,197 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     if (hits == Inventory.length)
                     {
                         Inventory.push([new Item("wood", false, false), 60]);
+                        this.treePhase = 2;
+                    }
+                }
+                this.activate = false;
+            }
+
+            if (this.treePhase == 0) //if this tree is in its cut down phase.
+            {
+                //console.log(player.finalAttackStage);
+                if (player.weaponEquipped == "vardanianAxe" && player.cutcut == true && this.playerer < 130 || player.weaponEquipped == "vardanianAxeDual" && player.cutcut == true && this.playerer < 130)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 7 + 35)
+                    {
+                        this.treeHealth -= 0.45;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+                else if (player.weaponEquipped == "timberAxe" && player.cutcut == true && this.playerer < 130)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 7 + 35)
+                    {
+                        this.treeHealth -= 1;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+                else if (player.weaponEquipped == "vardanianBattleAxe" && player.cutcut == true && this.playerer < 130 || player.weaponEquipped == "freydicWarAxe" && player.cutcut == true  && this.playerer < 130)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 7 + 35)
+                    {
+                        this.treeHealth -= 0.2;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+                else if (player.weaponEquipped == "dualVardanianBattleAxe" && player.cutcut == true && this.playerer < 130)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 10 + 35)
+                    {
+                        this.treeHealth -= 0.35;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+            }
+        }
+        else if (this.type == "yeolTree")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 100;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.treeHealth = 90;
+
+                //DROPS NUT PODS FROM THE TREE
+                if (this.treePhase == 0 && currentSeason == "Bounty") //The nut only falls from the tree in the season called Bounty
+                {
+                    if (Math.floor(Math.random() * 3) == 2)
+                    {
+                        if (Math.round(Math.random()) == 0)
+                        {
+                            for (var ii = 0; ii < 2; ii++)
+                            {
+                                var podX = this.X + (Math.random() * 130) - 65;
+                                var podY = this.Y + (Math.random() * 130) - 65;
+                                var podDist = Math.sqrt((this.X - podX)*(this.X - podX) + (this.Y - podY)*(this.Y - podY));
+                                if (podDist > 30)
+                                {
+                                    scenicList.push(new Scenery("item", podX, podY, 0, false, ["yeolPod", 1, 0]));
+                                }
+                            }
+                        }
+                        else
+                        {
+                            var podX = this.X + (Math.random() * 130) - 65;
+                            var podY = this.Y + (Math.random() * 130) - 65;
+                            var podDist = Math.sqrt((this.X - podX)*(this.X - podX) + (this.Y - podY)*(this.Y - podY));
+                            if (podDist > 30)
+                            {
+                                scenicList.push(new Scenery("item", podX, podY, 0, false, ["yeolPod", 1, 0]));
+                            }
+                        }
+                    }
+                }
+            }
+
+            console.log(this.treeHealth + " treeHealth");
+            //DRAWSELF
+            if (this.treePhase == 0)
+            {
+                if (this.playerer < 100)
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mufmuf, 393, 68, 18, 15, -(1/2 * 18 * 4.5), -(1/2 * 15 * 4.5), 18 * 4.5, 15 * 4.5);
+                    XXX.restore();
+
+                    XXX.globalAlpha = 0.9;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mufmuf, 380, 7, 58, 54, -(1/2 * 58 * 4.5), -(1/2 * 54 * 4.5), 58 * 4.5, 54 * 4.5);
+                    XXX.restore();
+                    XXX.globalAlpha = 1;
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mufmuf, 380, 7, 58, 54, -(1/2 * 58 * 4.5), -(1/2 * 54 * 4.5), 58 * 4.5, 54 * 4.5);
+                    XXX.restore();
+                }
+            }
+            else if (this.treePhase == 1)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mufmuf, 393, 68, 18, 15, -(1/2 * 18 * 4.5), -(1/2 * 15 * 4.5), 18 * 4.5, 15 * 4.5);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mufmuf, 362, 97, 100, 56, -(1/2 * 200 * 4.5), -(1/2 * 56 * 4.5), 100 * 4.5, 56 * 4.5);
+                XXX.restore();
+            }
+            else if (this.treePhase == 2)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mufmuf, 393, 68, 18, 15, -(1/2 * 18 * 4.5), -(1/2 * 15 * 4.5), 18 * 4.5, 15 * 4.5);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 25;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                if (this.treePhase == 1)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "yeolWood")
+                        {
+                            Inventory[i][1] += 38;
+                            this.treePhase = 2;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("yeolWood", false, false), 38]);
                         this.treePhase = 2;
                     }
                 }
@@ -9156,6 +9483,173 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             else if (this.playerer <= 50 && this.lit == true)
             {
                 player.warmth += Math.max(0, (0.65 - (player.heatResistance / 200)));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 19;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                if (this.lit == false && this.burnt == false || this.lit == false && this.temporary == true)
+                {
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].identity == "Fire-Starter")
+                        {
+                            this.gotFireStarter = true;
+                        }
+                    }
+
+                    if (this.gotFireStarter)
+                    {
+                        this.burntTime = 0;
+                        this.lit = true;
+                    }
+                }
+                else if (this.lit == true && this.burnt == false)
+                {
+                    player.craftPosition = 0;
+                    craftScroll = 0;
+                    crafting = "foods";
+                    lowBar = "crafting";
+                    gameState = "paused";
+                }
+            }
+        }
+        else if (this.type == "yeolCampFire")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 35;
+
+            if (this.temporary == "permaLit")
+            {
+                this.campFireTime = 0;
+                this.lit = true;
+                this.burnt = false;
+            }
+
+            //animate
+            if (this.lit == true)
+            {
+                lights.push({X:this.X, Y: this.Y, size: 110, extraStops: true, GRD: 0.5, Alpha: 0.7, showMe: false});
+                this.fireCostume += 1;
+                this.campFireTime += 1;
+
+                //die out over time
+                if (this.campFireTime >= 7500)
+                {
+                    this.campFireTime = 0;
+                    this.lit = false;
+                    this.burnt = true;
+                }
+            }
+
+            if (this.burnt == true)
+            {
+                this.burntTime += 1;
+
+                if (this.burntTime >= 2000)
+                {
+                    this.burntTime = 0;
+                    if (this.temporary == false)
+                    {
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i] === this)
+                            {
+                                scenicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //DRAWSELF
+            if (this.lit == false)
+            {
+                if (this.burnt == false)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mufmuf, 332, 43, 19, 16, -(1/2 * 19 * 2.5), -(1/2 * 16 * 2.5), 19 * 2.5, 16 * 2.5);
+                    XXX.drawImage(mufmuf, 332, 43, 19, 16, -(1/2 * 19 * 2.5), -(1/2 * 16 * 2.5), 19 * 2.5, 16 * 2.5);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(verse, 2890, 173, 23, 23, -(1/2 * 34.5), -(1/2 * 34.5), 34.5, 34.5);
+                    XXX.drawImage(verse, 2890, 173, 23, 23, -(1/2 * 34.5), -(1/2 * 34.5), 34.5, 34.5);
+                    XXX.restore();
+                }
+            }
+            else if (this.fireCostume <= 14)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mufmuf, 308, 42, 19, 16, -(1/2 * 19 * 2.5), -(1/2 * 16 * 2.5), 19 * 2.5, 16 * 2.5);
+                XXX.drawImage(mufmuf, 308, 42, 19, 16, -(1/2 * 19 * 2.5), -(1/2 * 16 * 2.5), 19 * 2.5, 16 * 2.5);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 14 && this.fireCostume <= 28)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mufmuf, 308, 60, 19, 16, -(1/2 * 19 * 2.5), -(1/2 * 16 * 2.5), 19 * 2.5, 16 * 2.5);
+                XXX.drawImage(mufmuf, 308, 60, 19, 16, -(1/2 * 19 * 2.5), -(1/2 * 16 * 2.5), 19 * 2.5, 16 * 2.5);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 28 && this.fireCostume <= 42)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mufmuf, 308, 79, 19, 16, -(1/2 * 19 * 2.5), -(1/2 * 16 * 2.5), 19 * 2.5, 16 * 2.5);
+                XXX.drawImage(mufmuf, 308, 79, 19, 16, -(1/2 * 19 * 2.5), -(1/2 * 16 * 2.5), 19 * 2.5, 16 * 2.5);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 42)
+            {
+                this.fireCostume = 0;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mufmuf, 308, 60, 19, 16, -(1/2 * 19 * 2.5), -(1/2 * 16 * 2.5), 19 * 2.5, 16 * 2.5);
+                XXX.drawImage(mufmuf, 308, 60, 19, 16, -(1/2 * 19 * 2.5), -(1/2 * 16 * 2.5), 19 * 2.5, 16 * 2.5);
+                XXX.restore();
+            }
+
+            if (this.playerer <= this.radius && this.lit == true) //fire burns the player but heat resistance can reduce the damage it does.
+            {
+                if (player.mageShield > 0)
+                {
+                    player.mageShield -= 0.125;
+                    player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                }
+                else
+                {
+                    player.health += player.mageShield;
+                    player.mageShield = 0;
+
+                    player.health -= Math.max(0, (0.125 - (player.heatResistance / 200)));
+                    player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                    player.burningTime = new Date().getTime();
+                }
+            }
+            else if (this.playerer <= 50 && this.lit == true)
+            {
+                player.warmth += Math.max(0, (0.55 - (player.heatResistance / 200)));
             }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.

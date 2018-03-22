@@ -44,10 +44,14 @@ function cheats()
             {
                 alpha = true;
             }
-            var equis = prompt("Set X value...");
-            var yGriega = prompt("Set Y value...");
+            else if (alpha == false)
+            {
+                alpha = false;
+            }
+            var equis = Number(prompt("Set X value..."));
+            var yGriega = Number(prompt("Set Y value..."));
             var alliegenced = confirm("Click cancle and it will try to cancle you, clikc ok and it will be ok with you.");
-            magicList.push(new Magic({ID: "adminSummon"}, true, [equis, yGriega, creature, alpha, alliegenced]));
+            magicList.push(new Magic({ID: "adminSummon", CNX: 100}, true, [equis, yGriega, creature, alpha, alliegenced], false));
         }
         else if (cheatcode == "unitListChecker")
         {
@@ -559,6 +563,10 @@ function cheats()
         else if (cheatcode.toLowerCase() == "overview")
         {
             console.log(player);
+        }
+        else if (cheatcode.toLowerCase() == "unitoverview")
+        {
+            console.log(ArtificialIntelligenceAccess);
         }
         else if (cheatcode.toLowerCase() == "tellme")
         {

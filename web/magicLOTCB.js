@@ -1640,6 +1640,7 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     }
                     else if (this.spellType == "adminSummon")
                     {
+
                         if (instructions[4] == true)
                         {
                             ArtificialIntelligenceAccess.push(new Unit(instructions[0], instructions[1], instructions[2], instructions[3], "playerSummoned" + instructions[2]));

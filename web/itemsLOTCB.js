@@ -206,9 +206,41 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 0;
             this.sellValue = 0;
-        }
+        } //ACTUAL ITEMS
+        else if (this.type == "boat")
+        {
+            //For All Items
+            this.identity = "Boat";
+            this.weight = 300;
+            this.size = 60;
+            this.description = "This is the most effective and safe way to travel across large bodies of water.";
+            this.intForDes = 15;
+            this.intDescription = "Boats are not hindered by carryweight so they can also be an effective means of moving merchandise.";
 
-        //ACTUAL ITEMS
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 0.5;
+            this.distance = 0;
+            this.range = 0;
+            this.rate = 20;
+            this.damage = 0;
+            this.magicalDamage = 0;
+            this.negateArmour = 0;
+
+            //ability
+            this.ability = "none";
+
+            //crafting
+            this.yield = 1;
+            this.intForCraft = 30;
+            this.ingredients = [["wood", 30]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 200 - Math.floor(player.getCharisma() / 2); // at max, buy for 175.
+            this.sellValue = 125 + Math.floor(player.getCharisma() / 1); // at max, sell for 175.
+        }
         else if (this.type == "coins")
         {
             //For All Items
@@ -3555,6 +3587,86 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "yeolPod")
+        {
+            //For All Items
+            this.identity = "Yeol Pod";
+            this.weight = 1;
+            this.size = 6;
+            this.description = "The green pod that fell from a yeol tree.";
+            this.intForDes = 1;
+            this.intDescription = "Yeol pods only fall during Bounty; each hold a yeol nut within.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["yeolPodHusk", 1], ["yeolNut", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "yeolPodHusk")
+        {
+            //For All Items
+            this.identity = "Yeol Pod Husk";
+            this.weight = 1;
+            this.size = 6;
+            this.description = "The green husk of a yeol pod.";
+            this.intForDes = 19;
+            this.intDescription = "This can be used in alchemy to make remedies to certain ailments.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "yeolNut")
+        {
+            //For All Items
+            this.identity = "Yeol Nut";
+            this.weight = 0.25;
+            this.size = 6;
+            this.description = "The nut of a yeol tree.";
+            this.intForDes = 0;
+            this.intDescription = "A crunchy, buttery nut with a nutty aroma and a particular and desirable aftertaste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.15; //recoops lost energy.
+            this.replenish = 0.005; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2; // at max, sell for 2.
+        }
         else if (this.type == "rawKoobuFlesh")
         {
             //For All Items
@@ -4197,6 +4309,69 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 15 - Math.floor(player.getCharisma() / 25); // at max, buy for 13.
             this.sellValue = 9 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 13.
+        }
+        else if (this.type == "rawYioshkFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Yioshk Flesh";
+            this.weight = 2;
+            this.size = 13;
+            this.description = "A thick cut of meat from a Yioshk.";
+            this.intForDes = 5;
+            this.intDescription = "Yioshks are ravenous hunters but will also stoop to scavenging if the carrion is available, thus yioshk flesh is often infested with mites.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshMites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "yioshkMeat")
+        {
+            //For All Items
+            this.identity = "Yioshk Meat";
+            this.weight = 2;
+            this.size = 13;
+            this.description = "The cooked meat from a yioshk.";
+            this.intForDes = 2;
+            this.intDescription = "This meat is safe to eat, but it is tough and sinewous to an extent that doing so is best avoided.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 4;
+            this.ingredients = [["Raw Yioshk Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 25); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
         }
         else if (this.type == "rawBerulnFlesh")
         {
@@ -6202,6 +6377,59 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "corneliusFlower")
+        {
+            //For All Items
+            this.identity = "Cornelius Flower";
+            this.weight = 0.06;
+            this.size = 4;
+            this.description = "A small orange wildflower.";
+            this.intForDes = 15;
+            this.intDescription = "This type of flower is used in some herbal remedies.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //Utility Focused
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1 + Math.floor((20 + player.getCharisma()) / 50); // at max, sell for 2.
+        }
+        else if (this.type == "rilthasiaFlower")
+        {
+            //For All Items
+            this.weight = 0.05;
+            this.size = 4;
+            this.description = "A small blue wildflower.";
+            this.intForDes = 20;
+            if (player.raceName == "Kel")
+            {
+                this.identity = "Love Flower";
+                this.intForDes = 0;
+                this.intDescription = "In your culture if someone gifts their crush this flower and it is accepted, it acts as a subtle form of consent to becoming lovers.";
+            }
+            else
+            {
+                this.identity = "Rilthasia Flower";
+                this.intDescription = "A pretty blue flower that in kellish culture is given to ones lover to show them that one is serious about their love for them.";
+            }
+
+            //Define Utility
+            this.utility = "material";
+
+            //Utility Focused
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
         }
         else if (this.type == "butterMellowFlower")
         {
@@ -10945,6 +11173,28 @@ function Item(type, x, y)
             this.buyValue = 300 - Math.floor(player.getCharisma() / 1); // at max, buy for 250.
             this.sellValue = 150 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 250.
         }
+        else if (this.type == "yeolWood")
+        {
+            //For All Items
+            this.identity = "Yeol Wood";
+            this.weight = 2;
+            this.size = 12;
+            this.description = "The timber from a yeol tree.";
+            this.intForDes = 3;
+            this.intDescription = "Yeol trees grow in the savannah and other hot regions, their wood is particularly soft and flexible for wood.";
+
+            //Define Utility
+            this.utility = "material";
+            //subUtility
+            this.subUtility = "yeolCampFire";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
         else if (this.type == "wood")
         {
             //For All Items
@@ -13515,6 +13765,118 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 7 - Math.floor(player.getCharisma() / 15); // at max, buy for 4.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
+        else if (this.type == "taipanSnakeSkin")
+        {
+            //For All Items
+            this.identity = "Taipan Snake Skin";
+            this.weight = 0.85;
+            this.size = 13;
+            this.description = "The thin light green scaled skin of a taipan.";
+            this.intForDes = 13;
+            this.intDescription = "This type of snake skin can be used as weak amplifyer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 15); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "taipanVenomGland")
+        {
+            //For All Items
+            this.identity = "Taipan Venom Gland";
+            this.weight = 0.05;
+            this.size = 4;
+            this.description = "The gland within a taipan that allows it to produce its venom.";
+            this.intForDes = 2;
+            this.intDescription = "This is very poisonous, what might happen if it were to find its way into someone's wine?.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonIV";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11 - Math.floor(player.getCharisma() / 25); // at max, buy for 9.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 15); // at max, sell for 9.
+        }
+        else if (this.type == "taipanMeat")
+        {
+            //For All Items
+            this.identity = "Taipan Meat";
+            this.weight = 0.55;
+            this.size = 7;
+            this.description = "The cooked meat from a taipan.";
+            this.intForDes = 0;
+            this.intDescription = "It has a meaty texture and a delectable taste to it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 7; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 7;
+            this.ingredients = [["Raw Taipan Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
+        }
+        else if (this.type == "rawTaipanFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Taipan Flesh";
+            this.weight = 0.6;
+            this.size = 14;
+            this.description = "The raw flesh of a taipan.";
+            this.intForDes = 3;
+            this.intDescription = "When cooked, taipan flesh makes for a tasty snack.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0.3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
         else if (this.type == "torperVenomSac")
         {
@@ -21149,6 +21511,71 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "boat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 307, 477, 43, 80, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 80 * 1.4), 43 * 1.4, 80 * 1.4);
+        }
+        else if (this.type == "corneliusFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 235, 18, 8, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 8 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 2), 8 * 2, 10 * 2);
+        }
+        else if (this.type == "rilthasiaFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 248, 18, 8, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 8 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 2), 8 * 2, 10 * 2);
+        }
+        else if (this.type == "yeolPod")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 333, 10, 8, 7, X - this.X + (1/2 * CCC.width) - (1/2 * 8 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 7 * 2), 8 * 2, 7 * 2);
+        }
+        else if (this.type == "yeolPodHusk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 352, 11, 8, 7, X - this.X + (1/2 * CCC.width) - (1/2 * 8 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 7 * 2), 8 * 2, 7 * 2);
+        }
+        else if (this.type == "yeolNut")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 343, 10, 8, 7, X - this.X + (1/2 * CCC.width) - (1/2 * 8 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 7 * 2), 8 * 2, 7 * 2);
+        }
+        else if (this.type == "yeolWood")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 359, 65, 19, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 2), 19 * 2, 17 * 2);
+        }
+        else if (this.type == "rawTaipanFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 303, 120, 17, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 2), 17 * 2, 12 * 2);
+        }
+        else if (this.type == "taipanMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 303, 134, 17, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 2), 17 * 2, 12 * 2);
+        }
+        else if (this.type == "taipanSnakeSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 300, 106, 26, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 2), 26 * 2, 14 * 2);
+        }
+        else if (this.type == "taipanVenomGland")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 305, 145, 17, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 2), 17 * 2, 12 * 2);
+        }
+        else if (this.type == "rawYioshkFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 477, 122, 15, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 2.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 2.2), 15 * 2.2, 11 * 2.2);
+        }
+        else if (this.type == "yioshkMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 477, 133, 15, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 2.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 2.2), 15 * 2.2, 11 * 2.2);
+        }
         else if (this.type == "cloimidMeat")
         {
             XXX.beginPath();
@@ -23933,10 +24360,10 @@ function Item(type, x, y)
             XXX.drawImage(polyPNG, 385, 7, 11, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 16.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22.5), 16.5, 22.5);
         }
         else if (this.type == "yaihefBerries")
-            {
-                XXX.beginPath();
-                XXX.drawImage(theCrack, 62, 508, 16, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 16), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 16, 16);
-            }
+        {
+            XXX.beginPath();
+            XXX.drawImage(theCrack, 62, 508, 16, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 16), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 16, 16);
+        }
     };
 
     this.drawInventoryItem = function(type, invX, invY)
@@ -23983,6 +24410,71 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "boat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 307, 477, 43, 80, this.invX - (1/2 * 43 * 0.9), this.invY - (1/2 * 80 * 0.9), 43 * 0.9, 80 * 0.9);
+        }
+        else if (this.type == "corneliusFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mufmuf, 235, 18, 8, 10, this.invX - (1/2 * 8 * 2), this.invY - (1/2 * 10 * 2), 8 * 2, 10 * 2);
+        }
+        else if (this.type == "rilthasiaFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mufmuf, 248, 18, 8, 10, this.invX - (1/2 * 8 * 2), this.invY - (1/2 * 10 * 2), 8 * 2, 10 * 2);
+        }
+        else if (this.type == "yeolPod")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mufmuf, 333, 10, 8, 7, this.invX - (1/2 * 8 * 2), this.invY - (1/2 * 7 * 2), 8 * 2, 7 * 2);
+        }
+        else if (this.type == "yeolPodHusk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mufmuf, 352, 11, 8, 7, this.invX - (1/2 * 8 * 2), this.invY - (1/2 * 7 * 2), 8 * 2, 7 * 2);
+        }
+        else if (this.type == "yeolNut")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mufmuf, 343, 10, 8, 7, this.invX - (1/2 * 8 * 2), this.invY - (1/2 * 7 * 2), 8 * 2, 7 * 2);
+        }
+        else if (this.type == "yeolWood")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mufmuf, 359, 65, 19, 17, this.invX - (1/2 * 19 * 2), this.invY - (1/2 * 17 * 2), 19 * 2, 17 * 2);
+        }
+        else if (this.type == "rawTaipanFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mufmuf, 303, 120, 17, 12, this.invX - (1/2 * 17 * 2), this.invY - (1/2 * 12 * 2), 17 * 2, 12 * 2);
+        }
+        else if (this.type == "taipanMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mufmuf, 303, 134, 17, 12, this.invX - (1/2 * 17 * 2), this.invY - (1/2 * 12 * 2), 17 * 2, 12 * 2);
+        }
+        else if (this.type == "taipanSnakeSkin")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mufmuf, 300, 106, 26, 14, this.invX - (1/2 * 26 * 2), this.invY - (1/2 * 14 * 2), 26 * 2, 14 * 2);
+        }
+        else if (this.type == "taipanVenomGland")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mufmuf, 305, 145, 17, 12, this.invX - (1/2 * 17 * 2), this.invY - (1/2 * 12 * 2), 17 * 2, 12 * 2);
+        }
+        else if (this.type == "rawYioshkFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mufmuf, 477, 122, 15, 11, this.invX - (1/2 * 15 * 2.2), this.invY - (1/2 * 11 * 2.2), 15 * 2.2, 11 * 2.2);
+        }
+        else if (this.type == "yioshkMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mufmuf, 477, 133, 15, 11, this.invX - (1/2 * 15 * 2.2), this.invY - (1/2 * 11 * 2.2), 15 * 2.2, 11 * 2.2);
         }
         else if (this.type == "cloimidMeat")
         {
@@ -26788,6 +27280,71 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "boat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 307, 477, 43, 80, this.invX - (1/2 * 43 * 0.9), this.invY - (1/2 * 80 * 0.9), 43 * 0.9, 80 * 0.9);
+        }
+        else if (this.type == "corneliusFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 235, 18, 8, 10, this.invX - (1/2 * 8 * 2), this.invY - (1/2 * 10 * 2), 8 * 2, 10 * 2);
+        }
+        else if (this.type == "rilthasiaFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 248, 18, 8, 10, this.invX - (1/2 * 8 * 2), this.invY - (1/2 * 10 * 2), 8 * 2, 10 * 2);
+        }
+        else if (this.type == "yeolPod")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 333, 10, 8, 7, this.invX - (1/2 * 8 * 2), this.invY - (1/2 * 7 * 2), 8 * 2, 7 * 2);
+        }
+        else if (this.type == "yeolPodHusk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 352, 11, 8, 7, this.invX - (1/2 * 8 * 2), this.invY - (1/2 * 7 * 2), 8 * 2, 7 * 2);
+        }
+        else if (this.type == "yeolNut")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 343, 10, 8, 7, this.invX - (1/2 * 8 * 2), this.invY - (1/2 * 7 * 2), 8 * 2, 7 * 2);
+        }
+        else if (this.type == "yeolWood")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 359, 65, 19, 17, this.invX - (1/2 * 19 * 2), this.invY - (1/2 * 17 * 2), 19 * 2, 17 * 2);
+        }
+        else if (this.type == "rawTaipanFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 303, 120, 17, 12, this.invX - (1/2 * 17 * 2), this.invY - (1/2 * 12 * 2), 17 * 2, 12 * 2);
+        }
+        else if (this.type == "taipanMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 303, 134, 17, 12, this.invX - (1/2 * 17 * 2), this.invY - (1/2 * 12 * 2), 17 * 2, 12 * 2);
+        }
+        else if (this.type == "taipanSnakeSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 300, 106, 26, 14, this.invX - (1/2 * 26 * 2), this.invY - (1/2 * 14 * 2), 26 * 2, 14 * 2);
+        }
+        else if (this.type == "taipanVenomGland")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 305, 145, 17, 12, this.invX - (1/2 * 17 * 2), this.invY - (1/2 * 12 * 2), 17 * 2, 12 * 2);
+        }
+        else if (this.type == "rawYioshkFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 477, 122, 15, 11, this.invX - (1/2 * 15 * 2.2), this.invY - (1/2 * 11 * 2.2), 15 * 2.2, 11 * 2.2);
+        }
+        else if (this.type == "yioshkMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 477, 133, 15, 11, this.invX - (1/2 * 15 * 2.2), this.invY - (1/2 * 11 * 2.2), 15 * 2.2, 11 * 2.2);
         }
         else if (this.type == "cloimidMeat")
         {

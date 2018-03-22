@@ -29,6 +29,12 @@ function gameloopOfDestiny(time)
         player.engagedSenser();
     }
 
+    //FLUX -- this changes the ocean texture back and forth
+    seaFlux += 1;
+    if (seaFlux > 140)
+    {
+        seaFlux = 0;
+    }
 
     // THIS IS THE BACKGROUND BUILDER (height, width, type, x, y) // The tile coords 0, 0 are at the bottom right corner of Teshir City.
     //Different parts of the world load at different Y values. // maps are 34 by 34 tiles and for somereason the maps are -20 to the left. and + 14 down.
@@ -119,6 +125,8 @@ function gameloopOfDestiny(time)
             }
         }
     }
+    player.land = true;
+    player.water = false;
     player.freeze = 1;
     wornAbilities();
     player.obscurity = true; //ability to be invisible is reset at the end of every loop.

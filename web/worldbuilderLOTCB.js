@@ -281,7 +281,7 @@ function worldBuilder()
         }
         //layer 1 (frosty region): elev 1
         //mapN1 //TODO remake this map
-        if (Y > 6290 && Y < 32370) //X0
+        if (Y > 6290 && Y < 17073) //X0
         {
             elevation = 1;
             region = "n1";
@@ -302,19 +302,33 @@ function worldBuilder()
             outlineBuilder(34, 1, "stonePath", -3, -54);
         }
         //layer 2 (frosty region): elev 1
-        //mapN2 //TODO remake this map
-        if (Y > 31750 && Y < 77360) //this is the freezing arctic environment //X0
+        //mapN2
+        if (Y > 16445 && Y < 27296) //X0
         {
             elevation = 1;
             region = "n2";
-            outlineBuilder( 150, 83, "snow", -80, -255);
+            outlineBuilder(34, 34, "frost", -20, -88);
+            outlineBuilder(34, 1, "stonePath", -3, -88);
         }
         //layer 3 (frosty region): elev 1
-        //mapN3 //TODO remake this map
-        if (Y > 76780) //this is the north Pole... basically. //X0
+        //mapN3
+        if (Y > 26650 && Y < 100000) //X0
         {
             elevation = 1;
             region = "n3";
+            outlineBuilder(34, 34, "snow", -20, -122); //frost
+            outlineBuilder(34, 1, "stonePath", -3, -122);
+            outlineBuilder(3, 3, "sea", -8, -91);
+            outlineBuilder(1, 1, "seaCornerTL", -9, -91);
+            outlineBuilder(1, 1, "shallow", -9, -90);
+            outlineBuilder(1, 1, "seaCornerBL", -9, -89);
+        }
+        //layer 4 (frosty region): elev 1
+        //mapN4
+        if (Y > 100000) //X0
+        {
+            elevation = 1;
+            region = "n4";
             outlineBuilder( 150, 83, "snow", -80, -405);
         }
     } //ALTERNATE DIMENSIONS
@@ -1262,16 +1276,16 @@ function buildMaster()
 
                 //off map //todo put these in other maps later on
                     //boss
-                ArtificialIntelligenceAccess.push(new Unit(2000, 30087, "AncientBeing", true, "Dejn-Vaa-Chorm"));
-
-                //elder walruses
-                ArtificialIntelligenceAccess.push(new Unit(1600, 21790, "Walrus", true, "Ice Toby"));
-                ArtificialIntelligenceAccess.push(new Unit(2000, 21890, "Walrus", true, "Ice Tammy"));
-
-                //walruses
-                ArtificialIntelligenceAccess.push(new Unit(900, 21290, "Walrus", false, "Santa Claws"));
-                ArtificialIntelligenceAccess.push(new Unit(1200, 21490, "Walrus", false, "Mary Claws"));
-                ArtificialIntelligenceAccess.push(new Unit(325, 21590, "Walrus", false, "Big Boy Ringo"));
+                //ArtificialIntelligenceAccess.push(new Unit(2000, 30087, "AncientBeing", true, "Dejn-Vaa-Chorm"));
+                //
+                ////elder walruses
+                //ArtificialIntelligenceAccess.push(new Unit(1600, 21790, "Walrus", true, "Ice Toby"));
+                //ArtificialIntelligenceAccess.push(new Unit(2000, 21890, "Walrus", true, "Ice Tammy"));
+                //
+                ////walruses
+                //ArtificialIntelligenceAccess.push(new Unit(900, 21290, "Walrus", false, "Santa Claws"));
+                //ArtificialIntelligenceAccess.push(new Unit(1200, 21490, "Walrus", false, "Mary Claws"));
+                //ArtificialIntelligenceAccess.push(new Unit(325, 21590, "Walrus", false, "Big Boy Ringo"));
 
                     //Seguidores del Hielo
                 ArtificialIntelligenceAccess.push(new Unit(9000, 10000, "HyelingSoldier", true, "Frost Maw"));
@@ -1285,9 +1299,244 @@ function buildMaster()
                 scenicList.push(new Scenery("hyelingTent", 9677 , 9170, -1/11 * Math.PI, true));
                 scenicList.push(new Scenery("hyelingTent", 10800 , 8897, -1/2 * Math.PI, true));
                 scenicList.push(new Scenery("hyelingTent", 10458 , 8363, -3/5 * Math.PI, true));
-                scenicList.push(new Scenery("hyelingSkeleton", 10071 , 8788, 0.12, true));
+
 
                 change = "n1";
+            }
+        }
+        else if (region == "n2") //Y > 6290 && Y < 32370
+        {
+            if (change != "n2")
+            {
+                dialogueReset();
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //meant for the map
+
+                //humans
+                    //walrus stuff merchant
+                if (uniqueChars.hetmerLDS == false)
+                {
+                    if (Math.random() < 0.2)
+                    {
+                        if (change == "n1")
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(1714, 27290, "Person", false, "Freydic Merchant", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["winterWolfClothing", 0], weapon: ["none", [0.4, 0.6], 0, 0, 1.15], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 6, patrolLoop: false, route:[[1720, 1939], [1488, 1939], [1714, 1939], [1714, 1457], [1730, 1187], [1734, 1192]], merchant: true, merchandise: [[new Item("coins", false, false), 18], [new Item("walrusTusks", false, false), 2], [new Item("rawWalrusFlesh", false, false), 3], [new Item("walrusHide", false, false), 2], [new Item("blubber", false, false), 5]]}));
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].ID == "Freydic Merchant")
+                                {
+                                    ArtificialIntelligenceAccess[i].speed = 1.05;
+                                    ArtificialIntelligenceAccess[i].healthMAX = 9;
+                                    ArtificialIntelligenceAccess[i].health = 9;
+                                    break;
+                                }
+                            }
+                            ArtificialIntelligenceAccess.push(new Unit(1740, 27200, "Soldier", false, "Hired Blade", {race: "Freynor", faction: "Freynor", con: 3, speed: 1.05, outfit: ["walrusLeatherArmour", 4], weapon: ["freydicSword", [4, 4], 0, 16, 1.1], ranged: [false, "arrow", 4, 1500, 1, 4, 0, "none", 2], patrolStops: 4, patrolLoop: true, route:[[1746, 1939], [1740, 1457], [1756, 1187], [1760, 1190]]}));
+                        }
+                    }
+                }
+
+                //balkur
+                if (this.change != "n3")
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-1455, 26201, "Balkur", false, "Tivilesh"));
+                }
+                else if (this.change != "n2e1")
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-2227, 24702, "Balkur", true, "Tivel"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-2601, 25894, "WinterWolf", false, "Lusgya"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1989, 25549, "WinterWolf", false, "Lusgo"));
+                    ArtificialIntelligenceAccess.push(new Unit(-1574, 25983, "WinterWolf", false, "Lusga"));
+                    ArtificialIntelligenceAccess.push(new Unit(-740, 26220, "WinterWolf", false, "Lusgor"));
+                }
+                //waanti
+                ArtificialIntelligenceAccess.push(new Unit(2658, 24515, "Waanti", "baby", "yiim"));
+                ArtificialIntelligenceAccess.push(new Unit(2831, 24278, "Waanti", true, "Jilm"));
+                ArtificialIntelligenceAccess.push(new Unit(2856, 24679, "Waanti", false, "Gemela"));
+                ArtificialIntelligenceAccess.push(new Unit(5475, 23502, "Waanti", true, "Halm"));
+                ArtificialIntelligenceAccess.push(new Unit(4605, 25537, "Waanti", false, "Gemala"));
+                ArtificialIntelligenceAccess.push(new Unit(5266, 25378, "Waanti", true, "Holm"));
+                ArtificialIntelligenceAccess.push(new Unit(-14, 22543, "Waanti", "baby", "yaam"));
+                ArtificialIntelligenceAccess.push(new Unit(438, 22293, "Waanti", true, "Kilmi"));
+                ArtificialIntelligenceAccess.push(new Unit(227, 22115, "Waanti", false, "Gemelia"));
+                ArtificialIntelligenceAccess.push(new Unit(367, 22857, "Waanti", true, "Helm"));
+                ArtificialIntelligenceAccess.push(new Unit(-754, 22419, "Waanti", "baby", "yaant"));
+                ArtificialIntelligenceAccess.push(new Unit(-1304, 22980, "Waanti", true, "Kilmikan"));
+                ArtificialIntelligenceAccess.push(new Unit(-1153, 22410, "Waanti", false, "Gemelaya"));
+                ArtificialIntelligenceAccess.push(new Unit(533, 23721, "Waanti", false, "Gemayla"));
+
+                //koobu
+                ArtificialIntelligenceAccess.push(new Unit(-917, 19442, "Koobu", false, "Kipper"));
+
+                //winter wolves
+                    //Southwesterly woof pak... Represent!
+                if (this.change != "n1" && this.change != "n2w1")
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(6199, 16919, "WinterWolf", true, "Husky"));
+                    ArtificialIntelligenceAccess.push(new Unit(6605, 16771, "WinterWolf", false, "Husgy"));
+                    ArtificialIntelligenceAccess.push(new Unit(6493, 17189, "WinterWolf", false, "Husgo"));
+                    ArtificialIntelligenceAccess.push(new Unit(5851, 17051, "WinterWolf", false, "Husga"));
+                    ArtificialIntelligenceAccess.push(new Unit(6259, 16641, "WinterWolf", false, "Husgor"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(5824, 17987, "WinterWolf", true, "Husgol"));
+                    ArtificialIntelligenceAccess.push(new Unit(5685, 17633, "WinterWolf", false, "Husgorr"));
+                }
+                    //mid west group
+                ArtificialIntelligenceAccess.push(new Unit(3537, 21261, "WinterWolf", false, "Hasga"));
+                ArtificialIntelligenceAccess.push(new Unit(4215, 21803, "WinterWolf", false, "Hasgora"));
+                ArtificialIntelligenceAccess.push(new Unit(4546, 19176, "WinterWolf", false, "Holsgor"));
+                    //mideasterly woofs
+                ArtificialIntelligenceAccess.push(new Unit(119, 24403, "WinterWolf", false, "Lusgora"));
+                ArtificialIntelligenceAccess.push(new Unit(-2350, 17359, "WinterWolf", false, "Lusgorr"));
+
+                //glutids
+                ArtificialIntelligenceAccess.push(new Unit(6317, 21218, "Glutid", true, "Gluptard", {patrolStops: 5, patrolLoop: true, route:[[6037, 21507], [6833, 21852], [6568, 22378], [7140, 22077], [6317, 21218]]}));
+                ArtificialIntelligenceAccess.push(new Unit(6021, 26071, "Glutid", false, "Gluptario", {patrolStops: 3, patrolLoop: true, route:[[6709, 26233], [6448, 26854], [6021, 26071]]}));
+                ArtificialIntelligenceAccess.push(new Unit(6293, 26383, "Glutid", false, "Gluptaria", {patrolStops: 1, patrolLoop: true, route:[[6293, 26383]]}));
+                ArtificialIntelligenceAccess.push(new Unit(2674, 17194, "Glutid", false, "Gluptariela", {patrolStops: 1, patrolLoop: true, route:[[2674, 17194]]}));
+                ArtificialIntelligenceAccess.push(new Unit(2874, 20010, "Glutid", true, "Gluptiel", {patrolStops: 2, patrolLoop: true, route:[[3445, 19710], [2874, 20010]]}));
+
+                //Scenery
+                scenicList.push(new Scenery("bushkaPlant", 5940, 17870, -1.5, true));
+                scenicList.push(new Scenery("bushkaPlant", 2608, 24656, 8, true));
+                scenicList.push(new Scenery("bushkaPlant", 202, 23641, -5.2, true));
+
+                scenicList.push(new Scenery("wightbloomPlant", 5160 , 26153, 0.25, true));
+                scenicList.push(new Scenery("wightbloomPlant", -2114 , 25954, -3, true));
+                scenicList.push(new Scenery("wightbloomPlant", -1606 , 22788, -4.78, true));
+
+                scenicList.push(new Scenery("tyrniPlant", 3391, 22531, 0, true));
+                scenicList.push(new Scenery("tyrniPlant", -1157, 25240, -5.5, true));
+
+                scenicList.push(new Scenery("stone", -1033 , 22648, 6, 1, 1));
+                scenicList.push(new Scenery("stone", -949 , 22322, 4, 0.5, 3));
+                scenicList.push(new Scenery("stone", 56 , 23763, 2, 1.5, 1));
+
+                //Hyeling Camps
+                //ArtificialIntelligenceAccess.push(new Unit(10041, 8746, "Hyeling", true, "White Hammer"));
+                //ArtificialIntelligenceAccess.push(new Unit(9711, 8503, "HyelingSoldier", false, "Running Stone"));
+                //scenicList.push(new Scenery("largeCeremonialRockCircle", 10075 , 8783, 0, true));
+                //scenicList.push(new Scenery("hyelingTent", 9199 , 8965, 1/2 * Math.PI, true));
+                //scenicList.push(new Scenery("hyelingSkeleton", 10071 , 8788, 0.12, true));
+
+                change = "n2";
+            }
+        }
+        else if (region == "n3") //Y > 6290 && Y < 32370
+        {
+            if (change != "n3")
+            {
+                dialogueReset();
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //meant for the map
+
+                //humans
+                ArtificialIntelligenceAccess.push(new Unit(3675, 29302, "Soldier", false, "Freydic Hunter", {race: "Freynor", faction: "Freynor", con: 8, speed: 1.1, outfit: ["sealSkinClothing", 0], weapon: ["freydicSpear", [2, 3], 4, 24, 1.25], ranged: [false, "arrow", 5, 1600, 1, 4, 0, "none", 2], patrolStops: 5, patrolLoop: true, route:[[2197, 29577], [3889, 29603], [3736, 30019], [2977, 28941], [3701, 29233]]}));
+
+                //balkur
+                //ArtificialIntelligenceAccess.push(new Unit(-1455, 26201, "Balkur", false, "Tivilesh"));
+
+                //waanti
+                //ArtificialIntelligenceAccess.push(new Unit(2658, 24515, "Waanti", "baby", "yiim"));
+
+                //koobu
+                //ArtificialIntelligenceAccess.push(new Unit(-917, 19442, "Koobu", false, "Kipper"));
+
+                //winter wolves
+                //ArtificialIntelligenceAccess.push(new Unit(-2350, 17359, "WinterWolf", false, "Lusgorr"));
+
+                //glutids
+                //ArtificialIntelligenceAccess.push(new Unit(6317, 21218, "Glutid", true, "Gluptard", {patrolStops: 5, patrolLoop: true, route:[[6037, 21507], [6833, 21852], [6568, 22378], [7140, 22077], [6317, 21218]]}));
+                //ArtificialIntelligenceAccess.push(new Unit(2674, 17194, "Glutid", false, "Gluptariela", {patrolStops: 1, patrolLoop: true, route:[[2674, 17194]]}));
+
+                //Plants
+                //scenicList.push(new Scenery("bushkaPlant", 5940, 17870, -1.5, true));
+
+                //scenicList.push(new Scenery("wightbloomPlant", 5160 , 26153, 0.25, true));
+
+                //scenicList.push(new Scenery("tyrniPlant", 3391, 22531, 0, true));
+
+                //Scenery
+                    //hunter's camp
+                    scenicList.push(new Scenery("tent", 3822, 29306, 1/8 * 2 * Math.PI, true));
+                    scenicList.push(new Scenery("stone", 3755 , 29352, 1.2, 2, 2));
+                    scenicList.push(new Scenery("stone", 4214 , 29229, -4, 1, 3));
+                    scenicList.push(new Scenery("stone", 4733 , 30127, -3, 1.5, 2));
+                    scenicList.push(new Scenery("deadWaanti", 3755 , 29352, 3.14, 1.6));
+                    scenicList.push(new Scenery("campFire", 3757 , 29275, 1, "permaLit"));
+                    scenicList.push(new Scenery("item", 3807, 29356, 0, "freynor", ["bucket", 1, -20]));
+
+                //Items
+                if (quests.n3Stash)
+                {
+                    quests.n3Stash = false;
+
+                    worldItems.push([new Item("arrow", 3797, 29257), 3]);
+                }
+
+                //Hyeling Camps
+                //ArtificialIntelligenceAccess.push(new Unit(10041, 8746, "Hyeling", true, "White Hammer"));
+                //ArtificialIntelligenceAccess.push(new Unit(9711, 8503, "HyelingSoldier", false, "Running Stone"));
+                //scenicList.push(new Scenery("largeCeremonialRockCircle", 10075 , 8783, 0, true));
+                //scenicList.push(new Scenery("hyelingTent", 9199 , 8965, 1/2 * Math.PI, true));
+                //scenicList.push(new Scenery("hyelingSkeleton", 10071 , 8788, 0.12, true));
+
+                change = "n3";
             }
         }
         else if (region == "w1") //Y > 6290 && Y < 32370
@@ -9596,6 +9845,186 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 else if (terrain == "woods")
                 {
                     XXX.drawImage(woodsEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "greySand")
+                {
+                    XXX.drawImage(greySand, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "dockV")
+                {
+                    XXX.drawImage(dockV, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "dockH")
+                {
+                    XXX.drawImage(dockH, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "shallow")
+                {
+                    over("landing", j, i, extraX, extraY);
+                    if (seaFlux < 35)
+                    {
+                        XXX.drawImage(sea, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (seaFlux < 70)
+                    {
+                        XXX.drawImage(sea, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.save();
+                        XXX.globalAlpha = 0.4;
+                        XXX.drawImage(sea2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.restore();
+                    }
+                    else if (seaFlux < 105)
+                    {
+                        XXX.drawImage(sea2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else
+                    {
+                        XXX.drawImage(sea2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.save();
+                        XXX.globalAlpha = 0.4;
+                        XXX.drawImage(sea, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.restore();
+                    }
+                }
+                else if (terrain == "sea")
+                {
+                    over("sea", j, i, extraX, extraY);
+                    if (seaFlux < 35)
+                    {
+                        XXX.drawImage(sea, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (seaFlux < 70)
+                    {
+                        XXX.drawImage(sea, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.save();
+                        XXX.globalAlpha = 0.4;
+                        XXX.drawImage(sea2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.restore();
+                    }
+                    else if (seaFlux < 105)
+                    {
+                        XXX.drawImage(sea2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else
+                    {
+                        XXX.drawImage(sea2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.save();
+                        XXX.globalAlpha = 0.4;
+                        XXX.drawImage(sea, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.restore();
+                    }
+                }
+                else if (terrain == "seaCornerBR")
+                {
+                    over("landing", j, i, extraX, extraY);
+                    if (seaFlux < 35)
+                    {
+                        XXX.drawImage(seaCornerBR, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (seaFlux < 70)
+                    {
+                        XXX.drawImage(seaCornerBR, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.save();
+                        XXX.globalAlpha = 0.4;
+                        XXX.drawImage(seaCornerBR2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.restore();
+                    }
+                    else if (seaFlux < 105)
+                    {
+                        XXX.drawImage(seaCornerBR2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else
+                    {
+                        XXX.drawImage(seaCornerBR2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.save();
+                        XXX.globalAlpha = 0.4;
+                        XXX.drawImage(seaCornerBR, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.restore();
+                    }
+                }
+                else if (terrain == "seaCornerBL")
+                {
+                    over("landing", j, i, extraX, extraY);
+                    if (seaFlux < 35)
+                    {
+                        XXX.drawImage(seaCornerBL, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (seaFlux < 70)
+                    {
+                        XXX.drawImage(seaCornerBL, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.save();
+                        XXX.globalAlpha = 0.4;
+                        XXX.drawImage(seaCornerBL2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.restore();
+                    }
+                    else if (seaFlux < 105)
+                    {
+                        XXX.drawImage(seaCornerBL2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else
+                    {
+                        XXX.drawImage(seaCornerBL2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.save();
+                        XXX.globalAlpha = 0.4;
+                        XXX.drawImage(seaCornerBL, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.restore();
+                    }
+                }
+                else if (terrain == "seaCornerTL")
+                {
+                    over("landing", j, i, extraX, extraY);
+                    if (seaFlux < 35)
+                    {
+                        XXX.drawImage(seaCornerTL, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (seaFlux < 70)
+                    {
+                        XXX.drawImage(seaCornerTL, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.save();
+                        XXX.globalAlpha = 0.4;
+                        XXX.drawImage(seaCornerTL2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.restore();
+                    }
+                    else if (seaFlux < 105)
+                    {
+                        XXX.drawImage(seaCornerTL2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else
+                    {
+                        XXX.drawImage(seaCornerTL2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.save();
+                        XXX.globalAlpha = 0.4;
+                        XXX.drawImage(seaCornerTL, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.restore();
+                    }
+                }
+                else if (terrain == "seaCornerTR")
+                {
+                    over("landing", j, i, extraX, extraY);
+                    if (seaFlux < 35)
+                    {
+                        XXX.drawImage(seaCornerTR, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else if (seaFlux < 70)
+                    {
+                        XXX.drawImage(seaCornerTR, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.save();
+                        XXX.globalAlpha = 0.4;
+                        XXX.drawImage(seaCornerTR2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.restore();
+                    }
+                    else if (seaFlux < 105)
+                    {
+                        XXX.drawImage(seaCornerTR2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                    }
+                    else
+                    {
+                        XXX.drawImage(seaCornerTR2, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.save();
+                        XXX.globalAlpha = 0.4;
+                        XXX.drawImage(seaCornerTR, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                        XXX.restore();
+                    }
                 }
             }
         }

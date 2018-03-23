@@ -358,11 +358,78 @@ function worldBuilder()
             outlineBuilder(1, 14, "stonePath", 0, -132);
         }
         //mapN4E1
-        if (Y > 36878 && Y < 47662 && X < -2647) //North Coast//X1
+        if (Y > 36878 && Y < 47662 && X < -2423) //North Coast//X1
         {
             elevation = 1;
             region = "n4e1";
-            outlineBuilder(34, 34, "outline", 14, -156);
+            //outlineBuilder(34, 34, "outline", 14, -156);
+            outlineBuilder(6, 8, "greySand", 14, -150);
+            outlineBuilder(2, 2, "greySand", 14, -152);
+            outlineBuilder(3, 3, "greySand", 19, -153);
+
+            outlineBuilder(22, 8, "frost", 14, -144);
+            outlineBuilder(1, 2, "frost", 19, -145);
+
+            outlineBuilder(17, 20, "greySand", 22, -153);
+            outlineBuilder(12, 6, "greySand", 42, -151);
+
+            outlineBuilder(14, 20, "frost", 22, -136);
+            outlineBuilder(5, 2, "frost", 22, -141);
+            outlineBuilder(3, 1, "frost", 24, -142);
+            outlineBuilder(1, 3, "frost", 24, -137);
+            outlineBuilder(1, 5, "frost", 34, -138);
+            outlineBuilder(1, 8, "frost", 32, -137);
+            outlineBuilder(1, 2, "frost", 35, -139);
+            outlineBuilder(2, 1, "frost", 39, -140);
+            outlineBuilder(1, 1, "frost", 38, -139);
+            outlineBuilder(1, 1, "frost", 41, -137);
+
+            outlineBuilder(17, 6, "frost", 42, -139);
+
+            outlineBuilder(1, 1, "shallow", 14, -153);
+            outlineBuilder(1, 1, "seaCornerBL", 14, -152);
+            outlineBuilder(1, 1, "shallow", 15, -152);
+            outlineBuilder(1, 1, "seaCornerBL", 15, -151);
+            outlineBuilder(1, 3, "shallow", 16, -151);
+            outlineBuilder(1, 1, "shallow", 19, -152);
+            outlineBuilder(1, 1, "seaCornerBR", 19, -151);
+            outlineBuilder(1, 1, "shallow", 20, -153);
+            outlineBuilder(1, 1, "seaCornerBR", 20, -152);
+            outlineBuilder(1, 21, "shallow", 21, -154);
+            outlineBuilder(1, 1, "seaCornerBR", 21, -153);
+            outlineBuilder(2, 34, "sea", 14, -156);
+            outlineBuilder(1, 7, "sea", 14, -154);
+            outlineBuilder(1, 5, "sea", 15, -153);
+            outlineBuilder(1, 3, "sea", 16, -152);
+            outlineBuilder(1, 1, "shallow", 42, -154);
+            outlineBuilder(1, 1, "greySand", 42, -153);
+            outlineBuilder(1, 3, "greySand", 42, -152);
+            outlineBuilder(1, 1, "seaCornerBL", 42, -153);
+            outlineBuilder(1, 5, "sea", 43, -154);
+            outlineBuilder(1, 1, "shallow", 43, -153);
+            outlineBuilder(1, 4, "sea", 44, -153);
+            outlineBuilder(1, 1, "seaCornerBL", 44, -152);
+            outlineBuilder(1, 3, "shallow", 45, -152);
+
+            outlineBuilder(34, 1, "outline", 14, -156);
+
+            outlineBuilder(4, 1, "stonePath", 14, -135);
+            outlineBuilder(1, 33, "stonePath", 15, -135);
+        }
+        //layer 5 (northern sea): elev 1
+        //mapN5
+        if (Y > 47071 && X < 7530 && X > -3910)//North Sea//X0
+        {
+            elevation = 1;
+            region = "n5";
+            outlineBuilder(34, 34, "sea", -20, -190);
+        }
+        //mapN5
+        if (Y > 47071 && X < -2423)//North Sea//X0
+        {
+            elevation = 1;
+            region = "n5e1";
+            outlineBuilder(34, 34, "sea", 14, -190);
         }
     } //ALTERNATE DIMENSIONS
     else if (map == "sagesCache") //This is a dungeon found in map W3
@@ -1337,7 +1404,7 @@ function buildMaster()
                 change = "n1";
             }
         }
-        else if (region == "n2") //Y > 6290 && Y < 32370
+        else if (region == "n2")
         {
             if (change != "n2")
             {
@@ -1485,7 +1552,7 @@ function buildMaster()
                 change = "n2";
             }
         }
-        else if (region == "n3") //Y > 6290 && Y < 32370
+        else if (region == "n3")
         {
             if (change != "n3")
             {
@@ -1693,7 +1760,7 @@ function buildMaster()
                 change = "n3";
             }
         }
-        else if (region == "n4") //Y > 6290 && Y < 32370
+        else if (region == "n4")
         {
             if (change != "n4")
             {
@@ -1858,6 +1925,96 @@ function buildMaster()
                 //scenicList.push(new Scenery("hyelingSkeleton", 10071 , 8788, 0.12, true));
 
                 change = "n4";
+            }
+        }
+        else if (region == "n4e1")
+        {
+            if (change != "n4e1")
+            {
+                dialogueReset();
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //meant for the map
+
+                //humans
+
+                //balkur
+                //ArtificialIntelligenceAccess.push(new Unit(4674, 34221, "Balkur", true, "Kalobesh"));
+
+                //waanti
+                //ArtificialIntelligenceAccess.push(new Unit(4592, 40636, "Waanti", "baby", "yiam"));
+
+                //koobu
+                //ArtificialIntelligenceAccess.push(new Unit(6077, 39074, "Koobu", true, "Kooper"));
+
+
+                //winter wolves
+                //ArtificialIntelligenceAccess.push(new Unit(-1750, 37746, "WinterWolf", false, "Laugorrela"));
+
+                //glutids
+                //ArtificialIntelligenceAccess.push(new Unit(3105, 39083, "Glutid", true, "Gluuptarg", {patrolStops: 5, patrolLoop: true, route:[[2547, 38775], [2060, 39066], [1805, 38576], [3082, 38393], [3105, 39083]]}));
+                //ArtificialIntelligenceAccess.push(new Unit(4084, 38917, "Glutid", false, "Gluho", {patrolStops: 1, patrolLoop: true, route:[[4084, 38917]]}));
+
+
+
+                //beach creatures
+                //ArtificialIntelligenceAccess.push(new Unit(3918, 46085, "Cangrejo", "baby", "pincher"));
+
+                //anemones
+                //ArtificialIntelligenceAccess.push(new Unit(4505, 46018, "Anemone", true, "slimar"));
+
+                //seals
+                //ArtificialIntelligenceAccess.push(new Unit(-2080, 43806, "Seal", false, "oaourf"));
+
+                //mites
+                //ArtificialIntelligenceAccess.push(new Unit(3402, 45274, "BeachMite", false, "bit"));
+
+                //cloimids
+                //ArtificialIntelligenceAccess.push(new Unit(4721, 45874, "Cloimid", true, "moistClambyTickle", {rotation: -110/360 * 2 * Math.PI}));
+
+                //Plants
+                //scenicList.push(new Scenery("bushkaPlant", 3504, 42017, 1, true));
+                //scenicList.push(new Scenery("tyrniPlant", 3130, 42388, 4.6, true));
+                //scenicList.push(new Scenery("wightbloomPlant", 3130, 42388, 4.6, true));
+
+                //algae
+                //scenicList.push(new Scenery("algae", 4656, 45859, 0, 1)); //use these coords please
+
+                //Scenery
+                //scenicList.push(new Scenery("stone", 4265 , 41412, 2.4, 2, 3));
+
+                //Hyeling Camps
+                //ArtificialIntelligenceAccess.push(new Unit(10041, 8746, "Hyeling", true, "White Hammer"));
+                //ArtificialIntelligenceAccess.push(new Unit(9711, 8503, "HyelingSoldier", false, "Running Stone"));
+                //scenicList.push(new Scenery("largeCeremonialRockCircle", 10075 , 8783, 0, true));
+                //scenicList.push(new Scenery("hyelingTent", 9199 , 8965, 1/2 * Math.PI, true));
+                //scenicList.push(new Scenery("hyelingSkeleton", 10071 , 8788, 0.12, true));
+
+                change = "n4e1";
             }
         }
         else if (region == "w1") //Y > 6290 && Y < 32370

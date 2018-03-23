@@ -5,7 +5,6 @@
 
 //TODO LIST
 //top priority
-//todo finish adding anemone unit
 
 //Venning Update
 //todo add Jarl Rannuk Stambjord of Venning City
@@ -43,7 +42,10 @@
 //todo add hot climate farm plants
 //todo add other hot climate wild plants
 
-//Cephrian Update
+//Isles Update
+//todo add a small northern island with a village called 'Eschuttes'
+
+//Cephrian/Jungle Update
 //todo add Sonja Fruit and Sonja fruit trees (tropical trees that drop Sonja fruits)
 //todo add jungle trees
 //todo add gulfreys, Blil plant, etres, blue water berries that dmitri made a while ago

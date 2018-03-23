@@ -2332,13 +2332,13 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     {
                         this.contactDamage(false, 16, ((Math.random() * 6 + 6) + 0.3 * this.cnx) / 5, 100,  "fire", "none");
                         this.flashAnimate(90, false, 1, [{image: polypol, imgX: 1691, imgY: 184, portionW: 24, portionH: 23, adjX: -1 / 2 * 24 * 1.5, adjY: -1 / 2 * 23 * 1.5, width: 24 * 1.5, height: 23 * 1.5}, {image: polypol, imgX: 1721, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24 * 1.5, adjY: -1 / 2 * 23 * 1.5, width: 24 * 1.5, height: 23 * 1.5}, {image: polypol, imgX: 1750, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24 * 1.5, adjY: -1 / 2 * 23 * 1.5, width: 24 * 1.5, height: 23 * 1.5}, {image: polypol, imgX: 1783, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24 * 1.5, adjY: -1 / 2 * 23 * 1.5, width: 24 * 1.5, height: 23 * 1.5}]);
-                        lights.push({X: this.X, Y: this.Y, size: 16, extraStops: true, GRD: 0.86, Alpha: 0.7, showMe: false});
+                        lights.push({X: this.X, Y: this.Y, size: 32, extraStops: true, GRD: 0.86, Alpha: 0.7, showMe: false});
                     }
                     else
                     {
                         this.contactDamage(false, 11, ((Math.random() * 4 + 4) + 0.3 * this.cnx) / 5, 100,  "fire", "none");
                         this.flashAnimate(100, false, 1, [{image: polypol, imgX: 1691, imgY: 184, portionW: 24, portionH: 23, adjX: -1 / 2 * 24, adjY: -1 / 2 * 23, width: 24, height: 23}, {image: polypol, imgX: 1721, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24, adjY: -1 / 2 * 23, width: 24, height: 23}, {image: polypol, imgX: 1750, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24, adjY: -1 / 2 * 23, width: 24, height: 23}, {image: polypol, imgX: 1783, imgY: 185, portionW: 24, portionH: 23, adjX: -1 / 2 * 24, adjY: -1 / 2 * 23, width: 24, height: 23}]);
-                        lights.push({X: this.X, Y: this.Y, size: 11, extraStops: true, GRD: 0.86, Alpha: 0.7, showMe: false});
+                        lights.push({X: this.X, Y: this.Y, size: 22, extraStops: true, GRD: 0.86, Alpha: 0.7, showMe: false});
                     }
                     this.project(this.playerRotation + 1/2 * Math.PI, 100 * ((50 + 3 * this.cnx) / 50), 3 * ((50 + this.cnx) / 50), true);
                 }

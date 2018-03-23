@@ -35,9 +35,11 @@ woodenBench - a wooden bench in either freydic or thengan style
 smallTable - a small table for two that has no chairs
 mediumTable - a variety of different medium sized tables
 stumpStool - stool in either the freydic or thengan style
+stumpStoolSml - same as above but in a smaller size
 northernFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (northern fish types found here)
 lostPaddle - an oar for a boat
 crashedBoat - a rowboat that is in ruin
+barrel - decorative barrels (one with a spigot the other without)
 crate - decorative and storage-system-capable varieties of crates in two color schemes dark-wood and light-wood
 blood - 6 different bloodstain options for spilled blood
 thenganSandbox - A sandpit arena in the thengan style
@@ -46,15 +48,17 @@ thenganBuilding2 - a thengan building
 thenganBuilding3 - a thengan building
 thenganBuilding4 - a thengan building
 thenganBuilding5 - a thengan building
-freydicBuilding1 - a freydic building
-freydicBuilding2 - a freydic building
-freydicBuilding3 - a freydic building
-freydicBuilding4 - a freydic building
+freydicBuilding1 - a freydic building (down facing inn)
+freydicBuilding2 - a freydic building (up-right facing sml home)
+freydicBuilding3 - a freydic building (left facing med square)
+freydicBuilding4 - a freydic building (down facing rectangle)
 freydicBuilding5 - a freydic building
 freydicBuilding6 - a freydic building
 freydicBuilding7 - a freydic building
 freydicBuilding8 - a freydic building
 freydicBuilding9 - a freydic building
+freydicBuildingHalveR - a half of a large freydic building (these are particularly janky and meant for one particular in game building)
+freydicBuildingHalveL - the other half of said large freydic building (these are particularly janky and meant for one particular in game building)
 kellishBuilding1 - a kellish building
 kellishBuilding2 - a kellish building
 kellishBuilding3 - a kellish building

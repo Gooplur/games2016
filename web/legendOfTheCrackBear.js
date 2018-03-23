@@ -5,13 +5,12 @@
 
 //TODO LIST
 //top priority
+//todo finish Venning City
 
 //Venning Update
 //todo add Jarl Rannuk Stambjord of Venning City
-//todo add Siggi the Harborman (he sells you a boat, and fishing rod, etc.)
 //todo add an algae that grows on rocks
 //todo add a waterwalking elixer
-//todo add Venning to the right of the third snow map (Venning is a dock town)
 //todo add the freydic hatchet from the balkur img sheet
 //todo add lakes and ice holes
 //todo add glass of Waanti milk
@@ -2492,7 +2491,8 @@ function theLegend()
         johanna: ["Johanna", 0],
         cheryl: ["Cheryl", 0],
         hildegard: ["Hildegard", 0],
-        ederhal: ["Ederhal", 0]
+        ederhal: ["Ederhal", 0],
+        siggi: ["Siggi", 0]
     };
 
 //time Tracker Variables
@@ -2623,7 +2623,8 @@ function theLegend()
         rutgarLDS: true,
         axelLDS: true,
         hildegardLDS: true,
-        hilmundChildLDS: true
+        hilmundChildLDS: true,
+        siggiLDS: true
     };
 //QUESTS
     quests =

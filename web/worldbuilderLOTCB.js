@@ -358,7 +358,7 @@ function worldBuilder()
             outlineBuilder(1, 14, "stonePath", 0, -132);
         }
         //mapN4E1
-        if (Y > 36878 && Y < 47662 && X < -2423) //North Coast//X1
+        if (Y > 36878 && Y < 47662 && X < -2423 && X > -14153) //North Coast//X1
         {
             elevation = 1;
             region = "n4e1";
@@ -416,6 +416,51 @@ function worldBuilder()
             outlineBuilder(4, 1, "stonePath", 14, -135);
             outlineBuilder(1, 33, "stonePath", 15, -135);
         }
+        //mapN4E2
+        if (Y > 36878 && Y < 47662 && X < -12680) //North Coast//X1
+        {
+            elevation = 1;
+            region = "n4e2";
+            outlineBuilder(34, 34, "outline", 48, -156);
+            outlineBuilder(15, 34, "frost", 48, -137);
+            outlineBuilder(1, 7, "greySand", 59, -137);
+            outlineBuilder(1, 4, "greySand", 64, -136);
+            outlineBuilder(13, 34, "greySand", 48, -150);
+            outlineBuilder(1, 2, "frost", 48, -138);
+            outlineBuilder(1, 1, "frost", 66, -138);
+
+            outlineBuilder(3, 18, "stoneWork", 51, -149);
+            outlineBuilder(1, 16, "stonePath", 51, -149);
+            outlineBuilder(7, 1, "stoneWork", 56, -148);
+            outlineBuilder(8, 1, "stonePath", 55, -149);
+            outlineBuilder(2, 1, "stonePath", 54, -146);
+            outlineBuilder(4, 1, "stoneWork", 53, -146);
+            outlineBuilder(2, 1, "stoneWork", 54, -144);
+            outlineBuilder(1, 1, "stonePath", 53, -146);
+
+            outlineBuilder(1, 6, "stonePath", 48, -135);
+            outlineBuilder(7, 1, "stonePath", 53, -142);
+            outlineBuilder(1, 1, "stonePath", 54, -142);
+
+            outlineBuilder(1, 33, "sea", 49, -152);
+            outlineBuilder(1, 29, "shallow", 49, -151);
+            outlineBuilder(1, 1, "shallow", 48, -152);
+            outlineBuilder(1, 1, "greySand", 48, -151);
+            outlineBuilder(1, 1, "seaCornerBL", 48, -151);
+            outlineBuilder(4, 34, "sea", 48, -156);
+            outlineBuilder(1, 1, "seaCornerBL", 77, -150);
+            outlineBuilder(1, 4, "sea", 78, -151);
+            outlineBuilder(1, 2, "shallow", 78, -150);
+            outlineBuilder(1, 2, "sea", 80, -150);
+            outlineBuilder(1, 1, "seaCornerBL", 79, -149);
+            outlineBuilder(1, 2, "shallow", 80, -149);
+            outlineBuilder(1, 1, "seaCornerBL", 81, -148);
+
+            outlineBuilder(6, 1, "dockV", 53, -155);
+            outlineBuilder(6, 1, "dockV", 57, -155);
+            outlineBuilder(6, 1, "dockV", 61, -155);
+            outlineBuilder(6, 1, "dockV", 65, -155);
+        }
         //layer 5 (northern sea): elev 1
         //mapN5
         if (Y > 47071 && X < 7530 && X > -3910)//North Sea//X0
@@ -424,12 +469,19 @@ function worldBuilder()
             region = "n5";
             outlineBuilder(34, 34, "sea", -20, -190);
         }
-        //mapN5
-        if (Y > 47071 && X < -2423)//North Sea//X0
+        //mapN5E1
+        if (Y > 47071 && X < -2423 && X > -14153)//North Sea//X0
         {
             elevation = 1;
             region = "n5e1";
             outlineBuilder(34, 34, "sea", 14, -190);
+        }
+        //mapN5E2
+        if (Y > 47071 && X < -2423 && X < -12680)//North Sea//X0
+        {
+            elevation = 1;
+            region = "n5e2";
+            outlineBuilder(34, 34, "sea", 48, -190);
         }
     } //ALTERNATE DIMENSIONS
     else if (map == "sagesCache") //This is a dungeon found in map W3
@@ -1750,6 +1802,9 @@ function buildMaster()
                 scenicList.push(new Scenery("stone", 256 , 35885, 2.8, 0.5, 1));
                 scenicList.push(new Scenery("stone", -2069 , 32193, -1, 1, 2));
 
+                //sign to Teshir
+                scenicList.push(new Scenery("sign", 1908, 35783, Math.PI / 2, 1, "Teshir City - 109 sectors"));
+
                 //Hyeling Camps
                 //ArtificialIntelligenceAccess.push(new Unit(10041, 8746, "Hyeling", true, "White Hammer"));
                 //ArtificialIntelligenceAccess.push(new Unit(9711, 8503, "HyelingSoldier", false, "Running Stone"));
@@ -2014,7 +2069,211 @@ function buildMaster()
                 //scenicList.push(new Scenery("hyelingTent", 9199 , 8965, 1/2 * Math.PI, true));
                 //scenicList.push(new Scenery("hyelingSkeleton", 10071 , 8788, 0.12, true));
 
+                //sign to Venning
+                scenicList.push(new Scenery("sign", -4811, 41074, 0 * Math.PI, 1, "Venning City - 41 sectors"));
+
                 change = "n4e1";
+            }
+        }
+        else if (region == "n4e2")
+        {
+            if (change != "n4e2")
+            {
+                dialogueReset();
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //meant for the map
+
+                //balkur
+                //ArtificialIntelligenceAccess.push(new Unit(4674, 34221, "Balkur", true, "Kalobesh"));
+
+                //waanti
+                //ArtificialIntelligenceAccess.push(new Unit(4592, 40636, "Waanti", "baby", "yiam"));
+
+                //koobu
+                //ArtificialIntelligenceAccess.push(new Unit(6077, 39074, "Koobu", true, "Kooper"));
+
+
+                //winter wolves
+                //ArtificialIntelligenceAccess.push(new Unit(-1750, 37746, "WinterWolf", false, "Laugorrela"));
+
+                //glutids
+                //ArtificialIntelligenceAccess.push(new Unit(3105, 39083, "Glutid", true, "Gluuptarg", {patrolStops: 5, patrolLoop: true, route:[[2547, 38775], [2060, 39066], [1805, 38576], [3082, 38393], [3105, 39083]]}));
+                //ArtificialIntelligenceAccess.push(new Unit(4084, 38917, "Glutid", false, "Gluho", {patrolStops: 1, patrolLoop: true, route:[[4084, 38917]]}));
+
+                //beach creatures
+                //ArtificialIntelligenceAccess.push(new Unit(3918, 46085, "Cangrejo", "baby", "pincher"));
+
+                //anemones
+                //ArtificialIntelligenceAccess.push(new Unit(4505, 46018, "Anemone", true, "slimar"));
+
+                //seals
+                //ArtificialIntelligenceAccess.push(new Unit(-2080, 43806, "Seal", false, "oaourf"));
+
+                //mites
+                //ArtificialIntelligenceAccess.push(new Unit(3402, 45274, "BeachMite", false, "bit"));
+
+                //cloimids
+                //ArtificialIntelligenceAccess.push(new Unit(4721, 45874, "Cloimid", true, "moistClambyTickle", {rotation: -110/360 * 2 * Math.PI}));
+
+                //Plants
+                //scenicList.push(new Scenery("bushkaPlant", 3504, 42017, 1, true));
+                //scenicList.push(new Scenery("tyrniPlant", 3130, 42388, 4.6, true));
+                //scenicList.push(new Scenery("wightbloomPlant", 3130, 42388, 4.6, true));
+
+                //algae
+                //scenicList.push(new Scenery("algae", 4656, 45859, 0, 1)); //use these coords please
+
+                //Scenery
+                //scenicList.push(new Scenery("stone", 4265 , 41412, 2.4, 2, 3));
+
+                //HUMANS
+                if (uniqueChars.siggiLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Siggi the Harborman")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-14542, 44796, "Person", false, "Siggi the Harborman", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["northernClothing", 0], weapon: ["none", [0.4, 0.8], 0, 0, 0.75], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[-14542, 44796]], merchant: true, merchandise: [[new Item("coins", false, false), 90], [new Item("boat", false, false), 2], [new Item("fishingpole", false, false), 6]]}));
+                    }
+                }
+
+                //Venning City
+                    //docks
+                scenicList.push(new Scenery("floatingBoat", -14825, 46962, 3.5, true));
+                scenicList.push(new Scenery("floatingBoat", -15142, 47107, 1/2*Math.PI, true));
+                scenicList.push(new Scenery("floatingBoat", -15246, 46661, 0, true));
+                scenicList.push(new Scenery("floatingBoat", -14814, 46569, -45/360 * Math.PI, true));
+                scenicList.push(new Scenery("floatingBoat", -14831, 46154, -100/360 * Math.PI, true));
+
+                scenicList.push(new Scenery("northernFishingSpot", -14720, 46388, 0, true));
+                scenicList.push(new Scenery("northernFishingSpot", -14974, 47237, -2, true));
+                scenicList.push(new Scenery("northernFishingSpot", -15336, 46820, 1, true));
+                        //shops at the docks district
+                            //Harborshop
+                scenicList.push(new Scenery("freydicBuilding8", -14591, 44814, 0, true));
+                scenicList.push(new Scenery("sign", -14525, 44884, Math.PI - 0.15, 3, "The Harbor Shop"));
+                scenicList.push(new Scenery("boat", -14757, 44792, 1.2, true));
+                scenicList.push(new Scenery("boat", -14731, 44863, -0.05, true));
+                scenicList.push(new Scenery("crate", -14640, 44782, 2.8/4 * Math.PI, 2, [1.3]));
+                            //jarls longhouse
+                scenicList.push(new Scenery("freydicBuildingHalveR", -19380, 44722, 10, true));
+                scenicList.push(new Scenery("freydicBuildingHalveL", -19000, 44722, 0, true));
+                scenicList.push(new Scenery("sign", -19413, 44967, Math.PI, 3, "Stambjord Longhouse"));
+                scenicList.push(new Scenery("hearth", -18803, 44515, 4, "lit"));
+                scenicList.push(new Scenery("hearth", -18807, 44917, 4 + 1/2 * Math.PI, "lit"));
+                scenicList.push(new Scenery("item", -18873, 44921, 0, "freynor", ["wood", 3, -17]));
+                scenicList.push(new Scenery("item", -18796, 44566, 0, "freynor", ["wood", 4, -23]));
+                scenicList.push(new Scenery("longTable", -19170, 44716, 0, false));
+                scenicList.push(new Scenery("stumpStool", -18934, 44715, 5, 2));
+                                //the jarl feasts about 2/3 of the time
+                scenicList.push(new Scenery("item", -19032, 44710, 0, "freynor", ["cloimidMeat", 1, -75]));
+                scenicList.push(new Scenery("item", -18967, 44731, 0, "freynor", ["crabChowder", 1, -40]));
+                scenicList.push(new Scenery("item", -18964, 44702, 0, "freynor", ["butteredHarstBread", 1, -30]));
+                scenicList.push(new Scenery("item", -18959, 44720, 0, "freynor", ["butteredCrab", 1, -40]));
+                scenicList.push(new Scenery("item", -18978, 44677, 0, "freynor", ["pintGlass", 1, -5]));
+                scenicList.push(new Scenery("item", -19016, 44739, 0, "freynor", ["pintGlass", 1, -5]));
+                scenicList.push(new Scenery("item", -18963, 44676, 0, "freynor", ["mead", 1, -25]));
+                scenicList.push(new Scenery("item", -18975, 44753, 0, "freynor", ["mead", 1, -25]));
+                scenicList.push(new Scenery("item", -18960, 44748, 0, "freynor", ["mead", 1, -25]));
+                scenicList.push(new Scenery("item", -19034, 44675, 0, "freynor", ["woodenBowl", 1, -5]));
+                scenicList.push(new Scenery("item", -19037, 44754, 0, "freynor", ["butteredCrab", 1, -30]));
+                scenicList.push(new Scenery("item", -19091, 44714, 0, "freynor", ["walrusMeat", 1, -70]));
+                scenicList.push(new Scenery("item", -19107, 44704, 0, "freynor", ["walrusMeat", 1, -70]));
+                scenicList.push(new Scenery("item", -19238, 44711, 0, "freynor", ["dryKelp", 2, -10]));
+                scenicList.push(new Scenery("item", -19248, 44720, 0, "freynor", ["crabClaw", 1, -80]));
+                scenicList.push(new Scenery("item", -19256, 44704, 0, "freynor", ["crabClaw", 1, -80]));
+                scenicList.push(new Scenery("item", -19160, 44713, 0, "freynor", ["waantiMeat", 1, -80]));
+                scenicList.push(new Scenery("item", -19179, 44706, 0, "freynor", ["waantiMeat", 1, -80]));
+                scenicList.push(new Scenery("item", -19057, 44679, 0, "freynor", ["mead", 1, -20]));
+                scenicList.push(new Scenery("item", -19329, 44695, 0, "freynor", ["tyrniBerries", 2, -14]));
+                scenicList.push(new Scenery("item", -19305, 44723, 0, "freynor", ["tyrniBerries", 2, -14]));
+                scenicList.push(new Scenery("item", -19338, 44713, 0, "freynor", ["tyrniBerries", 2, -14]));
+                scenicList.push(new Scenery("item", -19323, 44715, 0, "freynor", ["thab", 1, -90]));
+                scenicList.push(new Scenery("item", -19209, 44714, 0, "freynor", ["bushkaBerries", 2, -12]));
+                scenicList.push(new Scenery("item", -19207, 44714, 0, "freynor", ["bushkaBerries", 2, -12]));
+                scenicList.push(new Scenery("item", -19212, 44715, 0, "freynor", ["bushkaBerries", 2, -12]));
+                scenicList.push(new Scenery("item", -19213, 44704, 0, "freynor", ["crabMeat", 3, -45]));
+                scenicList.push(new Scenery("item", -19213, 44704, 0, "freynor", ["waantiButter", 1, -31]));
+                scenicList.push(new Scenery("item", -19100, 44678, 0, "freynor", ["crabChowder", 1, -35]));
+                scenicList.push(new Scenery("item", -19099, 44749, 0, "freynor", ["crabChowder", 1, -35]));
+                scenicList.push(new Scenery("item", -19081, 44744, 0, "freynor", ["pintGlass", 1, -5]));
+                scenicList.push(new Scenery("item", -19131, 44685, 0, "freynor", ["pintGlass", 1, -5]));
+                scenicList.push(new Scenery("item", -19170, 44746, 0, "freynor", ["butteredCrab", 1, -30]));
+                scenicList.push(new Scenery("item", -19157, 44736, 0, "freynor", ["mead", 1, -20]));
+                scenicList.push(new Scenery("item", -19191, 44685, 0, "freynor", ["mead", 1, -20]));
+                scenicList.push(new Scenery("item", -19172, 44674, 0, "freynor", ["crabChowder", 1, -35]));
+                scenicList.push(new Scenery("item", -19246, 44677, 0, "freynor", ["butteredCrab", 1, -30]));
+                scenicList.push(new Scenery("item", -19230, 44747, 0, "freynor", ["butteredCrab", 1, -30]));
+                scenicList.push(new Scenery("item", -19192, 44726, 0, "freynor", ["pintGlass", 1, -5]));
+                scenicList.push(new Scenery("item", -19202, 44741, 0, "freynor", ["mead", 1, -20]));
+                scenicList.push(new Scenery("item", -19276, 44689, 0, "freynor", ["mead", 1, -20]));
+                scenicList.push(new Scenery("item", -19264, 44676, 0, "freynor", ["mead", 1, -20]));
+                scenicList.push(new Scenery("woodenBench", -19063, 44781, -0.025, 2));
+                scenicList.push(new Scenery("woodenBench", -19073, 44646, 0.05, 2));
+                scenicList.push(new Scenery("woodenBench", -19217, 44645, -0.03, 2));
+                scenicList.push(new Scenery("woodenBench", -19205, 44780, -0.015, 2));
+                //to block the doorway that should not be there...
+                scenicList.push(new Scenery("woodenBench", -18899, 44505, -0.015, 2));
+                scenicList.push(new Scenery("woodenBench", -18899, 44494, -0.015, 2));
+                scenicList.push(new Scenery("item", -18894, 44509, 0, "freynor", ["freydicSpear", 1, -50]));
+                scenicList.push(new Scenery("item", -18928, 44508, 0, "freynor", ["walrusTusks", 1, -50]));
+                scenicList.push(new Scenery("item", -18870, 44505, 0, "freynor", ["coins", 200, -150]));
+                scenicList.push(new Scenery("item", -18870, 44505, 0, "freynor", ["dustPouch", 1, -50]));
+                scenicList.push(new Scenery("barrel", -18794, 44740, 0, 1));
+                scenicList.push(new Scenery("barrel", -18794, 44777, 0.02, 1));
+                    //center
+                        //inn
+                scenicList.push(new Scenery("freydicBuilding1", -15192, 44627, 0, true));
+                scenicList.push(new Scenery("sign", -15022, 44379, 0 * Math.PI, 3, "The Salty Gullet - Inn"));
+                scenicList.push(new Scenery("barrel", -14990, 44825, -5, 1));
+                scenicList.push(new Scenery("bartop", -15033, 44777, 0, true));
+                scenicList.push(new Scenery("bed", -15219, 44426, 1/2 * Math.PI, false));
+                scenicList.push(new Scenery("smallTable", -15308, 44570, 0 * Math.PI, false));
+                scenicList.push(new Scenery("stumpStoolSml", -15370, 44576, -2.214, 2));
+                scenicList.push(new Scenery("smallTable", -15239, 44645, 0.035 * Math.PI, false));
+                scenicList.push(new Scenery("stumpStoolSml", -15185, 44639, 4.1, 2));
+                scenicList.push(new Scenery("bed", -15378, 44787, 0 * Math.PI, false));
+                scenicList.push(new Scenery("hearth", -14983, 44596, 3.14159 / -2, "lit"));
+                scenicList.push(new Scenery("smallTable", -15142, 44606, -0.01 * Math.PI, false));
+                scenicList.push(new Scenery("stumpStoolSml", -15131, 44556, 6, 2));
+                scenicList.push(new Scenery("stumpStoolSml", -15133, 44657, 6.5, 2));
+                scenicList.push(new Scenery("smallTable", -14989, 44422, 0.0125 * Math.PI, false));
+                scenicList.push(new Scenery("stumpStoolSml", -14987, 44471, 3.7, 2));
+                scenicList.push(new Scenery("stumpStoolSml", -15033, 44426, 7.2, 2));
+
+
+                change = "n4e2";
             }
         }
         else if (region == "w1") //Y > 6290 && Y < 32370
@@ -8031,6 +8290,9 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(5968, -19355, "Ardil", false, "Fluff"));
                 ArtificialIntelligenceAccess.push(new Unit(1385, -21580, "Ardil", true, "Fluffel"));
 
+                //sign to Calcutt
+                scenicList.push(new Scenery("sign", -212, -15217, Math.PI / 2, 1, "Calcutt Village - 52 sectors"));
+
                 change = "s2";
             }
         }
@@ -10330,10 +10592,12 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 }
                 else if (terrain == "dockV")
                 {
+                    over("landing", j, i, extraX, extraY);
                     XXX.drawImage(dockV, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
                 else if (terrain == "dockH")
                 {
+                    over("landing", j, i, extraX, extraY);
                     XXX.drawImage(dockH, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
                 else if (terrain == "shallow")

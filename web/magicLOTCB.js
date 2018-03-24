@@ -30,11 +30,14 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
         this.spellTime = new Date().getTime();
         this.distanceCovered = 0;
         this.playerRotation = player.rotation;
+        this.ratonX = X - mouseX + 1/2 * CCC.width;
+        this.ratonY = Y - mouseY + 1/2 * CCC.height;
         if (typeof(unitSelf) != "undefined" && typeof(unitSelf) != "boolean")
         {
             this.unitRotation = unitSelf.rotation;
         }
         this.stage = 0; // this can be used by whichever spell but shall not be used in functions.
+        this.setRotation = 0;
         this.ticCount = 0;
         this.repeated = false;
         this.size = 0;
@@ -545,7 +548,13 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                             }
                             else if (whatDoIDo == "iceSpike")
                             {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, 3 + (1/50 * this.cnx) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, 4 + (4/50 * this.cnx) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
+                            else if (whatDoIDo == "iceBlast")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, 7 + (2/50 * this.cnx) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
                                 ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                                 ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                             }
@@ -1055,11 +1064,24 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 this.orientToCaster(42, 2.8 / 5 * Math.PI);
             }
         }
-        //SURGE
+        //SHADOW FOG
         if (this.spellType == "shadowFog")
         {
             this.size = 1;
             this.orientToCaster(0, 0);
+        }
+        //SHADOWPORT
+        if (this.spellType == "shadowport")
+        {
+            if (instructions == 1)
+            {
+                this.orientToCaster(0, 1 / 2 * Math.PI);
+            }
+            else if (instructions == 2)
+            {
+                this.X = this.ratonX;
+                this.Y = this.ratonY;
+            }
         }
         //GOLEM ROCK
         if (this.spellType == "golemRock")
@@ -1352,6 +1374,132 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 this.orientToCaster(18 + rdxn, 2.05/4 * Math.PI);
             }
         }
+        //ICE BLAST
+        if (this.spellType == "iceBlast")
+        {
+            var rdxn = Math.floor(Math.random() * 8);
+
+            if (instructions == 1)
+            {
+                this.setRotation = 1/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 2)
+            {
+                this.setRotation = 2/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 3)
+            {
+                this.setRotation = 3/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 4)
+            {
+                this.setRotation = 4/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 5)
+            {
+                this.setRotation = 5/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 6)
+            {
+                this.setRotation = 6/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 7)
+            {
+                this.setRotation = 7/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 8)
+            {
+                this.setRotation = 8/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 9)
+            {
+                this.setRotation = 9/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 10)
+            {
+                this.setRotation = 10/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 11)
+            {
+                this.setRotation = 11/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 12)
+            {
+                this.setRotation = 12/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 13)
+            {
+                this.setRotation = 13/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 14)
+            {
+                this.setRotation = 14/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 15)
+            {
+                this.setRotation = 15/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 16)
+            {
+                this.setRotation = 16/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 17)
+            {
+                this.setRotation = 17/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 18)
+            {
+                this.setRotation = 18/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 19)
+            {
+                this.setRotation = 19/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 20)
+            {
+                this.setRotation = 20/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 21)
+            {
+                this.setRotation = 21/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 22)
+            {
+                this.setRotation = 22/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 23)
+            {
+                this.setRotation = 23/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+            else if (instructions == 24)
+            {
+                this.setRotation = 24/24 * 2*Math.PI;
+                this.orientToCaster(18, 1/2 * Math.PI);
+            }
+        }
         //ICE SPIKES
         if (this.spellType == "iceSpikes")
         {
@@ -1500,6 +1648,39 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 else
                 {
                     this.spellTimer(0.45);
+                }
+            }
+            //ICE BLAST
+            if (this.spellType == "iceBlast")
+            {
+                if (caster)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate((this.playerRotation + this.setRotation - 1/2 * Math.PI));
+                    XXX.drawImage(polypol, 1791, 209, 8, 28, - (1/2 * 8 * 1.4), - (1/2 * 28 * 1.4), 8 * 1.4, 28 * 1.4);
+                    XXX.restore();
+
+                    this.damageThenGoAway(11.5, "iceBlast");
+                    this.project((this.playerRotation + this.setRotation), 200 * ((50 + 3 * this.cnx) / 50), 5.5 * ((50 + this.cnx) / 50), true);
+
+                }
+                else
+                {
+                    //todo add iceBlast spell for AI
+                }
+
+                if (this.cnx >= 50 && caster)
+                {
+                    this.spellTimer(0.9);
+                }
+                else if (this.cnx >= 40 && caster)
+                {
+                    this.spellTimer(0.7);
+                }
+                else
+                {
+                    this.spellTimer(0.5);
                 }
             }
 
@@ -2399,6 +2580,44 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                     else
                     {
                         this.spellTimer(9);
+                    }
+                }
+            }
+
+            if (this.spellType == "shadowport")
+            {
+                if (caster)
+                {
+                    if (this.size <= 1)
+                    {
+                        this.sizeChanger = 0.0025;
+                    }
+                    else if (this.size >= 1.2)
+                    {
+                        this.sizeChanger = -0.0025;
+                    }
+                    this.size += this.sizeChanger;
+                    this.spin = 0.01;
+                    this.turn += this.spin;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.turn);
+                    XXX.drawImage(oldverse, 276, 258, 156, 134, - (1/2 * 156 * this.size), - (1/2 * 134 * this.size), 156 * this.size, 134 * this.size);
+                    XXX.restore();
+                    this.contactDamage(false, 74 * this.size, 0, 90,  "blinding", "blinding");
+                    this.spellTimer(7 + (this.cnx / 10));
+
+                    if (this.doOnce)
+                    {
+                        this.doOnce = false;
+                        X = this.ratonX;
+                        Y = this.ratonY;
+                        //if (player.getEminence() < 5)
+                        //{
+                            player.blinded = true;
+                            player.blindedStoreTime = new Date().getTime();
+                            player.blindedTime = 1;
+                        //}
                     }
                 }
             }

@@ -4844,6 +4844,26 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 XXX.rotate(this.rotation - 1 / 2 * Math.PI - 0.1);
                 XXX.drawImage(norc, 9, 114, 18, 19, -(1 / 2 * 18 * 1.7) + 0.45, -(1 / 2 * 19 * 1.9) + 0, 18 * 1.7, 19 * 1.9);
             }
+            else if (outfit == "fineFreydicOutfitF")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation + 1 / 2 * Math.PI);
+                XXX.drawImage(furr, 289, 439, 40, 32, -(1 / 2 * 40) - 1.3, -(1 / 2 * 32) + 2, 40, 32);
+            }
+            else if (outfit == "fineFreydicOutfitM")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation + 1 / 2 * Math.PI);
+                XXX.drawImage(furr, 230, 555, 40, 32, -(1 / 2 * 40) + 2.9, -(1 / 2 * 32) + 4.5, 36, 28.8);
+            }
             else if (outfit == "thenganPlateArmour")
             {
                 XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
@@ -4853,6 +4873,16 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 XXX.rotate(this.rotation - 1/2 * Math.PI);
                 XXX.drawImage(theCrack, 127, 614, 23, 20, -(1 / 2 * 23 * 1.6) - 0, -(1 / 2 * 20 * 1.6) -0, 23 * 1.6, 20 * 1.6);
+            }
+            else if (outfit == "northernPlateArmour") //furr, 44, 18, 21, 18, - 1/2 * 21 * 2.15, - 1/2 * 18 * 2.15 + 0, 21 * 2.15, 18 * 2.15
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                XXX.drawImage(furr, 44, 18, 21, 18, - 1/2 * 21 * 2.15, - 1/2 * 18 * 2.15 + 0, 21 * 2.15, 18 * 2.15);
             }
             else if (outfit == "hoffalgreFurCloak")
             {
@@ -25346,6 +25376,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 109 + (quests.medliaNewWealth / 2)]];
             }
+            else if (this.ID == "Siggi the Harborman")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 28]];
+            }
             else if (this.ID == "[ " + quests.hilmundChildName + " ]") //this sets stats for the player child with Hilmund
             {
                 if (this.aiTimer > 4)
@@ -25829,6 +25863,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.freynorFaction -= 12;
                         }
                     }
+                    else if (this.ID == "Siggi the Harborman")
+                    {
+                        uniqueChars.siggiLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction -= 30;
+                        }
+                    }
                     else if (this.ID == "Hildegard")
                     {
                         uniqueChars.hildegardLDS = false;
@@ -26244,7 +26286,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         }
                     }
                 }
-                else if (this.ID == "Tor Huskarl" || this.ID == "Tor Soldier" || this.ID == "Tor Captain") //freydic nobles and royals can control the Tor family's army.
+                else if (this.ID == "Tor Huskarl" || this.ID == "Tor Soldier" || this.ID == "Tor Captain" || this.ID == "Stambjord Soldier" || this.ID == "Stambjord Captain" || this.ID == "Stambjord Huskarl") //freydic nobles and royals can control the Tor family's army.
                 {
                     if (this.team == "player" && !this.isCharmed)
                     {
@@ -26356,7 +26398,27 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.rangeOfSightCalculator(750, "true");
 
                         //All of this factions guards drop this:
-                        this.drops = [];
+                        if (this.ID == "Jarl Rannuk Stambjord")
+                        {
+                            this.drops = [[new Item("coins", false), 3000], [new Item("fineFreydicOutfitM", false), 1]];
+                        }
+                        else if (this.ID == "Stambjord Soldier")
+                        {
+                            this.drops = [[new Item("coins", this.X, this.Y), 4 + Math.floor(Math.random() * 31)]];
+                        }
+                        else if (this.ID == "Stambjord Captain")
+                        {
+                            this.drops = [[new Item("coins", this.X, this.Y), 50 + Math.floor(Math.random() * 61)]];
+                        }
+                        else if (this.ID == "Stambjord Huskarl")
+                        {
+                            this.drops = [[new Item("coins", this.X, this.Y), 39 + Math.floor(Math.random() * 51)]];
+                        }
+                        else
+                        {
+                            this.drops = [];
+                        }
+
 
                         lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.7, Alpha: 0.9, showMe: false});
                         // If the target has too low a level of relations with the faction they are an enemy.
@@ -26381,11 +26443,21 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             if (player.title != "Royalty" || player.raceName != this.ultra.faction)
                             {
-                                this.callForNearbyHelpFromType(2000, "Soldier");
+                                if (this.ID == "Stambjord Huskarl")
+                                {
+                                    this.callForNearbyHelpFromType(2500, "Soldier");
+                                }
+                                else
+                                {
+                                    this.callForNearbyHelpFromType(2000, "Soldier");
+                                }
                             }
                         }
 
-                        this.switchToRanged("longbow");
+                        if (this.ID != "Jarl Rannuk Stambjord")
+                        {
+                            this.switchToRanged("longbow");
+                        }
                     }
                 }
                 else if (this.ultra.faction == "Kel")
@@ -26842,6 +26914,21 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             else
                             {
                                 player.freynorFaction -= 1200;
+                            }
+                        }
+                    }
+                    else if (this.ID == "Jarl Rannuk Stambjord")
+                    {
+                        uniqueChars.rannukLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            if (player.title == "Royalty" && player.faction == "Freynor")
+                            {
+                                player.freynorFaction -= 325;
+                            }
+                            else
+                            {
+                                player.freynorFaction -= 1300;
                             }
                         }
                     }

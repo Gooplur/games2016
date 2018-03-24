@@ -1391,7 +1391,7 @@ function Adventurer()
                 //extra coldness is added for swimming in cold water
                 if (this.movingType == "swimming")
                 {
-                    this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (11 - this.warmthProtection)));
+                    this.warmth -= 11;
                 }
                 //COLD SYSTEM (seasonal differences)
                 if (currentSeason == "Bright")
@@ -1472,7 +1472,7 @@ function Adventurer()
                 //extra coldness is added for swimming in cold water
                 if (this.movingType == "swimming")
                 {
-                    this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (9 - this.warmthProtection)));
+                    this.warmth -= 9;
                 }
                 //COLD SYSTEM (seasonal differences)
                 if (currentSeason == "Bright")
@@ -1553,7 +1553,7 @@ function Adventurer()
                 //extra coldness is added for swimming in cold water
                 if (this.movingType == "swimming")
                 {
-                    this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (7 - this.warmthProtection)));
+                    this.warmth -= 7;
                 }
                 //COLD SYSTEM (seasonal differences)
                 if (currentSeason == "Bright")
@@ -1634,7 +1634,7 @@ function Adventurer()
                 //extra coldness is added for swimming in cold water
                 if (this.movingType == "swimming")
                 {
-                    this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
+                    this.warmth -= 5;
                 }
                 //COLD SYSTEM (seasonal differences)
                 if (currentSeason == "Bright")
@@ -6318,6 +6318,60 @@ function Adventurer()
                             this.magicalExperience += secondarySpells[i].EXP;
 
                             magicList.push(new Magic(secondarySpells[i], true));
+
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+                    }
+                    //Shadowport
+                    if (secondarySpells[i].ID == "shadowport")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                        {
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+
+                            magicList.push(new Magic(secondarySpells[i], true, 1));
+                            magicList.push(new Magic(secondarySpells[i], true, 2));
+
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+                    }
+                    //Ice Blast
+                    if (secondarySpells[i].ID == "iceBlast")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                        {
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+
+                            if (this.getEminence() < 10)
+                            {
+                                this.warmth -= 10;
+                            }
+                            magicList.push(new Magic(secondarySpells[i], true, 1));
+                            magicList.push(new Magic(secondarySpells[i], true, 2));
+                            magicList.push(new Magic(secondarySpells[i], true, 3));
+                            magicList.push(new Magic(secondarySpells[i], true, 4));
+                            magicList.push(new Magic(secondarySpells[i], true, 5));
+                            magicList.push(new Magic(secondarySpells[i], true, 6));
+                            magicList.push(new Magic(secondarySpells[i], true, 7));
+                            magicList.push(new Magic(secondarySpells[i], true, 8));
+                            magicList.push(new Magic(secondarySpells[i], true, 9));
+                            magicList.push(new Magic(secondarySpells[i], true, 10));
+                            magicList.push(new Magic(secondarySpells[i], true, 11));
+                            magicList.push(new Magic(secondarySpells[i], true, 12));
+                            magicList.push(new Magic(secondarySpells[i], true, 13));
+                            magicList.push(new Magic(secondarySpells[i], true, 14));
+                            magicList.push(new Magic(secondarySpells[i], true, 15));
+                            magicList.push(new Magic(secondarySpells[i], true, 16));
+                            magicList.push(new Magic(secondarySpells[i], true, 17));
+                            magicList.push(new Magic(secondarySpells[i], true, 18));
+                            magicList.push(new Magic(secondarySpells[i], true, 19));
+                            magicList.push(new Magic(secondarySpells[i], true, 20));
+                            magicList.push(new Magic(secondarySpells[i], true, 21));
+                            magicList.push(new Magic(secondarySpells[i], true, 22));
+                            magicList.push(new Magic(secondarySpells[i], true, 23));
+                            magicList.push(new Magic(secondarySpells[i], true, 24));
 
                             this.secondaryCastingCooldown = new Date().getTime();
                         }

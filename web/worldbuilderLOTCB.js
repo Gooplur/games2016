@@ -436,7 +436,7 @@ function worldBuilder()
             outlineBuilder(2, 1, "stonePath", 54, -146);
             outlineBuilder(4, 1, "stoneWork", 53, -146);
             outlineBuilder(2, 1, "stoneWork", 54, -144);
-            outlineBuilder(1, 1, "stonePath", 53, -146);
+            outlineBuilder(1, 2, "stonePath", 52, -146);
 
             outlineBuilder(1, 6, "stonePath", 48, -135);
             outlineBuilder(7, 1, "stonePath", 53, -142);
@@ -529,6 +529,15 @@ function worldBuilder()
         region = "lethikCityPrison";
         //starting chamber
         outlineBuilder( 2, 4, "dungeon", 0, 0);
+    }
+    else if (map == "venningCityPrison") //This is a dungeon found in map W3
+    {
+        player.dmx = map;
+        player.underground = false;
+        elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "venningCityPrison";
+        //starting chamber
+        outlineBuilder( 2, 2, "dungeon", 0, 0);
     }
 }
 
@@ -2152,6 +2161,9 @@ function buildMaster()
                 //scenicList.push(new Scenery("stone", 4265 , 41412, 2.4, 2, 3));
 
                 //HUMANS
+
+                    //unique humans
+
                 if (uniqueChars.siggiLDS == true)
                 {
                     var hits = 0;
@@ -2164,9 +2176,40 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-14542, 44796, "Person", false, "Siggi the Harborman", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["northernClothing", 0], weapon: ["none", [0.4, 0.8], 0, 0, 0.75], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[-14542, 44796]], merchant: true, merchandise: [[new Item("coins", false, false), 90], [new Item("boat", false, false), 2], [new Item("fishingpole", false, false), 6]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-14540, 44796, "Person", false, "Siggi the Harborman", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["northernClothing", 0], weapon: ["none", [0.4, 0.8], 0, 0, 0.75], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[-14542, 44796]], merchant: true, merchandise: [[new Item("coins", false, false), 90], [new Item("boat", false, false), 2], [new Item("fishingpole", false, false), 6]]}));
                     }
                 }
+                if (uniqueChars.rannukLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Jarl Rannuk Stambjord")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-18930, 44712, "Soldier", false, "Jarl Rannuk Stambjord", {race: "Freynor", faction: "Freynor", con: 16, speed: 1.2, outfit: ["fineFreydicOutfitM", 0], weapon: ["none", [0.5, 0.5], 0, 0, 1.15], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "none", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: false, route:[[-18930, 44712]]}));
+                    }
+                }
+
+                    //respawnable humans
+
+                ArtificialIntelligenceAccess.push(new Unit(-19038, 44781, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 20, speed: 1.45, outfit: ["chainArmour", 12], weapon: ["freydicSword", [12, 10], 0, 17, 1.1], ranged: [false, "arrow", 9, 2500, 1, 6, 0, "none", 1.5], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-19100, 44781, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 22, speed: 1.4, outfit: ["chainArmour", 13], weapon: ["freydicSword", [11, 11], 0, 17, 1.15], ranged: [false, "arrow", 5, 2000, 1, 6, 0, "none", 1.75], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-19165, 44778, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 19, speed: 1.55, outfit: ["chainArmour", 11], weapon: ["freydicSword", [12, 11], 0, 17, 1.2], ranged: [false, "arrow", 8, 2200, 1, 6, 0, "none", 1.5], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-19224, 44776, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 21, speed: 1.45, outfit: ["chainArmour", 12], weapon: ["freydicSword", [10, 11], 0, 17, 1.1], ranged: [false, "arrow", 6, 2100, 1, 6, 0, "none", 1.5], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-19048, 44649, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 20, speed: 1.35, outfit: ["chainArmour", 11], weapon: ["freydicSword", [10, 10], 0, 17, 1], ranged: [false, "arrow", 5, 2000, 1, 5, 0, "none", 1.5], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-19102, 44647, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 23, speed: 1.5, outfit: ["chainArmour", 12.5], weapon: ["freydicSword", [12, 12], 0, 17, 1.3], ranged: [false, "arrow", 4, 1700, 1, 4, 0, "none", 2], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-19180, 44645, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 20, speed: 1.45, outfit: ["chainArmour", 12], weapon: ["freydicSword", [12, 10], 0, 17, 1.1], ranged: [false, "arrow", 9, 2600, 1, 7, 0, "none", 1.5], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-19260, 44645, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 22, speed: 1.4, outfit: ["chainArmour", 11.5], weapon: ["freydicSword", [11, 11], 0, 17, 1.1], ranged: [false, "arrow", 8, 2200, 1, 6, 0, "none", 1.4], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-19557, 45010, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 20, speed: 1.55, outfit: ["chainArmour", 12], weapon: ["freydicSword", [12, 10], 0, 17, 1.1], ranged: [false, "arrow", 9, 2600, 1, 7, 0, "none", 1.5], rot: Math.PI, patrolStops: 2, patrolLoop: true, route:[[-19557, 45010], [-19557, 45010]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-15545, 44929, "Soldier", false, "Stambjord Captain", {race: "Freynor", faction: "Freynor", con: 28, speed: 1, outfit: ["northernPlateArmour", 22], weapon: ["freydicGreatSword", [24, 16], 0, 36, 2.65], ranged: [false, "arrow", 9.5, 2700, 1, 7, 0, "stunI", 1.35], patrolStops: 7, patrolLoop: true, route:[[-15545, 44315], [-14935, 44315], [-14935, 44108], [-15263, 44108], [-15263, 43818], [-15545, 43818], [-15545, 44929]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-19028, 45212, "Soldier", false, "Stambjord Soldier", {race: "Freynor", faction: "Freynor", con: 6, speed: 1.50, outfit: ["chainArmour", 7], weapon: ["freydicSword", [9, 8], 0, 16, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.50], patrolStops: 4, patrolLoop: true, route:[[-14379, 45212], [-14379, 45024], [-19028, 45024],[-19028, 45212]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-15544, 43728, "Soldier", false, "Stambjord Soldier", {race: "Freynor", faction: "Freynor", con: 6, speed: 1.50, outfit: ["chainArmour", 7], weapon: ["freydicSword", [9, 8], 0, 16, 1], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.50], patrolStops: 4, patrolLoop: true, route:[[-15544, 42905], [-15770, 42905], [-15770, 43728],[-15544, 43728]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-18410, 44468, "Soldier", false, "Stambjord Soldier", {race: "Freynor", faction: "Freynor", con: 7, speed: 1.40, outfit: ["chainArmour", 8], weapon: ["freydicSword", [8, 9], 0, 16, 1], ranged: [false, "arrow", 6, 2000, 1, 5, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[-18410, 44468]]}));
 
                 //Venning City
                     //docks
@@ -2175,10 +2218,17 @@ function buildMaster()
                 scenicList.push(new Scenery("floatingBoat", -15246, 46661, 0, true));
                 scenicList.push(new Scenery("floatingBoat", -14814, 46569, -45/360 * Math.PI, true));
                 scenicList.push(new Scenery("floatingBoat", -14831, 46154, -100/360 * Math.PI, true));
+                scenicList.push(new Scenery("boat", -18900, 45797, -150/360 * Math.PI, true));
+                scenicList.push(new Scenery("floatingBoat", -18445, 46237, -0.02 * Math.PI, true));
+                scenicList.push(new Scenery("floatingBoat", -18834, 46704, 0 * Math.PI, true));
+                scenicList.push(new Scenery("floatingBoat", -18877, 46893, 60/100 * Math.PI, true));
 
                 scenicList.push(new Scenery("northernFishingSpot", -14720, 46388, 0, true));
                 scenicList.push(new Scenery("northernFishingSpot", -14974, 47237, -2, true));
                 scenicList.push(new Scenery("northernFishingSpot", -15336, 46820, 1, true));
+                scenicList.push(new Scenery("northernFishingSpot", -18328, 46505, 5.5, true));
+                scenicList.push(new Scenery("northernFishingSpot", -18986, 47092, -6.25, true));
+                scenicList.push(new Scenery("northernFishingSpot", -18289, 47205, 3.6, true));
                         //shops at the docks district
                             //Harborshop
                 scenicList.push(new Scenery("freydicBuilding8", -14591, 44814, 0, true));
@@ -2252,6 +2302,11 @@ function buildMaster()
                 scenicList.push(new Scenery("item", -18870, 44505, 0, "freynor", ["dustPouch", 1, -50]));
                 scenicList.push(new Scenery("barrel", -18794, 44740, 0, 1));
                 scenicList.push(new Scenery("barrel", -18794, 44777, 0.02, 1));
+                        //barracks
+                scenicList.push(new Scenery("freydicBuilding7", -18340, 44623, 0, true));
+                scenicList.push(new Scenery("sign", -18383, 44868, 1 * Math.PI, 3, "Venning City Barracks"));
+                            //city prison
+                scenicList.push(new Scenery("trapdoor", -18509, 44450, 0 * Math.PI, [483, 45], "venningCityPrison"));
                     //center
                         //inn
                 scenicList.push(new Scenery("freydicBuilding1", -15192, 44627, 0, true));
@@ -2271,6 +2326,8 @@ function buildMaster()
                 scenicList.push(new Scenery("smallTable", -14989, 44422, 0.0125 * Math.PI, false));
                 scenicList.push(new Scenery("stumpStoolSml", -14987, 44471, 3.7, 2));
                 scenicList.push(new Scenery("stumpStoolSml", -15033, 44426, 7.2, 2));
+                        //well
+                scenicList.push(new Scenery("well", -14640, 44562, 7, true));
 
 
                 change = "n4e2";
@@ -10359,6 +10416,56 @@ function buildMaster()
                 }
 
                 change = "sagesCache";
+            }
+        }
+    }
+    else if (map == "venningCityPrison")
+    {
+        if (region == "venningCityPrison")
+        {
+            if (change != "venningCityPrison")
+            {
+                dialogueReset();
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (!ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //barriers
+                barrierList.push(new Barrier(1000, -66, 720, 70, true));
+                barrierList.push(new Barrier(330, -66, 720, 70, true));
+                barrierList.push(new Barrier(320, -99, 70, 750, true));
+                barrierList.push(new Barrier(320, 577, 70, 750, true));
+
+                //scenery
+                if (player.prisoner != true)
+                {
+                    scenicList.push(new Scenery("ladder", 483, 45, 0 * Math.PI, [-18509, 44450], "world"));
+                }
+                //units
+                ArtificialIntelligenceAccess.push(new Unit(780, 338, "Soldier", false, "Prisoner", {race: "Freynor", faction: "arena2", con: 2, speed: 1.5, outfit: ["none", 0], weapon: ["none", [0.45, 0.3], 0, 0, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+
+                change = "venningCityPrison";
             }
         }
     }

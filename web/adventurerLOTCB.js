@@ -1343,12 +1343,12 @@ function Adventurer()
                         if (Inventory[i][0].utility == "weapon")
                         {
                             Inventory[i][0].equipped = false;
-                            this.weaponEquipped = "swimming";
-                            this.weaponIsRanged = false;
-                            this.isWeaponEquipped = false;
-                            this.weaponID = false;
                         }
                     }
+                    this.weaponEquipped = "swimming";
+                    this.weaponIsRanged = false;
+                    this.isWeaponEquipped = false;
+                    this.weaponID = false;
 
                     //DROWN if in water and run out of energy past fatigue point
                     if (this.movingType == "swimming" && this.energy < -5)

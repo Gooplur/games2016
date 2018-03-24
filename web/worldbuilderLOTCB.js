@@ -2191,7 +2191,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-18930, 44712, "Soldier", false, "Jarl Rannuk Stambjord", {race: "Freynor", faction: "Freynor", con: 16, speed: 1.2, outfit: ["fineFreydicOutfitM", 0], weapon: ["none", [0.5, 0.5], 0, 0, 1.15], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "none", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: false, route:[[-18930, 44712]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-18930, 44712, "Soldier", false, "Jarl Rannuk Stambjord", {race: "Freynor", faction: "Freynor", con: 16, speed: 0, outfit: ["fineFreydicOutfitM", 0], weapon: ["none", [0.5, 0.5], 0, 0, 1.15], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "none", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: false, route:[[-18930, 44712]]}));
                     }
                 }
 

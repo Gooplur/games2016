@@ -25441,6 +25441,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.customEXP = true;
                 this.experience = 5 * ((player.getIntelligence() / 50) + 1);
             }
+            else if (this.ID == "Seeth the Innkeeper")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 16]];
+                this.customEXP = true;
+                this.experience = 8 * ((player.getIntelligence() / 50) + 1);
+            }
             else if (this.ID == "Brunelda the Merchant")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 65]];
@@ -25861,6 +25867,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 12;
+                        }
+                    }
+                    else if (this.ID == "Seeth the Innkeeper")
+                    {
+                        uniqueChars.seethLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction -= 5;
                         }
                     }
                     else if (this.ID == "Siggi the Harborman")

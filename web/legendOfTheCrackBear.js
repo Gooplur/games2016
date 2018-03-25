@@ -10,6 +10,8 @@
 //todo fill out map N4E1
 
 //Venning Update
+//todo add the pirate captain with his pirate base on a small island north of the beach n4w1 on map n5w1
+//todo add shift click on boats to place them as scenery in water.
 //todo add the map n4e3 that will be a rocky tidepool biome with walruses and seals anemones etc. the map will curve down into a wide river opening
 //todo add an algae that grows on rocks
 //todo add a waterwalking elixer
@@ -62,6 +64,7 @@
 //todo add toxic slugs from 'zapa' IMG
 
 //Other
+//todo add a witch trap house where the witch becomes a mutated magical beast and tries to kill you
 //todo add ghosts
 //todo add water creatures that become beached if they go on land, usarían the variable this.flotation in Unit Class
 //todo add more jewelry from 'polpol' IMG
@@ -2500,7 +2503,8 @@ function theLegend()
         hildegard: ["Hildegard", 0],
         ederhal: ["Ederhal", 0],
         siggi: ["Siggi", 0],
-        raanuk: ["Rannuk", 0]
+        raanuk: ["Rannuk", 0],
+        seeth: ["Seeth", 0]
     };
 
 //time Tracker Variables
@@ -2633,7 +2637,8 @@ function theLegend()
         hildegardLDS: true,
         hilmundChildLDS: true,
         siggiLDS: true,
-        rannukLDS: true
+        rannukLDS: true,
+        seethLDS: true
     };
 //QUESTS
     quests =

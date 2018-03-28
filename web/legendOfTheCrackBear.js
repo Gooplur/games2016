@@ -5,7 +5,7 @@
 
 //TODO LIST
 //top priority
-//todo finish Venning City
+//todo finish Venning City - church, general store #2, jeweler's, homes
 //todo besides Venning city fill out the rest of map N4E2
 //todo fill out map N4E1
 
@@ -2504,7 +2504,11 @@ function theLegend()
         ederhal: ["Ederhal", 0],
         siggi: ["Siggi", 0],
         raanuk: ["Rannuk", 0],
-        seeth: ["Seeth", 0]
+        seeth: ["Seeth", 0],
+        aari: ["Aari", 0],
+        katja: ["Katja", 0],
+        fuyumi: ["Fuyumi", 0],
+        ukko: ["Ukko", 0]
     };
 
 //time Tracker Variables
@@ -2638,7 +2642,11 @@ function theLegend()
         hilmundChildLDS: true,
         siggiLDS: true,
         rannukLDS: true,
-        seethLDS: true
+        seethLDS: true,
+        aariLDS: true,
+        katjaLDS: true,
+        fuyumiLDS: true,
+        ukkoLDS: true
     };
 //QUESTS
     quests =
@@ -2671,6 +2679,7 @@ function theLegend()
         sagesCacheStash: true,
         spiderwebLoot: true,
         ultherMapItems: true,
+        venningMapItems: true,
 
         //EVENTS (non quest)
         ultherFlower: true,

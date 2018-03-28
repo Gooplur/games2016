@@ -50,6 +50,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.speed = 0;
     this.rangeOfSight = 120;
     this.baseSight = 120;
+    this.CNX = 0;
     this.alpha = false;
     this.effect = "none"; //This is a special effect that happens on attacks against the player.
     this.drops = []; //This is the list of items that this unit will drop upon death.
@@ -63,6 +64,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.costume = 0; //This is costume as in scratch's type of costume, like a frame... It is used for movement and attack animation frames.
     this.rotationSpeed = 0.1; // this is the speed at which the unit rotates.
     this.rotatable = true; //when false the unit is unable to rotate.
+    this.damagesPlayer = true; //this determines if spells cast by this unit can damage or affect the player.
     //functionality game variables
     this.engagementRadius = 15; //this is the distance before a target that the unit will stop at to leave itself appropriate room to attack or whatever interaction it will do.
     this.sizeRadius = 20; // this is the radius that represents the total size of the unit.
@@ -93,6 +95,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.showHealthTime = 0; //this is for showing health under any other circumstance.
     this.hostile = true;
     //attacking variables (excluding the attacking flag)
+    this.spellCast = false; //use for primary spells only
     this.stopAttacking = false; // for units that use followThrough this manually ends the attack at the right time if the attack is more complex and is not able to be manually ended at the last frame.
     this.followThrough = false; //this variable determines if a unit finishes an attack even if the target isn't there to be hit by it.
     this.damageFrame = "automatic"; //When this is set to automatic it makes the last attack frame deal the damage to the target. If it is anything else the final attack frame needs to be triggered from within the front end of the animation.
@@ -184,6 +187,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.swimming = false;
     this.swimSpeed = 1;
     //effects variables
+    this.rangedSwitch = false; //this is triggered when the unit's switchToRanged function decides to switch to an alternative weapon for ranged confrontations (it warns the function switchToSwimming not to switch back to the base weapon but rather tha one chosen by switchToRanged function)
     this.blindedTime = 0;
     this.blinded = false;
     this.burningTime = 0;
@@ -3482,6 +3486,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         if (this.team == "player" && this.target == player) //this is so that ranged weapon using humans will not attack the player if they are on the players team.
         {
             playerFriendly = true;
+            this.damagesPlayer = false; //for the magic system only
+        }
+        else
+        {
+            this.damagesPlayer = true; //for the magic system only
         }
 
         if (this.ranged == true && !playerFriendly && this.weapon != "swimming")
@@ -3518,6 +3527,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 //this is the actual launch
                 if (this.finalAttackCostume == true)
                 {
+                    if (player.gamemode != "protagonist")
+                    {
+                        this.rotation = this.newRotation; //turn instantly to player at time of projection
+                    }
                     this.finalAttackCostume = false;
                     this.timeBetweenAttacks = new Date().getTime();
                     if (this.target == player)
@@ -3884,6 +3897,135 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (theCostume >= 7)
             {
                 this.drawUnit(oldverse, 2830, 203, 89, 88, -65, -90, 106.8, 105.6, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "electricBolt")
+        {
+            this.damageFrame = "manual";
+            if (theCostume <= 0)
+            {
+                this.spellCast = false;
+
+                this.drawUnit(mofu, 455, 103, 32, 30, -17, -25, 32 * 1.25, 30 * 1.25, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(mofu, 455, 144, 32, 30, -19, -25, 32 * 1.25, 30 * 1.25, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(mofu, 457, 175, 32, 30, -22, -28, 32 * 1.25, 30 * 1.25, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(mofu, 458, 207, 32, 30, -21, -27, 32 * 1.25, 30 * 1.25, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 4)
+            {
+                this.drawUnit(mofu, 460, 236, 32, 30, -22, -30, 32 * 1.25, 30 * 1.25, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 5)
+            {
+                this.drawUnit(mofu, 461, 267, 32, 30, -21, -33, 32 * 1.25, 30 * 1.25, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 6)
+            {
+                if (this.spellCast == false)
+                {
+                    if (player.gamemode != "protagonist")
+                    {
+                        this.rotation = this.newRotation; //turn instantly to player at time of projection
+                    }
+                    this.spellCast = true;
+                    magicList.push(new Magic({ID: "electricBolt", CNX: this.CNX}, false, false, this, this.damagesPlayer));
+                }
+                this.drawUnit(mofu, 461, 267, 32, 30, -21, -33, 32 * 1.25, 30 * 1.25, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 7)
+            {
+                this.drawUnit(mofu, 461, 267, 32, 30, -21, -33, 32 * 1.25, 30 * 1.25, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "iceSpikes")
+        {
+            this.damageFrame = "manual";
+            if (theCostume <= 0)
+            {
+                this.spellCast = false;
+                this.drawUnit(polypol, 1862, 109, 44, 24, -22, -20, 44, 24, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(polypol, 1864, 141, 44, 24, -22, -20, 44, 24, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(polypol, 1864, 203, 44, 24, -21, -21, 44, 24, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(polypol, 1864, 230, 44, 24, -21, -21, 44, 24, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 4)
+            {
+                this.drawUnit(polypol, 1865, 172, 44, 24, -21, -21, 44, 24, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 5)
+            {
+                this.drawUnit(polypol, 1864, 260, 44, 24, -21, -21, 44, 24, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 6)
+            {
+                if (this.spellCast == false)
+                {
+                    if (player.gamemode != "protagonist")
+                    {
+                        this.rotation = this.newRotation; //turn instantly to player at time of projection
+                    }
+                    this.spellCast = true;
+
+                    if (this.CNX >= 50)
+                    {
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 1, this, this.damagesPlayer));
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 2, this, this.damagesPlayer));
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 3, this, this.damagesPlayer));
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 4, this, this.damagesPlayer));
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 5, this, this.damagesPlayer));
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 6, this, this.damagesPlayer));
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 7, this, this.damagesPlayer));
+                    }
+                    else if (this.CNX >= 40)
+                    {
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 1, this, this.damagesPlayer));
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 2, this, this.damagesPlayer));
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 3, this, this.damagesPlayer));
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 4, this, this.damagesPlayer));
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 5, this, this.damagesPlayer));
+                    }
+                    else if (this.CNX >= 30)
+                    {
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 1, this, this.damagesPlayer));
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 2, this, this.damagesPlayer));
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 3, this, this.damagesPlayer));
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 4, this, this.damagesPlayer));
+                    }
+                    else if (this.CNX >= 20)
+                    {
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 1, this, this.damagesPlayer));
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 2, this, this.damagesPlayer));
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 3, this, this.damagesPlayer));
+                    }
+                    else if (this.CNX >= 10)
+                    {
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 1, this, this.damagesPlayer));
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 2, this, this.damagesPlayer));
+                    }
+                    else
+                    {
+                        magicList.push(new Magic({ID: "iceSpikes", CNX: this.CNX}, false, 1, this, this.damagesPlayer));
+                    }
+                }
+                this.drawUnit(polypol, 1864, 260, 44, 24, -21, -21, 44, 24, 1 / 2 * Math.PI);
             }
         }
         else if (this.weapon == "thenganWarhammer")
@@ -4392,34 +4534,39 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
     this.switchToRanged = function(weapon)
     {
-        if (this.disturbed == true || this.DTU(this.target) <= this.baseSight)
+        if (this.swimming != true)
         {
-            if (this.target == player)
+            if (this.disturbed == true || this.DTU(this.target) <= this.baseSight)
             {
-                var dtp = this.DTP();
-                var targRad = player.mySize;
-            }
-            else if (this.target != "none")
-            {
-                var dtp = this.DTU(this.target);
-                var targRad = this.target.sizeRadius;
-            }
+                if (this.target == player)
+                {
+                    var dtp = this.DTP();
+                    var targRad = player.mySize;
+                }
+                else if (this.target != "none")
+                {
+                    var dtp = this.DTU(this.target);
+                    var targRad = this.target.sizeRadius;
+                }
 
-            if (this.engagementRadius + (targRad - 10) < dtp)
-            {
-                this.weapon = weapon;
-                this.ranged = true;
-                this.attacking = true;
+                if (this.engagementRadius + (targRad - 10) < dtp)
+                {
+                    this.rangedSwitch = true;
+                    this.weapon = weapon;
+                    this.ranged = true;
+                    this.attacking = true;
+                }
+                else
+                {
+                    this.rangedSwitch = false;
+                    this.weapon = this.ultra.weapon[0];
+                    this.ranged = false;
+                }
             }
             else
             {
-                this.weapon = this.ultra.weapon[0];
-                this.ranged = false;
+                this.attacking = false;
             }
-        }
-        else
-        {
-            this.attacking = false;
         }
     };
 
@@ -4432,8 +4579,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else
         {
-            this.weapon = this.ultra.weapon[0];
-            this.ranged = this.ultra.ranged[0];
+            if (this.rangedSwitch != true)
+            {
+                this.weapon = this.ultra.weapon[0];
+                this.ranged = this.ultra.ranged[0];
+            }
         }
     };
 
@@ -4863,6 +5013,56 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 XXX.rotate(this.rotation + 1 / 2 * Math.PI);
                 XXX.drawImage(furr, 230, 555, 40, 32, -(1 / 2 * 40) + 2.9, -(1 / 2 * 32) + 4.5, 36, 28.8);
+            }
+            else if (outfit == "whiteMageRobe")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation + 1 / 2 * Math.PI);
+                XXX.drawImage(freeverse, 941, 114, 34, 30, - 1/2 * 34 * 0.9 + 0.4, - 1/2 * 30 * 0.9 + 1.1, 34 * 0.9, 30 * 0.9);
+            }
+            else if (outfit == "blackMageRobe")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation + 1 / 2 * Math.PI);
+                XXX.drawImage(freeverse, 940, 224, 34, 30, - 1/2 * 34 * 0.9 + 0.3, - 1/2 * 30 * 0.9 + 1.15, 34 * 0.9, 30 * 0.9);
+            }
+            else if (outfit == "cyanMageRobe")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation + 1 / 2 * Math.PI);
+                XXX.drawImage(freeverse, 584, 107, 34, 30, - 1/2 * 34 * 0.9 + 0.4, - 1/2 * 30 * 0.9 + 1.55, 34 * 0.9, 30 * 0.9);
+            }
+            else if (outfit == "redMageRobe")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation + 1 / 2 * Math.PI);
+                XXX.drawImage(freeverse, 702, 111, 34, 30, - 1/2 * 34 * 0.9 + 0.85, - 1/2 * 30 * 0.9 + 1.5, 34 * 0.9, 30 * 0.9);
+            }
+            else if (outfit == "purpleMageRobe")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation + 1 / 2 * Math.PI);
+                XXX.drawImage(freeverse, 824, 111, 34, 30, - 1/2 * 34 * 0.9 + 1, - 1/2 * 30 * 0.9 + 1, 34 * 0.9, 30 * 0.9);
             }
             else if (outfit == "thenganPlateArmour")
             {
@@ -9806,6 +10006,21 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.attackWait = this.ultra.weapon[4];
             this.swimStage = 0;
             this.swimSpeed = 0.6 * this.speed;
+            if (typeof(this.ultra) != "undefined")
+            {
+                if (typeof(this.ultra.CNX) != "undefined")
+                {
+                    this.CNX = this.ultra.CNX; //magic ability
+                }
+            }
+            this.magicalResistance = 0;
+            if (typeof(this.ultra) != "undefined")
+            {
+                if (typeof(this.ultra.MR) != "undefined")
+                {
+                    this.magicalResistance = this.ultra.MR; //magic ability
+                }
+            }
 
             //this multiplies the draw image skew numbers by 1 so that it stays the same
             this.alphaSize = 1;
@@ -9830,7 +10045,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.con = this.ultra.con;
             this.outfit = this.ultra.outfit[0];
             this.weapon = this.ultra.weapon[0];
-            this.magicalResistance = 0;
             this.heatResistance = 0;
             this.attackStyle = "chunked";
             this.attackRate = 0;  //this is for rapid style combat only.
@@ -9846,6 +10060,21 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.attackWait = this.ultra.weapon[4];
             this.swimStage = 0;
             this.swimSpeed = 0.6 * this.speed;
+            if (typeof(this.ultra) != "undefined")
+            {
+                if (typeof(this.ultra.CNX) != "undefined")
+                {
+                    this.CNX = this.ultra.CNX; //magic ability
+                }
+            }
+            this.magicalResistance = 0;
+            if (typeof(this.ultra) != "undefined")
+            {
+                if (typeof(this.ultra.MR) != "undefined")
+                {
+                    this.magicalResistance = this.ultra.MR; //magic ability
+                }
+            }
         }
     };
     this.designUnits();
@@ -25380,6 +25609,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 28]];
             }
+            else if (this.ID == "Fuyumi the Banker")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 215]];
+            }
+            else if (this.ID == "Katja the Tailor")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 59]];
+            }
+            else if (this.ID == "Aari the Blacksmith")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 100]];
+            }
             else if (this.ID == "[ " + quests.hilmundChildName + " ]") //this sets stats for the player child with Hilmund
             {
                 if (this.aiTimer > 4)
@@ -25885,6 +26126,30 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.freynorFaction -= 30;
                         }
                     }
+                    else if (this.ID == "Fuyumi the Banker")
+                    {
+                        uniqueChars.fuyumiLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction += 12;
+                        }
+                    }
+                    else if (this.ID == "Katja the Tailor")
+                    {
+                        uniqueChars.katjaLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction -= 19;
+                        }
+                    }
+                    else if (this.ID == "Aari the Blacksmith")
+                    {
+                        uniqueChars.aariLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction -= 11;
+                        }
+                    }
                     else if (this.ID == "Hildegard")
                     {
                         uniqueChars.hildegardLDS = false;
@@ -26223,6 +26488,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             this.costumeEngine(7, 0.26, true);
                         }
+                        else if (this.weapon == "iceSpikes")
+                        {
+                            this.costumeEngine(7, 0.20, false);
+                        }
+                        else if (this.weapon == "electricBolt")
+                        {
+                            this.costumeEngine(8, 0.25, false);
+                        }
                     }
                 }
                 //draw some weapons underneath the body
@@ -26415,6 +26688,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.ID == "Jarl Rannuk Stambjord")
                         {
                             this.drops = [[new Item("coins", false), 3000], [new Item("fineFreydicOutfitM", false), 1]];
+                        }
+                        else if (this.ID == "Ukko, Sage of Gemeth")
+                        {
+                            this.drops = [[new Item("iceSpikes", this.X, this.Y), 1]];
                         }
                         else if (this.ID == "Stambjord Soldier")
                         {
@@ -26908,6 +27185,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.freynorFaction -= 80;
                         }
                     }
+                    else if (this.ID == "Ukko, Sage of Gemeth")
+                    {
+                        uniqueChars.ukkoLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction -= 100;
+                        }
+                    }
                     else if (this.ID == "Ser Olis Pynske")
                     {
                         uniqueChars.pynskeLDS = false;
@@ -27118,6 +27403,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         else if (this.weapon == "meatCleaver")
                         {
                             this.costumeEngine(7, 0.26, true);
+                        }
+                        else if (this.weapon == "iceSpikes")
+                        {
+                            this.costumeEngine(7, 0.20, false);
+                        }
+                        else if (this.weapon == "electricBolt")
+                        {
+                            this.costumeEngine(8, 0.25, false);
                         }
                     }
                 }

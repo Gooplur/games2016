@@ -3,7 +3,7 @@
  */
 
 //Official Magic Class
-function Magic(spellInfo, caster, instructions, unitSelf) //caster means either the player or an AI UNIT true: player false: AI UNIT //unitSelf is the object that the unit is so that this function can track its data. (this is for AI UNITS only) //instructions is for any extra input the spell might need.
+function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caster means either the player or an AI UNIT true: player false: AI UNIT //unitSelf is the object that the unit is so that this function can track its data. (this is for AI UNITS only) //instructions is for any extra input the spell might need.
 {
     if (spellInfo != "none")
     {
@@ -34,8 +34,9 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
         this.ratonY = Y - mouseY + 1/2 * CCC.height;
         if (typeof(unitSelf) != "undefined" && typeof(unitSelf) != "boolean")
         {
-            this.unitRotation = unitSelf.rotation;
+            this.unitRotation = unitSelf.rotation + Math.PI;
         }
+        this.damagesPlayer = damagesPlayer;
         this.stage = 0; // this can be used by whichever spell but shall not be used in functions.
         this.setRotation = 0;
         this.ticCount = 0;
@@ -409,6 +410,10 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                             player.thirst -= Math.max(0, damage - player.heatResistance);
                             player.burningTime = new Date().getTime();
                         }
+                    }
+                    else if (whatDoIDo == "iceSpike")
+                    {
+                        player.health -= Math.max(0, 4 + (4/50 * this.cnx) - Math.max(0, player.armourTotal - Math.max(0, 100 - 19 * player.magicalResistanceTotal)));
                     }
                     else if (whatDoIDo == "soulOrb")
                     {
@@ -1196,8 +1201,11 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
             }
             else
             {
-                this.orientToCaster(29, 3.2 / 5 * Math.PI);
-                this.drawWithRotation(mofu, 454, 46, 19, 32, 29, 26, player.rotation, -1 / 2 * 19, -1 / 2 * 32);
+                if (instructions != "aftershock" && instructions != "aftershocked")
+                {
+                    this.orientToCaster(29, -0.7 / 5 * Math.PI); //0.7
+                    this.drawWithRotation(mofu, 454, 46, 19, 32, 29, 26, this.unitRotation, -1 / 2 * 19, -1 / 2 * 32);
+                }
             }
         }
         //ENTANGLEMENT
@@ -1505,33 +1513,67 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
         {
             var rdxn = Math.floor(Math.random() * 8);
 
-            if (instructions == 1)
+            if (caster)
             {
-                this.orientToCaster(19, 1 / 2 * Math.PI);
+                if (instructions == 1)
+                {
+                    this.orientToCaster(19, 1 / 2 * Math.PI);
+                }
+                else if (instructions == 2)
+                {
+                    this.orientToCaster(16 + rdxn, 4 / 6 * Math.PI );
+                }
+                else if (instructions == 3)
+                {
+                    this.orientToCaster(16 + rdxn, 2 / 6 * Math.PI );
+                }
+                else if (instructions == 4)
+                {
+                    this.orientToCaster(16 + rdxn, 3 / 6 * Math.PI );
+                }
+                else if (instructions == 5)
+                {
+                    this.orientToCaster(16 + rdxn, 1.6 / 6 * Math.PI );
+                }
+                else if (instructions == 6)
+                {
+                    this.orientToCaster(16 + rdxn, 0.6 / 6 * Math.PI );
+                }
+                else if (instructions == 7)
+                {
+                    this.orientToCaster(16 + rdxn, 4 / 6 * Math.PI );
+                }
             }
-            else if (instructions == 2)
+            else
             {
-                this.orientToCaster(16 + rdxn, 4 / 6 * Math.PI );
-            }
-            else if (instructions == 3)
-            {
-                this.orientToCaster(16 + rdxn, 2 / 6 * Math.PI );
-            }
-            else if (instructions == 4)
-            {
-                this.orientToCaster(16 + rdxn, 3 / 6 * Math.PI );
-            }
-            else if (instructions == 5)
-            {
-                this.orientToCaster(16 + rdxn, 1.6 / 6 * Math.PI );
-            }
-            else if (instructions == 6)
-            {
-                this.orientToCaster(16 + rdxn, 0.6 / 6 * Math.PI );
-            }
-            else if (instructions == 7)
-            {
-                this.orientToCaster(16 + rdxn, 4 / 6 * Math.PI );
+                if (instructions == 1)
+                {
+                    this.orientToCaster(19, 0);
+                }
+                else if (instructions == 2)
+                {
+                    this.orientToCaster(16 + rdxn, 0 + 1/6 * Math.PI);
+                }
+                else if (instructions == 3)
+                {
+                    this.orientToCaster(16 + rdxn, 0 - 1/6 * Math.PI);
+                }
+                else if (instructions == 4)
+                {
+                    this.orientToCaster(16 + rdxn, 0 + 2/6 * Math.PI);
+                }
+                else if (instructions == 5)
+                {
+                    this.orientToCaster(16 + rdxn, 0 - 2/6 * Math.PI);
+                }
+                else if (instructions == 6)
+                {
+                    this.orientToCaster(16 + rdxn, 0 + 3/6 * Math.PI);
+                }
+                else if (instructions == 7)
+                {
+                    this.orientToCaster(16 + rdxn, 0 - 3/6 * Math.PI);
+                }
             }
         }
         //Magic Missiles
@@ -1634,14 +1676,21 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 }
                 else
                 {
-                    //todo add icespikes spell for AI
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.unitRotation + 1/2 * Math.PI);
+                    XXX.drawImage(polypol, 1791, 209, 8, 28, - (1/2 * 8), - (1/2 * 28), 8, 28);
+                    XXX.restore();
+
+                    this.damageThenGoAway(7, "iceSpike", "damage", "negate", this.damagesPlayer);
+                    this.project(this.unitRotation, 166 * ((50 + 3 * this.cnx) / 50), 5 * ((50 + this.cnx) / 50), true);
                 }
 
-                if (this.cnx >= 50 && caster)
+                if (this.cnx >= 50)
                 {
                     this.spellTimer(0.85);
                 }
-                else if (this.cnx >= 40 && caster)
+                else if (this.cnx >= 40)
                 {
                     this.spellTimer(0.65);
                 }
@@ -2897,7 +2946,25 @@ function Magic(spellInfo, caster, instructions, unitSelf) //caster means either 
                 }
                 else
                 {
-                    //Todo add the Ai part of this spell...
+                    if (instructions == "aftershock")
+                    {
+                        this.damageThenGoAway(10, "electricity", 5.5 + 0.2 * this.cnx, 0, this.damagesPlayer);
+                        this.flashAnimate(90, unitSelf[0], 0.9, [{image: mofu, imgX: 454, imgY: 46, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}, {image: mofu, imgX: 475, imgY: 48, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}, {image: mofu, imgX: 498, imgY: 48, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}]);
+                        this.project(unitSelf[0] + 1/2 * Math.PI, 400 + ((100 * this.cnx) / 50), 7 + 2 * (this.cnx / 50), true);
+                    }
+                    else if (instructions == "aftershocked")
+                    {
+                        this.damageThenGoAway(10, "electricity", 4 + 0.1 * this.cnx, 0, this.damagesPlayer);
+                        this.flashAnimate(90, unitSelf[0], 0.7, [{image: mofu, imgX: 454, imgY: 46, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}, {image: mofu, imgX: 475, imgY: 48, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}, {image: mofu, imgX: 498, imgY: 48, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}]);
+                        this.project(unitSelf[0] + 1/2 * Math.PI, 400 + ((100 * this.cnx) / 50), 7 + 2 * (this.cnx / 50), true);
+                    }
+                    else
+                    {
+                        this.damageThenGoAway(10, "electricity", 11 + 0.4 * this.cnx, 0, this.damagesPlayer);
+                        this.flashAnimate(90, this.unitRotation + 1/2 * Math.PI, 1, [{image: mofu, imgX: 454, imgY: 46, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}, {image: mofu, imgX: 475, imgY: 48, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}, {image: mofu, imgX: 498, imgY: 48, portionW: 19, portionH: 32, adjX: -1 / 2 * 19, adjY: -1 / 2 * 32, width: 19, height: 32}]);
+                        this.project(this.unitRotation, 450 + ((250 * this.cnx) / 50), 7 + 2 * (this.cnx / 50), true);
+                    }
+                    lights.push({X: this.X, Y: this.Y, size: 18, extraStops: true, GRD: 0.75, Alpha: 0.8, showMe: false});
                 }
             }
 

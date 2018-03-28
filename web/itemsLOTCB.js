@@ -265,6 +265,24 @@ function Item(type, x, y)
             this.buyValue = 1;
             this.sellValue = 1;
         }
+        else if (this.type == "tablet")
+        {
+            //For All Items
+            this.identity = "Engraved Stone Tablet";
+            this.description = "There are strange symbols engraved in the stone.";
+            this.intForDes = 6;
+            this.intDescription = "Perhaps this stone is an artifact from an ancient culture.";
+            this.buyValue = 900 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 700.
+            this.sellValue = 65 + Math.floor(player.getCharisma() / 2); // at max, sell for 90.
+            this.weight = 2.5;
+            this.size = 13;
+
+            //Define Utility
+            this.utility = "junk";
+
+            //ability
+            this.ability = "none";
+        }
         else if (this.type == "iceClaymore")
         {
             //For All Items
@@ -17963,7 +17981,7 @@ function Item(type, x, y)
 
             this.yield = 1;
             this.intForCraft = 41;
-            this.ingredients = [["Waanti Pelt", 2], ["Cloth", 2]];
+            this.ingredients = [["Waanti Pelt", 2], ["Cloth", 3], ["Koobu Pelt", 3]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 250 - Math.floor(player.getCharisma() / 3); // at max, buy for 250.
@@ -18020,7 +18038,7 @@ function Item(type, x, y)
 
             this.yield = 1;
             this.intForCraft = 41;
-            this.ingredients = [["Waanti Pelt", 2], ["Cloth", 2]];
+            this.ingredients = [["Waanti Pelt", 2], ["Cloth", 2], ["Koobu Pelt", 2]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 250 - Math.floor(player.getCharisma() / 3); // at max, buy for 250.
@@ -23373,7 +23391,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 535, 411, 40, 72, X - this.X + (1/2 * CCC.width) - (1/2 * 40 / 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 72 / 1.3), 40 / 1.3, 72 / 1.3);
         }
-        else if (this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport")
+        else if (this.type == "tablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 22), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27), 22, 27);
@@ -26364,7 +26382,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 535, 411, 40, 72, this.invX - (1/2 * 40 / 1.3), this.invY - (1/2 * 72 / 1.3), 40 / 1.3, 72 / 1.3);
         }
-        else if (this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport")
+        else if (this.type == "tablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
@@ -29232,7 +29250,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 535, 411, 40, 72, this.invX - (1/2 * 40 / 1.3), this.invY - (1/2 * 72 / 1.3), 40 / 1.3, 72 / 1.3);
         }
-        else if (this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport")
+        else if (this.type == "tablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);

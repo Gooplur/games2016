@@ -787,6 +787,14 @@ function cheats()
             player.intelligence = 0;
             player.survivalism = 0;
         }
+        else if (cheatcode.toLowerCase() == "drynoodle") //resets all magical stats to 0
+        {
+            player.eminence = 0;
+            player.concentration = 0;
+            player.willpower= 0;
+            player.knowledge= 0;
+            player.memory = 0;
+        }
         else if (cheatcode.toLowerCase() == "kalbus")
         {
             if (player.name == "Kalbus")

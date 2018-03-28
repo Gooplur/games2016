@@ -3515,7 +3515,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         this.costumeEngine(8, 0.20, false);
                     }
-                    else if (this.weapon == "longbow")
+                    else if (this.weapon == "aldrekiiLongbow")
                     {
                         this.costumeEngine(8, 0.20, false);
                     }
@@ -4558,7 +4558,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else
                 {
-                    this.rangedSwitch = false;
                     this.weapon = this.ultra.weapon[0];
                     this.ranged = false;
                 }
@@ -4585,6 +4584,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.ranged = this.ultra.ranged[0];
             }
         }
+        this.rangedSwitch = false;
     };
 
     //Basic Functionality
@@ -26745,7 +26745,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             }
                         }
 
-                        if (this.ID != "Jarl Rannuk Stambjord")
+                        if (this.ID != "Jarl Rannuk Stambjord" && this.ID != "Ukko, Sage of Gemeth")
                         {
                             this.switchToRanged("longbow");
                         }

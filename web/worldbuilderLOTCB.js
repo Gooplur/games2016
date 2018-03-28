@@ -2262,7 +2262,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-20325, 41962, "Soldier", false, "Ukko, Sage of Gemeth", {race: "Freynor", faction: "Freynor", con: 5, speed: 0.6, outfit: ["whiteMageRobe", 0], weapon: ["electricBolt", [0, 0], 0, 0, 1.2], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "none", 2.65], rot: -1/2*Math.PI, CNX: 50, MR: 25, patrolStops: 0, patrolLoop: false, route:[[-18930, 44712]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-20325, 41962, "Soldier", false, "Ukko, Sage of Gemeth", {race: "Freynor", faction: "Freynor", con: 5, speed: 0.6, outfit: ["whiteMageRobe", 0], weapon: ["iceSpikes", [0, 0], 0, 0, 1.2], ranged: [true, "none", 0, 140, 0, 0, 0, "none", 0], rot: -1/2*Math.PI, CNX: 50, MR: 25, patrolStops: 0, patrolLoop: false, route:[[-18930, 44712]]}));
                     }
                 }
                 if (uniqueChars.katjaLDS == true)
@@ -2302,6 +2302,7 @@ function buildMaster()
                             //temple-goers
                 ArtificialIntelligenceAccess.push(new Unit(-20419, 42113, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["sealSkinClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-20419, 42070]]}));
                 ArtificialIntelligenceAccess.push(new Unit(-20605, 41927, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["sealSkinClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-20566, 41927]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-20607, 41983, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["northernClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-20566, 41983]]}));
 
                     //respawnable humans
 
@@ -2534,6 +2535,7 @@ function buildMaster()
                 scenicList.push(new Scenery("freydicBuilding3", -21960, 43622, 0, true));
                     //Venning City Temple
                 scenicList.push(new Scenery("freydicBuilding7", -20441, 41964, 0, true));
+                scenicList.push(new Scenery("sign", -20451, 42209, -1 * Math.PI, 3, "Temple of Gemesh"));
                 scenicList.push(new Scenery("smallRockCircle", -20439, 41956, 0, true));
                 scenicList.push(new Scenery("woodenBench", -20324, 41958, 1/2 * Math.PI, 0));
                 scenicList.push(new Scenery("woodenBench", -20438, 42070, 0, 0));

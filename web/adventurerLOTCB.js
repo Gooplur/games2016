@@ -633,6 +633,7 @@ function Adventurer()
                 }
             }
         };
+        this.onElectric();
         //fire effect on highest layer possible;
         this.onFire = function()
         {

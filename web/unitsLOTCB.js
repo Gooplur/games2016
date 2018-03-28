@@ -25609,6 +25609,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 28]];
             }
+            else if (this.ID == "Saana the Produce Vender")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 20]];
+            }
             else if (this.ID == "Fuyumi the Banker")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 215]];
@@ -26124,6 +26128,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 30;
+                        }
+                    }
+                    else if (this.ID == "Saana the Produce Vender")
+                    {
+                        uniqueChars.saanaLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction -= 5;
                         }
                     }
                     else if (this.ID == "Fuyumi the Banker")

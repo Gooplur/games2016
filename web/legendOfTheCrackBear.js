@@ -5,7 +5,7 @@
 
 //TODO LIST
 //top priority
-//todo finish Venning City - church, general store #2, jeweler's, homes
+//todo finish Venning City
 //todo besides Venning city fill out the rest of map N4E2
 //todo fill out map N4E1
 
@@ -2508,7 +2508,8 @@ function theLegend()
         aari: ["Aari", 0],
         katja: ["Katja", 0],
         fuyumi: ["Fuyumi", 0],
-        ukko: ["Ukko", 0]
+        ukko: ["Ukko", 0],
+        saana: ["Sanna", 0]
     };
 
 //time Tracker Variables
@@ -2646,7 +2647,8 @@ function theLegend()
         aariLDS: true,
         katjaLDS: true,
         fuyumiLDS: true,
-        ukkoLDS: true
+        ukkoLDS: true,
+        saanaLDS: true
     };
 //QUESTS
     quests =
@@ -2673,6 +2675,7 @@ function theLegend()
         //PLAYER PROPERTY
         teshirHomeOwned: false,
         lethikHomeOwned: false,
+        venningHomeOwned: false,
 
         //ITEM STASH VARIABLES (non quest)
         lonerGuyStash: true,

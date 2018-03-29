@@ -2511,7 +2511,8 @@ function theLegend()
         ukko: ["Ukko", 0],
         saana: ["Sanna", 0],
         maai: ["Maai", 0],
-        gamden: ["Gamden", 0]
+        gamden: ["Gamden", 0],
+        bjorn: ["Bjorn", 0]
     };
 
 //time Tracker Variables
@@ -2652,7 +2653,8 @@ function theLegend()
         ukkoLDS: true,
         saanaLDS: true,
         maaiLDS: true,
-        gamdenLDS: true
+        gamdenLDS: true,
+        bjornLDS: true
     };
 //QUESTS
     quests =
@@ -2675,6 +2677,9 @@ function theLegend()
         kellExecution: false,
         pitFight: false,
         rutgarSlave: false,
+
+        //LOGGED PLAYER ACTIONS
+        venningStoragePurchased: false,
 
         //PLAYER PROPERTY
         teshirHomeOwned: false,

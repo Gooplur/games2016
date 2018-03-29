@@ -65,6 +65,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.rotationSpeed = 0.1; // this is the speed at which the unit rotates.
     this.rotatable = true; //when false the unit is unable to rotate.
     this.damagesPlayer = true; //this determines if spells cast by this unit can damage or affect the player.
+    this.directPatrolTime = 0; //for patrol type humans this is the timer for the delay in auto rotate towards objective when confronted with an obstacle
     //functionality game variables
     this.engagementRadius = 15; //this is the distance before a target that the unit will stop at to leave itself appropriate room to attack or whatever interaction it will do.
     this.sizeRadius = 20; // this is the radius that represents the total size of the unit.
@@ -1934,6 +1935,422 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.dtd();
             }
         }
+        else if (numberOfStops == 13)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 13 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 14)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 14 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 15)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 15 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 16)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
 
         this.patrolDTP = this.DTP();
         if (this.patrolDTP < this.rangeOfSight) //if the player is close enough to the unit the unit will rotate toward him/her.
@@ -1949,14 +2366,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             if (!this.suspendConflictingPointSystems)
             {
-                if (this.type == "Person" || this.type == "Soldier")
-                {
-                    this.rotation = Math.atan2(this.patrolDestinationY - this.Y, this.patrolDestinationX - this.X) + Math.PI; //Point toward the destination.
-                }
-                else
-                {
-                    this.newRotation = Math.atan2(this.patrolDestinationY - this.Y, this.patrolDestinationX - this.X) + Math.PI; //Point toward the destination.
-                }
+                this.newRotation = Math.atan2(this.patrolDestinationY - this.Y, this.patrolDestinationX - this.X) + Math.PI; //Point toward the destination.
 
                 if (this.patrolDistance > ((TTD / 16.75) * this.speed + 1)) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
                 {
@@ -1968,10 +2378,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.X = nextX;
                         this.Y = nextY;
                         this.moving = true;
+
+                        if (this.type == "Person" || this.type == "Soldier")
+                        {
+                            if (new Date().getTime() - this.directPatrolTime > 1500)
+                            {
+                                this.rotation = Math.atan2(this.patrolDestinationY - this.Y, this.patrolDestinationX - this.X) + Math.PI; //Point toward the destination.
+                            }
+                        }
                     }
                     else
                     {
                         this.evadeObstruction();
+                        if (this.type == "Person" || this.type == "Soldier")
+                        {
+                            this.directPatrolTime = new Date().getTime();
+                        }
                     }
                 }
                 else
@@ -2025,6 +2447,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.patrolProgress == 11)
                     {
                         this.patrolProgress = 12;
+                    }
+                    else if (this.patrolProgress == 12)
+                    {
+                        this.patrolProgress = 13;
+                    }
+                    else if (this.patrolProgress == 13)
+                    {
+                        this.patrolProgress = 14;
+                    }
+                    else if (this.patrolProgress == 14)
+                    {
+                        this.patrolProgress = 15;
+                    }
+                    else if (this.patrolProgress == 15)
+                    {
+                        this.patrolProgress = 16;
                     }
                 }
             }
@@ -25601,6 +26039,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 5]];
             }
+            if (this.ID == "Bjorn")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 1]];
+            }
             if (this.ID == "Svehn the Smith")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 95 + (quests.bobithNewWealth / 2)]];
@@ -26105,6 +26547,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 3;
+                        }
+                    }
+                    if (this.ID == "Bjorn")
+                    {
+                        uniqueChars.bjornLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction -= 1;
                         }
                     }
                     if (this.ID == "Garld the Crazy Beggar" || this.ID == "Garld, Sage of Gemeth")

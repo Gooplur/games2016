@@ -795,6 +795,40 @@ function cheats()
             player.knowledge= 0;
             player.memory = 0;
         }
+        else if (cheatcode.toLowerCase() == "borrar")
+        {
+            dialogueReset();
+            //Delete All Non-native AI Units
+            for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--)
+            {
+                if (!ArtificialIntelligenceAccess[i].guarantee)
+                {
+                    ArtificialIntelligenceAccess.splice(i, 1);
+                }
+            }
+            //Delete All Non-native Scenery
+            scenicList = [];
+            //Delete All Barriers
+            barrierList = [];
+        }
+        else if (cheatcode.toLowerCase() == "reiniciar")
+        {
+            dialogueReset();
+            //Delete All Non-native AI Units
+            for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--)
+            {
+                if (!ArtificialIntelligenceAccess[i].guarantee)
+                {
+                    ArtificialIntelligenceAccess.splice(i, 1);
+                }
+            }
+            //Delete All Non-native Scenery
+            scenicList = [];
+            //Delete All Barriers
+            barrierList = [];
+
+            change = "reiniciar";
+        }
         else if (cheatcode.toLowerCase() == "kalbus")
         {
             if (player.name == "Kalbus")

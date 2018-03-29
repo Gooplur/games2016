@@ -2432,6 +2432,30 @@ function buildMaster()
                         ArtificialIntelligenceAccess.push(new Unit(-14968, 43979, "Person", false, "Gamden the Alchemist", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["sealSkinClothing", 0], weapon: ["none", [0.25, 0.25], 0, 0, 1.6], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[-21989, 43598]], merchant: true, merchandise: [[new Item("coins", false, false), 9], [new Item("mightPotionII", false, false), 2], [new Item("energyPotionI", false, false), 5], [new Item("energyPotionII", false, false), 2], [new Item("wyrExtract", false, false), 2], [new Item("trollsBlood", false, false), 1], [new Item("rawTrollsBlood", false, false), 2], [new Item("pouchOfPimberDust", false, false), 4], [new Item("pouchOfShomeDust", false, false), 2], [new Item("pouchOfIrilDust", false, false), 1], [new Item("ogardPerfume", false, false), 3], [new Item("rawWolfLiver", false, false), 2], [new Item("salt", false, false), 11], [new Item("glassJar", false, false), 8], [new Item("potionGlass", false, false), 12]]}));
                     }
                 }
+                if (uniqueChars.bjornLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Bjorn")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-16013, 43363, "Person", false, "Bjorn", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["sealSkinClothing", 0], weapon: ["none", [0.6, 0.4], 0, 0, 1.3], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-16006, 43367]]}));
+
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Bjorn")
+                            {
+                                ArtificialIntelligenceAccess[i].healthMAX = 12;
+                                ArtificialIntelligenceAccess[i].health = 12;
+                            }
+                        }
+                    }
+                }
 
                     //respawnable humans
                         //Guards
@@ -2449,16 +2473,46 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(-15544, 43728, "Soldier", false, "Stambjord Soldier", {race: "Freynor", faction: "Freynor", con: 6, speed: 1.50, outfit: ["chainArmour", 7], weapon: ["freydicSword", [9, 8], 0, 16, 1], ranged: [true, "arrow", 7, 2000, 1, 6, 0, "none", 1.50], patrolStops: 4, patrolLoop: true, route:[[-15544, 42905], [-15770, 42905], [-15770, 43728],[-15544, 43728]]}));
                 ArtificialIntelligenceAccess.push(new Unit(-18410, 44468, "Soldier", false, "Stambjord Soldier", {race: "Freynor", faction: "Freynor", con: 7, speed: 1.40, outfit: ["chainArmour", 8], weapon: ["freydicSword", [8, 9], 0, 16, 1], ranged: [true, "arrow", 6, 2000, 1, 5, 0, "none", 1.50], patrolStops: 0, patrolLoop: true, route:[[-18410, 44468]]}));
                 ArtificialIntelligenceAccess.push(new Unit(-18266, 44656, "Soldier", false, "Stambjord Soldier", {race: "Freynor", faction: "Freynor", con: 8, speed: 1.30, outfit: ["chainArmour", 8.5], weapon: ["freydicSword", [9, 9], 0, 16, 1.25], ranged: [true, "arrow", 5, 1800, 1, 4, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[-18266, 44656]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-21770, 43517, "Soldier", false, "Stambjord Soldier", {race: "Freynor", faction: "Freynor", con: 7, speed: 1.51, outfit: ["chainArmour", 7.5], weapon: ["freydicSword", [8, 8], 0, 16, 1], ranged: [true, "arrow", 6, 2000, 1, 6, 0, "none", 1.6], patrolStops: 8, patrolLoop: true, route:[[-21767, 43731], [-18941, 43735], [-19076, 43508], [-20357, 43508], [-20357, 42324], [-20564, 42324], [-20564, 43517], [-21770, 43517]]}));
                         //fishshopGuy
                 ArtificialIntelligenceAccess.push(new Unit(-17931, 44852, "Person", false, "Freydic Fishseller", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["northernClothing", 0], weapon: ["none", [0.45, 0.5], 0, 0, 1.2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[-14542, 44796]], merchant: true, merchandise: [[new Item("coins", false, false), 18], [new Item("rawRedCrombal", false, false), 9], [new Item("rawJuurgo", false, false), 2], [new Item("crabFlesh", false, false), 3]]}));
                         //People
                 ArtificialIntelligenceAccess.push(new Unit(-15836, 44770, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["sealSkinClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[-15837, 44485], [-17876, 44405], [-15837, 44485], [-15836, 44770]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-21759, 43739, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["sealSkinClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 8, patrolLoop: true, route:[[-15750, 43726], [-15776, 45098], [-17877, 44999], [-17874, 44873], [-17877, 44999], [-15776, 45098], [-15750, 43726], [-21759, 43739]]}));
                             //temple-goers
                 ArtificialIntelligenceAccess.push(new Unit(-20419, 42113, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["sealSkinClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-20419, 42070]]}));
                 ArtificialIntelligenceAccess.push(new Unit(-20605, 41927, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["sealSkinClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-20566, 41927]]}));
                 ArtificialIntelligenceAccess.push(new Unit(-20607, 41983, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["northernClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-20566, 41983]]}));
                             //farmers
                 ArtificialIntelligenceAccess.push(new Unit(-22389, 40228, "Person", false, "Freynor Farmer", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["sealSkinClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[-20566, 41983]]}));
+                            //wealthy zoners
+                ArtificialIntelligenceAccess.push(new Unit(-20208, 42655, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["northernClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[-20566, 41983]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-20739, 42515, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["northernClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-20704, 42518]]}));
+                var randoDrinkYes = false;
+                if (Math.round(Math.random()))
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-20471, 41791, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["northernClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-20472, 41830]]}));
+                }
+                else
+                {
+                    if (Math.round(Math.random()))
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-14987, 44507, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["northernClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-14988, 44462]]}));
+                        randoDrinkYes = true;
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-20802, 42711, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["northernClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-20809, 42697]]}));
+                    }
+                }
+                if (Math.round(Math.random()))
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-20116, 43053, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["northernClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[-20704, 42518]]}));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-20116, 43053, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["northernClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 14, patrolLoop: true, route:[[-20553, 43053], [-20553, 43666], [-15713, 43666], [-15713, 43116], [-15102, 43143], [-15098, 43295], [-15149, 43292], [-15100, 43243], [-15100, 42917], [-15734, 42934], [-15750, 43548], [-20379, 43545], [-20379, 43053], [-20116, 43053]]}));
+                }
 
                 //Venning City
                     //docks
@@ -2718,6 +2772,52 @@ function buildMaster()
                 scenicList.push(new Scenery("freydicBuilding5", -16622, 44810, 0, true));
                 scenicList.push(new Scenery("freydicBuilding5", -16619, 44605, 0, true));
                 scenicList.push(new Scenery("freydicBuilding5", -16339, 44650, 0, true));
+                scenicList.push(new Scenery("freydicBuilding2", -15290, 43540, 0, true));
+                scenicList.push(new Scenery("freydicBuilding2", -15052, 43640, 0, true));
+                scenicList.push(new Scenery("freydicBuilding5", -15962, 44277, 0, true));
+                scenicList.push(new Scenery("freydicBuilding5", -15964, 44047, 0, true));
+                scenicList.push(new Scenery("freydicBuilding5", -16144, 43906, 0, true));
+                scenicList.push(new Scenery("freydicBuilding2", -14427, 44478, 0, true));
+                scenicList.push(new Scenery("freydicBuilding5", -15963, 43155, 0, true));
+                scenicList.push(new Scenery("freydicBuilding5", -15931, 42980, 0, true));
+                scenicList.push(new Scenery("freydicBuilding5", -15914, 43858, 0, true));
+                for (var i = 0; i < 14; i++)
+                {
+                    scenicList.push(new Scenery("freydicBuilding2", -16236 - 270 * i, 43341, 0, true));
+                }
+                for (var i = 0; i < 19; i++)
+                {
+                    scenicList.push(new Scenery("freydicBuilding5", -16388 - 270 * i, 43915, 0, true));
+                }
+                for (var i = 0; i < 4; i++)
+                {
+                    scenicList.push(new Scenery("freydicBuilding2", -21042 - 270 * i, 43331, 0, true));
+                }
+
+                for (var i = 0; i < 3; i++)
+                {
+                    scenicList.push(new Scenery("freydicBuilding3", -20748, 43048 - 300 * i, 0, true));
+                    scenicList.push(new Scenery("hearth", -20649, 43115 - 300 * i, -1/2 * Math.PI, "lit"));
+                    scenicList.push(new Scenery("walrusHideRug", -20748, 43053 - 300 * i, 0 * Math.PI, 1.25));
+                    scenicList.push(new Scenery("woodenBench", -20854, 43079 - 300 * i, -1/2 * Math.PI, 0));
+                    scenicList.push(new Scenery("bed", -20820, 42962 - 300 * i, -1/2 * Math.PI, false));
+                    scenicList.push(new Scenery("smallTable", -20651, 42962 - 300 * i, 1/2 * Math.PI, 0));
+
+                }
+                for (var i = 0; i < 3; i++)
+                {
+                    scenicList.push(new Scenery("freydicBuilding6", -20149, 43048 - 300 * i, 0, true));
+                    scenicList.push(new Scenery("hearth", -20248, 43115 - 300 * i, 1/2 * Math.PI, "lit"));
+                    scenicList.push(new Scenery("walrusHideRug", -20137, 43042 - 300 * i, Math.PI, 1.25));
+                    scenicList.push(new Scenery("woodenBench", -20046, 43079 - 300 * i, 1/2 * Math.PI, 0));
+                    scenicList.push(new Scenery("bed", -20076, 42958 - 300 * i, 1/2 * Math.PI, false));
+                    scenicList.push(new Scenery("smallTable", -20242, 42957 - 300 * i, 1/2 * Math.PI, 0));
+                }
+                //the hint of uniqueness in the genericly spawned homes
+                scenicList.push(new Scenery("item", -20237, 42654, 0, "freynor", ["tyrniBerries", 1, -8]));
+                scenicList.push(new Scenery("item", -20243, 42654, 0, "freynor", ["tyrniBerries", 1, -8]));
+                scenicList.push(new Scenery("item", -20240, 42654, 0, "freynor", ["redCrombal", 1, -4]));
+
                         //player purchasable home
                 scenicList.push(new Scenery("freydicBuilding3", -20748, 43333, 0, true));
                 scenicList.push(new Scenery("walrusHideRug", -20748, 43333, 0 * Math.PI, 1.5));
@@ -2736,6 +2836,8 @@ function buildMaster()
                     scenicList.push(new Scenery("hearth", -20851, 43330, 1/2 * Math.PI, true));
                     scenicList.push(new Scenery("crate", -20660, 43259, 2.426/4 * Math.PI - Math.PI, 4, [1.4, "venningHomeCrate1", 7, [[new Item("woodenBowl", false, false), 5]], false, 0]));
                 }
+                        //well
+                scenicList.push(new Scenery("well", -21420, 43890, 9, true));
                         //general store #2
                 scenicList.push(new Scenery("freydicBuilding3", -21960, 43622, 0, true));
                 scenicList.push(new Scenery("sign", -21827, 43687, 1/2 * Math.PI, 3, "Venning City Produce Store"));
@@ -2762,6 +2864,19 @@ function buildMaster()
                 scenicList.push(new Scenery("item", -21892, 43529, 0, "freynor", ["bucketOfWaantiMilk", 1, -20]));
                 scenicList.push(new Scenery("item", -21923, 43527, 0, "freynor", ["bucketOfWaantiMilk", 1, -20]));
                 scenicList.push(new Scenery("item", -21946, 43527, 0, "freynor", ["waantiButter", 1, -19]));
+                    //Storage Vender
+                scenicList.push(new Scenery("freydicBuilding8", -15944, 43348, 0, true));
+                scenicList.push(new Scenery("sign", -16010, 43425, Math.PI + 0.15, 3, "Venning Storage Company"));
+                scenicList.push(new Scenery("crate", -15884, 43364, 3.88/4 * Math.PI - Math.PI, 2, [1.15]));
+                scenicList.push(new Scenery("crate", -15973, 43323, 3.2/4 * Math.PI - Math.PI, 1, [1.31]));
+                if (quests.venningStoragePurchased) //costs 800 coins
+                {
+                    scenicList.push(new Scenery("crate", -15896, 43311, 2.626/4 * Math.PI - Math.PI, 4, [1.26, "venningStorageCrate1", 3, [], false, 0]));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("crate", -15896, 43311, 2.626/4 * Math.PI - Math.PI, 2, [1.26]));
+                }
                     //Farmhouse
                 scenicList.push(new Scenery("freydicBuilding6", -21919, 40227, 0, true));
                 scenicList.push(new Scenery("bed", -21855, 40317, -1/2 * Math.PI, false));
@@ -2792,6 +2907,10 @@ function buildMaster()
                 if (togginBeer)
                 {
                     scenicList.push(new Scenery("item", -15012, 44780, 0, "freynor", ["harstAle", 1, 0, "Toggin"]));
+                }
+                if (randoDrinkYes)
+                {
+                    scenicList.push(new Scenery("item", -14982, 44426, 0, "freynor", ["pintGlass", 1, -1]));
                 }
                 if (quests.venningMapItems)
                 {

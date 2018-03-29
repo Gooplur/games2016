@@ -220,6 +220,7 @@ function Item(type, x, y)
 
             //Define Utility
             this.utility = "weapon";
+            this.subUtility = "boat";
 
             //Utility Focused
             this.energyCost = 0.5;
@@ -8423,6 +8424,42 @@ function Item(type, x, y)
             this.buyValue = 140 - Math.floor(player.getCharisma() / 1); // at max, buy for 90.
             this.sellValue = 65 + Math.floor(player.getCharisma() / 2); // at max, sell for 90.
         }
+        else if (this.type == "energyPotionII")
+        {
+            //For All Items
+            this.identity = "Potion of Energizing II";
+            this.weight = 0.5;
+            this.size = 5;
+            this.description = "The smooth syrup thick yellow liquid ripples rapidly; you can feel the sharp vibrations it makes through the glass.";
+            this.intForDes = 41;
+            this.intDescription = "This potion restores your energy over time.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "energyII";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 32;
+            this.ingredients = [["Vial of Water", 1], ["Neprilne Berries", 2], ["Raw Wolf Liver", 1], ["Tylun Flower", 1], ["Honey", 1], ["Fermented Narthwarp Mouth", 1], ["Lizard Tail", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 300 - Math.floor(player.getCharisma() / 1); // at max, buy for 250.
+            this.sellValue = 200 + Math.floor(player.getCharisma() / 1); // at max, sell for 250.
+        }
         else if (this.type == "energilPotionI")
         {
             //For All Items
@@ -8669,7 +8706,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 20;
-            this.ingredients = [["Fermented Ut Tentacle", 1]];
+            this.ingredients = [["Potion Glass", 1], ["Fermented Ut Tentacle", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 30 - Math.floor(player.getCharisma() / 12); // at max, buy for 26.
@@ -11303,7 +11340,7 @@ function Item(type, x, y)
             this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
         }
-        else if (this.type == "wood")
+        else if (this.type == "wood") //woodwood
         {
             //For All Items
             this.identity = "Wood";
@@ -23951,7 +23988,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(oldverse, 2737, 2, 29, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 92.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 51.2), 92.8, 51.2);
         }
-        else if (this.type == "energyPotionI")
+        else if (this.type == "energyPotionI" || this.type == "energyPotionII")
         {
             XXX.beginPath();
             XXX.drawImage(verse, 38, 267, 10, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 10, 17);
@@ -26852,7 +26889,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(oldverse, 2737, 2, 29, 16, this.invX - (1/2 * 58), this.invY - (1/2 * 32), 58, 32);
         }
-        else if (this.type == "energyPotionI")
+        else if (this.type == "energyPotionI" || this.type == "energyPotionII")
         {
             LXX.beginPath();
             LXX.drawImage(verse, 38, 267, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
@@ -29716,7 +29753,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(oldverse, 2737, 2, 29, 16, this.invX - (1/2 * 58), this.invY - (1/2 * 32), 58, 32);
         }
-        else if (this.type == "energyPotionI")
+        else if (this.type == "energyPotionI" || this.type == "energyPotionII")
         {
             XXX.beginPath();
             XXX.drawImage(verse, 38, 267, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);

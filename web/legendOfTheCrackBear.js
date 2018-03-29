@@ -2509,7 +2509,9 @@ function theLegend()
         katja: ["Katja", 0],
         fuyumi: ["Fuyumi", 0],
         ukko: ["Ukko", 0],
-        saana: ["Sanna", 0]
+        saana: ["Sanna", 0],
+        maai: ["Maai", 0],
+        gamden: ["Gamden", 0]
     };
 
 //time Tracker Variables
@@ -2648,7 +2650,9 @@ function theLegend()
         katjaLDS: true,
         fuyumiLDS: true,
         ukkoLDS: true,
-        saanaLDS: true
+        saanaLDS: true,
+        maaiLDS: true,
+        gamdenLDS: true
     };
 //QUESTS
     quests =
@@ -3214,6 +3218,7 @@ function theLegend()
     alchemy.push(new Item("hydroraSalve", false));
     alchemy.push(new Item("rawTrollsBlood", false));
     alchemy.push(new Item("energyPotionI", false));
+    alchemy.push(new Item("energyPotionII", false));
     alchemy.push(new Item("speedPotionI", false));
     alchemy.push(new Item("energilPotionI", false));
     alchemy.push(new Item("energilPotionII", false));
@@ -3235,7 +3240,7 @@ function theLegend()
     alchemy.push(new Item("haeflowerPollen", false));
     alchemy.push(new Item("neevBlood", false));
     alchemy.push(new Item("jarOfButterMellowOil", false));
-    alchemy.push(new Item("glowDust", false));
+    alchemy.push(new Item("glowDust", false)); //the other dusts are made with a forge
     alchemy.push(new Item("irilDust", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)

@@ -2039,7 +2039,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             }
         }
-        else if (this.type == "item")
+        else if (this.type == "item") //ITEMITEM
         {
             //TRAITS
             this.solid = false;
@@ -2063,6 +2063,33 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     if (player.noticed == true)
                     {
                         this.changeFactionRelation(this.information[2]);
+                        //alert creatures or anger an individual
+                        if (typeof(this.information[3]) != "undefined")
+                        {
+                            if (this.information[3] == true)
+                            {
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].baseTeam != "player")
+                                    {
+                                        this.callForNearbyHelpFromType(3500, ArtificialIntelligenceAccess[i].type);
+                                    }
+                                }
+                            }
+                            else if (this.information[3] != false)
+                            {
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].baseTeam != "player")
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].ID == this.information[3])
+                                        {
+                                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -2564,7 +2591,14 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             //TRAITS
             this.solid = false;
-            this.interactionRange = 1;
+            if (this.temporary == false)
+            {
+                this.interactionRange = 39;
+            }
+            else
+            {
+                this.interactionRange = 1;
+            }
 
             this.zIndex = 1;
             XXX.save();
@@ -2597,8 +2631,65 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //INTERACTION
             if (this.activate == true)
             {
-                dClick = true;
                 this.activate = false;
+                if (this.temporary == false && shiftKey) //shift key must also be held to re-itemize the temporary floating boat scenery piece
+                {
+                    if (this.weaponEquipped != "none" && this.weaponEquipped != "swimming")
+                    {
+                        //unequip all
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            if (Inventory[i][0].utility == "weapon")
+                            {
+                                Inventory[i][0].equipped = false;
+                            }
+                        }
+                    }
+
+                    //equip a new boat that is added to the Inventory
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "boat")
+                        {
+                            Inventory[i][1] += 1;
+                            Inventory[i][0].equipped = true;
+                            player.weaponEquipped = Inventory[i][0].type;
+                            player.weaponIsRanged = false;
+                            player.isWeaponEquipped = true;
+                            player.weaponID = Inventory[i][0].barcode;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        var theBoat = new Item("boat", false, false);
+                        theBoat.equipped = true;
+                        player.weaponEquipped = theBoat.type;
+                        player.weaponIsRanged = false;
+                        player.isWeaponEquipped = true;
+                        player.weaponID = theBoat.barcode;
+                        Inventory.push([theBoat, 1]);
+                    }
+
+                    //delete this scenery object now that it has been picked up by the player
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    dClick = true;
+                }
             }
         }
         else if (this.type == "barrel")
@@ -2694,6 +2785,33 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     if (this.temporary > 2 && this.storageListChecked == true && player.noticed == true)
                     {
                         this.changeFactionRelation(this.information[3]);
+                        //alert creatures or anger individuals
+                        if (typeof(this.information[6]) != "undefined")
+                        {
+                            if (this.information[6] == true)
+                            {
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].baseTeam != "player")
+                                    {
+                                        this.callForNearbyHelpFromType(3500, ArtificialIntelligenceAccess[i].type);
+                                    }
+                                }
+                            }
+                            else if (this.information[6] != false)
+                            {
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].baseTeam != "player")
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].ID == this.information[6])
+                                        {
+                                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                     if (this.temporary > 2 && this.storageListChecked == true)
                     {
@@ -2709,6 +2827,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+
         else if (this.type == "blood")
         {
             //TRAITS
@@ -5498,7 +5617,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(norc, 178, 228, 76, 54, -(1/2 * 76 * 1.3), -(1/2 * 54 * 1.3), 76 * 1.3, 54 * 1.3);
+                    XXX.drawImage(norc, 178, 228, 76, 54, -(1/2 * 76 * 1.8), -(1/2 * 54 * 1.8), 76 * 1.8, 54 * 1.8);
                     XXX.restore();
                 }
                 else if (this.phase == "picked")
@@ -5506,7 +5625,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(norc, 173, 321, 76, 54, -(1/2 * 76 * 1.3), -(1/2 * 54 * 1.3), 76 * 1.3, 54 * 1.3);
+                    XXX.drawImage(norc, 173, 321, 76, 54, -(1/2 * 76 * 1.8), -(1/2 * 54 * 1.8), 76 * 1.8, 54 * 1.8);
                     XXX.restore();
                 }
             }
@@ -5517,7 +5636,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(norc, 281, 236, 76, 65, -(1/2 * 76 * 1.3), -(1/2 * 65 * 1.3), 76 * 1.3, 65 * 1.3);
+                    XXX.drawImage(norc, 281, 236, 76, 65, -(1/2 * 76 * 1.8), -(1/2 * 65 * 1.8), 76 * 1.8, 65 * 1.8);
                     XXX.restore();
                 }
                 else if (this.phase == "picked")
@@ -5525,18 +5644,18 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(norc, 277, 328, 76, 65, -(1/2 * 76 * 1.3), -(1/2 * 65 * 1.3), 76 * 1.3, 65 * 1.3);
+                    XXX.drawImage(norc, 277, 328, 76, 65, -(1/2 * 76 * 1.8), -(1/2 * 65 * 1.8), 76 * 1.8, 65 * 1.8);
                     XXX.restore();
                 }
             }
-            else (this.temporary == 2)
+            else if (this.temporary == 2)
             {
                 if (this.phase == 0)
                 {
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(norc, 387, 234, 59, 84, -(1/2 * 59 * 1.3), -(1/2 * 84 * 1.3), 59 * 1.3, 84 * 1.3);
+                    XXX.drawImage(norc, 387, 234, 59, 84, -(1/2 * 59 * 1.8), -(1/2 * 84 * 1.8), 59 * 1.8, 84 * 1.8);
                     XXX.restore();
                 }
                 else if (this.phase == "picked")
@@ -5544,7 +5663,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(norc, 383, 326, 59, 84, -(1/2 * 59 * 1.3), -(1/2 * 84 * 1.3), 59 * 1.3, 84 * 1.3);
+                    XXX.drawImage(norc, 383, 326, 59, 84, -(1/2 * 59 * 1.8), -(1/2 * 84 * 1.8), 59 * 1.8, 84 * 1.8);
                     XXX.restore();
                 }
             }
@@ -8455,6 +8574,87 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     if (this.treeHealth <= 0)
                     {
                         this.treePhase = 1
+                    }
+                }
+            }
+        }
+        else if (this.type == "algae")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            //Establish Rock Load
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.health = 2;
+            }
+
+            //DRAWSELF
+            if (this.temporary == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 6, 212, 17, 15, -(1/2 * 17 * 1.75), -(1/2 * 15 * 1.75), 17 * 1.75, 15 * 1.75);
+                XXX.restore();
+            }
+            else if (this.temporary == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 1, 237, 17, 15, -(1/2 * 17 * 1.75), -(1/2 * 15 * 1.75), 17 * 1.75, 15 * 1.75);
+                XXX.restore();
+            }
+            else if (this.temporary == 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 19, 226, 17, 15, -(1/2 * 17 * 1.75), -(1/2 * 15 * 1.75), 17 * 1.75, 15 * 1.75);
+                XXX.restore();
+            }
+            else if (this.temporary == 4)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 49, 236, 17, 15, -(1/2 * 17 * 1.75), -(1/2 * 15 * 1.75), 17 * 1.75, 15 * 1.75);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 46, 213, 17, 19, -(1/2 * 17 * 1.75), -(1/2 * 19 * 1.75), 17 * 1.75, 19 * 1.75);
+                XXX.restore();
+            }
+
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 5;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+
+
+            //console.log(player.finalAttackStage);
+            if (player.weaponEquipped == "pickaxe" && player.cutcut == true)
+            {
+                var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                console.log(distFromCutCut);
+                if (distFromCutCut <= player.weapon.range * 7 + 18)
+                {
+                    this.health -= 1;
+                    if (this.health <= 0)
+                    {
+                        scenicList.splice(scenicList.indexOf(this), 1);
                     }
                 }
             }

@@ -15988,14 +15988,14 @@ function Adventurer()
             }
             else //SWIMMING
             {
-                this.energy -= 0.0025;
+                this.energy -= 0.0025 * energil;
                 //motion regardlesss of pressing anything
-                var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * Math.min((4 + this.getEndurance() / 33.4), this.waterVelocityX) / (this.freeze * this.freeze));
-                var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * Math.min((4 + this.getEndurance() / 33.4), this.waterVelocityY) / (this.freeze * this.freeze));
+                var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * Math.min((2 + this.getEndurance() / 33.4), this.waterVelocityX) / (this.freeze * this.freeze));
+                var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * Math.min((2 + this.getEndurance() / 33.4), this.waterVelocityY) / (this.freeze * this.freeze));
                 if (!this.isObstructed(nextX, nextY))
                 {
-                    X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * Math.min((4 + this.getEndurance() / 33.4), this.waterVelocityX)) / (this.freeze * this.freeze);
-                    Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * Math.min((4 + this.getEndurance() / 33.4), this.waterVelocityY)) / (this.freeze * this.freeze);
+                    X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * Math.min((2 + this.getEndurance() / 33.4), this.waterVelocityX)) / (this.freeze * this.freeze);
+                    Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * Math.min((2 + this.getEndurance() / 33.4), this.waterVelocityY)) / (this.freeze * this.freeze);
                 }
 
                 //decrease in velocity over time
@@ -16003,9 +16003,9 @@ function Adventurer()
 
                 if (wKey)
                 {
-                    this.energy -= 0.015;
+                    this.energy -= 0.015 * energil;
                     // If the place where the player would move next under the same instruction is blocked then the player will not move.
-                    var strBasedMinSwimSpeed = 0.7 + (this.getEndurance() / 110);
+                    var strBasedMinSwimSpeed = 0.6 + (this.getEndurance() / 140);
                     if (this.waterVelocityX < strBasedMinSwimSpeed)
                     {
                         this.waterVelocityX = strBasedMinSwimSpeed;
@@ -24036,7 +24036,57 @@ function Adventurer()
                 {
                     clickReleased = false;
                     //console.log(Inventory[i][0].equipped);
-                    if (Inventory[i][0].utility == "food")
+
+                    //Beginning of the Utilities Section
+                    if (Inventory[i][0].subUtility == "boat" && shiftKey)
+                    {
+                        if (this.weaponEquipped == "boat")
+                        {
+                            for (var j = 0; j < Inventory.length; j++)
+                            {
+                                if (Inventory[j][0].utility == "weapon")
+                                {
+                                    Inventory[j][0].equipped = false;
+                                }
+                            }
+                            this.movingType = 0;
+                            this.weaponEquipped = "none";
+                            this.weaponIsRanged = false;
+                            this.isWeaponEquipped = false;
+                            this.weaponID = false;
+                        }
+
+                        //Drop Boats as scenery objects
+                        if (Inventory[i][0].type == "boat")
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //19 is the radius of campFire Scenery Object.
+                                if (scenicList[j].X - 55 <= X + scenicList[j].radius && scenicList[j].X + 55 >= X - scenicList[j].radius && scenicList[j].Y - 55 <= Y + scenicList[j].radius && scenicList[j].Y + 55 >= Y - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("floatingBoat", X, Y, this.rotation, false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    else if (Inventory[i][0].utility == "food")
                     {
                         //Eating/Drinking
                         if (this.gamemode == "protagonist")

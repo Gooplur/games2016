@@ -25597,6 +25597,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 12]];
             }
+            if (this.ID == "Gamden the Alchemist")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 5]];
+            }
             if (this.ID == "Svehn the Smith")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 95 + (quests.bobithNewWealth / 2)]];
@@ -25604,6 +25608,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (this.ID == "Medlia the Merchant")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 109 + (quests.medliaNewWealth / 2)]];
+            }
+            else if (this.ID == "Maai the Herbalist")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 69]];
             }
             else if (this.ID == "Siggi the Harborman")
             {
@@ -25741,9 +25749,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.ID == "Toggin")
             {
-                this.drops = [[new Item("coins", this.X, this.Y), 20], [new Item("timberAxe", this.X, this.Y), 1]];
-                this.customEXP = true;
-                this.experience = 25 * ((player.getIntelligence() / 50) + 1);
+                if (quests.teshirNorthRoadQuest != "complete")
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 20], [new Item("timberAxe", this.X, this.Y), 1]];
+                    this.customEXP = true;
+                    this.experience = 25 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 77]];
+                    this.customEXP = true;
+                    this.experience = 14 * ((player.getIntelligence() / 50) + 1);
+                }
             }
             else if (this.ID == "Kedwin")
             {
@@ -26082,6 +26099,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.freynorFaction -= 6;
                         }
                     }
+                    if (this.ID == "Gamden the Alchemist")
+                    {
+                        uniqueChars.gamdenLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction -= 3;
+                        }
+                    }
                     if (this.ID == "Garld the Crazy Beggar" || this.ID == "Garld, Sage of Gemeth")
                     {
                         uniqueChars.garldLDS = false;
@@ -26112,6 +26137,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 12;
+                        }
+                    }
+                    else if (this.ID == "Maai the Herbalist")
+                    {
+                        uniqueChars.maaiLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction -= 10;
                         }
                     }
                     else if (this.ID == "Seeth the Innkeeper")
@@ -26286,7 +26319,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         uniqueChars.togginLDS = false;
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
-                            player.freynorFaction -= 6;
+                            if (this.ultra.faction == "Freynor")
+                            {
+                                player.freynorFaction -= 6;
+                            }
                         }
                     }
                     else if (this.ID == "Neculai the Merchant" || this.ID == "Neculai the Beggar")

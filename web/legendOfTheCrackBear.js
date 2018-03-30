@@ -5,11 +5,12 @@
 
 //TODO LIST
 //top priority
+//todo add the map n4w1 (a normal beach map with some randomized pirate spawns)
+//todo add the map n4e3 that will be a rocky tidepool biome with walruses and seals anemones etc. the map will curve down into a wide river opening
+//todo add the pirate captain with his pirate base on a small island north of the beach n4w1 on map n5w1
 
 //Venning Update
 //todo make the innkeeper have dialogue enough so that players can pay to sleep in a room
-//todo add the pirate captain with his pirate base on a small island north of the beach n4w1 on map n5w1
-//todo add the map n4e3 that will be a rocky tidepool biome with walruses and seals anemones etc. the map will curve down into a wide river opening
 //todo add a waterwalking elixer / waterwalking spell too?
 
 //Alzkwaya Update / Savannah Update
@@ -1221,6 +1222,10 @@ function legendaryPrerequisites()
     var greySand = new Image();
     greySand.src = ("images/greySand.png");
     window.greySand = greySand;
+
+    var beachRock = new Image();
+    beachRock.src = ("images/beachRock.jpg");
+    window.beachRock = beachRock;
 
     var snowEnv = new Image();
     snowEnv.src = ("images/fluffySnow.jpg");

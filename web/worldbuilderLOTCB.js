@@ -320,12 +320,26 @@ function worldBuilder()
             outlineBuilder(34, 1, "stonePath", -3, -122);
         }
         //layer 4 (frosty region): elev 1
+        //mapN4W1
+        if (Y > 36878 && Y < 47662 && X < 17903 && X > 6294) //North Coast//X-1
+        {
+            elevation = 1;
+            region = "n4w1";
+            outlineBuilder(34, 34, "outline", -54, -156);
+            outlineBuilder(16, 34, "snow", -54, -138);
+            outlineBuilder(14, 34, "greySand", -54, -152); //11 tiles thick of sand
+
+            outlineBuilder(1, 1, "seaCornerBL", -21, -152);
+            outlineBuilder(1, 34, "shallow", -54, -153);
+            outlineBuilder(3, 34, "sea", -54, -156);
+
+        }
         //mapN4
-        if (Y > 36878 && Y < 47662 && X < 7530 && X > -3910) //North Coast//X0
+        if (Y > 36878 && Y < 47662 && X < 7726 && X > -3910) //North Coast//X0
         {
             elevation = 1;
             region = "n4";
-            outlineBuilder(18, 34, "frost", -20, -140); //-156 is the top of the map //18 tiles thick of of snow
+            outlineBuilder(18, 34, "frost", -20, -140); //-156 is the top of the map //18 tiles thick of snow
 
             outlineBuilder(12, 34, "greySand", -20, -152); //11 tiles thick of sand
             outlineBuilder(4, 34, "sea", -20, -156); //4 tiles thick of sea
@@ -415,7 +429,7 @@ function worldBuilder()
             outlineBuilder(1, 33, "stonePath", 15, -135);
         }
         //mapN4E2
-        if (Y > 36878 && Y < 47662 && X < -12680) //North Coast//X1
+        if (Y > 36878 && Y < 47662 && X < -12680 && X > -24308) //North Coast//X2
         {
             elevation = 1;
             region = "n4e2";
@@ -467,27 +481,191 @@ function worldBuilder()
             outlineBuilder(6, 1, "dockV", 61, -155);
             outlineBuilder(6, 1, "dockV", 65, -155);
         }
+        //mapN4E3
+        if (Y > 36878 && Y < 47662 && X < -22859 && X > -34534) //North Coast//X3
+        {
+            elevation = 1;
+            region = "n4e3";
+            outlineBuilder(34, 34, "outline", 82, -156);
+
+            outlineBuilder(15, 18, "frost", 82, -137); //frost
+            outlineBuilder(11, 4, "greySand", 82, -147); //greySand
+            outlineBuilder(1, 2, "greySand", 86, -146); //greySand
+            outlineBuilder(10, 4, "greySand", 86, -145); //greySand
+            outlineBuilder(1, 1, "greySand", 90, -144); //greySand
+            outlineBuilder(6, 5, "greySand", 90, -143); //greySand
+            outlineBuilder(2, 1, "searock", 94, -140); //searock
+            outlineBuilder(4, 2, "searock", 93, -138); //searock
+            outlineBuilder(3, 2, "searock", 97, -133); //searock
+            outlineBuilder(1, 1, "searock", 98, -130); //searock
+            outlineBuilder(3, 1, "searock", 98, -125); //searock
+            outlineBuilder(1, 1, "searock", 95, -142); //searock
+            outlineBuilder(8, 4, "searock", 95, -141); //searock
+            outlineBuilder(18, 3, "searock", 99, -140); //searock
+            outlineBuilder(15, 3, "searock", 102, -137); //searock
+            outlineBuilder(2, 1, "searock", 102, -139); //searock
+            outlineBuilder(13, 3, "searock", 105, -135); //searock
+            outlineBuilder(9, 2, "searock", 108, -131); //searock
+            outlineBuilder(6, 1, "searock", 110, -128); //searock
+            outlineBuilder(2, 1, "searock", 111, -124); //searock
+
+            outlineBuilder(1, 1, "shallow", 105, -130); //searock
+            outlineBuilder(1, 2, "shallow", 102, -132); //searock
+            outlineBuilder(1, 1, "shallow", 103, -135); //searock
+            outlineBuilder(1, 1, "shallow", 100, -127); //searock
+
+            outlineBuilder(8, 34, "sea", 82, -156);
+            outlineBuilder(1, 4, "shallow", 82, -148);
+            outlineBuilder(1, 1, "seaCornerBL", 85, -147);
+            outlineBuilder(1, 3, "shallow", 86, -147);
+            outlineBuilder(1, 1, "seaCornerBL", 87, -146);
+            outlineBuilder(1, 3, "shallow", 88, -146);
+            outlineBuilder(1, 1, "seaCornerBL", 89, -145);
+            outlineBuilder(1, 1, "shallow", 90, -145);
+            outlineBuilder(1, 1, "seaCornerBL", 90, -144);
+            outlineBuilder(1, 4, "shallow", 91, -144);
+            outlineBuilder(1, 1, "seaCornerBL", 94, -143);
+            outlineBuilder(1, 1, "seaCornerBL", 95, -142);
+            outlineBuilder(1, 3, "sea", 96, -142);
+            outlineBuilder(1, 1, "seaCornerBL", 98, -141);
+            outlineBuilder(1, 3, "sea", 99, -141);
+            outlineBuilder(1, 1, "seaCornerBL", 101, -140);
+            outlineBuilder(1, 1, "seaCornerBL", 102, -139);
+            outlineBuilder(1, 1, "sea", 103, -139);
+            outlineBuilder(1, 2, "sea", 103, -138);
+            outlineBuilder(1, 1, "seaCornerBL", 104, -137);
+            outlineBuilder(1, 3, "sea", 105, -136);
+            outlineBuilder(1, 1, "seaCornerBL", 107, -135);
+            outlineBuilder(1, 1, "seaCornerBL", 109, -131);
+            outlineBuilder(1, 1, "seaCornerBL", 110, -128);
+            outlineBuilder(1, 1, "seaCornerBL", 111, -124);
+
+            outlineBuilder(1, 31, "sea", 85, -148);
+            outlineBuilder(1, 27, "sea", 89, -147);
+            outlineBuilder(1, 25, "sea", 91, -146);
+            outlineBuilder(1, 25, "sea", 91, -145);
+            outlineBuilder(2, 24, "sea", 92, -144);
+            outlineBuilder(1, 19, "sea", 97, -142);
+            outlineBuilder(2, 14, "sea", 102, -141);
+            outlineBuilder(1, 12, "sea", 104, -139);
+            outlineBuilder(2, 11, "sea", 105, -138);
+            outlineBuilder(5, 8, "sea", 108, -136);
+            outlineBuilder(3, 6, "sea", 110, -131);
+            outlineBuilder(4, 5, "sea", 111, -128);
+            outlineBuilder(2, 4, "sea", 112, -124);
+        }
         //layer 5 (northern sea): elev 1
+        //mapN5W1
+        if (Y > 47071 && Y < 57864 && X < 17903 && X > 6294)//North Sea//X-1
+        {
+            elevation = 1;
+            region = "n5w1";
+            //outlineBuilder(34, 34, "outline", -54, -190);
+            outlineBuilder(5, 34, "sea", -54, -190);
+            outlineBuilder(19, 11, "sea", -31, -185);
+            outlineBuilder(13, 2, "sea", -54, -185);
+            outlineBuilder(6, 10, "sea", -54, -172);
+            outlineBuilder(10, 34, "sea", -54, -166);
+            outlineBuilder(1, 1, "sea", -35, -185);
+            outlineBuilder(2, 1, "sea", -34, -185);
+            outlineBuilder(6, 1, "sea", -33, -185);
+            outlineBuilder(9, 1, "sea", -32, -185);
+            outlineBuilder(1, 3, "sea", -52, -185);
+            outlineBuilder(2, 2, "sea", -52, -184);
+            outlineBuilder(1, 1, "sea", -52, -182);
+            outlineBuilder(1, 1, "sea", -52, -173);
+            outlineBuilder(4, 2, "sea", -44, -170);
+            outlineBuilder(2, 1, "sea", -32, -168);
+
+            outlineBuilder(11, 13, "greySand", -49, -184);
+            outlineBuilder(8, 10, "greySand", -42, -176);
+            outlineBuilder(8, 2, "greySand", -51, -182);
+            outlineBuilder(1, 1, "greySand", -50, -183);
+            outlineBuilder(1, 1, "greySand", -50, -174);
+            outlineBuilder(3, 3, "greySand", -44, -173);
+            outlineBuilder(1, 1, "greySand", -45, -173);
+            outlineBuilder(1, 1, "greySand", -42, -170);
+            outlineBuilder(3, 3, "greySand", -36, -179);
+            outlineBuilder(3, 2, "greySand", -36, -182);
+            outlineBuilder(1, 1, "greySand", -36, -183);
+            outlineBuilder(1, 8, "greySand", -47, -185);
+            outlineBuilder(1, 7, "greySand", -41, -168);
+
+            outlineBuilder(1, 3, "frost", -41, -183);
+            outlineBuilder(1, 3, "frost", -42, -182);
+            outlineBuilder(6, 8, "frost", -46, -181);
+            outlineBuilder(4, 5, "frost", -40, -175);
+            outlineBuilder(1, 3, "frost", -39, -171);
+            outlineBuilder(1, 1, "frost", -39, -170);
+            outlineBuilder(3, 1, "frost", -47, -179);
+            outlineBuilder(2, 2, "frost", -42, -175);
+            outlineBuilder(1, 2, "frost", -44, -175);
+            outlineBuilder(3, 1, "frost", -38, -178);
+            outlineBuilder(1, 1, "frost", -37, -176);
+            outlineBuilder(2, 1, "frost", -35, -173);
+
+            outlineBuilder(1, 1, "seaCornerBR", -49, -184);
+            outlineBuilder(2, 1, "shallow", -50, -184);
+            outlineBuilder(1, 1, "seaCornerBR", -50, -182);
+            outlineBuilder(1, 1, "shallow", -51, -182);
+            outlineBuilder(1, 1, "seaCornerBR", -51, -181);
+            outlineBuilder(8, 1, "shallow", -52, -181);
+            outlineBuilder(1, 1, "seaCornerTR", -51, -175);
+            outlineBuilder(1, 1, "shallow", -51, -174);
+            outlineBuilder(1, 1, "seaCornerTR", -50, -174);
+            outlineBuilder(1, 7, "shallow", -51, -173);
+            outlineBuilder(1, 1, "seaCornerTR", -44, -173);
+            outlineBuilder(1, 1, "shallow", -44, -172);
+            outlineBuilder(1, 1, "shallow", -44, -171);
+            outlineBuilder(1, 1, "shallow", -43, -171);
+            outlineBuilder(1, 1, "seaCornerTR", -42, -171);
+            outlineBuilder(3, 1, "shallow", -42, -170);
+            outlineBuilder(1, 10, "shallow", -42, -167);
+            outlineBuilder(1, 1, "seaCornerTR", -41, -168);
+            outlineBuilder(1, 1, "seaCornerTL", -35, -168);
+            outlineBuilder(1, 1, "seaCornerTL", -33, -169);
+            outlineBuilder(1, 1, "shallow", -34, -168);
+            outlineBuilder(1, 1, "sea", -33, -168);
+            outlineBuilder(8, 1, "shallow", -32, -176);
+            outlineBuilder(1, 1, "seaCornerBL", -33, -176);
+            outlineBuilder(3, 1, "shallow", -33, -179);
+            outlineBuilder(1, 1, "seaCornerBL", -34, -179);
+            outlineBuilder(4, 1, "shallow", -34, -183);
+            outlineBuilder(1, 1, "seaCornerBL", -35, -182);
+            outlineBuilder(1, 1, "shallow", -35, -183);
+            outlineBuilder(1, 1, "seaCornerBL", -36, -183);
+            outlineBuilder(2, 1, "shallow", -36, -185);
+            outlineBuilder(1, 1, "shallow", -35, -184);
+            outlineBuilder(1, 13, "shallow", -49, -185);
+            outlineBuilder(1, 1, "seaCornerBL", -37, -184);
+        }
         //mapN5
-        if (Y > 47071 && X < 7530 && X > -3910)//North Sea//X0
+        if (Y > 47071 && Y < 57864 && X < 7726 && X > -3910)//North Sea//X0
         {
             elevation = 1;
             region = "n5";
             outlineBuilder(34, 34, "sea", -20, -190);
         }
         //mapN5E1
-        if (Y > 47071 && X < -2423 && X > -14153)//North Sea//X0
+        if (Y > 47071 && Y < 57864 && X < -2423 && X > -14153)//North Sea//X1
         {
             elevation = 1;
             region = "n5e1";
             outlineBuilder(34, 34, "sea", 14, -190);
         }
         //mapN5E2
-        if (Y > 47071 && X < -2423 && X < -12680)//North Sea//X0
+        if (Y > 47071 && Y < 57864 && X < -2423 && X < -12680)//North Sea//X2
         {
             elevation = 1;
             region = "n5e2";
             outlineBuilder(34, 34, "sea", 48, -190);
+        }
+        //mapN5E3
+        if (Y > 47071 && Y < 57864 && X < -22859 && X > -34534)//North Sea//X3
+        {
+            elevation = 1;
+            region = "n5e3";
+            outlineBuilder(34, 34, "sea", 82, -190);
         }
     } //ALTERNATE DIMENSIONS
     else if (map == "sagesCache") //This is a dungeon found in map W3
@@ -1838,6 +2016,101 @@ function buildMaster()
                 change = "n3";
             }
         }
+        else if (region == "n4w1")
+        {
+            if (change != "n4w1")
+            {
+                dialogueReset();
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //meant for the map
+
+                //humans
+
+                //balkur
+                //ArtificialIntelligenceAccess.push(new Unit(-11656, 38003, "Balkur", false, "Kalosh"));
+
+                //waanti
+                //ArtificialIntelligenceAccess.push(new Unit(4592, 40636, "Waanti", "baby", "yiam"));
+
+                //koobu
+                //ArtificialIntelligenceAccess.push(new Unit(-8193, 40071, "Koobu", false, "Koplepa"));
+
+
+                //winter wolves
+                //ArtificialIntelligenceAccess.push(new Unit(-4603, 37889, "WinterWolf", false, "Lauggel"));
+
+                //glutids
+                //ArtificialIntelligenceAccess.push(new Unit(-5986, 42096, "Glutid", true, "Gluupto", {patrolStops: 6, patrolLoop: true, route:[[-6169, 41490], [-7261, 41806], [-7605, 41527], [-7190, 42889], [-5876, 43183], [-5986, 42096]]}));
+                //ArtificialIntelligenceAccess.push(new Unit(-7659, 42050, "Glutid", false, "Gluho", {patrolStops: 1, patrolLoop: true, route:[[-7659, 42050]]}));
+
+
+
+                //beach creatures
+                //ArtificialIntelligenceAccess.push(new Unit(-9336, 45440, "Cangrejo", true, "Cangre"));
+
+                //anemones
+                //ArtificialIntelligenceAccess.push(new Unit(-7678, 45765, "Anemone", false, "slime"));
+
+                //seals
+                //ArtificialIntelligenceAccess.push(new Unit(-4505, 45575, "Seal", false, "arf"));
+
+                //mites
+                //ArtificialIntelligenceAccess.push(new Unit(-7904, 45301, "BeachMite", false, "bit"));
+
+                //cloimids
+                //ArtificialIntelligenceAccess.push(new Unit(-8909, 45992, "Cloimid", false, "moistClambyGrope", {rotation: -120/360 * 2 * Math.PI}));
+
+                //Plants
+                //scenicList.push(new Scenery("bushkaPlant", -9423, 38704, 20, true));
+                //scenicList.push(new Scenery("tyrniPlant", -8704, 39293, -4.444, true));
+                //scenicList.push(new Scenery("tyrniPlant", -12270, 38406, 0.4, true));
+                //scenicList.push(new Scenery("tyrniPlant", -9849, 41627, -2.4, true));
+                //scenicList.push(new Scenery("wightbloomPlant", -9294, 38575, 10, true));
+
+                //beached kelp
+                //scenicList.push(new Scenery("beachedKelp", -11296, 46004, 5, 1));
+
+                //Scenery
+                //scenicList.push(new Scenery("stone", -8132 , 46141, 4.1, 1.5, 3));
+
+                //algae
+                //scenicList.push(new Scenery("algae", -8894, 45943, 3.4, 2));
+
+                //Hyeling Camps
+                //ArtificialIntelligenceAccess.push(new Unit(10041, 8746, "Hyeling", true, "White Hammer"));
+                //ArtificialIntelligenceAccess.push(new Unit(9711, 8503, "HyelingSoldier", false, "Running Stone"));
+                //scenicList.push(new Scenery("largeCeremonialRockCircle", 10075 , 8783, 0, true));
+                //scenicList.push(new Scenery("hyelingTent", 9199 , 8965, 1/2 * Math.PI, true));
+                //scenicList.push(new Scenery("hyelingSkeleton", 10071 , 8788, 0.12, true));
+
+                change = "n4w1";
+            }
+        }
         else if (region == "n4")
         {
             if (change != "n4")
@@ -2008,6 +2281,9 @@ function buildMaster()
                 scenicList.push(new Scenery("stone", 4461 , 44964, 0.5, 1.5, 2));
                 scenicList.push(new Scenery("stone", 4467 , 44916, 4, 2, 1));
                 scenicList.push(new Scenery("stone", 4417 , 44955, 2.9, 1, 3));
+
+                //fishing spots
+                scenicList.push(new Scenery("northernFishingSpot", 5425, 46857, 7, true));
 
                 //algae
                 scenicList.push(new Scenery("algae", 4656, 45859, 0, 1));
@@ -3022,6 +3298,196 @@ function buildMaster()
                 }
 
                 change = "n4e2";
+            }
+        }
+        else if (region == "n4e3")
+        {
+            if (change != "n4e3")
+            {
+                dialogueReset();
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //meant for the map
+
+                //humans
+
+                //balkur
+                //ArtificialIntelligenceAccess.push(new Unit(-11656, 38003, "Balkur", false, "Kalosh"));
+
+                //waanti
+                //ArtificialIntelligenceAccess.push(new Unit(4592, 40636, "Waanti", "baby", "yiam"));
+
+                //koobu
+                //ArtificialIntelligenceAccess.push(new Unit(-8193, 40071, "Koobu", false, "Koplepa"));
+
+
+                //winter wolves
+                //ArtificialIntelligenceAccess.push(new Unit(-4603, 37889, "WinterWolf", false, "Lauggel"));
+
+                //glutids
+                //ArtificialIntelligenceAccess.push(new Unit(-5986, 42096, "Glutid", true, "Gluupto", {patrolStops: 6, patrolLoop: true, route:[[-6169, 41490], [-7261, 41806], [-7605, 41527], [-7190, 42889], [-5876, 43183], [-5986, 42096]]}));
+                //ArtificialIntelligenceAccess.push(new Unit(-7659, 42050, "Glutid", false, "Gluho", {patrolStops: 1, patrolLoop: true, route:[[-7659, 42050]]}));
+
+
+
+                //beach creatures
+                //ArtificialIntelligenceAccess.push(new Unit(-9336, 45440, "Cangrejo", true, "Cangre"));
+
+                //anemones
+                //ArtificialIntelligenceAccess.push(new Unit(-7678, 45765, "Anemone", false, "slime"));
+
+                //seals
+                //ArtificialIntelligenceAccess.push(new Unit(-4505, 45575, "Seal", false, "arf"));
+
+                //mites
+                //ArtificialIntelligenceAccess.push(new Unit(-7904, 45301, "BeachMite", false, "bit"));
+
+                //cloimids
+                //ArtificialIntelligenceAccess.push(new Unit(-8909, 45992, "Cloimid", false, "moistClambyGrope", {rotation: -120/360 * 2 * Math.PI}));
+
+                //Plants
+                //scenicList.push(new Scenery("bushkaPlant", -9423, 38704, 20, true));
+                //scenicList.push(new Scenery("tyrniPlant", -8704, 39293, -4.444, true));
+                //scenicList.push(new Scenery("tyrniPlant", -12270, 38406, 0.4, true));
+                //scenicList.push(new Scenery("tyrniPlant", -9849, 41627, -2.4, true));
+                //scenicList.push(new Scenery("wightbloomPlant", -9294, 38575, 10, true));
+
+                //beached kelp
+                //scenicList.push(new Scenery("beachedKelp", -11296, 46004, 5, 1));
+
+                //Scenery
+                //scenicList.push(new Scenery("stone", -8132 , 46141, 4.1, 1.5, 3));
+
+                //algae
+                //scenicList.push(new Scenery("algae", -8894, 45943, 3.4, 2));
+
+                //Hyeling Camps
+                //ArtificialIntelligenceAccess.push(new Unit(10041, 8746, "Hyeling", true, "White Hammer"));
+                //ArtificialIntelligenceAccess.push(new Unit(9711, 8503, "HyelingSoldier", false, "Running Stone"));
+                //scenicList.push(new Scenery("largeCeremonialRockCircle", 10075 , 8783, 0, true));
+                //scenicList.push(new Scenery("hyelingTent", 9199 , 8965, 1/2 * Math.PI, true));
+                //scenicList.push(new Scenery("hyelingSkeleton", 10071 , 8788, 0.12, true));
+
+                change = "n4e3";
+            }
+        }
+        else if (region == "n5w1")
+        {
+            if (change != "n5w1")
+            {
+                dialogueReset();
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //meant for the map
+
+                //humans
+
+                //balkur
+                //ArtificialIntelligenceAccess.push(new Unit(-11656, 38003, "Balkur", false, "Kalosh"));
+
+                //waanti
+                //ArtificialIntelligenceAccess.push(new Unit(4592, 40636, "Waanti", "baby", "yiam"));
+
+                //koobu
+                //ArtificialIntelligenceAccess.push(new Unit(-8193, 40071, "Koobu", false, "Koplepa"));
+
+
+                //winter wolves
+                //ArtificialIntelligenceAccess.push(new Unit(-4603, 37889, "WinterWolf", false, "Lauggel"));
+
+                //glutids
+                //ArtificialIntelligenceAccess.push(new Unit(-5986, 42096, "Glutid", true, "Gluupto", {patrolStops: 6, patrolLoop: true, route:[[-6169, 41490], [-7261, 41806], [-7605, 41527], [-7190, 42889], [-5876, 43183], [-5986, 42096]]}));
+                //ArtificialIntelligenceAccess.push(new Unit(-7659, 42050, "Glutid", false, "Gluho", {patrolStops: 1, patrolLoop: true, route:[[-7659, 42050]]}));
+
+
+
+                //beach creatures
+                //ArtificialIntelligenceAccess.push(new Unit(-9336, 45440, "Cangrejo", true, "Cangre"));
+
+                //anemones
+                //ArtificialIntelligenceAccess.push(new Unit(-7678, 45765, "Anemone", false, "slime"));
+
+                //seals
+                //ArtificialIntelligenceAccess.push(new Unit(-4505, 45575, "Seal", false, "arf"));
+
+                //mites
+                //ArtificialIntelligenceAccess.push(new Unit(-7904, 45301, "BeachMite", false, "bit"));
+
+                //cloimids
+                //ArtificialIntelligenceAccess.push(new Unit(-8909, 45992, "Cloimid", false, "moistClambyGrope", {rotation: -120/360 * 2 * Math.PI}));
+
+                //Plants
+                //scenicList.push(new Scenery("bushkaPlant", -9423, 38704, 20, true));
+                //scenicList.push(new Scenery("tyrniPlant", -8704, 39293, -4.444, true));
+                //scenicList.push(new Scenery("tyrniPlant", -12270, 38406, 0.4, true));
+                //scenicList.push(new Scenery("tyrniPlant", -9849, 41627, -2.4, true));
+                //scenicList.push(new Scenery("wightbloomPlant", -9294, 38575, 10, true));
+
+                //beached kelp
+                //scenicList.push(new Scenery("beachedKelp", -11296, 46004, 5, 1));
+
+                //Scenery
+                //scenicList.push(new Scenery("stone", -8132 , 46141, 4.1, 1.5, 3));
+
+                //algae
+                //scenicList.push(new Scenery("algae", -8894, 45943, 3.4, 2));
+
+                //Hyeling Camps
+                //ArtificialIntelligenceAccess.push(new Unit(10041, 8746, "Hyeling", true, "White Hammer"));
+                //ArtificialIntelligenceAccess.push(new Unit(9711, 8503, "HyelingSoldier", false, "Running Stone"));
+                //scenicList.push(new Scenery("largeCeremonialRockCircle", 10075 , 8783, 0, true));
+                //scenicList.push(new Scenery("hyelingTent", 9199 , 8965, 1/2 * Math.PI, true));
+                //scenicList.push(new Scenery("hyelingSkeleton", 10071 , 8788, 0.12, true));
+
+                change = "n5w1";
             }
         }
         else if (region == "w1") //Y > 6290 && Y < 32370
@@ -11392,6 +11858,10 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 else if (terrain == "woods")
                 {
                     XXX.drawImage(woodsEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "searock")
+                {
+                    XXX.drawImage(beachRock, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
                 else if (terrain == "greySand")
                 {

@@ -795,6 +795,10 @@ function cheats()
             player.knowledge= 0;
             player.memory = 0;
         }
+        else if (cheatcode.toLowerCase() == "tellmap") //resets all magical stats to 0
+        {
+            alert("World: " +  map +", Map: " + region + ", Elevation: " + elevation);
+        }
         else if (cheatcode.toLowerCase() == "borrar")
         {
             dialogueReset();

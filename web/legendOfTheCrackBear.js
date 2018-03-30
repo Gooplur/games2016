@@ -5,20 +5,40 @@
 
 //TODO LIST
 //top priority
-//todo finish Venning City
-//todo besides Venning city fill out the rest of map N4E2
-//todo fill out map N4E1
 
 //Venning Update
+//todo make the innkeeper have dialogue enough so that players can pay to sleep in a room
 //todo add the pirate captain with his pirate base on a small island north of the beach n4w1 on map n5w1
-//todo add shift click on boats to place them as scenery in water.
 //todo add the map n4e3 that will be a rocky tidepool biome with walruses and seals anemones etc. the map will curve down into a wide river opening
-//todo add an algae that grows on rocks
-//todo add a waterwalking elixer
-//todo add the freydic hatchet from the balkur img sheet
-//todo add lakes and ice holes
-//todo add glass of Waanti milk
+//todo add a waterwalking elixer / waterwalking spell too?
+
+//Alzkwaya Update / Savannah Update
+//todo add mounts and the mounting system (make different mounts require a different survivalism skill amount): add it for Naaprids, Zebras, Skols... (destroy current mounting system: make it unit based instead of player based. The player literally teleports on top of the creature in question and follows its movement. (the player can direct it with 'T' because it is on the player's team.) mounting is canceled by water, or if the player equipps an uncompatible weapon or transfigures themself into an incompatible form.
+//todo add the alzkwaya village
+//todo add hot climate farm plants
+//todo add other hot climate wild plants
+//todo add more savannah creatures: Zebra-like creature - a white and black striped horse that's hide will make a fancy striped leather armour, Rhino-ish monster - it will charge fast, turn slow, and deal knockback/stun damage, Drile = a crocodile-esque amphibeous beast - fast on land, faster in water, slow to attack things unless they come very close (unless in water), but will persue very far
+//todo add southern fish / southern fishing spot
+
+//Calcutt Patch
+//todo add roselin's quest
+//todo add drinking horns
+//todo add drinking horns
+//todo add kellish dolls
+
+//Really Cool Idea for the next image sheet I make
+//todo add a secret unit (a monster that is in an inanimate form during the day but lurks murderously throughout the night) GARGOYLE //the unit will know when to become a scenery object //the scenery object will know when to become a unit
+//todo add "the grail of eternity" (a elaborate cup that heals you when you drink from it, you can refill it at a well)
+
+//Isles Update
+//todo add a small northern island with a village
 //todo create and add Margul - White furred, large, carnivorous, arctic beast with a tail and a long neck...
+//todo create and add large bare-faced furry snow trolls to the north
+//todo add lakes and ice holes
+//todo add the freydic hatchet from the balkur img sheet
+//todo add glass of Waanti milk
+//todo add sheep + shears [tool] (I already added wool and their potential drops)
+//todo add muscles (shellfish) as a scenery object that stick out their tongues intermitently when in water, but also in a cooked form
 
 //Lethik Patch
 //todo finish the witch quest
@@ -34,24 +54,8 @@
 //todo decorate the various buildings more
 //todo add dialogue to the Jarl: Quests/Purchasable Property/etc.
 
-//Calcutt Patch
-//todo add roselin's quest
-//todo add drinking horns
-//todo add drinking horns
-//todo add kellish dolls
-
-//Eschuttes Update
-//todo add another echlin tribe village called Eschuttes
-
-//Alzkwaya Update
-//todo add the alzkwaya village
-//todo add hot climate farm plants
-//todo add other hot climate wild plants
-
-//Isles Update
-//todo add a small northern island with a village
-
 //Cephrian/Jungle Update
+//todo piranah fish swarm (water creature) [Only attacks the player if not in a boat]
 //todo add Sonja Fruit and Sonja fruit trees (tropical trees that drop Sonja fruits)
 //todo add jungle trees
 //todo add gulfreys, Blil plant, etres, blue water berries that dmitri made a while ago
@@ -60,8 +64,17 @@
 //todo add a cephrian city directly to the south of the jungle map "Holuix City" (a town bustling with tropical market places and various magic venders)
 //todo add the 'air staff' from Theng img sheet
 //todo add weaken spell
-//todo add arrow mods such as toxic/posion, electric, wind, armour piercing...
+//todo add arrow mods such as toxic/poison, electric, wind, armour piercing...
 //todo add toxic slugs from 'zapa' IMG
+
+//Venning Patch
+//todo add quests for the several unique characters
+//todo make the property purchasable
+//todo make the storage company sell space in a crate for 800 coins to the player through dialogue
+//todo add the jewelry shop / add more jewelry into the game / add a jeweler
+
+//Eschuttes Update
+//todo add another echlin tribe village called Eschuttes
 
 //Other
 //todo add a witch trap house where the witch becomes a mutated magical beast and tries to kill you
@@ -70,8 +83,6 @@
 //todo add more jewelry from 'polpol' IMG
 //todo add haeflower drug trip monsters from 'zapa' IMG
 //todo add a spell that casts out a blast that causes a small rock explosion (use IMG from 'nognog')
-//todo add "the grail of eternity" (a elaborate cup that heals you when you drink from it, you can refill it at a well)
-//todo add a secret unit (an undead monster that is in an inanimate form during the day but lurks murderously throughout the night)
 //todo add the traps on the IMG 'trapper'
 //todo put road signs around to name parts of the world.
 //todo finish adding the beast journal.

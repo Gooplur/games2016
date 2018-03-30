@@ -2676,6 +2676,45 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         Inventory.push([theBoat, 1]);
                     }
 
+                    if (player.water == true)
+                    {
+                        //any dead bodies that relied on the boat for land will sink when the boat is removed
+                        for (var i = deadAIList.length - 1; i > -1; i--)
+                        {
+                            var deadPos = Math.sqrt((deadAIList[i].X - this.X)*(deadAIList[i].X - this.X) + (deadAIList[i].Y - this.Y)*(deadAIList[i].Y-this.Y));
+                            if (deadPos <= this.radius)
+                            {
+                                deadAIList.splice(i, 1);
+                            }
+                        }
+                        //any items that relied on the boat for land that are not aquatic items will be apropriated into the player's inventory
+                        for (var i = worldItems.length - 1; i > -1; i--)
+                        {
+                            var itemPos = Math.sqrt((worldItems[i][0].X - this.X)*(worldItems[i][0].X - this.X) + (worldItems[i][0].Y - this.Y)*(worldItems[i][0].Y-this.Y));
+                            if (itemPos <= this.radius && !worldItems[i][0].aqua)
+                            {
+                                var hits = 0;
+                                for (var j = 0; j < Inventory.length; j ++)
+                                {
+                                    if (Inventory[j][0].type == worldItems[i][0].type)
+                                    {
+                                        Inventory[j][1] += worldItems[i][1];
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        hits += 1;
+                                    }
+                                }
+                                if (hits == Inventory.length)
+                                {
+                                    Inventory.push([new Item(worldItems[i][0].type, false, false), worldItems[i][1]]);
+                                }
+                                worldItems.splice(i, 1);
+                            }
+                        }
+                    }
+
                     //delete this scenery object now that it has been picked up by the player
                     for (var i = 0; i < scenicList.length; i++)
                     {

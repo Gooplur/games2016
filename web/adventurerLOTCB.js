@@ -26451,7 +26451,6 @@ function Adventurer()
 
             if (this.thirst <= 0)
             {
-                console.log("pass");
                 this.thirst = 0;
                 this.health -= 2 * (TTD / (1000 + 100 * this.getEndurance() * 2));
             }

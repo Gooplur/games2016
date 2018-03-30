@@ -484,10 +484,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.target != "none" && typeof(this.target) != "undefined")
         {
+            //console.log(this.target);
             for (var i = 0; i < bubbleConstructorList.length; i++)
             {
                 dfbtt = Math.sqrt(((this.X + Math.cos(bubbleConstructorList[i][1] + bubbleConstructorList[i][2]) * (-bubbleConstructorList[i][3]))- this.target.X)*((this.X + Math.cos(bubbleConstructorList[i][1] + bubbleConstructorList[i][2]) * (-bubbleConstructorList[i][3])) - this.target.X) + ((this.Y + Math.sin(bubbleConstructorList[i][1] + bubbleConstructorList[i][2]) * (-bubbleConstructorList[i][3])) - this.target.Y)*((this.Y + Math.sin(bubbleConstructorList[i][1] + bubbleConstructorList[i][2]) * (-bubbleConstructorList[i][3])) - this.target.Y));
-                if (dfbtt <= bubbleConstructorList[i][0])
+                //console.log("radDist: " + dfbtt + " <? " + (bubbleConstructorList[i][0] + this.target.sizeRadius));
+                if (dfbtt <= bubbleConstructorList[i][0] + this.target.sizeRadius)
                 {
                     return true;
                 }
@@ -3225,7 +3227,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.attacking = true;
             }
-            else
+            else if (this.followThrough == false)
             {
                 this.attacking = false;
             }

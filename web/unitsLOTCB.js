@@ -846,6 +846,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.allys.push("player");
             }
+
+            this.allys.push("TheBalgurMercenaries");
+            this.allys.push("Thengar");
+            this.allys.push("Kel");
+            this.allys.push("Freynor");
+            this.allys.push("Vardan");
             this.allys.push("clamia");
         }
         if (this.team == "Orgell")
@@ -854,6 +860,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.allys.push("player");
             }
+            this.allys.push("TheBalgurMercenaries");
+            this.allys.push("Thengar");
+            this.allys.push("Kel");
+            this.allys.push("Freynor");
+            this.allys.push("Vardan");
+            this.allys.push("Cephrite");
+            this.allys.push("Nirwaden");
             this.allys.push("clamia");
         }
         if (this.team == "Cephrite")
@@ -862,6 +875,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.allys.push("player");
             }
+
+            this.allys.push("TheBalgurMercenaries");
+            this.allys.push("Thengar");
+            this.allys.push("Kel");
+            this.allys.push("Freynor");
+            this.allys.push("Orgell");
+            this.allys.push("Vardan");
+            this.allys.push("Nirwaden");
             this.allys.push("clamia");
         }
         if (this.team == "Nirwaden")
@@ -870,6 +891,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.allys.push("player");
             }
+
+            this.allys.push("TheBalgurMercenaries");
+            this.allys.push("Thengar");
+            this.allys.push("Kel");
+            this.allys.push("Freynor");
+            this.allys.push("Orgell");
+            this.allys.push("Vardan");
+            this.allys.push("Cephrite");
             this.allys.push("clamia");
         }
         if (this.team == "TheBalgurMercenaries")
@@ -878,8 +907,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.allys.push("player");
             }
+
             this.allys.push("Thengar");
             this.allys.push("Freynor");
+            this.allys.push("Aldrek");
+            this.allys.push("Orgell");
+            this.allys.push("Vardan");
+            this.allys.push("Cephrite");
+            this.allys.push("Nirwaden");
             this.allys.push("clamia");
         }
         if (this.team == "wild")
@@ -896,10 +931,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.allys.push("docile");
             this.allys.push("clamia");
+            this.allys.push("walrusia");
         }
         if (this.team == "clamia")
         {
             this.allys.push("docile");
+            this.allys.push("walrusia"); //walruses are scary to them so they stay inside their shells
         }
         if (this.team == "etnia")
         {
@@ -999,6 +1036,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.allys.push("docile");
             this.allys.push("clamia");
+        }
+        if (this.team == "walrusia")
+        {
+            this.allys.push("docile");
+            this.allys.push("clamia");
+            this.allys.push("herd");
         }
     };
 
@@ -5766,7 +5809,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.damageFrame = "automatic";
             this.resistances = ["frozen", "shock", "water"];
-            this.team = "walarusia";
+            this.team = "walrusia";
             this.baseTeam = this.team;
 
             if (this.alpha == true)

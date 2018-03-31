@@ -5,8 +5,8 @@
 
 //TODO LIST
 //top priority
-//todo add the map n4w1 (a normal beach map with some randomized pirate spawns)
-//todo add the map n4e3 that will be a rocky tidepool biome with walruses and seals anemones etc. the map will curve down into a wide river opening
+//todo fill out the map: n4w1 (keep in mind to add the special quest encounters found there)
+//todo fill out the map n4e3 that will be a rocky tidepool biome with walruses and seals anemones etc.
 //todo add the pirate captain with his pirate base on a small island north of the beach n4w1 on map n5w1
 
 //Venning Update
@@ -28,6 +28,7 @@
 //todo add kellish dolls
 
 //Really Cool Idea for the next image sheet I make
+//todo add a six-legged basilisk that lives in dungeons (petrifies whatever comes near enough to it unless it is resistant to petrification) *add a potion that provides such a resistance for the player //basilisks will be incredibly poisonous, with a powerful bite, but they are relatively slow creatures *obtainable on death: basilisk venom gland, basilisk tooth, basilisk head, basilisk eyes, basilisk skin, shed basilisk skin
 //todo add a secret unit (a monster that is in an inanimate form during the day but lurks murderously throughout the night) GARGOYLE //the unit will know when to become a scenery object //the scenery object will know when to become a unit
 //todo add "the grail of eternity" (a elaborate cup that heals you when you drink from it, you can refill it at a well)
 
@@ -69,7 +70,13 @@
 //todo add toxic slugs from 'zapa' IMG
 
 //Venning Patch
-//todo add quests for the several unique characters
+//todo add quests for the several unique characters:
+    //todo add quest 'A Noble Conspiracy' -- the Jarl of Venning is involved in supporting piratry in exhcange for a cut (evidence: you spot a town guard that tries to attack you in map n4w1 when you see him making a cash pickup from a pirate, pirate says "here's for yer jarl's blind eye to ar' business") if you bring it up to the jarl he will sic his guards on you unless you are noble or royal in which case he will try to justify it, and bribe you not to tell the king (pick either the option to take the bribe (lying that you will not tell the king), (take the bribe and don't tell the king), or refuse the bribe (if you refuse the bribe he will send an assassin after you at a later point), - if highfolk and your faction relation with Freynor is 500+ the king will believe you, otherwise you must have 65 fame and 700 faction relation with Freynor for him to believe you. if noble or royalty the king will believe you unless your own faction relation with Freynor is less than 250, in which case he will say "Of course it would be you who brings malicious slander into my court, you think that spreading fowl rumors about your moral betters will gain you something from me, *chuckles* you are utterly mistaken [-50 faction relation] (you only get one chance to convince the king, but if you do he stripps Jarl Stombjord of his titles and gives his cousin who is a knight in the royal court the title Jarl of Venning, (the new jarl, Gallok Stambjord, feasts as well but is a fully armoured and trained fighter)
+    //todo add a flooded basement pest control quest in which you kill the crabs that are infesting someone's basement for a fee.
+    //todo add a quest 'A broken hearted soul' pass letters between a love interest and a passionate man whose family does not permit him leave to move away from the farm, when his lover tells the man that she has found someone new, he kills himself. his angry ghost can be confronted at the island's cemetery (digg up bones and burn them with salt - all while trying not to die by the very spectre you are eradicating)
+    //todo if you ask the innkeeper about rumors he will tell you that A: there's a pirate problem (if you have not yet killed the pirate leader), B: a usual was talking about stached treasure ("he claimed that the ol' miners hid away some of the gold they found down there, believable, but unlikely if you ask me") in an old mineshaft then never came around again, "he either found what he was looking for or tripped and broke his skull down there in the dark" (the mineshaft is south of Venning in map n3e2) A basilisk inhabits it (petrification forces you to equip a stone arms texture that counts as a weapon, and it turns your base color to dark grey. If petrification resistance is active then the basilisk will only stun the player with stunI instead of petrifying them.
+    //todo the herbalist has a sick patient that needs a special elixer that only the alchemist knows how to make, the alchemist dislikes the patient (who has insulted him for not being a hunter and therefore not the pinnacle of freydic virility) so he has refused to help, the options are: convince him to help (CHAR), convince him to help ($$$$), accept a quest for him in which you bring him a 'rawCloimidFlesh' item for one of his potions in exchange for his help.
+    //todo add quest 'Worthy Under the Watchful Eye' -- find an ancient tablet for the sage of Gemesh in the Venning city temple (it has been part of the temples belongings for centuries, but it has been stolen {whoever stole it stole the wrong one, because the one missing is not the spell}, "This tablet was dear to our temple, if you can find it you will surely be rewarded in the afterlife, the great valley of Halmthafgh will yield to you its wonderous fruits, sewn from the glory of its maker, our wise father Gemesh!" - if the player requests a more tangible reward, the sage will scoff and offer the player a 100 coin reward (at the expense of the magic experience that would otherwise be gained for finding it) - include a letter that was cursed to kill the person who opened it.
 //todo make the property purchasable
 //todo make the storage company sell space in a crate for 800 coins to the player through dialogue
 //todo add the jewelry shop / add more jewelry into the game / add a jeweler

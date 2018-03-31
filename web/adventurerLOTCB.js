@@ -649,6 +649,10 @@ function Adventurer()
                     this.thirst = Math.max(0, this.thirst - 0.11);
                 }
             }
+            if (this.water == true && this.land != true) //being in water puts out fire
+            {
+                this.burningTime = 0;
+            }
         };
         this.onFire();
 

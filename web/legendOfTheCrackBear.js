@@ -6,7 +6,6 @@
 //TODO LIST
 //top priority
 //todo fill out the map: n4w1 (keep in mind to add the special quest encounters found there)
-//todo fill out the map n4e3 that will be a rocky tidepool biome with walruses and seals anemones etc.
 //todo add the pirate captain with his pirate base on a small island north of the beach n4w1 on map n5w1
 
 //Venning Update
@@ -28,6 +27,7 @@
 //todo add kellish dolls
 
 //Really Cool Idea for the next image sheet I make
+//todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
 //todo add a six-legged basilisk that lives in dungeons (petrifies whatever comes near enough to it unless it is resistant to petrification) *add a potion that provides such a resistance for the player //basilisks will be incredibly poisonous, with a powerful bite, but they are relatively slow creatures *obtainable on death: basilisk venom gland, basilisk tooth, basilisk head, basilisk eyes, basilisk skin, shed basilisk skin
 //todo add a secret unit (a monster that is in an inanimate form during the day but lurks murderously throughout the night) GARGOYLE //the unit will know when to become a scenery object //the scenery object will know when to become a unit
 //todo add "the grail of eternity" (a elaborate cup that heals you when you drink from it, you can refill it at a well)
@@ -43,8 +43,9 @@
 //todo add muscles (shellfish) as a scenery object that stick out their tongues intermitently when in water, but also in a cooked form
 
 //Lethik Patch
+//todo finish lost memories quest
 //todo finish the witch quest
-//todo finish the beer money quest, (add the characters mentions to collect money from)
+//todo finish the beer money quest, (add the characters he mentions to collect money from)
 //todo add a bountyhunt quest that the captain gives (if he is still alive of course)
 //todo make Lethik city property purchasable at the bank.
 //todo extend the thengan forest
@@ -86,28 +87,24 @@
 
 //Other
 //todo add a witch trap house where the witch becomes a mutated magical beast and tries to kill you
-//todo add ghosts
+//todo add ghosts - add that the way to kill ghosts is to digg up the bones, salt them, then set them aflame.
 //todo add water creatures that become beached if they go on land, usarían the variable this.flotation in Unit Class
 //todo add more jewelry from 'polpol' IMG
 //todo add haeflower drug trip monsters from 'zapa' IMG
 //todo add a spell that casts out a blast that causes a small rock explosion (use IMG from 'nognog')
 //todo add the traps on the IMG 'trapper'
-//todo put road signs around to name parts of the world.
 //todo finish adding the beast journal.
 //todo create and add a standard leather armour
 //todo add interesting and immersive options for player children interaction (like: feeding, arming, praising, getting to know about them, teaching them spells, punishment, loving comments)
 //todo add more alchemy stuff: potions, salves
 //todo add vamprism and lycanthropy
-//todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
-//todo add containers that operate like miniature banks with fixed numbers of slots.
-//todo figure out why aldrekii claws manual attack thing won't let it at twice or even early, while the same code lets the flail perform its attack early.
 //todo finish adding sickness system //add Lodotos, a sickness that one can get in the kellish mud bog. //add sicknesses and symptons (dizziness, pox, fever, fatigue, etc.) ex: make dizziness spin the screen, make pox weaken players constitution etc., make fever decrease thirst.
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
 //todo add brain flies from 'poly' img.
 //todo add hangover, and soarness effects as well as their mini notices.
 //todo add a rest without bed button on the UI that uses a homemade confirm popup to ask if you are sure you want to sleep. Add the nappy closed eye for the sleepButton. (it's on poly)
 //todo add lv 25 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
-//todo add mage boss who uses the electric spear as well as magical shielding spell he uses.
+//todo add mage boss who uses the electric spear as well as magical shielding spell he uses. (High Magus Aleksi of the Cephrian Council - he is an aetheistic powerhungry  mage-surpremacist that is gallavanting about the north in search of ancient magics)
 //todo add throwing stars for the orgel
 //todo make alpha Olkrin's death animation line up slightly more.
 //todo add options menu with button: it will allow you to toggle certain settings like mouse combat mode, game coordinates, and other such features.
@@ -155,6 +152,11 @@ function legendaryPrerequisites()
     window.trapclap = trapclap;
 
     //dialogue sounds
+
+        //NON CHARACTER DIALOGUE: voice acting
+
+    var conspBabb = new Audio("sounds/polySounds/conspiracyBabble.wav");
+    window.conspBabb = conspBabb;
 
         //SVEHN CHARACTER: voice acting
 
@@ -2677,7 +2679,8 @@ function theLegend()
         saanaLDS: true,
         maaiLDS: true,
         gamdenLDS: true,
-        bjornLDS: true
+        bjornLDS: true,
+        jalmariLDS: true
     };
 //QUESTS
     quests =
@@ -2725,6 +2728,10 @@ function theLegend()
         cherylChild: false,
         cherylChildName: "Adalard",
         cherylChildAccompany: false,
+
+        //QUEST: A Noble Conspiracy ---- given by ¡EVENT!
+        aNobleConspiracyQuest: false,
+        aNobleConspiracyCompletionStyle: false,
 
         //QUEST: The Plight of Lethik ---- given by Axel
         thePlightOfLethikQuest: true,

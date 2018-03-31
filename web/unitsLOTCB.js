@@ -182,6 +182,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.voicedSounds = [];
     this.voiceTime = new Date().getTime();
     this.voiceFrequency = 45;
+    this.startVoice = false;
     //swimming
     this.swimMAX = 25;
     this.swim = 25;
@@ -2681,53 +2682,68 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     };
 
     //Units may casually speak every so often. //VOICE
-    this.voice = function(soundList, range, repeat)
+    this.voice = function(soundList, range, repeat, startSoundRange)
     {
-        var sounds = soundList;
-        for (var v = 0; v < soundList.length; v++)
+        if (startSoundRange != false)
         {
-            sounds[v].volume = Math.max(0, Math.min(1, 1 - (this.DTP() / range)));
+            if (this.DTP() <= startSoundRange)
+            {
+                this.startVoice = true;
+            }
+        }
+        else
+        {
+            this.startVoice = true;
         }
 
-        if (new Date().getTime() - this.voiceTime >= this.voiceFrequency * 1000)
+        if (this.startVoice == true)
         {
-            this.voiceTime = new Date().getTime();
-
-            var rnd = Math.floor(Math.random() * soundList.length);
-            var hitz = false;
-
-            if (!repeat)
+            var sounds = soundList;
+            for (var v = 0; v < soundList.length; v++)
             {
-                for (var i = 0; i < this.voicedSounds.length; i++)
-                {
-                    if (this.voicedSounds[i] == rnd)
-                    {
-                        hitz = true;
-                    }
-                }
+                sounds[v].volume = Math.max(0, Math.min(1, 1 - (this.DTP() / range)));
             }
 
-            if (hitz == false)
+            if (new Date().getTime() - this.voiceTime >= this.voiceFrequency * 1000)
             {
-                if (this.DTP() <= range)
-                {
-                    for (var j = 0; j < soundList.length; j++)
-                    {
-                        if (j == rnd)
-                        {
-                            if (player.cyrinthilimTrip)
-                            {
-                                sounds[j].playbackRate = -2;
-                                sounds[j].currentTime = soundList[j].duration;
-                            }
-                            else
-                            {
-                                sounds[j].playbackRate = 1;
-                                sounds[j].currentTime = 0;
-                            }
+                this.voiceTime = new Date().getTime();
 
-                            this.voicedSounds.push(rnd);
-                            sounds[j].play();
+                var rnd = Math.floor(Math.random() * soundList.length);
+                var hitz = false;
+
+                if (!repeat)
+                {
+                    for (var i = 0; i < this.voicedSounds.length; i++)
+                    {
+                        if (this.voicedSounds[i] == rnd)
+                        {
+                            hitz = true;
+                        }
+                    }
+                }
+
+                if (hitz == false)
+                {
+                    if (this.DTP() <= range)
+                    {
+                        for (var j = 0; j < soundList.length; j++)
+                        {
+                            if (j == rnd)
+                            {
+                                if (player.cyrinthilimTrip)
+                                {
+                                    sounds[j].playbackRate = -2;
+                                    sounds[j].currentTime = soundList[j].duration;
+                                }
+                                else
+                                {
+                                    sounds[j].playbackRate = 1;
+                                    sounds[j].currentTime = 0;
+                                }
+
+                                this.voicedSounds.push(rnd);
+                                sounds[j].play();
+                            }
                         }
                     }
                 }
@@ -3649,6 +3665,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.burningTime2 = new Date().getTime();
                 this.health -= Math.max(0, 0.12 - (this.heatResistance / 10));
             }
+        }
+        if (this.water == true && this.land != true) //being in water puts out fire
+        {
+            this.burningTime = 0;
         }
 
         //Shock Effect
@@ -19753,17 +19773,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.isSameTypeNearby(this.X, this.Y, 310, this.type) && this.DTP() > this.rangeOfSight || this.X != this.plantedX && this.Y != this.plantedY && this.isSameTypeNearby(this.X, this.Y, 310, this.type) && !this.attacking)
                     {
-                        this.voice([hyelingClick1, hyelingClick2, hyelingClick3], 2100, true);
+                        this.voice([hyelingClick1, hyelingClick2, hyelingClick3], 2100, true, false);
                         this.voiceFrequency = 9 * this.dropRND + 2;
                     }
                     else if (this.action == "fleeing")
                     {
-                        this.voice([hyelingPaincry1, hyelingPaincry2], 2100, true);
+                        this.voice([hyelingPaincry1, hyelingPaincry2], 2100, true, false);
                         this.voiceFrequency = 4 * this.dropRND + 3.5;
                     }
                     else if (this.action == "charging")
                     {
-                        this.voice([hyelingBattlecry1, hyelingBattlecry2], 2100, true);
+                        this.voice([hyelingBattlecry1, hyelingBattlecry2], 2100, true, false);
                         this.voiceFrequency = 4 * this.dropRND + 3.5;
                     }
                 }
@@ -19771,17 +19791,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.isSameTypeNearby(this.X, this.Y, 310, this.type) && this.DTU(this.target) > this.rangeOfSight || this.target == "none" && this.isSameTypeNearby(this.X, this.Y, 310, this.type) || this.X != this.plantedX && this.Y != this.plantedY && this.isSameTypeNearby(this.X, this.Y, 310, this.type) && !this.attacking)
                     {
-                        this.voice([hyelingClick1, hyelingClick2, hyelingClick3], 2100, true);
+                        this.voice([hyelingClick1, hyelingClick2, hyelingClick3], 2100, true, false);
                         this.voiceFrequency = 9 * this.dropRND + 2;
                     }
                     else if (this.action == "fleeing")
                     {
-                        this.voice([hyelingPaincry1, hyelingPaincry2], 2100, true);
+                        this.voice([hyelingPaincry1, hyelingPaincry2], 2100, true, false);
                         this.voiceFrequency = 4 * this.dropRND + 3.5;
                     }
                     else if (this.action == "charging")
                     {
-                        this.voice([hyelingBattlecry1, hyelingBattlecry2], 2100, true);
+                        this.voice([hyelingBattlecry1, hyelingBattlecry2], 2100, true, false);
                         this.voiceFrequency = 4 * this.dropRND + 3.5;
                     }
                 }
@@ -20045,17 +20065,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.isSameTypeNearby(this.X, this.Y, 310, this.type) && this.DTP() > this.rangeOfSight || this.X != this.plantedX && this.Y != this.plantedY && this.isSameTypeNearby(this.X, this.Y, 310, this.type) && !this.attacking)
                     {
-                        this.voice([hyelingClick1, hyelingClick2, hyelingClick3], 2100, true);
+                        this.voice([hyelingClick1, hyelingClick2, hyelingClick3], 2100, true, false);
                         this.voiceFrequency = 9 * this.dropRND + 2;
                     }
                     else if (this.action == "fleeing")
                     {
-                        this.voice([hyelingPaincry1, hyelingPaincry2], 2100, true);
+                        this.voice([hyelingPaincry1, hyelingPaincry2], 2100, true, false);
                         this.voiceFrequency = 4 * this.dropRND + 3.5;
                     }
                     else if (this.action == "charging")
                     {
-                        this.voice([hyelingBattlecry1, hyelingBattlecry2], 2100, true);
+                        this.voice([hyelingBattlecry1, hyelingBattlecry2], 2100, true, false);
                         this.voiceFrequency = 4 * this.dropRND + 3.5;
                     }
                 }
@@ -20063,17 +20083,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.isSameTypeNearby(this.X, this.Y, 310, this.type) && this.DTU(this.target) > this.rangeOfSight || this.target == "none" && this.isSameTypeNearby(this.X, this.Y, 310, this.type) || this.X != this.plantedX && this.Y != this.plantedY && this.isSameTypeNearby(this.X, this.Y, 310, this.type) && !this.attacking)
                     {
-                        this.voice([hyelingClick1, hyelingClick2, hyelingClick3], 2100, true);
+                        this.voice([hyelingClick1, hyelingClick2, hyelingClick3], 2100, true, false);
                         this.voiceFrequency = 9 * this.dropRND + 2;
                     }
                     else if (this.action == "fleeing")
                     {
-                        this.voice([hyelingPaincry1, hyelingPaincry2], 2100, true);
+                        this.voice([hyelingPaincry1, hyelingPaincry2], 2100, true, false);
                         this.voiceFrequency = 4 * this.dropRND + 3.5;
                     }
                     else if (this.action == "charging")
                     {
-                        this.voice([hyelingBattlecry1, hyelingBattlecry2], 2100, true);
+                        this.voice([hyelingBattlecry1, hyelingBattlecry2], 2100, true, false);
                         this.voiceFrequency = 4 * this.dropRND + 3.5;
                     }
                 }
@@ -27418,6 +27438,52 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
                         }
                     }
+                    if (this.ID == "Northern Pirate")
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(350, false);
+
+                        this.drops = [[new Item("coins", this.X, this.Y), Math.floor(Math.random() * 9) + 1]];
+
+                        this.disturbed = true;
+
+                        if (this.disturbed == true)
+                        {
+                            this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
+                        }
+                    }
+                    if (this.ID == "Salt-Blood Conspirator" || this.ID == "Stambjord Conspirator")
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(170, false);
+
+                        this.drops = [[new Item("coins", this.X, this.Y), Math.floor(Math.random() * 20) + 1]];
+
+                        if (this.DTP() <= this.rangeOfSight)
+                        {
+                            this.disturbedTime = new Date().getTime() + 90000;
+                        }
+
+                        if (this.disturbed == false && this.ID == "Stambjord Conspirator")
+                        {
+                            this.voiceFrequency = 1;
+                            this.voice([conspBabb], 660, false, 450);
+                            if (quests.aNobleConspiracyQuest == false)
+                            {
+                                quests.aNobleConspiracyQuest = true;
+                                quests.activeQuests.push({name: "A Noble Conspiracy", description: "You have witnessed evidence that The Jarl of Venning permits piratry in exhcange for a cut of the loot."});
+                            }
+                        }
+                        else if (this.ID == "Stambjord Conspirator")
+                        {
+                            conspBabb.pause();
+                        }
+
+                        if (this.disturbed == true)
+                        {
+                            this.callForNearbyHelpFromType(this.rangeOfSight * 3.2, "Soldier");
+                        }
+                    }
                     if (this.ID == "Northern Bandit")
                     {
                         //RANGE OF SIGHT (anything related to range of sight)
@@ -27466,11 +27532,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                         if (player.gender == "Male" && this.playerSeen)
                         {
-                            this.voice([nelgrefSkin, nelgrefEyes, nelgrefDie], 1000, true);
+                            this.voice([nelgrefSkin, nelgrefEyes, nelgrefDie], 1000, true, false);
                         }
                         else if (this.playerSeen)
                         {
-                            this.voice([nelgrefSkin, nelgrefEyes, nelgrefDie, nelgrefKiss], 1000, true);
+                            this.voice([nelgrefSkin, nelgrefEyes, nelgrefDie, nelgrefKiss], 1000, true, false);
                         }
 
                         if (this.health <= 1/3 * this.healthMAX)

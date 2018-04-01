@@ -284,6 +284,24 @@ function Item(type, x, y)
             //ability
             this.ability = "none";
         }
+        else if (this.type == "stolenTablet")
+        {
+            //For All Items
+            this.identity = "Ancient Freydic Stone Tablet";
+            this.description = "This tablet was stolen from the temple of Gemesh in Venning.";
+            this.intForDes = 29;
+            this.intDescription = "This is freydic religious scripture written in old freydic.";
+            this.buyValue = 95; // at max, buy for 95.
+            this.sellValue = 95; // at max, sell for 95.
+            this.weight = 2.5;
+            this.size = 13;
+
+            //Define Utility
+            this.utility = "questItem";
+
+            //ability
+            this.ability = "none";
+        }
         else if (this.type == "iceClaymore")
         {
             //For All Items
@@ -23448,7 +23466,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 535, 411, 40, 72, X - this.X + (1/2 * CCC.width) - (1/2 * 40 / 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 72 / 1.3), 40 / 1.3, 72 / 1.3);
         }
-        else if (this.type == "tablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport")
+        else if (this.type == "tablet" || this.type == "stolenTablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 22), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27), 22, 27);
@@ -26439,7 +26457,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 535, 411, 40, 72, this.invX - (1/2 * 40 / 1.3), this.invY - (1/2 * 72 / 1.3), 40 / 1.3, 72 / 1.3);
         }
-        else if (this.type == "tablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport")
+        else if (this.type == "tablet" || this.type == "stolenTablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
@@ -29307,7 +29325,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 535, 411, 40, 72, this.invX - (1/2 * 40 / 1.3), this.invY - (1/2 * 72 / 1.3), 40 / 1.3, 72 / 1.3);
         }
-        else if (this.type == "tablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport")
+        else if (this.type == "tablet" || this.type == "stolenTablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);

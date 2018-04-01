@@ -897,7 +897,7 @@ function interaction(me)
                         {
                             if (player.dialogueChoiceMade == false)
                             {
-                                player.dialogueOptions = [["Good Day.", false, "a"], ["What is that you're working on?", false, "b"], ["What's new Maggy?", false, "c"], ["How's business?", false, "d"]];
+                                player.dialogueOptions = [["Good day.", false, "a"], ["What is that you're working on?", false, "b"], ["What's new Maggy?", false, "c"], ["How's business?", false, "d"]];
                             }
                             else if (player.dialogueChoiceMade == true)
                             {
@@ -974,6 +974,1568 @@ function interaction(me)
                                 self.SC();
                             }
                         }
+                    }
+
+                    if (self.ID == "Jarl Rannuk Stambjord" || conversationID[0] == "Rannuk")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Rannuk";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.matrimonyTorStambjordQuest == true) // && player.gender == "Female" && player.raceName == "Freynor" && player.title == "Nobility"
+                                {
+                                    player.dialogueOptions = [["I address thee, Jarl Rannuk Stambjord, my betrothed.", false, "b"]];
+                                }
+                                else if (quests.matrimonyTorStambjordQuest == "complete")
+                                {
+                                    if (quests.matrimonyTorStambjordCompletionStyle == "marriage")
+                                    {
+                                        player.dialogueOptions = [["My Husband...", false, "c"]];
+                                    }
+                                    else //he hates you if you ran from the wedding or rejected him during it.
+                                    {
+                                        player.dialogueOptions = [["I wish to speak with you if you have a moment, Jarl Stambjord...", false, "d"]];
+                                    }
+                                }
+                                else
+                                {
+                                    if (quests.rannukThreatened == false)
+                                    {
+                                        if (player.title != "Royalty" && player.title != "Nobility" && player.title != "Highfolk")
+                                        {
+                                            player.dialogueOptions = [["I wish to address thee, Jarl Stambjord of Venning...", false, "a"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["I wish to speak with you if you have a moment, Jarl Stambjord...", false, "a"]];
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (player.title != "Royalty" && player.title != "Nobility" && player.title != "Highfolk")
+                                        {
+                                            player.dialogueOptions = [["I wish to address thee, Jarl Stambjord of Venning...", false, "d"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["I wish to speak with you if you have a moment, Jarl Stambjord...", false, "d"]];
+                                        }
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            if (player.title != "Royalty" && player.title != "Nobility" && player.title != "Highfolk")
+                            {
+                                rannukPeasant.play();
+                                rannukPeasant.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                rannukQuery.play();
+                                rannukQuery.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            rannukUnited.play();
+                            rannukUnited.onended = function()
+                            {
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                X = -20393;
+                                Y = 41975;
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Jarl Rannuk Stambjord")
+                                    {
+                                        ArtificialIntelligenceAccess[i].X = -20387;
+                                        ArtificialIntelligenceAccess[i].Y = 41943;
+                                        ArtificialIntelligenceAccess[i].newRotation = -1/2 * Math.PI;
+                                    }
+                                }
+                                quests.matrimonyTorStambjordQuest = "coldfeet";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            rannukYesDelicateFlower.play();
+                            rannukYesDelicateFlower.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 4;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            if (quests.matrimonyTorStambjordQuest == "complete" && quests.matrimonyTorStambjordCompletionStyle != "marriage")
+                            {
+                                rannukWoman.play();
+                                rannukWoman.onended = function ()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                rannukNoWords.play();
+                                rannukNoWords.onended = function ()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                    player.dialogueOptions = [["I am simply here to thank you for the excellent work you do as Jarl.", false, "b"], ["Nevermind, it wasn't important.", false, "c"]];
+
+                                    if (quests.venningHomeOwned == false)
+                                    {
+                                        player.dialogueOptions.unshift(["I would like to purchase the property you have put up for sale.", false, "a"]);
+                                    }
+                                    if (quests.aNobleConspiracyQuest == true)
+                                    {
+                                        player.dialogueOptions.push(["I have found evidence that suggests you are involved in supporting the piratry that has been taking place in the northern sea.", false, "d"])
+                                    }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "1c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            rannukYours.play();
+                            rannukYours.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 5;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            rannukSpear.play();
+                            rannukSpear.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == "1d")
+                        {
+                            if (player.title == "Nobility" || player.title == "Royalty")
+                            {
+                                rannukBribe.play();
+                                rannukBribe.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 6;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                if (player.gender == "Male")
+                                {
+                                    rannukKillHim.play();
+                                    rannukKillHim.onended = function()
+                                    {
+                                        quests.rannukThreatened = true;
+                                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                        {
+                                            if (ArtificialIntelligenceAccess[i].ID == "Stambjord Soldier" || ArtificialIntelligenceAccess[i].ID == "Stambjord Huskarl" || ArtificialIntelligenceAccess[i].ID == "Stambjord Captain")
+                                            {
+                                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime() + 10000000;
+                                            }
+                                        }
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else
+                                {
+                                    rannukKillHer.play();
+                                    rannukKillHer.onended = function()
+                                    {
+                                        quests.rannukThreatened = true;
+                                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                        {
+                                            if (ArtificialIntelligenceAccess[i].ID == "Stambjord Soldier" || ArtificialIntelligenceAccess[i].ID == "Stambjord Huskarl" || ArtificialIntelligenceAccess[i].ID == "Stambjord Captain")
+                                            {
+                                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime() + 10000000;
+                                            }
+                                        }
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == 2)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["[Commense with the vows]", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2a")
+                        {
+                            rannukVows.play();
+                            rannukVows.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 3)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I do.", false, "a"], ["No.", false, "b"], ["Yes, of course!", false, "a"], ["How could I? I'm in love with someone else!", false, "b"], ["Yes, yes, yes, yes!", false, "a"], ["No, I would never marry such a debased and immoral person!", false, "b"], ["Ah hell no!", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "3a")
+                        {
+                            rannukBinding.play();
+                            rannukBinding.onended = function()
+                            {
+                                quests.matrimonyTorStambjordQuest = "complete";
+                                quests.matrimonyTorStambjordCompletionStyle = "marriage";
+                                quests.completeQuests.push({name: "Matrimony: Tor/Stambjord", description: "You married Jarl Rannuk Stambjord of Venning! In doing so you have cemented your family's relation with Venning and you have a rich husband to care for you."});
+                                player.freynorFaction += 400;
+                                player.name = prompt("You Have Married into Another Noble House: (If your character's name includes a family name, please take this time to rename your character to reflect the Freydic cultural norm of adopting the husband's family name. The name your character is supposed to take on in this case is 'Stambjord'", player.name + " Stambjord");
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                change = "weddingOver";
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 6;
+                                X = -18976;
+                                Y = 44644;
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Jarl Rannuk Stambjord")
+                                    {
+                                        ArtificialIntelligenceAccess[i].X = -18930;
+                                        ArtificialIntelligenceAccess[i].Y = 44712;
+                                        ArtificialIntelligenceAccess[i].newRotation = 0;
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "3b")
+                        {
+                            rannukNoUnion.play();
+                            rannukNoUnion.onended = function()
+                            {
+                                quests.matrimonyTorStambjordQuest = "complete";
+                                quests.matrimonyTorStambjordCompletionStyle = "rejection";
+                                quests.completeQuests.push({name: "Matrimony: Tor/Stambjord", description: "You declined to marry the Jarl of Venning during the wedding ceremony and in doing so ended your father's planned marriage-alliance with house Stambjord. Scandalous!"});
+                                player.freynorFaction -= 200;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                change = "weddingOver";
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Jarl Rannuk Stambjord")
+                                    {
+                                        ArtificialIntelligenceAccess[i].X = -18930;
+                                        ArtificialIntelligenceAccess[i].Y = 44712;
+                                        ArtificialIntelligenceAccess[i].newRotation = 0;
+                                    }
+                                }
+
+                            }
+                        }
+                        else if (conversationID[1] == 4)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I love you.", false, "a"], ["Let me take you to bed, my love.", false, "b"], ["May I suggest a policy?", false, "c"]];
+
+                                if (quests.aNobleConspiracyQuest == true)
+                                {
+                                    player.dialogueOptions.push(["It has come to my attention that our house is supporting piratry.", false, "d"])
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "4a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "4b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "4c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "4d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "4a")
+                        {
+                            rannukBringFlower.play();
+                            rannukBringFlower.onended = function()
+                            {
+                                var floresQueDa = ["rilthasiaFlower", "brightbloomFlower", "tylunFlower", "vorlymFlower"]; //the jarl has spent extravagent amounts to have a couple foreign flowers to give as well. eg. vorlym and rilthasia
+                                var florSel = Math.floor(Math.random() * 4);
+
+                                var hits = 0;
+                                for (var i = 0; i < Inventory.length; i ++)
+                                {
+                                    if (Inventory[i][0].type == floresQueDa[florSel])
+                                    {
+                                        Inventory[i][1] += 1;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        hits += 1;
+                                    }
+                                }
+                                if (hits == Inventory.length)
+                                {
+                                    Inventory.push([new Item(floresQueDa[florSel], false, false), 1]);
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "4b")
+                        {
+                            rannukPetals.play();
+                            rannukPetals.onended = function()
+                            {
+                                if (!quests.rannukChild)
+                                {
+                                    sleeperTime += 60 * 60 * 24 * 365 * 6.75;
+                                    player.experience = 0;
+                                    player.magicalExperience = 0;
+                                    player.health = player.healthMAX;
+                                    player.energy = player.energyMAX;
+                                    player.will = player.willMAX;
+                                    player.hunger = player.hungerMAX;
+                                    player.thirst = player.thirstMAX;
+                                }
+                                sleep();
+                                if (!quests.rannukChild)
+                                {
+                                    quests.rannukChild = true;
+                                    quests.rannukChildName = prompt("Soon after having sexual relations with your newly wedded husband Jarl Rannuk Stambjord of Venning, you felt yourself growing heavy with child. Your husband lavishly spent from his massive fortune, doting upon you and making sure you were were satiated in any way that he was inclined to allow. Finally the day came when you went into labour and delivered your baby boy. You decided to name your son:", "Espen Stambjord");
+                                    alert("You raised " + quests.rannukChildName + " in Venning in your husband's great longhouse. Your son was an anxious baby that cried all the time, even while you tried to comfort him. The only times he quieted were during his seemingly spontaneous naps and while he was feeding at your breast.");
+                                    if (uniqueChars.OrjovTorLDS)
+                                    {
+                                        alert("As " + quests.rannukChildName + " aged he developed into a handsome young boy, your father came to visit him a few times and bragged about how he thought your son would make a fine hunter. Year after year your son grew more and more acquainted to the luxury of nobility...");
+                                    }
+                                    else
+                                    {
+                                        alert("As " + quests.rannukChildName + " aged he developed into a handsome young boy, and his rough playfulness demonstrated that he would grow to be a strong hunt-worthy man. Year after year your son grew more and more acquainted to the luxury of nobility...");
+                                    }
+                                    alert("He began to order people around, save for you and his father, and he seemed to considered himself to be superior to all around him. Now he is six years old and has been granted his own seat at the dining table (instead of sitting on your lap). You can tell that it makes him feel like his father, a figure he aspires to be like.");
+                                    change = "makemy6yearoldherealready!";
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "4c")
+                        {
+                            rannukDuty.play();
+                            rannukDuty.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "4d")
+                        {
+                            rannukJeopordize.play();
+                            rannukJeopordize.onended = function()
+                            {
+                                quests.aNobleConspiracyQuest = "complete";
+                                quests.aNobleConspiracyCompletionStyle = "complicit";
+                                quests.completeQuests.push({name: "A Noble Conspiracy", description: "You have discovered that your husband is involved in supporting piratry, but their is little you can do about it as turning him in would risk your standing in the kingdom as well."});
+                                player.experience += 85;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 5)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Nevermind.", false, "b"]];
+
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 7100)
+                                    {
+                                        player.dialogueOptions.unshift(["It's all here. (give 7100 coins)", false, "a"]);
+                                        break;
+                                    }
+                                }
+
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "5a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "5b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "5a")
+                        {
+                            rannukWelcome.play();
+                            rannukWelcome.onended = function()
+                            {
+                                var room = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 7100)
+                                    {
+                                        room = i;
+                                    }
+                                }
+
+                                if (room > -1)
+                                {
+                                    Inventory[room][1] -= 7100;
+                                    if (Inventory[room][1] < 1)
+                                    {
+                                        Inventory.splice(room, 1);
+                                    }
+
+                                    quests.venningHomeOwned = true;
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "5b")
+                        {
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == 6)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I do not require your coin, I agree that your actions are just, I was simply broaching the matter with you directly so I could understand your reasoning.", false, "a"], ["I'm starting to see how your reasons are just, I appologize if I had offended you.", false, "b"], ["I'm starting to see how your reasons are just, I appologize if I had offended you. (LIE)", false, "c"], ["You permit criminals to plunder freely in your lands and now you try to bribe me!? I will be telling the king of this treason.", false, "d"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "6a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "6b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "6c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "6d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "6a")
+                        {
+                            if (player.gender == "Female")
+                            {
+                                rannukGoodLady.play();
+                                rannukGoodLady.onended = function()
+                                {
+                                    quests.aNobleConspiracyQuest = "complete";
+                                    quests.aNobleConspiracyCompletionStyle = "agreement";
+                                    quests.completeQuests.push({name: "A Noble Conspiracy", description: "You confronted Jarl Rannuk Stambjord about his support for the local pirates, but you ultimately agreed with him that he was acting within his reasonable right as Jarl of Venning."});
+                                    player.experience += 85;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                rannukGoodMan.play();
+                                rannukGoodMan.onended = function()
+                                {
+                                    quests.aNobleConspiracyQuest = "complete";
+                                    quests.aNobleConspiracyCompletionStyle = "agreement";
+                                    quests.completeQuests.push({name: "A Noble Conspiracy", description: "You confronted Jarl Rannuk Stambjord about his support for the local pirates, but you ultimately agreed with him that he was acting within his reasonable right as Jarl of Venning."});
+                                    player.experience += 85;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "6b")
+                        {
+                            rannukMyWay.play();
+                            rannukMyWay.onended = function()
+                            {
+                                quests.aNobleConspiracyQuest = "complete";
+                                quests.aNobleConspiracyCompletionStyle = "bribed";
+                                quests.completeQuests.push({name: "A Noble Conspiracy", description: "You confronted Jarl Rannuk Stambjord about his support for the local pirates, but left with sealed lips after accepting a 500 coin bribe."});
+                                player.experience += 85;
+                                worldItems.push([new Item("coins", X, Y), 500]);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "6c")
+                        {
+                            rannukMyWay.play();
+                            rannukMyWay.onended = function()
+                            {
+                                quests.aNobleConspiracyCompletionStyle = "lied";
+                                worldItems.push([new Item("coins", X, Y), 500]);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "6d")
+                        {
+                            rannukThreaten.play();
+                            rannukThreaten.onended = function()
+                            {
+                                quests.rannukThreatened = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Jarl Orjov Tor" || conversationID[0] == "Orjov")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Orjov";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (player.raceName == "Freynor" && player.gender == "Female" && player.title == "Nobility")
+                                {
+                                    player.dialogueOptions = [["Hello father.", false, "b"]];
+                                    if (quests.matrimonyTorStambjordQuest == false)
+                                    {
+                                        player.dialogueOptions.push(["Have you yet found me a husband?", false, "c"]);
+                                    }
+                                }
+                                else if (player.raceName == "Freynor" && player.gender == "Male" && player.title == "Nobility")
+                                {
+                                    player.dialogueOptions = [["Hello father.", false, "d"], ["I wish to go on a hunt.", false, "e"]];
+                                }
+                                else if (player.raceName == "Freynor" && player.title == "Nobility")
+                                {
+                                    player.dialogueOptions = [["Hello father.", false, "f"], ["I wish to go on a hunt.", false, "g"], ["Have you found me a spouse?", false, "h"]];
+                                }
+                                else if (player.title != "nobility" && player.title != "royalty")
+                                {
+                                    player.dialogueOptions = [["I wish to address thee, Jarl Tor of Teshir...", false, "a"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["I have a matter to discuss with you Jarl Tor...", false, "a"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            if (player.title != "nobility" && player.title != "royalty")
+                            {
+                                orjovConcise.play();
+                                orjovConcise.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            if (quests.matrimonyTorStambjordCompletionStyle == "rejection" || quests.matrimonyTorStambjordCompletionStyle == "coldfeet")
+                            {
+                                orjovStrife.play();
+                                orjovStrife.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                orjovDaughter.play();
+                                orjovDaughter.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            orjovBrave.play();
+                            orjovBrave.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                quests.matrimonyTorStambjordQuest = true;
+                                quests.activeQuests.push({name: "Matrimony: Tor/Stambjord", description: "Your father, Jarl Orjov Tor of Teshir, has arrange your engagement to the Jarl of Venning, Rannuk Stambjord. You should form an escort of soldiers to take you north."});
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            orjovSon.play();
+                            orjovSon.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            orjovBoy.play();
+                            orjovBoy.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            orjovDespite.play();
+                            orjovDespite.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            orjovTryNotToDie.play();
+                            orjovTryNotToDie.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            orjovDoWhatYouWill.play();
+                            orjovDoWhatYouWill.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I appreciate the good work you have done as Jarl of Teshir", false, "c"]];
+                                if (player.raceName == "Freynor" && player.title != "Royalty" && player.title != "Nobility" && player.title != "Highfolk" && player.hunger <= 11 && quests.orjovBeseeched == false)
+                                {
+                                    player.dialogueOptions.unshift(["I beseech thee, give me food, thine excellency.", false, "b"]);
+                                }
+                                if (!quests.teshirHomeOwned)
+                                {
+                                    player.dialogueOptions.unshift(["I wish to purchase property here in Teshir.", false, "a"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            orjovFineHome.play();
+                            orjovFineHome.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            orjovAxe.play();
+                            orjovAxe.onended = function()
+                            {
+                                worldItems.push([new Item("timberAxe", X, Y), 1]);
+                                quests.orjovBeseeched = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            orjovAppreciation.play();
+                            orjovAppreciation.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 2)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Nevermind.", false, "b"]];
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 6200)
+                                    {
+                                        player.dialogueOptions.unshift(["I will buy it. (give 6200 coins)", false, "a"]);
+                                        break;
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "2b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2a")
+                        {
+                            orjovYours.play();
+                            orjovYours.onended = function()
+                            {
+                                var room = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 6200)
+                                    {
+                                        room = i;
+                                    }
+                                }
+
+                                if (room > -1)
+                                {
+                                    Inventory[room][1] -= 6200;
+                                    if (Inventory[room][1] < 1)
+                                    {
+                                        Inventory.splice(room, 1);
+                                    }
+
+                                    quests.teshirHomeOwned = true;
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2b")
+                        {
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
+                    if (self.ID == "Ukko, Sage of Gemesh" || conversationID[0] == "Ukko")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Ukko";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good day.", false, "a"], ["Would you bless me?", false, "b"], ["How can I prove myself in the eyes of Gemesh?", false, "c"]];
+                                if (quests.stolenScriptureQuest == false)
+                                {
+                                    player.dialogueOptions.push(["Is there anything I could do to help the temple?", false, "d"]);
+                                }
+                                if (quests.stolenScriptureScrollGiven == false)
+                                {
+                                    player.dialogueOptions.push(["Teach me the secret art of frost, so I can be closer to Gemesh as you have become.", false, "e"]);
+                                }
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "stolenTablet")
+                                    {
+                                        player.dialogueOptions.push(["I have retrieved the stolen tablet.", false, "f"]);
+                                        break;
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0f";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            ukkoForSome.play();
+                            ukkoForSome.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            ukkoBlessing.play();
+                            ukkoBlessing.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            ukkoBravery.play();
+                            ukkoBravery.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            ukkoFruits.play();
+                            ukkoFruits.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            if (quests.stolenScriptureCompletionStyle == "philosophicalReward")
+                            {
+                                ukkoIf.play();
+                                ukkoIf.onended = function()
+                                {
+                                    quests.stolenScriptureScrollGiven = true;
+                                    hasItYa = false;
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].type == "iceSpikes")
+                                        {
+                                            Inventory[i][1] += 1;
+                                            hasItYa = true;
+                                            break;
+                                        }
+                                    }
+                                    if (hasItYa == false)
+                                    {
+                                        Inventory.push([new Item("iceSpikes", false, false), 1]);
+                                    }
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                ukkoClear.play();
+                                ukkoClear.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            quests.stolenScriptureQuest = "complete";
+                            player.freynorFaction += 35;
+                            if (quests.stolenScriptureCompletionStyle == "philosophicalReward")
+                            {
+                                quests.completeQuests.push({name: "Stolen Scripture", description: "In the name of Gemesh you retrieved the ancient tablet that was stolen from the temple in Venning. It was in an abandoned mineshaft surrounded by basilisks."});
+                                player.fame += 1;
+                                player.magicalExperience += 50;
+                            }
+                            else
+                            {
+                                quests.completeQuests.push({name: "Stolen Scripture", description: "You retrieved the ancient tablet stolen from the temple of Gemesh in Venning and received a 100 coin reward. The tablet was in an abandoned mineshaft surrounded by basilisks."});
+                                player.fame += 1;
+                                player.experience += 200;
+                                var yaLoHas = false;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins")
+                                    {
+                                        Inventory[i][1] += 100;
+                                        yaLoHas = true;
+                                        break;
+                                    }
+                                }
+                                if (!yaLoHas)
+                                {
+                                    Inventory.unshift([new Item("coins", false, false), 100]);
+                                }
+                            }
+
+                            var tabbytablet = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "stolenTablet")
+                                {
+                                    tabbytablet = i;
+                                    break;
+                                }
+                            }
+
+                            if (tabbytablet > -1)
+                            {
+                                Inventory.splice(tabbytablet, 1);
+                            }
+
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I will do it.", false, "a"], ["This sounds like real work, I would prefer to get a real reward for doing real work.", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            ukkoPath.play();
+                            ukkoPath.onended = function()
+                            {
+                                quests.stolenScriptureCompletionStyle = "philosophicalReward";
+                                quests.stolenScriptureQuest = true;
+                                quests.activeQuests.push({name: "Stolen Scripture", description: "An important stone tablet that belonged to the temple of Gemesh in Venning city was stolen. Retrieve it."});
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            ukkoSate.play();
+                            ukkoSate.onended = function()
+                            {
+                                quests.stolenScriptureCompletionStyle = "realReward";
+                                quests.stolenScriptureQuest = true;
+                                quests.activeQuests.push({name: "Stolen Scripture", description: "An important stone tablet that belonged to the temple of Gemesh in Venning city was stolen. Retrieve it."});
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Bjorn" || conversationID[0] == "Bjorn")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Bjorn";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.venningStoragePurchased)
+                                {
+                                    player.dialogueOptions = [["Hello.", false, "b"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Hello.", false, "a"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            bjornHelloThere.play();
+                            bjornHelloThere.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            bjornKept.play();
+                            bjornKept.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Sure.", false, "a"], ["No Thanks.", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            bjornCostYou.play();
+                            bjornCostYou.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == 2)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Nevermind.", false, "b"]];
+                                var haveEnuf = false;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 800)
+                                    {
+                                        haveEnuf = true;
+                                        player.dialogueOptions.push(["You've got yourself a deal! (pay 800 coins)", false, "a"]);
+                                        break;
+                                    }
+                                }
+                                if (!haveEnuf)
+                                {
+                                    player.dialogueOptions.unshift(["I don't have that much.", false, "b"]);
+                                    player.dialogueOptions.unshift(["I don't have that much with me.", false, "b"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "2b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2a")
+                        {
+                            bjornPleasure.play();
+                            bjornPleasure.onended = function()
+                            {
+                                var room = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 800)
+                                    {
+                                        room = i;
+                                    }
+                                }
+
+                                if (room > -1)
+                                {
+                                    Inventory[room][1] -= 800;
+                                    if (Inventory[room][1] < 1)
+                                    {
+                                        Inventory.splice(room, 1);
+                                    }
+
+                                    quests.venningStoragePurchased = true;
+                                    change = "justPurchasedVenningStorage";
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2b")
+                        {
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+
                     }
 
                     if (self.ID == "Cheryl the Tailor" || conversationID[0] == "Cheryl")
@@ -2017,6 +3579,216 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Seeth the Innkeeper" || conversationID[0] == "Seeth")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Seeth";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                dialogueRND = Math.round(Math.random());
+                                player.dialogueOptions = [["Hello.", false, "a"], ["I'm looking for a place to stay the night.", false, "b"], ["Have you heard any interesting tales recently?", false, "c"], ["How's business?", false, "d"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            seethTakeASeat.play();
+                            seethTakeASeat.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            seeth10Coins.play();
+                            seeth10Coins.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            if (dialogueRND == 1)
+                            {
+                                if (uniqueChars.jalmariLDS)
+                                {
+                                    seethPiratry.play();
+                                    seethPiratry.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else
+                                {
+                                    seethJustHuman.play();
+                                    seethJustHuman.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (quests.theMineshaftMysteryQuest != "complete")
+                                {
+                                    seethBones.play();
+                                    seethBones.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                        if (quests.theMineshaftMysteryQuest == false)
+                                        {
+                                            quests.theMineshaftMysteryQuest = true;
+                                            quests.activeQuests.push({name: "The Mineshaft Mystery", description: "An abandoned mineshaft to the south of Venning City was said to potentially have stashed away treasure inside."});
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    seethLurk.play();
+                                    seethLurk.onended = function()
+                                    {
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            seethWell.play();
+                            seethWell.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["[previous dialogue options]", false, "b"]];
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 10)
+                                    {
+                                        player.dialogueOptions.unshift(["I'll take it. (pay 10 coins)", false, "a"]);
+                                        break;
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            var room = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 10)
+                                {
+                                    room = i;
+                                }
+                            }
+
+                            if (room > -1)
+                            {
+                                Inventory[room][1] -= 10;
+                                if (Inventory[room][1] < 1)
+                                {
+                                    Inventory.splice(room, 1);
+                                }
+
+                                sleep();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            playersTurnToSpeak = true;
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
 
                     if (self.ID == "Hildegard" || conversationID[0] == "Hildegard")
                     {

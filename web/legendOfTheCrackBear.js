@@ -5,12 +5,11 @@
 
 //TODO LIST
 //top priority
-//todo fill out the map: n4w1 (keep in mind to add the special quest encounters found there)
-//todo add the pirate captain with his pirate base on a small island north of the beach n4w1 on map n5w1
+//todo add the pirate captain, his crew, and their hideout on map n5w1
 
 //Venning Update
-//todo make the innkeeper have dialogue enough so that players can pay to sleep in a room
 //todo add a waterwalking elixer / waterwalking spell too?
+//todo add anti petrification potion / spell
 
 //Alzkwaya Update / Savannah Update
 //todo add mounts and the mounting system (make different mounts require a different survivalism skill amount): add it for Naaprids, Zebras, Skols... (destroy current mounting system: make it unit based instead of player based. The player literally teleports on top of the creature in question and follows its movement. (the player can direct it with 'T' because it is on the player's team.) mounting is canceled by water, or if the player equipps an uncompatible weapon or transfigures themself into an incompatible form.
@@ -75,12 +74,16 @@
     //todo add quest 'A Noble Conspiracy' -- the Jarl of Venning is involved in supporting piratry in exhcange for a cut (evidence: you spot a town guard that tries to attack you in map n4w1 when you see him making a cash pickup from a pirate, pirate says "here's for yer jarl's blind eye to ar' business") if you bring it up to the jarl he will sic his guards on you unless you are noble or royal in which case he will try to justify it, and bribe you not to tell the king (pick either the option to take the bribe (lying that you will not tell the king), (take the bribe and don't tell the king), or refuse the bribe (if you refuse the bribe he will send an assassin after you at a later point), - if highfolk and your faction relation with Freynor is 500+ the king will believe you, otherwise you must have 65 fame and 700 faction relation with Freynor for him to believe you. if noble or royalty the king will believe you unless your own faction relation with Freynor is less than 250, in which case he will say "Of course it would be you who brings malicious slander into my court, you think that spreading fowl rumors about your moral betters will gain you something from me, *chuckles* you are utterly mistaken [-50 faction relation] (you only get one chance to convince the king, but if you do he stripps Jarl Stombjord of his titles and gives his cousin who is a knight in the royal court the title Jarl of Venning, (the new jarl, Gallok Stambjord, feasts as well but is a fully armoured and trained fighter)
     //todo add a flooded basement pest control quest in which you kill the crabs that are infesting someone's basement for a fee.
     //todo add a quest 'A broken hearted soul' pass letters between a love interest and a passionate man whose family does not permit him leave to move away from the farm, when his lover tells the man that she has found someone new, he kills himself. his angry ghost can be confronted at the island's cemetery (digg up bones and burn them with salt - all while trying not to die by the very spectre you are eradicating)
-    //todo if you ask the innkeeper about rumors he will tell you that A: there's a pirate problem (if you have not yet killed the pirate leader), B: a usual was talking about stached treasure ("he claimed that the ol' miners hid away some of the gold they found down there, believable, but unlikely if you ask me") in an old mineshaft then never came around again, "he either found what he was looking for or tripped and broke his skull down there in the dark" (the mineshaft is south of Venning in map n3e2) A basilisk inhabits it (petrification forces you to equip a stone arms texture that counts as a weapon, and it turns your base color to dark grey. If petrification resistance is active then the basilisk will only stun the player with stunI instead of petrifying them.
+    //todo if you ask the innkeeper about rumors he will tell you that A: there's a pirate problem (if you have not yet killed the pirate leader), B: a usual was talking about stashed treasure ("he claimed that the ol' miners hid away some of the gold they found down there, believable, but unlikely if you ask me") in an old mineshaft then never came around again, "he either found what he was looking for or tripped and broke his skull down there in the dark" (the mineshaft is south of Venning in map n3e2) A basilisk inhabits it (petrification forces you to equip a stone arms texture that counts as a weapon, and it turns your base color to dark grey. If petrification resistance is active then the basilisk will only stun the player with stunI instead of petrifying them.
     //todo the herbalist has a sick patient that needs a special elixer that only the alchemist knows how to make, the alchemist dislikes the patient (who has insulted him for not being a hunter and therefore not the pinnacle of freydic virility) so he has refused to help, the options are: convince him to help (CHAR), convince him to help ($$$$), accept a quest for him in which you bring him a 'rawCloimidFlesh' item for one of his potions in exchange for his help.
     //todo add quest 'Worthy Under the Watchful Eye' -- find an ancient tablet for the sage of Gemesh in the Venning city temple (it has been part of the temples belongings for centuries, but it has been stolen {whoever stole it stole the wrong one, because the one missing is not the spell}, "This tablet was dear to our temple, if you can find it you will surely be rewarded in the afterlife, the great valley of Halmthafgh will yield to you its wonderous fruits, sewn from the glory of its maker, our wise father Gemesh!" - if the player requests a more tangible reward, the sage will scoff and offer the player a 100 coin reward (at the expense of the magic experience that would otherwise be gained for finding it) - include a letter that was cursed to kill the person who opened it.
 //todo make the property purchasable
 //todo make the storage company sell space in a crate for 800 coins to the player through dialogue
 //todo add the jewelry shop / add more jewelry into the game / add a jeweler
+//todo add interesting civs in the inn.
+
+//Cranheim Update
+//todo add the city Cranheim to the west of Lethik in Thengaria
 
 //Eschuttes Update
 //todo add another echlin tribe village called Eschuttes
@@ -101,6 +104,7 @@
 //todo finish adding sickness system //add Lodotos, a sickness that one can get in the kellish mud bog. //add sicknesses and symptons (dizziness, pox, fever, fatigue, etc.) ex: make dizziness spin the screen, make pox weaken players constitution etc., make fever decrease thirst.
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
 //todo add brain flies from 'poly' img.
+//todo the freydic capital city is called Tor-Ruhn-Tel
 //todo add hangover, and soarness effects as well as their mini notices.
 //todo add a rest without bed button on the UI that uses a homemade confirm popup to ask if you are sure you want to sleep. Add the nappy closed eye for the sleepButton. (it's on poly)
 //todo add lv 25 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
@@ -111,6 +115,7 @@
 //todo Add harsh hot weather conditions: deserts cause faster dehydration. (base the effect on elevation variable)
 //todo add unique fairytails for each faction
 //todo add Yaihef berry bush (look up how they are actually spelled first) from 'crackAssets' IMG
+//todo unconscious system for humans? punching and stuff?
 
 
 function legendaryPrerequisites()
@@ -195,6 +200,181 @@ function legendaryPrerequisites()
 
     var svehnCrook = new Audio("sounds/polySounds/svehnCrook.mp3");
     window.svehnCrook = svehnCrook;
+
+    //BJØRN CHARACTER: voice acting
+
+    var bjornCostYou = new Audio("sounds/polySounds/bjornCostYou.wav");
+    window.bjornCostYou = bjornCostYou;
+
+    var bjornHelloThere = new Audio("sounds/polySounds/bjornHelloThere.wav");
+    window.bjornHelloThere = bjornHelloThere;
+
+    var bjornKept = new Audio("sounds/polySounds/bjornKept.wav");
+    window.bjornKept = bjornKept;
+
+    var bjornPleasure = new Audio("sounds/polySounds/bjornPleasure.wav");
+    window.bjornPleasure = bjornPleasure;
+
+    //SEETH CHARACTER: voice acting
+
+    var seeth10Coins = new Audio("sounds/polySounds/seeth10Coins.wav");
+    window.seeth10Coins = seeth10Coins;
+
+    var seethBones = new Audio("sounds/polySounds/seethBones.wav");
+    window.seethBones = seethBones;
+
+    var seethJustHuman = new Audio("sounds/polySounds/seethJustHuman.wav");
+    window.seethJustHuman = seethJustHuman;
+
+    var seethLurk = new Audio("sounds/polySounds/seethLurk.wav");
+    window.seethLurk = seethLurk;
+
+    var seethPiratry = new Audio("sounds/polySounds/seethPiratry.wav");
+    window.seethPiratry = seethPiratry;
+
+    var seethTakeASeat = new Audio("sounds/polySounds/seethTakeASeat.wav");
+    window.seethTakeASeat = seethTakeASeat;
+
+    var seethWell = new Audio("sounds/polySounds/seethWell.wav");
+    window.seethWell = seethWell;
+
+    //UKKO CHARACTER: voice acting
+
+    var ukkoBlessing = new Audio("sounds/polySounds/ukkoBlessing.wav");
+    window.ukkoBlessing = ukkoBlessing;
+
+    var ukkoBravery = new Audio("sounds/polySounds/ukkoBravery.wav");
+    window.ukkoBravery = ukkoBravery;
+
+    var ukkoClear = new Audio("sounds/polySounds/ukkoClear.wav");
+    window.ukkoClear = ukkoClear;
+
+    var ukkoForSome = new Audio("sounds/polySounds/ukkoForSome.wav");
+    window.ukkoForSome = ukkoForSome;
+
+    var ukkoFruits = new Audio("sounds/polySounds/ukkoFruits.wav");
+    window.ukkoFruits = ukkoFruits;
+
+    var ukkoIf = new Audio("sounds/polySounds/ukkoIf.wav");
+    window.ukkoIf = ukkoIf;
+
+    var ukkoPath = new Audio("sounds/polySounds/ukkoPath.wav");
+    window.ukkoPath = ukkoPath;
+
+    var ukkoSate = new Audio("sounds/polySounds/ukkoSate.wav");
+    window.ukkoSate = ukkoSate;
+
+    //ORJOV CHARACTER: voice acting
+
+    var orjovAppreciation = new Audio("sounds/polySounds/orjovAppreciation.wav");
+    window.orjovAppreciation = orjovAppreciation;
+
+    var orjovAxe = new Audio("sounds/polySounds/orjovAxe.wav");
+    window.orjovAxe = orjovAxe;
+
+    var orjovBoy = new Audio("sounds/polySounds/orjovBoy.wav");
+    window.orjovBoy = orjovBoy;
+
+    var orjovBrave = new Audio("sounds/polySounds/orjovBrave.wav");
+    window.orjovBrave = orjovBrave;
+
+    var orjovConcise = new Audio("sounds/polySounds/orjovConcise.wav");
+    window.orjovConcise = orjovConcise;
+
+    var orjovDaughter = new Audio("sounds/polySounds/orjovDaughter.wav");
+    window.orjovDaughter = orjovDaughter;
+
+    var orjovDespite = new Audio("sounds/polySounds/orjovDespite.wav");
+    window.orjovDespite = orjovDespite;
+
+    var orjovDoWhatYouWill = new Audio("sounds/polySounds/orjovDoWhatYouWill.wav");
+    window.orjovDoWhatYouWill = orjovDoWhatYouWill;
+
+    var orjovFineHome = new Audio("sounds/polySounds/orjovFineHome.wav");
+    window.orjovFineHome = orjovFineHome;
+
+    var orjovSon = new Audio("sounds/polySounds/orjovSon.wav");
+    window.orjovSon = orjovSon;
+
+    var orjovStrife = new Audio("sounds/polySounds/orjovStrife.wav");
+    window.orjovStrife = orjovStrife;
+
+    var orjovTryNotToDie = new Audio("sounds/polySounds/orjovTryNotToDie.wav");
+    window.orjovTryNotToDie = orjovTryNotToDie;
+
+    var orjovYours = new Audio("sounds/polySounds/orjovYours.wav");
+    window.orjovYours = orjovYours;
+
+    //RANNUK CHARACTER: voice acting
+
+    var rannukBinding = new Audio("sounds/polySounds/rannukBinding.wav");
+    window.rannukBinding = rannukBinding;
+
+    var rannukBribe = new Audio("sounds/polySounds/rannukBribe.wav");
+    window.rannukBribe = rannukBribe;
+
+    var rannukBringFlower = new Audio("sounds/polySounds/rannukBringFlower.wav");
+    window.rannukBringFlower = rannukBringFlower;
+
+    var rannukDuty = new Audio("sounds/polySounds/rannukDuty.wav");
+    window.rannukDuty = rannukDuty;
+
+    var rannukGoodLady = new Audio("sounds/polySounds/rannukGoodLady.wav");
+    window.rannukGoodLady = rannukGoodLady;
+
+    var rannukGoodMan = new Audio("sounds/polySounds/rannukGoodMan.wav");
+    window.rannukGoodMan = rannukGoodMan;
+
+    var rannukJeopordize = new Audio("sounds/polySounds/rannukJeopordized.wav");
+    window.rannukJeopordize = rannukJeopordize;
+
+    var rannukKillHer = new Audio("sounds/polySounds/rannukKillHer.wav");
+    window.rannukKillHer = rannukKillHer;
+
+    var rannukKillHim = new Audio("sounds/polySounds/rannukKillHim.wav");
+    window.rannukKillHim = rannukKillHim;
+
+    var rannukMyWay = new Audio("sounds/polySounds/rannukMyWay.wav");
+    window.rannukMyWay = rannukMyWay;
+
+    var rannukNoUnion = new Audio("sounds/polySounds/rannukNoUnion.wav");
+    window.rannukNoUnion = rannukNoUnion;
+
+    var rannukNoWords = new Audio("sounds/polySounds/rannukNoWords.wav");
+    window.rannukNoWords = rannukNoWords;
+
+    var rannukPeasant = new Audio("sounds/polySounds/rannukPeasant.wav");
+    window.rannukPeasant = rannukPeasant;
+
+    var rannukPetals = new Audio("sounds/polySounds/rannukPetals.wav");
+    window.rannukPetals = rannukPetals;
+
+    var rannukQuery = new Audio("sounds/polySounds/rannukQuery.wav");
+    window.rannukQuery = rannukQuery;
+
+    var rannukSpear = new Audio("sounds/polySounds/rannukSpear.wav");
+    window.rannukSpear = rannukSpear;
+
+    var rannukThreaten = new Audio("sounds/polySounds/rannukThreaten.wav");
+    window.rannukThreaten = rannukThreaten;
+
+    var rannukUnited = new Audio("sounds/polySounds/rannukUnited.wav");
+    window.rannukUnited = rannukUnited;
+
+    var rannukVows = new Audio("sounds/polySounds/rannukVows.wav");
+    window.rannukVows = rannukVows;
+
+    var rannukWelcome = new Audio("sounds/polySounds/rannukWelcome.wav");
+    window.rannukWelcome = rannukWelcome;
+
+    var rannukWoman = new Audio("sounds/polySounds/rannukWoman.wav");
+    window.rannukWoman = rannukWoman;
+
+    var rannukYesDelicateFlower = new Audio("sounds/polySounds/rannukYesDelicateFlower.wav");
+    window.rannukYesDelicateFlower = rannukYesDelicateFlower;
+
+    var rannukYours = new Audio("sounds/polySounds/rannukYours.wav");
+    window.rannukYours = rannukYours;
 
         //EDERHAL CHARACTER: voice acting
 
@@ -1725,6 +1905,7 @@ var storageSlots = 1;
 var storedID = -1;
 var stored;
 var seaFlux = 0;
+var dialogueRND = 0;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -2499,6 +2680,7 @@ function theLegend()
     conversations =
     {
         svehn: ["Svehn", 0],
+        orjov: ["Orjov", 0],
         toggin: ["Toggin", 0],
         teber: ["Teber", 0],
         drohfor: ["Drohfor", 0],
@@ -2528,7 +2710,7 @@ function theLegend()
         hildegard: ["Hildegard", 0],
         ederhal: ["Ederhal", 0],
         siggi: ["Siggi", 0],
-        raanuk: ["Rannuk", 0],
+        rannuk: ["Rannuk", 0],
         seeth: ["Seeth", 0],
         aari: ["Aari", 0],
         katja: ["Katja", 0],
@@ -2671,6 +2853,7 @@ function theLegend()
         hilmundChildLDS: true,
         siggiLDS: true,
         rannukLDS: true,
+        rannukChildLDS: true,
         seethLDS: true,
         aariLDS: true,
         katjaLDS: true,
@@ -2706,6 +2889,9 @@ function theLegend()
 
         //LOGGED PLAYER ACTIONS
         venningStoragePurchased: false,
+        orjovBeseeched: false,
+        killedStambjordHeir: false,
+        rannukThreatened: false,
 
         //PLAYER PROPERTY
         teshirHomeOwned: false,
@@ -2728,13 +2914,28 @@ function theLegend()
         cherylChild: false,
         cherylChildName: "Adalard",
         cherylChildAccompany: false,
+        rannukChild: false,
+        rannukChildName: "Espen",
+
+        //QUEST: Matrimony: Tor Stambjord ---- given by Orjov Tor
+        matrimonyTorStambjordQuest: false,
+        matrimonyTorStambjordCompletionStyle: false,
+
+        //QUEST: Stolen Scripture ---- given by Ukko
+        stolenScriptureQuest: false,
+        stolenScriptureCompletionStyle: false,
+        stolenScriptureScrollGiven: false,
+
+        //QUEST: The Mineshaft Mystery ---- given by Seeth
+        theMineshaftMysteryQuest: false,
+        theMineshaftMysteryCompletionStyle: false,
 
         //QUEST: A Noble Conspiracy ---- given by ¡EVENT!
         aNobleConspiracyQuest: false,
         aNobleConspiracyCompletionStyle: false,
 
         //QUEST: The Plight of Lethik ---- given by Axel
-        thePlightOfLethikQuest: true,
+        thePlightOfLethikQuest: false, //was true //todo (see if that was for testing purposes)
         thePlightOfLethikWitchInterrogated: false,
         thePlightOfLethikCompletionStyle: false,
         thePlightOfLethikFarmRestored: false,

@@ -1339,6 +1339,9 @@ function buildMaster()
                     scenicList.push(new Scenery("hearth", 2555, 1910, 3/4 * Math.PI, false));
                     scenicList.push(new Scenery("crate", 2731, 2080, 3.5/4 * Math.PI, 1, [1.2]));
                 }
+                scenicList.push(new Scenery("smallTable", 2679, 1917, 0, 0));
+                scenicList.push(new Scenery("stumpStoolSml", 2716, 1916, -4, 0));
+                scenicList.push(new Scenery("stumpStoolSml", 2642, 1912, 1, 0));
 
                 //The Jarl's Estate
                 scenicList.push(new Scenery("freydicBuilding6", -102, 474, 0, true));
@@ -2588,6 +2591,15 @@ function buildMaster()
                 //Delete All Barriers
                 barrierList = [];
 
+                //if the player is in a certain part of the quest Matrimony: Tor/Stambjord the quest is failed in a particular way if the player leaves the map too early.
+                if (quests.matrimonyTorStambjordQuest == "coldfeet")
+                {
+                    quests.matrimonyTorStambjordQuest = "complete";
+                    quests.matrimonyTorStambjordCompletionStyle = "coldfeet";
+                    quests.completeQuests.push({name: "Matrimony: Tor/Stambjord", description: "You got cold feet and ran away from the wedding. An action which ended the planned marriage-alliance your father had arranged between your house and Stambjord."});
+                    player.freynorFaction -= 150;
+                }
+
                 //REGION CREATION
                 //Build AI Units
 
@@ -2701,6 +2713,21 @@ function buildMaster()
                         ArtificialIntelligenceAccess.push(new Unit(-18930, 44712, "Soldier", false, "Jarl Rannuk Stambjord", {race: "Freynor", faction: "Freynor", con: 16, speed: 0, outfit: ["fineFreydicOutfitM", 0], weapon: ["none", [0.5, 0.5], 0, 0, 1.15], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "none", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: false, route:[[-18930, 44712]]}));
                     }
                 }
+                if (uniqueChars.rannukChildLDS == true && quests.rannukChild)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "[ " + quests.rannukChildName + " ]")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-18990, 44770, "Person", false, "[ " + quests.rannukChildName + " ]", {race: player.raceName, faction: "player", personality: "violent", outfit: ["fineFreydicOutfitM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2164, 1656]], kid: true}));
+                    }
+                }
                 if (uniqueChars.seethLDS == true)
                 {
                     var hits = 0;
@@ -2755,14 +2782,14 @@ function buildMaster()
                     var hits = 0;
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
-                        if (ArtificialIntelligenceAccess[i].ID == "Ukko, Sage of Gemeth")
+                        if (ArtificialIntelligenceAccess[i].ID == "Ukko, Sage of Gemesh")
                         {
                             hits += 1;
                         }
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-20325, 41962, "Soldier", false, "Ukko, Sage of Gemeth", {race: "Freynor", faction: "Freynor", con: 5, speed: 0.6, outfit: ["whiteMageRobe", 0], weapon: ["iceSpikes", [0, 0], 0, 0, 1.2], ranged: [true, "none", 0, 140, 0, 0, 0, "none", 0], rot: -1/2*Math.PI, CNX: 50, MR: 25, patrolStops: 0, patrolLoop: false, route:[[-18930, 44712]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-20325, 41962, "Soldier", false, "Ukko, Sage of Gemesh", {race: "Freynor", faction: "Freynor", con: 5, speed: 0.6, outfit: ["whiteMageRobe", 0], weapon: ["iceSpikes", [0, 0], 0, 0, 1.2], ranged: [true, "none", 0, 140, 0, 0, 0, "none", 0], rot: -1/2*Math.PI, CNX: 50, MR: 25, patrolStops: 0, patrolLoop: false, route:[[-18930, 44712]]}));
                     }
                 }
                 if (uniqueChars.katjaLDS == true)
@@ -2902,15 +2929,18 @@ function buildMaster()
 
                     //respawnable humans
                         //Guards
-                ArtificialIntelligenceAccess.push(new Unit(-19038, 44781, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 20, speed: 1.45, outfit: ["chainArmour", 12], weapon: ["freydicSword", [12, 10], 0, 17, 1.1], ranged: [true, "arrow", 9, 2500, 1, 6, 0, "none", 1.5], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
-                ArtificialIntelligenceAccess.push(new Unit(-19100, 44781, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 22, speed: 1.4, outfit: ["chainArmour", 13], weapon: ["freydicSword", [11, 11], 0, 17, 1.15], ranged: [true, "arrow", 5, 2000, 1, 6, 0, "none", 1.75], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
-                ArtificialIntelligenceAccess.push(new Unit(-19165, 44778, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 19, speed: 1.55, outfit: ["chainArmour", 11], weapon: ["freydicSword", [12, 11], 0, 17, 1.2], ranged: [true, "arrow", 8, 2200, 1, 6, 0, "none", 1.5], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
-                ArtificialIntelligenceAccess.push(new Unit(-19224, 44776, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 21, speed: 1.45, outfit: ["chainArmour", 12], weapon: ["freydicSword", [10, 11], 0, 17, 1.1], ranged: [true, "arrow", 6, 2100, 1, 6, 0, "none", 1.5], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
-                ArtificialIntelligenceAccess.push(new Unit(-19048, 44649, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 20, speed: 1.35, outfit: ["chainArmour", 11], weapon: ["freydicSword", [10, 10], 0, 17, 1], ranged: [true, "arrow", 5, 2000, 1, 5, 0, "none", 1.5], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
-                ArtificialIntelligenceAccess.push(new Unit(-19102, 44647, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 23, speed: 1.5, outfit: ["chainArmour", 12.5], weapon: ["freydicSword", [12, 12], 0, 17, 1.3], ranged: [true, "arrow", 4, 1700, 1, 4, 0, "none", 2], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
-                ArtificialIntelligenceAccess.push(new Unit(-19180, 44645, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 20, speed: 1.45, outfit: ["chainArmour", 12], weapon: ["freydicSword", [12, 10], 0, 17, 1.1], ranged: [true, "arrow", 9, 2600, 1, 7, 0, "none", 1.5], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
-                ArtificialIntelligenceAccess.push(new Unit(-19260, 44645, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 22, speed: 1.4, outfit: ["chainArmour", 11.5], weapon: ["freydicSword", [11, 11], 0, 17, 1.1], ranged: [true, "arrow", 8, 2200, 1, 6, 0, "none", 1.4], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
-                ArtificialIntelligenceAccess.push(new Unit(-19557, 45010, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 20, speed: 1.55, outfit: ["chainArmour", 12], weapon: ["freydicSword", [12, 10], 0, 17, 1.1], ranged: [true, "arrow", 9, 2600, 1, 7, 0, "none", 1.5], rot: Math.PI, patrolStops: 2, patrolLoop: true, route:[[-19557, 45010], [-19557, 45010]]}));
+                if (change != "makemy6yearoldherealready!")
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-19038, 44781, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 20, speed: 1.45, outfit: ["chainArmour", 12], weapon: ["freydicSword", [12, 10], 0, 17, 1.1], ranged: [true, "arrow", 9, 2500, 1, 6, 0, "none", 1.5], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-19100, 44781, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 22, speed: 1.4, outfit: ["chainArmour", 13], weapon: ["freydicSword", [11, 11], 0, 17, 1.15], ranged: [true, "arrow", 5, 2000, 1, 6, 0, "none", 1.75], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-19165, 44778, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 19, speed: 1.55, outfit: ["chainArmour", 11], weapon: ["freydicSword", [12, 11], 0, 17, 1.2], ranged: [true, "arrow", 8, 2200, 1, 6, 0, "none", 1.5], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-19224, 44776, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 21, speed: 1.45, outfit: ["chainArmour", 12], weapon: ["freydicSword", [10, 11], 0, 17, 1.1], ranged: [true, "arrow", 6, 2100, 1, 6, 0, "none", 1.5], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-19048, 44649, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 20, speed: 1.35, outfit: ["chainArmour", 11], weapon: ["freydicSword", [10, 10], 0, 17, 1], ranged: [true, "arrow", 5, 2000, 1, 5, 0, "none", 1.5], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-19102, 44647, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 23, speed: 1.5, outfit: ["chainArmour", 12.5], weapon: ["freydicSword", [12, 12], 0, 17, 1.3], ranged: [true, "arrow", 4, 1700, 1, 4, 0, "none", 2], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-19180, 44645, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 20, speed: 1.45, outfit: ["chainArmour", 12], weapon: ["freydicSword", [12, 10], 0, 17, 1.1], ranged: [true, "arrow", 9, 2600, 1, 7, 0, "none", 1.5], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-19260, 44645, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 22, speed: 1.4, outfit: ["chainArmour", 11.5], weapon: ["freydicSword", [11, 11], 0, 17, 1.1], ranged: [true, "arrow", 8, 2200, 1, 6, 0, "none", 1.4], rot: Math.PI, patrolStops: 0, patrolLoop: true, route:[[-95, 645], [-95, 645]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-19557, 45010, "Soldier", false, "Stambjord Huskarl", {race: "Freynor", faction: "Freynor", con: 20, speed: 1.55, outfit: ["chainArmour", 12], weapon: ["freydicSword", [12, 10], 0, 17, 1.1], ranged: [true, "arrow", 9, 2600, 1, 7, 0, "none", 1.5], rot: Math.PI, patrolStops: 2, patrolLoop: true, route:[[-19557, 45010], [-19557, 45010]]}));
+                }
                 ArtificialIntelligenceAccess.push(new Unit(-15545, 44929, "Soldier", false, "Stambjord Captain", {race: "Freynor", faction: "Freynor", con: 28, speed: 1, outfit: ["northernPlateArmour", 22], weapon: ["freydicGreatSword", [24, 16], 0, 36, 2.65], ranged: [true, "arrow", 9.5, 2700, 1, 7, 0, "stunI", 1.35], patrolStops: 7, patrolLoop: true, route:[[-15545, 44315], [-14935, 44315], [-14935, 44108], [-15263, 44108], [-15263, 43818], [-15545, 43818], [-15545, 44929]]}));
                 ArtificialIntelligenceAccess.push(new Unit(-19028, 45212, "Soldier", false, "Stambjord Soldier", {race: "Freynor", faction: "Freynor", con: 6, speed: 1.50, outfit: ["chainArmour", 7], weapon: ["freydicSword", [9, 8], 0, 16, 1], ranged: [true, "arrow", 7, 2000, 1, 6, 0, "none", 1.50], patrolStops: 4, patrolLoop: true, route:[[-14379, 45212], [-14379, 45024], [-19028, 45024],[-19028, 45212]]}));
                 ArtificialIntelligenceAccess.push(new Unit(-15544, 43728, "Soldier", false, "Stambjord Soldier", {race: "Freynor", faction: "Freynor", con: 6, speed: 1.50, outfit: ["chainArmour", 7], weapon: ["freydicSword", [9, 8], 0, 16, 1], ranged: [true, "arrow", 7, 2000, 1, 6, 0, "none", 1.50], patrolStops: 4, patrolLoop: true, route:[[-15544, 42905], [-15770, 42905], [-15770, 43728],[-15544, 43728]]}));
@@ -3036,49 +3066,150 @@ function buildMaster()
                 scenicList.push(new Scenery("item", -18796, 44566, 0, "freynor", ["wood", 4, -23]));
                 scenicList.push(new Scenery("longTable", -19170, 44716, 0, false));
                 scenicList.push(new Scenery("stumpStool", -18934, 44715, 5, 2));
+
+                if (quests.matrimonyTorStambjordQuest == "complete" && quests.matrimonyTorStambjordCompletionStyle == "marriage")
+                {
+                    scenicList.push(new Scenery("stumpStool", -18976, 44644, -2.5, 2));
+                    if (quests.rannukChild)
+                    {
+                        scenicList.push(new Scenery("stumpStoolSml", -18990, 44773, 16, 2));
+                    }
+                }
                                 //the jarl feasts
-                scenicList.push(new Scenery("item", -19032, 44710, 0, "freynor", ["cloimidMeat", 1, -75]));
-                scenicList.push(new Scenery("item", -18967, 44731, 0, "freynor", ["crabChowder", 1, -40]));
-                scenicList.push(new Scenery("item", -18964, 44702, 0, "freynor", ["butteredHarstBread", 1, -30]));
-                scenicList.push(new Scenery("item", -18959, 44720, 0, "freynor", ["butteredCrab", 1, -40]));
-                scenicList.push(new Scenery("item", -18978, 44677, 0, "freynor", ["pintGlass", 1, -5]));
-                scenicList.push(new Scenery("item", -19016, 44739, 0, "freynor", ["pintGlass", 1, -5]));
-                scenicList.push(new Scenery("item", -18963, 44676, 0, "freynor", ["mead", 1, -25]));
-                scenicList.push(new Scenery("item", -18975, 44753, 0, "freynor", ["mead", 1, -25]));
-                scenicList.push(new Scenery("item", -18960, 44748, 0, "freynor", ["mead", 1, -25]));
-                scenicList.push(new Scenery("item", -19034, 44675, 0, "freynor", ["woodenBowl", 1, -5]));
-                scenicList.push(new Scenery("item", -19037, 44754, 0, "freynor", ["butteredCrab", 1, -30]));
-                scenicList.push(new Scenery("item", -19091, 44714, 0, "freynor", ["walrusMeat", 1, -70]));
-                scenicList.push(new Scenery("item", -19107, 44704, 0, "freynor", ["walrusMeat", 1, -70]));
-                scenicList.push(new Scenery("item", -19238, 44711, 0, "freynor", ["dryKelp", 2, -10]));
-                scenicList.push(new Scenery("item", -19248, 44720, 0, "freynor", ["crabClaw", 1, -80]));
-                scenicList.push(new Scenery("item", -19256, 44704, 0, "freynor", ["crabClaw", 1, -80]));
-                scenicList.push(new Scenery("item", -19160, 44713, 0, "freynor", ["waantiMeat", 1, -80]));
-                scenicList.push(new Scenery("item", -19179, 44706, 0, "freynor", ["waantiMeat", 1, -80]));
-                scenicList.push(new Scenery("item", -19057, 44679, 0, "freynor", ["mead", 1, -20]));
-                scenicList.push(new Scenery("item", -19329, 44695, 0, "freynor", ["tyrniBerries", 2, -14]));
-                scenicList.push(new Scenery("item", -19305, 44723, 0, "freynor", ["tyrniBerries", 2, -14]));
-                scenicList.push(new Scenery("item", -19338, 44713, 0, "freynor", ["tyrniBerries", 2, -14]));
-                scenicList.push(new Scenery("item", -19323, 44715, 0, "freynor", ["thab", 1, -90]));
-                scenicList.push(new Scenery("item", -19209, 44714, 0, "freynor", ["bushkaBerries", 2, -12]));
-                scenicList.push(new Scenery("item", -19207, 44714, 0, "freynor", ["bushkaBerries", 2, -12]));
-                scenicList.push(new Scenery("item", -19212, 44715, 0, "freynor", ["bushkaBerries", 2, -12]));
-                scenicList.push(new Scenery("item", -19213, 44704, 0, "freynor", ["crabMeat", 3, -45]));
-                scenicList.push(new Scenery("item", -19213, 44704, 0, "freynor", ["waantiButter", 1, -31]));
-                scenicList.push(new Scenery("item", -19100, 44678, 0, "freynor", ["crabChowder", 1, -35]));
-                scenicList.push(new Scenery("item", -19099, 44749, 0, "freynor", ["crabChowder", 1, -35]));
-                scenicList.push(new Scenery("item", -19081, 44744, 0, "freynor", ["pintGlass", 1, -5]));
-                scenicList.push(new Scenery("item", -19131, 44685, 0, "freynor", ["pintGlass", 1, -5]));
-                scenicList.push(new Scenery("item", -19170, 44746, 0, "freynor", ["butteredCrab", 1, -30]));
-                scenicList.push(new Scenery("item", -19157, 44736, 0, "freynor", ["mead", 1, -20]));
-                scenicList.push(new Scenery("item", -19191, 44685, 0, "freynor", ["mead", 1, -20]));
-                scenicList.push(new Scenery("item", -19172, 44674, 0, "freynor", ["crabChowder", 1, -35]));
-                scenicList.push(new Scenery("item", -19246, 44677, 0, "freynor", ["butteredCrab", 1, -30]));
-                scenicList.push(new Scenery("item", -19230, 44747, 0, "freynor", ["butteredCrab", 1, -30]));
-                scenicList.push(new Scenery("item", -19192, 44726, 0, "freynor", ["pintGlass", 1, -5]));
-                scenicList.push(new Scenery("item", -19202, 44741, 0, "freynor", ["mead", 1, -20]));
-                scenicList.push(new Scenery("item", -19276, 44689, 0, "freynor", ["mead", 1, -20]));
-                scenicList.push(new Scenery("item", -19264, 44676, 0, "freynor", ["mead", 1, -20]));
+                if (player.raceName == "Freynor" && player.title == "Royalty" || player.raceName == "Freynor" && player.title == "Nobility" && player.gender == "Female" && quests.matrimonyTorStambjordQuest == "complete" && quests.matrimonyTorStambjordCompletionStyle == "marriage")
+                {
+                    if (player.title != "Royalty")
+                    {
+                        //the jarl's wife's table
+                        scenicList.push(new Scenery("woodenBench", -19476, 44510, 0, 2));
+                        scenicList.push(new Scenery("item", -19438, 44519, 0, false, ["ogardPerfume", 1, 0]));
+                        scenicList.push(new Scenery("item", -19453, 44518, 0, false, ["ogardPerfume", 1, 0]));
+                        scenicList.push(new Scenery("item", -19447, 44508, 0, false, ["ogardPerfume", 1, 0]));
+                        scenicList.push(new Scenery("item", -19506, 44511, 0, false, ["rilthasiaFlower", 1, 0]));
+                        //her storage area and hobby
+                        scenicList.push(new Scenery("crate", -19560, 44531, 2/4 * Math.PI - 0 * Math.PI, 3, [2.25, "venningJarlsWifeCrate1", 18, [], false, 0]));
+                        scenicList.push(new Scenery("loom", -19384, 44517, Math.PI, true));
+                    }
+
+                    scenicList.push(new Scenery("item", -19032, 44710, 0, false, ["cloimidMeat", 1, 0]));
+                    scenicList.push(new Scenery("item", -18967, 44731, 0, false, ["crabChowder", 1, 0]));
+                    scenicList.push(new Scenery("item", -18964, 44702, 0, false, ["butteredHarstBread", 1, 0]));
+                    scenicList.push(new Scenery("item", -18959, 44720, 0, false, ["butteredCrab", 1, 0]));
+                    scenicList.push(new Scenery("item", -19016, 44739, 0, false, ["pintGlass", 1, 0]));
+                    scenicList.push(new Scenery("item", -18978, 44675, 0, false, ["crabChowder", 1, 0]));
+                    scenicList.push(new Scenery("item", -18983, 44718, 0, false, ["mead", 1, 0]));
+
+                    if (player.title != "Royalty")
+                    {
+                        scenicList.push(new Scenery("item", -18991, 44689, 0, false, ["pluttMoffling", 1, 0]));
+                        scenicList.push(new Scenery("item", -18997, 44671, 0, false, ["akerMoffling", 1, 0]));
+                        scenicList.push(new Scenery("item", -18969, 44690, 0, false, ["pluttWine", 1, 0]));
+                        scenicList.push(new Scenery("item", -19007, 44687, 0, false, ["pluttWine", 1, 0]));
+                        scenicList.push(new Scenery("item", -19363, 44688, 0, false, ["naapridMeat", 1, 0]));
+                        scenicList.push(new Scenery("item", -19360, 44692, 0, false, ["akerBerries", 2, 0]));
+                        scenicList.push(new Scenery("item", -19372, 44685, 0, false, ["akerBerries", 2, 0]));
+                        scenicList.push(new Scenery("item", -19369, 44729, 0, false, ["bearMeat", 1, 0]));
+                        scenicList.push(new Scenery("item", -19372, 44733, 0, false, ["pluttBerries", 1, 0]));
+                        scenicList.push(new Scenery("item", -19372, 44718, 0, false, ["pluttBerries", 1, 0]));
+                        scenicList.push(new Scenery("item", -19359, 44726, 0, false, ["pluttBerries", 1, 0]));
+                        scenicList.push(new Scenery("item", -19382, 44722, 0, false, ["pluttBerries", 1, 0]));
+                        scenicList.push(new Scenery("item", -19363, 44688, 0, false, ["groundOgard", 1, 0]));
+                        scenicList.push(new Scenery("item", -18956, 44676, 0, "freynor", ["mead", 1, -25]));
+                        if (!quests.rannukChild)
+                        {
+                            scenicList.push(new Scenery("item", -18975, 44753, 0, false, ["mead", 1, 0]));
+                        }
+                        else
+                        {
+                            scenicList.push(new Scenery("item", -18995, 44753, 0, false, ["butteredCrab", 1, 0]));
+                            scenicList.push(new Scenery("item", -19011, 44756, 0, false, ["pluttCiderPintGlass", 1, 0]));
+                        }
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("item", -18978, 44677, 0, "freynor", ["pintGlass", 1, -5]));
+                        scenicList.push(new Scenery("item", -18975, 44753, 0, false, ["mead", 1, 0]));
+                    }
+                    scenicList.push(new Scenery("item", -18960, 44748, 0, false, ["mead", 1, 0]));
+                    scenicList.push(new Scenery("item", -19034, 44675, 0, false, ["woodenBowl", 1, 0]));
+                    scenicList.push(new Scenery("item", -19037, 44754, 0, false, ["butteredCrab", 1, 0]));
+                    scenicList.push(new Scenery("item", -19091, 44714, 0, false, ["walrusMeat", 1, 0]));
+                    scenicList.push(new Scenery("item", -19107, 44704, 0, false, ["walrusMeat", 1, 0]));
+                    scenicList.push(new Scenery("item", -19238, 44711, 0, false, ["dryKelp", 2, 0]));
+                    scenicList.push(new Scenery("item", -19248, 44720, 0, false, ["crabClaw", 1, 0]));
+                    scenicList.push(new Scenery("item", -19256, 44704, 0, false, ["crabClaw", 1, 0]));
+                    scenicList.push(new Scenery("item", -19160, 44713, 0, false, ["waantiMeat", 1, 0]));
+                    scenicList.push(new Scenery("item", -19179, 44706, 0, false, ["waantiMeat", 1, 0]));
+                    scenicList.push(new Scenery("item", -19057, 44679, 0, false, ["mead", 1, 0]));
+                    scenicList.push(new Scenery("item", -19329, 44695, 0, false, ["tyrniBerries", 2, 0]));
+                    scenicList.push(new Scenery("item", -19305, 44723, 0, false, ["tyrniBerries", 2, 0]));
+                    scenicList.push(new Scenery("item", -19338, 44713, 0, false, ["tyrniBerries", 2, 0]));
+                    scenicList.push(new Scenery("item", -19323, 44715, 0, false, ["thab", 1, 0]));
+                    scenicList.push(new Scenery("item", -19209, 44714, 0, false, ["bushkaBerries", 2, 0]));
+                    scenicList.push(new Scenery("item", -19207, 44714, 0, false, ["bushkaBerries", 2, 0]));
+                    scenicList.push(new Scenery("item", -19212, 44715, 0, false, ["bushkaBerries", 2, 0]));
+                    scenicList.push(new Scenery("item", -19213, 44704, 0, false, ["crabMeat", 3, 0]));
+                    scenicList.push(new Scenery("item", -19213, 44704, 0, false, ["waantiButter", 1, 0]));
+                    scenicList.push(new Scenery("item", -19100, 44678, 0, false, ["crabChowder", 1, 0]));
+                    scenicList.push(new Scenery("item", -19099, 44749, 0, false, ["crabChowder", 1, 0]));
+                    scenicList.push(new Scenery("item", -19081, 44744, 0, false, ["pintGlass", 1, 0]));
+                    scenicList.push(new Scenery("item", -19131, 44685, 0, false, ["pintGlass", 1, 0]));
+                    scenicList.push(new Scenery("item", -19170, 44746, 0, false, ["butteredCrab", 1, 0]));
+                    scenicList.push(new Scenery("item", -19157, 44736, 0, false, ["mead", 1, 0]));
+                    scenicList.push(new Scenery("item", -19191, 44685, 0, false, ["mead", 1, 0]));
+                    scenicList.push(new Scenery("item", -19172, 44674, 0, false, ["crabChowder", 1, 0]));
+                    scenicList.push(new Scenery("item", -19246, 44677, 0, false, ["butteredCrab", 1, 0]));
+                    scenicList.push(new Scenery("item", -19230, 44747, 0, false, ["butteredCrab", 1, 0]));
+                    scenicList.push(new Scenery("item", -19192, 44726, 0, false, ["pintGlass", 1, 0]));
+                    scenicList.push(new Scenery("item", -19202, 44741, 0, false, ["mead", 1, 0]));
+                    scenicList.push(new Scenery("item", -19276, 44689, 0, false, ["mead", 1, 0]));
+                    scenicList.push(new Scenery("item", -19264, 44676, 0, false, ["mead", 1, 0]));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("item", -19032, 44710, 0, "freynor", ["cloimidMeat", 1, -75]));
+                    scenicList.push(new Scenery("item", -18967, 44731, 0, "freynor", ["crabChowder", 1, -40]));
+                    scenicList.push(new Scenery("item", -18964, 44702, 0, "freynor", ["butteredHarstBread", 1, -30]));
+                    scenicList.push(new Scenery("item", -18959, 44720, 0, "freynor", ["butteredCrab", 1, -40]));
+                    scenicList.push(new Scenery("item", -18978, 44677, 0, "freynor", ["pintGlass", 1, -5]));
+                    scenicList.push(new Scenery("item", -19016, 44739, 0, "freynor", ["pintGlass", 1, -5]));
+                    scenicList.push(new Scenery("item", -18963, 44676, 0, "freynor", ["mead", 1, -25]));
+                    scenicList.push(new Scenery("item", -18975, 44753, 0, "freynor", ["mead", 1, -25])); //
+                    scenicList.push(new Scenery("item", -18960, 44748, 0, "freynor", ["mead", 1, -25])); //
+                    scenicList.push(new Scenery("item", -19034, 44675, 0, "freynor", ["woodenBowl", 1, -5]));
+                    scenicList.push(new Scenery("item", -19037, 44754, 0, "freynor", ["butteredCrab", 1, -30]));
+                    scenicList.push(new Scenery("item", -19091, 44714, 0, "freynor", ["walrusMeat", 1, -70]));
+                    scenicList.push(new Scenery("item", -19107, 44704, 0, "freynor", ["walrusMeat", 1, -70]));
+                    scenicList.push(new Scenery("item", -19238, 44711, 0, "freynor", ["dryKelp", 2, -10]));
+                    scenicList.push(new Scenery("item", -19248, 44720, 0, "freynor", ["crabClaw", 1, -80]));
+                    scenicList.push(new Scenery("item", -19256, 44704, 0, "freynor", ["crabClaw", 1, -80]));
+                    scenicList.push(new Scenery("item", -19160, 44713, 0, "freynor", ["waantiMeat", 1, -80]));
+                    scenicList.push(new Scenery("item", -19179, 44706, 0, "freynor", ["waantiMeat", 1, -80]));
+                    scenicList.push(new Scenery("item", -19057, 44679, 0, "freynor", ["mead", 1, -20]));
+                    scenicList.push(new Scenery("item", -19329, 44695, 0, "freynor", ["tyrniBerries", 2, -14]));
+                    scenicList.push(new Scenery("item", -19305, 44723, 0, "freynor", ["tyrniBerries", 2, -14]));
+                    scenicList.push(new Scenery("item", -19338, 44713, 0, "freynor", ["tyrniBerries", 2, -14]));
+                    scenicList.push(new Scenery("item", -19323, 44715, 0, "freynor", ["thab", 1, -90]));
+                    scenicList.push(new Scenery("item", -19209, 44714, 0, "freynor", ["bushkaBerries", 2, -12]));
+                    scenicList.push(new Scenery("item", -19207, 44714, 0, "freynor", ["bushkaBerries", 2, -12]));
+                    scenicList.push(new Scenery("item", -19212, 44715, 0, "freynor", ["bushkaBerries", 2, -12]));
+                    scenicList.push(new Scenery("item", -19213, 44704, 0, "freynor", ["crabMeat", 3, -45]));
+                    scenicList.push(new Scenery("item", -19213, 44704, 0, "freynor", ["waantiButter", 1, -31]));
+                    scenicList.push(new Scenery("item", -19100, 44678, 0, "freynor", ["crabChowder", 1, -35]));
+                    scenicList.push(new Scenery("item", -19099, 44749, 0, "freynor", ["crabChowder", 1, -35]));
+                    scenicList.push(new Scenery("item", -19081, 44744, 0, "freynor", ["pintGlass", 1, -5]));
+                    scenicList.push(new Scenery("item", -19131, 44685, 0, "freynor", ["pintGlass", 1, -5]));
+                    scenicList.push(new Scenery("item", -19170, 44746, 0, "freynor", ["butteredCrab", 1, -30]));
+                    scenicList.push(new Scenery("item", -19157, 44736, 0, "freynor", ["mead", 1, -20]));
+                    scenicList.push(new Scenery("item", -19191, 44685, 0, "freynor", ["mead", 1, -20]));
+                    scenicList.push(new Scenery("item", -19172, 44674, 0, "freynor", ["crabChowder", 1, -35]));
+                    scenicList.push(new Scenery("item", -19246, 44677, 0, "freynor", ["butteredCrab", 1, -30]));
+                    scenicList.push(new Scenery("item", -19230, 44747, 0, "freynor", ["butteredCrab", 1, -30]));
+                    scenicList.push(new Scenery("item", -19192, 44726, 0, "freynor", ["pintGlass", 1, -5]));
+                    scenicList.push(new Scenery("item", -19202, 44741, 0, "freynor", ["mead", 1, -20]));
+                    scenicList.push(new Scenery("item", -19276, 44689, 0, "freynor", ["mead", 1, -20]));
+                    scenicList.push(new Scenery("item", -19264, 44676, 0, "freynor", ["mead", 1, -20]));
+                }
                 scenicList.push(new Scenery("woodenBench", -19063, 44781, -0.025, 2));
                 scenicList.push(new Scenery("woodenBench", -19073, 44646, 0.05, 2));
                 scenicList.push(new Scenery("woodenBench", -19217, 44645, -0.03, 2));
@@ -3124,8 +3255,16 @@ function buildMaster()
 
                 if (player.raceName != "Freynor" || player.title != "Royalty")
                 {
-                    scenicList.push(new Scenery("item", -18528, 44749, 0, "freynor", ["freydicSword", 1, -55, "Stambjord Soldier"]));
-                    scenicList.push(new Scenery("crate", -18288, 44448, 1.8/4 * Math.PI, 3, [1.2, "venningBarracksCrate1", 3, [[new Item("freydicSword", false, false), 8], [new Item("northernPlateArmour", false, false), 1], [new Item("chainArmour", false, false), 2]], "freynor", -110, "Stambjord Soldier"]));
+                    if (player.raceName == "Freynor" && player.title == "Nobility" && player.gender == "Female" && quests.matrimonyTorStambjordQuest == "complete" && quests.matrimonyTorStambjordCompletionStyle != "rejection") //the jarls wife has the right to plunder his stores without being murdered by his soldiers but the act of doing so is counter-traditional so some small amount of faction relation is lost
+                    {
+                        scenicList.push(new Scenery("item", -18528, 44749, 0, "freynor", ["freydicSword", 1, -15]));
+                        scenicList.push(new Scenery("crate", -18288, 44448, 1.8/4 * Math.PI, 3, [1.2, "venningBarracksCrate1", 3, [[new Item("freydicSword", false, false), 8], [new Item("northernPlateArmour", false, false), 1], [new Item("chainArmour", false, false), 2]], "freynor", -25]));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("item", -18528, 44749, 0, "freynor", ["freydicSword", 1, -55, "Stambjord Soldier"]));
+                        scenicList.push(new Scenery("crate", -18288, 44448, 1.8/4 * Math.PI, 3, [1.2, "venningBarracksCrate1", 3, [[new Item("freydicSword", false, false), 8], [new Item("northernPlateArmour", false, false), 1], [new Item("chainArmour", false, false), 2]], "freynor", -110, "Stambjord Soldier"]));
+                    }
                 }
                 else
                 {
@@ -3364,6 +3503,33 @@ function buildMaster()
                     worldItems.push([new Item("iceClaymore", -20249, 41764), 1]);
                     worldItems.push([new Item("tablet", -20239, 42166), 1]);
                     worldItems.push([new Item("tablet", -20640, 42170), 1]);
+                }
+
+                if (quests.killedStambjordHeir || quests.rannukThreatened && player.title != "Nobility" && player.title != "Royalty")
+                {
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Stambjord Soldier" || ArtificialIntelligenceAccess[i].ID == "Stambjord Huskarl" || ArtificialIntelligenceAccess[i].ID == "Stambjord Captain")
+                        {
+                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime() + 10000000;
+                        }
+                    }
+                }
+
+                if (uniqueChars.rannukLDS == false && uniqueChars.jalmariLDS == false && quests.aNobleConspiracyQuest == true)
+                {
+                    quests.aNobleConspiracyQuest = "complete";
+                    quests.aNobleConspiracyCompletionStyle = "eradicate";
+                    quests.completeQuests.push({name: "A Noble Conspiracy", description: "You fixed the corruption problem yourself by killing both Captain Jalmari Salt-Blood and the Jarl of Venning who was supporting the piratry by permitting it to continue in exchange for a cut of the contraband."});
+                    if (player.class == "mage")
+                    {
+                        player.magicalExperience += 200;
+                    }
+                    else
+                    {
+                        player.experience += 555;
+                    }
+                    player.fame += 1;
                 }
 
                 change = "n4e2";

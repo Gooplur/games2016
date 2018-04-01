@@ -26185,6 +26185,30 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                 }
             }
+            else if (this.ID == "[ " + quests.rannukChildName + " ]") //this sets stats for the player child with Hilmund
+            {
+                if (this.aiTimer > 4)
+                {
+                    if (this.team == "player")
+                    {
+                        this.disturbedTime = new Date().getTime(); //this is so that your child is inclined to follow you
+                    }
+                    if (shiftKey && wKey || fKey || tKey) //runs when player runs or when directed to go somewhere
+                    {
+                        if (!this.stay)
+                        {
+                            this.speed = 1.15;
+                        }
+                    }
+                    else //walks when player walks
+                    {
+                        if (!this.stay)
+                        {
+                            this.speed = 0.50;
+                        }
+                    }
+                }
+            }
             else if (this.ID == "Cheryl the Tailor")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 29]];
@@ -26622,12 +26646,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.freynorFaction -= 1;
                         }
                     }
-                    if (this.ID == "Garld the Crazy Beggar" || this.ID == "Garld, Sage of Gemeth")
+                    if (this.ID == "Garld the Crazy Beggar" || this.ID == "Garld, Sage of Gemesh")
                     {
                         uniqueChars.garldLDS = false;
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
-                            if (this.ID == "Garld, Sage of Gemeth")
+                            if (this.ID == "Garld, Sage of Gemesh")
                             {
                                 player.freynorFaction -= 17;
                             }
@@ -26796,6 +26820,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "[ " + quests.cherylChildName + " ]")
                     {
                         uniqueChars.cherylChildLDS = false;
+                    }
+                    else if (this.ID == "[ " + quests.rannukChildName + " ]")
+                    {
+                        uniqueChars.rannukChildLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction -= 1150;
+                            quests.killedStambjordHeir = true;
+                        }
                     }
                     else if (this.ID == "Drohfor")
                     {
@@ -27252,9 +27285,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             this.drops = [[new Item("coins", false), 3000], [new Item("fineFreydicOutfitM", false), 1]];
                         }
-                        else if (this.ID == "Ukko, Sage of Gemeth")
+                        else if (this.ID == "Ukko, Sage of Gemesh")
                         {
-                            this.drops = [[new Item("iceSpikes", this.X, this.Y), 1]];
+                            if (!quests.stolenScriptureScrollGiven)
+                            {
+                                this.drops = [[new Item("iceSpikes", this.X, this.Y), 1]];
+                            }
                         }
                         else if (this.ID == "Stambjord Soldier")
                         {
@@ -27308,7 +27344,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             }
                         }
 
-                        if (this.ID != "Jarl Rannuk Stambjord" && this.ID != "Ukko, Sage of Gemeth")
+                        if (this.ID != "Jarl Rannuk Stambjord" && this.ID != "Ukko, Sage of Gemesh")
                         {
                             this.switchToRanged("longbow");
                         }
@@ -27471,7 +27507,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             if (quests.aNobleConspiracyQuest == false)
                             {
                                 quests.aNobleConspiracyQuest = true;
-                                quests.activeQuests.push({name: "A Noble Conspiracy", description: "You have witnessed evidence that The Jarl of Venning permits piratry in exhcange for a cut of the loot."});
+                                quests.activeQuests.push({name: "A Noble Conspiracy", description: "You have witnessed evidence that The Jarl of Venning permits piratry in exchange for a cut of the loot."});
                             }
                         }
                         else if (this.ID == "Stambjord Conspirator")
@@ -27794,7 +27830,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.freynorFaction -= 80;
                         }
                     }
-                    else if (this.ID == "Ukko, Sage of Gemeth")
+                    else if (this.ID == "Ukko, Sage of Gemesh")
                     {
                         uniqueChars.ukkoLDS = false;
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)

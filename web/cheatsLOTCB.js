@@ -865,6 +865,26 @@ function cheats()
         {
             player.level = 51;
         }
+        else if (cheatcode == "questData")
+        {
+            console.log(quests);
+        }
+        else if (cheatcode == "googleIsMyHusbandCheatingOnMeWithPirates?")
+        {
+            if (quests.aNobleConspiracyQuest == false && quests.matrimonyTorStambjordCompletionStyle == "marriage")
+            {
+                quests.aNobleConspiracyQuest = true;
+                quests.activeQuests.push({name: "A Noble Conspiracy", description: "You have witnessed evidence that The Jarl of Venning permits piratry in exchange for a cut of the loot."});
+            }
+        }
+        else if (cheatcode == "googleIsMySistersHusbandCheatingOnHerWithPirates?")
+        {
+            if (quests.aNobleConspiracyQuest == false && quests.matrimonyTorStambjordCompletionStyle != "marriage")
+            {
+                quests.aNobleConspiracyQuest = true;
+                quests.activeQuests.push({name: "A Noble Conspiracy", description: "You have witnessed evidence that The Jarl of Venning permits piratry in exchange for a cut of the loot."});
+            }
+        }
         else if (cheatcode.toLowerCase() == "toggleautosave")
         {
             if (player.autosaveEnabled)

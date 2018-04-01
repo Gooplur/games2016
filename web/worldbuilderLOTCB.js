@@ -2859,7 +2859,7 @@ function buildMaster()
                             else
                             {
                                 togginBeer = true;
-                                ArtificialIntelligenceAccess.push(new Unit(-15010, 44752, "Person", false, "Toggin", {race: "Freynor", faction: "arena2", personality: "violent", outfit: ["blackBearFurClothing", 0], weapon: ["none", [0.8, 0.8], 0, 2, 1.2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-15010, 44761]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(-14983, 44729, "Person", false, "Toggin", {race: "Freynor", faction: "arena2", personality: "violent", outfit: ["blackBearFurClothing", 0], weapon: ["none", [0.8, 0.8], 0, 2, 1.2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-14983, 44760]]}));
                             }
                             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                             {
@@ -2963,6 +2963,83 @@ function buildMaster()
                             //wealthy zoners
                 ArtificialIntelligenceAccess.push(new Unit(-20208, 42655, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["northernClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[-20566, 41983]]}));
                 ArtificialIntelligenceAccess.push(new Unit(-20739, 42515, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["northernClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-20704, 42518]]}));
+                            //dmitri pleasers
+                var extraBeerCup = false;
+                if (Math.round(Math.random()))
+                {
+                    extraBeerCup = true; //empty cup on the bottom left small table
+                    if (Math.random() > 0.25)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-15058, 44428, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["sealSkinClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-15024, 44424]]}));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-15058, 44428, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["northernClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-15024, 44424]]}));
+                    }
+                }
+
+                ArtificialIntelligenceAccess.push(new Unit(-15137, 44647, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["sealSkinClothing", 0], weapon: ["none", [0.35, 0.55], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[-15837, 44485]]}));
+                var travelerFoodz;
+                if (Math.random() <= 0.15)
+                {
+                    travelerFoodz = 1; //fish with berries -15141, 44611
+                    ArtificialIntelligenceAccess.push(new Unit(-15195, 44639, "Person", false, "Traveler", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["varnFurClothing", 0], weapon: ["none", [0.35, 0.55], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[-15137, 44647]]}));
+                }
+                else if (Math.random() <= 0.39)
+                {
+                    if (Math.round(Math.random()))
+                    {
+                        travelerFoodz = 2; //mead -15141, 44611
+                        if (Math.round(Math.random()))
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-15127, 44534, "Person", false, "Traveler", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["skolLeatherArmour", 3.5], weapon: ["none", [0.35, 0.55], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-15132, 44561]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-15127, 44534, "Person", false, "Traveler", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["boulchomLeatherArmour", 2], weapon: ["none", [0.35, 0.55], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-15132, 44561]]}));
+                        }
+                    }
+                    else
+                    {
+                        travelerFoodz = 3; //fish with berries -15318, 44565
+                        if (Math.round(Math.random()))
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-15387, 44572, "Person", false, "Traveler", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["boulchomLeatherArmour", 2], weapon: ["none", [0.35, 0.55], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-15361, 44573]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-15387, 44572, "Person", false, "Traveler", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["skolLeatherArmour", 3.5], weapon: ["none", [0.35, 0.55], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-15361, 44573]]}));
+                        }
+                    }
+                }
+                else
+                {
+                    if (Math.round(Math.random()))
+                    {
+                        travelerFoodz = 0; //sealMeat and harst ale -15141, 44611
+                        if (Math.round(Math.random()))
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-15197, 44640, "Person", false, "Traveler", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["sealSkinClothing", 0], weapon: ["none", [0.35, 0.55], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[-15137, 44647]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-15197, 44640, "Person", false, "Traveler", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["northernClothing", 0], weapon: ["none", [0.35, 0.55], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[-15137, 44647]]}));
+                        }
+
+                    }
+                    else
+                    {
+                        travelerFoodz = 4; //mead -15318, 44565
+                        if (Math.round(Math.random()))
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-15198, 44642, "Person", false, "Traveler", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["northernClothing", 0], weapon: ["none", [0.3, 0.6], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[-15837, 44485]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-15198, 44642, "Person", false, "Traveler", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["sealSkinClothing", 0], weapon: ["none", [0.3, 0.6], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[-15837, 44485]]}));
+                        }
+                    }
+                }
                 var randoDrinkYes = false;
                 if (Math.round(Math.random()))
                 {
@@ -3325,6 +3402,40 @@ function buildMaster()
                 scenicList.push(new Scenery("item", -15286, 43335, 0, "freynor", ["neprilneBerries", 1, -7]));
                 scenicList.push(new Scenery("item", -15304, 43332, 0, "freynor", ["lizardTail", 1, -3]));
 
+                if (travelerFoodz == 1)
+                {
+                    //fish with berries -15236, 44643
+                    scenicList.push(new Scenery("item", -15241, 44642, 0, "freynor", ["tyrniBerries", 1, 0, "Traveler"]));
+                    scenicList.push(new Scenery("item", -15235, 44644, 0, "freynor", ["redCrombal", 1, 0, "Traveler"]));
+                }
+                else if (travelerFoodz == 0)
+                {
+                    //sealMeat and harst ale -15236, 44643
+                    scenicList.push(new Scenery("item", -15236, 44643, 0, "freynor", ["sealMeat", 1, 0, "Traveler"]));
+                    scenicList.push(new Scenery("item", -15240, 44633, 0, "freynor", ["harstAle", 1, 0, "Traveler"]));
+                }
+                else if (travelerFoodz == 2)
+                {
+                    //mead -15141, 44611
+                    scenicList.push(new Scenery("item", -15136, 44605, 0, "freynor", ["mead", 1, 0, "Traveler"]));
+                }
+                else if (travelerFoodz == 3)
+                {
+                    //fish with berries -15318, 44565
+                    scenicList.push(new Scenery("item", -15312, 44565, 0, "freynor", ["tyrniBerries", 1, 0, "Traveler"]));
+                    scenicList.push(new Scenery("item", -15319, 44565, 0, "freynor", ["redCrombal", 1, 0, "Traveler"]));
+                }
+                else
+                {
+                    //mead -15318, 44565
+                    scenicList.push(new Scenery("item", -15230, 44643, 0, "freynor", ["mead", 1, 0, "Traveler"]));
+                }
+
+                if (extraBeerCup)
+                {
+                    scenicList.push(new Scenery("item", -15000, 44414, 0, "freynor", ["pintGlass", 1, -1]));
+                }
+
                         //Alchemy Shop
                 scenicList.push(new Scenery("freydicBuilding6", -15030, 43940, 0, true));
                 scenicList.push(new Scenery("lab", -15031, 44037, 0, true));
@@ -3490,7 +3601,7 @@ function buildMaster()
 
                 if (togginBeer)
                 {
-                    scenicList.push(new Scenery("item", -15012, 44780, 0, "freynor", ["harstAle", 1, 0, "Toggin"]));
+                    scenicList.push(new Scenery("item", -14982, 44780, 0, "freynor", ["harstAle", 1, 0, "Toggin"]));
                 }
                 if (randoDrinkYes)
                 {

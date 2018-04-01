@@ -788,42 +788,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.allys.push("TheBalgurMercenaries");
             }
         }
-        if (this.team == "Freynor")
-        {
-            if (player.freynorPeace && player.freynorFaction > -50)
-            {
-                this.allys.push("player");
-            }
-            this.allys.push("TheBalgurMercenaries"); //temporarily so that the guards will not slay the mercs. //booble
-            this.allys.push("Vardan"); //temporarily so that the guards will not slay neculai. //booble
-            this.allys.push("clamia");
-        }
-        if (this.team == "Vardan")
-        {
-            if (player.vardanPeace && player.vardanFaction > -50)
-            {
-                this.allys.push("player");
-            }
-            this.allys.push("Freynor"); //temporarily so that neculai will not slay the villagers. //booble
-            this.allys.push("clamia");
-        }
-        if (this.team == "Kel")
-        {
-            if (player.kelPeace && player.kelFaction > -50)
-            {
-                this.allys.push("player");
-            }
-            this.allys.push("clamia");
-        }
-        if (this.team == "Thengar")
-        {
-            if (player.thengarPeace && player.thengarFaction > -50)
-            {
-                this.allys.push("player");
-            }
-            this.allys.push("TheBalgurMercenaries");
-            this.allys.push("clamia");
-        }
         if (this.team == "arena1" || this.team == "arena2" || this.team == "arena3")
         {
             if (this.team != "arena3")
@@ -833,6 +797,68 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("TheBalgurMercenaries");
             this.allys.push("Thengar");
             this.allys.push("Kel");
+            this.allys.push("Freynor");
+            this.allys.push("Aldrek");
+            this.allys.push("Orgell");
+            this.allys.push("Vardan");
+            this.allys.push("Cephrite");
+            this.allys.push("Nirwaden");
+            this.allys.push("clamia");
+        }
+        if (this.team == "Freynor")
+        {
+            if (player.freynorPeace && player.freynorFaction > -50)
+            {
+                this.allys.push("player");
+            }
+            this.allys.push("TheBalgurMercenaries");
+            this.allys.push("Thengar");
+            this.allys.push("Kel");
+            this.allys.push("Aldrek");
+            this.allys.push("Orgell");
+            this.allys.push("Vardan");
+            this.allys.push("Cephrite");
+            this.allys.push("Nirwaden");
+            this.allys.push("clamia");
+        }
+        if (this.team == "Vardan")
+        {
+            if (player.vardanPeace && player.vardanFaction > -50)
+            {
+                this.allys.push("player");
+            }
+            this.allys.push("TheBalgurMercenaries");
+            this.allys.push("Thengar");
+            this.allys.push("Kel");
+            this.allys.push("Freynor");
+            this.allys.push("Aldrek");
+            this.allys.push("Orgell");
+            this.allys.push("Cephrite");
+            this.allys.push("Nirwaden");
+            this.allys.push("clamia");
+        }
+        if (this.team == "Kel")
+        {
+            if (player.kelPeace && player.kelFaction > -50)
+            {
+                this.allys.push("player");
+            }
+
+            this.allys.push("Freynor");
+            this.allys.push("Aldrek");
+            this.allys.push("Orgell");
+            this.allys.push("Vardan");
+            this.allys.push("Cephrite");
+            this.allys.push("Nirwaden");
+            this.allys.push("clamia");
+        }
+        if (this.team == "Thengar")
+        {
+            if (player.thengarPeace && player.thengarFaction > -50)
+            {
+                this.allys.push("player");
+            }
+            this.allys.push("TheBalgurMercenaries");
             this.allys.push("Freynor");
             this.allys.push("Aldrek");
             this.allys.push("Orgell");
@@ -5466,6 +5492,16 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 XXX.rotate(this.rotation);
                 XXX.drawImage(verse, 508, 659, 40, 39, -(1 / 2 * 40 * 0.8) + 2, -(1 / 2 * 39 * 0.8) + 0, 40 * 0.8, 39 * 0.8);
+            }
+            else if (outfit == "varnFurClothing")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation + 1 / 2 * Math.PI);
+                XXX.drawImage(verse, 2140, 29, 25, 20, -(1 / 2 * 25) - 1.75, -(1 / 2 * 20) - 4, 31, 27.2);
             }
             else if (outfit == "walrusLeatherArmour")
             {

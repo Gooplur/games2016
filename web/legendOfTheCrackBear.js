@@ -232,7 +232,7 @@ function legendaryPrerequisites()
     var seethPiratry = new Audio("sounds/polySounds/seethPiratry.wav");
     window.seethPiratry = seethPiratry;
 
-    var seethTakeASeat = new Audio("sounds/polySounds/seethTakeASeat.wav");
+    var seethTakeASeat = new Audio("sounds/polySounds/SeethTakeASeat.wav");
     window.seethTakeASeat = seethTakeASeat;
 
     var seethWell = new Audio("sounds/polySounds/seethWell.wav");

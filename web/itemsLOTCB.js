@@ -13578,7 +13578,7 @@ function Item(type, x, y)
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
-            this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 10); // at max, sell for 7.
         }
         else if (this.type == "crabMeat")
         {
@@ -13613,7 +13613,7 @@ function Item(type, x, y)
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 15 - Math.floor(player.getCharisma() / 50); // at max, buy for 14.
-            this.sellValue = 9 + Math.floor(player.getCharisma() / 10); // at max, sell for 14.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 4.54545454); // at max, sell for 14.
         }
         else if (this.type == "rawCrabClaw")
         {

@@ -4392,6 +4392,30 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawUnit(oldverse, 591, 104, 53, 76, -21.5, -73.75, 53, 76, 1 / 2 * Math.PI);
             }
         }
+        else if (this.weapon == "mace")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(polyPNG, 51, 70, 105, 46, -26, -22, 70, 45, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(polyPNG, 169, 62, 105, 46, -26, -29, 70, 45, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(polyPNG, 282, 47, 105, 53, -33, -40, 70, 45, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(polyPNG, 399, 68, 105, 59, -38, -43, 72, 45, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 4)
+            {
+                this.drawUnit(polyPNG, 520, 59, 105, 69, -28, -43, 72, 47, 1 / 2 * Math.PI);
+            }
+        }
         else if (this.weapon == "freydicGreatSword")
         {
             this.damageFrame = "automatic";
@@ -4621,6 +4645,38 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (theCostume >= 6)
             {
                 this.drawUnit(mofu, 186, 307, 64, 55, -37, -49, 64 * 1.5, 55 * 1.5, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "burningSmashStick")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.flashAnimate(90, this.rotation + 1 / 2 * Math.PI, 1, [{image: mofu, imgX: 60, imgY: 404, portionW: 66, portionH: 65, adjX: -58, adjY: -52, width: 66 * 1.5, height: 65 * 1.5}, {image: mofu, imgX: 56, imgY: 353, portionW: 66, portionH: 65, adjX: -63, adjY: -52, width: 66 * 1.5, height: 65 * 1.5}, {image: mofu, imgX: 43, imgY: 131, portionW: 66, portionH: 65, adjX: -63, adjY: -47, width: 66 * 1.5, height: 65 * 1.5}, {image: mofu, imgX: 60, imgY: 404, portionW: 66, portionH: 65, adjX: -58, adjY: -52, width: 66 * 1.5, height: 65 * 1.5}, {image: mofu, imgX: 56, imgY: 353, portionW: 66, portionH: 65, adjX: -63, adjY: -52, width: 66 * 1.5, height: 65 * 1.5}]);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(mofu, 109, 127, 66, 65, -60, -55, 66 * 1.5, 65 * 1.5, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(mofu, 41, 180, 66, 65, -56, -70, 66 * 1.5, 65 * 1.5, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(mofu, 97, 186, 66, 65, -48, -65, 66 * 1.5, 65 * 1.5, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 4)
+            {
+                this.drawUnit(mofu, 41, 245, 66, 65, -44, -62, 66 * 1.5, 65 * 1.5, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 5)
+            {
+                this.drawUnit(mofu, 92, 248, 66, 65, -38, -55, 66 * 1.5, 65 * 1.5, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 6)
+            {
+                this.drawUnit(mofu, 40, 306, 66, 65, -38, -51.5, 66 * 1.5, 65 * 1.5, 1 / 2 * Math.PI);
             }
         }
         else if (this.weapon == "thenganSword")
@@ -5763,6 +5819,16 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 XXX.rotate(this.rotation);
                 XXX.drawImage(polypol, 622, 26, 23, 22, -(1 / 2 * 23 * 1.3) - 0, -(1 / 2 * 22 * 1.3) + 0, 23 * 1.3, 22 * 1.3);
+            }
+            else if (outfit == "saltBloodArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                XXX.drawImage(norc, 126, 118, 36, 31, -(1 / 2 * 36 * 2) + 0, -(1 / 2 * 31 * 2) + 1.5, 36 * 2, 31 * 2);
             }
             else if (outfit == "balkurLeatherArmour")
             {
@@ -27128,6 +27194,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             this.costumeEngine(8, 0.25, false);
                         }
+                        else if (this.weapon == "mace")
+                        {
+                            this.costumeEngine(6, 0.15, true);
+                        }
+                        else if (this.weapon == "burningSmashStick")
+                        {
+                            this.effect = "fire";
+                            this.costumeEngine(7, 0.23, true);
+                        }
                     }
                 }
                 //draw some weapons underneath the body
@@ -27510,7 +27585,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
                         }
                     }
-                    if (this.ID == "Northern Pirate")
+                    if (this.ID == "Northern Pirate" || this.ID == "Salt-Blood Pirate")
                     {
                         //RANGE OF SIGHT (anything related to range of sight)
                         this.rangeOfSightCalculator(350, false);
@@ -27620,6 +27695,20 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.armour = 6;
                             this.ultra.weapon[1][1] = 9;
                             this.ultra.weapon[1][0] = 4;
+                        }
+                    }
+                    if (this.ID == "Captain Jalmari Salt-Blood")
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(300, false);
+
+                        this.drops = [[new Item("saltBloodArmour", this.X, this.Y), 1], [new Item("burningSmashStick", this.X, this.Y), 1]];
+
+                        this.disturbed = true;
+
+                        if (this.disturbed == true)
+                        {
+                            this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
                         }
                     }
                     if (this.ID == "Nelgref's Pet Bandit")
@@ -27795,6 +27884,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     if (this.ID == "Hetmer The Bandit Chief")
                     {
                         uniqueChars.hetmerLDS = false;
+                    }
+                    else if (this.ID == "Captain Jalmari Salt-Blood")
+                    {
+                        uniqueChars.jalmariLDS = false;
                     }
                     else if (this.ID == "Mercenary Captain Kronheime")
                     {
@@ -28092,6 +28185,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         else if (this.weapon == "electricBolt")
                         {
                             this.costumeEngine(8, 0.25, false);
+                        }
+                        else if (this.weapon == "mace")
+                        {
+                            this.costumeEngine(6, 0.15, true);
+                        }
+                        else if (this.weapon == "burningSmashStick")
+                        {
+                            this.effect = "fire";
+                            this.costumeEngine(7, 0.23, true);
                         }
                     }
                 }

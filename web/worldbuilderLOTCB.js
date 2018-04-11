@@ -2148,7 +2148,7 @@ function buildMaster()
                 scenicList.push(new Scenery("stone", 15860, 45602, 8.111, 1, 3));
 
 
-                if (uniqueChars.jalmariLDS) //pirates land 1/4 times the map loads to hand over the jarl's cut of stolen goods and currency
+                if (uniqueChars.jalmariLDS && uniqueChars.rannukLDS) //pirates land 1/4 times the map loads to hand over the jarl's cut of stolen goods and currency
                 {
                     if (Math.random() >= 0.75)
                     {
@@ -3811,6 +3811,40 @@ function buildMaster()
                 //meant for the map
 
                 //humans
+                //Captain Jalmari Salt-Blood
+                if (uniqueChars.jalmariLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Captain Jalmari Salt-Blood")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(13605, 54013, "Soldier", false, "Captain Jalmari Salt-Blood", {race: "Freynor", faction: "hostile", con: 25, speed: 1.25, outfit: ["saltBloodArmour", 15], weapon: ["burningSmashStick", [20, 15], 18, 20, 2.2], ranged: [false, "arrow", 9, 2100, 1, 7, 0, "none", 1.2], patrolStops: 1, patrolLoop: true, route:[[13605, 54013]]}));
+                    }
+                }
+                if (uniqueChars.jalmariLDS)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(13867, 54715, "Soldier", false, "Salt-Blood Pirate", {race: "Freynor", faction: "hostile", con: 6, speed: 1.4, outfit: ["sealSkinClothing", 0], weapon: ["freydicSpear", [4, 4], 4, 16, 2.5], ranged: [false, "arrow", 4, 1000, 1, 3, 0, "none", 2.25], patrolStops: 0, patrolLoop: false, route:[[14551, 46087]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(14007, 54484, "Soldier", false, "Salt-Blood Pirate", {race: "Freynor", faction: "hostile", con: 8, speed: 1, outfit: ["sealSkinClothing", 0], weapon: ["longbow", [4, 4], 4, 16, 2.5], ranged: [true, "oiledArrow", 6, 2000, 1, 6, 0, "fire", 1.38], patrolStops: 0, patrolLoop: false, route:[[14551, 46087]]}));
+
+                    ArtificialIntelligenceAccess.push(new Unit(14564, 54097, "Soldier", false, "Salt-Blood Pirate", {race: "Freynor", faction: "hostile", con: 11, speed: 1.3, outfit: ["walrusLeatherArmour", 6], weapon: ["freydicSword", [7, 6], 0, 16, 1.15], ranged: [false, "arrow", 4, 1000, 1, 3, 0, "none", 2.25], patrolStops: 0, patrolLoop: false, route:[[14295, 45996]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(14315, 53975, "Soldier", false, "Salt-Blood Pirate", {race: "Freynor", faction: "hostile", con: 7, speed: 1.2, outfit: ["sealSkinClothing", 0], weapon: ["mace", [5, 3], 9, 16, 2.5], ranged: [false, "arrow", 4, 1000, 1, 3, 0, "none", 2.25], patrolStops: 0, patrolLoop: false, route:[[14551, 46087]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(14376, 53824, "Soldier", false, "Salt-Blood Pirate", {race: "Freynor", faction: "hostile", con: 9, speed: 1.25, outfit: ["walrusLeatherArmour", 5.5], weapon: ["longbow", [4, 4], 4, 16, 2.5], ranged: [true, "oiledArrow", 7, 2200, 1, 7, 0, "fire", 1.46], patrolStops: 0, patrolLoop: false, route:[[14551, 46087]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(14509, 53852, "Soldier", false, "Salt-Blood Pirate", {race: "Freynor", faction: "hostile", con: 7, speed: 1.1, outfit: ["walrusLeatherArmour", 7], weapon: ["freydicSword", [7, 6], 0, 16, 1.26], ranged: [false, "arrow", 4, 1000, 1, 3, 0, "none", 2.25], patrolStops: 0, patrolLoop: false, route:[[14295, 45996]]}));
+
+                    ArtificialIntelligenceAccess.push(new Unit(13788, 53177, "Soldier", false, "Salt-Blood Pirate", {race: "Freynor", faction: "hostile", con: 5, speed: 1.4, outfit: ["sealSkinClothing", 0], weapon: ["freydicSpear", [4, 4], 4, 16, 2.5], ranged: [false, "arrow", 4, 1000, 1, 3, 0, "none", 2.25], patrolStops: 0, patrolLoop: false, route:[[14551, 46087]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(14007, 54484, "Soldier", false, "Salt-Blood Pirate", {race: "Freynor", faction: "hostile", con: 10, speed: 1.35, outfit: ["sealSkinClothing", 0], weapon: ["longbow", [4, 4], 4, 16, 2.5], ranged: [true, "oiledArrow", 8, 2000, 1, 5, 0, "fire", 1.5], patrolStops: 0, patrolLoop: false, route:[[14551, 46087]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(13228, 53182, "Soldier", false, "Salt-Blood Pirate", {race: "Freynor", faction: "hostile", con: 12, speed: 0.95, outfit: ["walrusLeatherArmour", 6], weapon: ["freydicSword", [7, 7], 0, 16, 1.15], ranged: [false, "arrow", 4, 1000, 1, 3, 0, "none", 2.25], patrolStops: 0, patrolLoop: false, route:[[14295, 45996]]}));
+
+                    ArtificialIntelligenceAccess.push(new Unit(13029, 53766, "Soldier", false, "Salt-Blood Pirate", {race: "Freynor", faction: "hostile", con: 5.5, speed: 1.4, outfit: ["walrusLeatherArmour", 6], weapon: ["longbow", [4, 4], 4, 16, 2.5], ranged: [true, "oiledArrow", 9, 2300, 1, 8, 0, "fire", 1.65], patrolStops: 0, patrolLoop: false, route:[[14551, 46087]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(13145, 53718, "Soldier", false, "Salt-Blood Pirate", {race: "Freynor", faction: "hostile", con: 8, speed: 1.25, outfit: ["walrusLeatherArmour", 5], weapon: ["mace", [9, 4], 8, 16, 3], ranged: [false, "arrow", 4, 1000, 1, 3, 0, "none", 2.25], patrolStops: 0, patrolLoop: false, route:[[14551, 46087]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(13072, 53636, "Soldier", false, "Salt-Blood Pirate", {race: "Freynor", faction: "hostile", con: 9, speed: 1.35, outfit: ["sealSkinClothing", 0], weapon: ["freydicSpear", [4, 5], 5, 16, 2.5], ranged: [false, "arrow", 4, 1000, 1, 3, 0, "none", 2.25], patrolStops: 0, patrolLoop: false, route:[[14551, 46087]]}));
+                }
 
                 //balkur
                 //ArtificialIntelligenceAccess.push(new Unit(-11656, 38003, "Balkur", false, "Kalosh"));
@@ -3832,35 +3866,134 @@ function buildMaster()
 
 
                 //beach creatures
-                //ArtificialIntelligenceAccess.push(new Unit(-9336, 45440, "Cangrejo", true, "Cangre"));
+                ArtificialIntelligenceAccess.push(new Unit(15988, 53128, "Cangrejo", false, "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(16712, 53786, "Cangrejo", false, "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(13774, 51737, "Cangrejo", "baby", "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(12228, 55188, "Cangrejo", "baby", "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(14576, 55379, "Cangrejo", "baby", "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(11969, 54284, "Cangrejo", "baby", "tip"));
 
                 //anemones
-                //ArtificialIntelligenceAccess.push(new Unit(-7678, 45765, "Anemone", false, "slime"));
+                ArtificialIntelligenceAccess.push(new Unit(10998, 52903, "Anemone", false, "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(10990, 54179, "Anemone", "baby", "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(15625, 55912, "Anemone", true, "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(16541, 53765, "Anemone", false, "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(16332, 54036, "Anemone", "baby", "tip"));
 
                 //seals
-                //ArtificialIntelligenceAccess.push(new Unit(-4505, 45575, "Seal", false, "arf"));
+                ArtificialIntelligenceAccess.push(new Unit(12229, 50714, "Seal", false, "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(11633, 50925, "Seal", true, "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(11633, 50925, "Seal", "baby", "tip"));
 
                 //mites
-                //ArtificialIntelligenceAccess.push(new Unit(-7904, 45301, "BeachMite", false, "bit"));
+                ArtificialIntelligenceAccess.push(new Unit(12800, 50960, "BeachMite", false, "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(12835, 50950, "BeachMite", false, "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(12771, 50955, "BeachMite", false, "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(11089, 51212, "BeachMite", false, "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(11111, 51248, "BeachMite", false, "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(13139, 55538, "BeachMite", false, "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(15493, 54007, "BeachMite", false, "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(15490, 54000, "BeachMite", false, "tip"));
+                ArtificialIntelligenceAccess.push(new Unit(15500, 54000, "BeachMite", false, "tip"));
+
+                //set all Ai to nuetral2 (a team that does not attack any AI but the player and their team)
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "tip")
+                    {
+                        ArtificialIntelligenceAccess[i].baseTeam = "neutral2";
+                    }
+                }
 
                 //cloimids
                 //ArtificialIntelligenceAccess.push(new Unit(-8909, 45992, "Cloimid", false, "moistClambyGrope", {rotation: -120/360 * 2 * Math.PI}));
 
                 //Plants
                 //scenicList.push(new Scenery("bushkaPlant", -9423, 38704, 20, true));
-                //scenicList.push(new Scenery("tyrniPlant", -8704, 39293, -4.444, true));
+                scenicList.push(new Scenery("tyrniPlant", 12122, 52402, 5, true));
                 //scenicList.push(new Scenery("tyrniPlant", -12270, 38406, 0.4, true));
                 //scenicList.push(new Scenery("tyrniPlant", -9849, 41627, -2.4, true));
                 //scenicList.push(new Scenery("wightbloomPlant", -9294, 38575, 10, true));
 
                 //beached kelp
-                //scenicList.push(new Scenery("beachedKelp", -11296, 46004, 5, 1));
+                if (Math.round(Math.random()))
+                {
+                    scenicList.push(new Scenery("beachedKelp", 12198, 51016, 2.5, 2));
+                    scenicList.push(new Scenery("beachedKelp", 11178, 52899, 9, 0));
+                    scenicList.push(new Scenery("beachedKelp", 13698, 55394, 5.5, 0));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("beachedKelp", 12198, 51016, 3.7, 1));
+                    scenicList.push(new Scenery("beachedKelp", 15266, 55051, -8, 2));
+                    scenicList.push(new Scenery("beachedKelp", 15539, 53157, -6.6, 0));
+                }
 
                 //Scenery
                 //scenicList.push(new Scenery("stone", -8132 , 46141, 4.1, 1.5, 3));
 
                 //algae
                 //scenicList.push(new Scenery("algae", -8894, 45943, 3.4, 2));
+
+                //buildings
+                    //Jalmari's Cabin
+                scenicList.push(new Scenery("freydicBuilding9", 13606, 54212, 0, true));
+                scenicList.push(new Scenery("smallTable", 13643, 54172, 1/2 * Math.PI, 0));
+                scenicList.push(new Scenery("stumpStoolSml", 13676, 54178, 1/2 * Math.PI, 0));
+                scenicList.push(new Scenery("crate", 13658, 54245, 1/4 * Math.PI, 4, [1.36, "jalmariPirateCrate1", 5, [[new Item("salt", false, false), 19], [new Item("sealMeat", false, false), 9], [new Item("crabClaw", false, false), 3], [new Item("bucketOfWaantiMilk", false, false), 2], [new Item("harstAle", false, false), 36]], false, 0]));
+                scenicList.push(new Scenery("crate", 13716, 54098, -1.5/4 * Math.PI, 4, [1.36, "jalmariPirateCrate2", 5, [[new Item("jarOfOil", false, false), 8], [new Item("oilLantern", false, false), 2], [new Item("beesWax", false, false), 20], [new Item("candle", false, false), 20], [new Item("oilLamp", false, false), 3]], false, 0]));
+                scenicList.push(new Scenery("crate", 13414, 54207, 0.15/4 * Math.PI, 3, [1.45, "jalmariPirateCrate3", 6, [[new Item("yaihefBerries", false, false), 9], [new Item("bequonFruit", false, false), 6], [new Item("callopBerries", false, false), 14], [new Item("pluttBerries", false, false), 25], [new Item("akerBerries", false, false), 17], [new Item("suuliMelon", false, false), 8]], false, 0]));
+                scenicList.push(new Scenery("crate", 13636, 54164, 0.5/4 * Math.PI, 4, [0.4, "jalmariPirateCrate4", 1, [[new Item("coins", false, false), 337]], false, 0]));
+                scenicList.push(new Scenery("barrel", 13600, 54251, -3/2 * Math.PI, 0));
+                scenicList.push(new Scenery("barrel", 13733, 54189, 2.55/2 * Math.PI, 0));
+                scenicList.push(new Scenery("barrel", 13707, 53157, 1/4 * Math.PI, 1));
+                    //Pirate Campout 1
+                scenicList.push(new Scenery("barrel", 13025, 53825, 1.19/2 * Math.PI, 0));
+                scenicList.push(new Scenery("tent", 12911, 53822, 135/360 * Math.PI, true));
+                scenicList.push(new Scenery("tent", 12911, 53637, 189/360 * Math.PI, true));
+                scenicList.push(new Scenery("tent", 13257, 53691, 250/360 * 2 * Math.PI, true));
+                    //Pirate Campout 2
+                scenicList.push(new Scenery("tent", 14246, 54042, 45/360 * 2 * Math.PI, true));
+                scenicList.push(new Scenery("tent", 14637, 53993, -60/360 * 2 * Math.PI, true));
+                scenicList.push(new Scenery("tent", 14637, 53753, 235/360 * 2 * Math.PI, true));
+                scenicList.push(new Scenery("tent", 14250, 53699, 144/360 * 2 * Math.PI, true));
+                    //Pirate Campout 3
+                scenicList.push(new Scenery("tent", 13916, 53238, 275/360 * 2 * Math.PI, true));
+                scenicList.push(new Scenery("tent", 13740, 53407, 0/360 * 2 * Math.PI, true));
+                scenicList.push(new Scenery("tent", 13266, 53089, 166/360 * 2 * Math.PI, true));
+                    //Pirate Campout 4
+                scenicList.push(new Scenery("tent", 14134, 54540, 243/360 * 2 * Math.PI, true));
+                scenicList.push(new Scenery("tent", 13757, 54581, 109/360 * 2 * Math.PI, true));
+
+                    //landing
+                scenicList.push(new Scenery("boat", 10896, 53452, 92/360 * 2 * Math.PI, true));
+                scenicList.push(new Scenery("boat", 10719, 53725, 131/360 * 2 * Math.PI, true));
+                scenicList.push(new Scenery("boat", 11334, 53785, 84/360 * 2 * Math.PI, true));
+                scenicList.push(new Scenery("boat", 10729, 52922, 75/360 * 2 * Math.PI, true));
+                scenicList.push(new Scenery("boat", 10381, 52669, 97/360 * 2 * Math.PI, true));
+                scenicList.push(new Scenery("boat", 10646, 52472, 111/360 * 2 * Math.PI, true));
+
+                if (uniqueChars.jalmariLDS)
+                {
+                    if (Math.random() > 0.35)
+                    {
+                        scenicList.push(new Scenery("item", 13637, 54179, 0, false, ["harstAle", 1, 0]));
+                        scenicList.push(new Scenery("item", 13653, 54171, 0, false, ["crabMeat", 1, 0]));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("item", 13647, 54174, 0, false, ["pintGlass", 1, 0]));
+                    }
+                    scenicList.push(new Scenery("campFire", 13081, 53739, 260/360 * 2 * Math.PI, "permaLit"));
+                    scenicList.push(new Scenery("campFire", 14408, 53873, 11/360 * 2 * Math.PI, "permaLit"));
+                    scenicList.push(new Scenery("campFire", 13623, 53254, -200/360 * 2 * Math.PI, "permaLit"));
+                    scenicList.push(new Scenery("campFire", 13969, 54630, -120/360 * 2 * Math.PI, "permaLit"));
+                    scenicList.push(new Scenery("bed", 13537, 54225, -0.18, false));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("bed", 13537, 54225, -0.18, true));
+                }
 
                 //Hyeling Camps
                 //ArtificialIntelligenceAccess.push(new Unit(10041, 8746, "Hyeling", true, "White Hammer"));

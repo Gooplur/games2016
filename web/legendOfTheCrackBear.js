@@ -11,13 +11,21 @@
 //todo add a waterwalking elixer / waterwalking spell too?
 //todo add anti petrification potion / spell
 
+//Really Cool Idea for the next image sheet I make
+//todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
+//todo add a six-legged basilisk that lives in dungeons (petrifies whatever comes near enough to it unless it is resistant to petrification) *add a potion that provides such a resistance for the player //basilisks will be incredibly poisonous, with a powerful bite, but they are relatively slow creatures *obtainable on death: basilisk venom gland, basilisk tooth, basilisk head, basilisk eyes, basilisk skin, shed basilisk skin
+//todo add a secret unit (a monster that is in an inanimate form during the day but lurks murderously throughout the night) GARGOYLE //the unit will know when to become a scenery object //the scenery object will know when to become a unit
+//todo add "the grail of eternity" (a elaborate cup that heals you when you drink from it, you can refill it at a well)
+
 //Alzkwaya Update / Savannah Update
-//todo add mounts and the mounting system (make different mounts require a different survivalism skill amount): add it for Naaprids, Zebras, Skols... (destroy current mounting system: make it unit based instead of player based. The player literally teleports on top of the creature in question and follows its movement. (the player can direct it with 'T' because it is on the player's team.) mounting is canceled by water, or if the player equipps an uncompatible weapon or transfigures themself into an incompatible form.
 //todo add the alzkwaya village
 //todo add hot climate farm plants
 //todo add other hot climate wild plants
 //todo add more savannah creatures: Zebra-like creature - a white and black striped horse that's hide will make a fancy striped leather armour, Rhino-ish monster - it will charge fast, turn slow, and deal knockback/stun damage, Drile = a crocodile-esque amphibeous beast - fast on land, faster in water, slow to attack things unless they come very close (unless in water), but will persue very far
 //todo add southern fish / southern fishing spot
+
+//Mounting System
+//todo add mounts and the mounting system (make different mounts require a different survivalism skill amount): add it for Naaprids, Zebras, Skols... (destroy current mounting system: make it unit based instead of player based. The player literally teleports on top of the creature in question and follows its movement. (the player can direct it with 'T' because it is on the player's team.) mounting is canceled by water, or if the player equipps an uncompatible weapon or transfigures themself into an incompatible form.
 
 //Calcutt Patch
 //todo add roselin's quest
@@ -25,13 +33,11 @@
 //todo add drinking horns
 //todo add kellish dolls
 
-//Really Cool Idea for the next image sheet I make
-//todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
-//todo add a six-legged basilisk that lives in dungeons (petrifies whatever comes near enough to it unless it is resistant to petrification) *add a potion that provides such a resistance for the player //basilisks will be incredibly poisonous, with a powerful bite, but they are relatively slow creatures *obtainable on death: basilisk venom gland, basilisk tooth, basilisk head, basilisk eyes, basilisk skin, shed basilisk skin
-//todo add a secret unit (a monster that is in an inanimate form during the day but lurks murderously throughout the night) GARGOYLE //the unit will know when to become a scenery object //the scenery object will know when to become a unit
-//todo add "the grail of eternity" (a elaborate cup that heals you when you drink from it, you can refill it at a well)
-
 //Isles Update
+//todo add shark-like creatures with crazy pointed teeth called 'Taebure'
+//todo add northern jellyfish creatures called 'Holn' -- they electrocute and stun their victim and when they die are converting into a scenery object that can be collected with gloves to avoid the same stun shock which would result in getting 'holn lappets' (the tentacle-like stuff)
+//todo add a scenery object that mimics the dead versions of the jellyfish monster
+//todo add Frajek Island in elevation two area and put a small village there
 //todo add a small northern island with a village
 //todo create and add Margul - White furred, large, carnivorous, arctic beast with a tail and a long neck...
 //todo create and add large bare-faced furry snow trolls to the north

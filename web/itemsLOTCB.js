@@ -7034,7 +7034,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Bucket of Water";
-            this.weight = 6;
+            this.weight = 10;
             this.size = 12;
             this.description = "An iron bucket filled to the brim with water.";
             this.intForDes = 1;

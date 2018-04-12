@@ -1820,7 +1820,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //TRAITS
             this.zIndex = 4;
             this.solid = false;
-            this.interactionRange = 120;
+            this.interactionRange = 55;
             if (this.runOneTime)
             {
                 this.runOneTime = false;

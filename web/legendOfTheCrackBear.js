@@ -5,7 +5,6 @@
 
 //TODO LIST
 //top priority
-//todo add the pirate captain, his crew, and their hideout on map n5w1
 
 //Venning Update
 //todo add a waterwalking elixer / waterwalking spell too?
@@ -57,10 +56,6 @@
 //todo add hops and the red flower from 'freeverse' IMG
 //todo add the strange light greenish plant from 'nognog' IMG
 //todo add slop/fungus from  'theng' IMG (not sure which it should be)
-
-//Teshir Patch
-//todo decorate the various buildings more
-//todo add dialogue to the Jarl: Quests/Purchasable Property/etc.
 
 //Cephrian/Jungle Update
 //todo piranah fish swarm (water creature) [Only attacks the player if not in a boat]

@@ -738,7 +738,10 @@ function buildMaster()
         {
             if (change != "central")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -1839,7 +1842,10 @@ function buildMaster()
         {
             if (change != "n1")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -1939,7 +1945,10 @@ function buildMaster()
         {
             if (change != "n2")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -2087,7 +2096,10 @@ function buildMaster()
         {
             if (change != "n3")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -2298,7 +2310,10 @@ function buildMaster()
         {
             if (change != "n4w1")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -2469,7 +2484,10 @@ function buildMaster()
         {
             if (change != "n4")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -2659,7 +2677,10 @@ function buildMaster()
         {
             if (change != "n4e1")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -2849,7 +2870,10 @@ function buildMaster()
         {
             if (change != "n4e2")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -3932,7 +3956,10 @@ function buildMaster()
         {
             if (change != "n4e3")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -4063,7 +4090,10 @@ function buildMaster()
         {
             if (change != "n5w1")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -4291,7 +4321,10 @@ function buildMaster()
         {
             if (change != "w1")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -4437,7 +4470,10 @@ function buildMaster()
         {
             if (change != "w2")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -4591,7 +4627,10 @@ function buildMaster()
         {
             if (change != "w3")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -4726,7 +4765,10 @@ function buildMaster()
         {
             if (change != "w4")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -4876,7 +4918,10 @@ function buildMaster()
         {
             if (change != "s1w4")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -5047,7 +5092,10 @@ function buildMaster()
         {
             if (change != "s1w5")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -5157,7 +5205,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(51499, -8933, "Person", false, "Lena", {race: "Thengar", faction: "Thengar", personality: "scared", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.03, 0.025], 0, 0, 1], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], kid: true}));
+                        ArtificialIntelligenceAccess.push(new Unit(51485, -8809, "Person", false, "Lena", {race: "Thengar", faction: "Thengar", personality: "scared", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.03, 0.025], 0, 0, 1], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], kid: true}));
                         ArtificialIntelligenceAccess[i].health = 1;
                     }
                 }
@@ -5320,7 +5368,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(50569, -10420, "Person", false, "Ederhal the Innkeeper", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.3, 0.4], 0, 1, 1.15], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 69], [new Item("bearMeat", false, false), 3], [new Item("hoffalgreMeat", false, false), 3], [new Item("rabbitMeat", false, false), 5], [new Item("harstAle", false, false), 39], [new Item("harstBread", false, false), 1], [new Item("vel", false, false), 4]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(50569, -10420, "Person", false, "Ederhal the Innkeeper", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.3, 0.4], 0, 1, 1.15], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[50569, -10418]], merchant: true, merchandise: [[new Item("coins", false, false), 69], [new Item("bearMeat", false, false), 3], [new Item("hoffalgreMeat", false, false), 3], [new Item("rabbitMeat", false, false), 5], [new Item("harstAle", false, false), 39], [new Item("harstBread", false, false), 1], [new Item("vel", false, false), 4]]}));
                         ArtificialIntelligenceAccess[i].health = 13;
                     }
                 }
@@ -5337,7 +5385,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(50956, -9146, "Person", false, "Naoko the Banker", {race: "Orgell", faction: "Thengar", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.2, 0.1], 0, 0, 1.2], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 0, patrolLoop: false, route:[[2200, 1460]], banker: true}));
+                        ArtificialIntelligenceAccess.push(new Unit(50957, -9176, "Person", false, "Naoko the Banker", {race: "Orgell", faction: "Thengar", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.2, 0.1], 0, 0, 1.2], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 1, patrolLoop: false, route:[[50956, -9146]], banker: true}));
                     }
                 }
 
@@ -6932,6 +6980,114 @@ function buildMaster()
                     }
 
                 }
+
+                //bar patrons
+                ArtificialIntelligenceAccess.push(new Unit(50603, -10342, "Person", false, "Thengar Villager", {race: "Thengar", faction: "Thengar", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.4, 0.45], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[50603, -10366]]}));
+                ArtificialIntelligenceAccess.push(new Unit(50662, -10304, "Person", false, "Thengar Villager", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.45, 0.55], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[50682, -10303]]}));
+                ArtificialIntelligenceAccess.push(new Unit(50664, -10342, "Person", false, "Thengar Villager", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.4, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[50692, -10337]]}));
+
+                //Lethik interiors
+                    //bank
+                scenicList.push(new Scenery("woodenBench", 50953, -9114, 0 * Math.PI, 1));
+                scenicList.push(new Scenery("stumpStoolSml", 50956, -9143, 0 * Math.PI, 1));
+                scenicList.push(new Scenery("stumpStoolSml", 50954, -9086, 0 * Math.PI, 1));
+                scenicList.push(new Scenery("crate", 50883, -9176, 2.626/4 * 2 * Math.PI, 1, [1.27]));
+                scenicList.push(new Scenery("crate", 51013, -9174, 0.3/4 * 2 * Math.PI, 1, [1.39]));
+                scenicList.push(new Scenery("crate", 51004, -9014, -0.55/4 * 2 * Math.PI, 1, [1.1]));
+                scenicList.push(new Scenery("crate", 50969, -8942, 3/4 * 2 * Math.PI, 1, [1.22]));
+                scenicList.push(new Scenery("crate", 50891, -8967, 3.7/4 * 2 * Math.PI, 1, [1]));
+                    //butcher's
+                scenicList.push(new Scenery("crate", 51524, -9594, 0.25/4 * 2 * Math.PI, 1, [1.43]));
+                scenicList.push(new Scenery("crate", 51618, -9602, -0.11/4 * 2 * Math.PI, 1, [1.29]));
+                scenicList.push(new Scenery("crate", 51517, -9507, 3.56/4 * 2 * Math.PI, 1, [1.05]));
+                scenicList.push(new Scenery("blood", 51541, -9411, 0 * Math.PI, 5, 1.2));
+                    //shop
+                scenicList.push(new Scenery("crate", 50998, -9657, 0.35/4 * 2 * Math.PI, 1, [1.35]));
+                scenicList.push(new Scenery("crate", 50891, -9672, 8.5/4 * 2 * Math.PI, 1, [1.25]));
+                scenicList.push(new Scenery("crate", 50949, -9600, 3.97/4 * 2 * Math.PI, 1, [1.25]));
+                scenicList.push(new Scenery("crate", 50989, -9449, -3.7777/4 * 2 * Math.PI, 1, [1.055]));
+                scenicList.push(new Scenery("crate", 50901, -9434, 3.7675747/4 * 2 * Math.PI, 1, [1.4]));
+                    //huntShop
+                scenicList.push(new Scenery("crate", 51515, -9757, 2.2/4 * 2 * Math.PI, 1, [1.2]));
+                scenicList.push(new Scenery("mediumTable", 51482, -9855, 0 * Math.PI, 1));
+                scenicList.push(new Scenery("item", 51490, -9864, 0, "thengar", ["spindletrap", 1, -39]));
+                scenicList.push(new Scenery("item", 51482, -9835, 0, "thengar", ["beartrap", 1, -15]));
+                scenicList.push(new Scenery("item", 51515, -9836, 0, "thengar", ["beartrap", 1, -15]));
+                scenicList.push(new Scenery("item", 51520, -9850, 0, "thengar", ["jacks", 3, -11]));
+                scenicList.push(new Scenery("item", 51520, -9871, 0, "thengar", ["clawtrap", 1, -21]));
+                scenicList.push(new Scenery("woodenBench", 51640, -9770, 1/2 * Math.PI, 1));
+                scenicList.push(new Scenery("item", 51640, -9738, 0, "thengar", ["longbow", 1, -26]));
+                scenicList.push(new Scenery("item", 51636, -9773, 0, "thengar", ["steelArrow", 2, -12]));
+                scenicList.push(new Scenery("item", 51636, -9782, 0, "thengar", ["steelArrow", 2, -12]));
+                scenicList.push(new Scenery("item", 51636, -9791, 0, "thengar", ["steelArrow", 2, -12]));
+                scenicList.push(new Scenery("item", 51636, -9800, 0, "thengar", ["steelArrow", 2, -12]));
+                scenicList.push(new Scenery("item", 51636, -9809, 0, "thengar", ["steelArrow", 2, -12]));
+                scenicList.push(new Scenery("item", 51636, -9814, 0, "thengar", ["arrow", 8, -13]));
+                scenicList.push(new Scenery("item", 51636, -9822, 0, "thengar", ["arrow", 8, -13]));
+                    //prison
+                scenicList.push(new Scenery("crate", 53135, -6936, 0.04/4 * 2 * Math.PI + Math.PI, 1, [1.5]));
+                    //farm house
+                scenicList.push(new Scenery("crate", 53124, -7173, -0.09/4 * 2 * Math.PI, 1, [1.15]));
+                scenicList.push(new Scenery("crate", 53026, -7194, 0.22/4 * 2 * Math.PI, 1, [1.425]));
+                scenicList.push(new Scenery("bed", 52985, -7388, 0 * Math.PI, false));
+                scenicList.push(new Scenery("smallTable", 53136, -7412, 0.045 * Math.PI, 0));
+                scenicList.push(new Scenery("stumpStoolSml", 53097, -7415, 0.5 * Math.PI, 1));
+                scenicList.push(new Scenery("thenganHearth", 52985, -7277, 1/2 * Math.PI, "lit"));
+                    //inn
+                scenicList.push(new Scenery("woodenBench", 50718, -10330, 1/2 * Math.PI, 1));
+                scenicList.push(new Scenery("crate", 50302, -10124, 1.5/4 * 2 * Math.PI, 1, [1.23]));
+                scenicList.push(new Scenery("crate", 50290, -10550, 0.0025/4 * 2 * Math.PI, 1, [1.23]));
+                scenicList.push(new Scenery("mediumTable", 50549, -10267, 0.0025 * Math.PI, 0));
+                scenicList.push(new Scenery("stumpStoolSml", 50593, -10268, 2 * Math.PI, 1));
+                scenicList.push(new Scenery("stumpStoolSml", 50522, -10262, 3 * Math.PI, 1));
+                scenicList.push(new Scenery("stumpStoolSml", 50562, -10311, 3 * Math.PI, 1));
+                scenicList.push(new Scenery("stumpStoolSml", 50687, -10365, -1 * Math.PI, 1));
+                scenicList.push(new Scenery("stumpStoolSml", 50690, -10336, 1.5 * Math.PI, 1));
+                scenicList.push(new Scenery("stumpStoolSml", 50688, -10302, 1 * Math.PI, 1));
+                if (Math.round(Math.random()))
+                {
+                    scenicList.push(new Scenery("item", 50610, -10389, 0, "thengar", ["hoffalgreMeat", 1, -12]));
+                    if (Math.round(Math.random()))
+                    {
+                        scenicList.push(new Scenery("item", 50591, -10394, 0, "thengar", ["harstAle", 1, -3]));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("item", 50591, -10394, 0, "thengar", ["pintGlass", 1, -1]));
+                    }
+                }
+                else
+                {
+                    scenicList.push(new Scenery("item", 50610, -10389, 0, "thengar", ["velHarstBread", 1, -19]));
+                    scenicList.push(new Scenery("item", 50591, -10394, 0, "thengar", ["harstAle", 1, -3]));
+                    if (Math.round(Math.random()))
+                    {
+                        scenicList.push(new Scenery("item", 50591, -10394, 0, "thengar", ["harstAle", 1, -3]));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("item", 50591, -10394, 0, "thengar", ["pintGlass", 1, -1]));
+                    }
+                }
+
+                if (Math.round(Math.random()))
+                {
+                    scenicList.push(new Scenery("item", 50711, -10329, 0, "thengar", ["harstAle", 1, -3]));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("item", 50711, -10329, 0, "thengar", ["pintGlass", 1, -1]));
+                }
+
+                if (Math.round(Math.random()))
+                {
+                    scenicList.push(new Scenery("item", 50716, -10292, 0, "thengar", ["harstAle", 1, -3]));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("item", 50716, -10292, 0, "thengar", ["pintGlass", 1, -1]));
+                }
+
                 //signs
                 scenicList.push(new Scenery("sign", 50710, -10222, Math.PI, 3, "The Ragged Wanderer - Inn"));
                 scenicList.push(new Scenery("sign", 51307, -9427, Math.PI, 3, "Bonecrusher Arms/Armour"));
@@ -7191,7 +7347,7 @@ function buildMaster()
         {
             if (change != "w5")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -7282,7 +7438,10 @@ function buildMaster()
         {
             if (change != "s1w6")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -8247,7 +8406,10 @@ function buildMaster()
         {
             if (change != "e1")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -8942,7 +9104,10 @@ function buildMaster()
         {
             if (change != "s1")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -9294,7 +9459,10 @@ function buildMaster()
         {
             if (change != "s2")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -10311,7 +10479,10 @@ function buildMaster()
         {
             if (change != "s3")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -10664,7 +10835,10 @@ function buildMaster()
         {
             if (change != "s1e1")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -10819,7 +10993,10 @@ function buildMaster()
         {
             if (change != "s3e1")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -11135,7 +11312,10 @@ function buildMaster()
         {
             if (change != "e2")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -12000,7 +12180,10 @@ function buildMaster()
         {
             if (change != "sagesCache")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -12379,7 +12562,10 @@ function buildMaster()
         {
             if (change != "venningCityPrison")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {
@@ -12429,7 +12615,10 @@ function buildMaster()
         {
             if (change != "lethikCityPrison")
             {
-                dialogueReset();
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
                 //Delete All Non-native AI Units
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
                 {

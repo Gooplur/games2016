@@ -5,6 +5,7 @@
 
 //TODO LIST
 //top priority
+//TODO fix dialogueReset call in worldbuilder ALL OF THEM use for loop to insert units as the arguement (THE GAME IS BROKEN UNTIL YOU FIX THIS)
 
 //Venning Update
 //todo add a waterwalking elixer / waterwalking spell too?
@@ -78,10 +79,7 @@
     //todo if you ask the innkeeper about rumors he will tell you that A: there's a pirate problem (if you have not yet killed the pirate leader), B: a usual was talking about stashed treasure ("he claimed that the ol' miners hid away some of the gold they found down there, believable, but unlikely if you ask me") in an old mineshaft then never came around again, "he either found what he was looking for or tripped and broke his skull down there in the dark" (the mineshaft is south of Venning in map n3e2) A basilisk inhabits it (petrification forces you to equip a stone arms texture that counts as a weapon, and it turns your base color to dark grey. If petrification resistance is active then the basilisk will only stun the player with stunI instead of petrifying them.
     //todo the herbalist has a sick patient that needs a special elixer that only the alchemist knows how to make, the alchemist dislikes the patient (who has insulted him for not being a hunter and therefore not the pinnacle of freydic virility) so he has refused to help, the options are: convince him to help (CHAR), convince him to help ($$$$), accept a quest for him in which you bring him a 'rawCloimidFlesh' item for one of his potions in exchange for his help.
     //todo add quest 'Worthy Under the Watchful Eye' -- find an ancient tablet for the sage of Gemesh in the Venning city temple (it has been part of the temples belongings for centuries, but it has been stolen {whoever stole it stole the wrong one, because the one missing is not the spell}, "This tablet was dear to our temple, if you can find it you will surely be rewarded in the afterlife, the great valley of Halmthafgh will yield to you its wonderous fruits, sewn from the glory of its maker, our wise father Gemesh!" - if the player requests a more tangible reward, the sage will scoff and offer the player a 100 coin reward (at the expense of the magic experience that would otherwise be gained for finding it) - include a letter that was cursed to kill the person who opened it.
-//todo make the property purchasable
-//todo make the storage company sell space in a crate for 800 coins to the player through dialogue
 //todo add the jewelry shop / add more jewelry into the game / add a jeweler
-//todo add interesting civs in the inn.
 
 //Cranheim Update
 //todo add the city Cranheim to the west of Lethik in Thengaria

@@ -817,7 +817,10 @@ function cheats()
         }
         else if (cheatcode.toLowerCase() == "reiniciar")
         {
-            dialogueReset();
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                dialogueReset(ArtificialIntelligenceAccess[i]);
+            }
             //Delete All Non-native AI Units
             for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--)
             {

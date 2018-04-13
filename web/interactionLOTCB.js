@@ -4051,7 +4051,7 @@ function interaction(me)
                         }
                     }
 
-                    if (self.ID == "Johanna the Herbalist" || conversationID[0] == "Johanna")
+                    if (self.ID == "Johanna the Herbalist" && conversationID[0] != "Lena" || conversationID[0] == "Johanna")
                     {
                         lowBar = "dialogue";
                         conversationID[0] = "Johanna";
@@ -4159,7 +4159,7 @@ function interaction(me)
                         }
                     }
 
-                    if (self.ID == "Lena" || conversationID[0] == "Lena")
+                    if (self.ID == "Lena" && conversationID[0] != "Johanna" || conversationID[0] == "Lena")
                     {
                         lowBar = "dialogue";
                         conversationID[0] = "Lena";
@@ -10415,7 +10415,7 @@ function interaction(me)
                 }
                 else if (dialogueActive && self.engagedInDialogue == true)
                 {
-                    dialogueReset();
+                    dialogueReset(self);
                 }
 
                 //ACCESS SHOPS BANKS AND OTHER AI SERVICES
@@ -10464,7 +10464,9 @@ function interaction(me)
                         }
                         shopInventory = self.ultra.merchandise;
                         shopID = self.ID;
+                        console.log(self.ID);
                         shopkeeper = self;
+                        console.log(self);
                         player.merchPosition = 0;
                         merchScroll = 0;
                         lowBar = "shop";
@@ -10483,7 +10485,7 @@ function interaction(me)
     }
 }
 
-function dialogueReset()
+function dialogueReset(self)
 {
     self.engagedInDialogue = false;
     player.dialoguePosition = 0;
@@ -10491,6 +10493,9 @@ function dialogueReset()
     invScroll = 0;
     conversationID[0] = "none";
     conversationID[1] = 0;
-    lowBar = "information";
+    if (gameState == "active")
+    {
+        lowBar = "information";
+    }
     dialogueActive = false;
 }

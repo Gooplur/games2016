@@ -1,28 +1,32 @@
 /**
  * Created by skyeguy on 12/17/15.
  */
+//PIXLR IS THE DEVIL = true;
 //look up TEST to find tests in the code
 
 //TODO LIST
 //top priority
-//TODO fix dialogueReset call in worldbuilder ALL OF THEM use for loop to insert units as the arguement (THE GAME IS BROKEN UNTIL YOU FIX THIS)
-
-//Venning Update
-//todo add a waterwalking elixer / waterwalking spell too?
-//todo add anti petrification potion / spell
-
-//Really Cool Idea for the next image sheet I make
-//todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
 //todo add a six-legged basilisk that lives in dungeons (petrifies whatever comes near enough to it unless it is resistant to petrification) *add a potion that provides such a resistance for the player //basilisks will be incredibly poisonous, with a powerful bite, but they are relatively slow creatures *obtainable on death: basilisk venom gland, basilisk tooth, basilisk head, basilisk eyes, basilisk skin, shed basilisk skin
-//todo add a secret unit (a monster that is in an inanimate form during the day but lurks murderously throughout the night) GARGOYLE //the unit will know when to become a scenery object //the scenery object will know when to become a unit
+//todo Zebra-like creature - a white and black striped horse that's hide will make a fancy striped leather armour
+//todo add Drile = a crocodile-esque amphibeous beast - fast on land, faster in water, slow to attack things unless they come very close (unless in water), but will persue very far
+//todo add mugmuls (a goblinoid chimpanzee-like creature that flees the player and eats yeol nuts when it gets hungry) *actually takes the shell off of the nut and eats it in two or three bites
+//todo Rhino-ish monster - it will charge fast, turn slow, and deal knockback/stun damage
+//todo add southern fish / southern fishing spot -- saskriit, Espit,
+//todo add temperate fish / temperate fishing spot -- red-bellied Falder, crawdid, salmon
 //todo add "the grail of eternity" (a elaborate cup that heals you when you drink from it, you can refill it at a well)
+
+//things to add to the image i'm adding:
+//todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
+//todo add a secret unit (a monster that is in an inanimate form during the day but lurks murderously throughout the night) GARGOYLE //the unit will know when to become a scenery object //the scenery object will know when to become a unit
 
 //Alzkwaya Update / Savannah Update
 //todo add the alzkwaya village
 //todo add hot climate farm plants
 //todo add other hot climate wild plants
-//todo add more savannah creatures: Zebra-like creature - a white and black striped horse that's hide will make a fancy striped leather armour, Rhino-ish monster - it will charge fast, turn slow, and deal knockback/stun damage, Drile = a crocodile-esque amphibeous beast - fast on land, faster in water, slow to attack things unless they come very close (unless in water), but will persue very far
-//todo add southern fish / southern fishing spot
+
+//Venning Update
+//todo add a waterwalking elixer / waterwalking spell too?
+//todo add anti petrification potion / spell
 
 //Mounting System
 //todo add mounts and the mounting system (make different mounts require a different survivalism skill amount): add it for Naaprids, Zebras, Skols... (destroy current mounting system: make it unit based instead of player based. The player literally teleports on top of the creature in question and follows its movement. (the player can direct it with 'T' because it is on the player's team.) mounting is canceled by water, or if the player equipps an uncompatible weapon or transfigures themself into an incompatible form.
@@ -1566,6 +1570,18 @@ function todaviaNo()
     window.troli = troli;
 
     troli.onload = function()
+    {
+        notJustYet();
+    };
+}
+
+function notJustYet()
+{
+    var polux = new Image();
+    polux.src = ("images/polux.png");
+    window.polux = polux;
+
+    polux.onload = function()
     {
         casiAlFin();
     };

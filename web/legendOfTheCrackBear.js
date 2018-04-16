@@ -6,23 +6,27 @@
 
 //TODO LIST
 //top priority
-//todo add a six-legged basilisk that lives in dungeons (petrifies whatever comes near enough to it unless it is resistant to petrification) *add a potion that provides such a resistance for the player //basilisks will be incredibly poisonous, with a powerful bite, but they are relatively slow creatures *obtainable on death: basilisk venom gland, basilisk tooth, basilisk head, basilisk eyes, basilisk skin, shed basilisk skin
-//todo Zebra-like creature - a white and black striped horse that's hide will make a fancy striped leather armour
+//todo add a six-legged basilisk that lives in dungeons (petrifies whatever comes near enough to it unless it is resistant to petrification) *add a potion that provides such a resistance for the player //basilisks will be incredibly poisonous, with a powerful bite, but they are relatively slow creatures *obtainable on death: basilisk tooth, basilisk head, basilisk eyes, basilisk scale (Basilisks have a rectangular range of sight)
+//todo add Zarbu -- Zebra-like creature
 //todo add Drile = a crocodile-esque amphibeous beast - fast on land, faster in water, slow to attack things unless they come very close (unless in water), but will persue very far
 //todo add mugmuls (a goblinoid chimpanzee-like creature that flees the player and eats yeol nuts when it gets hungry) *actually takes the shell off of the nut and eats it in two or three bites
 //todo Rhino-ish monster - it will charge fast, turn slow, and deal knockback/stun damage
-//todo add southern fish / southern fishing spot -- saskriit, Espit,
+//todo add southern fish / southern fishing spot -- saskriit, Espit, Riulpo
 //todo add temperate fish / temperate fishing spot -- red-bellied Falder, crawdid, salmon
 //todo add "the grail of eternity" (a elaborate cup that heals you when you drink from it, you can refill it at a well)
 
 //things to add to the image i'm adding:
 //todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
 //todo add a secret unit (a monster that is in an inanimate form during the day but lurks murderously throughout the night) GARGOYLE //the unit will know when to become a scenery object //the scenery object will know when to become a unit
-
+//todo add petrified basilisk victims -- basilisk gaze turns the outer inch of flesh to stone, the rest is fleshy and that is the part that the basilisks suck out with their powerful and venomous fangs (their venom dissolves animal/human innards)
+//todo if you attack a pretrified victim with a pickaxe you will get a broken and bloody version...
+//todo gargoyls are resistant to basilisk gaze and some part of them is used in making anti-petrification syrum
+//todo add shed basilisk skin
 //Alzkwaya Update / Savannah Update
-//todo add the alzkwaya village
+//todo add the alzkwaya tribe's village (mofu themed tribe)
 //todo add hot climate farm plants
 //todo add other hot climate wild plants
+//todo add the karib tribe's village (zarbu themed tribe)
 
 //Venning Update
 //todo add a waterwalking elixer / waterwalking spell too?
@@ -92,6 +96,7 @@
 //todo add another echlin tribe village called Eschuttes
 
 //Other
+//todo add the Colic symptom of sickness and add the effect 'colicAway' that eating 'aktaltlFrond' gives you.
 //todo add a witch trap house where the witch becomes a mutated magical beast and tries to kill you
 //todo add ghosts - add that the way to kill ghosts is to digg up the bones, salt them, then set them aflame.
 //todo add water creatures that become beached if they go on land, usarían the variable this.flotation in Unit Class
@@ -2686,9 +2691,9 @@ function theLegend()
     secondarySpells = [];
     tertiarySpells = [];
 //Well List
-    wellConversionList = [["pintGlass", "waterPintGlass"], ["walrusLeatherWaterskin", "walrusLeatherWaterskinFull"], ["bucket", "bucketOfWater"], ["potionGlass", "vialOfWater"], ["kellishClayPot", "kellishClayPotOfWater"], ["glassBottle", "glassBottleOfWater"]];
+    wellConversionList = [["pintGlass", "waterPintGlass"], ["walrusLeatherWaterskin", "walrusLeatherWaterskinFull"], ["bucket", "bucketOfWater"], ["potionGlass", "vialOfWater"], ["kellishClayPot", "kellishClayPotOfWater"], ["glassBottle", "glassBottleOfWater"], ["naapridDrinkinghorn", "naapridDrinkinghornFull"]];
 //Milking/Juicing/Sapping Lists
-    naapridConversionList = [["bucket", "bucketOfNaapridMilk"], ["kellishClayPot", "kellishClayPotOfNaapridMilk"]];
+    naapridConversionList = [["bucket", "bucketOfNaapridMilk"], ["kellishClayPot", "kellishClayPotOfNaapridMilk"], ["naapridDrinkinghorn", "naapridMilkhornFull"]];
     waantiConversionList = [["bucket", "bucketOfWaantiMilk"], ["kellishClayPot", "kellishClayPotOfWaantiMilk"]];
 //conversations and dialogue
     conversationID = ["none", 0]; //[Person conversing with, stage in conversation]
@@ -3393,6 +3398,16 @@ function theLegend()
     foods.push(new Item("cloimidMeat", false));
     foods.push(new Item("yioshkMeat", false));
     foods.push(new Item("taipanMeat", false));
+    foods.push(new Item("boiledAktaltlFrond", false));
+    foods.push(new Item("roastedAktaltlRoot", false));
+    foods.push(new Item("roastedMaize", false));
+    foods.push(new Item("aktaltlSoup", false));
+    foods.push(new Item("boiledFrijols", false));
+    foods.push(new Item("latuku", false));
+    foods.push(new Item("wrappedMofuTamal", false));
+    foods.push(new Item("wrappedTamal", false));
+
+
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -3563,6 +3578,10 @@ function theLegend()
     handcrafted.push(new Item("pouchOfShomeDust", false));
     handcrafted.push(new Item("woodenBowl", false));
     handcrafted.push(new Item("dryKelp", false));
+    handcrafted.push(new Item("maizeFlour", false));
+    handcrafted.push(new Item("masa", false));
+    handcrafted.push(new Item("rawTamal", false));
+    handcrafted.push(new Item("rawMofuTamal", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

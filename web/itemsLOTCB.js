@@ -2873,6 +2873,829 @@ function Item(type, x, y)
             this.buyValue = 37 - Math.floor(player.getCharisma() / 2); // at max, buy for 12.
             this.sellValue = 7 + Math.floor(player.getCharisma() / 10); // at max, sell for 12.
         }
+        else if (this.type == "karmFruit")
+        {
+            //For All Items
+            this.identity = "Karm";
+            this.weight = 0.5;
+            this.size = 7;
+            this.description = "A tiny sweet fruit with a sour aftertaste.";
+            this.intForDes = 3;
+            this.intDescription = "It grows on a plant that is found exclusively in certain temperate grasslands.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.75; //satisfies hunger.
+            this.thirst = 0.15; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0.01; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "kwomFruit")
+        {
+            //For All Items
+            this.identity = "Kwom";
+            this.weight = 0.5;
+            this.size = 7;
+            this.description = "This fruit is smooth and firm but tender to the bite.";
+            this.intForDes = 0;
+            this.intDescription = "It is extremely sour, so much so that no one can truly develop a tolerance to it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -11; //recoops lost energy.
+            this.replenish = -6; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "clobeLeaf")
+        {
+            //For All Items
+            this.identity = "Clobe Leaf";
+            this.weight = 0.9;
+            this.size = 8;
+            this.description = "A thick and rounded leaf full of a sticky viscous green sap.";
+            this.intForDes = 5;
+            this.intDescription = "This can be used as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "boiledFrijols")
+        {
+            //For All Items
+            this.identity = "Boiled Frijols";
+            this.weight = 45;
+            this.size = 12;
+            this.description = "A kellish style of pot filled with steaming boiled frijols.";
+            this.intForDes = 3;
+            this.intDescription = "Frijols are a staple food in many Southern Kellish diets.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["kellishClayPot", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 48; //satisfies hunger.
+            this.thirst = 18; //quenches thirst.
+            this.warmth = 15; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Kellish Clay Pot of Water", 1], ["Frijols", 38]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 52 - Math.floor(player.getCharisma() / 10); // at max, buy for 47.
+            this.sellValue = 41 + Math.floor(player.getCharisma() / 8); // at max, sell for 47.
+        }
+        else if (this.type == "aktaltlSoup")
+        {
+            //For All Items
+            this.identity = "Aktaltl Fish Soup";
+            this.weight = 45;
+            this.size = 12;
+            this.description = "A kellish style of pot filled with a soup made from mashed roasted Aktaltl and fish.";
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            {
+                this.intForDes = 12;
+                this.intDescription = "This sort of soup is a specialty of the Kellish Karib tribe.";
+            }
+            else
+            {
+                this.intForDes = 0;
+                this.intDescription = "This soup is a bit spicy but it is tolerable.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["kellishClayPot", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 59; //satisfies hunger.
+            this.thirst = 22; //quenches thirst.
+            this.warmth = 18; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.65; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "sensational";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 14;
+            this.ingredients = [["Kellish Clay Pot of Water", 1], ["Apotl Pepper", 1], ["Roasted Aktaltl Root", 10], ["Riulpo", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 70 - Math.floor(player.getCharisma() / 5); // at max, buy for 60.
+            this.sellValue = 60; // at max, sell for 60.
+        }
+        else if (this.type == "latuku")
+        {
+            //For All Items
+            this.identity = "Latuku";
+            this.weight = 45;
+            this.size = 12;
+            this.description = "A Kellish style of pot filled with a Kellish stew unique to the alzkwaya tribe.";
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            {
+                this.intForDes = 18;
+                this.intDescription = "It is made with apotl pepper, mofu, frijols, aktaltl root, and kwom juice";
+            }
+            else
+            {
+                this.intForDes = 0;
+                this.intDescription = "Just by the smell you can tell this will be far too spicy for you to eat.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["kellishClayPot", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 66; //satisfies hunger.
+            this.thirst = 15; //quenches thirst.
+            this.warmth = 20; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            {
+                this.ability = "sensational";
+            }
+            else
+            {
+                this.heal = -3; //heals health.
+                this.generation = -9; //recoops lost energy.
+                this.replenish = -5; //restores will.
+                this.ability = "foodPoisoning";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 18;
+            this.ingredients = [["Boiled Frijols", 1], ["Mofu Meat", 1], ["Apotl Pepper", 5], ["Roasted Aktaltl Root", 3], ["Kwom", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 76 - Math.floor(player.getCharisma() / 8); // at max, buy for 70.
+            this.sellValue = 60 + Math.floor(player.getCharisma() / 5); // at max, sell for 70.
+        }
+        else if (this.type == "apotlPepper")
+        {
+            //For All Items
+            this.identity = "Apotl Pepper";
+            this.weight = 0.25;
+            this.size = 6;
+            this.description = "A long red chili pepper that is notably spicy.";
+            this.intForDes = 1;
+            this.intDescription = "It is used as a flavoring in southern kellish cuisines.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "maizeHusk")
+        {
+            //For All Items
+            this.identity = "Maize Husk";
+            this.weight = 0.05;
+            this.size = 4;
+            this.description = "The husk from a mazorca of maize.";
+            this.intForDes = 12;
+            this.intDescription = "Maize husks can be used to wrap tamales.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "mazorca")
+        {
+            //For All Items
+            this.identity = "Mazorca Of Maize";
+            this.weight = 0.75;
+            this.size = 6;
+            this.description = "Ripe yellow maize inside of a green fibrous husk that has already started peeling away.";
+            this.intForDes = 1;
+            this.intDescription = "The maize must be seperated from its husk in order to be eaten or processed.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["maize", 1], ["maizeHusk", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.25; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "maize")
+        {
+            //For All Items
+            this.identity = "Maize";
+            this.weight = 0.7;
+            this.size = 6;
+            this.description = "A ripe mazorca of maize without its husk.";
+            this.intForDes = 1;
+            this.intDescription = "This can be either roasted and eaten or ground into flour.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.75; //satisfies hunger.
+            this.thirst = 0.05; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.25; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "maizeFlour")
+        {
+            //For All Items
+            this.identity = "Maize Flour";
+            this.weight = 0.3;
+            this.size = 7;
+            this.description = "A gritty yellowish flour ground from dried maize kernals.";
+            this.intForDes = 3;
+            this.intDescription = "This is mixed with water to make maize dough.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 1;
+            this.ingredients = [["Maize", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "masa")
+        {
+            //For All Items
+            this.identity = "Maize Dough";
+            this.weight = 0.3;
+            this.size = 7;
+            this.description = "A dough made from maize flour and water.";
+            this.intForDes = 15;
+            this.intDescription = "This dough can be used to make tamales, a specialty of the Kellish Alzkwaya tribe.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 8;
+            this.intForCraft = 3;
+            this.ingredients = [["Maize Flour", 32], ["Kellish Clay Pot of Water", 1]];
+            this.biproducts = [[new Item("kellishClayPot", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 4; // at max, sell for 4.
+        }
+        else if (this.type == "tamal1")
+        {
+            //For All Items
+            this.identity = "Tamal (1)";
+            this.weight = 0.2;
+            this.size = 5;
+            this.description = "A mostly eaten tamal.";
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            {
+                this.intForDes = 3;
+                this.intDescription = "Tamales are a food to eat on the go; they are particularly portable.";
+            }
+            else
+            {
+                this.intForDes = 0;
+                this.intDescription = "Tamales are intensely spicy and just barely bearable.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 7; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            //ability
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            {
+                this.ability = "satiation";
+            }
+            else
+            {
+                this.heal = -1; //heals health.
+                this.generation = -3; //recoops lost energy.
+                this.replenish = -2; //restores will.
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "tamal2")
+        {
+            //For All Items
+            this.identity = "Tamal (2)";
+            this.weight = 0.4;
+            this.size = 5;
+            this.description = "A partially eaten tamal.";
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            {
+                this.intForDes = 3;
+                this.intDescription = "Tamales are a food to eat on the go; they are particularly portable.";
+            }
+            else
+            {
+                this.intForDes = 0;
+                this.intDescription = "Tamales are intensely spicy and just barely bearable.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["tamal1", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 7; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            //ability
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            {
+                this.ability = "satiation";
+            }
+            else
+            {
+                this.heal = -1; //heals health.
+                this.generation = -3; //recoops lost energy.
+                this.replenish = -2; //restores will.
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "tamal")
+        {
+            //For All Items
+            this.identity = "Tamal";
+            this.weight = 0.6;
+            this.size = 5;
+            this.description = "Steamed maize dough wrapped around a rich variety of ingredients and held together by being rolled up with a maize husk.";
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            {
+                this.intForDes = 3;
+                this.intDescription = "Tamales are a food to eat on the go; they are particularly portable.";
+            }
+            else
+            {
+                this.intForDes = 0;
+                this.intDescription = "Tamales are intensely spicy and just barely bearable.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["tamal2", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 7; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            //ability
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            {
+                this.ability = "satiation";
+            }
+            else
+            {
+                this.heal = -1; //heals health.
+                this.generation = -3; //recoops lost energy.
+                this.replenish = -2; //restores will.
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9; // at max, buy for 10.
+            this.sellValue = 7; // at max, sell for 10.
+        }
+        else if (this.type == "wrappedTamal")
+        {
+            //For All Items
+            this.identity = "Wrapped Tamal";
+            this.weight = 0.65;
+            this.size = 5;
+            this.description = "Steamed maize dough wrapped around a rich variety of ingredients and held together by being rolled up with a maize husk.";
+            this.intForDes = 3;
+            this.intDescription = "Tamales are a food to eat on the go; they are particularly portable.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["tamal", 1], ["maizeHusk", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 18;
+            this.intForCraft = 8;
+            this.ingredients = [["Uncooked Tamal", 18], ["Kellish Clay Pot of Water", 1]];
+            this.biproducts = [[new Item("kellishClayPot", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10; // at max, buy for 10.
+            this.sellValue = 10; // at max, sell for 10.
+        }
+        else if (this.type == "mofuTamal1")
+        {
+            //For All Items
+            this.identity = "Mofu Tamal (1)";
+            this.weight = 0.2;
+            this.size = 5;
+            this.description = "A mostly eaten mofu tamal.";
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            {
+                this.intForDes = 3;
+                this.intDescription = "Tamales are a food to eat on the go; they are particularly portable.";
+            }
+            else
+            {
+                this.intForDes = 0;
+                this.intDescription = "Tamales are intensely spicy and just barely bearable.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 2.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.25; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            //ability
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            {
+                this.ability = "satiation";
+            }
+            else
+            {
+                this.heal = -1; //heals health.
+                this.generation = -3; //recoops lost energy.
+                this.replenish = -2; //restores will.
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "mofuTamal2")
+        {
+            //For All Items
+            this.identity = "Mofu Tamal (2)";
+            this.weight = 0.4;
+            this.size = 5;
+            this.description = "A partially eaten mofu tamal.";
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            {
+                this.intForDes = 3;
+                this.intDescription = "Tamales are a food to eat on the go; they are particularly portable.";
+            }
+            else
+            {
+                this.intForDes = 0;
+                this.intDescription = "Tamales are intensely spicy and just barely bearable.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["mofuTamal1", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 2.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.25; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            //ability
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            {
+                this.ability = "satiation";
+            }
+            else
+            {
+                this.heal = -1; //heals health.
+                this.generation = -3; //recoops lost energy.
+                this.replenish = -2; //restores will.
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "mofuTamal")
+        {
+            //For All Items
+            this.identity = "Mofu Tamal";
+            this.weight = 0.6;
+            this.size = 5;
+            this.description = "Steamed maize dough wrapped around a rich variety of ingredients and held together by being rolled up with a maize husk.";
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            {
+                this.intForDes = 3;
+                this.intDescription = "Tamales are a food to eat on the go; they are particularly portable.";
+            }
+            else
+            {
+                this.intForDes = 0;
+                this.intDescription = "Tamales are intensely spicy and just barely bearable.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["mofuTamal2", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 2.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.25; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            //ability
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            {
+                this.ability = "satiation";
+            }
+            else
+            {
+                this.heal = -1; //heals health.
+                this.generation = -3; //recoops lost energy.
+                this.replenish = -2; //restores will.
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10; // at max, buy for 10.
+            this.sellValue = 10; // at max, sell for 10.
+        }
+        else if (this.type == "wrappedMofuTamal")
+        {
+            //For All Items
+            this.identity = "Wrapped Mofu Tamal";
+            this.weight = 0.65;
+            this.size = 5;
+            this.description = "Steamed maize dough wrapped around a rich variety of ingredients and held together by being rolled up with a maize husk.";
+            this.intForDes = 3;
+            this.intDescription = "Tamales are a food to eat on the go; they are particularly portable.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["mofuTamal", 1], ["maizeHusk", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 20;
+            this.intForCraft = 8;
+            this.ingredients = [["Uncooked Mofu Tamal", 20], ["Kellish Clay Pot of Water", 1]];
+            this.biproducts = [[new Item("kellishClayPot", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12; // at max, buy for 10.
+            this.sellValue = 12; // at max, sell for 10.
+        }
+        else if (this.type == "rawTamal")
+        {
+            //For All Items
+            this.identity = "Uncooked Tamal";
+            this.weight = 0.6;
+            this.size = 5;
+            this.description = "Maize dough wrapped around a rich variety of ingredients and held together by being rolled up with a maize husk.";
+            this.intForDes = 13;
+            this.intDescription = "Making tamales is an elaborate process and not complete until they are steamed.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 18;
+            this.intForCraft = 15;
+            this.ingredients = [["Maize Husk", 18], ["Boiled Aktaltl Frond", 2], ["Maize Dough", 3], ["Apotl Pepper", 3], ["Boiled Frijols", 1], ["Roasted Aktaltl Root", 2]];
+            this.biproducts = [[new Item("kellishClayPot", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 6; // at max, sell for 6.
+        }
+        else if (this.type == "rawMofuTamal")
+        {
+            //For All Items
+            this.identity = "Uncooked Mofu Tamal";
+            this.weight = 0.6;
+            this.size = 5;
+            this.description = "Maize dough wrapped around a rich variety of ingredients and held together by being rolled up with a maize husk.";
+            this.intForDes = 13;
+            this.intDescription = "Making mofu tamales is an elaborate process and not complete until they are steamed.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 20;
+            this.intForCraft = 16;
+            this.ingredients = [["Maize Husk", 20], ["Maize Dough", 3], ["Apotl Pepper", 3], ["Mofu Meat", 1], ["Boiled Frijols", 1], ["Roasted Aktaltl Root", 2]];
+            this.biproducts = [[new Item("kellishClayPot", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 8; // at max, sell for 8.
+        }
+        else if (this.type == "roastedMaize")
+        {
+            //For All Items
+            this.identity = "Roasted Maize";
+            this.weight = 0.7;
+            this.size = 6;
+            this.description = "A roasted mazorca of maize.";
+            this.intForDes = 1;
+            this.intDescription = "The juicy golden kernals are sweet, juicy, and delectable.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4.5; //satisfies hunger.
+            this.thirst = 1.2; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Maize", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "frijols")
+        {
+            //For All Items
+            this.identity = "Frijols";
+            this.weight = 0.35;
+            this.size = 7;
+            this.description = "The dry black legumes from a frijol plant.";
+            this.intForDes = 2;
+            this.intDescription = "These can be boiled for an extended period of time to make them soft enough to eat.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "rawEtyrFlesh")
         {
             //For All Items
@@ -4737,6 +5560,64 @@ function Item(type, x, y)
             this.buyValue = 10; // at max, buy for 10.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 10); // at max, sell for 10.
         }
+        else if (this.type == "pochalPods")
+        {
+            //For All Items
+            this.identity = "Pochal Pods";
+            this.weight = 0.75;
+            this.size = 10;
+            this.description = "Fibrous and stringy green pods that hold the soft immature seeds of the pochal bush.";
+            this.intForDes = 4;
+            this.intDescription = "These pods can be boiled and then eaten.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "boiledPochalPods")
+        {
+            //For All Items
+            this.identity = "Boiled Pochal Pods";
+            this.weight = 0.75;
+            this.size = 10;
+            this.description = "A substantive and healthful vegetable with a firm texture.";
+            this.intForDes = 4;
+            this.intDescription = "Eat your boiled pochal kids!";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.15; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2; // at max, sell for 2.
+        }
         else if (this.type == "wegRoot")
         {
             //For All Items
@@ -4835,6 +5716,133 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+        }
+        else if (this.type == "aktaltlFrond")
+        {
+            //For All Items
+            this.identity = "Aktaltl Frond";
+            this.weight = 2.2;
+            this.size = 13;
+            this.description = "The long frondolous green frond of an Aktaltl plant. It has a slightly sweet taste to it, but is too fibrous to be at all appetizing.";
+            this.intForDes = 6;
+            this.intDescription = "This frond is believed to remedy certain ailments, particularly colic.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.1; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "colicAway";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "boiledAktaltlFrond")
+        {
+            //For All Items
+            this.identity = "Boiled Aktaltl Frond";
+            this.weight = 2.2;
+            this.size = 13;
+            this.description = "A mildly sweet wilted green that is healthful to eat.";
+            this.intForDes = 6;
+            this.intDescription = "This frond no longer has any medical properties when it is cooked.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 14;
+            this.intForCraft = 2;
+            this.ingredients = [["Aktaltl Frond", 14], ["Kellish Clay Pot of Water", 1]];
+            this.biproducts = [[new Item("kellishClayPot", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "aktaltlRoot")
+        {
+            //For All Items
+            this.identity = "Aktaltl Root";
+            this.weight = 2.2;
+            this.size = 13;
+            this.description = "A long yellowy beige tuber.";
+            this.intForDes = 1;
+            this.intDescription = "This is a staple starch in the diet of many of the various southern kellish tribes.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "roastedAktaltlRoot")
+        {
+            //For All Items
+            this.identity = "Roasted Aktaltl Root";
+            this.weight = 2.2;
+            this.size = 13;
+            this.description = "A sweet, tender and starchy tuber.";
+            this.intForDes = 1;
+            this.intDescription = "This is a staple starch in the diet of many of the various southern kellish tribes.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 9;
+            this.ingredients = [["Aktaltl Root", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 2.
+            this.sellValue = 4; // at max, sell for 2.
         }
         else if (this.type == "palntFlower")
         {
@@ -4993,6 +6001,35 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "lelBerries")
+        {
+            //For All Items
+            this.identity = "Lel Berries";
+            this.weight = 0.1;
+            this.size = 6;
+            this.description = "A bunch of translucent yellow berries; they taste sweet and pop open when they're bit into.";
+            this.intForDes = 20;
+            this.intDescription = "Lel berries contain chemicals that mimic adrenaline and thus produce an energy rush when eaten.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = -1.5; //satisfies hunger.
+            this.thirst = -0.5; //quenches thirst.
+            this.warmth = 1.5; //warms player.
+            this.heal = -0.5; //heals health.
+            this.generation = 3.5; //recoops lost energy.
+            this.replenish = -0.5; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
         }
         else if (this.type == "bushkaBerries")
         {
@@ -5197,6 +6234,46 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "lelFlower")
+        {
+            //For All Items
+            this.identity = "Lel Flower";
+            this.weight = 0.025;
+            this.size = 4;
+            this.description = "A grey flower that grows in the savannah.";
+            this.intForDes = 10;
+            this.intDescription = "It is considered sacred in southern kellish cultures such as Karib and Alzkwaya.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "volaFlowers")
+        {
+            //For All Items
+            this.identity = "Vola Flowers";
+            this.weight = 0.02;
+            this.size = 4;
+            this.description = "A number of little purple wildflowers that tend to grow in the savannah.";
+            this.intForDes = 0;
+            this.intDescription = "These flowers look nice, and that's about all they do.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
         }
         else if (this.type == "brightbloomFlower")
         {
@@ -7302,6 +8379,150 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 14 - Math.floor(player.getCharisma() / 15); // at max, buy for 11.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 12); // at max, sell for 9.
+        }
+        else if (this.type == "naapridDrinkinghorn")
+        {
+            //For All Items
+            this.identity = "Naaprid Drinkinghorn";
+            this.weight = 0.65;
+            this.size = 8;
+            this.description = "A hollowed out horn from a naaprid used for storing liquids.";
+            this.intForDes = 0;
+            this.intDescription = "This is currently empty.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 8; // at max, sell for 8.
+        }
+        else if (this.type == "naapridDrinkinghorn1")
+        {
+            //For All Items
+            this.identity = "Naaprid Drinkinghorn (1)";
+            this.weight = 2.15;
+            this.size = 8;
+            this.description = "A hollowed out horn from a naaprid used for storing liquids.";
+            this.intForDes = 0;
+            this.intDescription = "This is half full of water.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["naapridDrinkinghorn", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 6; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 8; // at max, sell for 8.
+        }
+        else if (this.type == "naapridDrinkinghornFull")
+        {
+            //For All Items
+            this.identity = "Naaprid Drinkinghorn (full)";
+            this.weight = 3.65;
+            this.size = 8;
+            this.description = "A hollowed out horn from a naaprid used for storing liquids.";
+            this.intForDes = 0;
+            this.intDescription = "This is full of water.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["naapridDrinkinghorn1", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 6; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9; // at max, buy for 9.
+            this.sellValue = 8; // at max, sell for 8.
+        }
+        else if (this.type == "naapridMilkhorn1")
+        {
+            //For All Items
+            this.identity = "Naaprid Drinkinghorn (1)";
+            this.weight = 2.15;
+            this.size = 8;
+            this.description = "A hollowed out horn from a naaprid used for storing liquids.";
+            this.intForDes = 0;
+            this.intDescription = "This is half full of naaprid milk.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["naapridDrinkinghorn", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 6; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0.025; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10; // at max, buy for 10.
+            this.sellValue = 10; // at max, sell for 10.
+        }
+        else if (this.type == "naapridMilkhornFull")
+        {
+            //For All Items
+            this.identity = "Naaprid Drinkinghorn (full)";
+            this.weight = 3.65;
+            this.size = 8;
+            this.description = "A hollowed out horn from a naaprid used for storing liquids.";
+            this.intForDes = 0;
+            this.intDescription = "This is full of naaprid milk.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["naapridMilkhorn1", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 6; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0.025; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13; // at max, buy for 13.
+            this.sellValue = 13; // at max, sell for 13.
         }
         else if (this.type == "walrusLeatherWaterskinFull")
         {
@@ -21694,6 +22915,156 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "lelBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 455, 48, 8, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 8 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1.8), 8 * 1.8, 13 * 1.8);
+        }
+        else if (this.type == "lelFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 467, 50, 11, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.8), 11 * 1.8, 9 * 1.8);
+        }
+        else if (this.type == "naapridDrinkinghorn" || this.type == "naapridDrinkinghorn1" || this.type == "naapridMilkhorn1")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 539, 80, 15, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 2.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 2.1), 15 * 2.1, 14 * 2.1);
+        }
+        else if (this.type == "naapridMilkhornFull")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 522, 105, 15, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 2.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 2.1), 15 * 2.1, 14 * 2.1);
+        }
+        else if (this.type == "naapridDrinkinghornFull")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 466, 105, 15, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 2.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 2.1), 15 * 2.1, 14 * 2.1);
+        }
+        else if (this.type == "volaFlowers")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 439, 115, 15, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1.4), 15 * 1.4, 13 * 1.4);
+        }
+        else if (this.type == "rawTamal" || this.type == "rawMofuTamal" || this.type == "wrappedTamal" || this.type == "wrappedMofuTamal")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 402, 50, 15, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 1.8), 15 * 1.8, 11 * 1.8);
+        }
+        else if (this.type == "tamal" || this.type == "mofuTamal")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 386, 51, 15, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 1.8), 15 * 1.8, 11 * 1.8);
+        }
+        else if (this.type == "tamal2" || this.type == "mofuTamal2")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 419, 50, 15, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 1.8), 15 * 1.8, 11 * 1.8);
+        }
+        else if (this.type == "tamal1" || this.type == "mofuTamal1")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 435, 50, 15, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 1.8), 15 * 1.8, 11 * 1.8);
+        }
+        else if (this.type == "masa")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 392, 20, 11, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.8), 11 * 1.8, 10 * 1.8);
+        }
+        else if (this.type == "maizeFlour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 393, 34, 14, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.8), 14 * 1.8, 14 * 1.8);
+        }
+        else if (this.type == "roastedMaize")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 399, 4, 10, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.8), 10 * 1.8, 10 * 1.8);
+        }
+        else if (this.type == "maizeHusk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 408, 20, 9, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.8), 9 * 1.8, 10 * 1.8);
+        }
+        else if (this.type == "maize")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 386, 5, 10, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.8), 10 * 1.8, 10 * 1.8);
+        }
+        else if (this.type == "mazorca")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 377, 20, 11, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.8), 11 * 1.8, 14 * 1.8);
+        }
+        else if (this.type == "boiledFrijols")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 517, 79, 16, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 16 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.7), 16 * 1.7, 17 * 1.7);
+        }
+        else if (this.type == "latuku")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 498, 78, 16, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 16 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.7), 16 * 1.7, 17 * 1.7);
+        }
+        else if (this.type == "aktaltlSoup")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 478, 77, 16, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 16 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.7), 16 * 1.7, 17 * 1.7);
+        }
+        else if (this.type == "apotlPepper")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 481, 43, 13, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.4), 13 * 1.4, 18 * 1.4);
+        }
+        else if (this.type == "frijols")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 376, 36, 12, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 1.4), 12 * 1.4, 11 * 1.4);
+        }
+        else if (this.type == "clobeLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 325, 138, 17, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.4), 17 * 1.4, 17 * 1.4);
+        }
+        else if (this.type == "kwomFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 398, 96, 11, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.4), 11 * 1.4, 9 * 1.4);
+        }
+        else if (this.type == "pochalPods")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 316, 86, 23, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 23 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.4), 23 * 1.4, 19 * 1.4);
+        }
+        else if (this.type == "boiledPochalPods")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 344, 86, 23, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 23 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.4), 23 * 1.4, 19 * 1.4);
+        }
+        else if (this.type == "karmFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 108, 100, 20, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1), 20 * 1, 21 * 1);
+        }
+        else if (this.type == "aktaltlFrond")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 102, 51, 28, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.4), 28 * 1.4, 21 * 1.4);
+        }
+        else if (this.type == "boiledAktaltlFrond")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 106, 77, 22, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1.4), 22 * 1.4, 20 * 1.4);
+        }
+        else if (this.type == "aktaltlRoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 106, 11, 33, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 1.4), 33 * 1.4, 33 * 1.4);
+        }
+        else if (this.type == "roastedAktaltlRoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 96, 123, 33, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 1.4), 33 * 1.4, 33 * 1.4);
+        }
         else if (this.type == "boat")
         {
             XXX.beginPath();
@@ -24594,6 +25965,156 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "lelBerries")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 455, 48, 8, 13, this.invX - (1/2 * 8 * 1.8), this.invY - (1/2 * 13 * 1.8), 8 * 1.8, 13 * 1.8);
+        }
+        else if (this.type == "lelFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 467, 50, 11, 9, this.invX - (1/2 * 11 * 1.8), this.invY - (1/2 * 9 * 1.8), 11 * 1.8, 9 * 1.8);
+        }
+        else if (this.type == "naapridDrinkinghorn" || this.type == "naapridDrinkinghorn1" || this.type == "naapridMilkhorn1")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 539, 80, 15, 14, this.invX - (1/2 * 15 * 2.1), this.invY - (1/2 * 14 * 2.1), 15 * 2.1, 14 * 2.1);
+        }
+        else if (this.type == "naapridMilkhornFull")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 522, 105, 15, 14, this.invX - (1/2 * 15 * 2.1), this.invY - (1/2 * 14 * 2.1), 15 * 2.1, 14 * 2.1);
+        }
+        else if (this.type == "naapridDrinkinghornFull")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 466, 105, 15, 14, this.invX - (1/2 * 15 * 2.1), this.invY - (1/2 * 14 * 2.1), 15 * 2.1, 14 * 2.1);
+        }
+        else if (this.type == "volaFlowers")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 439, 115, 15, 13, this.invX - (1/2 * 15 * 1.4), this.invY - (1/2 * 13 * 1.4), 15 * 1.4, 13 * 1.4);
+        }
+        else if (this.type == "rawTamal" || this.type == "rawMofuTamal" || this.type == "wrappedTamal" || this.type == "wrappedMofuTamal")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 402, 50, 15, 11, this.invX - (1/2 * 15 * 1.8), this.invY - (1/2 * 11 * 1.8), 15 * 1.8, 11 * 1.8);
+        }
+        else if (this.type == "tamal" || this.type == "mofuTamal")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 386, 51, 15, 11, this.invX - (1/2 * 15 * 1.8), this.invY - (1/2 * 11 * 1.8), 15 * 1.8, 11 * 1.8);
+        }
+        else if (this.type == "tamal2" || this.type == "mofuTamal2")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 419, 50, 15, 11, this.invX - (1/2 * 15 * 1.8), this.invY - (1/2 * 11 * 1.8), 15 * 1.8, 11 * 1.8);
+        }
+        else if (this.type == "tamal1" || this.type == "mofuTamal1")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 435, 50, 15, 11, this.invX - (1/2 * 15 * 1.8), this.invY - (1/2 * 11 * 1.8), 15 * 1.8, 11 * 1.8);
+        }
+        else if (this.type == "masa")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 392, 20, 11, 10, this.invX - (1/2 * 11 * 1.8), this.invY - (1/2 * 10 * 1.8), 11 * 1.8, 10 * 1.8);
+        }
+        else if (this.type == "maizeFlour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 393, 34, 14, 14, this.invX - (1/2 * 14 * 1.8), this.invY - (1/2 * 14 * 1.8), 14 * 1.8, 14 * 1.8);
+        }
+        else if (this.type == "roastedMaize")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 399, 4, 10, 10, this.invX - (1/2 * 10 * 1.8), this.invY - (1/2 * 10 * 1.8), 10 * 1.8, 10 * 1.8);
+        }
+        else if (this.type == "maizeHusk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 408, 20, 9, 10, this.invX - (1/2 * 9 * 1.8), this.invY - (1/2 * 10 * 1.8), 9 * 1.8, 10 * 1.8);
+        }
+        else if (this.type == "maize")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 386, 5, 10, 10, this.invX - (1/2 * 10 * 1.8), this.invY - (1/2 * 10 * 1.8), 10 * 1.8, 10 * 1.8);
+        }
+        else if (this.type == "mazorca")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 377, 20, 11, 14, this.invX - (1/2 * 11 * 1.8), this.invY - (1/2 * 14 * 1.8), 11 * 1.8, 14 * 1.8);
+        }
+        else if (this.type == "boiledFrijols")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 517, 79, 16, 17, this.invX - (1/2 * 16 * 1.7), this.invY - (1/2 * 17 * 1.7), 16 * 1.7, 17 * 1.7);
+        }
+        else if (this.type == "latuku")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 498, 78, 16, 17, this.invX - (1/2 * 16 * 1.7), this.invY - (1/2 * 17 * 1.7), 16 * 1.7, 17 * 1.7);
+        }
+        else if (this.type == "aktaltlSoup")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 478, 77, 16, 17, this.invX - (1/2 * 16 * 1.7), this.invY - (1/2 * 17 * 1.7), 16 * 1.7, 17 * 1.7);
+        }
+        else if (this.type == "apotlPepper")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 481, 43, 13, 18, this.invX - (1/2 * 13 * 1.4), this.invY - (1/2 * 18 * 1.4), 13 * 1.4, 18 * 1.4);
+        }
+        else if (this.type == "frijols")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 376, 36, 12, 11, this.invX - (1/2 * 12 * 1.4), this.invY - (1/2 * 11 * 1.4), 12 * 1.4, 11 * 1.4);
+        }
+        else if (this.type == "clobeLeaf")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 325, 138, 17, 17, this.invX - (1/2 * 17 * 1.4), this.invY - (1/2 * 17 * 1.4), 17 * 1.4, 17 * 1.4);
+        }
+        else if (this.type == "kwomFruit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 398, 96, 11, 9, this.invX - (1/2 * 11 * 1.4), this.invY - (1/2 * 9 * 1.4), 11 * 1.4, 9 * 1.4);
+        }
+        else if (this.type == "pochalPods")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 316, 86, 23, 19, this.invX - (1/2 * 23 * 1.4), this.invY - (1/2 * 19 * 1.4), 23 * 1.4, 19 * 1.4);
+        }
+        else if (this.type == "boiledPochalPods")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 344, 86, 23, 19, this.invX - (1/2 * 23 * 1.4), this.invY - (1/2 * 19 * 1.4), 23 * 1.4, 19 * 1.4);
+        }
+        else if (this.type == "karmFruit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 108, 100, 20, 21, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 21 * 1), 20 * 1, 21 * 1);
+        }
+        else if (this.type == "aktaltlFrond")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 102, 51, 28, 21, this.invX - (1/2 * 28 * 1.4), this.invY - (1/2 * 21 * 1.4), 28 * 1.4, 21 * 1.4);
+        }
+        else if (this.type == "boiledAktaltlFrond")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 106, 77, 22, 20, this.invX - (1/2 * 22 * 1.4), this.invY - (1/2 * 20 * 1.4), 22 * 1.4, 20 * 1.4);
+        }
+        else if (this.type == "aktaltlRoot")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 106, 11, 33, 33, this.invX - (1/2 * 33 * 1.4), this.invY - (1/2 * 33 * 1.4), 33 * 1.4, 33 * 1.4);
+        }
+        else if (this.type == "roastedAktaltlRoot")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dolls, 96, 123, 33, 33, this.invX - (1/2 * 33 * 1.4), this.invY - (1/2 * 33 * 1.4), 33 * 1.4, 33 * 1.4);
+        }
         else if (this.type == "boat")
         {
             LXX.beginPath();
@@ -27463,6 +28984,156 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "lelBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 455, 48, 8, 13, this.invX - (1/2 * 8 * 1.8), this.invY - (1/2 * 13 * 1.8), 8 * 1.8, 13 * 1.8);
+        }
+        else if (this.type == "lelFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 467, 50, 11, 9, this.invX - (1/2 * 11 * 1.8), this.invY - (1/2 * 9 * 1.8), 11 * 1.8, 9 * 1.8);
+        }
+        else if (this.type == "naapridDrinkinghorn" || this.type == "naapridDrinkinghorn1" || this.type == "naapridMilkhorn1")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 539, 80, 15, 14, this.invX - (1/2 * 15 * 2.1), this.invY - (1/2 * 14 * 2.1), 15 * 2.1, 14 * 2.1);
+        }
+        else if (this.type == "naapridMilkhornFull")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 522, 105, 15, 14, this.invX - (1/2 * 15 * 2.1), this.invY - (1/2 * 14 * 2.1), 15 * 2.1, 14 * 2.1);
+        }
+        else if (this.type == "naapridDrinkinghornFull")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 466, 105, 15, 14, this.invX - (1/2 * 15 * 2.1), this.invY - (1/2 * 14 * 2.1), 15 * 2.1, 14 * 2.1);
+        }
+        else if (this.type == "volaFlowers")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 439, 115, 15, 13, this.invX - (1/2 * 15 * 1.4), this.invY - (1/2 * 13 * 1.4), 15 * 1.4, 13 * 1.4);
+        }
+        else if (this.type == "rawTamal" || this.type == "rawMofuTamal" || this.type == "wrappedTamal" || this.type == "wrappedMofuTamal")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 402, 50, 15, 11, this.invX - (1/2 * 15 * 1.8), this.invY - (1/2 * 11 * 1.8), 15 * 1.8, 11 * 1.8);
+        }
+        else if (this.type == "tamal" || this.type == "mofuTamal")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 386, 51, 15, 11, this.invX - (1/2 * 15 * 1.8), this.invY - (1/2 * 11 * 1.8), 15 * 1.8, 11 * 1.8);
+        }
+        else if (this.type == "tamal2" || this.type == "mofuTamal2")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 419, 50, 15, 11, this.invX - (1/2 * 15 * 1.8), this.invY - (1/2 * 11 * 1.8), 15 * 1.8, 11 * 1.8);
+        }
+        else if (this.type == "tamal1" || this.type == "mofuTamal1")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 435, 50, 15, 11, this.invX - (1/2 * 15 * 1.8), this.invY - (1/2 * 11 * 1.8), 15 * 1.8, 11 * 1.8);
+        }
+        else if (this.type == "masa")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 392, 20, 11, 10, this.invX - (1/2 * 11 * 1.8), this.invY - (1/2 * 10 * 1.8), 11 * 1.8, 10 * 1.8);
+        }
+        else if (this.type == "maizeFlour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 393, 34, 14, 14, this.invX - (1/2 * 14 * 1.8), this.invY - (1/2 * 14 * 1.8), 14 * 1.8, 14 * 1.8);
+        }
+        else if (this.type == "roastedMaize")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 399, 4, 10, 10, this.invX - (1/2 * 10 * 1.8), this.invY - (1/2 * 10 * 1.8), 10 * 1.8, 10 * 1.8);
+        }
+        else if (this.type == "maizeHusk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 408, 20, 9, 10, this.invX - (1/2 * 9 * 1.8), this.invY - (1/2 * 10 * 1.8), 9 * 1.8, 10 * 1.8);
+        }
+        else if (this.type == "maize")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 386, 5, 10, 10, this.invX - (1/2 * 10 * 1.8), this.invY - (1/2 * 10 * 1.8), 10 * 1.8, 10 * 1.8);
+        }
+        else if (this.type == "mazorca")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 377, 20, 11, 14, this.invX - (1/2 * 11 * 1.8), this.invY - (1/2 * 14 * 1.8), 11 * 1.8, 14 * 1.8);
+        }
+        else if (this.type == "boiledFrijols")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 517, 79, 16, 17, this.invX - (1/2 * 16 * 1.7), this.invY - (1/2 * 17 * 1.7), 16 * 1.7, 17 * 1.7);
+        }
+        else if (this.type == "latuku")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 498, 78, 16, 17, this.invX - (1/2 * 16 * 1.7), this.invY - (1/2 * 17 * 1.7), 16 * 1.7, 17 * 1.7);
+        }
+        else if (this.type == "aktaltlSoup")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 478, 77, 16, 17, this.invX - (1/2 * 16 * 1.7), this.invY - (1/2 * 17 * 1.7), 16 * 1.7, 17 * 1.7);
+        }
+        else if (this.type == "apotlPepper")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 481, 43, 13, 18, this.invX - (1/2 * 13 * 1.4), this.invY - (1/2 * 18 * 1.4), 13 * 1.4, 18 * 1.4);
+        }
+        else if (this.type == "frijols")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 376, 36, 12, 11, this.invX - (1/2 * 12 * 1.4), this.invY - (1/2 * 11 * 1.4), 12 * 1.4, 11 * 1.4);
+        }
+        else if (this.type == "clobeLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 325, 138, 17, 17, this.invX - (1/2 * 17 * 1.4), this.invY - (1/2 * 17 * 1.4), 17 * 1.4, 17 * 1.4);
+        }
+        else if (this.type == "kwomFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 398, 96, 11, 9, this.invX - (1/2 * 11 * 1.4), this.invY - (1/2 * 9 * 1.4), 11 * 1.4, 9 * 1.4);
+        }
+        else if (this.type == "pochalPods")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 316, 86, 23, 19, this.invX - (1/2 * 23 * 1.4), this.invY - (1/2 * 19 * 1.4), 23 * 1.4, 19 * 1.4);
+        }
+        else if (this.type == "boiledPochalPods")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 344, 86, 23, 19, this.invX - (1/2 * 23 * 1.4), this.invY - (1/2 * 19 * 1.4), 23 * 1.4, 19 * 1.4);
+        }
+        else if (this.type == "karmFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 108, 100, 20, 21, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 21 * 1), 20 * 1, 21 * 1);
+        }
+        else if (this.type == "aktaltlFrond")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 102, 51, 28, 21, this.invX - (1/2 * 28 * 1.4), this.invY - (1/2 * 21 * 1.4), 28 * 1.4, 21 * 1.4);
+        }
+        else if (this.type == "boiledAktaltlFrond")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 106, 77, 22, 20, this.invX - (1/2 * 22 * 1.4), this.invY - (1/2 * 20 * 1.4), 22 * 1.4, 20 * 1.4);
+        }
+        else if (this.type == "aktaltlRoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 106, 11, 33, 33, this.invX - (1/2 * 33 * 1.4), this.invY - (1/2 * 33 * 1.4), 33 * 1.4, 33 * 1.4);
+        }
+        else if (this.type == "roastedAktaltlRoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dolls, 96, 123, 33, 33, this.invX - (1/2 * 33 * 1.4), this.invY - (1/2 * 33 * 1.4), 33 * 1.4, 33 * 1.4);
         }
         else if (this.type == "boat")
         {

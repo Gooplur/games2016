@@ -656,7 +656,7 @@ function Adventurer()
                     this.thirst = Math.max(0, this.thirst - 0.11);
                 }
             }
-            if (this.water == true && this.land != true) //being in water puts out fire
+            if (this.water == true && this.land != true && !this.waterwalking) //being in water puts out fire
             {
                 this.burningTime = 0;
             }
@@ -1345,7 +1345,7 @@ function Adventurer()
         this.landscapeEffects = function()
         {
             //WATER
-            if (player.water == true && player.land == false) //Player is fully submersed in water and must use the swimming system
+            if (player.water == true && player.land == false && !this.waterwalking) //Player is fully submersed in water and must use the swimming system
             {
                 if (player.weaponEquipped != "boat")
                 {
@@ -3054,7 +3054,7 @@ function Adventurer()
         {
             if (this.waterwalkingTime > 0)
             {
-                if (new Date().getTime() - this.waterwalkingKeepTime < 1000)
+                if (new Date().getTime() - this.waterwalkingKeepTime > 1000)
                 {
                     this.waterwalking = true;
                     this.waterwalkingTime -= 1;
@@ -3073,7 +3073,7 @@ function Adventurer()
             //resistance
             if (this.petrificationResistanceTime > 0)
             {
-                if (new Date().getTime() - this.petrificationResistanceKeepTime < 1000)
+                if (new Date().getTime() - this.petrificationResistanceKeepTime > 1000)
                 {
                     this.petrificationResistance = true;
                     this.petrified = false;

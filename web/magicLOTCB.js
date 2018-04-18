@@ -2767,7 +2767,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
 
                 this.size = 3/5 * unitSelf.alphaSize;
                 this.flashAnimate(90, this.unitRotation, 1, [{image: lodo, imgX: 46, imgY: 146, portionW: 16, portionH: 12, adjX: -1 / 2 * 16 * 2 * this.size, adjY: -1 / 2 * 12 * 2 * this.size, width: 16 * 2 * this.size, height: 12 * 2 * this.size}, {image: lodo, imgX: 65, imgY: 146, portionW: 16, portionH: 12, adjX: -1 / 2 * 16 * 2 * this.size, adjY: -1 / 2 * 12 * 2 * this.size, width: 16 * 2 * this.size, height: 12 * 2 * this.size}, {image: lodo, imgX: 83, imgY: 147, portionW: 16, portionH: 12, adjX: -1 / 2 * 16 * 2 * this.size, adjY: -1 / 2 * 12 * 2 * this.size, width: 16 * 2 * this.size, height: 12 * 2 * this.size}, {image: lodo, imgX: 104, imgY: 148, portionW: 16, portionH: 12, adjX: -1 / 2 * 16 * 2 * this.size, adjY: -1 / 2 * 12 * 2 * this.size, width: 16 * 2 * this.size, height: 12 * 2 * this.size}], true, false);
-                this.project(this.unitRotation - Math.PI, unitSelf.baseSight, this.speed, true);
+                this.project(this.unitRotation, unitSelf.baseSight, this.speed, true); //removed  - Math.PI
 
             }
 

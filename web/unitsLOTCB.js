@@ -27,6 +27,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.contraPlayer = true; //this is manually set to false when defining a creature if it is a creature that never engages the player in combat.
     this.owned = false; //if this is owned by a faction then set owned to true;
     this.flotation = false; //if true this unit drops items and shows its body upon death in the water.
+    this.colorized = [false, "green"];
 
     //timers for AI
     this.aiTimer = 0; //the total time a unit has been in existence (unless reset)
@@ -189,6 +190,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.swimming = false;
     this.swimSpeed = 1;
     //effects variables
+    this.petrified = false;
+    this.petrificationResistance = false;
     this.rangedSwitch = false; //this is triggered when the unit's switchToRanged function decides to switch to an alternative weapon for ranged confrontations (it warns the function switchToSwimming not to switch back to the base weapon but rather tha one chosen by switchToRanged function)
     this.blindedTime = 0;
     this.blinded = false;
@@ -684,7 +687,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 var swtchTrgt = false;
                 for (var j = 0; j < this.allys.length; j++)
                 {
-                    if (this.allys[j] == ArtificialIntelligenceAccess[i].team || ArtificialIntelligenceAccess[i].dmx != this.dmx)
+                    if (this.allys[j] == ArtificialIntelligenceAccess[i].team || ArtificialIntelligenceAccess[i].dmx != this.dmx || ArtificialIntelligenceAccess[i].petrified && this.type != "Basilisk")
                     {
                         swtchTrgt = true;
                         break;
@@ -1088,12 +1091,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
         }
         return rotfl;
-    }
+    };
 
     //this points the unit toward the main character.
     this.pointTowardsPlayer = function()
     {
-        if (!this.suspendConflictingPointSystems)
+        if (!this.suspendConflictingPointSystems && !this.petrified)
         {
             var dtp = this.DTP();
             if (dtp < this.rangeOfSight && this.blinded == false) //if the player is close enough to the unit the unit will rotate toward him/her.
@@ -1161,7 +1164,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
     this.pointAway = function(thing)
     {
-        if (!this.suspendConflictingPointSystems)
+        if (!this.suspendConflictingPointSystems && !this.petrified)
         {
             if (this.blinded == false)
             {
@@ -1189,7 +1192,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //this points away from the player.
     this.pointAwayFromPlayer = function()
     {
-        if (!this.suspendConflictingPointSystems)
+        if (!this.suspendConflictingPointSystems && !this.petrified)
         {
             var dtp = this.DTP();
             if (dtp < this.rangeOfSight && this.blinded == false) //if the player is close enough to the unit the unit will rotate toward him/her.
@@ -1302,7 +1305,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else
         {
-            if (!this.suspendConflictingPointSystems)
+            if (!this.suspendConflictingPointSystems && !this.petrified)
             {
                 this.newRotation = Math.atan2(this.wanderY - this.Y, this.wanderX - this.X) + Math.PI; //Point toward the destination.
 
@@ -2436,7 +2439,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
         if (numberOfStops != 0)
         {
-            if (!this.suspendConflictingPointSystems)
+            if (!this.suspendConflictingPointSystems && !this.petrified)
             {
                 this.newRotation = Math.atan2(this.patrolDestinationY - this.Y, this.patrolDestinationX - this.X) + Math.PI; //Point toward the destination.
 
@@ -2780,7 +2783,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //This moves the unit forwards either away from or toward the player.
     this.moveInRelationToPlayer = function() //the fraction of PI is the amount of angle-adjustment for the specific type of unit.
     {
-        if (!this.suspendConflictingPointSystems)
+        if (!this.suspendConflictingPointSystems && !this.petrified)
         {
             var dtp = this.DTP();
             if (dtp > this.engagementRadius && dtp < this.rangeOfSight || this.fleeing == true && dtp < this.rangeOfSight || this.charger == true && dtp <= this.rangeOfSight) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
@@ -2942,7 +2945,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
     this.pointTowards = function(thing)
     {
-        if (!this.suspendConflictingPointSystems)
+        if (!this.suspendConflictingPointSystems && !this.petrified)
         {
             if (this.blinded == false)
             {
@@ -2969,7 +2972,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
     this.moveInRelationToThing = function(thing, extraSight) //move towards target thing.
     {
-        if (!this.suspendConflictingPointSystems)
+        if (!this.suspendConflictingPointSystems && !this.petrified)
         {
             var extraS = extraSight;
             if (typeof(extraS) == "undefined")
@@ -3034,524 +3037,527 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
     this.Attack = function(randomDamage, setDamage)
     {
-        if (this.target == player && this.team != "player")
+        if (!this.petrified)
         {
-            //this method relies on the class variable being set: this.timeBetweenAttacks = new Date().getTime();
-            var dtp = this.DTP();
-            if (dtp <= this.engagementRadius && dtp <= this.rangeOfSight)
+            if (this.target == player && this.team != "player")
             {
-                this.attacking = true;
-            }
-            else if (this.followThrough == false)
-            {
-                this.attacking = false;
-            }
-
-            if (this.attacking == true)
-            {
-                player.inCombat = true;
-                if (this.attackStyle == "rapid")
+                //this method relies on the class variable being set: this.timeBetweenAttacks = new Date().getTime();
+                var dtp = this.DTP();
+                if (dtp <= this.engagementRadius && dtp <= this.rangeOfSight)
                 {
-                    if (this.damage > player.armourTotal)
-                    {
-                        this.damage = (Math.floor(Math.random() * (randomDamage + 1)) + setDamage) * this.buffout;
-
-                        if (player.immune && this.unavoidable == false)
-                        {
-                            this.damage = 0;
-                        }
-
-                        player.health -= Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / (16.75 + (100 * this.attackRate)));
-                        player.decreaseInHealth += Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / (16.75 + (100 * this.attackRate))); // this is how much health is displayed as blood red for the player;
-                    }
+                    this.attacking = true;
                 }
-                if (this.attackStyle == "chunked")
+                else if (this.followThrough == false)
                 {
-                    if (this.justAttacked == true)
-                    {
-                        this.finalAttackCostume = false;
-                        this.justAttacked = false;
-                    }
-
-                    if (this.finalAttackCostume)
-                    {
-                        this.damage = (Math.floor(Math.random() * (randomDamage + 1)) + setDamage) * this.buffout;
-                        if (player.immune && this.unavoidable == false)
-                        {
-                            this.damage = 0;
-                        }
-                        //console.log(this.damage + " is the damage done by " + this.ID + " through an armour total of " + player.armourTotal + ". The resulting damage was " + Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / 16.75) + ".");
-                        if (player.mageShield > 0)
-                        {
-                            player.mageShield -= this.damage;
-                            this.justAttacked = true;
-                        }
-                        else
-                        {
-                            player.health += player.mageShield;
-                            //player.decreaseInHealth -= player.mageShield;
-                            player.mageShield = 0;
-
-                            player.health -= Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour));
-                            player.decreaseInHealth += Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour));
-                            this.justAttacked = true;
-
-                            //Special Attacking Effects
-                            if (this.effect == "poisonV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.poisonV = true;
-                            }
-                            else if (this.effect == "poisonIV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.poisonIV = true;
-                            }
-                            else if (this.effect == "poisonIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.poisonIII = true;
-                            }
-                            else if (this.effect == "poisonII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.poisonII = true;
-                            }
-                            else if (this.effect == "poisonI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.poisonI = true;
-                            }
-                            else if (this.effect == "stunIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.stunnedIII = true;
-                                player.stunnedTime = 11;
-                            }
-                            else if (this.effect == "stunII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.stunnedII = true;
-                                player.stunnedTime = 8;
-                            }
-                            else if (this.effect == "stunI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.stunnedI = true;
-                                player.stunnedTime = 5;
-                            }
-                            else if (this.effect == "etnaVenom" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.etnaVenTime = new Date().getTime();
-                            }
-                            else if (this.effect == "freezingStun")
-                            {
-                                player.stunnedIII = true;
-                                player.stunnedTime = 20;
-                                player.warmth -= 20;
-
-                                XXX.save();
-                                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
-                                XXX.globalAlpha = 0.6;
-                                XXX.drawImage(polypol, 1691, 240, 28, 24, - 1/2 * (28 * 1.2), - 1/2 * (24 * 1.2), (28 * 1.2), (24 * 1.2));
-                                XXX.restore();
-                            }
-                            else if (this.effect == "narthwarpToxin" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.energy -= Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) / 1.5;
-                            }
-                            else if (this.effect == "fatigueI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.energilTime = 60;
-                                player.fatigueI = true;
-                            }
-                            else if (this.effect == "fatigueII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.energilTime = 60;
-                                player.fatigueII = true;
-                            }
-                            else if (this.effect == "fatigueIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.energilTime = 60;
-                                player.fatigueIII = true;
-                            }
-                            else if (this.effect == "fatigueIV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.energilTime = 60;
-                                player.fatigueIV = true;
-                            }
-                            else if (this.effect == "fatigueV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.energilTime = 60;
-                                player.fatigueV = true;
-                            }
-                            else if (this.effect == "grewbleToxinI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.energilTime = 300;
-                                player.fatigueI = true;
-                            }
-                            else if (this.effect == "grewbleToxinII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.energilTime = 300;
-                                player.fatigueII = true;
-                            }
-                            else if (this.effect == "grewbleToxinIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.energilTime = 360;
-                                player.fatigueIV = true;
-                            }
-                            else if (this.effect == "smashbackI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
-                                X -= Math.cos(twrdsUnit) * 50;
-                                Y -= Math.sin(twrdsUnit) * 50;
-                                player.stunnedIII = true;
-                                player.stunnedTime = 3;
-                            }
-                            else if (this.effect == "smashbackII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
-                                X -= Math.cos(twrdsUnit) * 125;
-                                Y -= Math.sin(twrdsUnit) * 125;
-                                player.stunnedIII = true;
-                                player.stunnedTime = 4;
-                            }
-                            else if (this.effect == "smashbackIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
-                                X -= Math.cos(twrdsUnit) * 325;
-                                Y -= Math.sin(twrdsUnit) * 325;
-                                player.stunnedIII = true;
-                                player.stunnedTime = 4;
-                            }
-                            else if (this.effect == "smashbackIV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
-                                X -= Math.cos(twrdsUnit) * 550;
-                                Y -= Math.sin(twrdsUnit) * 550;
-                                player.stunnedIII = true;
-                                player.stunnedTime = 5;
-                            }
-                            else if (this.effect == "fire" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.burningTime = new Date().getTime();
-                            }
-                            else if (this.effect == "blindingI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.blinded = true;
-                                player.blindedStoreTime = new Date().getTime();
-                                player.blindedTime = 2;
-                            }
-                            else if (this.effect == "blindingII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.blinded = true;
-                                player.blindedStoreTime = new Date().getTime();
-                                player.blindedTime = 3;
-                            }
-                            else if (this.effect == "blindingIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.blinded = true;
-                                player.blindedStoreTime = new Date().getTime();
-                                player.blindedTime = 5;
-                            }
-                            else if (this.effect == "blindingIV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.blinded = true;
-                                player.blindedStoreTime = new Date().getTime();
-                                player.blindedTime = 8;
-                            }
-                            else if (this.effect == "blindingV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.blinded = true;
-                                player.blindedStoreTime = new Date().getTime();
-                                player.blindedTime = 13;
-                            }
-                            else if (this.effect == "quarterAcid" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.quarterAcid = true;
-                                player.acidTime = new Date().getTime() + 8000;
-                            }
-                            else if (this.effect == "halfAcid" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.halfAcid = true;
-                                player.acidTime = new Date().getTime() + 8000;
-                            }
-                            else if (this.effect == "acidI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.acidI = true;
-                                player.acidTime = new Date().getTime() + 8000;
-                            }
-                            else if (this.effect == "acidII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.acidII = true;
-                                player.acidTime = new Date().getTime() + 8000;
-                            }
-                            else if (this.effect == "acidIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.acidIII = true;
-                                player.acidTime = new Date().getTime() + 8000;
-                            }
-                            else if (this.effect == "acidIV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.acidIV = true;
-                                player.acidTime = new Date().getTime() + 8000;
-                            }
-                            else if (this.effect == "acidV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.acidV = true;
-                                player.acidTime = new Date().getTime() + 8000;
-                            }
-                            else if (this.effect == "superAcid" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
-                            {
-                                player.acidV = true;
-                                player.acidTime = new Date().getTime() + 22000;
-                            }
-                        }
-                    }
+                    this.attacking = false;
                 }
-            }
-        }
-        else if (this.target != "none")
-        {
-            //this method relies on the class variable being set: this.timeBetweenAttacks = new Date().getTime();
-            var dtu = this.DTU(this.target);
 
-            if (dtu <= this.engagementRadius + (this.target.sizeRadius - 10) && dtu <= this.baseSight)
-            {
-                this.attacking = true;
-            }
-            else if (this.followThrough == false)
-            {
-                this.attacking = false;
-            }
-
-            if (this.attacking == true)
-            {
-                if (this.attackStyle == "rapid")
+                if (this.attacking == true)
                 {
-                    if (this.damage > this.target.armour)
+                    player.inCombat = true;
+                    if (this.attackStyle == "rapid")
                     {
-                        this.damage = (Math.floor(Math.random() * (randomDamage + 1)) + setDamage) * this.buffout;
-                        this.target.health -= Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) * (TTD / (16.75 + (100 * this.attackRate)));
-                    }
-                }
-                if (this.attackStyle == "chunked")
-                {
-                    if (this.justAttacked == true)
-                    {
-                        this.finalAttackCostume = false;
-                        this.justAttacked = false;
-                    }
-
-                    if (this.finalAttackCostume)
-                    {
-                        this.damage = (Math.floor(Math.random() * (randomDamage + 1)) + setDamage) * this.buffout;
-                        //console.log(this.damage + " is the damage done by " + this.ID + " through an armour total of " + player.armourTotal + ". The resulting damage was " + Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / 16.75) + ".");
-
-                        this.target.health -= Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour));
-                        this.target.lessEXP += this.target.experience * (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) / this.target.healthMAX);
-                        this.target.offended = true;
-                        if (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour) > 0))
+                        if (this.damage > player.armourTotal)
                         {
-                            if (this.team == "player")
+                            this.damage = (Math.floor(Math.random() * (randomDamage + 1)) + setDamage) * this.buffout;
+
+                            if (player.immune && this.unavoidable == false)
                             {
-                                this.target.disturbedTime = new Date().getTime();
+                                this.damage = 0;
                             }
-                            this.target.healthShownTime = new Date().getTime();
+
+                            player.health -= Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / (16.75 + (100 * this.attackRate)));
+                            player.decreaseInHealth += Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / (16.75 + (100 * this.attackRate))); // this is how much health is displayed as blood red for the player;
                         }
-                        if (this.target.health <= 0)
+                    }
+                    if (this.attackStyle == "chunked")
+                    {
+                        if (this.justAttacked == true)
                         {
-                            if (this.team == "player")
+                            this.finalAttackCostume = false;
+                            this.justAttacked = false;
+                        }
+
+                        if (this.finalAttackCostume)
+                        {
+                            this.damage = (Math.floor(Math.random() * (randomDamage + 1)) + setDamage) * this.buffout;
+                            if (player.immune && this.unavoidable == false)
                             {
-                                if (this.guarantee)
-                                {
-                                    this.target.killedByCompanion = true;
-                                }
-                                this.target.killByPlayerTeam = true;
-                                this.target.killNotByPlayer = true;
+                                this.damage = 0;
+                            }
+                            //console.log(this.damage + " is the damage done by " + this.ID + " through an armour total of " + player.armourTotal + ". The resulting damage was " + Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / 16.75) + ".");
+                            if (player.mageShield > 0)
+                            {
+                                player.mageShield -= this.damage;
+                                this.justAttacked = true;
                             }
                             else
                             {
-                                this.target.killNotByPlayer = true;
+                                player.health += player.mageShield;
+                                //player.decreaseInHealth -= player.mageShield;
+                                player.mageShield = 0;
+
+                                player.health -= Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour));
+                                player.decreaseInHealth += Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour));
+                                this.justAttacked = true;
+
+                                //Special Attacking Effects
+                                if (this.effect == "poisonV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.poisonV = true;
+                                }
+                                else if (this.effect == "poisonIV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.poisonIV = true;
+                                }
+                                else if (this.effect == "poisonIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.poisonIII = true;
+                                }
+                                else if (this.effect == "poisonII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.poisonII = true;
+                                }
+                                else if (this.effect == "poisonI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.poisonI = true;
+                                }
+                                else if (this.effect == "stunIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.stunnedIII = true;
+                                    player.stunnedTime = 11;
+                                }
+                                else if (this.effect == "stunII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.stunnedII = true;
+                                    player.stunnedTime = 8;
+                                }
+                                else if (this.effect == "stunI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.stunnedI = true;
+                                    player.stunnedTime = 5;
+                                }
+                                else if (this.effect == "etnaVenom" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.etnaVenTime = new Date().getTime();
+                                }
+                                else if (this.effect == "freezingStun")
+                                {
+                                    player.stunnedIII = true;
+                                    player.stunnedTime = 20;
+                                    player.warmth -= 20;
+
+                                    XXX.save();
+                                    XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                                    XXX.globalAlpha = 0.6;
+                                    XXX.drawImage(polypol, 1691, 240, 28, 24, - 1/2 * (28 * 1.2), - 1/2 * (24 * 1.2), (28 * 1.2), (24 * 1.2));
+                                    XXX.restore();
+                                }
+                                else if (this.effect == "narthwarpToxin" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.energy -= Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) / 1.5;
+                                }
+                                else if (this.effect == "fatigueI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.energilTime = 60;
+                                    player.fatigueI = true;
+                                }
+                                else if (this.effect == "fatigueII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.energilTime = 60;
+                                    player.fatigueII = true;
+                                }
+                                else if (this.effect == "fatigueIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.energilTime = 60;
+                                    player.fatigueIII = true;
+                                }
+                                else if (this.effect == "fatigueIV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.energilTime = 60;
+                                    player.fatigueIV = true;
+                                }
+                                else if (this.effect == "fatigueV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.energilTime = 60;
+                                    player.fatigueV = true;
+                                }
+                                else if (this.effect == "grewbleToxinI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.energilTime = 300;
+                                    player.fatigueI = true;
+                                }
+                                else if (this.effect == "grewbleToxinII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.energilTime = 300;
+                                    player.fatigueII = true;
+                                }
+                                else if (this.effect == "grewbleToxinIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.energilTime = 360;
+                                    player.fatigueIV = true;
+                                }
+                                else if (this.effect == "smashbackI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
+                                    X -= Math.cos(twrdsUnit) * 50;
+                                    Y -= Math.sin(twrdsUnit) * 50;
+                                    player.stunnedIII = true;
+                                    player.stunnedTime = 3;
+                                }
+                                else if (this.effect == "smashbackII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
+                                    X -= Math.cos(twrdsUnit) * 125;
+                                    Y -= Math.sin(twrdsUnit) * 125;
+                                    player.stunnedIII = true;
+                                    player.stunnedTime = 4;
+                                }
+                                else if (this.effect == "smashbackIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
+                                    X -= Math.cos(twrdsUnit) * 325;
+                                    Y -= Math.sin(twrdsUnit) * 325;
+                                    player.stunnedIII = true;
+                                    player.stunnedTime = 4;
+                                }
+                                else if (this.effect == "smashbackIV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
+                                    X -= Math.cos(twrdsUnit) * 550;
+                                    Y -= Math.sin(twrdsUnit) * 550;
+                                    player.stunnedIII = true;
+                                    player.stunnedTime = 5;
+                                }
+                                else if (this.effect == "fire" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.burningTime = new Date().getTime();
+                                }
+                                else if (this.effect == "blindingI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 2;
+                                }
+                                else if (this.effect == "blindingII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 3;
+                                }
+                                else if (this.effect == "blindingIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 5;
+                                }
+                                else if (this.effect == "blindingIV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 8;
+                                }
+                                else if (this.effect == "blindingV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 13;
+                                }
+                                else if (this.effect == "quarterAcid" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.quarterAcid = true;
+                                    player.acidTime = new Date().getTime() + 8000;
+                                }
+                                else if (this.effect == "halfAcid" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.halfAcid = true;
+                                    player.acidTime = new Date().getTime() + 8000;
+                                }
+                                else if (this.effect == "acidI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.acidI = true;
+                                    player.acidTime = new Date().getTime() + 8000;
+                                }
+                                else if (this.effect == "acidII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.acidII = true;
+                                    player.acidTime = new Date().getTime() + 8000;
+                                }
+                                else if (this.effect == "acidIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.acidIII = true;
+                                    player.acidTime = new Date().getTime() + 8000;
+                                }
+                                else if (this.effect == "acidIV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.acidIV = true;
+                                    player.acidTime = new Date().getTime() + 8000;
+                                }
+                                else if (this.effect == "acidV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.acidV = true;
+                                    player.acidTime = new Date().getTime() + 8000;
+                                }
+                                else if (this.effect == "superAcid" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.acidV = true;
+                                    player.acidTime = new Date().getTime() + 22000;
+                                }
                             }
                         }
-                        this.justAttacked = true;
+                    }
+                }
+            }
+            else if (this.target != "none")
+            {
+                //this method relies on the class variable being set: this.timeBetweenAttacks = new Date().getTime();
+                var dtu = this.DTU(this.target);
 
-                        //Special Attacking Effects
+                if (dtu <= this.engagementRadius + (this.target.sizeRadius - 10) && dtu <= this.baseSight)
+                {
+                    this.attacking = true;
+                }
+                else if (this.followThrough == false)
+                {
+                    this.attacking = false;
+                }
 
-                        if (this.effect == "stunV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                if (this.attacking == true)
+                {
+                    if (this.attackStyle == "rapid")
+                    {
+                        if (this.damage > this.target.armour)
                         {
-                            this.target.stunV = true;
-                            this.target.stunTimer = 12;
-                            this.target.stunTime = new Date().getTime();
+                            this.damage = (Math.floor(Math.random() * (randomDamage + 1)) + setDamage) * this.buffout;
+                            this.target.health -= Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) * (TTD / (16.75 + (100 * this.attackRate)));
                         }
-                        else if (this.effect == "etnaVenom" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                    }
+                    if (this.attackStyle == "chunked")
+                    {
+                        if (this.justAttacked == true)
                         {
-                            this.target.stunV = true;
-                            this.target.stunTimer = 20;
-                            this.target.stunTime = new Date().getTime();
-                            this.target.buffoutTime = new Date().getTime();
-                            this.target.buffoutTimer = 17;
-                            this.target.initBuffout = 0.65;
-                            this.target.subBuffoutToggle = true;
+                            this.finalAttackCostume = false;
+                            this.justAttacked = false;
                         }
-                        else if (this.effect == "stunIV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+
+                        if (this.finalAttackCostume)
                         {
-                            this.target.stunIV = true;
-                            this.target.stunTimer = 12;
-                            this.target.stunTime = new Date().getTime();
-                        }
-                        else if (this.effect == "stunIII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.stunIII = true;
-                            this.target.stunTimer = 11;
-                            this.target.stunTime = new Date().getTime();
-                        }
-                        else if (this.effect == "stunII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.stunII = true;
-                            this.target.stunTimer = 8;
-                            this.target.stunTime = new Date().getTime();
-                        }
-                        else if (this.effect == "stunI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.stunI = true;
-                            this.target.stunTimer = 5;
-                            this.target.stunTime = new Date().getTime();
-                        }
-                        else if (this.effect == "freezingStun" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.stunV = true;
-                            this.target.stunTimer = 12;
-                            this.target.stunTime = new Date().getTime();
-                            this.target.frozenTime = new Date().getTime();
-                        }
-                        else if (this.effect == "smashbackI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            var twrdsUnit = Math.atan2(this.Y - this.target.Y, this.X - this.target.X);
-                            this.target.X -= Math.cos(twrdsUnit) * 50;
-                            this.target.Y -= Math.sin(twrdsUnit) * 50;
-                            this.target.stunIII = true;
-                            this.target.stunTimer = 3;
-                            this.target.stunTime = new Date().getTime();
-                        }
-                        else if (this.effect == "smashbackII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            var twrdsUnit = Math.atan2(this.Y - this.target.Y, this.X - this.target.X);
-                            this.target.X -= Math.cos(twrdsUnit) * 125;
-                            this.target.Y -= Math.sin(twrdsUnit) * 125;
-                            this.target.stunIII = true;
-                            this.target.stunTimer = 4;
-                            this.target.stunTime = new Date().getTime();
-                        }
-                        else if (this.effect == "smashbackIII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            var twrdsUnit = Math.atan2(this.Y - this.target.Y, this.X - this.target.X);
-                            this.target.X -= Math.cos(twrdsUnit) * 325;
-                            this.target.Y -= Math.sin(twrdsUnit) * 325;
-                            this.target.stunIII = true;
-                            this.target.stunTimer = 4;
-                            this.target.stunTime = new Date().getTime();
-                        }
-                        else if (this.effect == "smashbackIV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            var twrdsUnit = Math.atan2(this.Y - this.target.Y, this.X - this.target.X);
-                            this.target.X -= Math.cos(twrdsUnit) * 550;
-                            this.target.Y -= Math.sin(twrdsUnit) * 550;
-                            this.target.stunIV = true;
-                            this.target.stunTimer = 4;
-                            this.target.stunTime = new Date().getTime();
-                        }
-                        else if (this.effect == "fire" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.burningTime = new Date().getTime();
-                        }
-                        else if (this.effect == "blindingI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.blinded = true;
-                            this.target.blindedStoreTime = new Date().getTime();
-                            this.target.blindedTime = 2;
-                        }
-                        else if (this.effect == "blindingII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.blinded = true;
-                            this.target.blindedStoreTime = new Date().getTime();
-                            this.target.blindedTime = 3;
-                        }
-                        else if (this.effect == "blindingIII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.blinded = true;
-                            this.target.blindedStoreTime = new Date().getTime();
-                            this.target.blindedTime = 5;
-                        }
-                        else if (this.effect == "blindingIV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.blinded = true;
-                            this.target.blindedStoreTime = new Date().getTime();
-                            this.target.blindedTime = 8;
-                        }
-                        else if (this.effect == "blindingV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.blinded = true;
-                            this.target.blindedStoreTime = new Date().getTime();
-                            this.target.blindedTime = 13;
-                        }
-                        else if (this.effect == "quarterAcid" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.quarterAcid = true;
-                            this.target.acidTime = new Date().getTime() + 8000;
-                        }
-                        else if (this.effect == "halfAcid" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.halfAcid = true;
-                            this.target.acidTime = new Date().getTime() + 8000;
-                        }
-                        else if (this.effect == "acidI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.acidI = true;
-                            this.target.acidTime = new Date().getTime() + 8000;
-                        }
-                        else if (this.effect == "acidII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.acidII = true;
-                            this.target.acidTime = new Date().getTime() + 8000;
-                        }
-                        else if (this.effect == "acidIII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.acidIII = true;
-                            this.target.acidTime = new Date().getTime() + 8000;
-                        }
-                        else if (this.effect == "acidIV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.acidIV = true;
-                            this.target.acidTime = new Date().getTime() + 8000;
-                        }
-                        else if (this.effect == "acidV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.acidV = true;
-                            this.target.acidTime = new Date().getTime() + 8000;
-                        }
-                        else if (this.effect == "superAcid" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.acidV = true;
-                            this.target.acidTime = new Date().getTime() + 22000;
-                        }
-                        else if (this.effect == "poisonI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.acidI = true;
-                            this.target.acidTime = new Date().getTime() + 40000;
-                        }
-                        else if (this.effect == "poisonII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.acidII = true;
-                            this.target.acidTime = new Date().getTime() + 40000;
-                        }
-                        else if (this.effect == "poisonIII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.acidIII = true;
-                            this.target.acidTime = new Date().getTime() + 40000;
-                        }
-                        else if (this.effect == "poisonIV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.acidIV = true;
-                            this.target.acidTime = new Date().getTime() + 40000;
-                        }
-                        else if (this.effect == "poisonV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
-                        {
-                            this.target.acidV = true;
-                            this.target.acidTime = new Date().getTime() + 40000;
+                            this.damage = (Math.floor(Math.random() * (randomDamage + 1)) + setDamage) * this.buffout;
+                            //console.log(this.damage + " is the damage done by " + this.ID + " through an armour total of " + player.armourTotal + ". The resulting damage was " + Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / 16.75) + ".");
+
+                            this.target.health -= Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour));
+                            this.target.lessEXP += this.target.experience * (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) / this.target.healthMAX);
+                            this.target.offended = true;
+                            if (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour) > 0))
+                            {
+                                if (this.team == "player")
+                                {
+                                    this.target.disturbedTime = new Date().getTime();
+                                }
+                                this.target.healthShownTime = new Date().getTime();
+                            }
+                            if (this.target.health <= 0)
+                            {
+                                if (this.team == "player")
+                                {
+                                    if (this.guarantee)
+                                    {
+                                        this.target.killedByCompanion = true;
+                                    }
+                                    this.target.killByPlayerTeam = true;
+                                    this.target.killNotByPlayer = true;
+                                }
+                                else
+                                {
+                                    this.target.killNotByPlayer = true;
+                                }
+                            }
+                            this.justAttacked = true;
+
+                            //Special Attacking Effects
+
+                            if (this.effect == "stunV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.stunV = true;
+                                this.target.stunTimer = 12;
+                                this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "etnaVenom" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.stunV = true;
+                                this.target.stunTimer = 20;
+                                this.target.stunTime = new Date().getTime();
+                                this.target.buffoutTime = new Date().getTime();
+                                this.target.buffoutTimer = 17;
+                                this.target.initBuffout = 0.65;
+                                this.target.subBuffoutToggle = true;
+                            }
+                            else if (this.effect == "stunIV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.stunIV = true;
+                                this.target.stunTimer = 12;
+                                this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "stunIII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.stunIII = true;
+                                this.target.stunTimer = 11;
+                                this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "stunII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.stunII = true;
+                                this.target.stunTimer = 8;
+                                this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "stunI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.stunI = true;
+                                this.target.stunTimer = 5;
+                                this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "freezingStun" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.stunV = true;
+                                this.target.stunTimer = 12;
+                                this.target.stunTime = new Date().getTime();
+                                this.target.frozenTime = new Date().getTime();
+                            }
+                            else if (this.effect == "smashbackI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                var twrdsUnit = Math.atan2(this.Y - this.target.Y, this.X - this.target.X);
+                                this.target.X -= Math.cos(twrdsUnit) * 50;
+                                this.target.Y -= Math.sin(twrdsUnit) * 50;
+                                this.target.stunIII = true;
+                                this.target.stunTimer = 3;
+                                this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "smashbackII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                var twrdsUnit = Math.atan2(this.Y - this.target.Y, this.X - this.target.X);
+                                this.target.X -= Math.cos(twrdsUnit) * 125;
+                                this.target.Y -= Math.sin(twrdsUnit) * 125;
+                                this.target.stunIII = true;
+                                this.target.stunTimer = 4;
+                                this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "smashbackIII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                var twrdsUnit = Math.atan2(this.Y - this.target.Y, this.X - this.target.X);
+                                this.target.X -= Math.cos(twrdsUnit) * 325;
+                                this.target.Y -= Math.sin(twrdsUnit) * 325;
+                                this.target.stunIII = true;
+                                this.target.stunTimer = 4;
+                                this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "smashbackIV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                var twrdsUnit = Math.atan2(this.Y - this.target.Y, this.X - this.target.X);
+                                this.target.X -= Math.cos(twrdsUnit) * 550;
+                                this.target.Y -= Math.sin(twrdsUnit) * 550;
+                                this.target.stunIV = true;
+                                this.target.stunTimer = 4;
+                                this.target.stunTime = new Date().getTime();
+                            }
+                            else if (this.effect == "fire" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.burningTime = new Date().getTime();
+                            }
+                            else if (this.effect == "blindingI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.blinded = true;
+                                this.target.blindedStoreTime = new Date().getTime();
+                                this.target.blindedTime = 2;
+                            }
+                            else if (this.effect == "blindingII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.blinded = true;
+                                this.target.blindedStoreTime = new Date().getTime();
+                                this.target.blindedTime = 3;
+                            }
+                            else if (this.effect == "blindingIII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.blinded = true;
+                                this.target.blindedStoreTime = new Date().getTime();
+                                this.target.blindedTime = 5;
+                            }
+                            else if (this.effect == "blindingIV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.blinded = true;
+                                this.target.blindedStoreTime = new Date().getTime();
+                                this.target.blindedTime = 8;
+                            }
+                            else if (this.effect == "blindingV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.blinded = true;
+                                this.target.blindedStoreTime = new Date().getTime();
+                                this.target.blindedTime = 13;
+                            }
+                            else if (this.effect == "quarterAcid" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.quarterAcid = true;
+                                this.target.acidTime = new Date().getTime() + 8000;
+                            }
+                            else if (this.effect == "halfAcid" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.halfAcid = true;
+                                this.target.acidTime = new Date().getTime() + 8000;
+                            }
+                            else if (this.effect == "acidI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.acidI = true;
+                                this.target.acidTime = new Date().getTime() + 8000;
+                            }
+                            else if (this.effect == "acidII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.acidII = true;
+                                this.target.acidTime = new Date().getTime() + 8000;
+                            }
+                            else if (this.effect == "acidIII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.acidIII = true;
+                                this.target.acidTime = new Date().getTime() + 8000;
+                            }
+                            else if (this.effect == "acidIV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.acidIV = true;
+                                this.target.acidTime = new Date().getTime() + 8000;
+                            }
+                            else if (this.effect == "acidV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.acidV = true;
+                                this.target.acidTime = new Date().getTime() + 8000;
+                            }
+                            else if (this.effect == "superAcid" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.acidV = true;
+                                this.target.acidTime = new Date().getTime() + 22000;
+                            }
+                            else if (this.effect == "poisonI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.acidI = true;
+                                this.target.acidTime = new Date().getTime() + 40000;
+                            }
+                            else if (this.effect == "poisonII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.acidII = true;
+                                this.target.acidTime = new Date().getTime() + 40000;
+                            }
+                            else if (this.effect == "poisonIII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.acidIII = true;
+                                this.target.acidTime = new Date().getTime() + 40000;
+                            }
+                            else if (this.effect == "poisonIV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.acidIV = true;
+                                this.target.acidTime = new Date().getTime() + 40000;
+                            }
+                            else if (this.effect == "poisonV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.acidV = true;
+                                this.target.acidTime = new Date().getTime() + 40000;
+                            }
                         }
                     }
                 }
@@ -3569,25 +3575,53 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
         if (rotation != false)
         {
-            XXX.save();
-            XXX.globalAlpha = transparency;
-            XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
-            XXX.rotate(rotation);
-            XXX.drawImage(list[this.flashFrame].image, list[this.flashFrame].imgX, list[this.flashFrame].imgY, list[this.flashFrame].portionW, list[this.flashFrame].portionH, list[this.flashFrame].adjX, list[this.flashFrame].adjY, list[this.flashFrame].width, list[this.flashFrame].height);
-            XXX.restore();
+            if (this.colorized[0] == true) //for things like petrification the normal draw is overridden with a colorized draw
+            {
+                var colorization = this.drawColorized(list[this.flashFrame].image, list[this.flashFrame].imgX, list[this.flashFrame].imgY, list[this.flashFrame].portionW, list[this.flashFrame].portionH, list[this.flashFrame].width, list[this.flashFrame].height, this.getGlobalAlpha(), this.colorized[1]);
+                XXX.save();
+                XXX.globalAlpha = transparency;
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(rotation);
+                XXX.drawImage(colorization, 0, 0, list[this.flashFrame].width, list[this.flashFrame].height, list[this.flashFrame].adjX, list[this.flashFrame].adjY, list[this.flashFrame].width, list[this.flashFrame].height);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.globalAlpha = transparency;
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(rotation);
+                XXX.drawImage(list[this.flashFrame].image, list[this.flashFrame].imgX, list[this.flashFrame].imgY, list[this.flashFrame].portionW, list[this.flashFrame].portionH, list[this.flashFrame].adjX, list[this.flashFrame].adjY, list[this.flashFrame].width, list[this.flashFrame].height);
+                XXX.restore();
+            }
         }
         else
         {
-            XXX.save();
-            XXX.globalAlpha = transparency;
-            XXX.drawImage(list[this.flashFrame].image, list[this.flashFrame].imgX, list[this.flashFrame].imgY, list[this.flashFrame].portionW, list[this.flashFrame].portionH, X - this.X + (1 / 2 * CCC.width) + list[this.flashFrame].adjX, Y - this.Y + (1 / 2 * CCC.height) + list[this.flashFrame].adjY, list[this.flashFrame].width, list[this.flashFrame].height);
-            XXX.restore();
+            if (this.colorized[0] == true) //for things like petrification the normal draw is overridden with a colorized draw
+            {
+                var colorization = this.drawColorized(list[this.flashFrame].image, list[this.flashFrame].imgX, list[this.flashFrame].imgY, list[this.flashFrame].portionW, list[this.flashFrame].portionH, list[this.flashFrame].width, list[this.flashFrame].height, this.getGlobalAlpha(), this.colorized[1]);
+                XXX.save();
+                XXX.globalAlpha = transparency;
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.drawImage(colorization, 0, 0, list[this.flashFrame].width, list[this.flashFrame].height, list[this.flashFrame].adjX, list[this.flashFrame].adjY, list[this.flashFrame].width, list[this.flashFrame].height);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.globalAlpha = transparency;
+                XXX.drawImage(list[this.flashFrame].image, list[this.flashFrame].imgX, list[this.flashFrame].imgY, list[this.flashFrame].portionW, list[this.flashFrame].portionH, X - this.X + (1 / 2 * CCC.width) + list[this.flashFrame].adjX, Y - this.Y + (1 / 2 * CCC.height) + list[this.flashFrame].adjY, list[this.flashFrame].width, list[this.flashFrame].height);
+                XXX.restore();
+            }
         }
 
-        if (new Date().getTime() - this.flashFrameTime >= framerate)
+        if (!this.petrified)
         {
-            this.flashFrameTime = new Date().getTime();
-            this.flashFrame += 1;
+            if (new Date().getTime() - this.flashFrameTime >= framerate)
+            {
+                this.flashFrameTime = new Date().getTime();
+                this.flashFrame += 1;
+            }
         }
     };
 
@@ -3606,6 +3640,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         var webResistance = false;
         var buffoutResistance = false;
         var drowningResistance = false;
+        var petrifiedResistance = false;
 
         //for loop to check for resistance
         for (var i = 0; i < resistancesList.length; i++)
@@ -3650,6 +3685,23 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 drowningResistance = true;
             }
+            else if (resistancesList[i] == "petrification")
+            {
+                petrifiedResistance = true;
+            }
+        }
+
+        //Petrification
+        if (petrifiedResistance == false && this.petrified)
+        {
+            this.colorized = [true, "lightGrey"];
+            this.playerSeen = false;
+            this.petrificationResistance = false;
+        }
+        else if (petrifiedResistance == true)
+        {
+            this.petrificationResistance = true;
+            this.petrified = false;
         }
 
         //Buffout Effect
@@ -3884,6 +3936,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.swim = this.swimMAX;
             this.swimming = false;
+        }
+
+        //keep this at the bottom
+        if (!this.petrified) //any other effect that causes it to colorize will need to be false too as a condition here in order to reset colorized.
+        {
+            this.colorized = [false, "green"];
         }
     };
     //This function increases the rangeOfSight of all of the surrounding nearby units.
@@ -5191,7 +5249,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //death checker -- checks to see if they should be dead.
     this.deathChecker = function()
     {
-        if (this.health <= 0)
+        if (this.health <= 0 && !this.petrified) //a petrified unit will wait to die until it is unpetrified
         {
             this.alive = false;
 
@@ -5316,16 +5374,19 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //if damaged a mini health bar will be displayed.
     this.showHealthWhenHurt = function()
     {
-        if (this.health < this.healthMAX && (new Date().getTime() - this.healthShownTime) < 5000 || (new Date().getTime() - this.showHealthTime) < 250)
+        if (!this.petrified)
         {
-            XXX.beginPath();
-            XXX.fillStyle ="red";
-            XXX.fillRect(X - this.X + (CCC.width / 2), Y - this.Y + (CCC.height / 2), 12, 3);
-            if (this.health >= 0)
+            if (this.health < this.healthMAX && (new Date().getTime() - this.healthShownTime) < 5000 || (new Date().getTime() - this.showHealthTime) < 250)
             {
                 XXX.beginPath();
-                XXX.fillStyle ="lightGreen";
-                XXX.fillRect(X - this.X + (CCC.width / 2), Y - this.Y + (CCC.height / 2), (12 * this.health / this.healthMAX), 3);
+                XXX.fillStyle ="red";
+                XXX.fillRect(X - this.X + (CCC.width / 2), Y - this.Y + (CCC.height / 2), 12, 3);
+                if (this.health >= 0)
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle ="lightGreen";
+                    XXX.fillRect(X - this.X + (CCC.width / 2), Y - this.Y + (CCC.height / 2), (12 * this.health / this.healthMAX), 3);
+                }
             }
         }
     };
@@ -5384,7 +5445,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     // turns to the rotation that the unit would like to be at.
     this.turnToDestination = function()
     {
-        if (this.rotatable)
+        if (this.rotatable && !this.petrified)
         {
             var quickestRotation = this.angleDelta(this.rotation, this.newRotation); //This is a number that represents the quickest rotation possible.
             if (this.suspendConflictingPointSystems && Math.abs(quickestRotation) < this.rotationSpeed)
@@ -5408,7 +5469,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
     this.getGlobalAlpha = function()
     {
-        if (this.swimming && this.flotation == false && this.type != "Person" && this.type != "Soldier")
+        if (this.petrified)
+        {
+            return 1;
+        }
+        else if (this.swimming && this.flotation == false && this.type != "Person" && this.type != "Soldier")
         {
             return 0.5;
         }
@@ -5424,6 +5489,20 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             return 1;
         }
+    };
+
+    this.drawColorized = function(img, sx, sy, w, h, szX, szY, a, colour)
+    {
+        var canvas = document.createElement("canvas");
+        canvas.width = szX;
+        canvas.height = szY;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, sx, sy, w, h, 0, 0, szX, szY);
+        ctx.globalCompositeOperation = "source-atop";
+        ctx.globalAlpha = a;
+        ctx.fillStyle = colour;
+        ctx.fillRect(0,0,szX,szY);
+        return canvas;
     };
 
     //BUILD-LAB [this section is where the individualized ai unit skeletons will start to form up a bit.
@@ -5458,7 +5537,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         XXX.rotate(this.rotation + this.extraRot + extraRot);
         XXX.beginPath();
         XXX.globalAlpha = this.getGlobalAlpha();
-        XXX.drawImage(img, cutX, cutY, width, length, positionX, positionY , skewW, skewL);
+        if (this.colorized[0] == true)
+        {
+            var colorization = this.drawColorized(img, cutX, cutY, width, length, skewW, skewL, this.getGlobalAlpha(), this.colorized[1]);
+            XXX.drawImage(colorization, 0, 0, skewW, skewL, positionX, positionY, skewW, skewL);
+        }
+        else
+        {
+            XXX.drawImage(img, cutX, cutY, width, length, positionX, positionY , skewW, skewL);
+        }
         XXX.restore();
     };
 
@@ -5472,7 +5559,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         XXX.rotate(this.rotation);
         XXX.beginPath();
-        if (this.ultra.race == "Freynor")
+
+        if (this.petrified)
+        {
+            XXX.fillStyle = "lightGrey";
+        }
+        else if (this.ultra.race == "Freynor")
         {
             XXX.fillStyle = "navy";
         }
@@ -5516,7 +5608,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
         XXX.arc(0, 0, 10, 0, 2 * Math.PI);
         XXX.fill();
-        XXX.strokeStyle = "black";
+        if (this.petrified)
+        {
+            XXX.strokeStyle = "lightGrey";
+        }
+        else
+        {
+            XXX.strokeStyle = "black";
+        }
         XXX.lineWidth = 0.5;
         XXX.stroke();
 
@@ -10444,6 +10543,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "Tunsk")
         {
+            this.resistances = ["petrification"];
             this.damageFrame = "manual";
             this.team = "herd";
             this.baseTeam = this.team;
@@ -10690,49 +10790,52 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         var self = this;
         this.costumeEngine = function(maxcostume, framerate, bothwaysBool)
         {
-            if (this.resetFrameOrder == true)
+            if (!this.petrified)
             {
-                this.frameOrder = "positive"; // this sets the animation frame cycling direction to positive when the attack is initialized.
-                this.resetFrameOrder = false; // this keeps the reset from messing up reverse swings that may come after the primary positive direction attack.
-            }
-            if (this.frameOrder == "positive")
-            {
-                self.costume += framerate * TTD / (16.75 - 0.1 * self.speed); //This is the part that actually changes the frame in the positive direction.
-                if (self.costume >= maxcostume)
+                if (this.resetFrameOrder == true)
                 {
-                    self.costume = maxcostume - 0.001;
-
-                    if (this.attacking && this.damageFrame == "automatic")
+                    this.frameOrder = "positive"; // this sets the animation frame cycling direction to positive when the attack is initialized.
+                    this.resetFrameOrder = false; // this keeps the reset from messing up reverse swings that may come after the primary positive direction attack.
+                }
+                if (this.frameOrder == "positive")
+                {
+                    self.costume += framerate * TTD / (16.75 - 0.1 * self.speed); //This is the part that actually changes the frame in the positive direction.
+                    if (self.costume >= maxcostume)
                     {
-                        this.finalAttackCostume = true;
+                        self.costume = maxcostume - 0.001;
+
+                        if (this.attacking && this.damageFrame == "automatic")
+                        {
+                            this.finalAttackCostume = true;
+                        }
+
+                        if (bothwaysBool == false) // if the animation is one way it ends here...
+                        {
+                            self.costume = 0;
+                            if (this.attacking)
+                            {
+                                this.timeBetweenAttacks = new Date().getTime();
+                            }
+                        }
+                        else if (bothwaysBool == true) //but if it is two directional it swings back to frame zero.
+                        {
+                            this.frameOrder = "negative";
+                        }
                     }
+                }
 
-                    if (bothwaysBool == false) // if the animation is one way it ends here...
+                if (this.frameOrder == "negative") //This stuff is for the swing back.
+                {
+                    self.costume -= framerate * TTD / (16.75 - 0.1 * self.speed); //This is the part that actually changes the frame in the positive direction.
+                    if (self.costume <= 0)
                     {
-                        self.costume = 0;
                         if (this.attacking)
                         {
                             this.timeBetweenAttacks = new Date().getTime();
                         }
+                        self.costume = 0 + 0.001;
+                        this.resetFrameOrder = true; //This variable resets the order of the frames so that it always starts cycling through the animations in the positive direction.
                     }
-                    else if (bothwaysBool == true) //but if it is two directional it swings back to frame zero.
-                    {
-                        this.frameOrder = "negative";
-                    }
-                }
-            }
-
-            if (this.frameOrder == "negative") //This stuff is for the swing back.
-            {
-                self.costume -= framerate * TTD / (16.75 - 0.1 * self.speed); //This is the part that actually changes the frame in the positive direction.
-                if (self.costume <= 0)
-                {
-                    if (this.attacking)
-                    {
-                        this.timeBetweenAttacks = new Date().getTime();
-                    }
-                    self.costume = 0 + 0.001;
-                    this.resetFrameOrder = true; //This variable resets the order of the frames so that it always starts cycling through the animations in the positive direction.
                 }
             }
         };
@@ -21092,7 +21195,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             //ANIMATIONS
 
-            if (this.alive == true && player.inebriation >= 100 + (player.getToughness() * 3) || this.alive == true && player.subtlety)
+            if (this.alive == true && player.inebriation >= 100 + (player.getToughness() * 3) || this.alive == true && player.subtlety || this.petrified)
             {
                 // the frames/stages/costumes of the animation.
                 var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
@@ -27090,22 +27193,25 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     //to put it simply, this function draws two lines that represent the main character's legs.
                     this.drawLegs = function()
                     {
-                        XXX.save();
-                        XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
-                        XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        XXX.beginPath();
-                        XXX.strokeStyle ="black";
-                        XXX.lineWidth = 2;
-                        XXX.moveTo(-4, 0);
-                        XXX.lineTo(-4, 0 + this.lLegY);
-                        XXX.stroke();
-                        XXX.beginPath();
-                        XXX.strokeStyle ="black";
-                        XXX.lineWidth = 2;
-                        XXX.moveTo(4, 0);
-                        XXX.lineTo(4, 0 + this.rLegY);
-                        XXX.stroke();
-                        XXX.restore();
+                        if (!this.petrified)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                            XXX.rotate(this.rotation - 1/2 * Math.PI);
+                            XXX.beginPath();
+                            XXX.strokeStyle ="black";
+                            XXX.lineWidth = 2;
+                            XXX.moveTo(-4, 0);
+                            XXX.lineTo(-4, 0 + this.lLegY);
+                            XXX.stroke();
+                            XXX.beginPath();
+                            XXX.strokeStyle ="black";
+                            XXX.lineWidth = 2;
+                            XXX.moveTo(4, 0);
+                            XXX.lineTo(4, 0 + this.rLegY);
+                            XXX.stroke();
+                            XXX.restore();
+                        }
                     };
                     this.drawLegs();
                 }
@@ -28082,22 +28188,25 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     //to put it simply, this function draws two lines that represent the main character's legs.
                     this.drawLegs = function ()
                     {
-                        XXX.save();
-                        XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
-                        XXX.rotate(this.rotation - 1 / 2 * Math.PI);
-                        XXX.beginPath();
-                        XXX.strokeStyle = "black";
-                        XXX.lineWidth = 2;
-                        XXX.moveTo(-4, 0);
-                        XXX.lineTo(-4, 0 + this.lLegY);
-                        XXX.stroke();
-                        XXX.beginPath();
-                        XXX.strokeStyle = "black";
-                        XXX.lineWidth = 2;
-                        XXX.moveTo(4, 0);
-                        XXX.lineTo(4, 0 + this.rLegY);
-                        XXX.stroke();
-                        XXX.restore();
+                        if (!this.petrified)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                            XXX.rotate(this.rotation - 1 / 2 * Math.PI);
+                            XXX.beginPath();
+                            XXX.strokeStyle = "black";
+                            XXX.lineWidth = 2;
+                            XXX.moveTo(-4, 0);
+                            XXX.lineTo(-4, 0 + this.lLegY);
+                            XXX.stroke();
+                            XXX.beginPath();
+                            XXX.strokeStyle = "black";
+                            XXX.lineWidth = 2;
+                            XXX.moveTo(4, 0);
+                            XXX.lineTo(4, 0 + this.rLegY);
+                            XXX.stroke();
+                            XXX.restore();
+                        }
                     };
                     this.drawLegs();
                 }

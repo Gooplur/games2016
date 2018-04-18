@@ -9807,6 +9807,79 @@ function Item(type, x, y)
             this.buyValue = 225 - Math.floor(player.getCharisma() / 1); // at max, buy for 175.
             this.sellValue = 95 + Math.floor(player.getCharisma() / 2); // at max, sell for 120.
         }
+        else if (this.type == "tunskBloodPotion")
+        {
+            //For All Items
+            this.identity = "Elixir of Resistance to Petrification";
+            this.weight = 0.5;
+            this.size = 5;
+            this.description = "A murky brown liquid that seems thinner than water and smells of butter.";
+            this.intForDes = 11;
+            this.intDescription = "It temporarily courses through your veins supplementing your blood so as to imitate the blood of a tunsk.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "tunskBlood";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 39;
+            this.ingredients = [["Potion Glass", 1], ["Raw Tunsk Flesh", 3], ["Jar of Butter-Mellow Oil", 1] ["Salt", 1], ["Iron", 1], ["Culpris Leaf", 5], ["Kofke Leaves", 3], ["Steugiurne Flower", 2]];
+            this.biproducts = [["glassJar", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1000; // at max, buy for 1000.
+            this.sellValue = 850 + Math.floor(player.getCharisma() / 0.35); // at max, sell for 992.
+        }
+        else if (this.type == "waterwalkingPotion")
+        {
+            //For All Items
+            this.identity = "Waterwalking Potion";
+            this.weight = 2;
+            this.size = 5;
+            this.description = "An extremely salty blue liquid that rests lethargically in its vial.";
+            this.intForDes = 0;
+            this.intDescription = "This potion magically allows its embiber to walk upon the surface of a body of water.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = -6; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -1; //heals health.
+            this.generation = -6; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "waterwalking";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 29;
+            this.ingredients = [["Vial of Water", 1], ["Kelp", 2], ["Salt", 2], ["Neprilne Berries", 4], ["Honey", 1], ["Tylun Flower", 1], ["Turquoise", 6], ["Fermented Viper Venom Gland", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 340 - Math.floor(player.getCharisma() / 1); // at max, buy for 290.
+            this.sellValue = 240 + Math.floor(player.getCharisma() / 1); // at max, sell for 290.
+        }
         else if (this.type == "mightPotionI")
         {
             //For All Items
@@ -22276,6 +22349,46 @@ function Item(type, x, y)
             this.buyValue = 25 - Math.floor(player.getCharisma() / 6); // at max, buy for 17.
             this.sellValue = 11 + Math.floor(player.getCharisma() / 8); // at max, sell for 17.
         }
+        else if (this.type == "toothedBludgeon")
+        {
+            //For All Items
+            this.identity = "Toothed bludgeon";
+            this.weight = 6;
+            this.size = 24;
+            this.description = "A long wooden club covered in sharpened wooden knobs.";
+            this.intForDes = 1;
+            this.intDescription = "The weapon is of Kellish design, specifically from the Karib tribe.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            if (player.getEndurance() >= 20)
+            {
+                this.energyCost = 6;
+            }
+            else
+            {
+                this.energyCost = 8;
+            }
+            this.distance = 34 + (this.range * 7);
+            this.range = 5;
+            this.rate = Math.max(135, 220 - 80/50 * player.getDexterity());
+            this.damage = (6 - (this.damageHandicap)) * (this.leveledDamageMultiple / 25) + ((10/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 9;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 8;
+            this.ingredients = [["Yeol Wood", 3], ["Zarbu Tail", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 25 - Math.floor(player.getCharisma() / 5); // at max, buy for 15.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 10); // at max, sell for 15.
+        }
         else if (this.type == "pouchOfGlowDust" || this.type == "pouchOfVrezinDust" || this.type == "pouchOfIrilDust" || this.type == "pouchOfPimberDust" || this.type == "pouchOfShomeDust")
         {
             //For All Items
@@ -22914,6 +23027,21 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "tunskBloodPotion")
+        {
+            XXX.beginPath();
+            XXX.drawImage(oldverse, 1701, 201, 9, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15), 9, 15);
+        }
+        else if (this.type == "waterwalkingPotion")
+        {
+            XXX.beginPath();
+            XXX.drawImage(oldverse, 1763, 184, 9, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15), 9, 15);
+        }
+        else if (this.type == "toothedBludgeon")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 231, 928, 74, 70, X - this.X + (1/2 * CCC.width) - (1/2 * 74), Y - this.Y + (1/2 * CCC.height) - (1/2 * 70), 74, 70);
         }
         else if (this.type == "lelBerries")
         {
@@ -25965,6 +26093,21 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "tunskBloodPotion")
+        {
+            LXX.beginPath();
+            LXX.drawImage(oldverse, 1701, 201, 9, 15, this.invX - (1/2 * 9), this.invY - (1/2 * 15), 9, 15);
+        }
+        else if (this.type == "waterwalkingPotion")
+        {
+            LXX.beginPath();
+            LXX.drawImage(oldverse, 1763, 184, 9, 15, this.invX - (1/2 * 9), this.invY - (1/2 * 15), 9, 15);
+        }
+        else if (this.type == "toothedBludgeon")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polux, 231, 928, 74, 70, this.invX - (1/2 * 74 * 0.75), this.invY - (1/2 * 70 * 0.75), 74 * 0.75, 70 * 0.75);
+        }
         else if (this.type == "lelBerries")
         {
             LXX.beginPath();
@@ -28984,6 +29127,21 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "tunskBloodPotion")
+        {
+            XXX.beginPath();
+            XXX.drawImage(oldverse, 1701, 201, 9, 15, this.invX - (1/2 * 9), this.invY - (1/2 * 15), 9, 15);
+        }
+        else if (this.type == "waterwalkingPotion")
+        {
+            XXX.beginPath();
+            XXX.drawImage(oldverse, 1763, 184, 9, 15, this.invX - (1/2 * 9), this.invY - (1/2 * 15), 9, 15);
+        }
+        else if (this.type == "toothedBludgeon")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 231, 928, 74, 70, this.invX - (1/2 * 74 * 0.75), this.invY - (1/2 * 70 * 0.75), 74 * 0.75, 70 * 0.75);
         }
         else if (this.type == "lelBerries")
         {

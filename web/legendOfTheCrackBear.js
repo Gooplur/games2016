@@ -22,10 +22,9 @@
 //todo if you attack a pretrified victim with a pickaxe you will get a broken and bloody version...
 //todo gargoyls are resistant to basilisk gaze and some part of them is used in making anti-petrification syrum
 //todo add shed basilisk skin
+
 //Alzkwaya Update / Savannah Update
 //todo add the alzkwaya tribe's village (mofu themed tribe)
-//todo add hot climate farm plants
-//todo add other hot climate wild plants
 //todo add the karib tribe's village (zarbu themed tribe)
 
 //Venning Update
@@ -96,6 +95,7 @@
 //todo add another echlin tribe village called Eschuttes
 
 //Other
+//todo add Gargoyl cream - once consumed/used (it is assumed you rub it into your hands) the first creature you punch will be un-petrified and the disturbed flag for punching them will be canceled that once.
 //todo add the Colic symptom of sickness and add the effect 'colicAway' that eating 'aktaltlFrond' gives you.
 //todo add a witch trap house where the witch becomes a mutated magical beast and tries to kill you
 //todo add ghosts - add that the way to kill ghosts is to digg up the bones, salt them, then set them aflame.
@@ -3147,6 +3147,7 @@ function theLegend()
     allWeapons.push(new Item("m16Carbine", false)); //67 //this weapon is not canon
     allWeapons.push(new Item("fishingpole", false)); //68
     allWeapons.push(new Item("boat", false)); //69
+    allWeapons.push(new Item("toothedBludgeon", false)); //70
 
 
 //This list holds one of each type of worn item so that the player can access the worn item stats.
@@ -3320,6 +3321,7 @@ function theLegend()
     smithing.push(new Item("clawtrap", false));
     smithing.push(new Item("spindletrap", false));
     smithing.push(new Item("boat", false));
+    smithing.push(new Item("toothedBludgeon", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];
@@ -3491,6 +3493,8 @@ function theLegend()
     alchemy.push(new Item("mindPotionI", false));
     alchemy.push(new Item("mightPotionI", false));
     alchemy.push(new Item("mightPotionII", false));
+    alchemy.push(new Item("waterwalkingPotion", false));
+    alchemy.push(new Item("tunskBloodPotion", false));
     alchemy.push(new Item("fermentedNarthwarpMouth", false));
     alchemy.push(new Item("fermentedViperVenomGland", false));
     alchemy.push(new Item("driedCyrinthilimMushroom", false));

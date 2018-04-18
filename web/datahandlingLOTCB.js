@@ -21,7 +21,7 @@ function autosave()
         saveType = null;
     }
     //Quicksave
-    if (tildKey == false)
+    if (tildKey == false && player.petrified != true && player.drowned != true) //quicksaves the game when the tild key is pressed -- unless the player is petrified or drowning
     {
         doQuicksave = true;
     }

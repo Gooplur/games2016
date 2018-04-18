@@ -309,7 +309,7 @@ function cheats()
         {
             if (player.name == "Peter" && player.race == "#fc9462")
             {
-                var attrib = prompt("select attribute to set:", "catEye")
+                var attrib = prompt("select attribute to set:", "catEye \ medusa \ tunskBlood \ heavenlyStep");
                 if (attrib == "catEye")
                 {
                     if (player.nightVision)
@@ -321,6 +321,45 @@ function cheats()
                     {
                         player.nightVision = true;
                         alert("catEye = true;");
+                    }
+                }
+                else if (attrib == "medusa")
+                {
+                    if (player.medusa == true)
+                    {
+                        player.medusa = false;
+                        alert("medusa = false;");
+                    }
+                    else
+                    {
+                        player.medusa = true;
+                        alert("medusa = true;");
+                    }
+                }
+                else if (attrib == "tunskBlood")
+                {
+                    if (player.petrificationResistanceTime > 0)
+                    {
+                        player.petrificationResistanceTime = 0;
+                        alert("tunskBlood = false;");
+                    }
+                    else
+                    {
+                        player.petrificationResistanceTime = 100000000000000000;
+                        alert("tunskBlood = true;");
+                    }
+                }
+                else if (attrib == "heavenlyStep")
+                {
+                    if (player.waterwalkingTime > 0)
+                    {
+                        player.waterwalkingTime = 0;
+                        alert("heavenlyStep = false;");
+                    }
+                    else
+                    {
+                        player.waterwalkingTime = 100000000000000000;
+                        alert("heavenlyStep = true;");
                     }
                 }
             }
@@ -409,6 +448,24 @@ function cheats()
             if (player.name == "Gooplur" && player.race == "#336600")
             {
                 player.survivalism = 500;
+            }
+        }
+        else if (cheatcode == "GOO")
+        {
+            if (player.name == "Gooplur" && player.gender == "Goop" && player.race == "#336600")
+            {
+                player.gender = "Gooplon";
+                player.waterwalkingTime = 99999999999999999999999999;
+                player.petrificationResistanceTime = 99999999999999999999999999;
+                player.nightVision = true;
+            }
+        }
+        else if (cheatcode == "MEDUSA")
+        {
+            if (player.name == "Gooplur" && player.gender == "Gooplon" && player.race == "#336600")
+            {
+                player.gender = "Gooplurg";
+                player.medusa = true;
             }
         }
         else if (cheatcode == "cmplst")

@@ -2542,7 +2542,6 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(4084, 38917, "Glutid", false, "Gluho", {patrolStops: 1, patrolLoop: true, route:[[4084, 38917]]}));
                 ArtificialIntelligenceAccess.push(new Unit(5167, 37697, "Glutid", false, "Gluho", {patrolStops: 3, patrolLoop: true, route:[[4186, 38091], [4854, 38220], [5167, 37697]]}));
 
-
                 //beach creatures
                 ArtificialIntelligenceAccess.push(new Unit(3918, 46085, "Cangrejo", "baby", "pincher"));
                 ArtificialIntelligenceAccess.push(new Unit(3940, 45556, "Cangrejo", "baby", "pinchy"));
@@ -2588,6 +2587,7 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(-1686, 46378, "Seal", false, "ouuoourf"));
                 ArtificialIntelligenceAccess.push(new Unit(-2456, 46135, "Seal", "baby", "oaouf"));
                 ArtificialIntelligenceAccess.push(new Unit(-2080, 43806, "Seal", false, "oaourf"));
+
 
                 //mites
                 ArtificialIntelligenceAccess.push(new Unit(3402, 45274, "BeachMite", false, "bit"));
@@ -12169,6 +12169,9 @@ function buildMaster()
                 {
                     scenicList.push(new Scenery("glinPlant", -19558 , -2494, 0, true));
                 }
+
+                //TEST - I have this creature hidden to off the map to the east so as to have it available for fun... temporarily.
+                ArtificialIntelligenceAccess.push(new Unit(-30000, 1400, "Basilisk", true, "Mahoga"));
 
                 change = "e2";
             }

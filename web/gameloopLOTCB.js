@@ -131,6 +131,17 @@ function gameloopOfDestiny(time)
     wornAbilities();
     player.obscurity = true; //ability to be invisible is reset at the end of every loop.
 
+    //set certain AI variables. (Final AI Reset)
+    for (var k = 0; k < ArtificialIntelligenceAccess.length; k++)
+    {
+        if (ArtificialIntelligenceAccess[k].dmx == map)
+        {
+            //reset landscape variables
+            ArtificialIntelligenceAccess[k].water = false;
+            ArtificialIntelligenceAccess[k].land = true;
+        }
+    }
+
     //SHOPS/CRAFTING
     shopItemIDSetter();
 

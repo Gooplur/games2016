@@ -5067,6 +5067,331 @@ function Item(type, x, y)
             this.buyValue = 10 - Math.floor(player.getCharisma() / 15); // at max, buy for 7.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
         }
+        else if (this.type == "zarbuPelt")
+        {
+            //For All Items
+            this.identity = "Zarbu Pelt";
+            this.weight = 4.5;
+            this.size = 33;
+            this.description = "The short and sleek haired black and white striped pelt of a zarbu.";
+            this.intForDes = 5;
+            this.intDescription = "This can be made into clothing usually worn by the Kellish Karib Tribe.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 43 - Math.floor(player.getCharisma() / 6); // at max, buy for 35.
+            this.sellValue = 33 + Math.floor(player.getCharisma() / 25); // at max, sell for 35.
+        }
+        else if (this.type == "zarbuTuft")
+        {
+            //For All Items
+            this.identity = "Zarbu Tuft";
+            this.weight = 0.33;
+            this.size = 8;
+            this.description = "The long bristly white and black hairs from a zarbu's tail.";
+            this.intForDes = 5;
+            this.intDescription = "This can be made into clothing usually worn by the Kellish Karib Tribe.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11 - Math.floor(player.getCharisma() / 10); // at max, buy for 6.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 20); // at max, sell for 6.
+        }
+        else if (this.type == "rawZarbuFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Zarbu Flesh";
+            this.weight = 4;
+            this.size = 19;
+            this.description = "A large hunk of meat from a zarbu.";
+            this.intForDes = 2;
+            this.intDescription = "Zarbu flesh would take a lot of effort to eat raw, but would most likely be safe.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -4; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10 - Math.floor(player.getCharisma() / 25); // at max, buy for 8.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 25); // at max, sell for 8.
+        }
+        else if (this.type == "zarbuMeat")
+        {
+            //For All Items
+            this.identity = "Zarbu Meat";
+            this.weight = 4;
+            this.size = 19;
+            this.description = "Cooked meat from a zarbu.";
+            this.intForDes = 1;
+            this.intDescription = "It is tough and has a meaty flavour.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 25; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 6; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 15;
+            this.ingredients = [["Raw Zarbu Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 25 - Math.floor(player.getCharisma() / 15); // at max, buy for 22.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 6); // at max, sell for 22.
+        }
+        else if (this.type == "rawDrileFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Drile Flesh";
+            this.weight = 5.5;
+            this.size = 21;
+            this.description = "A big slice of drile flesh.";
+            this.intForDes = 3;
+            this.intDescription = "Eating drile flesh raw will make you sick to your stomach.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "drileMeat")
+        {
+            //For All Items
+            this.identity = "Drile Meat";
+            this.weight = 5;
+            this.size = 21;
+            this.description = "A big roasted slice of drile meat.";
+            this.intForDes = 3;
+            this.intDescription = "Drile flesh is somewhat rubbery but also has a sort of tender aspect to it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 19; //satisfies hunger.
+            this.thirst = 3; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Raw Drile Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 23 - Math.floor(player.getCharisma() / 12); // at max, buy for 19.
+            this.sellValue = 17 + Math.floor(player.getCharisma() / 25); // at max, sell for 19.
+        }
+        else if (this.type == "drileKidney")
+        {
+            //For All Items
+            this.identity = "Drile Kidney";
+            this.weight = 3.5;
+            this.size = 21;
+            this.description = "A kidney that is composed of boulbous slimy orangish pink sections connected together by a fatty membrane.";
+            this.intForDes = 3;
+            this.intDescription = "It smells bad enough as it is, don't even think about eating it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -1; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = -2; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 25); // at max, buy for 14.
+            this.sellValue = 8 + Math.floor(player.getCharisma() / 8); // at max, sell for 14.
+        }
+        else if (this.type == "acidifiedDrileKidney")
+        {
+            //For All Items
+            this.identity = "Acidified Drile Kidney";
+            this.weight = 2.25;
+            this.size = 20;
+            this.description = "The kidney of a drile melted with torper venom.";
+            this.intForDes = 3;
+            this.intDescription = "The acidified kidney is gooey elastic and sticky; It is used as both a powerful catalyst and as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 23;
+            this.ingredients = [["Drile Kidney", 2], ["Torper Venom Sac", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 50 - Math.floor(player.getCharisma() / 8); // at max, buy for 44.
+            this.sellValue = 29 + Math.floor(player.getCharisma() / 3); // at max, sell for 44.
+        }
+        else if (this.type == "drileSkin")
+        {
+            //For All Items
+            this.identity = "Drile Skin";
+            this.weight = 11;
+            this.size = 20;
+            this.description = "The rugged and bumpy scaled hide of a drile.";
+            this.intForDes = 13;
+            this.intDescription = "Drile skin can be used to make a light leather armour.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 39 - Math.floor(player.getCharisma() / 25); // at max, buy for 37.
+            this.sellValue = 29 + Math.floor(player.getCharisma() / 6); // at max, sell for 37.
+        }
+        else if (this.type == "basiliskScale")
+        {
+            //For All Items
+            this.identity = "Basilisk Scale";
+            this.weight = 1;
+            this.size = 7;
+            this.description = "The brownish orange scale of a basilisk.";
+            this.intForDes = 0;
+            if (player.getIntelligence() < 17)
+            {
+                this.intDescription = "Everyone one knows that looking at a basilisk will turn you to stone; try not to look too long at this scale, and make sure to squint...";
+            }
+            else if (player.getIntelligence() < 26)
+            {
+                this.intDescription = "Dead basilisks can not petrify you by any means so this should be safe to look at.";
+            }
+            else
+            {
+                this.intDescription = "Looking at a basilisk is not what petrifies you, so there is nothing to worry about in keeping this scale around...";
+            }
+
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 550 - Math.floor(player.getCharisma() / 0.1666); // at max, buy for 250.
+            this.sellValue = 150 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 250.
+        }
+        else if (this.type == "basiliskEye")
+        {
+            //For All Items
+            this.identity = "Basilisk Eye";
+            this.weight = 5;
+            this.size = 8;
+            this.description = "A glistening yellowy eye with a long black pupil.";
+            this.intForDes = 0;
+            if (player.getIntelligence() < 17)
+            {
+                this.intDescription = "Careful, try not to touch it with your hands or look at it, you could die! Basilisks are poisonous!!!";
+            }
+            else if (player.getIntelligence() < 26)
+            {
+                this.intDescription = "Contrary to popular belief, basilisk eyes are not poisonous or even the least bit dangerous to touch or look at.";
+            }
+            else
+            {
+                this.intDescription = "It is the gaze of a living basilisk that gives the eyes the power to petrify, but the residual magic in the eyes can be harnessed for alchemy.";
+            }
+
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 800 - Math.floor(player.getCharisma() / 0.1666); // at max, buy for 500.
+            this.sellValue = 400 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 500.
+        }
+        else if (this.type == "basiliskFang")
+        {
+            //For All Items
+            this.identity = "Basilisk Fang";
+            this.weight = 3;
+            this.size = 8;
+            this.description = "A long curved fang ripe with an orangish redish brown venom.";
+            this.intForDes = 20;
+            this.intDescription = "Basilisk fangs are so durable and sharp that they can pierce stone with little effort; basilisk venom is the most dangerous in the world.";
+
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 900 - Math.floor(player.getCharisma() / 0.1666); // at max, buy for 600.
+            this.sellValue = 500 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 600.
+        }
         else if (this.type == "smlBlackBearPelt")
         {
             //For All Items
@@ -13194,7 +13519,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Walrus Hide";
-            this.weight = 6;
+            this.weight = 14;
             this.size = 35;
             this.description = "The hide of a walrus.";
             this.intForDes = 15;
@@ -14503,7 +14828,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Elder Walrus Hide";
-            this.weight = 17;
+            this.weight = 40;
             this.size = 45;
             this.description = "The hide of an elder walrus.";
             this.intForDes = 20;
@@ -23028,6 +23353,66 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "basiliskScale")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 204, 941, 14, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 14), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13), 14, 13);
+        }
+        else if (this.type == "basiliskEye")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 205, 959, 9, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9), 9, 9);
+        }
+        else if (this.type == "basiliskFang")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 186, 944, 13, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 13), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27), 13, 27);
+        }
+        else if (this.type == "zarbuTuft")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 822, 10, 21, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 21 * 1, 28 * 1);
+        }
+        else if (this.type == "zarbuPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 903, 2, 89, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 89 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1), 89 * 1, 39 * 1);
+        }
+        else if (this.type == "zarbuMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 873, 10, 25, 25, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 25 * 1.2), 25 * 1.2, 25 * 1.2);
+        }
+        else if (this.type == "rawZarbuFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 847, 11, 25, 25, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 25 * 1.2), 25 * 1.2, 25 * 1.2);
+        }
+        else if (this.type == "acidifiedDrileKidney")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 717, 100, 27, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1), 27 * 1, 19 * 1);
+        }
+        else if (this.type == "drileKidney")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 718, 77, 27, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1), 27 * 1, 19 * 1);
+        }
+        else if (this.type == "drileMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 791, 15, 30, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 30 * 1, 31 * 1);
+        }
+        else if (this.type == "rawDrileFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 755, 14, 30, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 30 * 1, 31 * 1);
+        }
+        else if (this.type == "drileSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 614, 9, 137, 38, X - this.X + (1/2 * CCC.width) - (1/2 * 137 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 38 * 1), 137 * 1, 38 * 1);
+        }
         else if (this.type == "tunskBloodPotion")
         {
             XXX.beginPath();
@@ -26093,6 +26478,66 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "basiliskScale")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polux, 204, 941, 14, 13, this.invX - (1/2 * 14 * 1.4), this.invY - (1/2 * 13 * 1.4), 14 * 1.4, 13 * 1.4);
+        }
+        else if (this.type == "basiliskEye")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polux, 205, 959, 9, 9, this.invX - (1/2 * 9 * 2), this.invY - (1/2 * 9 * 2), 9 * 2, 9 * 2);
+        }
+        else if (this.type == "basiliskFang")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polux, 186, 944, 13, 27, this.invX - (1/2 * 13 * 1.4), this.invY - (1/2 * 27 * 1.4), 13 * 1.4, 27 * 1.4);
+        }
+        else if (this.type == "zarbuTuft")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polux, 822, 10, 21, 28, this.invX - (1/2 * 21 * 1.2), this.invY - (1/2 * 28 * 1.2), 21 * 1.2, 28 * 1.2);
+        }
+        else if (this.type == "zarbuPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polux, 903, 2, 89, 39, this.invX - (1/2 * 89 * 0.75), this.invY - (1/2 * 39 * 0.75), 89 * 0.75, 39 * 0.75);
+        }
+        else if (this.type == "zarbuMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polux, 873, 10, 25, 25, this.invX - (1/2 * 25 * 1), this.invY - (1/2 * 25 * 1), 25 * 1, 25 * 1);
+        }
+        else if (this.type == "rawZarbuFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polux, 847, 11, 25, 25, this.invX - (1/2 * 25 * 1), this.invY - (1/2 * 25 * 1), 25 * 1, 25 * 1);
+        }
+        else if (this.type == "acidifiedDrileKidney")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polux, 717, 100, 27, 19, this.invX - (1/2 * 27 * 1.1), this.invY - (1/2 * 19 * 1.1), 27 * 1.1, 19 * 1.1);
+        }
+        else if (this.type == "drileKidney")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polux, 718, 77, 27, 19, this.invX - (1/2 * 27 * 1.1), this.invY - (1/2 * 19 * 1.1), 27 * 1.1, 19 * 1.1);
+        }
+        else if (this.type == "drileMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polux, 791, 15, 30, 31, this.invX - (1/2 * 30 * 0.9), this.invY - (1/2 * 31 * 0.9), 30 * 0.9, 31 * 0.9);
+        }
+        else if (this.type == "rawDrileFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polux, 755, 14, 30, 31, this.invX - (1/2 * 30 * 0.9), this.invY - (1/2 * 31 * 0.9), 30 * 0.9, 31 * 0.9);
+        }
+        else if (this.type == "drileSkin")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polux, 614, 9, 137, 38, this.invX - (1/2 * 137 * 0.4), this.invY - (1/2 * 38 * 0.4), 137 * 0.4, 38 * 0.4);
+        }
         else if (this.type == "tunskBloodPotion")
         {
             LXX.beginPath();
@@ -29127,6 +29572,66 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "basiliskScale")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 204, 941, 14, 13, this.invX - (1/2 * 14 * 1.4), this.invY - (1/2 * 13 * 1.4), 14 * 1.4, 13 * 1.4);
+        }
+        else if (this.type == "basiliskEye")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 205, 959, 9, 9, this.invX - (1/2 * 9 * 2), this.invY - (1/2 * 9 * 2), 9 * 2, 9 * 2);
+        }
+        else if (this.type == "basiliskFang")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 186, 944, 13, 27, this.invX - (1/2 * 13 * 1.4), this.invY - (1/2 * 27 * 1.4), 13 * 1.4, 27 * 1.4);
+        }
+        else if (this.type == "zarbuTuft")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 822, 10, 21, 28, this.invX - (1/2 * 21 * 1.2), this.invY - (1/2 * 28 * 1.2), 21 * 1.2, 28 * 1.2);
+        }
+        else if (this.type == "zarbuPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 903, 2, 89, 39, this.invX - (1/2 * 89 * 0.75), this.invY - (1/2 * 39 * 0.75), 89 * 0.75, 39 * 0.75);
+        }
+        else if (this.type == "zarbuMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 873, 10, 25, 25, this.invX - (1/2 * 25 * 1), this.invY - (1/2 * 25 * 1), 25 * 1, 25 * 1);
+        }
+        else if (this.type == "rawZarbuFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 847, 11, 25, 25, this.invX - (1/2 * 25 * 1), this.invY - (1/2 * 25 * 1), 25 * 1, 25 * 1);
+        }
+        else if (this.type == "acidifiedDrileKidney")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 717, 100, 27, 19, this.invX - (1/2 * 27 * 1.1), this.invY - (1/2 * 19 * 1.1), 27 * 1.1, 19 * 1.1);
+        }
+        else if (this.type == "drileKidney")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 718, 77, 27, 19, this.invX - (1/2 * 27 * 1.1), this.invY - (1/2 * 19 * 1.1), 27 * 1.1, 19 * 1.1);
+        }
+        else if (this.type == "drileMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 791, 15, 30, 31, this.invX - (1/2 * 30 * 0.9), this.invY - (1/2 * 31 * 0.9), 30 * 0.9, 31 * 0.9);
+        }
+        else if (this.type == "rawDrileFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 755, 14, 30, 31, this.invX - (1/2 * 30 * 0.9), this.invY - (1/2 * 31 * 0.9), 30 * 0.9, 31 * 0.9);
+        }
+        else if (this.type == "drileSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 614, 9, 137, 38, this.invX - (1/2 * 137 * 0.4), this.invY - (1/2 * 38 * 0.4), 137 * 0.4, 38 * 0.4);
         }
         else if (this.type == "tunskBloodPotion")
         {

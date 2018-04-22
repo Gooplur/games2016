@@ -6,30 +6,25 @@
 
 //TODO LIST
 //top priority
-//todo add a six-legged basilisk that lives in dungeons (petrifies whatever comes near enough to it unless it is resistant to petrification) *add a potion that provides such a resistance for the player //basilisks will be incredibly poisonous, with a powerful bite, but they are relatively slow creatures *obtainable on death: basilisk tooth, basilisk head, basilisk eyes, basilisk scale (Basilisks have a rectangular range of sight)
-//todo add Zarbu -- Zebra-like creature
-//todo add Drile = a crocodile-esque amphibeous beast - fast on land, faster in water, slow to attack things unless they come very close (unless in water), but will persue very far
 //todo add mugmuls (a goblinoid chimpanzee-like creature that flees the player and eats yeol nuts when it gets hungry) *actually takes the shell off of the nut and eats it in two or three bites
 //todo Rhino-ish monster - it will charge fast, turn slow, and deal knockback/stun damage
 //todo add southern fish / southern fishing spot -- saskriit, Espit, Riulpo
 //todo add temperate fish / temperate fishing spot -- red-bellied Falder, crawdid, salmon
+//todo add the new fish to the seal unit's diet
 //todo add "the grail of eternity" (a elaborate cup that heals you when you drink from it, you can refill it at a well)
+//todo add drile leather armour set
+//todo add zarbu clothings from IMG 'polux'
 
-//things to add to the image i'm adding:
+//things to add to the next image i'm adding:
 //todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
 //todo add a secret unit (a monster that is in an inanimate form during the day but lurks murderously throughout the night) GARGOYLE //the unit will know when to become a scenery object //the scenery object will know when to become a unit
 //todo add petrified basilisk victims -- basilisk gaze turns the outer inch of flesh to stone, the rest is fleshy and that is the part that the basilisks suck out with their powerful and venomous fangs (their venom dissolves animal/human innards)
 //todo if you attack a pretrified victim with a pickaxe you will get a broken and bloody version...
-//todo gargoyls are resistant to basilisk gaze and some part of them is used in making anti-petrification syrum
 //todo add shed basilisk skin
 
 //Alzkwaya Update / Savannah Update
 //todo add the alzkwaya tribe's village (mofu themed tribe)
 //todo add the karib tribe's village (zarbu themed tribe)
-
-//Venning Update
-//todo add a waterwalking elixer / waterwalking spell too?
-//todo add anti petrification potion / spell
 
 //Mounting System
 //todo add mounts and the mounting system (make different mounts require a different survivalism skill amount): add it for Naaprids, Zebras, Skols... (destroy current mounting system: make it unit based instead of player based. The player literally teleports on top of the creature in question and follows its movement. (the player can direct it with 'T' because it is on the player's team.) mounting is canceled by water, or if the player equipps an uncompatible weapon or transfigures themself into an incompatible form.
@@ -77,6 +72,8 @@
 //todo add weaken spell
 //todo add arrow mods such as toxic/poison, electric, wind, armour piercing...
 //todo add toxic slugs from 'zapa' IMG
+//todo add waterwalking spell
+//todo add anti petrification spell
 
 //Venning Patch
 //todo add quests for the several unique characters:
@@ -3408,6 +3405,8 @@ function theLegend()
     foods.push(new Item("latuku", false));
     foods.push(new Item("wrappedMofuTamal", false));
     foods.push(new Item("wrappedTamal", false));
+    foods.push(new Item("zarbuMeat", false));
+    foods.push(new Item("drileMeat", false));
 
 
 
@@ -3512,6 +3511,7 @@ function theLegend()
     alchemy.push(new Item("jarOfButterMellowOil", false));
     alchemy.push(new Item("glowDust", false)); //the other dusts are made with a forge
     alchemy.push(new Item("irilDust", false));
+    alchemy.push(new Item("acidifiedDrileKidney", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

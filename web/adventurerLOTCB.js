@@ -288,6 +288,7 @@ function Adventurer()
     this.poisonIII = false;
     this.poisonIV = false;
     this.poisonV = false;
+    this.poisonVI = false;
     this.poisoned = false;
     this.gojiiPoisoned = false;
     this.swollenI = false;
@@ -2894,7 +2895,7 @@ function Adventurer()
         this.poison = function ()
         {
             //This enables the poisoned mini notice if any type of any category of poison is in effect.
-            if (this.poisonI == true || this.poisonII == true || this.poisonIII == true || this.poisonIV == true || this.poisonV == true)
+            if (this.poisonI == true || this.poisonII == true || this.poisonIII == true || this.poisonIV == true || this.poisonV == true || this.poisonVI == true)
             {
                 this.poisoned = true;
             }
@@ -2904,7 +2905,14 @@ function Adventurer()
             }
 
             //This section covers all five ranks of the basic type of poison.
-            if (this.poisonV == true && new Date().getTime() - this.timeSinceLastPoisoned > 2000)
+            if (this.poisonVI == true && new Date().getTime() - this.timeSinceLastPoisoned > 200)
+            {
+                //reset the timer for the poison.
+                this.timeSinceLastPoisoned = new Date().getTime();
+                //Take away health
+                this.health -= Math.max(0, (11 - (this.antiVenom * 2)));
+            }
+            else if (this.poisonV == true && new Date().getTime() - this.timeSinceLastPoisoned > 2000)
             {
                 //reset the timer for the poison.
                 this.timeSinceLastPoisoned = new Date().getTime();
@@ -3120,6 +3128,7 @@ function Adventurer()
                             if (ArtificialIntelligenceAccess[i].DTP() <= ArtificialIntelligenceAccess[i].rangeOfSight / 2 && !ArtificialIntelligenceAccess[i].blinded)
                             {
                                 ArtificialIntelligenceAccess[i].petrified = true;
+                                ArtificialIntelligenceAccess[i].stackDominance += 666;
                             }
                         }
                     }
@@ -4537,7 +4546,7 @@ function Adventurer()
     //walking, running, sneaking, etc.
     this.movement = function ()
     {
-        if (this.land)
+        if (this.land || this.water && this.waterwalking)
         {
             // self = this because apparently you can not use this in a setTimeout which I needed to use to pace the walking animation speed.
             var self = this;
@@ -16183,7 +16192,10 @@ function Adventurer()
                 var d = Math.sqrt((x - x1) * (x - x1) + (y - y1) * (y - y1)); //This is the distance between this unit and the focus unit.
                 if (d < this.mySize + focusUnit.sizeRadius && focusUnit.alive == true && focusUnit.flying != true && focusUnit.underground != true) // if the total distance between this unit and the focus unit is less than the size of the two radiuses then it returns true to the movement function which calls it.
                 {
-                    return true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                    if (focusUnit.boatphobic != true || this.weaponEquipped != "boat" || focusUnit.water != true || this.water != true || this.land == true) //the player will not be stopped by boatphobic units in the water while boating.
+                    {
+                        return true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                    }
                 }
             //}
         }

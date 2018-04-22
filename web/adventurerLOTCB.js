@@ -15,6 +15,7 @@ function Adventurer()
     this.experienceRequiredToLevel = 400 + (200 * (this.level - 1));
     this.skillPoints = 4; //you gain skill points every level that you can put into your skills. (4 points per level)
     this.totalSkillPoints = (4 * this.level) + 4;
+    this.levelBonusSkillPoints = 0;
     //Magical Leveling
     this.magicLevel = 0;
     this.magicalExperience = 0;
@@ -22,6 +23,7 @@ function Adventurer()
     this.magicalSkillPoints = 0; //you gain magical skill points every magic level that you can put into magic related skills. ( 4 points per level)
     this.extraSkillPoints = 0;
     this.extraMagicPoints = 0;
+    this.levelBonusMagicPoints = 0;
     //Faction Relations
     this.kelFaction = 0; //green (kellish) Chieftain Har
     this.thengarFaction = 0; //brown (thengan) King Wolthgar
@@ -691,22 +693,22 @@ function Adventurer()
             {
                 if (this.class == "Mage")
                 {
-                    this.totalMagicPoints = (2 * this.magicLevel) + 9 - this.spellzLearned;
+                    this.totalMagicPoints = (2 * this.magicLevel) + 9 - this.spellzLearned + this.levelBonusMagicPoints;
                 }
                 else
                 {
-                    this.totalMagicPoints = (2 * this.magicLevel) + 6 - this.spellzLearned;
+                    this.totalMagicPoints = (2 * this.magicLevel) + 6 - this.spellzLearned + this.levelBonusMagicPoints;
                 }
             }
             else
             {
                 if (this.class == "Mage")
                 {
-                    this.totalMagicPoints = (2 * this.magicLevel) + 7 - this.spellzLearned;
+                    this.totalMagicPoints = (2 * this.magicLevel) + 7 - this.spellzLearned + this.levelBonusMagicPoints;
                 }
                 else
                 {
-                    this.totalMagicPoints = (2 * this.magicLevel) + 4 - this.spellzLearned;
+                    this.totalMagicPoints = (2 * this.magicLevel) + 4 - this.spellzLearned + this.levelBonusMagicPoints;
                 }
             }
         }
@@ -714,20 +716,20 @@ function Adventurer()
         {
             if (this.title == "Royalty")
             {
-                this.totalSkillPoints = (4 * this.level) + 6;
+                this.totalSkillPoints = (4 * this.level) + 6 + this.levelBonusSkillPoints;
             }
             else
             {
-                this.totalSkillPoints = (4 * this.level) + 4;
+                this.totalSkillPoints = (4 * this.level) + 4 + this.levelBonusSkillPoints;
             }
 
             if (this.class == "Mage")
             {
-                this.totalMagicPoints = 2 * this.magicLevel + 3 - this.spellzLearned;
+                this.totalMagicPoints = 2 * this.magicLevel + 3 - this.spellzLearned + this.levelBonusMagicPoints;
             }
             else
             {
-                this.totalMagicPoints = 2 * this.magicLevel - this.spellzLearned;
+                this.totalMagicPoints = 2 * this.magicLevel - this.spellzLearned + this.levelBonusMagicPoints;
             }
         }
 
@@ -775,12 +777,16 @@ function Adventurer()
             this.experienceRequiredToLevel = 19000 + (1200 * (this.level - 1));
         }
 
-
         if (this.experience >= this.experienceRequiredToLevel)
         {
             this.experience -= this.experienceRequiredToLevel;
             this.level += 1;
             this.skillPoints += 4;
+            if (this.level % 10 == 0)
+            {
+                this.skillPoints += 2;
+                this.levelBonusSkillPoints += 2;
+            }
 
             popDuration = new Date().getTime();
             popType = "levelup";
@@ -792,6 +798,11 @@ function Adventurer()
             this.magicalExperience -= this.magicalExperienceRequiredToLevel;
             this.magicLevel += 1;
             this.magicalSkillPoints += 2;
+            if (this.level % 5 == 0) //every five levels an extra skillpoint is awarded
+            {
+                this.magicalSkillPoints += 1;
+                this.levelBonusMagicPoints += 1;
+            }
 
             popDuration = new Date().getTime();
             popType = "magicLevelup";

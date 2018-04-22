@@ -492,6 +492,14 @@ function cheats()
             player.gassinessTime += 10;
             magicList.push(new Magic({ID:"fart"}, true));
         }
+        else if (cheatcode == "missedOpportunities")
+        {
+            if (player.levelBonusSkillPoints < 2 && player.level >= 10 && player.level < 20)
+            {
+                player.skillPoints += 2;
+                player.levelBonusSkillPoints = 2;
+            }
+        }
         else if (cheatcode.toLowerCase() == "salty")
         {
             player.thirst = 3;

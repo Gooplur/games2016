@@ -21404,6 +21404,70 @@ function Item(type, x, y)
             this.buyValue = 33 - Math.floor(player.getCharisma() / 8); // at max, buy for 27.
             this.sellValue = 17 + Math.floor(player.getCharisma() / 5); // at max, sell for 27.
         }
+        else if (this.type == "zarbuDress")
+        {
+            //For All Items
+            this.identity = "Zarbu Dress";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A dress sewn from varn zarbu pelt.";
+            this.intForDes = 9;
+            this.intDescription = "A black and white striped dress customarily worn by the women of the karib tribe.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.3;
+            this.thirstRetention = 0.2;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 6;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = -3;
+            this.dexterityBonus = -9;
+            this.survivalismBonus = 1;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 1;
+            this.thirstBonus = 0;
+            this.warmthBonus = 1;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "hefty";
+
+            this.yield = 1;
+            this.intForCraft = 23;
+            this.ingredients = [["Zarbu Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 52 - Math.floor(player.getCharisma() / 15); // at max, buy for 49.
+            this.sellValue = 43 + Math.floor(player.getCharisma() / 8); // at max, sell for 49.
+        }
         else if (this.type == "neevFurCloak")
         {
             //For All Items

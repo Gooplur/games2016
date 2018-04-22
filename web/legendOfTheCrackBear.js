@@ -1,7 +1,9 @@
 /**
  * Created by skyeguy on 12/17/15.
  */
-//PIXLR IS THE DEVIL = true;
+//PIXLR's cloud system is broken = true;
+//Losing work feels awful = true;
+
 //look up TEST to find tests in the code
 
 //TODO LIST

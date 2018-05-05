@@ -76,6 +76,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.alpha = isalpha;
     this.alphaSize = 1;
     this.beastEntry = "none";
+    this.hurtByPlayer = false; //set to true if the player physically injures this unit
     this.killNotByPlayer = false;
     this.killByPlayerTeam = false; //if killed by a player controlled unit.
     this.killedByCompanion = false; //if killed by a player companion.
@@ -5550,7 +5551,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             return 1;
         }
-        else if (this.swimming && this.flotation == false && this.type != "Person" && this.type != "Soldier")
+        else if (this.swimming && this.flotation == false && this.type != "Person" && this.type != "Soldier" && this.type != "Mugmul")
         {
             return 0.5;
         }
@@ -9238,6 +9239,50 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.xAdjustment = 0; //was - 26
             }
         }
+        else if (this.type == "Mugmul")
+        {
+            this.resistances = ["water"];
+            this.damageFrame = "automatic";
+            this.team = "herd";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tamable = false;
+
+            //typespecific variables
+            this.treesSearched = [-1];
+            this.cosaEncontrada = null;
+            this.enLista = false;
+            this.treeSelected = "none";
+            this.eatNut = false;
+            this.hunger = 40;
+            this.hungerMAX = 50;
+
+
+            //STATS (non-variable)
+            this.magicalResistance = 0;
+            this.heatResistance = -2;
+            this.attackStyle = "chunked";
+            this.attackRate = 0;  //this is for rapid style combat only.
+            this.healthMAX = Math.floor(Math.random() * 4) + 12;
+            this.health = this.healthMAX;
+            this.armour = 0;
+            this.speed = 3 + (Math.floor(Math.random() * 3) / 10);
+            this.rangeOfSight = 1100; //This is just to set the variable initially. The rest is variable.
+            this.rotationSpeed = 0.25;
+            this.engagementRadius = 33;
+            this.sizeRadius = 19;
+            this.negateArmour = 0;
+            this.attackWait = 0.6;
+
+            //this multiplies the draw image skew numbers by 1 so that it stays the same
+            this.alphaSize = 1;
+            // this is the adjustment the alpha type of Etyr needs to be centered.
+            this.yAdjustment = 0;
+            this.xAdjustment = 0;
+        }
         else if (this.type == "Ut") //utttttt
         {
             this.damageFrame = "automatic";
@@ -9676,7 +9721,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.damageFrame = "automatic";
             this.state = "resting";
-            this.resistances = ["shock"];
+            this.resistances = ["shock", "petrification", "acid", "basilisk", "burning"];
             this.team = "neutral";
             this.baseTeam = this.team;
             this.tamable = false;
@@ -21333,6 +21378,567 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(furr, 281, 617, 76, 70, -1/2 * 76 * 1.6 * this.alphaSize - this.xAdjustment, -1/2 * 70 * 1.6 * this.alphaSize - this.yAdjustment, 76 * 1.6 * this.alphaSize, 70 * 1.6 * this.alphaSize);
+            }
+        }
+        //MUGMUL
+        if (this.type == "Mugmul") //yeol nut eating ape-like creature
+        {
+            //Set Drops and experience
+            if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+            {
+                this.experience = 20 * ((player.getIntelligence() / 50) + 1);
+            }
+            else
+            {
+                this.experience = (20 * ((player.getIntelligence() / 50) + 1)) / 10;
+            }
+
+            if (this.eatNut == "pod")
+            {
+                if (player.getIntelligence() >= 18)
+                {
+                    this.drops = [[new Item("yeolPod", this.X, this.Y), 1], [new Item("rawMugmulFlesh", this.X, this.Y), 1], [new Item("mugmulFur", this.X, this.Y), 1], [new Item("mugmulBrain", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.drops = [[new Item("yeolPod", this.X, this.Y), 1], [new Item("rawMugmulFlesh", this.X, this.Y), 1], [new Item("mugmulFur", this.X, this.Y), 1]];
+                }
+            }
+            else if (this.eatNut == "nut")
+            {
+                if (player.getIntelligence() >= 18)
+                {
+                    this.drops = [[new Item("yeolNut", this.X, this.Y), 1], [new Item("rawMugmulFlesh", this.X, this.Y), 1], [new Item("mugmulFur", this.X, this.Y), 1], [new Item("mugmulBrain", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.drops = [[new Item("yeolNut", this.X, this.Y), 1], [new Item("rawMugmulFlesh", this.X, this.Y), 1], [new Item("mugmulFur", this.X, this.Y), 1]];
+                }
+            }
+            else
+            {
+                if (player.getIntelligence() >= 18)
+                {
+                    this.drops = [[new Item("rawMugmulFlesh", this.X, this.Y), 1], [new Item("mugmulFur", this.X, this.Y), 1], [new Item("mugmulBrain", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.drops = [[new Item("rawMugmulFlesh", this.X, this.Y), 1], [new Item("mugmulFur", this.X, this.Y), 1]];
+                }
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            this.rangeOfSightCalculator(1100, true);
+
+            //AI
+            if (this.alive == true)
+            {
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                if (this.eatNut == "pod" || this.eatNut == "nut")
+                {
+                    this.attacking = true;
+                }
+                else
+                {
+                    this.attacking = false;
+                }
+
+                //BEHAVIORS
+
+                this.foodGrab = false; //this variable determines whether the creature will regard the enemy as an obstacle to collecting food it finds in precarious spaces.
+                if (this.action == "flee") //run away from predator
+                {
+                    if (this.target == player)
+                    {
+                        this.pointAwayFromPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointAway(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                }
+                else if (this.action == "gather") //look for nuts to eat by looking under trees
+                {
+                    if ((Math.floor(this.aiTimer * 10) / 10) % 2 == 0)
+                    {
+                        //console.log(":::::::::::::::::::::");
+                        //console.log((Math.floor(this.aiTimer * 10) / 10));
+                        //console.log((Math.floor(this.aiTimer * 10) / 10) % 2 == 0);
+                        var distanciaACosa = 0;
+                        var distanciaACosaMC = this.rangeOfSight;
+                        this.cosaEncontrada = -1;
+                        this.enLista = null;
+
+                        for (var i = 0; i < worldItems.length; i++)
+                        {
+                            if (worldItems[i][0].type == "yeolPod" || worldItems[i][0].type == "yeolNut")
+                            {
+                                distanciaACosa = Math.sqrt((worldItems[i][0].X-this.X)*(worldItems[i][0].X-this.X)+(worldItems[i][0].Y-this.Y)*(worldItems[i][0].Y-this.Y));
+                                if (distanciaACosa <= distanciaACosaMC)
+                                {
+                                    distanciaACosaMC = distanciaACosa;
+                                    this.cosaEncontrada = i;
+                                    this.enLista = "wI";
+                                }
+                            }
+                        }
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i].type == "item")
+                            {
+                                if (scenicList[i].information[0] == "yeolPod" || scenicList[i].information[0] == "yeolNut")
+                                {
+                                    distanciaACosa = Math.sqrt((scenicList[i].X - this.X) * (scenicList[i].X - this.X) + (scenicList[i].Y - this.Y) * (scenicList[i].Y - this.Y));
+                                    if (distanciaACosa <= distanciaACosaMC)
+                                    {
+                                        distanciaACosaMC = distanciaACosa;
+                                        this.cosaEncontrada = i;
+                                        this.enLista = "sL";
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (this.cosaEncontrada >= 0) //if desired item found within the worldItems or ScenicLists
+                    {
+                        if (this.enLista == "wI" && this.cosaEncontrada < worldItems.length)
+                        {
+                            var framm = {X: worldItems[this.cosaEncontrada][0].X, Y: worldItems[this.cosaEncontrada][0].Y};
+
+                            if (this.target == player)
+                            {
+                                if (this.hunger <= 20 && (this.DTP() - this.distanceFinder(framm, this)) > 25 && !this.hurtByPlayer)
+                                {
+                                    this.foodGrab = true;
+                                }
+                                if (this.DTP() - this.distanceFinder(framm, this) > 0.15 * this.rangeOfSight && player.getSurvivalism() < 10 || this.DTP() - this.distanceFinder(framm, this) > 0.1 * this.rangeOfSight && player.getSurvivalism() >= 10 || this.foodGrab)
+                                {
+                                    this.pointTowards({X: worldItems[this.cosaEncontrada][0].X, Y: worldItems[this.cosaEncontrada][0].Y});
+                                    this.moveInRelationToThing({X: worldItems[this.cosaEncontrada][0].X, Y: worldItems[this.cosaEncontrada][0].Y});
+                                }
+                            }
+                            else if (this.target != "none")
+                            {
+                                if (this.target.target == player)
+                                {
+                                    if (this.target.DTP() + 25 < this.distanceFinder(framm, this.target))
+                                    {
+                                        this.foodGrab = true;
+                                    }
+                                }
+                                else if (this.target.target != "none" )
+                                {
+                                    if (this.distanceFinder(this.target.target, this.target) + 25 < this.distanceFinder(framm, this.target))
+                                    {
+                                        this.foodGrab = true;
+                                    }
+                                }
+
+                                if (this.distanceFinder(framm, this.target) > 0.2 * this.rangeOfSight || this.foodGrab)
+                                {
+                                    this.pointTowards({X: worldItems[this.cosaEncontrada][0].X, Y: worldItems[this.cosaEncontrada][0].Y});
+                                    this.moveInRelationToThing({X: worldItems[this.cosaEncontrada][0].X, Y: worldItems[this.cosaEncontrada][0].Y});
+                                }
+                            }
+                            else
+                            {
+                                this.pointTowards({X: worldItems[this.cosaEncontrada][0].X, Y: worldItems[this.cosaEncontrada][0].Y});
+                                this.moveInRelationToThing({X: worldItems[this.cosaEncontrada][0].X, Y: worldItems[this.cosaEncontrada][0].Y});
+                            }
+
+                            if (this.distanceFinder(framm, this) <= this.engagementRadius && !this.attacking)
+                            {
+                                if (worldItems[this.cosaEncontrada][0].type == "yeolPod")
+                                {
+                                    this.eatNut = "pod";
+                                }
+                                else
+                                {
+                                    this.eatNut = "nut";
+                                }
+                                if (worldItems[this.cosaEncontrada][1] > 1)
+                                {
+                                    worldItems[this.cosaEncontrada][1] -= 1;
+                                }
+                                else
+                                {
+                                    worldItems.splice(this.cosaEncontrada, 1);
+                                }
+
+                                this.cosaEncontrada = -1;
+                            }
+                        }
+                        else if (this.enLista == "sL" && this.cosaEncontrada < scenicList.length)
+                        {
+                            var framm = {X: scenicList[this.cosaEncontrada].X, Y: scenicList[this.cosaEncontrada].Y};
+
+                            if (this.target == player)
+                            {
+                                if (this.hunger <= 20 && (this.DTP() - this.distanceFinder(framm, this)) > 25 && !this.hurtByPlayer)
+                                {
+                                    this.foodGrab = true;
+                                }
+                                if (this.DTP() - this.distanceFinder(framm, this) > 0.15 * this.rangeOfSight && player.getSurvivalism() < 10 || this.DTP() - this.distanceFinder(framm, this) > 0.1 * this.rangeOfSight && player.getSurvivalism() >= 10 || this.foodGrab)
+                                {
+                                    this.pointTowards({X: scenicList[this.cosaEncontrada].X, Y: scenicList[this.cosaEncontrada].Y});
+                                    this.moveInRelationToThing({X: scenicList[this.cosaEncontrada].X, Y: scenicList[this.cosaEncontrada].Y});
+                                }
+                            }
+                            else if (this.target != "none")
+                            {
+                                if (this.target.target == player)
+                                {
+                                    if (this.target.DTP() + 25 < this.distanceFinder(framm, this.target))
+                                    {
+                                        this.foodGrab = true;
+                                    }
+                                }
+                                else if (this.target.target != "none" )
+                                {
+                                    if (this.distanceFinder(this.target.target, this.target) + 25 < this.distanceFinder(framm, this.target))
+                                    {
+                                        this.foodGrab = true;
+                                    }
+                                }
+
+                                if (this.distanceFinder(framm, this.target) > 0.2 * this.rangeOfSight || this.foodGrab)
+                                {
+                                    this.pointTowards({X: scenicList[this.cosaEncontrada].X, Y: scenicList[this.cosaEncontrada].Y});
+                                    this.moveInRelationToThing({X: scenicList[this.cosaEncontrada].X, Y: scenicList[this.cosaEncontrada].Y});
+                                }
+                            }
+                            else
+                            {
+                                this.pointTowards({X: scenicList[this.cosaEncontrada].X, Y: scenicList[this.cosaEncontrada].Y});
+                                this.moveInRelationToThing({X: scenicList[this.cosaEncontrada].X, Y: scenicList[this.cosaEncontrada].Y});
+                            }
+
+                            if (this.distanceFinder(framm, this) <= this.engagementRadius && !this.attacking)
+                            {
+                                if (scenicList[this.cosaEncontrada].information[0] == "yeolPod")
+                                {
+                                    this.eatNut = "pod";
+                                }
+                                else
+                                {
+                                    this.eatNut = "nut";
+                                }
+                                if (scenicList[this.cosaEncontrada].information[1] > 1)
+                                {
+                                    scenicList[this.cosaEncontrada].information[1] -= 1;
+                                }
+                                else
+                                {
+                                    scenicList.splice(this.cosaEncontrada, 1);
+                                }
+                                this.cosaEncontrada = -1;
+                            }
+                        }
+                    }
+                    else //if item not found go towards nearest yeol tree
+                    {
+                        var distanciaACosa = 0;
+                        var distanciaACosaMC = this.rangeOfSight * 1.5;
+
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i].type == "yeolTree")
+                            {
+                                for (var j = 0; j < this.treesSearched.length; j++)
+                                {
+                                    if (i != this.treesSearched[j])
+                                    {
+                                        distanciaACosa = Math.sqrt((scenicList[i].X - this.X) * (scenicList[i].X - this.X) + (scenicList[i].Y - this.Y) * (scenicList[i].Y - this.Y));
+                                        if (distanciaACosa <= distanciaACosaMC && distanciaACosa > 1/11 * this.rangeOfSight)
+                                        {
+                                            distanciaACosaMC = distanciaACosa;
+                                            this.treeSelected = i;
+                                        }
+                                        else if (distanciaACosa <= 1/11 * this.rangeOfSight && this.treeSelected != "none")
+                                        {
+                                            this.treesSearched.push(this.treeSelected);
+                                            this.treeSelected = "none";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (this.treeSelected != "none")
+                        {
+                            this.pointTowards({X: scenicList[this.treeSelected].X, Y: scenicList[this.treeSelected].Y});
+                            this.moveInRelationToThing({X: scenicList[this.treeSelected].X, Y: scenicList[this.treeSelected].Y});
+                        }
+                    }
+                }
+
+
+                //BRAIN
+                //reset treesSearched every 111 seconds
+                if ((Math.floor(this.aiTimer * 10) / 10) % 111 == 0)
+                {
+                    this.treesSearched = [];
+                }
+
+                //console.log(this.hunger + " / " + this.hungerMAX);
+                if (this.hunger <= this.hungerMAX - 10)
+                {
+                    this.action = "gather";
+                }
+                else if (this.water)
+                {
+                    this.moveInRelationToThing({X:99999999999999, Y: 99999999999999}); //move forward if in water and not being chased.
+                }
+
+                //if about to die run away
+                if (this.target == player)
+                {
+                    if (player.getSurvivalism() < 10)
+                    {
+                        if (this.DTP() < 0.15 * this.rangeOfSight && !this.foodGrab)
+                        {
+                            this.action = "flee";
+                        }
+                    }
+                    else
+                    {
+                        if (this.DTP() < 0.1 * this.rangeOfSight && !this.foodGrab)
+                        {
+                            this.action = "flee";
+                        }
+                    }
+                }
+                else if (this.target != "none")
+                {
+                    if (this.DTU(this.target) < 0.2 * this.rangeOfSight && !this.foodGrab)
+                    {
+                        this.action = "flee";
+                    }
+                }
+
+
+                //HUNGER
+                if (this.hunger < 0)
+                {
+                    this.health -= 0.1;
+                    this.killNotByPlayer = true; //if starving nothing is gained from its death.
+                }
+                this.hunger -= 0.005;
+            }
+
+            //ANIMATIONS
+            var szx = 1;
+            if (this.alive == true)
+            {
+                if (this.attacking && !this.water) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                    {
+                        this.costumeEngine(15, 0.10, false);
+                    }
+                }
+                else if (this.water) //if swimming
+                {
+                    this.costumeEngine(5, 0.122, true);
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                if (!this.water)
+                {
+                    if (this.X != this.plantedX && this.Y != this.plantedY)
+                    {
+                        this.flashAnimate(550 / this.speed, this.rotation - Math.PI, 1, [{image: polux, imgX: 347, imgY: 851, portionW: 74, portionH: 47, adjX: -1/2 * 74 * szx * this.alphaSize, adjY: -1/2 * 47 * szx * this.alphaSize, width: 74 * szx * this.alphaSize, height: 47 * szx * this.alphaSize}, {image: polux, imgX: 347, imgY: 928, portionW: 74, portionH: 47, adjX: -1/2 * 74 * szx * this.alphaSize, adjY: -1/2 * 47 * szx * this.alphaSize, width: 74 * szx * this.alphaSize, height: 47 * szx * this.alphaSize}])
+                    }
+                    this.plantedX = this.X;
+                    this.plantedY = this.Y;
+                }
+
+                if (!this.attacking && !this.water)
+                {
+                    this.drawUnit(polux, 439, 831, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                }
+
+                if (theCostume <= 0)
+                {
+                    if (this.attacking && !this.water)
+                    {
+                        this.drawUnit(polux, 439, 831, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                    else if (this.water)
+                    {
+                        this.drawUnit(polux, 661, 909, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking && !this.water)
+                    {
+                        this.drawUnit(polux, 446, 909, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(polux, 447, 909, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.attacking && !this.water)
+                    {
+                        this.drawUnit(polux, 514, 910, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(polux, 440, 831, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 3)
+                {
+                    if (this.attacking && !this.water)
+                    {
+                        this.drawUnit(polux, 514, 910, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(polux, 257, 831, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 4)
+                {
+                    if (this.attacking && !this.water)
+                    {
+                        this.drawUnit(polux, 514, 830, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(polux, 177, 830, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 5)
+                {
+                    if (this.attacking && !this.water)
+                    {
+                        this.eatNut = "nut";
+                        this.drawUnit(polux, 588, 911, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(polux, 177, 830, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 6)
+                {
+                    if (this.attacking && !this.water)
+                    {
+                        this.drawUnit(polux, 588, 911, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(polux, 177, 830, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 7)
+                {
+                    if (this.attacking && !this.water)
+                    {
+                        this.drawUnit(polux, 588, 828, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(polux, 177, 830, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 8)
+                {
+                    if (this.attacking && !this.water)
+                    {
+                        this.drawUnit(polux, 588, 828, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(polux, 177, 830, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 9)
+                {
+                    if (this.attacking && !this.water)
+                    {
+                        this.drawUnit(polux, 663, 830, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(polux, 177, 830, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 10)
+                {
+                    if (this.attacking && !this.water)
+                    {
+                        this.drawUnit(polux, 663, 830, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(polux, 177, 830, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 11)
+                {
+                    if (this.attacking && !this.water)
+                    {
+                        this.drawUnit(polux, 663, 909, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(polux, 177, 830, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 13)
+                {
+                    if (this.attacking && !this.water)
+                    {
+                        this.attackReady = true;
+                        this.drawUnit(polux, 663, 909, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(polux, 177, 830, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                }
+                else if (theCostume >= 14)
+                {
+                    if (this.attacking && !this.water)
+                    {
+                        this.drawUnit(polux, 448, 910, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                        if (this.attackReady == true)
+                        {
+                            this.attackReady = false;
+                            this.hunger += 10;
+                            this.health += 0.5;
+                            this.eatNut = false;
+                            this.cosaEncontrada = -1;
+                            this.enLista = false;
+                            this.costume = 0;
+                        }
+                    }
+                    else
+                    {
+                        this.drawUnit(polux, 177, 830, 66, 87, -1/2 * 66 * szx * this.alphaSize - this.xAdjustment, -1/2 * 87 * szx  * this.alphaSize - this.yAdjustment, 66 * szx * this.alphaSize, 87 * szx * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(polux, 205, 701, 88, 46, -1/2 * 88 * 1 * this.alphaSize - this.xAdjustment, -1/2 * 46 * 1 * this.alphaSize - this.yAdjustment, 88 * 1 * this.alphaSize, 46 * 1 * this.alphaSize);
             }
         }
         //UT

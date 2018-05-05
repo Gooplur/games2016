@@ -562,6 +562,10 @@ function cheats()
                 player.thirst = player.thirstMAX;
             }
         }
+        else if (cheatcode == "sleepyseed")
+        {
+            player.sleep -= 14;
+        }
         else if (cheatcode.toLowerCase() == "peter")
         {
             var crrPrompt;

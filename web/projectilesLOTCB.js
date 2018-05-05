@@ -156,6 +156,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                         }
                         ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                         ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                        ArtificialIntelligenceAccess[i].hurtByPlayer = true;
 
                         //Effects
                         if (ArtificialIntelligenceAccess[i].health <= 0 && this.isPlayerProjectile)

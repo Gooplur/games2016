@@ -479,6 +479,8 @@ function Adventurer()
     this.etnaVenom = false;
     this.etnaVenTime = 0;
     this.extraDraining = false;
+    this.eliktozeola = false; //An invasive protein that composes mugmul brains it disbands the bodies protein chains causing the body to die slowly. //the disease is simply activated by setting this flag to true.
+    this.eliktozeolaTime = new Date().getTime();
 
     //faction variables
     this.factionToggle = false;
@@ -1071,7 +1073,7 @@ function Adventurer()
                     }
                 }
                 var illDuration = Math.max(6, this.illnesses[j][2] - this.getToughness());
-                if (this.illnesses[j][1] >= this.illDuration)
+                if (this.illnesses[j][1] >= illDuration)
                 {
                     this.antibodies.push([this.illnesses[j][0], 2500 + (12 * this.getToughness())]);
                 }
@@ -1218,6 +1220,7 @@ function Adventurer()
 
         this.tepprekliaFungalFever = function()
         {
+            //Fungal Fever
             if (this.swollenV == false)
             {
                 this.fungalFever = false;
@@ -1228,6 +1231,39 @@ function Adventurer()
                 this.warmth += 0.002;
                 this.thirst -= 0.001;
             }
+
+            //Bad Brain Proteins (like Mad Cow Disease)
+            if (this.eliktozeola) //the proteins deconstruct the body's own protein chains until the body eventually fails to keep itself alive.
+            {
+                if (new Date().getTime() - this.eliktozeolaTime > 1000)
+                {
+                    this.eliktozeolaTime = new Date().getTime();
+                    if (this.constitution > 0)
+                    {
+                        this.constitution -= 1;
+                    }
+                    else if (this.endurance > 0)
+                    {
+                        this.constitution = 0;
+                        this.endurance -= 1;
+                    }
+                    else if (this.stamina > 0)
+                    {
+                        this.endurance = 0;
+                        this.stamina -= 1;
+                    }
+                    else //death
+                    {
+                        this.stamina = 0;
+                        this.health = -1;
+                    }
+                }
+            }
+            else
+            {
+                this.eliktozeolaTime = new Date().getTime();
+            }
+
         };
 
         this.blinder = function()
@@ -3608,6 +3644,31 @@ function Adventurer()
         }
     };
 
+    //Eliktozeola Notice Function
+    this.eliktozeolaChecker = function()
+    {
+        if (this.eliktozeola == true)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Eliktozeola Disease");
+            //red background
+            XXX.beginPath();
+            XXX.fillStyle = "darkRed";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Eliktozeola Disease"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(polux, 58, 922, 20, 20, this.arrangeNotices("Eliktozeola Disease"), 412.5, 31, 33);
+            XXX.drawImage(polux, 188, 975, 19, 19, this.arrangeNotices("Eliktozeola Disease"), 413.5, 19, 19);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Eliktozeola Disease");
+        }
+    };
+
     //Fungal Fever Notice Function
     this.fungalFeverChecker = function()
     {
@@ -4520,6 +4581,7 @@ function Adventurer()
         this.fungalFeverChecker();
         this.swollenChecker();
         this.brainMaggotsChecker();
+        this.eliktozeolaChecker();
         this.satiationChecker();
         this.freezingChecker();
         this.hinderanceChecker();
@@ -5144,6 +5206,26 @@ function Adventurer()
         {
             outfit = allWorn[68];
         }
+        else if (this.outfitEquipped == "zarbuDress")
+        {
+            outfit = allWorn[71];
+        }
+        else if (this.outfitEquipped == "zarbuMatriarchDress")
+        {
+            outfit = allWorn[72];
+        }
+        else if (this.outfitEquipped == "zarbuClothing")
+        {
+            outfit = allWorn[73];
+        }
+        else if (this.outfitEquipped == "zarbuTribalWear")
+        {
+            outfit = allWorn[74];
+        }
+        else if (this.outfitEquipped == "drileLeatherArmour")
+        {
+            outfit = allWorn[75];
+        }
         else
         {
             outfit = allWorn[0];
@@ -5183,6 +5265,10 @@ function Adventurer()
         {
             gloves = allWorn[69];
         }
+        else if (this.glovesEquipped == "drileLeatherGloves")
+        {
+            gloves = allWorn[77];
+        }
         else
         {
             gloves = allWorn[0];
@@ -5213,6 +5299,10 @@ function Adventurer()
         else if (this.bootsEquipped == "northernBoots")
         {
             boots = allWorn[70]
+        }
+        else if (this.bootsEquipped == "drileLeatherBoots")
+        {
+            boots = allWorn[76]
         }
         else
         {
@@ -5709,6 +5799,62 @@ function Adventurer()
                 XXX.restore();
             }
         }
+        else if (this.outfitEquipped == "zarbuDress")
+        {
+            this.outfitZ = false;
+            if (this.movingType == 0 || this.movingType == 4 || this.movingType == 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2*Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(polux, 898, 628, 83, 49, -(1 / 2 * 83 * 0.6) - 0.9, -(1 / 2 * 49 * 0.6) + 0, 83 * 0.6, 49 * 0.6);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2*Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(polux, 899, 686, 83, 49, -(1 / 2 * 83 * 0.6) - 0.9, -(1 / 2 * 49 * 0.6) + 0, 83 * 0.6, 49 * 0.6);
+                XXX.restore();
+            }
+        }
+        else if (this.outfitEquipped == "zarbuMatriarchDress")
+        {
+            this.outfitZ = false;
+            if (this.movingType == 0 || this.movingType == 4 || this.movingType == 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2*Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(polux, 886, 750, 105, 55, -(1 / 2 * 105 * 0.55) - 1.9, -(1 / 2 * 55 * 0.55) + 0, 105 * 0.55, 55 * 0.55);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2*Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(polux, 886, 810, 105, 55, -(1 / 2 * 105 * 0.55) - 1.9, -(1 / 2 * 55 * 0.55) + 0, 105 * 0.55, 55 * 0.55);
+                XXX.restore();
+            }
+        }
         else if (this.outfitEquipped == "naapridLeatherArmour")
         {
             this.outfitZ = true;
@@ -5889,6 +6035,45 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(verse, 2106, 5, 29, 24, -(1 / 2 * 29) + 1.75, -(1 / 2 * 24) - 0, 26, 26);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "drileLeatherArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2*Math.PI - 0.05);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(polux, 666, 52, 37, 31, -(1 / 2 * 37 * 0.95) + 0, -(1 / 2 * 31 * 0.95) - 0, 37 * 0.95, 31 * 0.95);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "zarbuClothing")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2*Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(polux, 906, 874, 58, 42, -(1 / 2 * 58 * 0.72) + 0, -(1 / 2 * 42 * 0.72) - 0, 58 * 0.72, 42 * 0.72);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "zarbuTribalWear")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2*Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(polux, 911, 920, 58, 42, -(1 / 2 * 58 * 0.68) + 2.9, -(1 / 2 * 42 * 0.68) - 0, 58 * 0.68, 42 * 0.68);
             XXX.restore();
         }
         else if (this.outfitEquipped == "waantiFurOutfit")
@@ -15934,6 +16119,7 @@ function Adventurer()
                         //console.log(this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                         ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                         ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                        ArtificialIntelligenceAccess[i].hurtByPlayer = true;
 
                         //effects
 
@@ -24579,7 +24765,11 @@ function Adventurer()
                             {
                                 this.petrificationResistanceTime = 600;
                             }
-                            else if (Inventory[i][0].ability == "satiate") //Food with this effect will keep you fed for a little bit.
+                            else if (Inventory[i][0].ability == "eliktozeola")
+                            {
+                                this.eliktozeola = true;
+                            }
+                            else if (Inventory[i][0].ability == "satiate" || Inventory[i][0].ability == "satiation") //Food with this effect will keep you fed for a little bit.
                             {
                                 this.fed = true;
                             }
@@ -24951,12 +25141,81 @@ function Adventurer()
                                 this.swollenII = false;
                                 this.swollenI = false;
                                 this.swollenTime = 0;
+                                this.etnaVenTime = 0;
 
                                 //food poison and reduced hunger.
                                 if (this.timeSinceBadFoodEaten == 0)
                                 {
                                     this.timeSinceBadFoodEaten = new Date().getTime();
                                 }
+                            }
+                            else if (Inventory[i][0].ability == "eternity")
+                            {
+                                //enliven
+                                this.energilTime = 1000;
+                                this.energilV = true;
+                                this.dexTime = new Date().getTime();
+                                this.speedIV = true;
+                                this.intTime = new Date().getTime() + 275000;
+                                this.intelligenceV = true;
+                                this.memTime = new Date().getTime() + 275000;
+                                this.memoryV = true;
+                                this.wilTime = new Date().getTime() + 275000;
+                                this.willpowerV = true;
+                                this.energizeTime = 1000;
+                                this.energizeV = true;
+                                this.strTime = new Date().getTime() + 35000;
+                                this.strengthV = true;
+                                this.tghTime = new Date().getTime() + 35000;
+                                this.toughnessV = true;
+
+                                //cure all
+                                this.recoveryTime = 1000;
+                                this.recoverV = true;
+                                this.watered = true;
+                                this.fed = true;
+
+                                this.gojiiTimer = 0;
+                                this.cyrinthilimTime = 0;
+                                this.haeflowerTime = 0;
+                                this.acidI = false;
+                                this.acidII = false;
+                                this.acidIII = false;
+                                this.acidIV = false;
+                                this.acidV = false;
+                                this.petrified = false;
+                                this.fatigueI = false;
+                                this.fatigueII = false;
+                                this.fatigueIII = false;
+                                this.fatigueIV = false;
+                                this.fatigueV = false;
+                                this.gassinessTime = 0;
+                                this.eliktozeola = false;
+                                this.poisonI = false;
+                                this.poisonII = false;
+                                this.poisonIII = false;
+                                this.poisonIV = false;
+                                this.poisonV = false;
+                                this.etnaVenTime = 0;
+                                this.fungalFever = false;
+                                this.cyrinthilimTime = 0;
+                                this.haeflowerTime = 0;
+                                this.inebriation = 0;
+                                this.fleshMites = false;
+                                this.gutWorms = false;
+                                this.brainMaggots = false;
+                                this.gojiiTimer = 0;
+                                this.gojiiPoisoned = false;
+                                this.insomniaTime = 0;
+                                this.insomniaStoreTime = 0;
+                                this.insomniated = false; //this is a flag that lets thing give the player permanent insomnia until this is switched off by something.
+                                this.swollenV = false;
+                                this.swollenIV = false;
+                                this.swollenIII = false;
+                                this.swollenII = false;
+                                this.swollenI = false;
+                                this.swollenTime = 0;
+                                this.timeSinceBadFoodEaten = 0;
                             }
                             else if (Inventory[i][0].ability == "foodPoisoning") //this effect makes the player vomit and lose 22 hunger.
                             {
@@ -27814,6 +28073,10 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(verse, 3228, 215, 33, 15, -(1 / 2 * 38) + 2.7, -(1 / 2 * 42) + 12.5, 33, 15);
                     XXX.restore();
                 }
@@ -27822,6 +28085,10 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(verse, 3226, 234, 33, 15, -(1 / 2 * 38) + 2.2, -(1 / 2 * 42) + 14.5, 33, 15);
                     XXX.restore();
                 }
@@ -27830,7 +28097,35 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(verse, 8, 469, 33, 15, -(1 / 2 * 38) + 1.9, -(1 / 2 * 42) + 14.5, 33, 15);
+                    XXX.restore();
+                }
+                else if (this.outfitEquipped == "zarbuDress")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2*Math.PI);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(polux, 850, 685, 28, 51, -(1 / 2 * 28 * 0.64) - 0, -(1 / 2 * 51 * 0.64) + 0, 28 * 0.64, 51 * 0.64);
+                    XXX.restore();
+                }
+                else if (this.outfitEquipped == "zarbuMatriarchDress")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2*Math.PI);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(polux, 821, 802, 56, 69, -(1 / 2 * 56 * 0.73) - 0, -(1 / 2 * 69 * 0.73) - 1, 56 * 0.73, 69 * 0.73);
                     XXX.restore();
                 }
                 else if (this.outfitEquipped == "mofuMatriarchHeaddress")
@@ -27838,6 +28133,10 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation + 1/2 * Math.PI);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
                     XXX.drawImage(polpol, 47, 54, 49, 34, -(1 / 2 * 49 * 1.15) - 4, -(1 / 2 * 34 * 1.15) + 0, 49 * 1.15, 34 * 1.15);
                     XXX.drawImage(polpol, 47, 54, 49, 34, -(1 / 2 * 49 * 1.15) - 4, -(1 / 2 * 34 * 1.15) + 0, 49 * 1.15, 34 * 1.15);
                     XXX.restore();

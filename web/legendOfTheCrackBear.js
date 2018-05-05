@@ -8,14 +8,14 @@
 
 //TODO LIST
 //top priority
-//todo add mugmuls (a goblinoid chimpanzee-like creature that flees the player and eats yeol nuts when it gets hungry) *actually takes the shell off of the nut and eats it in two or three bites
+//todo test mugmuls with savannah trees
+//todo fix the storage system so that the scroll is reset to 0 when starting in a storage menu
 //todo Rhino-ish monster - it will charge fast, turn slow, and deal knockback/stun damage
-//todo add southern fish / southern fishing spot -- saskriit, Espit, Riulpo
-//todo add temperate fish / temperate fishing spot -- red-bellied Falder, crawdid, salmon
+//todo ---fish to add to southern fishing spot---- saskriit, riulpo, kald, polxetp, tridite
+//todo ---fish to add to temperate fishing spot---- salmon, slol, red-bellied Falder, crawdid, duskfish (more frequent catch during the night)
 //todo add the new fish to the seal unit's diet
 //todo add "the grail of eternity" (a elaborate cup that heals you when you drink from it, you can refill it at a well)
-//todo add drile leather armour set
-//todo add zarbu clothings from IMG 'polux'
+//todo add Cymothoa Exigua - tongue eating louse IRL (make a parasitic grub that sucks the players tongue dry and replaces it with itself) reduces hunger gain from all foods eaten [consider making it something that can be cured in a pre-mature stage]
 
 //things to add to the next image i'm adding:
 //todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
@@ -28,8 +28,13 @@
 //todo add the alzkwaya tribe's village (mofu themed tribe)
 //todo add the karib tribe's village (zarbu themed tribe)
 
+//No Man's Land Update (kellish v thengan warzone)
+//todo add the Houl Tribe for the kellish west -- they have wolf clothing and equippable war paints and serrated and spikey metal + bone weapons
+//todo add the tribe of King Har, the Yorken tribe -- the most established kellish tribe (even built a permanent city with stone paving)
+//todo quest idea, the houl tribe village has been conquered and their chieftan taken to be publicly executed -- rescue him with a band of kellish allies, OR stop the kells that mean to rescue him, OR bribe the warden and sneak him out of prison...
+
 //Mounting System
-//todo add mounts and the mounting system (make different mounts require a different survivalism skill amount): add it for Naaprids, Zebras, Skols... (destroy current mounting system: make it unit based instead of player based. The player literally teleports on top of the creature in question and follows its movement. (the player can direct it with 'T' because it is on the player's team.) mounting is canceled by water, or if the player equipps an uncompatible weapon or transfigures themself into an incompatible form.
+//todo add mounts and the mounting system (make different mounts require a different survivalism skill amount): add it for Naaprids, Zarbus, Skols... (destroy current mounting system: make it unit based instead of player based. The player literally teleports on top of the creature in question and follows its movement. (the player can direct it with 'T' because it is on the player's team.) mounting is canceled by water, or if the player equipps an uncompatible weapon or transfigures themself into an incompatible form.
 
 //Calcutt Patch
 //todo add roselin's quest
@@ -2690,10 +2695,10 @@ function theLegend()
     secondarySpells = [];
     tertiarySpells = [];
 //Well List
-    wellConversionList = [["pintGlass", "waterPintGlass"], ["walrusLeatherWaterskin", "walrusLeatherWaterskinFull"], ["bucket", "bucketOfWater"], ["potionGlass", "vialOfWater"], ["kellishClayPot", "kellishClayPotOfWater"], ["glassBottle", "glassBottleOfWater"], ["naapridDrinkinghorn", "naapridDrinkinghornFull"]];
+    wellConversionList = [["pintGlass", "waterPintGlass"], ["walrusLeatherWaterskin", "walrusLeatherWaterskinFull"], ["bucket", "bucketOfWater"], ["potionGlass", "vialOfWater"], ["kellishClayPot", "kellishClayPotOfWater"], ["glassBottle", "glassBottleOfWater"], ["naapridDrinkinghorn", "naapridDrinkinghornFull"], ["grailOfEternity", "theGrailOfEternity"]];
 //Milking/Juicing/Sapping Lists
-    naapridConversionList = [["bucket", "bucketOfNaapridMilk"], ["kellishClayPot", "kellishClayPotOfNaapridMilk"], ["naapridDrinkinghorn", "naapridMilkhornFull"]];
-    waantiConversionList = [["bucket", "bucketOfWaantiMilk"], ["kellishClayPot", "kellishClayPotOfWaantiMilk"]];
+    naapridConversionList = [["bucket", "bucketOfNaapridMilk"], ["kellishClayPot", "kellishClayPotOfNaapridMilk"], ["naapridDrinkinghorn", "naapridMilkhornFull"], ["grailOfEternity", "theGrailOfEternity"]];
+    waantiConversionList = [["bucket", "bucketOfWaantiMilk"], ["kellishClayPot", "kellishClayPotOfWaantiMilk"], ["grailOfEternity", "theGrailOfEternity"]];
 //conversations and dialogue
     conversationID = ["none", 0]; //[Person conversing with, stage in conversation]
     conversations =
@@ -3222,6 +3227,13 @@ function theLegend()
     allWorn.push(new Item("northernClothing", false)); //68
     allWorn.push(new Item("northernGloves", false)); //69
     allWorn.push(new Item("northernBoots", false)); //70
+    allWorn.push(new Item("zarbuDress", false)); //71
+    allWorn.push(new Item("zarbuMatriarchDress", false)); //72
+    allWorn.push(new Item("zarbuClothing", false)); //73
+    allWorn.push(new Item("zarbuTribalWear", false)); //74
+    allWorn.push(new Item("drileLeatherArmour", false)); //75
+    allWorn.push(new Item("drileLeatherBoots", false)); //76
+    allWorn.push(new Item("drileLeatherGloves", false)); //77
 
     scenicList = [];
 
@@ -3373,6 +3385,11 @@ function theLegend()
     foods.push(new Item("ardilMeat", false));
     foods.push(new Item("boiledPalntRoot", false));
     foods.push(new Item("tilkMeat", false));
+    foods.push(new Item("duskfish", false));
+    foods.push(new Item("slol", false));
+    foods.push(new Item("salmon", false));
+    foods.push(new Item("crawdidTail", false));
+    foods.push(new Item("redBelliedFalder", false));
     foods.push(new Item("utMeat", false));
     foods.push(new Item("tunskMeat", false));
     foods.push(new Item("roastedWegRoot", false));
@@ -3403,12 +3420,19 @@ function theLegend()
     foods.push(new Item("roastedAktaltlRoot", false));
     foods.push(new Item("roastedMaize", false));
     foods.push(new Item("aktaltlSoup", false));
+    foods.push(new Item("riulpo", false));
     foods.push(new Item("boiledFrijols", false));
     foods.push(new Item("latuku", false));
     foods.push(new Item("wrappedMofuTamal", false));
     foods.push(new Item("wrappedTamal", false));
     foods.push(new Item("zarbuMeat", false));
     foods.push(new Item("drileMeat", false));
+    foods.push(new Item("mugmulMeat", false));
+    foods.push(new Item("kald", false));
+    foods.push(new Item("saskriit", false));
+    foods.push(new Item("polxetp", false));
+    foods.push(new Item("tridite", false));
+
 
 
 
@@ -3444,6 +3468,10 @@ function theLegend()
     tailoring.push(new Item("ardilFurClothing", false));
     tailoring.push(new Item("ardilFurSkirt", false));
     tailoring.push(new Item("ardilFurGloves", false));
+    tailoring.push(new Item("zarbuClothing", false));
+    tailoring.push(new Item("zarbuTribalWear", false));
+    tailoring.push(new Item("zarbuDress", false));
+    tailoring.push(new Item("zarbuMatriarchDress", false));
     tailoring.push(new Item("fineFreydicOutfitF", false));
     tailoring.push(new Item("fineFreydicOutfitM", false));
     tailoring.push(new Item("waantiFurOutfit", false));
@@ -3468,6 +3496,9 @@ function theLegend()
     tailoring.push(new Item("neevFurGloves", false));
     tailoring.push(new Item("dustPouch", false));
     tailoring.push(new Item("sealSkin", false));
+    tailoring.push(new Item("drileLeatherArmour", false));
+    tailoring.push(new Item("drileLeatherBoots", false));
+    tailoring.push(new Item("drileLeatherGloves", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];

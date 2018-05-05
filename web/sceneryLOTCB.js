@@ -2854,6 +2854,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     }
                     if (this.temporary > 2 && this.storageListChecked == true)
                     {
+                        player.bankPosition = 0;
+                        bankScroll = 0;
                         storedID = this.information[1];
                         storageSlots = this.information[2];
                         lowBar = "storage";
@@ -9026,8 +9028,39 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.treeHealth = 90;
 
                 //DROPS NUT PODS FROM THE TREE
-                if (this.treePhase == 0 && currentSeason == "Bounty") //The nut only falls from the tree in the season called Bounty
+                if (this.treePhase == 0 && currentSeason != "Frost") //The nut only falls from the tree when it is not the season frost
                 {
+                    if (currentSeason == "Bounty") //twice as many yeol nuts fall during the season called Bounty
+                    {
+                        //Extra Seed Drop
+                        if (Math.floor(Math.random() * 3) == 2)
+                        {
+                            if (Math.round(Math.random()) == 0)
+                            {
+                                for (var ii = 0; ii < 2; ii++)
+                                {
+                                    var podX = this.X + (Math.random() * 130) - 65;
+                                    var podY = this.Y + (Math.random() * 130) - 65;
+                                    var podDist = Math.sqrt((this.X - podX)*(this.X - podX) + (this.Y - podY)*(this.Y - podY));
+                                    if (podDist > 30)
+                                    {
+                                        scenicList.push(new Scenery("item", podX, podY, 0, false, ["yeolPod", 1, 0]));
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                var podX = this.X + (Math.random() * 130) - 65;
+                                var podY = this.Y + (Math.random() * 130) - 65;
+                                var podDist = Math.sqrt((this.X - podX)*(this.X - podX) + (this.Y - podY)*(this.Y - podY));
+                                if (podDist > 30)
+                                {
+                                    scenicList.push(new Scenery("item", podX, podY, 0, false, ["yeolPod", 1, 0]));
+                                }
+                            }
+                        }
+                    }
+                    //Seed Drop
                     if (Math.floor(Math.random() * 3) == 2)
                     {
                         if (Math.round(Math.random()) == 0)

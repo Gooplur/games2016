@@ -236,7 +236,7 @@ function worldBuilder()
             outlineBuilder( 1, 6, "forest", -10, 70); //^
         }
         //Layer -1 (cold region): elev 0
-        //mapS1E1 //TODO make the map
+        //mapS1E1 //TODO finish the map
         if (Y > -14144 && Y < -3328 && X < - 2490 && X > -14114) //X1
         {
             elevation = 0;

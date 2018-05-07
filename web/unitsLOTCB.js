@@ -6049,7 +6049,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         if (this.type == "Etyr")
         {
             this.damageFrame = "automatic";
-            this.team = "wild";
+            this.team = "etyria";
             this.baseTeam = this.team;
             this.tameREQ = 9;
 
@@ -6061,21 +6061,21 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.attackRate = 0; //this is for rapid style combat only.
                 this.healthMAX = Math.floor(Math.random() * 6) + 6;
                 this.health = this.healthMAX;
-                this.armour = 3;
+                this.armour = 2;
                 this.speed = 2.75;
                 this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.025; // 0.01 is a standard turn speed.
-                this.engagementRadius = 39;
+                this.rotationSpeed = 0.25;
+                this.engagementRadius = 47;
                 this.sizeRadius = 30;
                 this.negateArmour = 5;
                 this.attackWait = 0.55;
-                this.beastEntry = {intReq: 3, name: "Etyr", health: "6 - 11", armour: "3", damage: "1 - 7", negate: "5", ability: "None", fireProof: 1, habitat: "Jungle", sight: 600, alpha: "Alpha", magicProof: 0, size: 30, speed: 2.75, rotation: 0.025, rate: 0.55, experience: 40, description: ["Etyr's are scaley reptilian creatures that have a behavior similar to that of a wolf. They hunt in packs, it is very", "rare to find one alone, and if you do the rest of its pack is probably about to ambush you. They", "usually lurk about the forest floor eating whatever small critters they can get their jaws around."], image: ["theCrack", 56, 18, 53, 41, 0, 0, 53 * 1.5 / 3, 41 * 1.5 / 3]};
+                this.beastEntry = {intReq: 3, name: "Etyr", health: "6 - 11", armour: "2", damage: "1 - 7", negate: "5", ability: "None", fireProof: 1, habitat: "Jungle", sight: 600, alpha: "Alpha", magicProof: 0, size: 30, speed: 2.75, rotation: 0.25, rate: 0.55, experience: 40, description: ["Etyr's are scaley reptilian creatures that have a behavior similar to that of a wolf. They hunt in packs, it is very", "rare to find one alone, and if you do the rest of its pack is probably about to ambush you. They", "usually lurk about the forest floor eating whatever small critters they can get their jaws around."], image: ["theCrack", 56, 18, 53, 41, 0, 0, 53 * 1.5 / 3, 41 * 1.5 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
                 // this is the adjustment the alpha type of Etyr needs to be centered.
-                this.yAdjustment = 10;
-                this.xAdjustment = 13; // was 0
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
             }
             else
             {
@@ -6089,12 +6089,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 1;
                 this.speed = 2;
                 this.rangeOfSight = 450; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
-                this.engagementRadius = 29;
+                this.rotationSpeed = 0.25;
+                this.engagementRadius = 31;
                 this.sizeRadius = 20;
                 this.negateArmour = 3;
                 this.attackWait = 0.57;
-                this.beastEntry = {intReq: 1, name: "Etyr", health: "3 - 5", armour: "1", damage: "1 - 4", negate: "3", ability: "None", fireProof: 1, habitat: "Jungle", sight: 450, alpha: "Normal", magicProof: 0, size: 20, speed: 2, rotation: 0.1, rate: 0.57, experience: 22, description: ["Etyr's are scaley reptilian creatures that have a behavior similar to that of a wolf. They hunt in packs, it is very", "rare to find one alone, and if you do the rest of its pack is probably about to ambush you. They", "usually lurk about the forest floor eating whatever small critters they can get their jaws around."], image: ["theCrack", 56, 18, 53, 0, 0, 20, 53 / 3, 41 / 3]};
+                this.beastEntry = {intReq: 1, name: "Etyr", health: "3 - 5", armour: "1", damage: "1 - 4", negate: "3", ability: "None", fireProof: 1, habitat: "Jungle", sight: 450, alpha: "Normal", magicProof: 0, size: 20, speed: 2, rotation: 0.25, rate: 0.57, experience: 22, description: ["Etyr's are scaley reptilian creatures that have a behavior similar to that of a wolf. They hunt in packs, it is very", "rare to find one alone, and if you do the rest of its pack is probably about to ambush you. They", "usually lurk about the forest floor eating whatever small critters they can get their jaws around."], image: ["theCrack", 56, 18, 53, 0, 0, 20, 53 / 3, 41 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1;
@@ -6912,7 +6912,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.speed = 3 + (Math.floor(Math.random() * 3) / 10);
                 this.rangeOfSight = 490; //This is just to set the variable initially. The rest is variable.
                 this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
-                this.engagementRadius = 42;
+                this.engagementRadius = 58;
                 this.sizeRadius = 33;
                 this.negateArmour = 7;
                 this.attackWait = 0.5;
@@ -11348,11 +11348,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
-                    this.experience = 40 * ((player.getIntelligence() / 50) + 1);
+                    this.experience = 23 * ((player.getIntelligence() / 50) + 1);
                 }
                 else
                 {
-                    this.experience = (40 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    this.experience = (23 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
                 this.drops = [[new Item("etyrHide", this.X, this.Y), 2], [new Item("rawEtyrFlesh", this.X, this.Y), 2]];
@@ -11361,11 +11361,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (Math.max(0, 2 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
-                    this.experience = 22 * ((player.getIntelligence() / 50) + 1);
+                    this.experience = 16 * ((player.getIntelligence() / 50) + 1);
                 }
                 else
                 {
-                    this.experience = (22 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    this.experience = (16 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
                 this.drops = [[new Item("etyrHide", this.X, this.Y), 1], [new Item("rawEtyrFlesh", this.X, this.Y), 1]];
@@ -11397,8 +11397,19 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.disturbedTimer();
                 this.callForNearbyHelpFromType(350, "Etyr");
                 this.visibleSight();
-                this.pointTowardsPlayer();
-                this.moveInRelationToPlayer();
+
+                this.friendDecider();
+                this.targeting();
+                if (this.target == player)
+                {
+                    this.pointTowardsPlayer();
+                    this.moveInRelationToPlayer();
+                }
+                else if (this.target != "none")
+                {
+                    this.pointTowards(this.target);
+                    this.moveInRelationToThing(this.target);
+                }
             }
 
             //ANIMATIONS
@@ -11413,7 +11424,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
                     {
-                        this.costumeEngine(2, 0.07, false);
+                        this.costumeEngine(3, 0.10, false);
                     }
                 }
 
@@ -11424,29 +11435,39 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.attacking)
                     {
-                        this.drawUnit(theCrack, 282, 18, 53, 41, -25 - this.xAdjustment, -19 - this.yAdjustment, 53 * this.alphaSize, 41 * this.alphaSize);
-                        //this.drawUnit(theCrack, 131, 18, 53, 41, -26 - this.xAdjustment, -20 - this.yAdjustment, 53 * this.alphaSize, 41 * this.alphaSize);
+                        this.drawUnit(theCrack, 131, 22, 51, 33, -1/2 * 52 - this.xAdjustment, -1/2 * 33 - this.yAdjustment, 51 * this.alphaSize, 33 * this.alphaSize);
                     }
                     else
                     {
-                        this.drawUnit(theCrack, 56, 18, 53, 41, -26 - this.xAdjustment, -20 - this.yAdjustment, 53 * this.alphaSize, 41 * this.alphaSize);
+                        this.drawUnit(theCrack, 56, 22, 51, 33, -1/2 * 52 - this.xAdjustment, -1/2 * 33 - this.yAdjustment, 51 * this.alphaSize, 33 * this.alphaSize);
                     }
                 }
-                else if (theCostume == 1)
+                else if (theCostume <= 1)
                 {
                     if (this.attacking)
                     {
-                        this.drawUnit(theCrack, 205, 18, 53, 41, -27 - this.xAdjustment, -19 - this.yAdjustment, 53 * this.alphaSize, 41 * this.alphaSize);
+                        this.drawUnit(theCrack, 206, 22, 51, 33, -1/2 * 52 - this.xAdjustment, -1/2 * 33 - this.yAdjustment, 51 * this.alphaSize, 33 * this.alphaSize);
                     }
                     else
                     {
-                        this.drawUnit(theCrack, 131, 18, 53, 41, -26 - this.xAdjustment, -19 - this.yAdjustment, 53 * this.alphaSize, 41 * this.alphaSize);
+                        this.drawUnit(theCrack, 131, 22, 51, 33, -1/2 * 52 - this.xAdjustment, -1/2 * 33 - this.yAdjustment, 51 * this.alphaSize, 33 * this.alphaSize);
+                    }
+                }
+                else if (theCostume >= 2)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(theCrack, 283, 22, 51, 33, -1/2 * 52 - this.xAdjustment, -1/2 * 33 - this.yAdjustment, 51 * this.alphaSize, 33 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(theCrack, 56, 22, 51, 33, -1/2 * 52 - this.xAdjustment, -1/2 * 33 - this.yAdjustment, 51 * this.alphaSize, 33 * this.alphaSize);
                     }
                 }
             }
             else
             {
-                this.drawUnit(theCrack, 360, 18, 53, 41, -25 - this.xAdjustment, -19 - this.yAdjustment, 53 * this.alphaSize, 41 * this.alphaSize);
+                this.drawUnit(theCrack, 359, 22, 51, 33, -1/2 * 52 - this.xAdjustment, -1/2 * 33 - this.yAdjustment, 51 * this.alphaSize, 33 * this.alphaSize);
             }
 
         }
@@ -27995,7 +28016,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
                     {
-                        this.costumeEngine(4, 0.35, false);
+                        this.costumeEngine(4, 0.09, false);
                     }
                 }
 
@@ -28069,7 +28090,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.experience = (75 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
-                if (player.getIntelligence >= 42)
+                if (player.getIntelligence() >= 42)
                 {
                     this.drops = [[new Item("torperFuzz", this.X, this.Y), 1], [new Item("torperVenomSac", this.X, this.Y), 1], [new Item("rawTorperFlesh", this.X, this.Y), 2]];
                 }
@@ -28097,7 +28118,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.experience = (45 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
-                if (player.getIntelligence >= 48)
+                if (player.getIntelligence() >= 48)
                 {
                     this.drops = [[new Item("torperFuzz", this.X, this.Y), 1], [new Item("torperVenomSac", this.X, this.Y), 1], [new Item("rawTorperFlesh", this.X, this.Y), 1]];
                 }

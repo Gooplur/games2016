@@ -1312,6 +1312,18 @@ function legendaryPrerequisites()
     thatchEnv.src = ("images/thatchedKel.jpg");
     window.thatchEnv = thatchEnv;
 
+    var jungleEnv = new Image();
+    jungleEnv.src = ("images/jungle.png");
+    window.jungleEnv = jungleEnv;
+
+    var savannahEnv = new Image();
+    savannahEnv.src = ("images/savannah.png");
+    window.savannahEnv = savannahEnv;
+
+    var savannahDirtEnv = new Image();
+    savannahDirtEnv.src = ("images/savannahDirt.png");
+    window.savannahDirtEnv = savannahDirtEnv;
+
     var mushBlur = new Image();
     mushBlur.src = ("images/blurredGreenSwish.jpg");
     window.mushBlur = mushBlur;

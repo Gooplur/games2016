@@ -3545,6 +3545,7 @@ function theLegend()
     alchemy.push(new Item("glowDust", false)); //the other dusts are made with a forge
     alchemy.push(new Item("irilDust", false));
     alchemy.push(new Item("acidifiedDrileKidney", false));
+    alchemy.push(new Item("powderedRhinocerosHorn", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

@@ -11736,6 +11736,51 @@ function Item(type, x, y)
             this.buyValue = 15 - Math.floor(player.getCharisma() / 10); // at max, buy for 10.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 10); // at max, sell for 10.
         }
+        else if (this.type == "rhinocerosHorn")
+        {
+            //For All Items
+            this.identity = "Rhinoceros Horn";
+            this.weight = 4.8;
+            this.size = 11;
+            this.description = "The large, sharp, curved horn of a rhinoceros.";
+            this.intForDes = 15;
+            this.intDescription = "This can be ground into a powder.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 30 - Math.floor(player.getCharisma() / 15); // at max, buy for 27.
+            this.sellValue = 23 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 27.
+        }
+        else if (this.type == "powderedRhinocerosHorn")
+        {
+            //For All Items
+            this.identity = "Powdered Rhinoceros Horn";
+            this.weight = 0.75;
+            this.size = 7;
+            this.description = "The finely ground grey powder derived from the horn of a Rhinoceros.";
+            this.intForDes = 17;
+            this.intDescription = "This can be used in certain alchemy recipes as a changer.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 6;
+            this.intForCraft = 15;
+            this.ingredients = [["Rhinoceros Horn", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 50); // at max, buy for 7.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 50); // at max, sell for 7.
+        }
         else if (this.type == "neculaisEar")
         {
             //For All Items
@@ -24576,6 +24621,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "powderedRhinocerosHorn")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 721, 777, 22, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 22 * 1, 20 * 1);
+        }
+        else if (this.type == "rhinocerosHorn")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 721, 754, 41, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 41 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 41 * 1, 20 * 1);
+        }
         else if (this.type == "slol")
         {
             XXX.beginPath();
@@ -27866,6 +27921,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "powderedRhinocerosHorn")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polux, 721, 777, 22, 20, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 20 * 1), 22 * 1, 20 * 1);
+        }
+        else if (this.type == "rhinocerosHorn")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polux, 721, 754, 41, 20, this.invX - (1/2 * 41 * 1), this.invY - (1/2 * 20 * 1), 41 * 1, 20 * 1);
+        }
         else if (this.type == "slol")
         {
             LXX.beginPath();
@@ -31125,6 +31190,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "powderedRhinocerosHorn")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 721, 777, 22, 20, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 20 * 1), 22 * 1, 20 * 1);
+        }
+        else if (this.type == "rhinocerosHorn")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polux, 721, 754, 41, 20, this.invX - (1/2 * 41 * 1), this.invY - (1/2 * 20 * 1), 41 * 1, 20 * 1);
         }
         else if (this.type == "slol")
         {

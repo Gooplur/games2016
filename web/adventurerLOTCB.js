@@ -25176,8 +25176,6 @@ function Adventurer()
                                 this.fed = true;
 
                                 this.gojiiTimer = 0;
-                                this.cyrinthilimTime = 0;
-                                this.haeflowerTime = 0;
                                 this.acidI = false;
                                 this.acidII = false;
                                 this.acidIII = false;

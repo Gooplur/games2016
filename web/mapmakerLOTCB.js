@@ -47,6 +47,8 @@ function buildMaster()
                     ArtificialIntelligenceAccess.push(new Unit(2100, 1050, "Neev", false, "Easter"));
                 }
 
+                //ArtificialIntelligenceAccess.push(new Unit(3000, 1600, "Deth", false, "Fud", {age: 10, CON: 18, DEX: 17, APR: 19, PER: 14, ING: 8}));
+
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));
                 ArtificialIntelligenceAccess.push(new Unit(2683, -1204, "Frich", false, "Ruby Soho"));
@@ -11445,6 +11447,58 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(-30000, 1400, "Basilisk", true, "Mahoga"));
 
                 change = "e2";
+            }
+        }
+        else if (region == "s16")
+        {
+            if (change != "s16")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+                //todo when structures are created add their list's refresh sequence here.
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //Animals
+                ArtificialIntelligenceAccess.push(new Unit(1488, -157763, "Yioshk", true, "Bilter"));
+
+                //Scenery
+                scenicList.push(new Scenery("yeolTree", 1805 , -157838, -Math.PI * 3, false));
+                scenicList.push(new Scenery("yeolTree", -108 , -158970, -Math.PI * 25, false));
+
+
+
+                //Plants
+                scenicList.push(new Scenery("aktaltlPlant", 2180 , -158186, 7, true));
+
+                change = "s16";
             }
         }
         else if (region == "s24")

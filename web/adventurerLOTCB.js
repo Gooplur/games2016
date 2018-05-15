@@ -800,7 +800,7 @@ function Adventurer()
             this.magicalExperience -= this.magicalExperienceRequiredToLevel;
             this.magicLevel += 1;
             this.magicalSkillPoints += 2;
-            if (this.level % 5 == 0) //every five levels an extra skillpoint is awarded
+            if (this.magicLevel % 5 == 0) //every five levels an extra skillpoint is awarded
             {
                 this.magicalSkillPoints += 1;
                 this.levelBonusMagicPoints += 1;

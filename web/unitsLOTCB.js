@@ -9159,6 +9159,63 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.xAdjustment = 0;
             }
         }
+        else if (this.type == "Deth")
+        {
+            this.damageFrame = "automatic";
+            this.team = "deth";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            else if (this.ID == "deth1")
+            {
+                this.team = "deth1";
+            }
+            else if (this.ID == "deth2")
+            {
+                this.team = "deth2";
+            }
+            else if (this.ID == "deth3")
+            {
+                this.team = "deth3";
+            }
+            else if (this.ID == "deth4")
+            {
+                this.team = "deth4";
+            }
+            this.baseTeam = this.team;
+            this.tamable = false;
+
+            this.age = this.ultra.age; //how old the deth is
+
+            //GENES
+            this.APR = this.ultra.APR; //Appearance: Social standing for female deths
+            this.CON = this.ultra.CON; //Constitution: health + size
+            this.ING = this.ultra.ING; //Ingenious: technological advancment + free thinking
+            this.DEX = this.ultra.DEX; //Dexterity: speed
+            this.PER = this.ultra.PER; //Perception: rangeOfSight + lifespan
+
+            //these skills are intentionally low because Deths' have their skills set by their DNA
+            this.magicalResistance = 0;
+            this.heatResistance = 0;
+            this.attackStyle = "chunked";
+            this.attackRate = 0;
+            this.healthMAX = Math.floor(Math.random() * 1) + 1;
+            this.health = this.healthMAX;
+            this.armour = 0;
+            this.speed = 0.5 + (Math.floor(Math.random() * 1) / 1);
+            this.rangeOfSight = 0;
+            this.rotationSpeed = 0.2;
+            this.engagementRadius = 1;
+            this.sizeRadius = 1;
+            this.negateArmour = 0;
+            this.attackWait = 2;
+
+            this.alphaSize = 1;
+
+            this.yAdjustment = 0;
+            this.xAdjustment = 0;
+        }
         else if (this.type == "HyelingSoldier")
         {
             this.damageFrame = "automatic";
@@ -21147,6 +21204,204 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(nognog, 792, 764, 56, 39, -1/2 * 56 - this.xAdjustment, -1/2 * 39 - this.yAdjustment, 56 * this.alphaSize, 39 * this.alphaSize);
+            }
+        }
+        //DETH
+        if (this.type == "Deth")
+        {
+            //GENETIC COMPOSER
+                //Life
+            this.lifespan = this.PER * 3;
+                //Speed
+            this.speed = 1 + (this.DEX / 7) * Math.min(1, this.age / 10);
+                //Awareness
+            if (this.age < 5)
+            {
+                this.rangeOfSight = this.PER * 20;
+            }
+            else if (this.age < 10)
+            {
+                this.rangeOfSight = this.PER * 35;
+            }
+            else if (this.age < 5/6 * this.lifespan)
+            {
+                this.rangeOfSight = this.PER * 50;
+            }
+            else
+            {
+                this.rangeOfSight = this.PER * 30;
+            }
+                //Build
+            this.healthMAX = this.CON * Math.min(1, this.age / 10);
+            this.engagementRadius = 10 + this.CON * Math.min(1, this.age / 10); //+ this.weaponRange;
+            this.sizeRadius = 6 + this.CON * Math.min(1, this.age / 10);
+            this.alphaSize = 0.4 + (this.CON / 20) * Math.min(1, this.age / 10);
+
+            this.yAdjustment = 0;
+            this.xAdjustment = 0;
+
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 30 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (30 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("", this.X, this.Y), 2]];
+            }
+            else
+            {
+                if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 22 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 22 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [[new Item("", this.X, this.Y), 1]];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(800, true);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(700, true);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.alpha == true)
+                {
+                    this.Attack(11, 8);
+                }
+                else
+                {
+                    this.Attack(9, 6);
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                if (this.target == player)
+                {
+                    this.pointTowardsPlayer();
+                    this.moveInRelationToPlayer();
+                }
+                else if (this.target != "none")
+                {
+                    this.pointTowards(this.target);
+                    this.moveInRelationToThing(this.target);
+                }
+
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(6, 0.085, false);
+                }
+                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                    {
+                        this.costumeEngine(6, 0.110, false);
+                    }
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(mufmuf, 63, 47, 40, 21, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 21 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 21 * this.alphaSize);
+                    }
+                    else if (this.moving)
+                    {
+                        this.drawUnit(mufmuf, 4, 46, 40, 21, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 21 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 21 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(mufmuf, 34, 22, 40, 21, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 21 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 21 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(mufmuf, 61, 71, 40, 21, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 21 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 21 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(mufmuf, 5, 71, 40, 21, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 21 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 21 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(mufmuf, 122, 48, 40, 21, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 21 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 21 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(mufmuf, 4, 46, 40, 21, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 21 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 21 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 3)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(mufmuf, 122, 71, 40, 21, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 21 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 21 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(mufmuf, 5, 71, 40, 21, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 21 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 21 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 4)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(mufmuf, 122, 48, 40, 21, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 21 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 21 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(mufmuf, 4, 46, 40, 21, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 21 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 21 * this.alphaSize);
+                    }
+                }
+                else if (theCostume >= 5)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(mufmuf, 61, 71, 40, 21, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 21 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 21 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(mufmuf, 5, 71, 40, 21, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 21 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 21 * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(mufmuf, 4, 102, 39, 28, -1/2 * 39 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 39 * this.alphaSize, 28 * this.alphaSize);
             }
         }
         //Hyeling Soldier

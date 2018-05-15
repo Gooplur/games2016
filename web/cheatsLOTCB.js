@@ -639,7 +639,7 @@ function cheats()
         }
         else if (cheatcode.toLowerCase() == "tellme")
         {
-            console.log(storageList);
+            console.log("this.levelBonusMagicPoints " + this.levelBonusMagicPoints);
         }
         else if (cheatcode.toLowerCase() == "dime")
         {

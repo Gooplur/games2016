@@ -29,6 +29,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.flotation = false; //if true this unit drops items and shows its body upon death in the water.
     this.boatphobic = false; //if true this unit will refuse to attack the player whilst they are riding in a boat
     this.colorized = [false, "green"];
+    this.mounted = false; //this variable determines whether or not the player is riding it.
+    this.mountRange = 0;
 
     //timers for AI
     this.aiTimer = 0; //the total time a unit has been in existence (unless reset)
@@ -329,7 +331,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         if (this.team == "player")
         {
             //STAY
-            if (!shiftKey && vKey && this.DTP() < 140 && !this.stay && this.stayTime <= new Date().getTime()) //makes minions who are in direct proximity to the player stay put
+            if (!shiftKey && vKey && this.DTP() < 140 && !this.stay && this.stayTime <= new Date().getTime() && !this.mounted) //makes minions who are in direct proximity to the player stay put
             {
                 this.stay = true;
                 if (this.keepSpeed < this.speed)
@@ -344,7 +346,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.speed = 0;
                 this.stayTime = new Date().getTime() + 900;
             }
-            else if (tKey && vKey && shiftKey && this.stayTime <= new Date().getTime()) //stays all minions
+            else if (tKey && vKey && shiftKey && this.stayTime <= new Date().getTime() && !this.mounted) //stays all minions
             {
                 if (!this.stay)
                 {
@@ -477,6 +479,56 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.stackSorter();
                 break;
             }
+        }
+    };
+
+    this.mount = function(num)
+    {
+        if (this.baseTeam == "player")
+        {
+            if (!this.mounted && player.mounted != true && this.dmx == player.dmx)
+            {
+                if (this.DTP() <= this.engagementRadius + this.mountRange)
+                {
+                    if (this.DTM() <= this.sizeRadius)
+                    {
+                        if (dClick)
+                        {
+                            dClick = false;
+                            //unmounts all other units
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                ArtificialIntelligenceAccess[i].mounted = false;
+                            }
+
+                            this.mounted = true;
+                            player.mounted = true;
+                        }
+                    }
+                }
+            }
+            else if (this.mounted)
+            {
+                if (this.DTM() <= this.sizeRadius)
+                {
+                    if (dClick)
+                    {
+                        //unmounts player from this unit
+                        dClick = false;
+                        this.mounted = false;
+                        player.mounted = false;
+                    }
+                }
+
+                //Do Mount Stuff
+                this.dmx = player.dmx;
+                X = this.X + Math.cos(this.rotation) * num;
+                Y = this.Y + Math.sin(this.rotation) * num;
+            }
+        }
+        else
+        {
+            this.mounted = false;
         }
     };
 
@@ -678,11 +730,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             if (this.boatphobic != true || player.weaponEquipped != "boat") //some creatures do not target the player while the player is in a boat.
             {
-                this.target = player;
+                if (!this.mounted)
+                {
+                    if (this.baseTeam == "player" || player.mounted != true)
+                    {
+                        this.target = player;
+                    }
+                }
             }
         }
 
-        if (this.team == "player" && cKey || this.muzzle || this.boatphobic && player.weaponEquipped == "boat") //charge command player team units will target their master only as a last resort while "C" is pressed
+        if (this.team == "player" && cKey || this.muzzle || this.boatphobic && player.weaponEquipped == "boat" || this.mounted || player.mounted && this.baseTeam != "player") //charge command player team units will target their master only as a last resort while "C" is pressed
         {
             this.targetDistance = 1000000000;
         }
@@ -1281,7 +1339,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.wandering = false;
     this.wanderHold = false;
 
-    this.wander = function(XX, YY, totalZone, stepZone, manual) //total zone is the total amount of area that is allowed for wandering, while step zone is the amount of space available for determining where the next movement objective should be.
+    this.wander = function(XX, YY, totalZone, stepZone, manual) //total zone is the total amount of area that is allowed for wandering, while step zone is the a of space available for determining where the next movement objective should be.
     {
         this.dtd = function() // distance to destination
         {
@@ -2588,7 +2646,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
         if (this.target == player)
         {
-            if (wKey == true && shiftKey == true && this.playerSeen == false && !altKey && !player.subtlety)
+            if (wKey == true && shiftKey == true && this.playerSeen == false && !altKey && player.subtlety != true)
             {
                 if (hostile == false)
                 {
@@ -3031,8 +3089,16 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     spd = this.speed;
                 }
 
-                var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * spd) * this.stunned;
-                var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * spd) * this.stunned;
+                if (this.mounted) //mounts go faster because they are urged to...
+                {
+                    var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * spd) * this.stunned * 1.15 + Math.min(0.09, 0.002 * player.getSurvivalism());
+                    var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * spd) * this.stunned * 1.15 + Math.min(0.09, 0.002 * player.getSurvivalism());
+                }
+                else
+                {
+                    var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * spd) * this.stunned;
+                    var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * spd) * this.stunned;
+                }
 
                 if (!this.isObstructed( nextX, nextY ) || this.flying == true || this.underground == true)
                 {
@@ -5332,6 +5398,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.extraRangeTime = 0;
             this.extraRange = 0;
 
+            //unmount on death
+            if (this.mounted)
+            {
+                this.mounted = false;
+                player.mounted = false;
+            }
+
             if (this.wasAlive == true && !this.undeath)
             {
                 this.wasAlive = false;
@@ -6538,6 +6611,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             this.haste = true;
             this.baseTeam = this.team;
+            this.mountRange = 9;
 
             if (this.alpha == true)
             {
@@ -6771,6 +6845,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.team = "wild";
             this.baseTeam = this.team;
             this.tameREQ = 22;
+            this.mountRange = 10;
 
             if (this.alpha == true)
             {
@@ -6839,6 +6914,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             this.baseTeam = this.team;
             this.tameREQ = 19;
+            this.mountRange = 9;
 
             if (this.alpha == true)
             {
@@ -10095,6 +10171,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "automatic";
             this.effect = "poisonII";
             this.team = "wild";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
             this.baseTeam = this.team;
             this.tameREQ = 30;
 
@@ -10178,6 +10258,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "manual";
             this.effect = "poisonIV";
             this.team = "wild";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
             this.baseTeam = this.team;
             this.tameREQ = 33;
 
@@ -10236,6 +10320,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.resistances = ["petrification", "acid", "basilisk"];
             this.effect = "basiliskVenom";
             this.team = "Basilisk";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
             this.baseTeam = this.team;
             this.tameREQ = 500;
             this.shortSighted = true;
@@ -10318,6 +10406,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.damageFrame = "manual";
             this.team = "herd";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            else if (this.ID == "player")
+            {
+                this.team = "player";
+            }
             this.baseTeam = this.team;
             this.milkTime = new Date().getTime();
             this.tameREQ = 20;
@@ -14099,7 +14195,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         player.health -= Math.max(0, 0.015 - Math.max(0, player.armourTotal - this.negateArmour));
                         if (Math.max(0, 0.015 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                         {
-                            if (!player.resistDisease)
+                            if (player.resistDisease != true)
                             {
                                 player.swollenI = true;
                                 player.swollenTime = Math.max(player.swollenTime, 180);
@@ -24258,17 +24354,40 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.friendDecider();
                 this.targeting();
 
-                if (this.target == player)
+                if (this.mounted)
                 {
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    if (shiftKey)
+                    {
+                        this.newRotation = Math.atan2((Y - mouseY + 1/2 * CCC.height) - this.Y, (X - mouseX + 1/2 * CCC.width) - this.X) + Math.PI;
+                    }
+                    if (wKey)
+                    {
+                        this.moveInRelationToThing({X: this.X + Math.cos(this.rotation) * (this.rangeOfSight - 1), Y: this.Y + Math.sin(this.rotation) * (this.rangeOfSight - 1)})
+                    }
+                    else
+                    {
+                        this.moving = false;
+                        this.costume = 0;
+                    }
                 }
-                else if (this.target != "none")
+                else
                 {
-                    this.pointTowards(this.target);
-                    this.moveInRelationToThing(this.target);
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
                 }
 
+                if (player.getSurvivalism() >= 41)
+                {
+                    this.mount(0);
+                }
             }
 
             //ANIMATIONS
@@ -24768,31 +24887,26 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.visibleSight();
                 this.friendDecider();
                 this.targeting();
-                if (this.alpha == true)
+
+                if (this.mounted)
                 {
-                    if (this.target == player)
+                    if (shiftKey)
                     {
-                        this.pointTowardsPlayer();
+                        this.newRotation = Math.atan2((Y - mouseY + 1/2 * CCC.height) - this.Y, (X - mouseX + 1/2 * CCC.width) - this.X) + Math.PI;
                     }
-                    else if (this.target != "none")
+                    if (wKey)
                     {
-                        this.pointTowards(this.target);
+                        this.moveInRelationToThing({X: this.X + Math.cos(this.rotation) * (this.rangeOfSight - 1), Y: this.Y + Math.sin(this.rotation) * (this.rangeOfSight - 1)})
                     }
-                }
-                else if (this.alpha == "baby")
-                {
-                    if (this.target == player)
+                    else
                     {
-                        this.pointAwayFromPlayer();
-                    }
-                    else if (this.target != "none")
-                    {
-                        this.pointAway(this.target);
+                        this.moving = false;
+                        this.costume = 0;
                     }
                 }
                 else
                 {
-                    if (this.disturbed == true && this.health > (this.healthMAX * (3/4)) || player.weaponEquipped == "none" && player.getSurvivalism() >= 10 && this.disturbed == false)
+                    if (this.alpha == true)
                     {
                         if (this.target == player)
                         {
@@ -24803,7 +24917,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.pointTowards(this.target);
                         }
                     }
-                    else
+                    else if (this.alpha == "baby")
                     {
                         if (this.target == player)
                         {
@@ -24814,16 +24928,61 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.pointAway(this.target);
                         }
                     }
-                }
-                if (this.target == player && player.getSurvivalism() < 10 || this.target == player && this.disturbed || this.target == player && player.weaponEquipped != "none")
-                {
-                    this.moveInRelationToPlayer();
-                }
-                else if (this.target != "none")
-                {
-                    this.moveInRelationToThing(this.target);
+                    else
+                    {
+                        if (this.disturbed == true && this.health > (this.healthMAX * (3/4)) || player.weaponEquipped == "none" && player.getSurvivalism() >= 10 && this.disturbed == false)
+                        {
+                            if (this.target == player)
+                            {
+                                this.pointTowardsPlayer();
+                            }
+                            else if (this.target != "none")
+                            {
+                                this.pointTowards(this.target);
+                            }
+                        }
+                        else
+                        {
+                            if (this.target == player)
+                            {
+                                this.pointAwayFromPlayer();
+                            }
+                            else if (this.target != "none")
+                            {
+                                this.pointAway(this.target);
+                            }
+                        }
+                    }
+                    if (this.target == player && player.getSurvivalism() < 10 || this.target == player && this.disturbed || this.target == player && player.weaponEquipped != "none")
+                    {
+                        if (this.team == "herd" || this.team == "player")
+                        {
+                            this.moveInRelationToPlayer();
+                        }
+                    }
+                    else if (this.target != "none")
+                    {
+                        if (this.team == "herd" || this.team == "player")
+                        {
+                            this.moveInRelationToThing(this.target);
+                        }
+
+                    }
                 }
 
+                if (player.getSurvivalism() >= 3 && this.alpha != "baby" && this.alpha != false)
+                {
+                    this.mount(0);
+                }
+
+            }
+            else if (this.doOnDeathOnce)
+            {
+                this.doOnDeathOnce = false;
+                if (this.team == "Freynor")
+                {
+                    player.freynorFaction -= 50;
+                }
             }
 
             //ANIMATIONS
@@ -25319,90 +25478,114 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.visibleSight();
                 this.friendDecider();
                 this.targeting();
-                if (this.alpha == true)
+
+                if (this.mounted)
                 {
-                    if (player.weaponEquipped == "none" && player.getSurvivalism() >= 30 && !this.disturbed)
+                    if (shiftKey)
                     {
-                        if (this.target == player)
-                        {
-                            this.pointTowardsPlayer();
-                        }
-                        else if (this.target != "none")
-                        {
-                            this.pointTowards(this.target);
-                        }
+                        this.newRotation = Math.atan2((Y - mouseY + 1/2 * CCC.height) - this.Y, (X - mouseX + 1/2 * CCC.width) - this.X) + Math.PI;
+                    }
+                    if (wKey)
+                    {
+                        this.moveInRelationToThing({X: this.X + Math.cos(this.rotation) * (this.rangeOfSight - 1), Y: this.Y + Math.sin(this.rotation) * (this.rangeOfSight - 1)})
                     }
                     else
                     {
-                        if (this.target == player)
-                        {
-                            this.pointAwayFromPlayer();
-                        }
-                        else if (this.target != "none")
-                        {
-                            this.pointAway(this.target);
-                        }
-                    }
-                }
-                else if (this.alpha == "baby")
-                {
-                    if (player.weaponEquipped == "none" && player.getSurvivalism() >= 30 && !this.disturbed)
-                    {
-                        if (this.target == player)
-                        {
-                            this.pointTowardsPlayer();
-                        }
-                        else if (this.target != "none")
-                        {
-                            this.pointAway(this.target);
-                        }
-                    }
-                    else
-                    {
-                        if (this.target == player)
-                        {
-                            this.pointAwayFromPlayer();
-                        }
-                        else if (this.target != "none")
-                        {
-                            this.pointAway(this.target);
-                        }
+                        this.moving = false;
+                        this.costume = 0;
                     }
                 }
                 else
                 {
-                    if (player.weaponEquipped == "none" && player.getSurvivalism() >= 30 && !this.disturbed)
+                    if (this.alpha == true)
                     {
-                        if (this.target == player)
+                        if (player.weaponEquipped == "none" && player.getSurvivalism() >= 30 && !this.disturbed)
                         {
-                            this.pointTowardsPlayer();
+                            if (this.target == player)
+                            {
+                                this.pointTowardsPlayer();
+                            }
+                            else if (this.target != "none")
+                            {
+                                this.pointTowards(this.target);
+                            }
                         }
-                        else if (this.target != "none")
+                        else
                         {
-                            this.pointAway(this.target);
+                            if (this.target == player)
+                            {
+                                this.pointAwayFromPlayer();
+                            }
+                            else if (this.target != "none")
+                            {
+                                this.pointAway(this.target);
+                            }
+                        }
+                    }
+                    else if (this.alpha == "baby")
+                    {
+                        if (player.weaponEquipped == "none" && player.getSurvivalism() >= 30 && !this.disturbed)
+                        {
+                            if (this.target == player)
+                            {
+                                this.pointTowardsPlayer();
+                            }
+                            else if (this.target != "none")
+                            {
+                                this.pointAway(this.target);
+                            }
+                        }
+                        else
+                        {
+                            if (this.target == player)
+                            {
+                                this.pointAwayFromPlayer();
+                            }
+                            else if (this.target != "none")
+                            {
+                                this.pointAway(this.target);
+                            }
                         }
                     }
                     else
                     {
-                        if (this.target == player)
+                        if (player.weaponEquipped == "none" && player.getSurvivalism() >= 30 && !this.disturbed)
                         {
-                            this.pointAwayFromPlayer();
+                            if (this.target == player)
+                            {
+                                this.pointTowardsPlayer();
+                            }
+                            else if (this.target != "none")
+                            {
+                                this.pointAway(this.target);
+                            }
                         }
-                        else if (this.target != "none")
+                        else
                         {
-                            this.pointAway(this.target);
+                            if (this.target == player)
+                            {
+                                this.pointAwayFromPlayer();
+                            }
+                            else if (this.target != "none")
+                            {
+                                this.pointAway(this.target);
+                            }
                         }
                     }
-                }
-                if (this.target == player && player.getSurvivalism() < 30 || this.target == player && this.disturbed || this.target == player && player.weaponEquipped != "none")
-                {
-                    this.moveInRelationToPlayer();
-                }
-                else if (this.target != "none")
-                {
-                    this.moveInRelationToThing(this.target);
+                    if (this.target == player && player.getSurvivalism() < 30 || this.target == player && this.disturbed || this.target == player && player.weaponEquipped != "none" || this.team == "player" && this.target == player)
+                    {
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.moveInRelationToThing(this.target);
+                    }
                 }
 
+                if (player.getSurvivalism() >= 33 && this.alpha != "baby")
+                {
+                    this.mount(0);
+                }
             }
 
             //ANIMATIONS
@@ -27921,17 +28104,40 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.friendDecider();
                 this.targeting();
 
-                if (this.target == player)
+                if (this.mounted)
                 {
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    if (shiftKey)
+                    {
+                        this.newRotation = Math.atan2((Y - mouseY + 1/2 * CCC.height) - this.Y, (X - mouseX + 1/2 * CCC.width) - this.X) + Math.PI;
+                    }
+                    if (wKey)
+                    {
+                        this.moveInRelationToThing({X: this.X + Math.cos(this.rotation) * (this.rangeOfSight - 1), Y: this.Y + Math.sin(this.rotation) * (this.rangeOfSight - 1)})
+                    }
+                    else
+                    {
+                        this.moving = false;
+                        this.costume = 0;
+                    }
                 }
-                else if (this.target != "none")
+                else
                 {
-                    this.pointTowards(this.target);
-                    this.moveInRelationToThing(this.target);
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
                 }
 
+                if (player.getSurvivalism() >= 24)
+                {
+                    this.mount(17);
+                }
             }
 
             //ANIMATIONS
@@ -28091,17 +28297,40 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.friendDecider();
                 this.targeting();
 
-                if (this.target == player)
+                if (this.mounted)
                 {
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    if (shiftKey)
+                    {
+                        this.newRotation = Math.atan2((Y - mouseY + 1/2 * CCC.height) - this.Y, (X - mouseX + 1/2 * CCC.width) - this.X) + Math.PI;
+                    }
+                    if (wKey)
+                    {
+                        this.moveInRelationToThing({X: this.X + Math.cos(this.rotation) * (this.rangeOfSight - 1), Y: this.Y + Math.sin(this.rotation) * (this.rangeOfSight - 1)})
+                    }
+                    else
+                    {
+                        this.moving = false;
+                        this.costume = 0;
+                    }
                 }
-                else if (this.target != "none")
+                else
                 {
-                    this.pointTowards(this.target);
-                    this.moveInRelationToThing(this.target);
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
                 }
 
+                if (player.getSurvivalism() >= 22)
+                {
+                    this.mount(17);
+                }
             }
 
             //ANIMATIONS
@@ -28914,6 +29143,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 115]];
             }
+            else if (this.ID == "Aarni the Stablemaster")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 96]];
+            }
             else if (this.ID == "Odee the Banker")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 145]];
@@ -29490,6 +29723,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.freynorFaction -= 14;
                         }
                     }
+                    else if (this.ID == "Aarni the Stablemaster")
+                    {
+                        uniqueChars.aarniLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction -= 9;
+                        }
+                    }
                     else if (this.ID == "Odee the Banker")
                     {
                         uniqueChars.odeeLDS = false;
@@ -29815,9 +30056,9 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.team == "player" && !this.isCharmed)
                     {
-                        if (player.theBalgurMercenariesFaction < 0 || !player.theBalgurMercenariesPeace)
+                        if (player.theBalgurMercenariesFaction < 0 || player.theBalgurMercenariesPeace != true)
                         {
-                            if (!player.theBalgurMercenariesPeace)
+                            if (player.theBalgurMercenariesPeace != true)
                             {
                                 this.disturbedTime = new Date().getTime();
                             }
@@ -29829,7 +30070,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.team == "player" && !this.isCharmed)
                     {
-                        if (player.freynorFaction < 0 || !player.freynorPeace)
+                        if (player.freynorFaction < 0 || player.freynorPeace != true)
                         {
                             this.baseTeam = "Freynor";
                         }
@@ -29839,7 +30080,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.team == "player" && !this.isCharmed)
                     {
-                        if (player.thengarFaction < 0 || !player.thengarPeace)
+                        if (player.thengarFaction < 0 || player.thengarPeace != true)
                         {
                             this.baseTeam = "Thengar";
                         }

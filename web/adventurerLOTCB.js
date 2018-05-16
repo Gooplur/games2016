@@ -527,9 +527,6 @@ function Adventurer()
     this.readyForAnotherJumpBack = true;
     //mount variables
     this.mounted = false; //Are you mounted?
-    this.mountType = "none"; //What type of mount is it?
-    this.mountSpeed = 0; //The official speed of your mount
-    this.mountMove = 0; //how fast your mount moves.
     //companion variables
     this.companions = [];
     this.companionLimit = 8;
@@ -4805,64 +4802,6 @@ function Adventurer()
             this.rLegY = 0;
         }
     };
-    //DRAW AND DO MOUNT STUFF
-    this.mount = function() //player mount
-    {
-        if (this.mountType == "none")
-        {
-            //STATS
-            this.mounted = false;
-            this.mountSpeed = 0;
-            //DRAW
-            //---- n/a
-        }
-        else if (this.mountType == "Naaprid") //todo fix this section/add mounts
-        {
-            //STATS
-            this.mounted = true;
-            this.mountSpeed = 72;
-            //DRAW
-            if (wKey == true && shiftKey == true) //If moving and not attacking initiate moving animation...
-            {
-                this.stageEngine(3, 0.210, false);
-                this.mountStage = Math.floor( this.stage );
-            }
-            else if (wKey == true) //If moving and not attacking initiate moving animation...
-            {
-                this.stageEngine(3, 0.140, false);
-                this.mountStage = Math.floor( this.stage );
-            }
-            else
-            {
-                this.mountStage = 0;
-            }
-
-            if (this.mountStage <= 0)
-            {
-                XXX.save();
-                XXX.translate(screenX + 1/2 * CCC.width, screenY + 1/2 * CCC.height);
-                XXX.rotate(this.rotation - 1/2 * Math.PI);
-                XXX.drawImage(verse, 2849, 50, 61, 37, -1 * 61 * 2.15, -1 * 37 * 2.15,  61 * 2.15, 37 * 2.15);
-                XXX.restore();
-            }
-            else if (this.mountStage == 1)
-            {
-                XXX.save();
-                XXX.translate(screenX + 1/2 * CCC.width, screenY + 1/2 * CCC.height);
-                XXX.rotate(this.rotation - 1/2 * Math.PI);
-                XXX.drawImage(verse, 3088, 50, 61, 37, 1/2 * 61, 1/2 * 37, 61 * 2.15, 37 * 2.15);
-                XXX.restore();
-            }
-            else if (this.mountStage == 2)
-            {
-                XXX.save();
-                XXX.translate(screenX + 1/2 * CCC.width, screenY + 1/2 * CCC.height);
-                XXX.rotate(this.rotation - 1/2 * Math.PI);
-                XXX.drawImage(verse, 3005, 50, 61, 37, 1/2 * 61, 1/2 * 37, 61 * 2.15, 37 * 2.15);
-                XXX.restore();
-            }
-        }
-    };
 
     //DRAW SELF STUFF
     //to put it simply, this function draws two lines that represent the main character's legs.
@@ -6259,7 +6198,7 @@ function Adventurer()
             {
                 if (player.getEndurance() >= 10 && this.weapon.energyCost * energil > this.energy && this.energy >= -4) //Special: the player can hit only minimal damage when out of energy.
                 {
-                    if (this.attacking == false && this.blocking == false && qKey == false && eKey == false && this.mounted == false)
+                    if (this.attacking == false && this.blocking == false && qKey == false && eKey == false)
                     {
                         this.energy = -5;
                         if (player.getEndurance() >= 15)
@@ -6276,7 +6215,7 @@ function Adventurer()
                 }
                 else if (this.weapon.energyCost * energil <= this.energy) //Normal: the player can not attack when out of energy.
                 {
-                    if (this.attacking == false && this.blocking == false && qKey == false && eKey == false && this.mounted == false)
+                    if (this.attacking == false && this.blocking == false && qKey == false && eKey == false)
                     {
                         this.energy -= this.weapon.energyCost * energil;
                         this.powerAttack = false;
@@ -6285,7 +6224,7 @@ function Adventurer()
                     }
                 }
             }
-            else if (this.weaponIsRanged == true && this.spell == "none" && this.mounted == false)
+            else if (this.weaponIsRanged == true && this.spell == "none")
             {
                 for (var i = Inventory.length - 1; i > -1; i--)
                 {
@@ -6394,7 +6333,7 @@ function Adventurer()
                     }
                 }
             }
-            else if (this.weaponEquipped == "none" && this.spell != "none" && this.mounted == false)
+            else if (this.weaponEquipped == "none" && this.spell != "none")
             {
                 if (this.casting == false && this.will >= this.spell.cost && new Date().getTime() - this.castingCooldown >= (this.spell.cooldown * 1000))
                 {
@@ -6406,7 +6345,7 @@ function Adventurer()
         //BLOCK INITIATOR
         if (qKey == true)
         {
-            if (this.weapon.subUtility == "shield" && this.blocking == false && this.mounted == false)
+            if (this.weapon.subUtility == "shield" && this.blocking == false)
             {
                 if (this.weapon.blockCost <= this.energy && this.attacking == false && spaceKey == false)
                 {
@@ -6420,7 +6359,7 @@ function Adventurer()
         {
             if (player.getStrength() >= 20)
             {
-                if (this.weaponIsRanged == false && (this.weapon.energyCost * 2 * energil <= this.energy) && new Date().getTime() - this.attackCooldown >= 18 * this.weapon.rate && this.spell == "none" && this.mounted == false)
+                if (this.weaponIsRanged == false && (this.weapon.energyCost * 2 * energil <= this.energy) && new Date().getTime() - this.attackCooldown >= 18 * this.weapon.rate && this.spell == "none")
                 {
                     if (this.attacking == false && this.blocking == false && qKey == false && spaceKey == false)
                     {
@@ -6433,7 +6372,7 @@ function Adventurer()
             }
             else
             {
-                if (this.weaponIsRanged == false && (this.weapon.energyCost * 2.5 * energil <= this.energy) && new Date().getTime() - this.attackCooldown >= 25 * this.weapon.rate && this.getStrength() >= 10 && this.spell == "none" && this.mounted == false)
+                if (this.weaponIsRanged == false && (this.weapon.energyCost * 2.5 * energil <= this.energy) && new Date().getTime() - this.attackCooldown >= 25 * this.weapon.rate && this.getStrength() >= 10 && this.spell == "none")
                 {
                     if (this.attacking == false && this.blocking == false && qKey == false && spaceKey == false)
                     {
@@ -16088,7 +16027,7 @@ function Adventurer()
                 {
                     var dfu = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.bubbleOfDamageX) * (ArtificialIntelligenceAccess[i].X - this.bubbleOfDamageX) + (ArtificialIntelligenceAccess[i].Y - this.bubbleOfDamageY) * (ArtificialIntelligenceAccess[i].Y - this.bubbleOfDamageY)) - ArtificialIntelligenceAccess[i].sizeRadius; //This is the distance from the center of the players attack/damaging bubble to the AI Unit.
 
-                    if (dfu <= this.weapon.range * 7 && this.finalAttackStage == true && !ArtificialIntelligenceAccess[i].underground && ArtificialIntelligenceAccess[i].dmx == this.dmx)
+                    if (dfu <= this.weapon.range * 7 && this.finalAttackStage == true && !ArtificialIntelligenceAccess[i].underground && ArtificialIntelligenceAccess[i].dmx == this.dmx && ArtificialIntelligenceAccess[i].mounted != true)
                     {
                         var justDealt = 0; //this stores the damage that was just dealt
                         if (this.powerAttack == false)

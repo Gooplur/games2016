@@ -2755,7 +2755,8 @@ function theLegend()
         saana: ["Sanna", 0],
         maai: ["Maai", 0],
         gamden: ["Gamden", 0],
-        bjorn: ["Bjorn", 0]
+        bjorn: ["Bjorn", 0],
+        aarni: ["Aarni", 0]
     };
 
 //time Tracker Variables
@@ -2899,7 +2900,8 @@ function theLegend()
         maaiLDS: true,
         gamdenLDS: true,
         bjornLDS: true,
-        jalmariLDS: true
+        jalmariLDS: true,
+        aarniLDS: true
     };
 //QUESTS
     quests =

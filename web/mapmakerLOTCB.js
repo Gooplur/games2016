@@ -292,6 +292,29 @@ function buildMaster()
                         }
                     }
                 }
+                if (uniqueChars.aarniLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Aarni the Stablemaster")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(644, 1513, "Person", false, "Aarni the Stablemaster", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["varnFurClothing", 0], weapon: ["none", [0.5, 0.6], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[644, 1525]]}));
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Aarni")
+                            {
+                                ArtificialIntelligenceAccess[i].healthMAX = 9;
+                                ArtificialIntelligenceAccess[i].health = 9;
+                            }
+                        }
+                    }
+                }
                 if (uniqueChars.garldLDS == true)
                 {
                     var hits = 0;
@@ -556,6 +579,20 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(5986, -1355, "Naaprid", "baby", "Aaptelava"));
                 ArtificialIntelligenceAccess.push(new Unit(6111, -943, "Naaprid", true, "Paaktolav"));
 
+                //Domestic Naaprid
+                if (uniqueChars.aarniLDS)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(574, 1804, "Naaprid", true, "Stovilav"));
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Stovilav")
+                        {
+                            ArtificialIntelligenceAccess[i].baseTeam = "Freynor";
+                        }
+                    }
+                }
+
+
                 //Grassland Ardils
                 ArtificialIntelligenceAccess.push(new Unit(-24, -235, "Ardil", true, "Fuzzybut"));
                 ArtificialIntelligenceAccess.push(new Unit(1796, -2657, "Ardil", true, "Fannyfur"));
@@ -666,6 +703,7 @@ function buildMaster()
                 scenicList.push(new Scenery("freydicBuilding5", 2678, 1064, 0, true));
                 scenicList.push(new Scenery("freydicBuilding5", 2678, 876, 0, true));
                 scenicList.push(new Scenery("freydicBuilding5", 2678, 683, 0, true));
+                scenicList.push(new Scenery("freydicBuilding3", 576, 1590, 0, true));
 
                 //interior design
                 //bank
@@ -751,6 +789,11 @@ function buildMaster()
                 scenicList.push(new Scenery("item", 1420, 958, 0, "freynor", ["iron", 1, -7]));
                 scenicList.push(new Scenery("item", 1393, 962, 0, "freynor", ["steel", 1, -13]));
                 scenicList.push(new Scenery("crate", 1346, 973, 0.556781792/4 * Math.PI, 1, [1.55]));
+                //Stable
+                scenicList.push(new Scenery("crate", 633, 1656, -6/4 * Math.PI, 1, [1.3]));
+                scenicList.push(new Scenery("crate", 497, 1604, -1/4 * Math.PI, 1, [1]));
+                scenicList.push(new Scenery("crate", 578, 1522, 8/4 * Math.PI, 1, [1.4]));
+                scenicList.push(new Scenery("crate", 552, 1659, 1/5 * Math.PI, 1, [1.25]));
 
 
                 //Signs
@@ -761,6 +804,7 @@ function buildMaster()
                 scenicList.push(new Scenery("sign", 1484, 1514, 0 * Math.PI, 3, "Teshir City Bank"));
                 scenicList.push(new Scenery("sign", 2175, 1657, 0 * Math.PI, 3, "The Harvest's Bounty - Inn"));
                 scenicList.push(new Scenery("sign", 1446, 611, 0 * Math.PI, 3, "Bubbling Creations - Alchemy Shop"));
+                scenicList.push(new Scenery("sign", 700, 1530, 1/2 * Math.PI, 3, "Teshir Stablehouse"));
 
                 //filler and the rest
                 //the inn

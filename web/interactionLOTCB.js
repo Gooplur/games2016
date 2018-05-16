@@ -976,6 +976,76 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Aarni the Stablemaster" || conversationID[0] == "Aarni")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Aarni";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 400)
+                                    {
+                                        player.dialogueOptions.push(["[buy naaprid for 400 coins]", false, "a"]);
+                                        break;
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            var hunz = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 400)
+                                {
+                                    hunz = i;
+                                    break;
+                                }
+                            }
+
+                            if (hunz > -1)
+                            {
+                                //pay
+                                Inventory[hunz][1] -= 400;
+                                if (Inventory[hunz][1] < 1)
+                                {
+                                    Inventory.splice(hunz, 1);
+                                }
+                                //receive
+                                ArtificialIntelligenceAccess.push(new Unit(596, 2003, "Naaprid", true, "player"));
+                            }
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
                     if (self.ID == "Jarl Rannuk Stambjord" || conversationID[0] == "Rannuk")
                     {
                         lowBar = "dialogue";

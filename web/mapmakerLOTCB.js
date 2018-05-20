@@ -2689,6 +2689,9 @@ function buildMaster()
                     ArtificialIntelligenceAccess.push(new Unit(-20116, 43053, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["northernClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 14, patrolLoop: true, route:[[-20553, 43053], [-20553, 43666], [-15713, 43666], [-15713, 43116], [-15102, 43143], [-15098, 43295], [-15149, 43292], [-15100, 43243], [-15100, 42917], [-15734, 42934], [-15750, 43548], [-20379, 43545], [-20379, 43053], [-20116, 43053]]}));
                 }
 
+                //Abandoned Mineshaft south of Venning City
+                scenicList.push(new Scenery("cave", -17526, 39304, 2, [854, 307], "venningMineshaft"));
+
                 //Venning City
                 //docks
                 scenicList.push(new Scenery("floatingBoat", -14825, 46962, 3.5, true));
@@ -2924,23 +2927,24 @@ function buildMaster()
                 scenicList.push(new Scenery("barrel", -18794, 44740, 0, 1));
                 scenicList.push(new Scenery("barrel", -18794, 44777, 0.02, 1));
                 //barracks
-                scenicList.push(new Scenery("freydicBuilding7", -18340, 44623, 0, true));
-                scenicList.push(new Scenery("sign", -18383, 44868, 1 * Math.PI, 3, "Venning City Barracks"));
-                scenicList.push(new Scenery("bed", -18155, 44478, 1 * Math.PI, false));
-                scenicList.push(new Scenery("bed", -18155, 44578, 1 * Math.PI, false));
-                scenicList.push(new Scenery("bed", -18155, 44678, 0 * Math.PI, false));
-                scenicList.push(new Scenery("bed", -18155, 44778, 0 * Math.PI, false));
-                scenicList.push(new Scenery("woodenBench", -18533, 44744, 1/2 * Math.PI, 0));
-                scenicList.push(new Scenery("woodenBench", -18514, 44744, 1/2 * Math.PI, 0));
-                scenicList.push(new Scenery("woodenBench", -18495, 44744, 1/2 * Math.PI, 0));
-                scenicList.push(new Scenery("item", -18504, 44786, 0, "freynor", ["pintGlass", 1, -2]));
-                scenicList.push(new Scenery("item", -18492, 44744, 0, "freynor", ["mead", 1, -8]));
-                scenicList.push(new Scenery("item", -18509, 44706, 0, "freynor", ["mead", 1, -8]));
-                scenicList.push(new Scenery("item", -18494, 44721, 0, "freynor", ["sealMeat", 1, -9]));
-                scenicList.push(new Scenery("item", -18494, 44769, 0, "freynor", ["sealMeat", 1, -9]));
-                scenicList.push(new Scenery("stumpStoolSml", -18467, 44702, 8.1, 0));
-                scenicList.push(new Scenery("stumpStoolSml", -18471, 44760, 1.3, 0));
-                scenicList.push(new Scenery("stumpStoolSml", -18510, 44823, 7.4, 0));
+                var venningBarracksXMas = 60;
+                scenicList.push(new Scenery("freydicBuilding7", -18340 + venningBarracksXMas, 44623, 0, true));
+                scenicList.push(new Scenery("sign", -18383 + venningBarracksXMas, 44868, 1 * Math.PI, 3, "Venning City Barracks"));
+                scenicList.push(new Scenery("bed", -18155 + venningBarracksXMas, 44478, 1 * Math.PI, false));
+                scenicList.push(new Scenery("bed", -18155 + venningBarracksXMas, 44578, 1 * Math.PI, false));
+                scenicList.push(new Scenery("bed", -18155 + venningBarracksXMas, 44678, 0 * Math.PI, false));
+                scenicList.push(new Scenery("bed", -18155 + venningBarracksXMas, 44778, 0 * Math.PI, false));
+                scenicList.push(new Scenery("woodenBench", -18533 + venningBarracksXMas, 44744, 1/2 * Math.PI, 0));
+                scenicList.push(new Scenery("woodenBench", -18514 + venningBarracksXMas, 44744, 1/2 * Math.PI, 0));
+                scenicList.push(new Scenery("woodenBench", -18495 + venningBarracksXMas, 44744, 1/2 * Math.PI, 0));
+                scenicList.push(new Scenery("item", -18504 + venningBarracksXMas, 44786, 0, "freynor", ["pintGlass", 1, -2]));
+                scenicList.push(new Scenery("item", -18492 + venningBarracksXMas, 44744, 0, "freynor", ["mead", 1, -8]));
+                scenicList.push(new Scenery("item", -18509 + venningBarracksXMas, 44706, 0, "freynor", ["mead", 1, -8]));
+                scenicList.push(new Scenery("item", -18494 + venningBarracksXMas, 44721, 0, "freynor", ["sealMeat", 1, -9]));
+                scenicList.push(new Scenery("item", -18494 + venningBarracksXMas, 44769, 0, "freynor", ["sealMeat", 1, -9]));
+                scenicList.push(new Scenery("stumpStoolSml", -18467 + venningBarracksXMas, 44702, 8.1, 0));
+                scenicList.push(new Scenery("stumpStoolSml", -18471 + venningBarracksXMas, 44760, 1.3, 0));
+                scenicList.push(new Scenery("stumpStoolSml", -18510 + venningBarracksXMas, 44823, 7.4, 0));
                 //bank
                 scenicList.push(new Scenery("freydicBuilding7", -17025, 44720, 0, true));
                 scenicList.push(new Scenery("sign", -17055, 44957, 1 * Math.PI, 3, "Venning City Bank"));
@@ -2972,7 +2976,7 @@ function buildMaster()
                     scenicList.push(new Scenery("crate", -18288, 44448, 1.8/4 * Math.PI, 3, [1.2, "venningBarracksCrate1", 3, [[new Item("freydicSword", false, false), 8], [new Item("northernPlateArmour", false, false), 1], [new Item("chainArmour", false, false), 2]], "freynor", 0]));
                 }
                 //city prison
-                scenicList.push(new Scenery("trapdoor", -18509, 44450, 0 * Math.PI, [483, 45], "venningCityPrison"));
+                scenicList.push(new Scenery("trapdoor", -18509 + venningBarracksXMas, 44450, 0 * Math.PI, [483, 45], "venningCityPrison"));
                 //center
                 //inn
                 scenicList.push(new Scenery("freydicBuilding1", -15192, 44627, 0, true));
@@ -3084,7 +3088,7 @@ function buildMaster()
                     scenicList.push(new Scenery("hearth", -20131, 43235, Math.PI, "lit"));
                 }
                 scenicList.push(new Scenery("crate", -20058, 43409, 2/4 * Math.PI, 2, [1.3]));
-                //homes //todo add more homes
+                //homes
                 scenicList.push(new Scenery("freydicBuilding5", -17873, 44619, 0, true));
                 scenicList.push(new Scenery("freydicBuilding5", -17530, 44619, 0, true));
                 scenicList.push(new Scenery("freydicBuilding5", -16622, 44810, 0, true));
@@ -3105,7 +3109,14 @@ function buildMaster()
                 }
                 for (var i = 0; i < 19; i++)
                 {
-                    scenicList.push(new Scenery("freydicBuilding5", -16388 - 270 * i, 43915, 0, true));
+                    if (i != 8 && i != 9 && i != 10)
+                    {
+                        scenicList.push(new Scenery("freydicBuilding5", -16388 - 270 * i, 43915, 0, true));
+                    }
+                    else if (i == 9)
+                    {
+                        scenicList.push(new Scenery("freydicBuilding5", -16388 - 150 - 270 * i, 43915, 0, true));
+                    }
                 }
                 for (var i = 0; i < 4; i++)
                 {
@@ -12033,12 +12044,142 @@ function buildMaster()
                 //scenery
                 if (player.prisoner != true)
                 {
-                    scenicList.push(new Scenery("ladder", 483, 45, 0 * Math.PI, [-18509, 44450], "world"));
+                    scenicList.push(new Scenery("ladder", 483, 45, 0 * Math.PI, [-18450, 44450], "world"));
                 }
                 //units
                 ArtificialIntelligenceAccess.push(new Unit(780, 338, "Soldier", false, "Prisoner", {race: "Freynor", faction: "arena2", con: 2, speed: 1.5, outfit: ["none", 0], weapon: ["none", [0.45, 0.3], 0, 0, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
 
                 change = "venningCityPrison";
+            }
+        }
+    }
+    else if (map == "venningMineshaft")
+    {
+        if (region == "venningMineshaft")
+        {
+            if (change != "venningMineshaft")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (!ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //barriers
+                barrierList.push(new Barrier(1000, 277, 1870, 70, true));
+                barrierList.push(new Barrier(1000 - 300, 277 + 1800, 70, 300, true));
+                barrierList.push(new Barrier(700, 2077 + 70, 230, 70, true));
+                barrierList.push(new Barrier(770, 2307, 70, 3900, true));
+                barrierList.push(new Barrier(700 + 3900, 2307 + 70, 300, 70, true));
+                barrierList.push(new Barrier(700 + 3900 + 70, 2307 + 300, 70, 1500, true));
+                barrierList.push(new Barrier(6100, 2607, 2400, 70, true));
+                barrierList.push(new Barrier(6100, 5007, 70, 370, true));
+                barrierList.push(new Barrier(6400, 5077, 600, 70, true));
+                barrierList.push(new Barrier(6400, 5607, 70, 1570, true));
+                barrierList.push(new Barrier(7900, 5677, 670, 70, true));
+                barrierList.push(new Barrier(7000, 6277, 70, 900, true));
+                barrierList.push(new Barrier(7000, 6347, 300, 70, true));
+                barrierList.push(new Barrier(5500, 6577, 70, 1500, true));
+                barrierList.push(new Barrier(5500, 6647, 300, 70, true));
+                barrierList.push(new Barrier(4530, 6877, 70, 970, true));
+                barrierList.push(new Barrier(4530, 5907, 970, 70, true));
+                barrierList.push(new Barrier(4600, 5907, 70, 900, true));
+                barrierList.push(new Barrier(5430, 5607, 300, 70, true));
+                barrierList.push(new Barrier(5500, 5607, 70, 300, true));
+                barrierList.push(new Barrier(5730, 3277, 2330, 70, true));
+                barrierList.push(new Barrier(5730 - 2100, 3277, 70, 2100, true));
+                barrierList.push(new Barrier(3630, 2677, 600, 70, true));
+                barrierList.push(new Barrier(330, 2677, 70, 3300, true));
+                barrierList.push(new Barrier(330, 1407, 1270, 70, true));
+                barrierList.push(new Barrier(400, 1407, 70, 300, true));
+                barrierList.push(new Barrier(630, 207, 1200, 70, true));
+                barrierList.push(new Barrier(700, 207, 70, 370, true));
+
+
+                //scenery
+                scenicList.push(new Scenery("caveExit", 856, 284, 1/2 * Math.PI, [-17477, 39222], "world"));
+                //units
+                var rnd = Math.random();
+                if (rnd <= 0.15 || quests.theMineshaftMysteryQuest == true)
+                {
+                    if (Math.round(Math.random()) == 1)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(703, 1764, "Balkur", true, "Benjamin"));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(703, 1764, "Balkur", false, "Benjamin"));
+                    }
+                }
+
+                if (quests.stolenScriptureLilBaskKilled < 4)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(6139, 6271, "Basilisk", "baby", "lilBask"));
+                    if (quests.stolenScriptureLilBaskKilled < 3)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(5965, 4795, "Basilisk", "baby", "lilBask"));
+                        if (quests.stolenScriptureLilBaskKilled < 2)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(5482, 2891, "Basilisk", "baby", "lilBask"));
+                            if (quests.stolenScriptureLilBaskKilled < 1)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(4638, 3037, "Basilisk", "baby", "lilBask"));
+                            }
+                        }
+                    }
+                }
+                if (quests.stolenScriptureBaskKilled < 2)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(7221, 5970, "Basilisk", false, "Bask"));
+                    if (quests.stolenScriptureBaskKilled < 1)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(5321, 6261, "Basilisk", false, "Bask"));
+                    }
+                }
+                //if (quests.theMineshaftMysteryQuest != "complete")
+                //{
+                    ArtificialIntelligenceAccess.push(new Unit(4277, 2907, "Soldier", false, "Rafaard the Looter", {race: "Freynor", faction: "Freynor", con: 6, speed: 1.34, outfit: ["northernClothing", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                //}
+
+                //EVENTS
+                if (quests.theMineshaftMysteryQuest == true)
+                {
+                    scenicList.push(new Scenery("event", 3816, 2529, 25, "theMineshaftMystery0"));
+                }
+
+                //ITEMS
+                if (quests.stolenScripturePutScroll == false)
+                {
+                    quests.stolenScripturePutScroll = true;
+                    worldItems.push([new Item("stolenTablet", 4851, 6722), 1]);
+                    worldItems.push([new Item("rawGold", 7785, 5762), 1]);
+                    worldItems.push([new Item("rawGold", 7800, 5751), 1]);
+                }
+
+                change = "venningMineshaft";
             }
         }
     }

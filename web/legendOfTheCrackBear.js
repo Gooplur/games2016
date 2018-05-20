@@ -1488,6 +1488,10 @@ function legendaryPrerequisites()
     forestEnv.src = ("images/mBank.jpg");
     window.forestEnv = forestEnv;
 
+    var rockEnv = new Image();
+    rockEnv.src = ("images/rockTexture.jpg");
+    window.rockEnv = rockEnv;
+
     var wormDirtEnv = new Image();
     wormDirtEnv.src = ("images/wormDirt.jpg");
     window.wormDirtEnv = wormDirtEnv;
@@ -2963,6 +2967,9 @@ function theLegend()
         stolenScriptureQuest: false,
         stolenScriptureCompletionStyle: false,
         stolenScriptureScrollGiven: false,
+        stolenScriptureLilBaskKilled: 0,
+        stolenScriptureBaskKilled: 0,
+        stolenScripturePutScroll: false,
 
         //QUEST: The Mineshaft Mystery ---- given by Seeth
         theMineshaftMysteryQuest: false,

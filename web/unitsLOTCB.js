@@ -5314,37 +5314,40 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
     this.switchToRanged = function(weapon)
     {
-        if (this.swimming != true)
+        if (this.petrified != true)
         {
-            if (this.disturbed == true || this.DTU(this.target) <= this.baseSight)
+            if (this.swimming != true)
             {
-                if (this.target == player)
+                if (this.disturbed == true || this.DTU(this.target) <= this.baseSight)
                 {
-                    var dtp = this.DTP();
-                    var targRad = player.mySize;
-                }
-                else if (this.target != "none")
-                {
-                    var dtp = this.DTU(this.target);
-                    var targRad = this.target.sizeRadius;
-                }
+                    if (this.target == player)
+                    {
+                        var dtp = this.DTP();
+                        var targRad = player.mySize;
+                    }
+                    else if (this.target != "none")
+                    {
+                        var dtp = this.DTU(this.target);
+                        var targRad = this.target.sizeRadius;
+                    }
 
-                if (this.engagementRadius + (targRad - 10) < dtp)
-                {
-                    this.rangedSwitch = true;
-                    this.weapon = weapon;
-                    this.ranged = true;
-                    this.attacking = true;
+                    if (this.engagementRadius + (targRad - 10) < dtp)
+                    {
+                        this.rangedSwitch = true;
+                        this.weapon = weapon;
+                        this.ranged = true;
+                        this.attacking = true;
+                    }
+                    else
+                    {
+                        this.weapon = this.ultra.weapon[0];
+                        this.ranged = false;
+                    }
                 }
                 else
                 {
-                    this.weapon = this.ultra.weapon[0];
-                    this.ranged = false;
+                    this.attacking = false;
                 }
-            }
-            else
-            {
-                this.attacking = false;
             }
         }
     };
@@ -10327,6 +10330,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.baseTeam = this.team;
             this.tameREQ = 500;
             this.shortSighted = true;
+            if (this.ID == "Bask" || this.ID == "bask" || this.ID == "baske" || this.ID == "lilBask" || this.ID == "Baske")
+            {
+                this.newRotation = Math.random() * (2*Math.PI);
+            }
 
             if (this.alpha == true)
             {
@@ -11380,6 +11387,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     this.magicalResistance = this.ultra.MR; //magic ability
                 }
+            }
+
+            //special cases
+            if (this.ID == "Rafaard the Looter") //petrified looter for a quest...
+            {
+                this.petrified = true;
+                this.health = 0;
+                this.rotation = -2/3 * Math.PI;
+                this.newRotation = -2/3 * Math.PI;
             }
         }
     };
@@ -20141,6 +20157,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                 }
 
+            }
+            else if (this.doOnDeathOnce)
+            {
+                this.doOnDeathOnce = false;
+                if (this.ID == "lilBask")
+                {
+                    quests.stolenScriptureLilBaskKilled += 1;
+                }
+                else if (this.ID == "Bask")
+                {
+                    quests.stolenScriptureBaskKilled += 1;
+                }
             }
 
             //ANIMATIONS

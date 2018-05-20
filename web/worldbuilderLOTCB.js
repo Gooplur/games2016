@@ -637,6 +637,8 @@ function worldBuilder()
             outlineBuilder(5, 1, "stonePath", 71, -144);
             outlineBuilder(2, 2, "farmland", 77, -133);
 
+            outlineBuilder(4, 1, "stonePath", 65, -148);
+
             outlineBuilder(1, 33, "sea", 49, -152);
             outlineBuilder(1, 29, "shallow", 49, -151);
             outlineBuilder(1, 1, "shallow", 48, -152);
@@ -898,6 +900,23 @@ function worldBuilder()
         //starting chamber
         outlineBuilder( 2, 2, "dungeon", 0, 0);
     }
+    else if (map == "venningMineshaft") //This is a dungeon found in map W3
+    {
+        player.dmx = map;
+        player.underground = true;
+        elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "venningMineshaft";
+        //starting chamber
+        outlineBuilder( 6, 1, "rock", 0, -5);
+        outlineBuilder( 3, 1, "rock", 1, -6);
+        outlineBuilder( 1, 14, "rock", -12, -7);
+        outlineBuilder( 2, 8, "rock", -17, -9);
+        outlineBuilder( 8, 1, "rock", -17, -17);
+        outlineBuilder( 2, 1, "rock", -18, -17);
+        outlineBuilder( 3, 5, "rock", -20, -20);
+        outlineBuilder( 2, 3, "rock", -23, -19);
+        outlineBuilder( 3, 3, "rock", -15, -21);
+    }
 }
 
 // This is the template for building a map out of tiles.
@@ -1003,6 +1022,10 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 else if (terrain == "crag")
                 {
                     XXX.drawImage(rockyFlatEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "rock")
+                {
+                    XXX.drawImage(rockEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
                 else if (terrain == "dirt")
                 {

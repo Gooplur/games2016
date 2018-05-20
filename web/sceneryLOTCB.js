@@ -4406,6 +4406,54 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 map = this.information;
             }
         }
+        else if (this.type == "event")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = this.rotation;
+
+            //DRAWSELF
+            if (testBarriers)
+            {
+                XXX.beginPath();
+                XXX.fillStyle="black";
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.arc(0, 0, this.radius, 0, 2*Math.PI);
+                XXX.fill();
+            }
+
+            if (this.temporary == "theMineshaftMystery0")
+            {
+                if (quests.theMineshaftMysteryQuest == true)
+                {
+                    if (X > 3600 && Y > 2665)
+                    {
+                        quests.theMineshaftMysteryCompletionStyle = "stoneman";
+                        quests.theMineshaftMysteryQuest = "complete";
+                        if (player.class == "Mage")
+                        {
+                            player.magicalExperience += 50;
+                        }
+                        else
+                        {
+                            player.experience += 95;
+                            player.magicalExperience += 5;
+                        }
+                        quests.completeQuests.push({name: "The Mineshaft Mystery", description: "You found the man who went treasure hunting in the abandoned mineshaft: He was petrified by basilisks!"});
+                        player.freynorFaction += 2;
+                    }
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "brokenWell")
         {
             //TRAITS

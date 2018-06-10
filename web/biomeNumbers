@@ -1,0 +1,5 @@
+the 'Generator(seed, biomeNum)' function randomly generates a map based on the seed. The biome number is the specific type of biome that will be generated that means the plants animals and scenery objects will vary based on the biome number. The comprehensive list of biome numbers are below:
+
+Biome Numbers
+--------------
+0: Kellish Grassland

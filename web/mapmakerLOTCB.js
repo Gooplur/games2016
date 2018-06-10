@@ -11617,6 +11617,120 @@ function buildMaster()
                 change = "s24";
             }
         }
+        else if (region == "s4")
+        {
+            if (change != "s4")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                generator(998194838973478567290593490753765777, 893156183774189889999927462711, 212646126477828899823923656415326758196327583974281, 6688395285999999892194291914929422375482332503, 1111111111009836537010101010010100000011110010 , 0, 6997, -34734);
+
+
+                change = "s4";
+            }
+        }
+        else if (region == "s5")
+        {
+            if (change != "s5")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                generator(5736809278362490038293, 918929, 2392365641532675817348289600124772911, 66897437318899912746321004929422375, 27138463725763667236888366664 , 0, 6712, -45024);
+
+
+                change = "s5";
+            }
+        }
+        else if (region == "s6")
+        {
+            if (change != "s6")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                generator(19298741243437438992, 9274652547777276453, 7428457849984359745, 66897439835628573277771, 37899910280830 , 0, 6703, -54922);
+
+
+                change = "s6";
+            }
+        }
     }
     else if (map == "sagesCache")
     {
@@ -12261,4 +12375,296 @@ function buildMaster()
             }
         }
     }
+}
+
+function generator(seedA, seedB, seedC, seedD, seedE, biome, xSt, ySt) //the maps will be generated starting in the top left corner --> down and to the right
+{
+    var mapSz = 9750; //this is the aproximate pixle length of a map
+
+    var seededE = seeder(seedE);
+    var seededD = seeder(seedD);
+    var seededC = seeder(seedC);
+    var seededB = seeder(seedB);
+    var seededA = seeder(seedA);
+    var seeded1;
+    var seeded2;
+    var seeded3;
+    var seeded4;
+    var seeded5;
+
+    if (biome == 0) //Kellish Grasslands
+    {
+        for (var i = 0; i < Math.floor(seededB * 8); i++) //avraks
+        {
+            seeded2 = seeder(seedA + seedA * i);
+            seeded3 = seeder(seedA + seedA / (i + 1));
+
+            ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz, ySt - seeded3 * mapSz, "Avrak", false, "generated"));
+        }
+        for (var i = 0; i < Math.floor(seededE * 2.15); i++) //anterhills
+        {
+            seeded2 = seeder(seedB + seedB * i);
+            seeded3 = seeder(seedB + seedB / (i + 1));
+
+            scenicList.push(new Scenery("anterHill", xSt - seeded2 * mapSz, ySt - seeded3 * mapSz, 2*Math.PI * Math.random(), true));
+        }
+        for (var i = 0; i < Math.floor(seededD * 19); i++) //Itlin bushes
+        {
+            seeded2 = seeder(seedA + seedE * i);
+            seeded3 = seeder(seedE + seedC / (i + 1));
+
+            if (seeder(seededB + 89910 * i) > 0.44)
+            {
+                scenicList.push(new Scenery("itlinPlant", xSt - seeded2 * mapSz, ySt - seeded3 * mapSz, 2*Math.PI * Math.random(), true));
+            }
+            else
+            {
+                scenicList.push(new Scenery("ishPlant", xSt - seeded2 * mapSz, ySt - seeded3 * mapSz, 2*Math.PI * Math.random(), true));
+            }
+        }
+        for (var i = 0; i < Math.floor(seededE * 16); i++) //muf plants
+        {
+            seeded1 = seeder(seedC + seedA * i * 6800);
+            seeded5 = seeder(seedB + seedD / (i + 190));
+
+
+            scenicList.push(new Scenery("mufPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2*Math.PI * Math.random(), true));
+        }
+        for (var i = 0; i < Math.floor(seededB * 16); i++) //luuf plants
+        {
+            seeded1 = seeder(seedA + seedD * i * 17890);
+            seeded5 = seeder(seedE + seedA * (i + 19560));
+
+            scenicList.push(new Scenery("luufPlant", xSt - seeded1 * mapSz, ySt - seeded5 * mapSz, 2*Math.PI * Math.random(), true));
+        }
+        for (var i = 0; i < Math.floor(((seededB + seededA) / 2) * 22); i++) //palnt plants
+        {
+            seeded1 = seeder(seedD + seedE * i * 17890);
+            seeded5 = seeder(seedE + seedC * (i + 19560));
+
+            scenicList.push(new Scenery("palntPlant", xSt - seeded1 * mapSz, ySt - seeded5 * mapSz, 2*Math.PI * Math.random(), true));
+        }
+        for (var i = 0; i < Math.floor(((seededC + seededD + seededE) / 3) * 11); i++) //buttermellow plants
+        {
+            seeded1 = seeder(seedE + seedE * i);
+            seeded5 = seeder(seedD + seedD / (i + 1));
+
+
+            scenicList.push(new Scenery("butterMellowPlant", xSt - seeded1 * mapSz, ySt - seeded5 * mapSz, 2*Math.PI * Math.random(), true));
+        }
+        for (var i = 0; i < Math.floor(seededA * 20); i++) //techi plants
+        {
+            seeded1 = seeder(seedC + seedC * i * 23000);
+            seeded5 = seeder(seedC + 100 + seedC * 56 * i * i);
+
+
+            scenicList.push(new Scenery("techiPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2*Math.PI * Math.random(), true));
+        }
+
+        if (elevation == 1 || elevation == -1)
+        {
+            for (var i = 0; i < (Math.floor(seededD * 9) + 1); i++) //techi plants
+            {
+                seeded5 = seeder(seedC + seedE * i * 19191);
+                seeded1 = seeder(seedE + 19 + seedC * 19 * i);
+
+                if (seeder(seedB + 900 * i) > 0.495)
+                {
+                    scenicList.push(new Scenery("corneliusPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2*Math.PI * Math.random(), true));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("rilthasiaPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2*Math.PI * Math.random(), true));
+                }
+            }
+        }
+
+        if (elevation == 0)
+        {
+            for (var i = 0; i < Math.floor(seededC * 11); i++) //ardils
+            {
+                seeded1 = seeder(seedB + seedB * 90000 * i);
+                seeded4 = seeder(seedA + seedD * 110201 * i);
+
+                if (seeder(seedE + 88888 * i) > 0.5)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded4 * mapSz, "Ardil", true, "generated"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded4 * mapSz, "Ardil", false, "generated"));
+                }
+            }
+        }
+        else
+        {
+            for (var i = 0; i < Math.floor(seededC * 5); i++) //ardils
+            {
+                seeded1 = seeder(seedB + seedB * 90000 * i);
+                seeded4 = seeder(seedA + seedD * 110201 * i);
+
+                if (seeder(seedE + 999992 * i) > 0.5)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded4 * mapSz, "Ardil", true, "generated"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded4 * mapSz, "Ardil", false, "generated"));
+                }
+            }
+        }
+
+        for (var i = 0; i < Math.floor(seededA * 8); i++) //evraks
+        {
+            seeded2 = seeder(seedA + seedA * 12012 * i);
+            seeded3 = seeder(seedD + seedA * 5555 * i);
+
+            ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded2 * mapSz, "Evrak", false, "generated"));
+        }
+
+        if (elevation == 0)
+        {
+            for (var i = 0; i < Math.floor(seededA * 9); i++) //friches / frich packs
+            {
+                seeded2 = seeder(seedD + seedD * 12012 * i);
+                seeded3 = seeder(seedD + seedD * 5555 * i);
+
+                for (var j = 0; j < Math.floor(seededE * 6); j++)
+                {
+                    if (seeder(seedB + 76823 * j) > 0.615)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz, ySt - seeded3 * mapSz, "Frich", true, "generated"));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz, ySt - seeded3 * mapSz, "Frich", false, "generated"));
+                    }
+                }
+            }
+        }
+
+        for (var i = 0; i < Math.floor(seededE * 6); i++) //Naaprid herds
+        {
+            seeded1 = seeder(seedB + seedA * 222 * i);
+            seeded2 = seeder(seedD + seedC * 1119 * i);
+
+            for (var j = 0; j < Math.floor(seededE * 9); j++)
+            {
+                var seeded5 = seeder(seedB + seedD * Math.ceil(76823 / j));
+
+                if (seeded5 < 0.4)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded2 * mapSz, "Naaprid", true, "generated"));
+                }
+                else if (seeded5 < 0.81)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded2 * mapSz, "Naaprid", false, "generated"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded2 * mapSz, "Naaprid", "baby", "generated"));
+                }
+            }
+        }
+
+        for (var i = 0; i < Math.floor(((seededA + seededB) / 2) * 17); i++) //tunsk mounds
+        {
+            seeded1 = seeder(seedC + seedC * 12 * i);
+            seeded2 = seeder(seedB + seedB / (39 * i + 5));
+
+            scenicList.push(new Scenery("tunskMound", xSt - seeded2 * mapSz, ySt - seeded1 * mapSz, 2*Math.PI * Math.random(), true));
+        }
+        for (var i = 0; i < Math.floor(seededC * 14); i++) //grushes / grushweed patches
+        {
+            seeded1 = seeder(seedB + seedA * 17 * i);
+            seeded2 = seeder(seedA + seedB / (5 * i + 3));
+
+            seeded3 = seeder(i * seedA);
+            for (var j = 0; j < Math.floor(seeded3 * 7); j++)
+            {
+                seeded4 = seeder(seedC + seedB * 5 * j);
+                seeded5 = seeder(seedA + seedC * 19 * j);
+
+                if (Math.random() <= 0.29)
+                {
+                    var rand = Math.random();
+                    if (rand < 0.2)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + (Math.floor(seeded4 * 50) + 39) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 39) * j, "Grush", true, "generated"));
+                    }
+                    else if (rand < 0.5)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + (Math.floor(seeded4 * 50) + 16) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 16) * j, "Grush", "baby", "generated"));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + (Math.floor(seeded4 * 50) + 25) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 25) * j, "Grush", false, "generated"));
+                    }
+                }
+                else
+                {
+                    var rand = Math.random();
+                    if (rand < 0.2)
+                    {
+                        scenicList.push(new Scenery("grushweedPlant", xSt - seeded1 * mapSz + (Math.floor(seeded4 * 50) + 39) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 39) * j, 2*Math.PI * Math.random(), seeder(seedC + 99 * i + 38 * j) + 0.65));
+                    }
+                    else if (rand < 0.5)
+                    {
+                        scenicList.push(new Scenery("grushweedPlant", xSt - seeded1 * mapSz + (Math.floor(seeded4 * 50) + 16) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 16) * j, 2*Math.PI * Math.random(), seeder(seedB + 99 * i + 49 * j) + 0.05));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("grushweedPlant", xSt - seeded1 * mapSz + (Math.floor(seeded4 * 50) + 25) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 25) * j, 2*Math.PI * Math.random(), seeder(seedA + 99 * i + 27 * j) + 0.25));
+                    }
+                }
+            }
+        }
+
+        for (var i = 0; i < Math.floor(((seededB + seededA) / 2) * 9); i++) //mofus and mofu nests
+        {
+            seeded1 = seeder(seedD + seedC * 17 * i);
+            seeded2 = seeder(seedA + seedA / (5 * i + 3));
+
+            seeded3 = seeder(i * seedA);
+            for (var j = 0; j < Math.floor(seeded3 * 11); j++)
+            {
+                seeded4 = seeder(seedB + seedB * 60 * j);
+                seeded5 = seeder(seedC + seedC * 390 * j);
+
+                    var rand = Math.random();
+                    if (rand < 0.4)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + (Math.floor(seeded4 * 70) + 39) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 39) * j, "Mofu", true, "generated"));
+                    }
+                    else if (rand < 0.5)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + (Math.floor(seeded4 * 50) + 16) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 16) * j, "Mofu", "baby", "generated"));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + (Math.floor(seeded4 * 60) + 25) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 25) * j, "Mofu", false, "generated"));
+                    }
+
+                if (Math.random() <= 0.84)
+                {
+                    if (rand < 0.4)
+                    {
+                        scenicList.push(new Scenery("mofuNest", xSt - seeded1 * mapSz + (Math.floor(seeded4 * 70) + 39) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 39) * j, 2 * Math.PI * Math.random(), seeder(seedC + 99 * i + 38 * j) + 0.65));
+                    }
+                    else if (rand >= 0.5)
+                    {
+                        scenicList.push(new Scenery("mofuNest", xSt - seeded1 * mapSz + (Math.floor(seeded4 * 60) + 25) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 25) * j, 2 * Math.PI * Math.random(), seeder(seedA + 99 * i + 27 * j) + 0.25));
+                    }
+                }
+            }
+        }
+    }
+    console.log(scenicList);
+}
+
+function seeder(seed)
+{
+    function lcg(a) {return a * 48271 % 2147483647}
+    seed = seed ? lcg(seed) : lcg(Math.random());
+    return (seed = lcg(seed)) / 2147483648;
 }

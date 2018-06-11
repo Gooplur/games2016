@@ -30234,8 +30234,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.drops = [];
                         }
 
-
-                        lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.7, Alpha: 0.9, showMe: false});
+                        if (this.ID != "Rafaard the Looter")
+                        {
+                            lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.7, Alpha: 0.9, showMe: false});
+                        }
+                        
                         // If the target has too low a level of relations with the faction they are an enemy.
                         if (player.freynorFaction <= -50)
                         {

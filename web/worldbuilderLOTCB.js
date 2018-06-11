@@ -107,6 +107,7 @@ function worldBuilder()
             elevation = -1;
             region = "s13";
             outlineBuilder( 34, 34, "greenGrass", -20, 422);
+            outlineBuilder( 34, 1, "stonePath", -6, 422);
         }
         //Layer -12 (temperate region): elev -1
         //mapS12
@@ -115,6 +116,7 @@ function worldBuilder()
             elevation = -1;
             region = "s12";
             outlineBuilder( 34, 34, "greenGrass", -20, 388);
+            outlineBuilder( 34, 1, "stonePath", -6, 388);
         }
         //Layer -11 (temperate region): elev -1
         //mapS11
@@ -123,6 +125,7 @@ function worldBuilder()
             elevation = -1;
             region = "s11";
             outlineBuilder( 34, 34, "greenGrass", -20, 354);
+            outlineBuilder( 34, 1, "stonePath", -6, 354);
         }
         //Layer -10 (temperate region): elev -1
         //mapS10
@@ -131,6 +134,7 @@ function worldBuilder()
             elevation = -1;
             region = "s10";
             outlineBuilder( 34, 34, "greenGrass", -20, 320);
+            outlineBuilder( 34, 1, "stonePath", -6, 320);
         }
         //Layer -9 (temperate region): elev -1
         //mapS9
@@ -139,6 +143,9 @@ function worldBuilder()
             elevation = -1;
             region = "s9";
             outlineBuilder( 34, 34, "greenGrass", -20, 286);
+            outlineBuilder( 6, 1, "stonePath", -20, 286);
+            outlineBuilder( 1, 14, "stonePath", -20, 292);
+            outlineBuilder( 28, 1, "stonePath", -6, 292);
         }
         //Layer -8 (temperate region): elev -1
         //mapS8
@@ -147,6 +154,7 @@ function worldBuilder()
             elevation = -1;
             region = "s8";
             outlineBuilder( 34, 34, "greenGrass", -20, 252);
+            outlineBuilder( 34, 1, "stonePath", -20, 252);
         }
         //Layer -7 (cold region): elev 0
         //mapS7
@@ -155,6 +163,7 @@ function worldBuilder()
             elevation = 0;
             region = "s7";
             outlineBuilder( 34, 34, "greenGrass", -20, 218);
+            outlineBuilder( 34, 1, "stonePath", -20, 218);
         }
         //Layer -6 (cold region): elev 0
         //mapS6
@@ -163,6 +172,7 @@ function worldBuilder()
             elevation = 0;
             region = "s6";
             outlineBuilder( 34, 34, "greenGrass", -20, 184);
+            outlineBuilder( 34, 1, "stonePath", -20, 184);
         }
         //Layer -5 (cold region): elev 0
         //mapS5
@@ -171,6 +181,13 @@ function worldBuilder()
             elevation = 0;
             region = "s5";
             outlineBuilder( 34, 34, "greenGrass", -20, 150);
+            outlineBuilder( 1, 26, "stonePath", -19, 150);
+            outlineBuilder( 7, 1, "stonePath", -19, 151);
+            outlineBuilder( 1, 2, "stonePath", -19, 158);
+            outlineBuilder( 14, 1, "stonePath", -18, 158);
+            outlineBuilder( 1, 2, "stonePath", -18, 172);
+            outlineBuilder( 10, 1, "stonePath", -17, 173);
+            outlineBuilder( 1, 4, "stonePath", -20, 183);
         }
         //Layer -4 (cold region): elev 0
         //mapS4
@@ -179,6 +196,8 @@ function worldBuilder()
             elevation = 0;
             region = "s4";
             outlineBuilder( 34, 34, "greenGrass", -20, 116);
+            outlineBuilder( 1, 4, "stonePath", 3, 116);
+            outlineBuilder( 33, 1, "stonePath", 6, 117);
         }
         //Layer -3 (cold region): elev 0
         //mapS3 //Calcutt (town)

@@ -9460,8 +9460,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.enLista = false;
             this.treeSelected = "none";
             this.eatNut = false;
-            this.hunger = 40;
-            this.hungerMAX = 50;
+            this.hunger = 70;
+            this.hungerMAX = 80;
 
 
             //STATS (non-variable)

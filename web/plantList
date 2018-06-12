@@ -3,17 +3,9 @@
 Frijol - A black bean plant that grows primarily in savannah regions but can be sparsely encountered in the southernmost temperate regions
 Maize - Corn by another name, it grows in southern temperate and savannah regions
     //WILD
-Blil - A turquoise jungle plant which is famous for its thick red fluid that looks much like human blood
-Hrackle - A thorny green savannah bush that produces prickly pods that hold moisture
 Hoil - A rough leaved musky smelling sap filled plant
-Aktaltl - A frondolous plant that has a starchy root and an edible and medicinal leaf; it grows in the savannah and southern temperate areas
 Karm - A southern temperate bush that hosts a small green fruit
-Pochal - a southern temperate / savannah bush that has a multitude of green pods growing upon it
-Kwom - A savannah plant that yields an extremely sour fruit
 Clobe - A plant that grows in temperate regions that has three swollen curved leaves full of a thick green sap
-Apotl - A savannah plant that yields incredibly spicy peppers that are often used in southern kellish cooking
-Vola - A purple savannah wildflower
-Lel - A tri-leaved plant that grows primarily in the savannah; bunches of yellow berries grow from the ends of each leaf
 
 //ALREADY IN GAME (to create a plant with the scenery class these plants must be made all lowercase)
     //FARM
@@ -66,3 +58,11 @@ Brightbloom - A large and voluptuous white flower that grows in both woodlands a
 Tyrni - A sour/sweet orange arctic berry plant that is covered in barbed spines; one must wear gloves to pick it safely (named after a real life finnish berry tyrni, also called sea buckthorn)
 Cornelius - An orange wildflower that grows in the kellish plains and has some use in medicine
 Rilthasia - A blue wildflower that grows in the kellish plains and has no practical use other than aesthetic appeal (called love flower by the kels)
+Aktaltl - A frondolous plant that has a starchy root and an edible and medicinal leaf; it grows in the savannah and southern temperate areas
+Vola - A purple savannah wildflower
+Lel - A tri-leaved plant that grows primarily in the savannah; bunches of yellow berries grow from the ends of each leaf
+Pochal - a southern temperate / savannah bush that has a multitude of green pods growing upon it
+Apotl - A savannah plant that yields incredibly spicy peppers that are often used in southern kellish cooking
+Kwom - A savannah plant that yields an extremely sour fruit
+Hrackle - A thorny green savannah bush that produces prickly pods that hold moisture
+Blil - A turquoise jungle plant which is famous for its thick red fluid that looks much like human blood

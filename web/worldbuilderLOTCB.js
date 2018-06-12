@@ -57,7 +57,6 @@ function worldBuilder()
             elevation = -2;
             region = "s19";
             outlineBuilder( 34, 34, "savannahDirt", -20, 626);
-            outlineBuilder( 34, 9, "sea", -20, 638);
         }
         //Layer -18 (warm region): elev -2
         //mapS18
@@ -65,7 +64,45 @@ function worldBuilder()
         {
             elevation = -2;
             region = "s18";
-            outlineBuilder( 34, 34, "savannah", -20, 592);
+            //outlineBuilder( 34, 34, "savannah", -20, 592);
+            outlineBuilder( 4, 34, "savannah", -20, 592);
+            outlineBuilder( 16, 34, "savannahDirt", -20, 596);
+            outlineBuilder( 4, 9, "savannah", -20, 596);
+            outlineBuilder( 2, 5, "savannah", -11, 596);
+            outlineBuilder( 1, 2, "savannah", -11, 598);
+            outlineBuilder( 1, 5, "savannah", -6, 596);
+            outlineBuilder( 1, 11, "savannahDirt", 3, 595);
+            outlineBuilder( 14, 34, "savannah", -20, 612);
+            outlineBuilder( 3, 18, "savannah", -4, 609);
+            outlineBuilder( 1, 2, "savannah", -6, 611);
+            outlineBuilder( 1, 1, "savannah", -5, 610);
+            outlineBuilder( 2, 8, "savannah", 6, 607);
+            outlineBuilder( 7, 9, "sea", 5, 597);
+            outlineBuilder( 7, 3, "sea", 2, 598);
+            outlineBuilder( 1, 1, "seaCornerTL", 4, 597);
+            outlineBuilder( 1, 1, "seaCornerBR", 5, 604);
+            outlineBuilder( 7, 4, "sea", -2, 599);
+            outlineBuilder( 1, 1, "seaCornerTL", 1, 598);
+            outlineBuilder( 1, 1, "seaCornerBR", 2, 605);
+            outlineBuilder( 7, 6, "sea", -8, 600);
+            outlineBuilder( 1, 1, "seaCornerTL", -3, 599);
+            outlineBuilder( 1, 1, "seaCornerBR", -2, 606);
+            outlineBuilder( 7, 1, "sea", -9, 601);
+            outlineBuilder( 7, 1, "sea", -10, 602);
+            outlineBuilder( 7, 5, "sea", -15, 603);
+            outlineBuilder( 7, 5, "sea", -20, 604);
+            outlineBuilder( 1, 1, "seaCornerTL", -9, 600);
+            outlineBuilder( 1, 1, "seaCornerTL", -10, 601);
+            outlineBuilder( 1, 1, "seaCornerTL", -11, 602);
+            outlineBuilder( 1, 1, "seaCornerBR", -9, 608);
+            outlineBuilder( 1, 1, "seaCornerBR", -8, 607);
+            outlineBuilder( 1, 1, "seaCornerBR", -10, 609);
+            outlineBuilder( 1, 1, "seaCornerBR", -15, 610);
+            outlineBuilder( 1, 1, "seaCornerTL", -16, 603);
+            outlineBuilder( 2, 3, "savannahDirt", -16, 615);
+            outlineBuilder( 1, 1, "savannahDirt", -14, 617);
+            outlineBuilder( 1, 2, "savannahDirt", -7, 618);
+            outlineBuilder( 1, 1, "savannahDirt", -2, 622);
         }
         //Layer -17 (warm region): elev -2
         //mapS17

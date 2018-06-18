@@ -6676,19 +6676,22 @@ function buildMaster()
             if (change != "w5")
             {
                 for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
-                    //Delete All Non-native AI Units
-                    for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
                     {
-                        if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
-                        {
-                            ArtificialIntelligenceAccess.splice(i, 1);
-                            console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
-                        }
-                        else
-                        {
-                            console.log(i + " in list 'AI access' has been saved.");
-                        }
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
                     }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
 
                 //Delete All Non-native Items
                 //worldItems = [];

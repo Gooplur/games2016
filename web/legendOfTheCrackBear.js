@@ -1523,11 +1523,24 @@ function legendaryPrerequisites()
 
     polyPNG.onload = function()
     {
-        secondToLastPreStage();
+        nirwadenPack();
     };
 
     //theLegend();
 }
+
+function nirwadenPack()
+{
+    var atal = new Image();
+    atal.src = ("images/atal.png");
+    window.atal = atal;
+
+    atal.onload = function()
+    {
+        secondToLastPreStage();
+    };
+}
+
 function secondToLastPreStage()
 {
     var theCrack = new Image();

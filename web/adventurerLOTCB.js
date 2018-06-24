@@ -5165,6 +5165,26 @@ function Adventurer()
         {
             outfit = allWorn[75];
         }
+        else if (this.outfitEquipped == "nirwadenPlateArmour")
+        {
+            outfit = allWorn[78];
+        }
+        else if (this.outfitEquipped == "nirwadenNobleDress")
+        {
+            outfit = allWorn[79];
+        }
+        else if (this.outfitEquipped == "nirwadenNobleOutfit")
+        {
+            outfit = allWorn[80];
+        }
+        else if (this.outfitEquipped == "nirwadenClothingM")
+        {
+            outfit = allWorn[81];
+        }
+        else if (this.outfitEquipped == "nirwadenClothingF")
+        {
+            outfit = allWorn[82];
+        }
         else
         {
             outfit = allWorn[0];
@@ -5354,6 +5374,45 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(oldverse, 44, 89, 51, 35, -(1 / 2 * 40.8) + 6.3, -(1 / 2 * 28) - 0.5, 45.9, 31.5);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "nirwadenClothingF")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(atal, 20, 1023, 49, 47, -(1 / 2 * 49 * 0.65) - 0, -(1 / 2 * 47 * 0.65) - 0, 49 * 0.65, 47 * 0.65);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "nirwadenClothingM")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(atal, 830, 866, 44, 46, -(1 / 2 * 44 * 0.62) - 1.5, -(1 / 2 * 46 * 0.62) - 0, 44 * 0.62, 46 * 0.62);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "nirwadenPriestRobes")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(atal, 444, 3515, 65, 54, -(1 / 2 * 65 * 0.62) - 8, -(1 / 2 * 54 * 0.62) - 0, 65 * 0.62, 54 * 0.62);
             XXX.restore();
         }
         else if (this.outfitEquipped == "saltBloodArmour")
@@ -5710,6 +5769,19 @@ function Adventurer()
                 XXX.restore();
             }
         }
+        else if (this.outfitEquipped == "nirwadenNobleDress")
+        {
+            this.outfitZ = false;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(atal, 449, 827, 127, 157, -(1 / 2 * 127 * 0.55) + 0, -(1 / 2 * 157 * 0.55) -3, 127 * 0.55, 157 * 0.55);
+            XXX.restore();
+        }
         else if (this.outfitEquipped == "winterWolfDress")
         {
             this.outfitZ = false;
@@ -5818,6 +5890,32 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(theCrack, 127, 614, 23, 20, -(1 / 2 * 23 * 1.6) - 0, -(1 / 2 * 20 * 1.6) -0, 23 * 1.6, 20 * 1.6);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "nirwadenPlateArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation  - (1/2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(atal, 251, 670, 56, 42, -(1 / 2 * 56 * 0.7) + 3, -(1 / 2 * 42 * 0.7) -0, 56 * 0.7, 42 * 0.7);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "nirwadenNobleOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation  - (1/2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(atal, 24, 846, 48, 53, -(1 / 2 * 48 * 0.66) - 5, -(1 / 2 * 53 * 0.66) -1.5, 48 * 0.66, 53 * 0.66);
             XXX.restore();
         }
         else if (this.outfitEquipped == "swampWalkerArmour")
@@ -6646,6 +6744,27 @@ function Adventurer()
                                 if (this.extraDraining)
                                 {
                                     this.will += 5;
+                                }
+                            }
+
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+                    }
+                    //Healing Hymn
+                    if (secondarySpells[i].ID == "healingPsalms")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                        {
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+
+                            var healz = (1 + (1 * secondarySpells[i].CNX / 10));
+                            this.health += healz;
+                            for (var kk = 0; kk < ArtificialIntelligenceAccess.length; kk++)
+                            {
+                                if (Math.sqrt((X - ArtificialIntelligenceAccess[kk].X)*(X - ArtificialIntelligenceAccess[kk].X) + (Y - ArtificialIntelligenceAccess[kk].Y)*(Y - ArtificialIntelligenceAccess[kk].Y)) <= 400)
+                                {
+                                    ArtificialIntelligenceAccess[kk].health += healz;
                                 }
                             }
 
@@ -28015,6 +28134,18 @@ function Adventurer()
                         XXX.globalAlpha = 0.4;
                     }
                     XXX.drawImage(verse, 3228, 215, 33, 15, -(1 / 2 * 38) + 2.7, -(1 / 2 * 42) + 12.5, 33, 15);
+                    XXX.restore();
+                }
+                else if (this.outfitEquipped == "nirwadenNobleDress")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation  - (1/2 * Math.PI));
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(atal, 470, 745, 95, 63, -(1 / 2 * 95 * 0.54) - 17, -(1 / 2 * 63 * 0.54) -1, 95 * 0.54, 63 * 0.54);
                     XXX.restore();
                 }
                 else if (this.outfitEquipped == "winterWolfDress")

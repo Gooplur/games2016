@@ -777,9 +777,25 @@ function applySelectionsButton()
             else if (player.title == "Nobility" || player.title == "Royalty")
             {
                 Inventory.push([new Item("nirineseSabre", false, false), 1], [new Item("estoc", false, false), 1]);
+                if (player.gender != "Female")
+                {
+                    Inventory.push([new Item("nirwadenNobleOutfit", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("nirwadenNobleDress", false, false), 1]);
+                }
             }
             else
             {
+                if (player.gender == "Male")
+                {
+                    Inventory.push([new Item("nirwadenClothingM", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("nirwadenClothingF", false, false), 1]);
+                }
                 Inventory.push([new Item("nirineseSabre", false, false), 1]);
             }
         }
@@ -850,14 +866,41 @@ function applySelectionsButton()
             {
                 //todo add a weak crossbow that can only use a special type of weak bolt and give it to the lower class Nirinese to start with if they are a ranger.
                 Inventory.push([new Item("longbow", false, false), 1], [new Item("arrow", false, false), 20]);
+                if (player.title == "Tradefolk")
+                {
+                    if (player.gender == "Male")
+                    {
+                        Inventory.push([new Item("nirwadenClothingM", false, false), 1]);
+                    }
+                    else
+                    {
+                        Inventory.push([new Item("nirwadenClothingF", false, false), 1]);
+                    }
+                }
             }
             else if (player.title == "Highfolk")
             {
-                Inventory.push([new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 15]);
+                Inventory.push([new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 20]);
+                if (player.gender == "Male")
+                {
+                    Inventory.push([new Item("nirwadenClothingM", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("nirwadenClothingF", false, false), 1]);
+                }
             }
             else
             {
-                Inventory.push([new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 45]);
+                Inventory.push([new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 55]);
+                if (player.gender != "Female")
+                {
+                    Inventory.push([new Item("nirwadenNobleOutfit", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("nirwadenNobleDress", false, false), 1]);
+                }
             }
         }
         else if (player.class == "Ranger" && player.raceName == "Outlander")//This is the general one for all that don't meet a specific exception.
@@ -916,7 +959,7 @@ function applySelectionsButton()
         }
         //MAGE starting weapon kit
         //TODO start mages off with a basic level combat magic scroll.
-        if (player.class == "Mage")//This is the general one for all that don't meet a specific exception.
+        if (player.class == "Mage" || player.class == "Priest")//This is the general one for all that don't meet a specific exception.
         {
             if (player.raceName != "Cephrite")
             {
@@ -931,6 +974,21 @@ function applySelectionsButton()
                 else if (player.raceName == "Vardan")
                 {
                     Inventory.push([new Item("drainingI", false, false), 1]);
+                }
+                else if (player.raceName == "Nirwaden")
+                {
+                    Inventory.push([new Item("nirwadenPriestRobes", false, false), 1], [new Item("healingPsalms", false, false), 1]);
+                    if (player.title == "Nobility" || player.title == "Royalty")
+                    {
+                        if (player.gender != "Female")
+                        {
+                            Inventory.push([new Item("nirwadenNobleOutfit", false, false), 1]);
+                        }
+                        else
+                        {
+                            Inventory.push([new Item("nirwadenNobleDress", false, false), 1]);
+                        }
+                    }
                 }
                 else
                 {
@@ -1211,20 +1269,41 @@ function Selector(bX, bY, type, selNumMAX)
             }
             else if (selectNumber == 2)
             {
-                //Combat Style: Fighter
-                XXX.fillStyle = "black";
-                XXX.font = "20px Impact";
-                XXX.textAlign = "center";
-                XXX.fillText("Mage", bX + 105, bY + 23);
-                //attributes:
-                player.class = "Mage";
-                //combat style low bar description
-                if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                if (player.raceName != "Nirwaden" && player.raceName != "Aldrek")
                 {
-                    LXX.fillStyle = "black";
-                    LXX.font = "12px Book Antiqua";
-                    LXX.textAlign = "left";
-                    LXX.fillText("Magi's talents revolve around the realm of magic rather than the physical and their weapon of choice is in fact their own mind and spirit, with which they use to tap into the magical essence of reality. This class will allow your character to start out with a beginner level spell scroll appropriate to your culture and status.", 5, (LCC.height / 2) + 4);
+                    //Combat Style: Mage
+                    XXX.fillStyle = "black";
+                    XXX.font = "20px Impact";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Mage", bX + 105, bY + 23);
+                    //attributes:
+                    player.class = "Mage";
+                    //combat style low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("Magi's talents revolve around the realm of magic rather than the physical and their weapon of choice is in fact their own mind and spirit, with which they use to tap into the magical essence of reality. This class will allow your character to start out with a beginner level spell scroll appropriate to your culture and status.", 5, (LCC.height / 2) + 4);
+                    }
+                }
+                else
+                {
+                    //Combat Style: Priest (same as mage except that it is a socially acceptable form of magic use in Nirwaden and Aldrek)
+                    XXX.fillStyle = "black";
+                    XXX.font = "20px Impact";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Priest", bX + 105, bY + 23);
+                    //attributes:
+                    player.class = "Priest";
+                    //combat style low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("Priests' talents revolve around the realm of clerical magic. Their weapon of choice is in fact their own mind and spirit, with which they use to tap into the magical essence of their divine master. This class will allow your character to start out with a beginner level spell scroll appropriate to your culture and status.", 5, (LCC.height / 2) + 4);
+                    }
                 }
             }
         }
@@ -1535,17 +1614,29 @@ function Selector(bX, bY, type, selNumMAX)
                     player.satiated = true;
 
                     //class low bar description
-                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30 && player.gender != "Female")
                     {
                         LXX.fillStyle = "black";
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
-                        LXX.fillText("Just because you grew up as the first child of a powerful Jarl doesn't mean that you didn't get your feet wet in the snow. As a youngin' you practised hunting land walruses with your father's men, and once you even watch one of your father's knights slay a giant gulfrey.", 5, (LCC.height / 2) + 4);
+                        LXX.fillText("Just because you grew up as the first child of a powerful Jarl doesn't mean that you didn't get your feet wet in the snow. As a youngin' you practised hunting land walruses with your father's men, and once you even watch one of your father's knights slay a giant wolf.", 5, (LCC.height / 2) + 4);
 
                         LXX.fillStyle = "black";
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
                         LXX.fillText("When you came of age your father sat you down and told you that in order to be truly prepared for becoming jarl you would have to prove your worth to the Freydic people by walking, hunting, and fighting along side them. 'A Freydic jarl must know the land and the people.'", 5, (LCC.height / 2) + 16);
+                    }
+                    else if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("As the daughter of a powerful Jarl it was your duty to learn to abide by apropriate lady-like etiquete and to set an example of feminine positivity and cultured delicacacy for the people to look up to. When you turned nine your mother died of fever; your father's best", 5, (LCC.height / 2) + 4);
+
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("alchemists could do nothing to temper it and you were left to the care of servants who continued your social education. When you came of age it became time to marry and your father arranged your marriage with the wealthy lord of the port city to the north.", 5, (LCC.height / 2) + 16);
                     }
                 }
                 else if (player.raceName == "Kel")
@@ -1556,7 +1647,7 @@ function Selector(bX, bY, type, selNumMAX)
                     player.satiated = true;
 
                     //class low bar description
-                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30 && player.gender == "Female")
                     {
                         LXX.fillStyle = "black";
                         LXX.font = "12px Book Antiqua";
@@ -1567,6 +1658,18 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
                         LXX.fillText("When you came of age, your mother requested from you that you go on a spiritual quest of self awakening so that when you return you will have true wisdom to share with the brothers and sisters.", 5, (LCC.height / 2) + 16);
+                    }
+                    else if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("Your father is a Chieftain of one of the many Kellish tribes unified by Chieftain Har, growing up you knew it was your honor to inheirit the leadership and protection of your brothers and sisters in the tribe.", 5, (LCC.height / 2) + 4);
+
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("When you came of age, your father requested from you that you go on a spiritual quest of self awakening so that when you return you will have true wisdom to share with the brothers and sisters.", 5, (LCC.height / 2) + 16);
                     }
                 }
                 else if (player.raceName == "Orgell")
@@ -1692,7 +1795,7 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.fillStyle = "black";
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
-                        LXX.fillText("You grew up on the battlefielf with your father, who was constantly at war with one of his brother's counts or another. It wasn't until your father won the civil war and claimed the throne as high count that you were able to settle down, and when you did it wasn't", 5, (LCC.height / 2) + 4);
+                        LXX.fillText("You grew up on the battlefield with your father, who was constantly at war with one of his brother's counts or another. It wasn't until your father won the civil war and claimed the throne as high count that you were able to settle down, and when you did it wasn't", 5, (LCC.height / 2) + 4);
 
                         LXX.fillStyle = "black";
                         LXX.font = "12px Book Antiqua";
@@ -1704,7 +1807,7 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.fillStyle = "black";
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
-                        LXX.fillText("You grew up on the battlefielf with your father, who was constantly at war with one of his brother's counts or another. It wasn't until your father won the civil war and claimed the throne as high count that you were able to settle down, and when you did it wasn't", 5, (LCC.height / 2) + 4);
+                        LXX.fillText("You grew up on the battlefield with your father, who was constantly at war with one of his brother's counts or another. It wasn't until your father won the civil war and claimed the throne as high count that you were able to settle down, and when you did it wasn't", 5, (LCC.height / 2) + 4);
 
                         LXX.fillStyle = "black";
                         LXX.font = "12px Book Antiqua";
@@ -1730,7 +1833,7 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.fillStyle = "black";
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
-                        LXX.fillText("really saw much of him either. Eventually as you got older though you mother paid you more mind and explained to you that you were to travel the realm and gain experience during her reign so that you will be more fit to inherit the kingdom upon your return.", 5, (LCC.height / 2) + 16);
+                        LXX.fillText("really saw much of him either. Eventually as you got older though, your mother paid you more mind and explained to you that you were to travel the realm and gain experience during her reign so that you will be more fit to inherit the kingdom upon your return.", 5, (LCC.height / 2) + 16);
                     }
                     else if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
                     {
@@ -1819,7 +1922,7 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.fillStyle = "black";
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
-                        LXX.fillText("As a girl you grew up with a stone in your gut knowing that you would never inherit your father's position at the head of the Orgish Kingdom. You were to be sold into a royal marriage in a foriegn land. Even the though of becoming Queen", 5, (LCC.height / 2) + 4);
+                        LXX.fillText("As a girl you grew up with a stone in your gut knowing that you would never inherit your father's position at the head of the Orgish Kingdom. You were to be sold into a royal marriage in a foriegn land. Even the thought of becoming Queen", 5, (LCC.height / 2) + 4);
 
                         LXX.fillStyle = "black";
                         LXX.font = "12px Book Antiqua";
@@ -1904,7 +2007,7 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.fillStyle = "black";
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
-                        LXX.fillText("Also it just so happens that you had brought several large chests of coins with you on your sail to keep you company... So although you have been depose you are still extremely rich!", 5, (LCC.height / 2) + 16);
+                        LXX.fillText("Also it just so happens that you had brought several large chests of coins with you on your sail to keep you company... So although you have been deposed you are still extremely rich!", 5, (LCC.height / 2) + 16);
                     }
                 }
                 else if (player.raceName == "Thengar")

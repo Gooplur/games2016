@@ -793,6 +793,49 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 1;
             this.spellRange = "Short";
         }
+        else if (this.type == "healingPsalms")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 1)
+            {
+                this.identity = "The Healing Psalms of Xeremalyo the Saint";
+                this.description = "Xeremayo is the saint that used these hymns of the eternal spirit to heal the hurt and bring life to the frail.";
+                this.intForDes = 0;
+                this.intDescription = "This incantation will heal you and those imediately near you.";
+                this.buyValue = 50;
+                this.sellValue = 50;
+            }
+            else
+            {
+                this.identity = "The Healing Psalms of Xeremalyo the Saint";
+                this.description = "The old scripture is written in an ancient and holy language only spoken by the church.";
+                this.intForDes = 0;
+                this.intDescription = "You must study this ancient holy language if you are to aquaint yourself with these hymns.";
+                this.buyValue = 50;
+                this.sellValue = 50;
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellCost = Math.max(1, 1 + (14/50) * player.getConcentration() - (10/50) * player.getEminence());
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Clerical";
+            this.spellName = "Healing Hymn";
+            this.spellID = "healingPsalms";
+            this.spellEXP = 1 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(15, 20 + (20/50) * player.getConcentration() - (25/50) * player.getEminence());
+            this.spellDescription = "A hymn that heals those who feel its vibration.";
+            this.spellKnowledgeRequirement = 1;
+            this.spellRange = "Short";
+        }
         else if (this.type == "repel")
         {
             //For All Items
@@ -5406,6 +5449,69 @@ function Item(type, x, y)
             this.buyValue = 3; // at max, buy for 3.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
         }
+        else if (this.type == "rawHorseFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Horse Flesh";
+            this.weight = 5;
+            this.size = 17;
+            this.description = "The raw flesh from a horse.";
+            this.intForDes = 1;
+            this.intDescription = "This will likely not sit well in your stomach if eaten raw...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 5; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -6; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "potentialFoodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "horseMeat")
+        {
+            //For All Items
+            this.identity = "Horse Meat";
+            this.weight = 5;
+            this.size = 17;
+            this.description = "The cooked meat of a horse.";
+            this.intForDes = 0;
+            this.intDescription = "The meat is tough and hard to chew, but it tastes pretty good.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 17; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -6; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 11;
+            this.ingredients = [["Raw Horse Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 19 - Math.floor(player.getCharisma() / 25);; // at max, buy for 17.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 10); // at max, sell for 17.
+        }
         else if (this.type == "mugmulMeat")
         {
             //For All Items
@@ -6113,7 +6219,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Black Bear Pelt";
-            this.weight = 2;
+            this.weight = 4;
             this.size = 33;
             this.description = "The pelt of a large black bear.";
             this.intForDes = 3;
@@ -6133,7 +6239,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Elder Black Bear Pelt";
-            this.weight = 2;
+            this.weight = 13;
             this.size = 65;
             this.description = "The pelt of an elder black bear.";
             this.intForDes = 3;
@@ -6148,6 +6254,86 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 214 - Math.floor(player.getCharisma() / 1); // at max, buy for 164.
             this.sellValue = 113 + Math.floor(player.getCharisma() / 1); // at max, sell for 163.
+        }
+        else if (this.type == "griffinPelt")
+        {
+            //For All Items
+            this.identity = "Griffin Pelt";
+            this.weight = 11;
+            this.size = 40;
+            this.description = "The pelt of a griffin.";
+            this.intForDes = 0;
+            this.intDescription = "The fur is short, sleek and soft.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 400 - Math.floor(player.getCharisma() / 1); // at max, buy for 350.
+            this.sellValue = 300 + Math.floor(player.getCharisma() / 1); // at max, sell for 350.
+        }
+        else if (this.type == "griffinHeadSml")
+        {
+            //For All Items
+            this.identity = "Griffin Head";
+            this.weight = 28;
+            this.size = 33;
+            this.description = "The severed head of a griffin.";
+            this.intForDes = 0;
+            this.intDescription = "A testament to the heroism and might of the one who slayed such a ferocious beast.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 130; // at max, buy for 130.
+            this.sellValue = 130; // at max, sell for 130.
+        }
+        else if (this.type == "griffinHeadMed")
+        {
+            //For All Items
+            this.identity = "Griffin Head";
+            this.weight = 70;
+            this.size = 41;
+            this.description = "The severed head of a large griffin.";
+            this.intForDes = 0;
+            this.intDescription = "A testament to the heroism and might of the one who slayed such a ferocious beast.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 275; // at max, buy for 275.
+            this.sellValue = 275; // at max, sell for 275.
+        }
+        else if (this.type == "griffinHeadLrg")
+        {
+            //For All Items
+            this.identity = "Griffin Head";
+            this.weight = 166;
+            this.size = 67;
+            this.description = "The severed head of a massive griffin.";
+            this.intForDes = 0;
+            this.intDescription = "A testament to the heroism and might of the one who slayed such a ferocious beast.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 600; // at max, buy for 600.
+            this.sellValue = 600; // at max, sell for 600.
         }
         else if (this.type == "rawBearFlesh")
         {
@@ -6407,6 +6593,83 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
             this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "griffinHeart")
+        {
+            //For All Items
+            this.identity = "Griffin Heart";
+            this.weight = 20;
+            this.size = 20;
+            this.description = "The thick, blood-red heart of a griffin.";
+            this.intForDes = 0;
+            if (player.getIntelligence < 14)
+            {
+                this.intDescription = "If you put a dead calf into the heart of a griffin it will turn into gold...";
+            }
+            else
+            {
+                this.intDescription = "This acts as a former in alchemy. Griffin hearts do not turn dead calves into gold...";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 10; //satisfies hunger.
+            this.thirst = 5; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 1; //heals health.
+            this.generation = 1; //recoops lost energy.
+            this.replenish = 2; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 250; // at max, buy for 250.
+            this.sellValue = 250; // at max, sell for 250.
+        }
+        else if (this.type == "roastedGriffinHeart")
+        {
+            //For All Items
+            this.identity = "Roasted Griffin Heart";
+            this.weight = 19;
+            this.size = 20;
+            this.description = "The roasted, hearty, and meaty heart of a griffin.";
+            this.intForDes = 1;
+            if (player.getIntelligence < 15)
+            {
+                this.intDescription = "It is said that eating Griffin heart will make you stronger...";
+            }
+            else
+            {
+                this.intDescription = "Cooking the heart of a griffin neutralizes its alchemic properties.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 20; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 8; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Griffin Heart", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 124 - Math.floor(player.getCharisma() / 2); // at max, buy for 99.
+            this.sellValue = 99; // at max, sell for 99.
         }
         else if (this.type == "yaihefBerries")
         {
@@ -11650,6 +11913,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+        }
+        else if (this.type == "horseHair")
+        {
+            //For All Items
+            this.identity = "Horse Hair";
+            this.weight = 1.25;
+            this.size = 14;
+            this.description = "The strong silky strands of hair from a horse's mane.";
+            this.intForDes = 7;
+            this.intDescription = "This functions as a changer in alchemy, and can also be used to make certain outfits.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
         else if (this.type == "waantiPelt")
         {
@@ -20380,6 +20663,75 @@ function Item(type, x, y)
             this.buyValue = 600 - Math.floor(player.getCharisma() / 1); // at max, buy for 550.
             this.sellValue = 500 + Math.floor(player.getCharisma() / 1); // at max, sell for 550.
         }
+        else if (this.type == "nirwadenPlateArmour")
+        {
+            //For All Items
+            this.identity = "Steel Plate Armour";
+            this.weight = 75;
+            this.size = 28;
+            this.description = "A full nirwaden style set of plate armour made from thrice forged steel.";
+            this.intForDes = 0;
+            this.intDescription = "This armour is fit for knights and lords.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 16 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 16;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.5;
+            this.thirstRetention = 0;
+            this.shockResist = -9;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 23;
+            this.rangedBonus = -15;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -32;
+            this.survivalismBonus = -50;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 5;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (player.strength >= 30 && player.dexterity >= 15)
+            {
+                this.ability = "none";
+            }
+            else if (player.strength >= 20 && player.dexterity >= 10)
+            {
+                this.ability = "hefty";
+            }
+            else
+            {
+                this.ability = "heavy";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 50;
+            this.ingredients = [["Thrice Forged Steel", 16], ["Gambeson", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1300 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1100.
+            this.sellValue = 900 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 1100.
+        }
         else if (this.type == "ancientArmour")
         {
             //For All Items
@@ -20797,6 +21149,127 @@ function Item(type, x, y)
             this.buyValue = 8950 - Math.floor(player.getCharisma() / 0.0625); // at max, buy for 8150.
             this.sellValue = 6925 + Math.floor(player.getCharisma() / 0.0625); // at max, sell for 7725.
         }
+        else if (this.type == "nirwadenNobleOutfit")
+        {
+            //For All Items
+            this.identity = "Lordly Nirwaden Outfit";
+            this.weight = 2;
+            this.size = 26;
+            this.description = "Gold embroidered velvet and silken clothing and a puffy beret adorned with a peacock feather.";
+            this.intForDes = 1;
+            this.intDescription = "The nirwaden aristocracy spares no expense on their fashion.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.2;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 35;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 44;
+            this.ingredients = [["Velvet", 3], ["Silk", 4], ["Gold", 1], ["Peacock Feather", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1400 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1300.
+            this.sellValue = 1200 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 1300.
+        }
+        else if (this.type == "nirwadenNobleDress")
+        {
+            //For All Items
+            this.identity = "Nirwaden Noble Dress";
+            this.weight = 5;
+            this.size = 26;
+            this.description = "A gold embroidered velvet and silk dress with an illustrious henin.";
+            this.intForDes = 1;
+            this.intDescription = "The nirwaden aristocracy spares no expense on their fashion.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.2;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 39;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "heavy";
+
+            this.yield = 1;
+            this.intForCraft = 46;
+            this.ingredients = [["Velvet", 12], ["Silk", 12], ["Gold", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2200 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 2100.
+            this.sellValue = 2000 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 2100.
+        }
         else if (this.type == "hyelingArmour")
         {
             //For All Items
@@ -20853,6 +21326,63 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 60 - Math.floor(player.getCharisma() / 5); // at max, buy for 50.
             this.sellValue = 40 + Math.floor(player.getCharisma() / 5); // at max, sell for 50.
+        }
+        else if (this.type == "nirwadenPriestRobes")
+        {
+            //For All Items
+            this.identity = "Priest Robes";
+            this.weight = 2;
+            this.size = 27;
+            this.description = "Fine robes made of gold embroidered cloth.";
+            this.intForDes = 0;
+            this.intDescription = "This is the oficial preistly garment of the Nirwaden church.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 10;
+            this.warmthRetention = 0.5;
+            this.thirstRetention = 0.5;
+            this.shockResist = 1;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 16;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 36;
+            this.ingredients = [["Cloth", 4], ["gold", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 900 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 800.
+            this.sellValue = 700 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 800.
         }
         else if (this.type == "winterWolfOutfit")
         {
@@ -21088,6 +21618,134 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 14 - Math.floor(player.getCharisma() / 10); // at max, buy for 9.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 12); // at max, sell for 9.
+        }
+        else if (this.type == "nirwadenClothingM")
+        {
+            //For All Items
+            this.identity = "Nirwaden Commonwear";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "Clothing sewn from cloth and a straw hat.";
+            this.intForDes = 1;
+            this.intDescription = "The clothing is loosely fitted and baggy.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.2;
+            this.thirstRetention = 0.3;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = 1;
+            }
+            else
+            {
+                this.charismaBonus = -6;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 1;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 15;
+            this.ingredients = [["Cloth", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 33 - Math.floor(player.getCharisma() / 8); // at max, buy for 27.
+            this.sellValue = 22 + Math.floor(player.getCharisma() / 10); // at max, sell for 27.
+        }
+        else if (this.type == "nirwadenClothingF")
+        {
+            //For All Items
+            this.identity = "Nirwaden Bodice";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A common bodice with a skirt and netting.";
+            this.intForDes = 1;
+            this.intDescription = "In Nirwaden people are expected to wear clothes suitable to their rank and gender.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.6;
+            this.thirstRetention = 0.1;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 6;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 3;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 17;
+            this.ingredients = [["Cloth", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 41 - Math.floor(player.getCharisma() / 10); // at max, buy for 36.
+            this.sellValue = 30 + Math.floor(player.getCharisma() / 8); // at max, sell for 36.
         }
         else if (this.type == "ardilFurClothing")
         {
@@ -24621,6 +25279,81 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "nirwadenPriestRobes")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 534, 3458, 89, 173, X - this.X + (1/2 * CCC.width) - (1/2 * 89 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 173 * 0.6), 89 * 0.6, 173 * 0.6);
+        }
+        else if (this.type == "nirwadenClothingM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 901, 837, 97, 149, X - this.X + (1/2 * CCC.width) - (1/2 * 97 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 149 * 0.6), 97 * 0.6, 149 * 0.6);
+        }
+        else if (this.type == "nirwadenClothingF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 89, 999, 97, 149, X - this.X + (1/2 * CCC.width) - (1/2 * 97 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 149 * 0.6), 97 * 0.6, 149 * 0.6);
+        }
+        else if (this.type == "nirwadenNobleOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 98, 821, 98, 146, X - this.X + (1/2 * CCC.width) - (1/2 * 98 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 146 * 0.6), 98 * 0.6, 146 * 0.6);
+        }
+        else if (this.type == "nirwadenNobleDress")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 235, 795, 141, 182, X - this.X + (1/2 * CCC.width) - (1/2 * 141 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 182 * 0.6), 141 * 0.6, 182 * 0.6);
+        }
+        else if (this.type == "nirwadenPlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 312, 642, 100, 145, X - this.X + (1/2 * CCC.width) - (1/2 * 100 * 0.63), Y - this.Y + (1/2 * CCC.height) - (1/2 * 145 * 0.63), 100 * 0.63, 145 * 0.63);
+        }
+        else if (this.type == "griffinPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 746, 2602, 96, 53, X - this.X + (1/2 * CCC.width) - (1/2 * 96 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 53 * 1), 96 * 1, 53 * 1);
+        }
+        else if (this.type == "roastedGriffinHeart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 778, 2545, 44, 49, X - this.X + (1/2 * CCC.width) - (1/2 * 44 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 49 * 1), 44 * 1, 49 * 1);
+        }
+        else if (this.type == "griffinHeart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 825, 2511, 44, 49, X - this.X + (1/2 * CCC.width) - (1/2 * 44 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 49 * 1), 44 * 1, 49 * 1);
+        }
+        else if (this.type == "griffinHeadSml")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 853, 2574, 97, 103, X - this.X + (1/2 * CCC.width) - (1/2 * 97 * 0.75), Y - this.Y + (1/2 * CCC.height) - (1/2 * 103 * 0.75), 97 * 0.75, 103 * 0.75);
+        }
+        else if (this.type == "griffinHeadMed")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 853, 2574, 97, 103, X - this.X + (1/2 * CCC.width) - (1/2 * 97 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 103 * 1), 97 * 1, 103 * 1);
+        }
+        else if (this.type == "griffinHeadLrg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 853, 2574, 97, 103, X - this.X + (1/2 * CCC.width) - (1/2 * 97 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 103 * 1.4), 97 * 1.4, 103 * 1.4);
+        }
+        else if (this.type == "horseMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 912, 382, 45, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1), 45 * 1, 29 * 1);
+        }
+        else if (this.type == "rawHorseFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 912, 340, 45, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1), 45 * 1, 29 * 1);
+        }
+        else if (this.type == "horseHair")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 911, 423, 45, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1), 45 * 1, 29 * 1);
+        }
         else if (this.type == "powderedRhinocerosHorn")
         {
             XXX.beginPath();
@@ -26813,7 +27546,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1844, 64, 37, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 37), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32), 37, 32);
         }
-        else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "drainingI" || this.type == "fireHands" || this.type == "sorcerer'sRaincoat" || this.type == "summonWolf")
+        else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "drainingI" || this.type == "fireHands" || this.type == "sorcerer'sRaincoat" || this.type == "summonWolf" || this.type == "healingPsalms")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1967, 67, 33, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 33), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26), 33, 26);
@@ -27920,6 +28653,81 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "nirwadenPriestRobes")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 534, 3458, 89, 173, this.invX - (1/2 * 89 * 0.45), this.invY - (1/2 * 173 * 0.45), 89 * 0.45, 173 * 0.45);
+        }
+        else if (this.type == "nirwadenClothingM")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 901, 837, 97, 149, this.invX - (1/2 * 97 * 0.525), this.invY - (1/2 * 149 * 0.525), 97 * 0.525, 149 * 0.525);
+        }
+        else if (this.type == "nirwadenClothingF")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 89, 999, 97, 149, this.invX - (1/2 * 97 * 0.525), this.invY - (1/2 * 149 * 0.525), 97 * 0.525, 149 * 0.525);
+        }
+        else if (this.type == "nirwadenNobleOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 98, 821, 98, 146, this.invX - (1/2 * 98 * 0.525), this.invY - (1/2 * 146 * 0.525), 98 * 0.525, 146 * 0.525);
+        }
+        else if (this.type == "nirwadenNobleDress")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 235, 795, 141, 182, this.invX - (1/2 * 141 * 0.37), this.invY - (1/2 * 182 * 0.37), 141 * 0.37, 182 * 0.37);
+        }
+        else if (this.type == "nirwadenPlateArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 312, 642, 100, 145, this.invX - (1/2 * 100 * 0.525), this.invY - (1/2 * 145 * 0.525), 100 * 0.525, 145 * 0.525);
+        }
+        else if (this.type == "griffinPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 746, 2602, 96, 53, this.invX - (1/2 * 96 * 0.65), this.invY - (1/2 * 53 * 0.65), 96 * 0.65, 53 * 0.65);
+        }
+        else if (this.type == "roastedGriffinHeart")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 778, 2545, 44, 49, this.invX - (1/2 * 44 * 0.8), this.invY - (1/2 * 49 * 0.8), 44 * 0.8, 49 * 0.8);
+        }
+        else if (this.type == "griffinHeart")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 825, 2511, 44, 49, this.invX - (1/2 * 44 * 0.8), this.invY - (1/2 * 49 * 0.8), 44 * 0.8, 49 * 0.8);
+        }
+        else if (this.type == "griffinHeadSml")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 853, 2574, 97, 103, this.invX - (1/2 * 97 * 0.55), this.invY - (1/2 * 103 * 0.55), 97 * 0.55, 103 * 0.55);
+        }
+        else if (this.type == "griffinHeadMed")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 853, 2574, 97, 103, this.invX - (1/2 * 97 * 0.6), this.invY - (1/2 * 103 * 0.6), 97 * 0.6, 103 * 0.6);
+        }
+        else if (this.type == "griffinHeadLrg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 853, 2574, 97, 103, this.invX - (1/2 * 97 * 0.65), this.invY - (1/2 * 103 * 0.65), 97 * 0.65, 103 * 0.65);
+        }
+        else if (this.type == "horseMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 912, 382, 45, 29, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 29 * 1), 45 * 1, 29 * 1);
+        }
+        else if (this.type == "rawHorseFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 912, 340, 45, 29, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 29 * 1), 45 * 1, 29 * 1);
+        }
+        else if (this.type == "horseHair")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 911, 423, 45, 29, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 29 * 1), 45 * 1, 29 * 1);
         }
         else if (this.type == "powderedRhinocerosHorn")
         {
@@ -30189,7 +30997,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -31190,6 +31998,81 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "nirwadenPriestRobes")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 534, 3458, 89, 173, this.invX - (1/2 * 89 * 0.45), this.invY - (1/2 * 173 * 0.45), 89 * 0.45, 173 * 0.45);
+        }
+        else if (this.type == "nirwadenClothingM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 901, 837, 97, 149, this.invX - (1/2 * 97 * 0.525), this.invY - (1/2 * 149 * 0.525), 97 * 0.525, 149 * 0.525);
+        }
+        else if (this.type == "nirwadenClothingF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 89, 999, 97, 149, this.invX - (1/2 * 97 * 0.525), this.invY - (1/2 * 149 * 0.525), 97 * 0.525, 149 * 0.525);
+        }
+        else if (this.type == "nirwadenNobleOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 98, 821, 98, 146, this.invX - (1/2 * 98 * 0.525), this.invY - (1/2 * 146 * 0.525), 98 * 0.525, 146 * 0.525);
+        }
+        else if (this.type == "nirwadenNobleDress")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 235, 795, 141, 182, this.invX - (1/2 * 141 * 0.37), this.invY - (1/2 * 182 * 0.37), 141 * 0.37, 182 * 0.37);
+        }
+        else if (this.type == "nirwadenPlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 312, 642, 100, 145, this.invX - (1/2 * 100 * 0.525), this.invY - (1/2 * 145 * 0.525), 100 * 0.525, 145 * 0.525);
+        }
+        else if (this.type == "griffinPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 746, 2602, 96, 53, this.invX - (1/2 * 96 * 0.65), this.invY - (1/2 * 53 * 0.65), 96 * 0.65, 53 * 0.65);
+        }
+        else if (this.type == "roastedGriffinHeart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 778, 2545, 44, 49, this.invX - (1/2 * 44 * 0.8), this.invY - (1/2 * 49 * 0.8), 44 * 0.8, 49 * 0.8);
+        }
+        else if (this.type == "griffinHeart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 825, 2511, 44, 49, this.invX - (1/2 * 44 * 0.8), this.invY - (1/2 * 49 * 0.8), 44 * 0.8, 49 * 0.8);
+        }
+        else if (this.type == "griffinHeadSml")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 853, 2574, 97, 103, this.invX - (1/2 * 97 * 0.55), this.invY - (1/2 * 103 * 0.55), 97 * 0.55, 103 * 0.55);
+        }
+        else if (this.type == "griffinHeadMed")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 853, 2574, 97, 103, this.invX - (1/2 * 97 * 0.6), this.invY - (1/2 * 103 * 0.6), 97 * 0.6, 103 * 0.6);
+        }
+        else if (this.type == "griffinHeadLrg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 853, 2574, 97, 103, this.invX - (1/2 * 97 * 0.65), this.invY - (1/2 * 103 * 0.65), 97 * 0.65, 103 * 0.65);
+        }
+        else if (this.type == "horseMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 912, 382, 45, 29, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 29 * 1), 45 * 1, 29 * 1);
+        }
+        else if (this.type == "rawHorseFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 912, 340, 45, 29, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 29 * 1), 45 * 1, 29 * 1);
+        }
+        else if (this.type == "horseHair")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 911, 423, 45, 29, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 29 * 1), 45 * 1, 29 * 1);
         }
         else if (this.type == "powderedRhinocerosHorn")
         {
@@ -33457,7 +34340,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);

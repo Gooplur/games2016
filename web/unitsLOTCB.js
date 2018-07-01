@@ -129,6 +129,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.flashFrame = 0;
     this.flashFrameTime = new Date().getTime();
     //movement specific variables
+    this.alwaysMove = false; //the creature never stops moving while this is true.
     this.followAttack = false; //the creature moves and attacks at the same time.
     this.fleeing = false;
     this.underground = false;
@@ -245,6 +246,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.bloodQuenched = false;
     this.baskVenomedStoreTime = new Date().getTime();
     this.baskVenomed = false;
+    this.scared = false;
 
     //Artificial Intelligence
     this.setTeamByID = function()
@@ -867,6 +869,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.allys.push("player");
             }
+            this.allys.push("herdia");
             this.allys.push("TheBalgurMercenaries");
             this.allys.push("Thengar");
             this.allys.push("Kel");
@@ -884,6 +887,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.allys.push("player");
             }
+            this.allys.push("herdia");
             this.allys.push("TheBalgurMercenaries");
             this.allys.push("Thengar");
             this.allys.push("Kel");
@@ -900,6 +904,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.allys.push("player");
             }
+            this.allys.push("herdia");
             this.allys.push("TheBalgurMercenaries");
             this.allys.push("Thengar");
             this.allys.push("Kel");
@@ -917,6 +922,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.allys.push("player");
             }
 
+            this.allys.push("herdia");
             this.allys.push("Freynor");
             this.allys.push("Aldrek");
             this.allys.push("Orgell");
@@ -931,6 +937,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.allys.push("player");
             }
+            this.allys.push("herdia");
             this.allys.push("TheBalgurMercenaries");
             this.allys.push("Freynor");
             this.allys.push("Aldrek");
@@ -947,6 +954,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.allys.push("player");
             }
 
+            this.allys.push("herdia");
             this.allys.push("TheBalgurMercenaries");
             this.allys.push("Thengar");
             this.allys.push("Kel");
@@ -960,6 +968,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.allys.push("player");
             }
+            this.allys.push("herdia");
             this.allys.push("TheBalgurMercenaries");
             this.allys.push("Thengar");
             this.allys.push("Kel");
@@ -976,6 +985,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.allys.push("player");
             }
 
+            this.allys.push("herdia");
             this.allys.push("TheBalgurMercenaries");
             this.allys.push("Thengar");
             this.allys.push("Kel");
@@ -992,6 +1002,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.allys.push("player");
             }
 
+            this.allys.push("herdia");
             this.allys.push("TheBalgurMercenaries");
             this.allys.push("Thengar");
             this.allys.push("Kel");
@@ -1008,6 +1019,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.allys.push("player");
             }
 
+            this.allys.push("herdia");
             this.allys.push("Thengar");
             this.allys.push("Freynor");
             this.allys.push("Aldrek");
@@ -1030,8 +1042,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         if (this.team == "herd")
         {
             this.allys.push("docile");
+            this.allys.push("herdia");
             this.allys.push("clamia");
             this.allys.push("walrusia");
+        }
+        if (this.team == "herdia")
+        {
+            this.allys.push("herd");
+            this.allys.push("docile");
         }
         if (this.team == "clamia")
         {
@@ -1166,7 +1184,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //this points the unit toward the main character.
     this.pointTowardsPlayer = function()
     {
-        if (!this.suspendConflictingPointSystems && !this.petrified)
+        if (!this.suspendConflictingPointSystems && !this.petrified && !this.scared)
         {
             var dtp = this.DTP();
             if (dtp < this.rangeOfSight && this.blinded == false) //if the player is close enough to the unit the unit will rotate toward him/her.
@@ -2870,7 +2888,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         if (!this.suspendConflictingPointSystems && !this.petrified)
         {
             var dtp = this.DTP();
-            if (dtp > this.engagementRadius && dtp < this.rangeOfSight && !this.stay || this.fleeing == true && dtp < this.rangeOfSight && !this.stay || this.charger == true && dtp <= this.rangeOfSight && !this.stay || this.followAttack && player.movingType != 0 && dtp < this.rangeOfSight && !this.stay) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
+            if (dtp > this.engagementRadius && dtp < this.rangeOfSight && !this.stay || this.fleeing == true && dtp < this.rangeOfSight && !this.stay || this.charger == true && dtp <= this.rangeOfSight && !this.stay || this.followAttack && player.movingType != 0 && dtp < this.rangeOfSight && !this.stay || this.alwaysMove) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
             {
                 var spd;
                 if (this.swimming)
@@ -3029,7 +3047,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
     this.pointTowards = function(thing)
     {
-        if (!this.suspendConflictingPointSystems && !this.petrified)
+        if (!this.suspendConflictingPointSystems && !this.petrified && !this.scared)
         {
             if (this.blinded == false)
             {
@@ -3077,7 +3095,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 extraS = 0;
             }
             var dTo = this.distanceFinder(this, thing);
-            if (dTo > this.engagementRadius && dTo < (this.rangeOfSight + extraS) && !this.stay || this.fleeing == true && dTo < (this.rangeOfSight + extraS) && !this.stay || this.charger == true && dTo <= this.rangeOfSight && !this.stay || this.followAttack && thingMoving && dTo < this.rangeOfSight && !this.stay) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
+            if (dTo > this.engagementRadius && dTo < (this.rangeOfSight + extraS) && !this.stay || this.fleeing == true && dTo < (this.rangeOfSight + extraS) && !this.stay || this.charger == true && dTo <= this.rangeOfSight && !this.stay || this.followAttack && thingMoving && dTo < this.rangeOfSight && !this.stay || this.alwaysMove) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
             {
                 var spd;
                 if (this.swimming)
@@ -8330,6 +8348,74 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.xAdjustment = 0; //was - 26
 
             }
+            this.swimSpeed = this.speed * 0.8;
+        }
+        else if (this.type == "Peacock")
+        {
+            this.damageFrame = "automatic";
+            this.team = "herdia"; //herdia are 'herd' animals that are reserved for only the nobility to hunt
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.plumed = false;
+            this.wasPlumed = false;
+            this.XX = this.X;
+            this.YY = this.Y;
+
+            if (this.alpha == true)
+            {
+                this.tameREQ = 6;
+                this.magicalResistance = 2;
+                this.heatResistance = 0;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 2) + 4;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 1.4 + (Math.floor(Math.random() * 3) / 10);
+                this.standardSpeed = this.speed;
+                this.rangeOfSight = 425; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.2;
+                this.engagementRadius = 215;
+                this.sizeRadius = 20;
+                this.negateArmour = 0;
+                this.attackWait = 1;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 0.65; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was - 3.5
+                this.xAdjustment = 0; //was 6
+            }
+            else
+            {
+                this.tameREQ = 5;
+                this.magicalResistance = 2;
+                this.heatResistance = 0;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 2) + 2;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 1.2 + (Math.floor(Math.random() * 3) / 10);
+                this.standardSpeed = this.speed;
+                this.rangeOfSight = 400; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.2;
+                this.engagementRadius = 170;
+                this.sizeRadius = 16;
+                this.negateArmour = 0;
+                this.attackWait = 1;
+
+                //this multiplies the draw image skew numbers by 1 so that it stays the same
+                this.alphaSize = 0.5;
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was -34
+                this.xAdjustment = 0; //was - 26
+
+            }
+            this.swimSpeed = this.speed /3;
         }
         else if (this.type == "Drile")
         {
@@ -18338,6 +18424,267 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+            }
+        }
+        //PEACOCK
+        if (this.type == "Peacock")
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 1 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 4 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (4 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("rawPeacockFlesh", this.X, this.Y), 1], [new Item("peacockFeather", this.X, this.Y), 1 + Math.floor(Math.random() * 5)]];
+            }
+            else
+            {
+                if (Math.max(0, 1 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 3 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 3 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [[new Item("rawPeacockFlesh", this.X, this.Y), 1], [new Item("peacockFeather", this.X, this.Y), 1 + Math.floor(Math.random() * 3)]];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(425, "mildly");
+            }
+            else
+            {
+                this.rangeOfSightCalculator(400, "mildly");
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                if (this.target == player)
+                {
+                    if (this.DTP() <= this.engagementRadius && this.disturbed == false)
+                    {
+                        if (this.plumed == false)
+                        {
+                            this.costume = 0;
+                            this.wasPlumed = true;
+                        }
+                        this.alwaysMove = true;
+                        this.plumed = true;
+                        this.pointTowardsPlayer();
+                        if (this.team != "player")
+                        {
+                            this.speed = -1/4 * this.standardSpeed;
+                        }
+                        else
+                        {
+                            if (!this.stay)
+                            {
+                                this.speed = 3 / 5 * this.standardSpeed;
+                            }
+                        }
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.disturbed)
+                    {
+                        if (this.plumed == true)
+                        {
+                            this.wasPlumed = true;
+                        }
+                        this.plumed = false;
+                        this.pointAwayFromPlayer();
+                        this.moveInRelationToPlayer();
+                        if (!this.stay)
+                        {
+                            this.speed = this.standardSpeed;
+                        }
+                    }
+                    else
+                    {
+                        if (this.plumed == true)
+                        {
+                            this.wasPlumed = true;
+                        }
+                        this.plumed = false;
+                        if (!this.stay)
+                        {
+                            this.speed = 1/2 * this.standardSpeed;
+                        }
+                        if (this.team != "player" && this.DTP() > (this.engagementRadius + 25))
+                        {
+                            this.wander(this.XX, this.YY, 400, 190, false);
+                        }
+                        else
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                    }
+                }
+                else if (this.target != "none")
+                {
+                    if (this.DTU(this.target) <= this.engagementRadius && this.health >= this.healthMAX)
+                    {
+                        if (this.plumed == false)
+                        {
+                            this.costume = 0;
+                            this.wasPlumed = true;
+                        }
+                        this.alwaysMove = true;
+                        this.plumed = true;
+                        this.pointTowards(this.target);
+                        if (!this.stay)
+                        {
+                            this.speed = -1 / 4 * this.standardSpeed;
+                        }
+                        this.moveInRelationToThing(this.target);
+                        //pluming feathers scares small predators (it only turns away one predator at a time, so a pack should have no problem hunting them down)
+                        if (this.target.healthMAX < (this.healthMAX + 6) && this.target.target == this && this.target.type != "Person" && this.target.type != "Soldier")
+                        {
+                            this.target.scared = true;
+                            this.target.pointAway(this);
+                        }
+                    }
+                    else if (this.health < this.healthMAX)
+                    {
+                        if (this.plumed == true)
+                        {
+                            this.wasPlumed = true;
+                        }
+                        this.plumed = false;
+                        this.pointAway(this.target);
+                        this.moveInRelationToThing(this.target);
+                        if (!this.stay)
+                        {
+                            this.speed = this.standardSpeed;
+                        }
+                    }
+                    else
+                    {
+                        if (this.plumed == true)
+                        {
+                            this.wasPlumed = true;
+                        }
+                        this.plumed = false;
+                        if (!this.stay)
+                        {
+                            this.speed = 1 / 2 * this.standardSpeed;
+                        }
+                        if (this.team != "player" && this.DTU(this.target) > (this.engagementRadius + 25))
+                        {
+                            this.wander(this.XX, this.YY, 400, 190, false);
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.team != "player")
+                    {
+                        this.speed = 1/2 * this.standardSpeed;
+                        this.wander(this.XX, this.YY, 400, 190, false);
+                    }
+                }
+
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (this.wasPlumed == true) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(3, 0.075, false);
+                }
+                else
+                {
+                    this.costumeEngine(2, 0.1, true);
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (this.wasPlumed == true)
+                    {
+                        this.drawUnit(atal, 568, 1001, 416, 181, -1/2 * 416 * this.alphaSize - this.xAdjustment, -1/2 * 181 * this.alphaSize - this.yAdjustment, 416 * this.alphaSize, 181 * this.alphaSize);
+                    }
+                    else if (this.moving)
+                    {
+                        if (this.plumed)
+                        {
+                            this.drawUnit(atal, 42, 1371, 265, 181, -1/2 * 265 * this.alphaSize - this.xAdjustment, -1/2 * 181 * this.alphaSize - this.yAdjustment, 265 * this.alphaSize, 181 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(atal, 566, 1168, 416, 181, -1/2 * 416 * this.alphaSize - this.xAdjustment, -1/2 * 181 * this.alphaSize - this.yAdjustment, 416 * this.alphaSize, 181 * this.alphaSize);
+                        }
+                    }
+                    else
+                    {
+                        if (this.plumed)
+                        {
+                            this.drawUnit(atal, 182, 1177, 416, 181, -1/2 * 416 * this.alphaSize - this.xAdjustment, -1/2 * 181 * this.alphaSize - this.yAdjustment, 416 * this.alphaSize, 181 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(atal, 185, 1009, 416, 181, -1/2 * 416 * this.alphaSize - this.xAdjustment, -1/2 * 181 * this.alphaSize - this.yAdjustment, 416 * this.alphaSize, 181 * this.alphaSize);
+                        }
+                    }
+                }
+                else if (theCostume >= 1)
+                {
+                    if (this.wasPlumed == true)
+                    {
+                        this.drawUnit(atal, 568, 1001, 416, 181, -1/2 * 416 * this.alphaSize - this.xAdjustment, -1/2 * 181 * this.alphaSize - this.yAdjustment, 416 * this.alphaSize, 181 * this.alphaSize);
+                        if (this.costume >= 2)
+                        {
+                            this.wasPlumed = false;
+                        }
+                    }
+                    else if (this.moving)
+                    {
+                        if (this.plumed)
+                        {
+                            this.drawUnit(atal, 311, 1368, 265, 181, -1/2 * 265 * this.alphaSize - this.xAdjustment, -1/2 * 181 * this.alphaSize - this.yAdjustment, 265 * this.alphaSize, 181 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(atal, 563, 1321, 416, 181, -1/2 * 416 * this.alphaSize - this.xAdjustment, -1/2 * 181 * this.alphaSize - this.yAdjustment, 416 * this.alphaSize, 181 * this.alphaSize);
+                        }
+                    }
+                    else
+                    {
+                        if (this.plumed)
+                        {
+                            this.drawUnit(atal, 182, 1177, 416, 181, -1/2 * 416 * this.alphaSize - this.xAdjustment, -1/2 * 181 * this.alphaSize - this.yAdjustment, 416 * this.alphaSize, 181 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(atal, 185, 1009, 416, 181, -1/2 * 416 * this.alphaSize - this.xAdjustment, -1/2 * 181 * this.alphaSize - this.yAdjustment, 416 * this.alphaSize, 181 * this.alphaSize);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(atal, 667, 1467, 265, 181, -1/2 * 265 * this.alphaSize - this.xAdjustment, -1/2 * 181 * this.alphaSize - this.yAdjustment, 265 * this.alphaSize, 181 * this.alphaSize);
             }
         }
         //DRILE
@@ -32002,5 +32349,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.disturbedTime = new Date().getTime();
         }
+
+        //Reset Certain Variables
+        this.scared = false;
     };
 };

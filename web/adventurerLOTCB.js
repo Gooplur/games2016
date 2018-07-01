@@ -5185,6 +5185,18 @@ function Adventurer()
         {
             outfit = allWorn[82];
         }
+        else if (this.outfitEquipped == "witchHunterOutfit")
+        {
+            outfit = allWorn[83];
+        }
+        else if (this.outfitEquipped == "nirwadenMorionArmour")
+        {
+            outfit = allWorn[84];
+        }
+        else if (this.outfitEquipped == "nirwadenGambeson")
+        {
+            outfit = allWorn[85];
+        }
         else
         {
             outfit = allWorn[0];
@@ -5400,6 +5412,45 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(atal, 830, 866, 44, 46, -(1 / 2 * 44 * 0.62) - 1.5, -(1 / 2 * 46 * 0.62) - 0, 44 * 0.62, 46 * 0.62);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "nirwadenMorionArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(atal, 28, 653, 67, 55, -(1 / 2 * 67 * 0.62) + 0.5, -(1 / 2 * 55 * 0.62) - 0.4, 67 * 0.62, 55 * 0.62);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "nirwadenGambeson")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(atal, 32, 489, 63, 45, -(1 / 2 * 63 * 0.66) + 0.5, -(1 / 2 * 45 * 0.66) - 1.7, 63 * 0.66, 45 * 0.66);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "witchHunterOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(atal, 594, 868, 85, 49, -(1 / 2 * 85 * 0.61) + 0.5, -(1 / 2 * 49 * 0.61) - 1.4, 85 * 0.61, 49 * 0.61);
             XXX.restore();
         }
         else if (this.outfitEquipped == "nirwadenPriestRobes")
@@ -8053,7 +8104,7 @@ function Adventurer()
             }
         }
 
-        if (this.spell.ID == "SummonSingularLargeCreature")
+        if (this.spell.ID == "SummonSingularLargeCreature" || this.spell.ID == "summonGriffin" || this.spell.ID == "ancientRift")
         {
             this.stageEngine(7, 0.20, false);
 
@@ -8134,7 +8185,14 @@ function Adventurer()
                 {
                     this.doMagic = false;
                     this.magicalExperience += this.spell.EXP;
-                    magicList.push(new Magic(player.spell, true, 1));
+                    if (this.spell.ID == "ancientRift")
+                    {
+                        magicList.push(new Magic(player.spell, true, "AncientBeing"));
+                    }
+                    else
+                    {
+                        magicList.push(new Magic(player.spell, true, 1));
+                    }
                 }
                 this.castingCooldown = new Date().getTime();
             }

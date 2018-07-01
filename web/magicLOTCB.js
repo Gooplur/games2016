@@ -10,6 +10,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         //VARIABLES FOR ALL SPELLS
         this.spellType = spellInfo.ID;
         this.cnx = spellInfo.CNX;
+        if (player.getConcentration() < this.cnx)
+        {
+            this.cnx = player.getConcentration();
+        }
         this.X = false;
         this.Y = false;
         this.dmx = map;
@@ -1582,7 +1586,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             this.orientToCaster(19, 1 / 2 * Math.PI);
         }
         //Summoning
-        if (this.spellType == "summonFrich" || this.spellType == "summonWolf" || this.spellType == "adminSummon")
+        if (this.spellType == "summonFrich" || this.spellType == "summonWolf" || this.spellType == "summonGriffin" || this.spellType == "adminSummon")
         {
             this.spin = ((Math.random() * 11) - 5) / 25;
             var rdxn = Math.floor(Math.random() * 8);
@@ -1791,7 +1795,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             }
 
             //SUMMONING
-            if (this.spellType == "summonFrich" || this.spellType == "summonWolf" || this.spellType == "adminSummon")
+            if (this.spellType == "summonFrich" || this.spellType == "summonWolf" || this.spellType == "summonGriffin" || this.spellType == "adminSummon")
             {
                 this.turn += this.spin;
                 if (caster)
@@ -1816,9 +1820,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                     {
                         XXX.drawImage(polpol, 118, 569, 25, 23, - (1/2 * 25), - (1/2 * 23), 25, 23);
                     }
-
                     XXX.restore();
-
 
                     if (this.spellType == "summonFrich" && this.alert)
                     {
@@ -1858,6 +1860,26 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                             alph = false
                         }
                         ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "GreyWolf", alph, "playerSummonedWolf"));
+
+                        for (var i = 0; i < magicList.length; i++)
+                        {
+                            if (magicList[i] === this)
+                            {
+                                magicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                    else if (this.spellType == "summonGriffin" && this.alert)
+                    {
+                        if (this.cnx >= 45)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Griffin", false, "player"));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Griffin", false, "summonedGriffin"));
+                        }
 
                         for (var i = 0; i < magicList.length; i++)
                         {

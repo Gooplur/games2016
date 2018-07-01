@@ -528,6 +528,96 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 4;
             this.spellRange = "Near-Medium";
         }
+        else if (this.type == "summonGriffin")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 39)
+            {
+                this.identity = "Scroll of Griffin Summoning";
+                this.description = "Studying this scroll will teach you how to magically synthesize a griffin to fight for you.";
+                this.intForDes = 0;
+                this.intDescription = "The griffin will be hostile unless you have high concentration.";
+                this.buyValue = 2500 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 2400.
+                this.sellValue = 2000 + Math.floor(player.getCharisma() / 0.125); // at max, sell for 2400.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 2500 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 2400.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+
+            this.spellCost = Math.max(29, 30 + 30 / 50 * player.getConcentration() - (15 / 50) * player.getEminence());
+
+            this.spellGroup = "Form";
+            this.spellGenre = "Conjuration";
+            this.spellName = "Griffin Summoning";
+            this.spellID = "summonGriffin";
+            this.spellEXP = 50 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(35, 45 + (30/50) * player.getConcentration() - (15/50) * player.getEminence());
+            this.spellDescription = "A blast of magical synthesis energy that forms a griffin.";
+            this.spellKnowledgeRequirement = 39;
+            this.spellRange = "Near-Medium";
+        }
+        else if (this.type == "summonDemon")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 48)
+            {
+                this.identity = "Scroll of Demon Rift";
+                this.description = "Studying this scroll will teach you how to tear through dimensions and drag an ancient being through.";
+                this.intForDes = 0;
+                this.intDescription = "The demon summoned will be hostile.";
+                this.buyValue = 10000 - Math.floor(player.getCharisma() / 0.125); // at max, buy for 9600.
+                this.sellValue = 9000 + Math.floor(player.getCharisma() / 0.125); // at max, sell for 9400.
+            }
+            else
+            {
+                this.identity = "Eerie Scroll";
+                this.description = "The markings on this scroll are written in a long lost language that sends shivers down your spine.";
+                this.intForDes = 0;
+                this.intDescription = "The scroll is unusually heavy.";
+                this.buyValue = 10000 - Math.floor(player.getCharisma() / 0.125); // at max, buy for 9600.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 11;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+
+            this.spellCost = Math.max(40, 50 + 0 / 50 * player.getConcentration() - (10 / 50) * player.getEminence());
+
+            this.spellGroup = "Form";
+            this.spellGenre = "Cosmic";
+            this.spellName = "Demon Rift";
+            this.spellID = "ancientRift";
+            this.spellEXP = 100 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(60, 80 + (0/50) * player.getConcentration() - (20/50) * player.getEminence());
+            this.spellDescription = "Creates a rift between dimensions and drags an ancient being through.";
+            this.spellKnowledgeRequirement = 48;
+            this.spellRange = "Near-Medium";
+        }
         else if (this.type == "entanglement")
         {
             //For All Items
@@ -12770,6 +12860,41 @@ function Item(type, x, y)
             this.buyValue = 2; // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
+        else if (this.type == "peacockFeather")
+        {
+            //For All Items
+            this.identity = "Peacock Feather";
+            this.weight = 0.045;
+            this.size = 16;
+            this.description = "The illustrious and colorful feather of a peacock.";
+            this.intForDes = 5;
+            if (player.title == "Nobility" || player.title == "Royalty" || player.title == "Highfolk")
+            {
+                this.intDescription = "It is an alchemical former.";
+            }
+            else
+            {
+                this.intDescription = "It is an alchemical former; its price is inflated because only nobles are allowed to hunt peacocks.";
+            }
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (player.title == "Nobility" || player.title == "Royalty" || player.title == "Highfolk")
+            {
+                this.buyValue = 20; // at max, buy for 20.
+                this.sellValue = 20; // at max, sell for 20.
+            }
+            else
+            {
+                this.buyValue = 445 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 245.
+                this.sellValue = 0; // at max, sell for 0.
+            }
+        }
         else if (this.type == "mofuFeather")
         {
             //For All Items
@@ -13059,6 +13184,49 @@ function Item(type, x, y)
             this.buyValue = 13 - Math.floor(player.getCharisma() / 12); // at max, buy for 9.
             this.sellValue = 6 + Math.floor(player.getCharisma() / 15); // at max, sell for 9.
         }
+        else if (this.type == "rawPeacockFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Peacock Flesh";
+            this.weight = 5;
+            this.size = 14;
+            this.description = "The defeathered, eviscerated, whole body of a peacock. ";
+            this.intForDes = 3;
+            if (player.title == "Nobility" || player.title == "Royalty" || player.title == "Highfolk")
+            {
+                this.intDescription = "Only those of noble blood have the priviledge of hunting peacocks. Don't eat this raw.";
+            }
+            else
+            {
+                this.intDescription = "Common people are not supposed to hunt peacocks, so merchants will not purchase this. Don't eat this raw.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 30 - Math.floor(player.getCharisma() / 10); // at max, buy for 25.
+            if (player.title == "Nobility" || player.title == "Royalty" || player.title == "Highfolk")
+            {
+                this.sellValue = 10 + Math.floor(player.getCharisma() / 3); // at max, sell for 25.
+            }
+            else
+            {
+                this.sellValue = 0;
+            }
+        }
         else if (this.type == "mofuMeat")
         {
             //For All Items
@@ -13092,6 +13260,47 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 30 - Math.floor(player.getCharisma() / 6); // at max, buy for 22.
             this.sellValue = 18 + Math.floor(player.getCharisma() / 12); // at max, sell for 22.
+        }
+        else if (this.type == "peacockMeat")
+        {
+            //For All Items
+            this.identity = "Peacock Meat";
+            this.weight = 5;
+            this.size = 14;
+            this.description = "A whole roasted peacock.";
+            this.intForDes = 0;
+            this.intDescription = "Peacocks are usually only eaten by those of aristocratic lineage.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 19; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 9; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 25;
+            this.ingredients = [["Raw Peacock Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 50 - Math.floor(player.getCharisma() / 10); // at max, buy for 45.
+            if (player.title == "Nobility" || player.title == "Royalty" || player.title == "Highfolk")
+            {
+                this.sellValue = 20 + Math.floor(player.getCharisma() / 2); // at max, sell for 45.
+            }
+            else
+            {
+                this.sellValue = 0;
+            }
         }
         else if (this.type == "rawLargeMofuFlesh")
         {
@@ -20349,6 +20558,122 @@ function Item(type, x, y)
             this.buyValue = 194 - Math.floor(player.getCharisma() / 1); // at max, buy for 144.
             this.sellValue = 90 + Math.floor(player.getCharisma() / 1); // at max, sell for 140.
         }
+        else if (this.type == "nirwadenMorionArmour")
+        {
+            //For All Items
+            this.identity = "Nirwaden Guard Armour";
+            this.weight = 19;
+            this.size = 27;
+            this.description = "Gambeson, chain mail and a morion helmet.";
+            this.intForDes = 1;
+            this.intDescription = "This armour is the standard armour worn by the Nirwaden Military.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 9.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 8;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.25;
+            this.thirstRetention = 0;
+            this.shockResist = -2;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 1;
+            this.rangedBonus = 1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 6;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 25;
+            this.ingredients = [["Steel", 4], ["Gambeson", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 175 - Math.floor(player.getCharisma() / 2); // at max, buy for 150.
+            this.sellValue = 125 + Math.floor(player.getCharisma() / 2); // at max, sell for 150.
+        }
+        else if (this.type == "nirwadenGambeson")
+        {
+            //For All Items
+            this.identity = "Gambeson";
+            this.weight = 2.5;
+            this.size = 25;
+            this.description = "Thick body padding made from horse hair.";
+            this.intForDes = 1;
+            this.intDescription = "A good gambeson serves as the basis for most other armours; it provides padding and protection.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 1.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 1;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.25;
+            this.thirstRetention = -1;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 6;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Horse Hair", 6]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 30 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 26.
+            this.sellValue = 18 + Math.floor(player.getCharisma() / 6); // at max, sell for 26.
+        }
         else if (this.type == "saltBloodArmour")
         {
             //For All Items
@@ -20701,7 +21026,7 @@ function Item(type, x, y)
             this.sleepBonus = 0;
             this.hungerBonus = 0;
             this.thirstBonus = 0;
-            this.warmthBonus = 5;
+            this.warmthBonus = 6;
             //Magical Stat Bonuses
             this.eminenceBonus = 0;
             this.willpowerBonus = 0;
@@ -21383,6 +21708,59 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 900 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 800.
             this.sellValue = 700 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 800.
+        }
+        else if (this.type == "witchHunterOutfit")
+        {
+            //For All Items
+            this.identity = "Witch Hunter Outfit";
+            this.weight = 2;
+            this.size = 27;
+            this.description = "The standard garb of The Order of the Inquisition";
+            this.intForDes = 0;
+            this.intDescription = "The Order of the Inquisition is a royally sanctioned guild of witch hunters that is tasked with eliminating the uncanny supernatural.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 1 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 5.5;
+            this.warmthRetention = 0.75;
+            this.thirstRetention = 0.75;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 8;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 1;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 1;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 500 - Math.floor(player.getCharisma() / 1); // at max, buy for 450.
+            this.sellValue = 350 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 450.
         }
         else if (this.type == "winterWolfOutfit")
         {
@@ -25279,6 +25657,36 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "witchHunterOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 705, 841, 96, 145, X - this.X + (1/2 * CCC.width) - (1/2 * 96 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 145 * 0.6), 96 * 0.6, 145 * 0.6);
+        }
+        else if (this.type == "nirwadenGambeson")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 107, 462, 96, 145, X - this.X + (1/2 * CCC.width) - (1/2 * 96 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 145 * 0.6), 96 * 0.6, 145 * 0.6);
+        }
+        else if (this.type == "nirwadenMorionArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 103, 624, 96, 145, X - this.X + (1/2 * CCC.width) - (1/2 * 96 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 145 * 0.6), 96 * 0.6, 145 * 0.6);
+        }
+        else if (this.type == "peacockFeather")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 7, 1087, 73, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 73 * 1.45), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1.45), 73 * 1.45, 35 * 1.45);
+        }
+        else if (this.type == "peacockMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 11, 1205, 73, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 73 * 0.575), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 0.575), 73 * 0.575, 35 * 0.575);
+        }
+        else if (this.type == "rawPeacockFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 14, 1164, 73, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 73 * 0.575), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 0.575), 73 * 0.575, 35 * 0.575);
+        }
         else if (this.type == "nirwadenPriestRobes")
         {
             XXX.beginPath();
@@ -27556,7 +27964,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1922, 4, 23, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 23), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32), 23, 32);
         }
-        else if (this.type == "magicMissiles" || this.type == "entanglement")
+        else if (this.type == "magicMissiles" || this.type == "entanglement" || this.type == "summonGriffin")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1804, 36, 26, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 26), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23), 26, 23);
@@ -27581,7 +27989,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1928, 39, 40, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 40), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 40, 21);
         }
-        else if (this.type == "frostWind" || this.type == "chasingLights" || this.type == "surge" || this.type == "shieldingI" || this.type == "shieldingII")
+        else if (this.type == "frostWind" || this.type == "chasingLights" || this.type == "surge" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "summonDemon")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1773, 3, 28, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 28), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30), 28, 30);
@@ -28653,6 +29061,36 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "witchHunterOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 705, 841, 96, 145, this.invX - (1/2 * 96 * 0.5), this.invY - (1/2 * 145 * 0.5), 96 * 0.5, 145 * 0.5);
+        }
+        else if (this.type == "nirwadenGambeson")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 107, 462, 96, 145, this.invX - (1/2 * 96 * 0.5), this.invY - (1/2 * 145 * 0.5), 96 * 0.5, 145 * 0.5);
+        }
+        else if (this.type == "nirwadenMorionArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 103, 624, 96, 145, this.invX - (1/2 * 96 * 0.5), this.invY - (1/2 * 145 * 0.5), 96 * 0.5, 145 * 0.5);
+        }
+        else if (this.type == "peacockFeather")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 7, 1087, 73, 35, this.invX - (1/2 * 73 * 1), this.invY - (1/2 * 35 * 1), 73 * 1, 35 * 1);
+        }
+        else if (this.type == "peacockMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 11, 1205, 73, 35, this.invX - (1/2 * 73 * 0.575), this.invY - (1/2 * 35 * 0.575), 73 * 0.575, 35 * 0.575);
+        }
+        else if (this.type == "rawPeacockFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 14, 1164, 73, 35, this.invX - (1/2 * 73 * 0.575), this.invY - (1/2 * 35 * 0.575), 73 * 0.575, 35 * 0.575);
         }
         else if (this.type == "nirwadenPriestRobes")
         {
@@ -30997,7 +31435,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -31998,6 +32436,36 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "witchHunterOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 705, 841, 96, 145, this.invX - (1/2 * 96 * 0.5), this.invY - (1/2 * 145 * 0.5), 96 * 0.5, 145 * 0.5);
+        }
+        else if (this.type == "nirwadenGambeson")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 107, 462, 96, 145, this.invX - (1/2 * 96 * 0.5), this.invY - (1/2 * 145 * 0.5), 96 * 0.5, 145 * 0.5);
+        }
+        else if (this.type == "nirwadenMorionArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 103, 624, 96, 145, this.invX - (1/2 * 96 * 0.5), this.invY - (1/2 * 145 * 0.5), 96 * 0.5, 145 * 0.5);
+        }
+        else if (this.type == "peacockFeather")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 7, 1087, 73, 35, this.invX - (1/2 * 73 * 1), this.invY - (1/2 * 35 * 1), 73 * 1, 35 * 1);
+        }
+        else if (this.type == "peacockMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 11, 1205, 73, 35, this.invX - (1/2 * 73 * 0.575), this.invY - (1/2 * 35 * 0.575), 73 * 0.575, 35 * 0.575);
+        }
+        else if (this.type == "rawPeacockFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 14, 1164, 73, 35, this.invX - (1/2 * 73 * 0.575), this.invY - (1/2 * 35 * 0.575), 73 * 0.575, 35 * 0.575);
         }
         else if (this.type == "nirwadenPriestRobes")
         {
@@ -34340,7 +34808,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);

@@ -17674,7 +17674,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Chainsaw";
-            this.weight = 30;
+            this.weight = 38;
             this.size = 20;
             this.description = "A smoke puffing coal powered saw made for cutting trees down efficiently.";
             this.intForDes = 1;

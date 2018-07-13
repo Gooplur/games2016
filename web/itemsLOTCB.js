@@ -17670,6 +17670,40 @@ function Item(type, x, y)
             this.buyValue = 1200; // at max, buy for 1200.
             this.sellValue = 1000 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 1200.
         }
+        else if (this.type == "chainsaw")
+        {
+            //For All Items
+            this.identity = "Chainsaw";
+            this.weight = 30;
+            this.size = 20;
+            this.description = "A smoke puffing coal powered saw made for cutting trees down efficiently.";
+            this.intForDes = 1;
+            this.intDescription = "This creation represents the beginning of a new age of nirwaden technology.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 5;
+            this.distance = 70 + (this.range * 7);
+            this.range = 3;
+            this.rate = 400;
+            this.damage = 20 + ((6/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 50;
+            this.ingredients = [["Steel", 1], ["Iron", 3], ["Copper", 1], ["Copper Wire", 1], ["Coal", 60]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 800; // at max, buy for 800.
+            this.sellValue = 800; // at max, sell for 800.
+        }
         else if (this.type == "cero")
         {
             //For All Items
@@ -25657,6 +25691,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "chainsaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 844, 2059, 74, 116, X - this.X + (1/2 * CCC.width) - (1/2 * 74 * 0.64), Y - this.Y + (1/2 * CCC.height) - (1/2 * 116 * 0.64), 74 * 0.64, 116 * 0.64);
+        }
         else if (this.type == "witchHunterOutfit")
         {
             XXX.beginPath();
@@ -29062,6 +29101,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "chainsaw")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 844, 2059, 74, 116, this.invX - (1/2 * 74 * 0.64), this.invY - (1/2 * 116 * 0.64), 74 * 0.64, 116 * 0.64);
+        }
         else if (this.type == "witchHunterOutfit")
         {
             LXX.beginPath();
@@ -32436,6 +32480,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "chainsaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 844, 2059, 74, 116, this.invX - (1/2 * 74 * 0.64), this.invY - (1/2 * 116 * 0.64), 74 * 0.64, 116 * 0.64);
         }
         else if (this.type == "witchHunterOutfit")
         {

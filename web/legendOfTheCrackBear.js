@@ -3186,6 +3186,7 @@ function theLegend()
     allWeapons.push(new Item("fishingpole", false)); //68
     allWeapons.push(new Item("boat", false)); //69
     allWeapons.push(new Item("toothedBludgeon", false)); //70
+    allWeapons.push(new Item("chainsaw", false)); //71
 
 
 //This list holds one of each type of worn item so that the player can access the worn item stats.
@@ -3377,6 +3378,7 @@ function theLegend()
     smithing.push(new Item("toothedBludgeon", false));
     smithing.push(new Item("nirwadenPlateArmour", false));
     smithing.push(new Item("nirwadenMorionArmour", false));
+    smithing.push(new Item("chainsaw", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];

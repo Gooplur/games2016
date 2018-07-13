@@ -9026,7 +9026,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     console.log(distFromCutCut);
                     if (distFromCutCut <= player.weapon.range * 7 + 35)
                     {
-                        this.treeHealth -= 1;
+                        this.treeHealth -= 2;
                     }
 
                     if (this.treeHealth <= 0)
@@ -9055,6 +9055,20 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     if (distFromCutCut <= player.weapon.range * 10 + 35)
                     {
                         this.treeHealth -= 0.35;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+                else if (player.weaponEquipped == "chainsaw" && player.cutcut == true && this.playerer < 130)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 10 + 35)
+                    {
+                        this.treeHealth -= 20;
                     }
 
                     if (this.treeHealth <= 0)
@@ -9248,7 +9262,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     console.log(distFromCutCut);
                     if (distFromCutCut <= player.weapon.range * 7 + 35)
                     {
-                        this.treeHealth -= 1;
+                        this.treeHealth -= 2;
                     }
 
                     if (this.treeHealth <= 0)
@@ -9277,6 +9291,20 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     if (distFromCutCut <= player.weapon.range * 10 + 35)
                     {
                         this.treeHealth -= 0.35;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+                else if (player.weaponEquipped == "chainsaw" && player.cutcut == true && this.playerer < 130)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 10 + 35)
+                    {
+                        this.treeHealth -= 20;
                     }
 
                     if (this.treeHealth <= 0)

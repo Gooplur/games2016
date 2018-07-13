@@ -10315,6 +10315,31 @@ function Adventurer()
                 this.flashAnimate(90, this.rotation, translucence, [{image: mofu, imgX: 329, imgY: 133, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 370.5, imgY: 134, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 409.5, imgY: 134, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}]);
             }
         }
+        //CHAINSAW
+        if (this.weaponEquipped == "chainsaw")
+        {
+            this.stageEngine(4, 0.18, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            var translucence = 0.90;
+            if (this.subtlety)
+            {
+                translucence = 0.4;
+            }
+
+            if (Math.floor(this.stage) <= 0)
+            {
+                this.flashAnimate(90, this.rotation, translucence, [{image: atal, imgX: 22, imgY: 2042, portionW: 168, portionH: 142, adjX: -36, adjY: -75, width: 168 * 0.64, height: 142 * 0.64}, {image: atal, imgX: 213, imgY: 2040, portionW: 168, portionH: 142, adjX: -36, adjY: -75, width: 168 * 0.64, height: 142 * 0.64}, {image: atal, imgX: 415, imgY: 2043, portionW: 168, portionH: 142, adjX: -36, adjY: -75, width: 168 * 0.64, height: 142 * 0.64}, {image: atal, imgX: 609, imgY: 2041, portionW: 168, portionH: 142, adjX: -36, adjY: -75, width: 168 * 0.64, height: 142 * 0.64}]);
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                this.flashAnimate(90, this.rotation, translucence, [{image: atal, imgX: 25, imgY: 2194, portionW: 168, portionH: 142, adjX: -36, adjY: -71, width: 168 * 0.64, height: 142 * 0.64}, {image: atal, imgX: 229, imgY: 2196, portionW: 168, portionH: 142, adjX: -25, adjY: -71, width: 168 * 0.64, height: 142 * 0.64}, {image: atal, imgX: 416, imgY: 2201, portionW: 168, portionH: 142, adjX: -36, adjY: -71, width: 168 * 0.64, height: 142 * 0.64}, {image: atal, imgX: 603, imgY: 2204, portionW: 168, portionH: 142, adjX: -36, adjY: -71, width: 168 * 0.64, height: 142 * 0.64}]);
+            }
+            else if (Math.floor(this.stage) >= 2)
+            {
+                this.flashAnimate(90, this.rotation, translucence, [{image: atal, imgX: 29, imgY: 2342, portionW: 168, portionH: 142, adjX: -37, adjY: -68, width: 168 * 0.64, height: 142 * 0.64}, {image: atal, imgX: 214, imgY: 2345, portionW: 168, portionH: 142, adjX: -37, adjY: -68, width: 168 * 0.64, height: 142 * 0.64}, {image: atal, imgX: 417, imgY: 2346, portionW: 168, portionH: 142, adjX: -36, adjY: -68, width: 168 * 0.64, height: 142 * 0.64}, {image: atal, imgX: 603, imgY: 2345, portionW: 168, portionH: 142, adjX: -36, adjY: -68, width: 168 * 0.64, height: 142 * 0.64}]);
+            }
+        }
         //ZER0's BLADE
         if (this.weaponEquipped == "cero")
         {
@@ -16164,6 +16189,14 @@ function Adventurer()
             //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2/5 * Math.PI) * (this.mySize + 34);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2/5 * Math.PI) * (this.mySize + 34);
+        }
+        else if (this.weaponEquipped == "chainsaw")
+        {
+            this.weapon = allWeapons[71];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.25/5 * Math.PI) * (this.mySize + 39);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.25/5 * Math.PI) * (this.mySize + 39);
         }
     };
 

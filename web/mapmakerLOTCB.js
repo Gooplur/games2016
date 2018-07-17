@@ -51,6 +51,7 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Griffin", "massive", "Criaad The Voracious"));
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1400, "Peacock", true, "Deriere"));
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Horse", true, "player"));
+                //ArtificialIntelligenceAccess.push(new Unit(3050, 1650, "Boar", true, "Deedee"));
 
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));
@@ -125,6 +126,18 @@ function buildMaster()
                     else
                     {
                         ArtificialIntelligenceAccess.push(new Unit(3792, -802, "Frich", "massive", "Hunky-Dory"));
+                    }
+                }
+
+                if (duendeSwarm == true)
+                {
+                    for (var i =0; i < 12;i++)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(3050, 1650, "Duende", "true", "Krico"));
+                    }
+                    for (var i =0; i < 12;i++)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(892, 1308, "Duende", "true", "Krica"));
                     }
                 }
 

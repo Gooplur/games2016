@@ -16536,7 +16536,7 @@ function Adventurer()
                 var x1 = focusUnit.X; //the focus unit's X position.
                 var y1 = focusUnit.Y; //the focus unit's Y position.
                 var d = Math.sqrt((x - x1) * (x - x1) + (y - y1) * (y - y1)); //This is the distance between this unit and the focus unit.
-                if (d < this.mySize + focusUnit.sizeRadius && focusUnit.alive == true && focusUnit.flying != true && focusUnit.underground != true) // if the total distance between this unit and the focus unit is less than the size of the two radiuses then it returns true to the movement function which calls it.
+                if (d < this.mySize + focusUnit.sizeRadius && focusUnit.alive == true && focusUnit.flying != true && focusUnit.underground != true && focusUnit.tangible == true) // if the total distance between this unit and the focus unit is less than the size of the two radiuses then it returns true to the movement function which calls it.
                 {
                     if (focusUnit.boatphobic != true || this.weaponEquipped != "boat" || focusUnit.water != true || this.water != true || this.land == true) //the player will not be stopped by boatphobic units in the water while boating.
                     {
@@ -24784,7 +24784,7 @@ function Adventurer()
                         {
                             //Effects
 
-                            if (Inventory[i][0].ability == "gutWorms" && this.gutWorms == false) //gut worms
+                            if (Inventory[i][0].ability == "gutWorms" && this.gutWorms == false || Inventory[i][0].ability == "gutworms" && this.gutWorms == false) //gut worms
                             {
                                 var gutwormz = Math.round(Math.random()); //this makes it so that you will only get the gut worms 50% of the time.
                                 if (gutwormz)

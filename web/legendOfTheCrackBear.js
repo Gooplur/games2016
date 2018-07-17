@@ -1959,6 +1959,7 @@ var storedID = -1;
 var stored;
 var seaFlux = 0;
 var dialogueRND = 0;
+var duendeSwarm = false;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -3481,6 +3482,9 @@ function theLegend()
     foods.push(new Item("horseMeat", false));
     foods.push(new Item("peacockMeat", false));
     foods.push(new Item("roastedGriffinHeart", false));
+    foods.push(new Item("porkbelly", false));
+    foods.push(new Item("rawBacon", false));
+    foods.push(new Item("bacon", false));
 
 
 
@@ -3601,6 +3605,8 @@ function theLegend()
     alchemy.push(new Item("irilDust", false));
     alchemy.push(new Item("acidifiedDrileKidney", false));
     alchemy.push(new Item("powderedRhinocerosHorn", false));
+    alchemy.push(new Item("driedDuendeEsophagus", false));
+    alchemy.push(new Item("duendePowder", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];
@@ -3675,6 +3681,8 @@ function theLegend()
     handcrafted.push(new Item("masa", false));
     handcrafted.push(new Item("rawTamal", false));
     handcrafted.push(new Item("rawMofuTamal", false));
+    handcrafted.push(new Item("boarMeat", false));
+    handcrafted.push(new Item("curedPork", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

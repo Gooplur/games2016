@@ -62,6 +62,10 @@ function cheats()
             player.concentration = Math.round(player.concentration / 2);
             player.eminence = Math.round(player.eminence / 2);
         }
+        else if (cheatcode == "duendeestanlosduendes")
+        {
+            duendeSwarm = true;
+        }
         else if (cheatcode == "671W19THAVE")
         {
             player.skillPoints += 10;

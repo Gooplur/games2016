@@ -29,6 +29,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.loopTimer = new Date().getTime();
     this.unpassable = false; //certain creatures with the haste ability (like berulns) can pass over almost any obstacle, but not if the obstacle has this property set to true.
     this.intervalStore = new Date().getTime(); //this variable is for the interval function which calls a function on a loop at a rate defined by you.
+    this.costu = 0;
     //Campfire variables
     this.lit = false;
     this.fireCostume = 0;
@@ -8915,6 +8916,64 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
                 player.warmth += 50;
                 sleep();
+            }
+        }
+        else if (this.type = "fouxDuende")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            //DRAWSELF
+            this.costu += 0.1;
+
+            this.rotation = Math.atan2(this.Y - Y, this.X - X) + 1/2 *Math.PI;
+
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            if (this.costu <= 0)
+            {
+                XXX.drawImage(atal, 201, 1826, 143, 136, -1/2 * 143 * 1 * 0.7, -1/2 * 136 * 1  * 0.7, 143 * 0.7, 136 * 0.7);
+            }
+            else if (this.costu <= 1)
+            {
+                XXX.drawImage(atal, 344, 1825, 143, 136, -1/2 * 143 * 1 * 0.7, -1/2 * 136 * 1  * 0.7, 143 * 0.7, 136 * 0.7);
+            }
+            else if (this.costu <= 2)
+            {
+                XXX.drawImage(atal, 506, 1823, 143, 136, -1/2 * 143 * 1 * 0.7, -1/2 * 136 * 1  * 0.7, 143 * 0.7, 136 * 0.7);
+            }
+            else if (this.costu <= 3)
+            {
+                XXX.drawImage(atal, 650, 1820, 143, 136, -1/2 * 143 * 1 * 0.7, -1/2 * 136 * 1  * 0.7, 143 * 0.7, 136 * 0.7);
+            }
+            else if (this.costu >= 4)
+            {
+                this.costu = 0;
+                XXX.drawImage(atal, 650, 1820, 143, 136, -1/2 * 143 * 1 * 0.7, -1/2 * 136 * 1  * 0.7, 143 * 0.7, 136 * 0.7);
+            }
+            else
+            {
+                XXX.drawImage(atal, 201, 1826, 143, 136, -1/2 * 143 * 1 * 0.7, -1/2 * 136 * 1  * 0.7, 143 * 0.7, 136 * 0.7);
+            }
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 50;
+
+            //SELF DELETE
+            this.burntTime += 1;
+
+            if (this.burntTime > 290)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
             }
         }
         else if (this.type == "pineTree")

@@ -2846,6 +2846,241 @@ function Item(type, x, y)
             this.buyValue = 39; // at max, buy for 39.
             this.sellValue = 24 + Math.floor(player.getCharisma() / 3); // at max, sell for 39.
         }
+        else if (this.type == "rawBoarFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Boar Flesh";
+            this.weight = 16;
+            this.size = 18;
+            this.description = "The leg of a wild forest dwelling swine.";
+            this.intForDes = 1;
+            this.intDescription = "Eating this as it is is not safe.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 15; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -20; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 25); // at max, buy for 18.
+            this.sellValue = 15 + Math.floor(player.getCharisma() / 15); // at max, sell for 18.
+        }
+        else if (this.type == "boarMeat")
+        {
+            //For All Items
+            this.identity = "Cured Leg of Swine";
+            this.weight = 15;
+            this.size = 18;
+            this.description = "The salt cured leg of a wild forest dwelling swine.";
+            this.intForDes = 1;
+            this.intDescription = "Eating this whole would be tremendously difficult and absurdly salty, so don't.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 120; //satisfies hunger.
+            this.thirst = -20; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -18; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 23;
+            this.ingredients = [["Raw Boar Flesh", 1], ["Salt", 10]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 100 - Math.floor(player.getCharisma() / 10); // at max, buy for 95.
+            this.sellValue = 90 + Math.floor(player.getCharisma() / 10); // at max, sell for 95.
+        }
+        else if (this.type == "curedPork")
+        {
+            //For All Items
+            this.identity = "Cured Pork";
+            this.weight = 0.67;
+            this.size = 18;
+            this.description = "A salty hunk of cured pork.";
+            this.intForDes = 1;
+            this.intDescription = "This is particularly salty but it tastes really good.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = -1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.35; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 20;
+            this.intForCraft = 4;
+            this.ingredients = [["Cured Leg of Swine", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "rawPorkbelly")
+        {
+            //For All Items
+            this.identity = "Raw Porkbelly";
+            this.weight = 6.2;
+            this.size = 16;
+            this.description = "The fatty underside cut of flesh from a swine.";
+            this.intForDes = 1;
+            this.intDescription = "Eating this raw is not safe.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 0.15; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 22 - Math.floor(player.getCharisma() / 25); // at max, buy for 20.
+            this.sellValue = 19 + Math.floor(player.getCharisma() / 50); // at max, sell for 20.
+        }
+        else if (this.type == "porkbelly")
+        {
+            //For All Items
+            this.identity = "Porkbelly";
+            this.weight = 6;
+            this.size = 16;
+            this.description = "The fatty juicy roasted underbelly of a swine";
+            this.intForDes = 1;
+            this.intDescription = "Porkbelly is widely held to be the most exquisite cut of swine meat.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 33; //satisfies hunger.
+            this.thirst = -3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 23;
+            this.ingredients = [["Raw Porkbelly", 1], ["Salt", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 39 - Math.floor(player.getCharisma() / 15); // at max, buy for 36.
+            this.sellValue = 34 + Math.floor(player.getCharisma() / 25); // at max, sell for 36.
+        }
+        else if (this.type == "rawBacon")
+        {
+            //For All Items
+            this.identity = "Raw Bacon Slices";
+            this.weight = 0.62;
+            this.size = 8;
+            this.description = "Sliced cured and smoked porkbelly.";
+            this.intForDes = 1;
+            this.intDescription = "Eating this raw is not safe.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = -0.3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Crafting
+            this.yield = 10;
+            this.intForCraft = 17;
+            this.ingredients = [["Raw Porkbelly", 1], ["Wood", 1], ["Salt", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "bacon")
+        {
+            //For All Items
+            this.identity = "Bacon";
+            this.weight = 0.59;
+            this.size = 8;
+            this.description = "Sliced cured and smoked porkbelly cooked to sizzling perfection.";
+            this.intForDes = 1;
+            this.intDescription = "Bacon is flavourful and sating.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = -0.3; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 5;
+            this.ingredients = [["Raw Bacon Slices", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
         else if (this.type == "rawSealFlesh")
         {
             //For All Items
@@ -11650,6 +11885,76 @@ function Item(type, x, y)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "duendeEsophagus")
+        {
+            //For All Items
+            this.identity = "Duende Esophagus";
+            this.weight = 2;
+            this.size = 15;
+            this.description = "The mucousy respiratory system of a duende.";
+            this.intForDes = 4;
+            this.intDescription = "This has magical properties when it is dried out.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11; // at max, buy for 10.
+            this.sellValue = 11; // at max, sell for 10.
+        }
+        else if (this.type == "driedDuendeEsophagus")
+        {
+            //For All Items
+            this.identity = "Dried Duende Esophagus";
+            this.weight = 1.65;
+            this.size = 10;
+            this.description = "The pale and dessicated respiratory system of a duende.";
+            this.intForDes = 4;
+            this.intDescription = "Alchemical recipes require that this be powdered.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 26;
+            this.ingredients = [["Duende Esophagus", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 14; // at max, buy for 14.
+            this.sellValue = 14; // at max, sell for 14.
+        }
+        else if (this.type == "duendePowder")
+        {
+            //For All Items
+            this.identity = "Duende Powder";
+            this.weight = 0.55;
+            this.size = 9;
+            this.description = "The pale powder made of the ground respiratory system of a duende.";
+            this.intForDes = 4;
+            this.intDescription = "This is a key former in producing the effect of teleportation.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 30;
+            this.ingredients = [["Dried Duende Esophagus", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7; // at max, buy for 7.
+            this.sellValue = 7; // at max, sell for 7.
+        }
         else if (this.type == "rawLamb")
         {
             //For All Items
@@ -11673,7 +11978,7 @@ function Item(type, x, y)
             this.replenish = 0; //restores will.
 
             //ability
-            this.ability = "gutworms";
+            this.ability = "gutWorms";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 8; // at max, buy for 8.
@@ -11736,7 +12041,7 @@ function Item(type, x, y)
             this.replenish = 0; //restores will.
 
             //ability
-            this.ability = "gutworms";
+            this.ability = "gutWorms";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 4; // at max, buy for 4.
@@ -25691,6 +25996,56 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "duendeEsophagus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 9, 1938, 39, 60, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 0.66), Y - this.Y + (1/2 * CCC.height) - (1/2 * 60 * 0.66), 39 * 0.66, 60 * 0.66);
+        }
+        else if (this.type == "driedDuendeEsophagus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 62, 1939, 39, 60, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 0.66), Y - this.Y + (1/2 * CCC.height) - (1/2 * 60 * 0.66), 39 * 0.66, 60 * 0.66);
+        }
+        else if (this.type == "duendePowder")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 113, 1955, 37, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 0.66), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 0.66), 37 * 0.66, 33 * 0.66);
+        }
+        else if (this.type == "bacon")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 677, 750, 42, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.64), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * 0.64), 42 * 0.64, 37 * 0.64);
+        }
+        else if (this.type == "rawBacon")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 625, 751, 42, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.64), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * 0.64), 42 * 0.64, 37 * 0.64);
+        }
+        else if (this.type == "porkbelly")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 709, 794, 51, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 0.64), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 0.64), 51 * 0.64, 31 * 0.64);
+        }
+        else if (this.type == "rawPorkbelly")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 643, 795, 51, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 0.64), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 0.64), 51 * 0.64, 31 * 0.64);
+        }
+        else if (this.type == "curedPork")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 103, 1318, 38, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 0.64), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 0.64), 38 * 0.64, 39 * 0.64);
+        }
+        else if (this.type == "boarMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 13, 1318, 69, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 69 * 0.64), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 0.64), 69 * 0.64, 33 * 0.64);
+        }
+        else if (this.type == "rawBoarFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 13, 1275, 69, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 69 * 0.64), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 0.64), 69 * 0.64, 33 * 0.64);
+        }
         else if (this.type == "chainsaw")
         {
             XXX.beginPath();
@@ -29101,6 +29456,56 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "duendeEsophagus")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 9, 1938, 39, 60, this.invX - (1/2 * 39 * 0.66), this.invY - (1/2 * 60 * 0.66), 39 * 0.66, 60 * 0.66);
+        }
+        else if (this.type == "driedDuendeEsophagus")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 62, 1939, 39, 60, this.invX - (1/2 * 39 * 0.66), this.invY - (1/2 * 60 * 0.66), 39 * 0.66, 60 * 0.66);
+        }
+        else if (this.type == "duendePowder")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 113, 1955, 37, 33, this.invX - (1/2 * 37 * 0.66), this.invY - (1/2 * 33 * 0.66), 37 * 0.66, 33 * 0.66);
+        }
+        else if (this.type == "bacon")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 677, 750, 42, 37, this.invX - (1/2 * 42 * 0.64), this.invY - (1/2 * 37 * 0.64), 42 * 0.64, 37 * 0.64);
+        }
+        else if (this.type == "rawBacon")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 625, 751, 42, 37, this.invX - (1/2 * 42 * 0.64), this.invY - (1/2 * 37 * 0.64), 42 * 0.64, 37 * 0.64);
+        }
+        else if (this.type == "porkbelly")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 709, 794, 51, 31, this.invX - (1/2 * 51 * 0.64), this.invY - (1/2 * 31 * 0.64), 51 * 0.64, 31 * 0.64);
+        }
+        else if (this.type == "rawPorkbelly")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 643, 795, 51, 31, this.invX - (1/2 * 51 * 0.64), this.invY - (1/2 * 31 * 0.64), 51 * 0.64, 31 * 0.64);
+        }
+        else if (this.type == "curedPork")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 103, 1318, 38, 39, this.invX - (1/2 * 38 * 0.64), this.invY - (1/2 * 39 * 0.64), 38 * 0.64, 39 * 0.64);
+        }
+        else if (this.type == "boarMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 13, 1318, 69, 33, this.invX - (1/2 * 69 * 0.64), this.invY - (1/2 * 33 * 0.64), 69 * 0.64, 33 * 0.64);
+        }
+        else if (this.type == "rawBoarFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 13, 1275, 69, 33, this.invX - (1/2 * 69 * 0.64), this.invY - (1/2 * 33 * 0.64), 69 * 0.64, 33 * 0.64);
+        }
         else if (this.type == "chainsaw")
         {
             LXX.beginPath();
@@ -32480,6 +32885,56 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "duendeEsophagus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 9, 1938, 39, 60, this.invX - (1/2 * 39 * 0.66), this.invY - (1/2 * 60 * 0.66), 39 * 0.66, 60 * 0.66);
+        }
+        else if (this.type == "driedDuendeEsophagus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 62, 1939, 39, 60, this.invX - (1/2 * 39 * 0.66), this.invY - (1/2 * 60 * 0.66), 39 * 0.66, 60 * 0.66);
+        }
+        else if (this.type == "duendePowder")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 113, 1955, 37, 33, this.invX - (1/2 * 37 * 0.66), this.invY - (1/2 * 33 * 0.66), 37 * 0.66, 33 * 0.66);
+        }
+        else if (this.type == "bacon")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 677, 750, 42, 37, this.invX - (1/2 * 42 * 0.64), this.invY - (1/2 * 37 * 0.64), 42 * 0.64, 37 * 0.64);
+        }
+        else if (this.type == "rawBacon")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 625, 751, 42, 37, this.invX - (1/2 * 42 * 0.64), this.invY - (1/2 * 37 * 0.64), 42 * 0.64, 37 * 0.64);
+        }
+        else if (this.type == "porkbelly")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 709, 794, 51, 31, this.invX - (1/2 * 51 * 0.64), this.invY - (1/2 * 31 * 0.64), 51 * 0.64, 31 * 0.64);
+        }
+        else if (this.type == "rawPorkbelly")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 643, 795, 51, 31, this.invX - (1/2 * 51 * 0.64), this.invY - (1/2 * 31 * 0.64), 51 * 0.64, 31 * 0.64);
+        }
+        else if (this.type == "curedPork")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 103, 1318, 38, 39, this.invX - (1/2 * 38 * 0.64), this.invY - (1/2 * 39 * 0.64), 38 * 0.64, 39 * 0.64);
+        }
+        else if (this.type == "boarMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 13, 1318, 69, 33, this.invX - (1/2 * 69 * 0.64), this.invY - (1/2 * 33 * 0.64), 69 * 0.64, 33 * 0.64);
+        }
+        else if (this.type == "rawBoarFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 13, 1275, 69, 33, this.invX - (1/2 * 69 * 0.64), this.invY - (1/2 * 33 * 0.64), 69 * 0.64, 33 * 0.64);
         }
         else if (this.type == "chainsaw")
         {

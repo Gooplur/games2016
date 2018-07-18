@@ -9764,6 +9764,61 @@ function Adventurer()
                 XXX.restore();
             }
         }
+        //NIRWADEN LANCE
+        if (this.weaponEquipped == "nirwadenLance")
+        {
+            this.stageEngine(4, 0.15, false); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(atal, 904, 548, 85, 281, -1/2 * 85 * 1 + 0, -1/2 * 281 * 1 - 75, 85 * 1, 281 * 1);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(atal, 804, 549, 85, 281, -1/2 * 85 * 1 + 0, -1/2 * 281 * 1 - 75, 85 * 1, 281 * 1);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(atal, 804, 549, 85, 281, -1/2 * 85 * 1 + 0, -1/2 * 281 * 1 - 75, 85 * 1, 281 * 1);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(atal, 804, 549, 85, 281, -1/2 * 85 * 1 + 0, -1/2 * 281 * 1 - 75, 85 * 1, 281 * 1);
+                XXX.restore();
+            }
+        }
         //BOAT
         if (this.weaponEquipped == "boat")
         {
@@ -16197,6 +16252,14 @@ function Adventurer()
             //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.25/5 * Math.PI) * (this.mySize + 39);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.25/5 * Math.PI) * (this.mySize + 39);
+        }
+        else if (this.weaponEquipped == "nirwadenLance")
+        {
+            this.weapon = allWeapons[72];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 170);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 170);
         }
     };
 
@@ -27381,7 +27444,7 @@ function Adventurer()
                 }
 
                 //this is rare, but some weapons draw below the body layer.
-                if (this.wepLayer == "under" || this.weaponEquipped == "swimming" || this.weaponEquipped == "boat" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar") //add more cases for more overhead weapons.
+                if (this.wepLayer == "under" || this.weaponEquipped == "swimming" || this.weaponEquipped == "boat" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar" || this.weaponEquipped == "nirwadenLance") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }
@@ -28204,7 +28267,7 @@ function Adventurer()
                 this.drawBody();
 
                 //most weapons draw beneath the armour layer.
-                if (this.wepLayer == "standard" || this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "swimming" && this.weaponEquipped != "boat" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar") //add more cases for more overhead weapons.
+                if (this.wepLayer == "standard" || this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "swimming" && this.weaponEquipped != "boat" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar" && this.weaponEquipped != "nirwadenLance") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }

@@ -50,7 +50,7 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1600, "Deth", false, "Fud", {age: 10, CON: 18, DEX: 17, APR: 19, PER: 14, ING: 8}));
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Griffin", "massive", "Criaad The Voracious"));
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1400, "Peacock", true, "Deriere"));
-                //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Horse", true, "player"));
+                ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Horse", true, "player"));
                 //ArtificialIntelligenceAccess.push(new Unit(3050, 1650, "Boar", true, "Deedee"));
 
                 //Friches in the plains

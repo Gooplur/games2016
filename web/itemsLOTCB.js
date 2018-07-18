@@ -17990,7 +17990,7 @@ function Item(type, x, y)
 
             //Utility Focused
             this.energyCost = 5;
-            this.distance = 70 + (this.range * 7);
+            this.distance = 39 + (this.range * 7);
             this.range = 3;
             this.rate = 400;
             this.damage = 20 + ((6/50) * player.getStrength());
@@ -18466,6 +18466,63 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 100 - Math.floor(player.getCharisma() / 5); // at max, buy for 90.
             this.sellValue = 60 + Math.floor(player.getCharisma() / 1.666666); // at max, sell for 90.
+        }
+        else if (this.type == "nirwadenLance")
+        {
+            //For All Items
+            this.identity = "Nirwaden Lance";
+            this.weight = 49;
+            this.size = 29;
+            this.description = "A massive lance for jousting at enemies from horseback.";
+            this.intForDes = 0;
+            this.intDescription = "The thrice forged steel tip of the lance is painted with the royal colours of Nirwaden.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 12;
+            this.distance = 56.5 + (this.range * 7);
+            this.range = 4;
+            this.rate = (400);
+            if (wKey == true)
+            {
+                for (var k = 0; k < ArtificialIntelligenceAccess.length; k++)
+                {
+                    if (ArtificialIntelligenceAccess[k].mounted == true)
+                    {
+                        if (ArtificialIntelligenceAccess[k].suspendConflictingPointSystems)
+                        {
+                            this.negateArmour = 0 + ((17/50) * player.getStrength());
+                            this.damage = 2 + (1/50) * player.getStrength();
+                        }
+                        else
+                        {
+                            this.negateArmour = (10 / 6) * (ArtificialIntelligenceAccess[k].speed * ArtificialIntelligenceAccess[k].stunned) + ((17/50) * player.getStrength());
+                            this.damage = (12 + ((20 / 6) * (ArtificialIntelligenceAccess[k].speed * ArtificialIntelligenceAccess[k].stunned) - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/50) * player.getStrength()));
+                        }
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                this.negateArmour = 0 + ((12/50) * player.getStrength());
+                this.damage = 1 + (1/50) * player.getStrength();
+            }
+            this.magicalDamage = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 41;
+            this.ingredients = [["Thrice Forged Steel", 3], ["Wood", 12]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 300 - Math.floor(player.getCharisma() / 1); // at max, buy for 250.
+            this.sellValue = 200 + Math.floor(player.getCharisma() / 1); // at max, sell for 250.
         }
         else if (this.type == "nirineseSpear")
         {
@@ -25996,6 +26053,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "nirwadenLance")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 263, 532, 242, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 242 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34 * 1), 242 * 1, 34 * 1);
+        }
         else if (this.type == "duendeEsophagus")
         {
             XXX.beginPath();
@@ -29456,6 +29518,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "nirwadenLance")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 263, 532, 242, 34, this.invX - (1/2 * 242 * 0.33), this.invY - (1/2 * 34 * 0.33), 242 * 0.33, 34 * 0.33);
+        }
         else if (this.type == "duendeEsophagus")
         {
             LXX.beginPath();
@@ -32885,6 +32952,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "nirwadenLance")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 263, 532, 242, 34, this.invX - (1/2 * 242 * 0.33), this.invY - (1/2 * 34 * 0.33), 242 * 0.33, 34 * 0.33);
         }
         else if (this.type == "duendeEsophagus")
         {

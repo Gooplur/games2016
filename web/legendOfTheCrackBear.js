@@ -8,20 +8,16 @@
 
 //TODO LIST
 //top priority
-//todo test mugmuls with savannah trees
-//todo fix the storage system so that the scroll is reset to 0 when starting in a storage menu
-//todo Rhino-ish monster - it will charge fast, turn slow, and deal knockback/stun damage
 //todo ---fish to add to southern fishing spot---- saskriit, riulpo, kald, polxetp, tridite
 //todo ---fish to add to temperate fishing spot---- salmon, slol, red-bellied Falder, crawdid, duskfish (more frequent catch during the night)
 //todo add the new fish to the seal unit's diet
-//todo add "the grail of eternity" (a elaborate cup that heals you when you drink from it, you can refill it at a well)
 //todo add Cymothoa Exigua - tongue eating louse IRL (make a parasitic grub that sucks the players tongue dry and replaces it with itself) reduces hunger gain from all foods eaten [consider making it something that can be cured in a pre-mature stage]
 
 //things to add to the next image i'm adding:
+//todo add armoured horses
+//todo add a cabinet
 //todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
 //todo add a secret unit (a monster that is in an inanimate form during the day but lurks murderously throughout the night) GARGOYLE //the unit will know when to become a scenery object //the scenery object will know when to become a unit
-//todo add petrified basilisk victims -- basilisk gaze turns the outer inch of flesh to stone, the rest is fleshy and that is the part that the basilisks suck out with their powerful and venomous fangs (their venom dissolves animal/human innards)
-//todo if you attack a pretrified victim with a pickaxe you will get a broken and bloody version...
 //todo add shed basilisk skin
 
 //Alzkwaya Update / Savannah Update
@@ -33,12 +29,8 @@
 //todo add the tribe of King Har, the Yorken tribe -- the most established kellish tribe (even built a permanent city with stone paving)
 //todo quest idea, the houl tribe village has been conquered and their chieftan taken to be publicly executed -- rescue him with a band of kellish allies, OR stop the kells that mean to rescue him, OR bribe the warden and sneak him out of prison...
 
-//Mounting System
-//todo add mounts and the mounting system (make different mounts require a different survivalism skill amount): add it for Naaprids, Zarbus, Skols... (destroy current mounting system: make it unit based instead of player based. The player literally teleports on top of the creature in question and follows its movement. (the player can direct it with 'T' because it is on the player's team.) mounting is canceled by water, or if the player equipps an uncompatible weapon or transfigures themself into an incompatible form.
-
 //Calcutt Patch
 //todo add roselin's quest
-//todo add drinking horns
 //todo add drinking horns
 //todo add kellish dolls
 
@@ -50,11 +42,11 @@
 //todo add a small northern island with a village
 //todo create and add Margul - White furred, large, carnivorous, arctic beast with a tail and a long neck...
 //todo create and add large bare-faced furry snow trolls to the north
-//todo add lakes and ice holes
+//todo add ponds and ice holes
 //todo add the freydic hatchet from the balkur img sheet
 //todo add glass of Waanti milk
 //todo add sheep + shears [tool] (I already added wool and their potential drops)
-//todo add muscles (shellfish) as a scenery object that stick out their tongues intermitently when in water, but also in a cooked form
+//todo add muscles (shellfish) as a scenery object that stick out their tongues intermitently when in water, but also add a cooked form
 
 //Lethik Patch
 //todo finish lost memories quest
@@ -71,7 +63,7 @@
 //todo piranah fish swarm (water creature) [Only attacks the player if not in a boat]
 //todo add Sonja Fruit and Sonja fruit trees (tropical trees that drop Sonja fruits)
 //todo add jungle trees
-//todo add gulfreys, Blil plant, etres, blue water berries that dmitri made a while ago
+//todo add blue water berries that dmitri made a while ago
 //todo add a venus fly trap monster
 //todo create and add a hive mind fungus that infects creatures to carry its spores and plant itself around the map, other jungle stuff
 //todo add a cephrian city directly to the south of the jungle map "Holuix City" (a town bustling with tropical market places and various magic venders)
@@ -87,7 +79,6 @@
     //todo add quest 'A Noble Conspiracy' -- the Jarl of Venning is involved in supporting piratry in exhcange for a cut (evidence: you spot a town guard that tries to attack you in map n4w1 when you see him making a cash pickup from a pirate, pirate says "here's for yer jarl's blind eye to ar' business") if you bring it up to the jarl he will sic his guards on you unless you are noble or royal in which case he will try to justify it, and bribe you not to tell the king (pick either the option to take the bribe (lying that you will not tell the king), (take the bribe and don't tell the king), or refuse the bribe (if you refuse the bribe he will send an assassin after you at a later point), - if highfolk and your faction relation with Freynor is 500+ the king will believe you, otherwise you must have 65 fame and 700 faction relation with Freynor for him to believe you. if noble or royalty the king will believe you unless your own faction relation with Freynor is less than 250, in which case he will say "Of course it would be you who brings malicious slander into my court, you think that spreading fowl rumors about your moral betters will gain you something from me, *chuckles* you are utterly mistaken [-50 faction relation] (you only get one chance to convince the king, but if you do he stripps Jarl Stombjord of his titles and gives his cousin who is a knight in the royal court the title Jarl of Venning, (the new jarl, Gallok Stambjord, feasts as well but is a fully armoured and trained fighter)
     //todo add a flooded basement pest control quest in which you kill the crabs that are infesting someone's basement for a fee.
     //todo add a quest 'A broken hearted soul' pass letters between a love interest and a passionate man whose family does not permit him leave to move away from the farm, when his lover tells the man that she has found someone new, he kills himself. his angry ghost can be confronted at the island's cemetery (digg up bones and burn them with salt - all while trying not to die by the very spectre you are eradicating)
-    //todo if you ask the innkeeper about rumors he will tell you that A: there's a pirate problem (if you have not yet killed the pirate leader), B: a usual was talking about stashed treasure ("he claimed that the ol' miners hid away some of the gold they found down there, believable, but unlikely if you ask me") in an old mineshaft then never came around again, "he either found what he was looking for or tripped and broke his skull down there in the dark" (the mineshaft is south of Venning in map n3e2) A basilisk inhabits it (petrification forces you to equip a stone arms texture that counts as a weapon, and it turns your base color to dark grey. If petrification resistance is active then the basilisk will only stun the player with stunI instead of petrifying them.
     //todo the herbalist has a sick patient that needs a special elixer that only the alchemist knows how to make, the alchemist dislikes the patient (who has insulted him for not being a hunter and therefore not the pinnacle of freydic virility) so he has refused to help, the options are: convince him to help (CHAR), convince him to help ($$$$), accept a quest for him in which you bring him a 'rawCloimidFlesh' item for one of his potions in exchange for his help.
     //todo add quest 'Worthy Under the Watchful Eye' -- find an ancient tablet for the sage of Gemesh in the Venning city temple (it has been part of the temples belongings for centuries, but it has been stolen {whoever stole it stole the wrong one, because the one missing is not the spell}, "This tablet was dear to our temple, if you can find it you will surely be rewarded in the afterlife, the great valley of Halmthafgh will yield to you its wonderous fruits, sewn from the glory of its maker, our wise father Gemesh!" - if the player requests a more tangible reward, the sage will scoff and offer the player a 100 coin reward (at the expense of the magic experience that would otherwise be gained for finding it) - include a letter that was cursed to kill the person who opened it.
 //todo add the jewelry shop / add more jewelry into the game / add a jeweler
@@ -109,7 +100,6 @@
 //todo add a spell that casts out a blast that causes a small rock explosion (use IMG from 'nognog')
 //todo add the traps on the IMG 'trapper'
 //todo finish adding the beast journal.
-//todo create and add a standard leather armour
 //todo add interesting and immersive options for player children interaction (like: feeding, arming, praising, getting to know about them, teaching them spells, punishment, loving comments)
 //todo add more alchemy stuff: potions, salves
 //todo add vamprism and lycanthropy
@@ -227,6 +217,230 @@ function legendaryPrerequisites()
     var bjornPleasure = new Audio("sounds/polySounds/bjornPleasure.wav");
     window.bjornPleasure = bjornPleasure;
 
+    //EMMANUEL CHARACTER: voice acting
+
+    var emmanuelAshAndBones = new Audio("sounds/polySounds/emmanuelAshAndBones.wav");
+    window.emmanuelAshAndBones = emmanuelAshAndBones;
+
+    var emmanuelCommence = new Audio("sounds/polySounds/emmanuelCommence.wav");
+    window.emmanuelCommence = emmanuelCommence;
+
+    var emmanuelConstruct = new Audio("sounds/polySounds/emmanuelConstruct.wav");
+    window.emmanuelConstruct = emmanuelConstruct;
+
+    var emmanuelFire = new Audio("sounds/polySounds/emmanuelFire.wav");
+    window.emmanuelFire = emmanuelFire;
+
+    var emmanuelNoWrong = new Audio("sounds/polySounds/emmanuelNoWrong.wav");
+    window.emmanuelNoWrong = emmanuelNoWrong;
+
+    var emmanuelSlay = new Audio("sounds/polySounds/emmanuelSlay.wav");
+    window.emmanuelSlay = emmanuelSlay;
+
+    var emmanuelStead = new Audio("sounds/polySounds/emmanuelStead.wav");
+    window.emmanuelStead = emmanuelStead;
+
+    var emmanuelWisdom = new Audio("sounds/polySounds/emmanuelWisdom.wav");
+    window.emmanuelWisdom = emmanuelWisdom;
+
+    //DIEGO CHARACTER: voice acting
+
+    var diego100Coins = new Audio("sounds/polySounds/diego100Coins.wav");
+    window.diego100Coins = diego100Coins;
+
+    var diego200 = new Audio("sounds/polySounds/diego200.wav");
+    window.diego200 = diego200;
+
+    var diegoDeal = new Audio("sounds/polySounds/diegoDeal.wav");
+    window.diegoDeal = diegoDeal;
+
+    var diegoDebt = new Audio("sounds/polySounds/diegoDebt.wav");
+    window.diegoDebt = diegoDebt;
+
+    var diegoDuendes = new Audio("sounds/polySounds/diegoDuendes.wav");
+    window.diegoDuendes = diegoDuendes;
+
+    var diegoEasy = new Audio("sounds/polySounds/diegoEasy.wav");
+    window.diegoEasy = diegoEasy;
+
+    var diegoHere = new Audio("sounds/polySounds/diegoHere.wav");
+    window.diegoHere = diegoHere;
+
+    var diegoNoLess = new Audio("sounds/polySounds/diegoNoLess.wav");
+    window.diegoNoLess = diegoNoLess;
+
+    var diegoNot = new Audio("sounds/polySounds/diegoNot.wav");
+    window.diegoNot = diegoNot;
+
+    var diegoOffend = new Audio("sounds/polySounds/diegoOffend.wav");
+    window.diegoOffend = diegoOffend;
+
+    var diegoSerious = new Audio("sounds/polySounds/diegoSerious.wav");
+    window.diegoSerious = diegoSerious;
+
+    var diegoStill = new Audio("sounds/polySounds/diegoStill.wav");
+    window.diegoStill = diegoStill;
+
+    var diegoTooKindLady = new Audio("sounds/polySounds/diegoTooKindLady.wav");
+    window.diegoTooKindLady = diegoTooKindLady;
+
+    var diegoTooKindLord = new Audio("sounds/polySounds/diegoTooKindLord.wav");
+    window.diegoTooKindLord = diegoTooKindLord;
+
+    var diegoToYouToo = new Audio("sounds/polySounds/diegoToYouToo.wav");
+    window.diegoToYouToo = diegoToYouToo;
+
+    var diegoWaste = new Audio("sounds/polySounds/diegoWaste.wav");
+    window.diegoWaste = diegoWaste;
+
+    var diegoWorth = new Audio("sounds/polySounds/diegoWorth.wav");
+    window.diegoWorth = diegoWorth;
+
+    var diegoYouWill = new Audio("sounds/polySounds/diegoYouWill.wav");
+    window.diegoYouWill = diegoYouWill;
+
+    //LUCIANA CHARACTER: voice acting
+
+    var lucianaDontSpeak = new Audio("sounds/polySounds/lucianaDontSpeak.wav");
+    window.lucianaDontSpeak = lucianaDontSpeak;
+
+    var lucianaHi = new Audio("sounds/polySounds/lucianaHi.wav");
+    window.lucianaHi = lucianaHi;
+
+    var lucianaScared = new Audio("sounds/polySounds/lucianaScared.wav");
+    window.lucianaScared = lucianaScared;
+
+    var lucianaBless = new Audio("sounds/polySounds/lucianaBless.wav");
+    window.lucianaBless = lucianaBless;
+
+    var lucianaChangling = new Audio("sounds/polySounds/lucianaChangling.wav");
+    window.lucianaChangling = lucianaChangling;
+
+    var lucianaCoin = new Audio("sounds/polySounds/lucianaCoin.wav");
+    window.lucianaCoin = lucianaCoin;
+
+    var lucianaItIs = new Audio("sounds/polySounds/lucianaItIs.wav");
+    window.lucianaItIs = lucianaItIs;
+
+    var lucianaMonster = new Audio("sounds/polySounds/lucianaMonster.wav");
+    window.lucianaMonster = lucianaMonster;
+
+    var lucianaNoble = new Audio("sounds/polySounds/lucianaNoble.wav");
+    window.lucianaNoble = lucianaNoble;
+
+    var lucianaNot = new Audio("sounds/polySounds/lucianaNot.wav");
+    window.lucianaNot = lucianaNot;
+
+    var lucianaObvious = new Audio("sounds/polySounds/lucianaObvious.wav");
+    window.lucianaObvious = lucianaObvious;
+
+    var lucianaPayYou = new Audio("sounds/polySounds/lucianaPayYou.wav");
+    window.lucianaPayYou = lucianaPayYou;
+
+    var lucianaSoul = new Audio("sounds/polySounds/lucianaSoul.wav");
+    window.lucianaSoul = lucianaSoul;
+
+    var lucianaUnhuman = new Audio("sounds/polySounds/lucianaUnhuman.wav");
+    window.lucianaUnhuman = lucianaUnhuman;
+
+    var lucianaWoods = new Audio("sounds/polySounds/lucianaWoods.wav");
+    window.lucianaWoods = lucianaWoods;
+
+    //LUIGI CHARACTER: voice acting
+
+    var luigiDrink = new Audio("sounds/polySounds/luigiDrink.wav");
+    window.luigiDrink = luigiDrink;
+
+    var luigiGlad = new Audio("sounds/polySounds/luigiGlad.wav");
+    window.luigiGlad = luigiGlad;
+
+    var luigiGoodDay = new Audio("sounds/polySounds/luigiGoodDay.wav");
+    window.luigiGoodDay = luigiGoodDay;
+
+    var luigiGreat = new Audio("sounds/polySounds/luigiGreat.wav");
+    window.luigiGreat = luigiGreat;
+
+    var luigiOh = new Audio("sounds/polySounds/luigiOh.wav");
+    window.luigiOh = luigiOh;
+
+    var luigiOkey = new Audio("sounds/polySounds/luigiOkey.wav");
+    window.luigiOkey = luigiOkey;
+
+    var luigiPoorBoy = new Audio("sounds/polySounds/luigiPoorBoy.wav");
+    window.luigiPoorBoy = luigiPoorBoy;
+
+    var luigiShe = new Audio("sounds/polySounds/luigiShe.wav");
+    window.luigiShe = luigiShe;
+
+    var luigiSorry = new Audio("sounds/polySounds/luigiSorry.wav");
+    window.luigiSorry = luigiSorry;
+
+    //NATALIA CHARACTER: voice acting
+
+    var nataliaAsk = new Audio("sounds/polySounds/nataliaAsk.wav");
+    window.nataliaAsk = nataliaAsk;
+
+    var nataliaHi = new Audio("sounds/polySounds/nataliaHi.wav");
+    window.nataliaHi = nataliaHi;
+
+    var nataliaLonely = new Audio("sounds/polySounds/nataliaLonely.wav");
+    window.nataliaLonely = nataliaLonely;
+
+    var nataliaOhGood = new Audio("sounds/polySounds/nataliaOhGood.wav");
+    window.nataliaOhGood = nataliaOhGood;
+
+    var nataliaOhNo = new Audio("sounds/polySounds/nataliaOhNo.wav");
+    window.nataliaOhNo = nataliaOhNo;
+
+    var nataliaOkey = new Audio("sounds/polySounds/nataliaOkey.wav");
+    window.nataliaOkey = nataliaOkey;
+
+    var nataliaWoods = new Audio("sounds/polySounds/nataliaWoods.wav");
+    window.nataliaWoods = nataliaWoods;
+
+    //MARIA CHARACTER: voice acting
+
+    var mariaCheat = new Audio("sounds/polySounds/mariaCheat.wav");
+    window.mariaCheat = mariaCheat;
+
+    var mariaEqually = new Audio("sounds/polySounds/mariaEqually.wav");
+    window.mariaEqually = mariaEqually;
+
+    var mariaHarlot = new Audio("sounds/polySounds/mariaHarlot.wav");
+    window.mariaHarlot = mariaHarlot;
+
+    var mariaImportantPeople = new Audio("sounds/polySounds/mariaImportantPeople.wav");
+    window.mariaImportantPeople = mariaImportantPeople;
+
+    var mariaNeverHome = new Audio("sounds/polySounds/mariaNeverHome.wav");
+    window.mariaNeverHome = mariaNeverHome;
+
+    var mariaPig = new Audio("sounds/polySounds/mariaPig.wav");
+    window.mariaPig = mariaPig;
+
+    var mariaVileWoman = new Audio("sounds/polySounds/mariaVileWoman.wav");
+    window.mariaVileWoman = mariaVileWoman;
+
+    //FERIO CHARACTER: voice acting
+
+    var ferioAlot = new Audio("sounds/polySounds/ferioAlot.wav");
+    window.ferioAlot = ferioAlot;
+
+    var ferioChut = new Audio("sounds/polySounds/ferioChut.wav");
+    window.ferioChut = ferioChut;
+
+    var ferioFine = new Audio("sounds/polySounds/ferioFine.wav");
+    window.ferioFine = ferioFine;
+
+    var ferioPire = new Audio("sounds/polySounds/ferioPire.wav");
+    window.ferioPire = ferioPire;
+
+    var ferioWant = new Audio("sounds/polySounds/ferioWant.wav");
+    window.ferioWant = ferioWant;
+
+    var valeriaRomanticBanter = new Audio("sounds/polySounds/valeriaRomanticBanter.wav");
+    window.valeriaRomanticBanter = valeriaRomanticBanter;
+
     //SEETH CHARACTER: voice acting
 
     var seeth10Coins = new Audio("sounds/polySounds/seeth10Coins.wav");
@@ -316,6 +530,30 @@ function legendaryPrerequisites()
 
     var orjovYours = new Audio("sounds/polySounds/orjovYours.wav");
     window.orjovYours = orjovYours;
+
+    var orjovChainsF = new Audio("sounds/polySounds/orjovChainsF.wav");
+    window.orjovChainsF = orjovChainsF;
+
+    var orjovChainsM = new Audio("sounds/polySounds/orjovChainsM.wav");
+    window.orjovChainsM = orjovChainsM;
+
+    var orjovExpectMe = new Audio("sounds/polySounds/orjovExpectMe.wav");
+    window.orjovExpectMe = orjovExpectMe;
+
+    var orjovExplain = new Audio("sounds/polySounds/orjovExplain.wav");
+    window.orjovExplain = orjovExplain;
+
+    var orjovGross = new Audio("sounds/polySounds/orjovGross.wav");
+    window.orjovGross = orjovGross;
+
+    var orjovIdeals = new Audio("sounds/polySounds/orjovIdeals.wav");
+    window.orjovIdeals = orjovIdeals;
+
+    var orjovNirwad = new Audio("sounds/polySounds/orjovNirwad.wav");
+    window.orjovNirwad = orjovNirwad;
+
+    var orjovObey = new Audio("sounds/polySounds/orjovObey.wav");
+    window.orjovObey = orjovObey;
 
     //RANNUK CHARACTER: voice acting
 

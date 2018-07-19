@@ -380,6 +380,36 @@ function worldBuilder()
             outlineBuilder( 1, 20, "brickRoad", -224, 35);
         }
         //Layer 0 (cold region): elev 0
+        //mapE5
+        if (Y > -3919 && Y < 6870 && X < -42678 && X > -54937) //X5
+        {
+            elevation = 0;
+            region = "e5";
+            //outlineBuilder( 34, 34, "forest", 150, -20);
+            outlineBuilder( 34, 34, "outline", 150, -20);
+            outlineBuilder( 1, 7, "stonePath", 150, -3);
+        }
+        //mapE4
+        if (Y > -3919 && Y < 6870 && X < -33089 && X > -44725) //X4
+        {
+            elevation = 0;
+            region = "e4";
+            //outlineBuilder( 34, 34, "outline", 116, -20);
+            outlineBuilder( 34, 8, "forest", 116, -20);
+            outlineBuilder( 34, 12, "forest", 138, -20);
+            outlineBuilder( 34, 14, "sea", 124, -20);
+            outlineBuilder( 1, 8, "stonePath", 116, -3);
+            outlineBuilder( 1, 12, "stonePath", 138, -3);
+        }
+        //mapE3
+        if (Y > -3919 && Y < 6870 && X < -22900 && X > -34519) //X3
+        {
+            elevation = 0;
+            region = "e3";
+            //outlineBuilder( 34, 34, "forest", 82, -20);
+            outlineBuilder( 34, 34, "outline", 82, -20);
+            outlineBuilder( 1, 34, "stonePath", 82, -3);
+        }
         //mapE2
         if (Y > -3919 && Y < 6870 && X < -12685 && X > -24362) //X2
         {

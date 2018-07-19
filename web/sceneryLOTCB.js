@@ -8918,7 +8918,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 sleep();
             }
         }
-        else if (this.type = "fouxDuende")
+        else if (this.type == "fouxDuende")
         {
             //TRAITS
             this.solid = false;

@@ -11517,10 +11517,223 @@ function buildMaster()
                     scenicList.push(new Scenery("glinPlant", -19558 , -2494, 0, true));
                 }
 
-                //TEST - I have this creature hidden to off the map to the east so as to have it available for fun... temporarily.
-                ArtificialIntelligenceAccess.push(new Unit(-30000, 1400, "Basilisk", true, "Mahoga"));
-
                 change = "e2";
+            }
+        }
+        else if (region == "e3")
+        {
+            if (change != "e3")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //PROPS
+                //scenicList.push(new Scenery("skeleton", -19230, 5008, 5.12, 1.75));
+
+                //CREATURES
+                ArtificialIntelligenceAccess.push(new Unit(-13935, 2270, "Grib", false, "docile"));
+                ArtificialIntelligenceAccess.push(new Unit(-14477, 1925, "Viper", false, "Slib"));
+                ArtificialIntelligenceAccess.push(new Unit(-14087, 1359, "Lizard", true, "Lib"));
+                ArtificialIntelligenceAccess.push(new Unit(-14501, 3283, "BlackBear", false, "Clib"));
+                ArtificialIntelligenceAccess.push(new Unit(-15119, 2314, "Varn", true, "Flib"));
+                ArtificialIntelligenceAccess.push(new Unit(-13713, 5329, "Narthwarp", false, "silwil"));
+                scenicList.push(new Scenery("ulgoyPlant", -16488, 3908, 4.9, 7));
+                ArtificialIntelligenceAccess.push(new Unit(-16473, 3885, "Ulgoy", "giant", "The Really Big Plant"));
+                ArtificialIntelligenceAccess.push(new Unit(-16247, 3330, "Boar", true, "Tambor"));
+                ArtificialIntelligenceAccess.push(new Unit(-14353, 3844, "Shehid", true, "sheta"));
+                scenicList.push(new Scenery("beeHive", -15375 , -2055, 4.5, true));
+
+                //Build Scenery
+
+                //trees in the wuncwer woods.
+                scenicList.push(new Scenery("pineTree", -13696, 1772, 1.3, true));
+
+
+                //Plants of the wuncwer woods
+                scenicList.push(new Scenery("neprilnePlant", -17425 , 3993, -5.8, true));
+                scenicList.push(new Scenery("pluttPlant", -16685 , 4251, 2.4, true));
+                scenicList.push(new Scenery("culprisPlant", -21156 , 617, -3.5, true));
+                scenicList.push(new Scenery("stomwikPlant", -18732 , -2343, 6, true));
+                scenicList.push(new Scenery("akerPlant", -14491 , 5755, 1, true));
+                scenicList.push(new Scenery("glinPlant", -15944 , -2502, -7.789, true));
+                scenicList.push(new Scenery("ogardPlant", -16292 , -2231, 0, true));
+                scenicList.push(new Scenery("wyrPlant", -15134 , 2399, 2.8, true));
+                scenicList.push(new Scenery("cyrinthilimPlant", -21038 , -2478, 4, true));
+
+                change = "e3";
+            }
+        }
+        else if (region == "e4")
+        {
+            if (change != "e4")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //PROPS
+                //scenicList.push(new Scenery("skeleton", -19230, 5008, 5.12, 1.75));
+
+                //CREATURES
+                ArtificialIntelligenceAccess.push(new Unit(-13935, 2270, "Grib", false, "docile"));
+                ArtificialIntelligenceAccess.push(new Unit(-14477, 1925, "Viper", false, "Slib"));
+                ArtificialIntelligenceAccess.push(new Unit(-14087, 1359, "Lizard", true, "Lib"));
+                ArtificialIntelligenceAccess.push(new Unit(-14501, 3283, "BlackBear", false, "Clib"));
+                ArtificialIntelligenceAccess.push(new Unit(-15119, 2314, "Varn", true, "Flib"));
+                ArtificialIntelligenceAccess.push(new Unit(-13713, 5329, "Narthwarp", false, "silwil"));
+                scenicList.push(new Scenery("ulgoyPlant", -16488, 3908, 4.9, 7));
+                ArtificialIntelligenceAccess.push(new Unit(-16473, 3885, "Ulgoy", "giant", "The Really Big Plant"));
+                ArtificialIntelligenceAccess.push(new Unit(-16247, 3330, "Boar", true, "Tambor"));
+                ArtificialIntelligenceAccess.push(new Unit(-14353, 3844, "Shehid", true, "sheta"));
+                scenicList.push(new Scenery("beeHive", -15375 , -2055, 4.5, true));
+
+                //Build Scenery
+
+                //trees in the wuncwer woods.
+                scenicList.push(new Scenery("pineTree", -13696, 1772, 1.3, true));
+
+
+                //Plants of the wuncwer woods
+                scenicList.push(new Scenery("neprilnePlant", -17425 , 3993, -5.8, true));
+                scenicList.push(new Scenery("pluttPlant", -16685 , 4251, 2.4, true));
+                scenicList.push(new Scenery("culprisPlant", -21156 , 617, -3.5, true));
+                scenicList.push(new Scenery("stomwikPlant", -18732 , -2343, 6, true));
+                scenicList.push(new Scenery("akerPlant", -14491 , 5755, 1, true));
+                scenicList.push(new Scenery("glinPlant", -15944 , -2502, -7.789, true));
+                scenicList.push(new Scenery("ogardPlant", -16292 , -2231, 0, true));
+                scenicList.push(new Scenery("wyrPlant", -15134 , 2399, 2.8, true));
+                scenicList.push(new Scenery("cyrinthilimPlant", -21038 , -2478, 4, true));
+
+                change = "e4";
+            }
+        }
+        else if (region == "e5")
+        {
+            if (change != "e5")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //PROPS
+                //scenicList.push(new Scenery("skeleton", -19230, 5008, 5.12, 1.75));
+
+                //CREATURES
+                ArtificialIntelligenceAccess.push(new Unit(-13935, 2270, "Grib", false, "docile"));
+                ArtificialIntelligenceAccess.push(new Unit(-14477, 1925, "Viper", false, "Slib"));
+                ArtificialIntelligenceAccess.push(new Unit(-14087, 1359, "Lizard", true, "Lib"));
+                ArtificialIntelligenceAccess.push(new Unit(-14501, 3283, "BlackBear", false, "Clib"));
+                ArtificialIntelligenceAccess.push(new Unit(-15119, 2314, "Varn", true, "Flib"));
+                ArtificialIntelligenceAccess.push(new Unit(-13713, 5329, "Narthwarp", false, "silwil"));
+                scenicList.push(new Scenery("ulgoyPlant", -16488, 3908, 4.9, 7));
+                ArtificialIntelligenceAccess.push(new Unit(-16473, 3885, "Ulgoy", "giant", "The Really Big Plant"));
+                ArtificialIntelligenceAccess.push(new Unit(-16247, 3330, "Boar", true, "Tambor"));
+                ArtificialIntelligenceAccess.push(new Unit(-14353, 3844, "Shehid", true, "sheta"));
+                scenicList.push(new Scenery("beeHive", -15375 , -2055, 4.5, true));
+
+                //Build Scenery
+
+                //trees in the wuncwer woods.
+                scenicList.push(new Scenery("pineTree", -13696, 1772, 1.3, true));
+
+
+                //Plants of the wuncwer woods
+                scenicList.push(new Scenery("neprilnePlant", -17425 , 3993, -5.8, true));
+                scenicList.push(new Scenery("pluttPlant", -16685 , 4251, 2.4, true));
+                scenicList.push(new Scenery("culprisPlant", -21156 , 617, -3.5, true));
+                scenicList.push(new Scenery("stomwikPlant", -18732 , -2343, 6, true));
+                scenicList.push(new Scenery("akerPlant", -14491 , 5755, 1, true));
+                scenicList.push(new Scenery("glinPlant", -15944 , -2502, -7.789, true));
+                scenicList.push(new Scenery("ogardPlant", -16292 , -2231, 0, true));
+                scenicList.push(new Scenery("wyrPlant", -15134 , 2399, 2.8, true));
+                scenicList.push(new Scenery("cyrinthilimPlant", -21038 , -2478, 4, true));
+
+                change = "e5";
             }
         }
         else if (region == "s16")

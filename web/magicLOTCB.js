@@ -872,9 +872,8 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                             else if (kind == "blinding")
                             {
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000 * (this.cnx / 5));;
+                                ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000 * (this.cnx / 5));
                             }
-
                             if (kind != "blinding")
                             {
                                 ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
@@ -919,6 +918,32 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                     player.blinded = true;
                                     player.blindedStoreTime = new Date().getTime();
                                     player.blindedTime = 2;
+                                }
+                                else if (kind == "ChokingII")
+                                {
+                                    player.asfixiationTime = 0.9;
+                                    player.asfixiationII = true;
+                                }
+                                else if (kind == "ChokingI")
+                                {
+                                    player.asfixiationTime = 0.9;
+                                    player.asfixiationI = true;
+                                }
+                                else if (kind == "blindingChokeII")
+                                {
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 2;
+                                    player.asfixiationTime = 0.9;
+                                    player.asfixiationII = true;
+                                }
+                                else if (kind == "blindingChokeI")
+                                {
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 2;
+                                    player.asfixiationTime = 0.9;
+                                    player.asfixiationI = true;
                                 }
 
                                 this.contactDamageTime = new Date().getTime();
@@ -974,13 +999,13 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                 {
                                     ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
                                 }
-                                else if (kind == "blinding")
+                                else if (kind == "blinding" || kind == "blindingChokeII" || kind == "blindingChokeI")
                                 {
                                     ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
                                     ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000 * (this.cnx / 5));;
                                 }
 
-                                if (kind != "blinding")
+                                if (kind != "blinding" || kind != "blindingChokeII" || kind != "blindingChokeI")
                                 {
                                     ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                                     ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
@@ -1034,6 +1059,32 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                 player.blinded = true;
                                 player.blindedStoreTime = new Date().getTime();
                                 player.blindedTime = 2;
+                            }
+                            else if (kind == "ChokingII")
+                            {
+                                player.asfixiationTime = 0.9;
+                                player.asfixiationII = true;
+                            }
+                            else if (kind == "ChokingI")
+                            {
+                                player.asfixiationTime = 0.9;
+                                player.asfixiationI = true;
+                            }
+                            else if (kind == "blindingChokeII")
+                            {
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 2;
+                                player.asfixiationTime = 0.9;
+                                player.asfixiationII = true;
+                            }
+                            else if (kind == "blindingChokeI")
+                            {
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 2;
+                                player.asfixiationTime = 0.9;
+                                player.asfixiationI = true;
                             }
                         }
                     }
@@ -1143,6 +1194,13 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         {
             this.orientToCaster(17, 1 / 2 * Math.PI);
             this.drawWithRotation(polypol, 1688, 212, 29, 26, 29, 26, player.rotation, -1 / 2 * 29, -1 / 2 * 26);
+        }
+        //SMOKE
+        if (this.spellType == "smoke")
+        {
+            this.orientToInstructions(0, Math.random() * 2*Math.PI);
+            this.rotation = Math.random() * 2*Math.PI;
+            this.size = 0.2;
         }
         //FLAMING MISSILES
         if (this.spellType == "flamingMissiles")
@@ -2536,6 +2594,34 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 }
 
                 this.spellTimer(15 + this.cnx);
+            }
+
+            //SMOKE
+            if (this.spellType == "smoke")
+            {
+                this.contactDamage(true, 17 * this.size, 0, 90,  "blindingChokeII", "blinding");
+                //move
+                this.X += Math.cos(this.rotation) * 0.2;
+                this.Y += Math.sin(this.rotation) * 0.2;
+                //spin
+                this.turn += 0.005;
+
+                //grow
+                if (this.size < 1.4)
+                {
+                    this.size += 0.02
+                }
+                else
+                {
+                    //self delete after it reaches full size for 3 seconds
+                    this.spellTimer(3);
+                }
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.turn);
+                XXX.drawImage(atal, 436, 576, 81, 77, - (1/2 * 81 * this.size), - (1/2 * 77 * this.size), 81 * this.size, 77 * this.size);
+                XXX.restore();
             }
 
             //EMBERS

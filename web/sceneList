@@ -104,6 +104,16 @@ yeolCampFire - a yeolwood fire that burns shorter than pine does and provides ac
 deadWaanti - a dead waanti as a scenery object
 floatingBoat - a boat that counts as a piece of land regardless of the water
 boat - a boat that is purely for decoration
+horseSkeleton - the skeleton of a long dead horse
+hayPile - A pile of hay
+hayBale - A bale of hay that acts as an obstacle
+nirwadenTiendaD - A down facing open air nirwaden shop
+nirwadenTiendaU - An up facing open air nirwaden shop
+nirwadenTiendaR - A right facing open air nirwaden shop
+nirwadenTiendaL - A left facing open air nirwaden shop
+nirwadenMueble - set temporary between 0 and 8 to access chairs counters benches and tables of various shapes and sizes
+basket - A woven nirwaden basket for storing goods (there are two colours of basket available)
+nirwadenGoods - a variety of decorative nirwaden goods accessed by setting temporary between 0 and 24.
 
 
 

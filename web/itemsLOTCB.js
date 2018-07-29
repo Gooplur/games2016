@@ -3241,6 +3241,66 @@ function Item(type, x, y)
             this.buyValue = 37 - Math.floor(player.getCharisma() / 2); // at max, buy for 12.
             this.sellValue = 7 + Math.floor(player.getCharisma() / 10); // at max, sell for 12.
         }
+        else if (this.type == "chonaFruit")
+        {
+            //For All Items
+            this.identity = "Chona";
+            this.weight = 0.4;
+            this.size = 5;
+            this.description = "A smooth pink fruit that grows in clusters in small temperate trees.";
+            this.intForDes = 0;
+            this.intDescription = "The fruits are sweet and have a particularly aromatic and juicy flavor.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.75; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+        }
+        else if (this.type == "polyapaFruit")
+        {
+            //For All Items
+            this.identity = "Polyapa";
+            this.weight = 0.43;
+            this.size = 7;
+            this.description = "A greenish yellow fruit that grows on small temperate trees.";
+            this.intForDes = 0;
+            this.intDescription = "It has a crisp yet tender texture and an aromatic sweetness that is just delightful. It is pronounced 'PO-lyah-pah'";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0.025; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 25); // at max, sell for 1.
+        }
         else if (this.type == "karmFruit")
         {
             //For All Items
@@ -9996,7 +10056,7 @@ function Item(type, x, y)
             this.identity = "The Grail of Eternity";
             this.weight = 7;
             this.size = 10;
-            this.description = "A legendary golden grail engraved with rubies saphires and emeralds; full of the water of life.";
+            this.description = "A legendary golden grail engraved with rubies sapphires and emeralds; full of the water of life.";
             this.intForDes = 0;
             this.intDescription = "To drink the water of life from this grail grants the embiber youth and good health."; //All liquid held in this grail magically becomes the water of life.
 
@@ -10027,7 +10087,7 @@ function Item(type, x, y)
             this.identity = "The Grail of Eternity";
             this.weight = 6;
             this.size = 10;
-            this.description = "A legendary golden grail engraved with rubies saphires and emeralds.";
+            this.description = "A legendary golden grail engraved with rubies sapphires and emeralds.";
             this.intForDes = 0;
             this.intDescription = "All liquid held in this grail magically becomes the water of life.";
 
@@ -12328,6 +12388,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 2; // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "garlic")
+        {
+            //For All Items
+            this.identity = "Garlic";
+            this.weight = 0.19;
+            this.size = 3;
+            this.description = "A white bulb used as a pungeant but savoury aromatic in cooking.";
+            this.intForDes = 5;
+            this.intDescription = "Garlic can be used in alchemy for its antifungal properties.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
         }
         else if (this.type == "waantiPelt")
         {
@@ -15412,6 +15492,75 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "naapricha")
+        {
+            //For All Items
+            this.identity = "Wheel of Naapricha Cheese";
+            this.weight = 4;
+            this.size = 15;
+            this.description = "Cheese made from naaprid milk.";
+            this.intForDes = 0;
+            this.intDescription = "It is a mild and creamy cheese with a hint of nuttiness.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 40; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 22;
+            this.ingredients = [["Bucket of Naaprid Milk", 1]];
+            this.biproducts = [[new Item("bucket", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 55 - Math.floor(player.getCharisma() / 3); // at max, buy for 40.
+            this.sellValue = 32 + Math.floor(player.getCharisma() / 6); // at max, sell for 40.
+        }
+        else if (this.type == "naaprichaWedge")
+        {
+            //For All Items
+            this.identity = "Wedge of Naapricha Cheese";
+            this.weight = 0.5;
+            this.size = 15;
+            this.description = "A portion of naapricha cheese.";
+            this.intForDes = 0;
+            this.intDescription = "It is a mild and creamy cheese with a hint of nuttiness.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 5.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 8;
+            this.intForCraft = 0;
+            this.ingredients = [["Wheel of Naapricha Cheese", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 50); // at max, sell for 5.
         }
         else if (this.type == "carrot")
         {
@@ -25188,7 +25337,7 @@ function Item(type, x, y)
 
             this.yield = 1;
             this.intForCraft = 60;
-            this.ingredients = [["Jvostran", 3], ["Steel", 3], ["Gold", 1], ["Saphire", 1]];
+            this.ingredients = [["Jvostran", 3], ["Steel", 3], ["Gold", 1], ["Sapphire", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 2600 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 2500.
@@ -26052,6 +26201,31 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "naapricha")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 1212, 2997, 20, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.15), 20 * 1.15, 17 * 1.15);
+        }
+        else if (this.type == "naaprichaWedge")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 1189, 2997, 24, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1.15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 1.15), 24 * 1.15, 12 * 1.15);
+        }
+        else if (this.type == "garlic")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 874, 2274, 25, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 0.27), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 0.27), 25 * 0.27, 28 * 0.27);
+        }
+        else if (this.type == "chonaFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 726, 2556, 16, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 16 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1), 16 * 1, 15 * 1);
+        }
+        else if (this.type == "polyapaFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 748, 2553, 15, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1), 15 * 1, 17 * 1);
         }
         else if (this.type == "nirwadenLance")
         {
@@ -29518,6 +29692,31 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "naapricha")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 1212, 2997, 20, 17, this.invX - (1/2 * 20 * 1.15), this.invY - (1/2 * 17 * 1.15), 20 * 1.15, 17 * 1.15);
+        }
+        else if (this.type == "naaprichaWedge")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 1189, 2997, 24, 12, this.invX - (1/2 * 24 * 1.15), this.invY - (1/2 * 12 * 1.15), 24 * 1.15, 12 * 1.15);
+        }
+        else if (this.type == "garlic")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 874, 2274, 25, 28, this.invX - (1/2 * 25 * 0.55), this.invY - (1/2 * 28 * 0.55), 25 * 0.55, 28 * 0.55);
+        }
+        else if (this.type == "chonaFruit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 726, 2556, 16, 15, this.invX - (1/2 * 16 * 1.2), this.invY - (1/2 * 15 * 1.2), 16 * 1.2, 15 * 1.2);
+        }
+        else if (this.type == "polyapaFruit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 748, 2553, 15, 17, this.invX - (1/2 * 15 * 1.2), this.invY - (1/2 * 17 * 1.2), 15 * 1.2, 17 * 1.2);
+        }
         else if (this.type == "nirwadenLance")
         {
             LXX.beginPath();
@@ -30751,7 +30950,7 @@ function Item(type, x, y)
         else if (this.type == "sapphire")
         {
             LXX.beginPath();
-            LXX.drawImage(polypol, 1328, 524, 36, 33, this,invX - (1/2 * 36 * 0.3), this.invY - (1/2 * 33 * 0.3), 36 * 0.3, 33 * 0.3);
+            LXX.drawImage(polypol, 1328, 524, 36, 33, this.invX - (1/2 * 36 * 0.3), this.invY - (1/2 * 33 * 0.3), 36 * 0.3, 33 * 0.3);
         }
         else if (this.type == "coal")
         {
@@ -32953,6 +33152,31 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "naapricha")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 1212, 2997, 20, 17, this.invX - (1/2 * 20 * 1.15), this.invY - (1/2 * 17 * 1.15), 20 * 1.15, 17 * 1.15);
+        }
+        else if (this.type == "naaprichaWedge")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 1189, 2997, 24, 12, this.invX - (1/2 * 24 * 1.15), this.invY - (1/2 * 12 * 1.15), 24 * 1.15, 12 * 1.15);
+        }
+        else if (this.type == "garlic")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 874, 2274, 25, 28, this.invX - (1/2 * 25 * 0.55), this.invY - (1/2 * 28 * 0.55), 25 * 0.55, 28 * 0.55);
+        }
+        else if (this.type == "chonaFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 726, 2556, 16, 15, this.invX - (1/2 * 16 * 1.2), this.invY - (1/2 * 15 * 1.2), 16 * 1.2, 15 * 1.2);
+        }
+        else if (this.type == "polyapaFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 748, 2553, 15, 17, this.invX - (1/2 * 15 * 1.2), this.invY - (1/2 * 17 * 1.2), 15 * 1.2, 17 * 1.2);
+        }
         else if (this.type == "nirwadenLance")
         {
             XXX.beginPath();
@@ -34184,7 +34408,7 @@ function Item(type, x, y)
         else if (this.type == "sapphire")
         {
             XXX.beginPath();
-            XXX.drawImage(polypol, 1328, 524, 36, 33, this,invX - (1/2 * 36 * 0.3), this.invY - (1/2 * 33 * 0.3), 36 * 0.3, 33 * 0.3);
+            XXX.drawImage(polypol, 1328, 524, 36, 33, this.invX - (1/2 * 36 * 0.3), this.invY - (1/2 * 33 * 0.3), 36 * 0.3, 33 * 0.3);
         }
         else if (this.type == "coal")
         {

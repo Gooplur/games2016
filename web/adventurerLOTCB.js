@@ -123,6 +123,10 @@ function Adventurer()
     this.shockResist = 0; //this is your resistance to electric shock based damage
     this.totalShockResist = this.shockResist + this.AdShockResist;
     this.acidResistance = 0;
+    this.respiration = 25;
+    this.respirationMAX = 25;
+    this.breathRate = 800; //the player takes a breath every 8/10 of a second.
+
     //Non-SkillBased Stats
     this.armour = 0; //this is the armor that is gained from worn equipment.
     this.magicalResistance = 0; //this is the magical resistance that is gained from worn equipment.
@@ -481,6 +485,15 @@ function Adventurer()
     this.extraDraining = false;
     this.eliktozeola = false; //An invasive protein that composes mugmul brains it disbands the bodies protein chains causing the body to die slowly. //the disease is simply activated by setting this flag to true.
     this.eliktozeolaTime = new Date().getTime();
+    this.asthma = false; //if this is true the player suffers from a breathing condition in which running will take up more oxygen than the player breaths in.
+    this.asfixiation = false; //if the players natural respiration is blocked by a contaminant this will be flagged true.
+    this.asfixiationStore = new Date().getTime();
+    this.asfixiationTime = 0;
+    this.asfixiationII = false;
+    this.asfixiationI = false;
+    this.respoStore = new Date().getTime();
+    this.breathStore = new Date().getTime();
+    this.gasmask = false; //this variable determines the players resistance to gases, and particles floating about in the air.
 
     //faction variables
     this.factionToggle = false;
@@ -838,6 +851,7 @@ function Adventurer()
         this.totalSleep = this.sleepMAX + this.extraSleep + this.AdSleep;
         this.totalShockResist = this.shockResist + this.AdShockResist;
         this.jumpBackTime = 10;// - (this.getEndurance() / 12.5);
+        this.respirationMAX = 25 + (this.getEndurance() / 5);
 
         //this sets carry weight based on the total added weights in the player's inventory.
         if (Inventory.length > 0)
@@ -1099,6 +1113,117 @@ function Adventurer()
             }
         };
 
+        this.lungs = function()
+        {
+            //console.log(this.respiration);
+            if (new Date().getTime() - this.respoStore >= 100)
+            {
+                this.respoStore = new Date().getTime();
+                if (this.movingType == 2 && this.unconscious != true || this.movingType == "swimming" && this.unconscious != true)
+                {
+                    if (this.asthma != true)
+                    {
+                        this.respiration -= 0.15;
+                    }
+                    else
+                    {
+                        this.respiration -= 0.3;
+                    }
+                }
+                else
+                {
+                    if (this.asthma && this.asfixiation)
+                    {
+                        this.respiration -= 0.40;
+                    }
+                    else if (this.asfixiation == true)
+                    {
+                        this.respiration -= 0.15;
+                    }
+                    else if (this.asfixiation == "partial")
+                    {
+                        this.respiration -= 0.10;
+                    }
+                    else
+                    {
+                        this.respiration -= 0.05;
+                    }
+                }
+            }
+            if (new Date().getTime() - this.breathStore >= this.breathRate) //standard BR is 800.
+            {
+                this.breathStore = new Date().getTime();
+                if (this.asfixiation == false)
+                {
+                    if (this.asthma != true)
+                    {
+                        if (this.respiration <= 9)
+                        {
+                            this.respiration = Math.min(this.respirationMAX, this.respiration + 2.4);
+                        }
+                        else
+                        {
+                            this.respiration = Math.min(this.respirationMAX, this.respiration + 1.4);
+                        }
+
+                    }
+                    else
+                    {
+                        this.respiration = Math.min(this.respirationMAX, this.respiration + 0.6);
+                    }
+                }
+                else if (this.asfixiation == "partial" && this.asthma != true)
+                {
+                    this.respiration = Math.min(this.respirationMAX, this.respiration + 0.25);
+                }
+            }
+
+            if (this.respiration <= 9) //if a player is nearly about to die of oxygen loss they will fall unconscious so as to prevent
+            {
+                if (this.asthma)
+                {
+                    if (Math.random() > 0.6)
+                    {
+                        this.respiration -= 0.333;
+                    }
+                }
+                this.unconscious = true;
+            }
+            else
+            {
+                this.unconscious = false;
+            }
+
+            if (this.respiration <= 0)
+            {
+                this.health = 0;
+            }
+
+            if (this.asfixiationTime > 0 && this.gasmask != true)
+            {
+                if (this.asfixiationII == false && this.asfixiationI == true)
+                {
+                    this.asfixiation = "partial";
+                }
+                else
+                {
+                    this.asfixiation = true;
+                }
+                if (new Date().getTime() - this.asfixiationStore > 100)
+                {
+                    this.asfixiationStore = new Date().getTime();
+                    this.asfixiationTime -= 0.1;
+                }
+            }
+            else
+            {
+                this.asfixiationII = false;
+                this.asfixiationI = false;
+                this.asfixiationTime = 0;
+                this.asfixiation = false;
+            }
+        };
+
         this.sleepCalculator = function()
         {
             if (new Date().getTime() - this.tirelessStoreTime <= this.tirelessTime * 1000)
@@ -1266,7 +1391,7 @@ function Adventurer()
         this.blinder = function()
         {
             //Blinded
-            if (new Date().getTime() - this.blindedStoreTime <= this.blindedTime * 1000 || this.intelligence < -15 && this.brainMaggots == true)
+            if (new Date().getTime() - this.blindedStoreTime <= this.blindedTime * 1000 || this.intelligence < -15 && this.brainMaggots == true || this.unconscious)
             {
                 this.blinded = true;
             }
@@ -1358,7 +1483,7 @@ function Adventurer()
                 this.swollenRNG = 0;
                 this.swollenEND = 0;
             }
-        }
+        };
 
         this.perfumed = function()
         {
@@ -2002,10 +2127,14 @@ function Adventurer()
                 this.stunned = false;
             }
 
-            if (this.hinderance == true || this.stunned == true || this.webbed) //If the player is carrying too much then they are slowed down depending on how much above the maximum they are carrying.
+            if (this.hinderance == true || this.stunned == true || this.webbed || this.unconscious) //If the player is carrying too much then they are slowed down depending on how much above the maximum they are carrying.
             {
                 //slowness for using armour that is beyond your toughness level.
-                if (this.unskilledUse == true)
+                if (this.unconscious == true)
+                {
+                    this.freeze = Math.max(this.freeze, 100);
+                }
+                else if (this.unskilledUse == true)
                 {
                     this.freeze = Math.max(this.freeze, 22);
                 }
@@ -3189,6 +3318,7 @@ function Adventurer()
 
         //minor game effects
         this.sightSeeing();
+        this.lungs();
         this.perfumed();
         this.swollen();
         this.tepprekliaFungalFever();
@@ -3687,6 +3817,30 @@ function Adventurer()
         {
             //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
             this.removeNotice("Fungal Fever");
+        }
+    };
+
+    //Asfixiation
+    this.asfixiationChecker = function()
+    {
+        if (this.asfixiation == true || this.asfixiation == "partial" || this.respiration <= 3/5 * this.respirationMAX)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Asfixiation");
+            //red background
+            XXX.beginPath();
+            XXX.fillStyle = "#7F0000";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Asfixiation"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(atal, 436, 576, 81, 77, this.arrangeNotices("Asfixiation"), 412.5, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Asfixiation");
         }
     };
 
@@ -4610,6 +4764,7 @@ function Adventurer()
         this.insomniaChecker();
         this.bandagedChecker();
         this.acidicChecker();
+        this.asfixiationChecker();
     };
 
     //MOVEMENT ANIMATION
@@ -21406,7 +21561,7 @@ function Adventurer()
                                     }
                                     else if (shiftKey)
                                     {
-                                        Inventory[j][1] += bankAccount[i][1];
+                                        Inventory[j][1] += stored[i][1];
                                         stored.splice(i, 1);
                                         break;
                                     }

@@ -30,9 +30,6 @@ function buildMaster()
                 //Delete All Non-native Items
                 //worldItems = [];
 
-                //Delete All Non-native Structures
-                //todo when structures are created add their list's refresh sequence here.
-
                 //Delete All Non-native Scenery
                 scenicList = [];
 
@@ -10958,7 +10955,7 @@ function buildMaster()
                 }
                 //Build Scenery
 
-                //trees in the wuncwer woods.
+                //trees in the wuntol woods.
                 scenicList.push(new Scenery("pineTree", -13696, 1772, 1.3, true));
                 scenicList.push(new Scenery("pineTree", -14036, 1575, 2.25, true));
                 scenicList.push(new Scenery("pineTree", -14255, 1933, -5.3, true));
@@ -11448,7 +11445,7 @@ function buildMaster()
                 scenicList.push(new Scenery("pineTree", -19903, -2595, 0, true));
                 scenicList.push(new Scenery("pineTree", -18192, -746, 2.9999, true));
 
-                //Plants of the wuncwer woods
+                //Plants of the wuntol woods
                 scenicList.push(new Scenery("neprilnePlant", -17425 , 3993, -5.8, true));
                 scenicList.push(new Scenery("pluttPlant", -16685 , 4251, 2.4, true));
                 scenicList.push(new Scenery("pluttPlant", -20807 , 5229, 3.4, true));
@@ -11570,15 +11567,40 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(-16473, 3885, "Ulgoy", "giant", "The Really Big Plant"));
                 ArtificialIntelligenceAccess.push(new Unit(-16247, 3330, "Boar", true, "Tambor"));
                 ArtificialIntelligenceAccess.push(new Unit(-14353, 3844, "Shehid", true, "sheta"));
-                scenicList.push(new Scenery("beeHive", -15375 , -2055, 4.5, true));
+                scenicList.push(new Scenery("beeHive", -14353, 3844, 4.5, true));
 
                 //Build Scenery
 
-                //trees in the wuncwer woods.
-                scenicList.push(new Scenery("pineTree", -13696, 1772, 1.3, true));
+                //trees in the wuntol woods.
 
+                //westside trees
+                scenicList.push(new Scenery("pineTree", -24765, 1829, 5, true));
+                scenicList.push(new Scenery("pineTree", -24198 , 1709, 2, true));
+                scenicList.push(new Scenery("pineTree", -23745 , 1934, -3, true));
+                scenicList.push(new Scenery("pineTree", -24444 , 2385, 4.5, true));
+                scenicList.push(new Scenery("pineTree", -24198 , 2234, -1, true));
+                scenicList.push(new Scenery("pineTree", -23898 , 2830, 2.25, true));
+                scenicList.push(new Scenery("chonaTree", -25080 , 679, 1.8, true));
+                scenicList.push(new Scenery("polyapaTree", -25180 , 679, 1.8, true));
+                scenicList.push(new Scenery("hayPile", -25300 , 700, false, true));
+                scenicList.push(new Scenery("horseSkeleton", -25480 , 650, false, true));
+                scenicList.push(new Scenery("hayBale", -25680 , 670, 2.31, true));
+                scenicList.push(new Scenery("nirwadenTiendaR", -25680 , 800, 0.51, 1));
+                scenicList.push(new Scenery("nirwadenTiendaL", -25980 , 800, 0.51, 0));
+                scenicList.push(new Scenery("nirwadenMueble", -25980 , 1000, 0.51, 2));
+                scenicList.push(new Scenery("nirwadenMueble", -25960 , 940, 0.46, 6));
+                scenicList.push(new Scenery("nirwadenMueble", -26180 , 900, 1.4, 0));
+                scenicList.push(new Scenery("basket", -25980 , 832, -2.9/4 * 2 * Math.PI, 2, [1.25]));
+                scenicList.push(new Scenery("basket", -25680 , 800, 2/4 * 2 * Math.PI, 1, [1.14]));
+                //scenicList.push(new Scenery("basket", -25980 , 800, -1/4 * Math.PI, 3, [1, "newBasket00001", 2, [[new Item("garlic", false, false), 60], [new Item("coins", false, false), 19]], false, 0]));
+                scenicList.push(new Scenery("stove", -26280 , 950, 1, true));
+                scenicList.push(new Scenery("nirwadenGoods", -26380 , 1000, 24, 5));
+                scenicList.push(new Scenery("nirwadenGoods", -26380 , 830, 21, 7));
+                scenicList.push(new Scenery("nirwadenGoods", -26390 , 1060, 24, 1));
+                scenicList.push(new Scenery("nirwadenGoods", -26350 , 890, 21, 0));
+                scenicList.push(new Scenery("forger", -26800 , 990, 1, true));
 
-                //Plants of the wuncwer woods
+                //Plants of the wuntol woods
                 scenicList.push(new Scenery("neprilnePlant", -17425 , 3993, -5.8, true));
                 scenicList.push(new Scenery("pluttPlant", -16685 , 4251, 2.4, true));
                 scenicList.push(new Scenery("culprisPlant", -21156 , 617, -3.5, true));

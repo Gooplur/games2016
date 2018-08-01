@@ -1775,6 +1775,30 @@ function nirwadenPack()
 
     atal.onload = function()
     {
+        wolfPack();
+    };
+}
+
+function wolfPack()
+{
+    var folw = new Image();
+    folw.src = ("images/folw.png");
+    window.folw = folw;
+
+    folw.onload = function()
+    {
+        dmlPack();
+    };
+}
+
+function dmlPack()
+{
+    var dmil = new Image();
+    dmil.src = ("images/dmil.png");
+    window.dmil = dmil;
+
+    dmil.onload = function()
+    {
         secondToLastPreStage();
     };
 }

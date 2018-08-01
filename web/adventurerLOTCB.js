@@ -494,6 +494,10 @@ function Adventurer()
     this.respoStore = new Date().getTime();
     this.breathStore = new Date().getTime();
     this.gasmask = false; //this variable determines the players resistance to gases, and particles floating about in the air.
+    this.form = false; //false means human, this variable determines which subhuman creature the player transforms into.
+    this.lycanthropy = false; //this determines if the character is a werewolf or not
+    this.wolfForm = false; //this variable denotes whether the player is presently in the werewolf form
+    this.wolfChange = false; //this variable is activated when a wolfchange occurs and acts as a way for initial changes to only take place once
 
     //faction variables
     this.factionToggle = false;
@@ -1057,6 +1061,44 @@ function Adventurer()
             else
             {
                 this.subtlety = false;
+            }
+        };
+
+        this.formChanger = function()
+        {
+            if (this.form == "werewolf")
+            {
+                //Lycanthropy
+                if (this.lycanthropy)
+                {
+                    if (this.wolfForm)
+                    {
+                        if (this.wolfChange == false) //lo que nomás pasa una vez al cambiar en hombrelobo
+                        {
+                            this.wolfChange = true;
+                        }
+
+                        //unequip weapon and armour then...
+                        //set outfit to werewolf
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            if (Inventory[i][0].utility == "weapon" || Inventory[i][0].utility == "worn")
+                            {
+                                Inventory[i][0].equipped = false;
+                            }
+                        }
+                        this.outfitEquipped = "none";
+                        this.weaponEquipped = "werewolf";
+                        this.subtlety = false;
+                    }
+                    else
+                    {
+                        if (this.wolfChange == true) //lo que nomás pasa una vez al cambiar en humano
+                        {
+                            this.wolfChange = false;
+                        }
+                    }
+                }
             }
         };
 
@@ -3315,6 +3357,7 @@ function Adventurer()
         this.overCucumbered(); //If the player is carrying too much weight the player all of a sudden becomes submersed in invisible cucumbers making it very challenging for him/her to move.
         this.outfitEffects();
         this.sickness();
+        this.formChanger();
 
         //minor game effects
         this.sightSeeing();
@@ -6735,7 +6778,7 @@ function Adventurer()
                     {
                         if (bothwaysBool == false) // if the animation is one way it ends here...
                         {
-                            if (this.weaponEquipped != "flail" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero")
+                            if (this.weaponEquipped != "flail" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf")
                             {
                                 self.finalAttackStage = true;
                                 self.attackCooldown = new Date().getTime();
@@ -9867,6 +9910,90 @@ function Adventurer()
                         Inventory[slotNum][1] -= 1;
                     }
                 }
+            }
+        }
+        //WEREWOLF (form)
+        if (this.weaponEquipped == "werewolf")
+        {
+            //this.finalAttackStage = true;
+            //this.attackCooldown = new Date().getTime();
+            if (this.wKey)
+            {
+                this.stageEngine(6, 0.15, true); //movement
+
+                //ATTACK ANIMATION
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(polyPNG, 51, 70, 105, 46, -26, -22, 70, 45);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(polyPNG, 169, 62, 105, 46, -26, -29, 70, 45);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(polyPNG, 282, 47, 105, 53, -33, -40, 70, 45);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(polyPNG, 399, 68, 105, 59, -38, -43, 72, 45);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(polyPNG, 520, 59, 105, 69, -28, -43, 72, 47);
+                    XXX.restore();
+                }
+            }
+            else if (this.qKey)
+            {
+                this.stageEngine(6, 0.15, true); //howl
+            }
+            else if (this.eKey)
+            {
+                this.stageEngine(6, 0.15, true); //bite
+            }
+            else if (this.spaceKey)
+            {
+                this.stageEngine(6, 0.15, true); //slash
             }
         }
         //MACE

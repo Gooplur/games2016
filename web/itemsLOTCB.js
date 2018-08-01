@@ -14749,6 +14749,121 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "alcaStone")
+        {
+            //For All Items
+            this.identity = "Stone";
+            this.weight = 3.3;
+            this.size = 8;
+            this.description = "A chunk of rock.";
+            this.intForDes = 30;
+            this.intDescription = "This type of stone has a high copper content. It also can contain higher amounts of gold than most rocks.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "copperOre")
+        {
+            //For All Items
+            this.identity = "Copper Ore";
+            this.weight = 3.2;
+            this.size = 7;
+            this.description = "A lump of unrefined copper.";
+            this.intForDes = 25;
+            this.intDescription = "Copper is used to construct leading edge technology; it is highly conductive.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13 - Math.floor(player.getCharisma() / 25); // at max, buy for 11.
+            this.sellValue = 8 + Math.floor(player.getCharisma() / 15); // at max, sell for 11.
+        }
+        else if (this.type == "copper")
+        {
+            //For All Items
+            this.identity = "Copper";
+            this.weight = 3.5;
+            this.size = 13;
+            this.description = "Pure, refined copper.";
+            this.intForDes = 25;
+            this.intDescription = "Copper is used to construct leading edge technology; it is highly conductive.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 10;
+            this.ingredients = [["Copper Ore", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 23 - Math.floor(player.getCharisma() / 10); // at max, buy for 18.
+            this.sellValue = 15 + Math.floor(player.getCharisma() / 15); // at max, sell for 18.
+        }
+        else if (this.type == "copperWire")
+        {
+            //For All Items
+            this.identity = "Copper Wire";
+            this.weight = 0.9;
+            this.size = 10;
+            this.description = "Wire made from refined copper.";
+            this.intForDes = 9;
+            this.intDescription = "Copper wire conducts electricity well, and can be used in various technilogical applications.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 13;
+            this.ingredients = [["Copper", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 50); // at max, buy for 7.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 50); // at max, sell for 7.
+        }
+        else if (this.type == "copperDust")
+        {
+            //For All Items
+            this.identity = "Copper Dust";
+            this.weight = 1.8;
+            this.size = 10;
+            this.description = "Copper pulverized into a fine metallic dust.";
+            this.intForDes = 9;
+            this.intDescription = "This acts as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 16;
+            this.ingredients = [["Copper", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 50); // at max, buy for 15.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 12); // at max, sell for 15.
+        }
         else if (this.type == "coal")
         {
             //For All Items
@@ -15164,6 +15279,31 @@ function Item(type, x, y)
                 this.buyValue = 55 - Math.floor(player.getCharisma() / 10); // at max, buy for 50.
                 this.sellValue = 40 + Math.floor(player.getCharisma() / 5); // at max, sell for 50.
             }
+        }
+        else if (this.type == "spiritTalisman")
+        {
+            //For All Items
+            this.identity = "Talisman of the Eternal Spirit";
+            this.weight = 25;
+            this.size = 15;
+            this.description = "A religious artifact for the worship of the eternal spirit.";
+            this.intForDes = 0;
+            this.intDescription = "It is thought to channel the eternal spirits essences in a more focused way allowing for more direct communication.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 39;
+            this.ingredients = [["Gold", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 800; // at max, buy for 600.
+            this.sellValue = 750 + Math.floor(player.getCharisma() / 1); // at max, sell for 800.
         }
         else if (this.type == "elderWalrusTusks")
         {
@@ -19539,6 +19679,59 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 102 - Math.floor(player.getCharisma() / 6); // at max, buy for 94.
             this.sellValue = 79 + Math.floor(player.getCharisma() / 3); // at max, sell for 94.
+        }
+        else if (this.type == "engineerOutfit")
+        {
+            //For All Items
+            this.identity = "Engineer Outfit";
+            this.weight = 20;
+            this.size = 25;
+            this.description = "A thick leather outfit used by engineers.";
+            this.intForDes = 1;
+            this.intDescription = "The leather helps keep Nirwaden engineers safe from burns and scratches and helps them notice tiny details.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 3 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 2;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 4;
+            this.thirstRetention = 5;
+            this.shockResist = 0.5;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 4;
+            this.charismaBonus = -10;
+            this.rangedBonus = -6;
+            this.constitutionBonus = 1;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -10;
+            this.survivalismBonus = -5;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 40;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "hefty";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 389 - Math.floor(player.getCharisma() / 1); // at max, buy for 339.
+            this.sellValue = 326 + Math.floor(player.getCharisma() / 4); // at max, sell for 338.
         }
         else if (this.type == "frichFurMittens")
         {
@@ -26202,6 +26395,41 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "copperOre")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 930, 2193, 21, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 0.8), 21 * 0.8, 28 * 0.8);
+        }
+        else if (this.type == "copper")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 873, 2190, 37, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 0.68), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34 * 0.68), 37 * 0.68, 34 * 0.68);
+        }
+        else if (this.type == "copperWire")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 893, 2240, 47, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 47 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 0.6), 47 * 0.6, 22 * 0.6);
+        }
+        else if (this.type == "copperDust")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 926, 2270, 41, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 41 * 0.69), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 0.69), 41 * 0.69, 39 * 0.69);
+        }
+        else if (this.type == "alcaStone")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1634, 467, 28, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1), 28 * 1, 26 * 1);
+        }
+        else if (this.type == "spiritTalisman")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 168, 3371, 61, 55, X - this.X + (1/2 * CCC.width) - (1/2 * 61 * 0.55), Y - this.Y + (1/2 * CCC.height) - (1/2 * 55 * 0.55), 61 * 0.55, 55 * 0.55);
+        }
+        else if (this.type == "engineerOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 901, 2388, 90, 133, X - this.X + (1/2 * CCC.width) - (1/2 * 90 * 0.76), Y - this.Y + (1/2 * CCC.height) - (1/2 * 133 * 0.76), 90 * 0.76, 133 * 0.76);
+        }
         else if (this.type == "naapricha")
         {
             XXX.beginPath();
@@ -29692,6 +29920,41 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "copperOre")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 930, 2193, 21, 28, this.invX - (1/2 * 21 * 0.8), this.invY - (1/2 * 28 * 0.8), 21 * 0.8, 28 * 0.8);
+        }
+        else if (this.type == "copper")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 873, 2190, 37, 34, this.invX - (1/2 * 37 * 0.68), this.invY - (1/2 * 34 * 0.68), 37 * 0.68, 34 * 0.68);
+        }
+        else if (this.type == "copperWire")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 893, 2240, 47, 22, this.invX - (1/2 * 47 * 0.6), this.invY - (1/2 * 22 * 0.6), 47 * 0.6, 22 * 0.6);
+        }
+        else if (this.type == "copperDust")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 926, 2270, 41, 39, this.invX - (1/2 * 41 * 0.69), this.invY - (1/2 * 39 * 0.69), 41 * 0.69, 39 * 0.69);
+        }
+        else if (this.type == "alcaStone")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1634, 467, 28, 26, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 26 * 1), 28 * 1, 26 * 1);
+        }
+        else if (this.type == "spiritTalisman")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 168, 3371, 61, 55, this.invX - (1/2 * 61 * 0.55), this.invY - (1/2 * 55 * 0.55), 61 * 0.55, 55 * 0.55);
+        }
+        else if (this.type == "engineerOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(atal, 901, 2388, 90, 133, this.invX - (1/2 * 90 * 0.58), this.invY - (1/2 * 133 * 0.58), 90 * 0.58, 133 * 0.58);
+        }
         else if (this.type == "naapricha")
         {
             LXX.beginPath();
@@ -33151,6 +33414,41 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "copperOre")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 930, 2193, 21, 28, this.invX - (1/2 * 21 * 0.8), this.invY - (1/2 * 28 * 0.8), 21 * 0.8, 28 * 0.8);
+        }
+        else if (this.type == "copper")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 873, 2190, 37, 34, this.invX - (1/2 * 37 * 0.68), this.invY - (1/2 * 34 * 0.68), 37 * 0.68, 34 * 0.68);
+        }
+        else if (this.type == "copperWire")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 893, 2240, 47, 22, this.invX - (1/2 * 47 * 0.6), this.invY - (1/2 * 22 * 0.6), 47 * 0.6, 22 * 0.6);
+        }
+        else if (this.type == "copperDust")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 926, 2270, 41, 39, this.invX - (1/2 * 41 * 0.69), this.invY - (1/2 * 39 * 0.69), 41 * 0.69, 39 * 0.69);
+        }
+        else if (this.type == "alcaStone")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1634, 467, 28, 26, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 26 * 1), 28 * 1, 26 * 1);
+        }
+        else if (this.type == "spiritTalisman")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 168, 3371, 61, 55, this.invX - (1/2 * 61 * 0.55), this.invY - (1/2 * 55 * 0.55), 61 * 0.55, 55 * 0.55);
+        }
+        else if (this.type == "engineerOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(atal, 901, 2388, 90, 133, this.invX - (1/2 * 90 * 0.58), this.invY - (1/2 * 133 * 0.58), 90 * 0.58, 133 * 0.58);
         }
         else if (this.type == "naapricha")
         {

@@ -93,6 +93,7 @@ stone - a lightGrey rock that can be mined with a pickaxe
 darkStone - a darkGrey rock that can be mined with a pickaxe
 darkStoneOver - a version of darkStone that draws over
 ashStone - black rock that can be mined with a pickaxe (it yields coal more often than most)
+alcaStone - A brownish orange rock that can be mined with a pickaxe (it is rich with copper, and has a slightly higher gold content)
 jvostran - a rare mineral deposit where jvostran ore can be mined directly
 beeHive - a hive that spawns bees that zoom across the map in search of not fungus plants (contains wax and honey)
 anterHill - a hive that spawns anters that look for food within their vision radius or attack nearby adversaries
@@ -114,7 +115,8 @@ nirwadenTiendaL - A left facing open air nirwaden shop
 nirwadenMueble - set temporary between 0 and 8 to access chairs counters benches and tables of various shapes and sizes
 basket - A woven nirwaden basket for storing goods (there are two colours of basket available)
 nirwadenGoods - a variety of decorative nirwaden goods accessed by setting temporary between 0 and 24.
-
+nirwadenStableU - a nirwaden stable facing up
+nirwadenStableD - a nirwaden stable facing down
 
 
 

@@ -3517,6 +3517,7 @@ function theLegend()
     allWorn.push(new Item("witchHunterOutfit", false)); //83
     allWorn.push(new Item("nirwadenMorionArmour", false)); //84
     allWorn.push(new Item("nirwadenGambeson", false)); //85
+    allWorn.push(new Item("engineerOutfit", false)); //86
 
     scenicList = [];
 
@@ -3619,6 +3620,8 @@ function theLegend()
     smithing.push(new Item("nirwadenPlateArmour", false));
     smithing.push(new Item("nirwadenMorionArmour", false));
     smithing.push(new Item("chainsaw", false));
+    smithing.push(new Item("spiritTalisman", false));
+    smithing.push(new Item("copperWire", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];
@@ -3847,6 +3850,7 @@ function theLegend()
     alchemy.push(new Item("driedDuendeEsophagus", false));
     alchemy.push(new Item("duendePowder", false));
     alchemy.push(new Item("naapricha", false));
+    alchemy.push(new Item("copperDust", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];
@@ -3859,6 +3863,7 @@ function theLegend()
     forge.push(new Item("steel", false));
     forge.push(new Item("twiceForgedSteel", false));
     forge.push(new Item("thriceForgedSteel", false));
+    forge.push(new Item("copper", false));
     forge.push(new Item("silver", false));
     forge.push(new Item("gold", false));
     forge.push(new Item("pureJvostranOre", false));

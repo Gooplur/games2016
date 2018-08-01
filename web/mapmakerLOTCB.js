@@ -11599,6 +11599,13 @@ function buildMaster()
                 scenicList.push(new Scenery("nirwadenGoods", -26390 , 1060, 24, 1));
                 scenicList.push(new Scenery("nirwadenGoods", -26350 , 890, 21, 0));
                 scenicList.push(new Scenery("forger", -26800 , 990, 1, true));
+                scenicList.push(new Scenery("cauldron", -26880 , 790, 0, true));
+                scenicList.push(new Scenery("nirwadenPump", -27000 , 900, 0, true));
+                scenicList.push(new Scenery("spiritBasin", -27200 , 950, 0, true));
+                scenicList.push(new Scenery("alcaStone", -27200 , 550, 1.8, 4, 2));
+                scenicList.push(new Scenery("nirwadenStableU", -28000 , 800, 0, true));
+                scenicList.push(new Scenery("nirwadenStableD", -28000 , 300, 0, true));
+
 
                 //Plants of the wuntol woods
                 scenicList.push(new Scenery("neprilnePlant", -17425 , 3993, -5.8, true));

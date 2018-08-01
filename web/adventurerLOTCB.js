@@ -5352,6 +5352,10 @@ function Adventurer()
         {
             outfit = allWorn[85];
         }
+        else if (this.outfitEquipped == "engineerOutfit")
+        {
+            outfit = allWorn[86];
+        }
         else
         {
             outfit = allWorn[0];
@@ -5528,6 +5532,19 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(polyPNG, 804, 262, 35, 24, -(1 / 2 * 45.5) + 8, -(1 / 2 * 31.2) + 1.25, 42, 28.8);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "engineerOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(atal, 810, 2407, 89, 47, -(1 / 2 * 89 * 0.7) + 0, -(1 / 2 * 47 * 0.7) - 0, 89 * 0.7, 47 * 0.7);
             XXX.restore();
         }
         else if (this.outfitEquipped == "gulfreyShellArmour")

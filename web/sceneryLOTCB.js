@@ -3659,6 +3659,137 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "nirwadenStableD")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X - 180) && X < (this.X - 180) + 333 && Y > (this.Y - 108) && Y < (this.Y - 108) + 208)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(atal, 368, 2511, 329, 209, -(1/2 * 329 * 1.2), -(1/2 * 209 * 1.2), 329 * 1.2, 209 * 1.2);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(atal, 368, 2511, 329, 209, -(1/2 * 329 * 1.2), -(1/2 * 209 * 1.2), 329 * 1.2, 209 * 1.2);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(atal, 372, 2729, 329, 209, -(1/2 * 329 * 1.2) + 3, -(1/2 * 209 * 1.2), 329 * 1.2, 209 * 1.2);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X -210, this.Y -164, 330, 215, false)); // a square that covers the entire building
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X -165), (this.Y + 84), 19, 333, true)); //upper Wall
+
+                barrierList.push(new Barrier((this.X - 180), (this.Y - 108), 208, 19, true)); //right wall
+                barrierList.push(new Barrier((this.X + 159), (this.Y - 108), 208, 19, true)); //left wall
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "nirwadenStableU")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X - 180) && X < (this.X - 180) + 333 && Y > (this.Y - 108) && Y < (this.Y - 108) + 208)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(atal, 368, 2511, 329, 209, -(1/2 * 329 * 1.2), -(1/2 * 209 * 1.2), 329 * 1.2, 209 * 1.2);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(atal, 368, 2511, 329, 209, -(1/2 * 329 * 1.2), -(1/2 * 209 * 1.2), 329 * 1.2, 209 * 1.2);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(atal, 372, 2729, 329, 209, -(1/2 * 329 * 1.2) + 3, -(1/2 * 209 * 1.2), 329 * 1.2, 209 * 1.2);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X -210, this.Y -164, 330, 215, false)); // a square that covers the entire building
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                barrierList.push(new Barrier((this.X - 180), (this.Y - 108), 208, 19, true)); //right wall
+                barrierList.push(new Barrier((this.X + 159), (this.Y - 108), 208, 19, true)); //left wall
+
+                barrierList.push(new Barrier((this.X -165), (this.Y - 108), 19, 333, true)); //bottom Wall
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
         else if (this.type == "nirwadenTiendaD")
         {
             //TRAITS
@@ -5257,6 +5388,243 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "spiritBasin")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0) //with water
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 6, 3370, 60, 57, -(1/2 * 60 * 1.2), -(1/2 * 57 * 1.2), 60 * 1.2, 57 * 1.2);
+                XXX.restore();
+            }
+            else //empty
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 84, 3372, 60, 57, -(1/2 * 60 * 1.2), -(1/2 * 57 * 1.2), 60 * 1.2, 57 * 1.2);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 25;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                this.doBreak = false;
+                this.yaTiene = false;
+
+                if (this.phase == 0)
+                {
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        for (var j = 0; j < wellConversionList.length; j++)
+                        {
+                            //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
+                            if (Inventory[i][0].type == wellConversionList[j][0])
+                            {
+                                if (Inventory[i][0].type == "kellishClayPot" || Inventory[i][0].type == "bucket")
+                                {
+                                    this.phase = 1;
+                                }
+
+                                for (var k = 0; k < Inventory.length; k++)
+                                {
+                                    if (Inventory[k][0].type == wellConversionList[j][1])
+                                    {
+                                        this.yaTiene = k;
+                                    }
+                                }
+
+                                if (Inventory[i][1] > 1)
+                                {
+                                    Inventory[i][1] -= 1;
+                                    if (this.yaTiene == false)
+                                    {
+                                        Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                    }
+                                    else
+                                    {
+                                        Inventory[this.yaTiene][1] +=1;
+                                    }
+                                    this.doBreak = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    if (this.yaTiene == false)
+                                    {
+                                        Inventory.splice(i, 1);
+                                        Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                    }
+                                    else
+                                    {
+                                        Inventory[this.yaTiene][1] +=1;
+                                        Inventory.splice(i, 1);
+                                    }
+                                    this.doBreak = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (this.doBreak == true)
+                        {
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        for (var j = 0; j < wellConversionList.length; j++)
+                        {
+                            //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
+                            if (Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "bucketOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "kellishClayPotOfWater")
+                            {
+                                this.phase = 0;
+                                for (var k = 0; k < Inventory.length; k++)
+                                {
+                                    if (Inventory[k][0].type == wellConversionList[j][0])
+                                    {
+                                        this.yaTiene = k;
+                                    }
+                                }
+
+                                if (Inventory[i][1] > 1)
+                                {
+                                    Inventory[i][1] -= 1;
+                                    if (this.yaTiene == false)
+                                    {
+                                        Inventory.push([new Item(wellConversionList[j][0], false, false), 1]);
+                                    }
+                                    else
+                                    {
+                                        Inventory[this.yaTiene][1] +=1;
+                                    }
+                                    this.doBreak = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    if (this.yaTiene == false)
+                                    {
+                                        Inventory.splice(i, 1);
+                                        Inventory.push([new Item(wellConversionList[j][0], false, false), 1]);
+                                    }
+                                    else
+                                    {
+                                        Inventory[this.yaTiene][1] +=1;
+                                        Inventory.splice(i, 1);
+                                    }
+                                    this.doBreak = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (this.doBreak == true)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this.type == "nirwadenPump")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 100;
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 13;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.doBreak = false;
+                this.yaTiene = false;
+                this.frameLoop([[atal, 16, 3167, 49, 63, 49 * 1.1, 63 * 1.1], [atal, 66, 3167, 49, 63, 49 * 1.1, 63 * 1.1], [atal, 17, 3225, 49, 63, 49 * 1.1, 63 * 1.1], [atal, 65, 3226, 49, 63, 49 * 1.1, 63 * 1.1], [atal, 18, 3289, 49, 63, 49 * 1.1, 63 * 1.1]],4, 18, false);
+                if (this.frameLoopComplete == true)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(atal, 16, 3167, 49, 63, -(1/2 * 49 * 1.1), -(1/2 * 63 * 1.1), 49 * 1.1, 63 * 1.1);
+                    XXX.restore();
+                    this.activate = false;
+                    this.frameLoopComplete = false;
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        for (var j = 0; j < wellConversionList.length; j++)
+                        {
+                            //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
+                            if (Inventory[i][0].type == wellConversionList[j][0])
+                            {
+                                for (var k = 0; k < Inventory.length; k++)
+                                {
+                                    if (Inventory[k][0].type == wellConversionList[j][1])
+                                    {
+                                        this.yaTiene = k;
+                                    }
+                                }
+
+                                if (Inventory[i][1] > 1)
+                                {
+                                    Inventory[i][1] -= 1;
+                                    if (this.yaTiene == false)
+                                    {
+                                        Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                    }
+                                    else
+                                    {
+                                        Inventory[this.yaTiene][1] +=1;
+                                    }
+                                    this.doBreak = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    if (this.yaTiene == false)
+                                    {
+                                        Inventory.splice(i, 1);
+                                        Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                    }
+                                    else
+                                    {
+                                        Inventory[this.yaTiene][1] +=1;
+                                        Inventory.splice(i, 1);
+                                    }
+                                    this.doBreak = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (this.doBreak == true)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 16, 3167, 49, 63, -(1/2 * 49 * 1.1), -(1/2 * 63 * 1.1), 49 * 1.1, 63 * 1.1);
+                XXX.restore();
+            }
+        }
         else if (this.type == "well")
         {
             //TRAITS
@@ -5568,7 +5936,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 gameState = "paused";
             }
         }
-        else if (this.type == "forger") //todo finish this
+        else if (this.type == "forger")
         {
             //TRAITS
             this.solid = true;
@@ -5578,16 +5946,6 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.runOneTime)
             {
                 this.runOneTime = false;
-                if (this.temporary == "lit" || this.temporary == "flame")
-                {
-                    this.lit = true;
-                    this.burnt = "fullest";
-                }
-                else
-                {
-                    this.lit = false;
-                    this.burnt = "empty";
-                }
             }
 
             //animate
@@ -5598,50 +5956,40 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.fireCostume += 1;
 
             //DRAWSELF
-            if (this.lit == false)
+
+            if (this.fireCostume <= 8)
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(atal, 21, 3074, 53, 71, -(1/2 * 53 * 1.1), -(1/2 * 71 * 1.1), 53 * 1.1, 71 * 1.1);
+                XXX.drawImage(atal, 566, 517.75, 57, 70, -(1/2 * 57 * 1.1), -(1/2 * 70 * 1.1), 57 * 1.1, 70 * 1.1);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 8 && this.fireCostume <= 16)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 565.4, 590.25, 57, 70, -(1/2 * 57 * 1.1), -(1/2 * 70 * 1.1), 57 * 1.1, 70 * 1.1);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 16 && this.fireCostume <= 24)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 567.5, 664.25, 57, 70, -(1/2 * 57 * 1.1), -(1/2 * 70 * 1.1), 57 * 1.1, 70 * 1.1);
                 XXX.restore();
             }
             else
             {
-                if (this.fireCostume <= 8)
-                {
-                    XXX.save();
-                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
-                    XXX.rotate(this.rotation);
-                    XXX.drawImage(atal, 20.5, 3002, 53, 71, -(1/2 * 53 * 1.1), -(1/2 * 71 * 1.1), 53 * 1.1, 71 * 1.1);
-                    XXX.restore();
-                }
-                else if (this.fireCostume > 8 && this.fireCostume <= 16)
-                {
-                    XXX.save();
-                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
-                    XXX.rotate(this.rotation);
-                    XXX.drawImage(atal, 21, 2928.5, 53, 71, -(1/2 * 53 * 1.1), -(1/2 * 71 * 1.1), 53 * 1.1, 71 * 1.1);
-                    XXX.restore();
-                }
-                else if (this.fireCostume > 16 && this.fireCostume <= 24)
-                {
-                    XXX.save();
-                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
-                    XXX.rotate(this.rotation);
-                    XXX.drawImage(atal, 21.5, 2858.15, 53, 71, -(1/2 * 53 * 1.1), -(1/2 * 71 * 1.1), 53 * 1.1, 71 * 1.1);
-                    XXX.restore();
-                }
-                else
-                {
-                    magicList.push(new Magic({ID:"smoke", CNX: 50}, false, {X:this.X + Math.cos(this.rotation + 1/2*Math.PI) * 30, Y:this.Y + Math.sin(this.rotation + 1/2*Math.PI) * 30, rotation: this.rotation}, false, true));
-                    this.fireCostume = 0;
-                    XXX.save();
-                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
-                    XXX.rotate(this.rotation);
-                    XXX.drawImage(atal, 21, 3002, 53, 71, -(1/2 * 53 * 1.1), -(1/2 * 71 * 1.1), 53 * 1.1, 71 * 1.1);
-                    XXX.restore();
-                }
+                magicList.push(new Magic({ID:"smoke", CNX: 50}, false, {X:this.X + Math.cos(this.rotation + 0.8/2*Math.PI) * 35, Y:this.Y + Math.sin(this.rotation + 0.8/2*Math.PI) * 35, rotation: this.rotation}, false, true));
+                this.fireCostume = 0;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 566, 518, 57, 70, -(1/2 * 57 * 1.1), -(1/2 * 70 * 1.1), 57 * 1.1, 70 * 1.1);
+                XXX.restore();
             }
 
             if (this.playerer <= 115 && this.lit == true)
@@ -5650,7 +5998,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-            this.radius = 30;
+            this.radius = 40;
 
             //INTERACTION
             if (this.activate == true)
@@ -5706,6 +6054,79 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 22;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                player.craftPosition = 0;
+                craftScroll = 0;
+                crafting = "alchemy";
+                lowBar = "crafting";
+                gameState = "paused";
+            }
+        }
+        else if (this.type == "cauldron")
+        {
+            //TRAITS
+            this.solid = true;
+
+            this.interactionRange = 90;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+            }
+
+            //animate
+            this.fireCostume += 1;
+
+            //DRAWSELF
+
+            if (this.fireCostume <= 8)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 668, 520.5, 95, 48, -(1/2 * 95 * 1.1), -(1/2 * 48 * 1.1), 95 * 1.1, 48 * 1.1);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 8 && this.fireCostume <= 16)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 670, 566, 95, 48, -(1/2 * 95 * 1.1), -(1/2 * 48 * 1.1), 95 * 1.1, 48 * 1.1);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 16 && this.fireCostume <= 24)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 670, 615.25, 95, 48, -(1/2 * 95 * 1.1), -(1/2 * 48 * 1.1), 95 * 1.1, 48 * 1.1);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 24 && this.fireCostume <= 32)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 671, 661.55, 95, 48, -(1/2 * 95 * 1.1), -(1/2 * 48 * 1.1), 95 * 1.1, 48 * 1.1);
+                XXX.restore();
+            }
+            else
+            {
+                this.fireCostume = 0;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 668, 520.5, 95, 48, -(1/2 * 95 * 1.1), -(1/2 * 48 * 1.1), 95 * 1.1, 48 * 1.1);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 16;
 
             //INTERACTION
             if (this.activate == true)
@@ -10951,6 +11372,102 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     if (this.health <= 0)
                     {
                         this.health = 13;
+                        this.rockLoader(this.rockLoad);
+                        this.owned -= 0.25;
+                        if (this.owned <= 0)
+                        {
+                            scenicList.splice(scenicList.indexOf(this), 1);
+                        }
+                    }
+                }
+            }
+        }
+        else if (this.type == "alcaStone")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 1;
+
+            //Establish Rock Load
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.health = 11;
+                this.rockLoad = [];
+                for (var looop = 0; looop < 73; looop++)
+                {
+                    this.rockLoad.push({type: "alcaStone", quantity: 1});
+                }
+                for (var looop = 0; looop < 4; looop++)
+                {
+                    this.rockLoad.push({type: "alcaStone", quantity: 2});
+                }
+                for (var looop = 0; looop < 8 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "coal", quantity: 1});
+                }
+                for (var looop = 0; looop < 6 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "ironOre", quantity: 1});
+                }
+                for (var looop = 0; looop < 17 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "copperOre", quantity: 1});
+                }
+                for (var looop = 0; looop < 2 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "rawGold", quantity: 1});
+                }
+            }
+
+            //DRAWSELF
+            if (this.information == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 785, 518, 47, 44, -(1/2 * 47 * this.owned), -(1/2 * 44 * this.owned), 47 * this.owned, 44 * this.owned);
+                XXX.restore();
+            }
+            else if (this.information == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 725, 521, 54, 40, -(1/2 * 54 * this.owned), -(1/2 * 40 * this.owned), 54 * this.owned, 40 * this.owned);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 695, 531, 26, 29, -(1/2 * 26 * this.owned * 1.5), -(1/2 * 29 * this.owned * 1.5), 26 * this.owned * 1.5, 29 * this.owned * 1.5);
+                XXX.restore();
+            }
+
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 10 * this.owned;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+
+
+            //console.log(player.finalAttackStage);
+            if (player.weaponEquipped == "pickaxe" && player.cutcut == true)
+            {
+                var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                console.log(distFromCutCut);
+                if (distFromCutCut <= player.weapon.range * 7 + 18)
+                {
+                    this.health -= 1;
+                    if (this.health <= 0)
+                    {
+                        this.health = 11;
                         this.rockLoader(this.rockLoad);
                         this.owned -= 0.25;
                         if (this.owned <= 0)

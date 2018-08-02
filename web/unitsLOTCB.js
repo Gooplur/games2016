@@ -732,13 +732,16 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     {
         if (!this.muzzle)
         {
-            if (this.boatphobic != true || player.weaponEquipped != "boat") //some creatures do not target the player while the player is in a boat.
+            if (player.lycanthropy != true || this.baseTeam != "wolf" || this.disturbed || this.team == "player")
             {
-                if (!this.mounted)
+                if (this.boatphobic != true || player.weaponEquipped != "boat") //some creatures do not target the player while the player is in a boat.
                 {
-                    if (this.baseTeam == "player" || player.mounted != true)
+                    if (!this.mounted)
                     {
-                        this.target = player;
+                        if (this.team == "player" || player.mounted != true)
+                        {
+                            this.target = player;
+                        }
                     }
                 }
             }
@@ -1029,6 +1032,26 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Vardan");
             this.allys.push("Cephrite");
             this.allys.push("Nirwaden");
+            this.allys.push("clamia");
+        }
+        if (this.team == "werewolf")
+        {
+            this.allys.push("wolf");
+        }
+        if (this.team == "wolf")
+        {
+            if (player.lycanthropy)
+            {
+                this.allys.push("player");
+            }
+            this.allys.push("wild");
+            this.allys.push("werewolf");
+            this.allys.push("etnia");
+            this.allys.push("shehidia");
+            this.allys.push("narthwarpia");
+            this.allys.push("docile");
+            this.allys.push("bearia");
+            this.allys.push("ulgoyia");
             this.allys.push("clamia");
         }
         if (this.team == "wild")
@@ -5446,7 +5469,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.timeSinceDead = new Date().getTime();
 
                 //loot and experience
-                if (player.spell == "none" && this.killNotByPlayer == false && this.muzzle == false)
+                if (player.spell == "none" && this.killNotByPlayer == false && this.muzzle == false && player.form != "werewolf")
                 {
                     player.experience += Math.max(0, this.experience - this.lessEXP);
                 }
@@ -5455,16 +5478,19 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (!this.water || this.flotation || this.land) //items are lost to the water unless the creature can float
                     {
-                        if (this.revived != true)
+                        if (player.form != "werewolf")
                         {
-                            for (var i = 0; i < this.drops.length; i++)
+                            if (this.revived != true)
                             {
-                                worldItems.push([this.drops[i][0], this.drops[i][1]]);
+                                for (var i = 0; i < this.drops.length; i++)
+                                {
+                                    worldItems.push([this.drops[i][0], this.drops[i][1]]);
+                                }
                             }
-                        }
-                        else
-                        {
-                            worldItems.push([new Item("nechromanticDust", this.X, this.Y), 1 + Math.floor(this.healthMAX / 35)]);
+                            else
+                            {
+                                worldItems.push([new Item("nechromanticDust", this.X, this.Y), 1 + Math.floor(this.healthMAX / 35)]);
+                            }
                         }
                     }
 
@@ -6933,7 +6959,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.heatResistance = 7;
                 this.attackStyle = "chunked";
                 this.attackRate = 0;  //this is for rapid style combat only.
-                this.healthMAX = Math.floor(Math.random() * 41) + 180;
+                this.healthMAX = Math.floor(Math.random() * 41) + 280;
                 this.health = this.healthMAX;
                 this.armour = 1;
                 this.speed = 5.2 + (Math.floor(Math.random() * 6) / 10);
@@ -6944,7 +6970,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 80;
                 this.negateArmour = 16;
                 this.attackWait = 4.2;
-                this.beastEntry = {intReq: 38, name: "Bog Troll", health: "180 - 220", armour: 1, damage: "40 - 100", negate: 16, ability: "Health Regeneration", fireProof: 7, habitat: "Marshes/Bogs/Swamps", sight: 1000, alpha: "Alpha", magicProof: 5, size: 80, speed: "5.2 - 5.7", rotation: 0.035, rate: 4.2, experience: 1580, description: ["Bog trolls are a ferocious sort, but at times they can be found soaking lazily in the bog water only eating that which gets too close to their mouths.", "When they are not lazing about bog trolls are notably dangerous. 'Fear not the deadly plagues of the bog for the trolls will kill you first'"], image: ["verse", 3770, 16, 106, 129, 0, 0, 154 * 2 / 3, 108 * 2 / 3]};
+                this.beastEntry = {intReq: 38, name: "Bog Troll", health: "280 - 320", armour: 1, damage: "40 - 100", negate: 16, ability: "Health Regeneration", fireProof: 7, habitat: "Marshes/Bogs/Swamps", sight: 1000, alpha: "Alpha", magicProof: 5, size: 80, speed: "5.2 - 5.7", rotation: 0.035, rate: 4.2, experience: 1580, description: ["Bog trolls are a ferocious sort, but at times they can be found soaking lazily in the bog water only eating that which gets too close to their mouths.", "When they are not lazing about bog trolls are notably dangerous. 'Fear not the deadly plagues of the bog for the trolls will kill you first'"], image: ["verse", 3770, 16, 106, 129, 0, 0, 154 * 2 / 3, 108 * 2 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -6960,7 +6986,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.heatResistance = 3;
                 this.attackStyle = "chunked";
                 this.attackRate = 0;  //this is for rapid style combat only.
-                this.healthMAX = Math.floor(Math.random() * 9) + 23;
+                this.healthMAX = Math.floor(Math.random() * 9) + 34;
                 this.health = this.healthMAX;
                 this.armour = 0;
                 this.speed = 3.1 + (Math.floor(Math.random() * 7) / 10);
@@ -6971,7 +6997,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 42;
                 this.negateArmour = 3;
                 this.attackWait = 3.2;
-                this.beastEntry = {intReq: 25, name: "Bog Troll", health: "23 - 32", armour: 0, damage: "4 - 14", negate: 3, ability: "Health Regeneration", fireProof: 3, habitat: "Marshes/Bogs/Swamps", sight: 600, alpha: "Baby", magicProof: 1.5, size: 42, speed: "3.1 - 3.7", rotation: 0.035, rate: 3.2, experience: 116, description: ["Bog trolls give birth to numerous young at once. It is not at all uncommon to see a baby bog troll wandering about without a parent, this is because the", "mother is likely to eat the young right after birth if they are not fit enough to escape her reach. Many young bog trolls fall victim to the dangers of", "the swamp, but the sheer number of offspring ensures the survival of their species."], image: ["verse", 3770, 16, 106, 129, 0, 0, 154 * 0.65 / 3, 108 * 0.65 / 3]};
+                this.beastEntry = {intReq: 25, name: "Bog Troll", health: "34 - 42", armour: 0, damage: "4 - 14", negate: 3, ability: "Health Regeneration", fireProof: 3, habitat: "Marshes/Bogs/Swamps", sight: 600, alpha: "Baby", magicProof: 1.5, size: 42, speed: "3.1 - 3.7", rotation: 0.035, rate: 3.2, experience: 116, description: ["Bog trolls give birth to numerous young at once. It is not at all uncommon to see a baby bog troll wandering about without a parent, this is because the", "mother is likely to eat the young right after birth if they are not fit enough to escape her reach. Many young bog trolls fall victim to the dangers of", "the swamp, but the sheer number of offspring ensures the survival of their species."], image: ["verse", 3770, 16, 106, 129, 0, 0, 154 * 0.65 / 3, 108 * 0.65 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 0.65;
@@ -6986,7 +7012,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.heatResistance = 5;
                 this.attackStyle = "chunked";
                 this.attackRate = 0;  //this is for rapid style combat only.
-                this.healthMAX = Math.floor(Math.random() * 36) + 102;
+                this.healthMAX = Math.floor(Math.random() * 36) + 202;
                 this.health = this.healthMAX;
                 this.armour = 1;
                 this.speed = 4.4 + (Math.floor(Math.random() * 7) / 10);
@@ -6997,7 +7023,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.sizeRadius = 42;
                 this.negateArmour = 10;
                 this.attackWait = 3.2;
-                this.beastEntry = {intReq: 34, name: "Bog Troll", health: "102 - 137", armour: 1, damage: "23 - 61", negate: 10, ability: "Health Regeneration", fireProof: 5, habitat: "Marshes/Bogs/Swamps", sight: 850, alpha: "Normal", magicProof: 3, size: 42, speed: "4.4 - 5", rotation: 0.035, rate: 3.2, experience: 940, description: ["Bog trolls are a ferocious sort, but at times they can be found soaking lazily in the bog water only eating that which gets too close to their mouths.", "When they are not lazing about bog trolls are notably dangerous. 'Fear not the deadly plagues of the bog for the trolls will kill you first'"], image: ["verse", 3770, 16, 106, 129, 0, 0, 154 * 1.4 / 3, 108 * 1.4 / 3]};
+                this.beastEntry = {intReq: 34, name: "Bog Troll", health: "202 - 236", armour: 1, damage: "23 - 61", negate: 10, ability: "Health Regeneration", fireProof: 5, habitat: "Marshes/Bogs/Swamps", sight: 850, alpha: "Normal", magicProof: 3, size: 42, speed: "4.4 - 5", rotation: 0.035, rate: 3.2, experience: 940, description: ["Bog trolls are a ferocious sort, but at times they can be found soaking lazily in the bog water only eating that which gets too close to their mouths.", "When they are not lazing about bog trolls are notably dangerous. 'Fear not the deadly plagues of the bog for the trolls will kill you first'"], image: ["verse", 3770, 16, 106, 129, 0, 0, 154 * 1.4 / 3, 108 * 1.4 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1.4;
@@ -7009,7 +7035,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "WinterWolf")
         {
             this.damageFrame = "manual";
-            this.team = "wild";
+            this.team = "wolf";
             this.baseTeam = this.team;
             this.tameREQ = 22;
             this.mountRange = 10;
@@ -7069,7 +7095,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "GreyWolf")
         {
             this.damageFrame = "manual";
-            this.team = "wild";
+            this.team = "wolf";
             if (this.ID == "playerSummonedWolf")
             {
                 this.team = "player";
@@ -9291,7 +9317,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Skol")
         {
             this.damageFrame = "automatic";
-            this.team = "wild";
+            this.team = "wolf";
             if (this.ID == "docile")
             {
                 this.team = "docile";
@@ -18744,7 +18770,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         }
                         this.moveInRelationToThing(this.target);
                         //pluming feathers scares small predators (it only turns away one predator at a time, so a pack should have no problem hunting them down)
-                        if (this.target.healthMAX < (this.healthMAX + 6) && this.target.target == this && this.target.type != "Person" && this.target.type != "Soldier")
+                        if (this.target.healthMAX < (this.healthMAX + 6) && this.target.target == this && this.target.type != "Person" && this.target.type != "Soldier" && this.target.undeath != true)
                         {
                             this.target.scared = true;
                             this.target.pointAway(this);

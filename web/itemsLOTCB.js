@@ -156,6 +156,46 @@ function Item(type, x, y)
             //ability
             this.ability = player.getMagicHands();
         }
+        else if (this.type == "werewolf")
+        {
+            //For All Items
+            this.identity = "Werewolf";
+            this.weight = 0;
+            this.size = 10;
+            this.description = "You are a cursed beast.";
+            this.intForDes = 4;
+            this.intDescription = "Rawr!";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            if (eKey && spaceKey != true || player.powerAttack == true && player.attacking)
+            {
+                //Utility Focused
+                this.energyCost = 0;
+                this.range = 2;
+                this.rate = 140;
+                this.damage = (55 / 1.5);
+                this.magicalDamage = 0;
+                this.negateArmour = (11 / 1.5);
+
+                //ability
+                this.ability = "lycanthropy";
+            }
+            else
+            {
+                //Utility Focused
+                this.energyCost = 0;
+                this.range = 4;
+                this.rate = 60;
+                this.damage = 24;
+                this.magicalDamage = 0;
+                this.negateArmour = 5;
+
+                //ability
+                this.ability = "none";
+            }
+        }
         else if (this.type == "nude")
         {
             //For All Items

@@ -66,6 +66,11 @@ function cheats()
         {
             duendeSwarm = true;
         }
+        else if (cheatcode == "lugaru")
+        {
+            player.lycanthropy = true;
+            player.form = "werewolf";
+        }
         else if (cheatcode == "671W19THAVE")
         {
             player.skillPoints += 10;

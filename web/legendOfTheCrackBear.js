@@ -3451,6 +3451,7 @@ function theLegend()
     allWeapons.push(new Item("toothedBludgeon", false)); //70
     allWeapons.push(new Item("chainsaw", false)); //71
     allWeapons.push(new Item("nirwadenLance", false)); //72
+    allWeapons.push(new Item("werewolf", false)); //73 //this is not really a weapon, but a form
 
 
 //This list holds one of each type of worn item so that the player can access the worn item stats.

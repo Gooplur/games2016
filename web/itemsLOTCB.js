@@ -174,7 +174,7 @@ function Item(type, x, y)
                 //Utility Focused
                 this.energyCost = 0;
                 this.range = 2;
-                this.rate = 140;
+                this.rate = 160;
                 this.damage = (55 / 1.5);
                 this.magicalDamage = 0;
                 this.negateArmour = (11 / 1.5);

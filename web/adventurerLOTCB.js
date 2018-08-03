@@ -1562,10 +1562,14 @@ function Adventurer()
                             Inventory[i][0].equipped = false;
                         }
                     }
-                    this.weaponEquipped = "swimming";
-                    this.weaponIsRanged = false;
-                    this.isWeaponEquipped = false;
-                    this.weaponID = false;
+
+                    if (this.form == false)
+                    {
+                        this.weaponEquipped = "swimming";
+                        this.weaponIsRanged = false;
+                        this.isWeaponEquipped = false;
+                        this.weaponID = false;
+                    }
 
                     //DROWN if in water and run out of energy past fatigue point
                     if (this.movingType == "swimming" && this.energy < -5)
@@ -3395,9 +3399,9 @@ function Adventurer()
         {
             if (timeOfDay == "Night")
             {
-                if (this.wolfChange == false)
+                if (this.wolfChange != "transform" && this.wolfChange != "over" && this.wolfChange != "regress" && this.wolfChange != true)
                 {
-                    this.stage = 0;
+                    this.wolfChange = false;
                 }
                 this.form = "werewolf";
             }
@@ -3421,9 +3425,7 @@ function Adventurer()
                 if (this.wolfChange == false) //lo que nomás pasa una vez al cambiar en hombrelobo
                 {
                     this.stage = 0;
-                    this.health = this.healthMAX * this.healthPercent;
-                    this.energy = this.energyMAX;
-                    this.respiration = this.respirationMAX;
+                    this.wolfChange = "transform";
                 }
 
                 //unequip weapon and armour then...
@@ -6916,11 +6918,11 @@ function Adventurer()
             }
             if (this.frameOrder == "positive")
             {
-                if (self.stage >= maxStage) // Once all of the animation stages are completed...
+                if (this.stage >= maxStage) // Once all of the animation stages are completed...
                 {
                     if (bothwaysBool == false) // if the animation is one way it ends here...
                     {
-                        self.stage = 0;
+                        this.stage = 0;
                         this.resetFrameOrder = true; //This variable resets the order of the frames so that it always starts cycling through the animations in the positive direction.
                     }
                     else if (bothwaysBool == true) //but if it is two directional it swings back to frame zero.
@@ -6932,20 +6934,20 @@ function Adventurer()
                 {
                     if (rapidamente == false)
                     {
-                        self.stage += framerate * TTD / (16.75 - (0.1 / 2 * ((this.getDexterity() / 2) + 0.5))); //This is the part that actually changes the frame in the positive direction.
+                        this.stage += framerate * TTD / (16.75 - (0.1 / 2 * ((this.getDexterity() / 2) + 0.5))); //This is the part that actually changes the frame in the positive direction.
                     }
                     else
                     {
-                        self.stage += framerate * TTD / (16.75 - (0.1 / 2 * 25));
+                        this.stage += framerate * TTD / (16.75 - (0.1 / 2 * 25));
                     }
                 }
             }
 
             if (this.frameOrder == "negative") //This stuff is for the swing back.
             {
-                if (self.stage < 1)
+                if (this.stage < 1)
                 {
-                    self.stage = 0;
+                    this.stage = 0;
                     this.resetFrameOrder = true; //This variable resets the order of the frames so that it always starts cycling through the animations in the positive direction.
 
                 }
@@ -6953,11 +6955,11 @@ function Adventurer()
                 {
                     if (rapidamente == false)
                     {
-                        self.stage -= framerate * TTD / (16.75 - (0.1 / 2 * ((this.getDexterity() / 4) + 0.5))); //This is the part that actually changes the frame in the negative direction.
+                        this.stage -= framerate * TTD / (16.75 - (0.1 / 2 * ((this.getDexterity() / 4) + 0.5))); //This is the part that actually changes the frame in the negative direction.
                     }
                     else
                     {
-                        self.stage -= framerate * TTD / (16.75 - (0.1 / 2 * 12.5));
+                        this.stage -= framerate * TTD / (16.75 - (0.1 / 2 * 12.5));
                     }
                 }
             }
@@ -10118,15 +10120,21 @@ function Adventurer()
         if (this.weaponEquipped == "werewolf")
         {
             var szx = 1.25;
-            if (this.wolfChange == false)
+
+            console.log("stage: " + this.stage);
+            console.log("wc: " + this.wolfChange);
+            if (this.wolfChange == "transform")
             {
+                //this.animator(10, 0.10, false);
+                this.stage += 0.34;
+
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
                 XXX.rotate(this.rotation);
                 XXX.beginPath();
-                if (this.subtlety)
+                if (this.water && !this.land)
                 {
-                    XXX.globalAlpha = 0.2;
+                    XXX.globalAlpha = 0.4;
                 }
                 XXX.lineWidth = 1;
                 XXX.arc(0, 0, this.mySize, 0, 2 * Math.PI);
@@ -10138,21 +10146,19 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
-                if (this.subtlety)
+                if (this.water && !this.land)
                 {
                     XXX.globalAlpha = 0.4;
                 }
                 XXX.drawImage(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22);
                 XXX.restore();
 
-                this.animator(9, 0.10, true);
-
                 if (Math.floor(this.stage) <= 0)
                 {
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10164,7 +10170,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10176,7 +10182,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10188,7 +10194,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10200,7 +10206,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10212,7 +10218,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10224,7 +10230,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10236,7 +10242,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10248,13 +10254,17 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation - 1/2 * Math.PI);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
                     XXX.drawImage(folw, 256, 15, 121, 106, -1/2 * 121 * szx, -1/2 * 106 * szx, 121 * szx, 106 * szx);
                     XXX.restore();
                     this.wolfChange = true;
+                    this.stage = 0;
+                    this.health = this.healthMAX * this.healthPercent;
+                    this.energy = this.energyMAX;
+                    this.respiration = this.respirationMAX;
                 }
             }
             else if (this.wolfChange == "regress")
@@ -10277,7 +10287,7 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
-                if (this.subtlety)
+                if (this.water && !this.land)
                 {
                     XXX.globalAlpha = 0.4;
                 }
@@ -10291,7 +10301,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation - 1/2 * Math.PI);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10303,7 +10313,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10315,7 +10325,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10327,7 +10337,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10339,7 +10349,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10351,7 +10361,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10363,7 +10373,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10375,7 +10385,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10387,7 +10397,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10400,7 +10410,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -10455,7 +10465,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10467,7 +10477,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10479,7 +10489,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10491,7 +10501,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10518,7 +10528,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10530,7 +10540,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10542,7 +10552,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10579,7 +10589,7 @@ function Adventurer()
 
                             for (var ll = 0; ll < deadAIList.length; ll++)
                             {
-                                if (deadAIList[ll].undeath != true && deadAIList[ll].type != "werewolf" && deadAIList[ll].baseTeam != "wolf")
+                                if (deadAIList[ll].petrified != true && deadAIList[ll].undeath != true && deadAIList[ll].type != "werewolf" && deadAIList[ll].baseTeam != "wolf")
                                 {
                                     if (deadAIList[ll].healthMAX < 100 || deadAIList[ll].type == "Person" || deadAIList[ll].type == "Soldier" || deadAIList[ll].type == "StoneGolem")
                                     {
@@ -10603,7 +10613,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10615,7 +10625,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10627,7 +10637,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10639,7 +10649,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10652,7 +10662,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10670,7 +10680,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10682,7 +10692,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10694,7 +10704,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10706,7 +10716,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10718,7 +10728,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10730,7 +10740,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10742,7 +10752,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10754,7 +10764,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10766,7 +10776,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10778,7 +10788,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10790,7 +10800,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10802,7 +10812,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10814,7 +10824,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10826,7 +10836,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10838,7 +10848,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10850,7 +10860,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10863,7 +10873,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10876,7 +10886,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10888,7 +10898,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10900,7 +10910,7 @@ function Adventurer()
                         XXX.save();
                         XXX.translate(this.myScreenX, this.myScreenY);
                         XXX.rotate(this.rotation - 1/2 * Math.PI);
-                        if (this.subtlety)
+                        if (this.water && !this.land)
                         {
                             XXX.globalAlpha = 0.4;
                         }
@@ -10914,7 +10924,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation - 1/2 * Math.PI);
-                    if (this.subtlety)
+                    if (this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -17580,7 +17590,14 @@ function Adventurer()
                         //if the player kills the enemy it is marked as being killed by the player
                         if (ArtificialIntelligenceAccess[i].health <= 0)
                         {
-                            ArtificialIntelligenceAccess[i].killNotByPlayer = false;
+                            if (this.form == "werewolf")
+                            {
+                                ArtificialIntelligenceAccess[i].killNotByPlayer = true; //werewolves do not lose faction relation for killing
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess[i].killNotByPlayer = false;
+                            }
                         }
 
                         if (this.weapon.ability == "freeze")

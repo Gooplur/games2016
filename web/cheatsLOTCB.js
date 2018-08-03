@@ -62,14 +62,13 @@ function cheats()
             player.concentration = Math.round(player.concentration / 2);
             player.eminence = Math.round(player.eminence / 2);
         }
-        else if (cheatcode == "duendeestanlosduendes")
+        else if (cheatcode == "duendeéstanlosduendes" || cheatcode == "duendeestanlosduendes")
         {
             duendeSwarm = true;
         }
-        else if (cheatcode == "lugaru")
+        else if (cheatcode == "licántropo" || cheatcode == "lobizón" || cheatcode == "licantropo" || cheatcode == "lobizon")
         {
             player.lycanthropy = true;
-            player.form = "werewolf";
         }
         else if (cheatcode == "671W19THAVE")
         {

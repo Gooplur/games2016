@@ -11605,6 +11605,7 @@ function buildMaster()
                 scenicList.push(new Scenery("alcaStone", -27200 , 550, 1.8, 4, 2));
                 scenicList.push(new Scenery("nirwadenStableU", -28000 , 800, 0, true));
                 scenicList.push(new Scenery("nirwadenStableD", -28000 , 300, 0, true));
+                scenicList.push(new Scenery("nirwadenBuilding5", -29000 , 500, 0, true));
 
 
                 //Plants of the wuntol woods

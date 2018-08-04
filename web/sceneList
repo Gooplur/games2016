@@ -117,6 +117,11 @@ basket - A woven nirwaden basket for storing goods (there are two colours of bas
 nirwadenGoods - a variety of decorative nirwaden goods accessed by setting temporary between 0 and 24.
 nirwadenStableU - a nirwaden stable facing up
 nirwadenStableD - a nirwaden stable facing down
+nirwadenBuilding1 - right facing middle class home
+nirwadenBuilding2 - left facing middle class home
+nirwadenBuilding3 - down facing two rooms middle class home
+nirwadenBuilding4 - up facing two rooms middle class home
+nirwadenBuilding5 - a left facing church to the Everlasting and Eternal Spirit
 
 
 

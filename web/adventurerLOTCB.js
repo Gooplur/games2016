@@ -27977,7 +27977,7 @@ function Adventurer()
 
     this.pickUpItem = function()
     {
-        if (worldItems.length > 0 && gameState == "active" && this.phase == false || worldItems.length > 0 && gameState == "stopTime" && this.phase == false)
+        if (worldItems.length > 0 && gameState == "active" && this.form == false || worldItems.length > 0 && gameState == "stopTime" && this.form == false)
         {
             if (dClick == true)
             {

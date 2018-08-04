@@ -539,7 +539,7 @@ function cheats()
                 showUnitAttackBubble = true;
             }
         }
-        else if (cheatcode.toLowerCase() == "showbarriers" || cheatcode.toLowerCase() == "testbarriers")
+        else if (cheatcode.toLowerCase() == "showbarriers" || cheatcode.toLowerCase() == "testbarriers" || cheatcode.toLowerCase() == "b")
         {
             if (!testBarriers)
             {

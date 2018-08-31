@@ -11580,32 +11580,28 @@ function buildMaster()
                 scenicList.push(new Scenery("pineTree", -24444 , 2385, 4.5, true));
                 scenicList.push(new Scenery("pineTree", -24198 , 2234, -1, true));
                 scenicList.push(new Scenery("pineTree", -23898 , 2830, 2.25, true));
-                scenicList.push(new Scenery("chonaTree", -25080 , 679, 1.8, true));
-                scenicList.push(new Scenery("polyapaTree", -25180 , 679, 1.8, true));
-                scenicList.push(new Scenery("hayPile", -25300 , 700, false, true));
-                scenicList.push(new Scenery("horseSkeleton", -25480 , 650, false, true));
-                scenicList.push(new Scenery("hayBale", -25680 , 670, 2.31, true));
-                scenicList.push(new Scenery("nirwadenTiendaR", -25680 , 800, 0.51, 1));
-                scenicList.push(new Scenery("nirwadenTiendaL", -25980 , 800, 0.51, 0));
-                scenicList.push(new Scenery("nirwadenMueble", -25980 , 1000, 0.51, 2));
-                scenicList.push(new Scenery("nirwadenMueble", -25960 , 940, 0.46, 6));
-                scenicList.push(new Scenery("nirwadenMueble", -26180 , 900, 1.4, 0));
-                scenicList.push(new Scenery("basket", -25980 , 832, -2.9/4 * 2 * Math.PI, 2, [1.25]));
-                scenicList.push(new Scenery("basket", -25680 , 800, 2/4 * 2 * Math.PI, 1, [1.14]));
-                //scenicList.push(new Scenery("basket", -25980 , 800, -1/4 * Math.PI, 3, [1, "newBasket00001", 2, [[new Item("garlic", false, false), 60], [new Item("coins", false, false), 19]], false, 0]));
-                scenicList.push(new Scenery("stove", -26280 , 950, 1, true));
-                scenicList.push(new Scenery("nirwadenGoods", -26380 , 1000, 24, 5));
-                scenicList.push(new Scenery("nirwadenGoods", -26380 , 830, 21, 7));
-                scenicList.push(new Scenery("nirwadenGoods", -26390 , 1060, 24, 1));
-                scenicList.push(new Scenery("nirwadenGoods", -26350 , 890, 21, 0));
-                scenicList.push(new Scenery("forger", -26800 , 990, 1, true));
-                scenicList.push(new Scenery("cauldron", -26880 , 790, 0, true));
-                scenicList.push(new Scenery("nirwadenPump", -27000 , 900, 0, true));
-                scenicList.push(new Scenery("spiritBasin", -27200 , 950, 0, true));
-                scenicList.push(new Scenery("alcaStone", -27200 , 550, 1.8, 4, 2));
-                scenicList.push(new Scenery("nirwadenStableU", -28000 , 800, 0, true));
-                scenicList.push(new Scenery("nirwadenStableD", -28000 , 300, 0, true));
-                scenicList.push(new Scenery("nirwadenBuilding5", -29000 , 500, 0, true));
+                scenicList.push(new Scenery("pineTree", -24634 , 966, 1.25, true));
+                scenicList.push(new Scenery("pineTree", -24197 , 705, 5.42, true));
+                scenicList.push(new Scenery("pineTree", -24018 , 991, -3.5, true));
+                scenicList.push(new Scenery("pineTree", -24019 , 231, -4, true));
+                scenicList.push(new Scenery("pineTree", -23811 , -62, -8, true));
+                scenicList.push(new Scenery("pineTree", -24420 , -2, 7, true));
+                scenicList.push(new Scenery("pineTree", -23997 , -373, 7.3, true));
+
+                ArtificialIntelligenceAccess.push(new Unit(-24397 , -373, "GhoulFly", true, "Chalkorumn"));
+                ArtificialIntelligenceAccess.push(new Unit(-24694 , 1325, "Leech", true, "Jaina"));
+                ArtificialIntelligenceAccess.push(new Unit(-24694 , 1345, "Leech", true, "Jaina"));
+                ArtificialIntelligenceAccess.push(new Unit(-24700 , 1355, "Leech", true, "Jaina"));
+                ArtificialIntelligenceAccess.push(new Unit(-24680 , 1320, "Leech", true, "Jaina"));
+                ArtificialIntelligenceAccess.push(new Unit(-24710 , 1330, "Leech", true, "Jaina"));
+                ArtificialIntelligenceAccess.push(new Unit(-24725 , 1350, "Leech", true, "Jaina"));
+                ArtificialIntelligenceAccess.push(new Unit(-24715 , 1360, "Leech", true, "Jaina"));
+                ArtificialIntelligenceAccess.push(new Unit(-24660 , 1325, "Leech", true, "Jaina"));
+
+
+                //middle trees
+                scenicList.push(new Scenery("pineTree", -25080 , 679, 1.8, true));
+                scenicList.push(new Scenery("pineTree", -29000 , 2500, 0, true));
 
 
                 //Plants of the wuntol woods

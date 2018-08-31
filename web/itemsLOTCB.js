@@ -17663,6 +17663,96 @@ function Item(type, x, y)
             this.buyValue = 45 - Math.floor(player.getCharisma() / 3); // at max, buy for 29.
             this.sellValue = 9 + Math.floor(player.getCharisma() / 2.5); // at max, sell for 29.
         }
+        else if (this.type == "rawGhoulFlyStomach")
+        {
+            //For All Items
+            this.identity = "Raw Ghoul Fly Stomach";
+            this.weight = 4;
+            this.size = 15;
+            this.description = "The raw dripping stomach of a ghoul fly.";
+            this.intForDes = 5;
+            this.intDescription = "Ghoul fly stomach can be made brittle by drying it with salt.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "brittleGhoulFlyStomach")
+        {
+            //For All Items
+            this.identity = "Brittle Ghoul Fly Stomach";
+            this.weight = 3;
+            this.size = 15;
+            this.description = "The course, dry, and brittle stomach of a ghoul fly.";
+            this.intForDes = 1;
+            this.intDescription = "This can be crushed and powdered.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 14;
+            this.intForCraft = 5;
+            this.ingredients = [["Raw Ghoul Fly Stomach", 14], ["Salt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "ghoulFlyPowder")
+        {
+            //For All Items
+            this.identity = "Ghoul Fly Powder";
+            this.weight = 1.5;
+            this.size = 14;
+            this.description = "A powder made from crushed ghoul fly stomach.";
+            this.intForDes = 1;
+            this.intDescription = "This can be used as an amplifyer and a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Brittle Ghoul Fly Stomach", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "ghoulFlyWings")
+        {
+            //For All Items
+            this.identity = "Ghoul Fly Wings";
+            this.weight = 1.5;
+            this.size = 14;
+            this.description = "The wings of a ghoul fly.";
+            this.intForDes = 2;
+            this.intDescription = "Severed ghoul fly wings have no practical use.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "torperFuzz")
         {
             //For All Items
@@ -18181,7 +18271,7 @@ function Item(type, x, y)
             this.rate = 155;
             this.damage = (3.5 - (this.damageHandicap * 1.5)) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
             this.magicalDamage = 0;
-            this.negateArmour = 5;
+            this.negateArmour = 6.5;
 
             //ability
             this.ability = "none";
@@ -18650,7 +18740,7 @@ function Item(type, x, y)
             this.energyCost = Math.max(1, 2 - (player.getEndurance() / 50));
             this.distance = 15 + (this.range * 7);
             this.range = 4;
-            this.rate = Math.max(95, 125 - (30 * player.getDexterity() / 50));
+            this.rate = Math.max(85, 100 - (30 * player.getDexterity() / 50));
             this.damage = (4 - this.damageHandicap) * (this.leveledDamageMultiple / 25);
             this.magicalDamage = 0;
             this.negateArmour = 3;
@@ -21835,6 +21925,420 @@ function Item(type, x, y)
             this.buyValue = 1300 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1100.
             this.sellValue = 900 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 1100.
         }
+        else if (this.type == "vardanianPlateArmour")
+        {
+            //For All Items
+            this.identity = "Steel Plate Armour";
+            this.weight = 80;
+            this.size = 28;
+            this.description = "A vardanian plate armour often worn by the knights of the realm.";
+            this.intForDes = 3;
+            this.intDescription = "This is the most generic variety of vardanian plate armour.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 14 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 14;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1;
+            this.thirstRetention = 0;
+            this.shockResist = -10;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 17;
+            this.rangedBonus = -16;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -32;
+            this.survivalismBonus = -50;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 2;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (player.strength >= 30 && player.dexterity >= 15)
+            {
+                this.ability = "none";
+            }
+            else if (player.strength >= 20 && player.dexterity >= 10)
+            {
+                this.ability = "hefty";
+            }
+            else
+            {
+                this.ability = "heavy";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 47;
+            this.ingredients = [["Steel", 18], ["Akaton", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 700 - Math.floor(player.getCharisma() / 1); // at max, buy for 650.
+            this.sellValue = 600 + Math.floor(player.getCharisma() / 1); // at max, sell for 650.
+        }
+        else if (this.type == "vardanianPlateArmourBlackPlume")
+        {
+            //For All Items
+            this.identity = "Steel Plate Armour";
+            this.weight = 80;
+            this.size = 28;
+            this.description = "Vardanian plate armour with a black plume.";
+            this.intForDes = 0;
+            this.intDescription = "The black plume denotes alliegance to the high count of Vardania.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 14 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 14;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1;
+            this.thirstRetention = 0;
+            this.shockResist = -10;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 19;
+            this.rangedBonus = -16;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -32;
+            this.survivalismBonus = -50;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 2;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (player.strength >= 30 && player.dexterity >= 15)
+            {
+                this.ability = "none";
+            }
+            else if (player.strength >= 20 && player.dexterity >= 10)
+            {
+                this.ability = "hefty";
+            }
+            else
+            {
+                this.ability = "heavy";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 47;
+            this.ingredients = [["Steel", 18], ["Akaton", 1], ["Corvo Feather", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 720 - Math.floor(player.getCharisma() / 1); // at max, buy for 670.
+            this.sellValue = 620 + Math.floor(player.getCharisma() / 1); // at max, sell for 670.
+        }
+        else if (this.type == "vardanianPlateArmourRedPlume")
+        {
+            //For All Items
+            this.identity = "Steel Plate Armour";
+            this.weight = 80;
+            this.size = 28;
+            this.description = "Vardanian plate armour with a red plume.";
+            this.intForDes = 0;
+            this.intDescription = "The red plume denotes alliegance to Count Visrigge, the nephew of the high count and pretender to his throne.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 14 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 14;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1;
+            this.thirstRetention = 0;
+            this.shockResist = -10;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 19;
+            this.rangedBonus = -16;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -32;
+            this.survivalismBonus = -50;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 2;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (player.strength >= 30 && player.dexterity >= 15)
+            {
+                this.ability = "none";
+            }
+            else if (player.strength >= 20 && player.dexterity >= 10)
+            {
+                this.ability = "hefty";
+            }
+            else
+            {
+                this.ability = "heavy";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 47;
+            this.ingredients = [["Steel", 18], ["Akaton", 1], ["Corvo Feather", 1], ["Red Dye", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 725 - Math.floor(player.getCharisma() / 1); // at max, buy for 675.
+            this.sellValue = 625 + Math.floor(player.getCharisma() / 1); // at max, sell for 675.
+        }
+        else if (this.type == "nechrovitePlateArmour")
+        {
+            //For All Items
+            this.identity = "Nechrovite Plate Armour";
+            this.weight = 92;
+            this.size = 28;
+            this.description = "A vardanian plate armour often worn by the counts of Vardania.";
+            this.intForDes = 3;
+            this.intDescription = "Nechrovite plate armour usually is only worn by nobility or royalty in Vardania.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 15.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 15;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1;
+            this.thirstRetention = 0;
+            this.shockResist = -13;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 22;
+            this.rangedBonus = -16;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -32;
+            this.survivalismBonus = -50;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 2;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (player.strength >= 30 && player.dexterity >= 15)
+            {
+                this.ability = "none";
+            }
+            else if (player.strength >= 20 && player.dexterity >= 10)
+            {
+                this.ability = "hefty";
+            }
+            else
+            {
+                this.ability = "heavy";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 49;
+            this.ingredients = [["Nechrovite", 14], ["Akaton", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1700 - Math.floor(player.getCharisma() / 1); // at max, buy for 1650.
+            this.sellValue = 1600 + Math.floor(player.getCharisma() / 1); // at max, sell for 1650.
+        }
+        else if (this.type == "nechrovitePlateArmourBlackPlume")
+        {
+            //For All Items
+            this.identity = "Nechrovite Plate Armour";
+            this.weight = 92;
+            this.size = 28;
+            this.description = "A black plumed vardanian plate armour often worn by the counts of Vardania.";
+            this.intForDes = 3;
+            this.intDescription = "Nechrovite plate armour usually is only worn by nobility or royalty in Vardania.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 15.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 15;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1;
+            this.thirstRetention = 0;
+            this.shockResist = -13;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 23;
+            this.rangedBonus = -16;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -32;
+            this.survivalismBonus = -50;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 2;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (player.strength >= 30 && player.dexterity >= 15)
+            {
+                this.ability = "none";
+            }
+            else if (player.strength >= 20 && player.dexterity >= 10)
+            {
+                this.ability = "hefty";
+            }
+            else
+            {
+                this.ability = "heavy";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 49;
+            this.ingredients = [["Nechrovite", 14], ["Akaton", 1], ["Corvo Feather", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1720 - Math.floor(player.getCharisma() / 1); // at max, buy for 1670.
+            this.sellValue = 1620 + Math.floor(player.getCharisma() / 1); // at max, sell for 1670.
+        }
+        else if (this.type == "nechrovitePlateArmourRedPlume")
+        {
+            //For All Items
+            this.identity = "Nechrovite Plate Armour";
+            this.weight = 92;
+            this.size = 28;
+            this.description = "A red plumed vardanian plate armour worn by the treasonous counts of the land.";
+            this.intForDes = 0;
+            this.intDescription = "The red plume denotes alliegance to Count Visrigge, the nephew of the high count and pretender to his throne.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 15.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 15;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1;
+            this.thirstRetention = 0;
+            this.shockResist = -13;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 23;
+            this.rangedBonus = -16;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -32;
+            this.survivalismBonus = -50;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 2;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (player.strength >= 30 && player.dexterity >= 15)
+            {
+                this.ability = "none";
+            }
+            else if (player.strength >= 20 && player.dexterity >= 10)
+            {
+                this.ability = "hefty";
+            }
+            else
+            {
+                this.ability = "heavy";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 49;
+            this.ingredients = [["Nechrovite", 14], ["Akaton", 1], ["Corvo Feather", 1], ["Red Dye", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1725 - Math.floor(player.getCharisma() / 1); // at max, buy for 1675.
+            this.sellValue = 1625 + Math.floor(player.getCharisma() / 1); // at max, sell for 1675.
+        }
         else if (this.type == "ancientArmour")
         {
             //For All Items
@@ -21901,7 +22405,7 @@ function Item(type, x, y)
             this.size = 26;
             this.description = "Armour made from many small interconnected rings of tempered nechrovite.";
             this.intForDes = 13;
-            this.intDescription = "This armour is generally worn by soldiers in Vardania due to the land's abundance of nechrovite.";
+            this.intDescription = "This armour is generally worn by mercenaries in Vardania due to the land's abundance of nechrovite.";
 
             //Define Utility
             this.utility = "worn";
@@ -25516,11 +26020,11 @@ function Item(type, x, y)
             this.rate = 235;
             if (player.getStrength() < 8)
             {
-                this.damage = (12 - (this.damageHandicap * 5)) * (this.leveledDamageMultiple / 25) + ((2/25) * player.getStrength());
+                this.damage = (13 - (this.damageHandicap * 5)) * (this.leveledDamageMultiple / 25) + ((2/25) * player.getStrength());
             }
             else
             {
-                this.damage = 16 * (this.leveledDamageMultiple / 25) + (9 / 50 * player.getStrength());
+                this.damage = 17 * (this.leveledDamageMultiple / 25) + (9 / 50 * player.getStrength());
             }
             this.magicalDamage = 0;
             this.negateArmour = 0;
@@ -25743,7 +26247,7 @@ function Item(type, x, y)
             this.rate = Math.max(10, 115 - 15/50 * player.getDexterity());
             this.damage = (4 - (this.damageHandicap * 2)) * (this.leveledDamageMultiple / 25) + ((1/25) * player.getStrength());
             this.magicalDamage = 0;
-            this.negateArmour = 6;
+            this.negateArmour = 5;
 
             //ability
             this.ability = "none";
@@ -26434,6 +26938,36 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "vardanianPlateArmour" || this.type == "vardanianPlateArmourBlackPlume" || this.type == "vardanianPlateArmourRedPlume")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 552, 268, 71, 123, X - this.X + (1/2 * CCC.width) - (1/2 * 71 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 123 * 0.8), 71 * 1.2, 123 * 0.8);
+        }
+        else if (this.type == "nechrovitePlateArmour" || this.type == "nechrovitePlateArmourBlackPlume" || this.type == "nechrovitePlateArmourRedPlume")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 624, 267, 71, 123, X - this.X + (1/2 * CCC.width) - (1/2 * 71 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 123 * 0.8), 71 * 1.2, 123 * 0.8);
+        }
+        else if (this.type == "rawGhoulFlyStomach")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 482, 160, 34, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 34 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1.1), 34 * 1.1, 31 * 1.1);
+        }
+        else if (this.type == "brittleGhoulFlyStomach")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 434, 163, 34, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 34 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1.1), 34 * 1.1, 31 * 1.1);
+        }
+        else if (this.type == "ghoulFlyPowder")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 355, 165, 34, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 34 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1.1), 34 * 1.1, 31 * 1.1);
+        }
+        else if (this.type == "ghoulFlyWings")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 271, 164, 44, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 44 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34 * 1.1), 44 * 1.1, 34 * 1.1);
         }
         else if (this.type == "copperOre")
         {
@@ -29960,6 +30494,36 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "vardanianPlateArmour" || this.type == "vardanianPlateArmourBlackPlume" || this.type == "vardanianPlateArmourRedPlume")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dmil, 552, 268, 71, 123, this.invX - (1/2 * 71 * 0.65), this.invY - (1/2 * 123 * 0.65), 71 * 0.65, 123 * 0.65);
+        }
+        else if (this.type == "nechrovitePlateArmour" || this.type == "nechrovitePlateArmourBlackPlume" || this.type == "nechrovitePlateArmourRedPlume")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dmil, 624, 267, 71, 123, this.invX - (1/2 * 71 * 0.65), this.invY - (1/2 * 123 * 0.65), 71 * 0.65, 123 * 0.65);
+        }
+        else if (this.type == "rawGhoulFlyStomach")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dmil, 482, 160, 34, 31, this.invX - (1/2 * 34 * 1.1), this.invY - (1/2 * 31 * 1.1), 34 * 1.1, 31 * 1.1);
+        }
+        else if (this.type == "brittleGhoulFlyStomach")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dmil, 434, 163, 34, 31, this.invX - (1/2 * 34 * 1.1), this.invY - (1/2 * 31 * 1.1), 34 * 1.1, 31 * 1.1);
+        }
+        else if (this.type == "ghoulFlyPowder")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dmil, 355, 165, 34, 31, this.invX - (1/2 * 34 * 1.1), this.invY - (1/2 * 31 * 1.1), 34 * 1.1, 31 * 1.1);
+        }
+        else if (this.type == "ghoulFlyWings")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dmil, 271, 164, 44, 34, this.invX - (1/2 * 44 * 1.1), this.invY - (1/2 * 34 * 1.1), 44 * 1.1, 34 * 1.1);
+        }
         else if (this.type == "copperOre")
         {
             LXX.beginPath();
@@ -33454,6 +34018,36 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "vardanianPlateArmour" || this.type == "vardanianPlateArmourBlackPlume" || this.type == "vardanianPlateArmourRedPlume")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 552, 268, 71, 123, this.invX - (1/2 * 71 * 0.65), this.invY - (1/2 * 123 * 0.65), 71 * 0.65, 123 * 0.65);
+        }
+        else if (this.type == "nechrovitePlateArmour" || this.type == "nechrovitePlateArmourBlackPlume" || this.type == "nechrovitePlateArmourRedPlume")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 624, 267, 71, 123, this.invX - (1/2 * 71 * 0.65), this.invY - (1/2 * 123 * 0.65), 71 * 0.65, 123 * 0.65);
+        }
+        else if (this.type == "rawGhoulFlyStomach")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 482, 160, 34, 31, this.invX - (1/2 * 34 * 1.1), this.invY - (1/2 * 31 * 1.1), 34 * 1.1, 31 * 1.1);
+        }
+        else if (this.type == "brittleGhoulFlyStomach")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 434, 163, 34, 31, this.invX - (1/2 * 34 * 1.1), this.invY - (1/2 * 31 * 1.1), 34 * 1.1, 31 * 1.1);
+        }
+        else if (this.type == "ghoulFlyPowder")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 355, 165, 34, 31, this.invX - (1/2 * 34 * 1.1), this.invY - (1/2 * 31 * 1.1), 34 * 1.1, 31 * 1.1);
+        }
+        else if (this.type == "ghoulFlyWings")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 271, 164, 44, 34, this.invX - (1/2 * 44 * 1.1), this.invY - (1/2 * 34 * 1.1), 44 * 1.1, 34 * 1.1);
         }
         else if (this.type == "copperOre")
         {

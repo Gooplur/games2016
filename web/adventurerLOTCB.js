@@ -503,6 +503,9 @@ function Adventurer()
     this.wolfForm = false; //this variable is used to determine the transformation process (whether or not the player is turning from a human to a werewolf or vise versa
     this.wolfChange = false; //this variable is activated when a wolfchange occurs and acts as a way for initial changes to only take place once
     this.formHealthPercent = this.healthPercent;
+    this.leeches = 0; //this number keeps track of the number of blood sucking leeches that are feasting on the player.
+    this.antiLeech = false; //this variable permits the player resistance to leeches if set to true.
+    this.leechPop = false; //this variable is turned on when a leech is popped and turns off again afterward.
 
     //faction variables
     this.factionToggle = false;
@@ -551,7 +554,7 @@ function Adventurer()
     this.mounted = false; //Are you mounted?
     //companion variables
     this.companions = [];
-    this.companionLimit = 8;
+    this.companionLimit = 9;
 
     //a function for all of the small functions to fix tiny obscure yet sometimes important details...
     this.quickFixes = function()
@@ -701,6 +704,11 @@ function Adventurer()
             }
         };
         this.onIce();
+    };
+
+    this.mouseDistance = function(inX, inY)
+    {
+        return Math.sqrt((inX - (X - mouseX + (1/2 * CCC.width)))*(inX - (X - mouseX + (1/2 * CCC.width))) + (inY - (Y - mouseY + (1/2 * CCC.height)))*(inY - (Y - mouseY + (1/2 * CCC.height))));
     };
 
     //experience and leveling function
@@ -1421,6 +1429,38 @@ function Adventurer()
                 this.eliktozeolaTime = new Date().getTime();
             }
 
+        };
+
+        this.leecher = function()
+        {
+            if (this.leeches > 0)
+            {
+                this.health -= 0.025 * this.leeches;
+                this.energy -= 0.02 * this.leeches;
+                this.will -= 0.0055 * this.leeches;
+                if (dClick && player.weaponEquipped == "none" && this.spell == "none" && this.petrified == false)
+                {
+                    if (this.mouseDistance(X, Y) < 14)
+                    {
+                        this.leechPop = true;
+                        wigglyJoe = 0;
+                        wiggleRand = Math.round(Math.random() * this.leeches);
+                    }
+                }
+
+                //petrification clause: leeches stop eating when petrified
+                if (this.petrified)
+                {
+                    for (var iii = 0; iii < this.leeches; iii++)
+                    {
+                        var leechy = new Unit(X, Y, "Leech", false, "corpseLeech");
+                        leechy.petrified = true;
+                        ArtificialIntelligenceAccess.push(leechy);
+
+                    }
+                    this.leeches = 0;
+                }
+            }
         };
 
         this.blinder = function()
@@ -3385,6 +3425,7 @@ function Adventurer()
         this.light();
         this.sleepCalculator();
         this.blinder();
+        this.leecher();
         this.waterWalk();
         this.petrification();
         this.superStealthness();
@@ -5250,7 +5291,51 @@ function Adventurer()
             //XXX.fill();
             XXX.restore();
         }
-        //petrification (put this as the top layer
+        //leeches sucking blood from you
+        if (this.leeches > 0)
+        {
+            wiggleJoe += 1;
+            for (var ll = 0; ll < this.leeches; ll++)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                if (ll > 8)
+                {
+                    XXX.rotate(this.rotation + (1/18 * 2*Math.PI + 1/9 * 2 * Math.PI * ll));
+                }
+                else
+                {
+                    XXX.rotate(this.rotation + (1/9 * 2 * Math.PI * ll));
+                }
+                if (this.leechPop == true && ll == wiggleRand)
+                {
+                    XXX.drawImage(dmil, 434, 711, 44, 24, -1/2 * 44 * 0.5 -14, -1/2 * 24 * 0.5, 44 * 0.5, 24 * 0.5);
+                }
+                else if (wiggleJoe < 5)
+                {
+                    XXX.drawImage(dmil, 367, 755, 44, 24, -1/2 * 44 * 0.5 -14, -1/2 * 24 * 0.5, 44 * 0.5, 24 * 0.5);
+                }
+                else if (wiggleJoe < 10)
+                {
+                    XXX.drawImage(dmil, 432, 755, 44, 24, -1/2 * 44 * 0.5 -14, -1/2 * 24 * 0.5, 44 * 0.5, 24 * 0.5);
+                }
+                else if (wiggleJoe < 18)
+                {
+                    XXX.drawImage(dmil, 496, 757, 44, 24, -1/2 * 44 * 0.5 -14, -1/2 * 24 * 0.5, 44 * 0.5, 24 * 0.5);
+                }
+                XXX.restore();
+            }
+            if (wiggleJoe > 15)
+            {
+                if (this.leechPop == true)
+                {
+                    this.leechPop = false;
+                    this.leeches = Math.max(0, this.leeches - 1);
+                }
+                wiggleJoe = 0;
+            }
+        }
+        //petrification (put this as the top layer)
         if (this.petrified)
         {
             XXX.save();
@@ -5533,6 +5618,30 @@ function Adventurer()
         else if (this.outfitEquipped == "engineerOutfit")
         {
             outfit = allWorn[86];
+        }
+        else if (this.outfitEquipped == "vardanianPlateArmour")
+        {
+            outfit = allWorn[87];
+        }
+        else if (this.outfitEquipped == "vardanianPlateArmourBlackPlume")
+        {
+            outfit = allWorn[88];
+        }
+        else if (this.outfitEquipped == "vardanianPlateArmourRedPlume")
+        {
+            outfit = allWorn[89];
+        }
+        else if (this.outfitEquipped == "nechrovitePlateArmour")
+        {
+            outfit = allWorn[90];
+        }
+        else if (this.outfitEquipped == "nechrovitePlateArmourBlackPlume")
+        {
+            outfit = allWorn[91];
+        }
+        else if (this.outfitEquipped == "nechrovitePlateArmourRedPlume")
+        {
+            outfit = allWorn[92];
         }
         else
         {
@@ -6304,6 +6413,84 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(atal, 251, 670, 56, 42, -(1 / 2 * 56 * 0.7) + 3, -(1 / 2 * 42 * 0.7) -0, 56 * 0.7, 42 * 0.7);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vardanianPlateArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation  - (1/2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(dmil, 488, 344, 34, 27, -(1 / 2 * 34 * 1.15) + 0, -(1 / 2 * 27 * 1.15) -0, 34 * 1.15, 27 * 1.15);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vardanianPlateArmourBlackPlume")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation  - (1/2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(dmil, 480, 292, 55, 37, -(1 / 2 * 55 * 1.15) + 1.5, -(1 / 2 * 37 * 1.15) -1, 55 * 1.15, 37 * 1.15);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vardanianPlateArmourRedPlume")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation  - (1/2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(dmil, 480, 241, 55, 37, -(1 / 2 * 55 * 1.15) + 1.5, -(1 / 2 * 37 * 1.15) -1, 55 * 1.15, 37 * 1.15);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "nechrovitePlateArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation  - (1/2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(dmil, 480, 384, 55, 37, -(1 / 2 * 55 * 1.15) + 1.5, -(1 / 2 * 37 * 1.15) -1, 55 * 1.15, 37 * 1.15);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "nechrovitePlateArmourBlackPlume")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation  - (1/2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(dmil, 478, 432, 55, 37, -(1 / 2 * 55 * 1.15) + 1.5, -(1 / 2 * 37 * 1.15) -1, 55 * 1.15, 37 * 1.15);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "nechrovitePlateArmourRedPlume")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation  - (1/2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(dmil, 476, 477, 55, 37, -(1 / 2 * 55 * 1.15) + 1.5, -(1 / 2 * 37 * 1.15) -0, 55 * 1.15, 37 * 1.15);
             XXX.restore();
         }
         else if (this.outfitEquipped == "nirwadenNobleOutfit")

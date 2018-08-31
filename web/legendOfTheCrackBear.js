@@ -2222,6 +2222,8 @@ var stored;
 var seaFlux = 0;
 var dialogueRND = 0;
 var duendeSwarm = false;
+var wiggleJoe = 0;
+var wiggleRand = 0;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -3543,6 +3545,12 @@ function theLegend()
     allWorn.push(new Item("nirwadenMorionArmour", false)); //84
     allWorn.push(new Item("nirwadenGambeson", false)); //85
     allWorn.push(new Item("engineerOutfit", false)); //86
+    allWorn.push(new Item("vardanianPlateArmour", false)); //87
+    allWorn.push(new Item("vardanianPlateArmourBlackPlume", false)); //88
+    allWorn.push(new Item("vardanianPlateArmourRedPlume", false)); //89
+    allWorn.push(new Item("nechrovitePlateArmour", false)); //90
+    allWorn.push(new Item("nechrovitePlateArmourBlackPlume", false)); //91
+    allWorn.push(new Item("nechrovitePlateArmourRedPlume", false)); //92
 
     scenicList = [];
 
@@ -3647,6 +3655,13 @@ function theLegend()
     smithing.push(new Item("chainsaw", false));
     smithing.push(new Item("spiritTalisman", false));
     smithing.push(new Item("copperWire", false));
+    smithing.push(new Item("vardanianPlateArmour", false));
+    smithing.push(new Item("vardanianPlateArmourBlackPlume", false));
+    smithing.push(new Item("vardanianPlateArmourRedPlume", false));
+    smithing.push(new Item("nechrovitePlateArmour", false));
+    smithing.push(new Item("nechrovitePlateArmourBlackPlume", false));
+    smithing.push(new Item("nechrovitePlateArmourRedPlume", false));
+
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];
@@ -3876,6 +3891,8 @@ function theLegend()
     alchemy.push(new Item("duendePowder", false));
     alchemy.push(new Item("naapricha", false));
     alchemy.push(new Item("copperDust", false));
+    alchemy.push(new Item("brittleGhoulFlyStomach", false));
+    alchemy.push(new Item("ghoulFlyPowder", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

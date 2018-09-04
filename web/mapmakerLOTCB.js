@@ -10801,7 +10801,7 @@ function buildMaster()
                 else
                 {
                     scenicList.push(new Scenery("ulgoyPlant", -16488, 3908, -1, 3.15));
-                    ArtificialIntelligenceAccess.push(new Unit(-16473, 3885, "Ulgoy", true, "Biggy-Realz"));
+                    ArtificialIntelligenceAccess.push(new Unit(-16478, 3902, "Ulgoy", true, "Biggy-Realz"));
                 }
                 ArtificialIntelligenceAccess.push(new Unit(-16247, 3330, "BlackBear", true, "docile"));
                 ArtificialIntelligenceAccess.push(new Unit(-16497, 2348, "Grib", true, "Gral"));
@@ -11564,7 +11564,7 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(-15119, 2314, "Varn", true, "Flib"));
                 ArtificialIntelligenceAccess.push(new Unit(-13713, 5329, "Narthwarp", false, "silwil"));
                 scenicList.push(new Scenery("ulgoyPlant", -16488, 3908, 4.9, 7));
-                ArtificialIntelligenceAccess.push(new Unit(-16473, 3885, "Ulgoy", "giant", "The Really Big Plant"));
+                ArtificialIntelligenceAccess.push(new Unit(-16473, 3885, "Ulgoy","giant", "The Really Big Plant"));
                 ArtificialIntelligenceAccess.push(new Unit(-16247, 3330, "Boar", true, "Tambor"));
                 ArtificialIntelligenceAccess.push(new Unit(-14353, 3844, "Shehid", true, "sheta"));
                 scenicList.push(new Scenery("beeHive", -14353, 3844, 4.5, true));
@@ -11597,6 +11597,11 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(-24725 , 1350, "Leech", true, "Jaina"));
                 ArtificialIntelligenceAccess.push(new Unit(-24715 , 1360, "Leech", true, "Jaina"));
                 ArtificialIntelligenceAccess.push(new Unit(-24660 , 1325, "Leech", true, "Jaina"));
+
+                ArtificialIntelligenceAccess.push(new Unit(-25296 , 1200, "BorbBeetle", true, "Ben"));
+                ArtificialIntelligenceAccess.push(new Unit(-25396 , 1225, "BorbBeetle", true, "docile"));
+                ArtificialIntelligenceAccess.push(new Unit(-25266 , 1210, "BorbBeetle", false, "Ben"));
+                ArtificialIntelligenceAccess.push(new Unit(-25405 , 1240, "BorbBeetle", false, "docile"));
 
 
                 //middle trees

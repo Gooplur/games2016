@@ -1787,6 +1787,18 @@ function wolfPack()
 
     folw.onload = function()
     {
+        beetlePack();
+    };
+}
+
+function beetlePack()
+{
+    var milk = new Image();
+    milk.src = ("images/milk.png");
+    window.milk = milk;
+
+    milk.onload = function()
+    {
         dmlPack();
     };
 }

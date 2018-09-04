@@ -18051,7 +18051,10 @@ function Adventurer()
                     {
                         if (focusUnit.healthMAX >= 100 && this.form == "werewolf" || this.form != "werewolf")
                         {
-                            return true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                            if (focusUnit.insect == false)
+                            {
+                                return true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                            }
                         }
                     }
                 }

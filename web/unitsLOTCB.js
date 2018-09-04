@@ -33,6 +33,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.mountRange = 0;
     this.tangible = true; //this flag determines whether or not the unit canbe phased through by everyone or not.
     this.removeFromDeath = false; //this flag determines whether a unit is allowed to enter the dead list.
+    this.insect = false; //this determines if it is a small insect creature (the player and other Units can walk over insect creatures but they can't walk over each other.)
+    this.bugger = false; //this variable determines whether or not a unit can hunt for insect type creatures (insects by default can regardless of this variable)
 
     //timers for AI
     this.aiTimer = 0; //the total time a unit has been in existence (unless reset)
@@ -770,7 +772,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 var swtchTrgt = false;
                 for (var j = 0; j < this.allys.length; j++)
                 {
-                    if (this.allys[j] == ArtificialIntelligenceAccess[i].team || ArtificialIntelligenceAccess[i].dmx != this.dmx || ArtificialIntelligenceAccess[i].petrified && this.type != "Basilisk" || ArtificialIntelligenceAccess[i].petrified && ArtificialIntelligenceAccess[i].health <= 0 && this.type == "Basilisk")
+                    if (this.allys[j] == ArtificialIntelligenceAccess[i].team || ArtificialIntelligenceAccess[i].dmx != this.dmx || ArtificialIntelligenceAccess[i].petrified && this.type != "Basilisk" || ArtificialIntelligenceAccess[i].petrified && ArtificialIntelligenceAccess[i].health <= 0 && this.type == "Basilisk" || ArtificialIntelligenceAccess[i].insect == true && this.insect == false && this.bugger == false)
                     {
                         swtchTrgt = true;
                         break;
@@ -4330,7 +4332,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (!this.traverse)
                         {
-                            creaturesO = true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                            if (!this.insect || this.insect == true && ArtificialIntelligenceAccess[i].insect == true)
+                            {
+                                if (ArtificialIntelligenceAccess[i].insect == false && this.insect == false || this.insect)
+                                {
+                                    creaturesO = true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                                }
+                            }
                         }
                     }
                 }
@@ -8941,6 +8949,67 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 2.5;
                 // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+
+            }
+        }
+        else if (this.type == "BorbBeetle")
+        {
+            this.damageFrame = "automatic";
+            this.team = "borbia";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tamable = false;
+            this.insect = true;
+            this.zIndex = 1; //insects tend to draw below all other creatures
+
+            if (this.alpha == true)
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = 0;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = 1;
+                this.health = this.healthMAX;
+                this.armour = 0.15;
+                this.speed = 0.25 + (Math.floor(Math.random() * 6) / 100);
+                this.rangeOfSight = 200; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.1;
+                this.engagementRadius = 12;
+                this.sizeRadius = 1.5;
+                this.negateArmour = 0;
+                this.attackWait = 2;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 0.3;
+
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = 0;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = 0.6;
+                this.health = this.healthMAX;
+                this.armour = 0.1;
+                this.speed = 0.19 + (Math.floor(Math.random() * 5) / 100);
+                this.rangeOfSight = 200; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.1;
+                this.engagementRadius = 10;
+                this.sizeRadius = 1;
+                this.negateArmour = 0;
+                this.attackWait = 2;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 0.225;
+
                 this.yAdjustment = 0;
                 this.xAdjustment = 0;
 
@@ -19867,6 +19936,184 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawUnit(mufmuf, 4, 102, 39, 28, -1/2 * 39 * this.alphaSize - this.xAdjustment, -1/2 * 28 * this.alphaSize - this.yAdjustment, 39 * this.alphaSize, 28 * this.alphaSize);
             }
         }
+        //BORB BEETLE
+        if (this.type == "BorbBeetle")
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 0 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 0 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (0 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [];
+            }
+            else
+            {
+                if (Math.max(0, 0 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 0 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 0 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(70, true);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(45, true);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.target.insect == true)
+                {
+                    if (this.alpha == true)
+                    {
+                        this.Attack(0.20, 0.10);
+                    }
+                    else
+                    {
+                        this.Attack(0.15, 0.05);
+                    }
+                }
+
+                //bug gets crushed if player is moving over it
+                if (this.aiTimer > 0.3 && player.movingType != 0)
+                {
+                    this.aiTimer = 0;
+                    if (this.DTP() <= (player.mySize - this.sizeRadius))
+                    {
+                        if (this.alpha == true)
+                        {
+                            if (Math.random() > 0.6)
+                            {
+                                this.health = 0;
+                            }
+                        }
+                        else
+                        {
+                            if (Math.random() > 0.3)
+                            {
+                                this.health = 0;
+                            }
+                        }
+                    }
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                if (this.target == player)
+                {
+                    this.pointAwayFromPlayer();
+                    this.moveInRelationToPlayer();
+                }
+                else if (this.target != "none")
+                {
+                    if (this.target.insect == true)
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                    else
+                    {
+                        this.pointAway(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                }
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(4, 0.090, false);
+                }
+                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000))
+                    {
+                        this.costumeEngine(4, 0.110, false);
+                    }
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(milk, 692, 469, 40, 27, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 27 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 27 * this.alphaSize);
+                    }
+                    else if (this.moving)
+                    {
+                        this.drawUnit(milk, 732, 469, 40, 27, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 27 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 27 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(milk, 692, 469, 40, 27, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 27 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 27 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(milk, 690, 506, 40, 27, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 27 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 27 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(milk, 733, 507, 40, 27, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 27 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 27 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(milk, 692, 469, 40, 27, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 27 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 27 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(milk, 733, 537, 40, 27, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 27 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 27 * this.alphaSize);
+                    }
+                }
+                else if (theCostume >= 3)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(milk, 690, 535, 40, 27, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 27 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 27 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(milk, 733, 570, 40, 27, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 27 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 27 * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(milk, 691, 569, 40, 27, -1/2 * 40 * this.alphaSize - this.xAdjustment, -1/2 * 27 * this.alphaSize - this.yAdjustment, 40 * this.alphaSize, 27 * this.alphaSize);
+            }
+        }
         //BOAR
         if (this.type == "Boar")
         {
@@ -27282,7 +27529,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             //RANGE OF SIGHT (anything related to range of sight)
 
-            this.rangeOfSightCalculator(250, false);
+            this.rangeOfSightCalculator(210, false);
 
             //AI
             if (this.alive == true)

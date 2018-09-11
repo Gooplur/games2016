@@ -385,21 +385,32 @@ function worldBuilder()
         {
             elevation = 0;
             region = "e5";
-            //outlineBuilder( 34, 34, "forest", 150, -20);
-            outlineBuilder( 34, 34, "outline", 150, -20);
-            outlineBuilder( 1, 7, "stonePath", 150, -3);
+            outlineBuilder( 34, 34, "forest", 150, -20);
+            //outlineBuilder( 34, 34, "outline", 150, -20);
+            outlineBuilder( 1, 7, "nirRoad", 150, -3);
         }
         //mapE4
         if (Y > -3919 && Y < 6870 && X < -33089 && X > -44725) //X4
         {
             elevation = 0;
             region = "e4";
-            outlineBuilder( 34, 34, "outline", 116, -20);
-            //outlineBuilder( 34, 8, "forest", 116, -20);
-            //outlineBuilder( 34, 12, "forest", 138, -20);
+            //outlineBuilder( 34, 34, "outline", 116, -20);
+            outlineBuilder( 34, 8, "brightGrass", 116, -20); //forest
+            outlineBuilder( 34, 12, "brightGrass", 138, -20);
             outlineBuilder( 34, 14, "sea", 124, -20);
+
+            outlineBuilder( 1, 2, "nirDockH", 136, -5);
+            outlineBuilder( 1, 2, "nirDockH", 136, -7);
+            outlineBuilder( 1, 2, "nirDockH", 136, -1);
+            outlineBuilder( 1, 2, "nirDockH", 136, 1);
+
             outlineBuilder( 1, 8, "stonePath", 116, -3);
-            outlineBuilder( 1, 12, "stonePath", 138, -3);
+            outlineBuilder( 10, 12, "lomita", 138, -7); //orchards
+            outlineBuilder( 1, 12, "nirRoad", 138, -3); //main road
+            outlineBuilder( 1, 12, "nirRoad", 138, -8); //upper road
+            outlineBuilder( 1, 12, "nirRoad", 138, 2); //lower road
+            outlineBuilder( 10, 5, "nirRoad", 138, -8);
+            outlineBuilder( 1, 14, "nirBridge", 124, -3); //bridge
         }
         //mapE3
         if (Y > -3919 && Y < 6870 && X < -22900 && X > -34519) //X3
@@ -1040,9 +1051,16 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                     {
                         over("sea", j, i, extraX, extraY);
                     }
-                    else if (terrain == "shallow" || terrain == "dockV" || terrain == "dockH" || terrain == "seaCornerBR" || terrain == "seaCornerBL" || terrain == "seaCornerTR" || terrain == "seaCornerTL")
+                    else if (terrain == "shallow" || terrain == "dockV" || terrain == "dockH" || terrain == "nirDockH" || terrain == "nirDockV" || terrain == "seaCornerBR" || terrain == "seaCornerBL" || terrain == "seaCornerTR" || terrain == "seaCornerTL")
                     {
                         over("landing", j, i, extraX, extraY);
+                    }
+                    else if (terrain == "nirBridge")
+                    {
+                        if (player.weaponEquipped != "swimming" || player.weaponEquipped != "boat" || player.water == false || player.land == true)
+                        {
+                            over("tollBridge", j, i, extraX, extraY);
+                        }
                     }
                 }
                 else if (terrain == "outline")
@@ -1074,6 +1092,35 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 {
                     XXX.drawImage(kellStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
+                else if (terrain == "nirRoad")
+                {
+                    XXX.drawImage(nirRoad, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "nirBridge")
+                {
+                    if (player.land == false && player.water == true && player.weaponEquipped == "swimming" || player.weaponEquipped == "boat" && player.water == true && player.land == false)
+                    {
+                        XXX.save();
+                        XXX.globalAlpha = 0.5;
+                        XXX.drawImage(nirRoad, (j - 1) * 300 + (extraX * 300) + X - 10, (i - 1) * 300 + (extraY * 300) + Y - 10, 320, 320);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        over("tollBridge", j, i, extraX, extraY);
+                        XXX.drawImage(nirRoad, (j - 1) * 300 + (extraX * 300) + X - 10, (i - 1) * 300 + (extraY * 300) + Y - 10, 320, 320);
+                    }
+                }
+                else if (terrain == "nirDockV")
+                {
+                    over("landing", j, i, extraX, extraY);
+                    XXX.drawImage(nirDockV, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "nirDockH")
+                {
+                    over("landing", j, i, extraX, extraY);
+                    XXX.drawImage(nirDockH, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
                 else if (terrain == "thatch")
                 {
                     XXX.drawImage(thatchEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
@@ -1093,6 +1140,10 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 else if (terrain == "brightGrass")
                 {
                     XXX.drawImage(verdantGrassEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "lomita")
+                {
+                    XXX.drawImage(lomita, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
                 else if (terrain == "dungeon")
                 {

@@ -1715,8 +1715,20 @@ function legendaryPrerequisites()
     window.greenGrassEnv = greenGrassEnv;
 
     var verdantGrassEnv = new Image();
-    verdantGrassEnv.src = ("images/simpleGrass.jpg");
+    verdantGrassEnv.src = ("images/lushestGrass.jpg");
     window.verdantGrassEnv = verdantGrassEnv;
+
+    var lomita = new Image();
+    lomita.src = ("images/lomita.jpg");
+    window.lomita = lomita;
+
+    var nirDockH = new Image();
+    nirDockH.src = ("images/nirDockH.jpg");
+    window.nirDockH = nirDockH;
+
+    var nirDockV = new Image();
+    nirDockV.src = ("images/nirDockV.jpg");
+    window.nirDockV = nirDockV;
 
     var dirtEnv = new Image();
     dirtEnv.src = ("images/dirtBasic.jpg");
@@ -1737,6 +1749,10 @@ function legendaryPrerequisites()
     var woodsEnv = new Image();
     woodsEnv.src = ("images/thenganWoods.jpg");
     window.woodsEnv = woodsEnv;
+
+    var nirRoad = new Image();
+    nirRoad.src = ("images/nirwadenRoad.jpg");
+    window.nirRoad = nirRoad;
 
     var poly = new Image();
     poly.src = ("images/poly.png");
@@ -2833,7 +2849,7 @@ function keyHeld(event)
     }
 }
 
-function over(kind, j, i, extraX, extraY) //TEST
+function over(kind, j, i, extraX, extraY)
 {
     //console.log("( " + ((j - 1) * 300 + (extraX * 300) - 1/2 * CCC.width) + ", " + ((i - 1) * 300 + (extraY * 300) - 1/2 * CCC.height) + " )");
     var tileX = ((j - 1) * 300 + (extraX * 300) - 1/2 * CCC.width);
@@ -2853,6 +2869,12 @@ function over(kind, j, i, extraX, extraY) //TEST
             player.land = true;
             player.water = true;
         }
+        else if (kind == "tollBridge")
+        {
+            player.land = true;
+            player.water = true;
+            player.toll = true;
+        }
     }
 
     //UNIT LANDSCAPE SENSING
@@ -2865,7 +2887,7 @@ function over(kind, j, i, extraX, extraY) //TEST
                 ArtificialIntelligenceAccess[i].water = true;
                 ArtificialIntelligenceAccess[i].land = false;
             }
-            else if (kind == "landing")
+            else if (kind == "landing" || kind == "tollBridge")
             {
                 ArtificialIntelligenceAccess[i].water = true;
                 ArtificialIntelligenceAccess[i].land = true;
@@ -3195,7 +3217,8 @@ function theLegend()
         gamdenLDS: true,
         bjornLDS: true,
         jalmariLDS: true,
-        aarniLDS: true
+        aarniLDS: true,
+        sebastianLDS: true
     };
 //QUESTS
     quests =

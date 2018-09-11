@@ -4710,6 +4710,30 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawUnit(verse, 3911, 695, 50, 40, -27, -43, 52.5, 42, 1 / 2 * Math.PI);
             }
         }
+        else if (this.weapon == "fishingpole")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(norc, 214, 641, 37, 105, -1/2 * 37 * 1.5 -2, -1/2 * 105 * 1.5 - 76, 37 * 1.5, 105 * 1.5, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(norc, 266, 643, 37, 105, -1/2 * 37 * 1.5 -2, -1/2 * 105 * 1.5 - 76, 37 * 1.5, 105 * 1.5, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(norc, 320, 644, 37, 105, -1/2 * 37 * 1.5 -2, -1/2 * 105 * 1.5 - 76, 37 * 1.5, 105 * 1.5, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(norc, 367, 645, 37, 105, -1/2 * 37 * 1.5 -2, -1/2 * 105 * 1.5 - 76, 37 * 1.5, 105 * 1.5, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 4)
+            {
+                this.drawUnit(norc, 408, 645, 37, 105, -1/2 * 37 * 1.5 -2, -1/2 * 105 * 1.5 - 76, 37 * 1.5, 105 * 1.5, 1 / 2 * Math.PI);
+            }
+        }
         else if (this.weapon == "freydicSword")
         {
             this.damageFrame = "automatic";
@@ -32750,6 +32774,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.effect = "fire";
                             this.costumeEngine(7, 0.23, true);
                         }
+                        else if (this.weapon == "fishingpole")
+                        {
+                            this.costumeEngine(6, 0.15, true);
+                        }
                     }
                 }
                 //draw some weapons underneath the body
@@ -33768,6 +33796,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             this.effect = "fire";
                             this.costumeEngine(7, 0.23, true);
+                        }
+                        else if (this.weapon == "fishingpole")
+                        {
+                            this.costumeEngine(6, 0.15, true);
                         }
                     }
                 }

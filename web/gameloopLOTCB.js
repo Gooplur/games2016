@@ -127,6 +127,7 @@ function gameloopOfDestiny(time)
     }
     player.land = true;
     player.water = false;
+    player.toll = false;
     player.freeze = 1;
     wornAbilities();
     player.obscurity = true; //ability to be invisible is reset at the end of every loop.

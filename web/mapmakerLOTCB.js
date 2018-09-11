@@ -12575,38 +12575,197 @@ function buildMaster()
                 //REGION CREATION
                 //Build AI Units
 
+                if (uniqueChars.sebastianLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Harbourmaster Sebastian")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-40579, 2721, "Person", false, "Harbourmaster Sebastian", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-40582, 2725]], merchant: true, merchandise: [[new Item("coins", false, false), 250], [new Item("boat", false, false), 5], [new Item("fishingpole", false, false), 3]]}));
+                    }
+                }
+                //civvies
+                ArtificialIntelligenceAccess.push(new Unit(-40509, 2891, "Person", false, "Nirwaden Fisherman", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.15, 0.3], 0, 0, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-40504, 2891]]}));
+                if (Math.random() > 0.6)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-39838, 2636, "Person", false, "Nirwaden Fisherman", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["fishingpole", [0.1, 0.2], 0, 80, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-39829, 2653]]}));
+                }
+                else
+                {
+                    if (Math.random() > 0.75)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-39838, 2636, "Person", false, "Nirwaden Fisherman", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["fishingpole", [0.1, 0.2], 0, 80, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-39829, 2653]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-39852, 2530, "Person", false, "Nirwaden Fisherman", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["fishingpole", [0.1, 0.2], 0, 80, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-39848, 2530]]}));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-39852, 2530, "Person", false, "Nirwaden Fisherman", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["fishingpole", [0.1, 0.2], 0, 80, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-39848, 2530]]}));
+                    }
+                }
+
+                if (Math.random() > 0.5)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-40478, 2130, "Person", false, "Nirwaden Fisherman", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.1, 0.2], 0, 80, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-40472, 2124]]}));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-40089, 1817, "Person", false, "Nirwaden Fisherman", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["fishingpole", [0.1, 0.2], 0, 80, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-40080, 1800]]}));
+                }
+
                 //PROPS
                 //scenicList.push(new Scenery("skeleton", -19230, 5008, 5.12, 1.75));
 
                 //CREATURES
-                ArtificialIntelligenceAccess.push(new Unit(-13935, 2270, "Grib", false, "docile"));
-                ArtificialIntelligenceAccess.push(new Unit(-14477, 1925, "Viper", false, "Slib"));
-                ArtificialIntelligenceAccess.push(new Unit(-14087, 1359, "Lizard", true, "Lib"));
-                ArtificialIntelligenceAccess.push(new Unit(-14501, 3283, "BlackBear", false, "Clib"));
-                ArtificialIntelligenceAccess.push(new Unit(-15119, 2314, "Varn", true, "Flib"));
-                ArtificialIntelligenceAccess.push(new Unit(-13713, 5329, "Narthwarp", false, "silwil"));
-                scenicList.push(new Scenery("ulgoyPlant", -16488, 3908, 4.9, 7));
-                ArtificialIntelligenceAccess.push(new Unit(-16473, 3885, "Ulgoy", "giant", "The Really Big Plant"));
-                ArtificialIntelligenceAccess.push(new Unit(-16247, 3330, "Boar", true, "Tambor"));
-                ArtificialIntelligenceAccess.push(new Unit(-14353, 3844, "Shehid", true, "sheta"));
-                scenicList.push(new Scenery("beeHive", -15375 , -2055, 4.5, true));
+                //ArtificialIntelligenceAccess.push(new Unit(-13935, 2270, "Grib", false, "docile"));
+                //ArtificialIntelligenceAccess.push(new Unit(-14477, 1925, "Viper", false, "Slib"));
+                //ArtificialIntelligenceAccess.push(new Unit(-14087, 1359, "Lizard", true, "Lib"));
+                //ArtificialIntelligenceAccess.push(new Unit(-14501, 3283, "BlackBear", false, "Clib"));
+                //ArtificialIntelligenceAccess.push(new Unit(-15119, 2314, "Varn", true, "Flib"));
+                //ArtificialIntelligenceAccess.push(new Unit(-13713, 5329, "Narthwarp", false, "silwil"));
+                //scenicList.push(new Scenery("ulgoyPlant", -16488, 3908, 4.9, 7));
+                //ArtificialIntelligenceAccess.push(new Unit(-16473, 3885, "Ulgoy", "giant", "The Really Big Plant"));
+                //ArtificialIntelligenceAccess.push(new Unit(-16247, 3330, "Boar", true, "Tambor"));
+                //ArtificialIntelligenceAccess.push(new Unit(-14353, 3844, "Shehid", true, "sheta"));
+                //scenicList.push(new Scenery("beeHive", -15375 , -2055, 4.5, true));
 
                 //Build Scenery
 
-                //trees in the wuncwer woods.
+                //trees in the wuntol woods.
                 scenicList.push(new Scenery("pineTree", -13696, 1772, 1.3, true));
 
+                //Plants of the wuntol woods
+                //scenicList.push(new Scenery("neprilnePlant", -17425 , 3993, -5.8, true));
+                //scenicList.push(new Scenery("pluttPlant", -16685 , 4251, 2.4, true));
+                //scenicList.push(new Scenery("culprisPlant", -21156 , 617, -3.5, true));
+                //scenicList.push(new Scenery("stomwikPlant", -18732 , -2343, 6, true));
+                //scenicList.push(new Scenery("akerPlant", -14491 , 5755, 1, true));
+                //scenicList.push(new Scenery("glinPlant", -15944 , -2502, -7.789, true));
+                //scenicList.push(new Scenery("ogardPlant", -16292 , -2231, 0, true));
+                //scenicList.push(new Scenery("wyrPlant", -15134 , 2399, 2.8, true));
+                //scenicList.push(new Scenery("cyrinthilimPlant", -21038 , -2478, 4, true));
 
-                //Plants of the wuncwer woods
-                scenicList.push(new Scenery("neprilnePlant", -17425 , 3993, -5.8, true));
-                scenicList.push(new Scenery("pluttPlant", -16685 , 4251, 2.4, true));
-                scenicList.push(new Scenery("culprisPlant", -21156 , 617, -3.5, true));
-                scenicList.push(new Scenery("stomwikPlant", -18732 , -2343, 6, true));
-                scenicList.push(new Scenery("akerPlant", -14491 , 5755, 1, true));
-                scenicList.push(new Scenery("glinPlant", -15944 , -2502, -7.789, true));
-                scenicList.push(new Scenery("ogardPlant", -16292 , -2231, 0, true));
-                scenicList.push(new Scenery("wyrPlant", -15134 , 2399, 2.8, true));
-                scenicList.push(new Scenery("cyrinthilimPlant", -21038 , -2478, 4, true));
+                //buildings
+                    //dock
+                scenicList.push(new Scenery("floatingBoat", -40085, 2701, -2, true));
+                scenicList.push(new Scenery("floatingBoat", -39940, 2336, -0.8, true));
+                scenicList.push(new Scenery("blood", -40460, 2114, 9.22, 5, 0.3));
+                scenicList.push(new Scenery("nirwadenGoods", -40443, 2145, 1, 8));
+                scenicList.push(new Scenery("nirwadenGoods", -40435, 2119, 1, 20));
+                scenicList.push(new Scenery("floatingBoat", -39815, 2119, -0.35, true));
+                scenicList.push(new Scenery("floatingBoat", -40237, 1726, -2.79, true));
+                scenicList.push(new Scenery("item", -40425, 2173, 0, "nirwaden", ["bucketOfWater", 1, -4]));
+                scenicList.push(new Scenery("nirwadenPump", -40433, 2266, -1/2 * Math.PI, true));
+                    //harbor shop
+                scenicList.push(new Scenery("nirwadenBuilding1", -40547, 2837, 0, true));
+                scenicList.push(new Scenery("boat", -40712, 2720, 0.6, true));
+                scenicList.push(new Scenery("boat", -40704, 2931, -0.4, true));
+                scenicList.push(new Scenery("nirwadenMueble", -40600, 2753, 0, 1));
+                scenicList.push(new Scenery("nirwadenMueble", -40465, 2860, 1/2 * Math.PI, 7));
+                scenicList.push(new Scenery("nirwadenMueble", -40478, 2860, 1/2 * Math.PI, 7));
+                scenicList.push(new Scenery("item", -40473, 2823, 0, "nirwaden", ["fishingpole", 1, -5]));
+                scenicList.push(new Scenery("item", -40471, 2889, 0, "nirwaden", ["fishingpole", 1, -5]));
+
+                //events
+                    //boat fishing 1
+                if (Math.random() > 0.5)
+                {
+                    scenicList.push(new Scenery("floatingBoat", -39460, 3091, 0.15, true));
+                    ArtificialIntelligenceAccess.push(new Unit(-39460, 3091, "Person", false, "Nirwaden Fisherman", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["fishingpole", [0.1, 0.2], 0, 80, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-39464, 3093]]}));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("floatingBoat", -38873, 2620, 3.1, true));
+                    ArtificialIntelligenceAccess.push(new Unit(-38872, 2656, "Person", false, "Nirwaden Fisherman", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["fishingpole", [0.1, 0.2], 0, 80, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-38868, 2641]]}));
+                }
+                    //boat fishing 2
+                if (Math.random() > 0.5)
+                {
+                    scenicList.push(new Scenery("floatingBoat", -39252, 1904, 4.45, true));
+                    ArtificialIntelligenceAccess.push(new Unit(-39278, 1903, "Person", false, "Nirwaden Fisherman", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["fishingpole", [0.1, 0.2], 0, 80, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-39265, 1911]]}));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("floatingBoat", -38707, 2329, 5.1, true));
+                    ArtificialIntelligenceAccess.push(new Unit(-38721, 2335, "Person", false, "Nirwaden Fisherman", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["fishingpole", [0.1, 0.2], 0, 80, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-38723, 2324]]}));
+                }
+
+                //city orchards
+                //row 1
+                scenicList.push(new Scenery("polyapaTree", -42049 , 2522, 3, true));
+                scenicList.push(new Scenery("polyapaTree", -42353 , 2522, 5, true));
+                scenicList.push(new Scenery("polyapaTree", -42654 , 2522, 0, true));
+                scenicList.push(new Scenery("polyapaTree", -42950 , 2522, 1.5, true));
+                scenicList.push(new Scenery("polyapaTree", -43245 , 2522, -2.5, true));
+                scenicList.push(new Scenery("polyapaTree", -43552 , 2522, 4.1233, true));
+                scenicList.push(new Scenery("polyapaTree", -43850 , 2522, 8.55, true));
+                //row 2
+                scenicList.push(new Scenery("chonaTree", -42049 , 2221, 2, true));
+                scenicList.push(new Scenery("chonaTree", -42353 , 2221, 10, true));
+                scenicList.push(new Scenery("chonaTree", -42654 , 2221, 0.5, true));
+                scenicList.push(new Scenery("chonaTree", -42950 , 2221, 7.5, true));
+                scenicList.push(new Scenery("chonaTree", -43245 , 2221, -6.5, true));
+                scenicList.push(new Scenery("chonaTree", -43552 , 2221, 2.9233, true));
+                scenicList.push(new Scenery("chonaTree", -43850 , 2221, 1.55, true));
+                //row 3
+                scenicList.push(new Scenery("chonaTree", -42049 , 1922, 6, true));
+                scenicList.push(new Scenery("chonaTree", -42353 , 1922, 9, true));
+                scenicList.push(new Scenery("chonaTree", -42654 , 1922, 2, true));
+                scenicList.push(new Scenery("chonaTree", -42950 , 1922, 0, true));
+                scenicList.push(new Scenery("chonaTree", -43245 , 1922, -1, true));
+                scenicList.push(new Scenery("chonaTree", -43552 , 1922, -4.1233, true));
+                scenicList.push(new Scenery("chonaTree", -43850 , 1922, -8.55, true));
+                //row 4
+                scenicList.push(new Scenery("polyapaTree", -42049 , 1619, -3, true));
+                scenicList.push(new Scenery("polyapaTree", -42353 , 1619, -5, true));
+                scenicList.push(new Scenery("polyapaTree", -42654 , 1619, 11, true));
+                scenicList.push(new Scenery("polyapaTree", -42950 , 1619, 15, true));
+                scenicList.push(new Scenery("polyapaTree", -43245 , 1619, 5.2, true));
+                scenicList.push(new Scenery("polyapaTree", -43552 , 1619, -7.32233, true));
+                scenicList.push(new Scenery("polyapaTree", -43850 , 1619, 14.72, true));
+
+                //----------------------------------------------------------------------- mainroad
+
+                //row 5
+                scenicList.push(new Scenery("polyapaTree", -42049 , 1019, -8.8, true));
+                scenicList.push(new Scenery("polyapaTree", -42353 , 1019, -7, true));
+                scenicList.push(new Scenery("polyapaTree", -42654 , 1019, -1.25, true));
+                scenicList.push(new Scenery("polyapaTree", -42950 , 1019, 3.89, true));
+                scenicList.push(new Scenery("polyapaTree", -43245 , 1019, 6.2, true));
+                scenicList.push(new Scenery("polyapaTree", -43552 , 1019, 2.3, true));
+                scenicList.push(new Scenery("polyapaTree", -43850 , 1019, -9, true));
+
+                //row 6
+                scenicList.push(new Scenery("chonaTree", -42049 , 717, 10.1, true));
+                scenicList.push(new Scenery("chonaTree", -42353 , 717, 11, true));
+                scenicList.push(new Scenery("chonaTree", -42654 , 717, 12.5, true));
+                scenicList.push(new Scenery("chonaTree", -42950 , 717, 13, true));
+                scenicList.push(new Scenery("chonaTree", -43245 , 717, 0.5, true));
+                scenicList.push(new Scenery("chonaTree", -43552 , 717, 4.811, true));
+                scenicList.push(new Scenery("chonaTree", -43850 , 717, 3.245, true));
+
+                //row 7
+                scenicList.push(new Scenery("chonaTree", -42049 , 414, 15.1, true));
+                scenicList.push(new Scenery("chonaTree", -42353 , 414, 12, true));
+                scenicList.push(new Scenery("chonaTree", -42654 , 414, 11.66, true));
+                scenicList.push(new Scenery("chonaTree", -42950 , 414, 13.97, true));
+                scenicList.push(new Scenery("chonaTree", -43245 , 414, 7, true));
+                scenicList.push(new Scenery("chonaTree", -43552 , 414, -1.9, true));
+                scenicList.push(new Scenery("chonaTree", -43850 , 414, -10.2, true));
+
+                //row 8
+                scenicList.push(new Scenery("polyapaTree", -42049 , 119, 5.5, true));
+                scenicList.push(new Scenery("polyapaTree", -42353 , 119, -6.3, true));
+                scenicList.push(new Scenery("polyapaTree", -42654 , 119, -9.9, true));
+                scenicList.push(new Scenery("polyapaTree", -42950 , 119, 10.7, true));
+                scenicList.push(new Scenery("polyapaTree", -43245 , 119, 7.1, true));
+                scenicList.push(new Scenery("polyapaTree", -43552 , 119, -3.4, true));
+                scenicList.push(new Scenery("polyapaTree", -43850 , 119, -5, true));
 
                 change = "e4";
             }
@@ -12665,11 +12824,11 @@ function buildMaster()
 
                 //Build Scenery
 
-                //trees in the wuncwer woods.
+                //trees in the wuntol woods.
                 scenicList.push(new Scenery("pineTree", -13696, 1772, 1.3, true));
 
 
-                //Plants of the wuncwer woods
+                //Plants of the wuntol woods
                 scenicList.push(new Scenery("neprilnePlant", -17425 , 3993, -5.8, true));
                 scenicList.push(new Scenery("pluttPlant", -16685 , 4251, 2.4, true));
                 scenicList.push(new Scenery("culprisPlant", -21156 , 617, -3.5, true));

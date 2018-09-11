@@ -5040,7 +5040,7 @@ function Item(type, x, y)
             this.identity = "Duskfish";
             this.weight = 2.5;
             this.size = 12;
-            this.description = "The roasted pink meat of a the duskfish tastes slightly slightly sweet but it also has a depth of savory fish-like flavours.";
+            this.description = "The roasted pink meat of a the duskfish tastes slightly sweet but it also has a depth of savory fish-like flavours.";
             this.intForDes = 3;
             this.intDescription = "Dusk fish are most active during the night.";
 
@@ -5314,7 +5314,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 12;
-            this.ingredients = [["Raw Kalper", 1]];
+            this.ingredients = [["Raw Kalp", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 14; // at max, buy for 14.

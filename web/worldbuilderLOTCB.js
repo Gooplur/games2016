@@ -394,9 +394,9 @@ function worldBuilder()
         {
             elevation = 0;
             region = "e4";
-            //outlineBuilder( 34, 34, "outline", 116, -20);
-            outlineBuilder( 34, 8, "forest", 116, -20);
-            outlineBuilder( 34, 12, "forest", 138, -20);
+            outlineBuilder( 34, 34, "outline", 116, -20);
+            //outlineBuilder( 34, 8, "forest", 116, -20);
+            //outlineBuilder( 34, 12, "forest", 138, -20);
             outlineBuilder( 34, 14, "sea", 124, -20);
             outlineBuilder( 1, 8, "stonePath", 116, -3);
             outlineBuilder( 1, 12, "stonePath", 138, -3);
@@ -406,9 +406,10 @@ function worldBuilder()
         {
             elevation = 0;
             region = "e3";
-            //outlineBuilder( 34, 34, "forest", 82, -20);
-            outlineBuilder( 34, 34, "outline", 82, -20);
+            //outlineBuilder( 34, 34, "outline", 82, -20);
+            outlineBuilder( 34, 34, "forest", 82, -20);
             outlineBuilder( 1, 34, "stonePath", 82, -3);
+            outlineBuilder( 1, 1, "sea", 89, 10);
         }
         //mapE2
         if (Y > -3919 && Y < 6870 && X < -12685 && X > -24362) //X2

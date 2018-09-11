@@ -33282,6 +33282,27 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
                         }
                     }
+                    if (this.ID == "Nelgref Bandit Scout")
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(315, false);
+
+                        if (Math.random() > 0.6)
+                        {
+                            this.drops = [[new Item("steelBolt", this.X, this.Y), 2]];
+                        }
+                        else
+                        {
+                            this.drops = [];
+                        }
+
+                        this.disturbed = true;
+
+                        if (this.disturbed == true)
+                        {
+                            this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
+                        }
+                    }
                 }
                 else
                 {

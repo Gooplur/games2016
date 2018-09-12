@@ -309,6 +309,14 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 player.thengarFaction += changeAmount;
             }
+            else if (this.owned == "theBalgurMercenaries")
+            {
+                player.theBalgurMercenariesFaction += changeAmount;
+            }
+            else if (this.owned == "estolGang")
+            {
+                player.estolgangFaction += changeAmount;
+            }
         }
     };
 

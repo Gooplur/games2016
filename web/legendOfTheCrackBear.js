@@ -157,6 +157,12 @@ function legendaryPrerequisites()
     var trapclap = new Audio("sounds/polySounds/trapclap.wav");
     window.trapclap = trapclap;
 
+    var saxomoan = new Audio("sounds/polySounds/sexyMoan.wav");
+    window.saxomoan = saxomoan;
+
+    var saxosob = new Audio("sounds/polySounds/womanSob.wav");
+    window.saxosob = saxosob;
+
     //dialogue sounds
 
         //NON CHARACTER DIALOGUE: voice acting
@@ -201,6 +207,38 @@ function legendaryPrerequisites()
 
     var svehnCrook = new Audio("sounds/polySounds/svehnCrook.mp3");
     window.svehnCrook = svehnCrook;
+
+    //JOAQUIN CHARACTER: voice acting
+
+    var joaquinGoodbye = new Audio("sounds/polySounds/joaquinGoodbye.wav");
+    window.joaquinGoodbye = joaquinGoodbye;
+
+    var joaquinYourself = new Audio("sounds/polySounds/joaquinYourself.wav");
+    window.joaquinYourself = joaquinYourself;
+
+    var joaquinUgly = new Audio("sounds/polySounds/joaquinUgly.wav");
+    window.joaquinUgly = joaquinUgly;
+
+    var joaquinUgly = new Audio("sounds/polySounds/joaquinGoodbye.wav");
+    window.joaquinGoodbye = joaquinGoodbye;
+
+    var joaquinToWork = new Audio("sounds/polySounds/joaquinToWork.wav");
+    window.joaquinToWork = joaquinToWork;
+
+    var joaquinDrink = new Audio("sounds/polySounds/joaquinDrink.wav");
+    window.joaquinDrink = joaquinDrink;
+
+    var joaquinNot = new Audio("sounds/polySounds/joaquinNot.wav");
+    window.joaquinNot = joaquinNot;
+
+    var joaquinKeepUp = new Audio("sounds/polySounds/joaquinKeepUp.wav");
+    window.joaquinKeepUp = joaquinKeepUp;
+
+    var joaquinHappy = new Audio("sounds/polySounds/joaquinHappy.wav");
+    window.joaquinHappy = joaquinHappy;
+
+    var joaquinPrettyThing = new Audio("sounds/polySounds/joaquinPrettyThing.wav");
+    window.joaquinPrettyThing = joaquinPrettyThing;
 
     //BJØRN CHARACTER: voice acting
 
@@ -3077,7 +3115,10 @@ function theLegend()
         gamden: ["Gamden", 0],
         bjorn: ["Bjorn", 0],
         aarni: ["Aarni", 0],
-        feniglio: ["Feniglio", 0]
+        feniglio: ["Feniglio", 0],
+        hooker: ["Hooker", 0],
+        john: ["John", 0],
+        joaquin: ["Joaquin", 0]
     };
 
 //time Tracker Variables
@@ -3225,7 +3266,10 @@ function theLegend()
         aarniLDS: true,
         sebastianLDS: true,
         ilimoLDS: true,
-        feniglioLDS: true
+        feniglioLDS: true,
+        micaelLDS: true,
+        jorgeLDS: true,
+        joaquinLDS: true
     };
 //QUESTS
     quests =
@@ -3248,6 +3292,7 @@ function theLegend()
         kellExecution: false,
         pitFight: false,
         rutgarSlave: false,
+        estolHookup: 0,
 
         //LOGGED PLAYER ACTIONS
         atalinStoragePurchased: false,

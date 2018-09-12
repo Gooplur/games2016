@@ -38,6 +38,8 @@ function Adventurer()
     this.estolgangFaction = 0; //A deeply rooted criminal organization in Nirwaden.
     //ranks
     this.theBalgurMercenariesRank = "none";
+    this.inquisitionRank = "none";
+    this.estolRank = "none";
     //Skills
     this.constitution = 50; //this determines the amount of health that the player has. (4 health per point) (50 Maximum Constitution)
     this.strength = 50; //this skill adds or subtracts from your physical damage blows based on whether or not it is positive or negative. [+ 5 points of carry weight per level] (50 Maximum Strength)

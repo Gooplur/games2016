@@ -31938,6 +31938,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 109 + (quests.medliaNewWealth / 2)]];
             }
+            else if (this.ID == "Feniglio")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 10]];
+            }
+            else if (this.ID == "Customs Master Ilimo")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 134]];
+            }
+            else if (this.ID == "Harbourmaster Sebastian")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 250]];
+            }
+            else if (this.ID == "Micael the Banker")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 190]];
+            }
             else if (this.ID == "Maai the Herbalist")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 69]];
@@ -32485,6 +32501,38 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 1;
+                        }
+                    }
+                    if (this.ID == "Feniglio")
+                    {
+                        uniqueChars.feniglioLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 2;
+                        }
+                    }
+                    if (this.ID == "Customs Master Ilimo")
+                    {
+                        uniqueChars.ilimoLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 40;
+                        }
+                    }
+                    if (this.ID == "Harbourmaster Sebastian")
+                    {
+                        uniqueChars.sebastianLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 23;
+                        }
+                    }
+                    if (this.ID == "Micael the Banker")
+                    {
+                        uniqueChars.sebastianLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 19;
                         }
                     }
                     if (this.ID == "Garld the Crazy Beggar" || this.ID == "Garld, Sage of Gemesh")
@@ -33341,7 +33389,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.disturbed = true;
                     }
 
-                    //add presets and standard
+                    if (this.ID == "Jorge the Killer")
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(500, false);
+
+                        this.drops = [[new Item("coins", this.X, this.Y), Math.floor(Math.random() * 18) + 1], [new Item("nirineseSabre", this.X, this.Y), 1], [new Item("kolumPowder", this.X, this.Y), 5]];
+
+                        if (this.disturbed == true)
+                        {
+                            this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
+                        }
+                    }
+                    else
+                    {
+
+                    }
                 }
                 else if (this.ultra.faction == "hostile")
                 {
@@ -33714,6 +33777,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.theBalgurMercenariesFaction -= 75;
+                        }
+                    }
+                    else if (this.ID == "Jorge the Killer")
+                    {
+                        uniqueChars.jorgeLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.estolgangFaction -= 17;
                         }
                     }
                     else if (this.ID == "Adolf the Pit Fighter")

@@ -976,6 +976,446 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Joaquin the Barkeep" || conversationID[0] == "Joaquin")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Joaquin";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Hello.", false, "a"], ["Hey...", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            if (player.gender == "Female" && player.charisma >= 14 && player.gamemode != "protagonist")
+                            {
+                                joaquinPrettyThing.play();
+                                joaquinPrettyThing.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                            }
+                            else if (player.gender == "Male" || player.gamemode == "protagonist")
+                            {
+                                joaquinDrink.play();
+                                joaquinDrink.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                joaquinUgly.play();
+                                joaquinUgly.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I'm listening...", false, "a"], ["What sort of work?", false, "a"], ["I'm not.", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                                joaquinHappy.play();
+                                joaquinHappy.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 2;
+                                    self.SC();
+                                }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            joaquinYourself.play();
+                            joaquinYourself.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 2)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Sure, I'll try it, I guess...", false, "a"], ["Sure, count me down.", false, "a"], ["I'll take it.", false, "a"], ["Vile! I would never stoop to such depravity!", false, "b"], ["No thanks, that just doesn't sound like me.", false, "b"], ["No!", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2a";
+                                        }
+                                        if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2a")
+                        {
+                            joaquinToWork.play();
+                            joaquinToWork.onended = function()
+                            {
+                                player.estolRank = "Hooker";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2b")
+                        {
+                            joaquinYourself.play();
+                            joaquinYourself.onended = function()
+                            {
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 3)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Hey, Joaquin...", false, "a"], ["Hi there, Joaquin...", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "3a")
+                        {
+                            if (quests.estolHookup < 10)
+                            {
+                                joaquinNot.play();
+                                joaquinNot.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 3;
+                                    self.SC();
+                                }
+                            }
+                            else if (quests.estolHookup < 104)
+                            {
+                                joaquinKeepUp.play();
+                                joaquinKeepUp.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 3;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                joaquinGoodbye.play();
+                                joaquinGoodbye.onended = function()
+                                {
+                                    player.estolRank = "Courtesan";
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 3;
+                                    self.SC();
+                                }
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Hooker" || conversationID[0] == "Hooker")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Hooker";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+                                if (player.gender != "Female")
+                                {
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 15)
+                                        {
+                                            player.dialogueOptions.push(["(proposition 15 coins)", false, "a"]);
+                                        }
+                                    }
+                                    if (player.getStrength() >= 10)
+                                    {
+                                        player.dialogueOptions.push(["(impose yourself)", false, "b"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            saxomoan.play();
+                            player.blinded = true;
+                            player.blindedStoreTime = new Date().getTime();
+                            player.blindedTime = 3;
+                            saxomoan.onended = function()
+                            {
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins")
+                                    {
+                                        Inventory[i][1] -= 15;
+                                        if (Inventory[i][1] <= 0)
+                                        {
+                                            Inventory.splice(i, 1);
+                                        }
+                                        break;
+                                    }
+                                }
+                                player.energy += 1;
+                                player.experience += 4;
+                                player.strTime = new Date().getTime() + 300000;
+                                player.strengthI = true;
+                                player.sleep += 3;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            saxosob.play();
+                            player.blinded = true;
+                            player.blindedStoreTime = new Date().getTime();
+                            player.blindedTime = 22;
+                            saxosob.onended = function()
+                            {
+                                player.experience += 6;
+                                player.strTime = new Date().getTime() + 315000;
+                                player.strengthI = true;
+                                player.sleep += 2;
+                                player.estolgangFaction -= 10;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "John" || conversationID[0] == "John")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "John";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+                                if (player.gender == "Female" && player.energy >= 20 || player.gender == "Female" && player.energy == player.energyMAX)
+                                {
+                                    if (player.estolRank == "Hooker" || player.estolRank == "Courtesan")
+                                    {
+                                        player.dialogueOptions.push(["(Entertain him for 15 coins) [you get to keep 6 coins]", false, "a"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            saxomoan.play();
+                            player.blinded = true;
+                            player.blindedStoreTime = new Date().getTime();
+                            player.blindedTime = 6;
+                            saxomoan.onended = function()
+                            {
+                                var gaveCoins = false;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins")
+                                    {
+                                        Inventory[i][1] += 6;
+                                        gaveCoins = true;
+                                        break;
+                                    }
+                                }
+
+                                if (gaveCoins == false)
+                                {
+                                    Inventory.unshift([new Item("coins", false, false), 6]);
+                                }
+
+                                player.energy = 0;
+                                player.experience = Math.max(0, player.experience - 50);
+
+                                //abuse
+                                if (Math.random() > 0.65)
+                                {
+                                    alert("The John was rough with you...");
+                                    if (Math.random() > 0.65)
+                                    {
+                                        player.health -= 2;
+                                    }
+                                    else
+                                    {
+                                        if (Math.random() > 0.65)
+                                        {
+                                            player.health -= 1;
+                                        }
+                                        else
+                                        {
+                                            if (Math.random() > 0.65)
+                                            {
+                                                player.health -= 11;
+                                            }
+                                            else
+                                            {
+                                                player.health -= 6;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                quests.estolHookup += 1;
+                                artificialIntelligenceAccess = [];
+                                change = "hookup";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Feniglio" || conversationID[0] == "Feniglio")
                     {
                         lowBar = "dialogue";

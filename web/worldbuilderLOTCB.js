@@ -980,7 +980,7 @@ function worldBuilder()
         outlineBuilder( 3, 2, "dungeon", 7, -2);
         outlineBuilder( 10, 1, "dungeon", 9, -13);
     }
-    else if (map == "lethikCityPrison") //This is a dungeon found in map W3
+    else if (map == "lethikCityPrison")
     {
         player.dmx = map;
         player.underground = false;
@@ -989,7 +989,7 @@ function worldBuilder()
         //starting chamber
         outlineBuilder( 2, 4, "dungeon", 0, 0);
     }
-    else if (map == "venningCityPrison") //This is a dungeon found in map W3
+    else if (map == "venningCityPrison")
     {
         player.dmx = map;
         player.underground = false;
@@ -998,7 +998,16 @@ function worldBuilder()
         //starting chamber
         outlineBuilder( 2, 2, "dungeon", 0, 0);
     }
-    else if (map == "venningMineshaft") //This is a dungeon found in map W3
+    else if (map == "atalinDrugLab")
+    {
+        player.dmx = map;
+        player.underground = true;
+        elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "atalinDrugLab";
+        //starting chamber
+        outlineBuilder( 1, 1, "dockV", 0, 0);
+    }
+    else if (map == "venningMineshaft")
     {
         player.dmx = map;
         player.underground = true;

@@ -76,6 +76,18 @@ function sleep(safe)
     }
 }
 
+function getTimeSpeed(percentage)
+{
+    if (percentage == true)
+    {
+        timeSpeed = 1;
+    }
+    else
+    {
+        timeSpeed = percentage;
+    }
+}
+
 function exists(itemType) //checks players inventory, bank, the ground, and all shops for an item and returns false if the item does not yet exist.
 {
     var existz = false;

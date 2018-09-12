@@ -468,6 +468,13 @@ function cheats()
                 player.nightVision = true;
             }
         }
+        else if (cheatcode == "NEO")
+        {
+            if (player.name == "Gooplur" && player.gender == "Goop" && player.race == "#336600" || player.name == "Gooplur" && player.gender == "Gooplon" && player.race == "#336600" || player.name == "Gooplur" && player.gender == "Gooplurg" && player.race == "#336600")
+            {
+                player.gender = "Gooplitor";
+            }
+        }
         else if (cheatcode == "MEDUSA")
         {
             if (player.name == "Gooplur" && player.gender == "Gooplon" && player.race == "#336600")

@@ -976,6 +976,77 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Feniglio" || conversationID[0] == "Feniglio")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Feniglio";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+                                var haveEnuf = false;
+                                if (quests.atalinStoragePurchased != true)
+                                {
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 1200)
+                                        {
+                                            haveEnuf = true;
+                                            player.dialogueOptions.push(["(buy storage space 1200 coins)", false, "a"]);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins")
+                                {
+                                    if (Inventory[i][1] - 1200 > 0)
+                                    {
+                                        Inventory[i][1] -= 1200;
+                                        quests.atalinStoragePurchased = true;
+                                    }
+                                    else
+                                    {
+                                        Inventory.splice(i, 1);
+                                        quests.atalinStoragePurchased = true;
+                                    }
+                                    break;
+                                }
+                            }
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
                     if (self.ID == "Aarni the Stablemaster" || conversationID[0] == "Aarni")
                     {
                         lowBar = "dialogue";

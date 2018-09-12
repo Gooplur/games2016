@@ -62,7 +62,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         {
             this.duration = duration;
             this.durAlert = alert;
-            if (new Date().getTime() - this.spellTime >= this.duration * 1000)
+            if (new Date().getTime() - this.spellTime >= (this.duration * 1000) / timeSpeed)
             {
                 if (this.durAlert == true)
                 {
@@ -177,9 +177,9 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         {
             if (this.distanceCovered < range)
             {
-                this.distanceCovered += speed * (TTD / 16.75);
-                this.X += (Math.cos(rotation) * speed) * (TTD / 16.75);
-                this.Y += (Math.sin(rotation) * speed) * (TTD / 16.75);
+                this.distanceCovered += speed * (TTD / 16.75) * timeSpeed;
+                this.X += (Math.cos(rotation) * speed) * (TTD / 16.75) * timeSpeed;
+                this.Y += (Math.sin(rotation) * speed) * (TTD / 16.75) * timeSpeed;
             }
             else if (selfDelete || selfDelete == "alert")
             {
@@ -255,8 +255,8 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             if (new Date().getTime() - this.missileTime < (time * 1000))
             {
                 this.missileDirection = rotation;
-                this.X += (Math.cos(rotation) * speed) * (TTD / 16.75);
-                this.Y += (Math.sin(rotation) * speed) * (TTD / 16.75);
+                this.X += (Math.cos(rotation) * speed) * (TTD / 16.75) * timeSpeed;
+                this.Y += (Math.sin(rotation) * speed) * (TTD / 16.75) * timeSpeed;
             }
             else
             {
@@ -267,8 +267,8 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 else
                 {
                     this.missileDirection = Math.atan2(this.lockOn.Y - this.Y, this.lockOn.X - this.X);
-                    this.X += (Math.cos(Math.atan2(this.lockOn.Y - this.Y, this.lockOn.X - this.X)) * speed) * (TTD / 16.75);
-                    this.Y += (Math.sin(Math.atan2(this.lockOn.Y - this.Y, this.lockOn.X - this.X)) * speed) * (TTD / 16.75);
+                    this.X += (Math.cos(Math.atan2(this.lockOn.Y - this.Y, this.lockOn.X - this.X)) * speed) * (TTD / 16.75) * timeSpeed;
+                    this.Y += (Math.sin(Math.atan2(this.lockOn.Y - this.Y, this.lockOn.X - this.X)) * speed) * (TTD / 16.75) * timeSpeed;
                 }
             }
         };
@@ -355,8 +355,8 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         checkClosestClaimDist = Math.sqrt((this.X - this.claim.X)*(this.X - this.claim.X) + (this.Y - this.claim.Y)*(this.Y - this.claim.Y));
                     }
                     this.rotation = Math.atan2(this.claim.Y - this.Y, this.claim.X - this.X) + extraRot;
-                    this.X += Math.cos(this.rotation + extraRot) * speed;
-                    this.Y += Math.sin(this.rotation + extraRot) * speed;
+                    this.X += Math.cos(this.rotation + extraRot) * speed * timeSpeed;
+                    this.Y += Math.sin(this.rotation + extraRot) * speed * timeSpeed;
 
                     if (checkClosestClaimDist <= this.claim.sizeRadius)
                     {
@@ -374,8 +374,8 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             else
             {
                 this.rotation = Math.atan2(this.claim.Y - this.Y, this.claim.X - this.X) + extraRot;
-                this.X += Math.cos(this.rotation + extraRot) * speed;
-                this.Y += Math.sin(this.rotation + extraRot) * speed;
+                this.X += Math.cos(this.rotation + extraRot) * speed * timeSpeed;
+                this.Y += Math.sin(this.rotation + extraRot) * speed * timeSpeed;
             }
         };
 

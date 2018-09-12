@@ -15,7 +15,6 @@
 
 //things to add to the next image i'm adding:
 //todo add armoured horses
-//todo add a cabinet
 //todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
 //todo add a secret unit (a monster that is in an inanimate form during the day but lurks murderously throughout the night) GARGOYLE //the unit will know when to become a scenery object //the scenery object will know when to become a unit
 //todo add shed basilisk skin
@@ -1754,6 +1753,10 @@ function legendaryPrerequisites()
     nirRoad.src = ("images/nirwadenRoad.jpg");
     window.nirRoad = nirRoad;
 
+    var kolumIMG = new Image();
+    kolumIMG.src = ("images/kolumIMG.png");
+    window.kolumIMG = kolumIMG;
+
     var poly = new Image();
     poly.src = ("images/poly.png");
     window.poly = poly;
@@ -2252,6 +2255,7 @@ var dialogueRND = 0;
 var duendeSwarm = false;
 var wiggleJoe = 0;
 var wiggleRand = 0;
+var timeSpeed = 1;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -3072,7 +3076,8 @@ function theLegend()
         maai: ["Maai", 0],
         gamden: ["Gamden", 0],
         bjorn: ["Bjorn", 0],
-        aarni: ["Aarni", 0]
+        aarni: ["Aarni", 0],
+        feniglio: ["Feniglio", 0]
     };
 
 //time Tracker Variables
@@ -3218,7 +3223,9 @@ function theLegend()
         bjornLDS: true,
         jalmariLDS: true,
         aarniLDS: true,
-        sebastianLDS: true
+        sebastianLDS: true,
+        ilimoLDS: true,
+        feniglioLDS: true
     };
 //QUESTS
     quests =
@@ -3243,6 +3250,7 @@ function theLegend()
         rutgarSlave: false,
 
         //LOGGED PLAYER ACTIONS
+        atalinStoragePurchased: false,
         venningStoragePurchased: false,
         orjovBeseeched: false,
         killedStambjordHeir: false,
@@ -3407,7 +3415,7 @@ function theLegend()
 //Inventory = [[new Item("kellishSword", false, false), 1], [new Item("lightningCorseque", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("burningSmashStick", false, false), 1], [new Item("bullet", false, false), 200], [new Item("blackPowder", false, false), 200], [new Item("musket", false, false), 1], [new Item("blunderbuss", false, false), 1], [new Item("cutlass", false, false), 1], [new Item("avrakLeatherArmour", false, false), 1], [new Item("balgurCaptainArmour", false, false), 1], [new Item("balgurMercArmour", false, false), 1], [new Item("longSpikedMorningStar", false, false), 1], [new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
 
     //All of the spells in the game
-    allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1], [new Item("summonFrich", false, false), 1], [new Item("summonWolf", false, false), 1], [new Item("charm", false, false), 1], [new Item("sanctuary", false, false), 1], [new Item("repellingWard", false, false), 1], [new Item("iceberg", false, false), 1], [new Item("magicMissiles", false, false), 1], [new Item("minorVortex", false, false), 1], [new Item("mark", false, false), 1], [new Item("entanglement", false, false), 1], [new Item("whirlwind", false, false), 1], [new Item("iceBlast", false, false), 1], [new Item("shadowport", false, false), 1], [new Item("healingPsalms", false, false), 1], [new Item("summonGriffin", false, false), 1], [new Item("summonDemon", false, false), 1]];
+    allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1], [new Item("summonFrich", false, false), 1], [new Item("summonWolf", false, false), 1], [new Item("charm", false, false), 1], [new Item("sanctuary", false, false), 1], [new Item("repellingWard", false, false), 1], [new Item("iceberg", false, false), 1], [new Item("magicMissiles", false, false), 1], [new Item("minorVortex", false, false), 1], [new Item("mark", false, false), 1], [new Item("entanglement", false, false), 1], [new Item("whirlwind", false, false), 1], [new Item("iceBlast", false, false), 1], [new Item("shadowport", false, false), 1], [new Item("healingPsalms", false, false), 1], [new Item("summonGriffin", false, false), 1], [new Item("summonDemon", false, false), 1], [new Item("slowTimeI", false, false), 1], [new Item("slowTimeII", false, false), 1], [new Item("slowTimeIII", false, false), 1], [new Item("slowTimeIV", false, false), 1], [new Item("slowTimeV", false, false), 1], [new Item("slowTimeVI", false, false), 1]];
 //Test Spells
     primarySpells = [];
     secondarySpells = [];
@@ -3928,6 +3936,7 @@ function theLegend()
     alchemy.push(new Item("copperDust", false));
     alchemy.push(new Item("brittleGhoulFlyStomach", false));
     alchemy.push(new Item("ghoulFlyPowder", false));
+    alchemy.push(new Item("kolumPowder", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

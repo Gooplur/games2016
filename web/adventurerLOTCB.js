@@ -35,6 +35,7 @@ function Adventurer()
     this.nirwadenFaction = 0; //orange (nirinese) Queen Lelaine
     //Lesser Faction Relations
     this.theBalgurMercenariesFaction = 0; //A fearsome and powerful mercinary group in the lands of Thengaria.
+    this.estolgangFaction = 0; //A deeply rooted criminal organization in Nirwaden.
     //ranks
     this.theBalgurMercenariesRank = "none";
     //Skills
@@ -506,6 +507,15 @@ function Adventurer()
     this.leeches = 0; //this number keeps track of the number of blood sucking leeches that are feasting on the player.
     this.antiLeech = false; //this variable permits the player resistance to leeches if set to true.
     this.leechPop = false; //this variable is turned on when a leech is popped and turns off again afterward.
+    this.kolumAddiction = false; //this determines if you are a crazy drug fiend
+    this.kolumTolerance = 0; //this is your tolerance to the drug kolum
+    this.kolumDegredation = 0; //this is the longterm degredation that kolum causes on the player
+    this.kolumTime = new Date().getTime();
+    this.kolumHigh = 0;
+    this.kolumVomitTime = new Date().getTime();
+    this.timeAlterTime = 0;
+    this.keepTimeAlter = new Date().getTime();
+    this.timeAlter = 1;
 
     //faction variables
     this.factionToggle = false;
@@ -518,6 +528,7 @@ function Adventurer()
     this.cephritePeace = true;
     this.nirwadenPeace = true;
     this.theBalgurMercenariesPeace = true;
+    this.estolGangPeace = true;
 
     //utility or extra variables
     this.AdAbility = []; //this is a list of all active abilities held by armours and equipped outfits
@@ -860,8 +871,8 @@ function Adventurer()
         this.healthMAX = 0.1 + (4 * this.getConstitution());
         this.naturalMagicalResistance = this.getEminence() / 5;
         this.magicalResistanceTotal = this.naturalMagicalResistance + this.magicalResistance;
-        this.hungerMAX = this.baseHunger;
-        this.thirstMAX = this.baseThirst;
+        //this.hungerMAX = this.baseHunger - this.kolumDegredation;
+        //this.thirstMAX = this.baseThirst - this.kolumDegredation; //these are set elsewhere
         this.warmthMAX = this.baseWarmth + (1 * this.getEndurance()) + (4 * this.getToughness());
         this.spellSlots = 1 + Math.floor(this.memory * 8 / 50);
         this.sleepMAX = 24 + this.getEndurance();
@@ -3092,6 +3103,18 @@ function Adventurer()
             }
         };
 
+        this.cheatPowers = function()
+        {
+            if (player.name == "Gooplur" && player.gender == "Gooplitor" && player.race == "#336600")
+            {
+                if (qKey)
+                {
+                    this.timeAlterTime = 1;
+                    this.timeAlter = 0.0333;
+                }
+            }
+        }
+
         this.sightSeeing = function()
         {
             if (adminShowSight || this.getDexterity() >= 50 && this.movingType == 3)
@@ -3320,6 +3343,89 @@ function Adventurer()
             //TODO different types of poisons will get their own seperate categories!
         };
 
+        this.alterTime = function()
+        {
+            if (this.timeAlterTime > 0)
+            {
+                if (new Date().getTime() - this.keepTimeAlter > 1000)
+                {
+                    this.keepTimeAlter = new Date().getTime();
+                    this.timeAlterTime = Math.max(0, this.timeAlterTime - 1);
+                }
+                getTimeSpeed(this.timeAlter);
+            }
+            else
+            {
+                getTimeSpeed(true);
+                this.timeAlter = 1;
+            }
+        };
+
+        this.kolumDrug = function()
+        {
+            //drug high fades over time
+            if (this.kolumAddiction)
+            {
+                if (new Date().getTime() - this.kolumTime > 1000)
+                {
+                    this.kolumTime = new Date().getTime();
+                    this.kolumHigh -= 1;
+                }
+            }
+
+            if (this.kolumHigh >= 595) //initial buzz
+            {
+                this.energy += 0.0055;
+                this.sleep = this.sleepMAX;
+                this.timeAlterTime = Math.max(1, this.timeAlterTime);
+                this.timeAlter = 0.3;
+            }
+            else if (this.kolumHigh >= 540) //initial buzz
+            {
+                this.energy += 0.003;
+                this.sleep = this.sleepMAX;
+                this.timeAlterTime = Math.max(1, this.timeAlterTime);
+                this.timeAlter = 0.8;
+            }
+            else if (this.kolumHigh > 0)
+            {
+                this.energy += 0.0015;
+                this.kolumVomitTime = new Date().getTime();
+                this.timeAlterTime = Math.max(1, this.timeAlterTime);
+                this.timeAlter = 0.9;
+            }
+            else if (this.kolumHigh < 900)
+            {
+                this.kolumAddiction = false;
+                this.kolumHigh = 0;
+            }
+            else if (this.kolumHigh < 0) //withdrawal
+            {
+                this.timeAlterTime = Math.max(1, this.timeAlterTime);
+                this.timeAlter = 1.3;
+                this.health -= 0.006;
+                this.energy -= 0.009;
+                this.experience = Math.max(0, this.experience - 0.2);
+                this.magicalExperience -= Math.max(0, this.magicalExperience - 0.1);
+                if (new Date().getTime() - this.kolumVomitTime > 120000)
+                {
+                    if (this.land == true)
+                    {
+                        worldItems.push([new Item("vomit", X, Y), 1]);
+                    }
+                    this.hunger = Math.max(0, this.hunger - 24);
+                    this.energy -= 10;
+                    this.health -= 4;
+                    this.kolumVomitTime = new Date().getTime();
+                }
+            }
+
+            if (!this.kolumAddiction && this.kolumTolerance > 10) //tolerance decreases if addiction is gone
+            {
+                this.kolumTolerance = Math.max(10, this.kolumTolerance - 0.001);
+            }
+        };
+
         this.waterWalk = function()
         {
             if (this.waterwalkingTime > 0)
@@ -3405,6 +3511,9 @@ function Adventurer()
         this.outfitEffects();
         this.sickness();
 
+        //cheat effects
+        this.cheatPowers();
+
         //minor game effects
         this.sightSeeing();
         this.lungs();
@@ -3420,6 +3529,8 @@ function Adventurer()
         this.webbedTimer();
         this.acidify();
         this.poison();
+        this.kolumDrug();
+        this.alterTime();
         this.recovery();
         this.skillBoost();
         this.light();
@@ -3987,6 +4098,55 @@ function Adventurer()
         {
             //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
             this.removeNotice("Brain Maggots");
+        }
+    };
+
+    //Brain Maggots Notice Function
+    this.kolumChecker = function()
+    {
+        if (this.kolumHigh < 0)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Kolum Withdrawal");
+            //red background
+            XXX.beginPath();
+            XXX.fillStyle = "#C0D6E4";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Kolum Withdrawal"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(kolumIMG, 0, 0, 28, 30, this.arrangeNotices("Kolum Withdrawal"), 412.5, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Kolum Withdrawal");
+        }
+
+        if (this.kolumHigh > 0)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Kolum");
+            //red background
+            XXX.beginPath();
+            XXX.fillStyle = "#C0D6E4";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Kolum"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.beginPath();
+            XXX.fillStyle = "yellow";
+            XXX.lineWidth = 1;
+            XXX.rect(this.arrangeNotices("Kolum"), 413, 20, (this.kolumHigh / 601) * 20);
+            XXX.fill();
+            XXX.drawImage(kolumIMG, 0, 0, 28, 30, this.arrangeNotices("Kolum"), 412.5, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Kolum");
         }
     };
 
@@ -4984,6 +5144,7 @@ function Adventurer()
         this.bandagedChecker();
         this.acidicChecker();
         this.asfixiationChecker();
+        this.kolumChecker();
     };
 
     //MOVEMENT ANIMATION
@@ -5785,8 +5946,8 @@ function Adventurer()
         this.AdSurvivalism = outfit.survivalismBonus + gloves.survivalismBonus + necklace.survivalismBonus + ring.survivalismBonus + boots.survivalismBonus;
         //Extra Stat Bonuses
         this.AdSleep = outfit.sleepBonus + gloves.sleepBonus + necklace.sleepBonus + ring.sleepBonus + boots.sleepBonus;
-        this.hungerMAX = this.baseHunger + outfit.hungerBonus + gloves.hungerBonus + necklace.hungerBonus + ring.hungerBonus + boots.hungerBonus;
-        this.thirstMAX = this.baseThirst + outfit.thirstBonus + gloves.thirstBonus + necklace.thirstBonus + ring.thirstBonus + boots.thirstBonus;
+        this.hungerMAX = this.baseHunger + outfit.hungerBonus + gloves.hungerBonus + necklace.hungerBonus + ring.hungerBonus + boots.hungerBonus - this.kolumDegredation;
+        this.thirstMAX = this.baseThirst + outfit.thirstBonus + gloves.thirstBonus + necklace.thirstBonus + ring.thirstBonus + boots.thirstBonus - this.kolumDegredation;
         this.warmthMAX = (this.baseWarmth + (1 * this.getEndurance()) + (4 * this.getToughness())) + outfit.warmthBonus + gloves.warmthBonus + necklace.warmthBonus + ring.warmthBonus + boots.warmthBonus;
         //Magical Stat Bonuses
         this.AdEminence = outfit.eminenceBonus + gloves.eminenceBonus + necklace.eminenceBonus + ring.eminenceBonus + boots.eminenceBonus;
@@ -7437,6 +7598,48 @@ function Adventurer()
                             this.magicalExperience += secondarySpells[i].EXP;
 
                             magicList.push(new Magic(secondarySpells[i], true));
+
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+                    }
+                    //Time Slow
+                    if (secondarySpells[i].ID == "slowTimeI" || secondarySpells[i].ID == "slowTimeII" || secondarySpells[i].ID == "slowTimeIII" || secondarySpells[i].ID == "slowTimeIV" || secondarySpells[i].ID == "slowTimeV" || secondarySpells[i].ID == "slowTimeVI")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                        {
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+
+                            if (secondarySpells[i].ID == "slowTimeI")
+                            {
+                                this.timeAlterTime = 4 + Math.round(1/10 * this.getConcentration());
+                                this.timeAlter = 0.7;
+                            }
+                            else if (secondarySpells[i].ID == "slowTimeII")
+                            {
+                                this.timeAlterTime = 5 + Math.round(1/10 * this.getConcentration());
+                                this.timeAlter = 0.6;
+                            }
+                            else if (secondarySpells[i].ID == "slowTimeIII")
+                            {
+                                this.timeAlterTime = 6 + Math.round(1/10 * this.getConcentration());
+                                this.timeAlter = 0.5;
+                            }
+                            else if (secondarySpells[i].ID == "slowTimeIV")
+                            {
+                                this.timeAlterTime = 7 + Math.round(1/10 * this.getConcentration());
+                                this.timeAlter = 0.4;
+                            }
+                            else if (secondarySpells[i].ID == "slowTimeV")
+                            {
+                                this.timeAlterTime = 9 + Math.round(1/10 * this.getConcentration());
+                                this.timeAlter = 0.2;
+                            }
+                            else if (secondarySpells[i].ID == "slowTimeVI")
+                            {
+                                this.timeAlterTime = 12 + Math.round(1/10 * this.getConcentration());
+                                this.timeAlter = 0.1;
+                            }
 
                             this.secondaryCastingCooldown = new Date().getTime();
                         }
@@ -21269,6 +21472,61 @@ function Adventurer()
                             this.theBalgurMercenariesPeace = true;
                         }
                     }
+
+                    //ESTOL GANG
+                    //box
+                    if (this.estolGangPeace)
+                    {
+                        XXX.beginPath();
+                        if (this.estolgangFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "lightGreen";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50+ (55 * 1), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    else
+                    {
+                        XXX.beginPath();
+                        if (this.estolgangFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "red";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 1), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    //faction name
+                    XXX.font = "bold 20px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Estol Gang: " + this.estolgangFaction, 700, 72 + (55 * 1));
+                    //clickability
+                    if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 1) && mouseY < 80 + (55 * 1) && clicked)
+                    {
+                        clicked = false;
+                        if (this.estolGangPeace)
+                        {
+                            this.estolGangPeace = false;
+                        }
+                        else
+                        {
+                            this.estolGangPeace = true;
+                        }
+                    }
                 }
             };
             this.drawFactionRelations();
@@ -26352,6 +26610,29 @@ function Adventurer()
                                     this.timeSinceBadFoodEaten -= 4000
                                 }
                             }
+                            else if (Inventory[i][0].ability == "kolum") //addictive drug
+                            {
+                                //good stuff
+                                this.fatigueI = false;
+                                this.fatigueII = false;
+                                this.fatigueIII = false;
+                                this.sleep = this.sleepMAX;
+                                this.energilTime = 0;
+
+                                //bad stuff
+                                this.kolumHigh = 601;
+                                this.kolumAddiction = true;
+                                if (this.kolumTolerance == 0)
+                                {
+                                    this.kolumTolerance = 10;
+                                }
+                                else
+                                {
+                                    this.kolumTolerance += 0.1;
+                                }
+                                this.kolumDegredation += 0.1;
+
+                            }
                             else if (Inventory[i][0].ability == "rawwyr") //wyr leaf extract effects...
                             {
                                 //food poison and reduced hunger.
@@ -28397,7 +28678,7 @@ function Adventurer()
         {
             XXX.fillStyle ="black";
             XXX.font = "16px Serif";
-            XXX.fillText("Hunger: " + Math.floor(this.hunger) + "/" + this.hungerMAX, 31, 498);
+            XXX.fillText("Hunger: " + Math.floor(this.hunger) + "/" + Math.ceil(this.hungerMAX), 31, 498);
         }
 
     };
@@ -28448,7 +28729,7 @@ function Adventurer()
         {
             XXX.fillStyle ="black";
             XXX.font = "16px Serif";
-            XXX.fillText("Thirst: " + Math.floor(this.thirst) + "/" + Math.floor(this.thirstMAX), 31, 475);
+            XXX.fillText("Thirst: " + Math.floor(this.thirst) + "/" + Math.ceil(this.thirstMAX), 31, 475);
         }
     };
 

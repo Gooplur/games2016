@@ -428,6 +428,264 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 25;
             this.spellRange = "On-Screen";
         }
+        else if (this.type == "slowTimeI")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 2)
+            {
+                this.identity = "Scroll of Slow Time I";
+                this.description = "Studying this scroll will teach you how to slow down time for everyone but you.";
+                this.intForDes = 0;
+                this.intDescription = "Slows time to 0.7 times its normal pace.";
+                this.buyValue = 1200 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1000.
+                this.sellValue = 900 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 1000.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 1200 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1000.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellCost = Math.max(1, 2 + (0 / 50) * player.getConcentration() - (1 / 50) * player.getEminence());
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Time";
+            this.spellName = "Slow Time I";
+            this.spellID = "slowTimeI";
+            this.spellEXP = 10 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(3, 15 + (0/50) * player.getConcentration() - (8/50) * player.getEminence());
+            this.spellDescription = "Slow down time to 0.7 times its normal pace.";
+            this.spellKnowledgeRequirement = 2;
+            this.spellRange = "Everywhere";
+        }
+        else if (this.type == "slowTimeII")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 4)
+            {
+                this.identity = "Scroll of Slow Time II";
+                this.description = "Studying this scroll will teach you how to slow down time for everyone but you.";
+                this.intForDes = 0;
+                this.intDescription = "Slows time to 0.6 times its normal pace.";
+                this.buyValue = 1500 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1300.
+                this.sellValue = 1100 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 1200.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 1500 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1300.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellCost = Math.max(1, 3 + (0 / 50) * player.getConcentration() - (1 / 50) * player.getEminence());
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Time";
+            this.spellName = "Slow Time II";
+            this.spellID = "slowTimeII";
+            this.spellEXP = 14 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(3, 20 + (0/50) * player.getConcentration() - (10/50) * player.getEminence());
+            this.spellDescription = "Slow down time to 0.6 times its normal pace.";
+            this.spellKnowledgeRequirement = 4;
+            this.spellRange = "Everywhere";
+        }
+        else if (this.type == "slowTimeIII")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 7)
+            {
+                this.identity = "Scroll of Slow Time III";
+                this.description = "Studying this scroll will teach you how to slow down time for everyone but you.";
+                this.intForDes = 0;
+                this.intDescription = "Slows time to 0.5 times its normal pace.";
+                this.buyValue = 1900 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1700.
+                this.sellValue = 1500 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 1600.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 1900 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1700.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellCost = Math.max(2, 6 + (0 / 50) * player.getConcentration() - (3 / 50) * player.getEminence());
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Time";
+            this.spellName = "Slow Time III";
+            this.spellID = "slowTimeIII";
+            this.spellEXP = 20 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(3, 26 + (0/50) * player.getConcentration() - (12/50) * player.getEminence());
+            this.spellDescription = "Slow down time to 0.5 times its normal pace.";
+            this.spellKnowledgeRequirement = 7;
+            this.spellRange = "Everywhere";
+        }
+        else if (this.type == "slowTimeIV")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 12)
+            {
+                this.identity = "Scroll of Slow Time IV";
+                this.description = "Studying this scroll will teach you how to slow down time for everyone but you.";
+                this.intForDes = 0;
+                this.intDescription = "Slows time to 0.4 times its normal pace.";
+                this.buyValue = 2500 - Math.floor(player.getCharisma() / 0.125); // at max, buy for 2100.
+                this.sellValue = 1900 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 2000.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 2500 - Math.floor(player.getCharisma() / 0.125); // at max, buy for 2100.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellCost = Math.max(3, 9 + (0 / 50) * player.getConcentration() - (4 / 50) * player.getEminence());
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Time";
+            this.spellName = "Slow Time IV";
+            this.spellID = "slowTimeIV";
+            this.spellEXP = 24 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(3, 32 + (0/50) * player.getConcentration() - (13/50) * player.getEminence());
+            this.spellDescription = "Slow down time to 0.4 times its normal pace.";
+            this.spellKnowledgeRequirement = 12;
+            this.spellRange = "Everywhere";
+        }
+        else if (this.type == "slowTimeV")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 25)
+            {
+                this.identity = "Scroll of Slow Time V";
+                this.description = "Studying this scroll will teach you how to slow down time for everyone but you.";
+                this.intForDes = 0;
+                this.intDescription = "Slows time to 0.2 times its normal pace.";
+                this.buyValue = 8000 - Math.floor(player.getCharisma() / 0.125); // at max, buy for 7600.
+                this.sellValue = 7000 + Math.floor(player.getCharisma() / 0.125); // at max, sell for 7400.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 8000 - Math.floor(player.getCharisma() / 0.125); // at max, buy for 7600.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellCost = Math.max(6, 16 + (0 / 50) * player.getConcentration() - (6 / 50) * player.getEminence());
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Time";
+            this.spellName = "Slow Time V";
+            this.spellID = "slowTimeV";
+            this.spellEXP = 30 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(10, 60 + (0/50) * player.getConcentration() - (30/50) * player.getEminence());
+            this.spellDescription = "Slow down time to 0.2 times its normal pace.";
+            this.spellKnowledgeRequirement = 25;
+            this.spellRange = "Everywhere";
+        }
+        else if (this.type == "slowTimeVI")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 36)
+            {
+                this.identity = "Scroll of Slow Time VI";
+                this.description = "Studying this scroll will teach you how to slow down time for everyone but you.";
+                this.intForDes = 0;
+                this.intDescription = "Slows time to 0.1 times its normal pace.";
+                this.buyValue = 19000 - Math.floor(player.getCharisma() / 0.125); // at max, buy for 18600.
+                this.sellValue = 17000 + Math.floor(player.getCharisma() / 0.125); // at max, sell for 17400.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 19000 - Math.floor(player.getCharisma() / 0.125); // at max, buy for 18600.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellCost = Math.max(12, 25 + (0 / 50) * player.getConcentration() - (5 / 50) * player.getEminence());
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Time";
+            this.spellName = "Slow Time VI";
+            this.spellID = "slowTimeVI";
+            this.spellEXP = 50 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(36, 120 + (0/50) * player.getConcentration() - (60/50) * player.getEminence());
+            this.spellDescription = "Slow down time to 0.1 times its normal pace.";
+            this.spellKnowledgeRequirement = 36;
+            this.spellRange = "Everywhere";
+        }
         else if (this.type == "flyingColours")
         {
             //For All Items
@@ -15957,6 +16215,57 @@ function Item(type, x, y)
             this.buyValue = 16 - Math.floor(player.getCharisma() / 8); // at max, buy for 10.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 6); // at max, sell for 10.
         }
+        else if (this.type == "kolumPowder")
+        {
+            //For All Items
+            this.identity = "Kolum Powder";
+            this.weight = 0.001;
+            this.size = 3;
+            this.description = "A soft white powdery substance.";
+            this.intForDes = 6;
+            this.intDescription = "The inhalation of this powder causes the user to become full of energy and euphoria, however it is highly addictive, and damaging long-term.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = -5; //satisfies hunger.
+            this.thirst = -2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -3; //heals health.
+            this.generation = Math.max(1, 80 - player.kolumTolerance); //recoops lost energy.
+            this.replenish = -20; //restores will.
+
+            //ability
+            this.ability = "kolum";
+
+            //Crafting
+            this.yield = 30;
+            this.intForCraft = 27;
+            this.ingredients = [["Desert Poppy", 6], ["Cirmusidic compound", 2], ["Bloch Extract", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.faction == "Nirwaden")
+                {
+                    this.buyValue = 0;
+                    this.sellValue = 0;
+                    //shopkeeper.disturbed = true;
+                }
+                else
+                {
+                    this.buyValue = 8; // at max, buy for 8.
+                    this.sellValue = 8; // at max, sell for 8.
+                }
+            }
+            else
+            {
+                this.buyValue = 8; // at max, buy for 8.
+                this.sellValue = 8; // at max, sell for 8.
+            }
+        }
         else if (this.type == "tepprekliaFungus")
         {
             //For All Items
@@ -26809,6 +27118,26 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "paperwork")
+        {
+            //For All Items
+            this.identity = "Paperwork";
+            this.weight = 0.001;
+            this.size = 12;
+            this.description = "A form filled out with a bunch of businessy stuff.";
+            this.intForDes = 10;
+            this.intDescription = "Everything looks to be in order.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "unitMarker")
         {
             //For All Items
@@ -26934,10 +27263,15 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter")
+        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork")
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "kolumPowder")
+        {
+            XXX.beginPath();
+            XXX.drawImage(kolumIMG, 0, 0, 28, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 0.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 0.5), 28 * 0.5, 30 * 0.5);
         }
         else if (this.type == "vardanianPlateArmour" || this.type == "vardanianPlateArmourBlackPlume" || this.type == "vardanianPlateArmourRedPlume")
         {
@@ -29406,7 +29740,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(zapa, 455, 455, 39, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.22), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.22), 39 * 1.22, 24 * 1.22);
         }
-        else if (this.type == "repellingWard")
+        else if (this.type == "repellingWard" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI")
         {
             XXX.beginPath();
             XXX.drawImage(zapa, 414, 461, 24, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.25), 24 * 1.25, 17 * 1.25);
@@ -30489,10 +30823,15 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter")
+        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork")
         {
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "kolumPowder")
+        {
+            LXX.beginPath();
+            LXX.drawImage(kolumIMG, 0, 0, 28, 30, this.invX - (1/2 * 28 * 0.6), this.invY - (1/2 * 30 * 0.6), 28 * 0.6, 30 * 0.6);
         }
         else if (this.type == "vardanianPlateArmour" || this.type == "vardanianPlateArmourBlackPlume" || this.type == "vardanianPlateArmourRedPlume")
         {
@@ -33017,7 +33356,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -34014,10 +34353,15 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter")
+        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork")
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "kolumPowder")
+        {
+            XXX.beginPath();
+            XXX.drawImage(kolumIMG, 0, 0, 28, 30, this.invX - (1/2 * 28 * 0.6), this.invY - (1/2 * 30 * 0.6), 28 * 0.6, 30 * 0.6);
         }
         else if (this.type == "vardanianPlateArmour" || this.type == "vardanianPlateArmourBlackPlume" || this.type == "vardanianPlateArmourRedPlume")
         {
@@ -36540,7 +36884,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);

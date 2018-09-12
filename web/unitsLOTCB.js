@@ -602,8 +602,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.suspendConflictingPointSystems = true;
                 for (var i = 0; i < 48; i++)
                 {
-                    testMovX = this.X - Math.cos((this.rotation + ((15 * i) / 360 * Math.PI))) * ((TTD / 16.75) * this.speed) * this.stunned;
-                    testMovY = this.Y - Math.sin((this.rotation + ((15 * i) / 360 * Math.PI))) * ((TTD / 16.75) * this.speed) * this.stunned;
+                    testMovX = this.X - Math.cos((this.rotation + ((15 * i) / 360 * Math.PI))) * ((TTD / 16.75) * this.speed) * this.stunned * timeSpeed;
+                    testMovY = this.Y - Math.sin((this.rotation + ((15 * i) / 360 * Math.PI))) * ((TTD / 16.75) * this.speed) * this.stunned * timeSpeed;
 
                     if (!this.isObstructed(testMovX, testMovY))
                     {
@@ -875,6 +875,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.allys.push("TheBalgurMercenaries");
             }
+            if (player.estolGangPeace)
+            {
+                this.allys.push("EstolGang");
+                this.allys.push("EstolGang2");
+            }
         }
         if (this.team == "arena1" || this.team == "arena2" || this.team == "arena3")
         {
@@ -893,6 +898,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Cephrite");
             this.allys.push("Nirwaden");
             this.allys.push("clamia");
+            this.allys.push("EstolGang");
         }
         if (this.team == "Freynor")
         {
@@ -910,6 +916,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Cephrite");
             this.allys.push("Nirwaden");
             this.allys.push("clamia");
+            this.allys.push("EstolGang");
         }
         if (this.team == "Vardan")
         {
@@ -927,6 +934,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Cephrite");
             this.allys.push("Nirwaden");
             this.allys.push("clamia");
+            this.allys.push("EstolGang");
         }
         if (this.team == "Kel")
         {
@@ -943,6 +951,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Cephrite");
             this.allys.push("Nirwaden");
             this.allys.push("clamia");
+            this.allys.push("EstolGang");
         }
         if (this.team == "Thengar")
         {
@@ -959,6 +968,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Cephrite");
             this.allys.push("Nirwaden");
             this.allys.push("clamia");
+            this.allys.push("EstolGang");
         }
         if (this.team == "Aldrek")
         {
@@ -974,6 +984,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Freynor");
             this.allys.push("Vardan");
             this.allys.push("clamia");
+            this.allys.push("EstolGang");
         }
         if (this.team == "Orgell")
         {
@@ -990,6 +1001,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Cephrite");
             this.allys.push("Nirwaden");
             this.allys.push("clamia");
+            this.allys.push("EstolGang");
         }
         if (this.team == "Cephrite")
         {
@@ -1007,6 +1019,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Vardan");
             this.allys.push("Nirwaden");
             this.allys.push("clamia");
+            this.allys.push("EstolGang");
         }
         if (this.team == "Nirwaden")
         {
@@ -1024,6 +1037,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Vardan");
             this.allys.push("Cephrite");
             this.allys.push("clamia");
+            this.allys.push("EstolGang");
         }
         if (this.team == "TheBalgurMercenaries")
         {
@@ -1041,6 +1055,37 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Cephrite");
             this.allys.push("Nirwaden");
             this.allys.push("clamia");
+            this.allys.push("EstolGang");
+        }
+        if (this.team == "EstolGang")
+        {
+            if (player.estolGangPeace && player.estolgangFaction > -50)
+            {
+                this.allys.push("player");
+            }
+
+            this.allys.push("TheBalgurMercenaries");
+            this.allys.push("herdia");
+            this.allys.push("Thengar");
+            this.allys.push("Freynor");
+            this.allys.push("Aldrek");
+            this.allys.push("Orgell");
+            this.allys.push("Vardan");
+            this.allys.push("Cephrite");
+            this.allys.push("Nirwaden");
+            this.allys.push("clamia");
+            this.allys.push("EstolGang2");
+        }
+        if (this.team == "EstolGang2")
+        {
+            if (player.estolGangPeace && player.estolgangFaction > -1)
+            {
+                this.allys.push("player");
+            }
+
+            this.allys.push("herdia");
+            this.allys.push("clamia");
+            this.allys.push("EstolGang");
         }
         if (this.team == "werewolf")
         {
@@ -1432,8 +1477,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.dtd() > ((TTD / 16.75) * this.speed + 1))
                 {
-                    var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
-                    var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
+                    var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned * timeSpeed;
+                    var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned * timeSpeed;
 
                     if (!this.isObstructed(nextX, nextY) || this.flying == true || this.underground == true)
                     {
@@ -2566,8 +2611,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.patrolDistance > ((TTD / 16.75) * this.speed + 1)) //If the buffer between the target and this unit is not reached yet, and this has not been obstructed by anything, and the target is within sight then move a little bit in the direction of that target.
                 {
-                    var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
-                    var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned;
+                    var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned * timeSpeed;
+                    var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * this.speed) * this.stunned * timeSpeed;
 
                     if (!this.isObstructed(nextX, nextY) || this.flying == true || this.underground == true)
                     {
@@ -2933,8 +2978,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     spd = this.speed;
                 }
 
-                var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * spd) * this.stunned;
-                var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * spd) * this.stunned;
+                var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * spd) * this.stunned * timeSpeed;
+                var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * spd) * this.stunned * timeSpeed;
 
                 if (!this.isObstructed( nextX, nextY ) || this.flying == true || this.underground == true)
                 {
@@ -3142,13 +3187,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.mounted) //mounts go faster because they are urged to...
                 {
-                    var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * spd) * this.stunned * 1.15 + Math.min(0.09, 0.002 * player.getSurvivalism());
-                    var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * spd) * this.stunned * 1.15 + Math.min(0.09, 0.002 * player.getSurvivalism());
+                    var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * spd) * this.stunned * timeSpeed * 1.15 + (Math.min(0.09, 0.002 * player.getSurvivalism()) * timeSpeed);
+                    var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * spd) * this.stunned * timeSpeed * 1.15 + (Math.min(0.09, 0.002 * player.getSurvivalism()) * timeSpeed);
                 }
                 else
                 {
-                    var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * spd) * this.stunned;
-                    var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * spd) * this.stunned;
+                    var nextX = this.X - Math.cos(this.rotation) * ((TTD / 16.75) * spd) * this.stunned * timeSpeed;
+                    var nextY = this.Y - Math.sin(this.rotation) * ((TTD / 16.75) * spd) * this.stunned * timeSpeed;
                 }
 
                 if (!this.isObstructed( nextX, nextY ) || this.flying == true || this.underground == true)
@@ -4734,6 +4779,56 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawUnit(norc, 408, 645, 37, 105, -1/2 * 37 * 1.5 -2, -1/2 * 105 * 1.5 - 76, 37 * 1.5, 105 * 1.5, 1 / 2 * Math.PI);
             }
         }
+        else if (this.weapon == "crateLight" || this.weapon == "crateDark" || this.weapon == "basketLight" || this.weapon == "basketDark")
+        {
+            this.damageFrame = "manual";
+            if (theCostume <= 0)
+            {
+                if (this.weapon == "basketLight")
+                {
+                    this.drawUnit(mofu, 457, 175, 32, 30, -22, -28, 32 * 1.25, 30 * 1.25, 1 / 2 * Math.PI);
+                    this.drawUnit(atal, 1201, 2790, 32, 23, -1/2 * 32 * 1 -0, -1/2 * 23 * 1 - 20, 32 * 1, 23 * 1, 1 / 2 * Math.PI);
+                }
+                else if (this.weapon == "basketDark")
+                {
+                    this.drawUnit(mofu, 457, 175, 32, 30, -22, -28, 32 * 1.25, 30 * 1.25, 1 / 2 * Math.PI);
+                    this.drawUnit(atal, 1248, 2790, 32, 23, -1/2 * 32 * 1 -0, -1/2 * 23 * 1 - 20, 32 * 1, 23 * 1, 1 / 2 * Math.PI);
+                }
+                else if (this.weapon == "crateDark")
+                {
+                    this.drawUnit(polypol, 1862, 109, 44, 24, -22, -20, 44, 24, 1 / 2 * Math.PI);
+                    this.drawUnit(polpol, 89, 212, 66, 40, -(1/2 * 66 * 1.2), -(1/2 * 40 * 1.2 + 26), 66 * 1.2, 40 * 1.2, 1 / 2 * Math.PI);
+                }
+                else if (this.weapon == "crateLight")
+                {
+                    this.drawUnit(polypol, 1862, 109, 44, 24, -22, -20, 44, 24, 1 / 2 * Math.PI);
+                    this.drawUnit(polpol, 298, 273, 49, 57, -(1/2 * 49 * 1.2), -(1/2 * 57 * 1.2 + 26), 49 * 1.2, 57 * 1.2, 1 / 2 * Math.PI);
+                }
+            }
+            else if (theCostume >= 1)
+            {
+                if (this.weapon == "basketLight")
+                {
+                    this.drawUnit(mofu, 457, 175, 32, 30, -22, -28, 32 * 1.25, 30 * 1.25, 1 / 2 * Math.PI);
+                    this.drawUnit(atal, 1201, 2790, 32, 23, -1/2 * 32 * 1 -0, -1/2 * 23 * 1 - 20, 32 * 1, 23 * 1, 1 / 2 * Math.PI);
+                }
+                else if (this.weapon == "basketDark")
+                {
+                    this.drawUnit(mofu, 457, 175, 32, 30, -22, -28, 32 * 1.25, 30 * 1.25, 1 / 2 * Math.PI);
+                    this.drawUnit(atal, 1248, 2790, 32, 23, -1/2 * 32 * 1 -0, -1/2 * 23 * 1 - 20, 32 * 1, 23 * 1, 1 / 2 * Math.PI);
+                }
+                else if (this.weapon == "crateDark")
+                {
+                    this.drawUnit(polypol, 1862, 109, 44, 24, -22, -20, 44, 24, 1 / 2 * Math.PI);
+                    this.drawUnit(polpol, 89, 212, 66, 40, -(1/2 * 66 * 1.2), -(1/2 * 40 * 1.2 + 26), 66 * 1.2, 40 * 1.2, 1 / 2 * Math.PI);
+                }
+                else if (this.weapon == "crateLight")
+                {
+                    this.drawUnit(polypol, 1862, 109, 44, 24, -22, -20, 44, 24, 1 / 2 * Math.PI);
+                    this.drawUnit(polpol, 298, 273, 49, 57, -(1/2 * 49 * 1.2), -(1/2 * 57 * 1.2 + 26), 49 * 1.2, 57 * 1.2, 1 / 2 * Math.PI);
+                }
+            }
+        }
         else if (this.weapon == "freydicSword")
         {
             this.damageFrame = "automatic";
@@ -4764,6 +4859,46 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (theCostume >= 6)
             {
                 this.drawUnit(oldverse, 2635, 1, 73, 63, -49.25, -69, 91.875, 78.75, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "nirineseSabre")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(verse, 373, 2, 90, 96, -55, -41, 90, 96, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(verse, 455, 2, 90, 96, -40, -44, 90, 96, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(verse, 529, 2, 90, 96, -44, -39, 90, 96, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(verse, 600, 2, 90, 96, -45, -44, 90, 96, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 4)
+            {
+                this.drawUnit(verse, 696, 2, 90, 96, -32, -44, 90, 96, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 5)
+            {
+                this.drawUnit(verse, 798, 2, 90, 96, -32, -48, 90, 96, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 6)
+            {
+                this.drawUnit(verse, 896, 2, 90, 96, -36, -46, 90, 96, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 7)
+            {
+                this.drawUnit(verse, 996, 2, 90, 96, -42, -71.5, 90, 96, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 8)
+            {
+                this.drawUnit(verse, 1085, 2, 90, 96, -49, -84, 90, 96, 1 / 2 * Math.PI);
             }
         }
         else if (this.weapon == "freydicSpear")
@@ -18037,6 +18172,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.target == player)
                 {
+                    //trample player
+                    if (this.team != "player")
+                    {
+                        if (this.DTP() < 1.2 * this.engagementRadius)
+                        {
+                            player.stunnedTimer = 2;
+                            player.stunnedII = true;
+                        }
+                    }
                     if (this.team == "balkuria")
                     {
                         var doMove = true;
@@ -18072,6 +18216,26 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (this.target != "none")
                 {
+                    //trample unit
+                    for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                    {
+                        if (ArtificialIntelligenceAccess[ll] != this)
+                        {
+                            if (ArtificialIntelligenceAccess[ll].haste == false && ArtificialIntelligenceAccess[ll].healthMAX < 40 && ArtificialIntelligenceAccess[ll].team != "balkuria")
+                            {
+                                if (this.team != "player" || ArtificialIntelligenceAccess[ll].team != "player")
+                                {
+                                    if (ArtificialIntelligenceAccess[ll].DTU(this) <= 1.2 * this.engagementRadius)
+                                    {
+                                        ArtificialIntelligenceAccess[ll].stunTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[ll].stunTimer = 2;
+                                        ArtificialIntelligenceAccess[ll].stunII = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     if (this.team == "balkuria")
                     {
                         var doMove = true;
@@ -31220,13 +31384,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         kk = true;
                         if (this.target == player)
                         {
-                            this.X += Math.cos(Math.atan2(Y - this.Y, X - this.X) * this.redirectAng) * this.speed * this.stunned;
-                            this.Y += Math.sin(Math.atan2(Y - this.Y, X - this.X) * this.redirectAng) * this.speed * this.stunned;
+                            this.X += Math.cos(Math.atan2(Y - this.Y, X - this.X) * this.redirectAng) * this.speed * this.stunned * timeSpeed;
+                            this.Y += Math.sin(Math.atan2(Y - this.Y, X - this.X) * this.redirectAng) * this.speed * this.stunned * timeSpeed;
                         }
                         else if (this.target != "none")
                         {
-                            this.X += Math.cos(Math.atan2(this.target.Y - this.Y, this.target.X - this.X) * this.redirectAng) * this.speed * this.stunned;
-                            this.Y += Math.sin(Math.atan2(this.target.Y - this.Y, this.target.X - this.X) * this.redirectAng) * this.speed * this.stunned;
+                            this.X += Math.cos(Math.atan2(this.target.Y - this.Y, this.target.X - this.X) * this.redirectAng) * this.speed * this.stunned * timeSpeed;
+                            this.Y += Math.sin(Math.atan2(this.target.Y - this.Y, this.target.X - this.X) * this.redirectAng) * this.speed * this.stunned * timeSpeed;
                         }
                         if (this.redirectAng < 0 && ArtificialIntelligenceAccess[k].redirectAng < 0 || this.redirectAng >= 0 && ArtificialIntelligenceAccess[k].redirectAng >= 0)
                         {
@@ -32282,6 +32446,21 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.callForNearbyHelpFromType(1850, "Soldier");
                         }
                     }
+                    //Minor Factions
+                    if (this.ultra.faction == "TheBalgurMercenaries")
+                    {
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.theBalgurMercenariesFaction -= 25;
+                        }
+                    }
+                    if (this.ultra.faction == "EstolGang")
+                    {
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.estolgangFaction -= 25;
+                        }
+                    }
 
                     //Unique Characters Permanent Death
                     if (this.ID == "Laandeg the Alchemist")
@@ -32557,7 +32736,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                     else if (this.ID == "Irene")
                     {
-                        uniqueChars.ireneLDS = false
+                        uniqueChars.ireneLDS = false;
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.kelFaction -= 50;
@@ -32777,6 +32956,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         else if (this.weapon == "fishingpole")
                         {
                             this.costumeEngine(6, 0.15, true);
+                        }
+                        else if (this.weapon == "crateLight" || this.weapon == "crateDark" || this.weapon == "basketDark" || this.weapon == "basketLight")
+                        {
+                            this.costumeEngine(2, 0.15, true);
+                        }
+                        else if (this.weapon == "nirineseSabre")
+                        {
+                            this.costumeEngine(9, 0.3, true);
                         }
                     }
                 }
@@ -33147,6 +33334,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         }
                     }
                 }
+                else if (this.ultra.faction == "EstolGang" || this.ultra.faction == "EstolGang2")
+                {
+                    if (player.estolgangFaction <= -50)
+                    {
+                        this.disturbed = true;
+                    }
+
+                    //add presets and standard
+                }
                 else if (this.ultra.faction == "hostile")
                 {
                     if (this.ID == "Looter")
@@ -33479,6 +33675,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.nirwadenFaction -= 50;
                         }
                     }
+                    //Minor Factions
+                    if (this.ultra.faction == "TheBalgurMercenaries")
+                    {
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.theBalgurMercenariesFaction -= 50;
+                        }
+                    }
+                    if (this.ultra.faction == "EstolGang")
+                    {
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.estolgangFaction -= 50;
+                        }
+                    }
+
                     //Unique Characters Permanent Death
                     if (this.ID == "Hetmer The Bandit Chief")
                     {
@@ -33628,10 +33840,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.ID == "Balgur Mercenary")
                         {
                             quests.theBalgurMercenariesMercsKilled += 1;
-                            if (this.killNotByPlayer == false || this.killByPlayerTeam)
-                            {
-                                player.theBalgurMercenariesFaction -= 50;
-                            }
                         }
                     }
 
@@ -33800,6 +34008,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         else if (this.weapon == "fishingpole")
                         {
                             this.costumeEngine(6, 0.15, true);
+                        }
+                        else if (this.weapon == "crateLight" || this.weapon == "crateDark" || this.weapon == "basketDark" || this.weapon == "basketLight")
+                        {
+                            this.costumeEngine(2, 0.15, true);
+                        }
+                        else if (this.weapon == "nirineseSabre")
+                        {
+                            this.costumeEngine(9, 0.3, true);
                         }
                     }
                 }

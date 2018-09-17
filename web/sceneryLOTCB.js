@@ -5845,6 +5845,14 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     }
                 }
             }
+            else if (this.temporary == "atalinTollBridgeValidation")
+            {
+
+                    if (X < -40305 && X > - 40808 && Y < 1549 && Y > 1116)
+                    {
+                        quests.atalinToll = true;
+                    }
+            }
 
             //INTERACTION
             if (this.activate == true)

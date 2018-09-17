@@ -1117,6 +1117,11 @@ function applySelectionsButton()
             X = 51861;
             Y = -8577;
         }
+        else if (player.raceName == "Nirwaden")
+        {
+            X = -40495;
+            Y = 1316;
+        }
         //Actually start the game here.
         theme.pause();
         gameState = "active";

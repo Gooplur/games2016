@@ -976,6 +976,145 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Leon the Toll Master" || conversationID[0] == "Leon")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Leon";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+                                if (quests.atalinToll == false)
+                                {
+                                    player.dialogueOptions.push(["...", false, "a"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            if (player.gender == "Female" && player.title == "Highfolk" && player.raceName == "Nirwaden" || player.gender == "Female" && player.title == "Nobility" || player.gender == "Female" && player.title == "Royalty")
+                            {
+                                leonLady.play();
+                                leonLady.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else if (player.title == "Highfolk" && player.raceName == "Nirwaden" || player.title == "Nobility" || player.title == "Royalty")
+                            {
+                                leonLiege.play();
+                                leonLiege.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                leonCross.play();
+                                leonCross.onended = function()
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I'll find another way to cross...", false, "b"], ["I don't have enough money.", false, "b"], ["Then I will not cross!", false, "b"]];
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 10)
+                                    {
+                                        player.dialogueOptions.unshift(["(pay toll of 10 coins)", false, "a"])
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            leonTanks.play();
+                            leonTanks.onended = function()
+                            {
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins")
+                                    {
+                                        Inventory[i][1] -= 10;
+                                        if (Inventory[i][1] <= 0)
+                                        {
+                                            Inventory.splice(i, 1);
+                                        }
+                                        break;
+                                    }
+                                }
+                                quests.atalinToll = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
                     if (self.ID == "Joaquin the Barkeep" || conversationID[0] == "Joaquin")
                     {
                         lowBar = "dialogue";
@@ -1011,7 +1150,7 @@ function interaction(me)
                         }
                         else if (conversationID[1] == "0a")
                         {
-                            if (player.gender == "Female" && player.charisma >= 14 && player.gamemode != "protagonist")
+                            if (player.gender == "Female" && player.charisma >= 4 && player.gamemode != "protagonist" && player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty")
                             {
                                 joaquinPrettyThing.play();
                                 joaquinPrettyThing.onended = function()
@@ -1022,7 +1161,7 @@ function interaction(me)
                                     self.SC();
                                 }
                             }
-                            else if (player.gender == "Male" || player.gamemode == "protagonist")
+                            else if (player.gender == "Male" || player.gamemode == "protagonist" || player.title == "Nobility" || player.title == "Royalty" || player.title == "Highfolk")
                             {
                                 joaquinDrink.play();
                                 joaquinDrink.onended = function()
@@ -1127,6 +1266,7 @@ function interaction(me)
                             joaquinToWork.onended = function()
                             {
                                 player.estolRank = "Hooker";
+                                player.estolgangFaction += 10;
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 3;
@@ -1190,11 +1330,15 @@ function interaction(me)
                                     self.SC();
                                 }
                             }
-                            else
+                            else if (player.charisma >= 14)
                             {
                                 joaquinGoodbye.play();
                                 joaquinGoodbye.onended = function()
                                 {
+                                    if (player.estolRank == "Hooker")
+                                    {
+                                        player.estolgangFaction += 10;
+                                    }
                                     player.estolRank = "Courtesan";
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
@@ -1326,7 +1470,7 @@ function interaction(me)
                             if (player.dialogueChoiceMade == false)
                             {
                                 player.dialogueOptions = [];
-                                if (player.gender == "Female" && player.energy >= 20 || player.gender == "Female" && player.energy == player.energyMAX)
+                                if (player.gender == "Female" && player.energy >= 11)
                                 {
                                     if (player.estolRank == "Hooker" || player.estolRank == "Courtesan")
                                     {
@@ -1356,8 +1500,13 @@ function interaction(me)
                             player.blinded = true;
                             player.blindedStoreTime = new Date().getTime();
                             player.blindedTime = 6;
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 1;
+                            self.SC();
                             saxomoan.onended = function()
                             {
+                                playersTurnToSpeak = true;
+
                                 var gaveCoins = false;
                                 for (var i = 0; i < Inventory.length; i++)
                                 {
@@ -1374,7 +1523,7 @@ function interaction(me)
                                     Inventory.unshift([new Item("coins", false, false), 6]);
                                 }
 
-                                player.energy = 0;
+                                player.energy = -11;
                                 player.experience = Math.max(0, player.experience - 50);
 
                                 //abuse
@@ -1406,13 +1555,38 @@ function interaction(me)
                                 }
 
                                 quests.estolHookup += 1;
-                                artificialIntelligenceAccess = [];
-                                change = "hookup";
-                                playersTurnToSpeak = true;
-                                player.dialoguePosition = 0;
-                                conversationID[1] = 0;
-                                self.SC();
                             }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["How was I...", false, "a"], ["That was so good...", false, "a"], ["Oh, have you finished yet...", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "1a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                            dialogueReset(self);
+                            ArtificialIntelligenceAccess = [];
+                            change = "hookup";
                         }
                     }
 

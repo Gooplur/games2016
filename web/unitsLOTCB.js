@@ -6166,6 +6166,76 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 XXX.rotate(this.rotation + 1 / 2 * Math.PI);
                 XXX.drawImage(verse, 2140, 29, 25, 20, -(1 / 2 * 25) - 1.75, -(1 / 2 * 20) - 4, 31, 27.2);
             }
+            else if (outfit == "nirwadenMorionArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 28, 653, 67, 55, -(1 / 2 * 67 * 0.62) + 0.5, -(1 / 2 * 55 * 0.62) - 0.4, 67 * 0.62, 55 * 0.62);
+            }
+            else if (outfit == "nirwadenPlateArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 251, 670, 56, 42, -(1 / 2 * 56 * 0.7) + 3, -(1 / 2 * 42 * 0.7) -0, 56 * 0.7, 42 * 0.7);
+            }
+            else if (outfit == "nirwadenClothingF")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 20, 1023, 49, 47, -(1 / 2 * 49 * 0.65) - 0, -(1 / 2 * 47 * 0.65) - 0, 49 * 0.65, 47 * 0.65);
+            }
+            else if (outfit == "nirwadenClothingM")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 830, 866, 44, 46, -(1 / 2 * 44 * 0.62) - 1.5, -(1 / 2 * 46 * 0.62) - 0, 44 * 0.62, 46 * 0.62);
+            }
+            else if (outfit == "inquisitionOutfit")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 594, 868, 85, 49, -(1 / 2 * 85 * 0.61) + 0.5, -(1 / 2 * 49 * 0.61) - 1.4, 85 * 0.61, 49 * 0.61);
+            }
+            else if (outfit == "nirwadenPriestRobes")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 444, 3515, 65, 54, -(1 / 2 * 65 * 0.62) - 8, -(1 / 2 * 54 * 0.62) - 0, 65 * 0.62, 54 * 0.62);
+            }
+            else if (outfit == "nirwadenGambeson")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 32, 489, 63, 45, -(1 / 2 * 63 * 0.66) + 0.5, -(1 / 2 * 45 * 0.66) - 1.7, 63 * 0.66, 45 * 0.66);
+            }
             else if (outfit == "walrusLeatherArmour")
             {
                 XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
@@ -7009,7 +7079,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 0;
                 this.speed = 6.1 + (Math.floor(Math.random() * 5) / 10);
                 this.rangeOfSight = 900; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.075; // was 0.05
+                this.rotationSpeed = 0.1; // was 0.075
                 this.engagementRadius = 69;
                 this.sizeRadius = 50;
                 this.negateArmour = 10;
@@ -33335,6 +33405,76 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
                         {
                             this.callForNearbyHelpFromType(2200, "Soldier");
+                        }
+                    }
+                }
+                else if (this.ultra.faction == "Nirwaden")
+                {
+                    //RANGE OF SIGHT (anything related to range of sight)
+                    this.rangeOfSightCalculator(800, true);
+
+                    //All of this factions guards drop this:
+                    if (this.ID == "Lord Leoneidus Altezor")
+                    {
+                        this.drops = [[new Item("coins", this.X, this.Y), 1150], [new Item("nirwadenNobleOutfit)", this.X, this.Y), 1]];
+                        //this.switchToRanged("crossbow");
+                    }
+                    else if (this.ID == "Leon the Toll Master")
+                    {
+                        this.drops = [[new Item("coins", this.X, this.Y), 150], [new Item("nirwadenPlateArmour)", this.X, this.Y), 1], [new Item("nirineseSabre", this.X, this.Y), 1]];
+                        this.switchToRanged("crossbow");
+                        lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.8, Alpha: 0.82, showMe: false});
+                    }
+                    else if (this.ID == "Altezor Knight")
+                    {
+                        this.drops = [[new Item("coins", this.X, this.Y), 250], [new Item("nirwadenPlateArmour", this.X, this.Y), 1], [new Item("nirineseSabre", this.X, this.Y), 1]];
+                        this.switchToRanged("crossbow");
+                        lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.8, Alpha: 0.82, showMe: false});
+                    }
+                    else if (this.ID == "Altezor Captain")
+                    {
+                        this.drops = [[new Item("coins", this.X, this.Y), 100], [new Item("nirwadenMorionArmour", this.X, this.Y), 1], [new Item("nirineseSabre", this.X, this.Y), 1]];
+                        this.switchToRanged("crossbow");
+                        lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.8, Alpha: 0.82, showMe: false});
+                    }
+                    else if (this.ID == "Altezor Soldier")
+                    {
+                        this.drops = [[new Item("coins", this.X, this.Y), 38 + (Math.floor(Math.random() * 51))]];
+                        this.switchToRanged("crossbow");
+                        lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.8, Alpha: 0.82, showMe: false});
+                    }
+                    else
+                    {
+                        this.drops = [];
+                    }
+
+                    //map e4 toll bridge
+                    if (player.title != "Royalty" && player.title != "Nobility")
+                    {
+                        if (player.title != "Highfolk" || player.raceName != "Nirwaden")
+                        {
+                            if (region == "e4" && player.toll == true && quests.atalinToll == false)
+                            {
+                                if (this.rangeOfSight >= this.DTP())
+                                {
+                                    this.disturbed = true;
+                                }
+                            }
+                        }
+                    }
+
+                    // If the target has too low a level of relations with the faction they are an enemy.
+                    if (player.nirwadenFaction <= -50)
+                    {
+                        this.disturbed = true;
+                    }
+
+                    //Call for help from other guards unless the culprit is the royal leader.
+                    if (this.disturbed == true)
+                    {
+                        if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
+                        {
+                            this.callForNearbyHelpFromType(20000, "Soldier");
                         }
                     }
                 }

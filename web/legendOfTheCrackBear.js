@@ -133,6 +133,12 @@ function legendaryPrerequisites()
     var loadMag = new Audio("sounds/insertClip.mp3");
     window.loadMag = loadMag;
 
+    var shotgunShot = new Audio("sounds/polySounds/shotgunShoot.wav");
+    window.shotgunShot = shotgunShot;
+
+    var shotgunMag = new Audio("sounds/polySounds/shotgunReload.wav");
+    window.shotgunMag = shotgunMag;
+
     var crossbowGun = new Audio("sounds/basicGunSound.mp3");
     window.crossbowGun = crossbowGun;
 
@@ -1246,7 +1252,21 @@ function legendaryPrerequisites()
     var markosPick = new Audio("sounds/polySounds/markosPick.mp3");
     window.markosPick = markosPick;
 
-        //OLIS PYNSKE CHARACTER: voice acting
+    //MARKOS CHARACTER: voice acting
+
+    var leonLady = new Audio("sounds/polySounds/leonLady.wav");
+    window.leonLady = leonLady;
+
+    var leonLiege = new Audio("sounds/polySounds/leonLiege.wav");
+    window.leonLiege = leonLiege;
+
+    var leonCross = new Audio("sounds/polySounds/leonCross.wav");
+    window.leonCross = leonCross;
+
+    var leonTanks = new Audio("sounds/polySounds/leonTanks.wav");
+    window.leonTanks = leonTanks;
+
+    //OLIS PYNSKE CHARACTER: voice acting
 
     var olisMyLady = new Audio("sounds/polySounds/olisMyLady.mp3");
     window.olisMyLady = olisMyLady;
@@ -1791,6 +1811,10 @@ function legendaryPrerequisites()
     nirRoad.src = ("images/nirwadenRoad.jpg");
     window.nirRoad = nirRoad;
 
+    var labEnv = new Image();
+    labEnv.src = ("images/labTexture.jpg");
+    window.labEnv = labEnv;
+
     var kolumIMG = new Image();
     kolumIMG.src = ("images/kolumIMG.png");
     window.kolumIMG = kolumIMG;
@@ -1855,6 +1879,18 @@ function beetlePack()
     window.milk = milk;
 
     milk.onload = function()
+    {
+        agentPack();
+    };
+}
+
+function agentPack()
+{
+    var gent = new Image();
+    gent.src = ("images/gent.png");
+    window.gent = gent;
+
+    gent.onload = function()
     {
         dmlPack();
     };
@@ -3118,7 +3154,10 @@ function theLegend()
         feniglio: ["Feniglio", 0],
         hooker: ["Hooker", 0],
         john: ["John", 0],
-        joaquin: ["Joaquin", 0]
+        joaquin: ["Joaquin", 0],
+        leon: ["Leon", 0],
+        jimena: ["Jimena", 0],
+        agustin: ["Agustin", 0]
     };
 
 //time Tracker Variables
@@ -3269,7 +3308,10 @@ function theLegend()
         feniglioLDS: true,
         micaelLDS: true,
         jorgeLDS: true,
-        joaquinLDS: true
+        joaquinLDS: true,
+        leonLDS: true,
+        jimenaLDS: true,
+        agustinLDS: true
     };
 //QUESTS
     quests =
@@ -3300,6 +3342,7 @@ function theLegend()
         orjovBeseeched: false,
         killedStambjordHeir: false,
         rannukThreatened: false,
+        atalinToll: false,
 
         //PLAYER PROPERTY
         teshirHomeOwned: false,

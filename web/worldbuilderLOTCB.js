@@ -1007,6 +1007,15 @@ function worldBuilder()
         //starting chamber
         outlineBuilder( 1, 1, "dockV", 0, 0);
     }
+    else if (map == "atalinCityPrison")
+    {
+        player.dmx = map;
+        player.underground = true;
+        elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "atalinCityPrison";
+        //starting chamber
+        outlineBuilder( 1, 1, "dockH", 0, 0);
+    }
     else if (map == "venningMineshaft")
     {
         player.dmx = map;

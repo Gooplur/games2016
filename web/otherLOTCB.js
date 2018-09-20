@@ -570,31 +570,48 @@ function screenCover()
     //cyberTargeting
     if (player.cyberToggle == 2 || player.cyberToggle == 3) //cyber targeting
     {
-        for (var cyberTarget = 0; cyberTarget < ArtificialIntelligenceAccess.length; cyberTarget++)
+        if (gameState == "active" || gameState == "stopTime")
         {
-            if (ArtificialIntelligenceAccess[cyberTarget].alive && ArtificialIntelligenceAccess[cyberTarget].undeath == false && ArtificialIntelligenceAccess[cyberTarget].ghost == false && ArtificialIntelligenceAccess[cyberTarget].petrified == false && ArtificialIntelligenceAccess[cyberTarget].team != "undead")
+            for (var cyberTarget = 0; cyberTarget < ArtificialIntelligenceAccess.length; cyberTarget++)
             {
-                var ddttpp = ArtificialIntelligenceAccess[cyberTarget].DTP();
-                if (ddttpp <= 2250 && ddttpp > 550)
+                if (ArtificialIntelligenceAccess[cyberTarget].alive && ArtificialIntelligenceAccess[cyberTarget].undeath == false && ArtificialIntelligenceAccess[cyberTarget].ghost == false && ArtificialIntelligenceAccess[cyberTarget].petrified == false && ArtificialIntelligenceAccess[cyberTarget].team != "undead")
                 {
-                    if (ArtificialIntelligenceAccess[cyberTarget].team != "player")
+                    var ddttpp = ArtificialIntelligenceAccess[cyberTarget].DTP();
+                    if (ddttpp <= 2250 && ddttpp > 550)
                     {
-                        if (ArtificialIntelligenceAccess[cyberTarget].type == "Person" || ArtificialIntelligenceAccess[cyberTarget].type == "Soldier")
+                        if (ArtificialIntelligenceAccess[cyberTarget].team != "player")
                         {
-                            if (ArtificialIntelligenceAccess[cyberTarget].disturbed)
+                            if (ArtificialIntelligenceAccess[cyberTarget].type == "Person" || ArtificialIntelligenceAccess[cyberTarget].type == "Soldier")
                             {
-                                var cyTarX = 1/2 * CCC.width + Math.cos(Math.atan2(Y - ArtificialIntelligenceAccess[cyberTarget].Y, X - ArtificialIntelligenceAccess[cyberTarget].X)) * 70;
-                                var cyTarY = 1/2 * CCC.height + Math.sin(Math.atan2(Y - ArtificialIntelligenceAccess[cyberTarget].Y, X - ArtificialIntelligenceAccess[cyberTarget].X)) * 70;
-                                console.log(cyTarX);
-                                console.log(cyTarY);
-                                XXX.save();
-                                XXX.beginPath();
-                                //XXX.fillStyle = "#53D915";
-                                XXX.fillStyle = "red";
-                                XXX.globalAlpha = 0.65;
-                                XXX.arc(cyTarX, cyTarY, 2, 0, 2*Math.PI);
-                                XXX.fill();
-                                XXX.restore();
+                                if (ArtificialIntelligenceAccess[cyberTarget].disturbed)
+                                {
+                                    var cyTarX = 1/2 * CCC.width + Math.cos(Math.atan2(Y - ArtificialIntelligenceAccess[cyberTarget].Y, X - ArtificialIntelligenceAccess[cyberTarget].X)) * 70;
+                                    var cyTarY = 1/2 * CCC.height + Math.sin(Math.atan2(Y - ArtificialIntelligenceAccess[cyberTarget].Y, X - ArtificialIntelligenceAccess[cyberTarget].X)) * 70;
+                                    console.log(cyTarX);
+                                    console.log(cyTarY);
+                                    XXX.save();
+                                    XXX.beginPath();
+                                    //XXX.fillStyle = "#53D915";
+                                    XXX.fillStyle = "red";
+                                    XXX.globalAlpha = 0.65;
+                                    XXX.arc(cyTarX, cyTarY, 2, 0, 2*Math.PI);
+                                    XXX.fill();
+                                    XXX.restore();
+                                }
+                                else
+                                {
+                                    var cyTarX = 1/2 * CCC.width + Math.cos(Math.atan2(Y - ArtificialIntelligenceAccess[cyberTarget].Y, X - ArtificialIntelligenceAccess[cyberTarget].X)) * 70;
+                                    var cyTarY = 1/2 * CCC.height + Math.sin(Math.atan2(Y - ArtificialIntelligenceAccess[cyberTarget].Y, X - ArtificialIntelligenceAccess[cyberTarget].X)) * 70;
+                                    console.log(cyTarX);
+                                    console.log(cyTarY);
+                                    XXX.save();
+                                    XXX.beginPath();
+                                    XXX.fillStyle = "#3F82C5";
+                                    XXX.globalAlpha = 0.65;
+                                    XXX.arc(cyTarX, cyTarY, 2, 0, 2*Math.PI);
+                                    XXX.fill();
+                                    XXX.restore();
+                                }
                             }
                             else
                             {
@@ -604,7 +621,7 @@ function screenCover()
                                 console.log(cyTarY);
                                 XXX.save();
                                 XXX.beginPath();
-                                XXX.fillStyle = "#3F82C5";
+                                XXX.fillStyle = "#DE7206";
                                 XXX.globalAlpha = 0.65;
                                 XXX.arc(cyTarX, cyTarY, 2, 0, 2*Math.PI);
                                 XXX.fill();
@@ -619,26 +636,12 @@ function screenCover()
                             console.log(cyTarY);
                             XXX.save();
                             XXX.beginPath();
-                            XXX.fillStyle = "#DE7206";
+                            XXX.fillStyle = "#92DEDE";
                             XXX.globalAlpha = 0.65;
                             XXX.arc(cyTarX, cyTarY, 2, 0, 2*Math.PI);
                             XXX.fill();
                             XXX.restore();
                         }
-                    }
-                    else
-                    {
-                        var cyTarX = 1/2 * CCC.width + Math.cos(Math.atan2(Y - ArtificialIntelligenceAccess[cyberTarget].Y, X - ArtificialIntelligenceAccess[cyberTarget].X)) * 70;
-                        var cyTarY = 1/2 * CCC.height + Math.sin(Math.atan2(Y - ArtificialIntelligenceAccess[cyberTarget].Y, X - ArtificialIntelligenceAccess[cyberTarget].X)) * 70;
-                        console.log(cyTarX);
-                        console.log(cyTarY);
-                        XXX.save();
-                        XXX.beginPath();
-                        XXX.fillStyle = "#92DEDE";
-                        XXX.globalAlpha = 0.65;
-                        XXX.arc(cyTarX, cyTarY, 2, 0, 2*Math.PI);
-                        XXX.fill();
-                        XXX.restore();
                     }
                 }
             }

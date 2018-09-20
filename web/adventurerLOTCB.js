@@ -626,13 +626,13 @@ function Adventurer()
         {
             if (this.ammoLoaded == false)
             {
-                this.REQB = false;
+                //this.REQB = false;
             }
             else
             {
                 if (this.isAmmoEquipped)
                 {
-                    this.REQB = true;
+                    //this.REQB = true;
                 }
             }
         }
@@ -647,13 +647,13 @@ function Adventurer()
 
             if (this.ammoLoaded == false)
             {
-                this.REQB = false;
+                //this.REQB = false;
             }
             else
             {
                 if (this.isAmmoEquipped)
                 {
-                    this.REQB = true;
+                    //this.REQB = true;
                 }
             }
         }
@@ -27943,6 +27943,31 @@ function Adventurer()
                             {
                                 Inventory[i][0].equipped = false;
                                 this.isAmmoEquipped = false;
+
+                                //guns' ammo is delete if you switch out of a partially used clip...
+                                if (magAmmo != "X")
+                                {
+                                    if (Inventory[i][0].type == "m16CarbineClip" && magAmmo < 30 || Inventory[i][0].type == "m16CarbineClip" && Inventory[i][1] <= 0)
+                                    {
+                                        magAmmo = "X";
+                                        Inventory[i][1] -= 1;
+                                        if (Inventory[i][1] <= 0)
+                                        {
+                                            Inventory.splice(i, 1);
+                                            break;
+                                        }
+                                    }
+                                    else if (Inventory[i][0].type == "shotgunAmmo" && magAmmo < 8 || Inventory[i][0].type == "shotgunAmmo" && Inventory[i][1] <= 0)
+                                    {
+                                        magAmmo = "X";
+                                        Inventory[i][1] -= 1;
+                                        if (Inventory[i][1] <= 0)
+                                        {
+                                            Inventory.splice(i, 1);
+                                            break;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

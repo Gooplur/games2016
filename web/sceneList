@@ -114,7 +114,7 @@ nirwadenTiendaR - A right facing open air nirwaden shop
 nirwadenTiendaL - A left facing open air nirwaden shop
 nirwadenMueble - set temporary between 0 and 8 to access chairs counters benches and tables of various shapes and sizes
 basket - A woven nirwaden basket for storing goods (there are two colours of basket available)
-nirwadenGoods - a variety of decorative nirwaden goods accessed by setting temporary between 0 and 24.
+nirwadenGoods - a variety of decorative nirwaden goods accessed by setting temporary between 0 and 28.
 nirwadenStableU - a nirwaden stable facing up
 nirwadenStableD - a nirwaden stable facing down
 nirwadenBuilding1 - right facing middle class home

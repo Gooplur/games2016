@@ -2330,6 +2330,7 @@ var duendeSwarm = false;
 var wiggleJoe = 0;
 var wiggleRand = 0;
 var timeSpeed = 1;
+var refillMag = true;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -3585,6 +3586,11 @@ function theLegend()
     allWeapons.push(new Item("chainsaw", false)); //71
     allWeapons.push(new Item("nirwadenLance", false)); //72
     allWeapons.push(new Item("werewolf", false)); //73 //this is not really a weapon, but a form
+    allWeapons.push(new Item("windArrow", false)); //74
+    allWeapons.push(new Item("timeArrow", false)); //75
+    allWeapons.push(new Item("vardanianHalberd", false)); //76
+    allWeapons.push(new Item("shotgun", false)); //77
+
 
 
 //This list holds one of each type of worn item so that the player can access the worn item stats.
@@ -3682,6 +3688,8 @@ function theLegend()
     allWorn.push(new Item("nechrovitePlateArmour", false)); //90
     allWorn.push(new Item("nechrovitePlateArmourBlackPlume", false)); //91
     allWorn.push(new Item("nechrovitePlateArmourRedPlume", false)); //92
+    allWorn.push(new Item("doctorOutfit", false)); //93
+    allWorn.push(new Item("mrbTacticalArmour", false)); //94
 
     scenicList = [];
 
@@ -3719,6 +3727,7 @@ function theLegend()
     smithing.push(new Item("lifeLeachArrow", false));
     smithing.push(new Item("freezingArrow", false));
     smithing.push(new Item("fireArrow", false));
+    smithing.push(new Item("windArrow", false));
     smithing.push(new Item("blueBlade", false));
     smithing.push(new Item("nirineseSabre", false));
     smithing.push(new Item("freydicSpear", false));
@@ -3769,6 +3778,7 @@ function theLegend()
     smithing.push(new Item("hyelingArmour", false));
     smithing.push(new Item("staff", false));
     smithing.push(new Item("vardanianGlaive", false));
+    smithing.push(new Item("vardanianHalberd", false));
     smithing.push(new Item("thenganDagger", false));
     smithing.push(new Item("thenganWarhammer", false));
     smithing.push(new Item("ancientArmour", false));
@@ -3898,6 +3908,8 @@ function theLegend()
     foods.push(new Item("porkbelly", false));
     foods.push(new Item("rawBacon", false));
     foods.push(new Item("bacon", false));
+    foods.push(new Item("steamedTialo", false));
+    foods.push(new Item("roastedHalgomMushrooms", false));
 
 
 
@@ -4030,6 +4042,7 @@ function theLegend()
     brewing = [];
     brewing.push(new Item("harstAle", false));
     brewing.push(new Item("glassBottleOfPluttWine", false));
+    brewing.push(new Item("glassBottleOfErguerWine", false));
 
 //Forge
     forge = [];
@@ -4103,6 +4116,9 @@ function theLegend()
     handcrafted.push(new Item("boarMeat", false));
     handcrafted.push(new Item("curedPork", false));
     handcrafted.push(new Item("naaprichaWedge", false));
+    handcrafted.push(new Item("erguerPaste", false));
+    handcrafted.push(new Item("bucketOfErguerPaste", false));
+    handcrafted.push(new Item("erguerWine", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

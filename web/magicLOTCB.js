@@ -1062,29 +1062,41 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                             }
                             else if (kind == "ChokingII")
                             {
-                                player.asfixiationTime = 0.9;
-                                player.asfixiationII = true;
+                                if (player.airFilter != true)
+                                {
+                                    player.asfixiationTime = 0.9;
+                                    player.asfixiationII = true;
+                                }
                             }
                             else if (kind == "ChokingI")
                             {
-                                player.asfixiationTime = 0.9;
-                                player.asfixiationI = true;
+                                if (player.airFilter != true)
+                                {
+                                    player.asfixiationTime = 0.9;
+                                    player.asfixiationI = true;
+                                }
                             }
                             else if (kind == "blindingChokeII")
                             {
-                                player.blinded = true;
-                                player.blindedStoreTime = new Date().getTime();
-                                player.blindedTime = 2;
-                                player.asfixiationTime = 0.9;
-                                player.asfixiationII = true;
+                                if (player.airFilter != true)
+                                {
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 2;
+                                    player.asfixiationTime = 0.9;
+                                    player.asfixiationII = true;
+                                }
                             }
                             else if (kind == "blindingChokeI")
                             {
-                                player.blinded = true;
-                                player.blindedStoreTime = new Date().getTime();
-                                player.blindedTime = 2;
-                                player.asfixiationTime = 0.9;
-                                player.asfixiationI = true;
+                                if (player.airFilter != true)
+                                {
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 2;
+                                    player.asfixiationTime = 0.9;
+                                    player.asfixiationI = true;
+                                }
                             }
                         }
                     }

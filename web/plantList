@@ -7,8 +7,9 @@ Garlic - a small green shoot that has a white papery bulb that is very useful in
 Hoil - A rough leaved musky smelling sap filled plant
 Karm - A southern temperate bush that hosts a small green fruit
 Clobe - A plant that grows in temperate regions that has three swollen curved leaves full of a thick green sap
-ChonaTree - An orchard tree that grows pink fruits
-PolyapaTree - An orchard tree that grows small pear-like fruits
+Erguer - A yellow flower with sweet brown pollen, Nirwaden people have cultivated this plant to make a special type of wine
+Iema - A north temperate to temperate plant that has large juicy magenta coloured berries
+
 
 //ALREADY IN GAME (to create a plant with the scenery class these plants must be made all lowercase)
     //FARM
@@ -18,6 +19,8 @@ Harst - A hardy dark grain that grows in the least hospitable of cold northern e
 Santh - A rich light bodied grain that prospers in fair weathered climates, but can survive in temperate weather conditions
 Suuli - A sweet northern melon that grows only in northern temperate and southern frosted regions
 Pumpkin - A northern and temperate orange gourd plant used in certain culinary traditions as well as to make carved gourd lanterns
+ChonaTree - An orchard tree that grows pink fruits
+PolyapaTree - An orchard tree that grows small pear-like fruits
     //WILD
 PineTree - A pine tree
 YeolTree - A tree that grows in the savannah and that drops pods that contain 'yeol nuts'

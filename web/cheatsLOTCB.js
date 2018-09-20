@@ -253,27 +253,30 @@ function cheats()
         }
         else if (cheatcode == "GOOPGOOPGOOPGOOP")
         {
-            player.endurance = 50;
-            player.constitution = 100;
-            player.knowledge = 50;
-            player.willpower = 100;
-            player.will = 100;
-            player.concentration = 50;
-            player.eminence = 50;
-            player.memory = 100;
-            player.health = 400;
-            player.race = "#336600";
-            player.strength = 50;
-            player.stamina = 100;
-            player.energy = 506;
-            player.toughness = 50;
-            player.intelligence = 50;
-            player.ranged = 50;
-            player.dexterity = 70;
-            player.raceName = "Goop";
-            player.title = "Supreme Overlord";
-            player.name = "Gooplur";
-            player.gender = "Goop";
+            if (player.title != "MRB Agent")
+            {
+                player.endurance = 50;
+                player.constitution = 100;
+                player.knowledge = 50;
+                player.willpower = 100;
+                player.will = 100;
+                player.concentration = 50;
+                player.eminence = 50;
+                player.memory = 100;
+                player.health = 400;
+                player.race = "#336600";
+                player.strength = 50;
+                player.stamina = 100;
+                player.energy = 506;
+                player.toughness = 50;
+                player.intelligence = 50;
+                player.ranged = 50;
+                player.dexterity = 70;
+                player.raceName = "Goop";
+                player.title = "Supreme Overlord";
+                player.name = "Gooplur";
+                player.gender = "Goop";
+            }
         }
         else if (cheatcode == "G")
         {
@@ -530,6 +533,14 @@ function cheats()
         else if (cheatcode.toLowerCase() == "iwill")
         {
             player.will = 0;
+        }
+        else if (cheatcode == "MRB")
+        {
+            player.race = "#999966";
+            player.raceName = "Empiric";
+            player.title = "MRB Agent";
+            player.constitution = 1;
+            player.toughness = 4;
         }
         else if (cheatcode.toLowerCase() == "testunits")
         {
@@ -793,7 +804,7 @@ function cheats()
         }
         else if (cheatcode.toLowerCase() == "selfproclaimedtitle")
         {
-            if (player.name != "Peter")
+            if (player.name != "Peter" && player.title != "MRB Agent")
             {
                 player.title = prompt("Proclaim your new title then...");
             }

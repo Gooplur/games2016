@@ -6447,6 +6447,16 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 XXX.rotate(this.rotation + 1/2 * Math.PI);
                 XXX.drawImage(verse, 2106, 5, 29, 24, -(1 / 2 * 29) + 1.75, -(1 / 2 * 24) - 0, 26, 26);
             }
+            else if (outfit == "doctorOutfit")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                XXX.drawImage(gent, 676, 497, 60, 70, -(1 / 2 * 60 * 1.2) + 0, -(1 / 2 * 70 * 1.2) - 0, 60 * 1.2, 70 * 1.2);
+            }
             else if (outfit == "ardilFurClothing" || outfit == "ardilFurSkirt")
             {
                 XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));

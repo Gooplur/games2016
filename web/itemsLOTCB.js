@@ -7685,6 +7685,70 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
         }
+        else if (this.type == "tialoFrond")
+        {
+            //For All Items
+            this.identity = "Tialo Frond";
+            this.weight = 0.22;
+            this.size = 13;
+            this.description = "The sleek muddied green frond of a tialo plant. It has a crisp watery taste with a slightly bitter aftertaste.";
+            this.intForDes = 2;
+            this.intDescription = "Tialo is commonly eaten by the northern nirwaden people in their regional cuisine.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.05; //satisfies hunger.
+            this.thirst = 0.15; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "steamedTialo")
+        {
+            //For All Items
+            this.identity = "Steamed Tialo";
+            this.weight = 0.9;
+            this.size = 13;
+            this.description = "A hearty wilted green with a mildly bitter aftertaste.";
+            this.intForDes = 2;
+            this.intDescription = "Tialo is commonly eaten by the northern nirwaden people in their regional cuisine.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3.2; //satisfies hunger.
+            this.thirst = 1.2; //quenches thirst.
+            this.warmth = 0.55; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 5;
+            this.intForCraft = 3;
+            this.ingredients = [["Tialo Frond", 15], ["Bucket of Water", 1]];
+            this.biproducts = [[new Item("bucket", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "aktaltlFrond")
         {
             //For All Items
@@ -8124,6 +8188,35 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 25); // at max, buy for 3.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "iemaBerries")
+        {
+            //For All Items
+            this.identity = "Iema Berries";
+            this.weight = 1.2;
+            this.size = 7;
+            this.description = "Large succulent magenta coloured berries that have a distinctly sweet yet complex flavour.";
+            this.intForDes = 7;
+            this.intDescription = "These berries grow specifically in eastern and northeastern temperate climates.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.6; //satisfies hunger.
+            this.thirst = 0.15; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.01; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
         }
         else if (this.type == "neprilneBerries")
         {
@@ -9823,7 +9916,85 @@ function Item(type, x, y)
             this.buyValue = 22 - Math.floor(player.getCharisma() / 8); // at max, buy for 16.
             this.sellValue = 8 + Math.floor(player.getCharisma() / 6); // at max, sell for 16.
         }
-        else if (this.type == "tylunFlower") //this is an enhancer making the effects more significant
+        else if (this.type == "erguerFlower")
+        {
+            //For All Items
+            this.identity = "Erguer Flower";
+            this.weight = 0.31;
+            this.size = 8;
+            this.description = "A yellow flower with sweet brown pollen and a strong sweet and floral aroma.";
+            this.intForDes = 5;
+            this.intDescription = "This flower can be made into a sweet paste used in culinary arts and brewing.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //Utility Focused
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "erguerLeaf")
+        {
+            //For All Items
+            this.identity = "Erguer Leaf";
+            this.weight = 0.069;
+            this.size = 8;
+            this.description = "A fuzzy light green leaf from an erguer plant.";
+            this.intForDes = 38;
+            this.intDescription = "This leaf may be able to help prevent wrinkles caused by old age...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //Utility Focused
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+        }
+        else if (this.type == "erguerPaste")
+        {
+            //For All Items
+            this.identity = "Erguer Paste";
+            this.weight = 0.63;
+            this.size = 8;
+            this.description = "A yellow and brown paste with a strong sweet and floral aroma.";
+            this.intForDes = 0;
+            this.intDescription = "It tastes sweet with a highly delectable floral aftertaste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.4; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Erguer Flower", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 50); // at max, buy for 6.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 50); // at max, sell for 6.
+        }
+        else if (this.type == "tylunFlower")
         {
             //For All Items
             this.identity = "Tylun Flower";
@@ -10180,6 +10351,42 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 25); // at max, buy for 3.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "bucketOfErguerPaste")
+        {
+            //For All Items
+            this.identity = "Bucket of Erguer Paste";
+            this.weight = 12.71;
+            this.size = 12;
+            this.description = "An iron bucket filled to the brim with mashed erguer flower.";
+            this.intForDes = 7;
+            this.intDescription = "At this stage erguer paste is usually fermented and made into an artisan wine.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["bucket", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 41; //satisfies hunger.
+            this.thirst = 3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 6; //recoops lost energy.
+            this.replenish = -5; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.ingredients = [["Bucket", 1], ["Erguer Paste", 17]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 119; // at max, buy for 119.
+            this.sellValue = 85 + Math.floor(player.getCharisma() / 3); // at max, sell for 100.
         }
         else if (this.type == "bucketOfPluttJuice")
         {
@@ -10779,14 +10986,90 @@ function Item(type, x, y)
             this.ability = "none";
 
             //Crafting
-            this.yield = 200;
+            this.yield = 4;
             this.intForCraft = 0;
             this.ingredients = [["Bottle of Plutt Wine", 1], ["Pint Glass", 4]];
-            this.biproducts = [[[new Item("glassBottle", false), 1]]];
+            this.biproducts = [[new Item("glassBottle", false), 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 22 - Math.floor(player.getCharisma() / 15); // at max, buy for 19.
             this.sellValue = 17 + Math.floor(player.getCharisma() / 25); // at max, sell for 19.
+        }
+        else if (this.type == "erguerWine")
+        {
+            //For All Items
+            this.identity = "Pint of Erguer Wine";
+            this.weight = 1;
+            this.size = 6;
+            this.description = "A glass pint of erguer wine.";
+            this.intForDes = 3;
+            this.intDescription = "This wine is made from the fermented mash of a sweet northeastern flower.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["pintGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.15; //satisfies hunger.
+            this.thirst = 3.25; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.75; //recoops lost energy.
+            this.replenish = -4.25; //restores will.
+            this.alcohol = 84; //intoxicates the mind.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.ingredients = [["Bottle of Erguer Wine", 1], ["Pint Glass", 4]];
+            this.biproducts = [[new Item("glassBottle", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 100 - Math.floor(player.getCharisma() / 25); // at max, buy for 98.
+            this.sellValue = 90 + Math.floor(player.getCharisma() / 6); // at max, sell for 98.
+        }
+        else if (this.type == "glassBottleOfErguerWine")
+        {
+            //For All Items
+            this.identity = "Bottle of Erguer Wine";
+            this.weight = 4;
+            this.size = 6;
+            this.description = "A bottle of wine that was made from the fermented mash of a sweet northeastern flower.";
+            this.intForDes = 0;
+            this.intDescription = "It is a fairly dry wine with a high alcohol content and a floral aroma.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["glassBottle", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 13; //quenches thirst.
+            this.warmth = 0.6; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 3; //recoops lost energy.
+            this.replenish = -17; //restores will.
+            this.alcohol = 336; //intoxicates the mind.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 40;
+            this.intForCraft = 0;
+            this.ingredients = [["Glass Bottle", 40], ["Cask of Erguer Wine", 1]];
+            this.biproducts = [[[new Item("barrel", false), 1]]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 390 - Math.floor(player.getCharisma() / 5); // at max, buy for 380.
+            this.sellValue = 365 + Math.floor(player.getCharisma() / 3); // at max, sell for 380.
         }
         else if (this.type == "glassBottleOfPluttWine")
         {
@@ -10819,7 +11102,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 40;
             this.intForCraft = 0;
-            this.ingredients = [["Glass Bottle", 50], ["Cask of Plutt Wine", 1]];
+            this.ingredients = [["Glass Bottle", 40], ["Cask of Plutt Wine", 1]];
             this.biproducts = [[[new Item("barrel", false), 1]]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
@@ -16252,7 +16535,10 @@ function Item(type, x, y)
                 {
                     this.buyValue = 0;
                     this.sellValue = 0;
-                    //shopkeeper.disturbed = true;
+                    if (player.title != "Nobility" && player.title != "Royalty")
+                    {
+                        shopkeeper.disturbed = true;
+                    }
                 }
                 else
                 {
@@ -16294,6 +16580,69 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "halgomMushrooms")
+        {
+            //For All Items
+            this.identity = "Halgom Mushrooms";
+            this.weight = 0.87;
+            this.size = 11;
+            this.description = "yellowish brown mushrooms that grow from a dark tan mycelium that lies below the soil.";
+            this.intForDes = 6;
+            this.intDescription = "Halgom mushrooms are edible raw, but they taste much better cooked.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.3; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 6.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
+        }
+        else if (this.type == "roastedHalgomMushrooms")
+        {
+            //For All Items
+            this.identity = "Roasted Halgom Mushrooms";
+            this.weight = 0.5;
+            this.size = 10;
+            this.description = "The roasted mushrooms are savoury, juicy, and filling.";
+            this.intForDes = 3;
+            this.intDescription = "Halgom mushrooms are most commonly found in forested eastern temperate regions.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 5; //satisfies hunger.
+            this.thirst = 0.6; //quenches thirst.
+            this.warmth = 2.3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 4;
+            this.ingredients = [["Halgom Mushrooms", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12 - Math.floor(player.getCharisma() / 12); // at max, buy for 8.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 15); // at max, sell for 8.
         }
         else if (this.type == "glinMushrooms")
         {
@@ -16609,6 +16958,36 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "shotgunAmmo")
+        {
+            //For All Items
+            this.identity = "Shotgun Ammo";
+            this.weight = 0.15;
+            this.size = 4;
+            this.description = "A box of ammo that contains 8 shotgun rounds when full.";
+            this.intForDes = 0;
+            if (player.weaponEquipped == "shotgun" && magAmmo <= 8)
+            {
+                this.intDescription = "Rounds left in box: " + magAmmo;
+            }
+            else
+            {
+                this.intDescription = "Rounds left in box: 8";
+            }
+
+            //Define Utility
+            this.utility = "ammunition";
+            //Sub Utility
+            this.subUtility = "mag";
+            this.subUtilityName = "Ammo Box";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 4; // at max, sell for 4.
+        }
         else if (this.type == "m16CarbineClip")
         {
             //For All Items
@@ -16617,7 +16996,14 @@ function Item(type, x, y)
             this.size = 4;
             this.description = "A 30 round magazine fitted for 5.56 mm rounds.";
             this.intForDes = 0;
-            this.intDescription = "Rounds left in current clip: " + magAmmo;
+            if (player.weaponEquipped == "m16Carbine")
+            {
+                this.intDescription = "Rounds left in current clip: " + magAmmo;
+            }
+            else
+            {
+                this.intDescription = "Rounds left in current clip: 30";
+            }
 
             //Define Utility
             this.utility = "ammunition";
@@ -16638,9 +17024,18 @@ function Item(type, x, y)
             this.identity = "M16 Carbine";
             this.weight = 3.3;
             this.size = 15;
-            this.description = "A standard USA military grade rifle that fires 5.56 mm rounds.";
-            this.intForDes = 0;
-            this.intDescription = "This is second ammendment!!!";
+            if (player.name == "Uncle Sam" || player.name == "Aunt Sue" || player.name == "Big Brother" || player.name == "Big Sister")
+            {
+                this.description = "A standard USA military grade rifle that fires 5.56 mm rounds.";
+                this.intForDes = 0;
+                this.intDescription = "This is second ammendment!!!";
+            }
+            else
+            {
+                this.description = "A standard military grade rifle that fires 5.56 mm rounds.";
+                this.intForDes = 3000;
+                this.intDescription = "";
+            }
 
             //Define Utility
             this.utility = "ranged";
@@ -16664,6 +17059,48 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 2000; // at max, buy for 2000.
             this.sellValue = 1800; // at max, sell for 1800.
+        }
+        else if (this.type == "shotgun")
+        {
+            //For All Items
+            this.identity = "Combat Shotgun";
+            this.weight = 4;
+            this.size = 16;
+            if (player.name == "Uncle Sam" || player.name == "Aunt Sue" || player.name == "Big Brother" || player.name == "Big Sister")
+            {
+                this.description = "A standard USA military grade shotgun.";
+                this.intForDes = 0;
+                this.intDescription = "This is second ammendment!!!";
+            }
+            else
+            {
+                this.description = "A standard military grade shotgun.";
+                this.intForDes = 3000;
+                this.intDescription = "";
+            }
+
+            //Define Utility
+            this.utility = "ranged";
+            //Sub Utility
+            this.subUtility = "shotgun";
+
+            //Utility Focused
+            this.range = 1190;
+            this.rate = 150;
+            this.speed = 8;
+            this.negateArmour = 190;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2000;
+            this.ingredients = [["Pre-manufactured Shotgun Parts", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1900; // at max, buy for 1900.
+            this.sellValue = 1700; // at max, sell for 1700.
         }
         else if (this.type == "balkurPelt")
         {
@@ -19164,10 +19601,10 @@ function Item(type, x, y)
         else if (this.type == "vardanianGlaive")
         {
             //For All Items
-            this.identity = "Vardanian Glaive (short)";
-            this.weight = 2;
-            this.size = 15;
-            this.description = "A short sword blade at the end of a spear shaft.";
+            this.identity = "Vardanian Glaive";
+            this.weight = 5;
+            this.size = 19;
+            this.description = "A sword blade at the end of a spear shaft.";
             this.intForDes = 2;
             this.intDescription = "A polearm meant for fighting one's enemies from afar.";
 
@@ -19175,11 +19612,11 @@ function Item(type, x, y)
             this.utility = "weapon";
 
             //Utility Focused
-            this.energyCost = 5;
-            this.distance = 55 + (this.range * 7);
-            this.range = 2 + 3/7;
-            this.rate = (220 - player.getDexterity());
-            this.damage = (7 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((3/50) * player.getStrength());
+            this.energyCost = 7;
+            this.distance = 64 + (this.range * 7);
+            this.range = 3 + 5/7;
+            this.rate = (180 - (player.getDexterity() / 2));
+            this.damage = (10 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((4/50) * player.getStrength());
             this.magicalDamage = 0;
             this.negateArmour = 1 + ((1/50) * player.getStrength());
 
@@ -19194,6 +19631,40 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 100 - Math.floor(player.getCharisma() / 5); // at max, buy for 90.
             this.sellValue = 60 + Math.floor(player.getCharisma() / 1.666666); // at max, sell for 90.
+        }
+        else if (this.type == "vardanianHalberd")
+        {
+            //For All Items
+            this.identity = "Vardanian Halberd";
+            this.weight = 7;
+            this.size = 25;
+            this.description = "A polearm meant for fighting armoured adversaries from afar.";
+            this.intForDes = 5;
+            this.intDescription = "Halberds are one of the most popular types of weapons among the knights of Vardania.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 11;
+            this.distance = 94 + (this.range * 7);
+            this.range = 2 + 3/7;
+            this.rate = (200);
+            this.damage = (13 - (this.damageHandicap * 2)) * (this.leveledDamageMultiple / 25) + ((8/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 13 + ((5/50) * player.getStrength());
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 38;
+            this.ingredients = [["Steel", 2], ["Nechrovite", 1], ["Wood", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 172 - Math.floor(player.getCharisma() / 2.27272727); // at max, buy for 149.
+            this.sellValue = 99 + Math.floor(player.getCharisma() / 1); // at max, sell for 149.
         }
         else if (this.type == "nirwadenLance")
         {
@@ -19787,6 +20258,38 @@ function Item(type, x, y)
             this.buyValue = 250 - Math.floor(player.getCharisma() / 1); // at max, buy for 200.
             this.sellValue = 100 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 200.
         }
+        else if (this.type == "windArrow")
+        {
+            //For All Items
+            this.identity = "Wind Arrow";
+            this.weight = 0.1;
+            this.size = 8;
+            this.description = "A steel arrow infused with wind magic.";
+            this.intForDes = 6;
+            this.intDescription = "This arrow throws its target through the air upon impact.";
+
+            //Define Utility
+            this.utility = "ammunition";
+            //Sub Utility
+            this.subUtility = "arrow";
+            this.subUtilityName = "Arrow";
+
+            //Utility Focused
+            this.damage = 7 * (1 + player.getRanged() / 25);
+            this.magicalDamage = 2;
+
+            //ability
+            this.ability = "knockbackII";
+
+            //Crafting
+            this.yield = 7;
+            this.intForCraft = 45;
+            this.ingredients = [["Steel", 1], ["Sphere of Wind", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 350 - Math.floor(player.getCharisma() / 1); // at max, buy for 300.
+            this.sellValue = 200 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 300.
+        }
         else if (this.type == "fireArrow")
         {
             //For All Items
@@ -19946,6 +20449,33 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 20 - Math.floor(player.getCharisma() / 10); // at max, buy for 15.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 10); // at max, sell for 10.
+        }
+        else if (this.type == "timeArrow")
+        {
+            //For All Items
+            this.identity = "Time Arrow";
+            this.weight = 0.05;
+            this.size = 8;
+            this.description = "An arrow that penetrates the time continuum and so can not be affected by time manipulation.";
+            this.intForDes = 40;
+            this.intDescription = "An ancient group of aldrekii sages long ago forged these in order to save the world from a horrible demon.";
+
+            //Define Utility
+            this.utility = "ammunition";
+            //Sub Utility
+            this.subUtility = "arrow";
+            this.subUtilityName = "Arrow";
+
+            //Utility Focused
+            this.damage = 7 * (1 + player.getRanged() / 25);
+            this.magicalDamage = 1;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1920 - Math.floor(player.getCharisma() / 10); // at max, buy for 1915.
+            this.sellValue = 1905 + Math.floor(player.getCharisma() / 10); // at max, sell for 1910.
         }
         else if (this.type == "balkurLeatherGloves")
         {
@@ -20591,6 +21121,62 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 63 - Math.floor(player.getCharisma() / 2.5); // at max, buy for 43.
             this.sellValue = 43; // at max, sell for 6.
+        }
+        else if (this.type == "doctorOutfit")
+        {
+            //For All Items
+            this.identity = "Doctor Outfit";
+            this.weight = 9;
+            this.size = 25;
+            this.description = "The garb worn by the medical doctors of the Academy of Nirin.";
+            this.intForDes = 1;
+            this.intDescription = "This armour prevents airborne illness by filtering out the evil scents in the air with strong smelling herbs.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 10;
+            this.magicalProtection = 0;
+            this.warmthRetention = 3;
+            this.thirstRetention = 0;
+            this.shockResist = 0.15;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 2;
+            this.charismaBonus = 24;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 6;
+            this.hungerBonus = 2;
+            this.thirstBonus = 2;
+            this.warmthBonus = 15;
+            //Magical Stat Bonuses
+            if (player.getEminence() >= 10) //there is symbolic strength to intellectual power that can be tapped into
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 1;
+                this.memoryBonus = 1;
+            }
+
+            //ability
+            this.ability = "resistDisease";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 500 - Math.floor(player.getCharisma() / 3); // at max, buy for 485.
+            this.sellValue = 475 + Math.floor(player.getCharisma() / 5); // at max, sell for 485.
         }
         else if (this.type == "swampWalkerArmour")
         {
@@ -22233,6 +22819,58 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1300 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1100.
             this.sellValue = 900 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 1100.
+        }
+        else if (this.type == "mrbTacticalArmour")
+        {
+            //For All Items
+            this.identity = "MRB Tactical Armour";
+            this.weight = 26;
+            this.size = 30;
+            this.description = "The standard issue armour for the agents of the Magical Retention Bureau.";
+            this.intForDes = 3;
+            this.intDescription = "Features: tactical sensing, air filtration, optional ranged targeting, optional night vision, (Q key) - toggle optional modes.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 14 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 4;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2;
+            this.thirstRetention = 2;
+            this.shockResist = -2;
+            //Main Stat Bonuses
+            this.strengthBonus = 2;
+            this.enduranceBonus = 2;
+            this.toughnessBonus = 2;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 40;
+            this.rangedBonus = 2;
+            this.constitutionBonus = 3;
+            this.staminaBonus = 5;
+            this.dexterityBonus = 10;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 10;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            this.ability = "cyborg";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6200 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 6000.
+            this.sellValue = 5500 + Math.floor(player.getCharisma() / 0.125); // at max, sell for 5900.
         }
         else if (this.type == "vardanianPlateArmour")
         {
@@ -27248,6 +27886,16 @@ function Item(type, x, y)
             XXX.arc(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
             XXX.fill();
         }
+        else if (this.type == "shotgunAmmo")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 714, 309, 17, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 1), 17 * 1, 12 * 1);
+        }
+        else if (this.type == "shotgun")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 690, 182, 76, 50, X - this.X + (1/2 * CCC.width) - (1/2 * 76 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 50 * 1), 76 * 1, 50 * 1);
+        }
         else if (this.type == "m16CarbineClip")
         {
             XXX.beginPath();
@@ -27267,6 +27915,85 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "mrbTacticalArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 102, 2, 83, 170, X - this.X + (1/2 * CCC.width) - (1/2 * 83 * 0.67), Y - this.Y + (1/2 * CCC.height) - (1/2 * 170 * 0.67), 83 * 0.67, 170 * 0.67);
+        }
+        else if (this.type == "doctorOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 738, 514, 53, 116, X - this.X + (1/2 * CCC.width) - (1/2 * 53 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 116 * 0.9), 53 * 0.9, 116 * 0.9);
+        }
+        else if (this.type == "vardanianHalberd")
+        {
+            XXX.beginPath();
+            XXX.save();
+            XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+            XXX.rotate(0.55);
+            XXX.drawImage(gent, 622, 1823, 39, 151, 0 - (1/2 * 39 * 1), 0 - (1/2 * 151 * 1), 39 * 1, 151 * 1);
+            XXX.restore();
+        }
+        else if (this.type == "windArrow")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 571, 1873, 31, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1), 31 * 1, 10 * 1);
+        }
+        else if (this.type == "halgomMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 454, 1903, 29, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1), 29 * 1, 29 * 1);
+        }
+        else if (this.type == "roastedHalgomMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 418, 1902, 29, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1), 29 * 1, 29 * 1);
+        }
+        else if (this.type == "tialoFrond")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 382, 1903, 21, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 21 * 1, 27 * 1);
+        }
+        else if (this.type == "steamedTialo")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 758, 1842, 27, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1), 27 * 1, 24 * 1);
+        }
+        else if (this.type == "iemaBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 471, 1949, 22, 25, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 25 * 1), 22 * 1, 25 * 1);
+        }
+        else if (this.type == "erguerFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 557, 1912, 21, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 21 * 1, 27 * 1);
+        }
+        else if (this.type == "erguerLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 585, 1916, 21, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 21 * 1, 27 * 1);
+        }
+        else if (this.type == "erguerPaste")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 586, 1945, 21, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 21 * 1, 27 * 1);
+        }
+        else if (this.type == "bucketOfErguerPaste")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 494, 1877, 15, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 2), 15 * 2, 15 * 2);
+        }
+        else if (this.type == "erguerWine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 532, 1873, 15, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1.5), 15 * 1.5, 15 * 1.5);
+        }
+        else if (this.type == "glassBottleOfErguerWine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 474, 1870, 15, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 2), 15 * 2, 15 * 2);
         }
         else if (this.type == "kolumPowder")
         {
@@ -28334,7 +29061,7 @@ function Item(type, x, y)
         else if (this.type == "vardanianGlaive")
         {
             XXX.beginPath();
-            XXX.drawImage(balkur, 667, 2, 123, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 123 * 0.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 0.65), 123 * 0.65, 42 * 0.65);
+            XXX.drawImage(balkur, 667, 2, 123, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 123 * 1.05), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 1.05), 123 * 1.05, 42 * 1.05);
         }
         else if (this.type == "kellishSpear")
         {
@@ -30205,7 +30932,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 2900, 1, 19, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 38), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36), 38, 36);
         }
-        else if (this.type == "aldrekiiArrow")
+        else if (this.type == "aldrekiiArrow" || this.type == "timeArrow")
         {
             XXX.beginPath();
             XXX.drawImage(verse, 2832, 3, 41, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 32), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12), 32, 12);
@@ -30808,6 +31535,16 @@ function Item(type, x, y)
             LXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             LXX.fill();
         }
+        else if (this.type == "shotgunAmmo")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 665, 301, 31, 29, this.invX - (1/2 * 31 * 0.6), this.invY - (1/2 * 29 * 0.6), 31 * 0.6, 29 * 0.6);
+        }
+        else if (this.type == "shotgun")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 690, 182, 76, 50, this.invX - (1/2 * 76 * 0.9), this.invY - (1/2 * 50 * 0.9), 76 * 0.9, 50 * 0.9);
+        }
         else if (this.type == "m16CarbineClip")
         {
             LXX.beginPath();
@@ -30827,6 +31564,85 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "mrbTacticalArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 102, 2, 83, 170, this.invX - (1/2 * 83 * 0.4), this.invY - (1/2 * 170 * 0.4), 83 * 0.4, 170 * 0.4);
+        }
+        else if (this.type == "doctorOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 738, 514, 53, 116, this.invX - (1/2 * 53 * 0.65), this.invY  - (1/2 * 116 * 0.65), 53 * 0.65, 116 * 0.65);
+        }
+        else if (this.type == "vardanianHalberd")
+        {
+            LXX.beginPath();
+            LXX.save();
+            LXX.translate(this.invX, this.invY);
+            LXX.rotate(0.3);
+            LXX.drawImage(gent, 622, 1823, 39, 151, 0 - (1/2 * 39 * 0.5), 0 - (1/2 * 151 * 0.5), 39 * 0.5, 151 * 0.5);
+            LXX.restore();
+        }
+        else if (this.type == "windArrow")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 571, 1873, 31, 10, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 10 * 1), 31 * 1, 10 * 1);
+        }
+        else if (this.type == "halgomMushrooms")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 454, 1903, 29, 29, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 29 * 1), 29 * 1, 29 * 1);
+        }
+        else if (this.type == "roastedHalgomMushrooms")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 418, 1902, 29, 29, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 29 * 1), 29 * 1, 29 * 1);
+        }
+        else if (this.type == "tialoFrond")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 382, 1903, 21, 27, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 27 * 1), 21 * 1, 27 * 1);
+        }
+        else if (this.type == "steamedTialo")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 758, 1842, 27, 24, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 24 * 1), 27 * 1, 24 * 1);
+        }
+        else if (this.type == "iemaBerries")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 471, 1949, 22, 25, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 25 * 1), 22 * 1, 25 * 1);
+        }
+        else if (this.type == "erguerFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 557, 1912, 21, 27, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 27 * 1), 21 * 1, 27 * 1);
+        }
+        else if (this.type == "erguerLeaf")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 585, 1916, 21, 27, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 27 * 1), 21 * 1, 27 * 1);
+        }
+        else if (this.type == "erguerPaste")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 586, 1945, 21, 27, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 27 * 1), 21 * 1, 27 * 1);
+        }
+        else if (this.type == "bucketOfErguerPaste")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 496, 1851, 15, 15, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 20 * 2), 13 * 2, 20 * 2);
+        }
+        else if (this.type == "erguerWine")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 533, 1858, 13, 15, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 15 * 2), 13 * 2, 15 * 2);
+        }
+        else if (this.type == "glassBottleOfErguerWine")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 464, 1867, 11, 21, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 21 * 2), 11 * 2, 21 * 2);
         }
         else if (this.type == "kolumPowder")
         {
@@ -33766,7 +34582,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(verse, 2900, 1, 19, 18, this.invX - (1/2 * 38), this.invY - (1/2 * 36), 38, 36);
         }
-        else if (this.type == "aldrekiiArrow")
+        else if (this.type == "aldrekiiArrow" || this.type == "timeArrow")
         {
             LXX.beginPath();
             LXX.drawImage(verse, 2832, 3, 41, 12, this.invX - (1/2 * 32), this.invY - (1/2 * 12), 32, 12);
@@ -34338,6 +35154,16 @@ function Item(type, x, y)
             XXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             XXX.fill();
         }
+        else if (this.type == "shotgunAmmo")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 665, 301, 31, 29, this.invX - (1/2 * 31 * 0.6), this.invY - (1/2 * 29 * 0.6), 31 * 0.6, 29 * 0.6);
+        }
+        else if (this.type == "shotgun")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 690, 182, 76, 50, this.invX - (1/2 * 76 * 0.9), this.invY - (1/2 * 50 * 0.9), 76 * 0.9, 50 * 0.9);
+        }
         else if (this.type == "m16CarbineClip")
         {
             XXX.beginPath();
@@ -34357,6 +35183,85 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "mrbTacticalArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 102, 2, 83, 170, this.invX - (1/2 * 83 * 0.4), this.invY - (1/2 * 170 * 0.4), 83 * 0.4, 170 * 0.4);
+        }
+        else if (this.type == "doctorOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 738, 514, 53, 116, this.invX - (1/2 * 53 * 0.65), this.invY  - (1/2 * 116 * 0.65), 53 * 0.65, 116 * 0.65);
+        }
+        else if (this.type == "vardanianHalberd")
+        {
+            XXX.beginPath();
+            XXX.save();
+            XXX.translate(this.invX, this.invY);
+            XXX.rotate(0.3);
+            XXX.drawImage(gent, 622, 1823, 39, 151, this.invX - (1/2 * 39 * 0.5), this.invY - (1/2 * 151 * 0.5), 39 * 0.5, 151 * 0.5);
+            XXX.restore();
+        }
+        else if (this.type == "windArrow")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 571, 1873, 31, 10, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 10 * 1), 31 * 1, 10 * 1);
+        }
+        else if (this.type == "halgomMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 454, 1903, 29, 29, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 29 * 1), 29 * 1, 29 * 1);
+        }
+        else if (this.type == "roastedHalgomMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 418, 1902, 29, 29, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 29 * 1), 29 * 1, 29 * 1);
+        }
+        else if (this.type == "tialoFrond")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 382, 1903, 21, 27, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 27 * 1), 21 * 1, 27 * 1);
+        }
+        else if (this.type == "steamedTialo")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 758, 1842, 27, 24, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 24 * 1), 27 * 1, 24 * 1);
+        }
+        else if (this.type == "iemaBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 471, 1949, 22, 25, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 25 * 1), 22 * 1, 25 * 1);
+        }
+        else if (this.type == "erguerFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 557, 1912, 21, 27, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 27 * 1), 21 * 1, 27 * 1);
+        }
+        else if (this.type == "erguerLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 585, 1916, 21, 27, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 27 * 1), 21 * 1, 27 * 1);
+        }
+        else if (this.type == "erguerPaste")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 586, 1945, 21, 27, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 27 * 1), 21 * 1, 27 * 1);
+        }
+        else if (this.type == "bucketOfErguerPaste")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 496, 1851, 15, 15, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 20 * 2), 13 * 2, 20 * 2);
+        }
+        else if (this.type == "erguerWine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 533, 1858, 13, 15, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 15 * 2), 13 * 2, 15 * 2);
+        }
+        else if (this.type == "glassBottleOfErguerWine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 464, 1867, 11, 21, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 21 * 2), 11 * 2, 21 * 2);
         }
         else if (this.type == "kolumPowder")
         {
@@ -37290,7 +38195,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 2900, 1, 19, 18, this.invX - (1/2 * 38), this.invY - (1/2 * 36), 38, 36);
         }
-        else if (this.type == "aldrekiiArrow")
+        else if (this.type == "aldrekiiArrow" || this.type == "timeArrow")
         {
             XXX.beginPath();
             XXX.drawImage(verse, 2832, 3, 41, 12, this.invX - (1/2 * 32), this.invY - (1/2 * 12), 32, 12);

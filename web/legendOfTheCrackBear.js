@@ -1079,20 +1079,6 @@ function legendaryPrerequisites()
     var stendorTrouble = new Audio("sounds/polySounds/stendorTrouble.mp3");
     window.stendorTrouble = stendorTrouble;
 
-        //MAGGY CHARACTER: voice acting
-
-    var maggyJustCleaning = new Audio("sounds/polySounds/maggyJustCleaning.mp3");
-    window.maggyJustCleaning = maggyJustCleaning;
-
-    var maggyJustLovely = new Audio("sounds/polySounds/MaggyJustLovely.mp3");
-    window.maggyJustLovely = maggyJustLovely;
-
-    var maggyLifeStory = new Audio("sounds/polySounds/maggyLifeStory.mp3");
-    window.maggyLifeStory = maggyLifeStory;
-
-    var maggyMostlyCleaning = new Audio("sounds/polySounds/maggyMostlyCleaning.mp3");
-    window.maggyMostlyCleaning = maggyMostlyCleaning;
-
         //ROSELIN CHARACTER: voice acting
 
     var roselinGday = new Audio("sounds/polySounds/roselinGday.mp3");

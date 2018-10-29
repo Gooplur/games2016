@@ -1,5 +1,9 @@
 //TO BE ADDED INTO THE CODE
 Sheep - A northern domesticated herd animal that is covered in soft fuzzy thick wool and that yields a tasty meat when brought to slaughter
+Cheshire - A Thengan predator that inhabits the forests. Cheshires are stealthy and aggressive, they can climb trees, and they enjoy hunting humans that enter the woods.
+Skeleton - A skeletal warrior
+Lich - A skeletal mage
+Corpse Golem - A golem formed of hexed bones. Upon its death skeletal warriors rise to fight you from its remains.
 
 //NOT YET ADDED INTO THE GAME
 
@@ -8,16 +12,18 @@ Pelcrid - An orange flame slime creature that grows larger when exposed to high 
 Horse - A quadruped that lives in the eastern temperate grasslands; they often graze in herds
 Griffin - A lionesque raptor that uses its large wings to lunge into a glide towards its helpless prey; they are most commonly found in temperate grasslands but they can also be farther south in the cold seasons
 Peacock - An illustrious temperate bird that spreads its colorful and long tail feathers to scare aware potential predators by making itself seem larger
-Boar - A wild hairy swine that will charge its predators with its tusks
 Duende - A fairy that can teleport and leave false copies of itself about while draining the wakefulness out of its victims
 GhoulFly - A giant black mosquito-like fly that lives in the Vardanian swamps
 Leech - A large black translucent leech that lives in the Vardanian swamps; they are know to occasionally hunt in hordes...
-BorbBeetle - An insect that can be found in eastern temperate regions
+GreyTroll - A monstrous woodland troll with grey fur. Grey trolls only hunt when they are hungry and they are particularly territorial about where they make their home.
+Gargoyle - A beast of the night that becomes locked in a form of stone during the day
+Sprite - A powerful reclusive magical being that lives in the Thengan woods. They create fog to hide in when scared, they will devour all who come across them when they are mad, they teleport discreetly usually keeping away from any threat... if they are hungry or mad or if they are just in the mood they will skillfully hunt the player after playing mind games on them and will strike when least expected.
 
 //ALREADY IN THE GAME
 
 Ardil - A red squirrel with three tails
 Soldier - A human soldier
+    Doppelganger - A humanesque nechromantic creation that imitates the players very being... (this is made by giving a soldier the ID: Doppelganger or Unhinged Doppelganger)
 Person - A normal human
 Tunsk - A mole-like creature that hdes in burrows
 Lizard - A lizard that lives in the northern forests
@@ -85,3 +91,5 @@ Zarbu - A massive striped equestrian creature that lives mostly in the kellish s
 Taipan - A slender and extremely venomous variety of snake that slithers about the savannah
 Mugmul - A hairy, nut-eating, goblinoid mammal that inhabits the thinly wooded patches of the savannah
 Rhinoceros - A thick grey skinned beast that lives in the savannah - it will charge its victims with the large curved horn on its head
+Boar - A wild hairy swine that will charge its predators with its tusks
+BorbBeetle - An insect that can be found in eastern temperate regions

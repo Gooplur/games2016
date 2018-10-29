@@ -1701,6 +1701,48 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "trollScraps")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 50;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(theng, 10, 98, 17, 18, 0, 0, 17 * 1.9, 18 * 1.9);
+            XXX.drawImage(theng, 10, 98, 17, 18, 10, 2, 17 * 1.9, 18 * 1.9);
+            XXX.drawImage(theng, 10, 98, 17, 18, -6, 1, 17 * 1.9, 18 * 1.9);
+            XXX.drawImage(theng, 10, 98, 17, 18, 2, -3, 17 * 1.9, 18 * 1.9);
+            XXX.drawImage(theng, 10, 98, 17, 18, -1, 5, 17 * 1.9, 18 * 1.9);
+            XXX.drawImage(theng, 10, 98, 17, 18, -5, 9, 17 * 1.9, 18 * 1.9);
+            XXX.restore();
+
+            if (this.temporary == false)
+            {
+                this.eggHatchTimer += 0.1;
+            }
+            if (this.eggHatchTimer > 40)
+            {
+                for (var i = 0; i < scenicList.length; i++)
+                {
+                    if (scenicList[i] === this)
+                    {
+                        scenicList.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "sign")
         {
             //TRAITS
@@ -1774,6 +1816,211 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 dClick = true;
                 this.activate = false;
+            }
+        }
+        else if (this.type == "fog")
+        {
+            //TRAITS
+            this.zIndex = 4;
+            this.solid = false;
+            this.interactionRange = 1;
+
+            //DRAWSELF
+            if (this.temporary == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.information;
+                XXX.drawImage(tomb, 1943, 112, 308, 375, -(1/2 * 308 * 1 * this.temporary), -(1/2 * 375 * 1 * this.temporary), 308 * 1 * this.temporary, 375 * 1 * this.temporary);
+                XXX.restore();
+            }
+            else if (this.temporary == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.information;
+                XXX.drawImage(tomb, 1977, 482, 332, 279, -(1/2 * 332 * 1 * this.temporary), -(1/2 * 279 * 1 * this.temporary), 332 * 1 * this.temporary, 279 * 1 * this.temporary);
+                XXX.restore();
+            }
+            else if (this.temporary == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.information;
+                XXX.drawImage(tomb, 1685, 720, 255, 275, -(1/2 * 255 * 1 * this.temporary), -(1/2 * 275 * 1 * this.temporary), 255 * 1 * this.temporary, 275 * 1 * this.temporary);
+                XXX.restore();
+            }
+            else if (this.temporary == 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.information;
+                XXX.drawImage(tomb, 1953, 766, 200, 222, -(1/2 * 200 * 1 * this.temporary), -(1/2 * 222 * 1 * this.temporary), 200 * 1 * this.temporary, 222 * 1 * this.temporary);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "highFog")
+        {
+            //TRAITS
+            this.zIndex = 6;
+            this.solid = false;
+            this.interactionRange = 1;
+
+            //DRAWSELF
+            if (this.temporary == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.information;
+                XXX.drawImage(tomb, 1943, 112, 308, 375, -(1/2 * 308 * 1 * this.temporary), -(1/2 * 375 * 1 * this.temporary), 308 * 1 * this.temporary, 375 * 1 * this.temporary);
+                XXX.restore();
+            }
+            else if (this.temporary == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.information;
+                XXX.drawImage(tomb, 1977, 482, 332, 279, -(1/2 * 332 * 1 * this.temporary), -(1/2 * 279 * 1 * this.temporary), 332 * 1 * this.temporary, 279 * 1 * this.temporary);
+                XXX.restore();
+            }
+            else if (this.temporary == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.information;
+                XXX.drawImage(tomb, 1685, 720, 255, 275, -(1/2 * 255 * 1 * this.temporary), -(1/2 * 275 * 1 * this.temporary), 255 * 1 * this.temporary, 275 * 1 * this.temporary);
+                XXX.restore();
+            }
+            else if (this.temporary == 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.information;
+                XXX.drawImage(tomb, 1953, 766, 200, 222, -(1/2 * 200 * 1 * this.temporary), -(1/2 * 222 * 1 * this.temporary), 200 * 1 * this.temporary, 222 * 1 * this.temporary);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "lowFog")
+        {
+            //TRAITS
+            this.zIndex = 1;
+            this.solid = false;
+            this.interactionRange = 1;
+
+            //DRAWSELF
+            if (this.temporary == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.information;
+                XXX.drawImage(tomb, 1943, 112, 308, 375, -(1/2 * 308 * 1 * this.temporary), -(1/2 * 375 * 1 * this.temporary), 308 * 1 * this.temporary, 375 * 1 * this.temporary);
+                XXX.restore();
+            }
+            else if (this.temporary == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.information;
+                XXX.drawImage(tomb, 1977, 482, 332, 279, -(1/2 * 332 * 1 * this.temporary), -(1/2 * 279 * 1 * this.temporary), 332 * 1 * this.temporary, 279 * 1 * this.temporary);
+                XXX.restore();
+            }
+            else if (this.temporary == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.information;
+                XXX.drawImage(tomb, 1685, 720, 255, 275, -(1/2 * 255 * 1 * this.temporary), -(1/2 * 275 * 1 * this.temporary), 255 * 1 * this.temporary, 275 * 1 * this.temporary);
+                XXX.restore();
+            }
+            else if (this.temporary == 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.information;
+                XXX.drawImage(tomb, 1953, 766, 200, 222, -(1/2 * 200 * 1 * this.temporary), -(1/2 * 222 * 1 * this.temporary), 200 * 1 * this.temporary, 222 * 1 * this.temporary);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "gargoyle")
+        {
+            //TRAITS
+            this.zIndex = 4;
+            this.solid = true;
+            this.interactionRange = 90;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(garg, 365, 217, 200, 143, -(1/2 * 200 * 1), -(1/2 * 143 * 1), 200 * 1, 143 * 1);
+            XXX.restore();
+
+            if (this.temporary == true)
+            {
+                if (timeOfDay == "Night" || timeOfDay == "Dusk")
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Gargoyle", true, "gargoyle"));
+                    scenicList.splice(scenicList.indexOf(this), 1);
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 60;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (player.magicalExperience >= 2)
+                {
+                    player.magicalExperience -= 2;
+                }
+                else if (player.magicalExperience >= 1)
+                {
+                    player.magicalExperience -= 1;
+                }
             }
         }
         else if (this.type == "blackBearFurRug")

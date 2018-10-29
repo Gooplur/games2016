@@ -1,8 +1,6 @@
 /**
  * Created by skyeguy on 12/17/15.
  */
-//PIXLR's cloud system is broken = true;
-//Losing work feels awful = true;
 
 //look up TEST to find tests in the code
 
@@ -15,9 +13,7 @@
 
 //things to add to the next image i'm adding:
 //todo add armoured horses
-//todo add "Corpse Gollem" A gollem that forms from a pile of rotting flesh and bones
 //todo add a secret unit (a monster that is in an inanimate form during the day but lurks murderously throughout the night) GARGOYLE //the unit will know when to become a scenery object //the scenery object will know when to become a unit
-//todo add shed basilisk skin
 
 //Alzkwaya Update / Savannah Update
 //todo add the alzkwaya tribe's village (mofu themed tribe)
@@ -84,11 +80,20 @@
 
 //Cranheim Update
 //todo add the city Cranheim to the west of Lethik in Thengaria
+//todo add haunted foggy woods: it will be populated with sprites, cheshires, grey trolls, skols, wearwolfs + the usual herbivores...
+//todo add wearwolf quest
+//todo add wearwolf unit and add silver poisoning effect for both the unit and the player
+//todo add a woodland grey troll
+
+//Vardania Update
+//todo add a boggy vardanian village to the far south west of Cranheim
+
 
 //Eschuttes Update
 //todo add another echlin tribe village called Eschuttes
 
 //Other
+//todo add vamprism
 //todo add Gargoyl cream - once consumed/used (it is assumed you rub it into your hands) the first creature you punch will be un-petrified and the disturbed flag for punching them will be canceled that once.
 //todo add the Colic symptom of sickness and add the effect 'colicAway' that eating 'aktaltlFrond' gives you.
 //todo add a witch trap house where the witch becomes a mutated magical beast and tries to kill you
@@ -101,7 +106,6 @@
 //todo finish adding the beast journal.
 //todo add interesting and immersive options for player children interaction (like: feeding, arming, praising, getting to know about them, teaching them spells, punishment, loving comments)
 //todo add more alchemy stuff: potions, salves
-//todo add vamprism and lycanthropy
 //todo finish adding sickness system //add Lodotos, a sickness that one can get in the kellish mud bog. //add sicknesses and symptons (dizziness, pox, fever, fatigue, etc.) ex: make dizziness spin the screen, make pox weaken players constitution etc., make fever decrease thirst.
 //todo add another bank system (Silver Keep) perhaps add loans from both banks.
 //todo add brain flies from 'poly' img.
@@ -111,13 +115,13 @@
 //todo add lv 25 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
 //todo add mage boss who uses the electric spear as well as magical shielding spell he uses. (High Magus Aleksi of the Cephrian Council - he is an aetheistic powerhungry  mage-surpremacist that is gallavanting about the north in search of ancient magics)
 //todo add throwing stars for the orgel
+//todo add grenades and smoke bombs
 //todo make alpha Olkrin's death animation line up slightly more.
 //todo add options menu with button: it will allow you to toggle certain settings like mouse combat mode, game coordinates, and other such features.
 //todo Add harsh hot weather conditions: deserts cause faster dehydration. (base the effect on elevation variable)
 //todo add unique fairytails for each faction
 //todo add Yaihef berry bush (look up how they are actually spelled first) from 'crackAssets' IMG
 //todo unconscious system for humans? punching and stuff?
-
 
 function legendaryPrerequisites()
 {
@@ -1004,45 +1008,6 @@ function legendaryPrerequisites()
 
         //DROHFOR CHARACTER: voice acting
 
-    var drohforGreet = new Audio("sounds/polySounds/drohforGreeting.mp3");
-    window.drohforGreet = drohforGreet;
-
-    var drohforWastingTime = new Audio("sounds/polySounds/drohforWastingTime.mp3");
-    window.drohforWastingTime = drohforWastingTime;
-
-    var drohforOutfit = new Audio("sounds/polySounds/drohforOutfit.mp3");
-    window.drohforOutfit = drohforOutfit;
-
-    var drohforTrackingMLady = new Audio("sounds/polySounds/drohforTrackingMLady.mp3");
-    window.drohforTrackingMLady = drohforTrackingMLady;
-
-    var drohforTrackingMLord = new Audio("sounds/polySounds/drohforTrackingMLord.mp3");
-    window.drohforTrackingMLord = drohforTrackingMLord;
-
-    var drohforTrackingCHA = new Audio("sounds/polySounds/drohforTrackingCHA.mp3");
-    window.drohforTrackingCHA = drohforTrackingCHA;
-
-    var drohforLadyWins = new Audio("sounds/polySounds/drohforLadyWins.mp3");
-    window.drohforLadyWins = drohforLadyWins;
-
-    var drohforHighbornLad = new Audio("sounds/polySounds/drohforHighbornLad.mp3");
-    window.drohforHighbornLad = drohforHighbornLad;
-
-    var drohforHighbornLasse = new Audio("sounds/polySounds/drohforHighbornLasse.mp3");
-    window.drohforHighbornLasse = drohforHighbornLasse;
-
-    var drohforTailBetweenLegs = new Audio("sounds/polySounds/drohforTailBetweenLegs.mp3");
-    window.drohforTailBetweenLegs = drohforTailBetweenLegs;
-
-    var drohforSoEasy = new Audio("sounds/polySounds/drohforSoEasy.mp3");
-    window.drohforSoEasy = drohforSoEasy;
-
-    var drohforShutUp = new Audio("sounds/polySounds/drohforShutUp.mp3");
-    window.drohforShutUp = drohforShutUp;
-
-    var drohforNoMore = new Audio("sounds/polySounds/drohforNoMore.mp3");
-    window.drohforNoMore = drohforNoMore;
-
     var drohforCommonerVictory = new Audio("sounds/polySounds/drohforCommonerVictory.mp3");
     window.drohforCommonerVictory = drohforCommonerVictory;
 
@@ -1251,20 +1216,6 @@ function legendaryPrerequisites()
 
     var markosPick = new Audio("sounds/polySounds/markosPick.mp3");
     window.markosPick = markosPick;
-
-    //MARKOS CHARACTER: voice acting
-
-    var leonLady = new Audio("sounds/polySounds/leonLady.wav");
-    window.leonLady = leonLady;
-
-    var leonLiege = new Audio("sounds/polySounds/leonLiege.wav");
-    window.leonLiege = leonLiege;
-
-    var leonCross = new Audio("sounds/polySounds/leonCross.wav");
-    window.leonCross = leonCross;
-
-    var leonTanks = new Audio("sounds/polySounds/leonTanks.wav");
-    window.leonTanks = leonTanks;
 
     //OLIS PYNSKE CHARACTER: voice acting
 
@@ -1486,99 +1437,192 @@ function legendaryPrerequisites()
     var kronheimeGood = new Audio("sounds/polySounds/kronheimeGood.mp3");
     window.kronheimeGood = kronheimeGood;
 
-        //HILMUND CHARACTER: voice acting
+    hilmundSounds();
+    //theLegend();
+}
+
+function hilmundSounds()
+{
+    //HILMUND CHARACTER: voice acting
 
     var hilmundForRoom = new Audio("sounds/polySounds/hilmundForRoom.mp3");
     window.hilmundForRoom = hilmundForRoom;
 
-    var hilmundNoMoney = new Audio("sounds/polySounds/hilmundNoMoney.mp3");
-    window.hilmundNoMoney = hilmundNoMoney;
+    hilmundForRoom.oncanplaythrough = function()
+    {
+        var hilmundNoMoney = new Audio("sounds/polySounds/hilmundNoMoney.mp3");
+        window.hilmundNoMoney = hilmundNoMoney;
 
-    var hilmundLookingForward = new Audio("sounds/polySounds/hilmundLookingForward.mp3");
-    window.hilmundLookingForward = hilmundLookingForward;
+        hilmundNoMoney.oncanplaythrough = function()
+        {
+            var hilmundLookingForward = new Audio("sounds/polySounds/hilmundLookingForward.mp3");
+            window.hilmundLookingForward = hilmundLookingForward;
 
-    var hilmundLaugh = new Audio("sounds/polySounds/hilmundLaugh.mp3");
-    window.hilmundLaugh = hilmundLaugh;
+            hilmundLookingForward.oncanplaythrough = function()
+            {
+                var hilmundLaugh = new Audio("sounds/polySounds/hilmundLaugh.mp3");
+                window.hilmundLaugh = hilmundLaugh;
 
-    var hilmundCoupleUp = new Audio("sounds/polySounds/hilmundCoupleUp.mp3");
-    window.hilmundCoupleUp = hilmundCoupleUp;
+                hilmundLaugh.oncanplaythrough = function()
+                {
+                    var hilmundCoupleUp = new Audio("sounds/polySounds/hilmundCoupleUp.mp3");
+                    window.hilmundCoupleUp = hilmundCoupleUp;
 
-    var hilmundFineEnough = new Audio("sounds/polySounds/hilmundFineEnough.mp3");
-    window.hilmundFineEnough = hilmundFineEnough;
+                    hilmundCoupleUp.oncanplaythrough = function()
+                    {
+                        var hilmundFineEnough = new Audio("sounds/polySounds/hilmundFineEnough.mp3");
+                        window.hilmundFineEnough = hilmundFineEnough;
 
-    var hilmundGoodTime = new Audio("sounds/polySounds/hilmundGoodTime.mp3");
-    window.hilmundGoodTime = hilmundGoodTime;
+                        hilmundFineEnough.oncanplaythrough = function()
+                        {
+                            var hilmundGoodTime = new Audio("sounds/polySounds/hilmundGoodTime.mp3");
+                            window.hilmundGoodTime = hilmundGoodTime;
 
-    var hilmundFlattering = new Audio("sounds/polySounds/hilmundFlattering.mp3");
-    window.hilmundFlattering = hilmundFlattering;
+                            hilmundGoodTime.oncanplaythrough = function()
+                            {
+                                var hilmundFlattering = new Audio("sounds/polySounds/hilmundFlattering.mp3");
+                                window.hilmundFlattering = hilmundFlattering;
 
-    var hilmundWoman = new Audio("sounds/polySounds/hilmundWoman.mp3");
-    window.hilmundWoman = hilmundWoman;
+                                hilmundFlattering.oncanplaythrough = function()
+                                {
+                                    var hilmundWoman = new Audio("sounds/polySounds/hilmundWoman.mp3");
+                                    window.hilmundWoman = hilmundWoman;
 
-    var hilmundThatIDo = new Audio("sounds/polySounds/hilmundThatIDo.mp3");
-    window.hilmundThatIDo = hilmundThatIDo;
+                                    hilmundWoman.oncanplaythrough = function()
+                                    {
+                                        var hilmundThatIDo = new Audio("sounds/polySounds/hilmundThatIDo.mp3");
+                                        window.hilmundThatIDo = hilmundThatIDo;
 
-    var hilmundStorm = new Audio("sounds/polySounds/hilmundStorm.mp3");
-    window.hilmundStorm = hilmundStorm;
+                                        hilmundThatIDo.oncanplaythrough = function()
+                                        {
+                                            var hilmundStorm = new Audio("sounds/polySounds/hilmundStorm.mp3");
+                                            window.hilmundStorm = hilmundStorm;
 
-    var hilmundFind = new Audio("sounds/polySounds/hilmundFind.mp3");
-    window.hilmundFind = hilmundFind;
+                                            hilmundStorm.oncanplaythrough = function()
+                                            {
+                                                var hilmundFind = new Audio("sounds/polySounds/hilmundFind.mp3");
+                                                window.hilmundFind = hilmundFind;
 
-    var hilmundNeed = new Audio("sounds/polySounds/hilmundNeed.mp3");
-    window.hilmundNeed = hilmundNeed;
+                                                hilmundFind.oncanplaythrough = function()
+                                                {
+                                                    var hilmundNeed = new Audio("sounds/polySounds/hilmundNeed.mp3");
+                                                    window.hilmundNeed = hilmundNeed;
 
-    var hilmundAlreadyTold = new Audio("sounds/polySounds/hilmundAlreadyTold.mp3");
-    window.hilmundAlreadyTold = hilmundAlreadyTold;
+                                                    hilmundNeed.oncanplaythrough = function()
+                                                    {
+                                                        var hilmundAlreadyTold = new Audio("sounds/polySounds/hilmundAlreadyTold.mp3");
+                                                        window.hilmundAlreadyTold = hilmundAlreadyTold;
 
-    var hilmundNoIdea = new Audio("sounds/polySounds/hilmundNoIdea.mp3");
-    window.hilmundNoIdea = hilmundNoIdea;
+                                                        hilmundAlreadyTold.oncanplaythrough = function()
+                                                        {
+                                                            var hilmundAlreadyTold = new Audio("sounds/polySounds/hilmundAlreadyTold.mp3");
+                                                            window.hilmundAlreadyTold = hilmundAlreadyTold;
 
-    var hilmundGreat = new Audio("sounds/polySounds/hilmundGreat.mp3");
-    window.hilmundGreat = hilmundGreat;
+                                                            hilmundAlreadyTold.oncanplaythrough = function()
+                                                            {
+                                                                var hilmundNoIdea = new Audio("sounds/polySounds/hilmundNoIdea.mp3");
+                                                                window.hilmundNoIdea = hilmundNoIdea;
 
-    var hilmundLove = new Audio("sounds/polySounds/hilmundLove.mp3");
-    window.hilmundLove = hilmundLove;
+                                                                hilmundNoIdea.oncanplaythrough = function()
+                                                                {
+                                                                    var hilmundGreat = new Audio("sounds/polySounds/hilmundGreat.mp3");
+                                                                    window.hilmundGreat = hilmundGreat;
 
-    var hilmundThisOne = new Audio("sounds/polySounds/hilmundThisOne.mp3");
-    window.hilmundThisOne = hilmundThisOne;
+                                                                    hilmundGreat.oncanplaythrough = function()
+                                                                    {
+                                                                        var hilmundLove = new Audio("sounds/polySounds/hilmundLove.mp3");
+                                                                        window.hilmundLove = hilmundLove;
 
-    var hilmundTakeThis = new Audio("sounds/polySounds/hilmundTakeThis.mp3");
-    window.hilmundTakeThis = hilmundTakeThis;
+                                                                        hilmundLove.oncanplaythrough = function()
+                                                                        {
+                                                                            var hilmundThisOne = new Audio("sounds/polySounds/hilmundThisOne.mp3");
+                                                                            window.hilmundThisOne = hilmundThisOne;
 
-    var hilmundBuy = new Audio("sounds/polySounds/hilmundBuy.mp3");
-    window.hilmundBuy = hilmundBuy;
+                                                                            hilmundThisOne.oncanplaythrough = function()
+                                                                            {
+                                                                                var hilmundTakeThis = new Audio("sounds/polySounds/hilmundTakeThis.mp3");
+                                                                                window.hilmundTakeThis = hilmundTakeThis;
 
-    //CREATURE SOUNDS
+                                                                                hilmundTakeThis.oncanplaythrough = function()
+                                                                                {
+                                                                                    var hilmundBuy = new Audio("sounds/polySounds/hilmundBuy.mp3");
+                                                                                    window.hilmundBuy = hilmundBuy;
 
-    //Hyeling Sounds
+                                                                                    hilmundBuy.oncanplaythrough = function()
+                                                                                    {
+                                                                                        hyelingSounds();
+                                                                                    };
+                                                                                };
+                                                                            };
+                                                                        };
+                                                                    };
+                                                                };
+                                                            };
+                                                        };
+                                                    };
+                                                };
+                                            };
+                                        };
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+}
 
+function hyelingSounds()
+{
     var hyelingBattlecry1 = new Audio("sounds/polySounds/hyelingBattlecry1.mp3");
     window.hyelingBattlecry1 = hyelingBattlecry1;
 
-    var hyelingBattlecry2 = new Audio("sounds/polySounds/hyelingBattlecry2.mp3");
-    window.hyelingBattlecry2 = hyelingBattlecry2;
+    hyelingBattlecry1.oncanplaythrough = function()
+    {
+        var hyelingBattlecry2 = new Audio("sounds/polySounds/hyelingBattlecry2.mp3");
+        window.hyelingBattlecry2 = hyelingBattlecry2;
 
-    var hyelingPaincry1 = new Audio("sounds/polySounds/hyelingPaincry1.mp3");
-    window.hyelingPaincry1 = hyelingPaincry1;
+        hyelingBattlecry2.oncanplaythrough = function()
+        {
+            var hyelingPaincry1 = new Audio("sounds/polySounds/hyelingPaincry1.mp3");
+            window.hyelingPaincry1 = hyelingPaincry1;
 
-    var hyelingPaincry2 = new Audio("sounds/polySounds/hyelingPaincry2.mp3");
-    window.hyelingPaincry2 = hyelingPaincry2;
+            hyelingPaincry1.oncanplaythrough = function()
+            {
+                var hyelingPaincry2 = new Audio("sounds/polySounds/hyelingPaincry2.mp3");
+                window.hyelingPaincry2 = hyelingPaincry2;
 
-    var hyelingClick1 = new Audio("sounds/polySounds/hyelingClick1.mp3");
-    window.hyelingClick1 = hyelingClick1;
+                hyelingPaincry2.oncanplaythrough = function()
+                {
+                    var hyelingClick1 = new Audio("sounds/polySounds/hyelingClick1.mp3");
+                    window.hyelingClick1 = hyelingClick1;
 
-    var hyelingClick2 = new Audio("sounds/polySounds/hyelingClick2.mp3");
-    window.hyelingClick2 = hyelingClick2;
+                    hyelingClick1.oncanplaythrough = function()
+                    {
+                        var hyelingClick2 = new Audio("sounds/polySounds/hyelingClick2.mp3");
+                        window.hyelingClick2 = hyelingClick2;
 
-    var hyelingClick3 = new Audio("sounds/polySounds/hyelingClick3.mp3");
-    window.hyelingClick3 = hyelingClick3;
+                        hyelingClick2.oncanplaythrough = function()
+                        {
+                            var hyelingClick3 = new Audio("sounds/polySounds/hyelingClick3.mp3");
+                            window.hyelingClick3 = hyelingClick3;
 
-    //images
+                            hyelingClick3.oncanplaythrough = function()
+                            {
+                                envPack();
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+}
 
-    var themeIMG = new Image();
-    themeIMG.src = ("images/aKnightsDestiny.png");
-    window.themeIMG = themeIMG;
-
+function envPack()
+{
     var charCreaIMG = new Image();
     charCreaIMG.src = ("images/ratInValley.png");
     window.charCreaIMG = charCreaIMG;
@@ -1819,33 +1863,110 @@ function legendaryPrerequisites()
     kolumIMG.src = ("images/kolumIMG.png");
     window.kolumIMG = kolumIMG;
 
+    var themeIMG = new Image();
+    themeIMG.src = ("images/aKnightsDestiny.png");
+    window.themeIMG = themeIMG;
+
+    themeIMG.onload = function()
+    {
+        polypolypolyPack();
+    };
+}
+
+function polypolypolyPack()
+{
     var poly = new Image();
     poly.src = ("images/poly.png");
     window.poly = poly;
 
+    poly.onload = function()
+    {
+        gargPack();
+    };
+}
+
+function gargPack()
+{
+    var garg = new Image();
+    garg.src = ("images/garg.png");
+    window.garg = garg;
+
+    garg.onload = function()
+    {
+        tombPack();
+    };
+}
+
+function tombPack()
+{
+    var tomb = new Image();
+    tomb.src = ("images/tomb.png");
+    window.tomb = tomb;
+
+    tomb.onload = function()
+    {
+        moltePack();
+    };
+}
+
+function moltePack()
+{
+    var molte = new Image();
+    molte.src = ("images/molte.png");
+    window.molte = molte;
+
+    molte.onload = function()
+    {
+        candlewicPack();
+    };
+}
+
+function candlewicPack()
+{
     var candlewic = new Image();
     candlewic.src = ("images/candlewic.png");
     window.candlewic = candlewic;
 
+    candlewic.onload = function()
+    {
+        horde1Pack();
+    };
+}
+
+function horde1Pack()
+{
     var horde1 = new Image();
     horde1.src = ("images/hordepics.png");
     window.horde1 = horde1;
 
+    horde1.onload = function()
+    {
+        trapperPack();
+    };
+}
+
+function trapperPack()
+{
     var trapper = new Image();
     trapper.src = ("images/trapper.png");
     window.trapper = trapper;
 
+    trapper.onload = function()
+    {
+        polyPNGPack();
+    };
+}
+
+function polyPNGPack()
+{
     var polyPNG = new Image();
     polyPNG.src = ("images/polyAssets.png");
     window.polyPNG = polyPNG;
-
 
     polyPNG.onload = function()
     {
         nirwadenPack();
     };
-
-    //theLegend();
 }
 
 function nirwadenPack()
@@ -3158,7 +3279,8 @@ function theLegend()
         joaquin: ["Joaquin", 0],
         leon: ["Leon", 0],
         jimena: ["Jimena", 0],
-        agustin: ["Agustin", 0]
+        agustin: ["Agustin", 0],
+        matilda: ["Matilda", 0]
     };
 
 //time Tracker Variables
@@ -3312,7 +3434,8 @@ function theLegend()
         joaquinLDS: true,
         leonLDS: true,
         jimenaLDS: true,
-        agustinLDS: true
+        agustinLDS: true,
+        matildaLDS: true
     };
 //QUESTS
     quests =
@@ -3372,6 +3495,11 @@ function theLegend()
         //QUEST: Matrimony: Tor Stambjord ---- given by Orjov Tor
         matrimonyTorStambjordQuest: false,
         matrimonyTorStambjordCompletionStyle: false,
+
+        //QUEST: AtalinWitchHunt:
+        atalinWitchHuntQuest: false,
+        atalinWitchHuntCompletionStyle: false,
+        atalinWitchHuntWaysTaught: false,
 
         //QUEST: Stolen Scripture ---- given by Ukko
         stolenScriptureQuest: false,
@@ -3504,7 +3632,7 @@ function theLegend()
 //Inventory = [[new Item("kellishSword", false, false), 1], [new Item("lightningCorseque", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("burningSmashStick", false, false), 1], [new Item("bullet", false, false), 200], [new Item("blackPowder", false, false), 200], [new Item("musket", false, false), 1], [new Item("blunderbuss", false, false), 1], [new Item("cutlass", false, false), 1], [new Item("avrakLeatherArmour", false, false), 1], [new Item("balgurCaptainArmour", false, false), 1], [new Item("balgurMercArmour", false, false), 1], [new Item("longSpikedMorningStar", false, false), 1], [new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
 
     //All of the spells in the game
-    allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1], [new Item("summonFrich", false, false), 1], [new Item("summonWolf", false, false), 1], [new Item("charm", false, false), 1], [new Item("sanctuary", false, false), 1], [new Item("repellingWard", false, false), 1], [new Item("iceberg", false, false), 1], [new Item("magicMissiles", false, false), 1], [new Item("minorVortex", false, false), 1], [new Item("mark", false, false), 1], [new Item("entanglement", false, false), 1], [new Item("whirlwind", false, false), 1], [new Item("iceBlast", false, false), 1], [new Item("shadowport", false, false), 1], [new Item("healingPsalms", false, false), 1], [new Item("summonGriffin", false, false), 1], [new Item("summonDemon", false, false), 1], [new Item("slowTimeI", false, false), 1], [new Item("slowTimeII", false, false), 1], [new Item("slowTimeIII", false, false), 1], [new Item("slowTimeIV", false, false), 1], [new Item("slowTimeV", false, false), 1], [new Item("slowTimeVI", false, false), 1]];
+    allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1], [new Item("summonFrich", false, false), 1], [new Item("summonWolf", false, false), 1], [new Item("charm", false, false), 1], [new Item("sanctuary", false, false), 1], [new Item("repellingWard", false, false), 1], [new Item("iceberg", false, false), 1], [new Item("magicMissiles", false, false), 1], [new Item("minorVortex", false, false), 1], [new Item("mark", false, false), 1], [new Item("entanglement", false, false), 1], [new Item("whirlwind", false, false), 1], [new Item("iceBlast", false, false), 1], [new Item("shadowport", false, false), 1], [new Item("healingPsalms", false, false), 1], [new Item("summonGriffin", false, false), 1], [new Item("summonDemon", false, false), 1], [new Item("slowTimeI", false, false), 1], [new Item("slowTimeII", false, false), 1], [new Item("slowTimeIII", false, false), 1], [new Item("slowTimeIV", false, false), 1], [new Item("slowTimeV", false, false), 1], [new Item("slowTimeVI", false, false), 1], [new Item("doppelganger", false, false), 1]];
 //Test Spells
     primarySpells = [];
     secondarySpells = [];
@@ -3910,6 +4038,9 @@ function theLegend()
     foods.push(new Item("bacon", false));
     foods.push(new Item("steamedTialo", false));
     foods.push(new Item("roastedHalgomMushrooms", false));
+    foods.push(new Item("iemaTart", false));
+    foods.push(new Item("chonaTart", false));
+    foods.push(new Item("polyapaTart", false));
 
 
 
@@ -4119,6 +4250,11 @@ function theLegend()
     handcrafted.push(new Item("erguerPaste", false));
     handcrafted.push(new Item("bucketOfErguerPaste", false));
     handcrafted.push(new Item("erguerWine", false));
+    handcrafted.push(new Item("nirwadenPastryDough", false));
+    handcrafted.push(new Item("rawIemaTart", false));
+    handcrafted.push(new Item("rawChonaTart", false));
+    handcrafted.push(new Item("rawPolyapaTart", false));
+
 
     //Activate Important Game Functions Here:
     itemPlacer();

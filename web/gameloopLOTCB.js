@@ -149,6 +149,9 @@ function gameloopOfDestiny(time)
     //AI name display and interaction with...
     aiIdentify();
 
+    //Dialogue
+    messageReader();
+
     //POP-UPs
     //level up pop-up
     if (popType == "levelup")

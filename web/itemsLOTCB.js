@@ -871,6 +871,51 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 39;
             this.spellRange = "Near-Medium";
         }
+        else if (this.type == "doppelganger")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 20)
+            {
+                this.identity = "Scroll of Doppelganger";
+                this.description = "Studying this scroll will teach you how to form a doppelganger likened to yourself.";
+                this.intForDes = 0;
+                this.intDescription = "Creating a Doppelganger costs you your blood... If you create it without sacrifice it will take what it is owed.";
+                this.buyValue = 400; // at max, buy for 400.
+                this.sellValue = 400; // at max, sell for 400.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 400; // at max, buy for 400.
+                this.sellValue = 1; // at max, sell for 400.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+
+            this.spellCost = Math.max(2, 3 + 1 / 50 * player.getConcentration() - (2 / 50) * player.getEminence());
+
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Nechromancy";
+            this.spellName = "Doppelganger";
+            this.spellID = "doppelganger";
+            this.spellEXP = 50 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(4, 12 + (1/50) * player.getConcentration() - (9/50) * player.getEminence());
+            this.spellDescription = "Create a nechromantic duplicate of yourself bound to you by your own blood in its veins.";
+            this.spellKnowledgeRequirement = 20;
+            this.spellRange = "Near";
+        }
         else if (this.type == "summonDemon")
         {
             //For All Items
@@ -7277,6 +7322,42 @@ function Item(type, x, y)
             this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
             this.sellValue = 3; // at max, sell for 3.
         }
+        else if (this.type == "gargoyleHeart")
+        {
+            //For All Items
+            this.identity = "Gargoyle Heart";
+            this.weight = 9;
+            this.size = 15;
+            this.description = "The dark sinewy black blooded heart of a gargoyle.";
+            this.intForDes = 0;
+            if (player.getIntelligence < 13)
+            {
+                this.intDescription = "Everyone knows that eating a gargoyle heart will give you magical powers...";
+            }
+            else
+            {
+                this.intDescription = "Eating a gargoyle heart will cause your body to become petrified, but will also fill you with magical energy.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 3; //quenches thirst.
+            this.warmth = -20; //warms player.
+            this.heal = -20; //heals health.
+            this.generation = -10; //recoops lost energy.
+            this.replenish = 10; //restores will.
+
+            //ability
+            this.ability = "gargoyleHeart";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 399; // at max, buy for 399.
+            this.sellValue = 399; // at max, sell for 399.
+        }
         else if (this.type == "griffinHeart")
         {
             //For All Items
@@ -9203,6 +9284,287 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 40 - Math.floor(player.getCharisma() / 3); // at max, buy for 25.
             this.sellValue = 25; // at max, sell for 25.
+        }
+        else if (this.type == "nirwadenPastryDough")
+        {
+            //For All Items
+            this.identity = "Nirwaden Pastry Dough";
+            this.weight = 0.5;
+            this.size = 7;
+            this.description = "A dough for nirwaden pastries.";
+            this.intForDes = 2;
+            this.intDescription = "Nirwaden pastries originated in the north of the Nirwaden empire.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 20;
+            this.ingredients = [["Santh Flour", 2], ["Naaprid Butter", 2], ["Bucket of Naaprid Milk", 1], ["Erguer Paste", 3], ["Mofu Egg", 2]];
+            this.biproducts = [[new Item("bucket", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 32 - Math.floor(player.getCharisma() / 5); // at max, buy for 22.
+            this.sellValue = 19 + Math.floor(player.getCharisma() / 15); // at max, sell for 22.
+        }
+        else if (this.type == "rawIemaTart")
+        {
+            //For All Items
+            this.identity = "Raw Iema Tart";
+            this.weight = 0.3;
+            this.size = 7;
+            this.description = "An uncooked nirwaden pastry made with iema berries.";
+            if (player.raceName == "Nirwaden")
+            {
+                this.intForDes = 12;
+            }
+            else
+            {
+                this.intForDes = 14;
+            }
+            this.intDescription = "The temperature must be just right for the dough to rise the right way.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 3;
+            this.ingredients = [["Nirwaden Pastry Dough", 1], ["Iema Berries", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12 - Math.floor(player.getCharisma() / 50); // at max, buy for 11.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 50); // at max, sell for 11.
+        }
+        else if (this.type == "iemaTart")
+        {
+            //For All Items
+            this.identity = "Iema Tart";
+            this.weight = 0.25;
+            this.size = 7;
+            this.description = "A nirwaden pastry made with iema berries.";
+            this.intForDes = 0;
+            this.intDescription = "It is a sweet and rich pastry that tastes of iema berries.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.25; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            if (player.raceName == "Nirwaden")
+            {
+                this.intForCraft = 12;
+            }
+            else
+            {
+                this.intForCraft = 14;
+            }
+            this.ingredients = [["Raw Iema Tart", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 50); // at max, buy for 15.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 50); // at max, sell for 15.
+        }
+        else if (this.type == "rawChonaTart")
+        {
+            //For All Items
+            this.identity = "Raw Chona Tart";
+            this.weight = 0.3;
+            this.size = 7;
+            this.description = "An uncooked nirwaden pastry made with chona fruit.";
+            if (player.raceName == "Nirwaden")
+            {
+                this.intForDes = 12;
+            }
+            else
+            {
+                this.intForDes = 14;
+            }
+            this.intDescription = "The temperature must be just right for the dough to rise the right way.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 3;
+            this.ingredients = [["Nirwaden Pastry Dough", 1], ["Chona", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 7 + Math.floor(player.getCharisma() / 50); // at max, sell for 8.
+        }
+        else if (this.type == "chonaTart")
+        {
+            //For All Items
+            this.identity = "Chona Tart";
+            this.weight = 0.25;
+            this.size = 7;
+            this.description = "A nirwaden pastry made with chona fruit.";
+            this.intForDes = 0;
+            this.intDescription = "It is a sweet and rich pastry that tastes of chona fruit.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 7; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.3; //recoops lost energy.
+            this.replenish = 0.15; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            if (player.raceName == "Nirwaden")
+            {
+                this.intForCraft = 13;
+            }
+            else
+            {
+                this.intForCraft = 15;
+            }
+            this.ingredients = [["Raw Chona Tart", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 17 - Math.floor(player.getCharisma() / 50); // at max, buy for 16.
+            this.sellValue = 15 + Math.floor(player.getCharisma() / 50); // at max, sell for 16.
+        }
+        else if (this.type == "rawPolyapaTart")
+        {
+            //For All Items
+            this.identity = "Raw Polyapa Tart";
+            this.weight = 0.3;
+            this.size = 7;
+            this.description = "An uncooked nirwaden pastry made with polyapa fruit.";
+            if (player.raceName == "Nirwaden")
+            {
+                this.intForDes = 12;
+            }
+            else
+            {
+                this.intForDes = 14;
+            }
+            this.intDescription = "The temperature must be just right for the dough to rise the right way.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 3;
+            this.ingredients = [["Nirwaden Pastry Dough", 1], ["Polyapa", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9; // at max, buy for 11.
+            this.sellValue = 7 + Math.floor(player.getCharisma() / 25); // at max, sell for 9.
+        }
+        else if (this.type == "polyapaTart")
+        {
+            //For All Items
+            this.identity = "Polyapa Tart";
+            this.weight = 0.25;
+            this.size = 7;
+            this.description = "A nirwaden pastry made with polyapa fruit.";
+            this.intForDes = 0;
+            this.intDescription = "It is a sweet and rich pastry that tastes of polyapa fruit.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 3.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.35; //recoops lost energy.
+            this.replenish = 0.15; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            if (player.raceName == "Nirwaden")
+            {
+                this.intForCraft = 13;
+            }
+            else
+            {
+                this.intForCraft = 15;
+            }
+            this.ingredients = [["Raw Polyapa Tart", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 18 - Math.floor(player.getCharisma() / 50); // at max, buy for 17.
+            this.sellValue = 16 + Math.floor(player.getCharisma() / 50); // at max, sell for 17.
         }
         else if (this.type == "santhBread")
         {
@@ -17181,6 +17543,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 70 - Math.floor(player.getCharisma() / 5); // at max, buy for 60.
             this.sellValue = 45 + Math.floor(player.getCharisma() / 3); // at max, sell for 60.
+        }
+        else if (this.type == "greyTrollFur")
+        {
+            //For All Items
+            this.identity = "Grey Troll Fur";
+            this.weight = 10;
+            this.size = 24;
+            this.description = "The thick matted grey fur of a grey troll.";
+            this.intForDes = 5;
+            this.intDescription = "Grey Troll fur is exclusively coveted by the royal family of Thengaria.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 106 - Math.floor(player.getCharisma() / 8); // at max, buy for 100.
+            this.sellValue = 90 + Math.floor(player.getCharisma() / 5); // at max, sell for 100.
         }
         else if (this.type == "massiveWinterWolfPelt")
         {
@@ -27916,6 +28298,46 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "gargoyleHeart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(garg, 826, 414, 35, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 35 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 35 * 1, 36 * 1);
+        }
+        else if (this.type == "greyTrollFur")
+        {
+            XXX.beginPath();
+            XXX.drawImage(garg, 848, 1745, 109, 80, X - this.X + (1/2 * CCC.width) - (1/2 * 109 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 80 * 1), 109 * 1, 80 * 1);
+        }
+        else if (this.type == "rawIemaTart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 585, 1981, 14, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1), 14 * 1, 16 * 1);
+        }
+        else if (this.type == "rawChonaTart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 497, 1983, 14, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1), 14 * 1, 16 * 1);
+        }
+        else if (this.type == "rawPolyapaTart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 538, 1982, 14, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1), 14 * 1, 16 * 1);
+        }
+        else if (this.type == "iemaTart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 568, 1981, 14, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1), 14 * 1, 16 * 1);
+        }
+        else if (this.type == "chonaTart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 481, 1982, 14, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1), 14 * 1, 16 * 1);
+        }
+        else if (this.type == "polyapaTart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 522, 1983, 14, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1), 14 * 1, 16 * 1);
+        }
         else if (this.type == "mrbTacticalArmour")
         {
             XXX.beginPath();
@@ -30072,7 +30494,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(oldverse, 3050, 200, 22, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 22), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28), 22, 28);
         }
-        else if (this.type == "kellishSanthDough")
+        else if (this.type == "kellishSanthDough" || this.type == "nirwadenPastryDough")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 2940, 230, 17, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 2.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 2.6), 17 * 2.6, 14 * 2.6);
@@ -30462,7 +30884,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1804, 36, 26, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 26), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23), 26, 23);
         }
-        else if (this.type == "iceberg" || this.type == "whirlwind")
+        else if (this.type == "iceberg" || this.type == "whirlwind" || this.type == "doppelganger")
         {
             XXX.beginPath();
             XXX.drawImage(zapa, 455, 455, 39, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.22), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.22), 39 * 1.22, 24 * 1.22);
@@ -31564,6 +31986,46 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "gargoyleHeart")
+        {
+            LXX.beginPath();
+            LXX.drawImage(garg, 826, 414, 35, 36, this.invX - (1/2 * 35 * 1), this.invY - (1/2 * 36 * 1), 35 * 1, 36 * 1);
+        }
+        else if (this.type == "greyTrollFur")
+        {
+            LXX.beginPath();
+            LXX.drawImage(garg, 848, 1745, 109, 80, this.invX - (1/2 * 109 * 0.9), this.invY - (1/2 * 80 * 0.9), 109 * 0.9, 80 * 0.9);
+        }
+        else if (this.type == "rawIemaTart")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 585, 1981, 14, 16, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 16 * 1), 14 * 1, 16 * 1);
+        }
+        else if (this.type == "rawChonaTart")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 497, 1983, 14, 16, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 16 * 1), 14 * 1, 16 * 1);
+        }
+        else if (this.type == "rawPolyapaTart")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 538, 1982, 14, 16, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 16 * 1), 14 * 1, 16 * 1);
+        }
+        else if (this.type == "iemaTart")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 568, 1981, 14, 16, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 16 * 1), 14 * 1, 16 * 1);
+        }
+        else if (this.type == "chonaTart")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 481, 1982, 14, 16, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 16 * 1), 14 * 1, 16 * 1);
+        }
+        else if (this.type == "polyapaTart")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 522, 1983, 14, 16, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 16 * 1), 14 * 1, 16 * 1);
         }
         else if (this.type == "mrbTacticalArmour")
         {
@@ -33812,7 +34274,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(oldverse, 3050, 200, 22, 28, this.invX - (1/2 * 22), this.invY - (1/2 * 28), 22, 28);
         }
-        else if (this.type == "kellishSanthDough")
+        else if (this.type == "kellishSanthDough" || this.type == "nirwadenPastryDough")
         {
             LXX.beginPath();
             LXX.drawImage(oldverse, 2940, 230, 17, 14, this.invX - (1/2 * 17 * 2.6), this.invY - (1/2 * 14 * 2.6), 17 * 2.6, 14 * 2.6);
@@ -34172,7 +34634,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -35183,6 +35645,46 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "gargoyleHeart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(garg, 826, 414, 35, 36, this.invX - (1/2 * 35 * 1), this.invY - (1/2 * 36 * 1), 35 * 1, 36 * 1);
+        }
+        else if (this.type == "greyTrollFur")
+        {
+            XXX.beginPath();
+            XXX.drawImage(garg, 848, 1745, 109, 80, this.invX - (1/2 * 109 * 0.9), this.invY - (1/2 * 80 * 0.9), 109 * 0.9, 80 * 0.9);
+        }
+        else if (this.type == "rawIemaTart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 585, 1981, 14, 16, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 16 * 1), 14 * 1, 16 * 1);
+        }
+        else if (this.type == "rawChonaTart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 497, 1983, 14, 16, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 16 * 1), 14 * 1, 16 * 1);
+        }
+        else if (this.type == "rawPolyapaTart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 538, 1982, 14, 16, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 16 * 1), 14 * 1, 16 * 1);
+        }
+        else if (this.type == "iemaTart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 568, 1981, 14, 16, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 16 * 1), 14 * 1, 16 * 1);
+        }
+        else if (this.type == "chonaTart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 481, 1982, 14, 16, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 16 * 1), 14 * 1, 16 * 1);
+        }
+        else if (this.type == "polyapaTart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 522, 1983, 14, 16, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 16 * 1), 14 * 1, 16 * 1);
         }
         else if (this.type == "mrbTacticalArmour")
         {
@@ -37429,7 +37931,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(oldverse, 3050, 200, 22, 28, this.invX - (1/2 * 22), this.invY - (1/2 * 28), 22, 28);
         }
-        else if (this.type == "kellishSanthDough")
+        else if (this.type == "kellishSanthDough" || this.type == "nirwadenPastryDough")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 2940, 230, 17, 14, this.invX - (1/2 * 17 * 2.6), this.invY - (1/2 * 14 * 2.6), 17 * 2.6, 14 * 2.6);
@@ -37789,7 +38291,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);

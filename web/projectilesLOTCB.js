@@ -139,17 +139,17 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                     {
                         if (type == "bullet" && ArtificialIntelligenceAccess[i].healthMAX > 100 && ArtificialIntelligenceAccess[i].type != "Person" && ArtificialIntelligenceAccess[i].type != "Soldier")
                         {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.damage / 2) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.negateArmour / 2))) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.damage / 3) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.negateArmour / 2))) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                         }
                         else if (type == "5.56MMRound" && ArtificialIntelligenceAccess[i].healthMAX > 90 && ArtificialIntelligenceAccess[i].type != "Person" && ArtificialIntelligenceAccess[i].type != "Soldier" || type == "shotgunRound" && ArtificialIntelligenceAccess[i].healthMAX > 90 && ArtificialIntelligenceAccess[i].type != "Person" && ArtificialIntelligenceAccess[i].type != "Soldier")
                         {
                             if (ArtificialIntelligenceAccess[i].healthMAX <= 160)
                             {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.damage / 3) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.negateArmour / 20))) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.damage / 10) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.negateArmour / 20))) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                             }
                             else
                             {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.damage / 5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.negateArmour / 20))) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.damage / 20) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.negateArmour / 20))) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                             }
                         }
                         else
@@ -901,6 +901,11 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 player.projYAd = 0;
                 player.projXAd = 0;
                 this.setStats();
+                this.damage = 29;
+                this.shoot();
+                this.impact();
+                this.shoot();
+                this.impact();
                 this.shoot();
                 this.impact();
 
@@ -941,6 +946,11 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 player.projYAd = 0;
                 player.projXAd = 0;
                 this.setStats();
+                this.damage = 19;
+                this.shoot();
+                this.impact();
+                this.shoot();
+                this.impact();
                 this.shoot();
                 this.impact();
 

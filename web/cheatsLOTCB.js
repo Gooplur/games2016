@@ -159,16 +159,16 @@ function cheats()
         }
         else if (cheatcode == "8675309")
         {
-            magicList.push(new Magic({ID: "chasingLights"}, true));
-            magicList.push(new Magic({ID: "chasingLights"}, true));
-            magicList.push(new Magic({ID: "chasingLights"}, true));
-            magicList.push(new Magic({ID: "chasingLights"}, true));
-            magicList.push(new Magic({ID: "chasingLights"}, true));
-            magicList.push(new Magic({ID: "chasingLights"}, true));
-            magicList.push(new Magic({ID: "chasingLights"}, true));
-            magicList.push(new Magic({ID: "chasingLights"}, true));
-            magicList.push(new Magic({ID: "chasingLights"}, true));
-            magicList.push(new Magic({ID: "chasingLights"}, true));
+            magicList.push(new Magic({ID: "chasingLights", CNX: 50}, true, [true]));
+            magicList.push(new Magic({ID: "chasingLights", CNX: 50}, true, [true]));
+            magicList.push(new Magic({ID: "chasingLights", CNX: 50}, true, [true]));
+            magicList.push(new Magic({ID: "chasingLights", CNX: 50}, true, [true]));
+            magicList.push(new Magic({ID: "chasingLights", CNX: 50}, true, [true]));
+            magicList.push(new Magic({ID: "chasingLights", CNX: 50}, true, [true]));
+            magicList.push(new Magic({ID: "chasingLights", CNX: 50}, true, [true]));
+            magicList.push(new Magic({ID: "chasingLights", CNX: 50}, true, [true]));
+            magicList.push(new Magic({ID: "chasingLights", CNX: 50}, true, [true]));
+            magicList.push(new Magic({ID: "chasingLights", CNX: 50}, true, [true]));
         }
         else if (cheatcode == "111248392741664s")
         {
@@ -868,6 +868,14 @@ function cheats()
         else if (cheatcode.toLowerCase() == "gravimullthetroll")
         {
             ArtificialIntelligenceAccess.push(new Unit(X + 500 - 1/2 * CCC.width, Y + 500 - 1/2 * CCC.height, "BogTroll", true, "Gravimull the Troll"));
+        }
+        else if (cheatcode.toLowerCase() == "devomori")
+        {
+            ArtificialIntelligenceAccess.push(new Unit(X + 400 - 1/2 * CCC.width, Y + 400 - 1/2 * CCC.height, "Olkrin", true, "Devomori the Destroyer"));
+        }
+        else if (cheatcode.toLowerCase() == "tulli")
+        {
+            ArtificialIntelligenceAccess.push(new Unit(X + 400 - 1/2 * CCC.width, Y + 400 - 1/2 * CCC.height, "Sprite", true, "Tulli the Watcher"));
         }
         else if (cheatcode.toLowerCase() == "wetnoodle") //resets all physical stats to 0
         {

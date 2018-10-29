@@ -277,6 +277,8 @@ function Adventurer()
     //tileInteraction Variables (being over water etc.)
     this.land = true; //if true the player is on land (if both are true it is because they are on both)
     this.water = false; //if true the player is over water
+    //extra variables
+    this.loadedAmmo = "none"; //this is specifically for dopplegangers to be able to imitate the player's ranged equipment
     //effects variables
     this.obscurity = true; //this is a secondary control for subtlety it should be true.
     this.subtlety = false; //this sets the player to permaStealth without even having to stealth (the player can run and still be unspotted in this mode)
@@ -7668,56 +7670,56 @@ function Adventurer()
                             this.will -= secondarySpells[i].cost;
                             this.magicalExperience += secondarySpells[i].EXP;
 
-                            magicList.push(new Magic(secondarySpells[i], true));
+                            magicList.push(new Magic(secondarySpells[i], true, [true]));
 
                             if (secondarySpells[i].CNX >= 2)
                             {
-                                magicList.push(new Magic(secondarySpells[i], true));
+                                magicList.push(new Magic(secondarySpells[i], true, [true]));
                             }
 
                             if (secondarySpells[i].CNX >= 4)
                             {
-                                magicList.push(new Magic(secondarySpells[i], true));
+                                magicList.push(new Magic(secondarySpells[i], true, [true]));
                             }
 
                             if (secondarySpells[i].CNX >= 7)
                             {
-                                magicList.push(new Magic(secondarySpells[i], true));
+                                magicList.push(new Magic(secondarySpells[i], true, [true]));
                             }
 
                             if (secondarySpells[i].CNX >= 10)
                             {
-                                magicList.push(new Magic(secondarySpells[i], true));
+                                magicList.push(new Magic(secondarySpells[i], true, [true]));
                             }
 
                             if (secondarySpells[i].CNX >= 15)
                             {
-                                magicList.push(new Magic(secondarySpells[i], true));
+                                magicList.push(new Magic(secondarySpells[i], true, [true]));
                             }
 
                             if (secondarySpells[i].CNX >= 20)
                             {
-                                magicList.push(new Magic(secondarySpells[i], true));
-                                magicList.push(new Magic(secondarySpells[i], true));
+                                magicList.push(new Magic(secondarySpells[i], true, [true]));
+                                magicList.push(new Magic(secondarySpells[i], true, [true]));
                             }
 
                             if (secondarySpells[i].CNX >= 30)
                             {
-                                magicList.push(new Magic(secondarySpells[i], true));
-                                magicList.push(new Magic(secondarySpells[i], true));
+                                magicList.push(new Magic(secondarySpells[i], true, [true]));
+                                magicList.push(new Magic(secondarySpells[i], true, [true]));
                             }
 
                             if (secondarySpells[i].CNX >= 40)
                             {
-                                magicList.push(new Magic(secondarySpells[i], true));
-                                magicList.push(new Magic(secondarySpells[i], true));
+                                magicList.push(new Magic(secondarySpells[i], true, [true]));
+                                magicList.push(new Magic(secondarySpells[i], true, [true]));
                             }
 
                             if (secondarySpells[i].CNX >= 50)
                             {
-                                magicList.push(new Magic(secondarySpells[i], true));
-                                magicList.push(new Magic(secondarySpells[i], true));
-                                magicList.push(new Magic(secondarySpells[i], true));
+                                magicList.push(new Magic(secondarySpells[i], true, [true]));
+                                magicList.push(new Magic(secondarySpells[i], true, [true]));
+                                magicList.push(new Magic(secondarySpells[i], true, [true]));
                             }
 
 
@@ -7784,6 +7786,30 @@ function Adventurer()
                             this.magicalExperience += secondarySpells[i].EXP;
 
                             magicList.push(new Magic(secondarySpells[i], true));
+
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+                    }
+                    //Doppelganger
+                    if (secondarySpells[i].ID == "doppelganger")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                        {
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+                            if (this.health > 60)
+                            {
+                                this.health -= 60;
+                                ArtificialIntelligenceAccess.push(new Unit(X, Y, "Soldier", false, "Doppelganger", {patrolStops: 0, patrolLoop: false, route:[[0, 0]]}));
+                            }
+                            else
+                            {
+                                if (this.health >= 10)
+                                {
+                                    this.health -= 13;
+                                    ArtificialIntelligenceAccess.push(new Unit(X, Y - 17, "Soldier", false, "Unbound Doppelganger", {patrolStops: 0, patrolLoop: false, route:[[0, 0]]}));
+                                }
+                            }
 
                             this.secondaryCastingCooldown = new Date().getTime();
                         }
@@ -18566,6 +18592,7 @@ function Adventurer()
                     {
                         //this sets the currently equipped ammo to a variable called loaded.
                         var loaded = Inventory[i][0];
+                        this.loadedAmmo = loaded;
                     }
                     else if (Inventory[i][0].utility == "ranged" && Inventory[i][0].equipped == true)
                     {
@@ -27143,6 +27170,28 @@ function Adventurer()
                             else if (Inventory[i][0].ability == "tunskBlood") //Petrification Resistance - for ten minutes
                             {
                                 this.petrificationResistanceTime = 600;
+                            }
+                            else if (Inventory[i][0].ability == "petrification")
+                            {
+                                if (this.petrificationResistanceTime <= 0)
+                                {
+                                    this.petrification = true;
+                                }
+                            }
+                            else if (Inventory[i][0].ability == "gargoyleHeart")
+                            {
+                                if (this.petrificationResistanceTime <= 0)
+                                {
+                                    this.petrification = true;
+                                }
+                                if (this.class == "Mage" || this.class == "Priest" || this.getEminence() >= 2)
+                                {
+                                    this.magicalExperience += 60;
+                                }
+                                else
+                                {
+                                    this.magicalExperience += 35;
+                                }
                             }
                             else if (Inventory[i][0].ability == "eliktozeola")
                             {

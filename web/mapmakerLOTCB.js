@@ -12702,6 +12702,23 @@ function buildMaster()
                     }
                 }
 
+                if (uniqueChars.matildaLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Matilda")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        //ArtificialIntelligenceAccess.push(new Unit(-41851, 2067, "Soldier", false, "Matilda", {race: "Nirwaden", faction: "Nirwaden", con: 5, speed: 5, outfit: ["nirwadenClothingF", 0], weapon: ["burningHands", [5, 5], 3, 3, 0.55], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: true, route:[[-41301, 717]]}));
+                    }
+                }
+                ArtificialIntelligenceAccess.push(new Unit(-41851, 2067, "Soldier", false, "Doppelganger", {patrolStops: 0, patrolLoop: true, route:[[-41301, 717]]}));
+
                 if (uniqueChars.leonLDS == true)
                 {
                     var hits = 0;
@@ -12947,8 +12964,19 @@ function buildMaster()
                 scenicList.push(new Scenery("item", -41437, 1794, 0, "nirwaden", ["frichFurMittens", 1, -9]));
                 scenicList.push(new Scenery("item", -41445, 1781, 0, "nirwaden", ["frichFurMittens", 1, -9]));
                 ArtificialIntelligenceAccess.push(new Unit(-41427, 1609, "Person", false, "Wash Boy", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["varnFurClothing", 0], weapon: ["none", [0.1, 0.05], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], kid: true, patrolStops: 0, patrolLoop: true, route:[[-41562, 1135]]}));
-                    //Chemist
+                    //medical clinic
                 scenicList.push(new Scenery("lab", -41297, 2478, 0, true));
+                scenicList.push(new Scenery("nirwadenMueble", -41337, 2520, 0, 3));
+                scenicList.push(new Scenery("nirwadenMueble", -41443, 2305, 0, 6));
+                scenicList.push(new Scenery("nirwadenMueble", -41297, 2320, 0, 2));
+                scenicList.push(new Scenery("item", -41277, 2318, 0, "nirwaden", ["culprisBandage", 4, -24]));
+                scenicList.push(new Scenery("item", -41280, 2331, 0, "nirwaden", ["vialOfWater", 1, -2]));
+                scenicList.push(new Scenery("item", -41290, 2327, 0, "nirwaden", ["vialOfWater", 1, -2]));
+                scenicList.push(new Scenery("item", -41300, 2310, 0, "nirwaden", ["culprisLeaf", 2, -10]));
+                scenicList.push(new Scenery("item", -41277, 2306, 0, "nirwaden", ["culprisLeaf", 1, -5]));
+                scenicList.push(new Scenery("item", -41314, 2314, 0, "nirwaden", ["wyrLeaf", 2, -12]));
+                scenicList.push(new Scenery("item", -41310, 2327, 0, "nirwaden", ["erguerPaste", 2, -11]));
+                scenicList.push(new Scenery("item", -41443, 2307, 0, "nirwaden", ["healingSalve", 1, -25]));
 
                 //signs
                 scenicList.push(new Scenery("sign", -41000, 2886, 1/2 * Math.PI, 3, "Riverfront Storage"));
@@ -12958,6 +12986,7 @@ function buildMaster()
                 scenicList.push(new Scenery("sign", -40666, 1716, -1/2 * Math.PI, 3, "Átalin Barracks: Riverfront"));
                 scenicList.push(new Scenery("sign", -40906, 1624, 1/2 * Math.PI, 3, "Átalin City Prison"));
                 scenicList.push(new Scenery("sign", -41493, 1627, -1/2 * Math.PI, 3, "Riverfront Outfitter's"));
+                scenicList.push(new Scenery("sign", -41476, 2351, -1/2 * Math.PI, 3, "The Atalin Medical Clinic"));
                 if (player.gamemode == "protagonist")
                 {
                     ArtificialIntelligenceAccess.push(new Unit(-41501, 998, "Person", false, "Buddy", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["northernClothing", 0], weapon: ["none", [0.35, 0.6], 0, 1, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[-41562, 1135]]}));

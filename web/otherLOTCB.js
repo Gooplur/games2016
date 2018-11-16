@@ -176,8 +176,11 @@ function gameTimeKeeper()
     if (new Date().getTime() - timeRegulator >= 100)
     {
         timeRegulator = new Date().getTime();
-        timePlayed += 0.1;
-        player.totalTimePlayed = timePlayed;
+        if (gameState == "active")
+        {
+            timePlayed += 0.1 * timeSpeed;
+            player.totalTimePlayed = timePlayed;
+        }
     }
     gameTime = (timePlayed / 0.0625) + sleeperTime;
 
@@ -201,19 +204,19 @@ function gameTimeKeeper()
 
     secondOfMinute = Math.floor(gameTime % 60);
 
-    if (seasonOfYear == 1)
+    if (seasonOfYear == 0)
     {
         currentSeason = "Harvest";
     }
-    else if (seasonOfYear == 2)
+    else if (seasonOfYear == 1)
     {
         currentSeason = "Frost";
     }
-    else if (seasonOfYear == 3)
+    else if (seasonOfYear == 2)
     {
         currentSeason = "Bounty";
     }
-    else if (seasonOfYear == 4)
+    else if (seasonOfYear == 3)
     {
         currentSeason = "Bright";
     }

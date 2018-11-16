@@ -22195,7 +22195,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.experience = (10 * ((player.getIntelligence() / 50) + 1)) / 10;
             }
 
-            this.drops = [];
+            this.drops = [[new Item("sprite", this.X, this.Y), 1]];
 
 
             this.rangeOfSightCalculator(2922, true);

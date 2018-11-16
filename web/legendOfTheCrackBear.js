@@ -1891,6 +1891,18 @@ function tombPack()
 
     tomb.onload = function()
     {
+        vampiroPack();
+    };
+}
+
+function vampiroPack()
+{
+    var vampiro = new Image();
+    vampiro.src = ("images/iro.png");
+    window.vampiro = vampiro;
+
+    vampiro.onload = function()
+    {
         moltePack();
     };
 }
@@ -2327,6 +2339,7 @@ var dKey;
 var spaceKey;
 var shiftKey;
 var altKey;
+var zKey;
 var qKey;
 var eKey;
 var key1;
@@ -2819,6 +2832,11 @@ function keyReleased(event)
         altKey = false;
     }
 
+    if (key == 90)
+    {
+        zKey = false;
+    }
+
     if (key == 81)
     {
         qKey = false;
@@ -2969,6 +2987,11 @@ function keyHeld(event)
         altKey = true;
     }
 
+    if (key == 90)
+    {
+        zKey = true;
+    }
+
     if (key == 81)
     {
         qKey = true;
@@ -3047,8 +3070,11 @@ function over(kind, j, i, extraX, extraY)
     {
         if (kind == "sea")
         {
-            player.land = false;
-            player.water = true;
+            if (player.form != "vampire" || wKey != true)
+            {
+                player.land = false;
+                player.water = true;
+            }
         }
         else if (kind == "landing")
         {
@@ -3704,6 +3730,8 @@ function theLegend()
     allWeapons.push(new Item("timeArrow", false)); //75
     allWeapons.push(new Item("vardanianHalberd", false)); //76
     allWeapons.push(new Item("shotgun", false)); //77
+    allWeapons.push(new Item("spade", false)); //78
+    allWeapons.push(new Item("vampire", false)); //79 //this is not really a weapon, but a form
 
 
 

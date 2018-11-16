@@ -526,6 +526,13 @@ function Adventurer()
     this.cyberToggleTime = new Date().getTime();
     this.cyborgRespo = 0;
     this.airFilter = false; //this lets the player resist suffocating gasses in the environment
+    this.vampireCurse = false;
+    this.vamprism = false;
+    this.vampTurn = "over";
+    this.vampCarry = false;
+    this.vampHypnosis = false;
+    this.vampDead = false;
+    this.silvered = false;
 
     //faction variables
     this.factionToggle = false;
@@ -678,6 +685,12 @@ function Adventurer()
             this.fishingTime = 0;
             this.fishingFrame = false;
             this.fished = false;
+        }
+
+        //DAMAGE STAYS IN HEALTH BAR
+        if ((this.decreaseInHealth + this.health) > this.healthMAX)
+        {
+            this.decreaseInHealth = this.healthMAX - this.health;
         }
     };
 
@@ -1691,7 +1704,10 @@ function Adventurer()
                     //DROWN if in water and run out of energy past fatigue point
                     if (this.movingType == "swimming" && this.energy < -5)
                     {
-                        this.drowned = true;
+                        if (this.vamprism == false)
+                        {
+                            this.drowned = true;
+                        }
                     }
 
                     if (this.drowned == true)
@@ -3223,7 +3239,10 @@ function Adventurer()
         {
             if (adminShowSight || this.getDexterity() >= 50 && this.movingType == 3)
             {
-                showSight = true;
+                if (player.form == false)
+                {
+                    showSight = true;
+                }
             }
             else
             {
@@ -3496,14 +3515,14 @@ function Adventurer()
                 this.energy += 0.003;
                 this.sleep = this.sleepMAX;
                 this.timeAlterTime = Math.max(1, this.timeAlterTime);
-                this.timeAlter = 0.8;
+                this.timeAlter = 0.6;
             }
             else if (this.kolumHigh > 0)
             {
                 this.energy += 0.0015;
                 this.kolumVomitTime = new Date().getTime();
                 this.timeAlterTime = Math.max(1, this.timeAlterTime);
-                this.timeAlter = 0.9;
+                this.timeAlter = 0.8;
             }
             else if (this.kolumHigh < 900)
             {
@@ -3657,6 +3676,77 @@ function Adventurer()
 
     this.formChanger = function() //todo fix the entrance into werewolfness (the exit back to humanness works)
     {
+        //Vamprism
+        if (this.vamprism)
+        {
+            if (this.lycanthropy == true)
+            {
+                this.silvered = true;
+                this.health -= 2.5;
+            }
+
+            this.decreaseInHealth = 0;
+            this.hunger -= 0.0015;
+            this.sleep = this.sleepMAX;
+            //vampire charm
+            if (qKey && this.form != "vampire")
+            {
+                qKey = false;
+                for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                {
+                    if (ArtificialIntelligenceAccess[ll].type == "Person" && ArtificialIntelligenceAccess[ll].magicalResistance < 1 || ArtificialIntelligenceAccess[ll].type == "Soldier" && ArtificialIntelligenceAccess[ll].magicalResistance < 1)
+                    {
+                        if (ArtificialIntelligenceAccess[ll].DTP() <= 85)
+                        {
+                            if (ArtificialIntelligenceAccess[ll].disturbed == false)
+                            {
+                                ArtificialIntelligenceAccess[ll].charmedTeam = "player";
+                                ArtificialIntelligenceAccess[ll].charmedTime = new Date().getTime() + 10000;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (this.health <= 0)
+            {
+                this.form = "vampire";
+            }
+            else if (zKey && shiftKey)
+            {
+                if (this.form == false)
+                {
+                    zKey = false;
+                    this.form = "vampire";
+                    this.vampTurn = true; //false
+                }
+            }
+
+            if (this.form == "vampire")
+            {
+                for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                {
+                    if (ArtificialIntelligenceAccess[ll].team != "player" && ArtificialIntelligenceAccess[ll].team != "undead" && ArtificialIntelligenceAccess[ll].type == "Soldier" || ArtificialIntelligenceAccess[ll].team != "player" && ArtificialIntelligenceAccess[ll].type == "Person")
+                    {
+                        ArtificialIntelligenceAccess[ll].disturbed = true;
+                    }
+                }
+
+                //unequip weapon and armour then...
+                //set outfit to vampire
+                for (var i = 0; i < Inventory.length; i++)
+                {
+                    if (Inventory[i][0].utility == "weapon" || Inventory[i][0].utility == "ranged" || Inventory[i][0].utility == "worn")
+                    {
+                        Inventory[i][0].equipped = false;
+                    }
+                }
+                this.ammoLoaded = false; //if a ranged weapon is in the middle of shooting this counters that
+                this.outfitEquipped = "none";
+                this.weaponEquipped = "vampire";
+            }
+        }
+
         //Lycanthropy
         if (this.lycanthropy)
         {
@@ -3845,6 +3935,17 @@ function Adventurer()
         {
             return 35;
         }
+        if (this.form == "vampire") //Increases Both health and energy Quickly, but health much more quickly than energy.
+        {
+            if (this.hunger > 10)
+            {
+                return 50;
+            }
+            else
+            {
+                return 0;
+            }
+        }
         else if (energyDrink == true) //Increases energy instantly but decreases health at about - 1 per every four seconds.
         {
             //If developerMode "instantRegeneration" is on the players endurance will rise to the highest possible point without breaking
@@ -3895,6 +3996,10 @@ function Adventurer()
         {
             return 75;
         }
+        else if (this.form == "vampire")
+        {
+            return 20;
+        }
         else // returns the normal amount.
         {
             return Math.max(0, (this.constitution + this.AdConstitution + this.swollenCON + this.conBoost));
@@ -3905,6 +4010,17 @@ function Adventurer()
         if (rapidamente == true)
         {
             return 350;
+        }
+        else if (this.form == "vampire")
+        {
+            if (altKey)
+            {
+                return 240;
+            }
+            else
+            {
+                return 300;
+            }
         }
         else if (this.gojiiPoisoned == true) //increases health a lot!!!
         {
@@ -3927,7 +4043,7 @@ function Adventurer()
 
     this.getStamina = function()
     {
-        if (this.form == "werewolf")
+        if (this.form == "werewolf" || this.form == "vampire")
         {
             return 99;
         }
@@ -3949,7 +4065,7 @@ function Adventurer()
 
     this.getSurvivalism = function()
     {
-        if (this.form == "werewolf")
+        if (this.form == "werewolf" || this.form == "vampire")
         {
             return 0;
         }
@@ -4005,6 +4121,10 @@ function Adventurer()
         if (this.form == "werewolf")
         {
             return 0;
+        }
+        else if (this.vamprism)
+        {
+            return 100;
         }
         else
         {
@@ -7189,31 +7309,34 @@ function Adventurer()
         {
             if (this.weaponIsRanged == false && new Date().getTime() - this.attackCooldown >= 10 * this.weapon.rate && this.spell == "none")
             {
-                if (player.getEndurance() >= 10 && this.weapon.energyCost * energil > this.energy && this.energy >= -4) //Special: the player can hit only minimal damage when out of energy.
+                if (this.form != "vampire" || this.vampDead == false)
                 {
-                    if (this.attacking == false && this.blocking == false && qKey == false && eKey == false)
+                    if (player.getEndurance() >= 10 && this.weapon.energyCost * energil > this.energy && this.energy >= -4) //Special: the player can hit only minimal damage when out of energy.
                     {
-                        this.energy = -5;
-                        if (player.getEndurance() >= 15)
+                        if (this.attacking == false && this.blocking == false && qKey == false && eKey == false)
                         {
-                            this.powerAttack = "weakened";
+                            this.energy = -5;
+                            if (player.getEndurance() >= 15)
+                            {
+                                this.powerAttack = "weakened";
+                            }
+                            else
+                            {
+                                this.powerAttack = "weak";
+                            }
+                            this.strike = true;
+                            this.cutcut = true; //for an sort of attacking of scenery this allows you to signal that an attack has happened.
                         }
-                        else
-                        {
-                            this.powerAttack = "weak";
-                        }
-                        this.strike = true;
-                        this.cutcut = true; //for an sort of attacking of scenery this allows you to signal that an attack has happened.
                     }
-                }
-                else if (this.weapon.energyCost * energil <= this.energy) //Normal: the player can not attack when out of energy.
-                {
-                    if (this.attacking == false && this.blocking == false && qKey == false && eKey == false)
+                    else if (this.weapon.energyCost * energil <= this.energy) //Normal: the player can not attack when out of energy.
                     {
-                        this.energy -= this.weapon.energyCost * energil;
-                        this.powerAttack = false;
-                        this.strike = true;
-                        this.cutcut = true; //for an sort of attacking of scenery this allows you to signal that an attack has happened.
+                        if (this.attacking == false && this.blocking == false && qKey == false && eKey == false)
+                        {
+                            this.energy -= this.weapon.energyCost * energil;
+                            this.powerAttack = false;
+                            this.strike = true;
+                            this.cutcut = true; //for an sort of attacking of scenery this allows you to signal that an attack has happened.
+                        }
                     }
                 }
             }
@@ -7392,7 +7515,7 @@ function Adventurer()
         //POWER ATTACK INITIATOR
         if (eKey == true)
         {
-            if (player.form == "werewolf") //werewolves use power attack as one of their normal attacks
+            if (player.form == "werewolf" || player.form == "vampire") //werewolves use power attack as one of their normal attacks
             {
                 if (new Date().getTime() - this.attackCooldown >= 15 * this.weapon.rate)
                 {
@@ -7468,7 +7591,7 @@ function Adventurer()
                 }
                 else
                 {
-                    if (rapidamente == false)
+                    if (rapidamente == false && this.form != "vampire")
                     {
                         this.stage += framerate * TTD / (16.75 - (0.1 / 2 * ((this.getDexterity() / 2) + 0.5))); //This is the part that actually changes the frame in the positive direction.
                     }
@@ -7489,7 +7612,7 @@ function Adventurer()
                 }
                 else
                 {
-                    if (rapidamente == false)
+                    if (rapidamente == false && this.form != "vampire")
                     {
                         this.stage -= framerate * TTD / (16.75 - (0.1 / 2 * ((this.getDexterity() / 4) + 0.5))); //This is the part that actually changes the frame in the negative direction.
                     }
@@ -7518,7 +7641,7 @@ function Adventurer()
                     {
                         if (bothwaysBool == false) // if the animation is one way it ends here...
                         {
-                            if (this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf")
+                            if (this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire")
                             {
                                 self.finalAttackStage = true;
                                 self.attackCooldown = new Date().getTime();
@@ -7537,7 +7660,7 @@ function Adventurer()
                     }
                     else
                     {
-                        if (rapidamente == false)
+                        if (rapidamente == false && this.form != "vampire")
                         {
                             self.stage += framerate * TTD / (16.75 - (0.1 / 2 * ((this.getDexterity() / 2) + 0.5))); //This is the part that actually changes the frame in the positive direction.
                         }
@@ -7561,7 +7684,7 @@ function Adventurer()
                     }
                     else
                     {
-                        if (rapidamente == false)
+                        if (rapidamente == false && this.form != "vampire")
                         {
                             self.stage -= framerate * TTD / (16.75 - (0.1 / 2 * ((this.getDexterity() / 4) + 0.5))); //This is the part that actually changes the frame in the negative direction.
                         }
@@ -11535,6 +11658,650 @@ function Adventurer()
                 }
             }
         }
+        //VAMPIRE (form)
+        if (this.weaponEquipped == "vampire")
+        {
+            var szx = 1.2;
+            if (this.vampDead)
+            {
+                this.animator(3, 0.04, false); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+                //ATTACK ANIMATION
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(vampiro, 875, 110, 123, 74, -1/2 * 123 * szx, -1/2 * 74 * szx, 123 * szx, 74 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(vampiro, 868, 190, 123, 74, -1/2 * 123 * szx, -1/2 * 74 * szx, 123 * szx, 74 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    this.health = 20;
+                    this.vampDead = false;
+                    this.vampTurn = false;
+                    XXX.drawImage(vampiro, 868, 190, 123, 74, -1/2 * 123 * szx, -1/2 * 74 * szx, 123 * szx, 74 * szx);
+                    this.stage = 0;
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (this.vampTurn == true)
+                {
+                    this.animator(5, 0.15, false); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+                    //ATTACK ANIMATION
+                    if (Math.floor(this.stage) <= 0)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(vampiro, 652, 283, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 1)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(vampiro, 703, 283, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 2)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(vampiro, 777, 281, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 3)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(vampiro, 853, 283, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) >= 4)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(vampiro, 346, 14, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                        this.vampTurn = false;
+                        XXX.restore();
+                    }
+                }
+
+                //actually being a vampire is this.
+                if (this.vampTurn == false)
+                {
+                    if (zKey == true && shiftKey == true)
+                    {
+                        zKey = false;
+                        this.vampTurn = "regress";
+                    }
+
+                    if (wKey)
+                    {
+                        if (shiftKey)
+                        {
+                            for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                            {
+                                if (ArtificialIntelligenceAccess[ll].team != "undead" && ArtificialIntelligenceAccess[ll].team != "player")
+                                {
+                                    if (ArtificialIntelligenceAccess[ll].haste == false && ArtificialIntelligenceAccess[ll].healthMAX < 75 || ArtificialIntelligenceAccess[ll].type == "Person" || ArtificialIntelligenceAccess[ll].type == "Soldier")
+                                    {
+                                        if (this.vampCarry == false || this.vampCarry == ArtificialIntelligenceAccess[ll].barcode)
+                                        {
+                                            if (ArtificialIntelligenceAccess[ll].DTP() <= 120)
+                                            {
+                                                ArtificialIntelligenceAccess[ll].X = X;
+                                                ArtificialIntelligenceAccess[ll].Y = Y;
+                                                ArtificialIntelligenceAccess[ll].timeBetweenAttacks = new Date().getTime();
+                                                this.vampCarry = ArtificialIntelligenceAccess[ll].barcode;
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (this.vampCarry != false)
+                            {
+                                for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                                {
+                                    if (this.vampCarry == ArtificialIntelligenceAccess[ll].barcode)
+                                    {
+                                        if (ArtificialIntelligenceAccess[ll].land == true)
+                                        {
+                                            ArtificialIntelligenceAccess[ll].stunTime = new Date().getTime();
+                                            ArtificialIntelligenceAccess[ll].stunTimer = 1;
+                                            ArtificialIntelligenceAccess[ll].stunIII = true;
+                                            ArtificialIntelligenceAccess[ll].health -= Math.min(13, 1/3 * ArtificialIntelligenceAccess[ll].healthMAX);
+                                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                            ArtificialIntelligenceAccess[i].showHealthTime = new Date().getTime() + 1800;
+                                        }
+                                        break;
+                                    }
+                                }
+                            }
+                            this.vampCarry = false;
+                        }
+
+                        if (this.vampFlight == "takeoff")
+                        {
+                            this.animator(5, 0.15, false); //movement
+
+                            //ANIMATION
+                            if (Math.floor(this.stage) <= 0)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                XXX.drawImage(vampiro, 330, 1, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) <= 1)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                XXX.drawImage(vampiro, 448, 0, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) <= 2)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                XXX.drawImage(vampiro, 582, 4, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) <= 3)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                XXX.drawImage(vampiro, 725, 8, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) <= 4)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                XXX.drawImage(vampiro, 857, 9, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) >= 5)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                XXX.drawImage(vampiro, 725, 8, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                this.vampFlight = true;
+                                XXX.restore();
+                            }
+                        }
+                        else
+                        {
+                            this.animator(3, 0.15, true); //movement
+
+                            if (Math.floor(this.stage) <= 0)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                XXX.drawImage(vampiro, 582, 4, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) <= 1)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                XXX.drawImage(vampiro, 725, 8, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) >= 2)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                XXX.drawImage(vampiro, 857, 9, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        this.vampCarry = false;
+                        this.vampFlight = "takeoff";
+                    }
+                    if (wKey != true)
+                    {
+                        if (spaceKey || eKey || this.attacking)
+                        {
+                            this.stageEngine(8, 0.15, true); //movement
+
+                            if (Math.floor(this.stage) <= 0)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                XXX.drawImage(vampiro, 330, 1, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) <= 1)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                this.attackManual = false;
+                                XXX.drawImage(vampiro, 47, 212, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) <= 2)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                this.attackManual = false;
+                                XXX.drawImage(vampiro, 153, 216, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) <= 3)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                this.attackManual = false;
+                                XXX.drawImage(vampiro, 265, 217, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) <= 4)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                this.attackManual = false;
+                                XXX.drawImage(vampiro, 380, 222, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) >= 5)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+
+                                for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                                {
+                                    var vdfu = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.bubbleOfDamageX) * (ArtificialIntelligenceAccess[i].X - this.bubbleOfDamageX) + (ArtificialIntelligenceAccess[i].Y - this.bubbleOfDamageY) * (ArtificialIntelligenceAccess[i].Y - this.bubbleOfDamageY)) - ArtificialIntelligenceAccess[i].sizeRadius; //This is the distance from the center of the players attack/damaging bubble to the AI Unit.
+
+                                    if (vdfu <= this.weapon.range * 7 && this.finalAttackStage == true && !ArtificialIntelligenceAccess[i].underground && ArtificialIntelligenceAccess[i].dmx == this.dmx && ArtificialIntelligenceAccess[i].mounted != true)
+                                    {
+                                        if (ArtificialIntelligenceAccess[ll].type == "Person" || ArtificialIntelligenceAccess[ll].type == "Soldier" || ArtificialIntelligenceAccess[ll].healthMAX < 75)
+                                        {
+                                            ArtificialIntelligenceAccess[ll].stunTime = new Date().getTime();
+                                            ArtificialIntelligenceAccess[ll].stunTimer = 1;
+                                            ArtificialIntelligenceAccess[ll].stunV = true;
+                                            ArtificialIntelligenceAccess[ll].timeBetweenAttacks = new Date().getTime();
+                                        }
+                                    }
+                                }
+                                if (this.stage >= 7)
+                                {
+                                    if (this.attackManual == false)
+                                    {
+                                        this.attackManual = true;
+                                        this.finalAttackStage = true;
+                                        this.attackCooldown = new Date().getTime();
+                                        this.thirst = this.thirstMAX;
+                                        for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                                        {
+                                            if (ArtificialIntelligenceAccess[ll].petrified != true && ArtificialIntelligenceAccess[ll].undeath != true && ArtificialIntelligenceAccess[ll].type != "werewolf" && ArtificialIntelligenceAccess[ll].baseTeam != "undead")
+                                            {
+                                                if (ArtificialIntelligenceAccess[ll].DTU({X: this.bubbleOfDamageX, Y: this.bubbleOfDamageY}) < this.weapon.range * 7 + (ArtificialIntelligenceAccess[ll].sizeRadius * 0.6))
+                                                {
+                                                    if (ArtificialIntelligenceAccess[ll].type == "Person" || ArtificialIntelligenceAccess[ll].type == "Soldier")
+                                                    {
+                                                        this.hunger = Math.min(this.hungerMAX, (this.hunger + 20));
+                                                        this.health = Math.min(this.healthMAX, (this.health + 10));
+                                                    }
+                                                    this.hunger = Math.min(this.hungerMAX, this.hunger + ArtificialIntelligenceAccess[ll].healthMAX);
+                                                    this.health = Math.min(this.healthMAX, this.health + ArtificialIntelligenceAccess[ll].healthMAX);
+                                                }
+                                            }
+                                            else if (ArtificialIntelligenceAccess[ll].type != "werewolf")
+                                            {
+                                                this.silvered = true;
+                                                this.health = 0;
+                                            }
+                                        }
+                                        this.warmth = this.warmthMAX;
+                                        this.poisonI = false;
+                                        this.poisonII = false;
+                                        this.poisonIII = false;
+                                        this.poisonIV = false;
+                                        this.poisonV = false;
+                                    }
+                                }
+                                XXX.drawImage(vampiro, 511, 225, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                        }
+                        else if (qKey || this.vampHypnosis) //hypnosis
+                        {
+                            qKey = false;
+                            this.vampHypnosis = true;
+                            this.animator(7, 0.12, true); //movement
+
+                            if (Math.floor(this.stage) <= 0)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                XXX.drawImage(vampiro, 328, 99, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) <= 1)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                XXX.drawImage(vampiro, 446, 99, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) <= 2)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                XXX.drawImage(vampiro, 587, 100, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) <= 3)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                XXX.drawImage(vampiro, 724, 101, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) <= 4)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                XXX.drawImage(vampiro, 587, 100, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) <= 5)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                XXX.drawImage(vampiro, 724, 101, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                XXX.restore();
+                            }
+                            else if (Math.floor(this.stage) >= 6)
+                            {
+                                XXX.save();
+                                XXX.translate(this.myScreenX, this.myScreenY);
+                                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                                if (this.water && !this.land)
+                                {
+                                    XXX.globalAlpha = 0.4;
+                                }
+                                XXX.drawImage(vampiro, 587, 100, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                                this.stage = 0;
+                                this.vampHypnosis = false;
+                                for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                                {
+                                    if (ArtificialIntelligenceAccess[ll].type == "Person" && ArtificialIntelligenceAccess[ll].magicalResistance < 1 || ArtificialIntelligenceAccess[ll].type == "Soldier" && ArtificialIntelligenceAccess[ll].magicalResistance < 1)
+                                    {
+                                        if (ArtificialIntelligenceAccess[ll].DTP() <= 100)
+                                        {
+                                            ArtificialIntelligenceAccess[ll].charmedTeam = "player";
+                                            ArtificialIntelligenceAccess[ll].charmedTime = new Date().getTime() + 180000;
+                                        }
+                                    }
+                                }
+                                XXX.restore();
+                            }
+                        }
+                        else
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation - 1/2 * Math.PI);
+                            if (this.water && !this.land)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(vampiro, 330, 1, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                            XXX.restore();
+                        }
+                    }
+                }
+
+
+                if (this.vampTurn == "regress")
+                {
+                    this.animator(6, 0.10, false); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+                    //ATTACK ANIMATION
+                    if (Math.floor(this.stage) <= 0)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(vampiro, 346, 14, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 1)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(vampiro, 853, 283, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 2)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(vampiro, 777, 281, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 3)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(vampiro, 703, 283, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 4)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(vampiro, 652, 283, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) >= 5)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(vampiro, 652, 283, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                        this.form = false;
+                        this.vampTurn = "over";
+                        this.weaponEquipped = "none";
+                        XXX.restore();
+                    }
+                }
+            }
+        }
         //MACE
         if (this.weaponEquipped == "mace")
         {
@@ -14520,6 +15287,121 @@ function Adventurer()
                     XXX.globalAlpha = 0.4;
                 }
                 XXX.drawImage(oldverse, 2800, 78, 35, 37, -42, -43, 52.5, 55.5);
+                XXX.restore();
+            }
+        }
+        //SPADE
+        if (this.weaponEquipped == "spade")
+        {
+            this.stageEngine(9, 0.2, false); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 835, 539, 115, 108, -1/2 * 115 * 0.9, -1/2 * 108 * 0.9, 115 * 0.9, 108 * 0.9);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 937, 539, 115, 108, -1/2 * 115 * 0.9, -1/2 * 108 * 0.9, 115 * 0.9, 108 * 0.9);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 1052, 537, 115, 108, -1/2 * 115 * 0.9, -1/2 * 108 * 0.9, 115 * 0.9, 108 * 0.9);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 1181, 536, 115, 108, -1/2 * 115 * 0.9, -1/2 * 108 * 0.9, 115 * 0.9, 108 * 0.9);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 1317, 536, 115, 108, -1/2 * 115 * 0.9, -1/2 * 108 * 0.9, 115 * 0.9, 108 * 0.9);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 1446, 529, 115, 108, -1/2 * 115 * 0.9, -1/2 * 108 * 0.9, 115 * 0.9, 108 * 0.9);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 1573, 507, 115, 141, -1/2 * 115 * 0.9, -1/2 * 141 * 0.9, 115 * 0.9, 141 * 0.9);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 7)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 736, 502, 103, 184, -1/2 * 103 * 0.9, -1/2 * 184 * 0.9, 103 * 0.9, 184 * 0.9);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 8)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 649, 525, 115, 141, -1/2 * 115 * 0.9, -1/2 * 141 * 0.9, 115 * 0.9, 141 * 0.9);
                 XXX.restore();
             }
         }
@@ -18340,6 +19222,22 @@ function Adventurer()
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.56/5 * Math.PI) * (this.mySize + 94);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.56/5 * Math.PI) * (this.mySize + 94);
         }
+        else if (this.weaponEquipped == "spade")
+        {
+            this.weapon = allWeapons[78];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.325/5 * Math.PI) * (this.mySize + 45);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.325/5 * Math.PI) * (this.mySize + 45);
+        }
+        else if (this.weaponEquipped == "vampire")
+        {
+            this.weapon = allWeapons[79];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 22);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 22);
+        }
     };
 
     //BLOCKING FUNCTION
@@ -18421,6 +19319,10 @@ function Adventurer()
                             {
                                 ArtificialIntelligenceAccess[i].killNotByPlayer = true; //werewolves do not lose faction relation for killing
                             }
+                            else if (this.form == "vampire")
+                            {
+                                ArtificialIntelligenceAccess[i].killNotByPlayer = true; //vampires do not lose faction relation for killing
+                            }
                             else
                             {
                                 ArtificialIntelligenceAccess[i].killNotByPlayer = false;
@@ -18434,6 +19336,13 @@ function Adventurer()
                         else if (this.weapon.ability == "burning")
                         {
                             ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                        }
+                        else if (this.weapon.ability == "maybeblind")
+                        {
+                            if (Math.random() > 0.677)
+                            {
+                                ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000);
+                            }
                         }
                         else if (this.weapon.ability == "leeching")
                         {
@@ -18684,7 +19593,10 @@ function Adventurer()
     {
         if (!this.jumpingBack && this.fishing != true && !this.petrified)
         {
-            this.rotation = Math.atan2(mouseY - this.myScreenY, mouseX - this.myScreenX) + Math.PI / 2;
+            if (this.form != "vampire" || this.vampDead == false)
+            {
+                this.rotation = Math.atan2(mouseY - this.myScreenY, mouseX - this.myScreenX) + Math.PI / 2;
+            }
         }
         //console.log(this.rotation);
     };
@@ -18706,9 +19618,12 @@ function Adventurer()
                     {
                         if (focusUnit.healthMAX >= 100 && this.form == "werewolf" || this.form != "werewolf")
                         {
-                            if (focusUnit.insect == false)
+                            if (this.form != "vampire")
                             {
-                                return true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                                if (focusUnit.insect == false)
+                                {
+                                    return true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                                }
                             }
                         }
                     }
@@ -18727,7 +19642,10 @@ function Adventurer()
                 {
                     if (this.form != "werewolf")
                     {
-                        return true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                        if (this.form != "vampire")
+                        {
+                            return true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                        }
                     }
                 }
 
@@ -18765,7 +19683,7 @@ function Adventurer()
     // CHARACTER MOVEMENT
     this.motion = function()
     {
-        if (!this.petrified)
+        if (!this.petrified && this.form != "vampire" || !this.vampDead)
         {
             if (this.water == true && this.land == false && !this.waterwalking || this.water == true && this.land == false && this.weaponEquipped == "boat") //if waterwalking is true swimming doesn't happen, but boating still can.
             {
@@ -19315,6 +20233,35 @@ function Adventurer()
             XXX.fill();
             XXX.stroke();
             XXX.drawImage(polyPNG, 663, 1, 31, 24, 299, 530, 21, 15.6);
+
+            //Game Clock
+            XXX.beginPath();
+            XXX.font="14px Book Antiqua";
+            XXX.textAlign = "right";
+            XXX.fillStyle = "black";
+            if (minuteOfHour < 10)
+            {
+                if (secondOfMinute < 10)
+                {
+                    XXX.fillText("Year: " + (724 + Math.floor(gameYear)) + "  Season: " + currentSeason + "  Day: " + Math.floor(dayOfYear) + " / 360  Time: " + hourOfDay + ":0" + minuteOfHour + ":0" + secondOfMinute, 1390, 542.5);
+                }
+                else
+                {
+                    XXX.fillText("Year: " + (724 + Math.floor(gameYear)) + "  Season: " + currentSeason + "  Day: " + Math.floor(dayOfYear) + " / 360  Time: " + hourOfDay + ":0" + minuteOfHour + ":" + secondOfMinute, 1390, 542.5);
+                }
+            }
+            else
+            {
+                if (secondOfMinute < 10)
+                {
+                    XXX.fillText("Year: " + (724 + Math.floor(gameYear)) + "  Season: " + currentSeason + "  Day: " + Math.floor(dayOfYear) + " / 360  Time: " + hourOfDay + ":" + minuteOfHour + ":0" + secondOfMinute, 1390, 542.5);
+                }
+                else
+                {
+                    XXX.fillText("Year: " + (724 + Math.floor(gameYear)) + "  Season: " + currentSeason + "  Day: " + Math.floor(dayOfYear) + " / 360  Time: " + hourOfDay + ":" + minuteOfHour + ":" + secondOfMinute, 1390, 542.5);
+                }
+            }
+            XXX.textAlign = "left";
         }
     };
 
@@ -26881,7 +27828,7 @@ function Adventurer()
                 {
                     canUse = false;
                 }
-                if (this.form != false)
+                if (this.form != false && this.form != "vampire" || this.form == "vampire" && wKey)
                 {
                     canDrop = false;
                     canUse = false;
@@ -26968,20 +27915,24 @@ function Adventurer()
                     else if (Inventory[i][0].utility == "food")
                     {
                         //Eating/Drinking
-                        if (this.gamemode == "protagonist")
+                        if (this.form != "vampire")
                         {
-                            this.hunger = Math.min(this.hungerMAX, this.hunger + Inventory[i][0].hunger * 4);
-                            this.thirst = Math.min(this.thirstMAX, this.thirst + Inventory[i][0].thirst * 4);
-                            this.sleep = Math.min(this.sleepMAX, this.sleep + Inventory[i][0].wake * 4);
-                            this.warmth = Math.min(this.warmthMAX, this.warmth + Inventory[i][0].warmth * 4);
+                            if (this.gamemode == "protagonist")
+                            {
+                                this.hunger = Math.min(this.hungerMAX, this.hunger + Inventory[i][0].hunger * 4);
+                                this.thirst = Math.min(this.thirstMAX, this.thirst + Inventory[i][0].thirst * 4);
+                                this.sleep = Math.min(this.sleepMAX, this.sleep + Inventory[i][0].wake * 4);
+                                this.warmth = Math.min(this.warmthMAX, this.warmth + Inventory[i][0].warmth * 4);
+                            }
+                            else
+                            {
+                                this.hunger = Math.min(this.hungerMAX, this.hunger + Inventory[i][0].hunger);
+                                this.thirst = Math.min(this.thirstMAX, this.thirst + Inventory[i][0].thirst);
+                                this.sleep = Math.min(this.sleepMAX, this.sleep + Inventory[i][0].wake);
+                                this.warmth = Math.min(this.warmthMAX, this.warmth + Inventory[i][0].warmth);
+                            }
                         }
-                        else
-                        {
-                            this.hunger = Math.min(this.hungerMAX, this.hunger + Inventory[i][0].hunger);
-                            this.thirst = Math.min(this.thirstMAX, this.thirst + Inventory[i][0].thirst);
-                            this.sleep = Math.min(this.sleepMAX, this.sleep + Inventory[i][0].wake);
-                            this.warmth = Math.min(this.warmthMAX, this.warmth + Inventory[i][0].warmth);
-                        }
+
                         this.energy = Math.min(this.energyMAX, this.energy + Inventory[i][0].generation);
                         this.health = Math.min(this.healthMAX, this.health + Inventory[i][0].heal);
                         this.will = Math.min(this.willMAX, this.will + Inventory[i][0].replenish);
@@ -27196,6 +28147,20 @@ function Adventurer()
                             else if (Inventory[i][0].ability == "eliktozeola")
                             {
                                 this.eliktozeola = true;
+                            }
+                            else if (Inventory[i][0].ability == "skillReset")
+                            {
+                                player.skillPoints += (player.toughness + player.endurance + player.stamina + player.charisma + player.constitution + player.strength + player.dexterity + player.ranged + player.intelligence + player.survivalism);
+                                player.toughness = 0;
+                                player.endurance = 0;
+                                player.stamina = 0;
+                                player.charisma = 0;
+                                player.constitution = 0;
+                                player.strength = 0;
+                                player.dexterity = 0;
+                                player.ranged = 0;
+                                player.intelligence = 0;
+                                player.survivalism = 0;
                             }
                             else if (Inventory[i][0].ability == "satiate" || Inventory[i][0].ability == "satiation") //Food with this effect will keep you fed for a little bit.
                             {
@@ -28952,7 +29917,7 @@ function Adventurer()
 
     this.pickUpItem = function()
     {
-        if (worldItems.length > 0 && gameState == "active" && this.form == false || worldItems.length > 0 && gameState == "stopTime" && this.form == false)
+        if (worldItems.length > 0 && gameState == "active" && this.form == false || worldItems.length > 0 && gameState == "stopTime" && this.form == false || worldItems.length > 0 && gameState == "active" && this.form == "vampire")
         {
             if (dClick == true)
             {
@@ -29583,11 +30548,18 @@ function Adventurer()
     {
         if (this.health <= 0 && this.playerDeath != true)
         {
-            //Do death stuff
-            this.playerDeath = true;
-            gameState = "paused";
-            //Go to main menu upon death.
-            location.reload();
+            if (player.form != "vampire" || player.silvered)
+            {
+                //Do death stuff
+                this.playerDeath = true;
+                gameState = "paused";
+                //Go to main menu upon death.
+                location.reload();
+            }
+            else if (player.form == "vampire")
+            {
+                this.vampDead = true;
+            }
 
             /*
              //respawn
@@ -30533,7 +31505,7 @@ function Adventurer()
                 }
 
                 //the player's body
-                if (this.form == false)
+                if (this.form == false || this.form == "vampire" && this.vampTurn == true || this.form == "vampire" && this.vampTurn == "regress")
                 {
                     this.drawBody();
                 }

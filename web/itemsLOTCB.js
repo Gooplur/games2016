@@ -196,6 +196,31 @@ function Item(type, x, y)
                 this.ability = "none";
             }
         }
+        else if (this.type == "vampire")
+        {
+            //For All Items
+            this.identity = "Vampire";
+            this.weight = 0;
+            this.size = 10;
+            this.description = "Your soul is sworn to an arch demon.";
+            this.intForDes = 0;
+            this.intDescription = "You have been granted power in exchange for fealty.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 0;
+            this.distance = 22;
+            this.range = 2 + 2/7;
+            this.rate = 260;
+            this.damage = 88;
+            this.magicalDamage = 0;
+            this.negateArmour = 26;
+
+            //ability
+            this.ability = "vampireCurse";
+        }
         else if (this.type == "nude")
         {
             //For All Items
@@ -10256,6 +10281,36 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "sprite")
+        {
+            //For All Items
+            this.identity = "Sprite";
+            this.weight = 0.01;
+            this.size = 9;
+
+            this.description = "A small sprite taken from within a larger sprite.";
+            this.intForDes = 4;
+            this.intDescription = "Consuming a sprite magically unfocuses all of your abilities allowing you to completely change everything about yourself.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = -2; //restores will.
+
+            //ability
+            this.ability = "skillReset";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 220; // at max, buy for 220.
+            this.sellValue = 220; // at max, sell for 220.
+        }
         else if (this.type == "ulgoyLeaf")
         {
             //For All Items
@@ -19817,6 +19872,40 @@ function Item(type, x, y)
             this.buyValue = 92 - Math.floor(player.getCharisma() / 8); // at max, buy for 86.
             this.sellValue = 80 + Math.floor(player.getCharisma() / 8); // at max, sell for 86.
         }
+        else if (this.type == "spade")
+        {
+            //For All Items
+            this.identity = "Spade";
+            this.weight = 1.5;
+            this.size = 15;
+            this.description = "An iron spade used for digging.";
+            this.intForDes = 1;
+            this.intDescription = "A spade is required for digging.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 2;
+            this.distance = 45 + (this.range * 7);
+            this.range = 2 + 2/7;
+            this.rate = 135;
+            this.damage = 1.5 * (this.leveledDamageMultiple / 25);
+            this.magicalDamage = 0;
+            this.negateArmour = 2;
+
+            //ability
+            this.ability = "maybeblind";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 6;
+            this.ingredients = [["Iron", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 6); // at max, buy for 12.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 10); // at max, sell for 10.
+        }
         else if (this.type == "pickaxe")
         {
             //For All Items
@@ -28298,6 +28387,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "spade")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 573, 5, 52, 60, X - this.X + (1/2 * CCC.width) - (1/2 * 52 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 60 * 1), 52 * 1, 60 * 1);
+        }
+        else if (this.type == "sprite")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 2657, 21, 26, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 1), 26 * 1, 22 * 1);
+        }
         else if (this.type == "gargoyleHeart")
         {
             XXX.beginPath();
@@ -31987,6 +32086,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "spade")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tomb, 573, 5, 52, 60, this.invX - (1/2 * 52 * 1), this.invY - (1/2 * 60 * 1), 52 * 1, 60 * 1);
+        }
+        else if (this.type == "sprite")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tomb, 2657, 21, 26, 22, this.invX - (1/2 * 26 * 1), this.invY - (1/2 * 22 * 1), 26 * 1, 22 * 1);
+        }
         else if (this.type == "gargoyleHeart")
         {
             LXX.beginPath();
@@ -35645,6 +35754,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "spade")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 573, 5, 52, 60, this.invX - (1/2 * 52 * 1), this.invY - (1/2 * 60 * 1), 52 * 1, 60 * 1);
+        }
+        else if (this.type == "sprite")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 2657, 21, 26, 22, this.invX - (1/2 * 26 * 1), this.invY - (1/2 * 22 * 1), 26 * 1, 22 * 1);
         }
         else if (this.type == "gargoyleHeart")
         {

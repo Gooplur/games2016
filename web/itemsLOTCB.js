@@ -221,6 +221,45 @@ function Item(type, x, y)
             //ability
             this.ability = "vampireCurse";
         }
+        else if (this.type == "selkieSkin")
+        {
+            //For All Items
+            this.identity = "Ceremonial Skin";
+            this.weight = 2;
+            this.size = 15;
+            this.description = "In Sylkeem culture each tribe member keeps their own ceremonial skin with them.";
+            this.intForDes = 12;
+            if (player.raceName == "Sylkeem")
+            {
+                this.intDescription = "This is your selkie skin, you were born wearing it. Wearing this lets you become a seal.";
+            }
+            else
+            {
+                this.intDescription = "According to northern tales, the Sylkeem are so fond of the sea that their young come out as seals.";
+            }
+
+            //Define Utility
+            if (player.raceName == "Sylkeem")
+            {
+                this.utility = "weapon";
+            }
+            else
+            {
+                this.utility = "material";
+            }
+
+            //Utility Focused
+            this.energyCost = 0;
+            this.distance = 20;
+            this.range = 1 + 5/7;
+            this.rate = 120;
+            this.damage = 0.5;
+            this.magicalDamage = 0;
+            this.negateArmour = 0;
+
+            //ability
+            this.ability = "none";
+        }
         else if (this.type == "nude")
         {
             //For All Items
@@ -29384,7 +29423,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(norc, 67, 337, 13, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 2), 13 * 2, 9 * 2);
         }
-        else if (this.type == "sealSkin")
+        else if (this.type == "sealSkin" || this.type == "selkieSkin")
         {
             XXX.beginPath();
             XXX.drawImage(norc, 5, 39, 42, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1.75), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.75), 42 * 1.75, 18 * 1.75);
@@ -33084,7 +33123,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(norc, 67, 337, 13, 9, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 9 * 2), 13 * 2, 9 * 2);
         }
-        else if (this.type == "sealSkin")
+        else if (this.type == "sealSkin" || this.type == "selkieSkin")
         {
             LXX.beginPath();
             LXX.drawImage(norc, 5, 39, 42, 18, this.invX - (1/2 * 42 * 1.75), this.invY - (1/2 * 18 * 1.75), 42 * 1.75, 18 * 1.75);
@@ -36752,7 +36791,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(norc, 67, 337, 13, 9, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 9 * 2), 13 * 2, 9 * 2);
         }
-        else if (this.type == "sealSkin")
+        else if (this.type == "sealSkin" || this.type == "selkieSkin")
         {
             XXX.beginPath();
             XXX.drawImage(norc, 5, 39, 42, 18, this.invX - (1/2 * 42 * 1.75), this.invY - (1/2 * 18 * 1.75), 42 * 1.75, 18 * 1.75);

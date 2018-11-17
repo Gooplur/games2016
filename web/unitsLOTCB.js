@@ -881,6 +881,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.allys.push("EstolGang");
                 this.allys.push("EstolGang2");
             }
+            if (player.sylkeemPeace)
+            {
+                this.allys.push("Sylkeem");
+            }
         }
         if (this.team == "arena1" || this.team == "arena2" || this.team == "arena3")
         {
@@ -900,12 +904,24 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Nirwaden");
             this.allys.push("clamia");
             this.allys.push("EstolGang");
+            this.allys.push("Sylkeem");
         }
         if (this.team == "Freynor")
         {
             if (player.freynorPeace && player.freynorFaction > -50)
             {
                 this.allys.push("player");
+            }
+
+            if (this.type == "Person" || this.type == "Soldier")
+            {
+                if (typeof(this.ultra) != "undefined")
+                {
+                    if (this.ultra.race == "Sylkeem")
+                    {
+                        this.allys.push("herd");
+                    }
+                }
             }
             this.allys.push("herdia");
             this.allys.push("TheBalgurMercenaries");
@@ -936,6 +952,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Nirwaden");
             this.allys.push("clamia");
             this.allys.push("EstolGang");
+            this.allys.push("Sylkeem");
         }
         if (this.team == "Kel")
         {
@@ -953,6 +970,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Nirwaden");
             this.allys.push("clamia");
             this.allys.push("EstolGang");
+            this.allys.push("Sylkeem");
         }
         if (this.team == "Thengar")
         {
@@ -986,6 +1004,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Vardan");
             this.allys.push("clamia");
             this.allys.push("EstolGang");
+            this.allys.push("Sylkeem");
         }
         if (this.team == "Orgell")
         {
@@ -1003,6 +1022,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Nirwaden");
             this.allys.push("clamia");
             this.allys.push("EstolGang");
+            this.allys.push("Sylkeem");
         }
         if (this.team == "Cephrite")
         {
@@ -1021,6 +1041,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Nirwaden");
             this.allys.push("clamia");
             this.allys.push("EstolGang");
+            this.allys.push("Sylkeem");
         }
         if (this.team == "Nirwaden")
         {
@@ -1076,6 +1097,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Nirwaden");
             this.allys.push("clamia");
             this.allys.push("EstolGang2");
+            this.allys.push("Sylkeem");
         }
         if (this.team == "EstolGang2")
         {
@@ -1085,6 +1107,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
 
             this.allys.push("herdia");
+            this.allys.push("clamia");
+            this.allys.push("EstolGang");
+        }
+        if (this.team == "Sylkeem")
+        {
+            if (player.sylkeemPeace && player.sylkeemFaction > -50)
+            {
+                this.allys.push("player");
+            }
+
+            this.allys.push("herd");
+            this.allys.push("herdia");
+            this.allys.push("Aldrek");
+            this.allys.push("Orgell");
+            this.allys.push("Vardan");
+            this.allys.push("Cephrite");
             this.allys.push("clamia");
             this.allys.push("EstolGang");
         }
@@ -1120,6 +1158,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "herd")
         {
+            if (player.form == "selkie" && !cKey && !rKey && !this.disturbed)
+            {
+                this.allys.push("player");
+            }
+
             this.allys.push("docile");
             this.allys.push("herdia");
             this.allys.push("clamia");
@@ -1129,6 +1172,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.allys.push("herd");
             this.allys.push("docile");
+        }
+        if (this.team == "undead")
+        {
+            if (player.vamprism)
+            {
+                this.allys.push("player");
+            }
+            this.allys.push("docile");
+            this.allys.push("gargoyle");
         }
         if (this.team == "sprite")
         {
@@ -6242,6 +6294,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             XXX.fillStyle = "navy";
         }
+        else if (this.ultra.race == "Sylkeem")
+        {
+            XXX.fillStyle = "#06F4CA";
+        }
         else if (this.ultra.race == "Orgell")
         {
             XXX.fillStyle = "gold";
@@ -6273,6 +6329,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.ultra.race == "Outlander")
         {
             XXX.fillStyle = "white";
+        }
+        else if (this.ultra.race == "Empiric")
+        {
+            XXX.fillStyle = "#999966";
         }
         else
         {
@@ -30737,7 +30797,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (worldItems[i][0].dmx == this.dmx)
                         {
-                            if (worldItems[i][0].type == "crabFlesh" || worldItems[i][0].type == "rawCrabClaw" || worldItems[i][0].type == "rawRedCrombal" || worldItems[i][0].type == "rawThab" || worldItems[i][0].type == "rawJuurgo" || worldItems[i][0].type == "rawRazorfin" || worldItems[i][0].type == "rawCloimidFlesh")
+                            if (worldItems[i][0].type == "crabFlesh" || worldItems[i][0].type == "rawCrabClaw" || worldItems[i][0].type == "rawRedCrombal" || worldItems[i][0].type == "rawThab" || worldItems[i][0].type == "rawJuurgo" || worldItems[i][0].type == "rawRazorfin" || worldItems[i][0].type == "rawCloimidFlesh" || worldItems[i][0].type == "rawSaskriit" || worldItems[i][0].type == "rawRiulpo" || worldItems[i][0].type == "rawKald" || worldItems[i][0].type == "rawPolxetp" || worldItems[i][0].type == "rawTridite" || worldItems[i][0].type == "rawSalmon" || worldItems[i][0].type == "rawSlol" || worldItems[i][0].type == "rawRedBelliedFalder" || worldItems[i][0].type == "rawCrawdid" || worldItems[i][0].type == "rawDuskfish")
                             {
                                 if (this.distanceFinder(this, worldItems[i][0]) <= (this.rangeOfSight + 250)) //seals can smell raw fish to eat from a while off.
                                 {
@@ -34732,6 +34792,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.estolgangFaction -= 25;
                         }
                     }
+                    if (this.ultra.faction == "Sylkeem")
+                    {
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.estolgangFaction -= 25;
+                        }
+                    }
 
                     //Unique Characters Permanent Death
                     if (this.ID == "Laandeg the Alchemist")
@@ -35929,6 +35996,30 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                     }
                 }
+                else if (this.ultra.faction == "Sylkeem")
+                {
+                    if (player.sylkeemFaction <= -50)
+                    {
+                        this.disturbed = true;
+                    }
+
+                    //if (this.ID == "")
+                    //{
+                    //    //RANGE OF SIGHT (anything related to range of sight)
+                    //    this.rangeOfSightCalculator(500, false);
+                    //
+                    //    this.drops = [[new Item("coins", this.X, this.Y), Math.floor(Math.random() * 18) + 1]];
+                    //
+                    //    if (this.disturbed == true)
+                    //    {
+                    //        this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //
+                    //}
+                }
                 else if (this.ultra.faction == "hostile")
                 {
                     if (this.ID == "Looter")
@@ -36280,6 +36371,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         }
                     }
                     if (this.ultra.faction == "EstolGang")
+                    {
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.estolgangFaction -= 50;
+                        }
+                    }
+                    if (this.ultra.faction == "Sylkeem")
                     {
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {

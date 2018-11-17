@@ -36,6 +36,7 @@ function Adventurer()
     //Lesser Faction Relations
     this.theBalgurMercenariesFaction = 0; //A fearsome and powerful mercinary group in the lands of Thengaria.
     this.estolgangFaction = 0; //A deeply rooted criminal organization in Nirwaden.
+    this.sylkeemFaction = 0; //A northern tribal people that have historically been contained within the Kingdom of Freynor (this represents their republican faction)
     //ranks
     this.theBalgurMercenariesRank = "none";
     this.inquisitionRank = "none";
@@ -546,6 +547,7 @@ function Adventurer()
     this.nirwadenPeace = true;
     this.theBalgurMercenariesPeace = true;
     this.estolGangPeace = true;
+    this.sylkeemPeace = true;
 
     //utility or extra variables
     this.AdAbility = []; //this is a list of all active abilities held by armours and equipped outfits
@@ -1182,7 +1184,7 @@ function Adventurer()
             }
 
             //obscurity
-            if (obscurityFlag && this.obscurity)
+            if (obscurityFlag && this.obscurity || this.vamprism == true && altKey && !spaceKey && !eKey) //vampires are invisible when they want to be.
             {
                 this.subtlety = true;
             }
@@ -1704,7 +1706,7 @@ function Adventurer()
                     //DROWN if in water and run out of energy past fatigue point
                     if (this.movingType == "swimming" && this.energy < -5)
                     {
-                        if (this.vamprism == false)
+                        if (this.vamprism == false && this.form != "selkie")
                         {
                             this.drowned = true;
                         }
@@ -3674,15 +3676,112 @@ function Adventurer()
         this.landscapeEffects(); //if the player is over some sort of tile that interacts with them in a unique way
     };
 
-    this.formChanger = function() //todo fix the entrance into werewolfness (the exit back to humanness works)
+    this.formChanger = function()
     {
+        //Selkie
+        if (this.raceName == "Sylkeem")
+        {
+            if (this.weaponEquipped == "selkieSkin")
+            {
+                this.warmth = this.warmthMAX;
+                if (this.energy < -1)
+                {
+                    this.energy = -1;
+                }
+                if (this.form != "selkie")
+                {
+                    //unequip weapon and armour then...
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].type != "selkieSkin")
+                        {
+                            if (Inventory[i][0].utility == "weapon" || Inventory[i][0].utility == "ranged" || Inventory[i][0].utility == "worn")
+                            {
+                                Inventory[i][0].equipped = false;
+                            }
+                        }
+                    }
+                    this.isArmourEquipped = false;
+                    this.ammoLoaded = false; //if a ranged weapon is in the middle of shooting this counters that
+                    this.outfitEquipped = "none";
+                    this.subtlety = false;
+                }
+                this.form = "selkie";
+
+                //people try to kill wild animals and you look like one
+                for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                {
+                    if (ArtificialIntelligenceAccess[ll].team != "player" && ArtificialIntelligenceAccess[ll].type == "Soldier" || ArtificialIntelligenceAccess[ll].team != "player" && ArtificialIntelligenceAccess[ll].type == "Person")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[ll].ultra) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[ll].ultra.race != "Sylkeem")
+                            {
+                                if (ArtificialIntelligenceAccess[ll].DTP() <= 200)
+                                {
+                                    ArtificialIntelligenceAccess[ll].disturbed = true;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                //trying to run will make you lose your skin
+                if (wKey && shiftKey && this.land)
+                {
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].utility == "weapon" || Inventory[i][0].utility == "ranged" || Inventory[i][0].utility == "worn")
+                        {
+                            Inventory[i][0].equipped = false;
+                        }
+                    }
+                    this.isArmourEquipped = false;
+                    this.ammoLoaded = false; //if a ranged weapon is in the middle of shooting this counters that
+                    this.outfitEquipped = "none";
+                    this.isWeaponEquipped = false;
+                    this.weaponEquipped = "none";
+                    this.subtlety = false;
+                    for (var ll = 0; ll < Inventory.length; ll++)
+                    {
+                        if (Inventory[ll][0].type == "selkieSkin")
+                        {
+                            worldItems.push([new Item("selkieSkin", X, Y), Inventory[ll][1]]);
+                            Inventory.splice(ll, 1);
+                            break;
+                        }
+                    }
+                }
+            }
+            else if (this.form == "selkie")
+            {
+                for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                {
+                    if (ArtificialIntelligenceAccess[ll].team != "player" && ArtificialIntelligenceAccess[ll].type == "Soldier" || ArtificialIntelligenceAccess[ll].team != "player" && ArtificialIntelligenceAccess[ll].type == "Person")
+                    {
+                        ArtificialIntelligenceAccess[ll].disturbed = false;
+                    }
+                }
+                this.form = false;
+            }
+        }
         //Vamprism
         if (this.vamprism)
         {
+            //vampires die from the werewolf curse
             if (this.lycanthropy == true)
             {
                 this.silvered = true;
                 this.health -= 2.5;
+            }
+            //vampires die if they starve to death
+            if (this.hunger <= 0)
+            {
+                if (this.health < 10)
+                {
+                    this.silvered = true;
+                }
+                this.health -= 2;
             }
 
             this.decreaseInHealth = 0;
@@ -3728,7 +3827,13 @@ function Adventurer()
                 {
                     if (ArtificialIntelligenceAccess[ll].team != "player" && ArtificialIntelligenceAccess[ll].team != "undead" && ArtificialIntelligenceAccess[ll].type == "Soldier" || ArtificialIntelligenceAccess[ll].team != "player" && ArtificialIntelligenceAccess[ll].type == "Person")
                     {
-                        ArtificialIntelligenceAccess[ll].disturbed = true;
+                        if (player.subtlety != true)
+                        {
+                            if (ArtificialIntelligenceAccess[ll].DTP() <= 300)
+                            {
+                                ArtificialIntelligenceAccess[ll].disturbed = true;
+                            }
+                        }
                     }
                 }
 
@@ -3743,6 +3848,7 @@ function Adventurer()
                 }
                 this.ammoLoaded = false; //if a ranged weapon is in the middle of shooting this counters that
                 this.outfitEquipped = "none";
+                this.isArmourEquipped = false;
                 this.weaponEquipped = "vampire";
             }
         }
@@ -3791,6 +3897,7 @@ function Adventurer()
                     }
                 }
                 this.ammoLoaded = false; //if a ranged weapon is in the middle of shooting this counters that
+                this.isArmourEquipped = false;
                 this.outfitEquipped = "none";
                 this.weaponEquipped = "werewolf";
                 this.subtlety = false;
@@ -3881,7 +3988,7 @@ function Adventurer()
     this.getTotalMagicPoints = function()
     {
         return (this.totalMagicPoints + this.extraMagicPoints);
-    }
+    };
 
     this.getFistDamage = function()
     {
@@ -11658,6 +11765,258 @@ function Adventurer()
                 }
             }
         }
+        //SELKIE (form)
+        if (this.weaponEquipped == "selkieSkin")
+        {
+            var szx;
+            if (player.gender == "Female")
+            {
+                szx = 1.5;
+            }
+            else if (player.gender == "Male")
+            {
+                szx = 1.6;
+            }
+            else
+            {
+                szx = 1.55;
+            }
+
+            if (wKey) //If moving and not attacking initiate moving animation...
+            {
+                this.animator(3, 0.15, true);
+
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(norc, 59, 1, 53, 28, -1/2 * 53 * szx, -1/2 * 28 * szx, 53 * szx, 28 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(norc, 121, 2, 53, 28, -1/2 * 53 * szx, -1/2 * 28 * szx, 53 * szx, 28 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(norc, 57, 36, 53, 28, -1/2 * 53 * szx, -1/2 * 28 * szx, 53 * szx, 28 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(norc, 121, 2, 53, 28, -1/2 * 53 * szx, -1/2 * 28 * szx, 53 * szx, 28 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(norc, 59, 1, 53, 28, -1/2 * 53 * szx, -1/2 * 28 * szx, 53 * szx, 28 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(furr, 269, 109, 76, 46, -1/2 * 76 * szx, -1/2 * 46 * szx, 76 * szx, 46 * szx);
+                    XXX.restore();
+                }
+            }
+            else if (spaceKey || this.attacking)
+            {
+                this.stageEngine(6, 0.06, true);
+
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(norc, 59, 1, 53, 28, -1/2 * 53 * szx, -1/2 * 28 * szx, 53 * szx, 28 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(norc, 123, 41, 53, 28, -1/2 * 53 * szx, -1/2 * 28 * szx, 53 * szx, 28 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(norc, 60, 78, 53, 28, -1/2 * 53 * szx, -1/2 * 28 * szx, 53 * szx, 28 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    this.selkieFeastReady = true;
+                    XXX.drawImage(norc, 120, 81, 53, 28, -1/2 * 53 * szx, -1/2 * 28 * szx, 53 * szx, 28 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4) //
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    if (this.selkieFeastReady)
+                    {
+                        this.selkieFeastReady = false;
+                        if (this.water && !this.land)
+                        {
+                            var gotFish = false;
+                            for (var ll = 0; ll < scenicList.length; ll++)
+                            {
+                                if (scenicList[ll].fishery == true && scenicList[ll].health > 0)
+                                {
+                                    var vdfu = Math.sqrt((scenicList[ll].X - this.bubbleOfDamageX) * (scenicList[ll].X - this.bubbleOfDamageX) + (scenicList[ll].Y - this.bubbleOfDamageY) * (scenicList[ll].Y - this.bubbleOfDamageY)) - scenicList[ll].radius; //This is the distance from the center of the players attack/damaging bubble to the AI Unit.
+
+                                    if (vdfu <= this.weapon.range * 7 && scenicList[ll].dmx == this.dmx)
+                                    {
+                                        this.hunger = Math.min(this.hungerMAX, this.hunger + 12);
+                                        scenicList[ll].health -= 1;
+                                        gotFish = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (gotFish == false)
+                            {
+                                this.thirst = Math.min(this.thirstMAX, this.thirst + 5);
+                            }
+                        }
+                        else
+                        {
+                            var gotFish = false;
+                            for (var ll = 0; ll < worldItems.length; ll++)
+                            {
+                                if (worldItems[ll][0].utility == "food")
+                                {
+                                    if (worldItems[ll][0].type == "crabFlesh" || worldItems[ll][0].type == "rawCrabClaw" || worldItems[ll][0].type == "rawRedCrombal" || worldItems[ll][0].type == "rawThab" || worldItems[ll][0].type == "rawJuurgo" || worldItems[ll][0].type == "rawRazorfin" || worldItems[ll][0].type == "rawCloimidFlesh" || worldItems[ll][0].type == "rawSaskriit" || worldItems[ll][0].type == "rawRiulpo" || worldItems[ll][0].type == "rawKald" || worldItems[ll][0].type == "rawPolxetp" || worldItems[ll][0].type == "rawTridite" || worldItems[ll][0].type == "rawSalmon" || worldItems[ll][0].type == "rawSlol" || worldItems[ll][0].type == "rawRedBelliedFalder" || worldItems[ll][0].type == "rawCrawdid" || worldItems[ll][0].type == "rawDuskfish")
+                                    {
+                                        var vdfu = Math.sqrt((worldItems[ll][0].X - this.bubbleOfDamageX) * (worldItems[ll][0].X - this.bubbleOfDamageX) + (worldItems[ll][0].Y - this.bubbleOfDamageY) * (worldItems[ll][0].Y - this.bubbleOfDamageY)) - worldItems[ll][0].size; //This is the distance from the center of the players attack/damaging bubble to the AI Unit.
+
+                                        if (vdfu <= this.weapon.range * 7 && worldItems[ll][0].dmx == this.dmx)
+                                        {
+                                            this.hunger = Math.min(this.hungerMAX, this.hunger + 12);
+                                            gotFish = true;
+                                            if (worldItems[ll][0].ability == "poisonI" || worldItems[ll][0].ability == "poisonII" || worldItems[ll][0].ability == "poisonIII" || worldItems[ll][0].ability == "poisonIV" || worldItems[ll][0].ability == "poisonV")
+                                            {
+                                                this.health = 0;
+                                            }
+                                            if (worldItems[ll][1] > 1)
+                                            {
+                                                worldItems[ll][1] -= 1;
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                worldItems.splice(ll, 1);
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (this.water && !gotFish)
+                            {
+                                this.thirst = Math.min(this.thirstMAX, this.thirst + 2);
+                            }
+                        }
+                    }
+
+                    XXX.drawImage(norc, 120, 81, 53, 28, -1/2 * 53 * szx, -1/2 * 28 * szx, 53 * szx, 28 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(norc, 120, 81, 53, 28, -1/2 * 53 * szx, -1/2 * 28 * szx, 53 * szx, 28 * szx);
+                    XXX.restore();
+                }
+            }
+            else //idle
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                if (this.water && !this.land)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(norc, 59, 1, 53, 28, -1/2 * 53 * szx, -1/2 * 28 * szx, 53 * szx, 28 * szx);
+                XXX.restore();
+            }
+        }
         //VAMPIRE (form)
         if (this.weaponEquipped == "vampire")
         {
@@ -11846,7 +12205,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -11858,7 +12217,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -11870,7 +12229,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -11882,7 +12241,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -11894,7 +12253,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -11906,7 +12265,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -11924,7 +12283,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -11936,7 +12295,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -11948,7 +12307,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -11974,7 +12333,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -11986,7 +12345,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -11999,7 +12358,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -12012,7 +12371,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -12025,7 +12384,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -12038,16 +12397,16 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
 
                                 for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
                                 {
-                                    var vdfu = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.bubbleOfDamageX) * (ArtificialIntelligenceAccess[i].X - this.bubbleOfDamageX) + (ArtificialIntelligenceAccess[i].Y - this.bubbleOfDamageY) * (ArtificialIntelligenceAccess[i].Y - this.bubbleOfDamageY)) - ArtificialIntelligenceAccess[i].sizeRadius; //This is the distance from the center of the players attack/damaging bubble to the AI Unit.
+                                    var vdfu = Math.sqrt((ArtificialIntelligenceAccess[ll].X - this.bubbleOfDamageX) * (ArtificialIntelligenceAccess[ll].X - this.bubbleOfDamageX) + (ArtificialIntelligenceAccess[ll].Y - this.bubbleOfDamageY) * (ArtificialIntelligenceAccess[ll].Y - this.bubbleOfDamageY)) - ArtificialIntelligenceAccess[ll].sizeRadius; //This is the distance from the center of the players attack/damaging bubble to the AI Unit.
 
-                                    if (vdfu <= this.weapon.range * 7 && this.finalAttackStage == true && !ArtificialIntelligenceAccess[i].underground && ArtificialIntelligenceAccess[i].dmx == this.dmx && ArtificialIntelligenceAccess[i].mounted != true)
+                                    if (vdfu <= this.weapon.range * 7 && this.finalAttackStage == true && !ArtificialIntelligenceAccess[ll].underground && ArtificialIntelligenceAccess[ll].dmx == this.dmx && ArtificialIntelligenceAccess[ll].mounted != true)
                                     {
                                         if (ArtificialIntelligenceAccess[ll].type == "Person" || ArtificialIntelligenceAccess[ll].type == "Soldier" || ArtificialIntelligenceAccess[ll].healthMAX < 75)
                                         {
@@ -12110,7 +12469,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -12122,7 +12481,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -12134,7 +12493,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -12146,7 +12505,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -12158,7 +12517,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -12170,7 +12529,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -12182,7 +12541,7 @@ function Adventurer()
                                 XXX.save();
                                 XXX.translate(this.myScreenX, this.myScreenY);
                                 XXX.rotate(this.rotation - 1/2 * Math.PI);
-                                if (this.water && !this.land)
+                                if (this.subtlety)
                                 {
                                     XXX.globalAlpha = 0.4;
                                 }
@@ -12208,7 +12567,7 @@ function Adventurer()
                             XXX.save();
                             XXX.translate(this.myScreenX, this.myScreenY);
                             XXX.rotate(this.rotation - 1/2 * Math.PI);
-                            if (this.water && !this.land)
+                            if (this.subtlety || this.water && !this.land)
                             {
                                 XXX.globalAlpha = 0.4;
                             }
@@ -19238,6 +19597,14 @@ function Adventurer()
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 22);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 22);
         }
+        else if (this.weaponEquipped == "selkieSkin")
+        {
+            this.weapon = allWeapons[80];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 20);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 20);
+        }
     };
 
     //BLOCKING FUNCTION
@@ -19595,7 +19962,10 @@ function Adventurer()
         {
             if (this.form != "vampire" || this.vampDead == false)
             {
-                this.rotation = Math.atan2(mouseY - this.myScreenY, mouseX - this.myScreenX) + Math.PI / 2;
+                if (this.form != "selkie" || this.attacking == false)
+                {
+                    this.rotation = Math.atan2(mouseY - this.myScreenY, mouseX - this.myScreenX) + Math.PI / 2;
+                }
             }
         }
         //console.log(this.rotation);
@@ -19725,13 +20095,28 @@ function Adventurer()
                 else //SWIMMING
                 {
                     this.energy -= 0.0025 * energil;
-                    //motion regardlesss of pressing anything
-                    var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * Math.min((2 + this.getEndurance() / 33.4), this.waterVelocityX) / (this.freeze * this.freeze));
-                    var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * Math.min((2 + this.getEndurance() / 33.4), this.waterVelocityY) / (this.freeze * this.freeze));
-                    if (!this.isObstructed(nextX, nextY))
+
+                    if (this.form == "selkie") //seal swim speed min
                     {
-                        X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * Math.min((2 + this.getEndurance() / 33.4), this.waterVelocityX)) / (this.freeze * this.freeze);
-                        Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * Math.min((2 + this.getEndurance() / 33.4), this.waterVelocityY)) / (this.freeze * this.freeze);
+                        //motion regardlesss of pressing anything
+                        var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * Math.min((18 + this.getEndurance() / 25), this.waterVelocityX) / (this.freeze * this.freeze));
+                        var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * Math.min((18 + this.getEndurance() / 25), this.waterVelocityY) / (this.freeze * this.freeze));
+                        if (!this.isObstructed(nextX, nextY))
+                        {
+                            X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * Math.min((18 + this.getEndurance() / 25), this.waterVelocityX)) / (this.freeze * this.freeze);
+                            Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * Math.min((18 + this.getEndurance() / 25), this.waterVelocityY)) / (this.freeze * this.freeze);
+                        }
+                    }
+                    else //normal swim speed min
+                    {
+                        //motion regardlesss of pressing anything
+                        var nextX = X + (Math.cos(this.rotation + 1 / 2 * Math.PI) * Math.min((2 + this.getEndurance() / 33.4), this.waterVelocityX) / (this.freeze * this.freeze));
+                        var nextY = Y + (Math.sin(this.rotation + 1 / 2 * Math.PI) * Math.min((2 + this.getEndurance() / 33.4), this.waterVelocityY) / (this.freeze * this.freeze));
+                        if (!this.isObstructed(nextX, nextY))
+                        {
+                            X += (Math.cos(this.rotation + 1 / 2 * Math.PI) * Math.min((2 + this.getEndurance() / 33.4), this.waterVelocityX)) / (this.freeze * this.freeze);
+                            Y += (Math.sin(this.rotation + 1 / 2 * Math.PI) * Math.min((2 + this.getEndurance() / 33.4), this.waterVelocityY)) / (this.freeze * this.freeze);
+                        }
                     }
 
                     //decrease in velocity over time
@@ -19741,7 +20126,16 @@ function Adventurer()
                     {
                         this.energy -= 0.015 * energil;
                         // If the place where the player would move next under the same instruction is blocked then the player will not move.
-                        var strBasedMinSwimSpeed = 0.6 + (this.getEndurance() / 140);
+                        var strBasedMinSwimSpeed;
+                        if (this.form == "selkie") //seal swim speed min
+                        {
+                            strBasedMinSwimSpeed = 2;
+                        }
+                        else //normal swim speed min
+                        {
+                            strBasedMinSwimSpeed = 0.6 + (this.getEndurance() / 140);
+                        }
+
                         if (this.waterVelocityX < strBasedMinSwimSpeed)
                         {
                             this.waterVelocityX = strBasedMinSwimSpeed;
@@ -19750,8 +20144,17 @@ function Adventurer()
                         {
                             this.waterVelocityY = strBasedMinSwimSpeed;
                         }
-                        this.waterVelocityX = this.waterVelocityX * (1.02 + (1 / 20000) * this.getEndurance());
-                        this.waterVelocityY = this.waterVelocityY * (1.02 + (1 / 20000) * this.getEndurance());
+
+                        if (this.form == "selkie") //seal swim speed
+                        {
+                            this.waterVelocityX = this.waterVelocityX * (1.09 + (1 / 20000) * this.getEndurance());
+                            this.waterVelocityY = this.waterVelocityY * (1.09 + (1 / 20000) * this.getEndurance());
+                        }
+                        else //normal swim speed
+                        {
+                            this.waterVelocityX = this.waterVelocityX * (1.02 + (1 / 20000) * this.getEndurance());
+                            this.waterVelocityY = this.waterVelocityY * (1.02 + (1 / 20000) * this.getEndurance());
+                        }
                     }
                     else
                     {
@@ -22924,6 +23327,61 @@ function Adventurer()
                         else
                         {
                             this.estolGangPeace = true;
+                        }
+                    }
+
+                    //Sylkeem Republicans
+                    //box
+                    if (this.sylkeemPeace)
+                    {
+                        XXX.beginPath();
+                        if (this.sylkeemFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "lightGreen";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50+ (55 * 2), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    else
+                    {
+                        XXX.beginPath();
+                        if (this.sylkeemFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "red";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 2), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    //faction name
+                    XXX.font = "bold 20px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Sylkeem Republicans: " + this.sylkeemFaction, 700, 72 + (55 * 2));
+                    //clickability
+                    if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 2) && mouseY < 80 + (55 * 2) && clicked)
+                    {
+                        clicked = false;
+                        if (this.sylkeemPeace)
+                        {
+                            this.sylkeemPeace = false;
+                        }
+                        else
+                        {
+                            this.sylkeemPeace = true;
                         }
                     }
                 }
@@ -27831,7 +28289,10 @@ function Adventurer()
                 if (this.form != false && this.form != "vampire" || this.form == "vampire" && wKey)
                 {
                     canDrop = false;
-                    canUse = false;
+                    if (this.form != "selkie" || this.form == "selkie" && Inventory[i][0].utility != "weapon")
+                    {
+                        canUse = false;
+                    }
                 }
 
                 //Interact With Item Dropping, using, etc.

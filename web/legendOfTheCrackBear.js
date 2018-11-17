@@ -3725,13 +3725,14 @@ function theLegend()
     allWeapons.push(new Item("toothedBludgeon", false)); //70
     allWeapons.push(new Item("chainsaw", false)); //71
     allWeapons.push(new Item("nirwadenLance", false)); //72
-    allWeapons.push(new Item("werewolf", false)); //73 //this is not really a weapon, but a form
+    allWeapons.push(new Item("werewolf", false)); //73 //FORM
     allWeapons.push(new Item("windArrow", false)); //74
     allWeapons.push(new Item("timeArrow", false)); //75
     allWeapons.push(new Item("vardanianHalberd", false)); //76
     allWeapons.push(new Item("shotgun", false)); //77
     allWeapons.push(new Item("spade", false)); //78
-    allWeapons.push(new Item("vampire", false)); //79 //this is not really a weapon, but a form
+    allWeapons.push(new Item("vampire", false)); //79 //FORM
+    allWeapons.push(new Item("selkieSkin"));//80 //FORM
 
 
 

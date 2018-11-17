@@ -30,6 +30,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.unpassable = false; //certain creatures with the haste ability (like berulns) can pass over almost any obstacle, but not if the obstacle has this property set to true.
     this.intervalStore = new Date().getTime(); //this variable is for the interval function which calls a function on a loop at a rate defined by you.
     this.costu = 0;
+    //eatFish variables
+    this.fishery = false; //whether or not a unit or the player eat fish from the scenery item by decreasing the health variable
     //Campfire variables
     this.lit = false;
     this.fireCostume = 0;
@@ -2976,6 +2978,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         else if (this.type == "northernFishingSpot")
         {
             //TRAITS
+            this.fishery = true;
             this.solid = false;
             this.interactionRange = 1;
 
@@ -3119,6 +3122,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         else if (this.type == "temperatePondFishingSpot") //unique (there should only be one)
         {
             //TRAITS
+            this.fishery = true;
             this.solid = false;
             this.interactionRange = 1;
 

@@ -783,11 +783,19 @@ function applySelectionsButton()
         if (player.raceName == "Sylkeem")
         {
             player.extraSkillPoints = 14 - 8;
-            player.extraMagicPoints = 4;
+
+            if (player.class == "Shaman")
+            {
+                player.extraMagicPoints = 7;
+            }
+            else
+            {
+                player.extraMagicPoints = 4;
+            }
 
             if (player.title == "Royalty")
             {
-                player.extraSkillPoints = 4;
+                player.extraSkillPoints += 4;
             }
             if (player.title != "Tradefolk" && player.title != "Vagabond")
             {
@@ -1026,7 +1034,7 @@ function applySelectionsButton()
         }
         //MAGE starting weapon kit
         //TODO start mages off with a basic level combat magic scroll.
-        if (player.class == "Mage" || player.class == "Priest")//This is the general one for all that don't meet a specific exception.
+        if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")//This is the general one for all that don't meet a specific exception.
         {
             if (player.raceName != "Cephrite")
             {
@@ -2497,7 +2505,7 @@ function Selector(bX, bY, type, selNumMAX)
                     LXX.fillStyle = "black";
                     LXX.font = "12px Book Antiqua";
                     LXX.textAlign = "left";
-                    LXX.fillText("It is little known that the great Freydic kingdom includes another people than the Freydic. The Sylkeem and the Freydic were two people that lived ", 5, (LCC.height / 2) + 4);
+                    LXX.fillText("It is little known that the great Freydic kingdom includes another people than the Freydic. The Sylkeem and the Freydic were two peoples that lived ", 5, (LCC.height / 2) + 4);
 
                     LXX.fillStyle = "black";
                     LXX.font = "12px Book Antiqua";

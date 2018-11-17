@@ -341,7 +341,7 @@ function screenCover()
         XXX.drawImage(CCC, -40, 0);
         XXX.restore();
 
-        if (player.inebriation > 3 * (100 + (3 * player.getToughness())) && player.gender == "Male" || player.inebriation >= 1.5 * (100 + (1.5 * player.getToughness())) && player.gender != "Male") //Men and women get drunk at different rates
+        if (player.inebriation > 3 * (100 + (3 * player.getToughness())) && player.gender == "Male" || player.inebriation >= 1.5 * (100 + (1.5 * player.getToughness())) && player.gender != "Male" || player.raceName == "Sylkeem" && player.inebriation >= 0.5 * (100 + (1.5 * player.getToughness()))) //Men and women get drunk at different rates
         {
             XXX.beginPath();
             XXX.save();
@@ -351,7 +351,7 @@ function screenCover()
             XXX.drawImage(CCC, -60, 0);
             XXX.restore();
 
-            if (player.inebriation >= 5 * (100 + (3 * player.getToughness())) && player.gender == "Male" || player.inebriation >= 3 * (100 + (1.5 * player.getToughness())) && player.gender != "Male") //Men and women get drunk at different rates
+            if (player.inebriation >= 5 * (100 + (3 * player.getToughness())) && player.gender == "Male" || player.inebriation >= 3 * (100 + (1.5 * player.getToughness())) && player.gender != "Male"|| player.raceName == "Sylkeem" && player.inebriation >= 1 * (100 + (1.5 * player.getToughness()))) //Men and women get drunk at different rates
             {
                 XXX.beginPath();
                 XXX.save();
@@ -369,7 +369,7 @@ function screenCover()
                 XXX.drawImage(CCC, 0, -35);
                 XXX.restore();
 
-                if (player.inebriation >= 8 * (100 + (3 * player.getToughness())) && player.gender == "Male" || player.inebriation >= 6.5 * (100 + (1.5 * player.getToughness())) && player.gender != "Male") //Men and women get drunk at different rates
+                if (player.inebriation >= 8 * (100 + (3 * player.getToughness())) && player.gender == "Male" || player.inebriation >= 6.5 * (100 + (1.5 * player.getToughness())) && player.gender != "Male"|| player.raceName == "Sylkeem" && player.inebriation >= 3 * (100 + (1.5 * player.getToughness()))) //Men and women get drunk at different rates
                 {
                     XXX.beginPath();
                     XXX.save();

@@ -4078,10 +4078,13 @@ function Adventurer()
             //If developerMode "incredibleHulk" is on the players strength will be ten times the normal maximum.
             return 500;
         }
-        else if (this.form == "werewolf") //increases strength a lot!!!
+        else if (this.form == "werewolf")
         {
-            //If developerMode "incredibleHulk" is on the players strength will be ten times the normal maximum.
             return 100;
+        }
+        else if (this.form == "selkie")
+        {
+            return 0;
         }
         else if (this.gojiiPoisoned == true)
         {
@@ -4106,6 +4109,10 @@ function Adventurer()
         else if (this.form == "vampire")
         {
             return 20;
+        }
+        else if (this.form == "selkie")
+        {
+            return 4;
         }
         else // returns the normal amount.
         {
@@ -4138,6 +4145,10 @@ function Adventurer()
         {
             return 200;
         }
+        else if (this.form == "selkie")
+        {
+            return 10;
+        }
         else if (this.frozen == true)
         {
             return Math.max(0, Math.min(86, (this.dexterity + this.AdDexterity + this.dexBoost + this.swollenDEX) / 10));
@@ -4153,6 +4164,10 @@ function Adventurer()
         if (this.form == "werewolf" || this.form == "vampire")
         {
             return 99;
+        }
+        if (this.form == "selkie")
+        {
+            return 1;
         }
         else
         {
@@ -4172,7 +4187,7 @@ function Adventurer()
 
     this.getSurvivalism = function()
     {
-        if (this.form == "werewolf" || this.form == "vampire")
+        if (this.form == "werewolf" || this.form == "vampire" || this.form == "selkie")
         {
             return 0;
         }
@@ -4208,7 +4223,7 @@ function Adventurer()
 
     this.getWillpower = function()
     {
-        if (this.form == "werewolf")
+        if (this.form == "werewolf" || this.form == "selkie")
         {
             return 0;
         }
@@ -12031,7 +12046,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation - 1/2 * Math.PI);
-                    if (this.subtlety)
+                    if (this.subtlety || this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -12043,7 +12058,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation - 1/2 * Math.PI);
-                    if (this.subtlety)
+                    if (this.subtlety || this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }
@@ -12055,7 +12070,7 @@ function Adventurer()
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
                     XXX.rotate(this.rotation - 1/2 * Math.PI);
-                    if (this.subtlety)
+                    if (this.subtlety || this.water && !this.land)
                     {
                         XXX.globalAlpha = 0.4;
                     }

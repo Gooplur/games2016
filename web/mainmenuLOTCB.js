@@ -1642,7 +1642,7 @@ function Selector(bX, bY, type, selNumMAX)
                 else if (player.raceName == "Sylkeem")
                 {
                     Inventory = [];
-                    Inventory.push([new Item("coins", false, false), 28]);
+                    Inventory.push([new Item("coins", false, false), 90]);
                     player.hunger = player.hungerMAX;
                     player.satiated = true;
 
@@ -1657,7 +1657,7 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.fillStyle = "black";
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
-                        LXX.fillText("culture of mercantilism, some of your people have even stooped to selling their ceremonial skin.", 5, (LCC.height / 2) + 16);
+                        LXX.fillText("culture of mercantilism, some of your people, including you, have even stooped to selling their ceremonial skin.", 5, (LCC.height / 2) + 16);
                     }
                 }
                 else

@@ -259,6 +259,10 @@ function Item(type, x, y)
 
             //ability
             this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 95 - Math.floor(player.getCharisma() / 10); // at max, buy for 90.
+            this.sellValue = 85 + Math.floor(player.getCharisma() / 10); // at max, sell for 90.
         }
         else if (this.type == "nude")
         {

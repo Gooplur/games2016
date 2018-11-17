@@ -4112,7 +4112,7 @@ function Adventurer()
         }
         else if (this.form == "selkie")
         {
-            return 4;
+            return 3;
         }
         else // returns the normal amount.
         {
@@ -30204,7 +30204,14 @@ function Adventurer()
                         XXX.font="14px Book Antiqua";
                         XXX.fillStyle = "black";
                         XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
-                        XXX.fillText("      Damage + " + Math.floor(Inventory[i][0].damage) + "   Armour Negation + " + Math.floor(Inventory[i][0].negateArmour) + "    Magic + " + Math.floor(Inventory[i][0].magicalDamage) + "    Range + " + Math.floor(Inventory[i][0].distance) + "    Reach + " + Math.floor(Inventory[i][0].range) + "    Rate + " + Math.floor(Inventory[i][0].rate) + "    Energy Cost: " + Math.floor(Inventory[i][0].energyCost), 157, 514);
+                        if (Inventory[i][0].type == "selkieSkin")
+                        {
+                            XXX.fillText("      Material", 157, 514);
+                        }
+                        else
+                        {
+                            XXX.fillText("      Damage + " + Math.floor(Inventory[i][0].damage) + "   Armour Negation + " + Math.floor(Inventory[i][0].negateArmour) + "    Magic + " + Math.floor(Inventory[i][0].magicalDamage) + "    Range + " + Math.floor(Inventory[i][0].distance) + "    Reach + " + Math.floor(Inventory[i][0].range) + "    Rate + " + Math.floor(Inventory[i][0].rate) + "    Energy Cost: " + Math.floor(Inventory[i][0].energyCost), 157, 514);
+                        }
                     }
                     else if (Inventory[i][0].utility == "ranged")
                     {

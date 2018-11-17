@@ -227,14 +227,15 @@ function Item(type, x, y)
             this.identity = "Ceremonial Skin";
             this.weight = 2;
             this.size = 15;
-            this.description = "In Sylkeem culture each tribe member keeps their own ceremonial skin with them.";
-            this.intForDes = 12;
+            this.description = "In Sylkeem culture each tribal member keeps their own ceremonial skin with them.";
             if (player.raceName == "Sylkeem")
             {
+                this.intForDes = 22;
                 this.intDescription = "This is your selkie skin, you were born wearing it. Wearing this lets you become a seal.";
             }
             else
             {
+                this.intForDes = 3;
                 this.intDescription = "According to northern tales, the Sylkeem are so fond of the sea that their young come out as seals.";
             }
 

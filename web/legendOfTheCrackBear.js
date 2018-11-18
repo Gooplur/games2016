@@ -2645,9 +2645,19 @@ function sceneryOperationsManager(z)
             if (scenicList[i].zIndex == z)
             {
                 scenicList[i].keeper(); //this is for the storage system (it adds the container's ID to the storageList if it is not laready there. Without this the game would crash when around storage containers.
-                if (scenicList[i].X > X - (1.6 * CCC.width) && scenicList[i].X < X + (1.6 * CCC.width) && scenicList[i].Y > Y - (1.6 * CCC.height) && scenicList[i].Y < Y + (1.6 * CCC.height))
+                if (scenicList[i].massive)
                 {
-                    scenicList[i].operations();
+                    if (scenicList[i].X > X - (3.2 * CCC.width) && scenicList[i].X < X + (3.2 * CCC.width) && scenicList[i].Y > Y - (3.2 * CCC.height) && scenicList[i].Y < Y + (3.2 * CCC.height))
+                    {
+                        scenicList[i].operations();
+                    }
+                }
+                else
+                {
+                    if (scenicList[i].X > X - (1.6 * CCC.width) && scenicList[i].X < X + (1.6 * CCC.width) && scenicList[i].Y > Y - (1.6 * CCC.height) && scenicList[i].Y < Y + (1.6 * CCC.height))
+                    {
+                        scenicList[i].operations();
+                    }
                 }
             }
         }

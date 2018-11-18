@@ -3768,6 +3768,15 @@ function Adventurer()
         //Vamprism
         if (this.vamprism)
         {
+            //vampires can survive without feeding much longer than humans can
+            if (this.baseHunger < 90)
+            {
+                this.baseHunger = 90;
+            }
+            if (this.baseThirst < 30)
+            {
+                this.baseThirst = 30;
+            }
             //vampires die from the werewolf curse
             if (this.lycanthropy == true)
             {
@@ -30925,7 +30934,10 @@ function Adventurer()
 
             if (this.hunger <= 1/10 * this.hungerMAX && this.hunger > -10) // at 1/10 of hunger the player loses the use of energy... That means no attacks.
             {
-                this.energy = Math.max(-5, this.energy - 1 * (TTD / (1000 + 100 * this.getEndurance() * 2)));
+                if (player.vamprism != true)
+                {
+                    this.energy = Math.max(-5, this.energy - 1 * (TTD / (1000 + 100 * this.getEndurance() * 2)));
+                }
             }
             if (this.hunger <= 0)
             {

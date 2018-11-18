@@ -122,6 +122,11 @@ nirwadenBuilding2 - left facing middle class home
 nirwadenBuilding3 - down facing two rooms middle class home
 nirwadenBuilding4 - up facing two rooms middle class home
 nirwadenBuilding5 - a left facing church to the Everlasting and Eternal Spirit
+nirwadenBuilding6 - (left facing) a huge building with two private rooms and two halls
+nirwadenBuilding7 - an up facing huge Inn with three rooms and a dining hall
+nirwadenBuilding8 - a down facing huge building that is shaped like a pudgy T
+nirwadenCastle1 - a massive down facing castle fortress
+nirwadenCastleDoor - a castle door (meant for nirwadenCastle1) it can only be opened manually by a nirwaden noble or royal. The door is set to automatically open between 8am to 8pm and automatically shut if the town is under attack or it is not opening hours.
 gargoyle - a statue of a gargoyle (false) or the real thing (true)
 lowFog - 0-3 variations of fog that can be altered in size (lowfog lingers low)
 highFog - 0-3 variations of fog that can be altered in size (highfog floats high)

@@ -7,6 +7,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.type = type;
     this.variety = "generic";
     this.subVariety = "generic";
+    this.massive = false;
     this.X = x;
     this.Y = y;
     this.dmx = map;
@@ -2297,6 +2298,201 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             }
         }
+        else if (this.type == "nirwadenCastleDoor")
+        {
+            //TRAITS
+            this.zIndex = 4;
+            this.solid = false;
+            this.interactionRange = 55;
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.tic = 0;
+                this.phase = 0;
+                this.doTic = false;
+                this.primed = true;
+                this.clave = "nirwadenCastleDoor" + Math.random();
+                this.manualUse = false;
+            }
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(atal, 1550, 753, 182, 61, (-1/2 * 182 * 2.6), (-1/2 * 61 * 2.2), 182 * 2.6, 61 * 2.2);
+                XXX.restore();
+
+
+                //barriers
+                if (this.primed)
+                {
+                    var deleteList = [];
+                    for (var l = 0; l < barrierList.length; l++)
+                    {
+                        if (barrierList[l].info == this.clave)
+                        {
+                            deleteList.push(l);
+                        }
+                    }
+                    for (var l = deleteList.length - 1; l > -1; l--)0
+                    {
+                        barrierList.splice(deleteList[l], 1);
+                    }
+                    barrierList.push(new Barrier((this.X - 167), (this.Y - 32), 60, 360, true, this.clave)); //gate closed
+                }
+            }
+            else if (this.phase == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(atal, 1550, 753, 182, 61, (-1/2 * 182 * 2.6), (-1/2 * 61 * 2.2), 182 * 2.6, 61 * 2.2);
+                XXX.restore();
+                this.primed = true;
+            }
+            else if (this.phase == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(atal, 1734, 769, 75, 79, (-1/2 * 75 * 2.2) - 140, (-1/2 * 79 * 2.6) - 54, 75 * 2.2, 79 * 2.6);
+                XXX.drawImage(atal, 1837, 769, 75, 79, (-1/2 * 75 * 2.2) + 143, (-1/2 * 79 * 2.6) - 54, 75 * 2.2, 79 * 2.6);
+                XXX.restore();
+                if (this.primed)
+                {
+                    var deleteList = [];
+                    for (var l = 0; l < barrierList.length; l++)
+                    {
+                        if (barrierList[l].info == this.clave)
+                        {
+                            deleteList.push(l);
+                        }
+                    }
+                    for (var l = deleteList.length - 1; l > -1; l--)
+                    {
+                        barrierList.splice(deleteList[l], 1);
+                    }
+                    barrierList.push(new Barrier((this.X - 140 - 30), (this.Y - 54 - 94), 170, 60, true, this.clave)); //gate open
+                    barrierList.push(new Barrier((this.X + 140 - 30), (this.Y - 54 - 94), 170, 60, true, this.clave)); //gate open
+
+                }
+            }
+
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //autofunction for gate
+            if (this.manualUse == false)
+            {
+                var haySoldados = false;
+                var inDanger = false;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].type == "Soldier")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.faction == "Nirwaden")
+                            {
+                                if (ArtificialIntelligenceAccess[i].team == "Nirwaden")
+                                {
+                                    haySoldados = true;
+                                    if (ArtificialIntelligenceAccess[i].disturbed)
+                                    {
+                                        inDanger = true;
+                                        break
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                if (haySoldados)
+                {
+                    if (inDanger || hourOfDay < 8 || hourOfDay > 20)
+                    {
+                        if (this.phase == 2 && this.doTic == false)
+                        {
+                            this.doTic = "close";
+                            this.tic = 0;
+                        }
+                    }
+                    else
+                    {
+                        if (this.phase == 0 && this.doTic == false)
+                        {
+                            this.doTic = "open";
+                            this.tic = 0;
+                        }
+                    }
+                }
+            }
+
+            //openclosegate
+            if (this.doTic == "open" || this.doTic == "close")
+            {
+                this.tic += 1;
+            }
+
+            //OPEN
+            if (this.doTic == "open")
+            {
+                if (this.tic < 10)
+                {
+                    this.phase = 0;
+                }
+                else if (this.tic < 20)
+                {
+                    this.phase = 1;
+                }
+                else
+                {
+                    this.phase = 2;
+                    this.doTic = false;
+                    this.activate = false;
+                }
+            }
+            else if (this.doTic == "close")
+            {
+                if (this.tic < 10)
+                {
+                    this.phase = 2;
+                }
+                else if (this.tic < 20)
+                {
+                    this.phase = 1;
+                }
+                else
+                {
+                    this.phase = 0;
+                    this.doTic = false;
+                    this.activate = false;
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                //CONDITIONS TO ACTIVATE
+                if (player.raceName == "Nirwaden" && player.title == "Nobility" || player.raceName == "Nirwaden" && player.title == "Royalty")
+                {
+                    this.manualUse = true;
+                    if (this.phase == 0 && this.doTic == false)
+                    {
+                        this.doTic = "open";
+                        this.tic = 0;
+                    }
+                    else if (this.phase == 2 && this.doTic == false)
+                    {
+                        this.doTic = "close";
+                        this.tic = 0;
+                    }
+                }
+            }
+        }
         else if (this.type == "item") //ITEMITEM
         {
             //TRAITS
@@ -4228,7 +4424,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.interactionRange = 135;
 
             //DRAWSELF
-            if (X > (this.X - 9) && X < (this.X - 9) + 194 && Y > (this.Y - 146) && Y < (this.Y - 146) + 296 || X > (this.X - 200) && X < (this.X - 200) + 182 && Y > (this.Y - 146) && Y < (this.Y - 146) + 231)
+            if (X > (this.X - 40) && X < (this.X - 40) + 230 && Y > (this.Y - 146) && Y < (this.Y - 146) + 296 || X > (this.X - 200) && X < (this.X - 200) + 182 && Y > (this.Y - 146) && Y < (this.Y - 146) + 231)
             {
                 this.zIndex = 1;
                 XXX.save();
@@ -4298,7 +4494,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.interactionRange = 135;
 
             //DRAWSELF
-            if (X > (this.X - 0) && X < (this.X - 0) + 191 && Y > (this.Y - 85) && Y < (this.Y - 85) + 231 || X > (this.X - 200) && X < (this.X - 200) + 194 && Y > (this.Y - 146) && Y < (this.Y - 146) + 296)
+            if (X > (this.X - 35) && X < (this.X - 35) + 235 && Y > (this.Y - 85) && Y < (this.Y - 85) + 231 || X > (this.X - 200) && X < (this.X - 200) + 194 && Y > (this.Y - 146) && Y < (this.Y - 146) + 296)
             {
                 this.zIndex = 1;
                 XXX.save();
@@ -4322,7 +4518,6 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(atal, 334, 3190, 356, 257, -(1/2 * 356 * 1.2), -(1/2 * 247 * 1.2 + 8.5), 356 * 1.2, 247 * 1.2);
                 XXX.restore();
             }
-
 
             //barrierList.push(new Barrier(this.X -210, this.Y -164, 330, 215, false)); // a square that covers the entire building
 
@@ -4406,6 +4601,348 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 barrierList.push(new Barrier((this.X -213), (this.Y + 126), 19, 425, true)); //top wall
                 barrierList.push(new Barrier((this.X + 195), (this.Y - 135), 111, 19, true)); //lower left wall
                 barrierList.push(new Barrier((this.X + 195), (this.Y + 40), 105, 19, true)); //upper left wall
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "nirwadenBuilding6")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //special fix to remove priest robe from building picture
+            var imaginCC = document.createElement("canvas");
+            imaginCC.width = 740 * 1.2;
+            imaginCC.height = 468 * 1.2;
+            var imaginCX = imaginCC.getContext("2d");
+            imaginCX.drawImage(atal, 471, 3494, 740, 468, 0, 0, 740 * 1.2, 468 * 1.2);
+            imaginCX.clearRect(0, 0, 150 * 1.2, 200 * 1.2);
+
+            //DRAWSELF
+            if (X > (this.X - 424) && X < (this.X - 424) + 240 && Y > (this.Y -125) && Y < (this.Y -125) + 290 || X > (this.X + 389) - 234 && X < (this.X + 389) && Y > (this.Y) - 273 && Y < (this.Y) || X > (this.X + 182) - 402 && X < (this.X + 182) && Y > (this.Y + 271) - 517 && Y < (this.Y + 271))
+            {
+                this.zIndex = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(imaginCC, -(1/2 * 740 * 1.2), -(1/2 * 468 * 1.2));
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(imaginCC, -(1/2 * 740 * 1.2), -(1/2 * 468 * 1.2));
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(atal, 1238, 3516, 740, 468, -(1/2 * 740 * 1.2) + 11, -(1/2 * 468 * 1.2), 740 * 1.2, 468 * 1.2);
+                XXX.restore();
+            }
+
+            //barrierList.push(new Barrier(this.X -210, this.Y -164, 330, 215, false)); // a square that covers the entire building
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                //vertical
+                barrierList.push(new Barrier((this.X - 218), (this.Y + 58), 214, 24, true)); //right room top-left wall
+                barrierList.push(new Barrier((this.X - 218), (this.Y - 259), 254, 24, true)); //right room lower-left wall
+
+                barrierList.push(new Barrier((this.X - 424), (this.Y -124), 290, 24, true)); //right room right wall
+
+                barrierList.push(new Barrier((this.X - 17), (this.Y + 2), 102, 24, true));
+                barrierList.push(new Barrier((this.X - 17), (this.Y + 164), 109, 24, true));
+
+
+                barrierList.push(new Barrier((this.X + 182), (this.Y + 24), 247, 24, true)); //top room left wall
+
+                barrierList.push(new Barrier((this.X - 17), (this.Y - 240), 102, 24, true)); //middle bottom rung
+
+                barrierList.push(new Barrier((this.X + 389), (this.Y - 249), 102, 24, true)); //far left lower
+                barrierList.push(new Barrier((this.X + 389), (this.Y - 85), 85, 24, true)); //far left upper
+                //horizontal
+                barrierList.push(new Barrier((this.X - 10), (this.Y + 1), 24, 422, true));
+
+                barrierList.push(new Barrier((this.X - 210), (this.Y + 247), 24, 402, true)); //top wall
+
+                barrierList.push(new Barrier((this.X - 210), (this.Y - 266), 24, 623, true)); //bottom wall
+
+                barrierList.push(new Barrier((this.X - 424), (this.Y -125), 24, 210, true));
+
+                barrierList.push(new Barrier((this.X - 424), (this.Y + 142), 24, 210, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "nirwadenBuilding7")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + 110) && X < (this.X + 110) + 236 && Y > (this.Y - 190) && Y < (this.Y - 190) + 292 || X > (this.X - 125) && X < (this.X - 125) + 271 && Y > (this.Y + 295) - 576 && Y < (this.Y + 295) || X > (this.X - 345) && X < (this.X - 345) + 236 && Y > (this.Y + 176) - 275 && Y < (this.Y + 176))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(atal, 1333, 2948, 646, 562, -(1/2 * 646 * 1.2), -(1/2 * 562 * 1.2), 646 * 1.2, 562 * 1.2);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(atal, 1333, 2948, 646, 562, -(1/2 * 646 * 1.2), -(1/2 * 562 * 1.2), 646 * 1.2, 562 * 1.2);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(atal, 1335, 2411, 646, 555, -(1/2 * 646 * 1.2), -(1/2 * 555 * 1.2), 646 * 1.2, 555 * 1.2);
+                XXX.restore();
+            }
+
+            //barrierList.push(new Barrier(this.X -210, this.Y -164, 330, 215, false)); // a square that covers the entire building
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                //vertical
+                barrierList.push(new Barrier((this.X - 146), (this.Y + 75), 229, 24, true)); //entry right wall
+
+                barrierList.push(new Barrier((this.X - 146), (this.Y - 308), 324, 24, true)); //low mid right wall
+
+                barrierList.push(new Barrier((this.X + 120), (this.Y - 308), 229, 24, true)); //low mid left wall
+                barrierList.push(new Barrier((this.X + 120), (this.Y - 23), 328, 24, true)); //upper mid left wall
+
+                barrierList.push(new Barrier((this.X + 322), (this.Y - 189), 292, 24, true)); //far left wall
+
+                barrierList.push(new Barrier((this.X - 345), (this.Y - 91), 290, 24, true)); //far right wall
+                //horizontal
+                barrierList.push(new Barrier((this.X - 68), (this.Y + 282), 24, 200, true)); //entry wall
+
+                barrierList.push(new Barrier((this.X - 345), (this.Y - 91), 24, 220, true)); //far right room lower wall
+                barrierList.push(new Barrier((this.X - 345), (this.Y + 176), 24, 220, true)); //far right room upper wall
+
+                barrierList.push(new Barrier((this.X - 125), (this.Y - 106), 24, 90, true)); //lower entry right
+                barrierList.push(new Barrier((this.X + 25), (this.Y - 102), 24, 110, true)); //lower entry left
+
+                barrierList.push(new Barrier((this.X + 128), (this.Y - 190), 24, 220, true)); //far left room lower wall
+                barrierList.push(new Barrier((this.X + 128), (this.Y + 77), 24, 220, true)); //far left room upper wall
+
+
+                barrierList.push(new Barrier((this.X - 125), (this.Y - 308), 24, 271, true)); //bottom wall
+
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "nirwadenBuilding8")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X - 368) && X < (this.X - 368) + 717 && Y > (this.Y + 295) - 339 && Y < (this.Y + 295) || X > (this.X - 240) && X < (this.X - 240) + 450 && Y > (this.Y + 295) - 576 && Y < (this.Y + 295))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(atal, 1407, 1983, 480, 418, -(1/2 * 480 * 1.8), -(1/2 * 418 * 1.8), 480 * 1.8, 418 * 1.8);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(atal, 1407, 1983, 480, 418, -(1/2 * 480 * 1.8), -(1/2 * 418 * 1.8), 480 * 1.8, 418 * 1.8);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(atal, 1404, 1595, 480, 418, -(1/2 * 480 * 1.79) - 3, -(1/2 * 418 * 1.78) - 20, 480 * 1.79, 418 * 1.79);
+                XXX.restore();
+            }
+
+            //barrierList.push(new Barrier(this.X -210, this.Y -164, 330, 215, false)); // a square that covers the entire building
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                //vertical
+                barrierList.push(new Barrier((this.X - 368), (this.Y - 44), 349, 37, true)); //right top wall
+                barrierList.push(new Barrier((this.X + 334), (this.Y - 44), 349, 37, true)); //left top wall
+                barrierList.push(new Barrier((this.X - 240), (this.Y - 283), 281, 37, true)); //right lower wall
+                barrierList.push(new Barrier((this.X + 163), (this.Y - 286), 244, 37, true)); //left lower wall
+                //horizontal
+                barrierList.push(new Barrier((this.X - 368), (this.Y - 41), 37, 150, true)); //mid right
+                barrierList.push(new Barrier((this.X + 191), (this.Y - 44), 37, 150, true)); //mid left
+
+                barrierList.push(new Barrier((this.X - 240), (this.Y - 283), 37, 159, true)); //low right
+                barrierList.push(new Barrier((this.X + 15), (this.Y - 286), 37, 180, true)); //low left
+
+                barrierList.push(new Barrier((this.X - 368), (this.Y + 273), 37, 717, true)); //top wall
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "nirwadenCastle1")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+            this.massive = true;
+
+            //if (this.runOneTime)
+            //{
+            //    this.runOneTime = false;
+            //    this.numbo = 0;
+            //}
+            //if (rKey)
+            //{
+            //    rKey = false;
+            //    this.numbo -= 0;
+            //    alert(this.numbo);
+            //}
+
+
+            //DRAWSELF
+            if (X > (this.X + 368) && X < (this.X + 368) + 300 && Y > (this.Y + 880) - 1740 && Y < (this.Y + 880) || X > (this.X - 711) && X < (this.X - 711) + 1400 && Y > (this.Y + 890) - 260 && Y < (this.Y + 890) || X > (this.X - 711) && X < (this.X - 711) + 1400 && Y > (this.Y -574) - 330 && Y < (this.Y -574) || X > (this.X - 711) && X < (this.X - 711) + 300 && Y > (this.Y + 880) - 1740 && Y < (this.Y + 880))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(atal, 1338, 843, 611, 755, -(1/2 * 611 * 2.6), -(1/2 * 755 * 2.6), 611 * 2.6, 755 * 2.6);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(atal, 1338, 843, 611, 755, -(1/2 * 611 * 2.6), -(1/2 * 755 * 2.6), 611 * 2.6, 755 * 2.6);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(atal, 1338, 11, 611, 755, -(1/2 * 611 * 2.6), -(1/2 * 755 * 2.6) - 20, 611 * 2.6, 755 * 2.6);
+                XXX.restore();
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                //vertical
+                barrierList.push(new Barrier((this.X - 453), (this.Y - 644), 1345, 81, true)); //inner right
+                barrierList.push(new Barrier((this.X + 368), (this.Y - 644), 1345, 81, true)); //inner left
+
+                barrierList.push(new Barrier((this.X + 653), (this.Y - 901), 1856, 50, true)); //outer left
+                barrierList.push(new Barrier((this.X - 711), (this.Y - 901), 1856, 60, true)); //outer right
+
+                //horizontal
+                barrierList.push(new Barrier((this.X - 453), (this.Y + 620), 81, 845, true)); //inner top
+                barrierList.push(new Barrier((this.X - 453), (this.Y -644), 70, 307, true)); //inner bottom right
+                barrierList.push(new Barrier((this.X + 185), (this.Y -644), 70, 235, true)); //inner bottom left
+                barrierList.push(new Barrier((this.X - 711), (this.Y - 901), 72, 563, true)); //outer bottom right
+                barrierList.push(new Barrier((this.X + 185), (this.Y - 901), 72, 500, true)); //outer bottom left
+                barrierList.push(new Barrier((this.X - 711), (this.Y + 880), 81, 1400, true)); //outer top
+
+
             }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
@@ -6099,11 +6636,13 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //DRAWSELF
             if (testBarriers)
             {
+                XXX.save();
                 XXX.beginPath();
                 XXX.fillStyle="black";
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.arc(0, 0, this.radius, 0, 2*Math.PI);
                 XXX.fill();
+                XXX.restore();
             }
 
             if (this.temporary == "theMineshaftMystery0")

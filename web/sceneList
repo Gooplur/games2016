@@ -131,8 +131,12 @@ gargoyle - a statue of a gargoyle (false) or the real thing (true)
 lowFog - 0-3 variations of fog that can be altered in size (lowfog lingers low)
 highFog - 0-3 variations of fog that can be altered in size (highfog floats high)
 fog - 0-3 variations of fog that can be altered in size (above the player, below the trees and projectiles)
-
-
+pyre - a large outdoor bonfire station (used for systematically executing people who fail to meet certain societal expectations. Setting longevity to true makes it the kind that can be used in a quest, otherwise it randomly chooses at the start of the map if it is either burnt or aflame.
+drawerA - 2 models of lighter colored wooden drawers for storage (light and pinkish-tan)
+drawerB - 2 models of darker colored wooden drawers for storage (reddish and brown)
+fineBed - (0 = black, 1 = white, 2 = blue, 3 = red, 4 = purple, 5 = green) Fancy colorful beds
+furRug - (0, 1) rugs made of thick generic animal fur
+molteTrophy - A wall trophy of a molte's head (moltes are a carnivorous woodland creature found in the continental northeast/east)
 
 
 

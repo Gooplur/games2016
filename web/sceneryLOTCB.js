@@ -91,7 +91,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.keeper = function() //this method adds the container to the storageList if it is not on it and abreviates unsavable portions of code.
     {
         //manual determination
-        if (this.type == "crate" || this.type == "basket")
+        if (this.type == "crate" || this.type == "basket" || this.type == "drawerA" || this.type == "drawerB")
         {
             if (this.temporary > 2)
             {
@@ -1704,6 +1704,75 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "fineBed")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 50;
+
+            //DRAWSELF
+            if (this.information == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(folw, 38, 432, 18, 32, -(1/2 * 18 * 2.2), -(1/2 * 32 * 2.2), 18 * 2.2, 32 * 2.2);
+                XXX.restore();
+            }
+            else if (this.information == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(folw, 60, 432, 18, 32, -(1/2 * 18 * 2.2), -(1/2 * 32 * 2.2), 18 * 2.2, 32 * 2.2);
+                XXX.restore();
+            }
+            else if (this.information == 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(folw, 81, 433, 18, 32, -(1/2 * 18 * 2.2), -(1/2 * 32 * 2.2), 18 * 2.2, 32 * 2.2);
+                XXX.restore();
+            }
+            else if (this.information == 4)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(folw, 101, 434, 18, 32, -(1/2 * 18 * 2.2), -(1/2 * 32 * 2.2), 18 * 2.2, 32 * 2.2);
+                XXX.restore();
+            }
+            else if (this.information == 5)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(folw, 125, 434, 18, 32, -(1/2 * 18 * 2.2), -(1/2 * 32 * 2.2), 18 * 2.2, 32 * 2.2);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(folw, 19, 432, 18, 32, -(1/2 * 18 * 2.2), -(1/2 * 32 * 2.2), 18 * 2.2, 32 * 2.2);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                if (this.temporary == true)
+                {
+                    sleep();
+                }
+                this.activate = false;
+            }
+        }
         else if (this.type == "trollScraps")
         {
             //TRAITS
@@ -2047,6 +2116,64 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.activate == true)
             {
                 dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "furRug")
+        {
+            //TRAITS
+            this.zIndex = 1;
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.information == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(folw, 23, 251, 66, 48, -(1/2 * 66 * 1 * this.temporary), -(1/2 * 48 * 1 * this.temporary), 66 * 1 * this.temporary, 48 * 1 * this.temporary);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(folw, 127, 325, 67, 63, -(1/2 * 67 * 1 * this.temporary), -(1/2 * 63 * 1 * this.temporary), 67 * 1 * this.temporary, 63 * 1 * this.temporary);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "molteTrophy")
+        {
+            //TRAITS
+            this.zIndex = 5;
+            this.solid = false;
+            this.interactionRange = 1;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(molte, 504, 72, 36, 35, -(1/2 * 36 * 2 * 1.2), -(1/2 * 35 * 2 * 1.2), 36 * 2 * 1.2, 35 * 2 * 1.2);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
                 this.activate = false;
             }
         }
@@ -3853,6 +3980,212 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 35 * this.information[0];
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                if (this.phase == "opened")
+                {
+                    if (this.temporary > 2 && this.storageListChecked == true && player.noticed == true)
+                    {
+                        this.changeFactionRelation(this.information[3]);
+                        //alert creatures or anger individuals
+                        if (typeof(this.information[6]) != "undefined")
+                        {
+                            if (this.information[6] == true)
+                            {
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].baseTeam != "player")
+                                    {
+                                        this.callForNearbyHelpFromType(3500, ArtificialIntelligenceAccess[i].type);
+                                    }
+                                }
+                            }
+                            else if (this.information[6] != false)
+                            {
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].baseTeam != "player")
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].ID == this.information[6])
+                                        {
+                                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (this.temporary > 2 && this.storageListChecked == true)
+                    {
+                        player.bankPosition = 0;
+                        bankScroll = 0;
+                        storedID = this.information[1];
+                        storageSlots = this.information[2];
+                        lowBar = "storage";
+                    }
+                    this.phase = 0;
+                }
+                else
+                {
+                    this.phase = "opened";
+                }
+            }
+        }
+        else if (this.type == "drawerA")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 35 + 35 * this.information[0];
+
+            this.zIndex = 1;
+            if (this.temporary == 1 || this.temporary == 3)
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(folw, 28, 398, 25, 30, -(1/2 * 25 * this.information[0]), -(1/2 * 30 * this.information[0]), 25 * this.information[0], 30 * this.information[0]);
+                    XXX.restore();
+                }
+                else if (this.phase == "opened")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(folw, 58, 398, 25, 30, -(1/2 * 25 * this.information[0]), -(1/2 * 30 * this.information[0]), 25 * this.information[0], 30 * this.information[0]);
+                    XXX.restore();
+                }
+            }
+            else if (this.temporary == 2 || this.temporary == 4)
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(folw, 86, 398, 25, 30, -(1/2 * 25 * this.information[0]), -(1/2 * 30 * this.information[0]), 25 * this.information[0], 30 * this.information[0]);
+                    XXX.restore();
+                }
+                else if (this.phase == "opened")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(folw, 117, 397, 25, 30, -(1/2 * 25 * this.information[0]), -(1/2 * 30 * this.information[0]), 25 * this.information[0], 30 * this.information[0]);
+                    XXX.restore();
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20 * this.information[0];
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                if (this.phase == "opened")
+                {
+                    if (this.temporary > 2 && this.storageListChecked == true && player.noticed == true)
+                    {
+                        this.changeFactionRelation(this.information[3]);
+                        //alert creatures or anger individuals
+                        if (typeof(this.information[6]) != "undefined")
+                        {
+                            if (this.information[6] == true)
+                            {
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].baseTeam != "player")
+                                    {
+                                        this.callForNearbyHelpFromType(3500, ArtificialIntelligenceAccess[i].type);
+                                    }
+                                }
+                            }
+                            else if (this.information[6] != false)
+                            {
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].baseTeam != "player")
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].ID == this.information[6])
+                                        {
+                                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (this.temporary > 2 && this.storageListChecked == true)
+                    {
+                        player.bankPosition = 0;
+                        bankScroll = 0;
+                        storedID = this.information[1];
+                        storageSlots = this.information[2];
+                        lowBar = "storage";
+                    }
+                    this.phase = 0;
+                }
+                else
+                {
+                    this.phase = "opened";
+                }
+            }
+        }
+        else if (this.type == "drawerB")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 35 + 35 * this.information[0];
+
+            this.zIndex = 1;
+            if (this.temporary == 1 || this.temporary == 3)
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(folw, 154, 398, 25, 30, -(1/2 * 25 * this.information[0]), -(1/2 * 30 * this.information[0]), 25 * this.information[0], 30 * this.information[0]);
+                    XXX.restore();
+                }
+                else if (this.phase == "opened")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(folw, 184, 398, 25, 30, -(1/2 * 25 * this.information[0]), -(1/2 * 30 * this.information[0]), 25 * this.information[0], 30 * this.information[0]);
+                    XXX.restore();
+                }
+            }
+            else if (this.temporary == 2 || this.temporary == 4)
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(folw, 154, 428, 25, 30, -(1/2 * 25 * this.information[0]), -(1/2 * 30 * this.information[0]), 25 * this.information[0], 30 * this.information[0]);
+                    XXX.restore();
+                }
+                else if (this.phase == "opened")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(folw, 184, 428, 25, 30, -(1/2 * 25 * this.information[0]), -(1/2 * 30 * this.information[0]), 25 * this.information[0], 30 * this.information[0]);
+                    XXX.restore();
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20 * this.information[0];
 
             //INTERACTION
             if (this.activate == true)
@@ -7453,6 +7786,253 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 crafting = "alchemy";
                 lowBar = "crafting";
                 gameState = "paused";
+            }
+        }
+        else if (this.type == "pyre")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 100;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.lit = true;
+                this.randomPire = Math.random();
+                this.tic = 0;
+                this.toc = 0;
+            }
+
+            //DRAWSELF
+            if (this.temporary == true)
+            {
+                if (quests.doPire == true)
+                {
+                    quests.doPire = false;
+                    this.lit = true;
+                }
+
+                if (this.toc > 300)
+                {
+                    this.lit = "burnt";
+                    this.toc = 0;
+                    this.tic = 0;
+                }
+
+                if (this.lit == false)
+                {
+                    this.solid = true;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(folw, 20, 13, 70, 67, -(1/2 * 70 * 2.3), -(1/2 * 67 * 2.3), 70 * 2.3, 67 * 2.3);
+                    XXX.restore();
+                }
+                else
+                {
+                    if (this.lit == "burnt")
+                    {
+                        this.solid = false;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(folw, 93, 15, 70, 67, -(1/2 * 70 * 2.3), -(1/2 * 67 * 2.3), 70 * 2.3, 67 * 2.3);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        if (this.playerer <= this.radius) //fire burns the player but heat resistance can reduce the damage it does.
+                        {
+                            if (player.mageShield > 0)
+                            {
+                                player.mageShield -= 0.125;
+                                player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                            }
+                            else
+                            {
+                                player.health += player.mageShield;
+                                player.mageShield = 0;
+
+                                player.health -= Math.max(0, (0.125 - (player.heatResistance / 200)));
+                                player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                                player.burningTime = new Date().getTime();
+                            }
+                        }
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (this.dst(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y) < this.radius)
+                            {
+                                ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                            }
+                        }
+                        this.solid = true;
+                        //produce light
+                        if (timeOfDay != "Day")
+                        {
+                            lights.push({X:this.X, Y: this.Y, size: 200, extraStops: true, GRD: 0.1, Alpha: 0.875, showMe: false});
+                        }
+                        //produce heat
+                        if (this.playerer <= 105)
+                        {
+                            player.warmth += Math.max(0, (0.90 - (player.heatResistance / 200)));
+                        }
+
+                        this.tic += 2.5;
+
+                        if (this.tic <= 10)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(folw, 18, 83, 70, 67, -(1/2 * 70 * 2.3), -(1/2 * 67 * 2.3), 70 * 2.3, 67 * 2.3);
+                            XXX.restore();
+                        }
+                        else if (this.tic <= 20)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(folw, 93, 85, 70, 67, -(1/2 * 70 * 2.3), -(1/2 * 67 * 2.3), 70 * 2.3, 67 * 2.3);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(folw, 15, 157, 70, 67, -(1/2 * 70 * 2.3), -(1/2 * 67 * 2.3), 70 * 2.3, 67 * 2.3);
+                            XXX.restore();
+
+                            if (this.tic >= 30)
+                            {
+                                this.tic = 0;
+                                this.toc += 1;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                this.solid = false;
+                if (this.randomPire > 0.5)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(folw, 92, 161, 70, 67, -(1/2 * 70 * 2.3), -(1/2 * 67 * 2.3), 70 * 2.3, 67 * 2.3);
+                    XXX.restore();
+                }
+                else if (this.randomPire > 0.3)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(folw, 93, 15, 70, 67, -(1/2 * 70 * 2.3), -(1/2 * 67 * 2.3), 70 * 2.3, 67 * 2.3);
+                    XXX.restore();
+                }
+                else
+                {
+                    if (this.playerer <= this.radius && this.lit == true) //fire burns the player but heat resistance can reduce the damage it does.
+                    {
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (this.dst(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y) < (this.radius * 9/10))
+                            {
+                                ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                            }
+                        }
+                        if (player.mageShield > 0)
+                        {
+                            player.mageShield -= 0.125;
+                            player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                        }
+                        else
+                        {
+                            player.health += player.mageShield;
+                            player.mageShield = 0;
+
+                            player.health -= Math.max(0, (0.125 - (player.heatResistance / 200)));
+                            player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                            player.burningTime = new Date().getTime();
+                        }
+                    }
+
+                    //produce light
+                    if (timeOfDay != "Day")
+                    {
+                        lights.push({X:this.X, Y: this.Y, size: 200, extraStops: true, GRD: 0.1, Alpha: 0.875, showMe: false});
+                    }
+                    //produce heat
+                    if (this.playerer <= 188)
+                    {
+                        player.warmth += Math.max(0, (0.90 - (player.heatResistance / 200)));
+                    }
+
+
+                    this.tic += 2.5;
+                    if (this.tic <= 10)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(folw, 18, 83, 70, 67, -(1/2 * 70 * 2.3), -(1/2 * 67 * 2.3), 70 * 2.3, 67 * 2.3);
+                        XXX.restore();
+                    }
+                    else if (this.tic <= 20)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(folw, 93, 85, 70, 67, -(1/2 * 70 * 2.3), -(1/2 * 67 * 2.3), 70 * 2.3, 67 * 2.3);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(folw, 15, 157, 70, 67, -(1/2 * 70 * 2.3), -(1/2 * 67 * 2.3), 70 * 2.3, 67 * 2.3);
+                        XXX.restore();
+
+                        if (this.tic >= 30)
+                        {
+                            this.tic = 0;
+                        }
+                    }
+                }
+
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 66;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                //the player can light the pire as well
+                if (this.lit == false && this.temporary == true)
+                {
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].identity == "Fire-Starter")
+                        {
+                            this.gotFireStarter = true;
+                        }
+                    }
+
+                    if (this.gotFireStarter)
+                    {
+                        this.lit = true;
+                    }
+                    else
+                    {
+                        dClick = true;
+                    }
+                }
             }
         }
         else if (this.type == "skeleton")

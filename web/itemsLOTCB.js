@@ -4819,6 +4819,40 @@ function Item(type, x, y)
             this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
         }
+        else if (this.type == "molteMeat")
+        {
+            //For All Items
+            this.identity = "Molte Meat";
+            this.weight = 1;
+            this.size = 12;
+            this.description = "The cooked flesh of a Molte.";
+            this.intForDes = 2;
+            this.intDescription = "The meat tastes sour... in a bad way.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = -0.25; //heals health.
+            this.generation = -3; //recoops lost energy.
+            this.replenish = -1; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Raw Molte Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
         else if (this.type == "utTentacle")
         {
             //For All Items
@@ -5943,6 +5977,42 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "rawMolteFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Molte Flesh";
+            this.weight = 2;
+            this.size = 12;
+            this.description = "The raw flesh from a Molte.";
+            this.intForDes = 0;
+            if (player.areGlovesEquipped)
+            {
+                this.intDescription = "It is slimy and jiggly and it smells weird...";
+            }
+            else
+            {
+                this.intDescription = "Your flesh burns with a fiery tingling sensation when you touch it...";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -11; //heals health.
+            this.generation = -4; //recoops lost energy.
+            this.replenish = -4; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
         }
         else if (this.type == "yeolPod")
         {
@@ -13350,6 +13420,66 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 15); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "molteHead")
+        {
+            //For All Items
+            this.identity = "Molte Head";
+            this.weight = 4;
+            this.size = 14;
+            this.description = "The bloody decapitated head of a molte.";
+            this.intForDes = 7;
+            this.intDescription = "This needs to be stuffed and made into a wall mounted trophy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15; // at max, buy for 15.
+            this.sellValue = 15; // at max, sell for 15.
+        }
+        else if (this.type == "moltePaw")
+        {
+            //For All Items
+            this.identity = "Molte Paw";
+            this.weight = 2;
+            this.size = 9;
+            this.description = "The mangled and severed paw of a molte.";
+            this.intForDes = 0;
+            this.intDescription = "This trophy is a testament to your ability and strength.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 6; // at max, sell for 6.
+        }
+        else if (this.type == "molteHide")
+        {
+            //For All Items
+            this.identity = "Molte Hide";
+            this.weight = 5;
+            this.size = 20;
+            this.description = "The thick smooth skinned hide of a molte.";
+            this.intForDes = 6;
+            this.intDescription = "This can be made into armour.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 29 - Math.floor(player.getCharisma() / 15); // at max, buy for 16.
+            this.sellValue = 21 + Math.floor(player.getCharisma() / 10); // at max, sell for 16.
         }
         else if (this.type == "koobuPelt")
         {
@@ -28431,6 +28561,31 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "molteHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(molte, 489, 19, 48, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 2 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 2 * 1.25), 48 * 2 * 1.25, 29 * 2 * 1.25);
+        }
+        else if (this.type == "molteHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(molte, 508, 110, 24, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 2 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 2 * 1.2), 24 * 2 * 1.2, 24 * 2 * 1.2);
+        }
+        else if (this.type == "moltePaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(molte, 498, 51, 38, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 2 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 2 * 1.2), 38 * 2 * 1.2, 17 * 2 * 1.2);
+        }
+        else if (this.type == "molteMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(molte, 513, 154, 25, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 2 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 2 * 1.2), 25 * 2 * 1.2, 17 * 2 * 1.2);
+        }
+        else if (this.type == "rawMolteFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(molte, 514, 138, 25, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 2 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 2 * 1.2), 25 * 2 * 1.2, 17 * 2 * 1.2);
+        }
         else if (this.type == "spade")
         {
             XXX.beginPath();
@@ -32130,6 +32285,31 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
+        else if (this.type == "molteHide")
+        {
+            LXX.beginPath();
+            LXX.drawImage(molte, 489, 19, 48, 29, this.invX - (1/2 * 48 * 1.15), this.invY - (1/2 * 29 * 1.15), 48 * 1.15, 29 * 1.15);
+        }
+        else if (this.type == "molteHead")
+        {
+            LXX.beginPath();
+            LXX.drawImage(molte, 508, 110, 24, 24, this.invX - (1/2 * 24 * 1.2), this.invY - (1/2 * 24 * 1.2), 24 * 1.2, 24 * 1.2);
+        }
+        else if (this.type == "moltePaw")
+        {
+            LXX.beginPath();
+            LXX.drawImage(molte, 498, 51, 38, 17, this.invX - (1/2 * 38 * 1.2), this.invY - (1/2 * 17 * 1.2), 38 * 1.2, 17 * 1.2);
+        }
+        else if (this.type == "molteMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(molte, 513, 154, 25, 17, this.invX - (1/2 * 25 * 1.2), this.invY - (1/2 * 17 * 1.2), 25 * 1.2, 17 * 1.2);
+        }
+        else if (this.type == "rawMolteFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(molte, 514, 138, 25, 17, this.invX - (1/2 * 25 * 1.2), this.invY - (1/2 * 17 * 1.2), 25 * 1.2, 17 * 1.2);
+        }
         else if (this.type == "spade")
         {
             LXX.beginPath();
@@ -35798,6 +35978,31 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "molteHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(molte, 489, 19, 48, 29, this.invX - (1/2 * 48 * 1.15), this.invY - (1/2 * 29 * 1.15), 48 * 1.15, 29 * 1.15);
+        }
+        else if (this.type == "molteHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(molte, 508, 110, 24, 24, this.invX - (1/2 * 24 * 1.2), this.invY - (1/2 * 24 * 1.2), 24 * 1.2, 24 * 1.2);
+        }
+        else if (this.type == "moltePaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(molte, 498, 51, 38, 17, this.invX - (1/2 * 38 * 1.2), this.invY - (1/2 * 17 * 1.2), 38 * 1.2, 17 * 1.2);
+        }
+        else if (this.type == "molteMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(molte, 513, 154, 25, 17, this.invX - (1/2 * 25 * 1.2), this.invY - (1/2 * 17 * 1.2), 25 * 1.2, 17 * 1.2);
+        }
+        else if (this.type == "rawMolteFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(molte, 514, 138, 25, 17, this.invX - (1/2 * 25 * 1.2), this.invY - (1/2 * 17 * 1.2), 25 * 1.2, 17 * 1.2);
         }
         else if (this.type == "spade")
         {

@@ -3504,6 +3504,7 @@ function theLegend()
 
         //EVENTS (non quest)
         ultherFlower: true,
+        doPire: false,
 
         //PLAYER CHILDREN SPAWN
         hilmundChild: false,
@@ -4066,6 +4067,7 @@ function theLegend()
     foods.push(new Item("iemaTart", false));
     foods.push(new Item("chonaTart", false));
     foods.push(new Item("polyapaTart", false));
+    foods.push(new Item("molteMeat", false));
 
 
 

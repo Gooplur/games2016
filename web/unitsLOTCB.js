@@ -6462,6 +6462,16 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 XXX.rotate(this.rotation);
                 XXX.drawImage(atal, 32, 489, 63, 45, -(1 / 2 * 63 * 0.66) + 0.5, -(1 / 2 * 45 * 0.66) - 1.7, 63 * 0.66, 45 * 0.66);
             }
+            else if (outfit == "engineerOutfit")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 810, 2407, 89, 47, -(1 / 2 * 89 * 0.7) + 0, -(1 / 2 * 47 * 0.7) - 0, 89 * 0.7, 47 * 0.7);
+            }
             else if (outfit == "walrusLeatherArmour")
             {
                 XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
@@ -34785,6 +34795,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 38]];
             }
+            else if (this.ID == "Cedrico the Carpenter")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 12]];
+            }
+            else if (this.ID == "Herman the Butcher")
+            {
+                this.drops = [[new Item("meatCleaver", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Ernesto the Engineer")
+            {
+                this.drops = [[new Item("engineerOutfit", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Hugo the Inventor")
+            {
+                this.drops = [[new Item("engineerOutfit", this.X, this.Y), 1], [new Item("copper", this.X, this.Y), 1]];
+            }
             else if (this.ID == "Chieftan Schuylar")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 97], [new Item("kellishClaymore", this.X, this.Y), 1]];
@@ -35158,6 +35184,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.nirwadenFaction -= 10;
                         }
                     }
+                    if (this.ID == "Ernesto the Engineer")
+                    {
+                        uniqueChars.ernestoLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 11;
+                        }
+                    }
                     if (this.ID == "Customs Master Ilimo")
                     {
                         uniqueChars.ilimoLDS = false;
@@ -35451,6 +35485,30 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.kelFaction -= 100;
+                        }
+                    }
+                    else if (this.ID == "Cedrico the Carpenter")
+                    {
+                        uniqueChars.cedricoLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 6;
+                        }
+                    }
+                    else if (this.ID == "Herman the Butcher")
+                    {
+                        uniqueChars.hermanLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 5;
+                        }
+                    }
+                    else if (this.ID == "Hugo the Inventor")
+                    {
+                        uniqueChars.hugoLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 22;
                         }
                     }
                     else if (this.ID == "Dagmar the Smith")

@@ -3302,7 +3302,9 @@ function theLegend()
         leon: ["Leon", 0],
         jimena: ["Jimena", 0],
         agustin: ["Agustin", 0],
-        matilda: ["Matilda", 0]
+        matilda: ["Matilda", 0],
+        ernesto: ["Ernesto", 0],
+        hugo: ["Hugo", 0]
     };
 
 //time Tracker Variables
@@ -3457,7 +3459,11 @@ function theLegend()
         leonLDS: true,
         jimenaLDS: true,
         agustinLDS: true,
-        matildaLDS: true
+        matildaLDS: true,
+        cedricoLDS: true,
+        hermanLDS: true,
+        ernestoLDS: true,
+        hugoLDS: true
     };
 //QUESTS
     quests =
@@ -4195,6 +4201,7 @@ function theLegend()
     alchemy.push(new Item("brittleGhoulFlyStomach", false));
     alchemy.push(new Item("ghoulFlyPowder", false));
     alchemy.push(new Item("kolumPowder", false));
+    alchemy.push(new Item("adhesive", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

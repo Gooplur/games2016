@@ -15025,6 +15025,31 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "adhesive")
+        {
+            //For All Items
+            this.identity = "Adhesive";
+            this.weight = 0.6;
+            this.size = 10;
+            this.description = "A sticky white substance used to stick things together.";
+            this.intForDes = 5;
+            this.intDescription = "This substance is somewhat toxic so it is advisable that shield your breathing around it until it has dried.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 14;
+            this.ingredients = [["Raw Golgemoff Flesh", 3], ["Tenic Paste", 1], ["Salt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7; // at max, buy for 7.
+            this.sellValue = 7; // at max, sell for 7.
+        }
         else if (this.type == "grushFur")
         {
             //For All Items
@@ -19409,6 +19434,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 8 - Math.floor(player.getCharisma() / 15); // at max, buy for 5.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "shotShooter")
+        {
+            //For All Items
+            this.identity = "Nirwaden Fusil Prototype";
+            this.weight = 2.6;
+            this.size = 15;
+            this.description = "The idea was based on the outlanders' powder guns.";
+            this.intForDes = 35;
+            this.intDescription = "This invention is not functional as it uses powdered coal instead of black powder.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 30; // at max, buy for 30.
+            this.sellValue = 20; // at max, sell for 20.
         }
         else if (this.type == "shomeDust")
         {
@@ -30429,6 +30474,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(mofu, 1334, 11, 11, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1.65), 11 * 1.65, 36 * 1.65);
         }
+        else if (this.type == "shotShooter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mofu, 1334, 11, 11, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1.6), 11 * 1.6, 28 * 1.6);
+        }
         else if (this.type == "bullet")
         {
             XXX.beginPath();
@@ -30483,6 +30533,15 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(mofu, 999, 264, 17, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.4), 17 * 1.4, 16 * 1.4);
+        }
+        else if (this.type == "adhesive")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mofu, 999, 264, 17, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.6), 17 * 1.6, 16 * 1.6);
+            XXX.beginPath();
+            XXX.drawImage(candlewic, 23, 125, 13, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 2), 13 * 2, 12 * 2);
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 302, 24, 4, 6, X - this.X + (1/2 * CCC.width) - (1/2 * 4 * 2.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 6 * 2.1), 4 * 2.2, 6 * 2.1);
         }
         else if (this.type == "rawAvrakFlesh" || this.type == "rawEvrakFlesh")
         {
@@ -34225,6 +34284,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(mofu, 1334, 11, 11, 36, this.invX - (1/2 * 11 * 1.65), this.invY - (1/2 * 36 * 1.65), 11 * 1.65, 36 * 1.65);
         }
+        else if (this.type == "shotShooter")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mofu, 1334, 11, 11, 28, this.invX - (1/2 * 11 * 1.6), this.invY - (1/2 * 28 * 1.6), 11 * 1.6, 28 * 1.6);
+        }
         else if (this.type == "bullet")
         {
             LXX.beginPath();
@@ -34279,6 +34343,15 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(mofu, 999, 264, 17, 16, this.invX - (1/2 * 17 * 1.6), this.invY - (1/2 * 16 * 1.6), 17 * 1.6, 16 * 1.6);
+        }
+        else if (this.type == "adhesive")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mofu, 999, 264, 17, 16, this.invX - (1/2 * 17 * 1.6), this.invY - (1/2 * 16 * 1.6), 17 * 1.6, 16 * 1.6);
+            LXX.beginPath();
+            LXX.drawImage(candlewic, 23, 125, 13, 12, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 12 * 2), 13 * 2, 12 * 2);
+            LXX.beginPath();
+            LXX.drawImage(mufmuf, 302, 24, 4, 6, this.invX - (1/2 * 4 * 2.2), this.invY - (1/2 * 6 * 2.1), 4 * 2.2, 6 * 2.1);
         }
         else if (this.type == "rawAvrakFlesh" || this.type == "rawEvrakFlesh")
         {
@@ -37926,6 +37999,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(mofu, 1334, 11, 11, 36, this.invX - (1/2 * 11 * 1.65), this.invY - (1/2 * 36 * 1.65), 11 * 1.65, 36 * 1.65);
         }
+        else if (this.type == "shotShooter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mofu, 1334, 11, 11, 28, this.invX - (1/2 * 11 * 1.6), this.invY - (1/2 * 28 * 1.6), 11 * 1.6, 28 * 1.6);
+        }
         else if (this.type == "bullet")
         {
             XXX.beginPath();
@@ -37980,6 +38058,15 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(mofu, 999, 264, 17, 16, this.invX - (1/2 * 17 * 1.6), this.invY - (1/2 * 16 * 1.6), 17 * 1.6, 16 * 1.6);
+        }
+        else if (this.type == "adhesive")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mofu, 999, 264, 17, 16, this.invX - (1/2 * 17 * 1.6), this.invY - (1/2 * 16 * 1.6), 17 * 1.6, 16 * 1.6);
+            XXX.beginPath();
+            XXX.drawImage(candlewic, 23, 125, 13, 12, this.invX - (1/2 * 13 * 2), this.invY - (1/2 * 12 * 2), 13 * 2, 12 * 2);
+            XXX.beginPath();
+            XXX.drawImage(mufmuf, 302, 24, 4, 6, this.invX - (1/2 * 4 * 2.2), this.invY - (1/2 * 6 * 2.1), 4 * 2.2, 6 * 2.1);
         }
         else if (this.type == "rawAvrakFlesh" || this.type == "rawEvrakFlesh")
         {

@@ -7008,6 +7008,31 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         quests.atalinToll = true;
                     }
             }
+            else if (this.temporary == "atalinPrisonSentence")
+            {
+                if (this.runOneTime)
+                {
+                    this.runOneTime = false;
+                    this.tic = 0;
+                }
+                if (player.nirwadenFaction <= -25)
+                {
+                    this.tic += 1;
+                    if (this.tic >= 600)
+                    {
+                        this.tic = 0;
+                        player.nirwadenFaction += 1;
+                    }
+                }
+                else
+                {
+                    change = "getOuttaJailFree!";
+                }
+                if (X < -40305 && X > - 40808 && Y < 1549 && Y > 1116)
+                {
+                    quests.atalinToll = true;
+                }
+            }
 
             //INTERACTION
             if (this.activate == true)
@@ -7641,7 +7666,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.restore();
             }
 
-            if (this.playerer <= 115 && this.lit == true)
+            if (this.playerer <= 115)
             {
                 player.warmth += Math.max(0, (0.9 - (player.heatResistance / 200)));
             }

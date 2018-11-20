@@ -389,7 +389,7 @@ function worldBuilder()
             //outlineBuilder( 34, 34, "outline", 150, -20);
             outlineBuilder( 1, 7, "nirRoad", 150, -3);
         }
-        //mapE4
+        //mapE4 //Atalin City
         if (Y > -3919 && Y < 6870 && X < -33089 && X > -44725) //X4
         {
             elevation = 0;

@@ -3521,6 +3521,11 @@ function theLegend()
         rannukChild: false,
         rannukChildName: "Espen",
 
+        //QUEST: Inventor's Feud ---- given by Hugo the Inventor or Ernesto the Engineer
+        inventorsFeudQuest: false,
+        inventorsFeudCompletionStyle: false,
+        inventorsFeudStage: false,
+
         //QUEST: Matrimony: Tor Stambjord ---- given by Orjov Tor
         matrimonyTorStambjordQuest: false,
         matrimonyTorStambjordCompletionStyle: false,
@@ -4074,6 +4079,13 @@ function theLegend()
     foods.push(new Item("chonaTart", false));
     foods.push(new Item("polyapaTart", false));
     foods.push(new Item("molteMeat", false));
+    foods.push(new Item("boarChunks", false));
+    foods.push(new Item("boarChunksSmall", false));
+    foods.push(new Item("iemaPork", false));
+    foods.push(new Item("porkAndHalgom", false));
+    foods.push(new Item("garlicTialoPork", false));
+    foods.push(new Item("searedFalder", false));
+    foods.push(new Item("searedSalmon", false));
 
 
 
@@ -4278,6 +4290,8 @@ function theLegend()
     handcrafted.push(new Item("masa", false));
     handcrafted.push(new Item("rawTamal", false));
     handcrafted.push(new Item("rawMofuTamal", false));
+    handcrafted.push(new Item("rawBoarChunks", false));
+    handcrafted.push(new Item("rawBoarChunksSmall", false));
     handcrafted.push(new Item("boarMeat", false));
     handcrafted.push(new Item("curedPork", false));
     handcrafted.push(new Item("naaprichaWedge", false));

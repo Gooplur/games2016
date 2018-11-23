@@ -1155,6 +1155,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("bearia");
             this.allys.push("ulgoyia");
             this.allys.push("clamia");
+            this.allys.push("wolf");
         }
         if (this.team == "herd")
         {
@@ -1192,6 +1193,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.allys.push("docile");
             this.allys.push("walrusia"); //walruses are scary to them so they stay inside their shells
+            this.allys.push("moltia"); //same
         }
         if (this.team == "etnia")
         {
@@ -1213,6 +1215,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("anemonia");
             this.allys.push("docile");
             this.allys.push("clamia");
+            this.allys.push("moltia");
         }
         if (this.team == "lombrisia")
         {
@@ -1230,6 +1233,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("anemonia");
             this.allys.push("docile");
             this.allys.push("clamia");
+            this.allys.push("moltia");
         }
         if (this.team == "narthwarpia")
         {
@@ -1260,6 +1264,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("anemonia");
             this.allys.push("balkuria");
             this.allys.push("clamia");
+            this.allys.push("moltia");
         }
         if (this.team == "gribia")
         {
@@ -1267,6 +1272,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("narthwarpia");
             this.allys.push("docile");
             this.allys.push("bearia");
+            this.allys.push("ulgoyia");
+            this.allys.push("clamia");
+        }
+        if (this.team == "moltia")
+        {
+            this.allys.push("shehidia");
+            this.allys.push("docile");
             this.allys.push("ulgoyia");
             this.allys.push("clamia");
         }
@@ -10274,7 +10286,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Molte")
         {
             this.damageFrame = "automatic";
-            this.team = "wolf";
+            this.team = "moltia";
             if (this.ID == "docile")
             {
                 this.team = "docile";
@@ -22387,7 +22399,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             this.rangeOfSightCalculator(1200, true);
                         }
-                        else if (wKey || sKey || aKey || dKey)
+                        else if (wKey || sKey || aKey || dKey || spaceKey || eKey)
                         {
                             this.rangeOfSightCalculator(800, true);
                         }
@@ -22403,7 +22415,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             this.rangeOfSightCalculator(1100, true);
                         }
-                        else if (wKey || sKey || aKey || dKey)
+                        else if (wKey || sKey || aKey || dKey || spaceKey || eKey)
                         {
                             this.rangeOfSightCalculator(700, true);
                         }
@@ -34809,7 +34821,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.ID == "Hugo the Inventor")
             {
-                this.drops = [[new Item("engineerOutfit", this.X, this.Y), 1], [new Item("copper", this.X, this.Y), 1]];
+                if (quests.inventorsFeudStage == "realPlans" || quests.inventorsFeudCompletionStyle == "rightPlans")
+                {
+                    this.drops = [[new Item("engineerOutfit", this.X, this.Y), 1], [new Item("copper", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.drops = [[new Item("engineerOutfit", this.X, this.Y), 1], [new Item("copper", this.X, this.Y), 1], [new Item("inventionPlans", this.X, this.Y), 1]];
+                }
             }
             else if (this.ID == "Chieftan Schuylar")
             {

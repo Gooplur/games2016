@@ -856,7 +856,7 @@ function interaction(me)
                             if (quests.teshirNorthRoadQuest != "complete")
                             {
                                 player.dialoguePosition = 0;
-                                quests.activeQuests.push({name: "Teshir North Road", description: "Bandits block the road to the north, get rid of them so that Toggin can get back home."})
+                                quests.activeQuests.push({name: "Teshir North Road", description: "Bandits block the road to the north, get rid of them so that Toggin can get back home."});
                                 quests.teshirNorthRoadQuest = true;
                                 conversationID[1] = 2;
                                 self.SC();
@@ -1253,6 +1253,870 @@ function interaction(me)
                         {
                             //text dialogue
                             setMsg("Business is hard work youngin'. When I was a girl I had four sisters, and we'd all help my ma' with the sowing. Now it's just me. I'll tell you, this work is not as easy as it seems...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Ernesto the Engineer" || conversationID[0] == "Ernesto")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Ernesto";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        var plannns = -1;
+                        var planns = -1
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            if (Inventory[i][0].type == "inventionPlans")
+                            {
+                                planns = i;
+                            }
+                            else if (Inventory[i][0].type == "falseInventionPlans")
+                            {
+                                plannns = i;
+                            }
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["What is that you're working on?", false, "e"]];
+                                if (quests.inventorsFeudQuest == false)
+                                {
+                                    player.dialogueOptions.unshift(["How goes the day?", false, "a"]);
+                                }
+                                else if (quests.inventorsFeudQuest == true)
+                                {
+                                    if (quests.inventorsFeudStage == "hugoStart")
+                                    {
+                                        player.dialogueOptions.unshift(["Do you have any work for me?", false, "b"]);
+                                    }
+                                    else if (quests.inventorsFeudStage == "angry")
+                                    {
+                                        player.dialogueOptions.unshift(["You lyer! How dare you manipulate me into sabotaging your competition!", false, "f"]);
+                                    }
+                                    else if (quests.inventorsFeudStage == "angry2")
+                                    {
+                                        player.dialogueOptions.unshift(["You're a fraud!", false, "g"]);
+                                    }
+                                    else if (planns > -1)
+                                    {
+                                        player.dialogueOptions.unshift(["Here are the plans that were stolen from you...", false, "d"]);
+                                    }
+                                    else if (plannns > -1)
+                                    {
+                                        player.dialogueOptions.unshift(["Here are the plans that were stolen from you...", false, "c"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Not so well, my prized invention has been stolen from me by my rival, Hugo. Would you by chance be looking for work? I would be willing to pay you to get me my plans back from Hugo.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Yes, as a matter of fact I do. My rival, Hugo has stolen my plans from me. I need you to get them back. I will pay you upon their safe return to me.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                quests.inventorsFeudStage == "hugoMid";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Wonderful, with this invention we will soar through the heavens, the sky is no longer the limit, we will surpass it through sheer human ingenuity! Oh right, your payment: Here are 50 coins for your efforts.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                worldItems.push([new Item("coins", X, Y), 50]);
+                                Inventory.splice(plannns, 1);
+                                if (quests.inventorsFeudStage == "falsePlans")
+                                {
+                                    quests.inventorsFeudStage = "done";
+                                    quests.inventorsFeudCompletionStyle = "wrongPlans";
+                                    quests.inventorsFeudQuest = "complete";
+                                    quests.completeQuests.push({name: "Inventor's Feud", description: "You delivered the stolen plans back to Ernesto the Engineer."});
+                                    player.nirwadenFaction += 1;
+                                    player.experience += 45;
+                                }
+                                else
+                                {
+                                    quests.inventorsFeudStage = "hugoDone";
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Brilliant! With this new technology I will be credited for having revolutionized the lumber industry! Oh right, your payment: Here are 50 coins for your efforts.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                worldItems.push([new Item("coins", X, Y), 50]);
+                                Inventory.splice(planns, 1);
+                                quests.inventorsFeudCompletionStyle = "rightPlans";
+                                quests.inventorsFeudQuest = "complete";
+                                quests.completeQuests.push({name: "Inventor's Feud", description: "You procured chainsaw schematics for Ernesto the Engineer."});
+                                player.nirwadenFaction += 1;
+                                player.experience += 45;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("I am working on an invention, and for that I need to focus, if you would be so kind as to leave I might resume my work.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("I am sorry, I, I just needed to be successful for once. All of my inventions have been failing. I hope you understand, I, I had no other choice...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.inventorsFeudStage = "angry2";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("I'm sorry, I'm really sorry...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.inventorsFeudCompletionStyle = "fraud";
+                                quests.inventorsFeudQuest = "complete";
+                                quests.completeQuests.push({name: "Inventor's Feud", description: "You discovered that Ernest had tried to manipulate you into sabotaging his competition."});
+                                player.nirwadenFaction += 6;
+                                player.experience += 25;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I'll do it.", false, "a"], ["I'd rather not.", false, "b"]];
+
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("Excellent! Bring them back to me when your done and I will pay you.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.inventorsFeudStage = "ernestoStart";
+                                quests.activeQuests.push({name: "Inventor's Feud", description: "The plans for Ernesto's invention were stolen by Hugo the Inventor, get them back."});
+                                quests.inventorsFeudQuest = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("Oh well, perhaps you aren't the best person for this job anyway...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Hugo the Inventor" || conversationID[0] == "Hugo")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Hugo";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.inventorsFeudStage != "realPlans")
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["What are you up to?", false, "b"]];
+                                    if (quests.inventorsFeudQuest == false)
+                                    {
+                                        player.dialogueOptions.push(["Do you have any work for me?", false, "c"]);
+                                    }
+                                    else if (quests.inventorsFeudQuest == true)
+                                    {
+                                        if (quests.inventorsFeudStage == "ernestoStart")
+                                        {
+                                            player.dialogueOptions.push(["Give me the invention plans that you stole from ernesto or you will regret it!", false, "d"]);
+                                            player.dialogueOptions.push(["Where are the plans you stole from Ernesto!?", false, "d"]);
+                                        }
+                                        else if (quests.inventorsFeudStage == "falsePlans" && quests.inventorsFeudStage != "realPlans")
+                                        {
+                                            if (player.getIntelligence() >= 20)
+                                            {
+                                                player.dialogueOptions.push(["These plans are fake! Give me the real plans!", false, "h"]);
+                                            }
+                                        }
+                                        else if (quests.inventorsFeudStage != false && quests.inventorsFeudStage != "hugoMid" && quests.inventorsFeudStage != "hugoLast" && quests.inventorsFeudStage != "hugoStart" && quests.inventorsFeudStage != "hugoDone" && quests.inventorsFeudStage != "angry" && quests.inventorsFeudStage != "angry2" && quests.inventorsFeudStage != "tablesTurned")
+                                        {
+                                            player.dialogueOptions.push(["I don't believe you; hand over the plans!", false, "e"]);
+                                            player.dialogueOptions.push(["I don't care whose plans they are, hand them over!", false, "e"]);
+                                            player.dialogueOptions.push(["I'm going to pay Ernesto a visit, nobody lies to me and gets away with it.", false, "f"]);
+                                            player.dialogueOptions.push(["So, ernesto was lying to me...", false, "g"]);
+                                        }
+                                        else if (quests.inventorsFeudStage == "hugoMid")
+                                        {
+                                            player.dialogueOptions.push(["Alright, give me the false plans.", false, "i"]);
+                                        }
+                                        else if (quests.inventorsFeudStage == "hugoDone")
+                                        {
+                                            player.dialogueOptions.push(["I gave Ernesto the fake plans, lets discuss my payment.", false, "j"]);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "j")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0j";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                            {
+                                setMsg("Yes, yes, it is. Now go away!");
+                            }
+                            else
+                            {
+                                setMsg("Oh, em, yes, it is.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                            {
+                                setMsg("I am constructing a new device that will change the world. So if you don't mind, I need to focus.");
+                            }
+                            else
+                            {
+                                setMsg("I am constructing a new device that will change the world, your excellency.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Yes, I suspect that my rival, Ernesto, is plotting to steal the schematics for my most recent invention so that he can claim the credit for it. I will pay you to pretend to offer your services to him as a sabateur. I will give you false plans to give to him, that way he will be satisfied until I have officially patented my invention.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I'll do it.", false, "a"], ["No thanks.", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                            {
+                                setMsg("Calm down! I didn't steal anything from Ernesto! The invention that he claims that I stole is one that he is trying to steal from me through you.");
+                            }
+                            else
+                            {
+                                setMsg("Your excellency, whatever Ernesto has told you is a lie, for the plans you seek on his behalf are my own.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                quests.inventorsFeudStage = "ernestoLies";
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                            {
+                                if (player.getStrength >= 4 || player.getCharisma >= 6)
+                                {
+                                    setMsg("You vile cretin, I am the rightful owner of these plans, you are robbing me of years of effort!");
+                                }
+                                else
+                                {
+                                    setMsg("I'm not giving up my invention without a fight!");
+                                }
+
+                            }
+                            else
+                            {
+                                setMsg("Your excellency, this is most unjust, you are depriving me of the fruit of years of my own labour!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.title == "Nobility" || player.title == "Royalty" || player.title == "Highfolk" || player.getStrength >= 4 || player.getCharisma >= 6)
+                                {
+                                    Inventory.push([new Item("falseInventionPlans", false, false), 1]);
+                                    quests.inventorsFeudStage = "falsePlans";
+                                }
+                                else
+                                {
+                                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].ID == "Hugo the Inventor")
+                                        {
+                                            ArtificialIntelligenceAccess[i].healthMAX = 10;
+                                            ArtificialIntelligenceAccess[i].health = 10;
+                                            ArtificialIntelligenceAccess[i].baseTeam = "arena3";
+                                            ArtificialIntelligenceAccess[i].ultra.personality = "violent";
+                                            ArtificialIntelligenceAccess[i].disturbed = true;
+                                        }
+                                    }
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                            {
+                                setMsg("Do what you will...");
+                            }
+                            else
+                            {
+                                setMsg("Yes, em, lying is wrong and he must be punished as your excellent sees fit...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.inventorsFeudStage = "angry";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                            {
+                                setMsg("Yes, Ernesto has been trying to steal my inventions for a long time. I suspect if he were actually successful in any of his own inventions he would be less motivated to steal from me... But that lying fool deserves payback. Take him the plans for this failed invention of mine from a few years ago.");
+                            }
+                            else
+                            {
+                                setMsg("Yes, Ernesto has been trying to steal my inventions for a long time. I suspect if he were actually successful in any of his own inventions he would be less motivated to steal from me... But that lying fool deserves payback. Take him the plans for this failed invention of mine from a few years ago... if you will, your excellency.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                Inventory.push([new Item("falseInventionPlans", false, false), 1]);
+                                quests.inventorsFeudStage = "tablesTurned";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                            {
+                                setMsg("How did you know that the icharus wings wouldn't work!? Fine here are my real plans, you dirty thief!");
+                            }
+                            else
+                            {
+                                setMsg("Oh... you meant you wanted the plans that work, here you are then, your excellency. Know that justice has been uprooted on this day.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.inventorsFeudStage = "realPlans";
+                                Inventory.push([new Item("inventionPlans", false, false), 1]);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0i")
+                        {
+                            //text dialogue
+                            if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                            {
+                                setMsg("Here you are; that fool Ernesto, will have no idea that these plans are bogus...");
+                            }
+                            else
+                            {
+                                setMsg("Here are the false plans, your excellency.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                Inventory.push([new Item("falseInventionPlans", false, false), 1]);
+                                quests.inventorsFeudStage = "hugoLast";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0j")
+                        {
+                            //text dialogue
+                            if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                            {
+                                setMsg("How would you like to be the very first to own my latest invention, a coal powered saw. Don't answer that, of course you want one, they are a revolutionary new technology that I invented.");
+                            }
+                            else
+                            {
+                                setMsg("Your excellence, can have a copy of my revolutionary invention, the one that your excellence helped me safeguard.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                Inventory.push([new Item("chainsaw", false, false), 1]);
+                                quests.inventorsFeudStage = "done";
+                                quests.inventorsFeudCompletionStyle = "falsePlans";
+                                quests.inventorsFeudQuest = "complete";
+                                quests.completeQuests.push({name: "Inventor's Feud", description: "You safeguarded Hugo's invention by giving Ernesto the wrong scematics."});
+                                player.nirwadenFaction += 3;
+                                player.experience += 45;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                            {
+                                setMsg("Great, I'm glad that we're in business!");
+                            }
+                            else
+                            {
+                                setMsg("Oh, how wonderful that you would help me with this, your excellency!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.activeQuests.push({name: "Inventor's Feud", description: "Hugo the Inventor has asked you to pretend to work for his rival in order to foil a plot to steal the plans for his latest invention."});
+                                quests.inventorsFeudQuest = true;
+                                quests.inventorsFeudStage = "hugoStart";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                            {
+                                setMsg("Oh, okay then...");
+                            }
+                            else
+                            {
+                                setMsg("Of course, your excellency, I understand completely. This sort of work is much below you.");
+                            }
 
                             //on ended text dialogue
                             if (tellMessage == "reset")

@@ -1225,6 +1225,12 @@ function applySelectionsButton()
         {
             X = -40495;
             Y = 1316;
+
+            if (player.title == "Nobility")
+            {
+                X = -45081;
+                Y = 9127;
+            }
         }
         //Actually start the game here.
         theme.pause();

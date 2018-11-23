@@ -380,14 +380,37 @@ function worldBuilder()
             outlineBuilder( 1, 20, "brickRoad", -224, 35);
         }
         //Layer 0 (cold region): elev 0
-        //mapE5
+        //mapE5 //Atalin City
         if (Y > -3919 && Y < 6870 && X < -42678 && X > -54937) //X5
         {
             elevation = 0;
             region = "e5";
-            outlineBuilder( 34, 34, "forest", 150, -20);
+            outlineBuilder( 34, 34, "brightGrass", 150, -20);
             //outlineBuilder( 34, 34, "outline", 150, -20);
             outlineBuilder( 1, 7, "nirRoad", 150, -3);
+            outlineBuilder( 6, 7, "nirRoad", 150, 6);
+
+            outlineBuilder( 3, 1, "nirRoad", 150, 3);
+            outlineBuilder( 3, 2, "lomita", 151, 3);
+            outlineBuilder( 3, 1, "nirRoad", 153, 3);
+            outlineBuilder( 3, 2, "lomita", 154, 3);
+            outlineBuilder( 3, 1, "nirRoad", 156, 3);
+
+            outlineBuilder( 3, 7, "nirRoad", 150, -8);
+            outlineBuilder( 10, 11, "nirRoad", 150, -3);
+
+            outlineBuilder( 2, 1, "nirRoad", 150, -5);
+            outlineBuilder( 2, 2, "lomita", 151, -5);
+            outlineBuilder( 2, 1, "nirRoad", 153, -5);
+            outlineBuilder( 2, 2, "lomita", 154, -5);
+            outlineBuilder( 2, 1, "nirRoad", 156, -5);
+
+            outlineBuilder( 12, 5, "lomita", 151, -20); //garden
+            outlineBuilder( 12, 1, "nirRoad", 153, -20); //garden road
+            outlineBuilder( 3, 3, "nirRoad", 152, -15); //garden plaza
+            outlineBuilder( 12, 1, "nirRoad", 150, -20); //garden road L
+            outlineBuilder( 12, 1, "nirRoad", 156, -20); //garden road R
+
         }
         //mapE4 //Atalin City
         if (Y > -3919 && Y < 6870 && X < -33089 && X > -44725) //X4
@@ -411,6 +434,13 @@ function worldBuilder()
             outlineBuilder( 1, 12, "nirRoad", 138, 2); //lower road
             outlineBuilder( 10, 5, "nirRoad", 138, -8);
             outlineBuilder( 1, 14, "nirBridge", 124, -3); //bridge
+
+            outlineBuilder( 3, 1, "nirRoad", 140, 3);
+            outlineBuilder( 3, 9, "lomita", 141, 3);
+            outlineBuilder( 6, 7, "nirRoad", 140, 6);
+            outlineBuilder( 1, 3, "nirRoad", 147, 6);
+            outlineBuilder( 4, 3, "lomita", 147, 7);
+            outlineBuilder( 1, 3, "nirRoad", 147, 11);
         }
         //mapE3
         if (Y > -3919 && Y < 6870 && X < -22900 && X > -34519) //X3
@@ -568,6 +598,22 @@ function worldBuilder()
             outlineBuilder(1, 5, "greenGrass", 9, -21);
             outlineBuilder(1, 2, "greenGrass", 10, -22);
             outlineBuilder(34, 1, "stonePath", -3, -54);
+        }
+        //mapN1E5 //Atalin City (castle)
+        if (Y > 6290 && Y < 17073 && X < -42678 && X > -54937) //X5
+        {
+            elevation = 0;
+            region = "n1e5";
+            outlineBuilder( 20, 34, "snow", 150, -54);
+            outlineBuilder( 14, 34, "brightGrass", 150, -34);
+            //outlineBuilder( 34, 34, "outline", 150, -54);
+
+            outlineBuilder( 8, 7, "nirRoad", 150, -31); //castle plaza
+            outlineBuilder( 4, 5, "lomita", 151, -24); //garden
+            outlineBuilder( 4, 1, "nirRoad", 153, -24); //garden road
+            outlineBuilder( 4, 1, "nirRoad", 150, -24); //garden road L
+            outlineBuilder( 4, 1, "nirRoad", 156, -24); //garden road R
+
         }
         //layer 2 (frosty region): elev 1
         //mapN2

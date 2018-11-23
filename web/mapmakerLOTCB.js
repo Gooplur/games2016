@@ -13340,7 +13340,7 @@ function buildMaster()
                 change = "e4";
             }
         }
-        else if (region == "e5")
+        else if (region == "e5") //Atalin City
         {
             if (change != "e5")
             {
@@ -13373,8 +13373,7 @@ function buildMaster()
                 //Delete All Barriers
                 barrierList = [];
 
-                //TEST
-                generator(998194838973478567290593490753765777, 893156183774189889999927462711, 212646126477828899823923656415326758196327583974281, 6688395285999999892194291914929422375482332503, 1111111111009836537010101010010100000011110010 , 1, -44194, 6496);
+                //generator(998194838973478567290593490753765777, 893156183774189889999927462711, 212646126477828899823923656415326758196327583974281, 6688395285999999892194291914929422375482332503, 1111111111009836537010101010010100000011110010 , 1, -44194, 6496);
 
                 //REGION CREATION
                 //Build AI Units
@@ -13413,6 +13412,254 @@ function buildMaster()
                 //scenicList.push(new Scenery("cyrinthilimPlant", -21038 , -2478, 4, true));
 
                 change = "e5";
+            }
+        }
+        else if (region == "n1e5") //Atalin City (castle)
+        {
+            if (change != "n1e5")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //generator(998194838973478567290593490753765777, 893156183774189889999927462711, 212646126477828899823923656415326758196327583974281, 6688395285999999892194291914929422375482332503, 1111111111009836537010101010010100000011110010 , 1, -44194, 6496);
+
+                //REGION CREATION
+                //Build AI Units
+
+                //PROPS
+                //scenicList.push(new Scenery("skeleton", -19230, 5008, 5.12, 1.75));
+
+                //CREATURES
+                //ArtificialIntelligenceAccess.push(new Unit(-13935, 2270, "Grib", false, "docile"));
+                //ArtificialIntelligenceAccess.push(new Unit(-14477, 1925, "Viper", false, "Slib"));
+                //ArtificialIntelligenceAccess.push(new Unit(-14087, 1359, "Lizard", true, "Lib"));
+                //ArtificialIntelligenceAccess.push(new Unit(-14501, 3283, "BlackBear", false, "Clib"));
+                //ArtificialIntelligenceAccess.push(new Unit(-15119, 2314, "Varn", true, "Flib"));
+                //ArtificialIntelligenceAccess.push(new Unit(-13713, 5329, "Narthwarp", false, "silwil"));
+                //scenicList.push(new Scenery("ulgoyPlant", -16488, 3908, 4.9, 7));
+                //ArtificialIntelligenceAccess.push(new Unit(-16473, 3885, "Ulgoy", "giant", "The Really Big Plant"));
+                //ArtificialIntelligenceAccess.push(new Unit(-16247, 3330, "Boar", true, "Tambor"));
+                //ArtificialIntelligenceAccess.push(new Unit(-14353, 3844, "Shehid", true, "sheta"));
+                //scenicList.push(new Scenery("beeHive", -15375 , -2055, 4.5, true));
+
+                //Build Scenery
+
+                //Altezor Castle
+                scenicList.push(new Scenery("nirwadenBuilding1", -44746, 8466, 0, true));
+                scenicList.push(new Scenery("nirwadenBuilding4", -44875, 8671, 0, true));
+                scenicList.push(new Scenery("nirwadenBuilding2", -45344, 8466, 0, true));
+                scenicList.push(new Scenery("nirwadenBuilding8", -45056, 9248, 0, true));
+                scenicList.push(new Scenery("nirwadenCastle1", -45066, 8915, 0, true));
+                scenicList.push(new Scenery("nirwadenCastleDoor", -45048, 8040, 0, true));
+                scenicList.push(new Scenery("nirwadenCastleDoor", -45048, 8315, 0, true));
+                scenicList.push(new Scenery("well", -45360, 9146, 2.2, true));
+                    //the lord's hall
+                scenicList.push(new Scenery("nirwadenMueble", -45066, 9409, 0, 4));
+                scenicList.push(new Scenery("nirwadenMueble", -45066, 9452, 0, 8));
+                scenicList.push(new Scenery("hearth", -45066, 9507, 0 * Math.PI, "lit"));
+                scenicList.push(new Scenery("furRug", -45068, 9240, -1/2 * Math.PI, 4, 1));
+                scenicList.push(new Scenery("furRug", -45079, 9117, 0 * Math.PI, 5, 1));
+                    //kitchen
+                if (player.title == "Nobility" && player.raceName == "Nirwaden" || player.title == "Royalty" && player.raceName == "Nirwaden")
+                {
+                    scenicList.push(new Scenery("stove", -44845, 8367, 1/2 * Math.PI, "flame"));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("stove", -44845, 8367, 1/2 * Math.PI, "lit"));
+                }
+
+
+                if (quests.aFeastForFewer == true) //feast
+                {
+
+                }
+                else if (Math.random() > 0.55) //feast
+                {
+                    if (player.title == "Nobility" && player.raceName == "Nirwaden" || player.title == "Royalty" && player.raceName == "Nirwaden")
+                    {
+
+                        scenicList.push(new Scenery("item", -45074, 9400, 0, "nirwaden", ["boarChunks", 1, 0]));
+                        scenicList.push(new Scenery("item", -45090, 9404, 0, "nirwaden", ["boarChunks", 1, 0]));
+
+                        scenicList.push(new Scenery("item", -45070, 9428, 0, "nirwaden", ["erguerWine", 1, 0]));
+                        scenicList.push(new Scenery("item", -45101, 9425, 0, "nirwaden", ["glassBottleOfErguerWine", 1, 0]));
+
+                        scenicList.push(new Scenery("item", -45049, 9414, 0, "nirwaden", ["searedFalder", 1, 0]));
+                        scenicList.push(new Scenery("item", -45057, 9427, 0, "nirwaden", ["searedSalmon", 1, 0]));
+
+                        scenicList.push(new Scenery("item", -45086, 9430, 0, "nirwaden", ["pintGlass", 1, 0]));
+
+                        scenicList.push(new Scenery("item", -45121, 9397, 0, "nirwaden", ["porkbelly", 1, 0]));
+                        scenicList.push(new Scenery("item", -45014, 9392, 0, "nirwaden", ["boarMeat", 1, 0]));
+                        scenicList.push(new Scenery("item", -45115, 9412, 0, "nirwaden", ["bacon", 3, 0]));
+                        scenicList.push(new Scenery("item", -45110, 9404, 0, "nirwaden", ["bacon", 3, 0]));
+                        scenicList.push(new Scenery("item", -45120, 9403, 0, "nirwaden", ["bacon", 3, 0]));
+                        scenicList.push(new Scenery("item", -45037, 9427, 0, "nirwaden", ["porkAndHalgom", 1, 0]));
+                        scenicList.push(new Scenery("item", -45017, 9420, 0, "nirwaden", ["naaprichaWedge", 1, 0]));
+                        scenicList.push(new Scenery("item", -45022, 9401, 0, "nirwaden", ["curedPork", 2, 0]));
+                        scenicList.push(new Scenery("item", -45032, 9410, 0, "nirwaden", ["curedPork", 2, 0]));
+                        scenicList.push(new Scenery("item", -45032, 9420, 0, "nirwaden", ["curedPork", 2, 0]));
+                        scenicList.push(new Scenery("item", -45037, 9399, 0, "nirwaden", ["naapricha", 1, 0]));
+                        scenicList.push(new Scenery("item", -45048, 9388, 0, "nirwaden", ["naapricha", 1, 0]));
+
+                        scenicList.push(new Scenery("item", -45021, 9410, 0, "nirwaden", ["naaprichaWedge", 1, 0]));
+
+                        scenicList.push(new Scenery("item", -45016, 9429, 0, "nirwaden", ["erguerWine", 1, 0]));
+
+                        scenicList.push(new Scenery("item", -45137, 9424, 0, "nirwaden", ["garlicTialoPork", 1, 0]));
+                        scenicList.push(new Scenery("item", -45133, 9412, 0, "nirwaden", ["garlicTialoPork", 1, 0]));
+                        scenicList.push(new Scenery("item", -45161, 9411, 0, "nirwaden", ["searedSalmon", 1, 0]));
+                        scenicList.push(new Scenery("item", -45144, 9417, 0, "nirwaden", ["roastedHalgomMushrooms", 1, 0]));
+                        scenicList.push(new Scenery("item", -45118, 9424, 0, "nirwaden", ["glassBottleOfErguerWine", 1, 0]));
+
+                        scenicList.push(new Scenery("item", -45160, 9427, 0, "nirwaden", ["searedSalmon", 1, 0]));
+                        scenicList.push(new Scenery("item", -45181, 9423, 0, "nirwaden", ["porkAndHalgom", 1, 0]));
+                        scenicList.push(new Scenery("item", -45172, 9419, 0, "nirwaden", ["searedFalder", 1, 0]));
+
+                        scenicList.push(new Scenery("item", -45178, 9405, 0, "nirwaden", ["steamedTialo", 3, 0]));
+                        scenicList.push(new Scenery("item", -45166, 9390, 0, "nirwaden", ["steamedTialo", 3, 0]));
+
+                        scenicList.push(new Scenery("item", -45146, 9392, 0, "nirwaden", ["porkbelly", 1, 0]));
+                        scenicList.push(new Scenery("item", -45176, 9394, 0, "nirwaden", ["salmon", 1, 0]));
+                        scenicList.push(new Scenery("item", -44995, 9425, 0, "nirwaden", ["iemaPork", 1, 0]));
+                        scenicList.push(new Scenery("item", -45002, 9407, 0, "nirwaden", ["pintGlass", 1, 0]));
+
+                        scenicList.push(new Scenery("item", -44946, 9412, 0, "nirwaden", ["polyapaTart", 2, 0]));
+                        scenicList.push(new Scenery("item", -44960, 9410, 0, "nirwaden", ["chonaTart", 2, 0]));
+                        scenicList.push(new Scenery("item", -44957, 9413, 0, "nirwaden", ["iemaTart", 2, 0]));
+
+                        scenicList.push(new Scenery("item", -44944, 9425, 0, "nirwaden", ["polyapaTart", 2, 0]));
+                        scenicList.push(new Scenery("item", -44964, 9421, 0, "nirwaden", ["chonaTart", 2, 0]));
+                        scenicList.push(new Scenery("item", -44954, 9424, 0, "nirwaden", ["iemaTart", 2, 0]));
+
+                        scenicList.push(new Scenery("item", -44978, 9425, 0, "nirwaden", ["erguerWine", 1, 0]));
+
+                        scenicList.push(new Scenery("item", -44975, 9412, 0, "nirwaden", ["erguerPaste", 2, 0]));
+                        scenicList.push(new Scenery("item", -44983, 9418, 0, "nirwaden", ["erguerPaste", 3, 0]));
+
+                        scenicList.push(new Scenery("item", -44986, 9401, 0, "nirwaden", ["iemaBerries", 4, 0]));
+                        scenicList.push(new Scenery("item", -44979, 9393, 0, "nirwaden", ["iemaBerries", 4, 0]));
+
+                        scenicList.push(new Scenery("item", -44971, 9401, 0, "nirwaden", ["polyapaTart", 2, 0]));
+                        scenicList.push(new Scenery("item", -44945, 9403, 0, "nirwaden", ["iemaTart", 2, 0]));
+                        scenicList.push(new Scenery("item", -44956, 9398, 0, "nirwaden", ["chonaTart", 2, 0]));
+                        scenicList.push(new Scenery("item", -44972, 9394, 0, "nirwaden", ["chonaFruit", 2, 0]));
+                        scenicList.push(new Scenery("item", -44960, 9388, 0, "nirwaden", ["polyapaFruit", 2, 0]));
+                        scenicList.push(new Scenery("item", -44942, 9391, 0, "nirwaden", ["chonaFruit", 2, 0]));
+                        scenicList.push(new Scenery("item", -44948, 9388, 0, "nirwaden", ["polyapaFruit", 2, 0]));
+                        scenicList.push(new Scenery("item", -44991, 9385, 0, "nirwaden", ["polyapaFruit", 2, 0]));
+
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("item", -45074, 9400, 0, "nirwaden", ["boarChunks", 1, -35]));
+                        scenicList.push(new Scenery("item", -45090, 9404, 0, "nirwaden", ["boarChunks", 1, -35]));
+                        scenicList.push(new Scenery("item", -45049, 9414, 0, "nirwaden", ["searedFalder", 1, -25]));
+                        scenicList.push(new Scenery("item", -45057, 9427, 0, "nirwaden", ["searedSalmon", 1, -25]));
+                        scenicList.push(new Scenery("item", -45070, 9428, 0, "nirwaden", ["erguerWine", 1, -15]));
+                        scenicList.push(new Scenery("item", -45101, 9425, 0, "nirwaden", ["glassBottleOfErguerWine", 1, -45]));
+                        scenicList.push(new Scenery("item", -45086, 9430, 0, "nirwaden", ["pintGlass", 1, -5]));
+                        scenicList.push(new Scenery("item", -45121, 9397, 0, "nirwaden", ["porkbelly", 1, -40]));
+                        scenicList.push(new Scenery("item", -45014, 9392, 0, "nirwaden", ["boarMeat", 1, -55]));
+                        scenicList.push(new Scenery("item", -45115, 9412, 0, "nirwaden", ["bacon", 3, -33]));
+                        scenicList.push(new Scenery("item", -45110, 9404, 0, "nirwaden", ["bacon", 3, -33]));
+                        scenicList.push(new Scenery("item", -45120, 9403, 0, "nirwaden", ["bacon", 3, -33]));
+                        scenicList.push(new Scenery("item", -45037, 9427, 0, "nirwaden", ["porkAndHalgom", 1, -40]));
+                        scenicList.push(new Scenery("item", -45017, 9420, 0, "nirwaden", ["naaprichaWedge", 1, -20]));
+                        scenicList.push(new Scenery("item", -45022, 9401, 0, "nirwaden", ["curedPork", 2, -20]));
+                        scenicList.push(new Scenery("item", -45032, 9410, 0, "nirwaden", ["curedPork", 2, -20]));
+                        scenicList.push(new Scenery("item", -45032, 9420, 0, "nirwaden", ["curedPork", 2, -20]));
+                        scenicList.push(new Scenery("item", -45037, 9399, 0, "nirwaden", ["naapricha", 1, -50]));
+                        scenicList.push(new Scenery("item", -45048, 9388, 0, "nirwaden", ["naapricha", 1, -50]));
+                        scenicList.push(new Scenery("item", -45021, 9410, 0, "nirwaden", ["naaprichaWedge", 1, -20]));
+                        scenicList.push(new Scenery("item", -45016, 9429, 0, "nirwaden", ["erguerWine", 1, -15]));
+                        scenicList.push(new Scenery("item", -45137, 9424, 0, "nirwaden", ["garlicTialoPork", 1, -30]));
+                        scenicList.push(new Scenery("item", -45133, 9412, 0, "nirwaden", ["garlicTialoPork", 1, -30]));
+                        scenicList.push(new Scenery("item", -45161, 9411, 0, "nirwaden", ["searedSalmon", 1, -25]));
+                        scenicList.push(new Scenery("item", -45144, 9417, 0, "nirwaden", ["roastedHalgomMushrooms", 1, -15]));
+                        scenicList.push(new Scenery("item", -45118, 9424, 0, "nirwaden", ["glassBottleOfErguerWine", 1, -45]));
+                        scenicList.push(new Scenery("item", -45160, 9427, 0, "nirwaden", ["searedSalmon", 1, -25]));
+                        scenicList.push(new Scenery("item", -45181, 9423, 0, "nirwaden", ["porkAndHalgom", 1, -35]));
+                        scenicList.push(new Scenery("item", -45172, 9419, 0, "nirwaden", ["searedFalder", 1, -25]));
+                        scenicList.push(new Scenery("item", -45178, 9405, 0, "nirwaden", ["steamedTialo", 3, -20]));
+                        scenicList.push(new Scenery("item", -45166, 9390, 0, "nirwaden", ["steamedTialo", 3, -20]));
+                        scenicList.push(new Scenery("item", -45146, 9392, 0, "nirwaden", ["porkbelly", 1, -50]));
+                        scenicList.push(new Scenery("item", -45176, 9394, 0, "nirwaden", ["salmon", 1, -15]));
+                        scenicList.push(new Scenery("item", -44995, 9425, 0, "nirwaden", ["iemaPork", 1, -35]));
+                        scenicList.push(new Scenery("item", -45002, 9407, 0, "nirwaden", ["pintGlass", 1, -10]));
+                        scenicList.push(new Scenery("item", -44946, 9412, 0, "nirwaden", ["polyapaTart", 2, -20]));
+                        scenicList.push(new Scenery("item", -44960, 9410, 0, "nirwaden", ["chonaTart", 2, -20]));
+                        scenicList.push(new Scenery("item", -44957, 9413, 0, "nirwaden", ["iemaTart", 2, -20]));
+                        scenicList.push(new Scenery("item", -44944, 9425, 0, "nirwaden", ["polyapaTart", 2, -20]));
+                        scenicList.push(new Scenery("item", -44964, 9421, 0, "nirwaden", ["chonaTart", 2, -20]));
+                        scenicList.push(new Scenery("item", -44954, 9424, 0, "nirwaden", ["iemaTart", 2, -20]));
+                        scenicList.push(new Scenery("item", -44978, 9425, 0, "nirwaden", ["erguerWine", 1, -15]));
+                        scenicList.push(new Scenery("item", -44975, 9412, 0, "nirwaden", ["erguerPaste", 2, -20]));
+                        scenicList.push(new Scenery("item", -44983, 9418, 0, "nirwaden", ["erguerPaste", 3, -20]));
+                        scenicList.push(new Scenery("item", -44986, 9401, 0, "nirwaden", ["iemaBerries", 4, -20]));
+                        scenicList.push(new Scenery("item", -44979, 9393, 0, "nirwaden", ["iemaBerries", 4, -20]));
+
+                        scenicList.push(new Scenery("item", -44971, 9401, 0, "nirwaden", ["polyapaTart", 2, -20]));
+                        scenicList.push(new Scenery("item", -44945, 9403, 0, "nirwaden", ["iemaTart", 2, -20]));
+                        scenicList.push(new Scenery("item", -44956, 9398, 0, "nirwaden", ["chonaTart", 2, -20]));
+                        scenicList.push(new Scenery("item", -44972, 9394, 0, "nirwaden", ["chonaFruit", 2, -20]));
+                        scenicList.push(new Scenery("item", -44960, 9388, 0, "nirwaden", ["polyapaFruit", 2, -20]));
+                        scenicList.push(new Scenery("item", -44942, 9391, 0, "nirwaden", ["chonaFruit", 2, -20]));
+                        scenicList.push(new Scenery("item", -44948, 9388, 0, "nirwaden", ["polyapaFruit", 2, -20]));
+                        scenicList.push(new Scenery("item", -44991, 9385, 0, "nirwaden", ["polyapaFruit", 2, -20]));
+                    }
+
+                }
+                else
+                {
+
+                }
+
+
+
+                //trees in the wuntol woods.
+                //scenicList.push(new Scenery("pineTree", -13696, 1772, 1.3, true));
+
+
+                //Plants of the wuntol woods
+                //scenicList.push(new Scenery("neprilnePlant", -17425 , 3993, -5.8, true));
+                //scenicList.push(new Scenery("pluttPlant", -16685 , 4251, 2.4, true));
+                //scenicList.push(new Scenery("culprisPlant", -21156 , 617, -3.5, true));
+                //scenicList.push(new Scenery("stomwikPlant", -18732 , -2343, 6, true));
+                //scenicList.push(new Scenery("akerPlant", -14491 , 5755, 1, true));
+                //scenicList.push(new Scenery("glinPlant", -15944 , -2502, -7.789, true));
+                //scenicList.push(new Scenery("ogardPlant", -16292 , -2231, 0, true));
+                //scenicList.push(new Scenery("wyrPlant", -15134 , 2399, 2.8, true));
+                //scenicList.push(new Scenery("cyrinthilimPlant", -21038 , -2478, 4, true));
+
+                change = "n1e5";
             }
         }
         else if (region == "s16")
@@ -15494,7 +15741,7 @@ function generator(seedA, seedB, seedC, seedD, seedE, biome, xSt, ySt) //the map
 
                 scenicList.push(new Scenery("neprilnePlant", xSt - seeded4 * mapSz, ySt - seeded2 * mapSz, 2 * Math.PI * Math.random(), true));
             }
-            for (var i = 0; i < Math.floor(seeder(seededD + 798974723111241111) * 31); i++) //common berry bushes
+            for (var i = 0; i < Math.floor(seeder(seededD + 798974723111241111) * 16); i++) //common berry bushes
             {
                 seeded2 = seeder(seedA + seedE * i);
                 seeded3 = seeder(seedE + seedC / (i + 1));
@@ -15516,6 +15763,22 @@ function generator(seedA, seedB, seedC, seedD, seedE, biome, xSt, ySt) //the map
 
             if (X < -30000 && Y < 6278) //in Nirwaden only (EAST)
             {
+                for (var i = 0; i < Math.floor(seeder((seededC + 99761242) / seededA) * 21); i++) //halgom
+                {
+                    seeded1 = seeder((seedC + seedB) * i * 661727);
+                    seeded5 = seeder(seedA * 78652382 + 3 * seedD * (i + 581738765));
+
+                    scenicList.push(new Scenery("halgomPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2 * Math.PI * Math.random(), true));
+                }
+
+                for (var i = 0; i < Math.floor(seeder((seededE + 3214576122534)) * 18); i++) //halgom
+                {
+                    seeded1 = seeder((seedB + seedE) * i * 661727);
+                    seeded5 = seeder(seedC * 78652382 + 3 * seedA * (i + 47886865));
+
+                    scenicList.push(new Scenery("iemaPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2 * Math.PI * Math.random(), true));
+                }
+
                 for (var i = 0; i < Math.floor(seededB * 10); i++) //boar
                 {
                     seeded1 = seeder(seedA + seedD * i * 17890);
@@ -15574,6 +15837,18 @@ function generator(seedA, seedB, seedC, seedD, seedE, biome, xSt, ySt) //the map
                 }
             }
             else {
+                for (var i = 15; i < Math.floor(seeder(seededD + 798974723111241111) * 31); i++) //common berry bushes
+                {
+                    seeded2 = seeder(seedA * 656412 + seedC * i);
+                    seeded3 = seeder(seedB + seedA / (i + 1));
+
+                    if (seeder(seededB + 27856120 * i) > 0.34) {
+                        scenicList.push(new Scenery("akerPlant", xSt - seeded3 * mapSz, ySt - seeded3 * mapSz, 2 * Math.PI * Math.random(), true));
+                    }
+                    else {
+                        scenicList.push(new Scenery("pluttPlant", xSt - seeded2 * mapSz, ySt - seeded1 * mapSz, 2 * Math.PI * Math.random(), true));
+                    }
+                }
                 for (var i = 0; i < Math.floor(seededB * 13); i++) //wyr
                 {
                     seeded1 = seeder(seedC + seedA * i * 6677278431124);

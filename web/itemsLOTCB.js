@@ -3288,6 +3288,321 @@ function Item(type, x, y)
             this.buyValue = 20 - Math.floor(player.getCharisma() / 25); // at max, buy for 18.
             this.sellValue = 15 + Math.floor(player.getCharisma() / 15); // at max, sell for 18.
         }
+        else if (this.type == "rawBoarChunks")
+        {
+            //For All Items
+            this.identity = "Raw Cut Pork";
+            this.weight = 16;
+            this.size = 18;
+            this.description = "The chopped flesh from the leg of a wild forest dwelling swine.";
+            this.intForDes = 1;
+            this.intDescription = "Eating this as it is is not safe.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 14; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -15; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 8;
+            this.ingredients = [["Raw Boar Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 21 - Math.floor(player.getCharisma() / 25); // at max, buy for 19.
+            this.sellValue = 16 + Math.floor(player.getCharisma() / 15); // at max, sell for 19.
+        }
+        else if (this.type == "boarChunks")
+        {
+            //For All Items
+            this.identity = "Cut Pork";
+            this.weight = 16;
+            this.size = 18;
+            this.description = "Roasted pork cut into large chunks.";
+            this.intForDes = 0;
+            this.intDescription = "The flavor is very rich and fatty.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 30; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 15; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.25; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 16;
+            this.ingredients = [["Raw Cut Pork", 1], ["Salt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 45 - Math.floor(player.getCharisma() / 10); // at max, buy for 40.
+            this.sellValue = 35 + Math.floor(player.getCharisma() / 10); // at max, sell for 40.
+        }
+        else if (this.type == "boarChunksSmall")
+        {
+            //For All Items
+            this.identity = "Chopped Pork";
+            this.weight = 3;
+            this.size = 8;
+            this.description = "Roasted pork cut into small chunks.";
+            this.intForDes = 0;
+            this.intDescription = "The flavor is very rich and fatty.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.06; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 17;
+            this.ingredients = [["Raw Chopped Pork", 2], ["Salt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13 - Math.floor(player.getCharisma() / 25); // at max, buy for 11.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 50); // at max, sell for 11.
+        }
+        else if (this.type == "iemaPork")
+        {
+            //For All Items
+            this.identity = "Pork with Iema Berry Sauce";
+            this.weight = 3.1;
+            this.size = 8;
+            this.description = "Roasted chunks of pork served in a tart and sweet iema berry sauce.";
+            this.intForDes = 0;
+            this.intDescription = "The flavor is rich and fatty paired with tart and sweet.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 12.5; //satisfies hunger.
+            this.thirst = 0.15; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.07; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 19;
+            this.ingredients = [["Raw Chopped Pork", 2], ["Iema Berries", 3], ["Salt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 50); // at max, buy for 15.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 50); // at max, sell for 15.
+        }
+        else if (this.type == "searedFalder")
+        {
+            //For All Items
+            this.identity = "Seared Falder";
+            this.weight = 1.15;
+            this.size = 8;
+            this.description = "A thick cut of red bellied falder seared with garlic and salt.";
+            this.intForDes = 0;
+            this.intDescription = "The fish has a strong flavor that is complimented by salt and garlic.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 12; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 3.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 23;
+            this.ingredients = [["Raw Red-Bellied Falder", 1], ["Garlic", 1], ["Salt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 25); // at max, buy for 13.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 50); // at max, sell for 13.
+        }
+        else if (this.type == "searedSalmon")
+        {
+            //For All Items
+            this.identity = "Seared Salmon";
+            this.weight = 1.25;
+            this.size = 8;
+            this.description = "A thick cut of salmon seared with garlic and salt.";
+            this.intForDes = 0;
+            this.intDescription = "The fish has a strong flavor that is complimented by the salt.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 14; //satisfies hunger.
+            this.thirst = 0.05; //quenches thirst.
+            this.warmth = 5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.055; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 25;
+            this.ingredients = [["Raw Salmon", 1], ["Garlic", 1], ["Salt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 21 - Math.floor(player.getCharisma() / 50); // at max, buy for 20.
+            this.sellValue = 19 + Math.floor(player.getCharisma() / 50); // at max, sell for 20.
+        }
+        else if (this.type == "porkAndHalgom")
+        {
+            //For All Items
+            this.identity = "Pork and Halgom";
+            this.weight = 3.3;
+            this.size = 8;
+            this.description = "Small chunks of roasted pork cooked with halgom mushrooms, garlic and salt.";
+            this.intForDes = 0;
+            this.intDescription = "The flavor is hearty, rich, and well seasoned.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 13; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.065; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 20;
+            this.ingredients = [["Raw Chopped Pork", 3], ["Halgom Mushrooms", 2], ["Garlic", 1], ["Salt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 50); // at max, buy for 15.
+            this.sellValue = 13 + Math.floor(player.getCharisma() / 25); // at max, sell for 15.
+        }
+        else if (this.type == "garlicTialoPork")
+        {
+            //For All Items
+            this.identity = "Garlic Tialo Pork";
+            this.weight = 3.1;
+            this.size = 8;
+            this.description = "Small chunks of roasted pork cooked with tialo fronds, garlic and salt.";
+            this.intForDes = 0;
+            this.intDescription = "The flavor is wholesome, rich, and well seasoned.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 12; //satisfies hunger.
+            this.thirst = 0.3; //quenches thirst.
+            this.warmth = 3.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.06; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 20;
+            this.ingredients = [["Raw Chopped Pork", 3], ["Tialo Frond", 6], ["Garlic", 1], ["Salt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 50); // at max, buy for 14.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 25); // at max, sell for 13.
+        }
+        else if (this.type == "rawBoarChunksSmall")
+        {
+            //For All Items
+            this.identity = "Raw Chopped Pork";
+            this.weight = 3.2;
+            this.size = 8;
+            this.description = "The well chopped flesh from the leg of a wild forest dwelling swine.";
+            this.intForDes = 1;
+            this.intDescription = "Eating this as it is is not safe.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.8; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Crafting
+            this.yield = 5;
+            this.intForCraft = 9;
+            this.ingredients = [["Raw Cut Pork", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+            this.sellValue = 4; // at max, sell for 4.
+        }
         else if (this.type == "boarMeat")
         {
             //For All Items
@@ -5833,7 +6148,7 @@ function Item(type, x, y)
 
             //Utility Focused
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
-            this.hunger = 13; //satisfies hunger.
+            this.hunger = 25; //satisfies hunger.
             this.thirst = 0.1; //quenches thirst.
             this.warmth = 8; //warms player.
             this.heal = 0; //heals health.
@@ -5845,12 +6160,12 @@ function Item(type, x, y)
 
             //Crafting
             this.yield = 1;
-            this.intForCraft = 14;
+            this.intForCraft = 21;
             this.ingredients = [["Raw Salmon", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 18; // at max, buy for 18.
-            this.sellValue = 18; // at max, sell for 18.
+            this.buyValue = 28; // at max, buy for 18.
+            this.sellValue = 28; // at max, sell for 18.
         }
         else if (this.type == "rawSaskriit")
         {
@@ -19810,7 +20125,7 @@ function Item(type, x, y)
             this.utility = "weapon";
 
             //Utility Focused
-            this.energyCost = 5;
+            this.energyCost = 8;
             this.distance = 39 + (this.range * 7);
             this.range = 3;
             this.rate = 400;
@@ -28466,6 +28781,46 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "falseInventionPlans")
+        {
+            //For All Items
+            this.identity = "Icharus Wings Schematic";
+            this.weight = 0.001;
+            this.size = 12;
+            this.description = "A scientific looking plan for how to construct wearable wings from wax and feathers.";
+            this.intForDes = 20;
+            this.intDescription = "This invention is bogus: if it were even able to take off the wax would melt in the sun and the wearer would die...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "inventionPlans")
+        {
+            //For All Items
+            this.identity = "Coal Powered Chainsaw Schematic";
+            this.weight = 0.001;
+            this.size = 12;
+            this.description = "A scientific looking plan for how to construct a chainsaw that runs on coal power.";
+            this.intForDes = 20;
+            this.intDescription = "These plans look genuine.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 25; // at max, buy for 25.
+            this.sellValue = 25; // at max, sell for 25.
+        }
         else if (this.type == "unitMarker")
         {
             //For All Items
@@ -28601,10 +28956,55 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork")
+        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans")
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "rawBoarChunks")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 702, 1835, 53, 51, X - this.X + (1/2 * CCC.width) - (1/2 * 53 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 51 * 1), 53 * 1, 51 * 1);
+        }
+        else if (this.type == "boarChunks")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 701, 1886, 53, 51, X - this.X + (1/2 * CCC.width) - (1/2 * 53 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 51 * 1), 53 * 1, 51 * 1);
+        }
+        else if (this.type == "porkAndHalgom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 758, 1869, 35, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 35 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1), 35 * 1, 35 * 1);
+        }
+        else if (this.type == "iemaPork")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 759, 1902, 35, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 35 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1), 35 * 1, 35 * 1);
+        }
+        else if (this.type == "garlicTialoPork")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 700, 1954, 35, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 35 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1), 35 * 1, 35 * 1);
+        }
+        else if (this.type == "rawBoarChunksSmall")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 751, 1947, 27, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1), 27 * 1, 26 * 1);
+        }
+        else if (this.type == "boarChunksSmall")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 750, 1972, 27, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1), 27 * 1, 26 * 1);
+        }
+        else if (this.type == "searedFalder")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 664, 1981, 20, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "searedSalmon")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 634, 1979, 20, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1), 20 * 1, 19 * 1);
         }
         else if (this.type == "molteHide")
         {
@@ -32339,10 +32739,55 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork")
+        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans")
         {
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "rawBoarChunks")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 702, 1835, 53, 51, this.invX - (1/2 * 53 * 1), this.invY - (1/2 * 51 * 1), 53 * 1, 51 * 1);
+        }
+        else if (this.type == "boarChunks")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 701, 1886, 53, 51, this.invX - (1/2 * 53 * 1), this.invY - (1/2 * 51 * 1), 53 * 1, 51 * 1);
+        }
+        else if (this.type == "porkAndHalgom")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 758, 1869, 35, 35, this.invX - (1/2 * 35 * 1), this.invY - (1/2 * 35 * 1), 35 * 1, 35 * 1);
+        }
+        else if (this.type == "iemaPork")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 759, 1902, 35, 35, this.invX - (1/2 * 35 * 1), this.invY - (1/2 * 35 * 1), 35 * 1, 35 * 1);
+        }
+        else if (this.type == "garlicTialoPork")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 700, 1954, 35, 35, this.invX - (1/2 * 35 * 1), this.invY - (1/2 * 35 * 1), 35 * 1, 35 * 1);
+        }
+        else if (this.type == "rawBoarChunksSmall")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 751, 1947, 27, 26, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 26 * 1), 27 * 1, 26 * 1);
+        }
+        else if (this.type == "boarChunksSmall")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 750, 1972, 27, 26, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 26 * 1), 27 * 1, 26 * 1);
+        }
+        else if (this.type == "searedFalder")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 664, 1981, 20, 19, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "searedSalmon")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 634, 1979, 20, 19, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 19 * 1), 20 * 1, 19 * 1);
         }
         else if (this.type == "molteHide")
         {
@@ -36047,10 +36492,55 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork")
+        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans")
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "rawBoarChunks")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 702, 1835, 53, 51, this.invX - (1/2 * 53 * 1), this.invY - (1/2 * 51 * 1), 53 * 1, 51 * 1);
+        }
+        else if (this.type == "boarChunks")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 701, 1886, 53, 51, this.invX - (1/2 * 53 * 1), this.invY - (1/2 * 51 * 1), 53 * 1, 51 * 1);
+        }
+        else if (this.type == "porkAndHalgom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 758, 1869, 35, 35, this.invX - (1/2 * 35 * 1), this.invY - (1/2 * 35 * 1), 35 * 1, 35 * 1);
+        }
+        else if (this.type == "iemaPork")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 759, 1902, 35, 35, this.invX - (1/2 * 35 * 1), this.invY - (1/2 * 35 * 1), 35 * 1, 35 * 1);
+        }
+        else if (this.type == "garlicTialoPork")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 700, 1954, 35, 35, this.invX - (1/2 * 35 * 1), this.invY - (1/2 * 35 * 1), 35 * 1, 35 * 1);
+        }
+        else if (this.type == "rawBoarChunksSmall")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 751, 1947, 27, 26, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 26 * 1), 27 * 1, 26 * 1);
+        }
+        else if (this.type == "boarChunksSmall")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 750, 1972, 27, 26, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 26 * 1), 27 * 1, 26 * 1);
+        }
+        else if (this.type == "searedFalder")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 664, 1981, 20, 19, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 19 * 1), 20 * 1, 19 * 1);
+        }
+        else if (this.type == "searedSalmon")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 634, 1979, 20, 19, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 19 * 1), 20 * 1, 19 * 1);
         }
         else if (this.type == "molteHide")
         {

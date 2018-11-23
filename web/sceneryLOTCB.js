@@ -77,7 +77,17 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.summonTime = new Date().getTime();
     //Building Variables
     this.putBarriers = true;
+
     //Scenery Item
+
+    this.isMassive = function()
+    {
+        if (this.type == "nirwadenCastle1")
+        {
+            this.massive = true;
+        }
+    };
+    this.isMassive();
 
     this.interval = function(time, method)
     {
@@ -2430,7 +2440,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //TRAITS
             this.zIndex = 4;
             this.solid = false;
-            this.interactionRange = 55;
+            this.interactionRange = 90;
             if (this.runOneTime)
             {
                 this.runOneTime = false;
@@ -2463,7 +2473,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                             deleteList.push(l);
                         }
                     }
-                    for (var l = deleteList.length - 1; l > -1; l--)0
+                    for (var l = deleteList.length - 1; l > -1; l--)
                     {
                         barrierList.splice(deleteList[l], 1);
                     }
@@ -5215,7 +5225,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //TRAITS
             this.solid = false;
             this.interactionRange = 135;
-            this.massive = true;
+            //this.massive = true; //this is set by the is_Massive method.
 
             //if (this.runOneTime)
             //{
@@ -5274,8 +5284,6 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 barrierList.push(new Barrier((this.X - 711), (this.Y - 901), 72, 563, true)); //outer bottom right
                 barrierList.push(new Barrier((this.X + 185), (this.Y - 901), 72, 500, true)); //outer bottom left
                 barrierList.push(new Barrier((this.X - 711), (this.Y + 880), 81, 1400, true)); //outer top
-
-
             }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.

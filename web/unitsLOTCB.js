@@ -277,6 +277,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.ID == "arena3")
         {
+            this.muzzle = false;
             this.baseTeam = "arena3";
             this.team = "arena3";
         }
@@ -828,7 +829,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("neutral2");
         }
 
-        if (this.team != "arena1" && this.team != "arena2" && this.team!= "arena3")
+        if (this.team != "arena1" && this.team != "arena2" && this.team != "arena3")
         {
             this.allys.push("arena1");
             this.allys.push("arena2");
@@ -2144,8 +2145,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.patrolProgress == 10 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
                 this.patrolArrived = false;
             }
 
@@ -2227,14 +2228,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.patrolProgress == 10 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
                 this.patrolArrived = false;
             }
             else if (this.patrolProgress == 11 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
                 this.patrolArrived = false;
             }
 
@@ -2316,20 +2317,20 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.patrolProgress == 10 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
                 this.patrolArrived = false;
             }
             else if (this.patrolProgress == 11 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
                 this.patrolArrived = false;
             }
             else if (this.patrolProgress == 12 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
                 this.patrolArrived = false;
             }
 
@@ -2411,26 +2412,26 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.patrolProgress == 10 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
                 this.patrolArrived = false;
             }
             else if (this.patrolProgress == 11 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
                 this.patrolArrived = false;
             }
             else if (this.patrolProgress == 12 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
                 this.patrolArrived = false;
             }
             else if (this.patrolProgress == 13 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
                 this.patrolArrived = false;
             }
 
@@ -2512,32 +2513,32 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.patrolProgress == 10 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
                 this.patrolArrived = false;
             }
             else if (this.patrolProgress == 11 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
                 this.patrolArrived = false;
             }
             else if (this.patrolProgress == 12 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
                 this.patrolArrived = false;
             }
             else if (this.patrolProgress == 13 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
                 this.patrolArrived = false;
             }
             else if (this.patrolProgress == 14 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
                 this.patrolArrived = false;
             }
 
@@ -2619,42 +2620,4031 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.patrolProgress == 10 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
                 this.patrolArrived = false;
             }
             else if (this.patrolProgress == 11 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
                 this.patrolArrived = false;
             }
             else if (this.patrolProgress == 12 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
                 this.patrolArrived = false;
             }
             else if (this.patrolProgress == 13 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
                 this.patrolArrived = false;
             }
             else if (this.patrolProgress == 14 && this.patrolArrived == true)
             {
-                this.patrolDestinationX = this.ultra.route[9][0];
-                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
                 this.patrolArrived = false;
             }
             else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 17)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
             {
                 this.patrolDestinationX = this.ultra.route[9][0];
                 this.patrolDestinationY = this.ultra.route[9][1];
                 this.patrolArrived = false;
             }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
 
-            if (this.patrolProgress == 16 && this.patrolArrived == true && loop == true)
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 18)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 19)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 20)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 21)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[20][0];
+                this.patrolDestinationY = this.ultra.route[20][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 21 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 22)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[20][0];
+                this.patrolDestinationY = this.ultra.route[20][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 21 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[21][0];
+                this.patrolDestinationY = this.ultra.route[21][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 22 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 23)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[20][0];
+                this.patrolDestinationY = this.ultra.route[20][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 21 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[21][0];
+                this.patrolDestinationY = this.ultra.route[21][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 22 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[22][0];
+                this.patrolDestinationY = this.ultra.route[22][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 23 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 24)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[20][0];
+                this.patrolDestinationY = this.ultra.route[20][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 21 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[21][0];
+                this.patrolDestinationY = this.ultra.route[21][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 22 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[22][0];
+                this.patrolDestinationY = this.ultra.route[22][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 23 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[23][0];
+                this.patrolDestinationY = this.ultra.route[23][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 24 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 25)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[20][0];
+                this.patrolDestinationY = this.ultra.route[20][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 21 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[21][0];
+                this.patrolDestinationY = this.ultra.route[21][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 22 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[22][0];
+                this.patrolDestinationY = this.ultra.route[22][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 23 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[23][0];
+                this.patrolDestinationY = this.ultra.route[23][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 24 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[24][0];
+                this.patrolDestinationY = this.ultra.route[24][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 25 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 26)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[20][0];
+                this.patrolDestinationY = this.ultra.route[20][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 21 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[21][0];
+                this.patrolDestinationY = this.ultra.route[21][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 22 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[22][0];
+                this.patrolDestinationY = this.ultra.route[22][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 23 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[23][0];
+                this.patrolDestinationY = this.ultra.route[23][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 24 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[24][0];
+                this.patrolDestinationY = this.ultra.route[24][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 25 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[25][0];
+                this.patrolDestinationY = this.ultra.route[25][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 26 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 27)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[20][0];
+                this.patrolDestinationY = this.ultra.route[20][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 21 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[21][0];
+                this.patrolDestinationY = this.ultra.route[21][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 22 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[22][0];
+                this.patrolDestinationY = this.ultra.route[22][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 23 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[23][0];
+                this.patrolDestinationY = this.ultra.route[23][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 24 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[24][0];
+                this.patrolDestinationY = this.ultra.route[24][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 25 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[25][0];
+                this.patrolDestinationY = this.ultra.route[25][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 26 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[26][0];
+                this.patrolDestinationY = this.ultra.route[26][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 27 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 28)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[20][0];
+                this.patrolDestinationY = this.ultra.route[20][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 21 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[21][0];
+                this.patrolDestinationY = this.ultra.route[21][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 22 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[22][0];
+                this.patrolDestinationY = this.ultra.route[22][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 23 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[23][0];
+                this.patrolDestinationY = this.ultra.route[23][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 24 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[24][0];
+                this.patrolDestinationY = this.ultra.route[24][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 25 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[25][0];
+                this.patrolDestinationY = this.ultra.route[25][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 26 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[26][0];
+                this.patrolDestinationY = this.ultra.route[26][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 27 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[27][0];
+                this.patrolDestinationY = this.ultra.route[27][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 28 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 29)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[20][0];
+                this.patrolDestinationY = this.ultra.route[20][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 21 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[21][0];
+                this.patrolDestinationY = this.ultra.route[21][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 22 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[22][0];
+                this.patrolDestinationY = this.ultra.route[22][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 23 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[23][0];
+                this.patrolDestinationY = this.ultra.route[23][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 24 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[24][0];
+                this.patrolDestinationY = this.ultra.route[24][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 25 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[25][0];
+                this.patrolDestinationY = this.ultra.route[25][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 26 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[26][0];
+                this.patrolDestinationY = this.ultra.route[26][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 27 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[27][0];
+                this.patrolDestinationY = this.ultra.route[27][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 28 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[28][0];
+                this.patrolDestinationY = this.ultra.route[28][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 29 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 30)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[20][0];
+                this.patrolDestinationY = this.ultra.route[20][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 21 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[21][0];
+                this.patrolDestinationY = this.ultra.route[21][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 22 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[22][0];
+                this.patrolDestinationY = this.ultra.route[22][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 23 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[23][0];
+                this.patrolDestinationY = this.ultra.route[23][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 24 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[24][0];
+                this.patrolDestinationY = this.ultra.route[24][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 25 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[25][0];
+                this.patrolDestinationY = this.ultra.route[25][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 26 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[26][0];
+                this.patrolDestinationY = this.ultra.route[26][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 27 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[27][0];
+                this.patrolDestinationY = this.ultra.route[27][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 28 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[28][0];
+                this.patrolDestinationY = this.ultra.route[28][1];
+                this.patrolArrived = false;
+            }
+            if (this.patrolProgress == 29 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[29][0];
+                this.patrolDestinationY = this.ultra.route[29][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 30 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 31)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[20][0];
+                this.patrolDestinationY = this.ultra.route[20][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 21 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[21][0];
+                this.patrolDestinationY = this.ultra.route[21][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 22 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[22][0];
+                this.patrolDestinationY = this.ultra.route[22][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 23 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[23][0];
+                this.patrolDestinationY = this.ultra.route[23][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 24 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[24][0];
+                this.patrolDestinationY = this.ultra.route[24][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 25 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[25][0];
+                this.patrolDestinationY = this.ultra.route[25][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 26 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[26][0];
+                this.patrolDestinationY = this.ultra.route[26][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 27 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[27][0];
+                this.patrolDestinationY = this.ultra.route[27][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 28 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[28][0];
+                this.patrolDestinationY = this.ultra.route[28][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 29 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[29][0];
+                this.patrolDestinationY = this.ultra.route[29][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 30 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[30][0];
+                this.patrolDestinationY = this.ultra.route[30][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 31 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 32)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[20][0];
+                this.patrolDestinationY = this.ultra.route[20][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 21 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[21][0];
+                this.patrolDestinationY = this.ultra.route[21][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 22 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[22][0];
+                this.patrolDestinationY = this.ultra.route[22][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 23 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[23][0];
+                this.patrolDestinationY = this.ultra.route[23][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 24 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[24][0];
+                this.patrolDestinationY = this.ultra.route[24][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 25 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[25][0];
+                this.patrolDestinationY = this.ultra.route[25][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 26 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[26][0];
+                this.patrolDestinationY = this.ultra.route[26][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 27 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[27][0];
+                this.patrolDestinationY = this.ultra.route[27][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 28 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[28][0];
+                this.patrolDestinationY = this.ultra.route[28][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 29 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[29][0];
+                this.patrolDestinationY = this.ultra.route[29][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 30 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[30][0];
+                this.patrolDestinationY = this.ultra.route[30][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 31 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[31][0];
+                this.patrolDestinationY = this.ultra.route[31][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 32 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 33)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[20][0];
+                this.patrolDestinationY = this.ultra.route[20][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 21 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[21][0];
+                this.patrolDestinationY = this.ultra.route[21][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 22 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[22][0];
+                this.patrolDestinationY = this.ultra.route[22][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 23 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[23][0];
+                this.patrolDestinationY = this.ultra.route[23][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 24 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[24][0];
+                this.patrolDestinationY = this.ultra.route[24][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 25 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[25][0];
+                this.patrolDestinationY = this.ultra.route[25][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 26 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[26][0];
+                this.patrolDestinationY = this.ultra.route[26][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 27 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[27][0];
+                this.patrolDestinationY = this.ultra.route[27][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 28 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[28][0];
+                this.patrolDestinationY = this.ultra.route[28][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 29 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[29][0];
+                this.patrolDestinationY = this.ultra.route[29][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 30 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[30][0];
+                this.patrolDestinationY = this.ultra.route[30][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 31 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[31][0];
+                this.patrolDestinationY = this.ultra.route[31][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 32 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[32][0];
+                this.patrolDestinationY = this.ultra.route[32][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 33 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 34)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[20][0];
+                this.patrolDestinationY = this.ultra.route[20][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 21 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[21][0];
+                this.patrolDestinationY = this.ultra.route[21][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 22 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[22][0];
+                this.patrolDestinationY = this.ultra.route[22][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 23 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[23][0];
+                this.patrolDestinationY = this.ultra.route[23][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 24 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[24][0];
+                this.patrolDestinationY = this.ultra.route[24][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 25 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[25][0];
+                this.patrolDestinationY = this.ultra.route[25][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 26 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[26][0];
+                this.patrolDestinationY = this.ultra.route[26][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 27 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[27][0];
+                this.patrolDestinationY = this.ultra.route[27][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 28 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[28][0];
+                this.patrolDestinationY = this.ultra.route[28][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 29 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[29][0];
+                this.patrolDestinationY = this.ultra.route[29][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 30 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[30][0];
+                this.patrolDestinationY = this.ultra.route[30][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 31 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[31][0];
+                this.patrolDestinationY = this.ultra.route[31][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 32 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[32][0];
+                this.patrolDestinationY = this.ultra.route[32][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 33 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[33][0];
+                this.patrolDestinationY = this.ultra.route[33][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 34 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 35)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[20][0];
+                this.patrolDestinationY = this.ultra.route[20][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 21 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[21][0];
+                this.patrolDestinationY = this.ultra.route[21][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 22 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[22][0];
+                this.patrolDestinationY = this.ultra.route[22][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 23 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[23][0];
+                this.patrolDestinationY = this.ultra.route[23][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 24 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[24][0];
+                this.patrolDestinationY = this.ultra.route[24][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 25 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[25][0];
+                this.patrolDestinationY = this.ultra.route[25][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 26 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[26][0];
+                this.patrolDestinationY = this.ultra.route[26][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 27 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[27][0];
+                this.patrolDestinationY = this.ultra.route[27][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 28 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[28][0];
+                this.patrolDestinationY = this.ultra.route[28][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 29 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[29][0];
+                this.patrolDestinationY = this.ultra.route[29][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 30 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[30][0];
+                this.patrolDestinationY = this.ultra.route[30][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 31 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[31][0];
+                this.patrolDestinationY = this.ultra.route[31][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 32 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[32][0];
+                this.patrolDestinationY = this.ultra.route[32][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 33 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[33][0];
+                this.patrolDestinationY = this.ultra.route[33][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 34 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[34][0];
+                this.patrolDestinationY = this.ultra.route[34][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 35 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 36)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[20][0];
+                this.patrolDestinationY = this.ultra.route[20][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 21 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[21][0];
+                this.patrolDestinationY = this.ultra.route[21][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 22 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[22][0];
+                this.patrolDestinationY = this.ultra.route[22][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 23 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[23][0];
+                this.patrolDestinationY = this.ultra.route[23][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 24 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[24][0];
+                this.patrolDestinationY = this.ultra.route[24][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 25 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[25][0];
+                this.patrolDestinationY = this.ultra.route[25][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 26 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[26][0];
+                this.patrolDestinationY = this.ultra.route[26][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 27 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[27][0];
+                this.patrolDestinationY = this.ultra.route[27][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 28 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[28][0];
+                this.patrolDestinationY = this.ultra.route[28][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 29 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[29][0];
+                this.patrolDestinationY = this.ultra.route[29][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 30 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[30][0];
+                this.patrolDestinationY = this.ultra.route[30][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 31 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[31][0];
+                this.patrolDestinationY = this.ultra.route[31][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 32 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[32][0];
+                this.patrolDestinationY = this.ultra.route[32][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 33 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[33][0];
+                this.patrolDestinationY = this.ultra.route[33][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 34 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[34][0];
+                this.patrolDestinationY = this.ultra.route[34][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 35 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[35][0];
+                this.patrolDestinationY = this.ultra.route[35][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 36 && this.patrolArrived == true && loop == true)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolProgress = 0;
+                this.patrolArrived = false;
+            }
+
+
+            if (this.patrolArrived == false)
+            {
+                this.dtd();
+            }
+        }
+        else if (numberOfStops == 36)
+        {
+            if (this.patrolProgress == 0)
+            {
+                this.patrolDestinationX = this.ultra.route[0][0];
+                this.patrolDestinationY = this.ultra.route[0][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 1 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[1][0];
+                this.patrolDestinationY = this.ultra.route[1][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 2 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[2][0];
+                this.patrolDestinationY = this.ultra.route[2][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 3 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[3][0];
+                this.patrolDestinationY = this.ultra.route[3][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 4 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[4][0];
+                this.patrolDestinationY = this.ultra.route[4][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 5 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[5][0];
+                this.patrolDestinationY = this.ultra.route[5][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 6 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[6][0];
+                this.patrolDestinationY = this.ultra.route[6][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 7 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[7][0];
+                this.patrolDestinationY = this.ultra.route[7][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 8 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[8][0];
+                this.patrolDestinationY = this.ultra.route[8][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 9 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[9][0];
+                this.patrolDestinationY = this.ultra.route[9][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 10 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[10][0];
+                this.patrolDestinationY = this.ultra.route[10][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 11 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[11][0];
+                this.patrolDestinationY = this.ultra.route[11][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 12 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[12][0];
+                this.patrolDestinationY = this.ultra.route[12][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 13 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[13][0];
+                this.patrolDestinationY = this.ultra.route[13][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 14 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[14][0];
+                this.patrolDestinationY = this.ultra.route[14][1];
+                this.patrolArrived = false;
+            }
+            else if (this.patrolProgress == 15 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[15][0];
+                this.patrolDestinationY = this.ultra.route[15][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 16 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[16][0];
+                this.patrolDestinationY = this.ultra.route[16][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 17 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[17][0];
+                this.patrolDestinationY = this.ultra.route[17][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 18 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[18][0];
+                this.patrolDestinationY = this.ultra.route[18][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 19 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[19][0];
+                this.patrolDestinationY = this.ultra.route[19][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 20 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[20][0];
+                this.patrolDestinationY = this.ultra.route[20][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 21 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[21][0];
+                this.patrolDestinationY = this.ultra.route[21][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 22 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[22][0];
+                this.patrolDestinationY = this.ultra.route[22][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 23 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[23][0];
+                this.patrolDestinationY = this.ultra.route[23][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 24 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[24][0];
+                this.patrolDestinationY = this.ultra.route[24][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 25 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[25][0];
+                this.patrolDestinationY = this.ultra.route[25][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 26 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[26][0];
+                this.patrolDestinationY = this.ultra.route[26][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 27 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[27][0];
+                this.patrolDestinationY = this.ultra.route[27][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 28 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[28][0];
+                this.patrolDestinationY = this.ultra.route[28][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 29 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[29][0];
+                this.patrolDestinationY = this.ultra.route[29][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 30 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[30][0];
+                this.patrolDestinationY = this.ultra.route[30][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 31 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[31][0];
+                this.patrolDestinationY = this.ultra.route[31][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 32 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[32][0];
+                this.patrolDestinationY = this.ultra.route[32][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 33 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[33][0];
+                this.patrolDestinationY = this.ultra.route[33][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 34 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[34][0];
+                this.patrolDestinationY = this.ultra.route[34][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 35 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[35][0];
+                this.patrolDestinationY = this.ultra.route[35][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 36 && this.patrolArrived == true)
+            {
+                this.patrolDestinationX = this.ultra.route[36][0];
+                this.patrolDestinationY = this.ultra.route[36][1];
+                this.patrolArrived = false;
+            }
+
+            if (this.patrolProgress == 37 && this.patrolArrived == true && loop == true)
             {
                 this.patrolDestinationX = this.ultra.route[0][0];
                 this.patrolDestinationY = this.ultra.route[0][1];
@@ -2781,6 +6771,90 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         this.patrolProgress = 16;
                     }
+                    else if (this.patrolProgress == 16)
+                    {
+                        this.patrolProgress = 17;
+                    }
+                    else if (this.patrolProgress == 17)
+                    {
+                        this.patrolProgress = 18;
+                    }
+                    else if (this.patrolProgress == 18)
+                    {
+                        this.patrolProgress = 19;
+                    }
+                    else if (this.patrolProgress == 19)
+                    {
+                        this.patrolProgress = 20;
+                    }
+                    else if (this.patrolProgress == 20)
+                    {
+                        this.patrolProgress = 21;
+                    }
+                    else if (this.patrolProgress == 21)
+                    {
+                        this.patrolProgress = 22;
+                    }
+                    else if (this.patrolProgress == 22)
+                    {
+                        this.patrolProgress = 23;
+                    }
+                    else if (this.patrolProgress == 23)
+                    {
+                        this.patrolProgress = 24;
+                    }
+                    else if (this.patrolProgress == 24)
+                    {
+                        this.patrolProgress = 25;
+                    }
+                    else if (this.patrolProgress == 25)
+                    {
+                        this.patrolProgress = 26;
+                    }
+                    else if (this.patrolProgress == 26)
+                    {
+                        this.patrolProgress = 27;
+                    }
+                    else if (this.patrolProgress == 27)
+                    {
+                        this.patrolProgress = 28;
+                    }
+                    else if (this.patrolProgress == 28)
+                    {
+                        this.patrolProgress = 29;
+                    }
+                    else if (this.patrolProgress == 29)
+                    {
+                        this.patrolProgress = 30;
+                    }
+                    else if (this.patrolProgress == 30)
+                    {
+                        this.patrolProgress = 31;
+                    }
+                    else if (this.patrolProgress == 31)
+                    {
+                        this.patrolProgress = 32;
+                    }
+                    else if (this.patrolProgress == 32)
+                    {
+                        this.patrolProgress = 33;
+                    }
+                    else if (this.patrolProgress == 33)
+                    {
+                        this.patrolProgress = 34;
+                    }
+                    else if (this.patrolProgress == 34)
+                    {
+                        this.patrolProgress = 35;
+                    }
+                    else if (this.patrolProgress == 35)
+                    {
+                        this.patrolProgress = 36;
+                    }
+                    else if (this.patrolProgress == 36)
+                    {
+                        this.patrolProgress = 37;
+                    }
                 }
             }
         }
@@ -2884,6 +6958,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
             }
 
+            if (timeOfDay == "Night" && this.nightVision != true)
+            {
+                this.rangeOfSight = this.rangeOfSight * 0.65;
+            }
             //If superstealth is active and the player is not yet seen then the the unit fails to notice the player.
             if (this.playerSeen == false && player.superStealth && this.resistances.indexOf("stealth") == -1)
             {
@@ -2953,6 +7031,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     this.rangeOfSight = baseSight * 4 + this.extraRange;
                 }
+            }
+
+            if (timeOfDay == "Night" && this.nightVision != true)
+            {
+                this.rangeOfSight = this.rangeOfSight * 0.65;
             }
 
             if (this.target.superStealth && this.resistances.indexOf("stealth") == -1)
@@ -3945,6 +8028,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         var basiliskVenomResistance = false;
         var leechResistance = false;
         var timeAlterResistance = false;
+        var nightResistance = false;
 
         //for loop to check for resistance
         for (var i = 0; i < resistancesList.length; i++)
@@ -4005,9 +8089,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 timeAlterResistance = true;
             }
+            else if (resistancesList[i] == "night")
+            {
+                nightResistance = true;
+            }
         }
 
-        //Petrification
+        //Petrification Effect
         if (petrifiedResistance == false && this.petrified)
         {
             this.colorized = [true, "lightGrey"];
@@ -4020,6 +8108,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.petrified = false;
         }
 
+        //Basilisk Venom Effect
         if (basiliskVenomResistance == false && this.baskVenomed)
         {
             if (new Date().getTime() - this.baskVenomedStoreTime > 200)
@@ -4035,6 +8124,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.baskVenomedStoreTime = new Date().getTime();
         }
 
+        //Time Alter
         if (timeAlterResistance == true)
         {
             this.timeResistance = timeSpeed;
@@ -4044,6 +8134,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.timeResistance = 1;
         }
 
+        //Leeches Effect
         if (leechResistance == false)
         {
             if (this.type == "Person" || this.type == "Soldier")
@@ -4147,6 +8238,16 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else
         {
             this.antiLeech = true;
+        }
+
+        //Night Effect
+        if (nightResistance == false)
+        {
+            this.nightVision = false;
+        }
+        else
+        {
+            this.nightVision = true;
         }
 
         //Buffout Effect
@@ -6965,7 +11066,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "automatic";
             this.awake = Math.round(Math.random());
             this.formChange = false; //this is for transforming from awake to asleep or sleep to awake... it signals that a change has been made so that an animation can play.
-            this.resistances = ["acid", "stun", "burning", "shock"];
+            this.resistances = ["acid", "stun", "burning", "shock", "night"];
             this.team = "shehidia";
             this.baseTeam = this.team;
             this.tamable = false;
@@ -7028,7 +11129,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "automatic";
             this.awake = Math.round(Math.random());
             this.formChange = false; //this is for transforming from awake to asleep or sleep to awake... it signals that a change has been made so that an animation can play.
-            this.resistances = ["burning", "blinded"]; //this is only a resistance while in sleeping form.
+            this.resistances = ["burning", "blinded", "night"]; //this is only a resistance while in sleeping form.
             this.team = "wild";
             this.baseTeam = this.team;
             this.attackListo = "start"; //this activates the feature that randomizes the attack of the unit (for this unit)
@@ -7120,7 +11221,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageFrame = "automatic";
             this.awake = Math.round(Math.random());
             this.formChange = false; //this is for transforming from awake to asleep or sleep to awake... it signals that a change has been made so that an animation can play.
-            this.resistances = ["shock"];
+            this.resistances = ["shock", "night"];
             this.team = "wild";
             this.baseTeam = this.team;
             this.tameREQ = 37;
@@ -7232,6 +11333,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Narthwarp")
         {
             this.damageFrame = "automatic";
+            this.resistances = ["night"];
             this.team = "narthwarpia";
             if (this.ID == "docile")
             {
@@ -7322,6 +11424,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Beruln")
         {
             this.damageFrame = "manual";
+            this.resistances = ["night"];
             this.team = "berulnia";
             if (this.ID == "playerSummonedBeruln")
             {
@@ -7913,6 +12016,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Golgemoff")
         {
             this.damageFrame = "automatic";
+            this.resistances = ["night"];
             this.effect = "blindingIII";
             this.team = "golgemoffia";
             this.baseTeam = this.team;
@@ -8048,7 +12152,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "AncientBeing")
         {
-            this.resistances = ["blinded", "stun", "frozen", "web"];
+            this.resistances = ["blinded", "stun", "frozen", "web", "night"];
             this.damageFrame = "automatic";
             this.team = "ancient";
             if (this.ID == "docile")
@@ -8087,7 +12191,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.damageDealt = "n/a";
             this.followThrough = true; //this unit follows through with its attacks even if the player moves out of range.
             this.damageFrame = "manual"; //it is necessary to set this to "manual" so that the attackBubble function can determine the damaging.
-            this.resistances = ["blinded", "stun", "frozen", "web"];
+            this.resistances = ["blinded", "stun", "frozen", "web", "night"];
             this.effect = "fire";
             this.team = "ancient";
             if (this.ID == "docile")
@@ -8120,6 +12224,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Frich")
         {
             this.damageFrame = "automatic";
+            this.resistances = ["night"];
             this.team = "wild";
             if (this.ID == "playerSummonedFrich")
             {
@@ -8376,7 +12481,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Pelcrid")
         {
             this.damageFrame = "automatic";
-            this.resistances = ["acid", "stun", "blinded", "burning", "frozen"];
+            this.resistances = ["acid", "stun", "blinded", "burning", "frozen", "night"];
             this.team = "shehidia";
             this.baseTeam = this.team;
             this.other = new Date().getTime();
@@ -8438,7 +12543,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Oolid")
         {
             this.damageFrame = "automatic";
-            this.resistances = ["acid", "stun", "blinded", "shock"];
+            this.resistances = ["acid", "stun", "blinded", "shock", "night"];
             this.team = "shehidia";
             this.baseTeam = this.team;
             this.tamable = false;
@@ -10286,6 +14391,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Molte")
         {
             this.damageFrame = "automatic";
+            this.resistances = ["blinded", "night"];
             this.team = "moltia";
             if (this.ID == "docile")
             {
@@ -10346,7 +14452,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "Sprite")
         {
-            this.resistances = ["time", "shock", "acid", "charm", "web", "water", "petrification", "stun", "blinded", "burning", "frozen", "buffout"];
+            this.resistances = ["time", "shock", "acid", "charm", "web", "water", "petrification", "stun", "blinded", "burning", "frozen", "buffout", "night"];
             this.damageFrame = "manual";
             this.team = "sprite";
             if (this.ID == "docile")
@@ -10389,6 +14495,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Gargoyle")
         {
             this.damageFrame = "automatic";
+            this.resistances = ["night"];
             this.team = "gargoyle";
             if (this.ID == "docile")
             {
@@ -10821,6 +14928,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Duende")
         {
             this.effect = "sleepifyI";
+            this.resistances = ["night"];
             this.damageFrame = "automatic";
             this.team = "Duende";
             if (this.ID == "docile")
@@ -11091,7 +15199,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Etna")
         {
             this.damageFrame = "automatic";
-            this.resistances = ["stun", "web"];
+            this.resistances = ["stun", "web", "night"];
             this.team = "etnia";
             if (this.ID == "docile")
             {
@@ -11335,7 +15443,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.damageFrame = "automatic";
             this.state = "resting";
-            this.resistances = ["shock", "petrification", "acid", "basilisk", "burning"];
+            this.resistances = ["shock", "petrification", "acid", "basilisk", "burning", "night"];
             this.team = "neutral";
             this.baseTeam = this.team;
             this.tamable = false;
@@ -11731,7 +15839,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Basilisk")
         {
             this.damageFrame = "manual";
-            this.resistances = ["petrification", "acid", "basilisk"];
+            this.resistances = ["petrification", "acid", "basilisk", "night"];
             this.effect = "basiliskVenom";
             this.team = "Basilisk";
             if (this.ID == "docile")
@@ -12374,6 +16482,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Fletter")
         {
             this.damageFrame = "manual";
+            this.resistances = ["night"];
             this.team = "herd";
             this.baseTeam = this.team;
             this.flying = true;
@@ -12522,6 +16631,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Lizard")
         {
             this.damageFrame = "manual";
+            this.resistances = ["night"];
             this.team = "herd";
             if (this.ID == "docile")
             {
@@ -12645,7 +16755,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "Tunsk")
         {
-            this.resistances = ["petrification"];
+            this.resistances = ["petrification", "night"];
             this.damageFrame = "manual";
             this.team = "herd";
             this.baseTeam = this.team;
@@ -26554,6 +30664,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                 }
             }
+            else if (this.doOnDeathOnce)
+            {
+                this.doOnDeathOnce = false;
+                if (region == "e5" && map == "world" || region == "e4" && map == "world")
+                {
+                    quests.duendeInfestationKillCount += 1;
+                }
+            }
 
             //ANIMATIONS
 
@@ -29890,6 +34008,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     player.freynorFaction -= 50;
                 }
+                else if (this.team == "Nirwaden")
+                {
+                    player.nirwadenFaction -= 50;
+                }
             }
 
             //ANIMATIONS
@@ -30604,7 +34726,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.doOnDeathOnce = false;
                 if (this.team == "Nirwaden")
                 {
-                    player.nirwadenFaction -= 50;
+                    player.nirwadenFaction -= 65;
                 }
             }
 
@@ -35836,13 +39958,23 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         }
                     }
                 }
-                else if (this.ID == "Beulingerr Soldier" || this.ID == "Beulingerr Captain") //freydic nobles and royals can control the Tor family's army.
+                else if (this.ID == "Beulingerr Soldier" || this.ID == "Beulingerr Captain") //thengan nobles and royals can control the Beulingerr family's army.
                 {
                     if (this.team == "player" && !this.isCharmed)
                     {
                         if (player.thengarFaction < 0 || player.thengarPeace != true)
                         {
                             this.baseTeam = "Thengar";
+                        }
+                    }
+                }
+                else if (this.ID == "Altezor Soldier" || this.ID == "Altezor Captain") //nirwaden nobles and royals can control the Altezor family's army.
+                {
+                    if (this.team == "player" && !this.isCharmed)
+                    {
+                        if (player.nirwadenFaction < 0 || player.nirwadenPeace != true)
+                        {
+                            this.baseTeam = "Nirwaden";
                         }
                     }
                 }
@@ -35960,6 +40092,40 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.swimSpeed = 0.6 * this.speed;
                         this.CNX = player.getConcentration(); //magic ability
                         this.magicalResistance = player.magicalResistanceTotal;
+                    }
+                }
+                else if (this.ID == "Sellsword")
+                {
+                    //if the sellsword is actually a member of the estolgang
+                    if (this.ultra.faction == "EstolGang" || this.ultra.faction == "EstolGang2")
+                    {
+                        if (player.estolgangFaction <= -50)
+                        {
+                            this.disturbed = true;
+                            this.baseTeam = this.ultra.faction;
+                        }
+                    }
+
+                    if (typeof(this.ultra.sightRadius) != "undefined")
+                    {
+                        this.rangeOfSightCalculator(this.ultra.sightRadius, true);
+                    }
+                    else
+                    {
+                        this.rangeOfSightCalculator(550, true);
+                    }
+
+                    this.drops = [];
+                    if (typeof(this.ultra.sellswordLight) != "undefined")
+                    {
+                        if (this.team == "player" || this.ultra.sellswordLight)
+                        {
+                            lights.push({X:this.X, Y: this.Y, size: 90, extraStops: true, GRD: 0.7, Alpha: 0.9, showMe: false});
+                        }
+                    }
+                    else if (this.team == "player")
+                    {
+                        lights.push({X:this.X, Y: this.Y, size: 90, extraStops: true, GRD: 0.7, Alpha: 0.9, showMe: false});
                     }
                 }
                 else if (this.ultra.faction == "Freynor")
@@ -36363,6 +40529,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.rangeOfSightCalculator(500, false);
 
                         this.drops = [[new Item("coins", this.X, this.Y), Math.floor(Math.random() * 18) + 1], [new Item("nirineseSabre", this.X, this.Y), 1], [new Item("kolumPowder", this.X, this.Y), 5]];
+
+                        if (this.disturbed == true)
+                        {
+                            this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
+                        }
+                    }
+                    else if (this.ID == "Lo")
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(600, false);
+
+                        this.drops = [[new Item("coins", this.X, this.Y), Math.floor(Math.random() * 78) + 1], [new Item("nirineseSabre", this.X, this.Y), 1], [new Item("kolumPowder", this.X, this.Y), 8]];
 
                         if (this.disturbed == true)
                         {
@@ -36815,6 +40993,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.estolgangFaction -= 17;
+                        }
+                    }
+                    else if (this.ID == "Lo") //the estolgang boss's girlfriend
+                    {
+                        uniqueChars.loLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.estolgangFaction -= 110;
                         }
                     }
                     else if (this.ID == "Adolf the Pit Fighter")

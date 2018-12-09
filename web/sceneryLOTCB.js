@@ -75,6 +75,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.minionsMAX = 3; //total amount of soldiers the hive can have.
     this.summonRate = 32; //how long in seconds it takes to summon a new minion.
     this.summonTime = new Date().getTime();
+    //event variables
+    this.angryDuendes = false;
     //Building Variables
     this.putBarriers = true;
 
@@ -83,6 +85,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.isMassive = function()
     {
         if (this.type == "nirwadenCastle1")
+        {
+            this.massive = true;
+        }
+        if (this.type == "event")
         {
             this.massive = true;
         }
@@ -578,10 +584,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.runOneTime == true)
             {
                 this.runOneTime = false;
-                this.lightTime = information[0];
+                this.lightTime = this.information[0];
             }
 
-            if (longevity != true)
+            if (this.temporary != true)
             {
                 if (new Date().getTime() - this.lightGetTime < this.lightTime * 1000)
                 {
@@ -589,11 +595,11 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
                 else
                 {
-                    if (information[1] == 3)
+                    if (this.information[1] == 3)
                     {
                         worldItems.push([new Item("candle2", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 2)
+                    else if (this.information[1] == 2)
                     {
                         worldItems.push([new Item("candle1", this.X, this.Y), 1])
                     }
@@ -623,13 +629,13 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 {
                     player.health = Math.min(player.health, player.health - (0.25 - player.heatResistance)); //it burns the players finger :( ... or not
                 }
-                else if (longevity != true)
+                else if (this.temporary != true)
                 {
-                    if (information[1] == 3)
+                    if (this.information[1] == 3)
                     {
                         worldItems.push([new Item("candle2", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 2)
+                    else if (this.information[1] == 2)
                     {
                         worldItems.push([new Item("candle1", this.X, this.Y), 1])
                     }
@@ -662,10 +668,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.runOneTime == true)
             {
                 this.runOneTime = false;
-                this.lightTime = information[0];
+                this.lightTime = this.information[0];
             }
 
-            if (longevity != true)
+            if (this.temporary != true)
             {
                 if (new Date().getTime() - this.lightGetTime < this.lightTime * 1000)
                 {
@@ -673,15 +679,15 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
                 else
                 {
-                    if (information[1] == 3)
+                    if (this.information[1] == 3)
                     {
                         worldItems.push([new Item("jackOLantern2", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 2)
+                    else if (this.information[1] == 2)
                     {
                         worldItems.push([new Item("jackOLantern1", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 1)
+                    else if (this.information[1] == 1)
                     {
                         worldItems.push([new Item("jackOLanternEmpty", this.X, this.Y), 1])
                     }
@@ -708,17 +714,17 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.activate == true)
             {
                 this.activate = false;
-                if (longevity != true)
+                if (this.temporary != true)
                 {
-                    if (information[1] == 3)
+                    if (this.information[1] == 3)
                     {
                         worldItems.push([new Item("jackOLantern2", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 2)
+                    else if (this.information[1] == 2)
                     {
                         worldItems.push([new Item("jackOLantern1", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 1)
+                    else if (this.information[1] == 1)
                     {
                         worldItems.push([new Item("jackOLanternEmpty", this.X, this.Y), 1])
                     }
@@ -751,10 +757,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.runOneTime == true)
             {
                 this.runOneTime = false;
-                this.lightTime = information[0];
+                this.lightTime = this.information[0];
             }
 
-            if (longevity != true)
+            if (this.temporary != true)
             {
                 if (new Date().getTime() - this.lightGetTime < this.lightTime * 1000)
                 {
@@ -762,15 +768,15 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
                 else
                 {
-                    if (information[1] == 3)
+                    if (this.information[1] == 3)
                     {
                         worldItems.push([new Item("oilLamp2", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 2)
+                    else if (this.information[1] == 2)
                     {
                         worldItems.push([new Item("oilLamp1", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 1)
+                    else if (this.information[1] == 1)
                     {
                         worldItems.push([new Item("oilLampEmpty", this.X, this.Y), 1])
                     }
@@ -797,17 +803,17 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.activate == true)
             {
                 this.activate = false;
-                if (longevity != true)
+                if (this.temporary != true)
                 {
-                    if (information[1] == 3)
+                    if (this.information[1] == 3)
                     {
                         worldItems.push([new Item("oilLamp2", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 2)
+                    else if (this.information[1] == 2)
                     {
                         worldItems.push([new Item("oilLamp1", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 1)
+                    else if (this.information[1] == 1)
                     {
                         worldItems.push([new Item("oilLampEmpty", this.X, this.Y), 1])
                     }
@@ -840,10 +846,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.runOneTime == true)
             {
                 this.runOneTime = false;
-                this.lightTime = information[0];
+                this.lightTime = this.information[0];
             }
 
-            if (longevity != true)
+            if (this.temporary != true)
             {
                 if (new Date().getTime() - this.lightGetTime < this.lightTime * 1000)
                 {
@@ -851,23 +857,23 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
                 else
                 {
-                    if (information[1] == 5)
+                    if (this.information[1] == 5)
                     {
                         worldItems.push([new Item("oilLantern4", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 4)
+                    else if (this.information[1] == 4)
                     {
                         worldItems.push([new Item("oilLantern3", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 3)
+                    else if (this.information[1] == 3)
                     {
                         worldItems.push([new Item("oilLantern2", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 2)
+                    else if (this.information[1] == 2)
                     {
                         worldItems.push([new Item("oilLantern1", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 1)
+                    else if (this.information[1] == 1)
                     {
                         worldItems.push([new Item("oilLanternEmpty", this.X, this.Y), 1])
                     }
@@ -894,25 +900,25 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.activate == true)
             {
                 this.activate = false;
-                if (longevity != true)
+                if (this.temporary != true)
                 {
-                    if (information[1] == 5)
+                    if (this.information[1] == 5)
                     {
                         worldItems.push([new Item("oilLantern4", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 4)
+                    else if (this.information[1] == 4)
                     {
                         worldItems.push([new Item("oilLantern3", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 3)
+                    else if (this.information[1] == 3)
                     {
                         worldItems.push([new Item("oilLantern2", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 2)
+                    else if (this.information[1] == 2)
                     {
                         worldItems.push([new Item("oilLantern1", this.X, this.Y), 1])
                     }
-                    else if (information[1] == 1)
+                    else if (this.information[1] == 1)
                     {
                         worldItems.push([new Item("oilLanternEmpty", this.X, this.Y), 1])
                     }
@@ -1716,6 +1722,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         }
         else if (this.type == "fineBed")
         {
+            var szx = 1.84;
             //TRAITS
             this.solid = true;
             this.interactionRange = 50;
@@ -1726,7 +1733,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(folw, 38, 432, 18, 32, -(1/2 * 18 * 2.2), -(1/2 * 32 * 2.2), 18 * 2.2, 32 * 2.2);
+                XXX.drawImage(folw, 38, 432, 18, 32, -(1/2 * 18 * 2.2 * szx), -(1/2 * 32 * 2.2 * szx), 18 * 2.2 * szx, 32 * 2.2 * szx);
                 XXX.restore();
             }
             else if (this.information == 2)
@@ -1734,7 +1741,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(folw, 60, 432, 18, 32, -(1/2 * 18 * 2.2), -(1/2 * 32 * 2.2), 18 * 2.2, 32 * 2.2);
+                XXX.drawImage(folw, 60, 432, 18, 32, -(1/2 * 18 * 2.2 * szx), -(1/2 * 32 * 2.2 * szx), 18 * 2.2 * szx, 32 * 2.2 * szx);
                 XXX.restore();
             }
             else if (this.information == 3)
@@ -1742,7 +1749,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(folw, 81, 433, 18, 32, -(1/2 * 18 * 2.2), -(1/2 * 32 * 2.2), 18 * 2.2, 32 * 2.2);
+                XXX.drawImage(folw, 81, 433, 18, 32, -(1/2 * 18 * 2.2 * szx), -(1/2 * 32 * 2.2 * szx), 18 * 2.2 * szx, 32 * 2.2 * szx);
                 XXX.restore();
             }
             else if (this.information == 4)
@@ -1750,7 +1757,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(folw, 101, 434, 18, 32, -(1/2 * 18 * 2.2), -(1/2 * 32 * 2.2), 18 * 2.2, 32 * 2.2);
+                XXX.drawImage(folw, 101, 434, 18, 32, -(1/2 * 18 * 2.2 * szx), -(1/2 * 32 * 2.2 * szx), 18 * 2.2 * szx, 32 * 2.2 * szx);
                 XXX.restore();
             }
             else if (this.information == 5)
@@ -1758,7 +1765,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(folw, 125, 434, 18, 32, -(1/2 * 18 * 2.2), -(1/2 * 32 * 2.2), 18 * 2.2, 32 * 2.2);
+                XXX.drawImage(folw, 125, 434, 18, 32, -(1/2 * 18 * 2.2 * szx), -(1/2 * 32 * 2.2 * szx), 18 * 2.2 * szx, 32 * 2.2 * szx);
                 XXX.restore();
             }
             else
@@ -1766,12 +1773,12 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(folw, 19, 432, 18, 32, -(1/2 * 18 * 2.2), -(1/2 * 32 * 2.2), 18 * 2.2, 32 * 2.2);
+                XXX.drawImage(folw, 19, 432, 18, 32, -(1/2 * 18 * 2.2 * szx), -(1/2 * 32 * 2.2 * szx), 18 * 2.2 * szx, 32 * 2.2 * szx);
                 XXX.restore();
             }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-            this.radius = 20;
+            this.radius = 24;
 
             //INTERACTION
             if (this.activate == true)
@@ -4048,7 +4055,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         else if (this.type == "drawerA")
         {
             //TRAITS
-            this.solid = false;
+            this.solid = true;
             this.interactionRange = 35 + 35 * this.information[0];
 
             this.zIndex = 1;
@@ -4059,7 +4066,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(folw, 28, 398, 25, 30, -(1/2 * 25 * this.information[0]), -(1/2 * 30 * this.information[0]), 25 * this.information[0], 30 * this.information[0]);
+                    XXX.drawImage(folw, 28, 398, 25, 30, -(1/2 * 25 * this.information[0] * 2), -(1/2 * 30 * this.information[0] * 2), 25 * this.information[0] * 2, 30 * this.information[0] * 2);
                     XXX.restore();
                 }
                 else if (this.phase == "opened")
@@ -4067,7 +4074,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(folw, 58, 398, 25, 30, -(1/2 * 25 * this.information[0]), -(1/2 * 30 * this.information[0]), 25 * this.information[0], 30 * this.information[0]);
+                    XXX.drawImage(folw, 58, 398, 25, 30, -(1/2 * 25 * this.information[0] * 2), -(1/2 * 30 * this.information[0] * 2), 25 * this.information[0] * 2, 30 * this.information[0] * 2);
                     XXX.restore();
                 }
             }
@@ -4078,7 +4085,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(folw, 86, 398, 25, 30, -(1/2 * 25 * this.information[0]), -(1/2 * 30 * this.information[0]), 25 * this.information[0], 30 * this.information[0]);
+                    XXX.drawImage(folw, 86, 398, 25, 30, -(1/2 * 25 * this.information[0] * 2), -(1/2 * 30 * this.information[0] * 2), 25 * this.information[0] * 2, 30 * this.information[0] * 2);
                     XXX.restore();
                 }
                 else if (this.phase == "opened")
@@ -4086,13 +4093,13 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(folw, 117, 397, 25, 30, -(1/2 * 25 * this.information[0]), -(1/2 * 30 * this.information[0]), 25 * this.information[0], 30 * this.information[0]);
+                    XXX.drawImage(folw, 117, 397, 25, 30, -(1/2 * 25 * this.information[0] * 2), -(1/2 * 30 * this.information[0] * 2), 25 * this.information[0] * 2, 30 * this.information[0] * 2);
                     XXX.restore();
                 }
             }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-            this.radius = 20 * this.information[0];
+            this.radius = 10 * this.information[0];
 
             //INTERACTION
             if (this.activate == true)
@@ -4151,7 +4158,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         else if (this.type == "drawerB")
         {
             //TRAITS
-            this.solid = false;
+            this.solid = true;
             this.interactionRange = 35 + 35 * this.information[0];
 
             this.zIndex = 1;
@@ -4162,7 +4169,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(folw, 154, 398, 25, 30, -(1/2 * 25 * this.information[0]), -(1/2 * 30 * this.information[0]), 25 * this.information[0], 30 * this.information[0]);
+                    XXX.drawImage(folw, 154, 398, 25, 30, -(1/2 * 25 * this.information[0] * 2), -(1/2 * 30 * this.information[0] * 2), 25 * this.information[0] * 2, 30 * this.information[0] * 2);
                     XXX.restore();
                 }
                 else if (this.phase == "opened")
@@ -4170,7 +4177,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(folw, 184, 398, 25, 30, -(1/2 * 25 * this.information[0]), -(1/2 * 30 * this.information[0]), 25 * this.information[0], 30 * this.information[0]);
+                    XXX.drawImage(folw, 184, 398, 25, 30, -(1/2 * 25 * this.information[0] * 2), -(1/2 * 30 * this.information[0] * 2), 25 * this.information[0] * 2, 30 * this.information[0] * 2);
                     XXX.restore();
                 }
             }
@@ -4181,7 +4188,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(folw, 154, 428, 25, 30, -(1/2 * 25 * this.information[0]), -(1/2 * 30 * this.information[0]), 25 * this.information[0], 30 * this.information[0]);
+                    XXX.drawImage(folw, 154, 428, 25, 30, -(1/2 * 25 * this.information[0] * 2), -(1/2 * 30 * this.information[0] * 2), 25 * this.information[0] * 2, 30 * this.information[0] * 2);
                     XXX.restore();
                 }
                 else if (this.phase == "opened")
@@ -4189,13 +4196,13 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(folw, 184, 428, 25, 30, -(1/2 * 25 * this.information[0]), -(1/2 * 30 * this.information[0]), 25 * this.information[0], 30 * this.information[0]);
+                    XXX.drawImage(folw, 184, 428, 25, 30, -(1/2 * 25 * this.information[0] * 2), -(1/2 * 30 * this.information[0] * 2), 25 * this.information[0] * 2, 30 * this.information[0] * 2);
                     XXX.restore();
                 }
             }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-            this.radius = 20 * this.information[0];
+            this.radius = 10 * this.information[0];
 
             //INTERACTION
             if (this.activate == true)
@@ -4767,7 +4774,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.interactionRange = 135;
 
             //DRAWSELF
-            if (X > (this.X - 40) && X < (this.X - 40) + 230 && Y > (this.Y - 146) && Y < (this.Y - 146) + 296 || X > (this.X - 200) && X < (this.X - 200) + 182 && Y > (this.Y - 146) && Y < (this.Y - 146) + 231)
+            if (X > (this.X - 30) && X < (this.X - 30) + 230 && Y > (this.Y - 146) && Y < (this.Y - 146) + 296 || X > (this.X - 200) && X < (this.X - 200) + 182 && Y > (this.Y - 146) && Y < (this.Y - 146) + 231)
             {
                 this.zIndex = 1;
                 XXX.save();
@@ -7041,6 +7048,47 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     quests.atalinToll = true;
                 }
             }
+            else if (this.temporary == "atalinDuendeHouse")
+            {
+                this.interactionRange = 1;
+                var duendeLoad = 0;
+                var unitPos;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].type == "Duende" || ArtificialIntelligenceAccess[i].type == "Foux")
+                    {
+                        if (ArtificialIntelligenceAccess[i].type == "Duende")
+                        {
+                            duendeLoad += 1;
+                        }
+
+                        if (this.playerer <= 120 || ArtificialIntelligenceAccess[i].disturbed == true || this.angryDuendes == true)
+                        {
+                            console.log("arena3");
+                            this.angryDuendes = true;
+                            ArtificialIntelligenceAccess[i].muzzle = false;
+                            ArtificialIntelligenceAccess[i].disturbed = true;
+                            ArtificialIntelligenceAccess[i].ID = "arena3";
+                            ArtificialIntelligenceAccess[i].baseTeam = "arena3";
+                            ArtificialIntelligenceAccess[i].team = "arena3";
+                        }
+                        else
+                        {
+                            console.log("arena2");
+                            ArtificialIntelligenceAccess[i].ID = "arena2";
+                        }
+                        unitPos = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y-this.Y));
+
+                        if (unitPos > 200)
+                        {
+                            ArtificialIntelligenceAccess[i].health = ArtificialIntelligenceAccess[i].healthMAX;
+                            ArtificialIntelligenceAccess[i].X = this.X + (70 - (140 * Math.random()));
+                            ArtificialIntelligenceAccess[i].Y = this.Y + (70 - (140 * Math.random()));
+                        }
+                    }
+                }
+                quests.duendeInfestationDuendeLoad = duendeLoad;
+            }
 
             //INTERACTION
             if (this.activate == true)
@@ -7717,6 +7765,33 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 player.craftPosition = 0;
                 craftScroll = 0;
                 crafting = "tailoring";
+                lowBar = "crafting";
+                gameState = "paused";
+            }
+        }
+        else if (this.type == "brew")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 80;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(candlewic, 62, 170, 25, 22, -(1/2 * 25 * 3.25), -(1/2 * 22 * 3.25), 25 * 3.25, 22 * 3.25);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 33;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                player.craftPosition = 0;
+                craftScroll = 0;
+                crafting = "brewing";
                 lowBar = "crafting";
                 gameState = "paused";
             }
@@ -9698,6 +9773,68 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (hits == Inventory.length)
                 {
                     Inventory.push([new Item("pumpkin", false, false), Math.floor(1 + Math.random() * 3)]);
+                }
+            }
+        }
+        else if (this.type == "hopsPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.solid = false;
+            this.interactionRange = 80;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(freeverse, 290, 29, 33, 25, -(1/2 * 33 * 1.25), -(1/2 * 25 * 1.25), 33 * 1.25, 25 * 1.25);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(freeverse, 290, 0, 33, 25, -(1/2 * 33 * 1.25), -(1/2 * 25 * 1.25), 33 * 1.25, 25 * 1.25);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 17;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+
+                //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-9);
+                    }
+                }
+
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "hops")
+                    {
+                        Inventory[i][1] += Math.floor(1 + Math.random() * 4);
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("hops", false, false), Math.floor(1 + Math.random() * 4)]);
                 }
             }
         }

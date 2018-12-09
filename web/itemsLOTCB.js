@@ -11697,7 +11697,7 @@ function Item(type, x, y)
             this.size = 6;
             this.description = "A glass pint of harst ale.";
             this.intForDes = 1;
-            this.intDescription = "This ale is made from harst grain.";
+            this.intDescription = "This ale is made from harst grain and hops.";
 
             //Define Utility
             this.utility = "food";
@@ -11713,6 +11713,7 @@ function Item(type, x, y)
             this.generation = 0.35; //recoops lost energy.
             this.replenish = -2; //restores will.
             this.alcohol = 27; //intoxicates the mind.
+            this.wake = -0.25;
 
             //ability
             this.ability = "none";
@@ -11721,7 +11722,7 @@ function Item(type, x, y)
             this.yield = 200;
             this.intForCraft = 0;
             this.ingredients = [["Pint Glass", 200], ["Barrel of Harst Ale", 1]];
-            this.biproducts = [[[new Item("barrel", false), 1]]];
+            this.biproducts = [[new Item("barrel", false), 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
@@ -11733,7 +11734,7 @@ function Item(type, x, y)
             this.identity = "Santh Ale";
             this.weight = 1;
             this.size = 6;
-            this.description = "A glass pint of Santh ale.";
+            this.description = "A glass pint of santh ale.";
             this.intForDes = 1;
             this.intDescription = "This ale is made from Santh grain.";
 
@@ -11759,11 +11760,181 @@ function Item(type, x, y)
             this.yield = 200;
             this.intForCraft = 0;
             this.ingredients = [["Pint Glass", 200], ["Barrel of Santh Ale", 1]];
-            this.biproducts = [[[new Item("barrel", false), 1]]];
+            this.biproducts = [[new Item("barrel", false), 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 7 - Math.floor(player.getCharisma() / 50); // at max, buy for 6.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 10); // at max, sell for 6.
+        }
+        else if (this.type == "barrel")
+        {
+            //For All Items
+            this.identity = "Barrel";
+            this.weight = 15;
+            this.size = 18;
+            this.description = "A wooden barrel.";
+            this.intForDes = 0;
+            this.intDescription = "Its empty.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 15;
+            this.ingredients = [["Wood", 6], ["Adhesive", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 35; // at max, buy for 35.
+            this.sellValue = 35; // at max, sell for 35.
+        }
+        else if (this.type == "barrelOfWater")
+        {
+            //For All Items
+            this.identity = "Barrel of Water";
+            this.weight = 215;
+            this.size = 18;
+            this.description = "A wooden barrel full of water.";
+            this.intForDes = 29;
+            this.intDescription = "From the standpoint of water, this is one of the wettest...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 50; // at max, buy for 50.
+            this.sellValue = 50; // at max, sell for 50.
+        }
+        else if (this.type == "barrelOfHarstAle")
+        {
+            //For All Items
+            this.identity = "Barrel of Harst Ale";
+            this.weight = 215;
+            this.size = 18;
+            this.description = "A wooden barrel of harst ale.";
+            this.intForDes = 1;
+            this.intDescription = "This ale is made from harst grain and hops.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 30;
+            this.ingredients = [["Barrel of Water", 1], ["Harst Grain", 160], ["Hops", 25]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 341; // at max, buy for 341.
+            this.sellValue = 341; // at max, sell for 341.
+        }
+        else if (this.type == "barrelOfSanthAle")
+        {
+            //For All Items
+            this.identity = "Barrel of Santh Ale";
+            this.weight = 215;
+            this.size = 18;
+            this.description = "A wooden barrel of santh ale.";
+            this.intForDes = 1;
+            this.intDescription = "This ale is made from Santh grain.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 30;
+            this.ingredients = [["Barrel of Water", 1], ["Santh Grain", 150]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1300; // at max, buy for 1300.
+            this.sellValue = 1300; // at max, sell for 1300.
+        }
+        else if (this.type == "barrelOfMead")
+        {
+            //For All Items
+            this.identity = "Barrel of Mead";
+            this.weight = 215;
+            this.size = 18;
+            this.description = "A wooden barrel of mead.";
+            this.intForDes = 1;
+            this.intDescription = "Mead is made from honey.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 34;
+            this.ingredients = [["Barrel of Water", 1], ["Honey", 50]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1100; // at max, buy for 1050.
+            this.sellValue = 1100; // at max, sell for 1050.
+        }
+        else if (this.type == "caskOfPluttWine")
+        {
+            //For All Items
+            this.identity = "Cask of Plutt Wine";
+            this.weight = 215;
+            this.size = 18;
+            this.description = "A wooden barrel of plutt wine.";
+            this.intForDes = 1;
+            this.intDescription = "Plutt wine is made from plutt berries.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 41;
+            this.ingredients = [["Barrel", 1], ["Plutt Berries", 500]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2000; // at max, buy for 2000.
+            this.sellValue = 2000; // at max, sell for 2000.
+        }
+        else if (this.type == "caskOfErguerWine")
+        {
+            //For All Items
+            this.identity = "Cask of Erguer Wine";
+            this.weight = 215;
+            this.size = 18;
+            this.description = "A wooden barrel of erguer wine.";
+            this.intForDes = 40;
+            this.intDescription = "Erguer wine is fermented such that it consistently requires more erguer paste in order for the yeast to continue breaking it down.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 50;
+            this.ingredients = [["Barrel", 1], ["Bucket of Erguer Paste", 151]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 17000; // at max, buy for 17000.
+            this.sellValue = 17000; // at max, sell for 17000.
         }
         else if (this.type == "mead")
         {
@@ -11797,7 +11968,7 @@ function Item(type, x, y)
             this.yield = 200;
             this.intForCraft = 0;
             this.ingredients = [["Pint Glass", 200], ["Barrel of Mead", 1]];
-            this.biproducts = [[[new Item("barrel", false), 1]]];
+            this.biproducts = [[new Item("barrel", false), 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
@@ -11908,10 +12079,10 @@ function Item(type, x, y)
             this.ability = "none";
 
             //Crafting
-            this.yield = 40;
+            this.yield = 50;
             this.intForCraft = 0;
-            this.ingredients = [["Glass Bottle", 40], ["Cask of Erguer Wine", 1]];
-            this.biproducts = [[[new Item("barrel", false), 1]]];
+            this.ingredients = [["Glass Bottle", 50], ["Cask of Erguer Wine", 1]];
+            this.biproducts = [[new Item("barrel", false), 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 390 - Math.floor(player.getCharisma() / 5); // at max, buy for 380.
@@ -11946,10 +12117,10 @@ function Item(type, x, y)
             this.ability = "none";
 
             //Crafting
-            this.yield = 40;
+            this.yield = 50;
             this.intForCraft = 0;
-            this.ingredients = [["Glass Bottle", 40], ["Cask of Plutt Wine", 1]];
-            this.biproducts = [[[new Item("barrel", false), 1]]];
+            this.ingredients = [["Glass Bottle", 50], ["Cask of Plutt Wine", 1]];
+            this.biproducts = [[new Item("barrel", false), 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 82 - Math.floor(player.getCharisma() / 5); // at max, buy for 72.
@@ -13208,9 +13379,37 @@ function Item(type, x, y)
             //ability
             this.ability = "none";
 
-            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
-            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.faction != "Freynor" && shopkeeper.ultra.faction != "Kel" && shopkeeper.ultra.faction != "Nirwaden" && shopkeeper.ultra.faction != "EstolGang")
+                {
+                    this.buyValue = 8 - Math.floor(player.getCharisma() / 50); // at max, buy for 7.
+                    this.sellValue = 4 + Math.floor(player.getCharisma() / 15); // at max, sell for 7.
+                }
+                else if (shopkeeper.ID == "Furs Vendor")
+                {
+                    this.buyValue = 5 - Math.floor(player.getCharisma() / 25); // at max, buy for 3.
+                    this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+                }
+                else if (shopkeeper.ultra.faction == "Nirwaden" || shopkeeper.ultra.faction == "EstolGang")
+                {
+                    this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+                    this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
+                }
+                else
+                {
+                    this.intDescription = "Ardil pelts are a cheap commodity used to make basic fur clothing.";
+                    this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+                    this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+                }
+            }
+            else
+            {
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.intDescription = "Ardil pelts are a cheap commodity used to make basic fur clothing.";
+                this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+                this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            }
         }
         else if (this.type == "lizardTail")
         {
@@ -13567,6 +13766,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 19 - Math.floor(player.getCharisma() / 25); // at max, buy for 17.
             this.sellValue = 13 + Math.floor(player.getCharisma() / 12); // at max, sell for 17.
+        }
+        else if (this.type == "hops")
+        {
+            //For All Items
+            this.identity = "Hops";
+            this.weight = 0.07;
+            this.size = 10;
+            this.description = "A handful of hops.";
+            this.intForDes = 0;
+            this.intDescription = "Hops make you sleepy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
         }
         else if (this.type == "hoffalgreTendrils")
         {
@@ -28781,6 +29000,26 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "estolProof")
+        {
+            //For All Items
+            this.identity = "Estol Gang Orders";
+            this.weight = 0.001;
+            this.size = 12;
+            this.description = "A note with instructions from the estol gang";
+            this.intForDes = 1001;
+            this.intDescription = "";
+
+            //Define Utility
+            this.utility = "note";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "falseInventionPlans")
         {
             //For All Items
@@ -28956,10 +29195,20 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans")
+        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof")
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "barrel" || this.type == "barrelOfWater" || this.type == "barrelOfHarstAle" || this.type == "barrelOfSanthAle" || this.type == "barrelOfMead" || this.type == "caskOfPluttWine" || this.type == "caskOfErguerWine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(candlewic, 60, 167, 27, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "hops")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 262, 26, 15, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1.25), 15 * 1.25, 15 * 1.25);
         }
         else if (this.type == "rawBoarChunks")
         {
@@ -32739,10 +32988,20 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans")
+        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof")
         {
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "barrel" || this.type == "barrelOfWater" || this.type == "barrelOfHarstAle" || this.type == "barrelOfSanthAle" || this.type == "barrelOfMead" || this.type == "caskOfPluttWine" || this.type == "caskOfErguerWine")
+        {
+            LXX.beginPath();
+            LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "hops")
+        {
+            LXX.beginPath();
+            LXX.drawImage(freeverse, 262, 26, 15, 15, this.invX - (1/2 * 15 * 1.25), this.invY - (1/2 * 15 * 1.25), 15 * 1.25, 15 * 1.25);
         }
         else if (this.type == "rawBoarChunks")
         {
@@ -36492,10 +36751,20 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans")
+        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof")
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
+        }
+        else if (this.type == "barrel" || this.type == "barrelOfWater" || this.type == "barrelOfHarstAle" || this.type == "barrelOfSanthAle" || this.type == "barrelOfMead" || this.type == "caskOfPluttWine" || this.type == "caskOfErguerWine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "hops")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 262, 26, 15, 15, this.invX - (1/2 * 15 * 1.25), this.invY - (1/2 * 15 * 1.25), 15 * 1.25, 15 * 1.25);
         }
         else if (this.type == "rawBoarChunks")
         {

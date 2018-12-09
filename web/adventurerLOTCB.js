@@ -28400,7 +28400,7 @@ function Adventurer()
                     else if (Inventory[i][0].utility == "food")
                     {
                         //Eating/Drinking
-                        if (this.form != "vampire")
+                        if (this.vamprism != true)
                         {
                             if (this.gamemode == "protagonist")
                             {

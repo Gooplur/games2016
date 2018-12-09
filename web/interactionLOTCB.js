@@ -979,6 +979,194 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Sellsword" && self.team != "player" || conversationID[0] == "Sellsword" && self.team != "player")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Sellsword";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (typeof(self.ultra.hirePrice) != "undefined")
+                                {
+                                    if (self.ultra.hirePrice > 1)
+                                    {
+                                        player.dialogueOptions = [["[Hire for " + self.ultra.hirePrice + " Coins]", false, "a"]];
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            var coinHitz = -1;
+                            var servicesPaid = false;
+
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= self.ultra.hirePrice)
+                                {
+                                    coinHitz = i;
+                                }
+                            }
+
+                            if (coinHitz > -1)
+                            {
+                                if (Inventory[coinHitz][1] == self.ultra.hirePrice)
+                                {
+                                    Inventory.splice(coinHitz, 1);
+                                }
+                                else
+                                {
+                                    Inventory[coinHitz][1] -= self.ultra.hirePrice;
+                                }
+
+                                servicesPaid = true;
+                            }
+
+                            if (servicesPaid)
+                            {
+                                self.baseTeam = "player";
+                            }
+
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
+                    if (self.ID == "Naaprid Vendor" || conversationID[0] == "NaapridVendor")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "NaapridVendor";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 440)
+                                    {
+                                        player.dialogueOptions.push(["[Purchase a Milking Naaprid] 440 coins", false, "a"]);
+                                        break;
+                                    }
+                                }
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 375)
+                                    {
+                                        player.dialogueOptions.push(["[Purchase a Work Naaprid] 375 coins", false, "b"]);
+                                        break;
+                                    }
+                                }
+
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0a";
+                                        }
+                                        if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            var hunz = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 440)
+                                {
+                                    hunz = i;
+                                    break;
+                                }
+                            }
+
+                            if (hunz > -1)
+                            {
+                                //pay
+                                Inventory[hunz][1] -= 440;
+                                if (Inventory[hunz][1] < 1)
+                                {
+                                    Inventory.splice(hunz, 1);
+                                }
+                                //receive
+                                ArtificialIntelligenceAccess.push(new Unit(-44097, -2152, "Naaprid", false, "player"));
+                            }
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            var hunz = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 375)
+                                {
+                                    hunz = i;
+                                    break;
+                                }
+                            }
+
+                            if (hunz > -1)
+                            {
+                                //pay
+                                Inventory[hunz][1] -= 375;
+                                if (Inventory[hunz][1] < 1)
+                                {
+                                    Inventory.splice(hunz, 1);
+                                }
+                                //receive
+                                ArtificialIntelligenceAccess.push(new Unit(-44097, -2152, "Naaprid", true, "player"));
+                            }
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
                     if (self.ID == "Tor Captain" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" || self.ID == "Tor Captain" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty" || self.ID == "Tor Soldier" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty" || self.ID == "Tor Soldier" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" || self.ID == "Tor Huskarl" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty"  || self.ID == "Tor Huskarl" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" || conversationID[0] == "Tor" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" || conversationID[0] == "Tor" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty")
                     {
                         lowBar = "dialogue";
@@ -1026,6 +1214,49 @@ function interaction(me)
                     {
                         lowBar = "dialogue";
                         conversationID[0] = "Beulingerr";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["[Take Command]", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            self.baseTeam = "player";
+
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
+                    if (self.ID == "Altezor Captain" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Nobility" || self.ID == "Altezor Captain" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Royalty" || self.ID == "Altezor Soldier" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Royalty" || self.ID == "Altezor Soldier" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Nobility" || conversationID[0] == "Altezor" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Nobility" || conversationID[0] == "Altezor" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Royalty")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Altezor";
 
                         if (clickReleased)
                         {

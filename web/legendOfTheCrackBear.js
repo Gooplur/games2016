@@ -3245,7 +3245,7 @@ function theLegend()
     secondarySpells = [];
     tertiarySpells = [];
 //Well List
-    wellConversionList = [["pintGlass", "waterPintGlass"], ["walrusLeatherWaterskin", "walrusLeatherWaterskinFull"], ["bucket", "bucketOfWater"], ["potionGlass", "vialOfWater"], ["kellishClayPot", "kellishClayPotOfWater"], ["glassBottle", "glassBottleOfWater"], ["naapridDrinkinghorn", "naapridDrinkinghornFull"], ["grailOfEternity", "theGrailOfEternity"]];
+    wellConversionList = [["pintGlass", "waterPintGlass"], ["barrel", "barrelOfWater"], ["walrusLeatherWaterskin", "walrusLeatherWaterskinFull"], ["bucket", "bucketOfWater"], ["potionGlass", "vialOfWater"], ["kellishClayPot", "kellishClayPotOfWater"], ["glassBottle", "glassBottleOfWater"], ["naapridDrinkinghorn", "naapridDrinkinghornFull"], ["grailOfEternity", "theGrailOfEternity"]];
 //Milking/Juicing/Sapping Lists
     naapridConversionList = [["bucket", "bucketOfNaapridMilk"], ["kellishClayPot", "kellishClayPotOfNaapridMilk"], ["naapridDrinkinghorn", "naapridMilkhornFull"], ["grailOfEternity", "theGrailOfEternity"]];
     waantiConversionList = [["bucket", "bucketOfWaantiMilk"], ["kellishClayPot", "kellishClayPotOfWaantiMilk"], ["grailOfEternity", "theGrailOfEternity"]];
@@ -3304,7 +3304,10 @@ function theLegend()
         agustin: ["Agustin", 0],
         matilda: ["Matilda", 0],
         ernesto: ["Ernesto", 0],
-        hugo: ["Hugo", 0]
+        hugo: ["Hugo", 0],
+        sellsword: ["Sellsword", 0],
+        altezor: ["Altezor", 0],
+        naapridVendor: ["NaapridVendor", 0]
     };
 
 //time Tracker Variables
@@ -3463,7 +3466,8 @@ function theLegend()
         cedricoLDS: true,
         hermanLDS: true,
         ernestoLDS: true,
-        hugoLDS: true
+        hugoLDS: true,
+        loLDS: true
     };
 //QUESTS
     quests =
@@ -3500,6 +3504,7 @@ function theLegend()
         teshirHomeOwned: false,
         lethikHomeOwned: false,
         venningHomeOwned: false,
+        atalinHomeOwned: false,
 
         //ITEM STASH VARIABLES (non quest)
         lonerGuyStash: true,
@@ -3520,6 +3525,12 @@ function theLegend()
         cherylChildAccompany: false,
         rannukChild: false,
         rannukChildName: "Espen",
+
+        //QUEST: Duende Infestation ---- given by
+        duendeInfestationQuest: false,
+        duendeInfestationCompletionStyle: false,
+        duendeInfestationKillCount: 0,
+        duendeInfestationDuendeLoad: 0,
 
         //QUEST: Inventor's Feud ---- given by Hugo the Inventor or Ernesto the Engineer
         inventorsFeudQuest: false,
@@ -3893,6 +3904,7 @@ function theLegend()
     smithing.push(new Item("freezingArrow", false));
     smithing.push(new Item("fireArrow", false));
     smithing.push(new Item("windArrow", false));
+    smithing.push(new Item("barrel", false));
     smithing.push(new Item("blueBlade", false));
     smithing.push(new Item("nirineseSabre", false));
     smithing.push(new Item("freydicSpear", false));
@@ -4218,8 +4230,15 @@ function theLegend()
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];
     brewing.push(new Item("harstAle", false));
+    brewing.push(new Item("santhAle", false));
+    brewing.push(new Item("mead", false));
     brewing.push(new Item("glassBottleOfPluttWine", false));
     brewing.push(new Item("glassBottleOfErguerWine", false));
+    brewing.push(new Item("barrelOfHarstAle", false));
+    brewing.push(new Item("barrelOfSanthAle", false));
+    brewing.push(new Item("barrelOfMead", false));
+    brewing.push(new Item("caskOfPluttWine", false));
+    brewing.push(new Item("caskOfErguerWine", false));
 
 //Forge
     forge = [];
@@ -4269,10 +4288,16 @@ function theLegend()
     handcrafted.push(new Item("bucketOfPluttJuice", false));
     handcrafted.push(new Item("pluttJuicePintGlass", false));
     handcrafted.push(new Item("pluttCiderPintGlass", false));
-    handcrafted.push(new Item("pluttWine", false));
-    handcrafted.push(new Item("roastedWegRootChunks", false));
     handcrafted.push(new Item("driedPluttBerries", false));
     handcrafted.push(new Item("driedPluttBerriesWithHoney", false));
+    handcrafted.push(new Item("pluttWine", false));
+    handcrafted.push(new Item("erguerWine", false));
+    handcrafted.push(new Item("glassBottleOfPluttWine", false));
+    handcrafted.push(new Item("glassBottleOfErguerWine", false));
+    handcrafted.push(new Item("harstAle", false));
+    handcrafted.push(new Item("santhAle", false));
+    handcrafted.push(new Item("mead", false));
+    handcrafted.push(new Item("roastedWegRootChunks", false));
     handcrafted.push(new Item("driedTechiLeaf", false));
     handcrafted.push(new Item("techiTea", false));
     handcrafted.push(new Item("dualVardanianBattleAxe", false));

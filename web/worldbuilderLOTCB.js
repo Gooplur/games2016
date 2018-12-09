@@ -1053,6 +1053,20 @@ function worldBuilder()
         //starting chamber
         outlineBuilder( 1, 1, "dockV", 0, 0);
     }
+    else if (map == "estolTunnel")
+    {
+        player.dmx = map;
+        player.underground = true;
+        elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "estolTunnel";
+        //starting chamber
+        outlineBuilder( 9, 1, "dockV", 0, 0);
+        outlineBuilder( 1, 13, "dockV", -12, 9);
+        outlineBuilder( 4, 1, "dockV", -12, 5);
+        outlineBuilder( 3, 1, "dockV", -7, 10);
+        outlineBuilder( 3, 1, "dockV", -7, 13);
+        outlineBuilder( 4, 3, "dockV", -8, 14);
+    }
     else if (map == "atalinCityPrison")
     {
         player.dmx = map;

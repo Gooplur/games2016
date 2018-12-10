@@ -776,8 +776,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.allys[j] == ArtificialIntelligenceAccess[i].team || ArtificialIntelligenceAccess[i].dmx != this.dmx || ArtificialIntelligenceAccess[i].petrified && this.type != "Basilisk" || ArtificialIntelligenceAccess[i].petrified && ArtificialIntelligenceAccess[i].health <= 0 && this.type == "Basilisk" || ArtificialIntelligenceAccess[i].insect == true && this.insect == false && this.bugger == false)
                     {
-                        swtchTrgt = true;
-                        break;
+                        if (ArtificialIntelligenceAccess[i].disdained == true && ArtificialIntelligenceAccess[i].disturbed == false || ArtificialIntelligenceAccess[i].disdained == false || player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty" && player.raceName == "Nirwaden" || player.title != "Nobility" && player.title != "Royalty" && player.raceName != "Nirwaden" || this.disdained)
+                        {
+                            swtchTrgt = true;
+                            break;
+                        }
                     }
                 }
 
@@ -6864,7 +6867,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //this determines a unit's range of sight in a number of different situations.
     this.rangeOfSightCalculator = function(baseSight, hostile) //base sight is the base amount of rangeOfSight that the unit has, hostile implys that this particular type of unit will persue its prey for much longer than others would.
     {
-        this.baseSight = baseSight;
+        if (timeOfDay == "Night" && this.nightVision != true)
+        {
+            this.baseSight = baseSight * 0.65;
+        }
+        else
+        {
+            this.baseSight = baseSight;
+        }
         // if the extra range is expired then set it to 0.
         if (new Date().getTime() - this.extraRangeTime > 4000)
         {
@@ -6896,55 +6906,55 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (hostile == false)
                 {
-                    this.rangeOfSight = baseSight * 1.1 + this.extraRange;
+                    this.rangeOfSight = this.baseSight * 1.1 + this.extraRange;
                 }
                 else
                 {
-                    this.rangeOfSight = baseSight * 1.35 + this.extraRange;
+                    this.rangeOfSight = this.baseSight * 1.35 + this.extraRange;
                 }
             }
             else if (canStealth && altKey == true && this.resistances.indexOf("stealth") == -1 || canStealth && player.subtlety && this.resistances.indexOf("stealth") == -1) // If sneaking and the player has not yet been noticed by the enemy...
             {
                 if (player.subtlety)
                 {
-                    this.rangeOfSight = baseSight * (13 / (14 + (70 * 2))) + this.extraRange;
+                    this.rangeOfSight = this.baseSight * (13 / (14 + (70 * 2))) + this.extraRange;
                 }
                 else
                 {
-                    this.rangeOfSight = baseSight * (13 / (14 + (player.getDexterity() * 2))) + this.extraRange; // the enemy's sight is severely lowered.
+                    this.rangeOfSight = this.baseSight * (13 / (14 + (player.getDexterity() * 2))) + this.extraRange; // the enemy's sight is severely lowered.
                 }
             }
             else if (this.playerSeen == false) //otherwise if the enemy had already noticed the player...
             {
-                this.rangeOfSight = baseSight + this.extraRange; //the enemy will retain its rangeOfSight.
+                this.rangeOfSight = this.baseSight + this.extraRange; //the enemy will retain its rangeOfSight.
             }
             else if (this.playerSeen == true && hostile == "none" || this.disturbed == true && hostile == "none")
             {
-                this.rangeOfSight = baseSight + this.extraRange;
+                this.rangeOfSight = this.baseSight + this.extraRange;
             }
             else if (this.playerSeen == true && hostile == false || this.disturbed == true && hostile == false)
             {
-                this.rangeOfSight = baseSight * 1.2 + this.extraRange;
+                this.rangeOfSight = this.baseSight * 1.2 + this.extraRange;
             }
             else if (this.playerSeen == true && hostile == "mildly" || this.disturbed == true && hostile == "mildly")
             {
-                this.rangeOfSight = baseSight * 1.45 + this.extraRange;
+                this.rangeOfSight = this.baseSight * 1.45 + this.extraRange;
             }
             else if (this.playerSeen == true && hostile == true || this.disturbed == true && hostile == true)
             {
-                this.rangeOfSight = baseSight * 1.7 + this.extraRange;
+                this.rangeOfSight = this.baseSight * 1.7 + this.extraRange;
             }
             else if (this.playerSeen == true && hostile == "very" || this.disturbed == true && hostile == "very")
             {
-                this.rangeOfSight = baseSight * 2 + this.extraRange;
+                this.rangeOfSight = this.baseSight * 2 + this.extraRange;
             }
             else if (this.playerSeen == true && hostile == "extremely" || this.disturbed == true && hostile == "extremely")
             {
-                this.rangeOfSight = baseSight * 2.5 + this.extraRange;
+                this.rangeOfSight = this.baseSight * 2.5 + this.extraRange;
             }
             else if (this.playerSeen == true && hostile == "unrelenting" || this.disturbed == true && hostile == "unrelenting")
             {
-                this.rangeOfSight = baseSight * 3 + this.extraRange;
+                this.rangeOfSight = this.baseSight * 3 + this.extraRange;
             }
 
             if (this.disturbed == true)
@@ -6953,15 +6963,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (!this.shortSighted)
                     {
-                        this.rangeOfSight = baseSight * 4 + this.extraRange;
+                        this.rangeOfSight = this.baseSight * 4 + this.extraRange;
                     }
                 }
             }
 
-            if (timeOfDay == "Night" && this.nightVision != true)
-            {
-                this.rangeOfSight = this.rangeOfSight * 0.65;
-            }
             //If superstealth is active and the player is not yet seen then the the unit fails to notice the player.
             if (this.playerSeen == false && player.superStealth && this.resistances.indexOf("stealth") == -1)
             {
@@ -6981,61 +6987,56 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (hostile == false)
                 {
-                    this.rangeOfSight = baseSight * 1.1 + this.extraRange;
+                    this.rangeOfSight = this.baseSight * 1.1 + this.extraRange;
                 }
                 else
                 {
-                    this.rangeOfSight = baseSight * 1.35 + this.extraRange;
+                    this.rangeOfSight = this.baseSight * 1.35 + this.extraRange;
                 }
             }
             else if (!this.flying && this.target.flying && !this.disturbed || this.target.speed <= 1 && !this.disturbed) // slow and flying enemies are harder to track for non-flying units.
             {
-                this.rangeOfSight = baseSight * 0.85 + this.extraRange; // the enemy's sight is a bit lowered.
+                this.rangeOfSight = this.baseSight * 0.85 + this.extraRange; // the enemy's sight is a bit lowered.
             }
             else if (hostile == "none" || this.disturbed == true && hostile == "none")
             {
-                this.rangeOfSight = baseSight + this.extraRange;
+                this.rangeOfSight = this.baseSight + this.extraRange;
             }
             else if (hostile == false || this.disturbed == true && hostile == false)
             {
-                this.rangeOfSight = baseSight * 1.2 + this.extraRange;
+                this.rangeOfSight = this.baseSight * 1.2 + this.extraRange;
             }
             else if (hostile == "mildly" || this.disturbed == true && hostile == "mildly")
             {
-                this.rangeOfSight = baseSight * 1.45 + this.extraRange;
+                this.rangeOfSight = this.baseSight * 1.45 + this.extraRange;
             }
             else if (hostile == true || this.disturbed == true && hostile == true)
             {
-                this.rangeOfSight = baseSight * 1.7 + this.extraRange;
+                this.rangeOfSight = this.baseSight * 1.7 + this.extraRange;
             }
             else if (hostile == "very" || this.disturbed == true && hostile == "very")
             {
-                this.rangeOfSight = baseSight * 2 + this.extraRange;
+                this.rangeOfSight = this.baseSight * 2 + this.extraRange;
             }
             else if (hostile == "extremely" || this.disturbed == true && hostile == "extremely")
             {
-                this.rangeOfSight = baseSight * 2.5 + this.extraRange;
+                this.rangeOfSight = this.baseSight * 2.5 + this.extraRange;
             }
             else if (hostile == "unrelenting" || this.disturbed == true && hostile == "unrelenting")
             {
-                this.rangeOfSight = baseSight * 3 + this.extraRange;
+                this.rangeOfSight = this.baseSight * 3 + this.extraRange;
             }
             else
             {
-                this.rangeOfSight = baseSight + this.extraRange; //the enemy will retain its rangeOfSight.
+                this.rangeOfSight = this.baseSight + this.extraRange; //the enemy will retain its rangeOfSight.
             }
 
             if (this.disturbed == true)
             {
                 if (!this.shortSighted)
                 {
-                    this.rangeOfSight = baseSight * 4 + this.extraRange;
+                    this.rangeOfSight = this.baseSight * 4 + this.extraRange;
                 }
-            }
-
-            if (timeOfDay == "Night" && this.nightVision != true)
-            {
-                this.rangeOfSight = this.rangeOfSight * 0.65;
             }
 
             if (this.target.superStealth && this.resistances.indexOf("stealth") == -1)
@@ -7045,7 +7046,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else
         {
-            this.rangeOfSight = baseSight + this.extraRange;
+            this.rangeOfSight = this.baseSight + this.extraRange;
         }
     };
 
@@ -8534,7 +8535,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //this unit's rangeOfSight is shown as a transparent red bubble.
     this.visibleSight = function()
     {
-        if (showSight == true)
+        if (showSight == true || showSightCheat == true)
         {
             XXX.beginPath();
             XXX.fillStyle = "rgba( 255, 0, 0, 0.075)";
@@ -34006,11 +34007,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.doOnDeathOnce = false;
                 if (this.team == "Freynor")
                 {
-                    player.freynorFaction -= 50;
+                    if (!this.killNotByPlayer || this.killByPlayerTeam)
+                    {
+                        player.freynorFaction -= 50;
+                    }
                 }
                 else if (this.team == "Nirwaden")
                 {
-                    player.nirwadenFaction -= 50;
+                    if (!this.killNotByPlayer || this.killByPlayerTeam)
+                    {
+                        player.nirwadenFaction -= 50;
+                    }
                 }
             }
 
@@ -34726,7 +34733,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.doOnDeathOnce = false;
                 if (this.team == "Nirwaden")
                 {
-                    player.nirwadenFaction -= 65;
+                    if (!this.killNotByPlayer || this.killByPlayerTeam)
+                    {
+                        player.nirwadenFaction -= 65;
+                    }
                 }
             }
 
@@ -38865,6 +38875,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 115]];
             }
+            else if (this.ID == "Ergoku")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 200]];
+            }
+            else if (this.ID == "Ilihim")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 110]];
+            }
             else if (this.ID == "Aarni the Stablemaster")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 96]];
@@ -39031,7 +39049,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             {
                                 if (this.baseTeam != "player")
                                 {
-                                    this.callForNearbyHelpFromType(1850, "Soldier");
+                                    if (this.disdained != true)
+                                    {
+                                        this.callForNearbyHelpFromType(1850, "Soldier");
+                                    }
                                 }
                             }
                         }
@@ -39076,7 +39097,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 {
                                     if (this.baseTeam != "player")
                                     {
-                                        this.callForNearbyHelpFromType(1850, "Soldier");
+                                        if (this.disdained != true)
+                                        {
+                                            this.callForNearbyHelpFromType(1850, "Soldier");
+                                        }
                                     }
                                 }
                             }
@@ -39110,7 +39134,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 {
                                     if (this.baseTeam != "player")
                                     {
-                                        this.callForNearbyHelpFromType(1850, "Soldier");
+                                        if (this.disdained != true)
+                                        {
+                                            this.callForNearbyHelpFromType(1850, "Soldier");
+                                        }
                                     }
                                 }
                             }
@@ -39144,7 +39171,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             {
                                 if (this.baseTeam != "player")
                                 {
-                                    this.callForNearbyHelpFromType(1850, "Soldier");
+                                    if (this.disdained != true)
+                                    {
+                                        this.callForNearbyHelpFromType(1850, "Soldier");
+                                    }
                                 }
                             }
                         }
@@ -39555,6 +39585,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 14;
+                        }
+                    }
+                    else if (this.ID == "Ergoku") //purchased Hidalgo title (highfolk)
+                    {
+                        uniqueChars.ergokuLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 92;
+                        }
+                    }
+                    else if (this.ID == "Ilihim") //Nephew of Ergoku
+                    {
+                        uniqueChars.ilihimLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 76;
                         }
                     }
                     else if (this.ID == "Aarni the Stablemaster")
@@ -40937,7 +40983,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
-                            player.estolgangFaction -= 50;
+                            player.sylkeemFaction -= 50;
                         }
                     }
 

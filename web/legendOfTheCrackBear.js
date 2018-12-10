@@ -2451,6 +2451,7 @@ var wiggleJoe = 0;
 var wiggleRand = 0;
 var timeSpeed = 1;
 var refillMag = true;
+var showSightCheat = false;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -3307,7 +3308,10 @@ function theLegend()
         hugo: ["Hugo", 0],
         sellsword: ["Sellsword", 0],
         altezor: ["Altezor", 0],
-        naapridVendor: ["NaapridVendor", 0]
+        naapridVendor: ["NaapridVendor", 0],
+        ergoku: ["Ergoku", 0],
+        ilihim: ["Ilihim", 0],
+        arcusCoRep: ["ArcusCoRep", 0]
     };
 
 //time Tracker Variables
@@ -3467,7 +3471,9 @@ function theLegend()
         hermanLDS: true,
         ernestoLDS: true,
         hugoLDS: true,
-        loLDS: true
+        loLDS: true,
+        ergokuLDS: true,
+        ilihimLDS: true
     };
 //QUESTS
     quests =
@@ -3512,6 +3518,7 @@ function theLegend()
         spiderwebLoot: true,
         ultherMapItems: true,
         venningMapItems: true,
+        atalinE4Items: true,
 
         //EVENTS (non quest)
         ultherFlower: true,

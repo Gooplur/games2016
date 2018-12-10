@@ -140,6 +140,17 @@ function cheats()
         {
             testingUnitSizes = true;
         }
+        else if (cheatcode == "seeSight" || cheatcode == "seesight" || cheatcode == "showSight" || cheatcode == "showsight")
+        {
+            if (showSightCheat == false)
+            {
+                showSightCheat = true;
+            }
+            else
+            {
+                showSightCheat = false;
+            }
+        }
         else if (cheatcode == "showcenter")
         {
             testingUnitCenters = true;

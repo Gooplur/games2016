@@ -17687,7 +17687,13 @@ function Item(type, x, y)
                     this.sellValue = 0;
                     if (player.title != "Nobility" && player.title != "Royalty")
                     {
-                        shopkeeper.disturbed = true;
+                        for (var ii = 0; ii < Inventory.length; ii++)
+                        {
+                            if (Inventory[ii][0].type == "kolum")
+                            {
+                                shopkeeper.disturbed = true;
+                            }
+                        }
                     }
                 }
                 else

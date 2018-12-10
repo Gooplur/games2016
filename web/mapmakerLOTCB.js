@@ -12579,15 +12579,15 @@ function buildMaster()
                 //Duendes
                 if (quests.duendeInfestationKillCount < 9 && quests.duendeInfestationDuendeLoad == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44751, -2175, "Duende", true, "Uglibug"));
-                    ArtificialIntelligenceAccess.push(new Unit(-44659, -2187, "Duende", true, "Bugelig"));
-                    ArtificialIntelligenceAccess.push(new Unit(-44706, -2228, "Duende", true, "Fuglibug"));
-                    ArtificialIntelligenceAccess.push(new Unit(-44644, -2262, "Duende", true, "Bugli"));
-                    ArtificialIntelligenceAccess.push(new Unit(-44965, -2336, "Duende", true, "Fugli"));
-                    ArtificialIntelligenceAccess.push(new Unit(-44918, -2255, "Duende", true, "Buglifug"));
-                    ArtificialIntelligenceAccess.push(new Unit(-44724, -2328, "Duende", true, "Bugilibug"));
-                    ArtificialIntelligenceAccess.push(new Unit(-44760, -2286, "Duende", true, "Bugili"));
-                    ArtificialIntelligenceAccess.push(new Unit(-44858, -2195, "Duende", true, "Fugili"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44751, -2175, "Duende", true, "arena2"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44659, -2187, "Duende", true, "arena2"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44706, -2228, "Duende", true, "arena2"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44644, -2262, "Duende", true, "arena2"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44965, -2336, "Duende", true, "arena2"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44918, -2255, "Duende", true, "arena2"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44724, -2328, "Duende", true, "arena2"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44760, -2286, "Duende", true, "arena2"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44858, -2195, "Duende", true, "arena2"));
                 }
 
                 if (uniqueChars.sebastianLDS == true)
@@ -12749,6 +12749,22 @@ function buildMaster()
                     }
                 }
 
+                if (uniqueChars.ergokuLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Ergoku")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-40868, 1120, "Person", false, "Ergoku", {race: "Orgell", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.5], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-40869, 1091]]}));
+                    }
+                }
+
                 if (uniqueChars.hermanLDS == true)
                 {
                     var hits = 0;
@@ -12778,6 +12794,22 @@ function buildMaster()
                     if (hits == 0)
                     {
                         ArtificialIntelligenceAccess.push(new Unit(-41296, 2415, "Person", false, "Agustin the Doctor", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["doctorOutfit", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-41296, 2444]], merchant: true, merchandise: [[new Item("coins", false, false), 100], [new Item("culprisBandage", false, false), 18], [new Item("healingSalve", false, false), 3], [new Item("wyrExtract", false, false), 2]]}));
+                    }
+                }
+
+                if (uniqueChars.ilihimLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Ilihim")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-40866, 906, "Person", false, "Ihilim", {race: "Orgell", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.3, 0.2], 0, 80, 1.25], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-40874, 940]]}));
                     }
                 }
 
@@ -13952,8 +13984,130 @@ function buildMaster()
                 scenicList.push(new Scenery("crate", -44341, -2775, 1.6, 1, [1.29]));
                 scenicList.push(new Scenery("nirwadenMueble", -44197, -2788, 0.5 * Math.PI, 1)); //bench
                 scenicList.push(new Scenery("furRug", -44247, -2907, -3, 1.78, 2));
+                //
+                scenicList.push(new Scenery("furRug", -44608, -2498, -1/2 * Math.PI, 3.1, 1));
+                scenicList.push(new Scenery("fineBed", -44659, -2400, -1/2 * Math.PI, false, 1)); //white
+                scenicList.push(new Scenery("drawerA", -44544, -2383, 1/2 * Math.PI, 1, [1.6])); //light
+                scenicList.push(new Scenery("nirwadenMueble", -44649, -2610, 0 * Math.PI, 0)); //long bench
+                //squatter warehouse
+                if (quests.atalinE4Items == true)
+                {
+                    quests.atalinE4Items = false;
+                    worldItems.push([new Item("kolumPowder", -40976, 2283), 1]);
+                }
+                scenicList.push(new Scenery("skeleton", -41005, 2299, 9, 1.67));
+                scenicList.push(new Scenery("crate", -41012, 2470, 2, 1, [1.14]));
+                scenicList.push(new Scenery("crate", -41019, 2343, 2.23, 1, [1.3]));
+                scenicList.push(new Scenery("crate", -41091, 2398, 5, 2, [1.01]));
 
 
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Homeless Squatter")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinHomeless1")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-40958, 2478, "Person", false, "Homeless Squatter", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.5, 0.4], 0, 0, 0.75], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-40942, 2251]], altID: "atalinHomeless1"}));
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Homeless Squatter")
+                        {
+                            if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                            {
+                                if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinHomeless1")
+                                {
+                                    ArtificialIntelligenceAccess[i].disdained = true;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Homeless Squatter")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinHomeless2")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-41094, 2481, "Person", false, "Homeless Squatter", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.5, 0.4], 0, 0, 0.7], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41075, 2478]], altID: "atalinHomeless2"}));
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Homeless Squatter")
+                        {
+                            if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                            {
+                                if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinHomeless2")
+                                {
+                                    ArtificialIntelligenceAccess[i].disdained = true;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Homeless Squatter")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinHomeless3")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-41084, 2280, "Person", false, "Homeless Squatter", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.5, 0.4], 0, 0, 0.7], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41076, 2307]], altID: "atalinHomeless3"}));
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Homeless Squatter")
+                        {
+                            if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                            {
+                                if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinHomeless3")
+                                {
+                                    ArtificialIntelligenceAccess[i].disdained = true;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                ArtificialIntelligenceAccess.push(new Unit(-40937, 976, "Person", false, "Company Associate", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.3, 0.2], 0, 80, 1.25], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-40922, 972]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-40947, 1055, "Person", false, "Company Associate", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.3, 0.2], 0, 80, 1.25], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-40909, 1052]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-40957, 1017, "Person", false, "Company Associate", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.2], 0, 80, 1.25], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-40922, 1015]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-40725, 1002, "Person", false, "Arcus Co Representative", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.2], 0, 80, 1.25], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-40723, 1045]]}));
+
+                //poor residential area
+                scenicList.push(new Scenery("nirwadenBuilding1", -41112, -1500, 0, true));
+                scenicList.push(new Scenery("nirwadenBuilding2", -41412, -1573, 0, true));
 
                 change = "e4";
             }
@@ -14015,15 +14169,15 @@ function buildMaster()
                 //Duendes
                 if (quests.duendeInfestationKillCount < 9 && quests.duendeInfestationDuendeLoad == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44751, -2175, "Duende", true, "Uglibug"));
-                    ArtificialIntelligenceAccess.push(new Unit(-44659, -2187, "Duende", true, "Bugelig"));
-                    ArtificialIntelligenceAccess.push(new Unit(-44706, -2228, "Duende", true, "Fuglibug"));
-                    ArtificialIntelligenceAccess.push(new Unit(-44644, -2262, "Duende", true, "Bugli"));
-                    ArtificialIntelligenceAccess.push(new Unit(-44965, -2336, "Duende", true, "Fugli"));
-                    ArtificialIntelligenceAccess.push(new Unit(-44918, -2255, "Duende", true, "Buglifug"));
-                    ArtificialIntelligenceAccess.push(new Unit(-44724, -2328, "Duende", true, "Bugilibug"));
-                    ArtificialIntelligenceAccess.push(new Unit(-44760, -2286, "Duende", true, "Bugili"));
-                    ArtificialIntelligenceAccess.push(new Unit(-44858, -2195, "Duende", true, "Fugili"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44751, -2175, "Duende", true, "arena2"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44659, -2187, "Duende", true, "arena2"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44706, -2228, "Duende", true, "arena2"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44644, -2262, "Duende", true, "arena2"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44965, -2336, "Duende", true, "arena2"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44918, -2255, "Duende", true, "arena2"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44724, -2328, "Duende", true, "arena2"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44760, -2286, "Duende", true, "arena2"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44858, -2195, "Duende", true, "arena2"));
                 }
 
                 //Build Scenery
@@ -14666,7 +14820,26 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45200, -2463, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45182, -2506]], altID: "atalinMidClass1"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45200, -2463, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.1], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45182, -2506]], altID: "atalinMidClass1"}));
+                }
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Nirwaden Villager")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinMidClass2")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-45827, -2771, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45829, -2742]], altID: "atalinMidClass2"}));
                 }
 
 
@@ -14696,6 +14869,68 @@ function buildMaster()
                 {
                     scenicList.push(new Scenery("crate", -45063, -2208, 9, 2, [0.8]));
                 }
+                //
+                scenicList.push(new Scenery("furRug", -45500, -2384, -9.45, 2.25, 1));
+                scenicList.push(new Scenery("bed", -45555, -2308, -1/2 * Math.PI, false));
+                scenicList.push(new Scenery("drawerA", -45435, -2301, 1/2 * Math.PI, 1, [1.5])); //light
+                scenicList.push(new Scenery("nirwadenMueble", -45515, -2503, 1.2 * Math.PI, 5)); //sml stool
+                scenicList.push(new Scenery("nirwadenMueble", -45478, -2490, 1.11 * Math.PI, 5)); //sml stool
+                scenicList.push(new Scenery("nirwadenMueble", -45504, -2465, 1 * Math.PI, 2)); //sml table
+                //
+                scenicList.push(new Scenery("furRug", -46000, -2442, -3.34, 2.35, 1));
+                scenicList.push(new Scenery("bed", -45915, -2359, 0 * Math.PI, false));
+                scenicList.push(new Scenery("nirwadenMueble", -45956, -2557, 1 * Math.PI, 0)); //long bench
+                scenicList.push(new Scenery("stove", -46051, -2574, Math.PI, false));
+                //
+                scenicList.push(new Scenery("fineBed", -45845, -2841, 0 * Math.PI, 0)); //black
+                scenicList.push(new Scenery("stove", -45732, -2700, 0, "lit"));
+                scenicList.push(new Scenery("nirwadenMueble", -45780, -2749, 0.8 * Math.PI, 5)); //sml stool
+                scenicList.push(new Scenery("nirwadenMueble", -45830, -2743, 1.32 * Math.PI, 5)); //sml stool
+                scenicList.push(new Scenery("nirwadenMueble", -45809, -2712, 1 * Math.PI, 0)); //long bench
+                scenicList.push(new Scenery("furRug", -45601, -2763, 1.5, 3.6, 2));
+                scenicList.push(new Scenery("crate", -45575, -2678, -7, 2, [1.6]));
+                scenicList.push(new Scenery("crate", -45652, -2672, -10, 1, [1.2]));
+                scenicList.push(new Scenery("nirwadenMueble", -45648, -2877, 1 * Math.PI, 1)); //bench
+                scenicList.push(new Scenery("nirwadenGoods", -45832, -2712, 0, 8)); //placemat light
+                scenicList.push(new Scenery("item", -45832, -2712, 0, "nirwaden", ["boarChunksSmall", 1, -6]));
+                //
+                scenicList.push(new Scenery("furRug", -45286, -2739, 1/2 * Math.PI, 3.1, 1));
+                scenicList.push(new Scenery("bed", -45324, -2864, -1/2 * Math.PI, false));
+                scenicList.push(new Scenery("nirwadenMueble", -45201, -2682, 1/2 * Math.PI, 0)); //long bench
+                //
+                scenicList.push(new Scenery("trapdoor", -45375, -2205, 0 * Math.PI, [251, 496], "estolTunnel"));
+                //
+                scenicList.push(new Scenery("furRug", -45969, -1690, 1/2 * Math.PI, 3.2, 2));
+                scenicList.push(new Scenery("bed", -45937, -1560, 1/2 * Math.PI, false));
+                scenicList.push(new Scenery("nirwadenMueble", -46066, -1588, 1/2 * Math.PI, 1)); //bench
+                scenicList.push(new Scenery("nirwadenMueble", -46066, -1608, 1/2 * Math.PI, 1)); //bench
+                scenicList.push(new Scenery("stove", -46079, -1774, 1/2 * Math.PI, false));
+                //
+                scenicList.push(new Scenery("furRug", -45826, -2086, 0.789486568, 2.4, 1));
+                scenicList.push(new Scenery("stove", -45539, -1949, -1/2 * Math.PI, "lit"));
+                scenicList.push(new Scenery("fineBed", -45574, -2071, 1 * Math.PI, false, 1)); //white
+                scenicList.push(new Scenery("nirwadenMueble", -45658, -2098, 0 * Math.PI, 0)); //long bench
+                scenicList.push(new Scenery("drawerA", -45555, -1997, 0 * Math.PI, 1, [1.65])); //light
+                scenicList.push(new Scenery("nirwadenMueble", -45739, -2137, 1/2 * Math.PI, 0)); //long bench
+                scenicList.push(new Scenery("nirwadenMueble", -45786, -2159, 0 * Math.PI, 0)); //long bench
+                scenicList.push(new Scenery("nirwadenMueble", -45786, -2176, 0 * Math.PI, 0)); //long bench
+                scenicList.push(new Scenery("nirwadenMueble", -45856, -1985, 2.324243 * Math.PI, 6)); //stool
+                scenicList.push(new Scenery("nirwadenMueble", -45783, -1984, 0.3298 * Math.PI, 6)); //stool
+                scenicList.push(new Scenery("nirwadenMueble", -45818, -1988, 1.023 * Math.PI, 2)); //square table
+                //
+                scenicList.push(new Scenery("fineBed", -45404, -1576, 0 * Math.PI, false)); //black
+                scenicList.push(new Scenery("drawerA", -45343, -1545, 1/2 * Math.PI, 1, [1.61])); //light
+                scenicList.push(new Scenery("drawerA", -45298, -1545, 1/2 * Math.PI, 1, [1.61])); //light
+                scenicList.push(new Scenery("nirwadenMueble", -45260, -1583, -1/2 * Math.PI, 0)); //bench
+                scenicList.push(new Scenery("nirwadenMueble", -45262, -1666, -1/2 * Math.PI, 2)); //sqr table
+                scenicList.push(new Scenery("hearth", -45339, -1774, 1 * Math.PI, "lit"));
+                scenicList.push(new Scenery("nirwadenMueble", -45503, -1613, -1 * Math.PI, 0)); //bench
+                scenicList.push(new Scenery("drawerA", -45585, -1608, 1/2 * Math.PI, 1, [1.7])); //light
+                scenicList.push(new Scenery("nirwadenMueble", -45545, -1758, -1/2 * Math.PI, 5)); //stool
+                scenicList.push(new Scenery("nirwadenMueble", -45584, -1726, 1/2 * Math.PI, 6)); //stool
+                scenicList.push(new Scenery("nirwadenMueble", -45587, -1753, -1/2 * Math.PI, 2)); //sqr table
+
+
 
                 if (uniqueChars.loLDS)
                 {
@@ -16430,9 +16665,13 @@ function buildMaster()
 
                 //barriers
                 barrierList.push(new Barrier(1000, -2126, 2860, 70, true));
-                barrierList.push(new Barrier(640, -2516, 3250, 70, true));
+                barrierList.push(new Barrier(640, -2958, 3250, 70, true));
+
+                barrierList.push(new Barrier(-30, 220, 70, 670, true));
+                barrierList.push(new Barrier(29, 77, 500, 70, true));
+
                 //barrierList.push(new Barrier(320, 215, 70, 700, true));
-                barrierList.push(new Barrier(320, 577, 70, 700, true));
+                barrierList.push(new Barrier(20, 577, 70, 1300, true));
 
                 barrierList.push(new Barrier(1000, -2126, 70, 3300, true));
                 barrierList.push(new Barrier(590, -2493, 70, 2210, true));
@@ -16456,11 +16695,23 @@ function buildMaster()
 
                 //scenery
                 scenicList.push(new Scenery("ladder", 851, 496, 0 * Math.PI, [-45172, -2201], "world"));
+                scenicList.push(new Scenery("ladder", 251, 496, 0 * Math.PI, [-45375, -2205], "world"));
                 scenicList.push(new Scenery("ladder", 4457, -1018, 0 * Math.PI, [751, 326], "atalinDrugLab"));
-                scenicList.push(new Scenery("oilLamp", 721, 502, 3.86947818541137 * Math.PI, true, [1000, 2]));
                 scenicList.push(new Scenery("oilLamp", 976, 529, 0.86947818541137 * Math.PI, true, [1000, 2]));
                 scenicList.push(new Scenery("oilLamp", 4529, -996, 2.86947818541137 * Math.PI, true, [1000, 2]));
                 scenicList.push(new Scenery("oilLamp", 3063, -2417, 8.87683723 * Math.PI, true, [1000, 2]));
+                scenicList.push(new Scenery("oilLamp", 211, 378, 5.2718276484671 * Math.PI, true, [1000, 2]));
+                scenicList.push(new Scenery("oilLamp", 656, 307, 3.86947818541137 * Math.PI, true, [1000, 2]));
+                scenicList.push(new Scenery("oilLamp", 903, -2232, -1.86947818541137 * Math.PI, true, [1000, 2]));
+                scenicList.push(new Scenery("oilLantern", 2957, -3737, -4.448488284422484 * Math.PI, true, [1000, 2]));
+                scenicList.push(new Scenery("oilLantern", 2756, -4110, -6.648488284422484 * Math.PI, true, [1000, 2]));
+                scenicList.push(new Scenery("oilLantern", 3189, -4345, -2.228488284422484 * Math.PI, true, [1000, 2]));
+                scenicList.push(new Scenery("oilLantern", 2838, -4640, -1.111111284422484 * Math.PI, true, [1000, 2]));
+                scenicList.push(new Scenery("oilLantern", 3269, -4745, 3.448488284422484 * Math.PI, true, [1000, 2]));
+                scenicList.push(new Scenery("oilLantern", 3148, -3982, 3.448488284422484 * Math.PI, true, [1000, 2]));
+                scenicList.push(new Scenery("oilLantern", 2977, -4370, 3.448488284422484 * Math.PI, true, [1000, 2]));
+                scenicList.push(new Scenery("oilLamp", 2604, -4412, 0.86947818541137 * Math.PI, true, [1000, 2]));
+                scenicList.push(new Scenery("oilLamp", 2615, -3787, -0.55947818541137 * Math.PI, true, [1000, 2]));
                 //scenicList.push(new Scenery("cauldron", 934, 529, 0.2, true));
                 //scenicList.push(new Scenery("crate", 849, 548, 1.5, 2, [1.2]));
                 //scenicList.push(new Scenery("crate", 975, 551, 2.36, 1, [0.81]));

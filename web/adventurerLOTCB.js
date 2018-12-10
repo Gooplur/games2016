@@ -2262,6 +2262,10 @@ function Adventurer()
                 {
                     lights.push({X:X, Y: Y, size: 900, extraStops: true, GRD: 0, Alpha: 0.3, showMe: true});
                 }
+                else if (this.form == "vampire")
+                {
+                    lights.push({X:X, Y: Y, size: 1000, extraStops: true, GRD: 0, Alpha: 0.2, showMe: true});
+                }
             }
             else
             {

@@ -38875,6 +38875,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 115]];
             }
+            else if (this.ID == "Tirbutin the Tax Officiator")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 233]];
+            }
+            else if (this.ID == "Guild Master Manolo")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 312]];
+            }
             else if (this.ID == "Ergoku")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 200]];
@@ -39585,6 +39593,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 14;
+                        }
+                    }
+                    else if (this.ID == "Tirbutin the Tax Officiator")
+                    {
+                        uniqueChars.tirbutinLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 26;
+                        }
+                    }
+                    else if (this.ID == "Guild Master Manolo")
+                    {
+                        uniqueChars.manoloLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 76;
                         }
                     }
                     else if (this.ID == "Ergoku") //purchased Hidalgo title (highfolk)

@@ -585,6 +585,8 @@ function Adventurer()
     //companion variables
     this.companions = [];
     this.companionLimit = 9;
+    //economy variables
+    this.earnings = 0;
 
     //a function for all of the small functions to fix tiny obscure yet sometimes important details...
     this.quickFixes = function()

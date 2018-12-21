@@ -290,51 +290,54 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
     this.changeFactionRelation = function(changeAmount)
     {
-        if (this.owned.length > 1)
+        if (this.owned != false)
         {
-            if (this.owned == "freynor")
+            if (this.owned.length > 1)
             {
-                player.freynorFaction += changeAmount;
-            }
-            else if (this.owned == "kel")
-            {
-                player.kelFaction += changeAmount;
-            }
-            else if (this.owned == "vardan")
-            {
-                player.vardanFaction += changeAmount;
-            }
-            else if (this.owned == "nirwaden")
-            {
-                player.nirwadenFaction += changeAmount;
-            }
-            else if (this.owned == "outlander")
-            {
-                player.outlanderFaction += changeAmount;
-            }
-            else if (this.owned == "aldrek")
-            {
-                player.aldrekFaction += changeAmount;
-            }
-            else if (this.owned == "cephrite")
-            {
-                player.cephriteFaction += changeAmount;
-            }
-            else if (this.owned == "orgel")
-            {
-                player.orgelFaction += changeAmount;
-            }
-            else if (this.owned == "thengar")
-            {
-                player.thengarFaction += changeAmount;
-            }
-            else if (this.owned == "theBalgurMercenaries")
-            {
-                player.theBalgurMercenariesFaction += changeAmount;
-            }
-            else if (this.owned == "estolGang")
-            {
-                player.estolgangFaction += changeAmount;
+                if (this.owned == "freynor")
+                {
+                    player.freynorFaction += changeAmount;
+                }
+                else if (this.owned == "kel")
+                {
+                    player.kelFaction += changeAmount;
+                }
+                else if (this.owned == "vardan")
+                {
+                    player.vardanFaction += changeAmount;
+                }
+                else if (this.owned == "nirwaden")
+                {
+                    player.nirwadenFaction += changeAmount;
+                }
+                else if (this.owned == "outlander")
+                {
+                    player.outlanderFaction += changeAmount;
+                }
+                else if (this.owned == "aldrek")
+                {
+                    player.aldrekFaction += changeAmount;
+                }
+                else if (this.owned == "cephrite")
+                {
+                    player.cephriteFaction += changeAmount;
+                }
+                else if (this.owned == "orgel")
+                {
+                    player.orgelFaction += changeAmount;
+                }
+                else if (this.owned == "thengar")
+                {
+                    player.thengarFaction += changeAmount;
+                }
+                else if (this.owned == "theBalgurMercenaries")
+                {
+                    player.theBalgurMercenariesFaction += changeAmount;
+                }
+                else if (this.owned == "estolGang")
+                {
+                    player.estolgangFaction += changeAmount;
+                }
             }
         }
     };
@@ -2812,6 +2815,97 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.interactionRange = 1;
 
             this.zIndex = 1;
+            if (this.temporary == 0) //counter large
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 134, 3194, 132, 47, -(1/2 * 132 * 1), -(1/2 * 47 * 1), 132 * 1, 47 * 1);
+                XXX.restore();
+            }
+            else if (this.temporary == 1)//counter small
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 132, 3244, 95, 43, -(1/2 * 95 * 1), -(1/2 * 43 * 1), 95 * 1, 43 * 1);
+                XXX.restore();
+            }
+            else if (this.temporary == 2)//bar table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 752, 3338, 70, 64, -(1/2 * 70 * 1), -(1/2 * 64 * 1), 70 * 1, 64 * 1);
+                XXX.restore();
+            }
+            else if (this.temporary == 3)//long table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 823, 3344, 147, 55, -(1/2 * 147 * 1), -(1/2 * 55 * 1), 147 * 1, 55 * 1);
+                XXX.restore();
+            }
+            else if (this.temporary == 4)//feast table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 984, 3342, 271, 68, -(1/2 * 271 * 1), -(1/2 * 68 * 1), 271 * 1, 68 * 1);
+                XXX.restore();
+            }
+            else if (this.temporary == 5)//bar chair 1
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 747, 3429, 33, 28, -(1/2 * 33 * 1), -(1/2 * 28 * 1), 33 * 1, 28 * 1);
+                XXX.restore();
+            }
+            else if (this.temporary == 6)//bar chair 2
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 784, 3431, 27, 26, -(1/2 * 27 * 1), -(1/2 * 26 * 1), 27 * 1, 26 * 1);
+                XXX.restore();
+            }
+            else if (this.temporary == 7)//long bench
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 826, 3428, 140, 29, -(1/2 * 140 * 1), -(1/2 * 29 * 1), 140 * 1, 29 * 1);
+                XXX.restore();
+            }
+            else if (this.temporary >= 8)//feast bench
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 990, 3428, 252, 30, -(1/2 * 252 * 1), -(1/2 * 30 * 1), 252 * 1, 30 * 1);
+                XXX.restore();
+            }
+
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "nirwadenMuebleOver")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            this.zIndex = 6;
             if (this.temporary == 0) //counter large
             {
                 XXX.save();
@@ -7905,7 +7999,14 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.runOneTime)
             {
                 this.runOneTime = false;
-                this.lit = true;
+                if (this.temporary != true)
+                {
+                    this.lit = true;
+                }
+                else
+                {
+                    this.lit = "burnt";
+                }
                 this.randomPire = Math.random();
                 this.tic = 0;
                 this.toc = 0;

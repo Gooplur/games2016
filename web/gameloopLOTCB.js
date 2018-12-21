@@ -152,6 +152,9 @@ function gameloopOfDestiny(time)
     //Dialogue
     messageReader();
 
+    //player shops
+    doPlayerShops();
+
     //POP-UPs
     //level up pop-up
     if (popType == "levelup")

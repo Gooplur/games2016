@@ -769,6 +769,64 @@ function inGamePopUp(type, message, unique)
     }
 }
 
+function doPlayerShops()
+{
+    var shopzList = [];
+    if (quests.atalinShopOwned == true)
+    {
+        for (var j = storageList.length - 1; j >= 0; j--)
+        {
+            if (storageList[j][0] == "atalinShopCrate" && storageList[j][2].length > 0)
+            {
+                shopzList.push(j);
+                break;
+            }
+        }
+    }
+
+    for (var j = 0; j < shopzList.length; j++)
+    {
+        if (new Date().getTime() - playerShopsTime >= (60 * 3000 - (player.getCharisma() * 20)))
+        {
+            var hipo = Math.floor(Math.random() * storageList[shopzList[j]][2].length);
+            var cantidad = Math.min(8, Math.round(Math.random() * storageList[shopzList[j]][2][hipo][1]));
+            player.earnings += storageList[shopzList[j]][2][hipo][0].buyValue * cantidad;
+            storageList[shopzList[j]][2][hipo][1] -= cantidad;
+            if (storageList[shopzList[j]][2][hipo][1] <= 0)
+            {
+                storageList[shopzList[j]][2].splice(hipo, 1);
+            }
+        }
+    }
+
+    if (shopzList.length > 0)
+    {
+        if (new Date().getTime() - playerShopsTime >= (60 * 3000 - (player.getCharisma() * 20)))
+        {
+            playerShopsTime = new Date().getTime();
+            var hitx = false;
+            for (var j = 0; j < bankAccount.length; j++)
+            {
+                if (bankAccount[j][0].type == "coins")
+                {
+                    bankAccount[j][1] += player.earnings;
+                    player.earnings = 0;
+                    hitx = true;
+                    break
+                }
+            }
+            if (hitx == false)
+            {
+                if (bankAccount.length < bankSlots)
+                {
+                    bankAccount.unshift([new Item("coins", false, false), player.earnings]);
+                    player.earnings = 0;
+                }
+            }
+        }
+    }
+}
+
 function logRotatedCoords(cx, cy, x, y, angle)
 {
     var nnx;

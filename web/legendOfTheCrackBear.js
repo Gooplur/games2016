@@ -2452,6 +2452,7 @@ var wiggleRand = 0;
 var timeSpeed = 1;
 var refillMag = true;
 var showSightCheat = false;
+var playerShopsTime = new Date().getTime();
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -3311,7 +3312,9 @@ function theLegend()
         naapridVendor: ["NaapridVendor", 0],
         ergoku: ["Ergoku", 0],
         ilihim: ["Ilihim", 0],
-        arcusCoRep: ["ArcusCoRep", 0]
+        arcusCoRep: ["ArcusCoRep", 0],
+        tirbutin: ["Tirbutin", 0],
+        manolo: ["Manolo", 0]
     };
 
 //time Tracker Variables
@@ -3473,7 +3476,9 @@ function theLegend()
         hugoLDS: true,
         loLDS: true,
         ergokuLDS: true,
-        ilihimLDS: true
+        ilihimLDS: true,
+        tirbutinLDS: true,
+        manoloLDS: true
     };
 //QUESTS
     quests =
@@ -3511,6 +3516,7 @@ function theLegend()
         lethikHomeOwned: false,
         venningHomeOwned: false,
         atalinHomeOwned: false,
+        atalinShopOwned: false,
 
         //ITEM STASH VARIABLES (non quest)
         lonerGuyStash: true,

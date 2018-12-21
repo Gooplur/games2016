@@ -1502,6 +1502,146 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Guild Master Manolo" || conversationID[0] == "Manolo")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Manolo";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+
+                                if (player.title == "Nobility" && player.raceName == "Nirwaden")
+                                {
+                                    player.dialogueOptions.push(["Good day, Sir, I would like to discuss the transportation taxes and tarrifs that my family has negociated with your guild.", false, "a"]);
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.push(["Tell me about the merchants guild.", false, "a"]);
+                                }
+
+                                if (quests.atalinShopOwned != true)
+                                {
+                                    var coinzHitz = -1;
+
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 19000)
+                                        {
+                                            coinzHitz = i;
+                                        }
+                                    }
+                                    if (coinzHitz > -1)
+                                    {
+                                        player.dialogueOptions.push(["[buy 'The Atalin Supply' for 19000 coins]", false, "b"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (player.raceName != "Nirwaden" || player.title != "Nobility")
+                            {
+                                setMsg("We at the merchants guild ensure that the economy remains stable by negociating with the house of Altezor. If not for us the lord might charge merchants exorbitant fees and tarrifs and smother the flame of our region's economic prosperity.");
+                            }
+                            else
+                            {
+                                if (player.gender == "Male")
+                                {
+                                    setMsg("Ah, Lord Altezor, it is good to see you... If this inquiry is intended to alter the agreement we have come to regarding the regional tax rates for the trading and transporting of goods, I remind you that to charge any higher rates will harm the economic prosperity that this region has maintained for so long.");
+                                }
+                                else
+                                {
+                                    setMsg("Ah, Lady Altezor, you are looking gorgeous as ever... If this inquiry is intended to alter the agreement we have come to regarding the regional tax rates for the trading and transporting of goods, I will let you know that to charge any higher rates will harm the economic prosperity that this region has maintained for so long.");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            var coinHitz = -1;
+                            var servicesPaid = false;
+
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 19000)
+                                {
+                                    coinHitz = i;
+                                }
+                            }
+
+                            if (coinHitz > -1)
+                            {
+                                if (Inventory[coinHitz][1] == 19000)
+                                {
+                                    Inventory.splice(coinHitz, 1);
+                                }
+                                else
+                                {
+                                    Inventory[coinHitz][1] -= 19000;
+                                }
+
+                                servicesPaid = true;
+                            }
+
+                            if (servicesPaid)
+                            {
+                                quests.atalinShopOwned = true;
+                                change = "shopPurchased";
+                            }
+
+                            playersTurnToSpeak = true;
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
                     if (self.ID == "Arcus Co Representative" || conversationID[0] == "ArcusCoRep")
                     {
                         lowBar = "dialogue";

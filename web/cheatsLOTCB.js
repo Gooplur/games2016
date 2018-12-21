@@ -155,6 +155,17 @@ function cheats()
         {
             testingUnitCenters = true;
         }
+        else if (cheatcode == "earnings")
+        {
+            console.log(player.earnings);
+        }
+        else if (cheatcode == "corriente")
+        {
+            for (var ii = 0; ii < bankAccount.length; ii++)
+            {
+                console.log(bankAccount[ii]);
+            }
+        }
         else if (cheatcode == "00567817")
         {
             player.concentration = 0;

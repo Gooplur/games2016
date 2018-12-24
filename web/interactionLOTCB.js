@@ -1743,7 +1743,7 @@ function interaction(me)
                         else if (conversationID[1] == "0d")
                         {
                             //text dialogue
-                            setMsg("Arcus Co. has a mine south of here that could use some new hands I hear... I guess those fishermen on the riverfront make an aright living if your in to that... Starting your own shop is always an option in this economy, but hey don't bother trying to compete in the Inn business, mine is the best in town by a longshot.");
+                            setMsg("Arcus Co. has a mine south of here that could use some new hands I hear... I guess those fishermen on the riverfront make an aright living if you're in to that... Starting your own shop is always an option in this economy, but hey don't bother trying to compete in the Inn business, mine is the best in town by a longshot.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -1814,7 +1814,10 @@ function interaction(me)
                             if (tellMessage == "reset")
                             {
                                 msgReset();
-
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
                                 if (coinzHit != -1)
                                 {
                                     if (Inventory[coinzHit][1] > 25)
@@ -1825,12 +1828,11 @@ function interaction(me)
                                     {
                                         Inventory.splice(coinzHit, 1);
                                     }
+                                    X = -47059;
+                                    Y = -1228;
+                                    lowBar = "information";
                                     sleep();
                                 }
-                                playersTurnToSpeak = true;
-                                player.dialoguePosition = 0;
-                                conversationID[1] = 0;
-                                self.SC();
                             }
                             else
                             {

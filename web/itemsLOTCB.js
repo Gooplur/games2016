@@ -25609,6 +25609,184 @@ function Item(type, x, y)
             this.buyValue = 41 - Math.floor(player.getCharisma() / 10); // at max, buy for 36.
             this.sellValue = 30 + Math.floor(player.getCharisma() / 8); // at max, sell for 36.
         }
+        else if (this.type == "aldrekiiHijab")
+        {
+            //For All Items
+            this.identity = "Aldrekii Hijab";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A cloth outfit with both a skirt and veil of silk and strands of silk decoratively adorning the sleeves.";
+            this.intForDes = 1;
+            this.intDescription = "This is the outfit that all females not of noble or royal ancestry are expected to wear.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.2;
+            this.thirstRetention = 0.9;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 5;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 2;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 24;
+            this.ingredients = [["Cloth", 5], ["Silk", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 55 - Math.floor(player.getCharisma() / 10); // at max, buy for 50.
+            this.sellValue = 35 + Math.floor(player.getCharisma() / 3); // at max, sell for 50.
+        }
+        else if (this.type == "aldrekiiTurbanRed")
+        {
+            //For All Items
+            this.identity = "Aldrekii Turban";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A cloth outfit and a red turbin.";
+            this.intForDes = 1;
+            this.intDescription = "It is customary for men in aldrekii culture to wear a turbin while in public, but some exceptions are made...";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.15;
+            this.thirstRetention = 0.8;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 2;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 1;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 17;
+            this.ingredients = [["Cloth", 7]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 46 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 42.
+            this.sellValue = 30 + Math.floor(player.getCharisma() / 4); // at max, sell for 42.
+        }
+        else if (this.type == "aldrekiiTurbanPurple")
+        {
+            //For All Items
+            this.identity = "Aldrekii Turban";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A cloth outfit and a purple turbin.";
+            this.intForDes = 1;
+            this.intDescription = "It is customary for men in aldrekii culture to wear a turbin while in public, but some exceptions are made...";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.15;
+            this.thirstRetention = 0.8;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 2;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 1;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 17;
+            this.ingredients = [["Cloth", 7]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 46 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 42.
+            this.sellValue = 30 + Math.floor(player.getCharisma() / 4); // at max, sell for 42.
+        }
         else if (this.type == "ardilFurClothing")
         {
             //For All Items
@@ -26775,8 +26953,8 @@ function Item(type, x, y)
             this.weight = 1;
             this.size = 26;
             this.description = "An outfit worn by assassins.";
-            this.intForDes = 6;
-            this.intDescription = "It allows for agile body movement because it is not restrictive.";
+            this.intForDes = 0;
+            this.intDescription = "The eye pieces allow the wearer some degree of night vision.";
 
             //Define Utility
             this.utility = "worn";
@@ -26816,11 +26994,11 @@ function Item(type, x, y)
 
 
             //ability
-            this.ability = "none";
+            this.ability = "nightVision";
 
             this.yield = 1;
             this.intForCraft = 37;
-            this.ingredients = [["Cloth", 6]];
+            this.ingredients = [["Cloth", 9], ["Glass", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 90 - Math.floor(player.getCharisma() / 10); // at max, buy for 85.
@@ -29293,6 +29471,26 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(candlewic, 60, 167, 27, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "assassinWrappings")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 134, 791, 52, 96, X - this.X + (1/2 * CCC.width) - (1/2 * 52 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 96 * 1.2), 52 * 1.2, 96 * 1.2);
+        }
+        else if (this.type == "aldrekiiHijab")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 676, 1077, 38, 100, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 100 * 1.25), 38 * 1.25, 100 * 1.25);
+        }
+        else if (this.type == "aldrekiiTurbanRed")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 725, 1074, 38, 100, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 100 * 1.25), 38 * 1.25, 100 * 1.25);
+        }
+        else if (this.type == "aldrekiiTurbanPurple")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 735, 792, 38, 100, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 100 * 1.25), 38 * 1.25, 100 * 1.25);
         }
         else if (this.type == "hops")
         {
@@ -33087,6 +33285,26 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "assassinWrappings")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bogg, 134, 791, 52, 96, this.invX - (1/2 * 52 * 0.85), this.invY - (1/2 * 96 * 0.85), 52 * 0.85, 96 * 0.85);
+        }
+        else if (this.type == "aldrekiiHijab")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bogg, 676, 1077, 38, 100, this.invX - (1/2 * 38 * 0.85), this.invY - (1/2 * 100 * 0.85), 38 * 0.85, 100 * 0.85);
+        }
+        else if (this.type == "aldrekiiTurbanRed")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bogg, 725, 1074, 38, 100, this.invX - (1/2 * 38 * 0.85), this.invY - (1/2 * 100 * 0.85), 38 * 0.85, 100 * 0.85);
+        }
+        else if (this.type == "aldrekiiTurbanPurple")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bogg, 735, 792, 38, 100, this.invX - (1/2 * 38 * 0.85), this.invY - (1/2 * 100 * 0.85), 38 * 0.85, 100 * 0.85);
+        }
         else if (this.type == "hops")
         {
             LXX.beginPath();
@@ -36849,6 +37067,26 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "assassinWrappings")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 134, 791, 52, 96, this.invX - (1/2 * 52 * 0.85), this.invY - (1/2 * 96 * 0.85), 52 * 0.85, 96 * 0.85);
+        }
+        else if (this.type == "aldrekiiHijab")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 676, 1077, 38, 100, this.invX - (1/2 * 38 * 0.85), this.invY - (1/2 * 100 * 0.85), 38 * 0.85, 100 * 0.85);
+        }
+        else if (this.type == "aldrekiiTurbanRed")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 725, 1074, 38, 100, this.invX - (1/2 * 38 * 0.85), this.invY - (1/2 * 100 * 0.85), 38 * 0.85, 100 * 0.85);
+        }
+        else if (this.type == "aldrekiiTurbanPurple")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 735, 792, 38, 100, this.invX - (1/2 * 38 * 0.85), this.invY - (1/2 * 100 * 0.85), 38 * 0.85, 100 * 0.85);
         }
         else if (this.type == "hops")
         {

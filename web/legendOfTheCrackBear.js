@@ -1879,6 +1879,18 @@ function gargPack()
 
     garg.onload = function()
     {
+        boggartPack();
+    };
+}
+
+function boggartPack()
+{
+    var bogg = new Image();
+    bogg.src = ("images/boggart.png");
+    window.bogg = bogg;
+
+    bogg.onload = function()
+    {
         tombPack();
     };
 }
@@ -3913,6 +3925,9 @@ function theLegend()
     allWorn.push(new Item("doctorOutfit", false)); //93
     allWorn.push(new Item("mrbTacticalArmour", false)); //94
     allWorn.push(new Item("assassinWrappings", false)); //95
+    allWorn.push(new Item("aldrekiiHijab", false)); //96
+    allWorn.push(new Item("aldrekiiTurbanRed", false)); //97
+    allWorn.push(new Item("aldrekiiTurbanPurple", false)); //98
 
     scenicList = [];
 
@@ -4219,6 +4234,10 @@ function theLegend()
     tailoring.push(new Item("nirwadenClothingM", false));
     tailoring.push(new Item("nirwadenClothingF", false));
     tailoring.push(new Item("nirwadenGambeson", false));
+    tailoring.push(new Item("assassinWrappings", false));
+    tailoring.push(new Item("aldrekiiHijab", false));
+    tailoring.push(new Item("aldrekiiTurbanRed", false));
+    tailoring.push(new Item("aldrekiiTurbanPurple", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];

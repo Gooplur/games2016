@@ -10845,6 +10845,46 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 XXX.rotate(this.rotation - 1/2 * Math.PI);
                 XXX.drawImage(gent, 676, 497, 60, 70, -(1 / 2 * 60 * 1.2) + 0, -(1 / 2 * 70 * 1.2) - 0, 60 * 1.2, 70 * 1.2);
             }
+            else if (outfit == "assassinWrappings")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 200, 841, 27, 30, -(1 / 2 * 27 * 1) + 0, -(1 / 2 * 30 * 1) - 0, 27 * 1, 30 * 1);
+            }
+            else if (outfit == "aldrekiiHijab")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation - 0.4);
+                XXX.drawImage(bogg, 585, 781, 26, 24, -(1 / 2 * 26 * 1.35) + 0, -(1 / 2 * 24 * 1.35) + 0.85, 26 * 1.35, 24 * 1.35);
+            }
+            else if (outfit == "aldrekiiTurbanRed")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 634, 783, 26, 24, -(1 / 2 * 26 * 1.37) + 0, -(1 / 2 * 24 * 1.37) + 0.85, 26 * 1.37, 24 * 1.37);
+            }
+            else if (outfit == "aldrekiiTurbanPurple")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 669, 783, 26, 24, -(1 / 2 * 26 * 1.37) + 0, -(1 / 2 * 24 * 1.37) + 0.85, 26 * 1.37, 24 * 1.37);
+            }
             else if (outfit == "ardilFurClothing" || outfit == "ardilFurSkirt")
             {
                 XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));

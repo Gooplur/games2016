@@ -534,6 +534,7 @@ function Adventurer()
     this.vampHypnosis = false;
     this.vampDead = false;
     this.silvered = false;
+    this.seeInDark = false;
 
     //faction variables
     this.factionToggle = false;
@@ -1036,6 +1037,7 @@ function Adventurer()
             var obscurityFlag = false;
             var cyborgFlag = false;
             var airFilterFlag = false;
+            var nightVision = false;
 
             //search worn ability list for abilities
             for (var i = 0; i < this.AdAbility.length; i++)
@@ -1076,6 +1078,10 @@ function Adventurer()
                 {
                     luckFlag = true;
                 }
+                if (this.AdAbility[i] == "nightVision")
+                {
+                    nightVision = true;
+                }
                 if (this.AdAbility[i] == "spikedHandsI" || this.AdAbility[i] == "spikedHandsII" || this.AdAbility[i] == "spikedHandsIII")
                 {
                     spikedHandsType = this.AdAbility[i];
@@ -1084,6 +1090,16 @@ function Adventurer()
             }
 
             //EXECUTE EFFECTS
+
+            //night vision
+            if (nightVision)
+            {
+                this.seeInDark = true;
+            }
+            else
+            {
+                this.seeInDark = false;
+            }
 
             //cyborg
             if (cyborgFlag && this.shockedTime <= 0)
@@ -2284,6 +2300,10 @@ function Adventurer()
                     {
                         lights.push({X:X, Y: Y, size: 600, extraStops: true, GRD: 0, Alpha: 1, showMe: true});
                     }
+                }
+                else if (this.seeInDark)
+                {
+                    lights.push({X:X, Y: Y, size: 500, extraStops: true, GRD: 0, Alpha: 0.2, showMe: true});
                 }
 
                 //all normal lights the player can use
@@ -6191,6 +6211,18 @@ function Adventurer()
         {
             outfit = allWorn[95];
         }
+        else if (this.outfitEquipped == "aldrekiiHijab")
+        {
+            outfit = allWorn[96];
+        }
+        else if (this.outfitEquipped == "aldrekiiTurbanRed")
+        {
+            outfit = allWorn[97];
+        }
+        else if (this.outfitEquipped == "aldrekiiTurbanPurple")
+        {
+            outfit = allWorn[98];
+        }
         else
         {
             outfit = allWorn[0];
@@ -7221,6 +7253,58 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(gent, 676, 497, 60, 70, -(1 / 2 * 60 * 1.2) + 0, -(1 / 2 * 70 * 1.2) - 0, 60 * 1.2, 70 * 1.2);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "assassinWrappings")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation -1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(bogg, 200, 841, 27, 30, -(1 / 2 * 27 * 1) + 0, -(1 / 2 * 30 * 1) - 0, 27 * 1, 30 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "aldrekiiHijab")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation -1/2 * Math.PI - 0.4);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(bogg, 585, 781, 26, 24, -(1 / 2 * 26 * 1.35) + 0, -(1 / 2 * 24 * 1.35) + 0.85, 26 * 1.35, 24 * 1.35);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "aldrekiiTurbanRed")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation -1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(bogg, 634, 783, 26, 24, -(1 / 2 * 26 * 1.37) + 0, -(1 / 2 * 24 * 1.37) + 0.85, 26 * 1.37, 24 * 1.37);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "aldrekiiTurbanPurple")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation -1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(bogg, 669, 783, 26, 24, -(1 / 2 * 26 * 1.37) + 0, -(1 / 2 * 24 * 1.37) + 0.85, 26 * 1.37, 24 * 1.37);
             XXX.restore();
         }
         else if (this.outfitEquipped == "mrbTacticalArmour")

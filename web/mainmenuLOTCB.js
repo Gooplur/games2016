@@ -1128,6 +1128,25 @@ function applySelectionsButton()
             }
         }
 
+        if (this.raceName == "Aldrek")
+        {
+            if (player.gender == "Female")
+            {
+                Inventory.push([new Item("aldrekiiHijab", false, false), 1]);
+            }
+            else
+            {
+                if (Math.random() >= 0.5)
+                {
+                    Inventory.push([new Item("aldrekiiTurbanRed", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("aldrekiiTurbanPurple", false, false), 1]);
+                }
+            }
+        }
+
         //Special bonuses for some races
         if (player.raceName == "Aldrek")
         {

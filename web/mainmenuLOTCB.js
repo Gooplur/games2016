@@ -1128,7 +1128,7 @@ function applySelectionsButton()
             }
         }
 
-        if (this.raceName == "Aldrek")
+        if (player.raceName == "Aldrek")
         {
             if (player.gender == "Female")
             {

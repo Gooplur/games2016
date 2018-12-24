@@ -1232,6 +1232,47 @@ function applySelectionsButton()
                 Y = 9127;
             }
         }
+
+        //set the players credit rating based on title
+        if (player.title == "Royalty")
+        {
+            player.creditRating = 80;
+        }
+        else if (player.title == "Nobility")
+        {
+            player.creditRating = 30;
+        }
+        else if (player.title == "Highfolk")
+        {
+            player.creditRating = 5;
+        }
+        else if (player.title == "Tradefolk")
+        {
+            player.creditRating = 1;
+        }
+        else if (player.title == "Commoner")
+        {
+            player.creditRating = 0.25;
+        }
+        else if (player.title == "Peasant")
+        {
+            player.creditRating = 0.1;
+        }
+        else if (player.title == "Vagabond")
+        {
+            player.creditRating = 0.05;
+        }
+
+        //orgell race gets cheaper interest rates while aldrek get higher ones
+        if (player.raceName == "Orgell")
+        {
+            player.interestRate = 0.12;
+        }
+        else if (player.raceName == "Aldrek")
+        {
+            player.interestRate = 0.26;
+        }
+
         //Actually start the game here.
         theme.pause();
         gameState = "active";

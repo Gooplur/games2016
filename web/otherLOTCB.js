@@ -827,6 +827,219 @@ function doPlayerShops()
     }
 }
 
+function skWithdraw()
+{
+    var skAmt = prompt("How much would you like to withdraw? Your balance is presently (" + Math.floor(player.silverKeep) + ")");
+    if (skAmt > player.silverKeep)
+    {
+        skAmt = player.silverKeep;
+    }
+
+    if (Math.floor(skAmt) > 0)
+    {
+        player.silverKeep -= Math.floor(skAmt);
+
+        var skCoins = -1;
+        for (var sk = 0; sk < Inventory.length; sk++)
+        {
+            if (Inventory[sk][0].type == "coins")
+            {
+                skCoins = sk;
+                break;
+            }
+        }
+
+        if (skCoins > -1)
+        {
+            Inventory[skCoins][1] += Math.floor(skAmt);
+        }
+        else
+        {
+            Inventory.unshift([new Item("coins", false, false), Math.floor(skAmt)]);
+        }
+    }
+}
+
+function skDeposit()
+{
+    var skAmt = prompt("How much would you like to deposit? Your balance is presently (" + Math.floor(player.silverKeep) + ")");
+    var skCoins = -1;
+    var skInvAmt = 0;
+
+    if (Math.floor(skAmt) > 0)
+    {
+        for (var sk = 0; sk < Inventory.length; sk++)
+        {
+            if (Inventory[sk][0].type == "coins")
+            {
+                skCoins = sk;
+                skInvAmt = Inventory[sk][1];
+                if (skAmt > Inventory[sk][1])
+                {
+                    skAmt = Inventory[sk][1];
+                }
+                break;
+            }
+        }
+
+        if (skCoins > -1)
+        {
+            if (skInvAmt <= Math.floor(skAmt))
+            {
+                Inventory.splice(skCoins, 1);
+            }
+            else
+            {
+                Inventory[skCoins][1] -= Math.floor(skAmt);
+            }
+            player.silverKeep += Math.floor(skAmt);
+        }
+    }
+}
+
+function skLoan()
+{
+    var skAmt = prompt("How much would you like to borrow? You are permitted as much as (" + Math.max(0, Math.floor((player.creditRating * 500) - player.debt)) + ") at an interest rate of " + (player.interestRate * 100) + "%");
+    if (Math.floor(skAmt) > 0)
+    {
+        if (Math.floor(skAmt) <= ((player.creditRating * 500) - player.debt))
+        {
+            player.debt += Math.floor(skAmt);
+
+            var skCoins = -1;
+            for (var sk = 0; sk < Inventory.length; sk++)
+            {
+                if (Inventory[sk][0].type == "coins")
+                {
+                    skCoins = sk;
+                    break;
+                }
+            }
+
+            if (skCoins > -1)
+            {
+                Inventory[skCoins][1] += Math.floor(skAmt);
+            }
+            else
+            {
+                Inventory.unshift([new Item("coins", false, false), Math.floor(skAmt)]);
+            }
+        }
+    }
+}
+
+function skRepay()
+{
+    var skAmt = prompt("How much would you like to repay? You presently owe (" + Math.ceil(player.debt) + ")");
+    var skCoins = -1;
+    var skInvAmt = 0;
+
+
+    if (Math.floor(skAmt) > 0)
+    {
+        for (var sk = 0; sk < Inventory.length; sk++)
+        {
+            if (Inventory[sk][0].type == "coins")
+            {
+                skCoins = sk;
+                skInvAmt = Inventory[sk][1];
+                if (skAmt > Inventory[sk][1])
+                {
+                    skAmt = Inventory[sk][1];
+                }
+                break;
+            }
+        }
+
+        if (skCoins > -1)
+        {
+            if (skInvAmt <= skAmt)
+            {
+                Inventory.splice(skCoins, 1);
+            }
+            else
+            {
+                Inventory[skCoins][1] -= skAmt;
+            }
+            if (skAmt > player.debt)
+            {
+                player.silverKeep += Math.floor(skAmt - player.debt);
+                skAmt = player.debt;
+            }
+            player.creditRating += (skAmt / 5000);
+            player.debt -= skAmt;
+        }
+    }
+}
+
+function skBanking()
+{
+    if (player.debt > 0 || player.silverKeep > 0)
+    {
+        if (new Date().getTime() - skIntTime >= (60 * 1000)) //once per minute
+        {
+            skIntTime = new Date().getTime();
+
+            if (player.debt > 0)
+            {
+                player.debt += (player.debt * (player.interestRate / 240));
+                if (player.debt >= (1.2 * (player.creditRating * 500)))
+                {
+                    if (player.creditRating >= 0.05)
+                    {
+                        player.creditRating -= 0.05
+                    }
+                    else
+                    {
+                        player.creditRating = 0;
+                    }
+                }
+            }
+            if (player.silverKeep > 0)
+            {
+                if (player.debt < (1.2 * (player.creditRating * 500)))
+                {
+                    player.silverKeep += player.silverKeep * (0.03 / 240);
+                }
+            }
+        }
+    }
+}
+
+function taxes()
+{
+    if (new Date().getTime() - quests.taxTime >= 12000)
+    {
+        quests.taxTime = new Date().getTime();
+        //Átalin
+        if (uniqueChars.basilioAltezorLDS == false && player.raceName == "Nirwaden" && player.title == "Nobility" && player.nirwadenFaction > -50)
+        {
+            quests.atalinTaxes += (15.94 / 20); //bountiful/large
+        }
+        //Teshir
+        if (uniqueChars.OrjovTorLDS == false && player.raceName == "Freynor" && player.title == "Nobility" && quests.matrimonyTorStambjordCompletionStyle != "marriage" && player.freynorFaction > -50)
+        {
+            quests.teshirTaxes += (6.22 / 20); //bountiful/medium
+        }
+    }
+}
+
+function miniEvent()
+{
+    //Assassin that comes to kill the player
+    if (player.debt >= (2 * (player.creditRating * 500)))
+    {
+        if (new Date().getTime() - player.timeTillAssassinAttack >= 29 * 60 * 1000)
+        {
+            player.timeTillAssassinAttack = new Date().getTime();
+
+            var rrnnddm = Math.random();
+            ArtificialIntelligenceAccess.push(new Unit(X + Math.cos(2* Math.PI * rrnnddm) * 900, Y + Math.sin(2* Math.PI * rrnnddm) * 900, "Soldier", false, "Assassin", {race: "Orgell", faction: "Assassin", con: 4, speed: 1.7, outfit: ["assassinWrappings", 0], weapon: ["thenganDagger", [6, 6], 2, 17, 1.1], ranged: [false, "arrow", 11, 2100, 11, 11, 0, "poisonII", 2.2], patrolStops: 0, patrolLoop: false, route:[[0, 0]]}));
+        }
+    }
+}
+
+
 function logRotatedCoords(cx, cy, x, y, angle)
 {
     var nnx;

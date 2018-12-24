@@ -38,9 +38,9 @@ function Adventurer()
     this.estolgangFaction = 0; //A deeply rooted criminal organization in Nirwaden.
     this.sylkeemFaction = 0; //A northern tribal people that have historically been contained within the Kingdom of Freynor (this represents their republican faction)
     //ranks
-    this.theBalgurMercenariesRank = "none";
-    this.inquisitionRank = "none";
-    this.estolRank = "none";
+    this.theBalgurMercenariesRank = "none"; //mercenary, captain
+    this.inquisitionRank = "none"; //initiate, inquisitor, high inquisitor, arch inquisitor
+    this.estolRank = "none"; //hooker, courtesan, runner, dealer, killer
     //Skills
     this.constitution = 50; //this determines the amount of health that the player has. (4 health per point) (50 Maximum Constitution)
     this.strength = 50; //this skill adds or subtracts from your physical damage blows based on whether or not it is positive or negative. [+ 5 points of carry weight per level] (50 Maximum Strength)
@@ -587,6 +587,12 @@ function Adventurer()
     this.companionLimit = 9;
     //economy variables
     this.earnings = 0;
+    this.debt = 0;
+    this.interestRate = 0.17;
+    this.creditRating = 1;
+    this.silverKeep = 0; //the player's money stored in the silver keep bank;
+    //minievents
+    this.timeTillAssassinAttack = new Date().getTime();
 
     //a function for all of the small functions to fix tiny obscure yet sometimes important details...
     this.quickFixes = function()
@@ -6180,6 +6186,10 @@ function Adventurer()
         else if (this.outfitEquipped == "mrbTacticalArmour")
         {
             outfit = allWorn[94];
+        }
+        else if (this.outfitEquipped == "assassinWrappings")
+        {
+            outfit = allWorn[95];
         }
         else
         {

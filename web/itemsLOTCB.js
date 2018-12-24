@@ -17989,6 +17989,31 @@ function Item(type, x, y)
             this.buyValue = 12; // at max, buy for 12.
             this.sellValue = 12; // at max, sell for 12.
         }
+        else if (this.type == "horseCloth")
+        {
+            //For All Items
+            this.identity = "Cloth";
+            this.weight = 0.65;
+            this.size = 12;
+            this.description = "Cloth of woven horsehair dyed white with tenic paste.";
+            this.intForDes = 1;
+            this.intDescription = "Horse hair cloth is used just like cloth is.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 7;
+            this.ingredients = [["Horse Hair", 4], ["Tenic Paste", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13; // at max, buy for 13.
+            this.sellValue = 13; // at max, sell for 13.
+        }
         else if (this.type == "cloth")
         {
             //For All Items
@@ -26743,6 +26768,64 @@ function Item(type, x, y)
             this.buyValue = 50 - Math.floor(player.getCharisma() / 10); // at max, buy for 45.
             this.sellValue = 42 + Math.floor(player.getCharisma() / 15); // at max, sell for 45.
         }
+        else if (this.type == "assassinWrappings")
+        {
+            //For All Items
+            this.identity = "Assassin Wrappings";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "An outfit worn by assassins.";
+            this.intForDes = 6;
+            this.intDescription = "It allows for agile body movement because it is not restrictive.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.5;
+            this.thirstRetention = 0.5;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 2;
+            this.rangedBonus = 2;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 5;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 8;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 10;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 37;
+            this.ingredients = [["Cloth", 6]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 90 - Math.floor(player.getCharisma() / 10); // at max, buy for 85.
+            this.sellValue = 70 + Math.floor(player.getCharisma() / 3); // at max, sell for 85.
+        }
         else if (this.type == "varnFurClothing")
         {
             //For All Items
@@ -31263,7 +31346,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(poly, 57, 50, 9, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.3), 9 * 1.3, 9 * 1.3);
         }
-        else if (this.type == "cloth" || this.type == "dyedMufCloth")
+        else if (this.type == "cloth" || this.type == "dyedMufCloth" || this.type == "horseCloth")
         {
             XXX.beginPath();
             XXX.save();
@@ -35137,7 +35220,7 @@ function Item(type, x, y)
             LXX.drawImage(mofu, 189, 86, 23, 44, - (1/2 * 23 * 1.5), - (1/2 * 44 * 1.5), 23 * 1.5, 44 * 1.5);
             LXX.restore();
         }
-        else if (this.type == "cloth" || this.type == "dyedMufCloth")
+        else if (this.type == "cloth" || this.type == "dyedMufCloth" || this.type == "horseCloth")
         {
             LXX.beginPath();
             LXX.save();
@@ -38898,7 +38981,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(poly, 57, 50, 9, 9, this.invX - (1/2 * 9 * 1.3), this.invY - (1/2 * 9 * 1.3), 9 * 1.3, 9 * 1.3);
         }
-        else if (this.type == "cloth" || this.type == "dyedMufCloth")
+        else if (this.type == "cloth" || this.type == "dyedMufCloth" || this.type == "horseCloth")
         {
             XXX.beginPath();
             XXX.save();

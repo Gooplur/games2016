@@ -9226,6 +9226,34 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawUnit(verse, 1085, 2, 90, 96, -49, -84, 90, 96, 1 / 2 * Math.PI);
             }
         }
+        else if (this.weapon == "thenganDagger")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(dolls, 7, 153, 80, 95, -1/2 * 80 + 3.4, -1/2 * 95 + -0.5, 80, 95, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(dolls, 4, 68, 80, 95, -1/2 * 80 + 2.4, -1/2 * 95 + -0.5, 80, 95, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(dolls, 7, 153, 80, 95, -1/2 * 80 + 3.4, -1/2 * 95 + -0.5, 80, 95, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(dolls, 9, 242, 80, 95, -1/2 * 80 + 3.9, -1/2 * 95 + -1.5, 80, 95, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 4)
+            {
+                this.drawUnit(dolls, 16, 341, 80, 95, -1/2 * 80 + 4.7, -1/2 * 95 + -1.6, 80, 95, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 5)
+            {
+                this.drawUnit(dolls, 21, 453, 80, 95, -1/2 * 80 + 5.6, -1/2 * 95 + -5, 80, 95, 1 / 2 * Math.PI);
+            }
+        }
         else if (this.weapon == "freydicSpear")
         {
             this.damageFrame = "automatic";
@@ -16892,6 +16920,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "shapeshifter";
                 this.baseTeam = "shapeshifter";
             }
+            if (this.ID == "Assassin")
+            {
+                this.resistances.push("blinded", "night");
+                this.assassJump = Math.round(Math.random());
+            }
+
             this.tamable = false;
 
             //STATS (non-variable)
@@ -38875,6 +38909,30 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 115]];
             }
+            else if (this.ID == "Bishop Emmanuel")
+            {
+                this.drops = [[new Item("nirwadenPriestRobes", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Vela the Baker")
+            {
+                this.drops = [[new Item("nirwadenClothingF", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Lelaila")
+            {
+                this.drops = [[new Item("polyapaTart", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Cristobal the Innkeeper")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 83], [new Item("nirwadenClothingM", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Master Blacksmith Quixote")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 150], [new Item("hammer", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Francil the Stablemaster")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 95]];
+            }
             else if (this.ID == "Tirbutin the Tax Officiator")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 233]];
@@ -39595,6 +39653,54 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.freynorFaction -= 14;
                         }
                     }
+                    else if (this.ID == "Bishop Emmanuel")
+                    {
+                        uniqueChars.emmanuelLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 275;
+                        }
+                    }
+                    else if (this.ID == "Vela the Baker")
+                    {
+                        uniqueChars.velaLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 4;
+                        }
+                    }
+                    else if (this.ID == "Lelaila")
+                    {
+                        uniqueChars.lelailaLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 2;
+                        }
+                    }
+                    else if (this.ID == "Cristobal the Innkeeper")
+                    {
+                        uniqueChars.cristobalLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 19;
+                        }
+                    }
+                    else if (this.ID == "Master Blacksmith Quixote")
+                    {
+                        uniqueChars.quixoteLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 68;
+                        }
+                    }
+                    else if (this.ID == "Francil the Stablemaster")
+                    {
+                        uniqueChars.francilLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 25;
+                        }
+                    }
                     else if (this.ID == "Tirbutin the Tax Officiator")
                     {
                         uniqueChars.tirbutinLDS = false;
@@ -39941,6 +40047,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         else if (this.weapon == "vardanianHalberd")
                         {
                             this.costumeEngine(9, 0.20, true);
+                        }
+                        else if (this.weapon == "thenganDagger")
+                        {
+                            this.costumeEngine(6, 0.22, true);
                         }
                     }
                 }
@@ -40852,6 +40962,77 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.rangeOfSightCalculator(250, false);
                         this.drops = [[new Item("slowTimeII", this.X, this.Y), 1], [new Item("fireHands", this.X, this.Y), 1]];
                     }
+                    else if (this.ID == "Assassin")
+                    {
+                        this.effect = "poisonII";
+                        if (this.team != "player")
+                        {
+                            this.target = player; //assassins are unifocused on killing the player.
+                            this.disturbed = true;
+                            if (player.weaponIsRanged == false && player.spell == "none")
+                            {
+                                if (this.DTP() < 100 && spaceKey || this.DTP() < 100 && eKey)
+                                {
+                                    if (Math.random() > 0.9)
+                                    {
+                                        this.X += Math.cos(Math.atan2(this.Y - Y, this.X - X)) * 110;
+                                        this.Y += Math.sin(Math.atan2(this.Y - Y, this.X - X)) * 110;
+                                        magicList.push(new Magic({ID:"smoke", CNX: 50}, false, {X: X, Y: Y, rotation: this.rotation}, false, true));
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (Math.random() > 0.9)
+                                {
+                                    if (this.isSpaceKey != true)
+                                    {
+                                        if (this.DTP() < 900 && spaceKey == true || this.DTP() < 900 && eKey == true)
+                                        {
+                                            if (this.assassJump == 0)
+                                            {
+                                                this.X += Math.cos(Math.atan2(this.Y - Y, this.X - X) + -1/2 * Math.PI) * 45;
+                                                this.Y += Math.sin(Math.atan2(this.Y - Y, this.X - X) + -1/2 * Math.PI) * 45;
+                                            }
+                                            else
+                                            {
+                                                this.X += Math.cos(Math.atan2(this.Y - Y, this.X - X) + 1/2 * Math.PI) * 45;
+                                                this.Y += Math.sin(Math.atan2(this.Y - Y, this.X - X) + 1/2 * Math.PI) * 45;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (this.DTP() < 900 && spaceKey == false || this.DTP() < 900 && eKey == false)
+                                        {
+                                            if (this.assassJump == 0)
+                                            {
+                                                this.X += Math.cos(Math.atan2(this.Y - Y, this.X - X) + -1/2 * Math.PI) * 45;
+                                                this.Y += Math.sin(Math.atan2(this.Y - Y, this.X - X) + -1/2 * Math.PI) * 45;
+                                            }
+                                            else
+                                            {
+                                                this.X += Math.cos(Math.atan2(this.Y - Y, this.X - X) + 1/2 * Math.PI) * 45;
+                                                this.Y += Math.sin(Math.atan2(this.Y - Y, this.X - X) + 1/2 * Math.PI) * 45;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                if (spaceKey || eKey)
+                                {
+                                    this.isSpaceKey = true;
+                                }
+                                else
+                                {
+                                    this.isSpaceKey = false;
+                                }
+                            }
+                        }
+                        this.rangeOfSightCalculator(1100, false);
+                        this.drops = [[new Item("assassinWrappings", this.X, this.Y), 1]];
+                        this.switchToRanged("longbow");
+                    }
                 }
 
                 if (this.disturbed == true || this.DTU(this.target) <= this.baseSight && this.target != player || this.follower)
@@ -41386,6 +41567,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         else if (this.weapon == "vardanianHalberd")
                         {
                             this.costumeEngine(9, 0.20, true);
+                        }
+                        else if (this.weapon == "thenganDagger")
+                        {
+                            this.costumeEngine(6, 0.22, true);
                         }
                     }
                 }

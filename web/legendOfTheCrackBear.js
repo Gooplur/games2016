@@ -2453,6 +2453,7 @@ var timeSpeed = 1;
 var refillMag = true;
 var showSightCheat = false;
 var playerShopsTime = new Date().getTime();
+var skIntTime = new Date().getTime();
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -3314,7 +3315,17 @@ function theLegend()
         ilihim: ["Ilihim", 0],
         arcusCoRep: ["ArcusCoRep", 0],
         tirbutin: ["Tirbutin", 0],
-        manolo: ["Manolo", 0]
+        manolo: ["Manolo", 0],
+        silverKeep: ["SilverKeep", 0],
+        quixote: ["Quixote", 0],
+        francil: ["Francil", 0],
+        inquTort: ["InquTort", 0],
+        basilioAltezor: ["BasilioAltezor", 0],
+        atalinTO: ["atalinTO", 0],
+        cristobal: ["Cristobal", 0],
+        vela: ["Vela", 0],
+        lelaila: ["Lelaila", 0],
+        emmanuel: ["Emmanuel", 0]
     };
 
 //time Tracker Variables
@@ -3478,7 +3489,14 @@ function theLegend()
         ergokuLDS: true,
         ilihimLDS: true,
         tirbutinLDS: true,
-        manoloLDS: true
+        manoloLDS: true,
+        quixoteLDS: true,
+        francilLDS: true,
+        basilioAltezorLDS: true,
+        cristobalLDS: true,
+        velaLDS: true,
+        lelailaLDS: true,
+        emmanuelLDS: true
     };
 //QUESTS
     quests =
@@ -3502,6 +3520,11 @@ function theLegend()
         pitFight: false,
         rutgarSlave: false,
         estolHookup: 0,
+
+        //TAXES
+        taxTime: new Date().getTime(),
+        //taxes cover Atalin and surrounding hamlets
+        atalinTaxes: 0,
 
         //LOGGED PLAYER ACTIONS
         atalinStoragePurchased: false,
@@ -3529,6 +3552,8 @@ function theLegend()
         //EVENTS (non quest)
         ultherFlower: true,
         doPire: false,
+        pireVictim: "none",
+        atalinTaxManReformed: false,
 
         //PLAYER CHILDREN SPAWN
         hilmundChild: false,
@@ -3538,6 +3563,14 @@ function theLegend()
         cherylChildAccompany: false,
         rannukChild: false,
         rannukChildName: "Espen",
+
+        //QUEST: Tortured Spirit ---- given by Bishop Emmanuel
+        torturedSpiritQuest: false,
+        torturedSpiritCompletionStyle: false,
+
+        //QUEST: Imaginary Friend ---- given by Vela the Baker
+        imaginaryFriendQuest: false,
+        imaginaryFriendCompletionStyle: false,
 
         //QUEST: Duende Infestation ---- given by
         duendeInfestationQuest: false,
@@ -3879,6 +3912,7 @@ function theLegend()
     allWorn.push(new Item("nechrovitePlateArmourRedPlume", false)); //92
     allWorn.push(new Item("doctorOutfit", false)); //93
     allWorn.push(new Item("mrbTacticalArmour", false)); //94
+    allWorn.push(new Item("assassinWrappings", false)); //95
 
     scenicList = [];
 
@@ -4138,6 +4172,7 @@ function theLegend()
     tailoring.push(new Item("mufFiber", false));
     tailoring.push(new Item("mufCloth", false));
     tailoring.push(new Item("dyedMufCloth", false));
+    tailoring.push(new Item("horseCloth", false));
     tailoring.push(new Item("cloth", false));
     tailoring.push(new Item("naapridFiber", false));
     tailoring.push(new Item("varnFiber", false));

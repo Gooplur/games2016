@@ -1167,6 +1167,117 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Francil the Stablemaster" || conversationID[0] == "Francil")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Francil";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 725)
+                                    {
+                                        player.dialogueOptions.push(["[Purchase a Mare] 725 coins", false, "a"]);
+                                        break;
+                                    }
+                                }
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 850)
+                                    {
+                                        player.dialogueOptions.push(["[Purchase a Stallion] 850 coins", false, "b"]);
+                                        break;
+                                    }
+                                }
+
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0a";
+                                        }
+                                        if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            var hunz = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 725)
+                                {
+                                    hunz = i;
+                                    break;
+                                }
+                            }
+
+                            if (hunz > -1)
+                            {
+                                //pay
+                                Inventory[hunz][1] -= 725;
+                                if (Inventory[hunz][1] < 1)
+                                {
+                                    Inventory.splice(hunz, 1);
+                                }
+                                //receive
+                                ArtificialIntelligenceAccess.push(new Unit(-46869, 1564, "Horse", false, "player"));
+                            }
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            var hunz = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 850)
+                                {
+                                    hunz = i;
+                                    break;
+                                }
+                            }
+
+                            if (hunz > -1)
+                            {
+                                //pay
+                                Inventory[hunz][1] -= 850;
+                                if (Inventory[hunz][1] < 1)
+                                {
+                                    Inventory.splice(hunz, 1);
+                                }
+                                //receive
+                                ArtificialIntelligenceAccess.push(new Unit(-46869, 1564, "Horse", true, "player"));
+                            }
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
                     if (self.ID == "Tor Captain" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" || self.ID == "Tor Captain" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty" || self.ID == "Tor Soldier" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty" || self.ID == "Tor Soldier" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" || self.ID == "Tor Huskarl" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty"  || self.ID == "Tor Huskarl" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" || conversationID[0] == "Tor" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Nobility" || conversationID[0] == "Tor" && player.freynorFaction >= 0 && self.team != "player" && player.raceName == "Freynor" && player.title == "Royalty")
                     {
                         lowBar = "dialogue";
@@ -1484,6 +1595,1016 @@ function interaction(me)
                         {
                             //text dialogue
                             setMsg("Business is hard work youngin'. When I was a girl I had four sisters, and we'd all help my ma' with the sowing. Now it's just me. I'll tell you, this work is not as easy as it seems...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Cristobal the Innkeeper" || conversationID[0] == "Cristobal")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Cristobal";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Hello.", false, "a"], ["How much for a room?", false, "b"], ["Have you heard any interesting rumors?", false, "c"], ["Do you know where I might find work?", false, "d"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Can I get you anything? A drink perhaps?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("A room will be 25 coins for the night.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (quests.duendeInfestationKillCount < 9)
+                            {
+                                setMsg("Oh, yes, I heard that the big house for sale is infested with Duendes... Ha! Bad luck for whoever the owner is. They're never going to be able to sell it, it's illegal to sell a Duende infested home.");
+                            }
+                            else if (quests.imaginaryFriendQuest == false)
+                            {
+                                setMsg("You bet I have! I heard that the baker's daughter is crazy as they come... she thinks that some sort of imaginary six armed being follows her around or something, she told me so when I went over to stock up on bread. She says that it's her friend. He he he, yeah right, that girl's just gone mad.");
+                            }
+                            else if (quests.torturedSpiritQuest == false)
+                            {
+                                setMsg("I heard that the graveyard is haunted... I know, that sounds obvious but... a customer told me he saw him an apparition of sorts.");
+                            }
+                            else
+                            {
+                                setMsg("Lean in a little closer, this one's a secret... I hear that the Eastover Inn is has the best swill in town.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Arcus Co. has a mine south of here that could use some new hands I hear... I guess those fishermen on the riverfront make an aright living if your in to that... Starting your own shop is always an option in this economy, but hey don't bother trying to compete in the Inn business, mine is the best in town by a longshot.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I'll take it.", false, "a"], ["Nevermind.", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            var coinzHit = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 25)
+                                {
+                                    coinzHit = i;
+                                    break;
+                                }
+                            }
+                            if (coinzHit == -1)
+                            {
+                                setMsg("Not until you get more money you won't, I'm not a charity.");
+                            }
+                            else
+                            {
+                                setMsg("Enjoy your stay!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (coinzHit != -1)
+                                {
+                                    if (Inventory[coinzHit][1] > 25)
+                                    {
+                                        Inventory[coinzHit][1] -= 25;
+                                    }
+                                    else
+                                    {
+                                        Inventory.splice(coinzHit, 1);
+                                    }
+                                    sleep();
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("Your loss really, our beds are extremely comfortable, and the rooms are spacious and relaxing...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Atalin Tax Officiator" || conversationID[0] == "atalinTO")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "atalinTO";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good day.", false, "a"]];
+                                if (uniqueChars.basilioAltezorLDS == false && player.raceName == "Nirwaden" && player.title == "Nobility")
+                                {
+                                    if (player.gender == "Male")
+                                    {
+                                        player.dialogueOptions.push(["I am here to collect the taxes I am owed as Lord of Atalin and the surrounding hamlets.", false, "b"]);
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions.push(["I am here to collect the taxes I am owed as the Lady of Atalin and the surrounding hamlets.", false, "b"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Good day to you.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Here is everything the tax collectors have brought in up to this point...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                var coinzHitz = -1;
+                                var taxColl = Math.floor(quests.atalinTaxes);
+
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins")
+                                    {
+                                        coinzHitz = i;
+                                    }
+                                }
+                                if (coinzHitz > -1)
+                                {
+                                    Inventory[coinzHitz][1] += taxColl;
+                                    quests.atalinTaxes -= taxColl;
+                                }
+                                else
+                                {
+                                    Inventory.unshift([new Item("coins", false, false), taxColl]);
+                                    quests.atalinTaxes -= taxColl;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Tirbutin the Tax Officiator" || conversationID[0] == "Tirbutin")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Tirbutin";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good day.", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Mmmm, 2578, 2579, 2580... oh sorry, yes of course, good day to you... what is it that you need?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+
+                                if (player.title == "Nobility")
+                                {
+                                    if (uniqueChars.basilioAltezorLDS == true)
+                                    {
+                                        player.dialogueOptions.push(["How go the taxes?", false, "a"]);
+                                    }
+                                    else
+                                    {
+                                        if (player.gender == "Female")
+                                        {
+                                            if (quests.atalinTaxManReformed == true)
+                                            {
+                                                player.dialogueOptions.push(["I am here to collect the taxes I am owed as the Lady of Atalin and the surrounding hamlets.", false, "b"]);
+                                            }
+                                            else
+                                            {
+                                                player.dialogueOptions.push(["I am here to collect the taxes I am owed as the Lady of Atalin and the surrounding hamlets.", false, "c"]);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.push(["I am here to collect the taxes I am owed as Lord of Atalin and the surrounding hamlets.", false, "b"]);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.push(["Tell me about your work as the tax officiator.", false, "a"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("This work is not easy, but I have a particular talent with numbers so I make do.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            if (player.gender == "Female")
+                            {
+                                setMsg("Here are the taxes that the tax collectors have brought to me so far, your most merciful excellency... I am but your humble servant.");
+                            }
+                            else
+                            {
+                                setMsg("Of course my lord, here are the taxes that the tax collectors have brought me thus far.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                var coinzHitz = -1;
+                                var taxColl = Math.floor(quests.atalinTaxes);
+
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins")
+                                    {
+                                        coinzHitz = i;
+                                    }
+                                }
+                                if (coinzHitz > -1)
+                                {
+                                    Inventory[coinzHitz][1] += taxColl;
+                                    quests.atalinTaxes -= taxColl;
+                                }
+                                else
+                                {
+                                    Inventory.unshift([new Item("coins", false, false), taxColl]);
+                                    quests.atalinTaxes -= taxColl;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            //text dialogue
+                            if (quests.atalinTaxManReformed == false)
+                            {
+                                setMsg("My lady, here are the taxes that I have prepared for you.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    var coinzHitz = -1;
+                                    var taxColl = Math.floor(quests.atalinTaxes * 4/5);
+
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].type == "coins")
+                                        {
+                                            coinzHitz = i;
+                                        }
+                                    }
+                                    if (coinzHitz > -1)
+                                    {
+                                        Inventory[coinzHitz][1] += taxColl;
+                                        quests.atalinTaxes = 0;
+                                    }
+                                    else
+                                    {
+                                        Inventory.unshift([new Item("coins", false, false), taxColl]);
+                                        quests.atalinTaxes = 0;
+                                    }
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    if (player.getIntelligence() >= 3)
+                                    {
+                                        conversationID[1] = 2;
+                                    }
+                                    else
+                                    {
+                                        conversationID[1] = 1;
+                                    }
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                setMsg("My lady, here I present to you the entire sum of your taxes, I assure you that is all of it...");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    var coinzHitz = -1;
+                                    var taxColl = Math.floor(quests.atalinTaxes * 5/6);
+
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].type == "coins")
+                                        {
+                                            coinzHitz = i;
+                                        }
+                                    }
+                                    if (coinzHitz > -1)
+                                    {
+                                        Inventory[coinzHitz][1] += taxColl;
+                                        quests.atalinTaxes = 0;
+                                    }
+                                    else
+                                    {
+                                        Inventory.unshift([new Item("coins", false, false), taxColl]);
+                                        quests.atalinTaxes = 0;
+                                    }
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    if (player.getIntelligence() >= 6)
+                                    {
+                                        conversationID[1] = 2;
+                                    }
+                                    else
+                                    {
+                                        conversationID[1] = 1;
+                                    }
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == 2)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I see that you are skimming from the taxes. Your evils will be burnt away at the pyre... [EXECUTE]", false, "a"], ["Stealing from your ruler is punishable by death... If you ever skim from my taxes again I will have your corruption burnt away at the pyre! [SCARE]", false, "b"], ["Thank you for your loyal service... [IGNORE]", false, "c"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2a")
+                        {
+                            //text dialogue
+                            setMsg("Have mercy, have mercy, please, my lady, please show mercy! I will never decieve you again, please!!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                change = "pireGathering";
+                                quests.doPire = true;
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                X = -46299;
+                                Y = 34;
+                                quests.pireVictim = "Tirbutin the Tax Officiator";
+                                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--)
+                                {
+                                    console.log(ArtificialIntelligenceAccess[i]);
+                                    if (ArtificialIntelligenceAccess[i].ID == quests.pireVictim)
+                                    {
+                                        ArtificialIntelligenceAccess.splice(i, 1);
+                                        break;
+                                    }
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2b")
+                        {
+                            //text dialogue
+                            setMsg("Thank you my lady, thank the everlasting spirit for this wonderful act of mercy, I will never decieve you again... ");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (quests.atalinTaxManReformed == false)
+                                {
+                                    if (Math.random() >= 0.4)
+                                    {
+                                        quests.atalinTaxManReformed = true;
+                                    }
+                                    else
+                                    {
+                                        quests.atalinTaxManReformed = "failed";
+                                    }
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2c")
+                        {
+                            //text dialogue
+                            setMsg("This work is not easy, but I have a particular talent with numbers so I make do.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Inquisition Torturer" && map == "atalinTortureChamber" || conversationID[0] == "InquTort")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "InquTort";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Why hello there.", false, "a"], ["What did these people do?", false, "b"], ["What did you do to these people?", false, "c"], ["Goodbye.", false, "d"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Lovely to see somebody other than my bloody friends down here...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Let's see... adultery for the older one, and for the little girl it was thievery.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("I castrated the adulterer, and I gouged the eyes out of the thief... They are free to live out the rest of their lives in exile if they survive, now that they have been properly punished, of course.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Until next time...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Silver Keep Banker" || conversationID[0] == "SilverKeep")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "SilverKeep";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Tell me my account balance.", false, "e"], ["I would like to make a deposit.", false, "a"], ["I would like to make a withdrawal.", false, "b"], ["I would like to take out a loan.", false, "c"], ["I would like to repay a loan.", false, "d"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            skDeposit();
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            skWithdraw();
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            skLoan();
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            skRepay();
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("Your account balance is (" + Math.floor(player.silverKeep) + ")");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")

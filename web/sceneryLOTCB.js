@@ -3341,6 +3341,225 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "deadBody")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            this.zIndex = 1;
+            if (this.temporary == 0) //decapitated
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.scale(this.information, this.information);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 0, 302, 35, 80, -20.5, -20, 57, 100);
+                XXX.restore();
+            }
+            else if (this.temporary == 1) //nirwaden
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.scale(this.information, this.information);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 0, 302, 35, 80, -20.5, -20, 57, 100);
+                XXX.beginPath();
+                XXX.fillStyle = "#e68900";
+                XXX.arc(0, 0, 10, 0, 2 * Math.PI);
+                XXX.fill();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 0.5;
+                XXX.stroke();
+                XXX.restore();
+            }
+            else if (this.temporary == 2) //kel
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.scale(this.information, this.information);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 0, 302, 35, 80, -20.5, -20, 57, 100);
+                XXX.beginPath();
+                XXX.fillStyle = "green";
+                XXX.arc(0, 0, 10, 0, 2 * Math.PI);
+                XXX.fill();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 0.5;
+                XXX.stroke();
+                XXX.restore();
+            }
+            else if (this.temporary == 3) //freynor
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.scale(this.information, this.information);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 0, 302, 35, 80, -20.5, -20, 57, 100);
+                XXX.beginPath();
+                XXX.fillStyle = "navy";
+                XXX.arc(0, 0, 10, 0, 2 * Math.PI);
+                XXX.fill();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 0.5;
+                XXX.stroke();
+                XXX.restore();
+            }
+            else if (this.temporary == 4) //thengar
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.scale(this.information, this.information);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 0, 302, 35, 80, -20.5, -20, 57, 100);
+                XXX.beginPath();
+                XXX.fillStyle = "#663300";
+                XXX.arc(0, 0, 10, 0, 2 * Math.PI);
+                XXX.fill();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 0.5;
+                XXX.stroke();
+                XXX.restore();
+            }
+            else if (this.temporary == 5) //aldrekii
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.scale(this.information, this.information);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 0, 302, 35, 80, -20.5, -20, 57, 100);
+                XXX.beginPath();
+                XXX.fillStyle = "darkRed";
+                XXX.arc(0, 0, 10, 0, 2 * Math.PI);
+                XXX.fill();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 0.5;
+                XXX.stroke();
+                XXX.restore();
+            }
+            else if (this.temporary == 6) //vardanian
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.scale(this.information, this.information);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 0, 302, 35, 80, -20.5, -20, 57, 100);
+                XXX.beginPath();
+                XXX.fillStyle = "#1c1c1c";
+                XXX.arc(0, 0, 10, 0, 2 * Math.PI);
+                XXX.fill();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 0.5;
+                XXX.stroke();
+                XXX.restore();
+            }
+            else if (this.temporary == 7) //orgell
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.scale(this.information, this.information);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 0, 302, 35, 80, -20.5, -20, 57, 100);
+                XXX.beginPath();
+                XXX.fillStyle = "gold";
+                XXX.arc(0, 0, 10, 0, 2 * Math.PI);
+                XXX.fill();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 0.5;
+                XXX.stroke();
+                XXX.restore();
+            }
+            else if (this.temporary == 8) //sylkeem
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.scale(this.information, this.information);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 0, 302, 35, 80, -20.5, -20, 57, 100);
+                XXX.beginPath();
+                XXX.fillStyle = "#06F4CA";
+                XXX.arc(0, 0, 10, 0, 2 * Math.PI);
+                XXX.fill();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 0.5;
+                XXX.stroke();
+                XXX.restore();
+            }
+            else if (this.temporary == 9) //cephrian
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.scale(this.information, this.information);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 0, 302, 35, 80, -20.5, -20, 57, 100);
+                XXX.beginPath();
+                XXX.fillStyle = "purple";
+                XXX.arc(0, 0, 10, 0, 2 * Math.PI);
+                XXX.fill();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 0.5;
+                XXX.stroke();
+                XXX.restore();
+            }
+            else if (this.temporary == 10) //outlander
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.scale(this.information, this.information);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 0, 302, 35, 80, -20.5, -20, 57, 100);
+                XXX.beginPath();
+                XXX.fillStyle = "white";
+                XXX.arc(0, 0, 10, 0, 2 * Math.PI);
+                XXX.fill();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 0.5;
+                XXX.stroke();
+                XXX.restore();
+            }
+            else if (this.temporary == 11) //empiric
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.scale(this.information, this.information);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 0, 302, 35, 80, -20.5, -20, 57, 100);
+                XXX.beginPath();
+                XXX.fillStyle = "#999966";
+                XXX.arc(0, 0, 10, 0, 2 * Math.PI);
+                XXX.fill();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 0.5;
+                XXX.stroke();
+                XXX.restore();
+            }
+            else if (this.temporary >= 12) //faelan
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.scale(this.information, this.information);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 0, 302, 35, 80, -20.5, -20, 57, 100);
+                XXX.beginPath();
+                XXX.fillStyle = "pink";
+                XXX.arc(0, 0, 10, 0, 2 * Math.PI);
+                XXX.fill();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 0.5;
+                XXX.stroke();
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
         else if (this.type == "stumpStool")
         {
             //TRAITS

@@ -66,6 +66,9 @@ function gameloopOfDestiny(time)
     //MASTER BUILDER
     buildMaster();
 
+    //player based mini events
+    miniEvent();
+
     //Layering, Drawing and World Life
     for (var z = 1; z <= 6; z++)
     {
@@ -149,11 +152,14 @@ function gameloopOfDestiny(time)
     //AI name display and interaction with...
     aiIdentify();
 
-    //Dialogue
-    messageReader();
-
     //player shops
     doPlayerShops();
+
+    //silverKeep
+    skBanking();
+
+    //taxes
+    taxes();
 
     //POP-UPs
     //level up pop-up
@@ -277,6 +283,9 @@ function gameloopOfDestiny(time)
     //Screen Covers
     gameTimeKeeper();
     screenCover();
+
+    //Dialogue
+    messageReader();
 
     //Turn Off Certain Variables at the very end of the game loop
     clicked = false;
